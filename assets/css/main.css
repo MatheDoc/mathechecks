@@ -1,0 +1,38 @@
+:root {
+  --hauptfarbe: #156082;
+  --hauptfarbe-hover: #1d7ca6;
+  --textfarbe: #333;
+  --hintergrundfarbe: #f8f8f8;
+  --hintergrundfarbe-hover: hsl(0, 0%, 89%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.top-nav{
+  background-color: var(--hauptfarbe);
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.lernbereiche-nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.25s;
+}
+
+.elemente-nav a{
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-weight: 600;
+    user-select: none;
+    transition: background-color 0.25s;
+}

@@ -1,0 +1,18 @@
+title: MatheChecks
+
+author: "Dr. Sven Führing"
+url: "https://mathechecks.de"
+
+port: 4001 # Port für den lokalen Server ohne Admin
+
+external_css:
+  datatables: "https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
+  fontawesome: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  select2: "https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css"
+
+external_js:
+  jquery: "https://code.jquery.com/jquery-3.6.0.min.js"
+  datatables: "https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"
+  select2: "https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"
+  plotly: "https://cdn.plot.ly/plotly-latest.min.js"
+  mathjax: ""  # MathJax wird im Head behandelt, daher kein src nötig
