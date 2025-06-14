@@ -10,12 +10,11 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: Arial, sans-serif;
   background-color: var(--hintergrundfarbe);
   color: var(--textfarbe);
   margin: 0;
-
 }
 
 h1 {
@@ -27,11 +26,14 @@ h1 {
   font-size: 30px;
 }
 
-h1,h2,h3,h4 {
+h1,
+h2,
+h3,
+h4 {
   color: var(--hauptfarbe);
 }
 
-a{
+a {
   text-decoration: none;
 }
 
@@ -54,4 +56,8 @@ mjx-container[display="true"] {
   overflow-x: auto;
   overflow-y: hidden;
   max-width: 100%;
+}
+
+i:hover {
+  cursor: pointer;
 }

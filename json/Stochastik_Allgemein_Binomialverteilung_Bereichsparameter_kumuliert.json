@@ -1,0 +1,342 @@
+﻿[
+{
+"einleitung":"Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. Dafür entnimmt er aus der laufenden Produktion  77 Teile. Ein Halbleiter ist mit einer Wahrscheinlichkeit von 43% defekt.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"In der Stichprobe sind genau 32 defekte Halbleiter.",
+"In der Stichprobe sind mindestens 32 defekte Halbleiter.",
+"In der Stichprobe sind mindestens 49% defekte Halbleiter.",
+"In der Stichprobe sind weniger als 35 defekte Halbleiter.",
+"In der Stichprobe sind mehr als 28 und höchstens 41 defekte Halbleiter."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=32:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=31:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=77:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=31:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=77:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=37:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=34:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=41:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=28:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn von Bielefeld nach Münster. An einem Tag überprüft sie 50 Passagiere. Erfahrungsgemäß haben 44% aller Passagiere keinen gültigen Fahrschein.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den kontrollierten Passagieren haben weniger als 29 keinen gültigen Fahrschein.",
+"Von den kontrollierten Passagieren haben höchstens 30% keinen gültigen Fahrschein.",
+"Von den kontrollierten Passagieren haben genau 20 keinen gültigen Fahrschein.",
+"Von den kontrollierten Passagieren haben mehr als 20 und höchstens 27 keinen gültigen Fahrschein.",
+"Von den kontrollierten Passagieren haben mindestens 24 keinen gültigen Fahrschein."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=28:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=15:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=19:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=27:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=50:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=23:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"An einem Eisstand bietet der Verkäufer Eis mit oder ohne Streuseln an. Insgesamt kaufen 66 Kunden ein Eis. Typischerweise bestellen 33% aller Kunden ein Eis mit Streuseln.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den betrachteten Kunden bestellen genau 25 ein Eis mit Streuseln.",
+"Von den betrachteten Kunden bestellen mehr als 18 und höchstens 25 ein Eis mit Streuseln.",
+"Von den betrachteten Kunden bestellen mindestens 20 ein Eis mit Streuseln.",
+"Von den betrachteten Kunden bestellen höchstens 38% ein Eis mit Streuseln.",
+"Von den betrachteten Kunden bestellen weniger als 21 ein Eis mit Streuseln."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=25:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=24:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=25:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=18:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=66:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=19:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=25:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"David hat eine gezinkte Münze. Er wirft die Münze 22 Mal. Bei einem einmaligen Wurf beträgt die Wahrscheinlichkeit für Kopf 47%.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"David wirft genau 7 Mal Kopf. ",
+"David wirft mehr als 10 Mal Kopf. ",
+"David wirft höchstens 10 Mal Kopf. ",
+"David wirft mindestens 6 und weniger als 14 Mal Kopf. ",
+"David wirft mindestens 32% Mal Kopf. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=7:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=6:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=13:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=5:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=7:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Eine Ärztin prüft, ob Bewerber für den Polizeiberuf gesundheitlich geeignet sind. Insgesamt gibt es 38 Bewerber. Erfahrungswerte besagen, dass 36% aller Bewerber den Check erfolgreich absolvieren.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den Bewerbern absolvieren höchstens 20 den Check erfolgreich. ",
+"Von den Bewerbern absolvieren mehr als 11 den Check erfolgreich. ",
+"Von den Bewerbern absolvieren höchstens 47% den Check erfolgreich. ",
+"Von den Bewerbern absolvieren mindestens 8 und weniger als 16 den Check erfolgreich. ",
+"Von den Bewerbern absolvieren genau 13 den Check erfolgreich. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=38:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=11:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=17:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=15:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=7:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=13:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=12:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Fahrlehrer nimmt eine theoretische Führerscheinprüfung ab. Es erscheinen 75 Prüflinge. Die Durchfallquote liegt bei 50%.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den Kandidaten bestehen mehr als 33 und höchstens 40  nicht die Prüfung.",
+"Von den Kandidaten bestehen genau 45  nicht die Prüfung.",
+"Von den Kandidaten bestehen weniger als 31  nicht die Prüfung.",
+"Von den Kandidaten bestehen mindestens 37  nicht die Prüfung.",
+"Von den Kandidaten bestehen mindestens 43%  nicht die Prüfung."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=40:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=33:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=45:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=44:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=30:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=75:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=36:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=75:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=32:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Zollbeamter kontrolliert ein Sportgeschäft hinsichtlich gefälschter Turnschuhe. Er untersucht insgesamt 32 Turnschuhe. Glaubwürdigen Schätzungen zufolge ist jeder 5. Schuh gefälscht.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den untersuchten Turnschuhen sind weniger als 5 gefälscht. ",
+"Von den untersuchten Turnschuhen sind mindestens 8 gefälscht. ",
+"Von den untersuchten Turnschuhen sind mehr als 2 und höchstens 8 gefälscht. ",
+"Von den untersuchten Turnschuhen sind höchstens 25% gefälscht. ",
+"Von den untersuchten Turnschuhen sind genau 6 gefälscht. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=4:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=32:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=7:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=8:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=2:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=8:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=6:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=5:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Eine Fußballspielerin trainiert Freistöße. Sie schießt 69 Mal auf das Tor. Sie weiß, dass 78% aller Schüsse das Tor verfehlen.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Die Fußballerin trifft mindestens 68% Mal nicht das Tor. ",
+"Die Fußballerin trifft genau 60 Mal nicht das Tor. ",
+"Die Fußballerin trifft mindestens 51 und weniger als 59 Mal nicht das Tor. ",
+"Die Fußballerin trifft mehr als 56 Mal nicht das Tor. ",
+"Die Fußballerin trifft höchstens 50 Mal nicht das Tor. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=69:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=46:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=60:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=59:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=58:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=50:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=69:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=56:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=50:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 85 Mitarbeiter befragt. Bekanntermaßen sind 67% aller Mitarbeiter zufrieden.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den befragten Mitarbeitern sind genau 51 zufrieden. ",
+"Von den befragten Mitarbeitern sind höchstens 72% zufrieden. ",
+"Von den befragten Mitarbeitern sind weniger als 62 zufrieden. ",
+"Von den befragten Mitarbeitern sind mindestens 57 zufrieden. ",
+"Von den befragten Mitarbeitern sind mehr als 51 und höchstens 59 zufrieden. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=51:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=50:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=61:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=61:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=85:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=56:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=59:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=51:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Es werden die Bestellungen von 20 Gästen geprüft. Allgemeine Statistiken zeigen, dass 56% aller Gäste vegetarische Gerichte bestellen.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den kontrollierten Gerichten sind weniger als 10 vegetarisch. ",
+"Von den kontrollierten Gerichten sind mindestens 9 vegetarisch. ",
+"Von den kontrollierten Gerichten sind mehr als 7 und höchstens 16 vegetarisch. ",
+"Von den kontrollierten Gerichten sind genau 11 vegetarisch. ",
+"Von den kontrollierten Gerichten sind höchstens 50% vegetarisch. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=9:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=8:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=16:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=7:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=11:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Die Filialleiterin eines Gartencenter prüft, ob die Pflanzen ausreichend bewässert werden. Sie untersucht 57 Pflanzen. Aus Erfahrung weiß sie, dass jede 5. Pflanze zu wenig Wasser bekommt.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den geprüften Pflanzen bekommen höchstens 8 zu wenig Wasser.",
+"Von den geprüften Pflanzen bekommen genau 17 zu wenig Wasser.",
+"Von den geprüften Pflanzen bekommen mindestens 26% zu wenig Wasser.",
+"Von den geprüften Pflanzen bekommen mehr als 9 zu wenig Wasser.",
+"Von den geprüften Pflanzen bekommen mindestens 9 und weniger als 18 zu wenig Wasser."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=8:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=17:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=16:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=57:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=14:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=57:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=9:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=17:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=8:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Onlineshop für Heimwerkerbedarf bietet elektrische Werkzeuge entweder mit Kabel oder mit Akku an. Es wird die Stromversorgung von 100 bestellten Werkzeugen untersucht. Ein Werkzeug hat mit einer Wahrscheinlichkeit von 61% einen Akku.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den registrierten Werkzeugen sind mehr als 66 mit einem Akku ausgestattet.",
+"Von den registrierten Werkzeugen sind mindestens 53 und weniger als 71 mit einem Akku ausgestattet.",
+"Von den registrierten Werkzeugen sind höchstens 64 mit einem Akku ausgestattet.",
+"Von den registrierten Werkzeugen sind genau 53 mit einem Akku ausgestattet.",
+"Von den registrierten Werkzeugen sind höchstens 52% mit einem Akku ausgestattet."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=100:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=66:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=70:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=52:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=64:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=53:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=52:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=52:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Unternehmen prüft, wie gut seine Computer vor etwaigen Cyberattacken geschützt sind. Es werden 56 Computer hinsichtlich eines ausreichenden Virenschutzes untersucht. Nach offiziellen Angaben haben 75% aller Computer keinen ausreichenden Virenschutz.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den untersuchten Computern haben weniger als 46 keinen ausreichenden Virenschutz. ",
+"Von den untersuchten Computern haben genau 43 keinen ausreichenden Virenschutz. ",
+"Von den untersuchten Computern haben mehr als 39 und höchstens 43 keinen ausreichenden Virenschutz. ",
+"Von den untersuchten Computern haben mindestens 75% keinen ausreichenden Virenschutz. ",
+"Von den untersuchten Computern haben mindestens 47 keinen ausreichenden Virenschutz. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=45:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=43:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=42:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=43:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=39:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=56:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=41:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=56:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=46:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Eine Glaserei produziert Maßkrüge, wobei es an einigen Krügen zu Kratzern kommt. Sie überprüft eine Tagesproduktion von 72 Krügen. Analysen zeigen, dass 64% aller Krüge einen Kratzer haben.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"In der Stichprobe sind mindestens 57% Krüge mit Kratzer.",
+"In der Stichprobe sind genau 52 Krüge mit Kratzer.",
+"In der Stichprobe sind mehr als 41 und höchstens 52 Krüge mit Kratzer.",
+"In der Stichprobe sind mindestens 49 Krüge mit Kratzer.",
+"In der Stichprobe sind weniger als 42 Krüge mit Kratzer."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=72:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=41:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=52:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=51:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=52:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=41:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=72:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=48:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=41:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Amalia sucht auf einer Online-Partnerbörse nach dem Mann fürs Leben. An einem Tag schaut sie sich 28 Partnervorschläge an. Aus Erfahrung weiß sie, dass sie 78% aller vorgeschlagenen Partner attraktiv findet.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den vorgeschlagenen Partnern findet Amalia mindestens 17 und weniger als 27 attraktiv. ",
+"Von den vorgeschlagenen Partnern findet Amalia höchstens 20 attraktiv. ",
+"Von den vorgeschlagenen Partnern findet Amalia genau 20 attraktiv. ",
+"Von den vorgeschlagenen Partnern findet Amalia mehr als 24 attraktiv. ",
+"Von den vorgeschlagenen Partnern findet Amalia mindestens 79% attraktiv. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=26:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=16:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=19:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=28:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=24:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=28:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Unternehmen verkauft Smartwatches. Um den Absatz anzukurbeln, werden einigen Uhren zufällig Gutscheine für ein Online-Versandhaus beigelegt. Die Smartwatches werden in Kisten mit je 44 Stück zusammengefasst. Der Zufallsgenerator legt 67% aller Smartwatches einen Gutschein bei.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"In einer Kiste sind mindestens 28 und weniger als 34 Smartwatches mit Gutschein.",
+"In einer Kiste sind genau 32 Smartwatches mit Gutschein.",
+"In einer Kiste sind mehr als 30 Smartwatches mit Gutschein.",
+"In einer Kiste sind mindestens 59% Smartwatches mit Gutschein.",
+"In einer Kiste sind höchstens 34 Smartwatches mit Gutschein."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=33:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=27:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=32:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=31:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=44:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=30:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=44:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=25:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=34:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Der Verkäufer einer Imbissbude möchte wissen, auf welche Art seine Kunden bezahlen. Er beobachtet 82 Kunden. Es ist bekannt, dass ein Kunde mit einer Wahrscheinlichkeit von 20% bar bezahlt.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Es bezahlen mindestens 20 Kunden bar. ",
+"Es bezahlen genau 10 Kunden bar. ",
+"Es bezahlen höchstens 23% Kunden bar. ",
+"Es bezahlen weniger als 23 Kunden bar. ",
+"Es bezahlen mehr als 11 und höchstens 22 Kunden bar. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=82:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=19:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=9:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=18:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=11:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein Unternehmen verkauft Beamer und garantiert eine Lebensdauer von 4000 Stunden für die Beamerlampen. In einer Langzeitkontrolle werden 38 Beamerlampen überprüft. Analysen von Verbraucherschützern zufolge leuchtet jede 2. Beamerlampe weniger als 4000 Stunden.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den kontrollierten Beamerlampen leuchten höchstens 25 weniger als 4000 Stunden.",
+"Von den kontrollierten Beamerlampen leuchten mindestens 37% weniger als 4000 Stunden.",
+"Von den kontrollierten Beamerlampen leuchten mehr als 22 weniger als 4000 Stunden.",
+"Von den kontrollierten Beamerlampen leuchten mindestens 13 und weniger als 25 weniger als 4000 Stunden.",
+"Von den kontrollierten Beamerlampen leuchten genau 20 weniger als 4000 Stunden."
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=25:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=38:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=14:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=38:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=22:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=24:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=12:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=20:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=19:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 54 User teil. Man weiß, dass 24% aller User der Influencerin folgen.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den befragten Usern folgen genau 18 der Influencerin. ",
+"Von den befragten Usern folgen höchstens 31% der Influencerin. ",
+"Von den befragten Usern folgen mindestens 11 und weniger als 17 der Influencerin. ",
+"Von den befragten Usern folgen höchstens 12 der Influencerin. ",
+"Von den befragten Usern folgen mehr als 14 der Influencerin. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=18:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=17:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=16:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=16:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=10:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=12:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=54:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=14:0}\\( ) \\)"
+]
+},
+{
+"einleitung":"In einem Lebensmittelgeschäft bestimmt ein Kassierer mit Hilfe einer Waage das Gewicht von Obst und Gemüse. Er wiegt 92 Lebensmittel. Interne Untersuchungen zeigen, dass in 37% der Fälle das Gewicht nicht ausreichend genau bestimmt wird.</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. Tritt ein angezeister Term in der Löung nicht auf, setzen Sie \\( k=-1 \\).",
+"fragen":[
+"Von den ermittelten Gewichten sind mindestens 39 nicht ausreichend genau. ",
+"Von den ermittelten Gewichten sind weniger als 35 nicht ausreichend genau. ",
+"Von den ermittelten Gewichten sind genau 31 nicht ausreichend genau. ",
+"Von den ermittelten Gewichten sind mindestens 30% nicht ausreichend genau. ",
+"Von den ermittelten Gewichten sind mehr als 27 und höchstens 40 nicht ausreichend genau. "
+],
+"antworten":[
+"\\( P = P(X\\leq \\){1:NUMERICAL:=92:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=38:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=34:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=-1:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=31:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=30:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=92:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=27:0}\\( ) \\)",
+"\\( P = P(X\\leq \\){1:NUMERICAL:=40:0}\\( ) - P(X\\leq \\){1:NUMERICAL:=27:0}\\( ) \\)"
+]
+}
+]
