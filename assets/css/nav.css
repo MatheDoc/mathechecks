@@ -1,0 +1,121 @@
+.nav-lernbereiche {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Zentriert den Inhalt */
+  background-color: var(--hauptfarbe);
+  padding: 0.5rem 1rem;
+  position: relative;
+}
+
+.logo {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  font-size: 2rem;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.hamburger {
+  position: absolute;
+  left: 1rem;
+  background: none;
+       border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+    color: white;
+}
+
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  list-style: none;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+       border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.menu li {
+  margin: 0.5rem 0;
+
+}
+.menu li a{
+    display: block;
+    padding: 0.6rem 1.2rem;
+      border: 1px solid var(--hauptfarbe);
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.stochastik a {
+    background-color: #e0f0ff;
+    color: #005ea2;
+}
+.stochastik a:hover {
+    background-color: #c1e0ff;
+}
+
+.analysis a {
+    background-color: #e6ffe0;
+    color: #2b7a0b;
+}
+.analysis a:hover {
+    background-color: #c7f5bf;
+}
+
+.lineare-algebra a {
+    background-color: #fbe0ff;
+    color: #800080;
+}
+.lineare-algebra a:hover {
+    background-color: #f3c2ff;
+}
+
+.nav-materialtyp{
+  display: flex;
+  justify-content: center;
+}
+
+.nav-materialtyp ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-materialtyp a.nav-link {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.6rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--hauptfarbe);
+}
+
+.nav-materialtyp a.nav-link:hover {
+  background-color: #e0e0e0;
+  border-radius: 0.4rem;
+  color: #000;
+}
+
+.nav-materialtyp a.ausgewählt {
+  background-color: var(--hauptfarbe);
+  color: white;
+  border-radius: 0.4rem;
+}

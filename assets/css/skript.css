@@ -1,0 +1,49 @@
+.flip-card {
+  margin: 1.5em 0;
+  line-height: 1.5;
+}
+
+.flip-card summary {
+  background-color: #deeaef;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  color: var(--hauptfarbe);
+  font-weight: bold;
+}
+
+.flip-card summary:hover {
+  background-color: #bce1f1;
+}
+
+.flip-card details {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.flip-card[open] {
+  background: #ffffff;
+}
+.flip-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.flip-card[open] div {
+  border: 1px solid #ccc;
+  border-top: none;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.flip-card div table {
+  margin-top: 1em;
+}

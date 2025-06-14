@@ -10,29 +10,48 @@
   box-sizing: border-box;
 }
 
-.top-nav{
-  background-color: var(--hauptfarbe);
-  color: white;
-  padding: 10px;
+body{
+  font-family: Arial, sans-serif;
+  background-color: var(--hintergrundfarbe);
+  color: var(--textfarbe);
+  margin: 0;
+
+}
+
+h1 {
+  color: var(--hauptfarbe);
+  padding: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
   text-align: center;
+  font-size: 30px;
 }
 
-.lernbereiche-nav a{
-    color: white;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    font-weight: 600;
-    user-select: none;
-    transition: background-color 0.25s;
+h1,h2,h3,h4 {
+  color: var(--hauptfarbe);
 }
 
-.elemente-nav a{
-    color: white;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    border-radius: 4px;
-    font-weight: 600;
-    user-select: none;
-    transition: background-color 0.25s;
+a{
+  text-decoration: none;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: #888;
+  height: 50px;
+}
+
+main {
+  padding: 20px;
+}
+
+mjx-container[display="true"] {
+  /* Für MathJax Version 3 */
+  display: inline-flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  max-width: 100%;
 }
