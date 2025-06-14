@@ -2,8 +2,12 @@ title: MatheChecks
 
 author: "Dr. Sven Führing"
 url: "https://mathechecks.de"
+lang: de_DE
 
 port: 4001 # Port für den lokalen Server ohne Admin
+
+plugins:
+  - jekyll-seo-tag
 
 external_css:
   datatables: "https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css"
