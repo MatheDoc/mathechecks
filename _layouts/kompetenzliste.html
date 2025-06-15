@@ -2,7 +2,10 @@
 <html lang="de">
   <head>
     {% include head-main.html %} {% include mathjax.html %}
-    <link rel="stylesheet" href="/assets/css/kompetenzliste.css" />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/kompetenzliste.css' | relative_url }}"
+    />
   </head>
   <body>
     <header>
@@ -23,8 +26,7 @@
 
     {% include footer.html %}
 
-    <script src="/assets/js/nav.js"></script>
-
-    <script src="/assets/js/kompetenzliste.js"></script>
+    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/kompetenzliste.js' | relative_url }}"></script>
   </body>
 </html>

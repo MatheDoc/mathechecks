@@ -1,5 +1,5 @@
 // This script fetches a JSON file containing competencies and filters them based on the selected learning area.
-fetch("/kompetenzliste.json")
+fetch("/mathechecks/kompetenzliste.json") // Liquid wird nicht in js aufgelöst, daher ohne relative_url
   .then((response) => response.json())
   .then((daten) => {
     const tbody = document.getElementById("tabellenkoerper");
