@@ -8,7 +8,7 @@ fetch("/kompetenzliste.json")
     );
 
     gefiltert.forEach((eintrag, index) => {
-      const uebungUrl = `uebungen#aufgabe-${index + 1}`;
+      const uebungUrl = `uebungen.html#aufgabe-${index + 1}`;
       const zeile = document.createElement("tr");
       zeile.innerHTML = `<td>
       ${eintrag["Ich kann"]}

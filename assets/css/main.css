@@ -18,11 +18,13 @@ body {
 }
 
 header {
-  background-color: var(--hintergrundfarbe);
+  background: linear-gradient(to bottom, var(--hintergrundfarbe) 80%, #f8f8f8a1 100%);
   position: sticky;
   top: 0;
-  z-index: 1000; 
+  z-index: 1000;
+  padding-bottom: 30px;
 }
+
 
 
 h1 {

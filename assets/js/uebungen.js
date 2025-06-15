@@ -24,7 +24,13 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
     if (hash) {
       const zielElement = document.querySelector(hash);
       if (zielElement) {
-        zielElement.scrollIntoView({ behavior: "smooth" });
+        const header = document.querySelector("header"); // Passe ggf. den Selektor an
+        const headerHeight = header ? header.offsetHeight : 0;
+        const y =
+          zielElement.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+        window.scrollTo({ top: y, behavior: "smooth" });
         setTimeout(() => {
           highlightElement(zielElement);
         }, 1000);
