@@ -97,7 +97,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -124,3 +124,16 @@
   color: white;
   border-radius: 0.4rem;
 }
+
+/* Standard: Text sichtbar */
+.nav-text {
+  display: inline;
+}
+
+/* Bei kleiner Bildschirmbreite: Text ausblenden */
+@media (max-width: 600px) {
+  .nav-text {
+    display: none;
+  }
+}
+
