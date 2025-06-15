@@ -17,13 +17,21 @@ body {
   margin: 0;
 }
 
+header {
+  background-color: var(--hintergrundfarbe);
+  position: sticky;
+  top: 0;
+  z-index: 1000; 
+}
+
+
 h1 {
   color: var(--hauptfarbe);
   padding: 20px;
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
-  font-size: 30px;
+  font-size: 25px;
 }
 
 h1,

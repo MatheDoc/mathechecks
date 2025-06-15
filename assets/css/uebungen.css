@@ -123,6 +123,30 @@ input[type="text"]::-webkit-outer-spin-button {
   color: #043d36;
 }
 
+@keyframes border-draw {
+  0% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+  50% {
+    border-color: var(--hauptfarbe);  /* z.B. ein warmes Orange */
+    box-shadow: 0 0 8px var(--hauptfarbe);;
+  }
+  100% {
+    border-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.highlight-border {
+  position: relative;
+  border: 5px solid transparent;
+  animation: border-draw 1.5s ease forwards;
+  border-radius: 12px;  /* optional, je nach Layout */
+}
+
+
+
 @media (max-width: 768px) {
   .aufgabe > div {
     flex-direction: column;

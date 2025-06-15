@@ -1,48 +1,19 @@
 let aufgabenZaehler = 1; // Initialisiere den Zähler für die Aufgaben
 let questionId = 1; // Eindeutige Frage-ID für jede Aufgabe
 
-let aktuelleEinträge = []; // global
-let aktuellerLernbereich = ""; // global
-
 async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
-    aktuellerLernbereich = lernbereich;
     const responseKompetenzliste = await fetch("/kompetenzliste.json");
     const daten = await responseKompetenzliste.json();
-
-    aktuelleEinträge = daten.filter(
+    const gefiltert = daten.filter(
       (eintrag) => eintrag.Lernbereich === lernbereich
     );
 
-    for (const [index, eintrag] of aktuelleEinträge.entries()) {
-      const aufgabeDiv = await erstelleAufgabe(eintrag, index);
-      zeigeOderErsetzeAufgabe(aufgabeDiv);
-    }
-
-    // Scrollen zum Ziel-Element, falls ein Hash in der URL vorhanden ist
-    const hash = window.location.hash;
-    if (hash) {
-      const zielElement = document.querySelector(hash);
-      if (zielElement) {
-        zielElement.scrollIntoView({ behavior: "smooth" });
-        setTimeout(() => {
-          highlightElement(zielElement);
-        }, 1000);
-      } else {
-        console.warn("Ziel-Element nicht gefunden für Hash:", hash);
-      }
+    for (const [index, eintrag] of gefiltert.entries()) {
+      await erstelleAufgabe(eintrag, index);
     }
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
-  }
-}
-
-function zeigeOderErsetzeAufgabe(aufgabeDiv) {
-  const bestehend = document.getElementById(aufgabeDiv.id);
-  if (bestehend) {
-    bestehend.replaceWith(aufgabeDiv);
-  } else {
-    document.querySelector("main").appendChild(aufgabeDiv);
   }
 }
 
@@ -100,6 +71,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
   try {
     const responseSammlung = await fetch(`/json/${eintrag["Sammlung"]}.json`);
     const sammlung = await responseSammlung.json();
+
     const zufall = Math.floor(Math.random() * sammlung.length);
     const aufgabe = sammlung[zufall];
 
@@ -107,6 +79,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
     wrapper.appendChild(einleitung);
 
     const ol = document.createElement("ol");
+    ol.setAttribute("aria-label", "");
     if (aufgabe.fragen.length === 1) {
       ol.style.listStyleType = "none";
     }
@@ -123,8 +96,10 @@ async function erstelleAufgabe(eintrag, index = 0) {
       applyInteractivity(aufgabeDiv);
     }
 
+    document.querySelector("main").appendChild(aufgabeDiv);
+
     if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
-      await MathJax.typesetPromise([aufgabeDiv]);
+      MathJax.typesetPromise([aufgabeDiv]);
     }
 
     const $select = $(`#${aufgabeDiv.id} select.mch`);
@@ -142,17 +117,14 @@ async function erstelleAufgabe(eintrag, index = 0) {
         adjustSelect2Width(`#${aufgabeDiv.id} select.mch`);
       }
     }
-    // Listener für Icons hinzufügen
-    addCheckIconListeners(aufgabeDiv);
-    return aufgabeDiv;
   } catch (err) {
     einleitung.innerHTML += `<p style="color:red;">Fehler beim Laden der Aufgabe.</p>`;
-    aufgabeDiv.appendChild(einleitung);
     console.error(
       `Fehler beim Laden der Sammlung für ${eintrag["Sammlung"]}:`,
       err
     );
-    return aufgabeDiv;
+    aufgabeDiv.appendChild(einleitung);
+    document.querySelector("main").appendChild(aufgabeDiv);
   }
 }
 
@@ -333,13 +305,6 @@ function renderWithMathJax(data) {
   });
 
   return span;
-}
-
-function highlightElement(element) {
-  element.classList.add("highlight-border");
-  setTimeout(() => {
-    element.classList.remove("highlight-border");
-  }, 1500); // Dauer der Animation
 }
 
 ladeAufgabenFürLernbereich(lernbereich);
