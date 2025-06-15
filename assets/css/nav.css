@@ -32,7 +32,7 @@
 .menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 20px;
   background: #ffffff;
   list-style: none;
   padding: 0.5rem 1rem;
@@ -114,13 +114,12 @@
 }
 
 .nav-materialtyp a.nav-link:hover {
-  background-color: #e0e0e0;
+  background-color: #deeaef;
   border-radius: 0.4rem;
-  color: #000;
 }
 
 .nav-materialtyp a.ausgewählt {
-  background-color: var(--hauptfarbe);
+  background-color: var(--hauptfarbe) !important;
   color: white;
   border-radius: 0.4rem;
 }

@@ -4,6 +4,16 @@ function toggleMenu() {
   menu.classList.toggle("hidden");
 }
 
+document.addEventListener("click", function (event) {
+  const menu = document.getElementById("main-menu");
+  const isClickInsideMenu = menu.contains(event.target);
+  const isButtonClick = event.target.closest("button"); // Button direkt oder Icon darin
+
+  if (!isClickInsideMenu && !isButtonClick) {
+    menu.classList.add("hidden");
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".nav-materialtyp .nav-link");
   const currentPath = window.location.href.split("#")[0]; // ohne Anker
