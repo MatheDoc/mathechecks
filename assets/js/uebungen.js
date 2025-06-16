@@ -16,9 +16,17 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
       (eintrag) => eintrag.Lernbereich === lernbereich
     );
 
+    const pfad = window.location.pathname.toLowerCase();
+
     for (const [index, eintrag] of aktuelleEinträge.entries()) {
       const aufgabeDiv = await erstelleAufgabe(eintrag, index);
-      zeigeOderErsetzeAufgabe(aufgabeDiv);
+      if (pfad.includes("uebungen.html")) {
+        zeigeOderErsetzeAufgabe(aufgabeDiv);
+      } else if (pfad.includes("skript.html")) {
+        zeigeInSkript(aufgabeDiv);
+      } else {
+        console.warn("Unbekannte Seite – Aufgabe nicht angezeigt.");
+      }
     }
 
     // Scrollen zum Ziel-Element, falls ein Hash in der URL vorhanden ist
@@ -51,6 +59,19 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
     bestehend.replaceWith(aufgabeDiv);
   } else {
     document.querySelector("main").appendChild(aufgabeDiv);
+  }
+}
+
+function zeigeInSkript(aufgabeDiv) {
+  const zielId = aufgabeDiv.id.replace("aufgabe-", "skript-aufgabe-");
+  const zielDiv = document.getElementById(zielId);
+  if (!zielDiv) {
+    return;
+  }
+  zielDiv.classList.add("aufgabe");
+
+  if (zielDiv) {
+    zielDiv.innerHTML = aufgabeDiv.innerHTML;
   }
 }
 
@@ -351,5 +372,3 @@ function highlightElement(element) {
     element.classList.remove("highlight-border");
   }, 1500); // Dauer der Animation
 }
-
-ladeAufgabenFürLernbereich(lernbereich);

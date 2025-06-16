@@ -1,5 +1,6 @@
 // alle richtigen Antworten anzeigen
 function showAllAnswers(iconElement) {
+  console.log("showAllAnswers called with iconElement:", iconElement);
   // Finde das umgebende Aufgaben-DIV
   const aufgabenDiv = iconElement.closest(".aufgabe");
   console.log("showAllAnswers aufgabenDiv:", aufgabenDiv);
@@ -96,13 +97,20 @@ async function reloadSingleTask(iconElement) {
   if (!aufgabeDiv) return;
 
   const id = aufgabeDiv.id;
-  const index = parseInt(id.split("-")[1]) - 1;
+
+  const index = parseInt(id.split("-").pop()) - 1;
 
   const eintrag = aktuelleEinträge[index];
   if (!eintrag) return;
 
+  const pfad = window.location.pathname.toLowerCase();
+
   const neueAufgabe = await erstelleAufgabe(eintrag, index);
-  zeigeOderErsetzeAufgabe(neueAufgabe);
+  if (pfad.includes("uebungen.html")) {
+    zeigeOderErsetzeAufgabe(neueAufgabe);
+  } else if (pfad.includes("skript.html")) {
+    zeigeInSkript(neueAufgabe);
+  }
 }
 
 // Assistenzmodus starten
@@ -261,6 +269,7 @@ function addCheckIconListeners(container) {
 
 function toggleAllAnswers(iconElement) {
   const aufgabenDiv = iconElement.closest(".aufgabe");
+  console.log("toggleAllAnswers aufgabenDiv:", aufgabenDiv);
   if (!aufgabenDiv) return;
 
   const isShown = iconElement.classList.contains("fa-eye-slash");

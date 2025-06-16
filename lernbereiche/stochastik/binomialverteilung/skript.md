@@ -87,7 +87,6 @@ Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bede
 
 Eine Porzellanmanufaktur stellt Vasen her. Der Großteil der produzierten Vasen ist verkaufsfähig, ein kleiner Teil muss jedoch entsorgt werden. Bei einer Stichprobe in der Manufaktur werden verkaufsfähige und defekte Vasen festgestellt. Bei einer Stichprobe in der Manufaktur werden auch defekter Vasen gefunden. Danach wird die folgende Rechnung aufgestellt:
 
-
 $$
 
 \binom{50}{3}\cdot 0{,}04^3\cdot 0{,}96^{47}=0{,}1842
@@ -107,7 +106,6 @@ Was bedeuten die folgenden Zahlen im Sachzusammenhang?
 
 ## Intervallwahrscheinlichkeiten
 
+<div id="skript-aufgabe-1">hallo</div>
+
 ## Erwartungswert und Standardabweichung
-
-
-$$

@@ -22,11 +22,11 @@
   position: absolute;
   left: 1rem;
   background: none;
-       border: 1px solid #ffffff;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   font-size: 1.5rem;
   cursor: pointer;
-    color: white;
+  color: white;
 }
 
 .menu {
@@ -36,19 +36,18 @@
   background: #ffffff;
   list-style: none;
   padding: 0.5rem 1rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-       border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
   border-radius: 10px;
 }
 
 .menu li {
   margin: 0.5rem 0;
-
 }
-.menu li a{
-    display: block;
-    padding: 0.6rem 1.2rem;
-      border: 1px solid var(--hauptfarbe);
+.menu li a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--hauptfarbe);
   border-radius: 10px;
 }
 
@@ -56,40 +55,38 @@
   display: none;
 }
 
-
-
 .stochastik a {
-    background-color: #e0f0ff;
-    color: #005ea2;
+  background-color: #e0f0ff;
+  color: #005ea2;
 }
 .stochastik a:hover {
-    background-color: #c1e0ff;
+  background-color: #c1e0ff;
 }
 
 .analysis a {
-    background-color: #e6ffe0;
-    color: #2b7a0b;
+  background-color: #e6ffe0;
+  color: #2b7a0b;
 }
 .analysis a:hover {
-    background-color: #c7f5bf;
+  background-color: #c7f5bf;
 }
 
 .lineare-algebra a {
-    background-color: #fbe0ff;
-    color: #800080;
+  background-color: #fbe0ff;
+  color: #800080;
 }
 .lineare-algebra a:hover {
-    background-color: #f3c2ff;
+  background-color: #f3c2ff;
 }
 
-.nav-materialtyp{
+.nav-materialtyp {
   width: fit-content;
   display: flex;
   justify-content: center;
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-   margin: 0 auto;
+  margin: 0 auto;
 }
 
 .nav-materialtyp ul {
@@ -108,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.4rem 0.6rem;
+  padding: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
   color: var(--hauptfarbe);
 }
@@ -135,4 +132,3 @@
     display: none;
   }
 }
-
