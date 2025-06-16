@@ -55,7 +55,7 @@ input[type="text"]::-webkit-outer-spin-button {
   padding: 10px;
   margin-bottom: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .aufgabe li + li {
@@ -148,7 +148,7 @@ input[type="text"]::-webkit-outer-spin-button {
   position: relative;
   border: 5px solid transparent;
   animation: border-draw 1.5s ease forwards;
-  border-radius: 12px; /* optional, je nach Layout */
+  border-radius: 12px;
 }
 
 @media (max-width: 768px) {
@@ -161,3 +161,6 @@ input[type="text"]::-webkit-outer-spin-button {
     width: 100%;
   }
 }
+
+
+

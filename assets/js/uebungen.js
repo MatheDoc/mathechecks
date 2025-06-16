@@ -375,5 +375,5 @@ function highlightElement(element) {
   element.classList.add("highlight-border");
   setTimeout(() => {
     element.classList.remove("highlight-border");
-  }, 1500); // Dauer der Animation
+  }, 1500);
 }

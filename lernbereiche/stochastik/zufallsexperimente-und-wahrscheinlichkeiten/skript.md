@@ -5,11 +5,11 @@ description: Zufallsexperimente und Wahrscheinlichkeiten - Skript
 lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
 ---
 
-### Mengen
+## Mengen
 
 In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. Um diese präzise und eindeutig zu beschreiben, bedienen wir uns der Sprache der Mengenlehre. Eine Menge ist eine Zusammenfassung einzelner Elemente.
 
-##### Beispiele: Einfache Mengen
+### Beispiele: Einfache Mengen
 
 - Die Menge der besten Schulfächer: $ S=\\{\text{Mathe}, \text{Physik}\\} $
 - Die Menge der natürlichen Zahlen: $ N=\\{1, 2, 3, \ldots\\} $
@@ -17,7 +17,7 @@ In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. 
 - Die Menge der Würfelergebnisse: $ W=\\{1, 2, 3, 4, 5, 6\\} $
 - Die Menge der Ergebnisse eines Münzwurfs: $ M=\\{K, Z\\} $
 
-#### Grundbegriffe
+### Grundbegriffe
 
 - Die Elemente einer Menge werden häufig geeignet abgekürzt.
 - Die Elemente einer Menge werden immer in geschweiften Klammern $\\{…\\}$ angegeben.
@@ -29,7 +29,7 @@ In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. 
 - Beispiel: Für $X = \\{1, 3, 4, 6, 8\\}$ und der Teilmenge $A = \\{3, 6\\}$ ist das Komplement $\overline{A} = \\{1, 4, 8\\}$.
 - Beispiel: Für $X = \\{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\\}$ und der Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$ ist das Komplement die Teilmenge der Jungen $\overline{A} = \\{\text{Tobias}, \text{Achmed}\\}$.
 
-#### Exkurs: Das Russellsche Paradoxon
+### Exkurs: Das Russellsche Paradoxon
 
 Der Mengenbegriff erscheint zunächst klar und einfach: Eine Menge ist eine Zusammenfassung von verschiedenen Objekten. Doch wenn wir genauer hinschauen, können Widersprüche auftreten.
 Ein bekanntes Beispiel ist das Russellsche Paradoxon:
@@ -43,11 +43,11 @@ Nun stellen wir die Frage: Enthält $M$ sich selbst?
 Beides führt zu einem Widerspruch.
 Dieses Paradoxon zeigt, dass der naive Mengenbegriff überarbeitet werden muss. Deshalb arbeiten Mathematiker heute mit exakteren, axiomatischen Grundlagen der Mengenlehre.
 
-### Mengeoperationen
+## Mengenoperationen
 
 Sind $A$ und $B$ Teilmengen einer Menge $X$, so entstehen durch Vereinigungen, Durchschnitte und Komplemente neue Teilmengen.
 
-##### Beispiel: Ausgänge eines Würfelwurfs
+#### Beispiel: Ausgänge eines Würfelwurfs
 
 Es sei $ X=\\{1, 2, 3, 4, 5, 6\\} $.
 
@@ -175,11 +175,11 @@ Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrschein
 
 ##### Beispiel: Lieblingsgerichte
 
-Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;\% aller Kinder am liebsten Pizza essen, 30&nbsp;\% Pommes und 20&nbsp;\% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;\%.
+Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am liebsten Pizza essen, 30&nbsp;% Pommes und 20&nbsp;% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;%.
 
 ##### Beispiel: Spicken
 
-In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;\%.
+In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
 
 ##### Übung: Wahrscheinlichkeit als relative Häufigkeit
 
@@ -216,9 +216,9 @@ $$
   <figcaption>KI-generiert mit ChatGPT</figcaption>
 </figure>
 
-### Wahrscheinlichkeiten - Weitere Betrachtungen
+## Wahrscheinlichkeiten - Weitere Betrachtungen
 
-#### Axiome von Kolmogorov
+### Axiome von Kolmogorov
 
 Eine solide mathematische Fundierung der Stochastik wurde erst in den 1930er Jahren von Andrej Nikolajewitsch Kolmogorov (1903-1987) entwickelt. Kolmogorov formulierte die folgenden Grundsätze (Axiome), aus denen sich dann weitere Rechenregeln folgern lassen.
 Betrachtet wird ein Zufallsexperiment mit Ergebnismenge $S$ und Ereignissen $A$ und $B$. Eine Wahrscheinlichkeitsverteilung $P$ ordnet jeder Teilmenge von $S$, also jedem Ereignis, eine reelle Zahl zu, so dass gilt:
@@ -229,7 +229,7 @@ Betrachtet wird ein Zufallsexperiment mit Ergebnismenge $S$ und Ereignissen $A$ 
 
 für alle Teilmenge $A$ und $B$ von $S$.
 
-#### Folgerungen
+### Folgerungen
 
 1. $P(\emptyset)=0$
 2. Alle Wahrscheinlichkeiten liegen immer zwischen einschließlich 0 und einschließlich 1.
@@ -238,7 +238,7 @@ für alle Teilmenge $A$ und $B$ von $S$.
 5. **Satz von Sylvester:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ Hieraus folgt, dass wir, wenn drei der vier Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cap B)$ und $P(A\cup B)$ bekannt sind, die vierte berechnen können.
    Beispiel: Aus $P(A)=0{,}3$, $P(B)=0{,}4$ und $P(A\cap B)=0{,}2$ folgt $P(A\cup B)=0{,}3+0{,}4-0,2=0{,}5$.
 
-#### Exkurs: Beweise
+### Exkurs: Beweise
 
 1. $P(\emptyset)=P(\emptyset\cup\emptyset)=P(\emptyset)+P(\emptyset)$. Es folgt $P(\emptyset)=0$.
 2. Aus $X=A\cup\overline{A}$ folgt $P(X)=P(A)+P(\overline{A})$ und so $1=P(A)+P(\overline{A})$. Da $P(\overline{A})\geq 0$ muss $P(A)\leq 1$ gelten.
@@ -252,8 +252,6 @@ P(A\cup B)&=P(A\cap\overline{B}) + P(A\cap B) + P(\overline{A}\cap B)\\\\
 &=P(A)-P(A\cap B) + P(A\cap B) + P(B)-P(A\cap B)\\\\
 &=P(A)+P(B)-P(A\cap B).
 \end{align*}
-
-
 $$
 
 <!--
@@ -262,18 +260,14 @@ $$
 Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber nicht $A$ und $B$ gleichzeitig) ist $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$.
 -->
 
-##### Übung: Gegenwahrscheinlichkeit und Satz von Sylvester
-
 <div id="quiz-gegen-syl"></div>
 
-#### Venn-Diagramme
+### Venn-Diagramme
 
 Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1. Wir erhalten z.B.:
 
-| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
-| -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> | <figure> <img src="v5.png" style="width: 15vw"> </figure> |
-
-##### Übung: Wahrscheinlichkeiten und Venn-Diagramme
+| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              |
+| -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> |
 
 <div id="quiz-venn"></div>
