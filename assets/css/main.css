@@ -18,14 +18,16 @@ body {
 }
 
 header {
-  background: linear-gradient(to bottom, var(--hintergrundfarbe) 80%, #f8f8f8a1 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--hintergrundfarbe) 80%,
+    #f8f8f8a1 100%
+  );
   position: sticky;
   top: 0;
   z-index: 1000;
   padding-bottom: 30px;
 }
-
-
 
 h1 {
   color: var(--hauptfarbe);
@@ -38,9 +40,18 @@ h1 {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   color: var(--hauptfarbe);
+}
+
+h4 {
+  background-color: var(--hauptfarbe);
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+  border-radius: 12px 12px 0 0;
+  padding: 6px;
 }
 
 a {

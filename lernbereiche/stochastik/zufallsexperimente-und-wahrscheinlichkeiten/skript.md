@@ -5,107 +5,275 @@ description: Zufallsexperimente und Wahrscheinlichkeiten - Skript
 lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
 ---
 
-## Einführung
+### Mengen
 
-Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$.
-Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**.
+In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. Um diese präzise und eindeutig zu beschreiben, bedienen wir uns der Sprache der Mengenlehre. Eine Menge ist eine Zusammenfassung einzelner Elemente.
 
-Mit anderen Worten: Beim zugrundeliegenden Zufallsexperiment einer binomialverteilten Zufallsgröße
+##### Beispiele: Einfache Mengen
 
-- gibt es feste Anzahl an Versuchen (Stufen),
-- gibt es in jedem Versuch genau zwei mögliche Ausgänge,
-- bleibt die Wahrscheinlichkeit für Treffer und Niete in jedem Versuch gleich.
+- Die Menge der besten Schulfächer: $ S=\\{\text{Mathe}, \text{Physik}\\} $
+- Die Menge der natürlichen Zahlen: $ N=\\{1, 2, 3, \ldots\\} $
+- Die Menge der beliebtesten Fußballmannschaften: $ F=\\{\text{FC Bayern München}\\} $
+- Die Menge der Würfelergebnisse: $ W=\\{1, 2, 3, 4, 5, 6\\} $
+- Die Menge der Ergebnisse eines Münzwurfs: $ M=\\{K, Z\\} $
 
-Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben.
+#### Grundbegriffe
 
-#### Welche Vorgänge sind zugrunde liegende Zufallsexperimente binomialverteilter Zufallsgrößen?
+- Die Elemente einer Menge werden häufig geeignet abgekürzt.
+- Die Elemente einer Menge werden immer in geschweiften Klammern $\\{…\\}$ angegeben.
+- Die leere Menge enthält keine Elemente und wird mit $\emptyset$ bezeichnet.
+- Liegen alle Elemente einer Menge $A$ auch in einer Menge $X$, so ist $A$ eine Teilmenge von $X$. Wir schreiben auch $A \subset X$.
+- Beispiel: Die Menge $X = \\{1, 3, 4, 6, 8\\}$ hat die Teilmenge $A = \\{3, 6\\}$.
+- Beispiel: Die Menge einer Spielgruppe von Kindern ist $X = \\{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\\}$. Dann ist die Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$.
+- Ist $A$ eine Teilmenge von $X$, so bilden alle Elemente von $X$, die nicht in $A$ liegen, das Komplement von $A$. Das Komplement von $A$ wird mit $\overline{A}$ bezeichnet.
+- Beispiel: Für $X = \\{1, 3, 4, 6, 8\\}$ und der Teilmenge $A = \\{3, 6\\}$ ist das Komplement $\overline{A} = \\{1, 4, 8\\}$.
+- Beispiel: Für $X = \\{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\\}$ und der Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$ ist das Komplement die Teilmenge der Jungen $\overline{A} = \\{\text{Tobias}, \text{Achmed}\\}$.
 
-{% include flip-card.html frage="Eine Münze wird 10 Mal geworfen." antwort="Binomialverteilt: Es gibt eine feste Anzahl an Versuchen (10), es gibt in jedem Versuch zwei mögliche Ausgänge (\"Kopf\" und \"Zahl\") und die Wahrscheinlichkeit für \"Kopf\" beträgt immer 50 % (ebenso für \"weiß\")." %}
+#### Exkurs: Das Russellsche Paradoxon
 
-{% include flip-card.html frage="Ein Würfel wird 10 Mal geworfen." antwort="Nicht binomialverteilt: Es gibt zwar eine feste Anzahl an Versuchen (10) und gleichbleibende Wahrscheinlichkeiten (für jede Augenzahl $\frac{1}{6}$), aber in jedem Versuch gibt es sechs mögliche Ausgänge." %}
+Der Mengenbegriff erscheint zunächst klar und einfach: Eine Menge ist eine Zusammenfassung von verschiedenen Objekten. Doch wenn wir genauer hinschauen, können Widersprüche auftreten.
+Ein bekanntes Beispiel ist das Russellsche Paradoxon:
 
-{% include flip-card.html frage="Für eine Person wird untersucht, ob sie in einem bestimmten Jahr geheiratet hat." antwort="Nicht binomialverteilt: Zwar gibt es in jedem Jahr nur zwei mögliche Ausgänge (geheiratet oder nicht). Die Wahrscheinlichkeit für eine Heirat ist jedoch nicht konstant – sie ist in jungen und alten Jahren geringer als im mittleren Alter. Auch die Anzahl der Versuche ist nicht prinzipiell festgelegt." %}
+Wir betrachten die Menge $M$, die alle Mengen enthält, die sich nicht selbst enthalten.
+Nun stellen wir die Frage: Enthält $M$ sich selbst?
 
-{% include flip-card.html frage="Eine Person gibt wahllos so lange 4-stellige Zifferncodes ein bis sie den richtigen gefunden hat." antwort="Nicht binomialverteilt: Zwar gibt es in jedem Versuch zwei mögliche Ausgänge (der Code ist \"richtig\" oder \"falsch\") und eine gleichbleibende Trefferwahrscheinlichkeit von $0{,}001$. Allerdings ist die Anzahl der Versuche nicht festgelegt, da der Vorgang nach dem ersten erfolgreichen Versuch beendet wird." %}
+- Wenn ja, dann dürfte sie sich nicht enthalten (denn sie enthält ja nur Mengen, die sich nicht selbst enthalten).
+- Wenn nein, dann müsste sie sich enthalten (denn sie erfüllt ja die Bedingung, sich nicht selbst zu enthalten).
 
-{% include flip-card.html frage="Aus einer Urne mit 7 schwarzen und 3 weißen Kugeln wird 4 Mal mit Zurücklegen eine Kugel gezogen." antwort="Binomialverteilt: Es gibt eine feste Anzahl an Versuchen (4), in jedem Versuch gibt es zwei mögliche Ausgänge (\"schwarz\" und \"weiß\") und die Wahrscheinlichkeit für \"schwarz\" beträgt immer 70 % (und für \"weiß\" immer 30 %)." %}
+Beides führt zu einem Widerspruch.
+Dieses Paradoxon zeigt, dass der naive Mengenbegriff überarbeitet werden muss. Deshalb arbeiten Mathematiker heute mit exakteren, axiomatischen Grundlagen der Mengenlehre.
 
-{% include flip-card.html frage="Aus einer Urne mit 7 schwarzen und 3 weißen Kugeln wird 4 Mal ohne Zurücklegen eine Kugel gezogen." antwort="Nicht binomialverteilt: Zwar gibt es eine feste Anzahl an Versuchen (4) und in jedem Versuch zwei mögliche Ausgänge (\"schwarz\" und \"weiß\"), aber die Wahrscheinlichkeiten für \"schwarz\" (und \"weiß\") ändern sich von Stufe zu Stufe." %}
+### Mengeoperationen
 
-## Die Bernoulli-Formel
+Sind $A$ und $B$ Teilmengen einer Menge $X$, so entstehen durch Vereinigungen, Durchschnitte und Komplemente neue Teilmengen.
 
-Wir betrachten eine Bernoulli-Kette der Länge $n$ mit Trefferwahrscheinlichkeit $p$ und fragen nach der Wahrscheinnlichkeit für genau $k$ Treffer. Das zugehörige Baumdiagramm hat folgende Gestalt:
+##### Beispiel: Ausgänge eines Würfelwurfs
 
-<div id="baumdiagramm-binomialverteilung"></div>
+Es sei $ X=\\{1, 2, 3, 4, 5, 6\\} $.
 
-Um die Wahrscheinlichkeit für genau $k$ Treffer zu berechnen, benötigen wir die erstens Anzahl der Pfade mit genau $k$ Treffern und zweitens die Endwahrscheinlichkeit eines solchen Pfades.
+| Textuelle Beschreibung                | Symbol         | Operation                    | Mengenschreibweise |
+| ------------------------------------- | -------------- | ---------------------------- | ------------------ |
+| Eine Zahl ist durch 2 teilbar.        | $A$            |                              | $\\{2, 4, 6\\}$    |
+| Eine Zahl ist durch 3 teilbar.        | $B$            |                              | $\\{3, 6\\}$       |
+| Eine Zahl ist durch 2 oder 3 teilbar. | $A \cup B$     | Vereinigung von $A$ und $B$  | $\\{2, 3, 4, 6\\}$ |
+| Eine Zahl ist durch 2 und 3 teilbar.  | $A \cap B$     | Durchschnitt von $A$ und $B$ | $\\{6\\}$          |
+| Eine Zahl ist nicht durch 2 teilbar.  | $\overline{A}$ | Komplement von $A$           | $\\{1, 3, 5\\}$    |
+| Eine Zahl ist nicht durch 3 teilbar.  | $\overline{B}$ | Komplement von $B$           | $\\{1, 2, 4, 5\\}$ |
 
-- **Pfadanzahl:** Der sogenannte Binomialkoeffizient (lies: n über k)
+Elemente werden nicht doppelt aufgeführt. Für die Vereinigung von $A=\\{2, 4, 6\\}$ und $B=\\{3, 6\\}$ schreiben wir $\\{2, 3, 4, 6\\}$ und nicht $\\{2, 3, 4, 6, 6\\}$ (obwohl es formal nicht verkehrt wäre).
 
-  $$
-    \begin{align}
-    \binom{n}{k} & =\frac{n!}{k!\cdot (n-k)!}\\
-    & =\frac{1\cdot 2 \cdot \ldots n}{(1\cdot 2 \cdot \ldots k)\cdot (1\cdot 2 \cdot \ldots (n-k))}
-    \end{align}
-  $$
+Mit Hilfe dieser Operationen, lassen sich weitere Mengen beschreiben, z.B.:
 
-  gibt diese Anzahl an Pfaden an. Er kann mit den meisten Taschenrechnern direkt bestimmt werden.
+- Eine Zahl ist weder durch 2 noch durch 3 teilbar: $\overline{A}\cap{\overline{B}}=\\{1, 5\\}$
+- Eine Zahl ist entweder durch 2 oder durch 3 teilbar: $(A\cap\overline{B}) \cup (\overline{A}\cap B)=\\{2, 3, 4\\}$
 
-- **Pfadendwahrscheinlichkeit:** Jeder dieser Pfade hat nach der Pfadmultipliaktionsregel dieselbe Pfadwahrscheinlichkeit
-  $$
-  p^k \cdot (1−p)^{n−k},
-  $$
-  denn auf jedem dieser Pfade treten genau $k$ Treffer und $n−k$ Nieten auf.
+#### Rechenregeln
 
-Damit ergibt sich mit der Pfadadditionsregel die **Bernoulli-Formel** für genau $k$ Treffer:
+Es seien $A$ und $B$ Teilmengen einer Menge $X$.
+
+| Aussage                                                | Bedeutung                                                                                           |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
+| $A \cap \overline{A} = \emptyset$                      | Es gibt kein Element, das in $A$ liegt und in $\overline{A}$.                                       |
+| $A \cup \overline{A} = X$                              | Jedes Element liegt in $A$ oder in $\overline{A}$.                                                  |
+| $\overline{\overline{A}} = A$                          | Doppelte Verneinung.                                                                                |
+| $A = (A \cap B) \cup (A \cap \overline{B})$            | $A$ wird zerlegt in einen Teil, der auch in $B$ liegt, und einen Teil, der in $\overline{B}$ liegt. |
+| $\overline{A} \cup \overline{B} = \overline{A \cap B}$ | Gesetz von de Morgan                                                                                |
+| $\overline{A} \cap \overline{B} = \overline{A \cup B}$ | Gesetz von de Morgan                                                                                |
+
+### Zufallsexperimente und Wahrscheinlichkeiten
+
+In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge von Vorgängen aus der alltäglichen Welt.
+
+#### Definitionen
+
+- Ein **Zufallsexperiment** ist ein Vorgang, der unter genau festgelegten Bedingungen durchgeführt wird und einen (vermeintlich) zufälligen Ausgang besitzt.
+- Die möglichen Ausgänge eines Zufallsexperiments werden **Ergebnisse** des Zufallsexperiments genannt.
+- Die einzelnen Ergebnisse werden zu der **Ergebnismenge** zusammengefasst. Die Ergebnismenge wird häufig mit $S$ oder $\Omega$ (lies: Omega) bezeichnet.
+- Ein **Ereignis** besteht aus mehreren Ergebnissen. Ereignisse sind also Teilmengen des Ergebnisraums. Ein Ereignis $A$ tritt ein, falls der Ausgang des Zufallsexperiments ein Ergebnis aus $A$ ist.
+- Ergebnisse werden auch **Elementarereignisse** genannt.
+- Das **Gegenereignis** eines Ereignisses $A$ wird mit $\overline{A}$ bezeichnet und enthält alle Ergebnisse, die nicht in $A$ liegen.
+- Das **sichere Ereignis** ist die gesamte Ergebnismenge, es tritt immer ein.
+- Das **unmögliche Ereignis** ist die leere Menge, es tritt nie ein.
+
+Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jedem Ereignis des Zufallsexperiments eine Zahl zwischen 0 und 1 zu.
+
+##### Beispiel: Einmaliger Würfelwurf
+
+- Ergebnismenge: $S = \\{1,  2,  3,  4,  5,  6\\}$
+  - Ergebnisse: $\\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}$
+  - $P(\\{1\\}) = \frac{1}{6}$, $P(\\{2\\}) = \frac{1}{6}$, $P(\\{3\\}) = \frac{1}{6}$, $P(\\{4\\}) = \frac{1}{6}$, $P(\\{5\\}) = \frac{1}{6}$, $P(\\{6\\}) = \frac{1}{6}$
+- $A$: Es wird eine Zahl größer als 4 geworfen.
+  - $A = \\{5,  6\\}$
+  - $P(A) = \frac{2}{6} = \frac{1}{3}$
+- $\overline{A}$: Es wird eine Zahl kleiner als 5 geworfen.
+  - $\overline{A} = \\{1, 2, 3, 4\\}$
+  - $P(\overline{A})=\frac{4}{6} = \frac{2}{3}$
+- $B$: Es wird eine geraden Zahl geworfen.
+  - $B=\\{2, 4, 6\\}$
+  - $P(B)=\frac{3}{6} = \frac{1}{2}$
+- $\overline{A}\cup B$: Es wird eine Zahl kleiner als 5 oder eine gerade Zahl geworfen.
+  - $\overline{A}\cup B= \\{1, 2, 3, 4, 6\\}$
+  - $P(\overline{A}\cup B) = \frac{5}{6}$
+- $(A\cap\overline{B}) \cup (\overline{A}\cap B)$: Es wird entweder eine Zahl größer als 4 oder eine gerade Zahl geworfen.
+  - $(A\cap\overline{B}) \cup (\overline{A}\cap B)= \\{2, 4, 5\\}$
+  - $P((A\cap\overline{B}) \cup (\overline{A}\cap B))=\frac{3}{6} =\frac{1}{2}$
+
+##### Beispiel: Zweimaliger Münzwurf
+
+- Ergebnismenge: $S = \\{KK, KZ, ZK, ZZ\\}$
+  - Ergebnisse: $\\{KK\\}, \\{KZ\\}, \\{ZK\\}, \\{ZZ\\}$
+  - $P(\\{KK\\}) = 0{,}25$, $P(\\{KZ\\}) = 0{,}25$, $P(\\{ZK\\}) = 0{,}25$, $P(\\{ZZ\\}) = 0{,}25$
+- $A$: Es wird das Gleiche geworfen.
+  - $A = \\{KK, ZZ\\}$
+  - $P(A) = 0{,}5$
+- $\overline{A}$: Es wird etwas Unterschiedliches geworfen.
+  - $\overline{A} = \\{KZ, ZK\\}$
+  - $P(\overline{A}) =0{,}5$
+- $B$: Es wird die Kombination Kopf-Zahl geworfen.
+  - $B=\\{KZ\\}$
+  - $P(B)=\frac{1}{4}$
+- $\overline{A}\cap{\overline{B}}$: Es wird weder das Gleiche noch die Kombination Kopf-Zahl geworfen.
+  - $\overline{A}\cap{\overline{B}}=\\{ZK\\}$
+  - $P(\overline{A}\cap{\overline{B}})=\frac{1}{4}$
+
+##### Beispiel: Häufigkeit von Buchstaben
+
+Die 30 Buchstaben des Alphabets (a-z, ä, ö, ü, ß) treten in Texten mit unterschiedlichen Häufigkeiten auf (untersucht wurde 99.586 Buchstaben):
+
+<!--<details>-->
+<figure>
+  <img src="buchstaben.png"><figcaption>https://de.wikipedia.org/wiki/Buchstabenhäufigkeit</figcaption>
+</figure>
+<!--</details>-->
+
+Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewählt wird.
+
+- Ergebnismenge: $S = \\{a, b, c, \ldots \\}$
+  - Ergebnisse: $\\{a\\}, \\{b\\}, \\{c\\}, \ldots$
+  - $P(\\{a\\}) = 0{,}0560$, $P(\\{b\\}) = 0{,}0219$, $P(\\{c\\}) = 0{,}0340$, $\ldots$
+- $A$: Es wird ein Vokal ausgewählt (ohne Umlaute).
+  - $A = \\{a, e, i, o, u\\}$
+  - $P(A) = 0{,}056+0{,}1611+0{,}0905+0{,}0232+0{,}0370=0{,}3678$
+- $B$: Es wird ein Buchstabe aus der ersten Hälfte (a-o) des Alphabets ausgewählt.
+  - $B = \\{a,  b,  c,  \ldots ,  o\\}$
+  - $P(B)=0{,}0560 + 0{,}0219 + 0{,}0340 + \ldots + 0{,}0251 = 0{,}7066$
+- $A\cap \overline{B}$: Es wird ein Vokal ausgewählt, der sich in der zweiten Hälfte (p-ß) des Alphabets befindet.
+  - $A\cap\overline{B} = \\{u\\}$
+  - $P(A\cap\overline{B}) = 0{,}0370$
+
+##### Übung: Interpretation von Symbolen
+
+<div id="quiz-interpretationen"></div>
+
+### Wahrscheinlichkeiten – Einfache Berechnungsmethoden
+
+In einfachen Alltagssituationen funktioniert unser intuitiver Umgang mit Wahrscheinlichkeiten oft gut (wie in den obigen Beispielen), und wir können mit einfachen Methoden die Wahrscheinlichkeiten berechnen.
+
+#### Relative Häufigkeiten
+
+Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrscheinlichkeiten (Aussagen über die Zukunft) interpretiert werden.
+
+##### Beispiel: Lieblingsgerichte
+
+Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;\% aller Kinder am liebsten Pizza essen, 30&nbsp;\% Pommes und 20&nbsp;\% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;\%.
+
+##### Beispiel: Spicken
+
+In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;\%.
+
+##### Übung: Wahrscheinlichkeit als relative Häufigkeit
+
+<div id="quiz-wkt-als-rel-h"></div>
+
+#### Laplace-Experiment
+
+Ein Laplace-Experiment ist ein Zufallsexperiment, bei dem alle Ergebnisse die gleiche Wahrscheinlichkeit besitzen. Die Wahrscheinlichkeit eines Ereignisses $A$ ist damit:
 
 $$
-P(X=k)=\binom{n}{k}\cdot p^k\cdot (1-p)^{n-k}
+P(A) = \frac{\text{Anzahl Ergebnisse in } A}{\text{Gesamtanzahl der Ergebnisse}}
 $$
 
-Diese Formel bildet die Grundlage für viele Wahrscheinlichkeitsberechnungen. Sie ist in einigen Taschenrechnern als Funktion integriert und in Tafelwerken dokumentiert.
+##### Beispiel: Würfelwurf
 
-### Berechnungen
+Würfelwurf: Es sei $A$ das Ereignis „Es wird eine Primzahl geworfen.“ $\Rightarrow A = \\{2, 3, 5\\} $
+Dann gilt:
 
-{% include flip-card.html
-frage="Eine Basketballspielerin habe eine Trefferwahrscheinlichkeit von 70 % und wirft 4 Mal. Wie groß ist die Wahrscheinlichkeit, dass sie genau 3 Treffer erzielt?"
-antwort="
+$$
+P(A) = \frac{3}{6} = \frac{1}{2}
+$$
+
+##### Beispiel: Roulette
+
+Es sei $A$ das Ereignis „Die Kugel landet auf einem roten Feld.“
+Dann gilt:
+
+$$
+P(A) = \frac{18}{37}
+$$
+
+<figure>
+  <img src="ChatGPTImage19.Apr.2025,14_05_47.png">
+  <figcaption>KI-generiert mit ChatGPT</figcaption>
+</figure>
+
+### Wahrscheinlichkeiten - Weitere Betrachtungen
+
+#### Axiome von Kolmogorov
+
+Eine solide mathematische Fundierung der Stochastik wurde erst in den 1930er Jahren von Andrej Nikolajewitsch Kolmogorov (1903-1987) entwickelt. Kolmogorov formulierte die folgenden Grundsätze (Axiome), aus denen sich dann weitere Rechenregeln folgern lassen.
+Betrachtet wird ein Zufallsexperiment mit Ergebnismenge $S$ und Ereignissen $A$ und $B$. Eine Wahrscheinlichkeitsverteilung $P$ ordnet jeder Teilmenge von $S$, also jedem Ereignis, eine reelle Zahl zu, so dass gilt:
+
+- $P(A)\geq 0$
+- $P(S)=1$
+- $P(A\cup B)=P(A)+P(B)$, falls $A\cap B=\emptyset$,
+
+für alle Teilmenge $A$ und $B$ von $S$.
+
+#### Folgerungen
+
+1. $P(\emptyset)=0$
+2. Alle Wahrscheinlichkeiten liegen immer zwischen einschließlich 0 und einschließlich 1.
+3. **Satz von der Gegenwahrscheinlichkeit:** $P(\overline{A})=1-P(A)$. Beispiel: Aus $P(A)=0{,}3$ folgt $P(\overline{A})=1-0{,}3=0{,}7$.
+4. **Zerlegung von Ereignissen:** $P(B)=P(A\cap B)+P(\overline{A}\cap B)$
+5. **Satz von Sylvester:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ Hieraus folgt, dass wir, wenn drei der vier Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cap B)$ und $P(A\cup B)$ bekannt sind, die vierte berechnen können.
+   Beispiel: Aus $P(A)=0{,}3$, $P(B)=0{,}4$ und $P(A\cap B)=0{,}2$ folgt $P(A\cup B)=0{,}3+0{,}4-0,2=0{,}5$.
+
+#### Exkurs: Beweise
+
+1. $P(\emptyset)=P(\emptyset\cup\emptyset)=P(\emptyset)+P(\emptyset)$. Es folgt $P(\emptyset)=0$.
+2. Aus $X=A\cup\overline{A}$ folgt $P(X)=P(A)+P(\overline{A})$ und so $1=P(A)+P(\overline{A})$. Da $P(\overline{A})\geq 0$ muss $P(A)\leq 1$ gelten.
+3. Aus $1=P(A)+P(\overline{A})$ folgt $P(\overline{A})=1-P(A)$.
+4. Wir zerlegen $B=(A\cap B)\cup (\overline{A}\cap B)$. Da $(A\cap B)\cap(\overline{A}\cap B)=\emptyset$ folgt $P(B)=P(A\cap B)+P(\overline{A}\cap B)$.
+5. Es gilt $A\cup B=(A\cap\overline{B}) \cup (A\cap B) \cup (\overline{A}\cap B)$. Damit folgt
 
 $$
 \begin{align*}
-P(X=4)&=\binom{4}{3}\cdot 0{,}7^3\cdot (1-0{,}7)^{4-3}\\
-&=0{,}4116
+P(A\cup B)&=P(A\cap\overline{B}) + P(A\cap B) + P(\overline{A}\cap B)\\\\
+&=P(A)-P(A\cap B) + P(A\cap B) + P(B)-P(A\cap B)\\\\
+&=P(A)+P(B)-P(A\cap B).
 \end{align*}
-$$ "
-%}
 
-### Interpretationen
-
-Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel auch inhaltlich interpretieren zu können.
-
-#### Beispiel: Porzellanmanufaktur
-
-Eine Porzellanmanufaktur stellt Vasen her. Der Großteil der produzierten Vasen ist verkaufsfähig, ein kleiner Teil muss jedoch entsorgt werden. Bei einer Stichprobe in der Manufaktur werden verkaufsfähige und defekte Vasen festgestellt. Bei einer Stichprobe in der Manufaktur werden auch defekter Vasen gefunden. Danach wird die folgende Rechnung aufgestellt:
 
 $$
 
-\binom{50}{3}\cdot 0{,}04^3\cdot 0{,}96^{47}=0{,}1842
+<!--
+### Noch einzufügen: einfache Wahrscheinlichkeiten mit Mengenoperationen, dazu auch
 
-$$
+Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber nicht $A$ und $B$ gleichzeitig) ist $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$.
+-->
 
-Was bedeuten die folgenden Zahlen im Sachzusammenhang?
+##### Übung: Gegenwahrscheinlichkeit und Satz von Sylvester
 
-{% include flip-card.html frage="$50$" antwort="Die Anzahl der untersuchten Vasen." %}
-{% include flip-card.html frage="$3$" antwort="Die Anzahl der defekten Vasen." %}
-{% include flip-card.html frage="$0{,}04$" antwort="Die Wahrscheinlichkeit, dass eine Vase defekt ist." %}
-{% include flip-card.html frage="$0{,}96$" antwort="Die Wahrscheinlichkeit, dass eine Vase verkaufsfähig ist." %}
-{% include flip-card.html frage="$47$" antwort="Die Anzahl der verkaufsfähigen Vasen." %}
-{% include flip-card.html frage="$0{,}1842$" antwort="Die Wahrscheinlichkeit, dass sich unter 50 Vasen genau 3 defekte befinden." %}
+<div id="quiz-gegen-syl"></div>
 
-#### Beispiel: Porzellanmanufaktur
+#### Venn-Diagramme
 
-## Intervallwahrscheinlichkeiten
+Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1. Wir erhalten z.B.:
 
-<div id="skript-aufgabe-1">hallo</div>
+| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
+| -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> | <figure> <img src="v5.png" style="width: 15vw"> </figure> |
 
-## Erwartungswert und Standardabweichung
+##### Übung: Wahrscheinlichkeiten und Venn-Diagramme
+
+<div id="quiz-venn"></div>

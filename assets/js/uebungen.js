@@ -13,11 +13,12 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
     const daten = await responseKompetenzliste.json();
 
     aktuelleEinträge = daten.filter(
-      (eintrag) => eintrag.Lernbereich === lernbereich
+      (eintrag) => eintrag.Lernbereich === lernbereich && eintrag.Typ
     );
 
     const pfad = window.location.pathname.toLowerCase();
 
+    // Fallunterscheidung für die Seite: uebungen.html oder skript.html
     for (const [index, eintrag] of aktuelleEinträge.entries()) {
       const aufgabeDiv = await erstelleAufgabe(eintrag, index);
       if (pfad.includes("uebungen.html")) {
@@ -80,16 +81,20 @@ async function erstelleAufgabe(eintrag, index = 0) {
   aufgabeDiv.classList.add("aufgabe");
   aufgabeDiv.id = `aufgabe-${index + 1}`;
 
-  const titel = document.createElement("h3");
+  const titel = document.createElement("h4");
   titel.textContent = `${index + 1}. Check`;
   aufgabeDiv.appendChild(titel);
 
   const wrapper = document.createElement("div");
   aufgabeDiv.appendChild(wrapper);
+  wrapper.classList.add("wrapper");
 
   const einleitung = document.createElement("div");
   einleitung.classList.add("einleitung");
-  einleitung.innerHTML = `<h4>Ich kann ${eintrag["Ich kann"]}</h4>`;
+  //const titel = document.createElement("h4");
+  //titel.textContent = `${index + 1}. Check`;
+  //einleitung.appendChild(titel);
+  //einleitung.innerHTML = `<h4>Ich kann ${eintrag["Ich kann"]}</h4>`;
 
   const symbolContainer = document.createElement("div");
   symbolContainer.classList.add("symbolleiste");

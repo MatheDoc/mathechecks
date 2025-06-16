@@ -19,10 +19,12 @@ input[type="text"]::-webkit-outer-spin-button {
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
+
 }
 
+.wrapper{
+  padding: 20px;
+}
 /* Flexcontainer innerhalb .aufgabe */
 .aufgabe > div {
   display: flex;
@@ -43,6 +45,7 @@ input[type="text"]::-webkit-outer-spin-button {
 .aufgabe ul {
   list-style-position: inside;
   padding-left: 0;
+  margin: 0;
 }
 
 .aufgabe li {
@@ -52,6 +55,7 @@ input[type="text"]::-webkit-outer-spin-button {
   padding: 10px;
   margin-bottom: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .aufgabe li + li {
@@ -60,6 +64,8 @@ input[type="text"]::-webkit-outer-spin-button {
 
 .aufgabe li:hover {
   background-color: #bce1f1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+  transform: translateY(-4px);
 }
 
 .aufgabe + .aufgabe {
@@ -129,8 +135,8 @@ input[type="text"]::-webkit-outer-spin-button {
     box-shadow: none;
   }
   50% {
-    border-color: var(--hauptfarbe);  /* z.B. ein warmes Orange */
-    box-shadow: 0 0 8px var(--hauptfarbe);;
+    border-color: var(--hauptfarbe); /* z.B. ein warmes Orange */
+    box-shadow: 0 0 8px var(--hauptfarbe);
   }
   100% {
     border-color: transparent;
@@ -142,10 +148,8 @@ input[type="text"]::-webkit-outer-spin-button {
   position: relative;
   border: 5px solid transparent;
   animation: border-draw 1.5s ease forwards;
-  border-radius: 12px;  /* optional, je nach Layout */
+  border-radius: 12px; /* optional, je nach Layout */
 }
-
-
 
 @media (max-width: 768px) {
   .aufgabe > div {
