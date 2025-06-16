@@ -12,13 +12,13 @@ fetch("/mathechecks/kompetenzliste.json") // Liquid wird nicht in js aufgelöst,
       const zeile = document.createElement("tr");
       zeile.innerHTML = `<td>
       ${eintrag["Ich kann"]}
-       <i class="fas fa-edit test-icon" title="Einzeltest starten" onclick="window.location.href='${uebungUrl}'"></i>
+       <i class="fas fa-edit test-icon" title="Training starten" onclick="window.location.href='${uebungUrl}'"></i>
       </td>`;
       tbody.appendChild(zeile);
     });
   });
 
-// Fügt Buttons hinzu
+// Muss noch entfernt / überarbeitet werden
 function addButtons() {
   table.rows().every(function (rowIdx) {
     var data = this.data();

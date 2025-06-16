@@ -81,7 +81,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
   aufgabeDiv.id = `aufgabe-${index + 1}`;
 
   const titel = document.createElement("h3");
-  titel.textContent = `${index + 1}. Aufgabe`;
+  titel.textContent = `${index + 1}. Check`;
   aufgabeDiv.appendChild(titel);
 
   const wrapper = document.createElement("div");
