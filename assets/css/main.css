@@ -20,18 +20,18 @@ body {
 header {
   background: linear-gradient(
     to bottom,
-    var(--hintergrundfarbe) 80%,
+    var(--hintergrundfarbe) 90%,
     #f8f8f8a1 100%
   );
   position: sticky;
   top: 0;
   z-index: 1000;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 h1 {
   color: var(--hauptfarbe);
-  padding: 20px;
+  padding: 1rem 1rem;
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
@@ -68,7 +68,7 @@ footer {
 }
 
 main {
-  padding: 20px;
+  padding: 0  1rem 1rem 1rem;
 }
 
 mjx-container[display="true"] {
