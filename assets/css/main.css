@@ -1,6 +1,8 @@
 :root {
   --hauptfarbe: #156082;
   --hauptfarbe-hover: #1d7ca6;
+  --hintergrund-hell: #deeaef;
+  --hintergrund-hell-hover: #bce1f1;
   --textfarbe: #333;
   --hintergrundfarbe: #f8f8f8;
   --hintergrundfarbe-hover: hsl(0, 0%, 89%);
@@ -35,7 +37,7 @@ h1 {
   margin-top: 0px;
   margin-bottom: 0px;
   text-align: center;
-  font-size: 25px;
+  font-size: 1.5rem;
 }
 
 h1,
@@ -68,7 +70,7 @@ footer {
 }
 
 main {
-  padding: 0  1rem 1rem 1rem;
+  padding: 0 1rem 1rem 1rem;
 }
 
 mjx-container[display="true"] {

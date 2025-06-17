@@ -28,3 +28,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+// Beim Verlassen Scrollposition speichern
+window.addEventListener("beforeunload", () => {
+  sessionStorage.setItem("scrollPos_" + location.pathname, window.scrollY);
+});
+
+// Beim Laden Scrollposition wiederherstellen
+window.addEventListener("load", () => {
+  const savedPos = sessionStorage.getItem("scrollPos_" + location.pathname);
+  if (savedPos !== null) {
+    window.scrollTo(0, parseInt(savedPos, 10));
+  }
+});

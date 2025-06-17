@@ -19,10 +19,9 @@ input[type="text"]::-webkit-outer-spin-button {
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
-
 }
 
-.wrapper{
+.wrapper {
   padding: 20px;
 }
 /* Flexcontainer innerhalb .aufgabe */
@@ -49,7 +48,7 @@ input[type="text"]::-webkit-outer-spin-button {
 }
 
 .aufgabe li {
-  background-color: #deeaef;
+  background-color: var(--hintergrund-hell);
   border: 1px solid #ccc;
   border-radius: 12px;
   padding: 10px;
@@ -63,8 +62,8 @@ input[type="text"]::-webkit-outer-spin-button {
 }
 
 .aufgabe li:hover {
-  background-color: #bce1f1;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+  background-color: var(--hintergrund-hell-hover);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
   transform: translateY(-4px);
 }
 
@@ -161,6 +160,3 @@ input[type="text"]::-webkit-outer-spin-button {
     width: 100%;
   }
 }
-
-
-

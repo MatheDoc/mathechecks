@@ -84,10 +84,12 @@
   width: fit-content;
   display: flex;
   justify-content: center;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  border: none; /* Rahmen entfernen */
+  border-bottom: 2px solid #ccc; /* Nur unten eine Linie */
   margin: 0 auto;
+  box-shadow: none; /* Schatten entfernen, wenn kein Rahmen gewünscht */
+  border-radius: 0; /* Abgerundete Ecken entfernen */
+  font-size: 1.25rem;
 }
 
 .nav-materialtyp ul {
@@ -95,7 +97,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 1rem;
+  gap: 0rem;
   align-items: center;
 }
 
@@ -106,20 +108,19 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 10px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.1s ease, color 0.1s ease;
   color: var(--hauptfarbe);
+  background-color: var(--hintergrund-hell);
 }
 
 .nav-materialtyp a.nav-link:hover {
-  background-color: #deeaef;
-  border-radius: 0.4rem;
+  background-color: var(--hintergrund-hell-hover);
 }
 
 .nav-materialtyp a.ausgewählt {
   background-color: var(--hauptfarbe) !important;
   color: white;
-  border-radius: 0.4rem;
 }
 
 /* Standard: Text sichtbar */
