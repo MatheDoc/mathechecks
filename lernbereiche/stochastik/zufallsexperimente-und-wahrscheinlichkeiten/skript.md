@@ -43,11 +43,11 @@ Nun stellen wir die Frage: Enthält $M$ sich selbst?
 Beides führt zu einem Widerspruch.
 Dieses Paradoxon zeigt, dass der naive Mengenbegriff überarbeitet werden muss. Deshalb arbeiten Mathematiker heute mit exakteren, axiomatischen Grundlagen der Mengenlehre.
 
-## Mengenoperationen
+### Mengenoperationen
 
 Sind $A$ und $B$ Teilmengen einer Menge $X$, so entstehen durch Vereinigungen, Durchschnitte und Komplemente neue Teilmengen.
 
-#### Beispiel: Ausgänge eines Würfelwurfs
+### Beispiel: Ausgänge eines Würfelwurfs
 
 Es sei $ X=\\{1, 2, 3, 4, 5, 6\\} $.
 
@@ -65,26 +65,26 @@ Elemente werden nicht doppelt aufgeführt. Für die Vereinigung von $A=\\{2, 4, 
 Mit Hilfe dieser Operationen, lassen sich weitere Mengen beschreiben, z.B.:
 
 - Eine Zahl ist weder durch 2 noch durch 3 teilbar: $\overline{A}\cap{\overline{B}}=\\{1, 5\\}$
-- Eine Zahl ist entweder durch 2 oder durch 3 teilbar: $(A\cap\overline{B}) \cup (\overline{A}\cap B)=\\{2, 3, 4\\}$
+- Eine Zahl ist entweder durch 2 oder durch 3 teilbar (aber eben nicht durch 2 und 3): $(A\cap\overline{B}) \cup (\overline{A}\cap B)=\\{2, 3, 4\\}$
 
-#### Rechenregeln
+### Rechenregeln
 
 Es seien $A$ und $B$ Teilmengen einer Menge $X$.
 
-| Aussage                                                | Bedeutung                                                                                           |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------- |
-| $A \cap \overline{A} = \emptyset$                      | Es gibt kein Element, das in $A$ liegt und in $\overline{A}$.                                       |
-| $A \cup \overline{A} = X$                              | Jedes Element liegt in $A$ oder in $\overline{A}$.                                                  |
-| $\overline{\overline{A}} = A$                          | Doppelte Verneinung.                                                                                |
-| $A = (A \cap B) \cup (A \cap \overline{B})$            | $A$ wird zerlegt in einen Teil, der auch in $B$ liegt, und einen Teil, der in $\overline{B}$ liegt. |
-| $\overline{A} \cup \overline{B} = \overline{A \cap B}$ | Gesetz von de Morgan                                                                                |
-| $\overline{A} \cap \overline{B} = \overline{A \cup B}$ | Gesetz von de Morgan                                                                                |
+| Aussage                                                | Bedeutung                                                                                      |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| $A \cap \overline{A} = \emptyset$                      | Es gibt kein Element, das in $A$ liegt und in $\overline{A}$.                                  |
+| $A \cup \overline{A} = X$                              | Jedes Element liegt in $A$ oder in $\overline{A}$.                                             |
+| $\overline{\overline{A}} = A$                          | Doppelte Verneinung.                                                                           |
+| $A = (A \cap B) \cup (A \cap \overline{B})$            | $A$ wird zerlegt in einen Teil, der in $B$ liegt, und einen Teil, der in $\overline{B}$ liegt. |
+| $\overline{A} \cup \overline{B} = \overline{A \cap B}$ | Gesetz von de Morgan                                                                           |
+| $\overline{A} \cap \overline{B} = \overline{A \cup B}$ | Gesetz von de Morgan                                                                           |
 
-### Zufallsexperimente und Wahrscheinlichkeiten
+<div id="skript-aufgabe-1"></div>
 
-In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge von Vorgängen aus der alltäglichen Welt.
+## Zufallsexperimente
 
-#### Definitionen
+In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge von Vorgängen aus der alltäglichen Welt. Wir präzisieren:
 
 - Ein **Zufallsexperiment** ist ein Vorgang, der unter genau festgelegten Bedingungen durchgeführt wird und einen (vermeintlich) zufälligen Ausgang besitzt.
 - Die möglichen Ausgänge eines Zufallsexperiments werden **Ergebnisse** des Zufallsexperiments genannt.
@@ -95,9 +95,13 @@ In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge
 - Das **sichere Ereignis** ist die gesamte Ergebnismenge, es tritt immer ein.
 - Das **unmögliche Ereignis** ist die leere Menge, es tritt nie ein.
 
+<div id="skript-aufgabe-2"></div>
+
+## Wahrscheinlichkeiten - Einführung
+
 Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jedem Ereignis des Zufallsexperiments eine Zahl zwischen 0 und 1 zu.
 
-##### Beispiel: Einmaliger Würfelwurf
+### Beispiel: Einmaliger Münzwurf
 
 - Ergebnismenge: $S = \\{1,  2,  3,  4,  5,  6\\}$
   - Ergebnisse: $\\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}$
@@ -118,7 +122,7 @@ Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jed
   - $(A\cap\overline{B}) \cup (\overline{A}\cap B)= \\{2, 4, 5\\}$
   - $P((A\cap\overline{B}) \cup (\overline{A}\cap B))=\frac{3}{6} =\frac{1}{2}$
 
-##### Beispiel: Zweimaliger Münzwurf
+### Beispiel: Zweimaliger Münzwurf
 
 - Ergebnismenge: $S = \\{KK, KZ, ZK, ZZ\\}$
   - Ergebnisse: $\\{KK\\}, \\{KZ\\}, \\{ZK\\}, \\{ZZ\\}$
@@ -136,15 +140,13 @@ Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jed
   - $\overline{A}\cap{\overline{B}}=\\{ZK\\}$
   - $P(\overline{A}\cap{\overline{B}})=\frac{1}{4}$
 
-##### Beispiel: Häufigkeit von Buchstaben
+### Beispiel: Häufigkeit von Buchstaben
 
 Die 30 Buchstaben des Alphabets (a-z, ä, ö, ü, ß) treten in Texten mit unterschiedlichen Häufigkeiten auf (untersucht wurde 99.586 Buchstaben):
 
-<!--<details>-->
 <figure>
   <img src="buchstaben.png"><figcaption>https://de.wikipedia.org/wiki/Buchstabenhäufigkeit</figcaption>
 </figure>
-<!--</details>-->
 
 Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewählt wird.
 
@@ -161,31 +163,11 @@ Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewähl
   - $A\cap\overline{B} = \\{u\\}$
   - $P(A\cap\overline{B}) = 0{,}0370$
 
-##### Übung: Interpretation von Symbolen
+<div id="skript-aufgabe-3"></div>
 
-<div id="quiz-interpretationen"></div>
-
-### Wahrscheinlichkeiten – Einfache Berechnungsmethoden
+## Laplace-Experiment
 
 In einfachen Alltagssituationen funktioniert unser intuitiver Umgang mit Wahrscheinlichkeiten oft gut (wie in den obigen Beispielen), und wir können mit einfachen Methoden die Wahrscheinlichkeiten berechnen.
-
-#### Relative Häufigkeiten
-
-Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrscheinlichkeiten (Aussagen über die Zukunft) interpretiert werden.
-
-##### Beispiel: Lieblingsgerichte
-
-Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am liebsten Pizza essen, 30&nbsp;% Pommes und 20&nbsp;% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;%.
-
-##### Beispiel: Spicken
-
-In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
-
-##### Übung: Wahrscheinlichkeit als relative Häufigkeit
-
-<div id="quiz-wkt-als-rel-h"></div>
-
-#### Laplace-Experiment
 
 Ein Laplace-Experiment ist ein Zufallsexperiment, bei dem alle Ergebnisse die gleiche Wahrscheinlichkeit besitzen. Die Wahrscheinlichkeit eines Ereignisses $A$ ist damit:
 
@@ -193,7 +175,7 @@ $$
 P(A) = \frac{\text{Anzahl Ergebnisse in } A}{\text{Gesamtanzahl der Ergebnisse}}
 $$
 
-##### Beispiel: Würfelwurf
+### Beispiel: Würfelwurf
 
 Würfelwurf: Es sei $A$ das Ereignis „Es wird eine Primzahl geworfen.“ $\Rightarrow A = \\{2, 3, 5\\} $
 Dann gilt:
@@ -202,7 +184,7 @@ $$
 P(A) = \frac{3}{6} = \frac{1}{2}
 $$
 
-##### Beispiel: Roulette
+### Beispiel: Roulette
 
 Es sei $A$ das Ereignis „Die Kugel landet auf einem roten Feld.“
 Dann gilt:
@@ -216,9 +198,25 @@ $$
   <figcaption>KI-generiert mit ChatGPT</figcaption>
 </figure>
 
-## Wahrscheinlichkeiten - Weitere Betrachtungen
+<div id="skript-aufgabe-5"></div>
 
-### Axiome von Kolmogorov
+## Relative Häufigkeiten
+
+Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrscheinlichkeiten (Aussagen über die Zukunft) interpretiert werden.
+
+### Beispiel: Lieblingsgerichte
+
+Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am liebsten Pizza essen, 30&nbsp;% Pommes und 20&nbsp;% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;%.
+
+### Beispiel: Spicken
+
+In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
+
+<div id="skript-aufgabe-4"></div>
+
+Das **Gesetz der großen Zahlen** beschreibt den Zusammnehang zwischen Laplace-Wahrscheinlochkeiten und relativen Häufigkeiten genauer.
+
+## Axiome von Kolmogorov
 
 Eine solide mathematische Fundierung der Stochastik wurde erst in den 1930er Jahren von Andrej Nikolajewitsch Kolmogorov (1903-1987) entwickelt. Kolmogorov formulierte die folgenden Grundsätze (Axiome), aus denen sich dann weitere Rechenregeln folgern lassen.
 Betrachtet wird ein Zufallsexperiment mit Ergebnismenge $S$ und Ereignissen $A$ und $B$. Eine Wahrscheinlichkeitsverteilung $P$ ordnet jeder Teilmenge von $S$, also jedem Ereignis, eine reelle Zahl zu, so dass gilt:
@@ -260,14 +258,14 @@ $$
 Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber nicht $A$ und $B$ gleichzeitig) ist $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$.
 -->
 
-<div id="quiz-gegen-syl"></div>
+<div id="skript-aufgabe-6"></div>
 
-### Venn-Diagramme
+## Venn-Diagramme
 
 Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1. Wir erhalten z.B.:
 
-|$P(B)$|$P(A\cap B)$|$P(\overline{A}\cap B)$|$P(A\cup B)$|$P(A\cup B)-P(A\cap B)$|
-|-|-|-|-|-|
-|<figure><img src="v1.png" style="width: 15vw"> </figure>|<figure>  <img src="v2.png" style="width: 15vw"> </figure>|<figure>  <img src="v3.png" style="width: 15vw">  </figure>|<figure>  <img src="v4.png" style="width: 15vw">  </figure>|<figure>  <img src="v5.png" style="width: 15vw"> </figure>|
+| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
+| -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> | <figure> <img src="v5.png" style="width: 15vw"> </figure> |
 
-<div id="quiz-venn"></div>
+<div id="skript-aufgabe-7"></div>

@@ -54,7 +54,7 @@ input[type="text"]::-webkit-outer-spin-button {
   padding: 10px;
   margin-bottom: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 .aufgabe li + li {
@@ -63,8 +63,7 @@ input[type="text"]::-webkit-outer-spin-button {
 
 .aufgabe li:hover {
   background-color: var(--hintergrund-hell-hover);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
-  transform: translateY(-4px);
+
 }
 
 .aufgabe + .aufgabe {
