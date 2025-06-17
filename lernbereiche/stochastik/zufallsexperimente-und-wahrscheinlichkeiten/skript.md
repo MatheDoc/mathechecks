@@ -248,8 +248,8 @@ für alle Teilmenge $A$ und $B$ von $S$.
 
 $$
 \begin{align*}
-P(A\cup B)&=P(A\cap\overline{B}) + P(A\cap B) + P(\overline{A}\cap B)\\\\
-&=P(A)-P(A\cap B) + P(A\cap B) + P(B)-P(A\cap B)\\\\
+P(A\cup B)&=P(A\cap\overline{B}) + P(A\cap B) + P(\overline{A}\cap B)\\
+&=P(A)-P(A\cap B) + P(A\cap B) + P(B)-P(A\cap B)\\
 &=P(A)+P(B)-P(A\cap B).
 \end{align*}
 $$
@@ -266,8 +266,8 @@ Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber n
 
 Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1. Wir erhalten z.B.:
 
-| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              |
-| -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> |
+|$P(B)$|$P(A\cap B)$|$P(\overline{A}\cap B)$|$P(A\cup B)$|$P(A\cup B)-P(A\cap B)$|
+|-|-|-|-|-|
+|<figure><img src="v1.png" style="width: 15vw"> </figure>|<figure>  <img src="v2.png" style="width: 15vw"> </figure>|<figure>  <img src="v3.png" style="width: 15vw">  </figure>|<figure>  <img src="v4.png" style="width: 15vw">  </figure>|<figure>  <img src="v5.png" style="width: 15vw"> </figure>|
 
 <div id="quiz-venn"></div>
