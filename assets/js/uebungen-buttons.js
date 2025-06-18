@@ -6,6 +6,12 @@ function showAllAnswers(iconElement) {
   console.log("showAllAnswers aufgabenDiv:", aufgabenDiv);
   if (!aufgabenDiv) return;
 
+  const icons = aufgabenDiv.querySelectorAll("ol .eye-icon");
+
+  icons.forEach((icon) => {
+    antwortToggle(icon);
+  });
+
   // Finde alle relevanten Inputs innerhalb dieses DIVs
   aufgabenDiv
     .querySelectorAll('input[type="text"], select.mch')
@@ -21,7 +27,7 @@ function showAllAnswers(iconElement) {
       input.style.display = "none";
     });
 
-  document.querySelectorAll("select.mch").forEach((select) => {
+  aufgabenDiv.querySelectorAll("select.mch").forEach((select) => {
     const questionId = select.id.replace("answer", "");
     const correctAnswer = select.getAttribute("data-correct-answer");
     const feedbackElement = document.getElementById(`feedback${questionId}`);
@@ -47,6 +53,12 @@ function showAllAnswers(iconElement) {
 function hideAllAnswers(iconElement) {
   const aufgabenDiv = iconElement.closest(".aufgabe");
   if (!aufgabenDiv) return;
+
+  const icons = aufgabenDiv.querySelectorAll("ol .eye-icon");
+
+  icons.forEach((icon) => {
+    antwortToggle(icon);
+  });
 
   aufgabenDiv.querySelectorAll('input[type="text"]').forEach((input) => {
     const questionId = input.id.replace("answer", "");

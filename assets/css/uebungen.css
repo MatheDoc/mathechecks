@@ -63,7 +63,6 @@ input[type="text"]::-webkit-outer-spin-button {
 
 .aufgabe li:hover {
   background-color: var(--hintergrund-hell-hover);
-
 }
 
 .aufgabe + .aufgabe {
@@ -84,6 +83,15 @@ input[type="text"]::-webkit-outer-spin-button {
   padding-right: 15px;
   margin: 0 auto;
   gap: 30px;
+}
+
+.antwort-statisch {
+  color: var(--hauptfarbe);
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 0.2rem;
+  margin-top: 5px;
 }
 
 .check-icon,

@@ -149,7 +149,13 @@ async function erstelleAufgabe(eintrag, index = 0) {
 
     aufgabe.fragen.forEach((frage, i) => {
       const li = document.createElement("li");
-      li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
+      if (eintrag["Typ"] === "interaktiv") {
+        li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort-interaktiv">${aufgabe.antworten[i]}</span>`;
+      } else {
+        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye eye-icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
+      }
+
+      //li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
       ol.appendChild(li);
     });
 
@@ -376,4 +382,17 @@ function highlightElement(element) {
   setTimeout(() => {
     element.classList.remove("highlight-border");
   }, 1500);
+}
+
+// für Typ: statisch
+function antwortToggle(iconElement) {
+  const antwortElement = iconElement
+    .closest("li")
+    .querySelector(".antwort-statisch");
+  if (antwortElement) {
+    const sichtbar = antwortElement.style.display !== "none";
+    antwortElement.style.display = sichtbar ? "none" : "block";
+    iconElement.classList.toggle("fa-eye");
+    iconElement.classList.toggle("fa-eye-slash");
+  }
 }
