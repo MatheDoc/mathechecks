@@ -2,7 +2,7 @@
 layout: skript
 title: Skript – Mehrstufige Zufallsexperimente
 description: Interaktives Skript zu mehrstufigen Zufallsexperimenten
-lernbereich: Bedingte Wahrscheinlichkeit
+lernbereich: mehrstufige-zufallsexperimente
 ---
 
 ## Einführung
@@ -112,153 +112,9 @@ Hinweise:
 
 ## Weitere Baumdigramme
 
-### Beispiel: Jugendliche auf dem Weg zur Schule
-
 Baumdiagramme eignen sich auch dazu, komplexere Zufallsexperimente zu veranschaulichen:
 
-Es sei bekannt, dass 4,7&nbsp;% aller Jugendlichen aus unterschiedlichen Gründen nicht zur Schule kommen und zu Hause bleiben ($H$). Vier Fünftel kommen selbstständig ($S$) zur Schule, die übrigen werden von ihren Eltern ($E$) gebracht. Von denjenigen, die selbstständig zur Schule kommen, nutzen 30&nbsp;% das Fahrrad ($F$), 23&nbsp;% das Auto ($A$), 12&nbsp;% gehen zu Fuß ($G$) und die restlichen Schülerinnen und Schüler benutzen den öffentlichen Personennahverkehr (Ö).
-Alle Jugendlichen, die den Großteil ihres Schulwegs an der frischen Luft verbringen, sind in der ersten Unterrichtsstunde wach ($W$). Bei den mit dem Auto gebrachten Jugendlichen ist es lediglich ein Viertel, bei den Nutzern des öffentlichen Personennahverkehrs immerhin noch die Hälfte.
-Von den Jugendlichen, die von ihren Eltern zur Schule gebracht werden, ist nur jeder 10. wach.
-
-Das entsprechende Baumdiagramm lautet:
-
- <figure>
-  <img src="fahrradwach.png">
-</figure>
-Hier haben wir für jede Endwahrscheinlichkeit die Pfadmultiplikationsregel angewendet.
-
-Betrachten wir z.B. das Ereignis $E$: "Ein Jugendlicher in der Schule ist in der ersten Stunde müde.", so ist $E=\\{E\overline{W}, SA\overline{W},SÖ\overline{W}\\}$, und nach der Pfadadditionsregel folgt nun
-
-$$
-\begin{align*}
-P(E)&=P(\{E\overline{W}\})+P(\{SA\overline{W}\})+P(\{SÖ\overline{W}\})\\
-&=0{,}1377+0{,}138+0{,}14\\
-&=0{,}4157.
-\end{align*}
-$$
-
-### Elektronikfachmarkt
-
-Für eine statistische Untersuchung wurden in einem großen Elektronikfachmarkt Aufzeichnungen über die Verkäufe von Laptops mit Windows (W)- bzw. macOS (m)-Betriebssystem geführt. Zusätzlich wurden drei Gerätekategorien erfasst: Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P). Von den Einsteigergeräten liefen ein Fünftel und von den Mittelklassegeräten die Hälfe mit Windows. Von den insgesamt 80.000 erfassten Laptops waren 45&nbsp;% mit Windows ausgestattet, es wurden 16.000 Einsteigergeräte und 8.000 Premiumgeräte verkauft.
-
-Mithilfe dieser Angaben ergibt sich das folgende Baumdiagramm. Dabei wurde bereits berücksichtigt, dass die Summe aller Pfadwahrscheinlichkeiten, die von einem Knoten ausgehen, gleich 1 ist. Außerdem wurden die Pfadendwahrscheinlichkeiten berechnet.
-
- <figure>
-  <img src="Elektronikfachmarkt.png">
-</figure>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $y$ ?</summary>
-<div>Da insgesamt 45 % der Laptops mit Windows ausgestattet sind, gilt
-$$
-0{,}04+0{,}35+y=0{,}45 \Rightarrow y=0{,}06.
-$$</div>
-</details>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $x$ ?</summary>
-<div>Die Multiplikationsregel auf den $P$–$W$-Pfad angewendet ergibt
-$$
-0{,}1\cdot x = 0{,}06 \Rightarrow x=0{,}6.
-$$</div>
-</details>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $z$ ?</summary>
-<div>$$
-z=0{,}1\cdot (1-0{,}6)=0{,}04.
-$$</div>
-</details>
-
-Wie lauten die Wahrscheinlichkeiten der folgenden Ereignisse?
-
-<details class="flip-card">
-<summary>$E$: Ein zufällig ausgewählter Laptop ist entweder mit macOS ausgestattet oder ein Einsteigergerät.</summary>
-<div>  \begin{align*}
-  P(E)&=P(\{EW\})+P(\{Em\})+P(\{Mm\})+P(\{Pm\})\\
-  &=0{,}04+0{,}16+0{,}35+0{,}04\\
-  &=0{,}59
-  \end{align*}</div>
-</details>
-
-<details class="flip-card">
-<summary>$F$: Ein zufällig ausgewählter Premium-Laptop ist mit Windows ausgestattet.</summary>
-<div>
-$$
-  P(F)=0{,}6
-  $$
-  </div>
-</details>
-
-### Lern-Apps
-
-Was halten Jugendliche von Lern-Apps? Zu dieser Frage wurde eine Befragung unter 2.000 Schülerinnen und Schülern durchgeführt. 35,7&nbsp;% der Befragten nutzen kostenlose Starter-Versionen (S) von Lern-Apps zur Unterhaltung (U), beispielsweise für Quizspiele. 24,3&nbsp;% verwenden Starter-Versionen gezielt zur Vorbereitung auf Prüfungen (V).
-224 Jugendliche nutzen kostenpflichtige Pro-Versionen (P) zur gezielten Vorbereitung auf Prüfungen. Darüber hinaus gibt es auch einige Jugendliche mit Pro-Versionen, die die App lediglich zur Unterhaltung nutzen.
-480 Befragten haben bislang noch keine Lern-App (k) verwendet.
-
-Mithilfe dieser Angaben ergibt sich das folgende Baumdiagramm. Dabei wurde bereits berücksichtigt, dass die Summe aller Pfadwahrscheinlichkeiten, die von einem Knoten ausgehen, gleich 1 ist.
-
- <figure>
-  <img src="Lernapp.png">
-</figure>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $d$ ?</summary>
-<div>
-Da die Summe aller Pfadenwahrscheinlichkeiten 1 ergeben muss, haben wir
-$$
-d=1-0{,}357-0{,}243-0{,}112-0{,}24=0{,}048.
-$$
-</div>
-</details>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $a$ ?</summary>
-<div>
-Die Pfadadditionsregel auf den  $S$–$U$- und  $S$–$V$-Pfad angewendet ergibt
-$$
-a=0{,}357+0{,}243=0{,}6.
-$$
-</div>
-</details>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $b$ ?</summary>
-<div>
-Die Multiplikationsregel auf den $S$–$U$-Pfad angewendet ergibt
-$$
-0{,}6\cdot b=0{,}357 \Rightarrow b=0{,}595.
-$$
-</div>
-</details>
-
-<details class="flip-card">
-<summary>Welchen Wert hat $c$ ?</summary>
-<div>
-Die Multiplikationsregel auf den $P$–$U$-Pfad angewendet ergibt
-$$
-(0{,}76-0{,}6)\cdot c=0{,}048 \Rightarrow c=0{,}3.
-$$
-</div>
-</details>
-
-Wie lauten die Wahrscheinlichkeiten der folgenden Ereignisse?
-
-<details class="flip-card">
-<summary>$E$: Ein zufällig ausgewählter Jugendlicher verwendet eine Pro-Version.</summary>
-<div>    $$
-  P(E)=0{,}76 - 0{,}6 = 0{,}16
-  $$</div>
-</details>
-
-<details class="flip-card">
-<summary>$F$: Ein zufällig ausgewählter Jugendlicher verwendet eine Lern-App zur Unterhaltung.</summary>
-<div>    \begin{align*}
-  P(F)&=P(\{SU\})+P(\{PU\})\\
-  &=0{,}357+0{,}048\\
-  &=0{,}405
-  \end{align*}</div>
-</details>
+<div id="skript-aufgabe-5"></div>
 
 <!--### Urnenmodelle
 Ein wichtiges Beipsiel für mehrstufige Zufallsexperimente sind das Ziehen von Kugeln aus einer Urne. Hier müssen wir unterscheiden, ob Kugeln zurückgegelgt werden oder nicht.
