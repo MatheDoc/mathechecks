@@ -122,10 +122,10 @@ input[type="text"]::-webkit-outer-spin-button {
 .pdf-icon:hover {
   color: #e03c31;
 }
-.assistenz-icon {
+.assistenz-icon, .skript-icon {
   color: #693c77a4;
 }
-.assistenz-icon:hover {
+.assistenz-icon:hover, .skript-icon:hover {
   color: #693c77e4;
 }
 .whatapp-icon {
@@ -137,25 +137,29 @@ input[type="text"]::-webkit-outer-spin-button {
 
 @keyframes border-draw {
   0% {
-    border-color: transparent;
-    box-shadow: none;
+  /*border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;*/
+
   }
   50% {
-    border-color: var(--hauptfarbe); /* z.B. ein warmes Orange */
-    box-shadow: 0 0 8px var(--hauptfarbe);
+  /*    border: 3px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+    border-color: var(--hauptfarbe); */
+background-color: #f7c8fd;
   }
   100% {
-    border-color: transparent;
-    box-shadow: none;
+  /*border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;*/
   }
 }
 
 .highlight-border {
-  position: relative;
-  border: 5px solid transparent;
-  animation: border-draw 1.5s ease forwards;
-  border-radius: 12px;
+  animation: border-draw 1s ease forwards;
 }
+
 
 @media (max-width: 768px) {
   .aufgabe > div {

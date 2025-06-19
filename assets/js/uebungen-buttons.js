@@ -126,6 +126,23 @@ async function reloadSingleTask(iconElement) {
   }
 }
 
+// zu h2-tag im skript springen
+function zeigeSkript(iconElement) {
+  const aufgabeDiv = iconElement.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+
+  const id = aufgabeDiv.id;
+  const index = parseInt(id.split("-").pop()) - 1;
+  const zielHash = `#skript-aufgabe-${index + 1}`;
+
+  if (window.location.pathname.includes("skript.html")) {
+    history.replaceState(null, "", zielHash);
+    scrollZuHash(zielHash);
+  } else {
+    window.location.href = `skript.html${zielHash}`;
+  }
+}
+
 // Assistenzmodus starten
 async function zeigeAssistenz(iconElement) {
   const aufgabeDiv = iconElement.closest(".aufgabe");

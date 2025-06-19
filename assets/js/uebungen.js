@@ -29,9 +29,8 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
         console.warn("Unbekannte Seite – Aufgabe nicht angezeigt.");
       }
     }
-
     // Scrollen zum Ziel-Element, falls ein Hash in der URL vorhanden ist
-    const hash = window.location.hash;
+    /*const hash = window.location.hash;
     if (hash) {
       const zielElement = document.querySelector(hash);
       if (zielElement) {
@@ -48,7 +47,42 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
       } else {
         console.warn("Ziel-Element nicht gefunden für Hash:", hash);
       }
+    }*/
+    const hash = window.location.hash;
+
+    if (hash) {
+      scrollZuHash(hash);
     }
+
+    /*if (hash) {
+      const zielElement = document.querySelector(hash);
+      if (zielElement) {
+        const header = document.querySelector("header");
+        const headerHeight = header ? header.offsetHeight : 0;
+
+        let scrollZiel = zielElement;
+
+        if (pfad.includes("skript")) {
+          // Finde das übergeordnete h2-Element
+          const h2 = findeNaechstenH2Ueber(zielElement);
+          console.log(h2);
+          if (h2) scrollZiel = h2;
+        }
+
+        const y =
+          scrollZiel.getBoundingClientRect().top +
+          window.pageYOffset -
+          headerHeight;
+
+        window.scrollTo({ top: y, behavior: "smooth" });
+
+        setTimeout(() => {
+          highlightElement(scrollZiel);
+        }, 1000);
+      } else {
+        console.warn("Ziel-Element nicht gefunden für Hash:", hash);
+      }
+    }*/
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
   }
@@ -125,11 +159,19 @@ async function erstelleAufgabe(eintrag, index = 0) {
           ></i>
           
           <i
+            class="fa-solid fa-scroll icon skript-icon"
+            title="Skriptabschnitt anzeigen"
+            onclick="zeigeSkript(this)"
+          ></i>`;
+  einleitung.appendChild(symbolContainer);
+
+  /* Asistenz für später
+    <i
             class="fas fa-user-graduate icon assistenz-icon"
             title="Assistenz anzeigen"
             onclick="zeigeAssistenz(this)"
-          ></i>`;
-  einleitung.appendChild(symbolContainer);
+          ></i>
+  */
 
   try {
     const responseSammlung = await fetch(
@@ -395,4 +437,41 @@ function antwortToggle(iconElement) {
     iconElement.classList.toggle("fa-eye");
     iconElement.classList.toggle("fa-eye-slash");
   }
+}
+
+function findeNaechstenH2Ueber(element) {
+  let current = element.previousElementSibling;
+  while (current) {
+    if (current.tagName === "H2") return current;
+    current = current.previousElementSibling;
+  }
+  // Falls kein H2 auf gleicher Ebene, suche höher im DOM (optional)
+  return null;
+}
+
+function scrollZuHash(hash) {
+  const zielElement = document.querySelector(hash);
+  if (!zielElement) {
+    console.warn("Ziel-Element nicht gefunden für Hash:", hash);
+    return;
+  }
+
+  const header = document.querySelector("header");
+  const headerHeight = header ? header.offsetHeight : 0;
+
+  let scrollZiel = zielElement;
+
+  if (window.location.pathname.includes("skript")) {
+    const h2 = findeNaechstenH2Ueber(zielElement);
+    if (h2) scrollZiel = h2;
+  }
+
+  const y =
+    scrollZiel.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+  window.scrollTo({ top: y, behavior: "smooth" });
+
+  setTimeout(() => {
+    highlightElement(scrollZiel);
+  }, 1000);
 }

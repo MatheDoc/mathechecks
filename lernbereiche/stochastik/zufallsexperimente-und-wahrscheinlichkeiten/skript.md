@@ -154,11 +154,27 @@ Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewähl
   - Ergebnisse: $\\{a\\}, \\{b\\}, \\{c\\}, \ldots$
   - $P(\\{a\\}) = 0{,}0560$, $P(\\{b\\}) = 0{,}0219$, $P(\\{c\\}) = 0{,}0340$, $\ldots$
 - $A$: Es wird ein Vokal ausgewählt (ohne Umlaute).
+
   - $A = \\{a, e, i, o, u\\}$
-  - $P(A) = 0{,}056+0{,}1611+0{,}0905+0{,}0232+0{,}0370=0{,}3678$
+
+    $$
+      \begin{align}
+      P(A) &= 0{,}056+0{,}1611+0{,}0905+0{,}0232+0{,}0370\\
+      &=0{,}3678
+      \end{align}
+    $$
+
 - $B$: Es wird ein Buchstabe aus der ersten Hälfte (a-o) des Alphabets ausgewählt.
+
   - $B = \\{a,  b,  c,  \ldots ,  o\\}$
-  - $P(B)=0{,}0560 + 0{,}0219 + 0{,}0340 + \ldots + 0{,}0251 = 0{,}7066$
+
+    $$
+      \begin{align}
+      P(B)&=0{,}0560 + 0{,}0219 + 0{,}0340 + \ldots + 0{,}0251\\
+      & = 0{,}7066
+      \end{align}
+    $$
+
 - $A\cap \overline{B}$: Es wird ein Vokal ausgewählt, der sich in der zweiten Hälfte (p-ß) des Alphabets befindet.
   - $A\cap\overline{B} = \\{u\\}$
   - $P(A\cap\overline{B}) = 0{,}0370$
@@ -198,7 +214,7 @@ $$
   <figcaption>KI-generiert mit ChatGPT</figcaption>
 </figure>
 
-<div id="skript-aufgabe-5"></div>
+<div id="skript-aufgabe-4"></div>
 
 ## Relative Häufigkeiten
 
@@ -212,7 +228,7 @@ Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am lieb
 
 In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
 
-<div id="skript-aufgabe-4"></div>
+<div id="skript-aufgabe-5"></div>
 
 Das **Gesetz der großen Zahlen** beschreibt den Zusammnehang zwischen Laplace-Wahrscheinlochkeiten und relativen Häufigkeiten genauer.
 
