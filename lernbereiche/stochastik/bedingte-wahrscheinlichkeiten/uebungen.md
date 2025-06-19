@@ -1,6 +1,6 @@
 ---
-layout: skript
+layout: uebungen
 title: Bedingte Wahrscheinlichkeiten
-description: Bedingte Wahrscheinlichkeiten - Skript
+description: Bedingte Wahrscheinlichkeiten - Übungen
 lernbereich: bedingte-wahrscheinlichkeiten
 ---
