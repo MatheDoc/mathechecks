@@ -113,6 +113,7 @@ async function reloadSingleTask(iconElement) {
   const index = parseInt(id.split("-").pop()) - 1;
 
   const eintrag = aktuelleEinträge[index];
+
   if (!eintrag) return;
 
   const pfad = window.location.pathname.toLowerCase();
@@ -129,9 +130,16 @@ async function reloadSingleTask(iconElement) {
 async function zeigeAssistenz(iconElement) {
   const aufgabeDiv = iconElement.closest(".aufgabe");
   if (aufgabeDiv) {
-    const sammlung = aufgabeDiv.getAttribute("data-sammlung");
-    const mp4Url = `assistenz/mp4/${sammlung.replace(".json", ".mp4")}`;
-    const jsonUrl = `assistenz/json/${sammlung}`;
+    const id = aufgabeDiv.id;
+    const index = parseInt(id.split("-").pop()) - 1;
+
+    const eintrag = aktuelleEinträge[index];
+
+    if (!eintrag) return;
+
+    const sammlung = eintrag.Sammlung;
+    const mp4Url = `/mathechecks/assistenz/mp4/${sammlung}/.mp4`;
+    const jsonUrl = `/mathechecks/assistenz/json/${sammlung}.json`;
 
     // Prüfe, ob beide Dateien existieren
     const [mp4Ok, jsonOk] = await Promise.all([
