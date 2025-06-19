@@ -1,0 +1,13 @@
+[
+    {
+        "einleitung": "Es sei bekannt, dass 4,7&nbsp;% aller Jugendlichen aus unterschiedlichen Gründen nicht zur Schule kommen und zu Hause bleiben (\\(H\\)). Vier Fünftel kommen selbstständig ($S$) zur Schule, die übrigen werden von ihren Eltern ($E$) gebracht. Von denjenigen, die selbstständig zur Schule kommen, nutzen 30&nbsp;% das Fahrrad ($F$), 23&nbsp;% das Auto ($A$), 12&nbsp;% gehen zu Fuß ($G$) und die restlichen Schülerinnen und Schüler benutzen den öffentlichen Personennahverkehr (Ö). Alle Jugendlichen, die den Großteil ihres Schulwegs an der frischen Luft verbringen, sind in der ersten Unterrichtsstunde wach ($W$). Bei den mit dem Auto gebrachten Jugendlichen ist es lediglich ein Viertel, bei den Nutzern des öffentlichen Personennahverkehrs immerhin noch die Hälfte. Von den Jugendlichen, die von ihren Eltern zur Schule gebracht werden, ist nur jeder 10. wach.",
+        "fragen": [
+            "Erstellen Sie das zugehörige Baumdiagramm.",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $E$: Ein Jugendlicher in der Schule ist in der ersten Stunde müde."
+        ],
+        "antworten": [
+            "<figure><img src='fahrradwach.png'></figure>",
+            "Es ist $E=\\{E\\overline{W}, SA\\overline{W},SÖ\\overline{W}\\}$. Nach der Pfadadditionsregel folgt nun\n$$\n\\begin{align*}\nP(E)&=P(\\{E\\overline{W}\\})+P(\\{SA\\overline{W}\\})+P(\\{SÖ\\overline{W}\\})\\\\\n&=0{,}1377+0{,}138+0{,}14\\\\\n&=0{,}4157.\n\\end{align*}\n$$"
+        ]
+    }
+]
