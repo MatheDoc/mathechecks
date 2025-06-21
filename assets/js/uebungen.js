@@ -7,6 +7,7 @@ let aktuellerLernbereich = ""; // global
 async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
     aktuellerLernbereich = lernbereich;
+    console.log(lernbereich);
     const responseKompetenzliste = await fetch(
       "/mathechecks/kompetenzliste.json"
     ); // Liquid wird nicht in js aufgelöst, daher ohne relative_url;
@@ -21,6 +22,7 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
     // Fallunterscheidung für die Seite: uebungen.html oder skript.html
     for (const [index, eintrag] of aktuelleEinträge.entries()) {
       const aufgabeDiv = await erstelleAufgabe(eintrag, index);
+
       if (pfad.includes("uebungen.html")) {
         zeigeOderErsetzeAufgabe(aufgabeDiv);
       } else if (pfad.includes("skript.html")) {
@@ -100,6 +102,7 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
 function zeigeInSkript(aufgabeDiv) {
   const zielId = aufgabeDiv.id.replace("aufgabe-", "skript-aufgabe-");
   const zielDiv = document.getElementById(zielId);
+  console.log(zielDiv);
   if (!zielDiv) {
     return;
   }

@@ -1,0 +1,53 @@
+[
+    {
+        "einleitung": "Es sei bekannt, dass 4,7&nbsp;% aller Jugendlichen aus unterschiedlichen Gründen nicht zur Schule kommen und zu Hause bleiben (\\(H\\)). Vier Fünftel kommen selbstständig ($S$) zur Schule, die übrigen werden von ihren Eltern ($E$) gebracht. Von denjenigen, die selbstständig zur Schule kommen, nutzen 30&nbsp;% das Fahrrad ($F$), 23&nbsp;% das Auto ($A$), 12&nbsp;% gehen zu Fuß ($G$) und die restlichen Schülerinnen und Schüler benutzen den öffentlichen Personennahverkehr (Ö). Alle Jugendlichen, die den Großteil ihres Schulwegs an der frischen Luft verbringen, sind in der ersten Unterrichtsstunde wach ($W$). Bei den mit dem Auto gebrachten Jugendlichen ist es lediglich ein Viertel, bei den Nutzern des öffentlichen Personennahverkehrs immerhin noch die Hälfte. Von den Jugendlichen, die von ihren Eltern zur Schule gebracht werden, ist nur jeder 10. wach.",
+        "fragen": [
+            "Erstellen Sie das zugehörige Baumdiagramm.",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $E$: Ein Jugendlicher in der Schule ist in der ersten Stunde müde."
+        ],
+        "antworten": [
+            "<figure><img src='fahrradwach.png'></figure>",
+            "Es ist $E=\\{E\\overline{W}, SA\\overline{W},SÖ\\overline{W}\\}$. Nach der Pfadadditionsregel folgt nun\n$$\n\\begin{align*}\nP(E)&=P(\\{E\\overline{W}\\})+P(\\{SA\\overline{W}\\})+P(\\{SÖ\\overline{W}\\})\\\\\n&=0{,}1377+0{,}138+0{,}14\\\\\n&=0{,}4157.\n\\end{align*}\n$$"
+        ]
+    },
+    {
+        "einleitung": "Für eine statistische Untersuchung wurden in einem großen Elektronikfachmarkt Aufzeichnungen über die Verkäufe von Laptops mit Windows (W)- bzw. macOS (m)-Betriebssystem geführt. Zusätzlich wurden drei Gerätekategorien erfasst: Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P). Von den Einsteigergeräten liefen ein Fünftel und von den Mittelklassegeräten die Hälfe mit Windows. Von den insgesamt 80.000 erfassten Laptops waren 45&nbsp;% mit Windows ausgestattet, es wurden 16.000 Einsteigergeräte und 8.000 Premiumgeräte verkauft.",
+        "fragen": [
+            "Erstellen Sie das zugehörige Baumdiagramm mit den gegebenen Werten.",
+            "Welchen Wert hat $y$ ?",
+            "Welchen Wert hat $x$ ?",
+            "Welchen Wert hat $z$ ?",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $E$: Ein zufällig ausgewählter Laptop ist entweder mit macOS ausgestattet oder ein Einsteigergerät.",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $F$: Ein zufällig ausgewählter Premium-Laptop ist mit Windows ausgestattet."
+        ],
+        "antworten": [
+            "<figure><img src='Elektronikfachmarkt.png'></figure>",
+            "Da insgesamt 45 % der Laptops mit Windows ausgestattet sind, gilt \n$$ 0{,}04+0{,}35+y=0{,}45 \\Rightarrow y=0{,}06.\n$$",
+            "Die Multiplikationsregel auf den $P$–$W$-Pfad angewendet ergibt \n$$ 0{,}1\\cdot x = 0{,}06 \\Rightarrow x=0{,}6.\n$$",
+            "\n$$z=0{,}1\\cdot (1-0{,}6)=0{,}04.\n$$",
+            "\\begin{align*}\n  P(E)&=P(\\{EW\\})+P(\\{Em\\})+P(\\{Mm\\})+P(\\{Pm\\})\\\\\n  &=0{,}04+0{,}16+0{,}35+0{,}04\\\\\n  &=0{,}59\n\\end{align*}",
+            "\n$$ P(F)=0{,}6 \n$$"
+        ]
+    },
+    {
+        "einleitung": "Was halten Jugendliche von Lern-Apps? Zu dieser Frage wurde eine Befragung unter 2.000 Schülerinnen und Schülern durchgeführt. 35,7&nbsp;% der Befragten nutzen kostenlose Starter-Versionen (S) von Lern-Apps zur Unterhaltung (U), beispielsweise für Quizspiele. 24,3&nbsp;% verwenden Starter-Versionen gezielt zur Vorbereitung auf Prüfungen (V). 224 Jugendliche nutzen kostenpflichtige Pro-Versionen (P) zur gezielten Vorbereitung auf Prüfungen. Darüber hinaus gibt es auch einige Jugendliche mit Pro-Versionen, die die App lediglich zur Unterhaltung nutzen. 480 Befragten haben bislang noch keine Lern-App (k) verwendet.",
+        "fragen": [
+            "Erstellen Sie das zugehörige Baumdiagramm mit den gegebenen Werten.",
+            "Welchen Wert hat $d$ ?",
+            "Welchen Wert hat $a$ ?",
+            "Welchen Wert hat $b$ ?",
+            "Welchen Wert hat $c$ ?",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $E$: Ein zufällig ausgewählter Jugendlicher verwendet eine Pro-Version.",
+            "Bestimmen Sie die Wahrscheinlichkeit des Ereignisses $F$: Ein zufällig ausgewählter Jugendlicher verwendet eine Lern-App zur Unterhaltung."
+        ],
+        "antworten": [
+            "<figure><img src='Lernapp.png'></figure>",
+            "Da die Summe aller Pfadenwahrscheinlichkeiten 1 ergeben muss, haben wir \n$$ d=1-0{,}357-0{,}243-0{,}112-0{,}24=0{,}048. \n$$",
+            "Die Pfadadditionsregel auf den  $S$–$U$- und  $S$–$V$-Pfad angewendet ergibt \n$$ a=0{,}357+0{,}243=0{,}6. \n$$",
+            "Die Multiplikationsregel auf den $S$–$U$-Pfad angewendet ergibt \n$$ 0{,}6\\cdot b=0{,}357 \\Rightarrow b=0{,}595. \n$$",
+            "Die Multiplikationsregel auf den $P$–$U$-Pfad angewendet ergibt \n$$ (0{,}76-0{,}6)\\cdot c=0{,}048 \\Rightarrow c=0{,}3. \n$$",
+            "\n$$ P(E)=0{,}76 - 0{,}6 = 0{,}16 \n$$",
+            "\\begin{align*}\n  P(F)&=P(\\{SU\\})+P(\\{PU\\})\\\\\n  &=0{,}357+0{,}048\\\\\n  &=0{,}405\n\\end{align*}"
+        ]
+    }
+]
