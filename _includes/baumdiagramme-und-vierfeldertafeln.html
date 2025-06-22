@@ -1,0 +1,232 @@
+<style>
+  .diagramm-row {
+    display: flex;
+    gap: 10px; /* Abstand zwischen den Elementen */
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
+  }
+  .eingabe-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 340px;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px #0001;
+  }
+  .eingabe-zeile {
+    gap: 12px;
+    justify-content: space-between;
+  }
+  .eingabe-zeile label {
+    min-width: 140px;
+  }
+  .eingabe-zeile input[type="range"] {
+    flex: 1;
+    margin-left: 10px;
+  }
+  .eingabe-zeile:last-child {
+    justify-content: center;
+  }
+  input[type="range"]:hover {
+    cursor: ew-resize; /* oder z. B. 'grab', 'crosshair', etc. */
+  }
+</style>
+
+<div class="eingabe-box">
+  <div class="eingabe-zeile">
+    <label for="paSlider">$P(A) = $ <span id="paWert">0.50</span></label>
+    <input type="range" id="paSlider" min="0" max="1" step="0.01" value="0.5" />
+  </div>
+  <div class="eingabe-zeile">
+    <label for="pbaSlider">$P_A(B) = $ <span id="pbaWert">0.10</span></label>
+    <input
+      type="range"
+      id="pbaSlider"
+      min="0"
+      max="1"
+      step="0.01"
+      value="0.1"
+    />
+  </div>
+  <div class="eingabe-zeile">
+    <label for="pbnaSlider"
+      >$P_{\overline{A}}(B) = $ <span id="pbnaWert">0.30</span></label
+    >
+    <input
+      type="range"
+      id="pbnaSlider"
+      min="0"
+      max="1"
+      step="0.01"
+      value="0.3"
+    />
+  </div>
+  <div style="margin-top: 10px">
+    <span>$A$ und $B$ sind stochastisch:</span>
+    <span id="unabhaengigkeitText" style="font-weight: bold"></span>
+  </div>
+</div>
+
+<div class="diagramm-row">
+  <div id="baum" class="diagramm"></div>
+
+  <div id="invers" class="diagramm"></div>
+  <div
+    class="diagramm"
+    style="
+      text-align: center;
+      padding: 30px;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    "
+  >
+    <div>Vier-Felder-Tafel</div>
+
+    <table cellspacing="0" cellpadding="5" style="margin-top: 15px">
+      <thead>
+        <tr>
+          <th></th>
+          <th>\( B \)</th>
+          <th>\( \overline{B} \)</th>
+          <th>\( \Sigma \)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>\( A \)</td>
+          <td id="cell_a_b"></td>
+          <td id="cell_a_nb"></td>
+          <td id="cell_a_sum"></td>
+        </tr>
+        <tr>
+          <td>\( \overline{A} \)</td>
+          <td id="cell_na_b"></td>
+          <td id="cell_na_nb"></td>
+          <td id="cell_na_sum"></td>
+        </tr>
+        <tr>
+          <td>\( \Sigma \)</td>
+          <td id="cell_sum_b"></td>
+          <td id="cell_sum_nb"></td>
+          <td id="cell_sum_sum"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  // Event-Handler für Inputs
+  function updateFromInputs() {
+    const pa = parseFloat(document.getElementById("paSlider").value);
+    const pba = parseFloat(document.getElementById("pbaSlider").value);
+    const pbna = parseFloat(document.getElementById("pbnaSlider").value);
+    document.getElementById("paWert").innerText = pa.toFixed(2);
+    document.getElementById("pbaWert").innerText = pba.toFixed(2);
+    document.getElementById("pbnaWert").innerText = pbna.toFixed(2);
+
+    zeichneBaumdiagramm(
+      "baum",
+      pa,
+      pba,
+      pbna,
+      "Baumdiagramm",
+      "A",
+      "A\u0305",
+      "B",
+      "B\u0305"
+    );
+    const pb = pa * pba + (1 - pa) * pbna;
+    const pab = (pa * pba) / pb;
+    const panb = (pa * (1 - pba)) / (1 - pb);
+    zeichneBaumdiagramm(
+      "invers",
+      pb,
+      pab,
+      panb,
+      "Inverses Baumdiagramm",
+      "B",
+      "B\u0305",
+      "A",
+      "A\u0305"
+    );
+
+    // Vierfeldertafel berechnen
+    const a_b = pa * pba;
+    const a_nb = pa * (1 - pba);
+    const na_b = (1 - pa) * pbna;
+    const na_nb = (1 - pa) * (1 - pbna);
+
+    // Zellen füllen
+    document.getElementById("cell_a_b").innerText = a_b
+      .toFixed(4)
+      .replace(".", ",");
+    document.getElementById("cell_a_nb").innerText = a_nb
+      .toFixed(4)
+      .replace(".", ",");
+    document.getElementById("cell_na_b").innerText = na_b
+      .toFixed(4)
+      .replace(".", ",");
+    document.getElementById("cell_na_nb").innerText = na_nb
+      .toFixed(4)
+      .replace(".", ",");
+
+    // Randsummen
+    document.getElementById("cell_a_sum").innerText = (a_b + a_nb)
+      .toFixed(2)
+      .replace(".", ",");
+    document.getElementById("cell_na_sum").innerText = (na_b + na_nb)
+      .toFixed(2)
+      .replace(".", ",");
+    document.getElementById("cell_sum_b").innerText = (a_b + na_b)
+      .toFixed(2)
+      .replace(".", ",");
+    document.getElementById("cell_sum_nb").innerText = (a_nb + na_nb)
+      .toFixed(2)
+      .replace(".", ",");
+    document.getElementById("cell_sum_sum").innerText = "1";
+
+    // Unabhängigkeitstext aktualisieren
+    const unabhaengig = Math.abs(pba - pbna) < 1e-6;
+    document.getElementById("unabhaengigkeitText").innerText = unabhaengig
+      ? "unabhängig."
+      : "abhängig.";
+  }
+
+  // Inputs mit Handler verbinden
+  document
+    .getElementById("paSlider")
+    .addEventListener("input", updateFromInputs);
+  document
+    .getElementById("pbaSlider")
+    .addEventListener("input", updateFromInputs);
+  document
+    .getElementById("pbnaSlider")
+    .addEventListener("input", updateFromInputs);
+
+  // Mausradsteuerung für alle Slider aktivieren
+  ["paSlider", "pbaSlider", "pbnaSlider"].forEach((id) => {
+    const slider = document.getElementById(id);
+    slider.addEventListener("wheel", function (e) {
+      e.preventDefault();
+      const step = parseFloat(slider.step) || 0.01;
+      let value = parseFloat(slider.value);
+      if (e.deltaY < 0) {
+        value = Math.min(parseFloat(slider.max), value + step);
+      } else {
+        value = Math.max(parseFloat(slider.min), value - step);
+      }
+      slider.value = value.toFixed(2);
+      slider.dispatchEvent(new Event("input"));
+    });
+  });
+
+  // Initiales Diagramm
+  updateFromInputs();
+</script>

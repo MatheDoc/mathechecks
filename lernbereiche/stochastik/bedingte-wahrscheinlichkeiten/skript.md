@@ -416,6 +416,8 @@ Wir erkennen, dass $0{,}6 \cdot 0{,}75 = 0{,}45$ ist. Die Vier-Felder-Tafel ist 
 
 Baumdiagramme und Vierfeldertafeln stellen Wahrscheinlichkeiten, die beim Betrachten von zwei Ereignissen auftreten, auf unterschiedliche Weise dar. In Baumdiagrammen lassen sich die einzelnen Stufen eines Zufallsexperiments gut nachvollziehen: Zunächst tritt das Ereignis $A$ ein, anschließend das Ereignis $B$. Dabei können bedingte Wahrscheinlichkeiten wie $P_A(B)$ direkt abgelesen werden. Vierfeldertafeln hingegen behandeln die Ereignisse $A$ und $B$ symmetrisch. Sowohl $P(A)$ als $P(B)$ sind direkt aus den Tabellenwerten ersichtlich.
 
+{% include baumdiagramme-und-vierfeldertafeln.html %}
+
 ## Bedingte Wahrscheinlichkeiten und stochastische Unabhängigkeit ohne Strukturhilfen
 
 Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, kann ausschließlich mit den in diesem Abschnitt vorgestellten Formeln gearbeitet werden. Dabei kann es hilfreich sein, sich das Baumdiagramm oder die Vierfeldertafel gedanklich vorzustellen.
