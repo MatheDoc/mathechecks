@@ -31,60 +31,12 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
         console.warn("Unbekannte Seite – Aufgabe nicht angezeigt.");
       }
     }
-    // Scrollen zum Ziel-Element, falls ein Hash in der URL vorhanden ist
-    /*const hash = window.location.hash;
-    if (hash) {
-      const zielElement = document.querySelector(hash);
-      if (zielElement) {
-        const header = document.querySelector("header"); // Passe ggf. den Selektor an
-        const headerHeight = header ? header.offsetHeight : 0;
-        const y =
-          zielElement.getBoundingClientRect().top +
-          window.pageYOffset -
-          headerHeight;
-        window.scrollTo({ top: y, behavior: "smooth" });
-        setTimeout(() => {
-          highlightElement(zielElement);
-        }, 1000);
-      } else {
-        console.warn("Ziel-Element nicht gefunden für Hash:", hash);
-      }
-    }*/
+
     const hash = window.location.hash;
 
     if (hash) {
       scrollZuHash(hash);
     }
-
-    /*if (hash) {
-      const zielElement = document.querySelector(hash);
-      if (zielElement) {
-        const header = document.querySelector("header");
-        const headerHeight = header ? header.offsetHeight : 0;
-
-        let scrollZiel = zielElement;
-
-        if (pfad.includes("skript")) {
-          // Finde das übergeordnete h2-Element
-          const h2 = findeNaechstenH2Ueber(zielElement);
-          console.log(h2);
-          if (h2) scrollZiel = h2;
-        }
-
-        const y =
-          scrollZiel.getBoundingClientRect().top +
-          window.pageYOffset -
-          headerHeight;
-
-        window.scrollTo({ top: y, behavior: "smooth" });
-
-        setTimeout(() => {
-          highlightElement(scrollZiel);
-        }, 1000);
-      } else {
-        console.warn("Ziel-Element nicht gefunden für Hash:", hash);
-      }
-    }*/
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
   }
@@ -102,15 +54,18 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
 function zeigeInSkript(aufgabeDiv) {
   const zielId = aufgabeDiv.id.replace("aufgabe-", "skript-aufgabe-");
   const zielDiv = document.getElementById(zielId);
-  console.log(zielDiv);
-  if (!zielDiv) {
-    return;
-  }
+  if (!zielDiv) return;
+
   zielDiv.classList.add("aufgabe");
 
-  if (zielDiv) {
-    zielDiv.innerHTML = aufgabeDiv.innerHTML;
-  }
+  // Entferne vorher das durch Select2 generierte DOM im Quell-Div
+  $(aufgabeDiv).find("select.mch").select2("destroy");
+
+  // Jetzt nur den ursprünglichen HTML-Code übernehmen
+  zielDiv.innerHTML = aufgabeDiv.innerHTML;
+
+  // Danach kannst du wieder interaktive Elemente initialisieren
+  applyInteractivity(zielDiv);
 }
 
 async function erstelleAufgabe(eintrag, index = 0) {
@@ -214,21 +169,10 @@ async function erstelleAufgabe(eintrag, index = 0) {
       await MathJax.typesetPromise([aufgabeDiv]);
     }
 
-    const $select = $(`#${aufgabeDiv.id} select.mch`);
-    if ($select.length) {
-      $select.select2({
-        placeholder: "Antwort",
-        minimumResultsForSearch: Infinity,
-        width: "auto",
-        dropdownAutoWidth: true,
-        templateResult: renderWithMathJax,
-        templateSelection: renderWithMathJax,
-      });
-
-      if (typeof adjustSelect2Width === "function") {
-        adjustSelect2Width(`#${aufgabeDiv.id} select.mch`);
-      }
+    if (typeof adjustSelect2Width === "function") {
+      adjustSelect2Width(`#${aufgabeDiv.id} select.mch`);
     }
+
     // Listener für Icons hinzufügen
     addCheckIconListeners(aufgabeDiv);
     return aufgabeDiv;
@@ -259,9 +203,6 @@ function applyInteractivity(container) {
     templateResult: renderWithMathJax,
     templateSelection: renderWithMathJax,
   });
-
-  // Select2 Breite anpassen
-  adjustSelect2Width(`#${container.id} select.mch`);
 }
 
 // Ersetze Tiktok-Platzhalter durch URLs
