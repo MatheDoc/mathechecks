@@ -6,12 +6,17 @@ input[type="text"] {
   min-width: 80px;
   width: 80px;
   margin-top: 10px;
+  height: 2rem;
 }
 
 input[type="text"]::-webkit-inner-spin-button,
 input[type="text"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.select2-container--default .select2-selection--single {
+  height: 2rem !important
 }
 
 .aufgabe {

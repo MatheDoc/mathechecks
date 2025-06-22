@@ -15,6 +15,8 @@ Baumdiagramme müssen mit Hilfe der Pfadregeln sicher vervollständigt werden k�
 
 ## Vorkenntnisse
 
+Dezimalrechnung
+
 <a
         href="{{ '/lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/start.html' | relative_url }}"
         >Zufallsexperimente und Wahrscheinlichkeiten</a

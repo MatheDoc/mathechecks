@@ -195,11 +195,45 @@ Außerdem können hier beliebig $A$ durch $\overline{A}$ und $B$ durch $\overlin
 ### Exkurs: Beweise
 
 - 1 ist äquivalent zu 2:
-  - Die Pfadadditionsregel besagt, dass $P(B)=P(A\cap B)+P(\overline{A}\cap B)$
-  - Die Pfadmultiplikationsregel besagt, dass $P(A\cap B)=P(A)\cdot P_A(B)$ und $P(\overline{A}\cap B)=P(\overline{A})\cdot P_{\overline{A}}(B)$.
-  - Damit folgt $P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_{\overline{A}}(B)$.
-  - Es gilt $P_A(B)=P_{\overline{A}}(B)$ genau dann, wenn $P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_A(B)$.
-  - Es folgt $P(B)=(P(A)+P(\overline{A}))\cdot P_A(B)$. Da $P(A)+P(\overline{A})=1$ ist nun $P(B)=P_A(B)$.
+
+  - Die Pfadadditionsregel besagt, dass
+
+    $$
+    P(B)=P(A\cap B)+P(\overline{A}\cap B).
+    $$
+
+  - Die Pfadmultiplikationsregel besagt, dass
+
+    $$
+    P(A\cap B)=P(A)\cdot P_A(B)
+    $$
+
+    und
+
+    $$
+    P(\overline{A}\cap B)=P(\overline{A})\cdot P_{\overline{A}}(B).
+    $$
+
+  - Damit folgt
+
+  $$
+  P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_{\overline{A}}(B).
+  $$
+
+  - Es gilt $P_A(B)=P_{\overline{A}}(B)$ genau dann, wenn
+
+  $$
+  P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_A(B).
+  $$
+
+  - Es folgt
+
+  $$
+  P(B)=(P(A)+P(\overline{A}))\cdot P_A(B).
+  $$
+
+  Da $P(A)+P(\overline{A})=1$ ist nun $P(B)=P_A(B)$.
+
 - 2 ist äquivalent zu 3:
   - Die Pfadmultiplikationsregel besagt, dass $P(A\cap B)=P(A)\cdot P_A(B)$.
   - Nun gilt $P(B)=P_A(B)$ genau dann, wenn $P(A\cap B)=P(A)\cdot P(B)$.
@@ -399,4 +433,3 @@ Bedingte Wahrscheinlichkeiten können auch in Venn-Diagrammen dargestellt werden
 | <figure><img src="v1.png" style="width: 25vw"></figure> | <figure> <img src="v2.png" style="width: 25vw"></figure> | <figure> <img src="v3.png" style="width: 25vw"></figure> |
 
 <div id="skript-aufgabe-10"></div>
-
