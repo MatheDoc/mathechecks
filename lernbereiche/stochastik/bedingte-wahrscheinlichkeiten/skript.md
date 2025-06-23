@@ -196,37 +196,37 @@ Außerdem können hier beliebig $A$ durch $\overline{A}$ und $B$ durch $\overlin
 
 - 1 ist äquivalent zu 2:
 
-  - Die Pfadadditionsregel besagt, dass
+  Die Pfadadditionsregel besagt, dass
 
-    $$
-    P(B)=P(A\cap B)+P(\overline{A}\cap B).
-    $$
+  $$
+  P(B)=P(A\cap B)+P(\overline{A}\cap B).
+  $$
 
-  - Die Pfadmultiplikationsregel besagt, dass
+  Die Pfadmultiplikationsregel besagt, dass
 
-    $$
-    P(A\cap B)=P(A)\cdot P_A(B)
-    $$
+  $$
+  P(A\cap B)=P(A)\cdot P_A(B)
+  $$
 
-    und
+  und
 
-    $$
-    P(\overline{A}\cap B)=P(\overline{A})\cdot P_{\overline{A}}(B).
-    $$
+  $$
+  P(\overline{A}\cap B)=P(\overline{A})\cdot P_{\overline{A}}(B).
+  $$
 
-  - Damit folgt
+  Damit folgt
 
   $$
   P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_{\overline{A}}(B).
   $$
 
-  - Es gilt $P_A(B)=P_{\overline{A}}(B)$ genau dann, wenn
+  Es gilt $P_A(B)=P_{\overline{A}}(B)$ genau dann, wenn
 
   $$
   P(B) = P(A)\cdot P_A(B) + P(\overline{A})\cdot P_A(B).
   $$
 
-  - Es folgt
+  Es folgt
 
   $$
   P(B)=(P(A)+P(\overline{A}))\cdot P_A(B).
@@ -235,8 +235,8 @@ Außerdem können hier beliebig $A$ durch $\overline{A}$ und $B$ durch $\overlin
   Da $P(A)+P(\overline{A})=1$ ist nun $P(B)=P_A(B)$.
 
 - 2 ist äquivalent zu 3:
-  - Die Pfadmultiplikationsregel besagt, dass $P(A\cap B)=P(A)\cdot P_A(B)$.
-  - Nun gilt $P(B)=P_A(B)$ genau dann, wenn $P(A\cap B)=P(A)\cdot P(B)$.
+  Die Pfadmultiplikationsregel besagt, dass $P(A\cap B)=P(A)\cdot P_A(B)$.
+  Nun gilt $P(B)=P_A(B)$ genau dann, wenn $P(A\cap B)=P(A)\cdot P(B)$.
 
 ### Prüfen auf stochastische Unabhängigkeit
 
@@ -270,8 +270,21 @@ Sind $A$ und $B$ stochastisch unabhängig?
 
 Es gilt $P(A\cap B)=0{,}45$, $P(\overline{A}\cap \overline{B})=0{,}1$ und $P(A\cap \overline{B})=0{,}15$. Wir berechnen
 
-- $P(A) = P(A\cap B) + P(A\cap \overline{B}) = 0{,}45 + 0{,}15 = 0{,}6$
-- $P(\overline{B}) = P(A\cap \overline{B}) + P(\overline{A}\cap \overline{B}) = 0{,}15 + 0{,}1 = 0{,}25$
+$$
+\begin{align*}
+P(A) &= P(A\cap B) + P(A\cap \overline{B})\\
+     & = 0{,}45 + 0{,}15 \\
+     &= 0{,}6
+\end{align*}
+$$
+
+$$
+\begin{align*}
+P(\overline{B}) & = P(A\cap \overline{B}) + P(\overline{A}\cap \overline{B}) \\
+                & = 0{,}15 + 0{,}1 \\
+                &= 0{,}25
+\end{align*}
+$$
 
 Nun ist $P(A)\cdot P(\overline{B})=0{,}6 \cdot 0{,}25 = 0{,}15$. Es gilt also $P(A)\cdot P(\overline{B}) = P(A\cap \overline{B})$. Damit sind $A$ und $\overline{B}$ stochastisch unabhängig, und somit auch $A$ und $B$. (Diese Berechnungen werden mit den Begriffen des nächsten Abschnitts übersichtlicher.)
 
