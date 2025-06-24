@@ -1,3 +1,23 @@
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  border: 1px solid #999;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+thead {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
 input[type="text"] {
   padding: 10px;
   font-size: 1em;
@@ -16,7 +36,7 @@ input[type="text"]::-webkit-outer-spin-button {
 }
 
 .select2-container--default .select2-selection--single {
-  height: 2rem !important
+  height: 2rem !important;
 }
 
 .aufgabe {
@@ -127,10 +147,12 @@ input[type="text"]::-webkit-outer-spin-button {
 .pdf-icon:hover {
   color: #e03c31;
 }
-.assistenz-icon, .skript-icon {
+.assistenz-icon,
+.skript-icon {
   color: #693c77a4;
 }
-.assistenz-icon:hover, .skript-icon:hover {
+.assistenz-icon:hover,
+.skript-icon:hover {
   color: #693c77e4;
 }
 .whatapp-icon {
@@ -142,20 +164,19 @@ input[type="text"]::-webkit-outer-spin-button {
 
 @keyframes border-draw {
   0% {
-  /*border: 1px solid #ccc;
+    /*border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;*/
-
   }
   50% {
-  /*    border: 3px solid #ccc;
+    /*    border: 3px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;
     border-color: var(--hauptfarbe); */
-background-color: #f7c8fd;
+    background-color: #f7c8fd;
   }
   100% {
-  /*border: 1px solid #ccc;
+    /*border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;*/
   }
@@ -164,7 +185,6 @@ background-color: #f7c8fd;
 .highlight-border {
   animation: border-draw 1s ease forwards;
 }
-
 
 @media (max-width: 768px) {
   .aufgabe > div {

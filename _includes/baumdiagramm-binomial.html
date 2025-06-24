@@ -1,0 +1,312 @@
+<style>
+  .diagramm-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .eingabe-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 340px;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px #0001;
+  }
+
+  .eingabe-zeile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: space-between;
+  }
+
+  .eingabe-zeile label {
+    min-width: 110px;
+  }
+
+  .eingabe-zeile input[type="range"] {
+    flex: 1;
+    margin-left: 10px;
+  }
+
+  .eingabe-zeile:last-child {
+    justify-content: center;
+  }
+
+  input[type="range"]:hover {
+    cursor: ew-resize;
+  }
+</style>
+<div class="diagramm-row">
+  <div class="eingabe-box">
+    <div class="eingabe-zeile">
+      <label for="nSlider">n = <span id="nWert">3</span></label>
+      <input type="range" id="nSlider" min="1" max="10" value="4" />
+    </div>
+    <div class="eingabe-zeile">
+      <label for="pSlider">p = <span id="pWert">0.7</span></label>
+      <input
+        type="range"
+        id="pSlider"
+        min="0"
+        max="1"
+        value="0.7"
+        step="0.01"
+      />
+    </div>
+    <div class="eingabe-zeile">
+      <label for="kSlider">k = <span id="kWert">2</span></label>
+      <input type="range" id="kSlider" min="0" max="10" value="2" />
+    </div>
+    <div class="eingabe-zeile">Anzahl der Pfade mit k Treffern:</div>
+    <div class="eingabe-zeile" style="justify-content: center">
+      <span id="anzahlPfade"></span>
+    </div>
+    <div class="eingabe-zeile">Pfadendwahrscheinlichkeit:</div>
+    <div class="eingabe-zeile" style="justify-content: center">
+      <span id="pfadwkeit"></span>
+    </div>
+    <div class="eingabe-zeile">Wahrscheinlichkeit für genau k Treffer:</div>
+    <div class="eingabe-zeile">
+      <span id="bernoulli"></span>
+    </div>
+  </div>
+  <div id="baum" style="max-width: 800px" class="diagramm"></div>
+</div>
+<script>
+  function generateBernoulliTree(n, p) {
+    const nodes = {};
+    const edges = [];
+    const leaves = Array.from({ length: Math.pow(2, n) }, (_, i) => {
+      return i
+        .toString(2)
+        .padStart(n, "0")
+        .replace(/0/g, "T")
+        .replace(/1/g, "N");
+    });
+
+    const spacing = 1.5;
+    leaves.forEach((leaf, i) => {
+      nodes[leaf] = {
+        x: n,
+        y: ((leaves.length - 1) / 2) * spacing - i * spacing,
+      };
+    });
+
+    function placeParents(path) {
+      if (path.length === 0) return;
+      const parent = path.slice(0, -1);
+      if (!nodes[parent]) {
+        const left = parent + "T";
+        const right = parent + "N";
+        if (nodes[left] && nodes[right]) {
+          nodes[parent] = {
+            x: path.length - 1,
+            y: (nodes[left].y + nodes[right].y) / 2,
+          };
+        }
+      }
+      edges.push({
+        from: parent,
+        to: path,
+        prob: path.endsWith("T") ? p : 1 - p,
+      });
+      placeParents(parent);
+    }
+
+    for (const leaf of leaves) {
+      placeParents(leaf);
+    }
+
+    nodes[""] = { x: 0, y: (nodes["T"].y + nodes["N"].y) / 2 };
+
+    return { nodes, edges };
+  }
+
+  function plotBernoulliTree(n = 3, p = 0.5, k = null) {
+    const { nodes, edges } = generateBernoulliTree(n, p);
+
+    const highlightedEdges = new Set();
+    for (const key in nodes) {
+      if (key.length === n) {
+        const numSuccesses = (key.match(/N/g) || []).length;
+        if (k !== null && numSuccesses === k) {
+          for (let i = 1; i <= key.length; i++) {
+            const from = key.slice(0, i - 1);
+            const to = key.slice(0, i);
+            highlightedEdges.add(`${from}->${to}`);
+          }
+        }
+      }
+    }
+
+    const nodeX = [];
+    const nodeY = [];
+    const nodeColors = [];
+
+    for (const key in nodes) {
+      nodeX.push(nodes[key].x);
+      nodeY.push(nodes[key].y);
+      if (key === "") {
+        nodeColors.push("black");
+      } else if (key.endsWith("T")) {
+        nodeColors.push("green");
+      } else if (key.endsWith("N")) {
+        nodeColors.push("red");
+      } else {
+        nodeColors.push("gray");
+      }
+    }
+
+    const nodeTrace = {
+      x: nodeX,
+      y: nodeY,
+      mode: "markers",
+      type: "scatter",
+      marker: { size: 12, color: nodeColors },
+      hoverinfo: "none",
+    };
+
+    const edgeTraces = [];
+
+    for (const edge of edges) {
+      const x0 = nodes[edge.from].x;
+      const y0 = nodes[edge.from].y;
+      const x1 = nodes[edge.to].x;
+      const y1 = nodes[edge.to].y;
+
+      const edgeKey = `${edge.from}->${edge.to}`;
+      const isHighlighted = highlightedEdges.has(edgeKey);
+
+      edgeTraces.push({
+        x: [x0, x1],
+        y: [y0, y1],
+        mode: "lines",
+        type: "scatter",
+        line: {
+          color: isHighlighted ? "gold" : "gray",
+          width: isHighlighted ? 4 : 1,
+        },
+        hoverinfo: "none",
+        showlegend: false,
+      });
+
+      edgeTraces.push({
+        x: [(x0 + x1) / 2],
+        y: [(y0 + y1) / 2],
+        mode: "text",
+        type: "scatter",
+        text: [edge.prob.toFixed(2)],
+        textposition: "middle center",
+        hoverinfo: "none",
+        showlegend: false,
+        textfont: {
+          size: 12,
+          color: "black",
+          family: "Arial",
+        },
+      });
+    }
+
+    const yValues = Object.values(nodes).map((n) => n.y);
+    const yMin = Math.min(...yValues);
+    const yMax = Math.max(...yValues);
+
+    const layout = {
+      xaxis: { visible: false },
+      yaxis: {
+        visible: false,
+        range: [yMin - 1, yMax + 1],
+      },
+      plot_bgcolor: "white",
+      margin: { l: 20, r: 20, t: 40, b: 20 },
+      height: 50 * Math.pow(2, n),
+      showlegend: false,
+    };
+
+    Plotly.newPlot("baum", [...edgeTraces, nodeTrace], layout);
+  }
+
+  function binom(n, k) {
+    if (k < 0 || k > n) return 0;
+    let res = 1;
+    for (let i = 1; i <= k; i++) {
+      res = (res * (n - i + 1)) / i;
+    }
+    return res;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const nSlider = document.getElementById("nSlider");
+    const pSlider = document.getElementById("pSlider");
+    const kSlider = document.getElementById("kSlider");
+
+    const nWert = document.getElementById("nWert");
+    const pWert = document.getElementById("pWert");
+    const kWert = document.getElementById("kWert");
+    const anzahlPfadeWert = document.getElementById("anzahlPfade");
+    const pfadwkeitWert = document.getElementById("pfadwkeit");
+
+    function updatePlot() {
+      const n = parseInt(nSlider.value, 10);
+      const p = parseFloat(pSlider.value);
+      let k = parseInt(kSlider.value, 10);
+
+      nWert.textContent = n;
+      pWert.textContent = p;
+
+      kSlider.max = n;
+      if (k > n) {
+        k = n;
+        kSlider.value = n;
+      }
+      kWert.textContent = k;
+
+      // Anzahl Pfade mit k Treffern anzeigen
+      const anzahlPfade = binom(n, k);
+      anzahlPfadeWert.textContent = `$ \\binom{n}{k}=  ${anzahlPfade} $`;
+      MathJax.typesetPromise([document.getElementById("anzahlPfade")]);
+
+      // Pfadendwahrscheinlichkeit anzeigen
+      const pfadwkeit = Math.pow(p, k) * Math.pow(1 - p, n - k);
+      pfadwkeitWert.textContent = `$ p^${k} \\cdot (1-p)^${
+        n - k
+      } =  ${pfadwkeit.toLocaleString(undefined, {
+        maximumFractionDigits: 4,
+      })}$`;
+      MathJax.typesetPromise([document.getElementById("pfadwkeit")]);
+
+      // Wkt. für genau k Treffer anzeigen
+      const bernoulli = binom(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+      document.getElementById(
+        "bernoulli"
+      ).textContent = `\\begin{align*} P(X=k) &= \\binom{n}{k} \\cdot p^k \\cdot (1-p)^{n-k} \\\\ &=${anzahlPfade}\\cdot ${pfadwkeit.toLocaleString(
+        undefined,
+        {
+          maximumFractionDigits: 4,
+        }
+      )} \\\\ &=  ${bernoulli.toLocaleString(undefined, {
+        maximumFractionDigits: 4,
+      })}\\end{align*}`;
+      MathJax.typesetPromise([document.getElementById("bernoulli")]);
+      plotBernoulliTree(n, p, k);
+    }
+
+    nSlider.addEventListener("input", updatePlot);
+    pSlider.addEventListener("input", updatePlot);
+    kSlider.addEventListener("input", updatePlot);
+
+    updatePlot();
+  });
+
+  if (window.self !== window.top) {
+    // Seite ist im iframe geladen
+    document.documentElement.classList.add("in-iframe");
+  }
+</script>

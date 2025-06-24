@@ -1,0 +1,18 @@
+<div
+  class="diagramm"
+  data-x="{{ include.x }}"
+  data-y="{{ include.y }}"
+  data-titel="{{ include.titel | default: '' }}"
+  data-balkenbreite="{{ include.balkenbreite | default: '1' }}"
+></div>
+<script>
+  (function () {
+    const div = document.currentScript.previousElementSibling;
+    const x = JSON.parse(div.dataset.x);
+    const y = JSON.parse(div.dataset.y);
+    const balkenbreite = div.dataset.balkenbreite;
+    const titel = div.dataset.titel;
+
+    zeichneHistogrammAllgemein(div, x, y, titel, balkenbreite);
+  })();
+</script>

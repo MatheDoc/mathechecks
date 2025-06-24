@@ -1,0 +1,21 @@
+[
+  {
+    "einleitung": "Für jede der folgenden Situationen soll entschieden werden, ob das zugrunde liegende Zufallsexperiment eine binomialverteilte Zufallsgröße beschreibt oder nicht.",
+    "fragen": [
+      "Eine Münze wird 10 Mal geworfen.",
+      "Ein Würfel wird 10 Mal geworfen.",
+      "Für eine Person wird untersucht, ob sie in einem bestimmten Jahr geheiratet hat.",
+      "Eine Person gibt wahllos so lange 4-stellige Zifferncodes ein, bis sie den richtigen gefunden hat.",
+      "Aus einer Urne mit 7 schwarzen und 3 weißen Kugeln wird 4 Mal mit Zurücklegen eine Kugel gezogen.",
+      "Aus einer Urne mit 7 schwarzen und 3 weißen Kugeln wird 4 Mal ohne Zurücklegen eine Kugel gezogen."
+    ],
+    "antworten": [
+      "Binomialverteilt: Es gibt eine feste Anzahl an Versuchen (10), es gibt in jedem Versuch zwei mögliche Ausgänge (\"Kopf\" und \"Zahl\") und die Wahrscheinlichkeit für \"Kopf\" beträgt immer 50 %.",
+      "Nicht binomialverteilt: Es gibt zwar eine feste Anzahl an Versuchen (10) und gleichbleibende Wahrscheinlichkeiten (für jede Augenzahl \\( \\frac{1}{6} \\)), aber in jedem Versuch gibt es sechs mögliche Ausgänge.",
+      "Nicht binomialverteilt: Zwar gibt es in jedem Jahr nur zwei mögliche Ausgänge (geheiratet oder nicht). Die Wahrscheinlichkeit für eine Heirat ist jedoch nicht konstant – sie ist in jungen und alten Jahren geringer als im mittleren Alter. Auch die Anzahl der Versuche ist nicht prinzipiell festgelegt.",
+      "Nicht binomialverteilt: Zwar gibt es in jedem Versuch zwei mögliche Ausgänge (der Code ist \"richtig\" oder \"falsch\") und eine gleichbleibende Trefferwahrscheinlichkeit von \\( 0{,}001 \\). Allerdings ist die Anzahl der Versuche nicht festgelegt, da der Vorgang nach dem ersten erfolgreichen Versuch beendet wird.",
+      "Binomialverteilt: Es gibt eine feste Anzahl an Versuchen (4), in jedem Versuch gibt es zwei mögliche Ausgänge (\"schwarz\" und \"weiß\") und die Wahrscheinlichkeit für \"schwarz\" beträgt immer 70 % (und für \"weiß\" immer 30 %).",
+      "Nicht binomialverteilt: Zwar gibt es eine feste Anzahl an Versuchen (4) und in jedem Versuch zwei mögliche Ausgänge (\"schwarz\" und \"weiß\"), aber die Wahrscheinlichkeiten für \"schwarz\" (und \"weiß\") ändern sich von Stufe zu Stufe."
+    ]
+  }
+]

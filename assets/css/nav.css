@@ -29,6 +29,10 @@
   color: white;
 }
 
+.hamburger:hover {
+  background: #cfcfcf6a;
+}
+
 .menu {
   position: absolute;
   top: 100%;
@@ -120,9 +124,7 @@
 }
 
 .nav-materialtyp a.ausgewählt {
-
   background-color: var(--hintergrund-hell-hover);
-
 }
 
 /* Standard: Text sichtbar */
@@ -131,7 +133,7 @@
 }
 
 /* Bei kleiner Bildschirmbreite: Text ausblenden */
-@media (max-width: 400px) {
+@media (max-width: 490px) {
   .nav-text {
     display: none;
   }
