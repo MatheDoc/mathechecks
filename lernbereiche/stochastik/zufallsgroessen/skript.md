@@ -208,7 +208,7 @@ Frage: Wie messen wir die Abweichung vom airthmwtschen Mittel. Wir betrachten fo
 2. quadraitsche Abweichung
 3. Abweochugnen höheren ORdnung
 
-...
+
 1. wird durch den MEdian minimeirt
 2. Nur die quarstische Abweichung wurd durch das arithmwitsche Mittel minimiert.
 3. andere KEnnahlen
@@ -223,7 +223,7 @@ $$
 Durch eine REchnung lässt sich zeigen, dass $f$ für
 -->
 
-## Aufstellen von Wahrscheinlichkeitsverteilungen
+## Aufstellen von Verteilungen
 
 Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden, so benötigen wir
 
@@ -234,7 +234,7 @@ Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsg
 
 <div id="skript-aufgabe-4"></div>
 
-## Vervollständigung von Wahrscheinlichkeitsverteilungen
+## Vervollständigung von Verteilungen
 
 Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
 

@@ -24,10 +24,23 @@ In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. 
 - Die leere Menge enthält keine Elemente und wird mit $\emptyset$ bezeichnet.
 - Liegen alle Elemente einer Menge $A$ auch in einer Menge $X$, so ist $A$ eine Teilmenge von $X$. Wir schreiben auch $A \subset X$.
 - Beispiel: Die Menge $X = \\{1, 3, 4, 6, 8\\}$ hat die Teilmenge $A = \\{3, 6\\}$.
-- Beispiel: Die Menge einer Spielgruppe von Kindern ist $X = \\{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\\}$. Dann ist die Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$.
+- Beispiel: Die Menge einer Spielgruppe von Kindern ist
+
+  $$
+  X = \{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\}.
+  $$
+
+  Dann ist die Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$.
+
 - Ist $A$ eine Teilmenge von $X$, so bilden alle Elemente von $X$, die nicht in $A$ liegen, das Komplement von $A$. Das Komplement von $A$ wird mit $\overline{A}$ bezeichnet.
 - Beispiel: Für $X = \\{1, 3, 4, 6, 8\\}$ und der Teilmenge $A = \\{3, 6\\}$ ist das Komplement $\overline{A} = \\{1, 4, 8\\}$.
-- Beispiel: Für $X = \\{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\\}$ und der Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$ ist das Komplement die Teilmenge der Jungen $\overline{A} = \\{\text{Tobias}, \text{Achmed}\\}$.
+- Beispiel: Für
+
+  $$
+  X = \{\text{Tobias},  \text{Jessica},  \text{Achmed},  \text{Lydia}\}
+  $$
+
+  und der Teilmenge der Mädchen $A = \\{\text{Jessica},  \text{Lydia}\\}$ ist das Komplement die Teilmenge der Jungen $\overline{A} = \\{\text{Tobias}, \text{Achmed}\\}$.
 
 ### Exkurs: Das Russellsche Paradoxon
 
