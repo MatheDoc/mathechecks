@@ -300,10 +300,13 @@ Außerdem ist bekannt, dass $E(X)=0{,}29$
 Da wir zwei Unbekannte haben, sind auch zwei Gleichungen nötig, um sie zu bestimmen:
 
 1. Die Summe der Wahrscheinlichkeiten muss 1 ergeben:
+
    $$
    0{,}15 + 0{,}27 + x + 0{,}08 +y = 1
    $$
+
 2. Der gegebene Erwartungswert:
+
    $$
    0{,}29 = (-4 \cdot 0{,}15) + (-2 \cdot 0{,}27) + (-1 \cdot x) + (1 \cdot 0{,}08) + (4 \cdot y)
    $$

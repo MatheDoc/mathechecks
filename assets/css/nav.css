@@ -60,6 +60,12 @@
   display: none;
 }
 
+.trennlinie {
+  border: none;
+  border-top: 1px dashed #999;
+  margin: 0.3em 0;
+}
+
 .stochastik a {
   background-color: #e0f0ff;
   color: #005ea2;
@@ -82,6 +88,14 @@
 }
 .lineare-algebra a:hover {
   background-color: #f3c2ff;
+}
+
+.zusatzmaterial a {
+  background-color: #ececec;
+  color: #585858;
+}
+.zusatzmaterial a:hover {
+  background-color: #d5d5d5;
 }
 
 .nav-materialtyp {
