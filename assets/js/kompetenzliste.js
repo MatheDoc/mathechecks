@@ -1,7 +1,5 @@
 // This script fetches a JSON file containing competencies and filters them based on the selected learning area.
-console.log(window.location.href);
-console.log(location.origin);
-console.log(location.pathname);
+console.log("fetch wird aufgerufen mit:", "/kompetenzliste.json");
 fetch("/kompetenzliste.json") // Liquid wird nicht in js aufgelöst, daher ohne relative_url
   .then((response) => response.json())
   .then((daten) => {
