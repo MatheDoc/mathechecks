@@ -107,12 +107,9 @@ Der Erwartungswert ist bekanntlich $E(X) = 1{,}72$. Wir berechnen zunächst die 
 
 $$
 \begin{align*}
-\sigma^2(X) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 \\
-&\quad + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
-&= (2{,}9584) \cdot 0{,}03 + (0{,}5184) \cdot 0{,}33 + (0{,}0784) \cdot 0{,}57 \\
-&\quad + (1{,}6384) \cdot 0{,}03 + (5{,}1984) \cdot 0{,}04 + (10{,}7584) \cdot 0 \\
-&= 0{,}0888 + 0{,}1700 + 0{,}0447 \\\\
-&\quad + 0{,}0492 + 0{,}2079 + 0 \\\\
+\sigma^2(X) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
+&= (2{,}9584) \cdot 0{,}03 + (0{,}5184) \cdot 0{,}33 + (0{,}0784) \cdot 0{,}57 + (1{,}6384) \cdot 0{,}03 + (5{,}1984) \cdot 0{,}04 + (10{,}7584) \cdot 0 \\
+&= 0{,}0888 + 0{,}1700 + 0{,}0447 + 0{,}0492 + 0{,}2079 + 0 \\
 &= 0{,}5606
 \end{align*}
 $$
@@ -133,10 +130,8 @@ Auch hier beträgt der Erwartungswert $E(X) = 1{,}72$. Wir berechnen zunächst d
 
 $$
 \begin{align*}
-\sigma^2(X_B) &= (0 - 1{,}72)^2 \cdot 0{,}37 + (1 - 1{,}72)^2 \cdot 0{,}16 + (2 - 1{,}72)^2 \cdot 0{,}18 \\
-&\quad + (3 - 1{,}72)^2 \cdot 0{,}08 + (4 - 1{,}72)^2 \cdot 0{,}09 + (5 - 1{,}72)^2 \cdot 0{,}12 \\
-&= 2{,}9584 \cdot 0{,}37 + 0{,}5184 \cdot 0{,}16 + 0{,}0784 \cdot 0{,}18 \\
-&\quad + 1{,}6384 \cdot 0{,}08 + 5{,}1984 \cdot 0{,}09 + 10{,}7584 \cdot 0{,}12 \\
+\sigma^2(X_B) &= (0 - 1{,}72)^2 \cdot 0{,}37 + (1 - 1{,}72)^2 \cdot 0{,}16 + (2 - 1{,}72)^2 \cdot 0{,}18  + (3 - 1{,}72)^2 \cdot 0{,}08 + (4 - 1{,}72)^2 \cdot 0{,}09 + (5 - 1{,}72)^2 \cdot 0{,}12 \\
+&= 2{,}9584 \cdot 0{,}37 + 0{,}5184 \cdot 0{,}16 + 0{,}0784 \cdot 0{,}18 + 1{,}6384 \cdot 0{,}08 + 5{,}1984 \cdot 0{,}09 + 10{,}7584 \cdot 0{,}12 \\
 &= 1{,}0956 + 0{,}0829 + 0{,}0141 + 0{,}1311 + 0{,}4679 + 1{,}2909 \\
 &= 3{,}0825
 \end{align*}
@@ -207,7 +202,6 @@ Frage: Wie messen wir die Abweichung vom airthmwtschen Mittel. Wir betrachten fo
 1. absolute Abweichung
 2. quadraitsche Abweichung
 3. Abweochugnen höheren ORdnung
-
 
 1. wird durch den MEdian minimeirt
 2. Nur die quarstische Abweichung wurd durch das arithmwitsche Mittel minimiert.

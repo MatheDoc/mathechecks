@@ -407,7 +407,7 @@ antwort="Hier berechnen wir zunächst die Intervallgrenzen: $0,13\cdot 20=2,6$
 $$
 
 \begin{align*}
-P(X \leq 2{,}6) &= P(X \leq 2) = 0{,}6769
+P(X \leq 2{,}6) &= P(X \leq 2) = 0{,}6769\\
 P(X \leq 2{,}6) &= Bcd(0;2;20;0{,}1) = 0{,}6769
 \end{align*}
 
@@ -416,7 +416,7 @@ $$
 
 {% include flip-card.html
 frage="mehr als ein Drittel der Würfe Treffer."
-antwort="Hier berechnen wir zunächst die Intervallgrenzen: $\frac{20}{3} &\approx 6{,}7$
+antwort="Hier berechnen wir zunächst die Intervallgrenzen: $\frac{20}{3} \approx 6{,}7$
 $$
 
 \begin{align*}
@@ -434,8 +434,8 @@ antwort="Hier geht es um die Fehlwürfe und nicht um die Treffer. Daher ist hier
 $$
 
 \begin{align*}
-P(X \leq 15)=0{,}0432
-P(X \leq 15)=Bcd(0;15;20;0{,}9)=0{,}0432
+P(X \leq 15)&=0{,}0432\\
+P(X \leq 15)&=Bcd(0;15;20;0{,}9)=0{,}0432
 \end{align*}
 
 $$

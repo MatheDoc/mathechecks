@@ -1,11 +1,11 @@
 <div class="diagramm-row">
   <div class="eingabe-box">
     <div class="eingabe-zeile">
-      <label for="nSlider2">n = <span id="nWert">10</span></label>
+      <label for="nSlider2">n = <span id="nWert2">10</span></label>
       <input type="range" id="nSlider2" min="1" max="50" value="10" />
     </div>
     <div class="eingabe-zeile">
-      <label for="pSlider2">p = <span id="pWert">0.5</span></label>
+      <label for="pSlider2">p = <span id="pWert2">0.5</span></label>
       <input
         type="range"
         id="pSlider2"
@@ -235,8 +235,8 @@
     const autoY = document.getElementById("autoY").checked;
 
     // Werte anzeigen
-    document.getElementById("nWert").innerText = n;
-    document.getElementById("pWert").innerText = p.toFixed(2);
+    document.getElementById("nWert2").innerText = n;
+    document.getElementById("pWert2").innerText = p.toFixed(2);
     document.getElementById("aWert").innerText = a;
     document.getElementById("bWert").innerText = b;
 
