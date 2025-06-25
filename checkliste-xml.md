@@ -9,7 +9,7 @@ description: Moodle XML zum Download
 </div>
 
 <script>
-fetch('xml/')
+fetch('/xml/')
   .then(response => response.text())
   .then(html => {
     const parser = new DOMParser();
