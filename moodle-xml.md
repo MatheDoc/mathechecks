@@ -9,26 +9,19 @@ description: Moodle XML zum Download
 </div>
 
 <script>
-fetch('/xml/')
-  .then(response => response.text())
-  .then(html => {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(html, 'text/html');
-    const links = [...doc.querySelectorAll('a')];
+fetch('/xml/xml-liste.json')
+  .then(response => response.json())
+  .then(dateien => {
     const ul = document.createElement('ul');
-
-    links.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && href.endsWith('.xml')) {
-        const li = document.createElement('li');
-        li.innerHTML = `<a href="/xml/${href}" download>${href}</a>`;
-        ul.appendChild(li);
-      }
+    dateien.forEach(name => {
+      const li = document.createElement('li');
+      li.innerHTML = `<a href="/xml/${name}" download>${name}</a>`;
+      ul.appendChild(li);
     });
-
     document.getElementById('xml-list').appendChild(ul);
   })
-  .catch(err => {
-    document.getElementById('xml-list').innerText = 'Fehler beim Laden der XML-Dateien.';
+  .catch(() => {
+    document.getElementById('xml-list').innerText = 'Fehler beim Laden der Datei-Liste.';
   });
+
 </script>
