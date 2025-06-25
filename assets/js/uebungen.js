@@ -8,9 +8,7 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
     aktuellerLernbereich = lernbereich;
     console.log(lernbereich);
-    const responseKompetenzliste = await fetch(
-      "/mathechecks/kompetenzliste.json"
-    ); // Liquid wird nicht in js aufgelöst, daher ohne relative_url;
+    const responseKompetenzliste = await fetch("/kompetenzliste.json"); // Liquid wird nicht in js aufgelöst, daher ohne relative_url;
     const daten = await responseKompetenzliste.json();
 
     aktuelleEinträge = daten.filter(
@@ -132,9 +130,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
   */
 
   try {
-    const responseSammlung = await fetch(
-      `/mathechecks/json/${eintrag["Sammlung"]}.json`
-    );
+    const responseSammlung = await fetch(`/json/${eintrag["Sammlung"]}.json`);
     const sammlung = await responseSammlung.json();
     const zufall = Math.floor(Math.random() * sammlung.length);
     const aufgabe = sammlung[zufall];
