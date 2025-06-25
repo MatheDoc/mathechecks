@@ -62,3 +62,41 @@ figure figcaption {
 .flip-card div table {
   margin-top: 1em;
 }
+
+/*Elemente*/
+ .diagramm-row {
+    display: flex;
+    gap: 10px; /* Abstand zwischen den Elementen */
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
+    margin-bottom: 2rem;
+  }
+  .eingabe-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 340px;
+    margin: 0 auto 20px auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 2px 8px #0001;
+  }
+  .eingabe-zeile {
+    gap: 12px;
+    justify-content: space-between;
+  }
+  .eingabe-zeile label {
+    min-width: 140px;
+  }
+  .eingabe-zeile input[type="range"] {
+    flex: 1;
+    margin-left: 10px;
+  }
+  .eingabe-zeile:last-child {
+    justify-content: center;
+  }
+  input[type="range"]:hover {
+    cursor: ew-resize; 
+  }

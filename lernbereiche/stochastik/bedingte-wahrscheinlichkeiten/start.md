@@ -7,7 +7,7 @@ lernbereich: bedingte-wahrscheinlichkeiten
 
 ## Um was geht es hier
 
-Bedingte Wahrscheinlichkeiten beschreiben die Wahrscheinlichkeit eines Ereignisses, unter der Voraussetzung, dass ein anderes Ereignis bereits eingetreten ist. In Baumdiagrammen treten bedingte Wahrscheinlichkeiten ab der 2. Stufe auf.
+Eine bedingte Wahrscheinlichkeit beschreibt die Wahrscheinlichkeit eines Ereignisses, unter der Voraussetzung, dass ein anderes Ereignis bereits eingetreten ist. In Baumdiagrammen treten bedingte Wahrscheinlichkeiten ab der 2. Stufe auf.
 
 ## Darauf kommmt es an
 
