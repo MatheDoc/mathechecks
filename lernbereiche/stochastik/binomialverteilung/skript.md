@@ -286,7 +286,6 @@ Bevor wir nun Bereichswahrscheinlichkeiten bestimmen können, müssen wir die fo
 * Müssen die Intervallgrenzen des angegebenen Bereichs eventuell noch berechnet werden?
 * Möglicherweise entstehen Ausdrücke mit nicht-ganzzahligen Intervallgrenzen. Hier müssen wir richtig runden: Ist z.B. $X\leq 3{,}8$ so darf $X$ auf keinen Fall größer als $3{,}8$ sein, es gilt also $P(X\leq 3{,}8)=P(X\leq 3)$. Ist z.B. $X> 5{,}1$, so darf $X$ auf keinen Fall kleiner oder gleich als $5{,}1$ sein, es gilt also $P(X> 5{,}1)=P(X\geq 6)$.
 
-
 ### Beispiele
 
 Bestimmen Sie die Wahrscheinlichkeiten der angegebnen Ereingisse
@@ -316,7 +315,7 @@ antwort="
 $$
 
 \begin{align*}
-P(X\leq 4) &= P(X\leq 4)= 0{,}9568 \\
+P(X\leq 4) &= 0{,}9568 \\
 P(X\leq 4) &= Bcd(0;4;20;0{,}1) = 0{,}9568
 \end{align*}
 
@@ -355,7 +354,7 @@ antwort="
 $$
 
 \begin{align*}
-P(X>3) &= 1 - P(X\leq 3)1-0{,}8670=0{,}1330 \\
+P(X>3) &= 1 - P(X\leq 3)=1-0{,}8670=0{,}1330 \\
 P(X>3) &= Bcd(4;20;20;0{,}1) = 0{,}1330
 \end{align*}
 
@@ -394,8 +393,8 @@ antwort="Das gegebene Ereignis setzt sich aus den beiden Ereignisse $X<4$ und $X
 $$
 
 \begin{align*}
-P(X<4 \text{ oder } X>7) &= P(X\leq 3) + (1 - P(X\leq 7))=0{,}8670-0{,}0004=0{,}8666 \\
-P(X<4 \text{ oder } X>7) &= Bcd(0;3;20;0{,}1) + Bcd(8;20;20;0{,}1) =0{,}8670-0{,}0004=0{,}8666
+P(X<4 \text{ oder } X>7) &= P(X\leq 3) + (1 - P(X\leq 7))=0{,}8670 + 0{,}0004=0{,}8674 \\
+P(X<4 \text{ oder } X>7) &= Bcd(0;3;20;0{,}1) + Bcd(8;20;20;0{,}1) =0{,}8670 + 0{,}0004=0{,}8674
 \end{align*}
 
 $$
@@ -403,7 +402,7 @@ $$
 
 {% include flip-card.html
 frage="in höchstens 13% der Würfe Treffer."
-antwort="Hier berechnen wir zunächst die Intervallgrenzen: $0,13\cdot 20=2,6$
+antwort="Hier berechnen wir zunächst die Intervallgrenzen: $0,13\cdot 20=2,6$. Dann haben wir:
 $$
 
 \begin{align*}
@@ -415,13 +414,13 @@ $$
 " %}
 
 {% include flip-card.html
-frage="mehr als ein Drittel der Würfe Treffer."
-antwort="Hier berechnen wir zunächst die Intervallgrenzen: $\frac{20}{3} \approx 6{,}7$
+frage="in mehr als einem Drittel der Würfe Treffer."
+antwort="Hier berechnen wir zunächst die Intervallgrenzen: $\frac{20}{3} \approx 6{,}7$. Dann haben wir:
 $$
 
 \begin{align*}
-P(X > 6{,}7) &= 1 - P(X \leq 6) = 1 - 0{,}9986 = 0{,}0024 \\
-P(X > 6{,}7) &= Bcd(7;20;20;0{,}1) = 0{,}0024
+P(X > 6{,}7) &= P(X > 7) = 1 - P(X \leq 6) = 1 - 0{,}9986 = 0{,}0024 \\
+P(X > 6{,}7) &= P(X > 7)= Bcd(7;20;20;0{,}1) = 0{,}0024
 \end{align*}
 
 $$
@@ -488,6 +487,56 @@ können die Einzelwahrscheinlichkeiten $P(X=k)$ als Stufenhöhen im Histogramm d
 <div id="skript-aufgabe-7"></div>
 
 ## Bestimmung von n, p und k
+
+Mit Hilfe der Bernoulli-Formel $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ lassen sich Intervallwahrscheinlichkeiten binomialverteilter Zufallsgrößen betimmen:
+
+$$
+\begin{align*}
+P(X\leq k)&=P(X=0) + P(X=1) + \ldots P(X=k)\\
+                &=\binom{n}{0}p^0(1-p)^{n} + \binom{n}{1}p^{1}(1-p)^{n-1} + \ldots + \binom{n}{k}p^k(1-p)^{n-k}\\
+                =&\sum_{i=0}^k \binom{n}{i}p^i(1-p)^{n-i}
+\end{align*}
+$$
+
+Wie wir gesehen haben, lässt sich dieser komplizierte Ausdruck mit Hilfe von Tafelwerken oder Taschenrechnern bestimmen. Das bedeutet: Wenn $n$, $p$ und $k$ gegeben sind, können wir die Wahrscheinlickeit $P(X\leq k)$ bestimmen.
+
+Wir ändern nun die Perspektive: Angenommen $P(X\leq k)$ und z.b. $p$ und $k$ seien gegeben. Was ist dann $n$?
+
+Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir systemisch aus, indem wir eine Wertetabelle erstellen.
+
+### Beispiel 1
+Gegegen: $P(X\leq 3)\approx 0{,}71$ und $p=0,4$
+
+Gesucht: $n$
+
+Mit Hilfe eines Tafelswerks und Taschenrechners stellen  wir folgende Tabelle auf:
+
+| $n$ | $P(X\leq 3)$ |
+| --- | ----------- |
+| 1      | 1,0000           |
+| 2      | 1,0000           |
+| 3      | 1,0000           |
+| 4      | 0,9744           |
+| 5      | 0,9130           |
+| 6      | 0,8208           |
+| 7      | 0,7102           |
+| 8      | 0,5941           |
+| 9      | 0,4826           |
+| 10     | 0,3823           |
+
+Wir entnehmen der Tabelle, dass $P(X\leq 3)=0{,}7102\approx 0{,}71$ für $n=3$ ist.
+
+### Beispiel 2
+
+### Beispiel 3
+
+Formulierungen mit mindestens höchstens
+
+<div id="skript-aufgabe-8"></div>
+
+<div id="skript-aufgabe-9"></div>
+
+<div id="skript-aufgabe-10"></div>
 
 ## Erwartungswert und Standardabweichung
 
