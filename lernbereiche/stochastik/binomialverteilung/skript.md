@@ -490,19 +490,22 @@ können die Einzelwahrscheinlichkeiten $P(X=k)$ als Stufenhöhen im Histogramm d
 
 Mit Hilfe der Bernoulli-Formel $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ lassen sich Intervallwahrscheinlichkeiten binomialverteilter Zufallsgrößen betimmen:
 
+
 $$
+
 \begin{align*}
 P(X\leq k)&=P(X=0) + P(X=1) + \ldots P(X=k)\\
-                &=\binom{n}{0}p^0(1-p)^{n} + \binom{n}{1}p^{1}(1-p)^{n-1} + \ldots + \binom{n}{k}p^k(1-p)^{n-k}\\
-                =&\sum_{i=0}^k \binom{n}{i}p^i(1-p)^{n-i}
+&=\binom{n}{0}p^0(1-p)^{n} + \binom{n}{1}p^{1}(1-p)^{n-1} + \ldots + \binom{n}{k}p^k(1-p)^{n-k}\\
+=&\sum\_{i=0}^k \binom{n}{i}p^i(1-p)^{n-i}
 \end{align*}
+
 $$
 
 Wie wir gesehen haben, lässt sich dieser komplizierte Ausdruck mit Hilfe von Tafelwerken oder Taschenrechnern bestimmen. Das bedeutet: Wenn $n$, $p$ und $k$ gegeben sind, können wir die Wahrscheinlickeit $P(X\leq k)$ bestimmen.
 
 Wir ändern nun die Perspektive: Angenommen $P(X\leq k)$ und z.b. $p$ und $k$ seien gegeben. Was ist dann $n$?
 
-Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir systemisch aus, indem wir eine Wertetabelle erstellen.
+Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir systemisch aus, indem wir Wertetabellen erstellen.
 
 ### Beispiel 1
 Gegegen: $P(X\leq 3)\approx 0{,}71$ und $p=0,4$
@@ -528,13 +531,118 @@ Wir entnehmen der Tabelle, dass $P(X\leq 3)=0{,}7102\approx 0{,}71$ für $n=3$ i
 
 ### Beispiel 2
 
+Gegegen: $P(X\geq 14)\approx 0{,}15$ und $n=20$
+
+Gesucht: $p$
+
+Mit Hilfe eines Tafelswerks und Taschenrechners stellen  wir folgende Tabelle auf:
+
+| $p$ | $P(X\geq 14)$ |
+| --- | ----------- |
+| 0,51  | 0,0688 |
+| 0,52  | 0,0814 |
+| 0,53  | 0,0958 |
+| 0,54  | 0,1119 |
+| 0,55  | 0,1299 |
+| 0,56  | 0,1499 |
+| 0,57  | 0,1719 |
+| 0,58  | 0,1959 |
+| 0,59  | 0,2220 |
+| 0,60  | 0,2500 |
+
+Wir entnehmen der Tabelle, dass $P(X\geq 14)=0{,}1499\approx 0{,}15$ für $p=0{,}56$ ist.
+
 ### Beispiel 3
 
-Formulierungen mit mindestens höchstens
+Gegegen: $P(X\leq k)\approx 0{,}10$ und $n=200$ und $p=0{,}9$
+
+Gesucht: $k$
+
+Mit Hilfe eines Tafelswerks und Taschenrechners stellen  wir folgende Tabelle auf:
+
+| $k$ | $P(X\leq k)$ |
+| --- | ----------- |
+| 171   | 0,0271 |
+| 172   | 0,0434 |
+| 173   | 0,0672 |
+| 174   | 0,1005 |
+| 175   | 0,1449 |
+| 176   | 0,2017 |
+| 177   | 0,2710 |
+| 178   | 0,3516 |
+| 179   | 0,4408 |
+| 180   | 0,5345 |
+
+Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist also $k=174$.
+
+Häufig  stegen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird.
+
+{% include flip-card.html
+frage="
+Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Allgemeine Statistiken zeigen, dass 61% aller Gäste vegetarische Gerichte bestellen.
+
+Bestimmen Sie die Anzahl der Gerichte, die mindestens untersucht werden müssen, damit die Wahrscheinlichkeit für mindestens 144 vegetarische Gerichte mindestens 29% beträgt."
+antwort="
+Gegeben ist $p=0{,}61$ und $k=144$. Gesucht ist das kleinste $n$, so dass $P(X\geq 144)\geq 0{,}29$ ist. Wir bestimmen:
+
+$$
+
+\begin{align*}
+\text{für }n=228 \text{ gilt: } P(X\geq 144)=0{,}2753<0{,}29\\
+\text{für }n=229 \text{ gilt: } P(X\geq 144)=0{,}3042\geq 0{,}29
+\end{align*}
+
+$$
+
+Das kleinste $n$, für das $P(X\geq 144)\geq 0{,}29$ gilt, ist also $n=229$.
+
+" %}
 
 <div id="skript-aufgabe-8"></div>
 
+{% include flip-card.html
+frage="
+Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt.
+
+Bestimmen Sie wie hoch der Anteil der zufriedenen Mitarbeiter mindestens sein muss, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)."
+antwort="
+Gegeben ist $n=274$ und $k=142$. Gesucht ist das kleinste $p$, so dass $P(X\leq 142)\leq 0{,}31$ ist. Wir bestimmen:
+
+$$
+
+\begin{align*}
+\text{für }p=0{,}53 \text{ gilt: } P(X\leq 142)=0{,}3706>0{,}31\\
+\text{für }p=0{,}54 \text{ gilt: } P(X\leq 142)=0{,}2538\leq 0{,}31
+\end{align*}
+
+$$
+
+Das kleinste $p$, für das $P(X\leq 142)\leq 0{,}31$ gilt, ist also $p=0{,}54$.
+
+" %}
+
 <div id="skript-aufgabe-9"></div>
+
+{% include flip-card.html
+frage="
+Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 158 User teil. Man weiß, dass jeder 2. User der Influencerin folgt.
+
+Bestimmen Sie die Anzahl der Follower der Influencerin, die höchstens in der Stichprobe vorhanden sein dürfen, damit die Wahrscheinlichkeit für mindestens diese Anzahl der Follower der Influencerin mindestens 87% beträgt."
+antwort="
+Gegeben ist $n=158$ und $p=0{,}5$. Gesucht ist das größte $k$, so dass $P(X\geq k)\geq 0{,}87$ ist. Wir bestimmen:
+
+$$
+
+\begin{align*}
+\text{Es gilt: } P(X\geq 72)=0{,}8837\geq 0{,}87\\
+\text{Es gilt: } P(X\geq 73)=0{,}8495< 0{,}87
+\end{align*}
+
+$$
+
+Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
+
+" %}
 
 <div id="skript-aufgabe-10"></div>
 
