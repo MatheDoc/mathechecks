@@ -91,7 +91,7 @@
     for (const key in nodes) {
       if (key.length === n) {
         const numSuccesses = (key.match(/N/g) || []).length;
-        if (k !== null && numSuccesses === k) {
+        if (k !== null && numSuccesses === n - k) {
           for (let i = 1; i <= key.length; i++) {
             const from = key.slice(0, i - 1);
             const to = key.slice(0, i);
