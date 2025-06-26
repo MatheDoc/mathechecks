@@ -7,7 +7,6 @@ let aktuellerLernbereich = ""; // global
 async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
     aktuellerLernbereich = lernbereich;
-    console.log(lernbereich);
     const responseKompetenzliste = await fetch("/kompetenzliste.json"); // Liquid wird nicht in js aufgelöst, daher ohne relative_url;
     const daten = await responseKompetenzliste.json();
 
@@ -226,7 +225,9 @@ function replaceYoutubeidWithUrl(htmlContent) {
     return url;
   }
   // Ersetze das Muster im Text
-  return htmlContent.replace(pattern, replacer);
+  //return htmlContent.replace(pattern, replacer);
+  // aktuell keine Youtube-Verlinkung
+  return htmlContent.replace(pattern, "");
 }
 
 // Ersetze numerische Aufgaben mit interaktiven Eingabefeldern

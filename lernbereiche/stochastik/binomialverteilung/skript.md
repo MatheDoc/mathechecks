@@ -647,6 +647,3 @@ Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
 <div id="skript-aufgabe-10"></div>
 
 ## Erwartungswert und Standardabweichung
-
-
-$$
