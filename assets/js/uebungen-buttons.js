@@ -178,14 +178,11 @@ async function zeigeAssistenz(iconElement) {
 
 // Auf WhatsApp teilen
 function shareWhatsApp(iconElement) {
-  const aufgabenDiv = iconElement.closest(".aufgabe");
-  if (!aufgabenDiv) return;
-
-  const sammlung = aufgabenDiv.getAttribute("data-sammlung");
-  const url =
-    `https://www.mathechecks.de/quiz.html?sammlung=${encodeURIComponent(
-      sammlung
-    )}` + `&exam=yes`;
+  const aufgabeDiv = iconElement.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+  const id = aufgabeDiv.id;
+  const urlOhneFrakment = window.location.href.split("#")[0];
+  const url = `${urlOhneFrakment}#${id}`;
   const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(url)}`;
 
   window.open(whatsappUrl, "_blank");
