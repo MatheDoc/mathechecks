@@ -3,16 +3,18 @@ layout: zusatzmaterial
 title: ""
 description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 ---
+
 <style>
   #ichkann-box .icon:hover {
-  color: var(--hauptfarbe-hover); /* Beispiel neue Farbe beim Hover */
+  color: var(--hauptfarbe-hover); 
   transform: scale(1.2);
 }
 </style>
 
+<main>
 <div id="ichkann-box" style="display: flex; justify-content: center; align-items: center; font-size: 2em; text-align: center; color: var(--hauptfarbe);">
-
 </div>
+</main>
 
 <script>
 async function ladeKompetenzBox() {
