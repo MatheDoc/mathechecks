@@ -11,7 +11,7 @@ description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 }
 </style>
 
-<main>
+<main style="padding-top: 1rem">
 <div id="ichkann-box" style="display: flex; justify-content: center; align-items: center; font-size: 2em; text-align: center; color: var(--hauptfarbe);">
 </div>
 </main>
