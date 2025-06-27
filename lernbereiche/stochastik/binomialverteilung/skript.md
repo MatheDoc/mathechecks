@@ -609,13 +609,138 @@ Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
 
 ### Die Formeln
 
-Wir erinnern daran, dass der Erwartungswert den im langfristigen Mittel zu erwartenden Wert einer Zufallsgröße beschreibt und die Standardabweichung ein Maß für deren Schwankung ist.
+Wir erinnern daran, dass der Erwartungswert den im langfristigen Mittel zu erwartenden Wert einer Zufallsgröße beschreibt und die Standardabweichung ein Maß für deren Schwankung ist. Bei der Binomialverteilung verwenden wir häufig das Symbol $\mu$ für den Erwartungswert und wie gewohnt $\sigma$ für die Standardabweichung.
 
-bei binomila verteilung schreiben wir häufig $\mu$ für den erwartugnswert und wie gewohnt $\sigma$ für die standardabweichung
+Die allgemeinen Berechnungsmethoden für Zufallsgrößen vereinfachen sich bei der Binomialverteilung. Es gilt:
 
-Die berechnungsmethoden ver allgemien zufallsgrößen verienfachen sich für dei binomialverteilung, es gilt
+$$
+\mu=n\cdot p
+$$
 
-Erwartungswert: $\mu=n\cdot p$
-Standardabweichung $\sigma=\wurzel(n\cdot p\cdot (1-p))$.
+$$
+\sigma=\sqrt{n\cdot p\cdot (1-p)}
+$$
 
 ### Exkurs: Beweise
+
+Für den Erwartungswert $\mu=E(X)$ gilt:
+
+$$
+\begin{align*}
+E(X) &= \sum_{i=0}^n x_i \cdot P(X = x_i) && \text{Definition des Erwartungswerts} \\
+     &= \sum_{k=0}^n k \cdot P(X = k) && \text{Index umbenannt: } x_i \to k \\
+     &= \sum_{k=0}^n k \cdot \binom{n}{k} \cdot p^k \cdot (1 - p)^{n - k} && \text{Wahrscheinlichkeit bei Binomialverteilung} \\
+     &= \sum_{k=0}^n k \cdot \frac{n!}{k! (n - k)!} \cdot p^k \cdot (1 - p)^{n - k} && \text{Binomialkoeffizient ausgeschrieben} \\
+     &= \sum_{k=1}^n \frac{n \cdot (n - 1)!}{(k - 1)! (n - k)!} \cdot p^k \cdot (1 - p)^{n - k} && \text{Zähler } k = n \cdot \frac{(n - 1)!}{(k - 1)!} \text{ und } k=0 \text{ entfällt, da Summand } 0 \\
+     &= np \cdot \sum_{k=1}^n \binom{n - 1}{k - 1} \cdot p^{k - 1} \cdot (1 - p)^{n - k} && \text{Faktoren ausgelagert, Umformung in Binomialkoeffizient} \\
+     &= np \cdot \left( (p+(1-p)\right)^{n - 1} && \text{Binomischer Lehrsatz mit } n-1 \text{ und } k-1 \\
+     &= np && \text{da } ( p+1-p)^{n - 1} = 1
+\end{align*}
+$$
+
+Der Beweis für die Standardabweichung,
+
+$$
+\sqrt{n\cdot p\cdot (1-p)}= \sqrt{\sum_{i=1}^{n} (x_i - E(X))^2\cdot P(X=x_i)},
+$$
+
+ist noch aufwendiger und wird hier übersprungen.
+
+<div id="skript-aufgabe-11"></div>
+
+### Kombination der Formeln
+
+In den beiden Gleichungen
+
+$$
+\mu=n\cdot p \text{ und } \sigma=\sqrt{n\cdot p\cdot (1-p)}
+$$
+
+werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit ergibt sich häufig: Sind zwei Werte dieser vier Größen bekannt, können die anderen beiden Werten berechnet werden.
+
+{% include flip-card.html
+frage="
+Polizisten kontrollieren in der Nähe einer Diskothek insgesamt 200 Autofahrer. Sie gehen davon aus, dass unter diesen etwa 25 alkoholisierte Personen am Steuer sitzen. Mit welcher Wahrscheinlichkeit ist ein kontrollierter Autofahrer alkoholisiert? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl alkoholisierter Fahrer beschreibt?
+"
+antwort="
+
+Gegeben sind $n=200$ und $\mu=25$, gesucht sind $p$ und $\sigma$.
+
+Wegen $\mu=n\cdot p$ ist $25=200 \cdot p$ und so $p=\frac{25}{200}=0{,}4$.
+
+Dann ist $\sigma=\sqrt{200\cdot 0{,}4\cdot (1-0{,}4)}=6{,}9282$.
+
+" %}
+
+<div id="skript-aufgabe-12"></div>
+
+{% include flip-card.html
+frage="
+Auf einem gebührenpflichtigen Parkplatz parken erfahrungsgemäß 15 % der Autofahrer ohne gültigen Parkschein. Eine Mitarbeiterin des Ordnungsamts beginnt ihren Dienst mit 12 Überweisungsträgern, die sie bei festgestellten Verstößen hinter die Scheibenwischer der Fahrzeuge legt. Mit wie vielen Fahrzeugen ohne gültigen Parkschein rechnet die Mitarbeiterin an diesem Tag? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl der Falschparker beschreibt?
+"
+antwort="
+
+Gegeben sind $p=0{,}15$ und $\mu=12$, gesucht sind $n$ und $\sigma$.
+
+Wegen $\mu=n\cdot p$ ist $12=n \cdot 0{,}15$ und so $n=\frac{12}{0{,}15}=80$.
+
+Dann ist $\sigma=\sqrt{80\cdot 0{,}15\cdot (1-0{,}15)}=3{,}1937$.
+
+" %}
+
+<div id="skript-aufgabe-13"></div>
+
+{% include flip-card.html
+frage="
+Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?"
+antwort="
+
+Gegeben sind $\mu=175$ und $\sigma=10{,}6653$, gesucht sind $n$ und $p$.
+
+Wegen $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist $\sigma=\sqrt{\mu\cdot (1-p)}$. Mit Werten ergibt sich:
+
+$$
+\begin{align*}
+10{,}6653&=\sqrt{175\cdot (1-p)}\quad |()^2\\
+113{,}7486&=175\cdot (1-p)\quad|:175\\
+0{,}65&=1-p\quad\\
+p&=0{,}35
+\end{align*}
+$$
+
+Dann ist $n=\frac{175}{0{,}35}=500$.
+
+" %}
+
+<div id="skript-aufgabe-14"></div>
+
+{% include flip-card.html
+frage="
+Eine Maschine produziert ein bestimmtes Bauteil. Erfahrungsgemäß ist etwa jedes zehnte Bauteil fehlerhaft. Bei einer Qualitätskontrolle ergibt sich eine Standardabweichung von $4{,}6476$ für die Anzahl fehlerhafter Bauteile. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte Bauteile werden in der Stichprobe erwartet?"
+antwort="
+
+Gegeben sind $p=0{,}1$ und $\sigma=4{,}6476$, gesucht sind $n$ und $\mu$.
+
+Wegen $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist:
+
+$$
+\begin{align*}
+4{,}6476&=\sqrt{n\cdot 0{,}1\cdot (1-0{,}1)}\quad |()^2\\
+21,6002&=n\cdot 0{,}09\quad |:0{,}09\\
+n&=240
+\end{align*}
+$$
+
+Dann ist $\mu=240\cdot 0{,}1=24$.
+
+" %}
+
+<div id="skript-aufgabe-15"></div>
+
+### Umgebungen des Erwartungswerts
+
+<div id="skript-aufgabe-16"></div>
+
+<div id="skript-aufgabe-17"></div>
+
+<div id="skript-aufgabe-18"></div>
