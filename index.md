@@ -11,6 +11,8 @@ description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 }
 </style>
 
+<button id="install-button" style="display: none;">App installieren</button>
+
 <main style="padding-top: 1rem">
 <div id="ichkann-box" style="display: flex; justify-content: center; align-items: center; font-size: 2em; text-align: center; color: var(--hauptfarbe);">
 </div>
