@@ -20,7 +20,7 @@ description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
   color: var(--hauptfarbe);
   text-align: center;
   padding: 0 1rem;
-  max-width: 90vw;
+  max-width: 95vw;
   flex-wrap: wrap;
   word-break: normal;
   overflow-wrap: break-word;
