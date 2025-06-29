@@ -29,15 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Beim Verlassen Scrollposition speichern
-/*window.addEventListener("beforeunload", () => {
-  sessionStorage.setItem("scrollPos_" + location.pathname, window.scrollY);
-});
-
-
-window.addEventListener("load", () => {
-  const savedPos = sessionStorage.getItem("scrollPos_" + location.pathname);
-  if (savedPos !== null) {
-    window.scrollTo(0, parseInt(savedPos, 10));
-  }
-});*/
+// Service Worker Registration
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log(
+          "Service Worker registered with scope:",
+          registration.scope
+        );
+      })
+      .catch((error) => {
+        console.error("Service Worker registration failed:", error);
+      });
+  });
+}
