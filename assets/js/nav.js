@@ -49,20 +49,23 @@ if ("serviceWorker" in navigator) {
 let deferredPrompt;
 
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault(); // Standardverhalten unterdrücken
+  e.preventDefault();
   deferredPrompt = e;
 
   const installButton = document.getElementById("install-button");
-  installButton.style.display = "block";
+  if (!installButton) return;
+
+  installButton.style.display = "inline-block";
 
   installButton.addEventListener("click", () => {
     installButton.style.display = "none";
     deferredPrompt.prompt();
+
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === "accepted") {
-        console.log("PWA-Installation akzeptiert");
+        console.log("✅ Benutzer hat die Installation akzeptiert");
       } else {
-        console.log("PWA-Installation abgelehnt");
+        console.log("❌ Benutzer hat die Installation abgelehnt");
       }
       deferredPrompt = null;
     });
