@@ -11,27 +11,29 @@ description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 }
 </style>
 
-<main style="padding-top: 0.5rem">
   <div id="ichkann-box" style="
   display: flex;
-  flex: 0 0 auto;
   justify-content: center;
   align-items: center;
   font-size: 2em;
   color: var(--hauptfarbe);
   text-align: center;
   padding: 0 0.5rem;
-  max-width: 400px;
-  width: 99vw;
+  max-width: 700px;
+  width: 100%;
+  overflow-x: hidden;
   flex-wrap: wrap;
-  word-break: normal;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  ">
-    <span id="ichkann-text" style="display: inline-block;pointer-events: none;"></span>
-     <span id="ichkann-icon" style="margin-left: 0.5rem;"></span>
-  </div>
-</main>
+  margin: 0 auto;
+">
+  <span id="ichkann-text" style="
+    display: inline;
+    pointer-events: none;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  "></span>
+  <span id="ichkann-icon" style="margin-left: 0.5rem; white-space: nowrap;"></span>
+</div>
 
 <script>
 async function ladeKompetenzBox() {
