@@ -13,16 +13,18 @@ description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 
 <main style="padding-top: 1rem">
   <div id="ichkann-box" style="
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    color: var(--hauptfarbe);
-    text-align: center;
-    padding: 0 1rem;
-    word-break: break-word;
-    flex-wrap: wrap;
-    max-width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  color: var(--hauptfarbe);
+  text-align: center;
+  padding: 0 1rem;
+  max-width: 90vw;
+  flex-wrap: wrap;
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: auto;
   ">
     <span id="ichkann-text" style="display: inline-block;pointer-events: none;"></span>
      <span id="ichkann-icon" style="margin-left: 0.5rem;"></span>
