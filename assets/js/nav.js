@@ -45,29 +45,3 @@ if ("serviceWorker" in navigator) {
       });
   });
 }
-
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  const installButton = document.getElementById("install-button");
-  if (!installButton) return;
-
-  installButton.style.display = "inline-block";
-
-  installButton.addEventListener("click", () => {
-    installButton.style.display = "none";
-    deferredPrompt.prompt();
-
-    deferredPrompt.userChoice.then((choiceResult) => {
-      if (choiceResult.outcome === "accepted") {
-        console.log("✅ Benutzer hat die Installation akzeptiert");
-      } else {
-        console.log("❌ Benutzer hat die Installation abgelehnt");
-      }
-      deferredPrompt = null;
-    });
-  });
-});
