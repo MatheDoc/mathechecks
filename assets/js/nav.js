@@ -46,6 +46,25 @@ if ("serviceWorker" in navigator) {
   });
 }
 
+let deferredPrompt;
+
 window.addEventListener("beforeinstallprompt", (e) => {
-  console.log("✅ Installationsaufforderung verfügbar");
+  e.preventDefault(); // Standardverhalten unterdrücken
+  deferredPrompt = e;
+
+  const installButton = document.getElementById("install-button");
+  installButton.style.display = "block";
+
+  installButton.addEventListener("click", () => {
+    installButton.style.display = "none";
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      if (choiceResult.outcome === "accepted") {
+        console.log("PWA-Installation akzeptiert");
+      } else {
+        console.log("PWA-Installation abgelehnt");
+      }
+      deferredPrompt = null;
+    });
+  });
 });
