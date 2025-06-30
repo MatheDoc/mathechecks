@@ -12,7 +12,7 @@ Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt
 
 Mit anderen Worten: Beim zugrundeliegenden Zufallsexperiment einer binomialverteilten Zufallsgröße
 
-- gibt es feste Anzahl an Versuchen (Stufen),
+- gibt es eine feste Anzahl an Versuchen (Stufen),
 - gibt es in jedem Versuch genau zwei mögliche Ausgänge,
 - bleibt die Wahrscheinlichkeit für Treffer und Niete in jedem Versuch gleich.
 
