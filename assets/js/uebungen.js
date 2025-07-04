@@ -29,11 +29,7 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
       }
     }
 
-    const hash = window.location.hash;
 
-    if (hash) {
-      scrollZuHash(hash);
-    }
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
   }
@@ -391,6 +387,9 @@ function findeNaechstenH2Ueber(element) {
 }
 
 function scrollZuHash(hash) {
+  if (!hash.startsWith('#')) {
+    hash = '#' + hash;
+  }
   const zielElement = document.querySelector(hash);
   if (!zielElement) {
     console.warn("Ziel-Element nicht gefunden für Hash:", hash);
@@ -402,10 +401,12 @@ function scrollZuHash(hash) {
 
   let scrollZiel = zielElement;
 
-  if (window.location.pathname.includes("skript")) {
+  // scroll Ziel entweder hash oder nächstes H2-Element
+  /*if (window.location.pathname.includes("skript")) {
     const h2 = findeNaechstenH2Ueber(zielElement);
+   
     if (h2) scrollZiel = h2;
-  }
+  }*/
 
   const y =
     scrollZiel.getBoundingClientRect().top + window.pageYOffset - headerHeight;
@@ -414,5 +415,6 @@ function scrollZuHash(hash) {
 
   setTimeout(() => {
     highlightElement(scrollZiel);
+
   }, 1000);
 }

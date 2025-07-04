@@ -1,6 +1,6 @@
 ---
 layout: skript
-title: Skript – Mehrstufige Zufallsexperimente
+title: Mehrstufige Zufallsexperimente
 description: Interaktives Skript zu mehrstufigen Zufallsexperimenten
 lernbereich: mehrstufige-zufallsexperimente
 ---
@@ -47,7 +47,7 @@ Häufig stehen wir vor der Aufgabe, ein unvollständiges Baumdiagramm zu vervoll
 
 ### Beispiel 1
 
-Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so lässt sich das Baumdiagramm wie unmittlebar mit Hilfe der Pfadmultiplikationsregel vervollständigen.
+Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so lässt sich das Baumdiagramm wie unmittelbar mit Hilfe der Pfadmultiplikationsregel vervollständigen.
 
 <div id="skript-aufgabe-1"></div>
 

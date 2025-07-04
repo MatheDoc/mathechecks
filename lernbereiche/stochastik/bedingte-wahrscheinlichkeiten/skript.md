@@ -174,7 +174,7 @@ Ein Baumdiagramm habe die Gestalt
   <img src="Beispiel3.png">
 </figure>
 
-Zudem sei bekannt, dass $A$ und $B$ stochastisch unabhängig sind. Damit gilt $P_A(B)=P_{\overline{A}}(B)$. Die Wahrscheinlichkeit 5 ist also $0{,}3$. Das restliche Baumdigramm kann nun wie im Abschnitt [Baumdiagramme vervollständigen](skript.html?thema=Mehrstufige%20Zufallsexperimente#baumdiagramme-vervollständigen) vervollständigt werden.
+Zudem sei bekannt, dass $A$ und $B$ stochastisch unabhängig sind. Damit gilt $P_A(B)=P_{\overline{A}}(B)$. Die Wahrscheinlichkeit 5 ist also $0{,}3$. Das restliche Baumdigramm kann nun wie gewohnt vervollständigt werden.
 
 <div id="skript-aufgabe-2"></div>
 

@@ -14,7 +14,7 @@ document.addEventListener("click", function (event) {
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+/*document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".nav-materialtyp .nav-link");
   const currentPath = window.location.href.split("#")[0]; // ohne Anker
 
@@ -27,10 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
       link.classList.add("ausgewählt");
     }
   });
-});
+});*/
 
 // Service Worker Registration
-if ("serviceWorker" in navigator) {
+if (
+  "serviceWorker" in navigator &&
+  !["localhost", "127.0.0.1"].includes(location.hostname)
+) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")

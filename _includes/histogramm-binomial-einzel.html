@@ -1,0 +1,20 @@
+<div
+  class="diagramm"
+  data-n="{{ include.n }}"
+  data-p="{{ include.p }}"
+  data-a="{{ include.a | default: '' }}"
+  data-b="{{ include.b | default: '' }}"
+  data-titel="{{ include.titel | default: '' }}"
+></div>
+<script>
+  (function () {
+    const div = document.currentScript.previousElementSibling;
+    const n = JSON.parse(div.dataset.n);
+    const p = JSON.parse(div.dataset.p);
+    const a = div.dataset.a === "" ? null : Number(div.dataset.a);
+    const b = div.dataset.b === "" ? null : Number(div.dataset.b);
+    const titel = div.dataset.titel;
+
+    zeichneHistogrammEinzeln(n, p, a, b, div, titel, true);
+  })();
+</script>

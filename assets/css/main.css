@@ -21,7 +21,8 @@ body {
 }
 
 main {
-  flex: 1; /* Füllt den verfügbaren Platz */
+  flex: 1;
+  /* Füllt den verfügbaren Platz */
 }
 
 body {
@@ -33,16 +34,15 @@ body {
 }
 
 header {
-  background: linear-gradient(
-    to bottom,
-    var(--hintergrundfarbe) 90%,
-    #f8f8f8a1 100%
-  );
+  background: linear-gradient(to bottom,
+      var(--hintergrundfarbe) 90%,
+      #f8f8f8a1 100%);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  padding-bottom: 20px;
+  padding-bottom: 0px;
+  /* evtl auf null*/
 }
 
 h1 {
@@ -84,7 +84,7 @@ footer {
 }
 
 main {
-  padding: 10rem 1rem 1rem 1rem;
+  padding: 11rem 1rem 1rem 1rem;
 }
 
 img,
@@ -111,3 +111,85 @@ mjx-container[display="true"] {
 i:hover {
   cursor: pointer;
 }
+
+/*
+#markdown-toc {
+  z-index: 1000;
+
+  background: var(--hintergrundfarbe);
+  padding: 0.5rem 1rem;
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+
+  overflow-x: auto;
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#markdown-toc > li {
+  white-space: nowrap;
+}
+
+#markdown-toc a {
+  text-decoration: none;
+  color: #156082;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#markdown-toc a:hover,
+#markdown-toc a:focus {
+  background-color: var(--hintergrund-hell);
+}
+
+#markdown-toc a.active {
+  color: var(--hauptfarbe);
+  font-weight: bold;
+}
+
+.toc-container {
+  position: sticky;
+  top: 130px;
+  z-index: 1000;
+  background: var(--hintergrundfarbe);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+}
+
+.toc-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: none;
+  flex: 1;
+}
+
+.toc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.toc-container + * {
+  padding-top: 10rem;
+}
+*/
