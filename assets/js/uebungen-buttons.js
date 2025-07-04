@@ -1,9 +1,9 @@
 // alle richtigen Antworten anzeigen
 function showAllAnswers(iconElement) {
-  console.log("showAllAnswers called with iconElement:", iconElement);
+
   // Finde das umgebende Aufgaben-DIV
   const aufgabenDiv = iconElement.closest(".aufgabe");
-  console.log("showAllAnswers aufgabenDiv:", aufgabenDiv);
+
   if (!aufgabenDiv) return;
 
   const icons = aufgabenDiv.querySelectorAll("ol .eye-icon");
@@ -303,7 +303,7 @@ function addCheckIconListeners(container) {
 
 function toggleAllAnswers(iconElement) {
   const aufgabenDiv = iconElement.closest(".aufgabe");
-  console.log("toggleAllAnswers aufgabenDiv:", aufgabenDiv);
+
   if (!aufgabenDiv) return;
 
   const isShown = iconElement.classList.contains("fa-eye-slash");

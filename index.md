@@ -54,6 +54,9 @@ async function ladeKompetenzBox() {
     const span = document.getElementById("ichkann-text");
     span.textContent = ""; // leeren
 
+    const iconContainer = document.getElementById("ichkann-icon");
+    iconContainer.innerHTML = ""; // Icon sofort löschen
+
     const vollerText = `Kannst du ${frage} `;
 
     function typeWriter(text, element, delay = 50, callback) {
@@ -77,7 +80,12 @@ typeWriter(vollerText, span, 50, () => {
   icon.onclick = () => {
     window.location.href = ziel;
   };
-  document.getElementById("ichkann-icon").appendChild(icon);
+  iconContainer.appendChild(icon);
+
+  // Zeitverzögerter Neustart erst nach dem vollständigen Schreiben
+  setTimeout(() => {
+    ladeKompetenzBox();
+  }, 5000); // 5 Sekunden nach vollständiger Anzeige
 });
 
 

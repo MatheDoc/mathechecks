@@ -1,10 +1,12 @@
 .nav-lernbereiche {
   display: flex;
   align-items: center;
-  justify-content: center; /* Zentriert den Inhalt */
+  justify-content: center;
+  /* Zentriert den Inhalt */
   background-color: var(--hauptfarbe);
   padding: 0.5rem 1rem;
   position: relative;
+  z-index: 2000;
 }
 
 .logo {
@@ -49,6 +51,7 @@
 .menu li {
   margin: 0.5rem 0;
 }
+
 .menu li a {
   display: block;
   padding: 0.6rem 1.2rem;
@@ -70,6 +73,7 @@
   background-color: #e0f0ff;
   color: #005ea2;
 }
+
 .stochastik a:hover {
   background-color: #c1e0ff;
 }
@@ -78,6 +82,7 @@
   background-color: #e6ffe0;
   color: #2b7a0b;
 }
+
 .analysis a:hover {
   background-color: #c7f5bf;
 }
@@ -86,6 +91,7 @@
   background-color: #fbe0ff;
   color: #800080;
 }
+
 .lineare-algebra a:hover {
   background-color: #f3c2ff;
 }
@@ -94,6 +100,7 @@
   background-color: #ececec;
   color: #585858;
 }
+
 .zusatzmaterial a:hover {
   background-color: #e0e0e0;
 }
@@ -102,11 +109,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  border: none; /* Rahmen entfernen */
-  border-bottom: 2px solid #ccc; /* Nur unten eine Linie */
+  border: none;
+  /* Rahmen entfernen */
+  border-bottom: 2px solid #ccc;
+  /* Nur unten eine Linie */
   margin: 0 auto;
-  box-shadow: none; /* Schatten entfernen, wenn kein Rahmen gewünscht */
-  border-radius: 0; /* Abgerundete Ecken entfernen */
+  box-shadow: none;
+  /* Schatten entfernen, wenn kein Rahmen gewünscht */
+  border-radius: 0;
+  /* Abgerundete Ecken entfernen */
   font-size: 1rem;
 }
 
@@ -151,4 +162,70 @@
   .nav-text {
     display: none;
   }
+}
+
+.nav-toc {
+  position: sticky;
+  top: 130px;
+  z-index: 500;
+  background: var(--hintergrundfarbe);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ccc;
+  justify-content: center;
+}
+
+.scroll-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  user-select: none;
+  flex-shrink: 0;
+  color: #666;
+}
+
+.scroll-btn:hover {
+  color: #000;
+}
+
+#toc {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0.5rem 1rem;
+  list-style: none;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+#toc ul,
+#toc li {
+  all: unset;
+  display: contents;
+  /* trennt die Struktur, aber behält die Links */
+}
+
+#toc a {
+  text-decoration: none;
+  color: var(--hauptfarbe);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+
+#toc a:hover {
+  background-color: var(--hintergrund-hell);
+}
+
+#toc a.aktiver-link {
+  font-weight: bold;
+}
+
+#toc::-webkit-scrollbar {
+  display: none;
 }

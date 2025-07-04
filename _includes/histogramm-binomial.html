@@ -38,7 +38,7 @@
 </div>
 
 <script>
-  function fakultaet(k) {
+  /* function fakultaet(k) {
     if (k === 0 || k === 1) return 1;
     let f = 1;
     for (let i = 2; i <= k; i++) f *= i;
@@ -224,7 +224,7 @@
     };
 
     Plotly.newPlot(divID, [spur], layout, config);
-  }
+  }*/
 
   // Event-Handler für Inputs
   function updateFromInputs() {
@@ -240,6 +240,7 @@
     document.getElementById("aWert").innerText = a;
     document.getElementById("bWert").innerText = b;
 
+    // Intervallwahrscheinlichkeit anzeigen
     zeichneHistogrammEinzeln(
       n,
       p,
@@ -247,7 +248,8 @@
       b,
       "plotEinzeln",
       "Einzelwahrscheinlichkeiten",
-      autoY
+      autoY,
+      "intervallWert"
     );
     zeichneHistogrammKumuliert(
       n,

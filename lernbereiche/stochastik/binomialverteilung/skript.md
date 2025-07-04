@@ -445,7 +445,7 @@ $$
 P(X=k)=P(X\leq k)- P(X\leq k-1)
 $$
 
-können die Einzelwahrscheinlichkeiten $P(X=k)$ als Stufenhöhen im Histogramm der kumulierten Wahrscheinlichkeiten aufgefasst werden
+können die Einzelwahrscheinlichkeiten $P(X=k)$ als Stufenhöhen im Histogramm der kumulierten Wahrscheinlichkeiten aufgefasst werden:
 
 {%include histogramm-binomial.html %}
 
@@ -540,7 +540,7 @@ Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf
 
 Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist also $k=174$.
 
-Häufig stegen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird.
+Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird.
 
 {% include flip-card.html
 frage="
@@ -739,6 +739,54 @@ Dann ist $\mu=240\cdot 0{,}1=24$.
 
 ### Umgebungen des Erwartungswerts
 
+<!--häufig interssiert man sich dafür, was die "normalen" werte einer binomialverteilten zufallsgröße sind, z.B. (beispiele aufzählen)
+
+Wir betrachten beispielhaft die Binomialverteilung mit $n=10$ und $p=0{,}4$:
+
+{% include histogramm-binomial-einzel.html
+n=10
+p=0.4
+a=4
+b=4 %}
+
+was ist diese umgebung der normalen werte, der normbereich genau? Ist der bereich, in dem die zufallsgröße mit hoher wahrscheinlichkeit ihre werte hat (wie diese vorgegbene wkt ist, ist im übirgen subjektiv).
+
+Die höchste Wahrscheinlcihekti liegt beim Erwartungswrt vor (bzw., wenn mu nicht ganzzahlig ist, der nächst kleinere oder größere ganzzahlige Wert), hier also mu=4. aber auch Anzahlen in der unmittelbaren umgebung sind noch relativ wahrscheilich.
+
+Würde man z.b. vorgeben, dass der normbereich in einer 90%-umbgeunb liegt, hätte man ... als normale Werte.
+
+wir suchen nun eine systematische möglichkeit einen solchen normbereich zu ermitteln und betrachten dazu drei ansätze.
+
+1. absolute umgebung
+2. relative umgebung
+3. sigma-umgebung
+
+### Absolute Umgebungen
+
+{% include flip-card.html
+frage="
+$n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $2$ vom Erwartungswert abweicht?
+"
+antwort="
+Wir berechnen $\mu=7{,}5$. Gesucht ist:
+
+$$
+\begin{align*}
+P(\mu-2\leq X\leq \mu +2)&=P(7{,}5-2\leq X\leq 7{,}5 +2)\\
+                        &=P(5{,}5\leq X\leq 9{,}5)\\
+                        &=P(6\leq X\leq 9) \\
+                        &=0{,}6171
+\end{align*}
+$$
+
+" %}
+
+Wir hätte auch danach fragen können, mit welcher Wahrscheinlichkeit X um mehr als 2 vom Erwartungswert abweicht, dies ist das Gegenereignis zum oberen, wir hätten also
+
+$$
+P(|\mu-X|>2)=1-0{,}6171=0{,}3929
+$$
+-->
 <div id="skript-aufgabe-16"></div>
 
 <div id="skript-aufgabe-17"></div>
