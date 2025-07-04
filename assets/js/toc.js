@@ -1,6 +1,5 @@
-// Entfernen der Klasse 'is-active-link' von allen ToC-Links, Klassen werden stattdessen in nav.js gesetzt
-const tocbotLinks = document.querySelectorAll("#toc a");
-tocbotLinks.forEach((link) => link.classList.remove("is-active-link"));
+/*const tocbotLinks = document.querySelectorAll("#toc a");
+tocbotLinks.forEach((link) => link.classList.remove("is-active-link"));*/
 
 // Laden der Aufgaben für den Lernbereich
 async function ladeUndScrolle(lernbereich) {
@@ -22,13 +21,15 @@ async function ladeUndScrolle(lernbereich) {
 
     headingLevel = "h4";
   }
-  console.log("Überschriftenebene:", headingLevel);
+
   tocbot.init({
     tocSelector: "#toc",
     contentSelector: "#main-content",
     headingSelector: headingLevel,
     scrollSmoothOffset: 180,
   });
+
+  scrollSpy();
 
   // 1. Bei initialem Seitenaufruf mit #hash
   const hash = window.location.hash;

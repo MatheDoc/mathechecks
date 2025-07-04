@@ -28,8 +28,6 @@ async function ladeAufgabenFürLernbereich(lernbereich) {
         console.warn("Unbekannte Seite – Aufgabe nicht angezeigt.");
       }
     }
-
-
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
   }
@@ -387,8 +385,8 @@ function findeNaechstenH2Ueber(element) {
 }
 
 function scrollZuHash(hash) {
-  if (!hash.startsWith('#')) {
-    hash = '#' + hash;
+  if (!hash.startsWith("#")) {
+    hash = "#" + hash;
   }
   const zielElement = document.querySelector(hash);
   if (!zielElement) {
@@ -413,8 +411,8 @@ function scrollZuHash(hash) {
 
   window.scrollTo({ top: y, behavior: "smooth" });
 
-  setTimeout(() => {
+  /*setTimeout(() => {
     highlightElement(scrollZiel);
 
-  }, 1000);
+  }, 1000);*/
 }
