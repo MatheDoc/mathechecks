@@ -14,7 +14,7 @@ document.addEventListener("click", function (event) {
   }
 });
 
-/*document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".nav-materialtyp .nav-link");
   const currentPath = window.location.href.split("#")[0]; // ohne Anker
 
@@ -27,7 +27,7 @@ document.addEventListener("click", function (event) {
       link.classList.add("ausgewählt");
     }
   });
-});*/
+});
 
 // Service Worker Registration
 if (
