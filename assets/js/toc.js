@@ -1,6 +1,3 @@
-/*const tocbotLinks = document.querySelectorAll("#toc a");
-tocbotLinks.forEach((link) => link.classList.remove("is-active-link"));*/
-
 // Laden der Aufgaben für den Lernbereich
 async function ladeUndScrolle(lernbereich) {
   await ladeAufgabenFürLernbereich(lernbereich);
@@ -86,11 +83,6 @@ function scrollSpy() {
     }
   });
 }
-
-// Nach DOM- und Inhalt-Laden aufrufen
-document.addEventListener("DOMContentLoaded", () => {
-  scrollSpy();
-});
 
 document.addEventListener("DOMContentLoaded", () => {
   // Scroll-Buttons für die ToC

@@ -32,8 +32,6 @@ Wir verwenden die folgenden Bezeichnungen
     symbol="true"
 %}
 
-## Interpretation
-
 Es ergeben sich die folgenden Interpretationen:
 
 - $P_A(B)$ ist die Wahrscheinlichkeit, dass ein Schüler, der für die Prüfung gelernt hat, die Prüfung auch besteht.
@@ -41,7 +39,9 @@ Es ergeben sich die folgenden Interpretationen:
 - $P_{\overline{A}}(B)$ ist die Wahrscheinlichkeit, dass ein Schüler, der nicht für die Prüfung gelernt hat, die Prüfung dennoch besteht.
 - $P_{\overline{A}}(\overline{B})$ ist die Wahrscheinlichkeit, dass ein Schüler, der nicht für die Prüfung gelernt hat, die Prüfung auch nicht besteht.
 
-## Berechnung
+## Berechnungen
+
+### Formel für die bedingte Wahrscheinlichkeit
 
 Die Pfadmultiplikationsregel besagt, dass $P(A)\cdot P_A(B) = P(A\cap B)$. Damit folgt unmittelbar
 
@@ -60,7 +60,7 @@ Wichtig ist die Unterscheidung zwischen $P(A\cap B)$ und $P_A(B)$:
 
 <div id="skript-aufgabe-1"></div>
 
-## Das Ganze und der Teil
+### Das Ganze und der Teil
 
 Bedingte Wahrscheinlichkeiten lassen sich auch mit Hilfe relativer Häufigkeiten beschreiben. Allgemein können Wahrscheinlichkeiten als relative Häufigkeiten oder Anteile interpretiert werden:
 
@@ -82,7 +82,7 @@ Zusammengefasst:
 - $P(A\cap B)$: Der Teil sind die Schüler, die die Prüfung bestanden und gelernt haben. Das Ganze sind **alle Schüler**.
 - $P_A(B)$: Der Teil sind die Schüler, die die Prüfung bestanden und gelernt haben. Das Ganze sind **die Schüler, die gelernt haben**.
 
-## Das inverse Baumdiagramm
+### Das inverse Baumdiagramm
 
 Es ist wichtig zu erwähnen, dass im Baumdiagramm
 
@@ -112,7 +112,7 @@ Das inverse Baumdiagramm lautet schließlich
 
 Hier treten nun die Wahrscheinlichkeiten mit $B$- und $\overline{B}$-Bedingung auf. Wir können z.B. ablesen, dass $P_{\overline{B}}(A)=0{,}5625$ ist. Für das Beispiel bedeutet dies: Die Wahrscheinlichkeit, dass ein Schüler, der die Prüfung nicht besteht, gelernt hat, beträgt 56,25&nbsp;%.
 
-## Der Satz von Bayes
+### Der Satz von Bayes
 
 Aus der Defintion der bedingten Wahrscheinlichkeit
 
@@ -425,15 +425,15 @@ Wir erkennen, dass $0{,}6 \cdot 0{,}75 = 0{,}45$ ist. Die Vier-Felder-Tafel ist 
 
 <div id="skript-aufgabe-7"></div>
 
-## Vergleich von Baumdiagrammen und Vier-Felder-Tafeln
+## Vergleich: Baumdiagramme und Vier-Felder-Tafeln
 
 Baumdiagramme und Vierfeldertafeln stellen Wahrscheinlichkeiten, die beim Betrachten von zwei Ereignissen auftreten, auf unterschiedliche Weise dar. In Baumdiagrammen lassen sich die einzelnen Stufen eines Zufallsexperiments gut nachvollziehen: Zunächst tritt das Ereignis $A$ ein, anschließend das Ereignis $B$. Dabei können bedingte Wahrscheinlichkeiten wie $P_A(B)$ direkt abgelesen werden. Vierfeldertafeln hingegen behandeln die Ereignisse $A$ und $B$ symmetrisch. Sowohl $P(A)$ als $P(B)$ sind direkt aus den Tabellenwerten ersichtlich.
 
 {% include baumdiagramme-und-vierfeldertafeln.html %}
 
-## Bedingte Wahrscheinlichkeiten und stochastische Unabhängigkeit ohne Strukturhilfen
+## Weitere Aufgaben
 
-Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, kann ausschließlich mit den in diesem Abschnitt vorgestellten Formeln gearbeitet werden. Dabei kann es hilfreich sein, sich das Baumdiagramm oder die Vierfeldertafel gedanklich vorzustellen.
+Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, können wir mit den in diesem Abschnitt vorgestellten Formeln arbeiten. Dabei kann es hilfreich sein, sich das Baumdiagramm oder die Vierfeldertafel gedanklich vorzustellen.
 
 <div id="skript-aufgabe-8"></div>
 
