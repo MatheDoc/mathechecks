@@ -1,6 +1,5 @@
 // alle richtigen Antworten anzeigen
 function showAllAnswers(iconElement) {
-
   // Finde das umgebende Aufgaben-DIV
   const aufgabenDiv = iconElement.closest(".aufgabe");
 
@@ -133,7 +132,7 @@ function zeigeSkript(iconElement) {
 
   const id = aufgabeDiv.id;
   const index = parseInt(id.split("-").pop()) - 1;
-  const zielHash = `#skript-aufgabe-${index + 1}`;
+  const zielHash = `#check-${index + 1}`;
 
   if (window.location.pathname.includes("skript.html")) {
     history.replaceState(null, "", zielHash);

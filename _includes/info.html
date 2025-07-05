@@ -1,0 +1,13 @@
+{% capture frage_inline %} {{ include.frage | markdownify | strip_html |
+strip_newlines }} {% endcapture %}
+
+<div id="check-{{include.index}}" class="info">
+  <h5>{{include.index}}. Info</h5>
+  <details class="info-card">
+    <summary>
+      {{ frage_inline }}
+      <i class="fas fa-arrow-circle-right icon" style="color: #931ab1cc"></i>
+    </summary>
+    <div>{{ include.antwort | markdownify }}</div>
+  </details>
+</div>
