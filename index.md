@@ -87,8 +87,6 @@ typeWriter(vollerText, span, 50, () => {
     ladeKompetenzBox();
   }, 5000); // 5 Sekunden nach vollständiger Anzeige
 });
-
-
   
   } catch (err) {
     document.getElementById("ichkann-text").innerText = "Fehler beim Laden der Kompetenzen.";

@@ -63,40 +63,84 @@ figure figcaption {
   margin-top: 1em;
 }
 
+/* info */
+.info {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.info-card {
+  line-height: 1.25;
+}
+
+.info-card summary {
+  background-color: #fddef3;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 0 0 12px 12px;
+}
+
+.info-card summary:hover {
+  background-color: #f9cfeb;
+}
+.info-card div {
+  padding: 1rem;
+}
+
+details summary {
+  list-style: none;
+}
+
+.info summary p,
+.info summary ul,
+.info summary div,
+.info summary {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.info details > div p,
+.info details > div table {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+}
+
 /*Elemente*/
- .diagramm-row {
-    display: flex;
-    gap: 10px; /* Abstand zwischen den Elementen */
-    justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
-    margin-bottom: 2rem;
-  }
-  .eingabe-box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 340px;
-    margin: 0 auto 20px auto;
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 18px 20px;
-    box-shadow: 0 2px 8px #0001;
-  }
-  .eingabe-zeile {
-    gap: 12px;
-    justify-content: space-between;
-  }
-  .eingabe-zeile label {
-    min-width: 140px;
-  }
-  .eingabe-zeile input[type="range"] {
-    flex: 1;
-    margin-left: 10px;
-  }
-  .eingabe-zeile:last-child {
-    justify-content: center;
-  }
-  input[type="range"]:hover {
-    cursor: ew-resize; 
-  }
+.diagramm-row {
+  display: flex;
+  gap: 10px; /* Abstand zwischen den Elementen */
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap; /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
+  margin-bottom: 2rem;
+}
+.eingabe-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 340px;
+  margin: 0 auto 20px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px #0001;
+}
+.eingabe-zeile {
+  gap: 12px;
+  justify-content: space-between;
+}
+.eingabe-zeile label {
+  min-width: 140px;
+}
+.eingabe-zeile input[type="range"] {
+  flex: 1;
+  margin-left: 10px;
+}
+.eingabe-zeile:last-child {
+  justify-content: center;
+}
+input[type="range"]:hover {
+  cursor: ew-resize;
+}

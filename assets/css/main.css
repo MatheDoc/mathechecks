@@ -6,6 +6,7 @@
   --textfarbe: #333;
   --hintergrundfarbe: #f8f8f8;
   --hintergrundfarbe-hover: hsl(0, 0%, 89%);
+  --infofarbe: #844b96cd;
 }
 
 * {
@@ -34,9 +35,11 @@ body {
 }
 
 header {
-  background: linear-gradient(to bottom,
-      var(--hintergrundfarbe) 90%,
-      #f8f8f8a1 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--hintergrundfarbe) 90%,
+    #f8f8f8a1 100%
+  );
   position: fixed;
   width: 100%;
   top: 0;
@@ -60,14 +63,22 @@ h3 {
   color: var(--hauptfarbe);
 }
 
-h4 {
-  background-color: var(--hauptfarbe);
+h4,
+h5 {
   color: white;
   text-align: center;
   font-size: 16px;
   margin: 0;
   border-radius: 12px 12px 0 0;
   padding: 6px;
+}
+
+h4 {
+  background-color: var(--hauptfarbe);
+}
+
+h5 {
+  background-color: var(--infofarbe);
 }
 
 a {
