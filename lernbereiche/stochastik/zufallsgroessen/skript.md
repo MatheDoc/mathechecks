@@ -84,6 +84,19 @@ Der Erwartungswert für Biathlet B beträgt also $1{,}72$. Auch Biathlet B verfe
 
 Wären die Erwartungswerte der beiden Biathleten unterschiedlich gewesen, hätten wir eine fundierte Entscheidungsgrundlage gehabt, um zu entscheiden, welcher der treffsicherere Biathlet ist.
 
+{%include info.html
+index="1"
+frage="Formel für den Erwartungswert:"
+antwort="
+'Zeile der Werte mal Zeile der Wahrscheinlichkeiten':
+
+$$
+E(X) = x_1 \cdot P(X = x_1) + x_2 \cdot P(X = x_2) + \ldots + x_n \cdot P(X = x_n)
+$$
+
+"
+%}
+
 <div id="skript-aufgabe-1"></div>
 
 ## Die Standardabweichung
@@ -145,6 +158,18 @@ $$
 
 Die Standardabweichung von Biathlet B beträgt also ungefähr $1{,}75$. Die Anzahl der Fehlschüsse schwankt hier also stärker um den Erwartungswert als bei Biathlet A.
 
+{%include info.html
+index="2"
+frage="Formel für die Standardabweichung:"
+antwort="'Zeile der quadrierten Abweichungen vom Erwartungswert mal Zeile der Wahrscheinlichkeiten':
+
+$$
+\sigma(X) = \sqrt{(x_1-E(X))^2 \cdot P(X = x_1) + (x_2-E(X))^2 \cdot P(X = x_2) + \ldots + (x_n-E(X))^2 \cdot P(X = x_n)}
+$$
+
+"
+%}
+
 <div id="skript-aufgabe-2"></div>
 
 ## Interpretationen
@@ -190,6 +215,16 @@ Letztlich hängt die Entscheidung davon ab, ob der Fokus auf Konstanz oder auf d
 
 In vielen Anwendungssituationen ist eine kleine Standardabweichung vorteilhaft, weil sie weniger Unsicherheit bedeutet. So ist es für die meisten Menschen vorteilhaft, monatlich in etwa die gleichen Einnahmen und Ausgaben zu haben, da sie dadurch mehr Planungssicherheit gewinnen. Das Gleiche gilt für Unternehmen oder Regierungen, die ebenfalls von stabilen Einnahmen und Ausgaben profitieren, um langfristig erfolgreich agieren zu können.
 
+{%include info.html
+index="3"
+frage="Bedeutung des Erwartungswerts und der Standardabweichung:"
+antwort="
+
+- Erwartungswert $E(X)$: Langfristiger Mittelwert
+- Standardabweichung $\sigma(X)$: Maß für die Schwankung
+"
+%}
+
 <div id="skript-aufgabe-3"></div>
 
 <!--
@@ -226,15 +261,28 @@ Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden
 
 Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsgröße erstellt werden.
 
+{%include info.html
+index="4"
+frage="Auf der Wahrscheinlichkeitsverteilung einer Zufallsgröße"
+antwort="
+
+1. Zeile: Welche Werte nimmt die Zufallsgröße an?
+2. Zeile: Welche Wahrscheinlichkeiten gehören zu den einzelnen Werten?
+"
+%}
+
 <div id="skript-aufgabe-4"></div>
 
 ## Vervollständigung von Verteilungen
 
 Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
 
-### Eine fehlende Wahrscheinlichkeit
+{%include info.html
+index="5"
+frage="Fehlende Wahrscheinlichkeit:"
+antwort="
 
-Die Wahrscheinlichkeitsverteilung lautet:
+Die Wahrscheinlichkeitsverteilung laute
 
 | $x_i$        | $-4$     | $-2$     | $-1$ | $2$      | $5$      |
 | ------------ | -------- | -------- | ---- | -------- | -------- |
@@ -250,11 +298,17 @@ P(X = -1) & = 1 - (0,07 + 0,06 + 0,41 + 0,44) \\
 \end{align*}
 $$
 
-<div id="skript-aufgabe-5"></div>
+"
+%}
 
-### Ein fehlender Wert
+<div id="skript-aufgabe-5" style="margin-bottom:1rem"></div>
 
-Die Wahrscheinlichkeitsverteilung lautet:
+{%include info.html
+index="6"
+frage="Fehlender Wert:"
+antwort="
+
+Die Wahrscheinlichkeitsverteilung laute
 
 | $x_i$        | $-5$     | $x$      | $0$      | $1$      | $4$     |
 | ------------ | -------- | -------- | -------- | -------- | ------- |
@@ -279,11 +333,17 @@ x&=-3
 \end{align*}
 $$
 
-<div id="skript-aufgabe-6"></div>
+"
+%}
 
-### Zwei fehlende Wahrscheinlichkeiten
+<div id="skript-aufgabe-6" style="margin-bottom:1rem"></div>
 
-Die Wahrscheinlichkeitsverteilung lautet:
+{%include info.html
+index="7"
+frage="Zwei fehlende Wahrscheinlichkeiten:"
+antwort="
+
+Die Wahrscheinlichkeitsverteilung laute
 
 | $x_i$        | $-4$     | $-2$     | $-1$ | $1$      | $4$ |
 | ------------ | -------- | -------- | ---- | -------- | --- |
@@ -316,5 +376,8 @@ Nun gibt es verschiedene Techniken, dieses Gleichungssystem zu lösen. Wir löse
 2. $x = 4y - 1{,}35 $
 
 und setzen gleich: $0{,}5 -y = 4y - 1{,}35$. Es folgt $1{,}85 = 5y$ und so $y=0{,}37$. Nun folgt $x=0{,}5 - 0{,}37 = 0{,}13$.
+
+"
+%}
 
 <div id="skript-aufgabe-7"></div>

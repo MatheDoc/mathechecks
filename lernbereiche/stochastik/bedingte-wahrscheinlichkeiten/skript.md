@@ -187,8 +187,6 @@ Auf unser Beispiel bezogen (mit dem 2. Baumdiagramm) bedeutet die stochastische 
 
 ### Baumdiagramme und stochastische Unabhängigkeit
 
-
-
 {% include info.html
 index="2"
 frage="Sind zwei Ereignisse $A$ und $B$ stochastisch unabhängig, so können wir diese Information beim Erstellen von Baumdiagrammen gezielt nutzen: Die beiden Wahrscheinlichkeitspaare auf der zweiten Stufe stimmen überein."

@@ -45,31 +45,43 @@ $$
 
 Häufig stehen wir vor der Aufgabe, ein unvollständiges Baumdiagramm zu vervollständigen. Dazu verwenden wir, dass die Summe der Wahrscheinlichkeiten der Pfade, die von einem Knotenpunkt starten, gleich 1 ist. Außerdem wenden wir die Pfadregeln geschickt an.
 
-### Beispiel 1
-
-Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so lässt sich das Baumdiagramm wie unmittelbar mit Hilfe der Pfadmultiplikationsregel vervollständigen.
+{%include info.html
+index="1"
+frage="Berechnung der Pfadendwahrscheinlichkeiten:"
+antwort="
+Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so können die Pfadendwahrscheinlichkeiten unmittelbar mit Hilfe der Pfadmultiplikationsregel berechnet werden."
+%}
 
 <div id="skript-aufgabe-1"></div>
 
-### Beispiel 2
-
-Gegeben ist das folgende Baumdiagramm:
+{%include info.html
+index="2"
+frage="Fehlt eine von zwei Pfadwahrscheinlichkeiten, aber die Pfadendwahrscheinlichkeit ist bekannt, so lässt sich die Gleichung der Pfadmultiplikationsregel nach der fehlenden Wahrscheinlichkeit auflösen."
+antwort="
+Gegeben sei das Baumdiagramm
 
  <figure>
-  <img src="Baum1.png">
+  <img src='Baum1.png'>
 </figure>
+
 Die Wahrscheinlichkeit 4 wird mit $x$ bezeichnet und kann wie folgt berechnet werden $0{,}2\cdot x = 0{,}06$ $\Rightarrow$ $x=0{,}3$. Dann kann sukzessive das Baumdiagramm vervollständigt werden.
+"
+%}
 
 <div id="skript-aufgabe-2"></div>
 
-### Beispiel 3
-
-Gegeben ist das folgende Baumdiagramm:
+{%include info.html
+index="3"
+frage="Fehlen die Pfadwahrscheinlichkeiten der ersten Stufe, aber einige Pfadendwahrscheinlichkeit sind bekannt, so lassen sich die fehlenden Wahrscheinlichkeiten mit Hilfe der Pfadadditionsregel berechnen."
+antwort="
+Gegeben sei das Baumdiagramm
 
  <figure>
-  <img src="Baum2.png">
+  <img src='Baum2.png'>
 </figure>
 Die Wahrscheinlichkeit 2 wird mit $x$ bezeichnet und kann wie folgt berechnet werden $ x = 0{,}28+0{,}12=0{,}4$. Dann kann sukzessive das Baumdiagramm vervollständigt werden.
+"
+%}
 
 <div id="skript-aufgabe-3"></div>
 
@@ -108,11 +120,42 @@ Hinweise:
 
   Die Wahrscheinlichkeit, dass eine Person sich nicht regelmäßig die Zähne putzt oder gesunde Zähne hat, beträgt also 70&nbsp;%.
 
+
+{% include info.html
+index="4"
+frage="Bestimmung von Wahrscheinlichkeiten anhand eines Baumdiagramms (1. Stufe A und 2. Stufe B):
+"
+antwort="
+
+$$
+\begin{align*}
+P(A)&: \text{entsprechnde Wkt. auf der 1. Stufe}\\
+P(B)&: \text{Achtung: Diese Wahrscheinlchkeit kann nicht direkt abgelesen werden (wenn $A$ und $B$ stochastisch abhängig sind). Stattdessen verwenden wir $P(B)=P(A\cap B)+P(\overline{A}\cap B)$.}\\
+P(A\cup B)&: \text{Summe der drei entsprechenden Pfadendwahrscheinlichkeiten}\\
+P(A\cap B)&: \text{entsprechende Pfadendwahrscheinlichkeit}\\
+P(A\cup B)-P(A\cap B) \text{ oder } P(A\cap\overline{B})+P(\overline{A}\cap B)&: \text{Summe der zwei entsprechenden Pfadendwahrscheinlichkeiten}\\
+\end{align*}
+$$
+
+"
+%}
+
 <div id="skript-aufgabe-4"></div>
 
 ## Weitere Baumdigramme
 
 Baumdiagramme eignen sich auch dazu, komplexere Zufallsexperimente zu veranschaulichen:
+
+{%include info.html
+index="5"
+frage="Strategien zum Aufstellen von Baumdiagrammen:"
+antwort="
+- Gründliches Lesen des Textes
+- Zeichnen des Baumdiagramms
+- Notieren der im Text gegebenen Wahrscheinlichkeiten
+- Anwenden der Pfadregeln
+"
+%}
 
 <div id="skript-aufgabe-5"></div>
 
