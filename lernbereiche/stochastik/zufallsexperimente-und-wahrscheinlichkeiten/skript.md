@@ -5,7 +5,7 @@ description: Zufallsexperimente und Wahrscheinlichkeiten - Skript
 lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
 ---
 
-## Mengen
+## Einführung
 
 In der Stochastik befassen wir uns mit der Berechnung von Wahrscheinlichkeiten. Um diese präzise und eindeutig zu beschreiben, bedienen wir uns der Sprache der Mengenlehre. Eine Menge ist eine Zusammenfassung einzelner Elemente.
 
@@ -93,6 +93,17 @@ Es seien $A$ und $B$ Teilmengen einer Menge $X$.
 | $\overline{A} \cup \overline{B} = \overline{A \cap B}$ | Gesetz von de Morgan                                                                           |
 | $\overline{A} \cap \overline{B} = \overline{A \cup B}$ | Gesetz von de Morgan                                                                           |
 
+{% include info.html
+index="1"
+frage="Übersicht Mengenoperationen:"
+antwort="
+
+- $\overline{A}$: Komplement von $A$
+- $A\cup B$: $A$ oder $B$
+- $A\cap B$: $A$ und $B$
+"
+%}
+
 <div id="skript-aufgabe-1"></div>
 
 ## Zufallsexperimente
@@ -107,6 +118,18 @@ In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge
 - Das **Gegenereignis** eines Ereignisses $A$ wird mit $\overline{A}$ bezeichnet und enthält alle Ergebnisse, die nicht in $A$ liegen.
 - Das **sichere Ereignis** ist die gesamte Ergebnismenge, es tritt immer ein.
 - Das **unmögliche Ereignis** ist die leere Menge, es tritt nie ein.
+
+{% include info.html
+index="2"
+frage="Grundbegriffe:"
+antwort="
+
+- Ergebnismenge: alle Ausgänge
+- Ergebnis: ein Ausgang
+- Ereignis: Zusammenfassung von Ergebnissen
+- Gegenereignis von $A$: alle Ergebnisse, die nicht in $A$ liegen
+"
+%}
 
 <div id="skript-aufgabe-2"></div>
 
@@ -192,6 +215,17 @@ Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewähl
   - $A\cap\overline{B} = \\{u\\}$
   - $P(A\cap\overline{B}) = 0{,}0370$
 
+{% include info.html
+index="3"
+frage="Mengenoperastionen und Wahrscheinlichkeiten:"
+antwort="
+
+- $P(\overline{A})$: Wahrscheinlichkeit, dass $A$ **nicht** eintritt
+- $P(A\cup B)$: Wahrscheinlichkeit, dass $A$ **oder** $B$ eintritt
+- $P(A\cap B)$: Wahrscheinlichkeit, dass $A$ **und** $B$ eintritt
+"
+%}
+
 <div id="skript-aufgabe-3"></div>
 
 ## Laplace-Experiment
@@ -227,6 +261,12 @@ $$
   <figcaption>KI-generiert mit ChatGPT</figcaption>
 </figure>
 
+{% include info.html
+index="4"
+frage="Ein Zufallsexperiment ist ein Laplace-Experiment, falls..."
+antwort="... jedes Ergebnis mit der gleichen Wahrscheinlichkeit eintritt."
+%}
+
 <div id="skript-aufgabe-4"></div>
 
 ## Relative Häufigkeiten
@@ -240,6 +280,18 @@ Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am lieb
 ### Beispiel: Spicken
 
 In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
+
+{% include info.html
+index="5"
+frage="Relative Häufigkeiten = Anzahl / Grundgesamtheit"
+antwort="In einer Urne befinden 1 rote, 2 blaue, 3 gelbe und 4 grüne Kugeln. Für die Grundgesamtheit gilt $1+2+3+4+=10$. Dann ist die relative Häufigkeit für
+
+- rot: $\frac{1}{10}=0{,}1$
+- blau oder gelb: $\frac{2+3}{10}=0{,}5$
+- nicht grün: $\frac{1+2+3}{10}=0{,}6$
+- weder rot noch blau: $\frac{3+4}{10}=0{,}7$
+"
+%}
 
 <div id="skript-aufgabe-5"></div>
 
@@ -260,10 +312,9 @@ für alle Teilmenge $A$ und $B$ von $S$.
 
 1. $P(\emptyset)=0$
 2. Alle Wahrscheinlichkeiten liegen immer zwischen einschließlich 0 und einschließlich 1.
-3. **Satz von der Gegenwahrscheinlichkeit:** $P(\overline{A})=1-P(A)$. Beispiel: Aus $P(A)=0{,}3$ folgt $P(\overline{A})=1-0{,}3=0{,}7$.
+3. **Satz von der Gegenwahrscheinlichkeit:** $P(\overline{A})=1-P(A)$.
 4. **Zerlegung von Ereignissen:** $P(B)=P(A\cap B)+P(\overline{A}\cap B)$
-5. **Satz von Sylvester:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$ Hieraus folgt, dass wir, wenn drei der vier Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cap B)$ und $P(A\cup B)$ bekannt sind, die vierte berechnen können.
-   Beispiel: Aus $P(A)=0{,}3$, $P(B)=0{,}4$ und $P(A\cap B)=0{,}2$ folgt $P(A\cup B)=0{,}3+0{,}4-0,2=0{,}5$.
+5. **Satz von Sylvester:** $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
 
 ### Exkurs: Beweise
 
@@ -287,6 +338,22 @@ $$
 Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber nicht $A$ und $B$ gleichzeitig) ist $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$.
 -->
 
+{% include info.html
+index="6"
+frage="Satz von Sylvester: Wenn drei der vier Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cap B)$ und $P(A\cup B)$ bekannt sind, können wir die vierte berechnen."
+antwort="Gegeben seien $P(A)=0{,}3$, $P(A\cap B)=0{,}2$ und $P(A\cup B)=0{,}5$. Gesucht ist $P(B)$. Wir berechnen mit dem Satz von Sylvester
+
+$$
+\begin{align*}
+P(A\cup B)&=P(A)+P(B)-P(A\cap B)\\
+0{,}5&=0{,}3+P(B)-0{,}2\\
+0{,}5&=P(B)
+\end{align*}
+$$
+
+"
+%}
+
 <div id="skript-aufgabe-6"></div>
 
 ## Venn-Diagramme
@@ -296,5 +363,11 @@ Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sic
 | $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
 | -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> | <figure> <img src="v5.png" style="width: 15vw"> </figure> |
+
+{% include info.html
+index="7"
+frage="Interpretation Venn-Diagramme"
+antwort="Beschreibe die dunkel blaue Fläche mit Hilfe der Mengenoperationen."
+%}
 
 <div id="skript-aufgabe-7"></div>

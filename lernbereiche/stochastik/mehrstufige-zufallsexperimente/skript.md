@@ -120,7 +120,6 @@ Hinweise:
 
   Die Wahrscheinlichkeit, dass eine Person sich nicht regelmäßig die Zähne putzt oder gesunde Zähne hat, beträgt also 70&nbsp;%.
 
-
 {% include info.html
 index="4"
 frage="Bestimmung von Wahrscheinlichkeiten anhand eines Baumdiagramms (1. Stufe A und 2. Stufe B):
@@ -150,6 +149,7 @@ Baumdiagramme eignen sich auch dazu, komplexere Zufallsexperimente zu veranschau
 index="5"
 frage="Strategien zum Aufstellen von Baumdiagrammen:"
 antwort="
+
 - Gründliches Lesen des Textes
 - Zeichnen des Baumdiagramms
 - Notieren der im Text gegebenen Wahrscheinlichkeiten
