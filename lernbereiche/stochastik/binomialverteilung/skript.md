@@ -25,6 +25,8 @@ antwort="
 
 ## Die Bernoulli-Formel
 
+### Herleitung
+
 Wir betrachten eine Bernoulli-Kette der Länge $n$ mit Trefferwahrscheinlichkeit $p$ und fragen nach der Wahrscheinlichkeit für genau $k$ Treffer. Das zugehörige Baumdiagramm hat folgende Gestalt:
 
 {% include baumdiagramm-binomial.html %}
@@ -56,7 +58,7 @@ $$
 
 Diese Formel bildet die Grundlage für viele Wahrscheinlichkeitsberechnungen. Sie ist in einigen Taschenrechnern als Funktion integriert und in Tafelwerken dokumentiert.
 
-### Berechnungen
+### Anwendung
 
 {% include flip-card.html
 frage="Eine Basketballspielerin habe von der Freiwurflinie eine Trefferwahrscheinlichkeit von 70 % und wirft 4 Mal. Wie groß ist die Wahrscheinlichkeit, dass sie genau 3 Treffer erzielt?"
@@ -790,7 +792,11 @@ Dann ist $\mu=240\cdot 0{,}1=24$.
 
 ### Umgebungen des Erwartungswerts
 
-<!--häufig interssiert man sich dafür, was die "normalen" werte einer binomialverteilten zufallsgröße sind, z.B. (beispiele aufzählen)
+Häufig interssieren wir uns dafür, was die "normalen" Werte einer Zufallsgröße sind, welche Werte sie also typischerweise annimmt. Dies lässt sich beispielsweise in folgenden Situationen beobachten:
+
+- Medizin: In Bei Laborwerten (z. B. Blutzucker, Blutdruck oder Cholesterin) werden sogenannte Referenzbereiche angegeben, innerhalb derer der Wert bei gesunden Personen mit hoher Wahrscheinlichkeit liegt. Werte außerhalb dieses Bereichs können ein Hinweis auf eine Erkrankung sein.
+- Qualitätskontrolle: In der Produktion wird überprüft, ob Produkte innerhalb zulässiger Toleranzen liegen. Ist der Ausschussanteil zu hoch, liegt ein Qualitätsproblem vor.
+- Wahlumfragen: Wenn in Umfragen ein Anteil (z. B. Zustimmung zu einer Partei) erhoben wird, interessiert man sich für ein Vertrauensintervall um diesen Wert, also für den Bereich, in dem der „wahre“ Wert mit hoher Wahrscheinlichkeit liegt.
 
 Wir betrachten beispielhaft die Binomialverteilung mit $n=10$ und $p=0{,}4$:
 
@@ -800,24 +806,25 @@ p=0.4
 a=4
 b=4 %}
 
-was ist diese umgebung der normalen werte, der normbereich genau? Ist der bereich, in dem die zufallsgröße mit hoher wahrscheinlichkeit ihre werte hat (wie diese vorgegbene wkt ist, ist im übirgen subjektiv).
+Was versteht man nun genau unter normalen Werten bzw. dem Normbereich?
 
-Die höchste Wahrscheinlcihekti liegt beim Erwartungswrt vor (bzw., wenn mu nicht ganzzahlig ist, der nächst kleinere oder größere ganzzahlige Wert), hier also mu=4. aber auch Anzahlen in der unmittelbaren umgebung sind noch relativ wahrscheilich.
+Es handelt sich dabei um einen Bereich, in dem die Zufallsgröße mit hoher Wahrscheinlichkeit ihre Werte annimmt. Wie hoch diese Wahrscheinlichkeit genau sein soll, ist nicht allgemein festgelegt. Daher ist die Definition eines Normbereichs in gewissem Sinne subjektiv.
 
-Würde man z.b. vorgeben, dass der normbereich in einer 90%-umbgeunb liegt, hätte man ... als normale Werte.
+Allgemein gilt: Die größte Wahrscheinlichkeit liegt beim Erwartungswert $\mu = n \cdot p$ vor. Falls $\mu$ nicht ganzzahlig ist, ist einer der benachbarten ganzzahligen Werte am wahrscheinlichsten. Im betrachteten Beispiel liegt der Erwartungswert bei $\mu = 4$ und seine Wahrscheinlichkeit ist $P(X=\mu)=0{,}2508$. Auch die benachbarten Werte treten mit vergleichsweise hoher Wahrscheinlichkeit auf: $P(X=3)=0{,}2150$ und $P(X=5)=0{,}2007$. Ein möglicher Normbereich wäre $[3;5]$, die Zufallsgröße hat mit einer Wahrscheinlichkeit von $0{,}2508 + 0{,}2150 + 0{,}2007=0{,}6665$ ihre Werte in diesem Bereich.
 
-wir suchen nun eine systematische möglichkeit einen solchen normbereich zu ermitteln und betrachten dazu drei ansätze.
+Es gibt verschiedene Möglichkeiten, eine Umgebungen des Erwartungswerts anzugeben:
 
-1. absolute umgebung
-2. relative umgebung
-3. sigma-umgebung
+1. Absolute Umgebung
+2. Relative Umgebung
+3. Sigma-Umgebung
 
 ### Absolute Umgebungen
 
-{% include flip-card.html
-frage="
-$n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $2$ vom Erwartungswert abweicht?
-"
+Eine mögliche Idee ist es, Normbereiche mit Hilfe absoluter Abweichungen vom Erwartungswert anzugeben.
+
+{% include info.html
+index="16"
+frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $2$ vom Erwartungswert abweicht?"
 antwort="
 Wir berechnen $\mu=7{,}5$. Gesucht ist:
 
@@ -830,16 +837,75 @@ P(\mu-2\leq X\leq \mu +2)&=P(7{,}5-2\leq X\leq 7{,}5 +2)\\
 \end{align*}
 $$
 
-" %}
-
-Wir hätte auch danach fragen können, mit welcher Wahrscheinlichkeit X um mehr als 2 vom Erwartungswert abweicht, dies ist das Gegenereignis zum oberen, wir hätten also
+Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als $2$ vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>2)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
 
 $$
 P(|\mu-X|>2)=1-0{,}6171=0{,}3929
 $$
--->
+
+"
+%}
+
 <div id="skript-aufgabe-16"></div>
+
+### Relative Umgebungen
+
+Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir nun alternativ eine relative Abweichung vom Erwartungswert.
+
+{% include info.html
+index="17"
+frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $10\%$ vom Erwartungswert abweicht?"
+antwort="
+Wir berechnen $\mu=7{,}5$. Gesucht ist:
+
+$$
+\begin{align*}
+P(0{,}9\cdot \mu\leq X\leq 1{,}1\cdot \mu)&=P(0{,}9\cdot 7{,}5\leq X\leq 1{,}1\cdot 7{,}5)\\
+                        &=P(6{,}75\leq X\leq 8{,}25)\\
+                        &=P(7\leq X\leq 8) \\
+                        &=0{,}3363
+\end{align*}
+$$
+
+Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als $10\%$ vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>0{,}1\cdot\mu=0{,}75)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
+
+$$
+P(|\mu-X|>0{,}75)=1-0{,}3363=0{,}6637
+$$
+
+"
+%}
 
 <div id="skript-aufgabe-17"></div>
 
+### Sigma-Umgebungen
+
+Eine gute Idee ist es, Normbereiche mit Hilfe der Standardabweichung $\sigma$ anzugeben, da $\sigma$ ein Maß für die Schwankung ist: Schwanken die Werte der Zufallsgröße relativ stark, sollte acuh der Normbereich relativ groß gefasst werden.
+
+{% include info.html
+index="18"
+frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens die doppelte Standardabweichung vom Erwartungswert abweicht?"
+antwort="
+Wir berechnen $\mu=7{,}5$ und $\sigma\approx 2{,}29$. Gesucht ist:
+
+$$
+\begin{align*}
+P(\mu-2\sigma\leq X\leq \mu+2\sigma)&=P(7{,}5+2\cdot 2{,}29\leq X\leq 7{,}5-2\cdot 2{,}29)\\
+                        &=P(2{,}92\leq X\leq 12{,}08)\\
+                        &=P(3\leq X\leq 12) \\
+                        &=0{,}9736
+\end{align*}
+$$
+
+Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als die doppelte Standardabweichung vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>2\sigma)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
+
+$$
+P(|\mu-X|>2\sigma)=1-0{,}9736=0{,}0264
+$$
+
+"
+%}
+
 <div id="skript-aufgabe-18"></div>
+
+### Exkurs: Bedeutung der Standardabweichung
