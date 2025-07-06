@@ -516,7 +516,7 @@ Wie wir gesehen haben, lässt sich dieser komplizierte Ausdruck mit Hilfe von Ta
 
 Wir ändern nun die Perspektive: Angenommen $P(X\leq k)$ und z.b. $p$ und $k$ seien gegeben. Was ist dann $n$?
 
-Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir systemisch aus, indem wir Wertetabellen erstellen.
+Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir mit Hilfe von Wertetabellen systematisch aus.
 
 ### Beispiel 1
 
@@ -696,7 +696,7 @@ ist noch aufwendiger und wird hier übersprungen.
 {% include info.html
 index="11"
 frage="Bestimmung von $\mu$ und $\sigma$"
-antwort="Direktes Anwenden der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$"
+antwort="Direktes Anwenden der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$."
 %}
 
 <div id="skript-aufgabe-11"></div>
@@ -711,45 +711,42 @@ $$
 
 werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit können wir häufig, wenn zwei Werte dieser vier Größen bekannt sind, die Werte der anderen beiden Größen berechnen.
 
-{% include flip-card.html
-frage="
-Polizisten kontrollieren in der Nähe einer Diskothek insgesamt 200 Autofahrer. Sie gehen davon aus, dass unter diesen etwa 25 alkoholisierte Personen am Steuer sitzen. Mit welcher Wahrscheinlichkeit ist ein kontrollierter Autofahrer alkoholisiert? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl alkoholisierter Fahrer beschreibt?
+{% include info.html
+index="12"
+frage="Bestimmung von $p$ und $\sigma$"
+antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
+
+Beispiel: Polizisten kontrollieren in der Nähe einer Diskothek insgesamt 200 Autofahrer. Sie gehen davon aus, dass unter diesen etwa 25 alkoholisierte Personen am Steuer sitzen. Mit welcher Wahrscheinlichkeit ist ein kontrollierter Autofahrer alkoholisiert? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl alkoholisierter Fahrer beschreibt?
+
+Gegeben sind $n=200$ und $\mu=25$, gesucht sind $p$ und $\sigma$. Wegen $\mu=n\cdot p$ ist $25=200 \cdot p$ und so $p=\frac{25}{200}=0{,}4$. Dann ist $\sigma=\sqrt{200\cdot 0{,}4\cdot (1-0{,}4)}=6{,}9282$.
 "
-antwort="
-
-Gegeben sind $n=200$ und $\mu=25$, gesucht sind $p$ und $\sigma$.
-
-Wegen $\mu=n\cdot p$ ist $25=200 \cdot p$ und so $p=\frac{25}{200}=0{,}4$.
-
-Dann ist $\sigma=\sqrt{200\cdot 0{,}4\cdot (1-0{,}4)}=6{,}9282$.
-
-" %}
+%}
 
 <div id="skript-aufgabe-12"></div>
 
-{% include flip-card.html
-frage="
-Auf einem gebührenpflichtigen Parkplatz parken erfahrungsgemäß 15 % der Autofahrer ohne gültigen Parkschein. Eine Mitarbeiterin des Ordnungsamts beginnt ihren Dienst mit 12 Überweisungsträgern, die sie bei festgestellten Verstößen hinter die Scheibenwischer der Fahrzeuge legt. Mit wie vielen Fahrzeugen ohne gültigen Parkschein rechnet die Mitarbeiterin an diesem Tag? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl der Falschparker beschreibt?
-"
-antwort="
+{% include info.html
+index="13"
+frage="Bestimmung von $n$ und $\sigma$"
+antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
+
+Beispiel: Auf einem gebührenpflichtigen Parkplatz parken erfahrungsgemäß 15 % der Autofahrer ohne gültigen Parkschein. Eine Mitarbeiterin des Ordnungsamts beginnt ihren Dienst mit 12 Überweisungsträgern, die sie bei festgestellten Verstößen hinter die Scheibenwischer der Fahrzeuge legt. Mit wie vielen Fahrzeugen ohne gültigen Parkschein rechnet die Mitarbeiterin an diesem Tag? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl der Falschparker beschreibt?
 
 Gegeben sind $p=0{,}15$ und $\mu=12$, gesucht sind $n$ und $\sigma$.
-
 Wegen $\mu=n\cdot p$ ist $12=n \cdot 0{,}15$ und so $n=\frac{12}{0{,}15}=80$.
-
 Dann ist $\sigma=\sqrt{80\cdot 0{,}15\cdot (1-0{,}15)}=3{,}1937$.
-
-" %}
+"
+%}
 
 <div id="skript-aufgabe-13"></div>
 
-{% include flip-card.html
-frage="
-Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?"
-antwort="
+{% include info.html
+index="14"
+frage="Bestimmung von $n$ und $\sigma$"
+antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
+
+Beispiel: Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?
 
 Gegeben sind $\mu=175$ und $\sigma=10{,}6653$, gesucht sind $n$ und $p$.
-
 Wegen $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist $\sigma=\sqrt{\mu\cdot (1-p)}$. Mit Werten ergibt sich:
 
 $$
@@ -762,18 +759,19 @@ p&=0{,}35
 $$
 
 Dann ist $n=\frac{175}{0{,}35}=500$.
-
-" %}
+"
+%}
 
 <div id="skript-aufgabe-14"></div>
 
-{% include flip-card.html
-frage="
-Eine Maschine produziert ein bestimmtes Bauteil. Erfahrungsgemäß ist etwa jedes zehnte Bauteil fehlerhaft. Bei einer Qualitätskontrolle ergibt sich eine Standardabweichung von $4{,}6476$ für die Anzahl fehlerhafter Bauteile. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte Bauteile werden in der Stichprobe erwartet?"
-antwort="
+{% include info.html
+index="15"
+frage="Bestimmung von $n$ und $\mu$"
+antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
+
+Beispiel: Eine Maschine produziert ein bestimmtes Bauteil. Erfahrungsgemäß ist etwa jedes zehnte Bauteil fehlerhaft. Bei einer Qualitätskontrolle ergibt sich eine Standardabweichung von $4{,}6476$ für die Anzahl fehlerhafter Bauteile. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte Bauteile werden in der Stichprobe erwartet?
 
 Gegeben sind $p=0{,}1$ und $\sigma=4{,}6476$, gesucht sind $n$ und $\mu$.
-
 Wegen $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist:
 
 $$
@@ -785,8 +783,8 @@ n&=240
 $$
 
 Dann ist $\mu=240\cdot 0{,}1=24$.
-
-" %}
+"
+%}
 
 <div id="skript-aufgabe-15"></div>
 
