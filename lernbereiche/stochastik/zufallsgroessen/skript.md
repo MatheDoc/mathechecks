@@ -222,8 +222,8 @@ antwort="
 
 - Erwartungswert $E(X)$: Langfristiger Mittelwert
 - Standardabweichung $\sigma(X)$: Maß für die Schwankung
-"
-%}
+  "
+  %}
 
 <div id="skript-aufgabe-3"></div>
 
@@ -268,8 +268,8 @@ antwort="
 
 1. Zeile: Welche Werte nimmt die Zufallsgröße an?
 2. Zeile: Welche Wahrscheinlichkeiten gehören zu den einzelnen Werten?
-"
-%}
+   "
+   %}
 
 <div id="skript-aufgabe-4"></div>
 
@@ -301,7 +301,7 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-5" style="margin-bottom:1rem"></div>
+<div id="skript-aufgabe-5"></div>
 
 {%include info.html
 index="6"
@@ -336,7 +336,7 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-6" style="margin-bottom:1rem"></div>
+<div id="skript-aufgabe-6"></div>
 
 {%include info.html
 index="7"
