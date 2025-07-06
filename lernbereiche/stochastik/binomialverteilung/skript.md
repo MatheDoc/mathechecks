@@ -8,15 +8,18 @@ lernbereich: binomialverteilung
 ## Einführung
 
 Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$.
-Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**.
+Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**. Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben.
 
-Mit anderen Worten: Beim zugrundeliegenden Zufallsexperiment einer binomialverteilten Zufallsgröße
+{% include info.html
+index="1"
+frage="Bedingungen der Binomialverteilung:"
+antwort="
 
-- gibt es eine feste Anzahl an Versuchen (Stufen),
-- gibt es in jedem Versuch genau zwei mögliche Ausgänge,
-- bleibt die Wahrscheinlichkeit für Treffer und Niete in jedem Versuch gleich.
-
-Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben. Zunächst ist es aber wichtig festzustellen, ob eine Zufallsgröße binomialverteilt ist oder nicht.
+- Es gibt eine feste Anzahl an Versuchen (Stufen).
+- Es gibt es in jedem Versuch genau zwei mögliche Ausgänge.
+- Die Wahrscheinlichkeit für einen Treffer ist in jedem Versuch gleich.
+  "
+  %}
 
 <div id="skript-aufgabe-1"></div>
 
@@ -98,6 +101,19 @@ $$
 ### Interpretationen
 
 Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel auch inhaltlich interpretieren zu können.
+
+{% include info.html
+index="2"
+frage="Interpretation der Bernoulli-Formel $P(X=k)=\binom{n}{k}\cdot p^k\cdot (1-p)^{n-k}$"
+antwort="
+
+- $n$: Anzahl der Versuche
+- $p$: Trefferwahrscheinlichkeit
+- $1-p$: Nietenwahrscheinlichkeit
+- $k$: Anzahl der Treffer
+- $P(X=k)$: Wahrscheinlichkeit für genau $k$ Treffer
+  "
+  %}
 
 <div id="skript-aufgabe-2"></div>
 
@@ -220,37 +236,43 @@ $$
 
 ### Berechnungen
 
-Für Bereichswahrscheinlichkeiten werden die Bernoulli-Formeln mehrfach nacheinander angewendet. Dies kann bei vielen Summanden aufwendig und fehleranfällig sein. Typischerweise gehen wir daher wie folgt vor:
+Für Bereichswahrscheinlichkeiten werden die Bernoulli-Formeln mehrfach nacheinander angewendet. Dies kann bei vielen Summanden aufwendig und fehleranfällig sein. Typischerweise werden Bereichswahrscheinlichkeiten daher mit Tafelwerken oder Taschenrechnern bestimmt. In Tafelwerken befinden sich in der Regel die **kumulierten Wahrscheinlichkeiten** $P(X\leq k)$.
 
-- Wir verwenden Tafelwerke, in denen Wahrscheinlichkeiten der Form $P(X\leq k)$ angegeben sind. Andere Wahrscheinlichkeiten müssen dann über geeignete Umformungen bestimmt werden, z.B.:
-
-$$
-P(X=k)=P(X\leq k)-P(X\leq k-1)
-$$
-
-$$
-P(X\geq k)=1-P(X\leq k-1).
-$$
+{% include info.html
+index="3"
+frage="Tafelwerke: Gesuchte Wahrscheinlichkeiten auf Wahrscheinlichkeiten der Art $P(X\leq k)$ zurückführen."
+antwort="
 
 $$
-P(a<X<b)=P(X\leq b-1)-P(X\leq a).
+\begin{align*}
+P(X=k)&=P(X\leq k)-P(X\leq k-1)\\
+P(X\geq k)&=1-P(X\leq k-1)\\
+P(a<X<b)&=P(X\leq b-1)-P(X\leq a)\\
+\end{align*}
 $$
 
-Die Wahrscheinlichkeiten der Art $P(X\leq k)$ treten im Übrigen häufiger auf und heißen **kumulierte** Wahrscheinlichkeiten.
+"
+%}
 
-- Alternativ nutzen wir Taschenrechner, die die gewünschten Wahrscheinlichkeiten direkt berechnen können, z.B.:
+<div id="skript-aufgabe-3"></div>
+
+{% include info.html
+index="4"
+frage="Taschenrechner: Direktes Bestimmen der Bereichswahrscheinlichkeiten."
+antwort="
 
 $$
 P(a\leq X\leq b)=Bcd(a;b;n;p)
 $$
 
-<div id="skript-aufgabe-3"></div>
+"
+%}
 
 <div id="skript-aufgabe-4"></div>
 
 ### Weitere Hinweise
 
-Bevor wir nun Bereichswahrscheinlichkeiten bestimmen können, müssen wir die folgenden Fragen beantworten:
+Bevor wir Bereichswahrscheinlichkeiten bestimmen können, müssen wir die folgenden Fragen beantworten:
 
 - Liegt überhaupt eine binomialverteilte Zufallsgröße vor?
 - Wie lauten die Bernoulli-Parameter $n$ und $p$?
@@ -260,7 +282,7 @@ Bevor wir nun Bereichswahrscheinlichkeiten bestimmen können, müssen wir die fo
 
 ### Beispiele
 
-Bestimmen Sie die Wahrscheinlichkeiten der angegebnen Ereingisse
+Wir suchen die Wahrscheinlichkeiten der angegebnen Ereignisse
 
 1. mit Hilfe kumulierter Wahrscheinlichkeiten,
 2. mit Hilfe des Taschenrechners.
@@ -430,6 +452,18 @@ $$
 
 " %}
 
+{% include info.html
+index="5"
+frage="Kurzfragen zur Berechnung von Bereichswahrscheinlichkeiten:"
+antwort="
+
+- Binomialverteilt?
+- $n$ und $p$ ?
+- Treffer im Sachzusammenhang?
+- Intervallgrenzen inklusive korrekter Rundung?
+  "
+  %}
+
 <div id="skript-aufgabe-5"></div>
 
 ## Histogramme
@@ -439,17 +473,30 @@ Wie jede Zufallsgröße können binomialverteilte Zufallsgrößen in Histogramme
 - Einzelwahrscheinlichkeiten: Hier wird jeder Trefferanzahl $k$ die Wahrscheinlichkeit $P(X=k)$ zugeordnet.
 - Kumulierte Wahrscheinlichkeiten: Hier wird jeder Trefferanzahl $k$ die kumulierte Wahrscheinlichkeit $P(X\leq k)$ zugeordnet.
 
-Ein wichtiger Zusammenhang zwischen beiden Histogrammen ist der folgende: Da
-
-$$
-P(X=k)=P(X\leq k)- P(X\leq k-1)
-$$
-
-können die Einzelwahrscheinlichkeiten $P(X=k)$ als Stufenhöhen im Histogramm der kumulierten Wahrscheinlichkeiten aufgefasst werden:
-
 {%include histogramm-binomial.html %}
 
+{% include info.html
+index="6"
+frage="Histogramm der Einzelwahrscheinlichkeiten"
+antwort="
+
+- Die Wahrscheinlichkeiten der Art $P(X=k)$ können direkt abgelesen werden.
+- Bei Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ ermitteln wir alle Balken, die innerhalb des Intervalls $[a;b]$ liegen, und addieren deren Wahrscheinlichkeiten.
+  "
+  %}
+
 <div id="skript-aufgabe-6"></div>
+
+{% include info.html
+index="7"
+frage="Histogramm der kumulierten Wahrscheinlichkeiten"
+antwort="
+
+- Die kumulierten Wahrscheinlichkeiten $P(X\leq k)$ können direkt abgelesen werden.
+- Die Einzelwahrscheinlichkeiten $P(X=k)$ können als Stufenhöhen aufgefasst werden: $P(X=k)=P(X\leq k)- P(X\leq k-1)$.
+- Die Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ entsprechen dann den Höhen mehrerer Stufen: $P(a\leq X\leq b)=P(X\leq b)- P(X\leq a-1)$.
+  "
+  %}
 
 <div id="skript-aufgabe-7"></div>
 
@@ -540,14 +587,14 @@ Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf
 
 Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist also $k=174$.
 
-Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird.
+Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarte Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
 
-{% include flip-card.html
-frage="
-Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Allgemeine Statistiken zeigen, dass 61% aller Gäste vegetarische Gerichte bestellen.
-
-Bestimmen Sie die Anzahl der Gerichte, die mindestens untersucht werden müssen, damit die Wahrscheinlichkeit für mindestens 144 vegetarische Gerichte mindestens 29% beträgt."
+{% include info.html
+index="8"
+frage="Beispiel zur Bestimmung von $n$:"
 antwort="
+Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Allgemeine Statistiken zeigen, dass 61% aller Gäste vegetarische Gerichte bestellen. Wie viele Gerichte müssen mindestens untersucht werden, damit die Wahrscheinlichkeit für mindestens 144 vegetarische Gerichte mindestens 29% beträgt?
+
 Gegeben ist $p=0{,}61$ und $k=144$. Gesucht ist das kleinste $n$, so dass $P(X\geq 144)\geq 0{,}29$ ist. Wir bestimmen:
 
 $$
@@ -559,16 +606,16 @@ $$
 
 Das kleinste $n$, für das $P(X\geq 144)\geq 0{,}29$ gilt, ist also $n=229$.
 
-" %}
+"
+%}
 
 <div id="skript-aufgabe-8"></div>
 
-{% include flip-card.html
-frage="
-Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt.
+{% include info.html
+index="9"
+frage="Beispiel zur Bestimmung von $p$:"
+antwort=" Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt. Wie hoch muss der Anteil der zufriedenen Mitarbeiter mindestens sein, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)?
 
-Bestimmen Sie wie hoch der Anteil der zufriedenen Mitarbeiter mindestens sein muss, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)."
-antwort="
 Gegeben ist $n=274$ und $k=142$. Gesucht ist das kleinste $p$, so dass $P(X\leq 142)\leq 0{,}31$ ist. Wir bestimmen:
 
 $$
@@ -579,17 +626,17 @@ $$
 $$
 
 Das kleinste $p$, für das $P(X\leq 142)\leq 0{,}31$ gilt, ist also $p=0{,}54$.
-
-" %}
+"
+%}
 
 <div id="skript-aufgabe-9"></div>
 
-{% include flip-card.html
-frage="
-Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 158 User teil. Man weiß, dass jeder 2. User der Influencerin folgt.
-
-Bestimmen Sie die Anzahl der Follower der Influencerin, die höchstens in der Stichprobe vorhanden sein dürfen, damit die Wahrscheinlichkeit für mindestens diese Anzahl der Follower der Influencerin mindestens 87% beträgt."
+{% include info.html
+index="10"
+frage="Beispiel zur Bestimmung von $k$:"
 antwort="
+Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 158 User teil. Man weiß, dass jeder 2. User der Influencerin folgt. Wie viele Follower der Influencerin dürfen höchstens in der Stichprobe vorhanden sein, damit die Wahrscheinlichkeit für mindestens diese Anzahl der Follower der Influencerin mindestens 87% beträgt?
+
 Gegeben ist $n=158$ und $p=0{,}5$. Gesucht ist das größte $k$, so dass $P(X\geq k)\geq 0{,}87$ ist. Wir bestimmen:
 
 $$
@@ -600,8 +647,8 @@ $$
 $$
 
 Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
-
-" %}
+"
+%}
 
 <div id="skript-aufgabe-10"></div>
 
@@ -646,6 +693,12 @@ $$
 
 ist noch aufwendiger und wird hier übersprungen.
 
+{% include info.html
+index="11"
+frage="Bestimmung von $\mu$ und $\sigma$"
+antwort="Direktes Anwenden der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$"
+%}
+
 <div id="skript-aufgabe-11"></div>
 
 ### Kombination der Formeln
@@ -656,7 +709,7 @@ $$
 \mu=n\cdot p \text{ und } \sigma=\sqrt{n\cdot p\cdot (1-p)}
 $$
 
-werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit ergibt sich häufig: Sind zwei Werte dieser vier Größen bekannt, können die anderen beiden Werten berechnet werden.
+werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit können wir häufig, wenn zwei Werte dieser vier Größen bekannt sind, die Werte der anderen beiden Größen berechnen.
 
 {% include flip-card.html
 frage="
