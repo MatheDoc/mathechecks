@@ -930,6 +930,6 @@ Ferner gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinlichkeiten für di
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}954$
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
 
-Als Faustregel hat sich die sogenannten Laplace-Bedingung etabliert. Die besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
+Als Faustregel hat sich die sogenannten Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
 
 Eine weitere tiefe theoretische Begründung für die Bedeutung der Standardabweichung: Die Binomialverteilung konvergiert für $n\to\infty$ gegen die Normalverteilung (die sogenannten 'Glockenkurve'). Die Normalverteilung hat ihr Maximum beim Erwartungswert $\mu$ und ihre Wendestellen gerade bei $\mu-\sigma$ und $\mu+\sigma$.
