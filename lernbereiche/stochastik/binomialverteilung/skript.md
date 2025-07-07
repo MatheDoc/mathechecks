@@ -7,7 +7,7 @@ lernbereich: binomialverteilung
 
 ## Einführung
 
-Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$.
+Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$. Eine gleichbleibende Trefferwahrscheinlichkeit bedeutet im Übrigen, dass die auftretenden Ereignisse voneinander unabhängig sind.
 Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**. Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben.
 
 {% include info.html
@@ -909,3 +909,25 @@ $$
 <div id="skript-aufgabe-18"></div>
 
 ### Exkurs: Bedeutung der Standardabweichung
+
+Zur Festlegung von Normbereichen eignen sich Sigma-Umgebungen besser als absolute oder relative Umgebungen.
+
+Um dies zu veranschaulichen, betrachten wir die Umgebungswahrscheinlichkeiten
+
+1. in Abhängigkeit von $n$ bei festem $p$,
+2. in Abhängigkeit von $p$ bei festem $n$.
+
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 100%; margin: auto;">
+  <img src="wkt-n.png" style="min-width: 400px; width: 45%; max-width: 1000px;">
+  <img src="wkt-p.png" style="min-width: 400px; width: 45%; max-width: 1000px;">
+</div>
+
+Man erkennt, dass die Umgebungswahrscheinlichkeiten bei absoluten und relativen Umgebungen stark von $n$ und $p$ abhängen. Im Gegensatz dazu bleiben die Wahrscheinlichkeiten bei Sigma-Umgebungen vergleichsweise konstant.
+
+Ferner gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinlichkeiten für die Sigma-Umgebungen konvergieren für $n\to\infty$ gegen folgende Werte:
+
+- $P(\mu-\sigma\leq X\leq\mu+\sigma)\approx 0{,}683$
+- $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}954$
+- $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
+
+Als Faustregel hat sich die sogenannten Laplace-Bedingung etabliert. Die besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
