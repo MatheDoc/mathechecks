@@ -812,7 +812,7 @@ Es handelt sich dabei um einen Bereich, in dem die Zufallsgröße mit hoher Wahr
 
 Allgemein gilt: Die größte Wahrscheinlichkeit liegt beim Erwartungswert $\mu = n \cdot p$ vor. Falls $\mu$ nicht ganzzahlig ist, ist einer der benachbarten ganzzahligen Werte am wahrscheinlichsten. Im betrachteten Beispiel liegt der Erwartungswert bei $\mu = 4$ und seine Wahrscheinlichkeit ist $P(X=\mu)=0{,}2508$. Auch die benachbarten Werte treten mit vergleichsweise hoher Wahrscheinlichkeit auf: $P(X=3)=0{,}2150$ und $P(X=5)=0{,}2007$. Ein möglicher Normbereich wäre $[3;5]$, die Zufallsgröße hat mit einer Wahrscheinlichkeit von $0{,}2508 + 0{,}2150 + 0{,}2007=0{,}6665$ ihre Werte in diesem Bereich.
 
-Es gibt verschiedene Möglichkeiten, eine Umgebungen des Erwartungswerts anzugeben:
+Es gibt verschiedene Möglichkeiten, Umgebungen des Erwartungswerts anzugeben:
 
 1. Absolute Umgebung
 2. Relative Umgebung
@@ -917,9 +917,9 @@ Um dies zu veranschaulichen, betrachten wir die Umgebungswahrscheinlichkeiten
 1. in Abhängigkeit von $n$ bei festem $p$,
 2. in Abhängigkeit von $p$ bei festem $n$.
 
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; max-width: 100%; margin: auto;">
-  <img src="wkt-n.png" style="min-width: 400px; width: 45%; max-width: 1000px;">
-  <img src="wkt-p.png" style="min-width: 400px; width: 45%; max-width: 1000px;">
+<div class="diagramm-row">
+  <img src="wkt-n.png" class="diagramm" style="max-width: 600px">
+  <img src="wkt-p.png" class="diagramm" style="max-width: 600px">
 </div>
 
 Man erkennt, dass die Umgebungswahrscheinlichkeiten bei absoluten und relativen Umgebungen stark von $n$ und $p$ abhängen. Im Gegensatz dazu bleiben die Wahrscheinlichkeiten bei Sigma-Umgebungen vergleichsweise konstant.
@@ -930,6 +930,6 @@ Ferner gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinlichkeiten für di
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}954$
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
 
-Als Faustregel hat sich die sogenannten Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
+Als Faustregel hat sich die sogenannte Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
 
-Eine weitere tiefe theoretische Begründung für die Bedeutung der Standardabweichung: Die Binomialverteilung konvergiert für $n\to\infty$ gegen die Normalverteilung (die sogenannten 'Glockenkurve'). Die Normalverteilung hat ihr Maximum beim Erwartungswert $\mu$ und ihre Wendestellen gerade bei $\mu-\sigma$ und $\mu+\sigma$.
+Eine weitere tiefe theoretische Begründung für die Bedeutung der Standardabweichung: Die Binomialverteilung konvergiert für $n\to\infty$ gegen die Normalverteilung (die sogenannte 'Glockenkurve'). Die Normalverteilung hat ihr Maximum beim Erwartungswert $\mu$ und ihre Wendestellen gerade bei $\mu-\sigma$ und $\mu+\sigma$.
