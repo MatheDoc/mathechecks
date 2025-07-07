@@ -14,7 +14,7 @@ fetch("/kompetenzliste.json") // Liquid wird nicht in js aufgelöst, daher ohne 
       zeile.innerHTML = `<td>${index + 1}</td>
       <td>
       ${eintrag["Ich kann"]}
-       <i class="fas fa-edit test-icon" title="Training starten" onclick="window.location.href='${uebungUrl}'"></i>
+       <i class="fas fa-edit" style="color: var(--hauptfarbe);" title="Training starten" onclick="window.location.href='${uebungUrl}'"></i>
       </td>`;
       tbody.appendChild(zeile);
     });
