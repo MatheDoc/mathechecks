@@ -106,7 +106,11 @@ async function erstelleAufgabe(eintrag, index = 0) {
             title="Auf WhatsApp teilen"
             onclick="shareWhatsApp(this)"
           ></i>
-          
+           <i
+            class="fa-solid fa-copy icon copy-icon"
+            title="Skriptabschnitt anzeigen"
+            onclick="kopiereAufgabeAlsText(this)"
+          ></i>
           <i
             class="fa-solid fa-scroll icon skript-icon"
             title="Skriptabschnitt anzeigen"
