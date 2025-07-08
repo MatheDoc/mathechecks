@@ -119,17 +119,6 @@ details summary {
   margin-bottom: 2rem;
 }
 
-/* Diagramm flexibel, aber begrenzt */
-img,
-.diagramm {
-  flex: 1 1 300px; /* flexibel: nimmt mind. 300px ein, wächst aber mit */
-  max-width: 500px; /* freiwillige Obergrenze, kein harter Zwang */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
-  display: block;
-  width: 100%;
-}
-
 .eingabe-box {
   display: flex;
   flex-direction: column;
