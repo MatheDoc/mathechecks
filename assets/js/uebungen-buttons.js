@@ -321,3 +321,66 @@ function toggleAllAnswers(iconElement) {
     iconElement.title = "Lösungen ausblenden";
   }
 }
+
+// Funktion zum Kopieren der Aufgabe als Text
+function kopiereAufgabeAlsText(button) {
+  const aufgabeDiv = button.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+
+  let output = "";
+
+  // Titel extrahieren
+  const titel = aufgabeDiv.querySelector("h4")?.innerText;
+  if (titel) output += titel + "\n\n";
+
+  // Einleitung aus mehreren <p>-Tags, ggf. mit MathJax
+  const einleitungContainer = aufgabeDiv.querySelector(".einleitung");
+  if (einleitungContainer) {
+    const einleitungsPs = einleitungContainer.querySelectorAll("p");
+    einleitungsPs.forEach((p) => {
+      const cleaned = extractCleanText(p);
+      output += cleaned + "\n";
+    });
+    output += "\n";
+  }
+
+  // Fragen extrahieren
+  const fragen = aufgabeDiv.querySelectorAll("ol li");
+  fragen.forEach((li, index) => {
+    const frageText = li.querySelector(".frage");
+    if (frageText) {
+      output += index + 1 + ". " + extractCleanText(frageText) + "\n";
+    }
+  });
+
+  // In Zwischenablage kopieren
+  navigator.clipboard
+    .writeText(output)
+    .then(() => {
+      alert("Aufgabentext wurde kopiert:\n\n" + output);
+    })
+    .catch((err) => {
+      console.error("Fehler beim Kopieren", err);
+    });
+}
+
+// Hilfsfunktion: extrahiert Text inkl. MathJax-Formeln inline
+function extractCleanText(element) {
+  let text = "";
+  element.childNodes.forEach((node) => {
+    if (node.nodeType === Node.TEXT_NODE) {
+      text += node.textContent;
+    } else if (node.tagName === "MJX-CONTAINER") {
+      // Versuche, MathJax-Inhalt als LaTeX zurückzugewinnen
+      const latex = node.querySelector("mjx-assistive-mml")?.textContent;
+      if (latex) {
+        text += "$" + latex + "$";
+      } else {
+        text += node.innerText.trim(); // Fallback
+      }
+    } else if (node.nodeType === Node.ELEMENT_NODE) {
+      text += extractCleanText(node);
+    }
+  });
+  return text.replace(/\s+/g, " ").trim(); // Leerzeichen normalisieren
+}
