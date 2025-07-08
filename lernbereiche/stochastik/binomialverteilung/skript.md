@@ -924,10 +924,10 @@ Um dies zu veranschaulichen, betrachten wir die Umgebungswahrscheinlichkeiten
 
 Man erkennt, dass die Umgebungswahrscheinlichkeiten bei absoluten und relativen Umgebungen stark von $n$ und $p$ abhängen. Im Gegensatz dazu bleiben die Wahrscheinlichkeiten bei Sigma-Umgebungen vergleichsweise konstant.
 
-Ferner gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinlichkeiten für die Sigma-Umgebungen konvergieren für $n\to\infty$ gegen folgende Werte:
+In diesem Zusammenhang gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinlichkeiten für die Sigma-Umgebungen konvergieren für $n\to\infty$ gegen folgende Werte:
 
 - $P(\mu-\sigma\leq X\leq\mu+\sigma)\approx 0{,}683$
-- $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}954$
+- $P(\mu-2\sigma\leq X\leq\mu+2\sigma)\approx 0{,}954$
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
 
 Als Faustregel hat sich die sogenannte Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
