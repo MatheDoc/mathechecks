@@ -7,82 +7,13 @@ lernbereich: hypothesentests
 
 ## Einführung
 
-Ergebnisse von Zufallsexperimenten sind im Allgemeinen keine Zahlen, sondern beliebige Elemente (beim Münzwurfe sind die Ergebnisse z.B. "Kopf" und "Zahl"). Von solchen Ergebnissen können Wahrscheinlichkeiten bestimmt werden, aber keine Kennzahlen wie einen Mittelwert (beim Münzwurf ist die Frage "Welches Ergebnis werfe ich im Durchschnitt?" sinnlos). Dazu ist es nötig, dass wir Ergebnissen Zahlen zuordnen.
+Häufig stehen wir vor der Aufgabe Hypothesen (Vermutungen) zu überprüfen.
 
-Eine **Zufallsgröße** $X$ ordnet jedem Ergebnis eines Zufallsexperiment eine reelle Zahl zu. Wir sprechen in der Regel direkt von Werten einer Zufallsgröße $x_1, x_2, \ldots $ und ihren Wahrscheinlichkeiten $P(X=x_1)$, $P(X=x_2)$, $\ldots$. Die Wahrscheinlichkeitsverteilung einer Zufallsgröße stellen wir häufig tabellarisch oder mit Histogrammen dar.
+- Eine Schule hat ein neues pädagogisches Konzept eingeführt, das gezielt die Lernmotivation und Selbstorganisation der Schülerinnen und Schüler fördern soll. Es soll dazu beitragen, dass mehr Lernende das Klassenziel erreichen. Mithilfe eines Hypothesentests soll überprüft werden, ob sich die Erfolgsquote im Vergleich zu den Vorjahren signifikant verbessert hat.
+- Es besteht die Vermutung, dass der vermehrte Einsatz von Elektrofahrzeugen zu einer Verbesserung der Luftqualität in städtischen Gebieten führt. Ein Hypothesentest soll klären, ob sich relevante Luftschadstoffwerte – etwa Feinstaub- oder Stickoxidkonzentrationen – im Vergleich zu früheren Jahren signifikant verringert haben.
+- Ein Unternehmen hat einen neuen Algorithmus zur automatisierten Erkennung von Hassrede in sozialen Netzwerken entwickelt. Es soll nun mithilfe eines Hypothesentests geprüft werden, ob dieser Algorithmus signifikant besser arbeitet als das bisher eingesetzte Verfahren.
 
-### Biathlet A
-
-Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X$:
-
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
-| ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
-| $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
-
-Beispielsweise bedeutet $P(X=2)=0{,}19$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 19&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
-
-{% include histogramm-allgemein.html
-    x="[0, 1, 2, 3, 4, 5]"
-    y="[0.03, 0.33, 0.57, 0.03, 0.04, 0]"
-    titel="Biathlet A"
-%}
-
-### Biathlet B
-
-Die Wahrscheinlichkeitsverteilung sowie das Histogramm eines weiteren Biathleten B könnten wie folgt aussehen:
-
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
-| ----------------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| $P(X = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
-
-{% include histogramm-allgemein.html
-    x="[0, 1, 2, 3, 4, 5]"
-    y="[0.37, 0.16, 0.18, 0.08, 0.09, 0.12]"
-    titel="Biathlet A"
-%}
-
-## Kenzahlen
-
-### Der Erwartungswert
-
-Wie lässt sich nun feststellen, welcher Biathlet der treffsicherere ist? Um dies zu entscheiden, können wir die Werte der Zufallsgröße unter Berücksichtigung ihrer Wahrscheinlichkeiten zusammenfassen. Dazu verwenden wir den **Erwartungswert**. Er gibt uns den Wert, den wir im Mittel erwarten können, wenn ein Zufallsexperiment sehr oft wiederholt wird.
-
-Der Erwartungswert einer (diskreten) Zufallsgröße $X$ ergibt sich aus der Summe der Produkte der einzelnen Werte $x_i$ mit ihren jeweiligen Wahrscheinlichkeiten $P(X = x_i)$:
-
-$$
-\begin{align*}
-E(X) &= x_1 \cdot P(X = x_1) + x_2 \cdot P(X = x_2) + \ldots + x_n \cdot P(X = x_n) \\
-&= \sum_{i=1}^{n} x_i \cdot P(X = x_i)
-\end{align*}
-$$
-
-In der Statistik, in der Wahrscheinlichkeiten häufig als relative Häufigkeiten interpretiert werden, entspricht der Erwartungswert dem **gewichteten arithmetischen Mittel**. Das bedeutet: Häufigere (wahrscheinlichere) Werte fließen stärker in den Mittelwert ein als seltenere.
-
-### Der Erwartungswert von Biathlet A
-
-$$
-\begin{align*}
-E(X) &= 0 \cdot 0{,}03 + 1 \cdot 0{,}33 + 2 \cdot 0{,}57 + 3 \cdot 0{,}03 + 4 \cdot 0{,}04 + 5 \cdot 0 \\
-&= 0 + 0{,}33 + 1{,}14 + 0{,}09 + 0{,}16 + 0 \\
-&= 1{,}72
-\end{align*}
-$$
-
-Der Erwartungswert beträgt also $1{,}72$. Das bedeutet: Biathlet A verfehlt im Mittel etwa $1{,}72$-mal das Ziel.
-
-### Der Erwartungswert von Biathlet B
-
-$$
-\begin{align*}
-E(X) &= 0 \cdot 0{,}37 + 1 \cdot 0{,}16 + 2 \cdot 0{,}18 + 3 \cdot 0{,}08 + 4 \cdot 0{,}09 + 5 \cdot 0{,}12 \\
-&= 0 + 0{,}16 + 0{,}36 + 0{,}24 + 0{,}36 + 0{,}60 \\
-&= 1{,}72
-\end{align*}
-$$
-
-Der Erwartungswert für Biathlet B beträgt also $1{,}72$. Auch Biathlet B verfehlt im Mittel etwa $1{,}72$-mal das Ziel .
-
-Wären die Erwartungswerte der beiden Biathleten unterschiedlich gewesen, hätten wir eine fundierte Entscheidungsgrundlage gehabt, um zu entscheiden, welcher der treffsicherere Biathlet ist.
+Was bedeutet in diesen Beispielen **signifikant**?
 
 {%include info.html
 index="1"

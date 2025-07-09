@@ -743,7 +743,7 @@ Dann ist $\sigma=\sqrt{80\cdot 0{,}15\cdot (1-0{,}15)}=3{,}1937$.
 
 {% include info.html
 index="14"
-frage="Bestimmung von $n$ und $\sigma$"
+frage="Bestimmung von $p$ und $\sigma$"
 antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
 
 Beispiel: Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?
@@ -930,6 +930,6 @@ In diesem Zusammenhang gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinli
 - $P(\mu-2\sigma\leq X\leq\mu+2\sigma)\approx 0{,}954$
 - $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
 
-Als Faustregel hat sich die sogenannte Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln gelten.
+Als Faustregel hat sich die sogenannte Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln angewendet werden können.
 
 Eine weitere tiefe theoretische Begründung für die Bedeutung der Standardabweichung: Die Binomialverteilung konvergiert für $n\to\infty$ gegen die Normalverteilung (die sogenannte 'Glockenkurve'). Die Normalverteilung hat ihr Maximum beim Erwartungswert $\mu$ und ihre Wendestellen gerade bei $\mu-\sigma$ und $\mu+\sigma$.

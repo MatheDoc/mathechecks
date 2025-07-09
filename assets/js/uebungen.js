@@ -107,12 +107,12 @@ async function erstelleAufgabe(eintrag, index = 0) {
             onclick="shareWhatsApp(this)"
           ></i>
            <i
-            class="fa-solid fa-copy icon copy-icon"
+            class="fas fa-copy icon copy-icon"
             title="Als Text kopieren"
             onclick="kopiereAufgabeAlsText(this)"
           ></i>
           <i
-            class="fa-solid fa-scroll icon skript-icon"
+            class="fa fa-scroll icon skript-icon"
             title="Skriptabschnitt anzeigen"
             onclick="zeigeSkript(this)"
           ></i>`;
@@ -145,7 +145,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
       if (eintrag["Typ"] === "interaktiv") {
         li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort-interaktiv">${aufgabe.antworten[i]}</span>`;
       } else {
-        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye eye-icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
+        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
       }
 
       //li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
@@ -306,7 +306,7 @@ function replaceMultipleChoiceWithDropdown(htmlContent) {
             <select id="answer${questionId}" class="mch" aria-label="Multiple Choice Frage ${questionId}" data-correct-answer="${correctAnswer}">
                 ${optionsHtml}
             </select>
-            <i class="fas fa-paper-plane check-icon" onclick="checkMultipleChoiceAnswer(${questionId})"></i>
+            <i class="fas fa-paper-plane icon" onclick="checkMultipleChoiceAnswer(${questionId})"></i>
             <span id="feedback${questionId}"></span>
             </div>
         `;
