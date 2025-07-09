@@ -104,13 +104,26 @@ input[type="text"]::-webkit-outer-spin-button {
   border-bottom: 1px solid #ccc;
 }
 
-.symbolleiste i, .check-icon{
+/* Basis-Stil für alle Icons */
+ .icon  {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
   color: var(--hauptfarbe-hover);
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  cursor: pointer;
 }
 
-.symbolleiste i:hover, .check-icon:hover{
-  color: var(--hauptfarbe);
+/* Hover-Effekt */
+ .icon:hover {
+  background-color: var(--hintergrund-hell); /* blasser roter Hintergrund */
+  color: var(--hauptfarbe); /* optional: Hauptfarbe beim Hover */
 }
+
 
 .antwort-statisch {
   color: var(--hauptfarbe);
