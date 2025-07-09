@@ -82,11 +82,6 @@ async function erstelleAufgabe(eintrag, index = 0) {
   const symbolContainer = document.createElement("div");
   symbolContainer.classList.add("symbolleiste");
   symbolContainer.innerHTML = `<i
-            class="fas fa-paper-plane icon check-all-icon"
-            title="Alle Fragen abschicken"
-            onclick="checkAllQuestions(this)"
-          ></i>
-          <i
             class="fas fa-eye icon eye-icon"
             title="Lösungen anzeigen"
             onclick="toggleAllAnswers(this)"
@@ -118,8 +113,13 @@ async function erstelleAufgabe(eintrag, index = 0) {
           ></i>`;
   einleitung.appendChild(symbolContainer);
 
-  /* Asistenz für später
-    <i
+  /* Check-all und Asistenz für später
+  <i
+            class="fas fa-paper-plane icon check-all-icon"
+            title="Alle Fragen abschicken"
+            onclick="checkAllQuestions(this)"
+          ></i>  
+  <i
             class="fas fa-user-graduate icon assistenz-icon"
             title="Assistenz anzeigen"
             onclick="zeigeAssistenz(this)"
@@ -237,7 +237,7 @@ function replaceNumericalWithInteractive(htmlContent) {
       ",",
       "."
     )}" data-tolerance="${tolerance.replace(",", ".")}">
-            <i class="fas fa-paper-plane check-icon " title="Frage abschicken" onclick="checkNumericalAnswer(${questionId}, ${correctAnswer.replace(
+            <i class="fas fa-paper-plane icon " title="Frage abschicken" onclick="checkNumericalAnswer(${questionId}, ${correctAnswer.replace(
       ",",
       "."
     )}, ${tolerance.replace(",", ".")})"></i>
