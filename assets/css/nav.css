@@ -110,14 +110,10 @@
   display: flex;
   justify-content: center;
   border: none;
-  /* Rahmen entfernen */
   border-bottom: 2px solid #ccc;
-  /* Nur unten eine Linie */
   margin: 0 auto;
   box-shadow: none;
-  /* Schatten entfernen, wenn kein Rahmen gewünscht */
   border-radius: 0;
-  /* Abgerundete Ecken entfernen */
   font-size: 1rem;
 }
 
@@ -134,13 +130,13 @@
 .nav-materialtyp a.nav-link {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.5rem 1rem;
   transition: background-color 0.1s ease, color 0.1s ease;
-  color: var(--hauptfarbe);
+  color: var(--hauptfarbe-hover);
   /*background-color: var(--hintergrund-hell);*/
 }
 
