@@ -145,7 +145,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
       if (eintrag["Typ"] === "interaktiv") {
         li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort-interaktiv">${aufgabe.antworten[i]}</span>`;
       } else {
-        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
+        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye eye-icon icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
       }
 
       //li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
@@ -237,7 +237,7 @@ function replaceNumericalWithInteractive(htmlContent) {
       ",",
       "."
     )}" data-tolerance="${tolerance.replace(",", ".")}">
-            <i class="fas fa-paper-plane icon " title="Frage abschicken" onclick="checkNumericalAnswer(${questionId}, ${correctAnswer.replace(
+            <i class="fas fa-paper-plane check-icon icon " title="Frage abschicken" onclick="checkNumericalAnswer(${questionId}, ${correctAnswer.replace(
       ",",
       "."
     )}, ${tolerance.replace(",", ".")})"></i>
@@ -306,7 +306,7 @@ function replaceMultipleChoiceWithDropdown(htmlContent) {
             <select id="answer${questionId}" class="mch" aria-label="Multiple Choice Frage ${questionId}" data-correct-answer="${correctAnswer}">
                 ${optionsHtml}
             </select>
-            <i class="fas fa-paper-plane icon" onclick="checkMultipleChoiceAnswer(${questionId})"></i>
+            <i class="fas fa-paper-plane check-icon icon" onclick="checkMultipleChoiceAnswer(${questionId})"></i>
             <span id="feedback${questionId}"></span>
             </div>
         `;
@@ -358,36 +358,6 @@ function renderWithMathJax(data) {
   return span;
 }
 
-function highlightElement(element) {
-  element.classList.add("highlight-border");
-  setTimeout(() => {
-    element.classList.remove("highlight-border");
-  }, 1500);
-}
-
-// für Typ: statisch
-function antwortToggle(iconElement) {
-  const antwortElement = iconElement
-    .closest("li")
-    .querySelector(".antwort-statisch");
-  if (antwortElement) {
-    const sichtbar = antwortElement.style.display !== "none";
-    antwortElement.style.display = sichtbar ? "none" : "block";
-    iconElement.classList.toggle("fa-eye");
-    iconElement.classList.toggle("fa-eye-slash");
-  }
-}
-
-function findeNaechstenH2Ueber(element) {
-  let current = element.previousElementSibling;
-  while (current) {
-    if (current.tagName === "H2") return current;
-    current = current.previousElementSibling;
-  }
-  // Falls kein H2 auf gleicher Ebene, suche höher im DOM (optional)
-  return null;
-}
-
 function scrollZuHash(hash) {
   if (!hash.startsWith("#")) {
     hash = "#" + hash;
@@ -403,20 +373,34 @@ function scrollZuHash(hash) {
 
   let scrollZiel = zielElement;
 
+  const y =
+    scrollZiel.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+
+/*Zzz
+function highlightElement(element) {
+  element.classList.add("highlight-border");
+  setTimeout(() => {
+    element.classList.remove("highlight-border");
+  }, 1500);
+}
+
   // scroll Ziel entweder hash oder nächstes H2-Element
   /*if (window.location.pathname.includes("skript")) {
     const h2 = findeNaechstenH2Ueber(zielElement);
    
     if (h2) scrollZiel = h2;
-  }*/
+  }
 
-  const y =
-    scrollZiel.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+function findeNaechstenH2Ueber(element) {
+  let current = element.previousElementSibling;
+  while (current) {
+    if (current.tagName === "H2") return current;
+    current = current.previousElementSibling;
+  }
 
-  window.scrollTo({ top: y, behavior: "smooth" });
-
-  /*setTimeout(() => {
-    highlightElement(scrollZiel);
-
-  }, 1000);*/
+  return null;
 }
+*/

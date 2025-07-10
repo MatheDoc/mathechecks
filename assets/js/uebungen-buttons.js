@@ -5,13 +5,13 @@ function showAllAnswers(iconElement) {
 
   if (!aufgabenDiv) return;
 
+  // statische Antworten anzeigen
   const icons = aufgabenDiv.querySelectorAll("ol .eye-icon");
-
   icons.forEach((icon) => {
     antwortToggle(icon);
   });
 
-  // Finde alle relevanten Inputs innerhalb dieses DIVs
+  // Input Elemente
   aufgabenDiv
     .querySelectorAll('input[type="text"], select.mch')
     .forEach((input) => {
@@ -26,6 +26,7 @@ function showAllAnswers(iconElement) {
       input.style.display = "none";
     });
 
+  // select2-Elemete
   aufgabenDiv.querySelectorAll("select.mch").forEach((select) => {
     const questionId = select.id.replace("answer", "");
     const correctAnswer = select.getAttribute("data-correct-answer");
@@ -37,11 +38,13 @@ function showAllAnswers(iconElement) {
 
     // Select2-Container ausblenden
     const select2Container = select.nextElementSibling; // Nächstes Geschwisterelement nach select
+
     if (select2Container && select2Container.classList.contains("select2")) {
       select2Container.style.display = "none";
     }
   });
 
+  // check-Icons ausblenden
   const checkIcons = aufgabenDiv.querySelectorAll(".check-icon");
   checkIcons.forEach((icon) => {
     icon.style.display = "none";
@@ -53,12 +56,13 @@ function hideAllAnswers(iconElement) {
   const aufgabenDiv = iconElement.closest(".aufgabe");
   if (!aufgabenDiv) return;
 
+  // statische Antworten ausblenden
   const icons = aufgabenDiv.querySelectorAll("ol .eye-icon");
-
   icons.forEach((icon) => {
     antwortToggle(icon);
   });
 
+  // Input Elemente
   aufgabenDiv.querySelectorAll('input[type="text"]').forEach((input) => {
     const questionId = input.id.replace("answer", "");
     const feedbackElement = document.getElementById(`feedback${questionId}`);
@@ -66,12 +70,12 @@ function hideAllAnswers(iconElement) {
     input.style.display = "inline";
   });
 
+  // select2-Elemente
   aufgabenDiv.querySelectorAll("select.mch").forEach((select) => {
     const questionId = select.id.replace("answer", "");
     const feedbackElement = document.getElementById(`feedback${questionId}`);
     feedbackElement.innerHTML = "";
     $(select).select2("destroy");
-    select.style.display = "inline";
 
     $(select).select2({
       placeholder: "Antwort",
@@ -82,12 +86,25 @@ function hideAllAnswers(iconElement) {
       templateSelection: renderWithMathJax,
     });
 
-    adjustSelect2Width(select);
+    //adjustSelect2Width(select);
   });
 
   aufgabenDiv.querySelectorAll(".check-icon").forEach((icon) => {
     icon.style.display = "inline";
   });
+}
+
+// für Typ: statisch
+function antwortToggle(iconElement) {
+  const antwortElement = iconElement
+    .closest("li")
+    .querySelector(".antwort-statisch");
+  if (antwortElement) {
+    const sichtbar = antwortElement.style.display !== "none";
+    antwortElement.style.display = sichtbar ? "none" : "block";
+    iconElement.classList.toggle("fa-eye");
+    iconElement.classList.toggle("fa-eye-slash");
+  }
 }
 
 // pdf Export
