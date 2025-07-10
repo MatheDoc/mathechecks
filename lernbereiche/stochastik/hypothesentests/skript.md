@@ -188,7 +188,7 @@ Durch eine REchnung lässt sich zeigen, dass $f$ für
 Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden, so benötigen wir
 
 1. die Wahrscheinlichkeiten des zugrunde liegenden Zufallsexperiments (z.B. in Form eines Baumdiagramms) und
-2. eine weitere Information, die jedem Ergebnis eine reelle Zahl zuorndet.
+2. eine weitere Information, die jedem Ergebnis eine reelle Zahl zuordnet.
 
 Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsgröße erstellt werden.
 
