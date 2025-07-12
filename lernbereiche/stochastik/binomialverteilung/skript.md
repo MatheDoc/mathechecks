@@ -495,8 +495,18 @@ frage="Histogramm der kumulierten Wahrscheinlichkeiten"
 antwort="
 
 - Die kumulierten Wahrscheinlichkeiten $P(X\leq k)$ können direkt abgelesen werden.
-- Die Einzelwahrscheinlichkeiten $P(X=k)$ können als Stufenhöhen aufgefasst werden: $P(X=k)=P(X\leq k)- P(X\leq k-1)$.
-- Die Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ entsprechen dann den Höhen mehrerer Stufen: $P(a\leq X\leq b)=P(X\leq b)- P(X\leq a-1)$.
+- Die Einzelwahrscheinlichkeiten $P(X=k)$ können als Stufenhöhen aufgefasst werden:
+
+$$
+P(X=k)=P(X\leq k)- P(X\leq k-1).
+$$
+
+- Die Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ entsprechen dann den Höhen mehrerer Stufen:
+
+$$
+P(a\leq X\leq b)=P(X\leq b)- P(X\leq a-1).
+$$
+
   "
   %}
 
