@@ -140,6 +140,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
       ol.style.listStyleType = "none";
     }
 
+    /*
     aufgabe.fragen.forEach((frage, i) => {
       const li = document.createElement("li");
       if (eintrag["Typ"] === "interaktiv") {
@@ -149,6 +150,26 @@ async function erstelleAufgabe(eintrag, index = 0) {
       }
 
       //li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
+      ol.appendChild(li);
+    });*/
+
+    // Fragen und Antworten gemeinsam verpacken
+    let frageAntwortPaare = aufgabe.fragen.map((frage, i) => ({
+      frage: frage,
+      antwort: aufgabe.antworten[i],
+    }));
+
+    // Paare mischen
+    shuffleArray(frageAntwortPaare);
+
+    // Liste dynamisch erstellen
+    frageAntwortPaare.forEach((paar) => {
+      const li = document.createElement("li");
+      if (eintrag["Typ"] === "interaktiv") {
+        li.innerHTML = `<span class="frage">${paar.frage}</span><br><span class="antwort-interaktiv">${paar.antwort}</span>`;
+      } else {
+        li.innerHTML = `<span class="frage">${paar.frage} <i class="fas fa-eye eye-icon icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${paar.antwort}</span>`;
+      }
       ol.appendChild(li);
     });
 
@@ -319,11 +340,11 @@ function replaceMultipleChoiceWithDropdown(htmlContent) {
   return result.join("");
 }
 
-// Funktion zum Zufällig-Mischen eines Arrays (Fisher-Yates Shuffle)
+// Hilfsfunktion zum Mischen eines Arrays (Fisher-Yates-Algorithmus)
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]]; // Tauschen der Elemente
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
