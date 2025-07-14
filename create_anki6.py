@@ -50,12 +50,18 @@ if lernbereich_filter:
 # Struktur: (gebiet, lernbereich) → Liste von Decks
 lernbereich_decks = {}
 
+#Logo
+logo = '<div style="background-color:#156082; color:white; text-align:center; font-size:2rem; font-weight:bold; padding: 0.5rem; margin-bottom: 1rem;"> <a href="https://www.mathechecks.de/index.html" style="color:white; text-decoration:none;">MatheChecks</a></div>'
+
 for _, zeile in df.iterrows():
     gebiet = zeile['Gebiet']
     lernbereich = zeile['Lernbereich']
     nummer = zeile['Nummer']
+    print(f"Verarbeite {gebiet} - {lernbereich} - {nummer}")
     sammlung = zeile['Sammlung']
-
+    lernbereichAnzeigename = zeile['LernbereichAnzeigename']
+    head = logo + f'<h1>{lernbereichAnzeigename} {nummer}<a href="https://www.mathechecks.de/lernbereiche/{gebiet}/{lernbereich}/skript.html#check-{nummer}" style="text-decoration:none; margin-left:10px; font-size:0.8em;vertical-align:middle;" title="Info zu Check {nummer}"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background-color:#156082;color:white;text-align:center;line-height:22px;font-weight:bold;font-family:sans-serif;font-size:14px;top:-5px;">i</span></a></h1>'
+    #head = logo + f'<h1>{lernbereichAnzeigename} {nummer} <a href="https://www.mathechecks.de/lernbereiche/{gebiet}/{lernbereich}/skript.html#check-{nummer}" style="text-decoration:none;">ℹ️</a> </h1>'
     json_pfad = os.path.join(json_ordner, sammlung + '.json')
     daten = lade_json(json_pfad)
 
@@ -75,15 +81,30 @@ for _, zeile in df.iterrows():
         for i in range(ITEM_COUNT):
             templates.append({
                 'name': f'Karte_Item{i+1}',
-                'qfmt': f'{{{{Item{i+1}_Frage}}}}',
-                'afmt': f'{{{{Item{i+1}_Frage}}}}<hr id="answer">{{{{Item{i+1}_Antwort}}}}',
+                'qfmt': f'{head}{{{{Item{i+1}_Frage}}}}',
+                'afmt': f'{head}{{{{Item{i+1}_Frage}}}}<hr id="answer">{{{{Item{i+1}_Antwort}}}}',
             })
 
         model = genanki.Model(
             model_id,
             modelname,
             fields=[{'name': f} for f in fields],
-            templates=templates
+            templates=templates,
+            css="""
+                .card {
+                    font-family: 'Arial';
+                    font-size: 18px;
+               }
+               h1 {
+                color: #156082;
+                padding: 0.5rem 0.5rem;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                text-align: center;
+                font-size: 1.25rem;
+                }
+
+            """
         )
 
         note_fields = []
@@ -111,7 +132,7 @@ for _, zeile in df.iterrows():
 
     # Check-Deck erstellen
     deck_id = 2000 + int(nummer)
-    deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{nummer}'
+    deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
     deck = genanki.Deck(deck_id, deck_name)
 
     for model, notes in model_note_map.values():
