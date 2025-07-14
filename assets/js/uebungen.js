@@ -159,8 +159,10 @@ async function erstelleAufgabe(eintrag, index = 0) {
       antwort: aufgabe.antworten[i],
     }));
 
-    // Paare mischen
-    shuffleArray(frageAntwortPaare);
+    // Paare mischen, falls Anktityp = einzeln
+    if (eintrag["Ankityp"] === "einzeln") {
+      shuffleArray(frageAntwortPaare);
+    }
 
     // Liste dynamisch erstellen
     frageAntwortPaare.forEach((paar) => {
