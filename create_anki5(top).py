@@ -13,17 +13,49 @@ anki_ordner = 'anki'
 def parse_mixed_answer_text(text):
     if not isinstance(text, str):
         return text
-    def repl_numerical(match):
-        return match.group(1).strip()
-    text = re.sub(r'\{[^{}]*?:NUMERICAL:=([\d\,\.\-]+)[^{}]*?\}', repl_numerical, text)
-    def repl_mc(match):
-        mc_body = match.group(1)
-        correct_match = re.search(r'=(.*?)(~|$)', mc_body)
-        if correct_match:
-            return correct_match.group(1).strip()
-        return match.group(0)
-    text = re.sub(r'\{[^{}]*?:MC:(.*?)\}', repl_mc, text)
-    return text
+
+    result = []
+    index = 0
+    while index < len(text):
+        start = text.find('{', index)
+        if start == -1:
+            result.append(text[index:])
+            break
+
+        result.append(text[index:start])
+
+        # Prüfen, ob es ein MC-Block ist
+        mc_head = text[start:start+10]
+        if ":MC:" not in mc_head:
+            result.append("{")
+            index = start + 1
+            continue
+
+        # Klammern balancieren
+        brace_level = 1
+        end = start + 1
+        while end < len(text) and brace_level > 0:
+            if text[end] == '{':
+                brace_level += 1
+            elif text[end] == '}':
+                brace_level -= 1
+            end += 1
+
+        full_block = text[start:end]
+        # MC-Inhalt extrahieren (nach dem ":MC:")
+        inner_start = full_block.find(":MC:") + 4
+        inner_content = full_block[inner_start:-1]  # ohne die schließende }
+
+        # Optionen anhand unescaped ~ trennen
+        import re
+        options = re.split(r'(?<!\\)~', inner_content)
+        correct = next((opt[1:].strip() for opt in options if opt.strip().startswith('=')), '')
+
+        result.append(correct)
+        index = end
+
+    return ''.join(result)
+
 
 # JSON laden
 def lade_json(pfad):
@@ -64,8 +96,8 @@ a span {
 """
 
 # Lernbereichsfilter
-lernbereich_filter = input("Gib den gewünschten Lernbereich ein (leer für alle): ").strip()
-
+#lernbereich_filter = input("Gib den gewünschten Lernbereich ein (leer für alle): ").strip()
+lernbereich_filter = ""
 # Excel einlesen und filtern
 df = pd.read_excel(excel_datei, dtype=str)
 
