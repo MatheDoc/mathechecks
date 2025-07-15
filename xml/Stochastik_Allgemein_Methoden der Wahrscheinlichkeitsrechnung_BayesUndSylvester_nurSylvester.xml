@@ -17,7 +17,7 @@
     <text>01 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Großkunde bestellt Halbleiter.<br>B: Halbleiter werden in Premium-Qualität bestellt.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Großkunde Halbleiter bestellt, 53% beträgt, dass die Wahrscheinlichkeit, dass eine Bestellung von einem Großkunden stammt und Premium-Qualität erfordert, 29,68% beträgt und dass die Wahrscheinlichkeit, dass ein Großkunde Halbleiter bestellt oder Halbleiter in Premium-Qualität bestellt werden, 79,32% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,47:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass Halbleiter in Premium-Qualität bestellt werden.<br>{1:NUMERICAL:=0,56:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Großkunde bestellt Halbleiter.<br>B: Halbleiter werden in Premium-Qualität bestellt.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,07 \), dass \( P(B) \)\( = \)\( 0,8539 \) und dass \( P(A\cap B) \)\( = \)\( 0,0448 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass Halbleiter in Basis-Qualität bestellt werden.<br>{1:NUMERICAL:=0,1461:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,8791:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -26,7 +26,7 @@
     <text>02 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten einer pandemiebedingten Maskenpflicht in einem ICE von Hamburg nach München. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Passagier hat einen gültigen Fahrschein.<br>B: Ein Passagier trägt eine Maske.</p> <p>Es ist bekannt, dass \( P(B) \)\( = \)\( 0,2216 \), dass \( P(A\cap B) \)\( = \)\( 0,006 \) und dass \( P(A\cup B) \)\( = \)\( 0,2356 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Passagier keine Maske trägt.<br>{1:NUMERICAL:=0,7784:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Passagier einen gültigen Fahrschein hat.<br>{1:NUMERICAL:=0,02:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten einer pandemiebedingten Maskenpflicht in einem ICE von Hamburg nach München. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Passagier hat einen gültigen Fahrschein.<br>B: Ein Passagier trägt eine Maske.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,86 \), dass \( P(B) \)\( = \)\( 0,59 \) und dass die Wahrscheinlichkeit, dass ein Passagier einen gültigen Fahrschein hat oder eine Maske trägt, 94,26% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Passagier keine Maske trägt.<br>{1:NUMERICAL:=0,41:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,5074:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -35,7 +35,7 @@
     <text>03 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde bestellt eine Schokolade.<br>B: Ein Kunde bestellt ein heißes Getränk.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,52 \), dass die Wahrscheinlichkeit, dass ein Kunde ein heißes Getränk bestellt, 35% beträgt und dass die Wahrscheinlichkeit, dass ein Kunde eine Schokolade oder ein heißes Getränk bestellt, 68,8% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Kunde ein kaltes Getränk bestellt.<br>{1:NUMERICAL:=0,65:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Kunde eine heiße Schokolade bestellt.<br>{1:NUMERICAL:=0,182:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde bestellt eine Schokolade.<br>B: Ein Kunde bestellt ein heißes Getränk.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,79 \), dass die Wahrscheinlichkeit, dass ein Kunde eine heiße Schokolade bestellt, 55,3% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,9202 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,21:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Kunde ein heißes Getränk bestellt.<br>{1:NUMERICAL:=0,6832:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -44,7 +44,7 @@
     <text>04 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Es wird eine Sechs geworfen.<br>B: Es wird ein Zauberspruch aufgesagt.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass eine Sechs geworfen wird, 66% beträgt, dass \( P(B) \)\( = \)\( 0,57 \) und dass \( P(A\cap B) \)\( = \)\( 0,3762 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,34:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine Sechs geworfen oder ein Zauberspruch aufgesagt wird.<br>{1:NUMERICAL:=0,8538:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Es wird eine Sechs geworfen.<br>B: Es wird ein Zauberspruch aufgesagt.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Zauberspruch aufgesagt wird, 69% beträgt, dass \( P(A\cap B) \)\( = \)\( 0,4968 \) und dass \( P(A\cup B) \)\( = \)\( 0,9132 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass kein Zauberspruch aufgesagt wird.<br>{1:NUMERICAL:=0,31:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine Sechs geworfen wird.<br>{1:NUMERICAL:=0,72:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -53,7 +53,7 @@
     <text>05 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Bewerber ist Mathematiker.<br>B: Ein Bewerber hat einen Bachelor.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Bewerber Mathematiker ist, 33% beträgt, dass \( P(B) \)\( = \)\( 0,8138 \) und dass \( P(A\cup B) \)\( = \)\( 0,9062 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Bewerber einen Master hat.<br>{1:NUMERICAL:=0,1862:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,2376:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Bewerber ist Mathematiker.<br>B: Ein Bewerber hat einen Bachelor.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,36 \), dass die Wahrscheinlichkeit, dass ein Bewerber einen Bachelor hat, 1% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,3664 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Bewerber einen Master hat.<br>{1:NUMERICAL:=0,99:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Bewerber einen Bachelor in Mathematik hat.<br>{1:NUMERICAL:=0,0036:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -62,7 +62,7 @@
     <text>06 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Praktische Führerscheinprüfung: In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Der Prüfling besteht.<br>B: Der Prüfer ist ausgeschlafen.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,61 \), dass \( P(B) \)\( = \)\( 0,5167 \) und dass \( P(A\cup B) \)\( = \)\( 0,9376 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,4833:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,1891:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Praktische Führerscheinprüfung: In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Der Prüfling besteht.<br>B: Der Prüfer ist ausgeschlafen.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,15 \), dass \( P(B) \)\( = \)\( 0,43 \) und dass die Wahrscheinlichkeit, dass ein Prüfling besteht und ein Prüfer ausgeschlafen ist, 6,45% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,85:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,5155:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -71,7 +71,7 @@
     <text>07 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Eine Hantel ist aus Metall.<br>B: Eine Hantel hat einen drehbaren Griff.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,33 \), dass die Wahrscheinlichkeit, dass eine Hantel einen drehbaren Griff hat, 79,42% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,9196 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass eine Hantel aus Kunststoff ist.<br>{1:NUMERICAL:=0,67:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,2046:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Eine Hantel ist aus Metall.<br>B: Eine Hantel hat einen drehbaren Griff.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,18 \), dass die Wahrscheinlichkeit, dass eine Hantel einen drehbaren Griff hat, 38,82% beträgt und dass die Wahrscheinlichkeit, dass eine Hantel aus Metall ist oder einen drehbaren Griff hat, 49,98% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,6118:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine Hantel aus Metall ist und einen drehbaren Griff hat.<br>{1:NUMERICAL:=0,0684:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -80,7 +80,7 @@
     <text>08 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Sie gewinnt ein Spiel.<br>B: Sie dopt in einem Spiel.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass sie in einem Spiel dopt, 98% beträgt, dass \( P(A\cap B) \)\( = \)\( 0,0686 \) und dass \( P(A\cup B) \)\( = \)\( 0,9814 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass sie in einem Spiel nicht dopt.<br>{1:NUMERICAL:=0,02:0,0001}</li></ol><ol><li value="2">\( P(A) \).<br>{1:NUMERICAL:=0,07:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Sie gewinnt ein Spiel.<br>B: Sie dopt in einem Spiel.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,41 \), dass die Wahrscheinlichkeit, dass sie in einem Spiel dopt, 68,89% beträgt und dass die Wahrscheinlichkeit, dass sie ein Spiel gewinnt und dopt, 11,07% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,3111:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,9882:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -89,7 +89,7 @@
     <text>09 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Mitarbeiter arbeitet im Home-Office.<br>B: Ein Mitarbeiter arbeitet in Vollzeit.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Mitarbeiter vollzeit arbeitet, 16% beträgt, dass die Wahrscheinlichkeit, dass ein Mitarbeiter vollzeit und im Home-Office arbeitet, 10,24% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,6976 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,84:0,0001}</li></ol><ol><li value="2">\( P(A) \).<br>{1:NUMERICAL:=0,64:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Mitarbeiter arbeitet im Home-Office.<br>B: Ein Mitarbeiter arbeitet in Vollzeit.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Mitarbeiter im Home-Office arbeitet, 79% beträgt, dass \( P(B) \)\( = \)\( 0,48 \) und dass \( P(A\cap B) \)\( = \)\( 0,3792 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,21:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,8908:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -98,7 +98,7 @@
     <text>10 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Die Geschäftsleitung des Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Restaurant hat einen Biergarten.<br>B: Ein Restaurant hat eine Spielecke.</p> <p>Es ist bekannt, dass \( P(B) \)\( = \)\( 0,5096 \), dass \( P(A\cap B) \)\( = \)\( 0,063 \) und dass die Wahrscheinlichkeit, dass ein Restaurant über einen Biergarten oder eine Spielecke verfügt, 86,66% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,4904:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Restaurant über einen Biergarten verfügt.<br>{1:NUMERICAL:=0,42:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Die Geschäftsleitung des Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Restaurant hat einen Biergarten.<br>B: Ein Restaurant hat eine Spielecke.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,82 \), dass die Wahrscheinlichkeit, dass ein Restaurant über einen Biergarten und eine Spielecke verfügt, 35,26% beträgt und dass die Wahrscheinlichkeit, dass ein Restaurant über einen Biergarten oder eine Spielecke verfügt, 89,74% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,18:0,0001}</li></ol><ol><li value="2">\( P(B) \).<br>{1:NUMERICAL:=0,43:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -107,7 +107,7 @@
     <text>11 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde kauft nachhaltige Holzkohle.<br>B: Ein Kunde kauft ein Originalprodukt.</p> <p>Es ist bekannt, dass \( P(B) \)\( = \)\( 0,42 \), dass die Wahrscheinlichkeit, dass ein Kunde ein nachhaltiges Originalprodukt kauft, 15,96% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,6404 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,58:0,0001}</li></ol><ol><li value="2">\( P(A) \).<br>{1:NUMERICAL:=0,38:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde kauft nachhaltige Holzkohle.<br>B: Ein Kunde kauft ein Originalprodukt.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Kunde nachhaltige Holzkohle kauft, 27% beträgt, dass \( P(A\cap B) \)\( = \)\( 0,243 \) und dass \( P(A\cup B) \)\( = \)\( 0,9416 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,73:0,0001}</li></ol><ol><li value="2">\( P(B) \).<br>{1:NUMERICAL:=0,9146:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -116,7 +116,7 @@
     <text>12 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Weiße Farbe ist im Sonderangebot.<br>B: Matte Farbe ist im Sonderangebot.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass weiße Farbe im Sonderangebot ist, 19% beträgt, dass \( P(A\cap B) \)\( = \)\( 0,1311 \) und dass \( P(A\cup B) \)\( = \)\( 0,9352 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,81:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass matte Farbe im Sonderangebot ist.<br>{1:NUMERICAL:=0,8763:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Weiße Farbe ist im Sonderangebot.<br>B: Matte Farbe ist im Sonderangebot.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,83 \), dass \( P(B) \)\( = \)\( 0,2607 \) und dass \( P(A\cap B) \)\( = \)\( 0,2573 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,7393:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass weiße oder matte Farbe im Sonderangebot ist.<br>{1:NUMERICAL:=0,8334:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -125,7 +125,7 @@
     <text>13 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Opfer ist minderjährig.<br>B: Ein Opfer alarmiert die Polizei.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Opfer minderjährig ist, 70% beträgt, dass die Wahrscheinlichkeit, dass ein Opfer minderjährig ist und die Polizei alarmiert, 28% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,82 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Opfer erwachsen ist.<br>{1:NUMERICAL:=0,3:0,0001}</li></ol><ol><li value="2">\( P(B) \).<br>{1:NUMERICAL:=0,4:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Opfer ist minderjährig.<br>B: Ein Opfer alarmiert die Polizei.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,49 \), dass die Wahrscheinlichkeit, dass ein Opfer die Polizei alarmiert, 70,44% beträgt und dass \( P(A\cap B) \)\( = \)\( 0,2352 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Opfer nicht die Polizei alarmiert.<br>{1:NUMERICAL:=0,2956:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Opfer minderjährig ist oder die Polizei alarmiert.<br>{1:NUMERICAL:=0,9592:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -134,7 +134,7 @@
     <text>14 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Glas hat einen Riss.<br>B: Ein Glas hat einen Blaseneinschluss.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Glas einen Riss hat, 31% beträgt, dass \( P(B) \)\( = \)\( 0,41 \) und dass \( P(A\cap B) \)\( = \)\( 0,1271 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Glas keinen Blaseneinschluss hat.<br>{1:NUMERICAL:=0,59:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,5929:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Glas hat einen Riss.<br>B: Ein Glas hat einen Blaseneinschluss.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,72 \), dass \( P(A\cap B) \)\( = \)\( 0,2664 \) und dass \( P(A\cup B) \)\( = \)\( 0,8236 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Glas keinen Riss hat.<br>{1:NUMERICAL:=0,28:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Glas einen Blaseneinschluss hat.<br>{1:NUMERICAL:=0,37:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -143,7 +143,7 @@
     <text>15 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein vorgeschlagener Partner ist attraktiv.<br>B: Ein vorgeschlagener Partner raucht.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,38 \), dass \( P(B) \)\( = \)\( 0,4788 \) und dass \( P(A\cap B) \)\( = \)\( 0,2432 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein vorgeschlagener Partner unattraktiv ist.<br>{1:NUMERICAL:=0,62:0,0001}</li></ol><ol><li value="2">\( P(A\cup B) \).<br>{1:NUMERICAL:=0,6156:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein vorgeschlagener Partner ist attraktiv.<br>B: Ein vorgeschlagener Partner raucht.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,34 \), dass \( P(B) \)\( = \)\( 0,3466 \) und dass die Wahrscheinlichkeit, dass ein vorgeschlagener Partner ein attraktiver Raucher ist, 11,56% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,6534:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein vorgeschlagener Partner attraktiv ist oder raucht.<br>{1:NUMERICAL:=0,571:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -152,7 +152,7 @@
     <text>16 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Smartwatches mit Fehlern werden aussortiert. Allerdings kommt es auch vor, dass einige fehlerfreie Smartwatches aussortiert werden und dass einige fehlerbehaftete Smartwatches nicht aussortiert werden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Eine Smartwatch ist fehlerfrei.<br>B: Eine Smartwatch wird aussortiert.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,89 \), dass die Wahrscheinlichkeit, dass eine Smartwatch aussortiert wird, 48,72% beträgt und dass die Wahrscheinlichkeit, dass eine Smartwatch fehlerfrei ist und aussortiert wird, 48,06% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass eine Smartwatch nicht aussortiert wird.<br>{1:NUMERICAL:=0,5128:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine Smartwatch fehlerfrei ist oder aussortiert wird.<br>{1:NUMERICAL:=0,8966:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Smartwatches mit Fehlern werden aussortiert. Allerdings kommt es auch vor, dass einige fehlerfreie Smartwatches aussortiert werden und dass einige fehlerbehaftete Smartwatches nicht aussortiert werden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Eine Smartwatch ist fehlerfrei.<br>B: Eine Smartwatch wird aussortiert.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,35 \), dass die Wahrscheinlichkeit, dass eine Smartwatch aussortiert wird, 23,55% beträgt und dass \( P(A\cap B) \)\( = \)\( 0,112 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass eine Smartwatch fehlerbehaftet ist.<br>{1:NUMERICAL:=0,65:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine Smartwatch fehlerfrei ist oder aussortiert wird.<br>{1:NUMERICAL:=0,4735:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -161,7 +161,7 @@
     <text>17 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob die Pommes mit Ketchup oder Mayonnaise bestellt wird. Es gibt nur große und kleine Pommes. Zudem wird jede Pommes mit Ketchup oder Mayonnaise bestellt. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Es wird eine große Pommes bestellt.<br>B: Es wird eine Pommes mit Ketchup bestellt.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass eine große Pommes bestellt wird, 34% beträgt, dass \( P(B) \)\( = \)\( 0,26 \) und dass die Wahrscheinlichkeit, dass eine große Pommes mit Ketchup bestellt wird, 8,84% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass eine kleine Pommes bestellt wird.<br>{1:NUMERICAL:=0,66:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass eine große Pommes oder eine Pommes mit Ketchup bestellt wird.<br>{1:NUMERICAL:=0,5116:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob die Pommes mit Ketchup oder Mayonnaise bestellt wird. Es gibt nur große und kleine Pommes. Zudem wird jede Pommes mit Ketchup oder Mayonnaise bestellt. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Es wird eine große Pommes bestellt.<br>B: Es wird eine Pommes mit Ketchup bestellt.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,94 \), dass \( P(B) \)\( = \)\( 0,0514 \) und dass \( P(A\cup B) \)\( = \)\( 0,982 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{A}) \).<br>{1:NUMERICAL:=0,06:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,0094:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -170,7 +170,7 @@
     <text>18 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Unternehmen verkauft neue und gebrauchte Beamer. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde kauft Neuware.<br>B: Ein Kunde reklamiert das Produkt.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,4 \), dass die Wahrscheinlichkeit, dass ein Kunde ein Produkt reklamiert, 24,2% beträgt und dass \( P(A\cap B) \)\( = \)\( 0,2 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,758:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Kunde Neuware kauft oder die Ware reklamiert.<br>{1:NUMERICAL:=0,442:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Unternehmen verkauft neue und gebrauchte Beamer. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Kunde kauft Neuware.<br>B: Ein Kunde reklamiert das Produkt.</p> <p>Es ist bekannt, dass \( P(B) \)\( = \)\( 0,02 \), dass \( P(A\cap B) \)\( = \)\( 0,0142 \) und dass \( P(A\cup B) \)\( = \)\( 0,7158 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,98:0,0001}</li></ol><ol><li value="2">\( P(A) \).<br>{1:NUMERICAL:=0,71:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -179,7 +179,7 @@
     <text>19 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte von ihren Followern wissen, wie sie die beiden Lippenstifte finden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Einem Follower gefällt Ambition.<br>B: Einem Follower gefällt Bonny.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass einem Follower Bonny gefällt, 59% beträgt, dass die Wahrscheinlichkeit, dass einem Follower beide Lippenstifte gefallen, 33,04% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,8196 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">\( P(\overline{B}) \).<br>{1:NUMERICAL:=0,41:0,0001}</li></ol><ol><li value="2">\( P(A) \).<br>{1:NUMERICAL:=0,56:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte von ihren Followern wissen, wie sie die beiden Lippenstifte finden. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Einem Follower gefällt Ambition.<br>B: Einem Follower gefällt Bonny.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,01 \), dass die Wahrscheinlichkeit, dass einem Follower Bonny gefällt, 36% beträgt und dass \( P(A\cup B) \)\( = \)\( 0,3664 \).</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass einem Follower Ambition nicht gefällt.<br>{1:NUMERICAL:=0,99:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass einem Follower beide Lippenstifte gefallen.<br>{1:NUMERICAL:=0,0036:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
@@ -188,7 +188,7 @@
     <text>20 </text>
   </name>
   <questiontext format="html">
-    <text><![CDATA[<p>Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Produkt ist biologisch.<br>B: Ein Produkt ist regional.</p> <p>Es ist bekannt, dass die Wahrscheinlichkeit, dass ein Produkt biologisch ist, 3% beträgt, dass die Wahrscheinlichkeit, dass ein Produkt regional ist, 92% beträgt und dass die Wahrscheinlichkeit, dass ein Produkt biologisch oder regional ist, 92,24% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Produkt nicht aus der Region stammt.<br>{1:NUMERICAL:=0,08:0,0001}</li></ol><ol><li value="2">\( P(A\cap B) \).<br>{1:NUMERICAL:=0,0276:0,0001}</li></ol>]]></text>
+    <text><![CDATA[<p>Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind. In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p> <p>A: Ein Produkt ist biologisch.<br>B: Ein Produkt ist regional.</p> <p>Es ist bekannt, dass \( P(A) \)\( = \)\( 0,19 \), dass die Wahrscheinlichkeit, dass ein Produkt regional ist, 44% beträgt und dass die Wahrscheinlichkeit, dass ein Produkt biologisch und regional ist, 8,36% beträgt.</p> <p>Berechnen Sie (auf 4 NKS gerundet)</p><ol><li value="1">die Wahrscheinlichkeit, dass ein Produkt nicht aus der Region stammt.<br>{1:NUMERICAL:=0,56:0,0001}</li></ol><ol><li value="2">die Wahrscheinlichkeit, dass ein Produkt biologisch oder regional ist.<br>{1:NUMERICAL:=0,5464:0,0001}</li></ol>]]></text>
   </questiontext>
 </question>
 
