@@ -57,7 +57,6 @@ for _, zeile in df.iterrows():
     gebiet = zeile['Gebiet']
     lernbereich = zeile['Lernbereich']
     nummer = zeile['Nummer']
-    print(f"Verarbeite {gebiet} - {lernbereich} - {nummer}")
     sammlung = zeile['Sammlung']
     lernbereichAnzeigename = zeile['LernbereichAnzeigename']
     head = logo + f'<h1>{lernbereichAnzeigename} {nummer}<a href="https://www.mathechecks.de/lernbereiche/{gebiet}/{lernbereich}/skript.html#check-{nummer}" style="text-decoration:none; margin-left:10px; font-size:0.8em;vertical-align:middle;" title="Info zu Check {nummer}"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background-color:#156082;color:white;text-align:center;line-height:22px;font-weight:bold;font-family:sans-serif;font-size:14px;top:-5px;">i</span></a></h1>'
