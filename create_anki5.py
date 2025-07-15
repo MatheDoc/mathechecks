@@ -9,196 +9,234 @@ excel_datei = 'kompetenzliste.xlsx'
 json_ordner = 'json'
 anki_ordner = 'anki'
 
-
+# Antwortparser für gemischte MC/Numerisch
 def parse_mixed_answer_text(text):
-    """
-    Ersetzt alle Moodle-Antwort-Formate im Text durch die jeweils korrekte Lösung.
-    Unterstützt NUMERICAL und MC gemischt im selben Text.
-    """
-
     if not isinstance(text, str):
         return text
-
-    # Numerische Werte ersetzen
     def repl_numerical(match):
         return match.group(1).strip()
-
     text = re.sub(r'\{[^{}]*?:NUMERICAL:=([\d\,\.\-]+)[^{}]*?\}', repl_numerical, text)
-
-    # Multiple-Choice-Werte ersetzen
     def repl_mc(match):
         mc_body = match.group(1)
         correct_match = re.search(r'=(.*?)(~|$)', mc_body)
         if correct_match:
             return correct_match.group(1).strip()
-        return match.group(0)  # falls kein = gefunden, Originaltext behalten
-
+        return match.group(0)
     text = re.sub(r'\{[^{}]*?:MC:(.*?)\}', repl_mc, text)
-
     return text
 
-
-# Konstante Anzahl Items in jeder JSON
-ITEM_COUNT = 20
-
-# Hilfsfunktion: Lade JSON-Datei mit korrektem Encoding
+# JSON laden
 def lade_json(pfad):
     with open(pfad, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
-# Lade Excel-Tabelle mit utf-8-sig
+css_template = """
+.card {
+    font-family: 'Arial';
+    font-size: 18px;
+}
+h1 {
+    color: #156082;
+    padding: 0.5rem 0.5rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 1.25rem;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid #444;
+    padding: 6px 8px;
+    text-align: center;
+}
+ol {
+    padding-left: 1.2em;
+}
+li {
+    margin-bottom: 0.5em;
+}
+a span {
+    cursor: pointer;
+}
+"""
+
+# Lernbereichsfilter
+lernbereich_filter = input("Gib den gewünschten Lernbereich ein (leer für alle): ").strip()
+
+# Excel einlesen und filtern
 df = pd.read_excel(excel_datei, dtype=str)
 
-# Filterung: interaktiv, sowohl einzeln als auch gruppiert
-df = df[df['Typ'] == 'interaktiv']
+# 
 
+# Nach Lernbereich filtern
 if lernbereich_filter:
     df = df[df['Lernbereich'] == lernbereich_filter]
-
-# Struktur für Export
-lernbereich_decks = {}
 
 # Logo
 logo = '<div style="background-color:#156082; color:white; text-align:center; font-size:2rem; font-weight:bold; padding: 0.5rem; margin-bottom: 1rem;"> <a href="https://www.mathechecks.de/index.html" style="color:white; text-decoration:none;">MatheChecks</a></div>'
 
+# Gruppierung nach Lernbereich für Export
+lernbereich_decks = {}
+
 for _, zeile in df.iterrows():
-    ankityp = zeile['Ankityp']
+    # Liste der Pflichtfelder
+    pflichtfelder = ['Gebiet', 'Lernbereich', 'Nummer', 'Sammlung', 'Typ', 'Ankityp', 'LernbereichAnzeigename']
+    
+    # Prüfen, ob eines der Felder leer oder nur aus Leerzeichen besteht
+    if any(pd.isna(zeile[f]) or str(zeile[f]).strip() == '' for f in pflichtfelder):
+        print(f"⚠️  Zeile übersprungen wegen fehlender Pflichtangaben: {zeile.to_dict()}")
+        continue
+
     gebiet = zeile['Gebiet']
     lernbereich = zeile['Lernbereich']
     nummer = zeile['Nummer']
     sammlung = zeile['Sammlung']
+    typ = zeile['Typ']
+    ankityp = zeile['Ankityp']
     lernbereichAnzeigename = zeile['LernbereichAnzeigename']
+
     head = logo + f'<h1>{lernbereichAnzeigename} {nummer}<a href="https://www.mathechecks.de/lernbereiche/{gebiet}/{lernbereich}/skript.html#check-{nummer}" style="text-decoration:none; margin-left:10px; font-size:0.8em;vertical-align:middle;" title="Info zu Check {nummer}"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background-color:#156082;color:white;text-align:center;line-height:22px;font-weight:bold;font-family:sans-serif;font-size:14px;top:-5px;">i</span></a></h1>'
 
     json_pfad = os.path.join(json_ordner, sammlung + '.json')
     daten = lade_json(json_pfad)
+    item_count = len(daten)
 
-    if len(daten) != ITEM_COUNT:
-        print(f"⚠️  {sammlung} hat {len(daten)} Items (nicht 20). Überspringe.")
+    if item_count < 1:
+        print(f"⚠️  {sammlung} enthält keine Items. Überspringe.")
         continue
 
-    if ankityp == 'einzeln':
-        # Gleicher Code wie bisher (siehe oben), ggf. in eine Funktion auslagern
-        teilfragen_anzahl = len(daten[0]['fragen'])
-        model_note_map = {}
+    deck_id = 2000 + int(nummer)
+    deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
+    deck = genanki.Deck(deck_id, deck_name)
 
+    kombination = f"{typ}_{ankityp}"
+
+    if kombination == 'interaktiv_einzeln':
+        teilfragen_anzahl = len(daten[0]['fragen'])
         for teilfrage_index in range(teilfragen_anzahl):
             modelname = f'Interaktiv_Einzeln_Teilfrage_{teilfrage_index+1}'
             model_id = 1000 + teilfrage_index
-            fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
-
+            fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
             templates = []
-            for i in range(ITEM_COUNT):
+            for i in range(item_count):
                 templates.append({
                     'name': f'Karte_Item{i+1}',
                     'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
                     'afmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}<hr id="answer">{{' + f'Item{i+1}_Antwort' + '}}',
                 })
-
-            model = genanki.Model(
-                model_id,
-                modelname,
-                fields=[{'name': f} for f in fields],
-                templates=templates,
-                css="..."  # CSS wie bisher
-            )
-
+            model = genanki.Model(model_id, modelname, fields=[{'name': f} for f in fields], templates=templates, css=css_template)
             note_fields = [head]
-
             for item in daten:
                 einleitung = item['einleitung'].strip()
                 frage = item['fragen'][teilfrage_index].strip()
                 frage_parsed = parse_mixed_answer_text(frage)
-                frage_feld = f'{einleitung}<br><br>{frage_parsed}'
-                note_fields.append(frage_feld)
-
+                note_fields.append(f'{einleitung}<br><br>{frage_parsed}')
             for item in daten:
                 antwort = item['antworten'][teilfrage_index].strip()
                 antwort_parsed = parse_mixed_answer_text(antwort)
                 note_fields.append(antwort_parsed)
-
-            note = genanki.Note(
-                model=model,
-                fields=note_fields,
-                guid=genanki.guid_for(sammlung + f'_Teilfrage_{teilfrage_index+1}')
-            )
-
-            if modelname not in model_note_map:
-                model_note_map[modelname] = (model, [])
-            model_note_map[modelname][1].append(note)
-
-        deck_id = 2000 + int(nummer)
-        deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
-        deck = genanki.Deck(deck_id, deck_name)
-
-        for model, notes in model_note_map.values():
-            for note in notes:
-                deck.add_note(note)
-
-        key = (gebiet, lernbereich)
-        if key not in lernbereich_decks:
-            lernbereich_decks[key] = []
-
-        lernbereich_decks[key].append(deck)
-
-    elif ankityp == 'gruppiert':
-        # Neue Logik: eine Note mit 20 Karten, jede Karte = 1 Item mit allen Teilfragen
-        model_id = 3000 + int(nummer)
-        modelname = f'Interaktiv_Gruppiert_Check_{nummer}'
-
-        fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
-
+            note = genanki.Note(model=model, fields=note_fields, guid=genanki.guid_for(sammlung + f'_Teilfrage_{teilfrage_index+1}'))
+            deck.add_note(note)
+        
+    elif kombination == 'interaktiv_gruppiert':
+        model_id = 3000  # Einheitlich für alle Gruppiert-Notizen
+        modelname = 'Interaktiv_Gruppiert'
+    
+        fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
         templates = []
-        for i in range(ITEM_COUNT):
+        for i in range(item_count):
             templates.append({
                 'name': f'Karte_Item{i+1}',
                 'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
                 'afmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}<hr id="answer">{{' + f'Item{i+1}_Antwort' + '}}',
             })
+        model = genanki.Model(model_id, modelname, fields=[{'name': f} for f in fields], templates=templates, css=css_template)
+        note_fields = [head]
+        for item in daten:
+            einleitung = item['einleitung'].strip()
+            fragen = item['fragen']
+            fragen_parsed = [parse_mixed_answer_text(f.strip()) for f in fragen]
+            frage_block = einleitung + '<br><br><ol>' + ''.join(f'<li>{f}</li>' for f in fragen_parsed) + '</ol>'
+            note_fields.append(frage_block)
+        for item in daten:
+            antworten = item['antworten']
+            antworten_parsed = [parse_mixed_answer_text(a.strip()) for a in antworten]
+            antwort_block = '<ol>' + ''.join(f'<li>{a}</li>' for a in antworten_parsed) + '</ol>'
+            note_fields.append(antwort_block)
+        note = genanki.Note(model=model, fields=note_fields, guid=genanki.guid_for(sammlung + '_gruppiert'))
+        deck.add_note(note)
 
+    elif kombination == 'statisch_einzeln':
+        model_id = 4000
+        modelname = 'Statisch_Einzeln'
         model = genanki.Model(
             model_id,
             modelname,
-            fields=[{'name': f} for f in fields],
-            templates=templates,
-            css="..."  # Ggf. CSS übernehmen oder zentral definieren
+            fields=[{'name': 'Head'}, {'name': 'Frage'}, {'name': 'Antwort'}],
+            templates=[{
+                'name': 'Karte',
+                'qfmt': '{{Head}}<br>{{Frage}}',
+                'afmt': '{{Head}}<br>{{Frage}}<hr id="answer">{{Antwort}}',
+            }],
+            css=css_template
         )
-
-        note_fields = [head]
-
-        for item in daten:
+        for index, item in enumerate(daten):
             einleitung = item['einleitung'].strip()
-            fragen_html = ""
-            antworten_html = ""
+            fragen = item['fragen']
+            antworten = item['antworten']
+            for i, (frage, antwort) in enumerate(zip(fragen, antworten)):
+                frage_parsed = parse_mixed_answer_text(frage.strip())
+                antwort_parsed = parse_mixed_answer_text(antwort.strip())
+                note = genanki.Note(
+                    model=model,
+                    fields=[head, f'{einleitung}<br><br>{frage_parsed}', antwort_parsed],
+                    guid=genanki.guid_for(f'{sammlung}_Item{index+1}_Frage{i+1}')
+                )
+                deck.add_note(note)
 
-            for frage, antwort in zip(item['fragen'], item['antworten']):
-                frage_html = parse_mixed_answer_text(frage.strip())
-                antwort_html = parse_mixed_answer_text(antwort.strip())
-                fragen_html += f'<p>{frage_html}</p>'
-                antworten_html += f'<p>{antwort_html}</p>'
-
-            frage_feld = f'{einleitung}<br><br>{fragen_html}'
-            note_fields.append(frage_feld)
-            note_fields.append(antworten_html)
-
-        note = genanki.Note(
-            model=model,
-            fields=note_fields,
-            guid=genanki.guid_for(sammlung + '_Gruppiert')
+    elif kombination == 'statisch_gruppiert':
+        model_id = 5000
+        modelname = 'Statisch_Gruppiert'
+        model = genanki.Model(
+            model_id,
+            modelname,
+            fields=[{'name': 'Head'}, {'name': 'Frage'}, {'name': 'Antwort'}],
+            templates=[{
+                'name': 'Karte',
+                'qfmt': '{{Head}}<br>{{Frage}}',
+                'afmt': '{{Head}}<br>{{Frage}}<hr id="answer">{{Antwort}}',
+            }],
+            css=css_template
         )
+        for index, item in enumerate(daten):
+            einleitung = item['einleitung'].strip()
+            fragen = item['fragen']
+            antworten = item['antworten']
+            fragen_parsed = [parse_mixed_answer_text(f.strip()) for f in fragen]
+            antworten_parsed = [parse_mixed_answer_text(a.strip()) for a in antworten]
+            frage_block = einleitung + '<br><br><ol>' + ''.join(f'<li>{f}</li>' for f in fragen_parsed) + '</ol>'
+            antwort_block = '<ol>' + ''.join(f'<li>{a}</li>' for a in antworten_parsed) + '</ol>'
+            note = genanki.Note(
+                model=model,
+                fields=[head, frage_block, antwort_block],
+                guid=genanki.guid_for(f'{sammlung}_Item{index+1}_Gruppiert')
+            )
+            deck.add_note(note)
+    else:
+        raise ValueError(f"Unbekannte Kombination: Typ={typ}, Ankityp={ankityp}")
 
-        deck_id = 4000 + int(nummer)
-        deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
-        deck = genanki.Deck(deck_id, deck_name)
-        deck.add_note(note)
 
-        key = (gebiet, lernbereich)
-        if key not in lernbereich_decks:
-            lernbereich_decks[key] = []
+      
+    # Speichern
+    key = (gebiet, lernbereich)
+    if key not in lernbereich_decks:
+        lernbereich_decks[key] = []
+    lernbereich_decks[key].append(deck)
 
-        lernbereich_decks[key].append(deck)
-
-# Export
+# Export aller Lernbereiche
 for (gebiet, lernbereich), decks in lernbereich_decks.items():
     paket = genanki.Package(decks)
     zielverzeichnis = os.path.join(anki_ordner, gebiet)
