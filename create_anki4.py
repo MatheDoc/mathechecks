@@ -132,6 +132,7 @@ for _, zeile in df.iterrows():
     elif ankityp == 'gruppiert':
         model_id = 3000  # Einheitlich für alle Gruppiert-Notizen
         modelname = 'Interaktiv_Gruppiert'
+    
         fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
         templates = []
         for i in range(ITEM_COUNT):
