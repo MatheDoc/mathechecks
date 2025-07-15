@@ -49,103 +49,160 @@ def lade_json(pfad):
 # Lade Excel-Tabelle mit utf-8-sig
 df = pd.read_excel(excel_datei, dtype=str)
 
-# Filter auf Typ = interaktiv & Ankityp = einzeln
-df = df[(df['Typ'] == 'interaktiv') & (df['Ankityp'] == 'einzeln')]
+# Filterung: interaktiv, sowohl einzeln als auch gruppiert
+df = df[df['Typ'] == 'interaktiv']
 
-# Iteriere über alle passenden Zeilen
+if lernbereich_filter:
+    df = df[df['Lernbereich'] == lernbereich_filter]
+
+# Struktur für Export
+lernbereich_decks = {}
+
+# Logo
+logo = '<div style="background-color:#156082; color:white; text-align:center; font-size:2rem; font-weight:bold; padding: 0.5rem; margin-bottom: 1rem;"> <a href="https://www.mathechecks.de/index.html" style="color:white; text-decoration:none;">MatheChecks</a></div>'
+
 for _, zeile in df.iterrows():
+    ankityp = zeile['Ankityp']
     gebiet = zeile['Gebiet']
     lernbereich = zeile['Lernbereich']
     nummer = zeile['Nummer']
     sammlung = zeile['Sammlung']
+    lernbereichAnzeigename = zeile['LernbereichAnzeigename']
+    head = logo + f'<h1>{lernbereichAnzeigename} {nummer}<a href="https://www.mathechecks.de/lernbereiche/{gebiet}/{lernbereich}/skript.html#check-{nummer}" style="text-decoration:none; margin-left:10px; font-size:0.8em;vertical-align:middle;" title="Info zu Check {nummer}"><span style="display:inline-block;width:22px;height:22px;border-radius:50%;background-color:#156082;color:white;text-align:center;line-height:22px;font-weight:bold;font-family:sans-serif;font-size:14px;top:-5px;">i</span></a></h1>'
 
     json_pfad = os.path.join(json_ordner, sammlung + '.json')
     daten = lade_json(json_pfad)
 
-    # Prüfe Konvention: exakt 20 Items
     if len(daten) != ITEM_COUNT:
-        print(f"Warnung: {sammlung} hat {len(daten)} Items (nicht 20). Überspringe.")
+        print(f"⚠️  {sammlung} hat {len(daten)} Items (nicht 20). Überspringe.")
         continue
 
-    # Anzahl Teilfragen pro Item (angenommen konstant)
-    teilfragen_anzahl = len(daten[0]['fragen'])
+    if ankityp == 'einzeln':
+        # Gleicher Code wie bisher (siehe oben), ggf. in eine Funktion auslagern
+        teilfragen_anzahl = len(daten[0]['fragen'])
+        model_note_map = {}
 
-    # Dictionary: modelname -> (model, liste von notes)
-    model_note_map = {}
+        for teilfrage_index in range(teilfragen_anzahl):
+            modelname = f'Interaktiv_Einzeln_Teilfrage_{teilfrage_index+1}'
+            model_id = 1000 + teilfrage_index
+            fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
 
-    for teilfrage_index in range(teilfragen_anzahl):
-        modelname = f'Interaktiv_Einzeln_Teilfrage_{teilfrage_index+1}'
-        model_id = 1000 + teilfrage_index  # verschiedene IDs, aber reproduzierbar
+            templates = []
+            for i in range(ITEM_COUNT):
+                templates.append({
+                    'name': f'Karte_Item{i+1}',
+                    'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
+                    'afmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}<hr id="answer">{{' + f'Item{i+1}_Antwort' + '}}',
+                })
 
-        # Felder für 20 Items
-        fields = [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
+            model = genanki.Model(
+                model_id,
+                modelname,
+                fields=[{'name': f} for f in fields],
+                templates=templates,
+                css="..."  # CSS wie bisher
+            )
 
-        # Templates
+            note_fields = [head]
+
+            for item in daten:
+                einleitung = item['einleitung'].strip()
+                frage = item['fragen'][teilfrage_index].strip()
+                frage_parsed = parse_mixed_answer_text(frage)
+                frage_feld = f'{einleitung}<br><br>{frage_parsed}'
+                note_fields.append(frage_feld)
+
+            for item in daten:
+                antwort = item['antworten'][teilfrage_index].strip()
+                antwort_parsed = parse_mixed_answer_text(antwort)
+                note_fields.append(antwort_parsed)
+
+            note = genanki.Note(
+                model=model,
+                fields=note_fields,
+                guid=genanki.guid_for(sammlung + f'_Teilfrage_{teilfrage_index+1}')
+            )
+
+            if modelname not in model_note_map:
+                model_note_map[modelname] = (model, [])
+            model_note_map[modelname][1].append(note)
+
+        deck_id = 2000 + int(nummer)
+        deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
+        deck = genanki.Deck(deck_id, deck_name)
+
+        for model, notes in model_note_map.values():
+            for note in notes:
+                deck.add_note(note)
+
+        key = (gebiet, lernbereich)
+        if key not in lernbereich_decks:
+            lernbereich_decks[key] = []
+
+        lernbereich_decks[key].append(deck)
+
+    elif ankityp == 'gruppiert':
+        # Neue Logik: eine Note mit 20 Karten, jede Karte = 1 Item mit allen Teilfragen
+        model_id = 3000 + int(nummer)
+        modelname = f'Interaktiv_Gruppiert_Check_{nummer}'
+
+        fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
+
         templates = []
         for i in range(ITEM_COUNT):
-            template = {
+            templates.append({
                 'name': f'Karte_Item{i+1}',
-                'qfmt': f'{{{{Item{i+1}_Frage}}}}',
-                'afmt': f'{{{{Item{i+1}_Frage}}}}<hr id="answer">{{{{Item{i+1}_Antwort}}}}',
-            }
-
-            templates.append(template)
+                'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
+                'afmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}<hr id="answer">{{' + f'Item{i+1}_Antwort' + '}}',
+            })
 
         model = genanki.Model(
             model_id,
             modelname,
             fields=[{'name': f} for f in fields],
-            templates=templates
+            templates=templates,
+            css="..."  # Ggf. CSS übernehmen oder zentral definieren
         )
 
-        # Fülle die 20 Karten dieser Teilfrageposition in eine Note
-        note_fields = []
+        note_fields = [head]
+
         for item in daten:
             einleitung = item['einleitung'].strip()
-            frage = item['fragen'][teilfrage_index].strip()
-            antwort = item['antworten'][teilfrage_index].strip()
+            fragen_html = ""
+            antworten_html = ""
 
-            # Parsen der Frage und Antwort auf MC- und numerische Inhalte
-            frage_parsed = parse_mixed_answer_text(frage)
-            antwort_parsed = parse_mixed_answer_text(antwort)
+            for frage, antwort in zip(item['fragen'], item['antworten']):
+                frage_html = parse_mixed_answer_text(frage.strip())
+                antwort_html = parse_mixed_answer_text(antwort.strip())
+                fragen_html += f'<p>{frage_html}</p>'
+                antworten_html += f'<p>{antwort_html}</p>'
 
-            # Zusammensetzen der Felder: Einleitung + Frage
-            frage_feld = f'{einleitung}<br><br>{frage_parsed}'
+            frage_feld = f'{einleitung}<br><br>{fragen_html}'
             note_fields.append(frage_feld)
-
-        # Antworten parsen und anhängen
-        for item in daten:
-            antwort = item['antworten'][teilfrage_index].strip()
-            antwort_parsed = parse_mixed_answer_text(antwort)
-            note_fields.append(antwort_parsed)
+            note_fields.append(antworten_html)
 
         note = genanki.Note(
             model=model,
             fields=note_fields,
-            guid=genanki.guid_for(sammlung + f'_Teilfrage_{teilfrage_index+1}')
+            guid=genanki.guid_for(sammlung + '_Gruppiert')
         )
 
-        # Modell speichern (nur einmal pro Typ)
-        if modelname not in model_note_map:
-            model_note_map[modelname] = (model, [])
+        deck_id = 4000 + int(nummer)
+        deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
+        deck = genanki.Deck(deck_id, deck_name)
+        deck.add_note(note)
 
-        model_note_map[modelname][1].append(note)
+        key = (gebiet, lernbereich)
+        if key not in lernbereich_decks:
+            lernbereich_decks[key] = []
 
-    # Baue das Deck
-    deck_id = 2000 + int(nummer)
-    deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{nummer}'
-    deck = genanki.Deck(deck_id, deck_name)
+        lernbereich_decks[key].append(deck)
 
-    # Alle Notes & Modelle hinzufügen
-    for model, notes in model_note_map.values():
-        for note in notes:
-            deck.add_note(note)
-
-    # Zielverzeichnis erstellen
-    zielverzeichnis = os.path.join(anki_ordner, gebiet, lernbereich)
+# Export
+for (gebiet, lernbereich), decks in lernbereich_decks.items():
+    paket = genanki.Package(decks)
+    zielverzeichnis = os.path.join(anki_ordner, gebiet)
     os.makedirs(zielverzeichnis, exist_ok=True)
-    zielpfad = os.path.join(zielverzeichnis, f'Check{nummer}.apkg')
-
-    # Exportieren
-    genanki.Package(deck).write_to_file(zielpfad)
-    print(f'✔️  Exportiert: {zielpfad}')
+    zielpfad = os.path.join(zielverzeichnis, f'{lernbereich}.apkg')
+    paket.write_to_file(zielpfad)
+    print(f'📦 Exportiert: {zielpfad}')
