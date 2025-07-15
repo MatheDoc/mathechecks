@@ -30,9 +30,6 @@ def lade_json(pfad):
     with open(pfad, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
-# Konstanten
-ITEM_COUNT = 20
-
 css_template = """
 .card {
     font-family: 'Arial';
@@ -71,9 +68,13 @@ lernbereich_filter = input("Gib den gewünschten Lernbereich ein (leer für alle
 
 # Excel einlesen und filtern
 df = pd.read_excel(excel_datei, dtype=str)
-df = df[df['Typ'] == 'interaktiv']
+
+# Nach Lernbereich filtern
 if lernbereich_filter:
     df = df[df['Lernbereich'] == lernbereich_filter]
+
+df = df[df['Typ'] == 'interaktiv']
+
 
 # Logo
 logo = '<div style="background-color:#156082; color:white; text-align:center; font-size:2rem; font-weight:bold; padding: 0.5rem; margin-bottom: 1rem;"> <a href="https://www.mathechecks.de/index.html" style="color:white; text-decoration:none;">MatheChecks</a></div>'
@@ -93,9 +94,10 @@ for _, zeile in df.iterrows():
 
     json_pfad = os.path.join(json_ordner, sammlung + '.json')
     daten = lade_json(json_pfad)
+    item_count = len(daten)
 
-    if len(daten) != ITEM_COUNT:
-        print(f"⚠️  {sammlung} hat {len(daten)} Items (nicht 20). Überspringe.")
+    if item_count < 1:
+        print(f"⚠️  {sammlung} enthält keine Items. Überspringe.")
         continue
 
     deck_id = 2000 + int(nummer)
@@ -107,9 +109,9 @@ for _, zeile in df.iterrows():
         for teilfrage_index in range(teilfragen_anzahl):
             modelname = f'Interaktiv_Einzeln_Teilfrage_{teilfrage_index+1}'
             model_id = 1000 + teilfrage_index
-            fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
+            fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
             templates = []
-            for i in range(ITEM_COUNT):
+            for i in range(item_count):
                 templates.append({
                     'name': f'Karte_Item{i+1}',
                     'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
@@ -133,9 +135,9 @@ for _, zeile in df.iterrows():
         model_id = 3000  # Einheitlich für alle Gruppiert-Notizen
         modelname = 'Interaktiv_Gruppiert'
     
-        fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(ITEM_COUNT)] + [f'Item{i+1}_Antwort' for i in range(ITEM_COUNT)]
+        fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
         templates = []
-        for i in range(ITEM_COUNT):
+        for i in range(item_count):
             templates.append({
                 'name': f'Karte_Item{i+1}',
                 'qfmt': '{{Head}}<br>{{' + f'Item{i+1}_Frage' + '}}',
