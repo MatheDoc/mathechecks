@@ -325,7 +325,7 @@ function replaceMultipleChoiceWithDropdown(htmlContent) {
       .join("");
 
     const selectHtml = `
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 10px;display: inline">
             <select id="answer${questionId}" class="mch" aria-label="Multiple Choice Frage ${questionId}" data-correct-answer="${correctAnswer}">
                 ${optionsHtml}
             </select>
