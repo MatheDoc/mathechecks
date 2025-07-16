@@ -7,308 +7,211 @@ lernbereich: hypothesentests
 
 ## Einführung
 
-Häufig stehen wir vor der Aufgabe Hypothesen (Vermutungen) zu überprüfen.
+Häufig stehen wir vor der Aufgabe, Hypothesen (Vermutungen) über eine Grundgesamtheit zu überprüfen. Zum Beispiel:
 
-- Eine Schule hat ein neues pädagogisches Konzept eingeführt, das gezielt die Lernmotivation und Selbstorganisation der Schülerinnen und Schüler fördern soll. Es soll dazu beitragen, dass mehr Lernende das Klassenziel erreichen. Mithilfe eines Hypothesentests soll überprüft werden, ob sich die Erfolgsquote im Vergleich zu den Vorjahren signifikant verbessert hat.
-- Es besteht die Vermutung, dass der vermehrte Einsatz von Elektrofahrzeugen zu einer Verbesserung der Luftqualität in städtischen Gebieten führt. Ein Hypothesentest soll klären, ob sich relevante Luftschadstoffwerte – etwa Feinstaub- oder Stickoxidkonzentrationen – im Vergleich zu früheren Jahren signifikant verringert haben.
-- Ein Unternehmen hat einen neuen Algorithmus zur automatisierten Erkennung von Hassrede in sozialen Netzwerken entwickelt. Es soll nun mithilfe eines Hypothesentests geprüft werden, ob dieser Algorithmus signifikant besser arbeitet als das bisher eingesetzte Verfahren.
+- Eine Schule hat ein neues pädagogisches Konzept eingeführt, das gezielt die Lernmotivation und Selbstorganisation der Schülerinnen und Schüler fördern soll. Es wird vermutet, dass dadurch mehr Lernende das Klassenziel erreichen. Nun soll überprüft werden, ob sich die Erfolgsquote im Vergleich zu den Vorjahren verbessert hat.
+- Es besteht die Vermutung, dass der vermehrte Einsatz von Elektrofahrzeugen zu einer besseren Luftqualität in Städten führt. Es soll geklärt werden, ob sich Luftschadstoffwerte – etwa Feinstaub- oder Stickoxidkonzentrationen – im Vergleich zu früheren Jahren verringert haben.
+- Ein Unternehmen hat einen neuen Algorithmus zur Erkennung von Hassrede in sozialen Netzwerken entwickelt. Es soll geprüft werden, ob dieser Algorithmus zuverlässiger arbeitet als das bisher eingesetzte Verfahren.
 
-Was bedeutet in diesen Beispielen **signifikant**?
+In der Praxis ist es häufig aus zeitlichen, organisatorischen oder finanziellen Gründen nicht möglich, alle Elemente einer Grundgesamtheit vollständig zu untersuchen (Vollerhebung). Stattdessen wird eine Stichprobe herangezogen, um auf die Grundgesamtheit zu schließen. Dieses Vorgehen bezeichnet man als **Hypothesentest**.
+
+Mit der zunehmenden Digitalisierung erscheinen Vollerhebungen heute zwar realistischer als früher, dennoch bleibt die Stichprobe in vielen Situationen der praktikablere Weg.
+
+Damit die Ergebnisse eines Hypothesentests verlässlich und aussagekräftig sind, müssen bestimmte Voraussetzungen erfüllt sein:
+
+- Die Stichprobe muss repräsentativ sein – also zufällig gezogen, unverzerrt und typisch für die Gesamtgruppe.
+- Der Stichprobenumfang muss groß genug sein, damit zufällige Schwankungen möglichst gering bleiben.
+- Die Fragestellung muss eindeutig entscheidbar sein, in der Regel im Sinne einer Ja/Nein-Aussage, z. B. „Stimmt die Behauptung?“ oder „Hat sich etwas verändert?“
+
+Das grundlegende Ziel eines Hypothesentests besteht darin, zu prüfen, ob die beobachteten Daten mit einer vorher aufgestellten Behauptung über die Grundgesamtheit vereinbar sind.
+
+### Beispiel: Verspätete Schüler
+
+Laut langjähriger Erfahrung und nach Meinung der Schüler beträgt der Anteil der Schüler, die verspätet zum Unterricht erscheinen, 10 %. Eine Lehrerin vermutet nun, dass sich dieser Anteil erhöht hat.
+
+Sie beobachtet eine Stichprobe von 50 Schülern und stellt fest, dass 6 davon verspätet erscheinen. Das sind mehr als 10 %, was die Vermutung der Lehrerin zu bestätigen scheint. Allerdings könnte diese Abweichung auch rein zufällig sein.
+
+Was nun? Die Lehrerin könnte die Zahlen in ihrem Sinne interpretieren und behaupten, dass mehr als 10 % der Schüler zu spät kommen. Die Schüler wiederum könnten argumentieren, dass eine solche geringe Abweichung keine Beweiskraft habe.
+
+### Prinzipien eines fairen Hypothesentests
+
+Ein Hypothesentest soll standardisiert, objektiv und reproduzierbar sein. Daher gilt das Grundprinzip: **Erst das Verfahren, dann die Daten.** Vor der Datenerhebung muss genau definiert werden, bei welchem Beobachtungsergebnis welche Entscheidung getroffen wird.
+
+Im Beispiel könnten sich Lehrerin und Schüler **vorab** auf folgende Regel einigen:
+
+> Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt.
+
+Erst **nachdem** diese Regel festgelegt wurde, wird die Datenerhebung durchgeführt. Das Ergebnis wird anschließend nach der vorher definierten Regel interpretiert – unabhängig von persönlichen Meinungen oder Interessen.
+
+## Grundbegriffe
+
+Ein Hypothesentest basiert auf zwei sich ausschließenden Aussagen:
+
+- **Nullhypothese** ($H_0$): Die Ausgangsvermutung, die überprüft werden soll. Sie beschreibt in der Regel den „Normalzustand“ oder eine Annahme, an der gezweifelt wird.
+- **Gegenhypothese** ($H_1$): Die Alternative zur Nullhypothese. Sie beschreibt den vermuteten neuen Zustand oder eine Abweichung vom bisherigen Wert.
+
+Je nachdem, welches Ergebnis die Stichprobe liefert, treffen wir eine Entscheidung: Wir behalten $H_0$ bei oder verwerfen sie zugunsten von $H_1$.
+
+Dabei kann es zu zwei Arten von Fehlern kommen:
+
+| | $H_0$ ist wahr. | $H_1$ ist wahr. |
+| $H_0$ wird beibehalten. | ✅ Richtige Entscheidung | ⚠️ Fehler 2. Art (auch $\beta$-Fehler) |
+| $H_0$ wird verwerfen. | ⚠️ Fehler 1. Art (auch $\alpha$-Fehler) | ✅ Richtige Entscheidung |
+
+Solche Fehler lassen sich prinzipiell nicht vermeiden – es sei denn, wir entscheiden uns immer für $H_0$ oder immer für $H_1$. Das ist jedoch nicht zielführend. Der Grund dafür liegt in der Natur einer Stichprobe: Wir können niemals mit absoluter Sicherheit sagen, was für die gesamte Grundgesamtheit gilt.
+
+Stattdessen versuchen wir, zumindest die Wahrscheinlichkeiten für Fehler möglichst klein zu halten. Dabei zeigt sich jedoch ein grundlegender Zielkonflikt: Wird die Wahrscheinlichkeit für einen Fehler 1. Art (fälschliches Verwerfen von $H_0$) gesenkt, steigt in der Regel die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$) – und umgekehrt.
+
+Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrscheinlichkeit unter der Gegenhypothese ($H_1$) meist nicht genau bekannt ist. Zudem liegt der Schwerpunkt der Analyse häufig auf dem Fehler 1. Art, da das Verwerfen einer, oft begründeten, Nullhypothese schwerwiegendere Folgen haben kann als das Ablehnen einer möglicherweise spekulativen Gegenhypothese.
+
+Aus diesem Grund konzentriert man sich in der Praxis häufig auf die Kontrolle des Fehlers 1. Art. Dessen maximale Wahrscheinlichkeit bezeichnen wir als **Signifikanzniveau**.
+
+Um auf Basis eines Stichprobenergebnisses schließlich eine Entscheidung zu treffen, wird eine **Entscheidungsregel** benötigt. Diese teilt den Wertebereich in einen **Annahmebereich** $A$ und einen **Ablehnungsbereich** $\overline{A}$ ein.
+
+Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,2}$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,2}$).
+
+### Grundbegriffe im Beispiel
+
+**Was ist das grundlegende Setting?**
+
+- Testgröße: Anzahl der verspäteten Schüler
+- Stichprobenumfang: $n=50$
+- Nullhypothese $H_0$: $p=0{,}1$
+- Gegenhypothese $H_1$: $p>0{,}1$
+- Rechtsseitiger Test
+
+**Wie lautet die Entscheidungsregel?**
+
+- Annahmebereich $A=\\{0{,}1{,}2{,}...{,}7\\}$
+- Ablehnungsbereich $\overline{A}=\\{8{,}9{,}10{,}...{,}50\\}$
+
+**Wie wird entschieden?**
+
+In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, wird die Nullhypothese beibehalten.
+
+**Was bedeutet die Fehler 1. und 2. Art im Sachzusammenhang?**
+
+- Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
+
+- Fehler 2. Art: Man entscheidet sich dafür, dass genau 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil höher ist.
+
+**Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art bzw. das erzielte Signifikanznevau im Sachzusammenhang?**
+
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \{8{,}9{,}10{,}\dotsc{,}50\}$ liegt. Die maximale Wahrscheinlichkeit dafür – das Signifikanzniveau – beträgt:
+
+$$
+P(X\geq 8)=Bcd(8;50;200;0{,}1)=0{,}1221
+$$
+
+**Wie hoch ist die Wahrscheinlichkeit für den Fehler 2. Art?**
+
+Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}1$), wir jedoch die Nullhypothese beibehalten. Ohne zusätzliche Informationen über den tatsächlichen Wert von $p$ unter der Gegenhypothese kann diese Wahrscheinlichkeit nicht bestimmt werden.
 
 {%include info.html
 index="1"
-frage="Formel für den Erwartungswert:"
+frage="Linksseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung des Signifikanzniveaus"
 antwort="
-'Zeile der Werte mal Zeile der Wahrscheinlichkeiten':
+Beispiel: Gegeben ist ein Hypothesentest mit:
 
-$$
-E(X) = x_1 \cdot P(X = x_1) + x_2 \cdot P(X = x_2) + \ldots + x_n \cdot P(X = x_n)
-$$
+- $n=200$
+- $H_0$: $p=0{,}4$
+- $H_1$: $p<0{,}4$
+- $A=\\{71,72,...,200\\}$ und $\overline{A}=\\{0,1,...,70\\}$
+- Stichprobenergebnis: $k=69$
+
+Anwendung der Entscheidungsregel: Da $69\in\overline{A}$ wird die Nullhypothese abgelehnt und die Gegenhypothese angenommen.
+
+Bestimmung des Signifikanzniveaus: $P(X\leq 70) = Bcd(0;70;200;0{,}4) = 0{,}0844$
 
 "
 %}
 
 <div id="skript-aufgabe-1"></div>
 
-## Die Standardabweichung
-
-Wie lassen sich die Werte der Biathleten noch unterscheiden? Im Mittel erwarten wir die gleiche Anzahl an Fehlschüssen. Hilfreich könnte es jedoch sein, festzustellen, wie stark die Werte schwanken. Anhand der Histogramme erkennen wir, dass bei Biathlet B die Werte deutlich stärker schwanken: Biathlet A hat fast immer nur 1 oder 2 Fehlschüsse, während Biathlet B eine größere Bandbreite an möglichen Fehlschüssen aufweist.
-
-Wir suchen nun eine Kennzahl, mit der wir genau messen können, wie stark eine Zufallsgröße von ihrem Erwartungswert abweicht. Die grundlegende Idee ist es, die Summe der quadrierten, mit den Wahrscheinlichkeiten gewichteten Abweichungen vom Erwartungswert zu betrachten und anschließend die Wurzel zu ziehen. Diese Kennzahl nennen wir **Standardabweichung** $\sigma(X)$ (lies: Sigma von X):
-
-$$
-\begin{align*}
-\sigma(X) &= \sqrt{(x_1-E(X))^2 \cdot P(X = x_1) + (x_2-E(X))^2 \cdot P(X = x_2) + \ldots + (x_n-E(X))^2 \cdot P(X = x_n)} \\
-&= \sqrt{\sum_{i=1}^{n} (x_i - E(X))^2\cdot P(X=x_i)}
-\end{align*}
-$$
-
-Auch der Ausdruck unter der Wurzel eignet sich, die Schwankungen zu messen. Er wird **Varianz** genannt und mit $\sigma^2$ bezeichnet.
-
-### Die Standardabweichung von Biathlet A
-
-Der Erwartungswert ist bekanntlich $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
-
-$$
-\begin{align*}
-\sigma^2(X) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
-&= (2{,}9584) \cdot 0{,}03 + (0{,}5184) \cdot 0{,}33 + (0{,}0784) \cdot 0{,}57 + (1{,}6384) \cdot 0{,}03 + (5{,}1984) \cdot 0{,}04 + (10{,}7584) \cdot 0 \\
-&= 0{,}0888 + 0{,}1700 + 0{,}0447 + 0{,}0492 + 0{,}2079 + 0 \\
-&= 0{,}5606
-\end{align*}
-$$
-
-Die Varianz beträgt also $0{,}5606$.
-
-Nun ziehen wir die Wurzel, um die Standardabweichung zu erhalten:
-
-$$
-\sigma(X) = \sqrt{0{,}5606} \approx 0{,}75
-$$
-
-Die Standardabweichung von Biathlet A beträgt also ungefähr $0{,}75$.
-
-### Die Standardabweichung von Biathlet B
-
-Auch hier beträgt der Erwartungswert $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
-
-$$
-\begin{align*}
-\sigma^2(X_B) &= (0 - 1{,}72)^2 \cdot 0{,}37 + (1 - 1{,}72)^2 \cdot 0{,}16 + (2 - 1{,}72)^2 \cdot 0{,}18  + (3 - 1{,}72)^2 \cdot 0{,}08 + (4 - 1{,}72)^2 \cdot 0{,}09 + (5 - 1{,}72)^2 \cdot 0{,}12 \\
-&= 2{,}9584 \cdot 0{,}37 + 0{,}5184 \cdot 0{,}16 + 0{,}0784 \cdot 0{,}18 + 1{,}6384 \cdot 0{,}08 + 5{,}1984 \cdot 0{,}09 + 10{,}7584 \cdot 0{,}12 \\
-&= 1{,}0956 + 0{,}0829 + 0{,}0141 + 0{,}1311 + 0{,}4679 + 1{,}2909 \\
-&= 3{,}0825
-\end{align*}
-$$
-
-Nun ziehen wir die Wurzel, um die Standardabweichung zu berechnen:
-
-$$
-\sigma(X) = \sqrt{3{,}0825} \approx 1{,}75
-$$
-
-Die Standardabweichung von Biathlet B beträgt also ungefähr $1{,}75$. Die Anzahl der Fehlschüsse schwankt hier also stärker um den Erwartungswert als bei Biathlet A.
-
 {%include info.html
 index="2"
-frage="Formel für die Standardabweichung:"
-antwort="'Zeile der quadrierten Abweichungen vom Erwartungswert mal Zeile der Wahrscheinlichkeiten':
+frage="Rechtsseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung des Signifikanzniveaus"
+antwort="
+Beispiel: Gegeben ist ein Hypothesentest mit:
 
-$$
-\sigma(X) = \sqrt{(x_1-E(X))^2 \cdot P(X = x_1) + (x_2-E(X))^2 \cdot P(X = x_2) + \ldots + (x_n-E(X))^2 \cdot P(X = x_n)}
-$$
+- $n=200$
+- $H_0$: $p=0{,}4$
+- $H_1$: $p>0{,}4$
+- $A=\\{0,1,2,...,90\\}$ und $\overline{A}=\\{91,92,...,200\\}$
+- Stichprobenergebnis: $k=88$
+
+Anwendung der Entscheidungsregel: Da $88\in A$ wird die Nullhypothese angenommen und die Gegenhypothese abgelehnt.
+
+Bestimmung des Signifikanzniveaus: $P(X\geq 91) = Bcd(91;200;200;0{,}4) = 0{,}0655$
 
 "
 %}
 
 <div id="skript-aufgabe-2"></div>
 
-## Interpretationen
+<!-- ## Exkurs: p-Hacking-->
 
-### Vergleich der Biathleten A und B
+## Herleitung der Entscheidungsregel
 
-Die Erwartungswerte der beiden Biathleten sind gleich: $E(X_A)=1,72$ und $E(X_B)=1,72$. Das bedeutet, dass sie im Mittel die gleiche Anzahl an Fehlschüssen haben.
+Wie gelangen wir zur Entscheidungsregel? Oder anders formuliert: Wie lassen sich Annahme- und Ablehnungsbereich der Nullhypothese festlegen?
 
-Die Standardabweichungen entscheiden sich allerdings deutlich: $\sigma(X_A) \approx 0{,}75$ und $\sigma(X_B) \approx 1{,}75$. Eine präzise Interpretation der Standardabweichungen ist an dieser Stelle nicht unmittelbar möglich. Vereinfacht gesagt, liegt ein Großteil der Werte in einem Intervall von etwa einer Standardabweichung um den Erwartungswert. Dieses Intervall umfasst also die „häufigen“ Werte der Zufallsgröße.
+Das zentrale Prinzip lautet: Wir legen eine maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art fest – also die Wahrscheinlichkeit, dass die Nullhypothese fälschlich verworfen wird, obwohl sie zutrifft. Diese Vorgabe wird als Signifikanzniveau bezeichnet und mit dem Symbol $\alpha$ dargestellt. In der Praxis wählt man häufig einen Wert $\alpha=5\%$.
 
-Für Biathlet A gilt:
-
-$$
-\begin{align*}
-E(X_A) - \sigma(X_A) &\approx 1{,}72 - 0{,}75 = 0{,}97 \\
-E(X_A) + \sigma(X_A) &\approx 1{,}72 + 0{,}75 = 2{,}47
-\end{align*}
-$$
-
-Das bedeutet, dass die Anzahl der Fehlschüsse bei A meistens zwischen 1 und 2 liegt.
-
-Für Biathlet B gilt:
-
-$$
-\begin{align*}
-E(X_B) - \sigma(X_B) &\approx 1{,}72 - 1{,}75 = -0{,}03 \\
-E(X_B) + \sigma(X_B) &\approx 1{,}72 + 1{,}75 = 3{,}47
-\end{align*}
-$$
-
-Biathlet B hat also häufig 0 bis 3 Fehlschüsse.
-
-Welcher Biathlet ist nun der "Bessere"? Diese Frage lässt sich nicht pauschal beantworten. Zunächst haben wir festgestellt, dass die Erwartungswerte der beiden Biathleten gleich sind, was bedeutet, dass sie im Mittel gleich viele Fehlschüsse erzielen. Allerdings zeigt die Standardabweichung, dass die Fehlschüsse bei Biathlet B stärker schwanken als bei Biathlet A.
-
-Die Entscheidung, welcher Biathlet der "Bessere" ist, hängt letztlich von der Präferenz des Entscheiders ab. Biathlet A ist konstanter, während Biathlet B mehr Schwankungen aufweist. Dies könnte in verschiedenen Kontexten unterschiedliche Bedeutung haben:
-
-- In einem Qualifikationslauf, bei dem es vor allem darauf ankommt, eine bestimmte Zeit zu erreichen oder eine konstante Leistung zu zeigen, könnte Biathlet A bevorzugt werden, da er weniger Risiken eingeht und seine Fehlschüsse stabiler sind.
-- In einem Finalrennen, bei dem der erste Platz das Ziel ist und möglicherweise ein höheres Risiko erforderlich ist, könnte Biathlet B die bessere Wahl sein. Wenn die Schwankungen in die richtige Richtung ausschlagen, ist der erste Platz wahrscheinlicher.
-
-Letztlich hängt die Entscheidung davon ab, ob der Fokus auf Konstanz oder auf der Fähigkeit liegt, auch in schwierigen Situationen hohe Leistungen zu bringen.
-
-### Allgemeine Situationen
-
-In vielen Anwendungssituationen ist eine kleine Standardabweichung vorteilhaft, weil sie weniger Unsicherheit bedeutet. So ist es für die meisten Menschen vorteilhaft, monatlich in etwa die gleichen Einnahmen und Ausgaben zu haben, da sie dadurch mehr Planungssicherheit gewinnen. Das Gleiche gilt für Unternehmen oder Regierungen, die ebenfalls von stabilen Einnahmen und Ausgaben profitieren, um langfristig erfolgreich agieren zu können.
+Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt.
+Gleichzeitig soll dieser Bereich möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird – im Rahmen des vorgegebenen Signifikanzniveaus.
 
 {%include info.html
 index="3"
-frage="Bedeutung des Erwartungswerts und der Standardabweichung:"
+frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel"
 antwort="
+Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}05$. Außerdem gelte
 
-- Erwartungswert $E(X)$: Langfristiger Mittelwert
-- Standardabweichung $\sigma(X)$: Maß für die Schwankung
-  "
-  %}
+|Nullhypothese | Gegenhypothese |
+| $H_0: 0{,}4$ | $H_1: p<0{,}4$ |
+| $A=\\{k+1,k+2,...,200\\}$ | $\overline{A}=\\{0,1,2,...,k\\}$ |
+
+Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p<0{,}4$ bei kleinen Stichprobenergebnissen für $H_1$ entscheiden, und bei großen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das größte $k$, so dass $P(X\leq k)<0{,}05$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
+
+- $P(X\leq 68)=Bcd(0;68;200;0{,}4)=0{,}0475<0{,}05$
+- $P(X\leq 69)=Bcd(0;69;200;0{,}4)=0{,}0639>0{,}05$
+
+Damit folgt $k=68$, und somit $A=\\{69,70,...,200\\}$ und $\overline{A}=\\{0,1,2,...,68\\}$.
+"
+%}
 
 <div id="skript-aufgabe-3"></div>
 
-<!--
-#### Exkurs: Die Bedeutung der Standardabweichung
-
-Dazu wechseln wir einmal die Perspektive: Statistik und ohne Gewichtung mit Wahrscheinlichkeiten. Dann haben wir folgendes Setting:
-Beobachtungswerte $x_1, x_2, \ldots x_n$: Dem Erwartungswert entpsriht hier das airthnetische Mittel. (An dieser Stelle könnte man im übrigen grundsätzlich fragen, ob das arithmetische Mittel ok ist)
-Frage: Wie messen wir die Abweichung vom airthmwtschen Mittel. Wir betrachten folgende 3 Möglchkeiten
-
-1. absolute Abweichung
-2. quadraitsche Abweichung
-3. Abweochugnen höheren ORdnung
-
-1. wird durch den MEdian minimeirt
-2. Nur die quarstische Abweichung wurd durch das arithmwitsche Mittel minimiert.
-3. andere KEnnahlen
-
-WEnn wir also wollen, das unser abweichungsmaß beim arithmetischen mittel den kleinsten wert annimmt, so landen wir bei der standaabweichung. Historisch gibt es einen spektakulären Efolgt: Gauss hat mit Hilfe der quadratischen Abweichugnen einen Planten entdeckt.
-
-Absolute Abweichung
-Wir betrachten die Standardabweichng zunächst ohne den Erwartungswert als eine Funktion in Abhängigkeit von $x$
-$$
-f(x)=\sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - x)^2}
-$$
-Durch eine REchnung lässt sich zeigen, dass $f$ für
--->
-
-## Aufstellen von Verteilungen
-
-Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden, so benötigen wir
-
-1. die Wahrscheinlichkeiten des zugrunde liegenden Zufallsexperiments (z.B. in Form eines Baumdiagramms) und
-2. eine weitere Information, die jedem Ergebnis eine reelle Zahl zuordnet.
-
-Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsgröße erstellt werden.
-
 {%include info.html
 index="4"
-frage="Auf der Wahrscheinlichkeitsverteilung einer Zufallsgröße"
+frage="Rechtssseitiger Hypothesentest: Herleitung der Entscheidungsregel"
 antwort="
+Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}02$. Außerdem gelte
 
-1. Zeile: Welche Werte nimmt die Zufallsgröße an?
-2. Zeile: Welche Wahrscheinlichkeiten gehören zu den einzelnen Werten?
-   "
-   %}
+|Nullhypothese | Gegenhypothese |
+| $H_0: 0{,}4$ | $H_1: p>0{,}4$ |
+| $A=\\{0,1,2,...,k-1\\}$ | $\overline{A}=\\{k,k+1,...,200\\}$ |
+
+Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p>0{,}4$ bei großen Stichprobenergebnissen für $H_1$ entscheiden, und bei kleinen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das kleinste $k$, so dass $P(X\geq k)<0{,}02$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
+
+- $P(X\geq 94)=Bcd(94;200;200;0{,}4)=0{,}0263>0{,}02$
+- $P(X\geq 95)=Bcd(95;200;200;0{,}4)=0{,}0188<0{,}02$
+
+Damit folgt $k=95$, und somit $A=\\{0,1,2,...,94\\}$ und $\overline{A}=\\{95,96,...,200\\}$.
+"
+%}
 
 <div id="skript-aufgabe-4"></div>
 
-## Vervollständigung von Verteilungen
-
-Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
-
 {%include info.html
 index="5"
-frage="Fehlende Wahrscheinlichkeit:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $2$      | $5$      |
-| ------------ | -------- | -------- | ---- | -------- | -------- |
-| $P(X = x_i)$ | $0{,}07$ | $0{,}06$ |      | $0{,}41$ | $0{,}44$ |
-
-Hier kann leicht der fehlende Wert berechnet werden, da die Summe der Wahrscheinlichkeiten 1 ergeben muss. Daher ist
-
-$$
-\begin{align*}
-P(X = -1) & = 1 - (0,07 + 0,06 + 0,41 + 0,44) \\
-& = 1 - 0,98 \\
-& = 0,02
-\end{align*}
-$$
-
-"
-%}
+frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
+antwort="siehe oben"%}
 
 <div id="skript-aufgabe-5"></div>
 
 {%include info.html
 index="6"
-frage="Fehlender Wert:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-5$     | $x$      | $0$      | $1$      | $4$     |
-| ------------ | -------- | -------- | -------- | -------- | ------- |
-| $P(X = x_i)$ | $0{,}05$ | $0{,}39$ | $0{,}37$ | $0{,}09$ | $0{,}1$ |
-
-Außerdem ist bekannt, dass $E(X)=-0{,}93$.
-
-Um $x$ zu berechnen, verwenden wir die Definition des Erwartungswerts:
-
-$$
--0{,}93 = (-5 \cdot 0{,}05) + (x \cdot 0{,}39) + (0\cdot 0{,}37)  + (1 \cdot 0{,}09) + (4 \cdot 0{,}10)
-$$
-
-Diese Gleichung können wir nach $x$ auflösen
-
-$$
-\begin{align*}
--0{,}93 & = -0{,}25 + 0{,}39x + 0{,}09 + 0{,}40\\
--0{,}93 & = 0{,}39x + 0{,}24 \quad |-0{,}24\\
--1{,}17 & =0{,}39x \quad |:0{,}39\\
-x&=-3
-\end{align*}
-$$
-
-"
-%}
+frage="Rechtsseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
+antwort="siehe oben"%}
 
 <div id="skript-aufgabe-6"></div>
-
-{%include info.html
-index="7"
-frage="Zwei fehlende Wahrscheinlichkeiten:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $1$      | $4$ |
-| ------------ | -------- | -------- | ---- | -------- | --- |
-| $P(X = x_i)$ | $0{,}15$ | $0{,}27$ | $x$  | $0{,}08$ | $y$ |
-
-Außerdem ist bekannt, dass $E(X)=0{,}29$
-
-Da wir zwei Unbekannte haben, sind auch zwei Gleichungen nötig, um sie zu bestimmen:
-
-1. Die Summe der Wahrscheinlichkeiten muss 1 ergeben:
-
-   $$
-   0{,}15 + 0{,}27 + x + 0{,}08 +y = 1
-   $$
-
-2. Der gegebene Erwartungswert:
-
-   $$
-   0{,}29 = (-4 \cdot 0{,}15) + (-2 \cdot 0{,}27) + (-1 \cdot x) + (1 \cdot 0{,}08) + (4 \cdot y)
-   $$
-
-Die Gleichungen lassen sich vereinfachen:
-
-1. $x + y = 0{,}5$
-2. $- x + 4y = 1{,}35$
-
-Nun gibt es verschiedene Techniken, dieses Gleichungssystem zu lösen. Wir lösen zunächst nach $x$ auf:
-
-1. $x = 0{,}5 - y $
-2. $x = 4y - 1{,}35 $
-
-und setzen gleich: $0{,}5 -y = 4y - 1{,}35$. Es folgt $1{,}85 = 5y$ und so $y=0{,}37$. Nun folgt $x=0{,}5 - 0{,}37 = 0{,}13$.
-
-"
-%}
-
-<div id="skript-aufgabe-7"></div>

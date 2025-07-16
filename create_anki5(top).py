@@ -13,6 +13,10 @@ anki_ordner = 'anki'
 def parse_mixed_answer_text(text):
     if not isinstance(text, str):
         return text
+    # Numerische Antworten extrahieren
+    def repl_numerical(match):
+        return match.group(1).strip()
+    text = re.sub(r'\{[^{}]*?:NUMERICAL:=([\d\,\.\-]+)[^{}]*?\}', repl_numerical, text)
 
     result = []
     index = 0
@@ -47,7 +51,7 @@ def parse_mixed_answer_text(text):
         inner_content = full_block[inner_start:-1]  # ohne die schließende }
 
         # Optionen anhand unescaped ~ trennen
-        import re
+        
         options = re.split(r'(?<!\\)~', inner_content)
         correct = next((opt[1:].strip() for opt in options if opt.strip().startswith('=')), '')
 
