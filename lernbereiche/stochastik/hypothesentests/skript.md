@@ -100,7 +100,10 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \{8{,}9{,}10{,}\dotsc{,}50\}$ liegt. Die maximale Wahrscheinlichkeit dafür – das Signifikanzniveau – beträgt:
 
 $$
-P(X\geq 8)=Bcd(8;50;200;0{,}1)=0{,}1221
+\begin{align*}
+P(X\geq 8)&=Bcd(8;50;200;0{,}1)\\
+            &=0{,}1221
+\end{align*}
 $$
 
 **Wie hoch ist die Wahrscheinlichkeit für den Fehler 2. Art?**
@@ -121,7 +124,14 @@ Beispiel: Gegeben ist ein Hypothesentest mit:
 
 Anwendung der Entscheidungsregel: Da $69\in\overline{A}$ wird die Nullhypothese abgelehnt und die Gegenhypothese angenommen.
 
-Bestimmung des Signifikanzniveaus: $P(X\leq 70) = Bcd(0;70;200;0{,}4) = 0{,}0844$
+Bestimmung des Signifikanzniveaus:
+
+$$
+\begin{align*}
+P(X\leq 70) &= Bcd(0;70;200;0{,}4) \\
+            &= 0{,}0844$
+\end{align*}
+$$
 
 "
 %}
@@ -142,7 +152,14 @@ Beispiel: Gegeben ist ein Hypothesentest mit:
 
 Anwendung der Entscheidungsregel: Da $88\in A$ wird die Nullhypothese angenommen und die Gegenhypothese abgelehnt.
 
-Bestimmung des Signifikanzniveaus: $P(X\geq 91) = Bcd(91;200;200;0{,}4) = 0{,}0655$
+Bestimmung des Signifikanzniveaus:
+
+$$
+\begin{align*}
+P(X\geq 91) &= Bcd(91;200;200;0{,}4) \\
+            &= 0{,}0655$
+\end{align*}
+$$
 
 "
 %}
@@ -172,8 +189,15 @@ Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signi
 
 Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p<0{,}4$ bei kleinen Stichprobenergebnissen für $H_1$ entscheiden, und bei großen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das größte $k$, so dass $P(X\leq k)<0{,}05$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
 
-- $P(X\leq 68)=Bcd(0;68;200;0{,}4)=0{,}0475<0{,}05$
-- $P(X\leq 69)=Bcd(0;69;200;0{,}4)=0{,}0639>0{,}05$
+$$
+\begin{align*}
+P(X\leq 68)&=Bcd(0;68;200;0{,}4)\\
+            &=0{,}0475<0{,}05$\\
+            \\
+P(X\leq 69)&=Bcd(0;69;200;0{,}4)\\
+            &=0{,}0639>0{,}05$
+\end{align*}
+$$
 
 Damit folgt $k=68$, und somit $A=\\{69,70,...,200\\}$ und $\overline{A}=\\{0,1,2,...,68\\}$.
 "
