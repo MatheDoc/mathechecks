@@ -223,6 +223,7 @@ antwort="
 - $P(\overline{A})$: Wahrscheinlichkeit, dass $A$ **nicht** eintritt
 - $P(A\cup B)$: Wahrscheinlichkeit, dass $A$ **oder** $B$ eintritt
 - $P(A\cap B)$: Wahrscheinlichkeit, dass $A$ **und** $B$ eintritt
+- $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$ ist die Wahrscheinlichkeit, dass **entweder** $A$ **oder** $B$ eintritt (ausschließendes Oder)
 "
 %}
 
@@ -332,12 +333,6 @@ P(A\cup B)&=P(A\cap\overline{B}) + P(A\cap B) + P(\overline{A}\cap B)\\
 \end{align*}
 $$
 
-<!--
-### Noch einzufügen: einfache Wahrscheinlichkeiten mit Mengenoperationen, dazu auch
-
-Ausschließendes Oder: Die Wahrscheinlichkeit für entweder $A$ oder $B$ (aber nicht $A$ und $B$ gleichzeitig) ist $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$.
--->
-
 {% include info.html
 index="6"
 frage="Satz von Sylvester: Wenn drei der vier Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cap B)$ und $P(A\cup B)$ bekannt sind, können wir die vierte berechnen."
@@ -360,7 +355,7 @@ $$
 
 Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sich anschaulich anhand sogenannter Venn-Diagramme nachvollziehen: Ereignisse können als Teilflächen einer Fläche $X$ interpretiert werden. Die Wahrscheinlichkeiten der Ereignisse entsprechen dann den Inhalten dieser Teilflächen. Der Inhalt der Fläche $X$ ist nach Definition 1. Wir erhalten z.B.:
 
-| $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
+| $P(B)$ | $P(A\cap B)$ | $P(\overline{A}\cap B)$   | $P(A\cup B)$  | $P(A\cup B)-P(A\cap B)$                                   |
 | -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
 | <img src="v1.png" style="width: 15vw">  |  <img src="v2.png" style="width: 15vw"> |  <img src="v3.png" style="width: 15vw">  | <img src="v4.png" style="width: 15vw">  |  <img src="v5.png" style="width: 15vw">  |
 
