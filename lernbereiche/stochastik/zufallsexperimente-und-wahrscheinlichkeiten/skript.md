@@ -181,7 +181,7 @@ Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jed
 Die 30 Buchstaben des Alphabets (a-z, ä, ö, ü, ß) treten in Texten mit unterschiedlichen Häufigkeiten auf (untersucht wurde 99.586 Buchstaben):
 
 <figure>
-  <img src="buchstaben.png"><figcaption>https://de.wikipedia.org/wiki/Buchstabenhäufigkeit</figcaption>
+  <img src="buchstaben.png"><figcaption>de.wikipedia.org/wiki/Buchstabenhäufigkeit</figcaption>
 </figure>
 
 Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewählt wird.
@@ -347,7 +347,7 @@ $$
 \begin{align*}
 P(A\cup B)&=P(A)+P(B)-P(A\cap B)\\
 0{,}5&=0{,}3+P(B)-0{,}2\\
-0{,}5&=P(B)
+0{,}4&=P(B)
 \end{align*}
 $$
 
@@ -362,7 +362,7 @@ Die Mengenoperationen und Axiome von Kolmogorov mit ihren Folgerungen lassen sic
 
 | $P(B)$                                                   | $P(A\cap B)$                                              | $P(\overline{A}\cap B)$                                   | $P(A\cup B)$                                              | $P(A\cup B)-P(A\cap B)$                                   |
 | -------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| <figure><img src="v1.png" style="width: 15vw"> </figure> | <figure> <img src="v2.png" style="width: 15vw"> </figure> | <figure> <img src="v3.png" style="width: 15vw"> </figure> | <figure> <img src="v4.png" style="width: 15vw"> </figure> | <figure> <img src="v5.png" style="width: 15vw"> </figure> |
+| <img src="v1.png" style="width: 15vw">  |  <img src="v2.png" style="width: 15vw"> |  <img src="v3.png" style="width: 15vw">  | <img src="v4.png" style="width: 15vw">  |  <img src="v5.png" style="width: 15vw">  |
 
 {% include info.html
 index="7"

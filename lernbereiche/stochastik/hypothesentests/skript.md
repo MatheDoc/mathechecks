@@ -129,7 +129,7 @@ Bestimmung des Signifikanzniveaus:
 $$
 \begin{align*}
 P(X\leq 70) &= Bcd(0;70;200;0{,}4) \\
-            &= 0{,}0844$
+            &= 0{,}0844
 \end{align*}
 $$
 
@@ -157,7 +157,7 @@ Bestimmung des Signifikanzniveaus:
 $$
 \begin{align*}
 P(X\geq 91) &= Bcd(91;200;200;0{,}4) \\
-            &= 0{,}0655$
+            &= 0{,}0655
 \end{align*}
 $$
 
@@ -192,10 +192,10 @@ Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns 
 $$
 \begin{align*}
 P(X\leq 68)&=Bcd(0;68;200;0{,}4)\\
-            &=0{,}0475<0{,}05$\\
+            &=0{,}0475<0{,}05\\
             \\
 P(X\leq 69)&=Bcd(0;69;200;0{,}4)\\
-            &=0{,}0639>0{,}05$
+            &=0{,}0639>0{,}05
 \end{align*}
 $$
 
@@ -217,8 +217,15 @@ Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signi
 
 Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p>0{,}4$ bei großen Stichprobenergebnissen für $H_1$ entscheiden, und bei kleinen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das kleinste $k$, so dass $P(X\geq k)<0{,}02$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
 
-- $P(X\geq 94)=Bcd(94;200;200;0{,}4)=0{,}0263>0{,}02$
-- $P(X\geq 95)=Bcd(95;200;200;0{,}4)=0{,}0188<0{,}02$
+$$
+\begin{align*}
+P(X\geq 94)&=Bcd(94;200;200;0{,}4)\\
+            &=0{,}0263>0{,}02\\
+            \\
+P(X\geq 95)&=Bcd(95;200;200;0{,}4)\\
+            &=0{,}0188<0{,}02
+\end{align*}
+$$
 
 Damit folgt $k=95$, und somit $A=\\{0,1,2,...,94\\}$ und $\overline{A}=\\{95,96,...,200\\}$.
 "
