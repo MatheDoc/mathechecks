@@ -217,7 +217,7 @@ Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewähl
 
 {% include info.html
 index="3"
-frage="Mengenoperastionen und Wahrscheinlichkeiten:"
+frage="Mengenoperationen und Wahrscheinlichkeiten:"
 antwort="
 
 - $P(\overline{A})$: Wahrscheinlichkeit, dass $A$ **nicht** eintritt

@@ -1,0 +1,41 @@
+<div
+  class="diagramm"
+  data-funktionen="{{ include.funktionen | escape }}"
+  data-punkte="{{ include.punkte | escape }}"
+  data-titel="{{ include.titel | default: '' }}"
+  data-xachse="{{ include.xachse | default: '' }}"
+  data-yachse="{{ include.yachse | default: '' }}"
+  data-xmin="{{ include.xmin | default: '' }}"
+  data-xmax="{{ include.xmax | default: '' }}"
+  data-ymin="{{ include.ymin | default: '' }}"
+  data-ymax="{{ include.ymax | default: '' }}"
+></div>
+
+<script>
+  (function () {
+    const div = document.currentScript.previousElementSibling;
+    const funktionen = JSON.parse(div.dataset.funktionen);
+    const punkte = div.dataset.punkte ? JSON.parse(div.dataset.punkte) : null;
+    const titel = div.dataset.titel;
+    const xAchse = div.dataset.xachse;
+    const yAchse = div.dataset.yachse;
+    const xMin = div.dataset.xmin === "" ? null : Number(div.dataset.xmin);
+    const xMax = div.dataset.xmax === "" ? null : Number(div.dataset.xmax);
+    const yMin = div.dataset.ymin === "" ? null : Number(div.dataset.ymin);
+    const yMax = div.dataset.ymax === "" ? null : Number(div.dataset.ymax);
+
+    const optionen = {
+      titel: titel,
+      xAchse: xAchse,
+      yAchse: yAchse,
+    };
+
+    if (xMin !== null) optionen.xMin = xMin;
+    if (xMax !== null) optionen.xMax = xMax;
+    if (yMin !== null) optionen.yMin = yMin;
+    if (yMax !== null) optionen.yMax = yMax;
+    if (punkte) optionen.punkte = punkte;
+
+    zeichneGraph(div.id || div, funktionen, optionen);
+  })();
+</script>

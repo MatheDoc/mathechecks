@@ -1,0 +1,18 @@
+---
+layout: start
+title: Ertragsgesetzliche Kostenfunktionen
+description: Ertragsgesetzliche Kostenfunktionen - Start
+lernbereich: ertragsgesetzliche-kostenfunktionen
+---
+
+## Um was geht es hier
+
+
+
+## Darauf kommmt es an
+
+
+
+## Vorkenntnisse
+
+
