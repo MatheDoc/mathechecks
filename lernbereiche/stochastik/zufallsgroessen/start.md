@@ -3,6 +3,7 @@ layout: start
 title: Zufallsgrößen
 description: Zufallsgrößen - Start
 lernbereich: zufallsgroessen
+gebiet: stochastik
 ---
 
 ## Um was geht es hier

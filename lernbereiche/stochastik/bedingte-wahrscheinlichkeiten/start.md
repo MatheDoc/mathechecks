@@ -3,6 +3,7 @@ layout: start
 title: Bedingte Wahrscheinlichkeiten
 description: Bedingte Wahrscheinlichkeiten - Start
 lernbereich: bedingte-wahrscheinlichkeiten
+gebiet: stochastik
 ---
 
 ## Um was geht es hier
