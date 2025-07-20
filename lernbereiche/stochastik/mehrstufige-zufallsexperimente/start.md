@@ -3,6 +3,7 @@ layout: start
 title: Mehrstufige Zufallsexperimente
 description: Mehrstufige Zufallsexperimente - Start
 lernbereich: mehrstufige-zufallsexperimente
+gebiet: stochastik
 ---
 
 ## Um was geht es hier

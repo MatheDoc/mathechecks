@@ -3,6 +3,7 @@ layout: start
 title: Binomialverteilung
 description: Binomialverteilung – Start
 lernbereich: binomialverteilung
+gebiet: stochastik
 ---
 
 ## Um was geht es hier?

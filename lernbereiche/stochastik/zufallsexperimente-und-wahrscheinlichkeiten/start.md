@@ -3,6 +3,7 @@ layout: start
 title: Zufallsexperimente und Wahrscheinlichkeiten
 description: Zufallsexperimente und Wahrscheinlichkeiten - Start
 lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
+gebiet: stochastik
 ---
 
 ## Um was geht es hier

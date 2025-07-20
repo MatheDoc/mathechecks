@@ -3,6 +3,7 @@ layout: start
 title: Hypothesentests
 description: Hypothesentests - Start
 lernbereich: hypothesentests
+gebiet: stochastik
 ---
 
 ## Um was geht es hier
