@@ -12,20 +12,22 @@
     />
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <!-- mathjs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
     <!-- Baumdiagrmme -->
     <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
     <!-- Allgemeine Histogramme -->
     <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
     <!-- Histogramme Binomial -->
     <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
+    <!-- Allgemeine Graphen -->
+    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
   </head>
   <body>
     <header>
       {% include nav-lernbereiche.html %}
       <h1>{{ page.title }}</h1>
-      {% include nav-materialtyp.html %}
-      {% include nav-toc.html %}
-
+      {% include nav-materialtyp.html %} {% include nav-toc.html %}
     </header>
     <main id="main-content">{{ content }}</main>
 
@@ -42,7 +44,7 @@
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-     <!-- Tocbot -->
+    <!-- Tocbot -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css"

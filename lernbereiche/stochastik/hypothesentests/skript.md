@@ -62,9 +62,7 @@ Solche Fehler lassen sich prinzipiell nicht vermeiden – es sei denn, wir entsc
 
 Stattdessen versuchen wir, zumindest die Wahrscheinlichkeiten für Fehler möglichst klein zu halten. Dabei zeigt sich jedoch ein grundlegender Zielkonflikt: Wird die Wahrscheinlichkeit für einen Fehler 1. Art (fälschliches Verwerfen von $H_0$) gesenkt, steigt in der Regel die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$) – und umgekehrt.
 
-Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrscheinlichkeit unter der Gegenhypothese ($H_1$) meist nicht genau bekannt ist. Zudem liegt der Schwerpunkt der Analyse häufig auf dem Fehler 1. Art, da das Verwerfen einer, oft begründeten, Nullhypothese schwerwiegendere Folgen haben kann als das Ablehnen einer möglicherweise spekulativen Gegenhypothese.
-
-Aus diesem Grund konzentriert man sich in der Praxis häufig auf die Kontrolle des Fehlers 1. Art. Dessen maximale Wahrscheinlichkeit bezeichnen wir als **Signifikanzniveau**.
+Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrscheinlichkeit unter der Gegenhypothese ($H_1$) meist nicht genau bekannt ist. Zudem liegt der Schwerpunkt der Analyse häufig auf dem Fehler 1. Art, da das Verwerfen einer, oft begründeten, Nullhypothese schwerwiegendere Folgen haben kann als das Ablehnen einer möglicherweise spekulativen Gegenhypothese. Aus diesem Grund konzentriert man sich in der Praxis häufig auf die Kontrolle des Fehlers 1. Art.
 
 Um auf Basis eines Stichprobenergebnisses schließlich eine Entscheidung zu treffen, wird eine **Entscheidungsregel** benötigt. Diese teilt den Wertebereich in einen **Annahmebereich** $A$ und einen **Ablehnungsbereich** $\overline{A}$ ein.
 
@@ -95,9 +93,9 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 
 - Fehler 2. Art: Man entscheidet sich dafür, dass genau 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil höher ist.
 
-**Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art bzw. das erzielte Signifikanznevau im Sachzusammenhang?**
+**Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
 
-Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \{8{,}9{,}10{,}\dotsc{,}50\}$ liegt. Die maximale Wahrscheinlichkeit dafür – das Signifikanzniveau – beträgt:
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8{,}9{,}10{,}\dotsc{,}50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
 
 $$
 \begin{align*}
@@ -112,7 +110,7 @@ Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}
 
 {%include info.html
 index="1"
-frage="Linksseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung des Signifikanzniveaus"
+frage="Linksseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
 antwort="
 Beispiel: Gegeben ist ein Hypothesentest mit:
 
@@ -124,7 +122,7 @@ Beispiel: Gegeben ist ein Hypothesentest mit:
 
 Anwendung der Entscheidungsregel: Da $69\in\overline{A}$ wird die Nullhypothese abgelehnt und die Gegenhypothese angenommen.
 
-Bestimmung des Signifikanzniveaus:
+Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art:
 
 $$
 \begin{align*}
@@ -140,7 +138,7 @@ $$
 
 {%include info.html
 index="2"
-frage="Rechtsseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung des Signifikanzniveaus"
+frage="Rechtsseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
 antwort="
 Beispiel: Gegeben ist ein Hypothesentest mit:
 
@@ -152,7 +150,7 @@ Beispiel: Gegeben ist ein Hypothesentest mit:
 
 Anwendung der Entscheidungsregel: Da $88\in A$ wird die Nullhypothese angenommen und die Gegenhypothese abgelehnt.
 
-Bestimmung des Signifikanzniveaus:
+Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art
 
 $$
 \begin{align*}
@@ -172,7 +170,7 @@ $$
 
 Wie gelangen wir zur Entscheidungsregel? Oder anders formuliert: Wie lassen sich Annahme- und Ablehnungsbereich der Nullhypothese festlegen?
 
-Das zentrale Prinzip lautet: Wir legen eine maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art fest – also die Wahrscheinlichkeit, dass die Nullhypothese fälschlich verworfen wird, obwohl sie zutrifft. Diese Vorgabe wird als Signifikanzniveau bezeichnet und mit dem Symbol $\alpha$ dargestellt. In der Praxis wählt man häufig einen Wert $\alpha=5\%$.
+Das zentrale Prinzip lautet: Wir legen eine Schranke für die maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art fest: das **Signifikanzniveau** $\alpha$. In der Praxis wählt man häufig einen Wert $\alpha=5\%$.
 
 Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich – im Rahmen des vorgegebenen Signifikanzniveaus- möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
 
