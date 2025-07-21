@@ -105,6 +105,8 @@ antwort="siehe Info 1"
 
 ## Kennzahlen
 
+Diese ökonomischen Funktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
+
 - **Marktpreis:** Preis im Marktgleichgewicht, auch Gleichgewichtspreis (Angebotspolypol).
 - **Höchstpreis:** Maximaler Preis, den ein Konsument zu zahlen bereit ist (Angebotsmonopol).
 - **Sättigungsmenge:** Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht (Angebotsmonopol).
@@ -117,6 +119,8 @@ antwort="siehe Info 1"
 - **Gewinnmaximale Menge:** Menge, bei der der Gewinn maximal ist (Maximum der Gewinnfunktion).
 - **Maximaler Gewinn:** Wert von $G(x)$ bei der gewinnmaximalen Menge.
 - **Gewinnmaximaler Preis:** Preis bei der gewinnmaximalen Menge (Angebotsmonopol).
+- **Break-even-Point:** Punkt, an dem Erlöse und Kosten gleich sind
+- **Cournotscher Punkt:** Punkt auf $p(x)$ mit gewinnmaximaler Menge und gewinnmaximalem Preis
 
 {% include info.html
 index="3"
@@ -128,11 +132,13 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
 
 ### Hinweise
 
-- Eventuell müssen wir Kapazitätsgrenzen beürcksichtigen. Liegt zum Beispiel im Angebotspolypol eine Kapazitätsgrenze vor, so ist die erlösmaximalen Menge, die im Angebotspolypol ohne Kapazitätsgrenze beliebig groß wäre, genau diese Kapazitätsgrenze.
+- Eventuell müssen wir Kapazitätsgrenzen berücksichtigen. Liegt zum Beispiel im Angebotspolypol eine Kapazitätsgrenze vor, so ist die erlösmaximalen Menge, die im Angebotspolypol ohne Kapazitätsgrenze beliebig groß wäre, genau diese Kapazitätsgrenze.
 - Denkbar wäre auch eine Kapazitätsgrenze unterhalb der lokalen Extremstelle (Maximum) der Gewinnfunktion. Dies müsste bei der Bestimmung der gewinnmaximalen Menge berücksichtigt werden.
 - Wenn $G(x)$ stets negativ ist, d.h. wenn die Kosten immer größer als die Erlöse sind, gibt es weder eine Gewinnschwelle noch eine Gewinngrenze.
 
 ## Graphische Darstellung
+
+Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen graphisch.
 
 ### Angebotsmonopol (mit Kapazitätsgrenze x=13)
 
@@ -151,7 +157,9 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
      {"x":4,"y":104,"text":"Übergang vom degressiven zum progressiven Kostenwachstum"},
      {"x":3.06,"y":0,"text":"Gewinnschwelle"},
      {"x":11.63,"y":0,"text":"Gewinngrenze"},
-     {"x":8.16,"y":96.16,"text":"gewinnmaximale Menge und maximaler Gewinn"}
+     {"x":8.16,"y":96.16,"text":"gewinnmaximale Menge und maximaler Gewinn"},
+     {"x":3.06,"y":97.92,"text":"Break-even Point"},
+     {"x":11.63,"y":372.16,"text":"Break-even Point"}
    ]'
    titel="Ökonomische Funktionen"
    xachse="Menge x in ME"
@@ -180,7 +188,9 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
      {"x":1.58,"y":0,"text":"Gewinnschwelle"},
      {"x":8,"y":0,"text":"Gewinngrenze"},
      {"x":5.19,"y":64.74,"text":"gewinnmaximale Menge und maximaler Gewinn"},
-     {"x":5.19,"y":34.05,"text":"Cournotscher Punkt: gewinnmaximale Menge und gewinnmaximaler Preis"}
+     {"x":5.19,"y":34.05,"text":"Cournotscher Punkt: gewinnmaximale Menge und gewinnmaximaler Preis"},
+     {"x":1.58,"y":82.32,"text":"Break-even Point"},
+     {"x":8,"y":160,"text":"Break-even Point"}
    ]'
    titel="Ökonomische Funktionen"
    xachse="Menge x in ME"
@@ -264,7 +274,7 @@ $$
 p(0) = 60
 $$
 
-Der Hächstpreis beträgt 60 GE.
+Der Höchstpreis beträgt 60 GE.
 
 ### Sättigungsmenge
 

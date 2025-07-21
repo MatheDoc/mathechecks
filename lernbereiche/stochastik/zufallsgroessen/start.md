@@ -16,7 +16,4 @@ Die Berechnung des Erwartungswerts und der Standardabweichung muss beherrscht we
 
 ## Vorkenntnisse
 
-<a
-        href="{{ '/lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/start.html' | relative_url }}"
-        >Zufallsexperimente und Wahrscheinlichkeiten</a
-      >
+<a href="{{ '/lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/start.html' | relative_url }}" class="link-button">Zufallsexperimente und Wahrscheinlichkeiten</a>
