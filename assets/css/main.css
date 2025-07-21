@@ -121,8 +121,9 @@ img,
   width: 100%;
 }
 
-.download-button {
-  display: inline-block;
+.link-button {
+  display: block;
+  width: fit-content;
   padding: 0.6rem 1.2rem;
   border: 1px solid var(--hauptfarbe);
   border-radius: 12px;
@@ -132,7 +133,7 @@ img,
   margin-top: 1rem;
 }
 
-.download-button:hover {
+.link-button:hover {
   background-color: var(--hintergrund-hell-hover);
 }
 

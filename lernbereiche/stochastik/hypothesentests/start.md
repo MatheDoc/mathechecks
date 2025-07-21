@@ -16,7 +16,4 @@ Beim Hypothesentest ist es wichtig, die Situationsbeschreibung sorgfältig zu le
 
 ## Vorkenntnisse
 
-<a
-        href="{{ '/lernbereiche/stochastik/binomialverteilung/start.html' | relative_url }}"
-        >Binomialverteilung</a
-      >
+<a href="{{ '/lernbereiche/stochastik/binomialverteilung/start.html' | relative_url }}" class="link-button">Binomialverteilung</a>
