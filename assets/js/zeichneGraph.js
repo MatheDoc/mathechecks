@@ -32,7 +32,7 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
     };
   });
 
-  // HIER kommen die zusätzlichen Punkte dazu
+  // Punkte hinzufügen, falls vorhanden
   if (Array.isArray(optionen.punkte)) {
     const punktTrace = {
       x: optionen.punkte.map((p) => p.x),

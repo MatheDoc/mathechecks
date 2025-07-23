@@ -11,8 +11,7 @@
     <header>
       {% include nav-lernbereiche.html %}
       <h1>{{ page.title }}</h1>
-      {% include nav-materialtyp.html %}
-      {% include nav-toc.html %}
+      {% include nav-materialtyp.html %} {% include nav-toc.html %}
     </header>
 
     <main id="main-content"></main>
@@ -30,17 +29,17 @@
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-     <!-- Tocbot -->
+    <!-- Tocbot -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.min.js"></script>
-    
+
     <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/uebungen.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/uebungen-buttons.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
-
+    <script type="module" src="/assets/js/firebase-init.js"></script>
   </body>
 </html>
