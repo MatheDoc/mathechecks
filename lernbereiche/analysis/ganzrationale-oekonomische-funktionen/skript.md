@@ -113,7 +113,7 @@ Diese ökonomischen Funktionen werden mit Hilfe folgender Kennzahlen beschrieben
 - **Erlösmaximale Menge:** Menge, bei der der Erlös maximal ist (Maximum der Erlösfunktion).
 - **Maximaler Erlös:** Höchster möglicher Erlös, tritt bei der erlösmaximalen Menge auf.
 - **Fixkosten:** Produktionsunabhängige Kosten (z. B. Miete).
-- **Übergang vom degressiven zum progressiven Kostenwachstum:** Bis hierhin steigen die Kosten unterproportional, danach überproportional.
+- **Übergang vom degressiven zum progressiven Kostenwachstum:** Menge, bis zu der die Kosten unterproportional steigen, danach überproportional.
 - **Gewinnschwelle:** Absatzmenge, ab der Gewinn erwirtschaftet wird (erste Nullstelle von $G(x)$).
 - **Gewinngrenze:** Höchste Menge, bei der noch Gewinn erzielt wird (letzte Nullstelle von $G(x)$).
 - **Gewinnmaximale Menge:** Menge, bei der der Gewinn maximal ist (Maximum der Gewinnfunktion).
@@ -140,7 +140,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
 
 Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen graphisch.
 
-### Angebotsmonopol (mit Kapazitätsgrenze x=13)
+### Angebotsmonopol (mit Kapazitätsgrenze $x=13$)
 
 {% include graph.html
    funktionen='[
@@ -205,7 +205,6 @@ Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen gra
 index="4"
 frage="Graphische Bestimmung (Angebotspolypol)"
 antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Extremstellen, Wendestellen)"
-
 %}
 
 <div id="skript-aufgabe-4"></div>
