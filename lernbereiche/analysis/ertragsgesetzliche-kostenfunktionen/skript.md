@@ -270,8 +270,8 @@ Neben der gewöhnlichen Kostenfunktion $K(x)$, die die Gesamtkosten in Abhängig
 
 Für die Kostenfunktion $K(x)=0{,}5x^3 - 6x^2 + 30x + 48$ erhalten wir für die
 
-- Grenzekosten: $K'(x) = 1{,}5x^2-12x+30$
-- Stückosten: $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$
+- Grenzkosten: $K'(x) = 1{,}5x^2-12x+30$
+- Stückkosten: $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$
 - variablen Stückkosten: $k_v(x)=0{,}5x^2 - 6x + 30 $
 
 Diese Kostenfunktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
@@ -294,7 +294,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
 
 {% include graph.html
    funktionen='[
-    {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Kostenfunktion"},
+    {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Grenzkostenfunktion"},
     {"name":"k(x)", "term":"0.5*x^2-6*x+30+48/x", "beschreibung":"Stückkostenfunktion"},
     {"name":"k<sub>v</sub>(x)", "term":"0.5*x^2-6*x+30", "beschreibung":"variable Stückkostenfunktion"}
    ]'
@@ -321,9 +321,11 @@ Um Kostenkennzahlen berechnen zu können, benötigen wir die unter anderem die W
 
 {% include info.html
 index="5"
-frage="Ableitung einfacher gebrochenrationaler Funktionen."
+frage="Ansatz zur Berechnung von Extrem- und Wendestellen / Ableitung gebrochenrationaler Funktionen"
 antwort="
 
+- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f'\'(x) > 0$ (Minimum) oder $f'\'(x) < 0$ (Maximum)
+- Wendestellen: Notwendige Bedingung $f'\'(x) = 0$, hinreichende Bedingung $f''\'(x) > 0$ (minimale Steigung) oder $f''\'(x)<0$ (maximale Steigung)
 - Ableitung von $f(x)=\frac{1}{x}$: $f'(x)=-\frac{1}{x^2}$
 - Ableitung von $f(x)=\frac{1}{x^2}$: $f'(x)=-\frac{1}{x^3}$
 
@@ -332,6 +334,191 @@ antwort="
 
 <div id="skript-aufgabe-5"></div>
 
+{% include info.html
+index="6"
+frage="Berechnung Kostenkennzahlen für $K(x)=0{,}5x^3 - 6x^2 + 30x + 48$"
+antwort="
+Wir bestimmen zunächst:
+
+- Grenzkosten: $K'(x) = 1{,}5x^2-12x+30$
+- variablen Stückkosten: $k_v(x)=0{,}5x^2 - 6x + 30 $
+- Stückkosten: $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$
+
+### Übergang vom degressiven zum progressiven Kostenwachstum
+
+Wendestelle von $K(x)=0{,}5x^3-6x^2+30x+48$:
+
+Bestimme $K^{\prime\prime}(x)=3x-12$ und $K^{\prime\prime\prime}(x)=3$.
+
+$$
+\begin{align*}
+3x - 12 =  0 \Rightarrow x = 4\\
+K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
+\end{align*}
+$$
+
+Der Übergang vom degressiven zum progressiven Kostenwachstum findet bei 4 ME statt.
+
+### Betriebsminimum
+
+Extremstelle von $k_v(x)=0{,}5x^2 - 6x + 30$.
+
+Bestimme $k_v'(x)=x-6$ und $k_v^{\prime\prime}(x)=1$.
+
+$$
+\begin{align*}
+x-6&=0 \Rightarrow x = 6\\
+k_v^{\prime\prime}(6)&=1 > 0 (Minimum)
+\end{align*}
+$$
+
+Das Betriebsminimum beträgt 6 ME.
+
+### Kurzfristige Preisuntergrenze
+
+Einsetzen des Betriebsminimums in $k_v(x)$:
+
+$$
+k_v(6) =  12
+$$
+
+Die kurzristige Preisuntergrenze beträgt 12 GE / ME.
+
+### Betriebsoptimum
+
+Extremstelle von $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$.
+
+Bestimme $k'(x)=x-6-\frac{48}{x^2}$ und $k^{\prime\prime}(x)=1+\frac{96}{x^3}$.
+
+$$
+\begin{align*}
+x-6-\frac{48}{x^2} &= 0\quad |\cdot(x^2)\\
+x^3-6x^2-48&0 \Rightarrow x = 6{,}98\\
+k^{\prime\prime}(6{,}98)&=1{,}8 > 0 (Minimum)
+\end{align*}
+$$
+
+Das Betriebsoptimum beträgt 6,98 ME.
+
+### Langfristige Preisuntergrenze
+
+Einsetzen des Betriebsoptimums in $k(x)$:
+
+$$
+k(6{,}98) =  19{,}36
+$$
+
+Die langfristige Preisuntergrenze beträgt 19,36 GE / ME.
+
+"
+%}
+
+<div id="skript-aufgabe-6"></div>
+
 ### Exkurs: Alternative Bestimmung des Betriebsminimums und -optimums
 
 ## Steckbriefaufgaben
+
+Ist die Gleichung einer ertragsgesetzlichen Kostenfunktion nicht bekannt, liegen jedoch Informationen über einzelne Kostenkennzahlen vor, so können wir unter Umständen die Funktionsgleichung $K(x)=ax^3+bx^2+cx+d$ rekonstruieren, das heißt die Koeffizienten bestimmen.
+
+### Beispiel: Vorgabe Mengen
+
+Gegeben: Für eine ertragsgesetzliche Kostenfunktion $K(x)$ sei bekannt:
+
+| Menge $x$ in ME | 1 | 2 | 3 | 5 |
+| Kosten $K(x)$ in GE | 25 | 33 | 35 | 45 |
+
+Gesucht: $K(x)=ax^3+bx^2+cx+d$.
+
+Graphisch lässt sich die Situation so darstellen: Wir suchen den eine Funktion $K(x)$, deren Graph durch die angegebenen Punkte verläuft.
+
+{% include graph.html
+   funktionen='[
+    {"name":"K(x)", "term":"x^3-9*x^2+28*x+5", "beschreibung":"Kostenfunktion"}
+   ]'
+    punkte='[
+     {"x":1,"y":25,"text":""},
+     {"x":2,"y":33,"text":""},
+     {"x":3,"y":35,"text":""},
+     {"x":5,"y":45,"text":""}
+   ]'
+   titel="Gesucht: Graph durch geg. Punkte"
+   xachse="Menge x in ME"
+   yachse="Betrag y in GE"
+   xmin=0
+   xmax=8
+   ymin=0
+   ymax=70
+%}
+
+Zur Berechnung der Koeffizienten von $K(x)$ setzen wir die gegebenen Informationen in die Kostenfunktion ein:
+
+$$
+\begin{alignat*}{5}
+K(1)=25 \;&\Rightarrow\;&\; a\cdot 1^3 + b\cdot 1^2 + c\cdot 1 + d &= 25 \;&\Rightarrow\;&\; a + b + c + d = 25 \\
+K(2)=33 \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d &= 33 \;&\Rightarrow\;&\; 8a + 4b + 2c + d = 33 \\
+K(3)=35 \;&\Rightarrow\;&\; a\cdot 3^3 + b\cdot 3^2 + c\cdot 3 + d &= 35 \;&\Rightarrow\;&\; 27a + 9b + 3c + d = 35 \\
+K(5)=45 \;&\Rightarrow\;&\; a\cdot 5^3 + b\cdot 5^2 + c\cdot 5 + d &= 45 \;&\Rightarrow\;&\; 125a + 25b + 5c + d = 45
+\end{alignat*}
+$$
+
+Die jeweils letzten Gleichungen bilden ein lineares Gleichungssystem mit vier Gleichungen und vier Unbekannten. Dieses kann mit Hilfe des Gauß-Algorithmus oder dem Taschenrechner eindeutig gelöst werden. Wir erhalten:
+
+$$
+a=1,\quad b=-9,\quad c=28,\quad d=5
+$$
+
+Damit ist $K(x)=x^3-9x^2+28x+5$.
+
+### Beispiel: Vorgabe allgemeine Informationen
+
+Gegeben: Für eine ertragsgesetzliche Kostenfunktion $K(x)$ sei bekannt:
+
+1. Die Kosten bei 2 ME betragen 88 GE.
+2. Das Betriebsminimum liegt bei 6 ME.
+3. Die Fixkosten betragen 48 GE.
+4. Die Grenzkosten bei 1 ME betragen 19,5 GE/ME.
+
+Gesucht: $K(x)=ax^3+bx^2+cx+d$.
+
+Um die gegebenen Informationen verwerten zu können, werden wir noch weitere Funktionen benötigen:
+
+- variable Stückkosten: $k_v(x)=ax^2+bx+c$
+- Ableitung der variablen Stückkosten: $k_v'(x)=2ax+b$
+- Grenzkosten: $K'(x)=3ax^2+2bx+c$
+
+Nun müssen Gleichungen finden, die den Vorgaben 1 - 4 entsprechen. Erwähnenswert ist die 2. Vorgabe. Da das Betriebsminimum eine Extremstelle der variablen Stückkostenfunktion $k_v(x)$ ist, gilt $k_v'(6)=0$.
+
+Aus den Vorgaben 1 - 4 erhalten wir folgende Gleichungen:
+
+$$
+\begin{alignat*}{5}
+&K(2)=88      \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d           = 88     \;&\Rightarrow\;&\; 8a + 4b + 2c + d = 88 \\
+&k_v'(6)=0      \;&\Rightarrow\;&\; 2a\cdot 6 + b                   = 0      \;&\Rightarrow\;&\; 12a + b +0c +0d = 0 \\
+&K(0)=48      \;&\Rightarrow\;&\; a\cdot 0^3 + b\cdot 0^2 + c\cdot 0 + 1d           = 48     \;&\Rightarrow\;&\; 0a+0b+0c+d = 48 \\
+&K'(1)=19{,}5 \;&\Rightarrow\;&\; 3a\cdot 1^2 + 2b\cdot 1 + c                      = 19{,}5 \;&\Rightarrow\;&\; 3a + 2b + 1c +0d= 19{,}5
+\end{alignat*}
+$$
+
+Die jeweils letzten Gleichungen bilden ein lineares Gleichungssystem mit vier Gleichungen und vier Unbekannten. Dieses kann mit Hilfe des Gauß-Algorithmus oder dem Taschenrechner eindeutig gelöst werden. Wir erhalten:
+
+$$
+a=0{,}5,\quad b=-6,\quad c=30,\quad d=48
+$$
+
+Damit ist $K(x)=0{,}5x^3-6x^2+30x+48$.
+
+{% include info.html
+index="7"
+frage="Plan zum Aufstellen von Funktionsgleichungen"
+antwort="
+
+1. Aufstellen der allgemeinen Funktion: $K(x)=ax^3+bx^2+cx+d$, ggf. weitere, z.B. $k_v(x)=ax^2+bx+c$.
+2. Gegebene Informationen durch Gleichungen ausdrücken.
+3. Aufstellen eines linearen Gleichungssystems.
+4. Lösen des Gleichungssystems und Angabe der gesuchten Funktion.
+
+"
+%}
+
+<div id="skript-aufgabe-7"></div>

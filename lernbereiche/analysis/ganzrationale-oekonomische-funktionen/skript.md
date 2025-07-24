@@ -327,12 +327,12 @@ Die Fixkosten betragen 48 GE.
 
 Wendestelle von $K(x)=0{,}5x^3-6x^2+30x+48$:
 
-Bestimme $K'\'(x)=3x-12$ und $K''\'(x)=3$
+Bestimme $K^{\prime\prime}(x)=3x-12$ und $K^{\prime\prime\prime}(x)=3$.
 
 $$
 \begin{align*}
 3x - 12 =  0 \Rightarrow x = 4\\
-K''\'(4)=3 > 0 \text{ (minimale Steigung)}
+K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
 \end{align*}
 $$
 

@@ -125,15 +125,11 @@ async function reloadSingleTask(iconElement) {
   if (!aufgabeDiv) return;
 
   const id = aufgabeDiv.id;
-
   const index = parseInt(id.split("-").pop()) - 1;
-
   const eintrag = aktuelleEinträge[index];
-
   if (!eintrag) return;
 
   const pfad = window.location.pathname.toLowerCase();
-
   const neueAufgabe = await erstelleAufgabe(eintrag, index);
   if (pfad.includes("uebungen.html")) {
     zeigeOderErsetzeAufgabe(neueAufgabe);
@@ -339,6 +335,32 @@ function toggleAllAnswers(iconElement) {
   }
 }
 
+function kopiereAufgabeAlsBild(button) {
+  const aufgabeDiv = button.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+
+  html2canvas(aufgabeDiv).then((canvas) => {
+    canvas.toBlob((blob) => {
+      if (!blob) return;
+
+      // In Zwischenablage kopieren (nur moderne Browser mit Clipboard API)
+      const item = new ClipboardItem({ "image/png": blob });
+      navigator.clipboard
+        .write([item])
+        .then(() => {
+          alert("Aufgabe wurde als Bild kopiert.");
+        })
+        .catch((err) => {
+          console.error("Fehler beim Kopieren", err);
+          alert(
+            "Das Kopieren als Bild wird von diesem Browser nicht unterstützt."
+          );
+        });
+    }, "image/png");
+  });
+}
+
+/*
 // Funktion zum Kopieren der Aufgabe als Text
 function kopiereAufgabeAlsText(button) {
   const aufgabeDiv = button.closest(".aufgabe");
@@ -401,3 +423,4 @@ function extractCleanText(element) {
   });
   return text.replace(/\s+/g, " ").trim(); // Leerzeichen normalisieren
 }
+  */
