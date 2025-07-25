@@ -8,11 +8,13 @@ gebiet: analysis
 
 ## Einführung
 
-Die Kosten eines Unternehmens lassen sich durch verschiedene Funktionen modellieren. Eine besondere Rolle spielen dabei **ertragsgesetzliche Kostenfunktionen**. Diese lassen sich durch ganzrationale Funktionen dritten Grades der Form $K(x)=ax^3+bx^2+cx+d$ beschreiben und weisen folgende charakteristische Eigenschaften auf:
+Die Kosten eines Unternehmens lassen sich durch verschiedene Funktionen modellieren. Eine besondere Rolle spielen dabei **ertragsgesetzliche Kostenfunktionen**. Diese lassen sich durch ganzrationale Funktionen dritten Grades $K(x)=ax^3+bx^2+cx+d$ beschreiben und weisen folgende charakteristische Eigenschaften auf:
 
 - Der y-Abschnitt ist positiv, denn die Fixkosten sind immer positiv.
 - $K(x)$ ist monoton wachsend, denn mit zunehmender Produktionsmenge steigen auch die Gesamtkosten.
-- Die Wendestelle ist positiv, denn $K(x)$ soll den charakteristischen Übergang von unterproportionalem zu überproprotionalen Kostenwachstum modellieren.
+- Die Wendestelle ist positiv, denn $K(x)$ soll den charakteristischen Übergang von unterproportionalem zu überproprotionalem Kostenwachstum modellieren.
+
+### Graphische Darstellung der Ertragsgesetzlichkeit
 
 Die folgende graphische Darstellung zeigt verschiedene Funktionen dritten Grades und dient der Unterscheidung zwischen ertragsgesetzlichem und nicht-ertragsgesetzlichem Verlauf:
 
@@ -43,7 +45,35 @@ Aus der Grafik ist ersichtlich, dass nur die Funktion $K(x)$ den Anforderungen a
 - $g(x)$ ist nicht monoton wachsend
 - $h(x)$ hat keine postive Wendestelle
 
-## Nachweis der Ertragsgesetzlichkeit
+Auch mit Hilfe der Graphen der Grenzkostenfunktionen können wir - bis auf den positiven y-Abschnitt - prüfen, ob ein ertragsgesetzlicher Kostenverlauf vorliegt. Das folgende Diagramm zeigt die Graphen vierer Ableitungsfunktionen.
+
+{% include graph.html
+   funktionen='[
+    {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Kostenfunktion"},
+    {"name":"f\u2032(x)", "term":"-1.5*x^2+8*x+35", "beschreibung":"f(x)"},
+    {"name":"g\u2032(x)", "term":"1.5*x^2-12*x+15", "beschreibung":"g(x)"},
+    {"name":"h\u2032(x)", "term":"1.5*x^2+2*x+7.5", "beschreibung":"h(x)"}
+   ]'
+    punkte='[
+     {"x":4,"y":-9,"text":"g\u2032 in einem Bereich negative Werte, d.h. g streng monoton fallend"},
+     {"x":-0.67,"y":6.83,"text":"negative Extremstelle h\u2032, d.h. negative Wendestelle von h"}
+   ]'
+   titel="Ertragsgesetzliche Kostenfunktionen"
+   xachse="Menge x in ME"
+   yachse="Betrag y in GE"
+   xmin=-2
+   xmax=10
+   ymin=-10
+   ymax=50
+%}
+
+Aus der Grafik ist ersichtlich, dass nur die Funktion $K(x)$ den Anforderungen an eine ertragsgesetzliche Kostenfunktion genügt. Die weiteren Funktionen scheitern jeweils mindestens an einem Kriterium:
+
+- $f'(x)$ ist eine nach unten geöffnete Parabel. Dann kann $f(x)$ grundsätzlich nicht ertragsgesetzlich sein, weil $f(x)$ z.B. einen negativen Leitkoeffizienten hat und somit für große $x$ streng monoton fallend ist.
+- $g'(x)$ nimmt in einem Bereich negative Werte an. Damit ist $g(x)$ in diesem Bereich streng monoton fallend.
+- $h'(x)$ hat eine negative Extremstelle. Diese entspricht der Wendestelle von $h(x)$. Die Wendestelle von $h(x)$ ist also negativ.
+
+## Rechnerischer Nachweis der Ertragsgesetzlichkeit
 
 Um rechnerisch zu prüfen, ob eine Kostenfunktion $K(x)$ einen ertragsgesetzlichen Verlauf aufweist, müssen wir folgendes prüfen:
 
@@ -290,7 +320,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
 
 <div id="skript-aufgabe-3"></div>
 
-## Graphische Darstellung
+## Graphische Darstellungen
 
 {% include graph.html
    funktionen='[
@@ -315,7 +345,7 @@ antwort="Interpretation charakteristischer Punkte"
 
 <div id="skript-aufgabe-4"></div>
 
-## Berechnung
+## Berechnungen
 
 Um Kostenkennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
 
@@ -368,7 +398,7 @@ Bestimme $k_v'(x)=x-6$ und $k_v^{\prime\prime}(x)=1$.
 $$
 \begin{align*}
 x-6&=0 \Rightarrow x = 6\\
-k_v^{\prime\prime}(6)&=1 > 0 (Minimum)
+k_v^{\prime\prime}(6)&=1 > 0 (\text{ Minimum})
 \end{align*}
 $$
 
@@ -394,7 +424,7 @@ $$
 \begin{align*}
 x-6-\frac{48}{x^2} &= 0\quad |\cdot(x^2)\\
 x^3-6x^2-48&0 \Rightarrow x = 6{,}98\\
-k^{\prime\prime}(6{,}98)&=1{,}8 > 0 (Minimum)
+k^{\prime\prime}(6{,}98)&=1{,}8 > 0 (\text{ Minimum})
 \end{align*}
 $$
 
@@ -416,6 +446,98 @@ Die langfristige Preisuntergrenze beträgt 19,36 GE / ME.
 <div id="skript-aufgabe-6"></div>
 
 ### Exkurs: Alternative Bestimmung des Betriebsminimums und -optimums
+
+Das Betriebsoptimum und Betriebsminimum lassen sich auch wie folgt bestimmen.
+
+### Satz
+
+**1.** Das Betriebsoptimum ist die Schnittstelle der Grenzkosten- und Stückkostenfunktion:
+
+$$
+x_{BO} = \text{Schnittstelle von } K' \text{ und } k.
+$$
+
+**2.** Das Betriebsminimum ist die Schnittstelle der Grenzkosten- und variablen Stückkostenfunktion:
+
+$$
+x_{BM} = \text{Schnittstelle von } K' \text{ und } k_v.
+$$
+
+### Beweis
+
+**1.**
+
+Eine allgemeine Kostenfunktion ist von der Gestalt
+
+$$
+K(x) = ax^3 + bx^2 + cx + d.
+$$
+
+Es folgt:
+
+$$
+\begin{align*}
+K'(x) &= 3ax^2 + 2bx + c \\
+k(x) &= ax^2 + bx + c + \frac{d}{x} \\
+k'(x) &= 2ax + b - \frac{d}{x^2}
+\end{align*}
+$$
+
+Das Betriebsoptimum $x_{BO}$ ist die Nullstelle der 1. Ableitung von $k'$, d.h.:
+
+$$
+\begin{align*}
+k'(x_{BO}) &= 0 \\
+2a x_{BO} + b - \frac{d}{x_{BO}^2} &= 0 \quad \big| \cdot x_{BO}^2 \\
+2a x_{BO}^3 + b x_{BO}^2 - d &= 0
+\end{align*}
+$$
+
+Für die Schnittstelle der Grenzkosten- und Stückkostenfunktion $x_s$ gilt:
+
+$$
+\begin{align*}
+K'(x_s) &= k(x_s) \\
+3a x_s^2 + 2b x_s + c &= a x_s^2 + b x_s + c + \frac{d}{x_s} \\
+2a x_s^2 + b x_s - \frac{d}{x_s} &= 0 \quad \big| \cdot x_s \\
+2a x_s^3 + b x_s^2 - d &= 0
+\end{align*}
+$$
+
+Es folgt die Behauptung, da die jeweils letzten Gleichungen identisch sind.
+
+**2.**
+
+Aus der Gestalt der allgemeinen Kostenfunktion folgt:
+
+$$
+\begin{align*}
+k_v(x) &= ax^2 + bx + c \\
+k_v'(x) &= 2a x + b
+\end{align*}
+$$
+
+Das Betriebsminimum $x_{BM}$ ist die Nullstelle der Ableitung von $k_v$, also:
+
+$$
+\begin{align*}
+k_v'(x_{BM}) &= 0 \\
+2a x_{BM} + b &= 0
+\end{align*}
+$$
+
+Für die Schnittstelle der Grenzkosten- und variablen Stückkostenfunktion $x_s$ gilt:
+
+$$
+\begin{align*}
+K'(x_s) &= k_v(x_s) \\
+3a x_s^2 + 2b x_s + c &= a x_s^2 + b x_s + c \\
+2a x_s^2 + b x_s &= 0 \quad \big| :x_s,\ \text{da } x_s \ne 0 \\
+2a x_s + b &= 0
+\end{align*}
+$$
+
+Es folgt die Behauptung, da die jeweils letzten Gleichungen identisch sind.
 
 ## Steckbriefaufgaben
 

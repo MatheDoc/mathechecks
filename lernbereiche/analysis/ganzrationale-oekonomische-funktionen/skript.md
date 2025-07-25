@@ -136,7 +136,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
 - Denkbar wäre auch eine Kapazitätsgrenze unterhalb der lokalen Extremstelle (Maximum) der Gewinnfunktion. Dies müsste bei der Bestimmung der gewinnmaximalen Menge berücksichtigt werden.
 - Wenn $G(x)$ stets negativ ist, d.h. wenn die Kosten immer größer als die Erlöse sind, gibt es weder eine Gewinnschwelle noch eine Gewinngrenze.
 
-## Graphische Darstellung
+## Graphische Darstellungen
 
 Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen graphisch.
 
@@ -217,7 +217,7 @@ antwort="siehe Info 4"
 
 <div id="skript-aufgabe-5"></div>
 
-## Berechnung
+## Berechnungen
 
 Um ökonomische Kennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
 
