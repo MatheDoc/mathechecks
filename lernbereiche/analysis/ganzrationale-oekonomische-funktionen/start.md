@@ -12,7 +12,7 @@ In diesem Abschnitt werden zentrale ökonomische Funktionen wie Preis-, Erlös-,
 
 ## Darauf kommmt es an
 
-Das systematische Vorgehen zur Bestimmung von Extrempunkten und Wendepunkten muss sicher beherrscht werden. Wichtige ökonomische Kennzahlen wie Grenzkosten, Gewinnmaximum oder Break-even-Point müssen bekannt sein. Sowohl die rechnerische als auch die graphische Interpretation dieser Größen ist zentral.
+Wichtige ökonomische Kennzahlen wie Grenzkosten, Gewinnmaximum oder Break-even-Point müssen bekannt sein. Sowohl die rechnerische als auch die graphische Interpretation dieser Größen ist zentral.
 
 ## Vorkenntnisse
 
