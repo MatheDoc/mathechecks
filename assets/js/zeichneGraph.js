@@ -38,6 +38,7 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       x: optionen.punkte.map((p) => p.x),
       y: optionen.punkte.map((p) => p.y),
       mode: "markers",
+      showlegend: false,
       type: "scatter",
       name: "Punkte",
       marker: {
