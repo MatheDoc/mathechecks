@@ -228,8 +228,8 @@ antwort="
 
 - y-Abschnitt: $f(0)$
 - Nullstellen: $f(x)=0$
-- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f'\'(x) > 0$ (Minimum) oder $f'\'(x) < 0$ (Maximum)
-- Wendestellen: Notwendige Bedingung $f'\'(x) = 0$, hinreichende Bedingung $f''\'(x) > 0$ (minimale Steigung) oder $f''\'(x)<0$ (maximale Steigung)
+- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
+- Wendestellen: Notwendige Bedingung $f'\'(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
   "
   %}
 

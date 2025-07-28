@@ -354,8 +354,8 @@ index="5"
 frage="Ansatz zur Berechnung von Extrem- und Wendestellen / Ableitung gebrochenrationaler Funktionen"
 antwort="
 
-- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f'\'(x) > 0$ (Minimum) oder $f'\'(x) < 0$ (Maximum)
-- Wendestellen: Notwendige Bedingung $f'\'(x) = 0$, hinreichende Bedingung $f''\'(x) > 0$ (minimale Steigung) oder $f''\'(x)<0$ (maximale Steigung)
+- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
+- Wendestellen: Notwendige Bedingung $f^{\prime\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
 - Ableitung von $f(x)=\frac{1}{x}$: $f'(x)=-\frac{1}{x^2}$
 - Ableitung von $f(x)=\frac{1}{x^2}$: $f'(x)=-\frac{1}{x^3}$
 
