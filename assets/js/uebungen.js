@@ -103,7 +103,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
           ></i>
            <i
             class="fas fa-copy icon copy-icon"
-            title="Als Text kopieren"
+            title="Als Bild kopieren"
             onclick="kopiereAufgabeAlsBild(this)"
           ></i>
           <i
