@@ -292,7 +292,7 @@ Wir fassen zusammen. Eine Funktion $K(x)=ax^3+bx^2+cx+d$ ist genau ertragsgesetz
 
 ## Kennzahlen
 
-Neben der gewöhnlichen Kostenfunktion $K(x)$, die die Gesamtkosten in Abhängigkeit der MEnge $x§ angeibt, betrachten wir hier noch:
+Neben der gewöhnlichen Kostenfunktion $K(x)$, die die Gesamtkosten in Abhängigkeit der Menge $x$ angeibt, betrachten wir hier noch:
 
 - die Grenzkostenfunktion $K'(x)$ (Ableitung von $K(x)$)
 - die Stückkostenfunktion $k(x)=\frac{K(x)}{x}$
