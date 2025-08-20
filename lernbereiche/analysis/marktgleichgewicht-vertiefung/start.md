@@ -8,12 +8,13 @@ gebiet: analysis
 
 ## Um was geht es hier
 
-Wir behandeln die Grundlagen zum Marktgleichgewicht: den Zustand, in dem Angebot und Nachfrage übereinstimmen. Dazu untersuchen wir die lineare Angebots- und Nachfragefunktion.
+Wir wiederholen die Grundlagen zum Marktgleichgewicht: den Zustand, in dem Angebot und Nachfrage übereinstimmen. Dazu untersuchen wir beliebige Angebots- und Nachfragefunktionen.
 
 ## Darauf kommmt es an
 
-Die Kennzahlen zum Marktgleichgewicht wie die Gleichgewichtsmenge und der Gleichgewichtspreis müssen bekannt sein. Sowohl die rechnerische als auch die graphische Interpretation dieser Größen ist zentral.
+Die Kennzahlen zum Marktgleichgewicht wie die Gleichgewichtsmenge und der Gleichgewichtspreis müssen bekannt sein. Sowohl die rechnerische als auch die graphische Interpretation dieser Größen ist zentral. Die Berechnung und graphische Bestimmung der Konsumenten- und Produzentenrente muss sicher beherrscht werden.
 
 ## Vorkenntnisse
 
-Lineare Funktionen
+Integralrechnung
+<a href="{{ '/lernbereiche/analysis/marktgleichgewicht-grundlagen/start.html' | relative_url }}" class="link-button">Marktgleichgewicht - Grundlagen</a>
