@@ -175,7 +175,7 @@ Dieses Beispiel motiviert folgende
 
 Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 2 ME und einen Gleichgewichtspreis von 2,5 GE/ME. Ein Marktforschungsinstitut analysiert ausgehend von der Nachfragefunktion $p_N(x)=-1{,}25x+5$ die Konsumentenrente.
 
-Die Zahlungsbereitschaft des Markts ist hier das Integral der Nachfragefunktion von 0 bis zur Gleichgewichtsmenge. Wir erhalten:
+Die Zahlungsbereitschaft der Konsumenten ist gleich dem Integral der Nachfragefunktion von 0 bis zur Gleichgewichtsmenge, weil die Nachfragefunktion angibt, wie viel für jede einzelne zusätzliche Einheit maximal bezahlt würde, und das Integral genau die Summe dieser marginalen Zahlungsbereitschaften über alle Einheiten bis zur nachgefragten Menge bildet. Wir erhalten:
 
 $$
 \begin{align*}
@@ -225,7 +225,7 @@ Dieses Beispiel motiviert folgende
 
 Für das Erfrischungsgetränk Loca gibt es eine Gleichgewichtsmenge von 2 ME und einen Gleichgewichtspreis von 2,5 GE/ME. Ein Marktforschungsinstitut analysiert ausgehend von der Angebotsfunktion $p_A(x)=0{,}75x+1$ die Produzentenrente.
 
-Die Angebotsbereitschaft des Markts ist hier das Integral der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge. Wir erhalten:
+Die Angebotsbereitschaft des Markts ist gleich dem Integral der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge, weil die Angebotsfunktion angibt, zu welchem minimalen Preis jede einzelne zusätzliche Einheit gerade noch angeboten würde, und das Integral genau die Summe dieser marginalen Angebotsbereitschaften über alle Einheiten bis zur angebotenen Menge bildet. Wir erhalten:
 
 $$
 \begin{align*}
