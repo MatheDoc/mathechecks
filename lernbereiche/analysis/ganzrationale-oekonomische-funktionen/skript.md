@@ -297,7 +297,7 @@ Bestimme $E^{\prime}(x)=-10x+60$ und $E^{\prime\prime}(x)=-10$.
 $$
 \begin{align*}
 -10x + 60 &= 0 \Rightarrow x = 6\\
-E^{\prime\prime}(6)&=-10 < 0 (Maximum)
+E^{\prime\prime}(6)&=-10 < 0 \text{ (Maximum)}
 \end{align*}
 $$
 
