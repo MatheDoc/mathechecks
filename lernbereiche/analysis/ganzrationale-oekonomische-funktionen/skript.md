@@ -228,8 +228,8 @@ antwort="
 
 - y-Abschnitt: $f(0)$
 - Nullstellen: $f(x)=0$
-- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
-- Wendestellen: Notwendige Bedingung $f'\'(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
+- Extremstellen: Notwendige Bedingung $f^{\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
+- Wendestellen: Notwendige Bedingung $f^{\prime\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
   "
   %}
 
@@ -292,12 +292,12 @@ Die Sättigungsmenge beträgt 12 ME.
 
 Extremstelle von $E(x) = -5x^2 + 60x$:
 
-Bestimme $E'(x)=-10x+60$ und $E'\'(x)=-10$.
+Bestimme $E^{\prime}(x)=-10x+60$ und $E^{\prime\prime}(x)=-10$.
 
 $$
 \begin{align*}
 -10x + 60 &= 0 \Rightarrow x = 6\\
-E'\'(6)&=-10 < 0 (Maximum)
+E^{\prime\prime}(6)&=-10 < 0 (Maximum)
 \end{align*}
 $$
 
@@ -355,12 +355,12 @@ Die Gewinnschwelle beträgt 1,53 ME und die Gewinngrenze bei 8 ME .
 
 Extremstelle von $G(x)=-0{,}5x^3+x^2+30x-48$:
 
-Bestimme $G'(x)= -1{,}5x^2 + 2x + 30 $ und $G'\'(x)=-3x+2$
+Bestimme $G^{\prime}(x)= -1{,}5x^2 + 2x + 30 $ und $G^{\prime\prime}(x)=-3x+2$
 
 $$
 \begin{align*}
 -1{,}5x^2 + 2x + 30 & = 0 \Rightarrow x_1=-3{,}86,\ x_2=5{,}19\\
-G'\'(5{,}19)&=-3\cdot 5{,}19+2=-13{,}57<0 \text{ (Maximum)}\\
+G^{\prime\prime}(5{,}19)&=-3\cdot 5{,}19+2=-13{,}57<0 \text{ (Maximum)}\\
 (x_1&=-3{,}86\text{ liegt nicht im ökonomischen Definitionsbereich})
 \end{align*}
 $$
