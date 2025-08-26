@@ -8,7 +8,7 @@ gebiet: analysis
 
 ## Um was geht es hier
 
-Wir wiederholen die Grundlagen zum Marktgleichgewicht: den Zustand, in dem Angebot und Nachfrage übereinstimmen. Dazu untersuchen wir beliebige Angebots- und Nachfragefunktionen.
+Wir wiederholen die Grundlagen zum Marktgleichgewicht: den Zustand, in dem Angebot und Nachfrage übereinstimmen. Dabei untersuchen wir beliebige Angebots- und Nachfragefunktionen. Außerdem diskutieren wir die Konsumenten- und Produzentenrente.
 
 ## Darauf kommmt es an
 
