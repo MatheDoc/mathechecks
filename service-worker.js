@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathechecks-cache-v3"; // Version anpassen bei Änderungen
+const CACHE_NAME = "mathechecks-cache-v4"; // Version anpassen bei Änderungen
 const urlsToCache = [
   "/",
   "/index.html",
