@@ -1,14 +1,13 @@
-const CACHE_NAME = "mathechecks-cache-v4"; // Version anpassen bei Änderungen
+const CACHE_NAME = "mathechecks-cache-v5"; // Version hochsetzen!
 const urlsToCache = [
   "/",
-  "/index.html",
   "/manifest.json",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  // "/offline.html" // optional, falls du eine Offline-Seite verwenden möchtest
+  // "/offline.html" // optional, falls Offline-Seite vorhanden
 ];
 
-// Installations-Event: Ressourcen cachen
+// Installations-Event: Basisressourcen cachen
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -33,16 +32,39 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch-Event: zuerst Cache, sonst Netzwerk (Fallback möglich)
+// Fetch-Event: Strategie je nach Dateityp
 self.addEventListener("fetch", (event) => {
+  const request = event.request;
+
+  // 1. HTML-Seiten (Navigation) -> Network first
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          // Aktuelle Version auch in den Cache legen
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() =>
+          caches
+            .match(request)
+            .then((res) => res || caches.match("/offline.html"))
+        )
+    );
+    return;
+  }
+
+  // 2. Statische Dateien (Icons, Manifest, CSS/JS) -> Cache first
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      // Falls im Cache gefunden, zurückgeben; sonst vom Netz holen
+    caches.match(request).then((response) => {
       return (
         response ||
-        fetch(event.request).catch(() => {
-          // Optional: fallback bei Offline (z. B. "/offline.html")
-          return caches.match("/offline.html");
+        fetch(request).then((res) => {
+          // Gefundene Ressourcen in den Cache legen
+          const clone = res.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return res;
         })
       );
     })
