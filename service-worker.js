@@ -41,9 +41,11 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(request)
         .then((response) => {
-          // Aktuelle Version auch in den Cache legen
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          // Aktuelle Version auch in den Cache legen, aber nur bei GET
+          if (request.method === "GET") {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
           return response;
         })
         .catch(() =>
@@ -61,9 +63,10 @@ self.addEventListener("fetch", (event) => {
       return (
         response ||
         fetch(request).then((res) => {
-          // Gefundene Ressourcen in den Cache legen
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          if (request.method === "GET") {
+            const clone = res.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
           return res;
         })
       );
