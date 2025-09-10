@@ -18,7 +18,7 @@ Die erste Frage kann grob beantwortet werden, indem man die vorliegenden Datenpu
 
 Zum Schluss stellt sich die Frage, wie gut die gefundene Funktion die Daten beschreibt. Dafür wird in der Regel das Bestimmtheitsmaß $R^2$ verwendet. Es nimmt Werte zwischen 0 und 1 an. Je näher $R^2$ an 1 liegt, desto besser passt die gewählte Funktion zu den Daten. Auch dieser Wert wird direkt vom GTR angegeben. Vereinfacht gesagt ist die Regression für
 
-- $R^2>0{,}9$ gut bis sehr,
+- $R^2>0{,}9$ gut bis sehr gut,
 - $0{,}7< R^2<0{,}9$ akzeptabel,
 - $R^2< 0{,}7$ schwach.
 

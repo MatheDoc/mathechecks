@@ -105,11 +105,11 @@ $K_1(x)=3x^2+4x+2$ ist keine Funktion dritten Grades. 👉 nicht-ertragsgesetzli
 
 ### $K_2(x)$
 
-$K_20{,}5x^3-6x^2+30x-50$ besitzt einen negativen y-Abschnitt. 👉 nicht-ertragsgesetzlich ❌
+$K_2(x)=0{,}5x^3-6x^2+30x-50$ besitzt einen negativen y-Abschnitt. 👉 nicht-ertragsgesetzlich ❌
 
 ### $K_3(x)$
 
-Um zu prüfen, ob $K_3(x)0{,}5x^3-6x^2+15x+48$ monoton wachsend ist, können wir versuchen Extremstellen zu bestimmen. **Wenn es Extremstellen gibt, dann ist die Funktion nicht monoton wachsend.** Wir berechnen $K_3'(x)=1{,}5x^2-12x^2+15$. Die notwendige Bedignung für Extrema lautet:
+Um zu prüfen, ob $K_3(x)=0{,}5x^3-6x^2+15x+48$ monoton wachsend ist, können wir versuchen Extremstellen zu bestimmen. **Wenn es Extremstellen gibt, dann ist die Funktion nicht monoton wachsend.** Wir berechnen $K_3'(x)=1{,}5x^2-12x^2+15$. Die notwendige Bedignung für Extrema lautet:
 
 $$
 \begin{align*}
@@ -126,7 +126,7 @@ Da der Term unter Wurzel positiv ist, existieren die einfachen Nullstellen $x_1$
 
 ### $K_4(x)$
 
-Wir bestimmen die Wendestelle von $K_4(x)=0{,}5x^3+1{,}5x^2+7{,}5x+110{,}5$. Wir haben $K^{\prime\prime}(x)=3x+3$ und $K^{\prime\prime\prime}(x)=3$. Die notwendige Bedingung lautet:
+Wir bestimmen die Wendestelle von $K_4(x)=0{,}5x^3+1{,}5x^2+7{,}5x+110{,}5$. Wir haben $K_4^{\prime\prime}(x)=3x+3$ und $K_4^{\prime\prime\prime}(x)=3$. Die notwendige Bedingung lautet:
 
 $$
 \begin{align*}
@@ -138,7 +138,7 @@ $$
 Die hinreichende Bedingung:
 
 $$
-K'''(-1)=3>0\text{ (minimale Steigung)}
+K_4'''(-1)=3>0\text{ (minimale Steigung)}
 $$
 
 Die Wendestelle ist also negativ. 👉 nicht-ertragsgesetzlich ❌
@@ -174,7 +174,7 @@ Für $K_5(x)=0{,}5x^3-6x^2+30x+48$ gilt:
   Die hinreichende Bedingung:
 
   $$
-  K'''(4)=3>0\text{ (minimale Steigung)}
+  K_5'''(4)=3>0\text{ (minimale Steigung)}
   $$
 
   Die Wendestelle $x_w$ ist also positiv. ✔️
