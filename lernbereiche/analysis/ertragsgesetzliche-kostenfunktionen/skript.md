@@ -41,9 +41,9 @@ Die folgende graphische Darstellung zeigt verschiedene Funktionen dritten Grades
 
 Aus der Grafik ist ersichtlich, dass nur die Funktion $K(x)$ den Anforderungen an eine ertragsgesetzliche Kostenfunktion genügt. Die weiteren Funktionen scheitern jeweils an einem Kriterium:
 
-- $f(x)$ hat einen keinen positiven $y$-Abschnitt
-- $g(x)$ ist nicht monoton wachsend
-- $h(x)$ hat keine postive Wendestelle
+- $f(x)$ hat einen keinen positiven $y$-Abschnitt.
+- $g(x)$ ist nicht monoton wachsend.
+- $h(x)$ hat keine postive Wendestelle.
 
 Auch mit Hilfe der Graphen der Grenzkostenfunktionen können wir - bis auf den positiven y-Abschnitt - prüfen, ob ein ertragsgesetzlicher Kostenverlauf vorliegt. Das folgende Diagramm zeigt die Graphen vierer Ableitungsfunktionen.
 
@@ -130,7 +130,7 @@ Wir bestimmen die Wendestelle von $K_4(x)=0{,}5x^3+1{,}5x^2+7{,}5x+110{,}5$. Wir
 
 $$
 \begin{align*}
-3x+3=0\\
+3x+3&=0\\
 x&=-1
 \end{align*}
 $$
