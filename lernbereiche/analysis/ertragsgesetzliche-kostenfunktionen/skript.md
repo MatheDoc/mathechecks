@@ -577,10 +577,10 @@ Zur Berechnung der Koeffizienten von $K(x)$ setzen wir die gegebenen Information
 
 $$
 \begin{alignat*}{5}
-K(1)=25 \;&\Rightarrow\;&\; a\cdot 1^3 + b\cdot 1^2 + c\cdot 1 + d &= 25 \;&\Rightarrow\;&\; a + b + c + d = 25 \\
-K(2)=33 \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d &= 33 \;&\Rightarrow\;&\; 8a + 4b + 2c + d = 33 \\
-K(3)=35 \;&\Rightarrow\;&\; a\cdot 3^3 + b\cdot 3^2 + c\cdot 3 + d &= 35 \;&\Rightarrow\;&\; 27a + 9b + 3c + d = 35 \\
-K(5)=45 \;&\Rightarrow\;&\; a\cdot 5^3 + b\cdot 5^2 + c\cdot 5 + d &= 45 \;&\Rightarrow\;&\; 125a + 25b + 5c + d = 45
+K(1)=25 \;&\Rightarrow\;&\; a\cdot 1^3 + b\cdot 1^2 + c\cdot 1 + d &= 25 \;&\Rightarrow\;&\; 1a + 1b + 1c + 1d = 25 \\
+K(2)=33 \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d &= 33 \;&\Rightarrow\;&\; 8a + 4b + 2c + 1d = 33 \\
+K(3)=35 \;&\Rightarrow\;&\; a\cdot 3^3 + b\cdot 3^2 + c\cdot 3 + d &= 35 \;&\Rightarrow\;&\; 27a + 9b + 3c + 1d = 35 \\
+K(5)=45 \;&\Rightarrow\;&\; a\cdot 5^3 + b\cdot 5^2 + c\cdot 5 + d &= 45 \;&\Rightarrow\;&\; 125a + 25b + 5c + 1d = 45
 \end{alignat*}
 $$
 
@@ -615,9 +615,9 @@ Aus den Vorgaben 1 - 4 erhalten wir folgende Gleichungen:
 
 $$
 \begin{alignat*}{5}
-&K(2)=88      \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d           = 88     \;&\Rightarrow\;&\; 8a + 4b + 2c + d = 88 \\
+&K(2)=88      \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d           = 88     \;&\Rightarrow\;&\; 8a + 4b + 2c + 1d = 88 \\
 &k_v'(6)=0      \;&\Rightarrow\;&\; 2a\cdot 6 + b                   = 0      \;&\Rightarrow\;&\; 12a + b +0c +0d = 0 \\
-&K(0)=48      \;&\Rightarrow\;&\; a\cdot 0^3 + b\cdot 0^2 + c\cdot 0 + 1d           = 48     \;&\Rightarrow\;&\; 0a+0b+0c+d = 48 \\
+&K(0)=48      \;&\Rightarrow\;&\; a\cdot 0^3 + b\cdot 0^2 + c\cdot 0 + 1d           = 48     \;&\Rightarrow\;&\; 0a+0b+0c+1d = 48 \\
 &K'(1)=19{,}5 \;&\Rightarrow\;&\; 3a\cdot 1^2 + 2b\cdot 1 + c                      = 19{,}5 \;&\Rightarrow\;&\; 3a + 2b + 1c +0d= 19{,}5
 \end{alignat*}
 $$

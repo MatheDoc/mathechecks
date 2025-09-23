@@ -551,7 +551,7 @@ Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf
 | 9   | 0,4826       |
 | 10  | 0,3823       |
 
-Wir entnehmen der Tabelle, dass $P(X\leq 3)=0{,}7102\approx 0{,}71$ für $n=3$ ist.
+Wir entnehmen der Tabelle, dass $P(X\leq 3)=0{,}7102\approx 0{,}71$ für $n=7$ ist.
 
 ### Beispiel 2
 
