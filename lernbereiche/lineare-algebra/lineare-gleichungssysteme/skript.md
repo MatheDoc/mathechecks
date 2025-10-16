@@ -46,11 +46,13 @@ antwort="<iframe width="560" height="315" src="https://www.youtube.com/embed/6Bu
 
 <div id="skript-aufgabe-1"></div>
 
-Betrachten wir lineare Gleichungssysteme mit mehr Gleichungen und Unbekannten, werden das Gleichsetzungs- und Einsetzungsverfahren schnell unübersichtlich.
+Betrachten wir lineare Gleichungssysteme mit mehreren Gleichungen und Unbekannten, so werden das Gleichsetzungs- und das Einsetzungsverfahren schnell unübersichtlich. Schreibt man das System jedoch in einer geordneten, tabellarischen Form auf, lässt es sich deutlich systematischer bearbeiten. Dieses Vorgehen bezeichnet man als Gaußschen Algorithmus oder Gauß-Verfahren.
+
+Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt ablesen lassen.
 
 {%include info.html
 index="2"
-frage=""
+frage="Lösen eines 3x3-Gleichungssystems mit dem Gauß-Algorithmus"
 antwort="<iframe width="560" height="315" src="https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
 %}
 
