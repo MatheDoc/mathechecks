@@ -32,21 +32,14 @@ Wir sehen, dass $x$ und $x$ nicht direkt berechnet werden können, da in jeder G
 
 {%include info.html
 index="1"
-frage="Wie löst man lineare Gleichungssysteme mit 2 Gleichungen und 2 Unbekannten?"
+frage="Lösen linearer Gleichungssysteme mit 2 Gleichungen und 2 Unbekannten"
 antwort="
 
-<iframe width='560' height='315' src='https://www.youtube.com/embed/6BuVmbuxZco?si=bQ8gQxBzqQTycXh_' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-
-### Einsetzungsverfahren
-
-<iframe width='560' height='315' src='https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-
-### Additionsverfahren
-
-<iframe width='560' height='315' src='https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-
-"
-%}
+- Gleichsetzungsverfahren: Beide Gleichungen nach der gleichen Unbekannten auflösen und gleichsetzen
+- Einsetzungsverfahren: Eine Gleichung nach einer Unbekannten auflösen und diese Lösung in die andere Gleichung einsetzen
+- Additionsverfahren: Durch geschicktes Addieren der beiden Gleichungen eine Unbekannte eliminieren
+  "
+  %}
 
 <div id="skript-aufgabe-1"></div>
 
@@ -54,24 +47,26 @@ Betrachten wir lineare Gleichungssysteme mit mehreren Gleichungen und Unbekannte
 
 Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt ablesen lassen.
 
-{%include info.html
-index="2"
-frage="Lösen eines 3x3-Gleichungssystems mit dem Gauß-Algorithmus"
-antwort="
+### Gauß-Algorithmus
 
 <iframe width='560' height='315' src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-"
+
+{%include info.html
+index="2"
+frage="Lösen linearer Gleichungssysteme mit 3 Gleichungen und 3 Unbekannten"
+antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 %}
 
 <div id="skript-aufgabe-2"></div>
 
-{%include info.html
-index="3"
-frage="Lösen eines 4x4-Gleichungssystems mit dem Gauß-Algorithmus"
-antwort="
+Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichtet man dabei meist auf die Bezeichnung der Unbekannten und stellt das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
 
 <iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-"
+
+{%include info.html
+index="3"
+frage="Lösen linearer Gleichungssysteme mit 4 Gleichungen und 4 Unbekannten"
+antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 %}
 
 <div id="skript-aufgabe-3"></div>
