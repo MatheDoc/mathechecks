@@ -7,7 +7,7 @@ lernbereich: lineare-gleichungssysteme
 
 ## Einführung
 
-Ein lineares Gleichungssystem besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In den Gleichungen gibt es eine oder mehrere Unbekannte. Zum Beispiel:
+Ein lineares Gleichungssystem besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In den Gleichungen gibt es eine oder mehrere Unbekannte.
 
 $$
 \begin{align}
@@ -16,7 +16,19 @@ $$
 \end{align}
 $$
 
-Wir sehen, dass $x$ und $x$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden kann, und in der Folge auch die übrigen Unbekannten.
+Hier sind einige kurze, einfache Anwendungsbeispiele für lineare Gleichungssysteme:
+
+1. **PageRank-Algorithmus** – zur Berechnung der Bedeutung von Webseiten im Google-Suchranking.
+2. **Stromnetzberechnung** – zur Bestimmung von Strömen und Spannungen in elektrischen Netzwerken.
+3. **Gleichgewichtsanalysen in der Ökonomie** – zur Ermittlung von Preisen und Produktionsmengen in Märkten mit mehreren Gütern.
+4. **Bildverarbeitung** – zur Rekonstruktion oder Filterung von Bildern, etwa bei Rauschunterdrückung.
+5. **Physikalische Modelle** – z. B. bei Kräften im statischen Gleichgewicht oder bei der Berechnung von Schnittpunkten von Ebenen.
+6. **Computergraphik** – zur Berechnung von Transformationen, Projektionen oder Beleuchtungseffekten in 3D-Szenen.
+7. **Chemische Reaktionsgleichungen** – zur Bestimmung der stöchiometrischen Koeffizienten bei der Reaktionsbilanzierung.
+
+## Lösungsverfahren
+
+Wir sehen, dass im obigen Beispiel $x$ und $x$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden kann, und in der Folge auch die übrigen Unbekannten.
 
 ### Gleichsetzungsverfahren
 
@@ -70,3 +82,5 @@ antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 %}
 
 <div id="skript-aufgabe-3"></div>
+
+## Lösbarkeit linearer Gleichungsysteme
