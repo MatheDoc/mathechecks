@@ -14,8 +14,13 @@ figure figcaption {
 }
 
 iframe {
-max-width: 95vw;
+  width: 560px;
+  max-width: 95vw;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border: 0;
 }
+
 
 .flip-card {
   margin: 1.5em 0;
