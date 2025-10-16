@@ -10,6 +10,7 @@ fetch("/kompetenzliste.json") // Liquid wird nicht in js aufgelöst, daher ohne 
 
     gefiltert.forEach((eintrag, index) => {
       const uebungUrl = `uebungen.html#aufgabe-${index + 1}`;
+      console.log(uebungUrl);
       const zeile = document.createElement("tr");
       zeile.innerHTML = `<td>${index + 1}</td>
       <td>

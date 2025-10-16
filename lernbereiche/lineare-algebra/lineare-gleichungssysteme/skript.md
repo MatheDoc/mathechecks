@@ -16,7 +16,7 @@ antwort=""
 <div id="skript-aufgabe-1"></div>
 
 {%include info.html
-index="1"
+index="2"
 frage=""
 antwort=""
 %}
@@ -24,7 +24,7 @@ antwort=""
 <div id="skript-aufgabe-2"></div>
 
 {%include info.html
-index="1"
+index="3"
 frage=""
 antwort=""
 %}
