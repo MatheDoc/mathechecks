@@ -33,15 +33,19 @@ Wir sehen, dass $x$ und $x$ nicht direkt berechnet werden können, da in jeder G
 {%include info.html
 index="1"
 frage="Wie löst man lineare Gleichungssysteme mit 2 Gleichungen und 2 Unbekannten?"
-antwort="<iframe width="560" height="315" src="https://www.youtube.com/embed/6BuVmbuxZco?si=bQ8gQxBzqQTycXh_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+antwort="
+
+<iframe width='560' height='315' src='https://www.youtube.com/embed/6BuVmbuxZco?si=bQ8gQxBzqQTycXh_' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
 ### Einsetzungsverfahren
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width='560' height='315' src='https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
 ### Additionsverfahren
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
+<iframe width='560' height='315' src='https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+
+"
 %}
 
 <div id="skript-aufgabe-1"></div>
@@ -53,7 +57,10 @@ Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additions
 {%include info.html
 index="2"
 frage="Lösen eines 3x3-Gleichungssystems mit dem Gauß-Algorithmus"
-antwort="<iframe width='560' height='315' src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+antwort="
+
+<iframe width='560' height='315' src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+"
 %}
 
 <div id="skript-aufgabe-2"></div>
@@ -61,7 +68,10 @@ antwort="<iframe width='560' height='315' src='https://www.youtube.com/embed/aos
 {%include info.html
 index="3"
 frage="Lösen eines 4x4-Gleichungssystems mit dem Gauß-Algorithmus"
-antwort="<iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+antwort="
+
+<iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+"
 %}
 
 <div id="skript-aufgabe-3"></div>
