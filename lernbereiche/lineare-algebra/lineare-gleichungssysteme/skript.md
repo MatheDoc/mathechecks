@@ -51,7 +51,7 @@ Betrachten wir lineare Gleichungssysteme mit mehr Gleichungen und Unbekannten, w
 {%include info.html
 index="2"
 frage=""
-antwort=""
+antwort="<iframe width="560" height="315" src="https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
 %}
 
 <div id="skript-aufgabe-2"></div>
