@@ -60,8 +60,8 @@ antwort="<iframe width='560' height='315' src='https://www.youtube.com/embed/aos
 
 {%include info.html
 index="3"
-frage=""
-antwort="<iframe width="560" height="315" src="https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
+frage="Lösen eines 4x4-Gleichungssystems mit dem Gauß-Algorithmus"
+antwort="<iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
 %}
 
 <div id="skript-aufgabe-3"></div>
