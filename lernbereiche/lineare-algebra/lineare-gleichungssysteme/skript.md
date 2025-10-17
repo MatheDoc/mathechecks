@@ -55,11 +55,9 @@ antwort="
 
 <div id="skript-aufgabe-1"></div>
 
-Betrachten wir lineare Gleichungssysteme mit mehreren Gleichungen und Unbekannten, so werden das Gleichsetzungs- und das Einsetzungsverfahren schnell unübersichtlich. Schreibt man das System jedoch in einer geordneten, tabellarischen Form auf, lässt es sich deutlich systematischer bearbeiten. Dieses Vorgehen bezeichnet man als Gaußschen Algorithmus oder Gauß-Verfahren.
-
-Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt ablesen lassen.
-
 ### Gauß-Algorithmus
+
+Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen.
 
 <iframe width='560' height='315' src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
@@ -71,9 +69,9 @@ antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 
 <div id="skript-aufgabe-2"></div>
 
-Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichtet man dabei meist auf die Bezeichnung der Unbekannten und stellt das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
+Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
 
-#### Beispiel
+Wir betrachten dazu das folgende lineare Gleichungssystem:
 
 $$
 \begin{align*}
@@ -83,21 +81,44 @@ x_1 + x_2 + x_3 &= 3 \\
 \end{align*}
 $$
 
+Die Matrixform erhalten wir, indem die Unbekannten und Rechenoperationen ausgelassen werden, die Koeffizienten müssen dabei konsequent untereinander geschrieben werden.
+
 {% include flip-card.html
 frage="Darstellung in Matrixform"
 antwort="
 
 $$
 \begin{pmatrix}
-1 & 1 & 1 \\
-4 & 2 & 1 \\
-16 & -4 & 1
+1 & 1 & 1 & | & 3\\
+4 & 2 & 1 | & 14\\
+16 & -4 & 1| & 8
 \end{pmatrix}
 $$
 
 " %}
 
-<iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+Diese Matrix wird mit Hilfe des Additionsverfahrens in eine obere Dreiecksform überführt.
+
+{% include flip-card.html
+frage="Darstellung in oberer Dreiecksform"
+antwort="
+
+$$
+\begin{pmatrix}
+1 & 1 & 1 & | & 3\\
+4 & 2 & 1 | & 14\\
+16 & -4 & 1| & 8
+\end{pmatrix}
+\begin{matrix}
+\\
+II-4\cdot I\\
+III-16\cdot I
+\end{matrix}
+$$
+
+" %}
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 {%include info.html
 index="3"
