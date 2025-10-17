@@ -61,14 +61,6 @@ Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additions
 
 <iframe width='560' height='315' src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
-{%include info.html
-index="2"
-frage="Lösen linearer Gleichungssysteme mit 3 Gleichungen und 3 Unbekannten"
-antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
-%}
-
-<div id="skript-aufgabe-2"></div>
-
 Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
 
 Wir betrachten dazu das folgende lineare Gleichungssystem:
@@ -100,15 +92,16 @@ $$
 Diese Matrix wird mit Hilfe des Additionsverfahrens in eine obere Dreiecksform überführt.
 
 {% include flip-card.html
-frage="Darstellung in oberer Dreiecksform"
+frage="Umformen in obere Dreiecksform"
 antwort="
 
 $$
 \begin{pmatrix}
 1 & 1 & 1 & | & 3\\
-4 & 2 & 1 | & 14\\
-16 & -4 & 1| & 8
+4 & 2 & 1 & | & 14\\
+16 & -4 & 1 &| & 8
 \end{pmatrix}
+\quad
 \begin{matrix}
 \\
 II-4\cdot I\\
@@ -116,14 +109,81 @@ III-16\cdot I
 \end{matrix}
 $$
 
+$$
+\begin{pmatrix}
+1 & 1 & 1 & | & 3\\
+0 & -2 & -3 & | & 2\\
+0 & -20 & -15 &| & -40
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+III-10\cdot II
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 1 & 1 & | & 3\\
+0 & -2 & -3 & | & 2\\
+0 & 0 & 15 &| & -60
+\end{pmatrix}
+$$
+
 " %}
+
+{% include flip-card.html
+frage="Suksessives Auflösen nach den Unbekannten"
+antwort="Ausgeschrieben lautet das System:
+
+$$
+\begin{align*}
+I: x_1+x_2+x_3&=3\\
+II: -2x_2-3x_3&=2\\
+III: 15x_3&=-60\\
+\end{align*}
+$$
+
+Auflösen nach den Unbekannten:
+
+$$
+\begin{align*}
+III: 15x_3&=-60 \Rightarrow \mathbf{x_3=-4}\\
+II: -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5\\
+I: x_1+5-4=3 \Rightarrow x_1=2\\
+\end{align*}
+$$
+
+"
+%}
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 {%include info.html
+index="2"
+frage="Lösen linearer Gleichungssysteme mit 3 Gleichungen und 3 Unbekannten"
+antwort="
+
+1. Darstellung in Matrixform
+2. Umformen in obere Dreiecksform
+3. Suksessives Auflösen nach den Unbekannten
+
+"
+%}
+
+<div id="skript-aufgabe-2"></div>
+
+{%include info.html
 index="3"
 frage="Lösen linearer Gleichungssysteme mit 4 Gleichungen und 4 Unbekannten"
-antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
+antwort="
+
+1. Darstellung in Matrixform
+2. Umformen in obere Dreiecksform
+3. Suksessives Auflösen nach den Unbekannten
+
+"
 %}
 
 <div id="skript-aufgabe-3"></div>
