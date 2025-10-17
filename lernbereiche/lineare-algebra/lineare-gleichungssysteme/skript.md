@@ -198,14 +198,8 @@ antwort="
 
 Wir betrachten die folgenden drei linearen Gleichungssysteme
 
-$$
-2+3=5
-$$
-
-[$5$]("$2 + 3$")
-
-[5]("$2 + 3$")
-
-[5](# "2 + 3")
+<span class="tooltip">5
+<span class="tooltiptext">$$2 + 3$$</span>
+</span>.
 
 <span title="$$2 + 3$$">5</span>

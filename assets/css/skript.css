@@ -21,7 +21,34 @@ iframe {
   border: 0;
 }
 
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
 
+.tooltip .tooltiptext {
+  visibility: hidden;
+  background-color: #f9f9f9;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 
 .flip-card {
   margin: 1.5em 0;
