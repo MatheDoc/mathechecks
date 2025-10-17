@@ -203,3 +203,5 @@ Wir betrachten die folgenden drei linearen Gleichungssysteme
 </span>.
 
 <span title="$$2 + 3$$">5</span>
+
+{%include ttt.html text="$5$" tt="2+3"%}
