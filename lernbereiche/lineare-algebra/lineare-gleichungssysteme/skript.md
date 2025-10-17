@@ -81,9 +81,9 @@ antwort="
 
 $$
 \begin{pmatrix}
-1 & 1 & 1 & | & 3\\
-4 & 2 & 1 | & 14\\
-16 & -4 & 1| & 8
+1 & 1   & 1 & | & 3\\
+4 & 2   & 1 & | & 14\\
+16 & -4 & 1 & | & 8
 \end{pmatrix}
 $$
 
@@ -129,6 +129,12 @@ $$
 0 & -2 & -3 & | & 2\\
 0 & 0 & 15 &| & -60
 \end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\quad\quad
+\end{matrix}
 $$
 
 " %}
@@ -138,20 +144,20 @@ frage="Suksessives Auflösen nach den Unbekannten"
 antwort="Ausgeschrieben lautet das System:
 
 $$
-\begin{align*}
-I: x_1+x_2+x_3&=3\\
-II: -2x_2-3x_3&=2\\
-III: 15x_3&=-60\\
-\end{align*}
+\begin{alignat*}{3}
+I:\quad & x_1+x_2+x_3&=3\\
+II:\quad & -2x_2-3x_3&=2\\
+III:\quad & 15x_3&=-60\\
+\end{alignat*}
 $$
 
 Auflösen nach den Unbekannten:
 
 $$
 \begin{align*}
-III: 15x_3&=-60 \Rightarrow \mathbf{x_3=-4}\\
-II: -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5\\
-I: x_1+5-4=3 \Rightarrow x_1=2\\
+III: 15x_3&=-60 \Rightarrow x_3=-4 ✅\\
+II: -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5 ✅\\
+I: x_1+5-4=3 \Rightarrow x_1=2 ✅\\
 \end{align*}
 $$
 
