@@ -1,9 +1,26 @@
 <script>
-window.MathJax = {
+  window.MathJax = {
     tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']]
-    }
-};
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"],
+      ],
+      displayMath: [
+        ["$$", "$$"],
+        ["\\[", "\\]"],
+      ],
+      packages: { "[+]": ["html"] }, // erlaubt \htmlClass und \htmlData
+      macros: {
+        tooltip: ["\\htmlClass{tooltip}{#1}", 1],
+        tip: ["\\htmlData{tip}{#1}", 1],
+      },
+    },
+    options: {
+      enableMenu: false,
+    },
+  };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+<script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  defer
+></script>
