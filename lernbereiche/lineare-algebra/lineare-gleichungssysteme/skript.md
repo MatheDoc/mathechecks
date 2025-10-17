@@ -145,20 +145,20 @@ antwort="Ausgeschrieben lautet das System:
 
 $$
 \begin{alignat*}{3}
-I:\quad & x_1+x_2+x_3 & =3\\
-II:\quad & -2x_2-3x_3 & =2\\
-III:\quad & 15x_3 & =-60
+I:\quad   & x_1+x_2+x_3 & =3\\
+II:\quad  & -2x_2-3x_3  & =2\\
+III:\quad & 15x_3       & =-60
 \end{alignat*}
 $$
 
 Auflösen nach den Unbekannten:
 
 $$
-\begin{align*}
-III: 15x_3&=-60 \Rightarrow x_3=-4\quad ✅\\
-II: -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5\quad ✅\\
-I: x_1+5-4=3 \Rightarrow x_1=2\quad ✅\\
-\end{align*}
+\begin{alignat*}{2}
+III:\quad & 15x_3=-60 \Rightarrow x_3=-4\quad ✅\\
+II:\quad  & -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5\quad ✅\\
+I:\quad   & x_1+5-4=3 \Rightarrow x_1=2\quad ✅\\
+\end{alignat*}
 $$
 
 "
