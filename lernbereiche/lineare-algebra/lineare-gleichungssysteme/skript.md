@@ -199,5 +199,7 @@ antwort="
 Wir betrachten die folgenden drei linearen Gleichungssysteme
 
 $$
-\tooltip{6}\tip{2 \cdot 3 = 6}
+2+3=5
 $$
+
+[5](# "2 + 3")
