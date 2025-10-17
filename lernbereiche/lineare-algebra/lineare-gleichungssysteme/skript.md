@@ -18,17 +18,17 @@ $$
 
 Hier sind einige kurze, einfache Anwendungsbeispiele für lineare Gleichungssysteme:
 
-1. **PageRank-Algorithmus** – zur Berechnung der Bedeutung von Webseiten im Google-Suchranking.
-2. **Stromnetzberechnung** – zur Bestimmung von Strömen und Spannungen in elektrischen Netzwerken.
-3. **Gleichgewichtsanalysen in der Ökonomie** – zur Ermittlung von Preisen und Produktionsmengen in Märkten mit mehreren Gütern.
-4. **Bildverarbeitung** – zur Rekonstruktion oder Filterung von Bildern, etwa bei Rauschunterdrückung.
-5. **Physikalische Modelle** – z. B. bei Kräften im statischen Gleichgewicht oder bei der Berechnung von Schnittpunkten von Ebenen.
-6. **Computergraphik** – zur Berechnung von Transformationen, Projektionen oder Beleuchtungseffekten in 3D-Szenen.
-7. **Chemische Reaktionsgleichungen** – zur Bestimmung der stöchiometrischen Koeffizienten bei der Reaktionsbilanzierung.
+- PageRank-Algorithmus – zur Berechnung der Bedeutung von Webseiten im Google-Suchranking.
+- Stromnetzberechnung – zur Bestimmung von Strömen und Spannungen in elektrischen Netzwerken.
+- Gleichgewichtsanalysen in der Ökonomie – zur Ermittlung von Preisen und Produktionsmengen in Märkten mit mehreren Gütern.
+- Bildverarbeitung – zur Rekonstruktion oder Filterung von Bildern, etwa bei Rauschunterdrückung.
+- Physikalische Modelle – z. B. bei Kräften im statischen Gleichgewicht oder bei der Berechnung von Schnittpunkten von Ebenen.
+- Computergraphik – zur Berechnung von Transformationen, Projektionen oder Beleuchtungseffekten in 3D-Szenen.
+- Chemische Reaktionsgleichungen – zur Bestimmung der stöchiometrischen Koeffizienten bei der Reaktionsbilanzierung.
 
 ## Lösungsverfahren
 
-Wir sehen, dass im obigen Beispiel $x$ und $x$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden kann, und in der Folge auch die übrigen Unbekannten.
+Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden kann, und in der Folge auch die übrigen Unbekannten.
 
 ### Gleichsetzungsverfahren
 
@@ -73,6 +73,30 @@ antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 
 Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichtet man dabei meist auf die Bezeichnung der Unbekannten und stellt das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
 
+#### Beispiel
+
+$$
+\begin{align*}
+x_1 + x_2 + x_3 &= 3 \\
+4x_1 + 2x_2 + x_3 &= 14 \\
+16x_1 - 4x_2 + x_3 &= 8
+\end{align*}
+$$
+
+{% include flip-card.html
+frage="Darstellung in Matrixform"
+antwort="
+
+$$
+\begin{pmatrix}
+1 & 1 & 1 \\
+4 & 2 & 1 \\
+16 & -4 & 1
+\end{pmatrix}
+$$
+
+" %}
+
 <iframe width='560' height='315' src='https://www.youtube.com/embed/N4iuTaHUC80?si=BrInX6fFM52Kg3kr' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 
 {%include info.html
@@ -84,3 +108,5 @@ antwort="Umformen des linearen Gleichungssystem in eine obere Dreiecksform"
 <div id="skript-aufgabe-3"></div>
 
 ## Lösbarkeit linearer Gleichungsysteme
+
+Wir betrachten die folgenden drei linearen Gleichungssysteme
