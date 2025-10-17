@@ -198,10 +198,12 @@ antwort="
 
 Wir betrachten die folgenden drei linearen Gleichungssysteme
 
+1.
+
 <span class="tooltip">5
 <span class="tooltiptext">$$2 + 3$$</span>
 </span>.
 
-<span title="$$2 + 3$$">5</span>
+2.
 
 {%include ttt.html text="$5$" tt="2+3"%}
