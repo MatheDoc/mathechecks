@@ -139,6 +139,8 @@ $$
 
 " %}
 
+Nun verwenden wieder die ausführliche Schreibweise, um angefangen von der letzten Gleichung alle Unbekannten nacheinander zu bestimmen.
+
 {% include flip-card.html
 frage="Suksessives Auflösen nach den Unbekannten"
 antwort="Ausgeschrieben lautet das System:
@@ -196,7 +198,4 @@ antwort="
 
 ## Lösbarkeit linearer Gleichungsysteme
 
-<!--{% include ttt.html
-text="$5$"
-tt="$2+3$"
-%}-->
+Wir haben also {% include ttt.html text="$5$" tt="$2+3$" %} und das ist gut so.
