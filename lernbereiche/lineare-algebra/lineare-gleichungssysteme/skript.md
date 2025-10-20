@@ -166,6 +166,14 @@ $$
 "
 %}
 
+Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix oder, allgemeiner, eine Zeilenstufenform erhalten. Dabei verwendeten wir die sogenannten elementaren Zeilenumformungen:
+
+- Vertauschen zweier Zeilen
+- Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
+- Addieren oder Subtrahieren eines Vielfachen einer Zeile zu einer anderen Zeile
+
+Das folgende Video zeigt ein Beispiel, in dem ein Zeilentausch notwendig ist, um in der linken oberen Ecke eine Zahl ungleich Null zu erhalten.
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 {%include info.html
