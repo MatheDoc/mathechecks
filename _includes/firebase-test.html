@@ -1,20 +1,20 @@
 <div id="firebase-test">
-  <p>Firebase Test</p>
-  <button onclick="testFirebase()">Teste Firestore Verbindung</button>
+    <p>Firebase Test</p>
+    <button onclick="testFirebase()">Teste Firestore Verbindung</button>
 </div>
 
 <script>
-async function testFirebase() {
-  try {
-    // Teste Firestore mit einer einfachen Operation
-    const testDoc = await db.collection('test').add({
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      test: 'Erfolgreich!'
-    });
-    
-    alert('Firebase Verbindung erfolgreich! Document ID: ' + testDoc.id);
-  } catch (error) {
-    alert('Fehler beim Testen der Firebase Verbindung: ' + error.message);
-  }
-}
+    async function testFirebase() {
+        try {
+            // Teste Firestore mit einer einfachen Operation
+            const testDoc = await db.collection('test').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                test: 'Erfolgreich!'
+            });
+
+            alert('Firebase Verbindung erfolgreich! Document ID: ' + testDoc.id);
+        } catch (error) {
+            alert('Fehler beim Testen der Firebase Verbindung: ' + error.message);
+        }
+    }
 </script>
