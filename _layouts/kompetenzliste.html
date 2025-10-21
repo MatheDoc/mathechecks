@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    {% include head-main.html %} {% include mathjax.html %}
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/kompetenzliste.css' | relative_url }}"
-    />
-  </head>
-  <body>
-    <header>
-      {% include nav-lernbereiche.html %}
-      <h1>{{ page.title }}</h1>
-      {% include nav-materialtyp.html %}
-    </header>
-    <main style="margin-top: -50px">
-      <table id="tabelle">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Ich kann</th>
-          </tr>
-        </thead>
-        <tbody id="tabellenkoerper"></tbody>
-      </table>
-    </main>
 
-    {% include footer.html %}
+<head>
+  {% include firebase-config.html %}
+  {% include head-main.html %} {% include mathjax.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/kompetenzliste.css' | relative_url }}" />
+</head>
 
-    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/kompetenzliste.js' | relative_url }}"></script>
-    <script type="module" src="/assets/js/firebase-init.js"></script>
-  </body>
+<body>
+  <header>
+    {% include nav-lernbereiche.html %}
+    <h1>{{ page.title }}</h1>
+    {% include nav-materialtyp.html %}
+  </header>
+  <main style="margin-top: -50px">
+    <table id="tabelle">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Ich kann</th>
+        </tr>
+      </thead>
+      <tbody id="tabellenkoerper"></tbody>
+    </table>
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/kompetenzliste.js' | relative_url }}"></script>
+  <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
+</body>
+
 </html>

@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    {% include head-main.html %} {% include mathjax.html %}
-  </head>
-  <body>
-    <header>
-      {% include nav-lernbereiche.html %}
-      <h1>{{ page.title }}</h1>
-      {% include nav-materialtyp.html %}
-    </header>
-    <main>
-      {{ content }}
-      <h2>Anki-Karten</h2>
-      Anki ist ein digitales Karteikartensystem, das auf dem Prinzip der spaced
-      repetition (verteilte Wiederholung) basiert. Es hilft dabei, mathematische
-      Inhalte effizient und langfristig zu lernen. Jede Karte enthält eine
-      gezielte Frage (eine Teilaufgabe eines Checks) auf der Vorderseite und die
-      passende Antwort auf der Rückseite. Durch regelmäßiges Wiederholen
-      steigert sich der Lernerfolg deutlich. Anki ist kostenlos und werbefrei
-      verfügbar für Windows, macOS, Android und iOS (nicht kostenlos als App,
-      aber kostenlos als Webversion). Die Checks (gegliedert in Teilfragen)
-      können als Anki-Paket heruntergeladen und anschließend in Anki importiert
-      werden.
 
-      <a href="https://apps.ankiweb.net/" class="link-button"
-        >Anki Download-Seite</a
-      >
-      <a
-        href="{{ '/anki/' | append: page.gebiet  | append: '/' | append: page.lernbereich | append: '.apkg' | relative_url }}"
-        download
-        class="link-button"
-        >Anki-Paket: {{ page.title }}</a
-      >
-    </main>
+<head>
+  {% include firebase-config.html %}
+  {% include head-main.html %} {% include mathjax.html %}
+</head>
 
-    {% include footer.html %}
+<body>
+  <header>
+    {% include nav-lernbereiche.html %}
+    <h1>{{ page.title }}</h1>
+    {% include nav-materialtyp.html %}
+  </header>
+  <main>
+    {{ content }}
+    <h2>Anki-Karten</h2>
+    Anki ist ein digitales Karteikartensystem, das auf dem Prinzip der spaced
+    repetition (verteilte Wiederholung) basiert. Es hilft dabei, mathematische
+    Inhalte effizient und langfristig zu lernen. Jede Karte enthält eine
+    gezielte Frage (eine Teilaufgabe eines Checks) auf der Vorderseite und die
+    passende Antwort auf der Rückseite. Durch regelmäßiges Wiederholen
+    steigert sich der Lernerfolg deutlich. Anki ist kostenlos und werbefrei
+    verfügbar für Windows, macOS, Android und iOS (nicht kostenlos als App,
+    aber kostenlos als Webversion). Die Checks (gegliedert in Teilfragen)
+    können als Anki-Paket heruntergeladen und anschließend in Anki importiert
+    werden.
 
-    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-    <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
-    <script type="module" src="/assets/js/firebase-init.js"></script>
-  </body>
+    <a href="https://apps.ankiweb.net/" class="link-button">Anki Download-Seite</a>
+    <a href="{{ '/anki/' | append: page.gebiet  | append: '/' | append: page.lernbereich | append: '.apkg' | relative_url }}"
+      download class="link-button">Anki-Paket: {{ page.title }}</a>
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
+  <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
+</body>
+
 </html>

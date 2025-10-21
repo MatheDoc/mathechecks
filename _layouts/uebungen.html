@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    {% include head-main.html %} {% include mathjax.html %}
-    <link
-      rel="stylesheet"
-      href="{{ '/assets/css/uebungen.css' | relative_url }}"
-    />
-  </head>
-  <body>
-    <header>
-      {% include nav-lernbereiche.html %}
-      <h1>{{ page.title }}</h1>
-      {% include nav-materialtyp.html %} {% include nav-toc.html %}
-    </header>
 
-    <main id="main-content"></main>
+<head>
+  {% include firebase-config.html %}
+  {% include head-main.html %} {% include mathjax.html %}
+  <link rel="stylesheet" href="{{ '/assets/css/uebungen.css' | relative_url }}" />
+</head>
 
-    {% include footer.html %}
-    <!-- html2canvas -->
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<body>
+  <header>
+    {% include nav-lernbereiche.html %}
+    <h1>{{ page.title }}</h1>
+    {% include nav-materialtyp.html %} {% include nav-toc.html %}
+  </header>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <main id="main-content"></main>
 
-    <!-- Select2 CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-      rel="stylesheet"
-    />
+  {% include footer.html %}
+  <!-- html2canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-    <!-- Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- Tocbot -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.min.js"></script>
+  <!-- Select2 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
-    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/uebungen.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/uebungen-buttons.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
-    <script type="module" src="/assets/js/firebase-init.js"></script>
-  </body>
+  <!-- Select2 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <!-- Tocbot -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css" />
+  <script src="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.min.js"></script>
+
+  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/uebungen.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/uebungen-buttons.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
+  <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
+</body>
+
 </html>
