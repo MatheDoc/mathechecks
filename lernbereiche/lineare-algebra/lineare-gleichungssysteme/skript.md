@@ -206,6 +206,3 @@ antwort="
 
 ## Lösbarkeit linearer Gleichungsysteme
 
-Wir haben also {% include ttt.html text="$5$" tt="$2+3$" %} und das ist gut so.
-
-{% include firebase-test.html %}
