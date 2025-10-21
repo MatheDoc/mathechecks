@@ -206,3 +206,4 @@ antwort="
 
 ## Lösbarkeit linearer Gleichungsysteme
 
+{% include firebase-test.html %} 
