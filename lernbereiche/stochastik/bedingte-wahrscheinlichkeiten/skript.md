@@ -515,10 +515,29 @@ index="8"
 frage="Formel-Übersicht:"
 antwort="
 
-- Satz von der Gegenwahrscheinlichkeit: $P(\overline{A})=1-P(A)$
-- Satz von Sylvester: $P(A\cup B) = P(A)+ P(B) + P(A\cap B)$
-- Formel für die bedingte Wahrscheinlichkeit: $P_A(B)=\frac{P(A\cap B)}{P(B)}$
-- Zerlegungssatz: $P(A)=P(A\cap B) + P(A\cap \overline{B})$
+- Satz von der Gegenwahrscheinlichkeit:
+
+$$
+P(\overline{A})=1-P(A)
+$$
+
+- Satz von Sylvester:
+
+$$
+P(A\cup B) = P(A)+ P(B) + P(A\cap B)
+$$
+
+- Formel für die bedingte Wahrscheinlichkeit:
+
+$$
+P_A(B)=\frac{P(A\cap B)}{P(B)}
+$$
+
+- Zerlegungssatz:
+
+$$
+P(A)=P(A\cap B) + P(A\cap \overline{B})
+$$
 
   "
   %}
@@ -530,12 +549,37 @@ index="9"
 frage="Formel-Übersicht und Lösungsstrategie, wenn zwei der Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cup B)$ und $P(A\cap B)$ gegeben sind und stochastische Unabhängigkeit vorliegt:"
 antwort="
 
-- Satz von der Gegenwahrscheinlichkeit: $P(\overline{A})=1-P(A)$
-- Satz von Sylvester: $P(A\cup B) = P(A)+ P(B) + P(A\cap B)$
-- Formel für die bedingte Wahrscheinlichkeit: $P_A(B)=\frac{P(A\cap B)}{P(B)}$
-- Zerlegungssatz: $P(A)=P(A\cap B) + P(A\cap \overline{B})$
+- Satz von der Gegenwahrscheinlichkeit:
 
-Lösungsstrategie: Es gelten die zwei Gleichungen $P(A\cup B) = P(A)+ P(B) + P(A\cap B)$ (Satz von Sylvester) und $P(A)\cdot P(B)=P(A\cap B)$ (stochastische Unabhängigkeit), und wir haben zwei Unbekannte. Durch Kombinationen der Gleichungen können diese beiden Unbekannten ermittelt werden."
+$$
+P(\overline{A})=1-P(A)
+$$
+
+- Satz von Sylvester:
+
+$$
+P(A\cup B) = P(A)+ P(B) + P(A\cap B)
+$$
+
+- Formel für die bedingte Wahrscheinlichkeit bei stochastischer Unabhängigkeit:
+
+$$
+P_A(B)=P(B)
+$$
+
+- Zerlegungssatz:
+
+$$
+P(A)=P(A\cap B) + P(A\cap \overline{B})
+$$
+
+- Stochastische Unabhängigkeit:
+
+$$
+P(A)\cdot P(B)=P(A\cap B)
+$$
+
+"
 %}
 
 <div id="skript-aufgabe-9"></div>
