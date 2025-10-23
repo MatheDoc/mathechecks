@@ -36,10 +36,9 @@
       >
     </main>
 
-    {% include footer.html %}
-
+    {% include footer.html %} {% include firebase-auth.html %}
     <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
     <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
-    <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
   </body>
 </html>

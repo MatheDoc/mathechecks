@@ -1,95 +1,551 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>MatheChecks — Login / Registrierung</title>
-
-    <!-- Firebase (compat) -->
-    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
-
-    <!-- FirebaseUI -->
-    <link
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css"
-    />
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Login Integration</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <style>
-      body {
-        font-family: sans-serif;
-        text-align: center;
-        margin-top: 50px;
-      }
-      #firebaseui-auth-container {
-        max-width: 420px;
-        margin: 20px auto;
-      }
-      #loader {
+      /* Modal Overlay */
+      #auth-modal-overlay {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9998;
+        backdrop-filter: blur(4px);
+      }
+
+      #auth-modal-overlay.show {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.2s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Modal Container */
+      #auth-modal {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 40px;
+        max-width: 400px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        z-index: 9999;
+        animation: slideUp 0.3s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Close Button */
+      .close-btn {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: #999;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.2s;
+      }
+
+      .close-btn:hover {
+        background: #f5f5f5;
+        color: #333;
+      }
+
+      /* Form Styles */
+      #auth-modal h2 {
+        color: #333;
+        margin-bottom: 8px;
+        font-size: 28px;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .subtitle {
+        color: #666;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 30px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .form-group {
+        margin-bottom: 20px;
+      }
+
+      #auth-modal label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-size: 14px;
+        font-weight: 500;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 14px;
+        transition: border-color 0.3s;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal input:focus {
+        outline: none;
+        border-color: #667eea;
+      }
+
+      #auth-modal .btn {
+        width: 100%;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-bottom: 12px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .btn-primary {
+        background: #667eea;
+        color: white;
+      }
+
+      #auth-modal .btn-primary:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      }
+
+      #auth-modal .btn-primary:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      #auth-modal .btn-danger {
+        background: #ef4444;
+        color: white;
+      }
+
+      #auth-modal .btn-danger:hover {
+        background: #dc2626;
+      }
+
+      #auth-modal .toggle-text {
+        text-align: center;
         margin-top: 20px;
+        color: #666;
+        font-size: 14px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .toggle-link {
+        color: #667eea;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      #auth-modal .toggle-link:hover {
+        text-decoration: underline;
+      }
+
+      #auth-modal .error {
+        background: #fee2e2;
+        color: #991b1b;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        border-left: 4px solid #ef4444;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .success {
+        background: #d1fae5;
+        color: #065f46;
+        padding: 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        border-left: 4px solid #10b981;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .user-info {
+        text-align: center;
+      }
+
+      #auth-modal .avatar {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+      }
+
+      #auth-modal .user-email {
+        color: #667eea;
+        font-weight: 600;
+        font-size: 18px;
+        margin-bottom: 8px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .user-id {
+        background: #f5f5f5;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+
+      #auth-modal .user-id-label {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 4px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #auth-modal .user-id-value {
+        font-family: monospace;
+        font-size: 11px;
+        color: #666;
+        word-break: break-all;
+      }
+
+      .hidden {
+        display: none !important;
+      }
+
+      /* Demo Button (nur für diese Demo) */
+      #demo-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 12px 24px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        transition: all 0.3s;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+
+      #demo-button:hover {
+        background: #5568d3;
+        transform: translateY(-2px);
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        margin: 0;
+        padding: 0;
       }
     </style>
   </head>
   <body>
-    <h2>MatheChecks — Anmeldung / Registrierung</h2>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Lädt...</div>
+    <!-- Demo Button (in deinem Projekt hast du bereits einen Button) -->
+    <button id="demo-button" onclick="toggleAccountMenu()">
+      Account Login
+    </button>
+
+    <!-- Modal Overlay -->
+    <div id="auth-modal-overlay" onclick="closeAuthModal(event)">
+      <div id="auth-modal" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+
+        <!-- Login/Register Form -->
+        <div id="auth-form">
+          <h2 id="form-title">Login</h2>
+          <p class="subtitle" id="form-subtitle">
+            Melde dich mit deinem Account an
+          </p>
+
+          <div id="message"></div>
+
+          <form id="auth-form-element">
+            <div class="form-group">
+              <label for="email">E-Mail</label>
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="deine@email.de"
+              />
+            </div>
+            <div class="form-group">
+              <label for="password">Passwort</label>
+              <input
+                type="password"
+                id="password"
+                required
+                placeholder="Mindestens 6 Zeichen"
+              />
+            </div>
+            <button type="submit" class="btn btn-primary" id="submit-btn">
+              Login
+            </button>
+          </form>
+
+          <div class="toggle-text">
+            <span id="toggle-text">Noch kein Account?</span>
+            <span class="toggle-link" id="toggle-mode">Jetzt registrieren</span>
+          </div>
+        </div>
+
+        <!-- User Info (when logged in) -->
+        <div id="user-info" class="hidden user-info">
+          <div class="avatar">👤</div>
+          <h2>Willkommen!</h2>
+          <p class="subtitle">Du bist eingeloggt</p>
+          <div class="user-email" id="display-email"></div>
+          <div class="user-id">
+            <div class="user-id-label">User ID:</div>
+            <div class="user-id-value" id="display-uid"></div>
+          </div>
+          <button class="btn btn-danger" id="logout-btn">Logout</button>
+        </div>
+      </div>
+    </div>
 
     <script>
-      // ====== Firebase-Konfiguration ersetzen ======
+      // Firebase Config
       const firebaseConfig = {
         apiKey: "AIzaSyBqjhqgl1fJSgr5qwTjzplA8tO8gZfKZsc",
         authDomain: "mathechecks-c1e86.firebaseapp.com",
         projectId: "mathechecks-c1e86",
-        storageBucket: "mathechecks-c1e86.appspot.com",
-        messagingSenderId: "352100850694",
-        appId: "1:352100850694:web:70ca5dfece2f7a68ebb787",
       };
-      // ============================================
 
-      // Firebase initialisieren
       firebase.initializeApp(firebaseConfig);
       const auth = firebase.auth();
-      const db = firebase.firestore();
 
-      // FirebaseUI AuthUI Instanz
-      const ui =
-        firebaseui.auth.AuthUI.getInstance() ||
-        new firebaseui.auth.AuthUI(auth);
+      // DOM Elements
+      const modalOverlay = document.getElementById("auth-modal-overlay");
+      const authFormDiv = document.getElementById("auth-form");
+      const userInfoDiv = document.getElementById("user-info");
+      const authForm = document.getElementById("auth-form-element");
+      const emailInput = document.getElementById("email");
+      const passwordInput = document.getElementById("password");
+      const submitBtn = document.getElementById("submit-btn");
+      const toggleMode = document.getElementById("toggle-mode");
+      const toggleText = document.getElementById("toggle-text");
+      const formTitle = document.getElementById("form-title");
+      const formSubtitle = document.getElementById("form-subtitle");
+      const messageDiv = document.getElementById("message");
+      const displayEmail = document.getElementById("display-email");
+      const displayUid = document.getElementById("display-uid");
+      const logoutBtn = document.getElementById("logout-btn");
 
-      // FirebaseUI-Konfiguration
-      const uiConfig = {
-        signInOptions: [
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        ],
-        signInSuccessUrl: "/index.html", // Weiterleitung nach Login
-        callbacks: {
-          uiShown: () => {
-            document.getElementById("loader").style.display = "none";
-          },
-        },
-      };
+      let isLoginMode = true;
 
-      // Start der UI
-      ui.start("#firebaseui-auth-container", uiConfig);
+      // Toggle Account Menu (wird von deinem Button aufgerufen)
+      function toggleAccountMenu() {
+        modalOverlay.classList.add("show");
+        document.body.style.overflow = "hidden"; // Verhindert Scrollen im Hintergrund
+      }
 
-      // Firestore-Dokument für Benutzer anlegen oder aktualisieren
+      // Close Modal
+      function closeAuthModal(event) {
+        if (!event || event.target === modalOverlay) {
+          modalOverlay.classList.remove("show");
+          document.body.style.overflow = ""; // Scrollen wieder erlauben
+          hideMessage();
+        }
+      }
+
+      // Show message
+      function showMessage(text, isError = false) {
+        messageDiv.className = isError ? "error" : "success";
+        messageDiv.textContent = text;
+        messageDiv.style.display = "block";
+      }
+
+      function hideMessage() {
+        messageDiv.style.display = "none";
+      }
+
+      // Toggle between Login and Register
+      toggleMode.addEventListener("click", () => {
+        isLoginMode = !isLoginMode;
+        hideMessage();
+
+        if (isLoginMode) {
+          formTitle.textContent = "Login";
+          formSubtitle.textContent = "Melde dich mit deinem Account an";
+          submitBtn.textContent = "Login";
+          toggleText.textContent = "Noch kein Account?";
+          toggleMode.textContent = "Jetzt registrieren";
+        } else {
+          formTitle.textContent = "Registrierung";
+          formSubtitle.textContent = "Erstelle einen neuen Account";
+          submitBtn.textContent = "Registrieren";
+          toggleText.textContent = "Schon registriert?";
+          toggleMode.textContent = "Zum Login";
+        }
+      });
+
+      // Form Submit
+      authForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        hideMessage();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (password.length < 6) {
+          showMessage("Passwort muss mindestens 6 Zeichen lang sein", true);
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = isLoginMode
+          ? "Login läuft..."
+          : "Registrierung läuft...";
+
+        try {
+          if (isLoginMode) {
+            // Login
+            await auth.signInWithEmailAndPassword(email, password);
+            showMessage("Login erfolgreich!");
+          } else {
+            // Register
+            await auth.createUserWithEmailAndPassword(email, password);
+            showMessage("Registrierung erfolgreich!");
+          }
+        } catch (error) {
+          console.error("Auth Error:", error);
+          let errorMessage = "Ein Fehler ist aufgetreten";
+
+          switch (error.code) {
+            case "auth/email-already-in-use":
+              errorMessage =
+                "Diese E-Mail ist bereits registriert. Bitte logge dich ein.";
+              break;
+            case "auth/invalid-email":
+              errorMessage = "Ungültige E-Mail-Adresse";
+              break;
+            case "auth/weak-password":
+              errorMessage =
+                "Passwort zu schwach. Mindestens 6 Zeichen erforderlich.";
+              break;
+            case "auth/user-not-found":
+              errorMessage = "Kein Account mit dieser E-Mail gefunden";
+              break;
+            case "auth/wrong-password":
+              errorMessage = "Falsches Passwort";
+              break;
+            case "auth/invalid-login-credentials":
+              errorMessage = "Falsches Passwort oder E-Mail nicht gefunden";
+              break;
+            case "auth/invalid-credential":
+              errorMessage =
+                "Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.";
+              break;
+            case "auth/too-many-requests":
+              errorMessage = "Zu viele Versuche. Bitte warte einen Moment.";
+              break;
+            default:
+              errorMessage = error.message;
+          }
+
+          showMessage(errorMessage, true);
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = isLoginMode ? "Login" : "Registrieren";
+        }
+      });
+
+      // Logout
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          await auth.signOut();
+          emailInput.value = "";
+          passwordInput.value = "";
+          closeAuthModal();
+        } catch (error) {
+          console.error("Logout Error:", error);
+          showMessage("Fehler beim Logout: " + error.message, true);
+        }
+      });
+
+      // Auth State Observer
       auth.onAuthStateChanged((user) => {
         if (user) {
-          const userRef = db.collection("users").doc(user.uid);
-          userRef.set(
-            {
-              email: user.email,
-              name: user.displayName || "",
-              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-              points: 0,
-            },
-            { merge: true }
-          );
+          // User is logged in
+          authFormDiv.classList.add("hidden");
+          userInfoDiv.classList.remove("hidden");
+          displayEmail.textContent = user.email;
+          displayUid.textContent = user.uid;
+        } else {
+          // User is logged out
+          authFormDiv.classList.remove("hidden");
+          userInfoDiv.classList.add("hidden");
+          hideMessage();
+        }
+      });
+
+      // ESC-Taste zum Schließen
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modalOverlay.classList.contains("show")) {
+          closeAuthModal();
         }
       });
     </script>

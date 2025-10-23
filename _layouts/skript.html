@@ -1,56 +1,66 @@
 <!DOCTYPE html>
 <html lang="de">
+  <head>
+    {% include firebase-config.html %} {% include head-main.html %} {% include
+    mathjax.html %}
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/skript.css' | relative_url }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/uebungen.css' | relative_url }}"
+    />
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <!-- mathjs-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <!-- Baumdiagrmme -->
+    <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
+    <!-- Allgemeine Histogramme -->
+    <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
+    <!-- Histogramme Binomial -->
+    <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
+    <!-- Allgemeine Graphen -->
+    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
+  </head>
 
-<head>
-  {% include firebase-config.html %}
-  {% include head-main.html %} {% include mathjax.html %}
-  <link rel="stylesheet" href="{{ '/assets/css/skript.css' | relative_url }}" />
-  <link rel="stylesheet" href="{{ '/assets/css/uebungen.css' | relative_url }}" />
-  <!-- Plotly -->
-  <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
-  <!-- mathjs-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
-  <!-- Baumdiagrmme -->
-  <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
-  <!-- Allgemeine Histogramme -->
-  <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
-  <!-- Histogramme Binomial -->
-  <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
-  <!-- Allgemeine Graphen -->
-  <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
-</head>
+  <body>
+    <header>
+      {% include nav-lernbereiche.html %}
+      <h1>{{ page.title }}</h1>
+      {% include nav-materialtyp.html %} {% include nav-toc.html %}
+    </header>
+    <main id="main-content">{{ content }}</main>
 
-<body>
-  <header>
-    {% include nav-lernbereiche.html %}
-    <h1>{{ page.title }}</h1>
-    {% include nav-materialtyp.html %} {% include nav-toc.html %}
-  </header>
-  <main id="main-content">{{ content }}</main>
+    {% include footer.html %}{% include firebase-auth.html %}
+    <!-- html2canvas -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
-  {% include footer.html %}
-  <!-- html2canvas -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Select2 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
 
-  <!-- Select2 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-  <!-- Select2 JS -->
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Tocbot -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.min.js"></script>
 
-  <!-- Tocbot -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.css" />
-  <script src="https://cdn.jsdelivr.net/npm/tocbot@4.19.0/dist/tocbot.min.js"></script>
-
-  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/uebungen.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/uebungen-buttons.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/skript.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
-  <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
-</body>
-
+    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/uebungen.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/uebungen-buttons.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/skript.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/toc.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
+  </body>
 </html>
