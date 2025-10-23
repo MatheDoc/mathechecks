@@ -6,25 +6,27 @@ function toggleMenu() {
 
 document.addEventListener("click", function (event) {
   const menu = document.getElementById("main-menu");
-  const authContainer = document.getElementById("firebaseui-auth-container");
-  const isClickInsideMenu =
-    menu.contains(event.target) || authContainer.contains(event.target);
-  const isButtonClick = event.target.closest("button"); // Button direkt oder Icon darin
-  if (!isClickInsideMenu && !isButtonClick) {
+  const authModal = document.getElementById("auth-modal-overlay");
+
+  // Prüfe ob das Menu existiert
+  if (!menu) return;
+
+  const isClickInsideMenu = menu.contains(event.target);
+  const isClickInsideAuthModal = authModal && authModal.contains(event.target);
+  const isButtonClick = event.target.closest("button");
+
+  if (!isClickInsideMenu && !isClickInsideAuthModal && !isButtonClick) {
     menu.classList.add("hidden");
-    authContainer.classList.add("hidden");
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".nav-materialtyp .nav-link");
-  const currentPath = window.location.href.split("#")[0]; // ohne Anker
+  const currentPath = window.location.href.split("#")[0];
 
   links.forEach((link) => {
     link.classList.remove("ausgewählt");
-
-    const linkHref = link.href.split("#")[0]; // ohne Anker
-
+    const linkHref = link.href.split("#")[0];
     if (linkHref === currentPath) {
       link.classList.add("ausgewählt");
     }

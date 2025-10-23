@@ -1,0 +1,58 @@
+<!-- Firebase Auth Modal -->
+<div id="auth-modal-overlay" onclick="closeAuthModal(event)">
+  <div id="auth-modal" onclick="event.stopPropagation()">
+    <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+
+    <!-- Login/Register Form -->
+    <div id="auth-form">
+      <h2 id="form-title">Login</h2>
+      <p class="subtitle" id="form-subtitle">
+        Melde dich mit deinem Account an
+      </p>
+
+      <div id="message"></div>
+
+      <form id="auth-form-element">
+        <div class="form-group">
+          <label for="email">E-Mail</label>
+          <input
+            type="email"
+            id="email"
+            required
+            placeholder="deine@email.de"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Passwort</label>
+          <input
+            type="password"
+            id="password"
+            required
+            placeholder="Mindestens 6 Zeichen"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn">
+          Login
+        </button>
+      </form>
+
+      <div class="toggle-text">
+        <span id="toggle-text">Noch kein Account?</span>
+        <span class="toggle-link" id="toggle-mode">Jetzt registrieren</span>
+      </div>
+    </div>
+
+    <!-- User Info (when logged in) -->
+    <div id="user-info" class="hidden user-info">
+      <div class="avatar">👤</div>
+      <h2>Willkommen!</h2>
+      <p class="subtitle">Du bist eingeloggt</p>
+      <div class="user-email" id="display-email"></div>
+      <div class="user-id">
+        <div class="user-id-label">User ID:</div>
+        <div class="user-id-value" id="display-uid"></div>
+      </div>
+      <button class="btn btn-danger" id="logout-btn">Logout</button>
+    </div>
+  </div>
+</div>
