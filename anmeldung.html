@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>MatheChecks — Login / Registrierung</title>
+
+    <!-- Firebase (compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.5.2/firebase-firestore-compat.js"></script>
+
+    <!-- FirebaseUI -->
+    <link
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css"
+    />
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
+
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      #firebaseui-auth-container {
+        max-width: 420px;
+        margin: 20px auto;
+      }
+      #loader {
+        display: none;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>MatheChecks — Anmeldung / Registrierung</h2>
+    <div id="firebaseui-auth-container"></div>
+    <div id="loader">Lädt...</div>
+
+    <script>
+      // ====== Firebase-Konfiguration ersetzen ======
+      const firebaseConfig = {
+        apiKey: "AIzaSyBqjhqgl1fJSgr5qwTjzplA8tO8gZfKZsc",
+        authDomain: "mathechecks-c1e86.firebaseapp.com",
+        projectId: "mathechecks-c1e86",
+        storageBucket: "mathechecks-c1e86.appspot.com",
+        messagingSenderId: "352100850694",
+        appId: "1:352100850694:web:70ca5dfece2f7a68ebb787",
+      };
+      // ============================================
+
+      // Firebase initialisieren
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      // FirebaseUI AuthUI Instanz
+      const ui =
+        firebaseui.auth.AuthUI.getInstance() ||
+        new firebaseui.auth.AuthUI(auth);
+
+      // FirebaseUI-Konfiguration
+      const uiConfig = {
+        signInOptions: [
+          firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        ],
+        signInSuccessUrl: "/index.html", // Weiterleitung nach Login
+        callbacks: {
+          uiShown: () => {
+            document.getElementById("loader").style.display = "none";
+          },
+        },
+      };
+
+      // Start der UI
+      ui.start("#firebaseui-auth-container", uiConfig);
+
+      // Firestore-Dokument für Benutzer anlegen oder aktualisieren
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          const userRef = db.collection("users").doc(user.uid);
+          userRef.set(
+            {
+              email: user.email,
+              name: user.displayName || "",
+              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+              points: 0,
+            },
+            { merge: true }
+          );
+        }
+      });
+    </script>
+  </body>
+</html>

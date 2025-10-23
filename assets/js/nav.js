@@ -6,11 +6,13 @@ function toggleMenu() {
 
 document.addEventListener("click", function (event) {
   const menu = document.getElementById("main-menu");
-  const isClickInsideMenu = menu.contains(event.target);
+  const authContainer = document.getElementById("firebaseui-auth-container");
+  const isClickInsideMenu =
+    menu.contains(event.target) || authContainer.contains(event.target);
   const isButtonClick = event.target.closest("button"); // Button direkt oder Icon darin
-
   if (!isClickInsideMenu && !isButtonClick) {
     menu.classList.add("hidden");
+    authContainer.classList.add("hidden");
   }
 });
 

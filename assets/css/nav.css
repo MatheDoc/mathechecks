@@ -35,6 +35,52 @@
   background: #cfcfcf6a;
 }
 
+#account {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: white;
+  background: none;
+  border: 0px solid #ffffff;
+  border-radius: 5px;
+}
+
+#account:hover {
+  background: #cfcfcf6a;
+}
+
+#account-status-indicator {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  /* optischer Rand */
+  background-color: gray;
+  /* Standard (neutral) */
+}
+
+#account.logged-in #account-status-indicator {
+  background-color: #2ecc71;
+  /* Grün für eingeloggt */
+}
+
+#account.logged-out #account-status-indicator {
+  background-color: #e74c3c;
+  /* Rot für ausgeloggt */
+}
+
+#firebaseui-auth-container button {
+
+  color: white;
+  background: var(--hauptfarbe);
+
+  border-radius: 5px;
+
+}
+
+
 .nav-lernbereiche .menu {
   position: absolute;
   top: 100%;
@@ -73,12 +119,15 @@
 }
 
 .stochastik a {
-  background-color: #fff9c4; /* helles Gelb */
-  color: #806000; /* dunkleres Gelb/Gold */
+  background-color: #fff9c4;
+  /* helles Gelb */
+  color: #806000;
+  /* dunkleres Gelb/Gold */
 }
 
 .stochastik a:hover {
-  background-color: #fff59d; /* etwas intensiveres Gelb beim Hover */
+  background-color: #fff59d;
+  /* etwas intensiveres Gelb beim Hover */
 }
 
 .analysis a {
@@ -231,9 +280,9 @@
 
 
 .nav-lernbereiche .menu {
-  max-height: 80vh; 
-  overflow-y: auto;  
-  scrollbar-width: thin; 
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
 }
 
 /* Optional: Stil für den Scrollbalken (nur für WebKit-basierte Browser) */
@@ -242,7 +291,7 @@
 }
 
 .nav-lernbereiche .menu::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 }
 

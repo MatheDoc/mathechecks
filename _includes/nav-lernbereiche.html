@@ -6,76 +6,48 @@
 
   <ul class="menu hidden" id="main-menu">
     <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/start.html' | relative_url }}"
-        >Zufallsexperimente und Wahrscheinlichkeiten</a
-      >
+      <a href="{{ '/lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/start.html' | relative_url }}">Zufallsexperimente
+        und Wahrscheinlichkeiten</a>
     </li>
     <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/mehrstufige-zufallsexperimente/start.html' | relative_url }}"
-        >Mehrstufige Zufallsexperimente</a
-      >
+      <a href="{{ '/lernbereiche/stochastik/mehrstufige-zufallsexperimente/start.html' | relative_url }}">Mehrstufige
+        Zufallsexperimente</a>
     </li>
     <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/start.html' | relative_url }}"
-        >Bedingte Wahrscheinlichkeiten</a
-      >
-    </li>
-        <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/zufallsgroessen/start.html' | relative_url }}"
-        >Zufallsgrößen</a
-      >
+      <a href="{{ '/lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/start.html' | relative_url }}">Bedingte
+        Wahrscheinlichkeiten</a>
     </li>
     <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/binomialverteilung/start.html' | relative_url }}"
-        >Binomialverteilung</a
-      >
+      <a href="{{ '/lernbereiche/stochastik/zufallsgroessen/start.html' | relative_url }}">Zufallsgrößen</a>
     </li>
-        <li class="stochastik">
-      <a
-        href="{{ '/lernbereiche/stochastik/hypothesentests/start.html' | relative_url }}"
-        >Hypothesentests</a
-      >
-      </li>
-    <li class="analysis">
-            <a
-        href="{{ '/lernbereiche/analysis/ganzrationale-oekonomische-funktionen/start.html' | relative_url }}"
-        >Ganzrationale ökonomische Funktionen</a
-      >
+    <li class="stochastik">
+      <a href="{{ '/lernbereiche/stochastik/binomialverteilung/start.html' | relative_url }}">Binomialverteilung</a>
     </li>
-        <li class="analysis">
-            <a
-        href="{{ '/lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/start.html' | relative_url }}"
-        >Ertragsgesetzliche Kostenfunktionen</a
-      >
-    </li>
-        </li>
-        <li class="analysis">
-            <a
-        href="{{ '/lernbereiche/analysis/marktgleichgewicht-grundlagen/start.html' | relative_url }}"
-        >Marktgleichgewicht - Grundlagen</a
-      >
+    <li class="stochastik">
+      <a href="{{ '/lernbereiche/stochastik/hypothesentests/start.html' | relative_url }}">Hypothesentests</a>
     </li>
     <li class="analysis">
-            <a
-        href="{{ '/lernbereiche/analysis/marktgleichgewicht-vertiefung/start.html' | relative_url }}"
-        >Marktgleichgewicht - Vertiefung</a
-      >
+      <a href="{{ '/lernbereiche/analysis/ganzrationale-oekonomische-funktionen/start.html' | relative_url }}">Ganzrationale
+        ökonomische Funktionen</a>
     </li>
-        <li class="analysis">
-            <a
-        href="{{ '/lernbereiche/analysis/analysis-diverses/start.html' | relative_url }}"
-        >Analysis - Diverses</a
-      >
+    <li class="analysis">
+      <a href="{{ '/lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/start.html' | relative_url }}">Ertragsgesetzliche
+        Kostenfunktionen</a>
+    </li>
+    </li>
+    <li class="analysis">
+      <a href="{{ '/lernbereiche/analysis/marktgleichgewicht-grundlagen/start.html' | relative_url }}">Marktgleichgewicht
+        - Grundlagen</a>
+    </li>
+    <li class="analysis">
+      <a href="{{ '/lernbereiche/analysis/marktgleichgewicht-vertiefung/start.html' | relative_url }}">Marktgleichgewicht
+        - Vertiefung</a>
+    </li>
+    <li class="analysis">
+      <a href="{{ '/lernbereiche/analysis/analysis-diverses/start.html' | relative_url }}">Analysis - Diverses</a>
     <li class="lineare-algebra">
-      <a
-        href="{{ '/lernbereiche/lineare-algebra/lineare-gleichungssysteme/start.html' | relative_url }}"
-        >Lineare Gleichungssysteme</a
-      >
+      <a href="{{ '/lernbereiche/lineare-algebra/lineare-gleichungssysteme/start.html' | relative_url }}">Lineare
+        Gleichungssysteme</a>
     </li>
     <!--<li class="analysis">
       <a
@@ -94,16 +66,15 @@
       <hr class="trennlinie">
     </li>
     <li class="zusatzmaterial">
-      <a
-        href="{{ 'gluecksrad.html' | relative_url }}"
-        >Glücksrad</a
-      >
+      <a href="{{ 'gluecksrad.html' | relative_url }}">Glücksrad</a>
     </li>
-        <li class="zusatzmaterial">
-      <a
-        href="{{ 'moodle-xml.html' | relative_url }}"
-        >Übungen als Moodle-XML</a
-      >
+    <li class="zusatzmaterial">
+      <a href="{{ 'moodle-xml.html' | relative_url }}">Übungen als Moodle-XML</a>
     </li>
   </ul>
+  <button id="account" aria-label="Einloggen oder registrieren" onclick="toggleAccountMenu()">
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <span id="account-status-indicator"></span>
+  </button>
+
 </nav>

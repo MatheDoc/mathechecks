@@ -25,3 +25,49 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 </script>
+
+<!-- FirebaseUI einbinden -->
+<link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
+<script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
+
+<!-- Container für die Login-Maske -->
+<div id="firebaseui-auth-container" class="hidden"></div>
+
+<!-- FirebaseUI starten -->
+<script>
+  // ui starten
+  const ui = new firebaseui.auth.AuthUI(auth);
+  ui.start("#firebaseui-auth-container", {
+    signInOptions: [
+      {
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        requireDisplayName: false,
+      },
+    ],
+    signInSuccessUrl: "/index.html",
+  });
+
+  function toggleAccountMenu() {
+    authContainer = document.getElementById("firebaseui-auth-container");
+    authContainer.classList.toggle("hidden");
+  }
+
+  auth.onAuthStateChanged((user) => {
+    const accountButton = document.getElementById("account");
+    const indicator = document.getElementById("account-status-indicator");
+
+    if (user) {
+      // Nutzer ist eingeloggt
+      accountButton.classList.add("logged-in");
+      accountButton.classList.remove("logged-out");
+      indicator.title = `Eingeloggt als ${user.email}`;
+    } else {
+      // Nutzer ist ausgeloggt
+      accountButton.classList.add("logged-out");
+      accountButton.classList.remove("logged-in");
+      indicator.title = "Nicht eingeloggt";
+    }
+  });
+
+
+</script>
