@@ -205,3 +205,5 @@ antwort="
 <div id="skript-aufgabe-3"></div>
 
 ## Lösbarkeit linearer Gleichungsysteme
+
+Wir...
