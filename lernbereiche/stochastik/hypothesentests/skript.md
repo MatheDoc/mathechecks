@@ -87,7 +87,7 @@ Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypoth
 
 In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, wird die Nullhypothese beibehalten.
 
-**Was bedeutet die Fehler 1. und 2. Art im Sachzusammenhang?**
+**Was bedeuten die Fehler 1. und 2. Art im Sachzusammenhang?**
 
 - Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
 
