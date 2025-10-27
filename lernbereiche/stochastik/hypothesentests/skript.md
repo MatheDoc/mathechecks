@@ -95,7 +95,7 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 
 **Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
 
-Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8{,}9{,}10{,}\dotsc{,}50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8{,}9{,}10{,}\dotsc{,}50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
 
 $$
 \begin{align*}
