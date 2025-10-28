@@ -172,7 +172,7 @@ Wie gelangen wir zur Entscheidungsregel? Oder anders formuliert: Wie lassen sich
 
 Das zentrale Prinzip lautet: Wir legen eine Schranke für die maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art fest: das **Signifikanzniveau** $\alpha$. In der Praxis wählt man häufig einen Wert $\alpha=5\%$.
 
-Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich – im Rahmen des vorgegebenen Signifikanzniveaus- möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
+Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich im Rahmen des vorgegebenen Signifikanzniveaus möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
 
 {%include info.html
 index="3"
