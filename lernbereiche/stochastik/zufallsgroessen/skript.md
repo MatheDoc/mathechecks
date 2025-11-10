@@ -19,7 +19,7 @@ Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheib
 | ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
 | $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
 
-Beispielsweise bedeutet $P(X=2)=0{,}19$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 19&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
+Beispielsweise bedeutet $P(X=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 57&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
 
 {% include histogramm-allgemein.html
     x="[0, 1, 2, 3, 4, 5]"
