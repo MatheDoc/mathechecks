@@ -9,7 +9,7 @@ lernbereich: mehrstufige-produktionsprozesse
 
 {%include info.html
 index="1"
-frage="Interpretation von Matrizenelemente"
+frage="Interpretation von Matrizenelementen"
 antwort="Produktionsmatrizen geben an, wie viele ME eines Inputprodukts für eine ME eines Outputprodukts benötigt werden, dabei gilt:
 
 - Zeilentitel ➡️ Input
