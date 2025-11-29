@@ -4,5 +4,3 @@ title: Mehrstufige Produktionsprozesse
 description: Mehrstufige Produktionsprozesse - Kompetenzliste
 lernbereich: mehrstufige-produktionsprozesse
 ---
-
-Checks:
