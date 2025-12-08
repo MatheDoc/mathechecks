@@ -107,7 +107,7 @@ $$
 
 $$
 \begin{align*}
-\vec{k}_E\cdot \vec{m}&=
+\vec{k}_E\cdot \vec{m}
 \end{align*}
 $$
 
