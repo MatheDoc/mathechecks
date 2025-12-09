@@ -124,7 +124,7 @@ $$
 $$
 \begin{align*}
 K_v&=\vec{k}_v\cdot\vec{m}\\
-    &=\vec{k}_R\cdot RE\cdot\vec{m} + \vec{k}_Z\cdot ZE\cdot\vec{m} + \vec{k}_E\cdot\vec{m}$
+    &=\vec{k}_R\cdot RE\cdot\vec{m} + \vec{k}_Z\cdot ZE\cdot\vec{m} + \vec{k}_E\cdot\vec{m}
 \end{align*}
 $$
 
