@@ -71,6 +71,15 @@
             gap: 8px;
             border-bottom: 1px solid var(--border-light);
             margin-bottom: 32px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        .tabs::-webkit-scrollbar {
+            display: none;
+            /* Safari/Chrome */
         }
 
         .tab-button {
@@ -81,6 +90,8 @@
             color: var(--text-muted);
             cursor: pointer;
             border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            flex: 0 0 auto;
         }
 
         .tab-button.active {
@@ -89,12 +100,55 @@
             font-weight: 500;
         }
 
+        /* Responsive: make tabs easier to use on small screens */
+        @media (max-width: 640px) {
+            .tabs {
+                gap: 6px;
+                margin-bottom: 20px;
+            }
+
+            .tab-button {
+                padding: 10px 14px;
+                font-size: 0.95rem;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .container {
+                padding: 28px 16px;
+            }
+        }
+
+        /* Very small screens: stack buttons as full-width blocks */
+        @media (max-width: 360px) {
+            .tabs {
+                display: block;
+            }
+
+            .tab-button {
+                display: block;
+                width: 100%;
+                text-align: left;
+                padding: 12px 14px;
+                border-radius: 6px;
+                border: 1px solid var(--border-light);
+                margin-bottom: 8px;
+            }
+
+            .tab-button.active {
+                border-color: var(--accent);
+                color: var(--accent);
+            }
+        }
+
         /* Inhalte */
 
         .tab-content {
             display: none;
             background-color: var(--bg-white);
-            padding: 36px;
+            padding: 28px;
             border-radius: 8px;
             border: 1px solid var(--border-light);
         }
@@ -109,8 +163,13 @@
             height: 1px;
             width: 1px;
             overflow: hidden;
+            margin: 0;
         }
 
+        /* Remove top gap when the heading is visually hidden (apply to any following element) */
+        .tab-content h2+* {
+            margin-top: 0;
+        }
 
         .tab-content p {
             line-height: 1.7;
@@ -203,7 +262,7 @@
             <h2>Content-Management-Systeme</h2>
             <div class="content-list">
                 <ul>
-                    <li>Moodle: </li>
+                    <li>Moodle: Kein Fokus, laufen lassen, benutzen eher ältere kollegen, zukunft evtl logineo </li>
                     <li>Reduktion paralleler Kommunikations- und Ablagestrukturen</li>
                     <li>Klare Zuständigkeiten und verbindliche Prozesse</li>
                     <li>Unterstützung kognitiver Aktivierung im Unterricht</li>
