@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Leitgedanken schulischer Entwicklung</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root {
+            --bg-main: #f4f6f8;
+            --bg-white: #ffffff;
+            --text-main: #1f2933;
+            --text-muted: #6b7280;
+            --accent: #2563eb;
+            --border-light: #e5e7eb;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 95vw;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        h1 {
+            font-size: 2.3rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        /* Leitprinzipien */
+
+        .principles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-bottom: 56px;
+        }
+
+        .principle {
+            background-color: var(--bg-white);
+            padding: 28px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .principle h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .principle p {
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+
+        /* Tabs */
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 32px;
+        }
+
+        .tab-button {
+            background: none;
+            border: none;
+            padding: 12px 18px;
+            font-size: 1rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Inhalte */
+
+        .tab-content {
+            display: none;
+            background-color: var(--bg-white);
+            padding: 36px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            position: absolute;
+            left: -9999px;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+        }
+
+
+        .tab-content p {
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .content-list {
+            margin-top: 24px;
+            padding-left: 8px;
+        }
+
+        .content-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .content-list li {
+            padding: 10px 0 10px 20px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .content-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>Leitgedanken schulischer Entwicklung</h1>
+
+        <!-- Leitprinzipien -->
+        <section class="principles">
+            <div class="principle">
+                <h2>De-Implementierung</h2>
+                <p>
+                    Nachhaltige Schulentwicklung erfordert die konsequente Umsetzung
+                    weniger, klarer und verbindlicher Strukturen. Vereinheitlichung
+                    schafft Orientierung und entlastet alle Beteiligten.
+                </p>
+            </div>
+
+            <div class="principle">
+                <h2>Kognitive Aktivierung</h2>
+                <p>
+                    Lernen gelingt dann besonders wirksam, wenn Schülerinnen und
+                    Schüler geistig gefordert sind, Zusammenhänge herstellen und
+                    eigenständig Lösungswege entwickeln.
+                </p>
+            </div>
+
+            <div class="principle">
+                <h2>Fokus auf Lernen</h2>
+                <p>
+                    Alle organisatorischen, didaktischen und technischen Entscheidungen
+                    dienen ausschließlich der Qualität des Lernens.
+                </p>
+            </div>
+        </section>
+
+        <!-- Tabs -->
+        <div class="tabs" id="tabs"></div>
+
+        <!-- Inhalte -->
+        <section class="tab-content">
+            <h2>Digitalisierung in der Schule</h2>
+            <p>
+                Digitalisierung ist kein Selbstzweck, sondern ein Instrument zur
+                Unterstützung von Lernprozessen. Entscheidend ist die sinnvolle
+                Integration in bestehende Strukturen.
+            </p>
+            <div class="content-list">
+                <ul>
+                    <li>Vereinheitlichung digitaler Werkzeuge und Plattformen</li>
+                    <li>Reduktion paralleler Kommunikations- und Ablagestrukturen</li>
+                    <li>Klare Zuständigkeiten und verbindliche Prozesse</li>
+                    <li>Unterstützung kognitiver Aktivierung im Unterricht</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tab-content">
+            <h2>Content-Management-Systeme</h2>
+            <div class="content-list">
+                <ul>
+                    <li>Moodle: </li>
+                    <li>Reduktion paralleler Kommunikations- und Ablagestrukturen</li>
+                    <li>Klare Zuständigkeiten und verbindliche Prozesse</li>
+                    <li>Unterstützung kognitiver Aktivierung im Unterricht</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tab-content">
+            <h2>Förderung im Mathematikunterricht</h2>
+            <p>
+                Wirksame Förderung orientiert sich an fachlichen Kernideen und setzt
+                gezielt an Denkprozessen an. Differenzierung erfolgt dabei nicht durch
+                Vereinfachung, sondern durch strukturierte Unterstützung.
+            </p>
+            <p>
+                Zentrale Zielsetzung ist die aktive Auseinandersetzung mit mathematischen
+                Problemen und die Entwicklung tragfähiger Lösungsstrategien.
+            </p>
+        </section>
+
+    </div>
+
+    <script>
+        const tabsContainer = document.getElementById("tabs");
+        const contents = document.querySelectorAll(".tab-content");
+
+        contents.forEach((section, index) => {
+            const headingText = section.querySelector("h2").textContent;
+
+            const button = document.createElement("button");
+            button.className = "tab-button";
+            button.textContent = headingText;
+
+            if (index === 0) {
+                button.classList.add("active");
+                section.classList.add("active");
+            }
+
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".tab-button").forEach(b => b.classList.remove("active"));
+                contents.forEach(c => c.classList.remove("active"));
+
+                button.classList.add("active");
+                section.classList.add("active");
+            });
+
+            tabsContainer.appendChild(button);
+        });
+    </script>
+
+</body>
+
+</html>
