@@ -35,6 +35,45 @@
             margin-bottom: 40px;
         }
 
+        /* Page header with optional school logo (left of H1) */
+        .page-header {
+            display: flex;
+            align-items: center;
+            /* vertical centering */
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .page-header h1 {
+            margin: 0;
+            /* remove default bottom margin so flex alignment works */
+            line-height: 1.05;
+        }
+
+        .logo-link {
+            display: inline-block;
+            line-height: 0;
+        }
+
+        .site-logo {
+            width: 240px;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* Responsive: smaller logo and slightly smaller H1 */
+        @media (max-width: 640px) {
+            .site-logo {
+                width: 44px;
+            }
+
+            .page-header h1 {
+                font-size: 1.6rem;
+            }
+        }
+
         /* Leitprinzipien */
 
         .principles {
@@ -44,20 +83,54 @@
             margin-bottom: 56px;
         }
 
+        /* Minimal principle container (no boxed look) */
         .principle {
             position: relative;
-            background-color: var(--bg-white);
-            padding: 28px;
-            border-radius: 8px;
-            border: 1px solid var(--border-light);
+            background: transparent;
+            padding: 12px 4px;
+            border: none;
             cursor: pointer;
         }
 
         .principle h2 {
-            font-size: 1.25rem;
-            margin-top: 0;
-            margin-bottom: 0px;
+            font-size: 1.15rem;
+            margin: 0;
             font-weight: 600;
+            color: var(--text-main);
+            padding-left: 12px;
+            display: inline-block;
+            position: relative;
+            transition: color 180ms ease, transform 180ms ease;
+        }
+
+        /* small accent bar that appears when active/hovered */
+        .principle h2::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) scaleX(0);
+            height: 60%;
+            width: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: transform 180ms ease, opacity 180ms ease;
+            opacity: 0;
+            transform-origin: left center;
+        }
+
+        .principle:hover h2,
+        .principle:focus-within h2,
+        .principle.open h2 {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .principle:hover h2::before,
+        .principle:focus-within h2::before,
+        .principle.open h2::before {
+            opacity: 1;
+            transform: translateY(-50%) scaleX(1);
         }
 
         .principle p {
@@ -186,6 +259,26 @@
             }
         }
 
+        /* Footer */
+
+        .site-footer {
+            margin-top: 40px;
+            padding: 18px 12px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            border-top: 1px solid var(--border-light);
+            text-align: center;
+        }
+
+        .site-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .site-footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Inhalte */
 
         .tab-content {
@@ -244,7 +337,14 @@
 <body>
     <div class="container">
 
-        <h1>Leitgedanken schulischer Entwicklung</h1>
+        <header class="page-header">
+            <a href="https://www.hanse-berufskolleg.de/" class="logo-link" aria-label="Startseite">
+                <!-- Pfad zum Schullogo anpassen: /assets/icons/school-logo.svg -->
+                <img src="/HBK-Logo klein.png" alt="Schullogo" class="site-logo">
+            </a>
+
+            <h1>Leitgedanken schulischer Entwicklung</h1>
+        </header>
 
         <!-- Leitprinzipien -->
         <section class="principles">
@@ -290,45 +390,6 @@
 
         <!-- Inhalte -->
         <section class="tab-content">
-            <h2>Digitalisierung in der Schule</h2>
-            <p>
-                Digitalisierung ist kein Selbstzweck, sondern ein Instrument zur
-                Unterstützung von Lernprozessen. Entscheidend ist die sinnvolle
-                Integration in bestehende Strukturen.
-            </p>
-
-            <ul>
-                <li>Vereinheitlichung digitaler Werkzeuge und Plattformen</li>
-                <li>Reduktion paralleler Kommunikations- und Ablagestrukturen</li>
-                <li>Klare Zuständigkeiten und verbindliche Prozesse</li>
-                <li>Unterstützung kognitiver Aktivierung im Unterricht</li>
-            </ul>
-
-        </section>
-
-        <section class="tab-content">
-            <h2>Content-Management-Systeme</h2>
-            <p>Moodle:</p>
-            <ul>
-                <li>Verlässlcihes stablies System</li>
-                <li>aber Doppelungen mit MS 365, verwnden ältere KuK, auslaufen lassen, stabilität gewährleistern, kein
-                    Entwicklingsfokus</li>
-                <li>Zukunft: Logineo NRW</li>
-            </ul>
-            <p>Digitales Lehrerzimmer:</p>
-            <ul>
-                <li>breite Akkzeptanz im Kollegium</li>
-                <li>viele Verwaltungsinhalte strukturiert abgelegt</li>
-                <li>Zukunft: Konsequentere Abbildung von Unterrichtsinhalten</li>
-            </ul>
-            <p>M 365</p>
-            <ul>
-                <li>breite Akkzeptanz im Kollegium</li>
-                <li>noch mehr auf verbindliche Strukturen achten (z.b. alle nutzen OneOne)</li>
-            </ul>
-        </section>
-
-        <section class="tab-content">
             <h2>Förderung im Mathematikunterricht</h2>
             <p>
                 Wirksame Förderung orientiert sich an fachlichen Kernideen und setzt
@@ -340,23 +401,72 @@
                 Problemen und die Entwicklung tragfähiger Lösungsstrategien.
             </p>
         </section>
+        <section class="tab-content">
+            <h2>Fachliche Betreuung in Mathematik</h2>
+            <p>
+                Aufbau von Kompetenzisten
+            </p>
+            <p>
+                Erläuterung der KI-Implementierung im neuen Bildungsplan des Beruflichen Gymnasiums.
+            </p>
+        </section>
 
+        <section class="tab-content">
+            <h2>Digitale Plattformen</h2>
+            <p>Moodle:</p>
+            <ul>
+                <li>Verlässliches stabiles System</li>
+                <li>aber Doppelungen mit MS 365, verwenden überwiegend ältere KuK, daher: auslaufen lassen, stabilität
+                    gewährleistern, aber kein
+                    Entwicklingsfokus</li>
+                <li>evtl. in Zukunft: Logineo NRW</li>
+            </ul>
+            <p>Microsoft 365:</p>
+            <ul>
+                <li>breite Akkzeptanz im Kollegium</li>
+                <li>noch mehr auf verbindliche Strukturen achten (z.b. alle nutzen OneOne)</li>
+            </ul>
+        </section>
+
+        <section class="tab-content">
+            <h2>Content-Management-Systeme</h2>
+
+            <p>Digitales Lehrerzimmer:</p>
+            <ul>
+                <li>breite Akkzeptanz im Kollegium</li>
+                <li>viele Verwaltungsinhalte strukturiert abgelegt</li>
+                <li>Zukunft: Konsequentere Abbildung von Unterrichtsinhalten</li>
+            </ul>
+
+            <p>Homepage</p>
+            <ul>
+                <li>?</li>
+            </ul>
+        </section>
         <section class="tab-content">
             <h2>Stundenplanung</h2>
             <p>
                 Der Stundenplanung ist konsequent an deen Lernprozessen der Schülerinnen und Schüler auszurichten.
+            <ul>
+                <li>Kleine Kurse streichen</li>
+                <li>Team-Teching in anspruchsvollen Lerngruppen</li>
+                <li>Mehr Freistunden</li>
+                <li>Vertretungsplanung optmimieren</li>
+            </ul>
             </p>
             <p>
-                Zu viele Parameter im System , Team-Teching in anspruchsvollen Lerngruppen
+                Reduktions der Systemparameter
             <ul>
-                <li>Weniger kleiner Klassen</li>
-                <li>Digitales Lehrerszimmer: wird viel genutzt, kein probleme, sehr sinnvoll</li>
-                <li>Absenzregelungen</li>
+                <li>Weniger Differenzierungen</li>
+                <li>Weniger Berücksichtigung von individuellen Bedürfnissen</li>
                 <li></li>
             </ul>
-
             </p>
         </section>
+
+        <footer class="site-footer" role="contentinfo">
+            <p>Dr. Sven Führing</p>
+        </footer>
     </div>
 
     <script>
