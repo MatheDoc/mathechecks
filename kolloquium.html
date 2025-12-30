@@ -44,6 +44,10 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+            /* thin vertical separator to the left of the text */
+            padding-left: 30px;
+
+            border-left: 2px solid var(--border-light);
         }
 
         .page-header h1 {
@@ -82,25 +86,45 @@
             margin-bottom: 56px;
         }
 
+        /* Full-page overlay: modern browsers use :has on body, fallback via JS toggling body.overlay-active */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 180ms ease;
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        body:has(.principle:is(:hover, :focus-within, .open))::before,
+        body.overlay-active::before {
+            background: rgba(0, 0, 0, 0.35);
+            pointer-events: auto;
+        }
+
         .principle {
             position: relative;
+
+            /* ensure principle sits above full-page overlay */
             background: var(--bg-white);
             padding: 14px 12px;
             border: 1px solid var(--border-light);
             border-radius: 10px;
             cursor: pointer;
             box-shadow: 0 1px 0 rgba(31, 41, 51, 0.03);
-            transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease;
+            transition: box-shadow 180ms ease, transform 180ms ease, border-color 180ms ease, opacity 180ms ease, filter 180ms ease;
         }
 
         .principle:is(:hover, :focus-within, .open) {
             border-color: var(--accent);
             box-shadow: 0 8px 20px rgba(6, 37, 161, 0.06);
             transform: translateY(-2px);
+            z-index: 100;
         }
 
         .principle h2 {
-            margin: 0 0 6px 0;
+            margin: 0 0 0 0;
             font-size: 1.15rem;
             font-weight: 600;
             color: var(--text-main);
@@ -108,8 +132,6 @@
             padding-left: 0;
             transition: color 180ms ease;
         }
-
-
 
         .principle:is(:hover, :focus-within, .open) h2 {
             color: var(--accent);
@@ -132,7 +154,8 @@
             border-radius: 8px;
             border: 1px solid var(--border-light);
             box-shadow: 0 6px 18px rgba(31, 41, 51, 0.08);
-            z-index: 20;
+            z-index: 110;
+            /* tooltip above overlay */
             opacity: 0;
             transform: translateY(-6px);
             pointer-events: none;
@@ -240,6 +263,12 @@
                 width: 44px;
             }
 
+            .page-header__text {
+                padding-left: 8px;
+                margin-left: 8px;
+                border-left: none;
+            }
+
             .page-header h1 {
                 font-size: 1.6rem;
             }
@@ -310,7 +339,7 @@
             <div class="principle">
                 <h2>Verwaltung: De-Implementierung</h2>
                 <p>
-                    Nachhaltige Schulentwicklung erfordert die konsequente Umsetzung
+                    Eine funktionierende Verwaltung erfordert die konsequente Umsetzung
                     weniger, klarer und verbindlicher Strukturen. Vereinheitlichung
                     schafft Orientierung und entlastet alle Beteiligten.
                 </p>
@@ -319,29 +348,19 @@
             <div class="principle">
                 <h2>Schülerschaft: (Meta)-Kognitive Aktivierung</h2>
                 <p>
-                    Lernen gelingt dann, wenn Schülerinnen und Schüler geistig gefordert sind und ihre Lernprozesse
-                    reflektieren.
+                    Lernen gelingt dann, wenn Schülerinnen und Schüler geistig gefordert sind und Verantwortung für
+                    ihre Lernprozesse übernehmen.
                 </p>
             </div>
 
             <div class="principle">
-                <h2>Kollegium: Kollektive Überzeugung der Selbstwirksamkeit</h2>
+                <h2>Kollegium: Kollektive Selbstwirksamkeitsüberzeugung</h2>
                 <p>
                     Erfolgreiche Schulentwicklung erfordert die gemeinsame Überzeugung,
                     dass durch koordiniertes und professionelles Handeln die
                     Lernergebnisse wirkungsvoll beeinflusst werden können.
                 </p>
             </div>
-
-            <!--<div class="principle">
-                <h2>Mut zur Veränderung</h2>
-                <p>
-                    Systemische Veränderungen erforderen den Mut, Bewährtes zu hinterfragen
-                    und neue Wege zu gehen. Veränderung ist ein kontinuierlicher
-                    Prozess, der Offenheit und Engagement aller Beteiligten
-                    voraussetzt.
-                </p>
-            </div>-->
         </section>
 
         <!-- Tabs -->
@@ -351,18 +370,30 @@
         <section class="tab-content">
             <h2>Fachliche Betreuung in Mathematik</h2>
             <p>
-                Aufbau eines Digitalpools Mathematik in Moodle
+                Digitalisierung:
+            <ul>
+                <li>Aufbau eines Aufgabenpools in Moodle</li>
+                <li>Aufbau eines digitalen Kompetenzrasters mit M365-Power Apps</li>
+            </ul>
+
+            </p>
+            Künstliche Intelligenz:
+            <p>
+            <ul>
+                <li>Chance: Individuelle Unterstützung und formatives Feedback</li>
+                <li>Risiko: Cognitive Offloading</li>
+            </ul>
             </p>
             <p>
-                Aufbau eines digitalen Kompetenzrasters mit M365-Power Apps
+                Mögliche zukünftige Entwicklungen:
+            <ul>
+                <li>Mikrofortbildung zur KI-Implementierung im neuen Bildungsplan Mathematik des Beruflichen Gymnasiums
+                </li>
+                <li> Mathematik in der Berufsschule</li>
+            </ul>
+
             </p>
-            <p>
-                Mikrofortbildung zur KI-Implementierung im neuen Bildungsplan Mathematik des Beruflichen Gymnasiums
-            </p>
-            <p>
-                Mathematik in der Berufsschule
-            </p>
-            <p>KI-Einsatz</p>
+
         </section>
 
         <section class="tab-content">
@@ -378,7 +409,7 @@
             <p>Microsoft 365:
             <ul>
                 <li>breite Akkzeptanz im Kollegium</li>
-                <li>noch mehr auf verbindliche Strukturen achten (z.b. alle nutzen OneNote)</li>
+                <li>noch mehr auf verbindliche Strukturen achten (z.b. gemeinsame Verwendung von OneNote)</li>
                 <li>Zukunft: Konsequentere Abbildung von Unterrichtsinhalten (Materialpools, Klausuren, Kompetenzraster
                     etc.)</li>
             </ul>
@@ -394,9 +425,10 @@
                 <li>Zukunft: Weitere digitale Integrationen (Einschulungunterlagen, Absenzmeldungen etc.)</li>
             </ul>
             </p>
-            <p>Homepage:
+            <p>Weiteres:
             <ul>
-                <li>?</li>
+                <li>Wechsel zu SchILDweb prüfen</li>
+                <li>HBK-Homepage mit anderen BKs weiterentwickeln</li>
             </ul>
             </p>
         </section>
@@ -405,7 +437,6 @@
             <p>
                 Stundenplanung konsequent an Lernprozessen der Schülerinnen und Schüler ausrichten:
             <ul>
-                <li>kleine Kurse streichen</li>
                 <li>Team-Teaching in anspruchsvollen Lerngruppen</li>
                 <li>Freistunden bewusst einsetzen</li>
                 <li>Vertretungsplanung optimieren, z.B. durch Koppelung von Parallelklassen, Einsatz von Aufgabenpools
@@ -416,7 +447,7 @@
             <p>
                 Stärkere Gewichtung organisatorischer Erfordernisse gegenüber Einzelwünschen:
             <ul>
-                <li>allgemein: Reduzierung der Systemparameter</li>
+                <li>allgemeines Ziel: Reduzierung der Systemparameter</li>
                 <li>weniger Differenzierungskurse</li>
                 <li>reduziertere Berücksichtigung individueller Zeitwünsche</li>
             </ul>
@@ -426,7 +457,7 @@
             <ul>
                 <li>Vereinheitlichung der Einsatzplanung</li>
                 <li>Datenbereinigung in Untis</li>
-                <li>Wechsel zu vUntis (funktionsgleiche, browserbasierte Version)</li>
+                <li>Wechsel zu vUntis (funktionsgleiche, browserbasierte Untis-Version)</li>
             </ul>
             </p>
         </section>
@@ -459,9 +490,22 @@
             tabsContainer.appendChild(button);
         });
 
-        // Overlay tooltip: enable touch/click toggle and accessibility
+        // Overlay tooltip: enable touch/click toggle and accessibility (body-level overlay fallback)
         (function () {
             const principles = document.querySelectorAll('.principle');
+            const body = document.body;
+
+            function updateOverlayState() {
+                const anyOpen = !!document.querySelector('.principle.open');
+                const anyHover = Array.from(principles).some(p => p.matches(':hover'));
+                const anyFocus = Array.from(principles).some(p => p.matches(':focus-within'));
+                if (anyOpen || anyHover || anyFocus) {
+                    body.classList.add('overlay-active');
+                } else {
+                    body.classList.remove('overlay-active');
+                }
+            }
+
             principles.forEach(el => {
                 el.setAttribute('tabindex', '0');
                 el.setAttribute('role', 'button');
@@ -472,6 +516,23 @@
                     if (e.target.closest('a, button')) return;
                     const open = el.classList.toggle('open');
                     el.setAttribute('aria-expanded', String(open));
+                    setTimeout(updateOverlayState, 0);
+                });
+
+                el.addEventListener('mouseenter', () => {
+                    setTimeout(updateOverlayState, 0);
+                });
+
+                el.addEventListener('mouseleave', () => {
+                    setTimeout(updateOverlayState, 10);
+                });
+
+                el.addEventListener('focusin', () => {
+                    setTimeout(updateOverlayState, 0);
+                });
+
+                el.addEventListener('focusout', () => {
+                    setTimeout(updateOverlayState, 10);
                 });
 
                 el.addEventListener('keydown', (e) => {
@@ -479,21 +540,24 @@
                         e.preventDefault();
                         const open = el.classList.toggle('open');
                         el.setAttribute('aria-expanded', String(open));
+                        setTimeout(updateOverlayState, 0);
                     }
                     if (e.key === 'Escape') {
                         el.classList.remove('open');
                         el.setAttribute('aria-expanded', 'false');
+                        setTimeout(updateOverlayState, 0);
                     }
                 });
             });
 
-            // close open tooltip when clicking outside
+            // close open tooltip when clicking outside (including clicks on the overlay)
             document.addEventListener('click', (e) => {
                 if (!e.target.closest('.principle')) {
                     document.querySelectorAll('.principle.open').forEach(el => {
                         el.classList.remove('open');
                         el.setAttribute('aria-expanded', 'false');
                     });
+                    setTimeout(updateOverlayState, 0);
                 }
             });
         })();
