@@ -251,14 +251,14 @@ antwort="
 - Nachfrageunktion $p_N$
 - Angebotsfunktion $p_A$
 - Gleichgewichtsmenge $x_G$
-- Gleichgewichtspreis $x_P$
+- Gleichgewichtspreis $p_G$
 
 $$
-KR=\int_0^{x_G}p_N(x)dx - p_G\cdot p_x
+KR=\int_0^{x_G}p_N(x)dx - x_G\cdot p_G
 $$
 
 $$
-PR=p_G\cdot p_x - \int_0^{x_G}p_A(x)dx
+PR=x_G\cdot p_G - \int_0^{x_G}p_A(x)dx
 $$
 
 "
