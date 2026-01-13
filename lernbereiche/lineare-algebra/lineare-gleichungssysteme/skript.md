@@ -7,7 +7,8 @@ lernbereich: lineare-gleichungssysteme
 
 ## Einführung
 
-Ein lineares Gleichungssystem besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In den Gleichungen gibt es eine oder mehrere Unbekannte.
+Ein lineares Gleichungssystem besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In diesen Gleichungen treten eine oder mehrere Unbekannte auf. Ein einfaches Beispiel ist das folgende Gleichungssystem mit den Unbekannten 
+$x$ und $y$:
 
 $$
 \begin{align}
@@ -16,7 +17,10 @@ $$
 \end{align}
 $$
 
-Hier sind einige kurze, einfache Anwendungsbeispiele für lineare Gleichungssysteme:
+Die typische Fragestellung besteht darin, das lineare Gleichungssystem zu lösen. Das bedeutet, Werte für die Unbekannten zu bestimmen, sodass alle Gleichungen des Systems gleichzeitig erfüllt sind. Im vorliegenden Beispiel sind also die Werte von 
+$x$ und $y$ zu berechnen, die beide Gleichungen zugleich korrekt machen.
+
+Lineare Gleichungssysteme finden weitreichend Anwendungen:
 
 - PageRank-Algorithmus – zur Berechnung der Bedeutung von Webseiten im Google-Suchranking.
 - Stromnetzberechnung – zur Bestimmung von Strömen und Spannungen in elektrischen Netzwerken.
@@ -204,6 +208,3 @@ antwort="
 
 <div id="skript-aufgabe-3"></div>
 
-## Lösbarkeit linearer Gleichungsysteme
-
-Wir...
