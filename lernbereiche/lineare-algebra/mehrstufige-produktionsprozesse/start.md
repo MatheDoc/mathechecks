@@ -16,4 +16,5 @@ Wesentlich ist die sichere Übertragung der bekannten Formeln aus dem eindimensi
 
 ## Vorkenntnisse
 
-Erforderlich sind Kenntnisse zu linearen Kosten-, Erlös- und Gewinnfunktionen sowie Grundlagen zu Matrizen, linearen Gleichungssystemen und dem Gauß-Algorithmus.
+Lineare ökonomische Funktionen
+<a href="{{ '/lernbereiche/lineare-algebra/lineare-gleichungssysteme/start.html' | relative_url }}" class="link-button">Lineare Gleichungssysteme</a>
