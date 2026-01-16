@@ -292,9 +292,9 @@ Das folgende Diagramm erläutert den Sachverhalt:
 Abgebildet ist das Marktgleichgewicht mit Gleichgewichtsmenge $x_G$ und Gleichgewichtspreis $p_G$. Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich dann aus der Summe der Konsumentenrente des ersten Teilmarkts KR1 und der Konsumentenrente des zweiten Teilmarkts KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis. Auf dem zweiten Teilmarkt soll ein Preis $p_2$
 so festgelegt werden, dass die Konsumentenrente maximal abgeschöpft wird. Wie muss $p_2$ gewählt werden?
 
-Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Quadrats mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
+Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
 
-Der Flächeninhalt des Quadrats ist Abhängigkeit von $x_2$ lautet:
+Der Flächeninhalt des weißen Rechtecks ist Abhängigkeit von $x_2$ lautet:
 
 $$
 \begin{align*}
@@ -303,7 +303,7 @@ A(x_2)&=x_2\cdot (p_2-p_G)\\
 \end{align*}
 $$
 
-Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des weißen Quadrats maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
+Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des weißen Rechtecks maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
 
 "
 %}
