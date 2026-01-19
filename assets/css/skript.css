@@ -15,7 +15,7 @@ figure figcaption {
 
 iframe {
   width: 560px;
-  max-width: 95vw;
+  max-width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
   border: 0;
@@ -80,6 +80,7 @@ iframe {
 .flip-card[open] {
   background: #ffffff;
 }
+
 .flip-card summary::-webkit-details-marker {
   display: none;
 }
@@ -121,6 +122,7 @@ iframe {
 .info-card summary:hover {
   background-color: #f9cfeb;
 }
+
 .info-card div {
   padding: 0.5rem 1rem;
 }
@@ -137,8 +139,8 @@ details summary {
   margin-bottom: 0;
 }
 
-.info details > div p,
-.info details > div table {
+.info details>div p,
+.info details>div table {
   margin-top: 0.3em;
   margin-bottom: 0.3em;
 }
@@ -146,11 +148,13 @@ details summary {
 /*Elemente*/
 .diagramm-row {
   display: flex;
-  gap: 10px; /* Abstand zwischen den Elementen */
+  gap: 10px;
+  /* Abstand zwischen den Elementen */
   justify-content: center;
   align-items: flex-start;
   justify-content: flex-start;
-  flex-wrap: wrap; /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
+  flex-wrap: wrap;
+  /* Optional: Zeilenumbruch auf kleinen Bildschirmen */
   margin-bottom: 2rem;
 }
 
@@ -165,20 +169,25 @@ details summary {
   padding: 18px 20px;
   box-shadow: 0 2px 8px #0001;
 }
+
 .eingabe-zeile {
   gap: 12px;
   justify-content: space-between;
 }
+
 .eingabe-zeile label {
   min-width: 140px;
 }
+
 .eingabe-zeile input[type="range"] {
   flex: 1;
   margin-left: 10px;
 }
+
 .eingabe-zeile:last-child {
   justify-content: center;
 }
+
 input[type="range"]:hover {
   cursor: ew-resize;
 }
