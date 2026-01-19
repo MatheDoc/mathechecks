@@ -32,7 +32,7 @@ Lineare Gleichungssysteme finden weitreichend Anwendungen:
 
 ## Lösungsverfahren
 
-Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden kann, und in der Folge auch die übrigen Unbekannten.
+Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden, und in der Folge auch die übrigen Unbekannten.
 
 ### Gleichsetzungsverfahren
 
@@ -143,17 +143,17 @@ $$
 
 " %}
 
-Nun verwenden wieder die ausführliche Schreibweise, um angefangen von der letzten Gleichung alle Unbekannten nacheinander zu bestimmen.
+Nun verwenden wir wieder die ausführliche Schreibweise, um angefangen von der letzten Gleichung alle Unbekannten nacheinander zu bestimmen.
 
 {% include flip-card.html
-frage="Suksessives Auflösen nach den Unbekannten"
+frage="Sukzessives Auflösen nach den Unbekannten"
 antwort="Ausgeschrieben lautet das System:
 
 $$
 \begin{alignat*}{3}
 I:\quad   & x_1+x_2+x_3 & =3\\
 II:\quad  & -2x_2-3x_3  & =2\\
-III:\quad & 15x_3       & =-60
+III:\quad & 15x_3       & =-60\\
 \end{alignat*}
 $$
 
@@ -170,7 +170,7 @@ $$
 "
 %}
 
-Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix oder, allgemeiner, eine Zeilenstufenform erhalten. Dabei verwendeten wir die sogenannten elementaren Zeilenumformungen:
+Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix oder, allgemeiner, eine Zeilenstufenform erhalten. Dabei verwenden wir die sogenannten elementaren Zeilenumformungen:
 
 - Vertauschen zweier Zeilen
 - Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
@@ -187,7 +187,7 @@ antwort="
 
 1. Darstellung in Matrixform
 2. Umformen in obere Dreiecksform
-3. Suksessives Auflösen nach den Unbekannten
+3. Sukzessives Auflösen nach den Unbekannten
 
 "
 %}
@@ -201,10 +201,195 @@ antwort="
 
 1. Darstellung in Matrixform
 2. Umformen in obere Dreiecksform
-3. Suksessives Auflösen nach den Unbekannten
+3. Sukzessives Auflösen nach den Unbekannten
 
 "
 %}
 
 <div id="skript-aufgabe-3"></div>
+
+## Lösungsarten linearer Gleichungssysteme
+
+Bisher haben wir nur lineare Gleichungssysteme mit genau einer Lösung betrachtet. Es gibt aber auch den Fall, dass keine oder unendliche viele Lösungen vorliegen. Dazu betrachten wir die folgenden drei Beispiele, in denen die linearen Gleichungssysteme bereits in Matrixform vorliegen.
+
+### Eine eindeutige Lösung
+
+$$
+\begin{pmatrix}
+1 & 0 & 3 & | & 9\\
+2 & 2 & 1 & | & 10\\
+3 & 4 & 3 &| & 19
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+II-2\cdot I\\
+III-3\cdot I
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 0 & 3 & | & 9\\
+0 & 2 & -5 & | & -8\\
+0 & 4 & -6 &| & -8
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+III-2\cdot II
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 0 & 3 & | & 9\\
+0 & 2 & -5 & | & -8\\
+0 & 0 & 4 &| & 8
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\quad\quad\quad\quad\quad
+\end{matrix}
+$$
+
+Ausgeschrieben erhalten wir:
+
+$$
+\begin{align*}
+III:\quad & 4x_3=8 \Rightarrow x_3=2\\
+II:\quad & 2x_2-5\cdot 2=-8 \Rightarrow x_2=1\\
+I:\quad & x_1+0\cdot 1+3\cdot 2 = 9 \Rightarrow x_1=3\\
+\end{align*}
+$$
+
+Das lineare Gleichungssystem hat also die eindeutige Lösung $x_1=3$, $x_2=1$ und $x_3=2$.
+
+### Keine Lösung
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+2 & 3 & 1 & | & 2\\
+5 & 8 & 3 &| & 4
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+II-2\cdot I\\
+III-5\cdot I
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+0 & -1 & -1 & | & -4\\
+0 & -2 & -2 &| & -11
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+III-2\cdot II
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+0 & -1 & -1 & | & -4\\
+0 & 0 & 0 &| & -3
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\quad\quad\quad\quad\quad
+\end{matrix}
+$$
+
+Ausgeschrieben erhalten wir:
+
+$$
+\begin{align*}
+III:\quad & 0=-3 \Rightarrow \text{falsche Aussage}\\
+\end{align*}
+$$
+
+Das lineare Gleichungssystem hat also keine Lösung.
+
+### Unendlich viele Lösungen
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+2 & 3 & 1 & | & 2\\
+5 & 8 & 3 &| & 7
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+II-2\cdot I\\
+III-5\cdot I
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+0 & -1 & -1 & | & -4\\
+0 & -2 & -2 &| & -8
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+III-2\cdot II
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 2 & 1 & | & 3\\
+0 & -1 & -1 & | & -4\\
+0 & 0 & 0 &| & 0
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\quad\quad\quad\quad\quad
+\end{matrix}
+$$
+
+Ausgeschrieben erhalten wir:
+
+$$
+\begin{align*}
+III:\quad & 0\cdot x_3=0 \\
+        & \text{Wir sehen, dass jede beliebige reelle Zahl eine Lösung für $x_3$ ist. Formal schreiben wir dafür $x_3=t$ mit $t\in\mathbb{R}$.}\\
+II:\quad & -x_2-t=-4 \Rightarrow -x_2=t-4 \Rightarrow x_2=4-t\\
+I:\quad & x_1+2(4-t)+t=3 \Rightarrow x_1+8-2t+t=3 \Rightarrow x_1=t-5
+\end{align*}
+$$
+
+Das lineare Gleichungssystem hat also die unendlich vielen Lösungen $x_1=t-5$, $x_2=4-t$ und $x_3=t$, wobei $t$ eine beliebige reelle Zahl ist.
+
+Statt $x_3$ hätten wir auch $x_1$ oder $x_2$ gleich $t$ setzen. Die Gestalt der Lösung sähe dann anders aus, die Menge der Lösungen ist aber stets gleich.
+
+### Zusammenfassung
+
+Lineare Gleichungssysteme können die drei folgenden Arten von Lösungen haben:
+
+1. Eine eindeutige Lösung
+2. Keine Lösung
+3. Unendlich viele Lösungen
+
+## Das Rangkriterium
+
+
 
