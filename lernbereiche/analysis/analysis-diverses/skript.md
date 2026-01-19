@@ -22,7 +22,7 @@ Zum Schluss stellt sich die Frage, wie gut die gefundene Funktion die Daten besc
 - $0{,}7< R^2<0{,}9$ akzeptabel,
 - $R^2< 0{,}7$ schwach.
 
-Im folgenden verwenden [Casio fx-CG 20](https://www.casio-schulrechner.de/materialdatenbanken/data/Kurzanleitung_FX-CG20V2.pdf "Anleitung"). Andere Taschenrechner funktionieren ähnlich, z.B. der [Casio fx-CP400](https://www.casio-schulrechner.de/materialdatenbanken/data/Hilfekatalog%20Classpad%20400%20Sekundarstufe%20I.pdf "Anleitung").
+Im folgenden verwenden wir den [Casio fx-CG 20](https://www.casio-schulrechner.de/materialdatenbanken/data/Kurzanleitung_FX-CG20V2.pdf "Anleitung"). Andere Taschenrechner funktionieren ähnlich, z.B. der [Casio fx-CP400](https://www.casio-schulrechner.de/materialdatenbanken/data/Hilfekatalog%20Classpad%20400%20Sekundarstufe%20I.pdf "Anleitung").
 
 ### Beispiel: Lineare Regression
 
