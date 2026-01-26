@@ -507,8 +507,8 @@ $$
 P(a\leq X\leq b)=P(X\leq b)- P(X\leq a-1).
 $$
 
-  "
-  %}
+"
+%}
 
 <div id="skript-aufgabe-7"></div>
 
@@ -900,7 +900,7 @@ Wir berechnen $\mu=7{,}5$ und $\sigma\approx 2{,}29$. Gesucht ist:
 
 $$
 \begin{align*}
-P(\mu-2\sigma\leq X\leq \mu+2\sigma)&=P(7{,}5+2\cdot 2{,}29\leq X\leq 7{,}5-2\cdot 2{,}29)\\
+P(\mu-2\sigma\leq X\leq \mu+2\sigma)&=P(7{,}5-2\cdot 2{,}29\leq X\leq 7{,}5+2\cdot 2{,}29)\\
                         &=P(2{,}92\leq X\leq 12{,}08)\\
                         &=P(3\leq X\leq 12) \\
                         &=0{,}9736
