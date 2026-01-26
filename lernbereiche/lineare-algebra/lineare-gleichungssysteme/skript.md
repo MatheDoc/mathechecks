@@ -93,7 +93,7 @@ $$
 
 " %}
 
-Diese Matrix wird mit Hilfe des Additionsverfahrens in eine obere Dreiecksform überführt.
+Diese Matrix wird mit Hilfe des Additionsverfahrens in eine obere Dreiecksform überführt, das heißt in eine Matrix, bei der alle Elemente unterhalb der Diagonalen gleich null sind.
 
 {% include flip-card.html
 frage="Umformen in obere Dreiecksform"
@@ -170,7 +170,7 @@ $$
 "
 %}
 
-Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix oder, allgemeiner, eine Zeilenstufenform erhalten. Dabei verwenden wir die sogenannten elementaren Zeilenumformungen:
+Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix erhalten. Dabei verwenden wir die sogenannten elementaren Zeilenumformungen:
 
 - Vertauschen zweier Zeilen
 - Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
@@ -208,11 +208,11 @@ antwort="
 
 <div id="skript-aufgabe-3"></div>
 
-## Lösungsarten linearer Gleichungssysteme
+## Lösungsarten
 
 Bisher haben wir nur lineare Gleichungssysteme mit genau einer Lösung betrachtet. Es gibt aber auch den Fall, dass keine oder unendliche viele Lösungen vorliegen. Dazu betrachten wir die folgenden drei Beispiele, in denen die linearen Gleichungssysteme bereits in Matrixform vorliegen.
 
-### Eine eindeutige Lösung
+### Beispiel 1: Eine eindeutige Lösung
 
 $$
 \begin{pmatrix}
@@ -268,7 +268,7 @@ $$
 
 Das lineare Gleichungssystem hat also die eindeutige Lösung $x_1=3$, $x_2=1$ und $x_3=2$.
 
-### Keine Lösung
+### Beispiel 2: Keine Lösung
 
 $$
 \begin{pmatrix}
@@ -322,7 +322,7 @@ $$
 
 Das lineare Gleichungssystem hat also keine Lösung.
 
-### Unendlich viele Lösungen
+### Beispiel 3: Unendlich viele Lösungen
 
 $$
 \begin{pmatrix}
@@ -379,7 +379,7 @@ $$
 
 Das lineare Gleichungssystem hat also die unendlich vielen Lösungen $x_1=t-5$, $x_2=4-t$ und $x_3=t$, wobei $t$ eine beliebige reelle Zahl ist.
 
-Statt $x_3$ hätten wir auch $x_1$ oder $x_2$ gleich $t$ setzen. Die Gestalt der Lösung sähe dann anders aus, die Menge der Lösungen ist aber stets gleich.
+Statt $x_3$ hätten wir hier auch $x_1$ oder $x_2$ gleich $t$ setzen können. Die Gestalt der Lösung sähe dann anders aus, die Menge der Lösungen ist aber stets gleich.
 
 ### Zusammenfassung
 
@@ -389,7 +389,77 @@ Lineare Gleichungssysteme können die drei folgenden Arten von Lösungen haben:
 2. Keine Lösung
 3. Unendlich viele Lösungen
 
+## Allgemeine Systeme
+
+Im Allgemeinen muss in einem linearern Gleichungssystem die Anzahl der Unbekannten nicht mit der Anzahl der Gleichungen übereinstimmen. Auch in diesen Fällen lässt sich das System systematisch mit dem Gauß-Algorithmus lösen. Statt von einer oberen Dreiecksform sprechen wir hier allgemeiner von einer Zeilenstufenform. Diese liegt vor, wenn in jeder Zeile das erste von Null verschiedene Element weiter rechts liegt als in der darüberliegenden Zeile und wenn alle Einträge unterhalb dieser führenden Elemente jeweils Null sind.
+
+### Beispiel: Mehr Unbekannte als Gleichungen
+
+$$
+\begin{align*}
+x_1 + 4x_2 + 3x_3 &= 2 \\
+2x_1 + 6x_2 + 8x_3 &= 3 \\
+\end{align*}
+$$
+
+{% include flip-card.html
+frage="Darstellung in Zeilenstufenform"
+antwort="
+
+$$
+\begin{pmatrix}
+1 & 4 & 3 & | & 2\\
+2 & 6 & 8 & | & 3\\
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+II-2\cdot I
+\end{matrix}
+$$
+$$
+\begin{pmatrix}
+1 & 4 & 3 & | & \\
+0 & -2 & 2 & | & -1\\
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\end{matrix}
+$$
+
+"%}
+
+Ausgeschrieben erhalten wir:
+
+$$
+\begin{align*}
+II:\quad & -2\cdot x_2 + 2x_3=-1 \\
+        & \text{Wir sehen, dass wir für $x_3$ jede beliebige reelle Zahl vorgeben können, und dann diese Gleichung nach $x_2$ auflösen können.}\\
+        &x_3=t\text{ mit }t\in\mathbb{R}.\\
+        &-2\cdot x_2+2\cdot t =-1 \Rightarrow x_2=0,5+t\\
+I:\quad & x_1+4(0,5+t)+3t=2 \Rightarrow x_1+2+4t+3t=5 \Rightarrow x_1=3-7t
+\end{align*}
+$$
+
+
+$$
+\begin{align*}
+x_1 + 2x_2  &= 4 \\
+3x_1 + 4x_2  &= 3 \\
+2x_1 + 1x_2  &= 5 \\
+\end{align*}
+$$
+
+
+$$
+\begin{pmatrix}
+1 & 2 & | & 4\\
+3 & 4 & | & 3\\
+2 & 1 &| & 5
+\end{pmatrix}
+$$
+
+
 ## Das Rangkriterium
-
-
-
