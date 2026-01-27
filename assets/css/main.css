@@ -35,11 +35,9 @@ body {
 }
 
 header {
-  background: linear-gradient(
-    to bottom,
-    var(--hintergrundfarbe) 90%,
-    #f8f8f8a1 100%
-  );
+  background: linear-gradient(to bottom,
+      var(--hintergrundfarbe) 90%,
+      #f8f8f8a1 100%);
   position: fixed;
   width: 100%;
   top: 0;
@@ -113,8 +111,10 @@ i:hover {
 /* auch relevant für Übungen*/
 img,
 .diagramm {
-  flex: 1 1 300px; /* flexibel: nimmt mind. 300px ein, wächst aber mit */
-  max-width: 500px; /* freiwillige Obergrenze, kein harter Zwang */
+  flex: 1 1 300px;
+  /* flexibel: nimmt mind. 300px ein, wächst aber mit */
+  max-width: 500px;
+  /* freiwillige Obergrenze, kein harter Zwang */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   display: block;
@@ -135,6 +135,22 @@ img,
 
 .link-button:hover {
   background-color: var(--hintergrund-hell-hover);
+}
+
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f5f5f5;
+  border-top: 1px solid #ccc;
+  padding: 1em;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+#cookie-banner button {
+  margin-left: 1em;
 }
 
 /*
