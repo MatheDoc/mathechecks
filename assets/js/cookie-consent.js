@@ -20,26 +20,33 @@
     }
 
     function createBanner() {
+        const overlay = document.createElement('div');
+        overlay.id = 'cookie-overlay';
+
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
-        banner.innerHTML = `
-      <div style="max-width:800px;margin:auto;">
-        Diese Website verwendet Google Analytics zur anonymisierten Auswertung von Zugriffen.
-        <button id="cookie-accept">Zustimmen</button>
-        <button id="cookie-decline">Ablehnen</button>
-      </div>
-    `;
-        document.body.appendChild(banner);
+
+        banner.innerHTML =
+            '<h2>Cookie-Einstellungen</h2>' +
+            '<p>Diese Website verwendet Google Analytics zur anonymisierten Auswertung von Zugriffen. ' +
+            'Die Verarbeitung erfolgt nur nach Ihrer Einwilligung.</p>' +
+            '<div class="buttons">' +
+            '<button class="decline" id="cookie-decline">Ablehnen</button>' +
+            '<button class="accept" id="cookie-accept">Zustimmen</button>' +
+            '</div>';
+
+        overlay.appendChild(banner);
+        document.body.appendChild(overlay);
 
         document.getElementById('cookie-accept').onclick = function () {
             localStorage.setItem('ga-consent', 'true');
             loadAnalytics();
-            banner.remove();
+            overlay.remove();
         };
 
         document.getElementById('cookie-decline').onclick = function () {
             localStorage.setItem('ga-consent', 'false');
-            banner.remove();
+            overlay.remove();
         };
     }
 
