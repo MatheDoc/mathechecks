@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    {% include firebase-config.html %} {% include head-main.html %} {% include
-    mathjax.html %}
-  </head>
 
-  <body>
-    <header>
-      {% include nav-lernbereiche.html %}
-      <h1>{{ page.title }}</h1>
-    </header>
-    <main>{{ content }}</main>
+<head>
+  {% include firebase-config.html %} {% include head-main.html %} {% include
+  mathjax.html %}
+</head>
 
-    {% include footer.html %}{% include firebase-auth.html %}
+<body>
+  <header>
+    {% include nav-lernbereiche.html %}
+    <h1>{{ page.title }}</h1>
+  </header>
+  <main>{{ content }}</main>
 
-    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
-    <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
-    <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
-  </body>
+  {% include footer.html %}{% include firebase-auth.html %}
+
+  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
+  <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
+  <!--<script type="module" src="/assets/js/firebase-init.js"></script>-->
+  <script src="/assets/js/cookie-consent.js"></script>
+</body>
+
 </html>
