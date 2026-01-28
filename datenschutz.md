@@ -19,15 +19,10 @@ Beim Aufruf dieser Website werden durch den Webbrowser automatisch Informationen
 ### 3. Google Analytics
 
 Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
-
 Google Analytics wird ausschließlich zur statistischen Auswertung der Nutzung dieser Website eingesetzt. Ziel ist es, einen Überblick über die Häufigkeit von Seitenaufrufen und die allgemeine Nutzung der Website zu erhalten.
-
 Die Nutzung von Google Analytics erfolgt nur nach Ihrer ausdrücklichen Einwilligung über das Cookie-Banner. Vor Erteilung der Einwilligung werden keine Daten an Google übertragen.
-
 Bei der Verwendung von Google Analytics wird die IP-Adresse der Besucher anonymisiert verarbeitet. Eine direkte Personenbeziehbarkeit ist dadurch ausgeschlossen.
-
 Die durch Google Analytics erhobenen Informationen werden in der Regel an Server von Google übertragen und dort verarbeitet. Google verarbeitet diese Daten in meinem Auftrag.
-
 Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:
 [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
