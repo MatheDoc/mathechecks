@@ -1,9 +1,10 @@
-
+// --- Cookie Consent Script für mathechecks.de ---
 (function () {
-    const GA_ID = 'G-Q9748DKYP4';
+    const GA_ID = 'G-Q9748DKYP4'; // Ihr Google Analytics 4 Tag
 
+    // --- Analytics laden ---
     function loadAnalytics() {
-        if (window.gaLoaded) return;
+        if (window.gaLoaded) return; // einmalig laden
         window.gaLoaded = true;
 
         const gtagScript = document.createElement('script');
@@ -19,6 +20,7 @@
         gtag('config', GA_ID, { anonymize_ip: true });
     }
 
+    // --- Banner erstellen ---
     function createBanner() {
         const overlay = document.createElement('div');
         overlay.id = 'cookie-overlay';
@@ -50,6 +52,14 @@
         };
     }
 
+    // --- Globale Funktion zum Widerruf / erneuten Aufrufen ---
+    window.showCookieSettings = function () {
+        localStorage.removeItem('ga-consent'); // alte Entscheidung löschen
+        if (window.gtag) window.gtag = undefined; // optional: Analytics deaktivieren
+        createBanner(); // Banner erneut anzeigen
+    };
+
+    // --- Banner beim Laden prüfen ---
     document.addEventListener('DOMContentLoaded', function () {
         const consent = localStorage.getItem('ga-consent');
         if (consent === 'true') {
