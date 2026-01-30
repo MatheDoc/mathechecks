@@ -402,9 +402,7 @@ x_1 + 4x_2 + 3x_3 &= 2 \\
 \end{align*}
 $$
 
-{% include flip-card.html
-frage="Darstellung in Zeilenstufenform"
-antwort="
+Darstellung in Zeilenstufenform:
 
 $$
 \begin{pmatrix}
@@ -417,19 +415,18 @@ $$
 II-2\cdot I
 \end{matrix}
 $$
+
 $$
 \begin{pmatrix}
-1 & 4 & 3 & | & \\
+1 & 4 & 3 & | & 2 \\
 0 & -2 & 2 & | & -1\\
 \end{pmatrix}
 \quad
 \begin{matrix}
 \\
-\\
+\quad\quad\quad\quad\quad
 \end{matrix}
 $$
-
-"%}
 
 Ausgeschrieben erhalten wir:
 
@@ -443,6 +440,7 @@ I:\quad & x_1+4(0,5+t)+3t=2 \Rightarrow x_1+2+4t+3t=5 \Rightarrow x_1=3-7t
 \end{align*}
 $$
 
+### Beispiel: Mehr Gleichungen als Unbekannte
 
 $$
 \begin{align*}
@@ -452,6 +450,7 @@ x_1 + 2x_2  &= 4 \\
 \end{align*}
 $$
 
+Darstellung in Zeilenstufenform:
 
 $$
 \begin{pmatrix}
@@ -459,7 +458,58 @@ $$
 3 & 4 & | & 3\\
 2 & 1 &| & 5
 \end{pmatrix}
+\quad
+\begin{matrix}
+\\
+II-3\cdot I\\
+III-2\cdot I
+\end{matrix}
 $$
 
+$$
+\begin{pmatrix}
+1 & 2 & | & 4\\
+0 & -2 & | & -9\\
+0 & -3 &| & -3
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+3\cdot II-2\cdot III
+\end{matrix}
+$$
+
+$$
+\begin{pmatrix}
+1 & 2 & | & 4\\
+0 & -2 & | & -9\\
+0 & 0 &| & -21
+\end{pmatrix}
+\quad
+\begin{matrix}
+\\
+\\
+\quad\quad\quad\quad\quad
+\end{matrix}
+$$
+
+Ausgeschrieben erhalten wir:
+
+$$
+III:\quad & 0x_2=-21 \Rightarrow\text{falsche Aussage}
+$$
+
+Das lineare Gleichungssystem hat also keine Lösung.
+
+### Zusammenfassung
+
+Diese Beispiele, zusammen mit den anfangs betrachteten  Gleichungssystemen, verdeutlichen die typischen Situationen:
+
+- Anzahl Gleichungen = Anzahl Unbekannte
+- Anzahl Gleichungen < Anzahl Unbekannte
+- Anzahl Gleichungen > Anzahl Unbekannte
+
+Wie wir bereits gesehen, können aber auch Gleichungssystemene mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für die Fälle, in denen die Anzahlen nicht übereinstimmen. Eine systematische Betrachtung die alles ebdeckt, besprechen wir im nächsten Abschnitt.
 
 ## Das Rangkriterium
