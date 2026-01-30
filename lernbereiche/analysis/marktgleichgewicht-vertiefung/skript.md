@@ -268,17 +268,13 @@ $$
 
 ## Abschöpfung der Konsumentenrente
 
-Die Abschöpfung der Konsumentenrente bezeichnet eine Preissetzungsstrategie, bei der ein Anbieter versucht, möglichst viel von der Zahlungsbereitschaft der Nachfrager abzuschöpfen.
+Wird auf einem Markt ein Produkt nur zum Gleichgewichtspreis angeboten, ist die Konsumentenrente die Differenz zwischen der Zahlungsbereitschaft der Konsumenten und den von ihnen insgesamt gezahlten Gleichgewichtspreisen.
 
-Normalerweise entsteht eine Konsumentenrente, wenn Konsumenten bereit wären, einen höheren Preis für ein Gut zu zahlen, es tatsächlich aber zu einem niedrigeren Marktpreis erwerben. Diese Differenz zwischen Zahlungsbereitschaft und tatsächlich gezahltem Preis ist ihr Vorteil.
-
-Durch verschiedene Formen der Preisdifferenzierung kann ein Unternehmen diese Rente verringern oder vollständig abschöpfen. Beispiele sind:
+Die Abschöpfung der Konsumentenrente bezeichnet eine Preissetzungsstrategie, bei der ein Anbieter versucht, möglichst viel von der Zahlungsbereitschaft der Nachfrager abzuschöpfen. Beispiele sind:
 
 - individuelle Preise je nach Zahlungsbereitschaft (erste Preisdifferenzierung),
 - unterschiedliche Preise für verschiedene Kundengruppen (zweite oder dritte Preisdifferenzierung),
 - zeitlich gestaffelte Preise (z. B. bei technischen Geräten oder Software).
-
-Ziel ist es, den Gewinn des Anbieters zu maximieren, indem ein möglichst großer Anteil der Konsumentenrente in Produzentenrente umgewandelt wird.
 
 {% include info.html
 index="4"
@@ -294,7 +290,7 @@ so festgelegt werden, dass die Konsumentenrente maximal abgeschöpft wird. Wie m
 
 Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
 
-Der Flächeninhalt des weißen Rechtecks ist Abhängigkeit von $x_2$ lautet:
+Der Flächeninhalt des weißen Rechtecks in Abhängigkeit von $x_2$ lautet:
 
 $$
 \begin{align*}
