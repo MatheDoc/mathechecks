@@ -1,7 +1,10 @@
+// Firebase Config wird aus Umgebungsvariablen geladen
+// Für lokale Entwicklung: .env Datei verwenden
+// Für Production: Build-Zeit Umgebungsvariablen setzen
 const firebaseConfig = {
-  apiKey: "AIzaSyBqjhqgl1fJSgr5qwTjzplA8tO8gZfKZsc",
-  authDomain: "mathechecks-c1e86.firebaseapp.com",
-  projectId: "mathechecks-c1e86",
+  apiKey: process.env.VITE_FIREBASE_API_KEY || window.FIREBASE_API_KEY,
+  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || window.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.VITE_FIREBASE_PROJECT_ID || window.FIREBASE_PROJECT_ID,
 };
 
 firebase.initializeApp(firebaseConfig);
