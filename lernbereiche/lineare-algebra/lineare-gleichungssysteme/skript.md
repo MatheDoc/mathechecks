@@ -513,3 +513,4 @@ Die letzten beiden Beispiele verdeutlichen zusammen mit den zu Beginn betrachtet
 Wichtig: Wie wir bereits gesehen, können aber auch LGS mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für unter- und überbestimmte LGS. Eine systematische Untersuchung dieser Fälle erfolgt im nächsten Abschnitt.
 
 ## Das Rangkriterium
+
