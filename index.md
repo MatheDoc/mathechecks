@@ -4,12 +4,7 @@ title: ""
 description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
 ---
 
-<style>
-  #ichkann-box  {
-  color: var(--hauptfarbe-hover); 
-  transform: scale(1.2);
-}
-</style>
+
 
   <div id="ichkann-box" style="
   display: flex;
