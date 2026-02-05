@@ -497,20 +497,20 @@ $$
 Ausgeschrieben erhalten wir:
 
 $$
-III:\quad  0x_2=-21 \Rightarrow\text{falsche Aussage}
+III:\quad  0=-21 \Rightarrow\text{falsche Aussage}
 $$
 
 Das LGS hat also keine Lösung.
 
 ### Zusammenfassung
 
-Die letzten beiden Beispiele verdeutlichen zusammen mit den zu Beginn betrachteten linearen Gleichungssystemen den generischen, also häufigen, jedoch nicht ausnahmslosen Fall.
+Die letzten beiden Beispiele verdeutlichen zusammen mit den zu Beginn betrachteten LGS den generischen, also häufigen, jedoch nicht ausnahmslosen Fall.
 
 - Quadratisches LGS, d.h. Anzahl Gleichungen = Anzahl Unbekannte: eine eindeutige Lösung 
 - Unterbestimmtes LGS, d.h. Anzahl Gleichungen < Anzahl Unbekannte: unendlich viele Lösungen
 - Überbestimmtes LGS, d.h. Anzahl Gleichungen > Anzahl Unbekannte: keine Lösung
 
-Wichtig: Wie wir bereits gesehen, können aber auch LGS mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für unter- und überbestimmte LGS. Eine systematische Untersuchung dieser Fälle erfolgt im nächsten Abschnitt.
+Wichtig: Wie wir bereits gesehen haben, können aber auch LGS mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für unter- und überbestimmte LGS. Eine systematische Untersuchung dieser Fälle erfolgt im nächsten Abschnitt.
 
 ## Das Rangkriterium
 
@@ -538,6 +538,18 @@ $$
 
 In diesen Beispielen ist {% include ttt.html text="$rg(A)=2$" tt="da die letzte Zeile von $A$ nur aus Nullen besteht" %} und {% include ttt.html text="$rg(A\mid y)=3$" tt="da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben" %}.
 
+### Satz
 
+Wir betrachten das LGS $(A\mid y)$. Die Anzahl der Spalten von $A$, d.h. die Anzahl der Unbekannten, bezeichnen wir mit $n$. Dann gilt für die Anzahl der Lösungen: 
+
+* $rg(A)=rg(A\mid y)=n$: eine eindeutige Lösung
+* $rg(A)=rg(A\mid y)<n$: unendlich viele Lösungen
+* $rg(A)<rg(A\mid y)$: keine Lösung
+
+### Beispiele
+
+Matrixschreibweise
+Zeilenstufen
+Rangkriterium
 
 

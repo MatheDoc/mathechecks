@@ -48,8 +48,9 @@ input[type="text"]::-webkit-outer-spin-button {
 .wrapper {
   padding: 20px;
 }
+
 /* Flexcontainer innerhalb .aufgabe */
-.aufgabe > div {
+.aufgabe>div {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -57,8 +58,8 @@ input[type="text"]::-webkit-outer-spin-button {
 }
 
 /* Spaltenaufteilung */
-.aufgabe > div > .einleitung,
-.aufgabe > div > ol {
+.aufgabe>div>.einleitung,
+.aufgabe>div>ol {
   width: 50%;
   box-sizing: border-box;
 }
@@ -81,7 +82,7 @@ input[type="text"]::-webkit-outer-spin-button {
   transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
-.aufgabe li + li {
+.aufgabe li+li {
   margin-top: 1rem;
 }
 
@@ -89,7 +90,7 @@ input[type="text"]::-webkit-outer-spin-button {
   background-color: var(--hintergrund-hell-hover);
 }
 
-.aufgabe + .aufgabe {
+.aufgabe+.aufgabe {
   margin-top: 1.5rem;
 }
 
@@ -104,8 +105,8 @@ input[type="text"]::-webkit-outer-spin-button {
   border-bottom: 1px solid #ccc;
 }
 
-/* Basis-Stil für alle Icons */
- .icon  {
+
+.wrapper .icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -118,10 +119,9 @@ input[type="text"]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-/* Hover-Effekt */
- .icon:hover {
-  background-color: var(--hintergrund-hell); /* blasser roter Hintergrund */
-  color: var(--hauptfarbe); /* optional: Hauptfarbe beim Hover */
+.wrapper .icon:hover {
+  background-color: var(--hintergrund-hell);
+  color: var(--hauptfarbe);
 }
 
 
@@ -133,64 +133,14 @@ input[type="text"]::-webkit-outer-spin-button {
   padding: 0.2rem;
   margin-top: 5px;
 }
-/*
-.check-icon,
-.check-all-icon {
-  color: #156082ce;
-  cursor: pointer;
-}
-.check-icon:hover,
-.check-all-icon:hover {
-  color: #156082;
-}
 
-.eye-icon {
-  color: #e2a92db0;
-}
-.eye-icon:hover {
-  color: #e2a92d;
-}
-.reload-icon {
-  color: #19a35ead;
-}
-.reload-icon:hover {
-  color: #19a35e;
-}
-.pdf-icon {
-  color: #e03d31a8;
-}
-.pdf-icon:hover {
-  color: #e03c31;
-}
-.assistenz-icon,
-.skript-icon {
-  color: var(--infofarbe);
-}
-.assistenz-icon:hover,
-.skript-icon:hover {
-  color: #693c77e4;
-}
-.whatapp-icon {
-  color: #075e54;
-}
-.whatapp-icon:hover {
-  color: #043d36;
-}
-
-.copy-icon {
-  color: #1b7482a8;
-}
-
-.copy-icon:hover {
-  color: #1b7482;
-}
-*/
 @keyframes border-draw {
   0% {
     /*border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 12px;*/
   }
+
   50% {
     /*    border: 3px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -198,6 +148,7 @@ input[type="text"]::-webkit-outer-spin-button {
     border-color: var(--hauptfarbe); */
     background-color: #f6ff00;
   }
+
   100% {
     /*border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -210,12 +161,13 @@ input[type="text"]::-webkit-outer-spin-button {
 }
 
 @media (max-width: 768px) {
-  .aufgabe > div {
+  .aufgabe>div {
     flex-direction: column;
     gap: 0rem;
   }
-  .aufgabe > div > .einleitung,
-  .aufgabe > div > ol {
+
+  .aufgabe>div>.einleitung,
+  .aufgabe>div>ol {
     width: 100%;
   }
 }
