@@ -514,3 +514,30 @@ Wichtig: Wie wir bereits gesehen, können aber auch LGS mit der gleichen Anzahl 
 
 ## Das Rangkriterium
 
+Mit Hilfe des Rangkriteriums können wir systematisch angeben, wie viele Lösungen ein LGS besitzt. Zunächst benötigen wir die Definition des **Rangs** einer Matrix: Eine Matrix liege in Zeilenstufenform vor. Dann heißt die Anzahl der Zeilen, in denen nicht alle Elemente 0 sind, Rang von $A$, in Kurzschreibweise $rg(A)$. Diese Defintion ist anwendbar auf gewöhnliche Koeffizientenmatrizen, z.B.
+
+$$
+A=
+\begin{pmatrix}
+-4 & 5  & 0\\
+0 & 8  & 1\\
+0 & 0  & 0
+\end{pmatrix}
+$$
+
+als auch auf erweiterte Koeffizientenmatrizen, z.B. 
+
+$$
+(A\mid y)=
+\begin{pmatrix}
+-4 & 5 & 0 & | & 2\\
+0 & 8 & 1  & | & 0\\
+0 & 0 & 0  & | & 1
+\end{pmatrix}.
+$$ 
+
+In diesen Beispielen ist {% include ttt.html text="$rg(A)=2$" tt="da die letzte Zeile von $A$ nur aus Nullen besteht" %} und {% include ttt.html text="$rg(A\mid y)=3$" tt="da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben" %}.
+
+
+
+
