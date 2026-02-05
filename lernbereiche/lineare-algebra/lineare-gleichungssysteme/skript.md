@@ -7,7 +7,7 @@ lernbereich: lineare-gleichungssysteme
 
 ## Einführung
 
-Ein lineares Gleichungssystem besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In diesen Gleichungen treten eine oder mehrere Unbekannte auf. Ein einfaches Beispiel ist das folgende Gleichungssystem mit den Unbekannten 
+Ein lineares Gleichungssystem (LGS) besteht aus mehreren linearen Gleichungen, die alle zugleich erfüllt sein sollen. In diesen Gleichungen treten eine oder mehrere Unbekannte auf. Ein einfaches Beispiel ist das folgende LGS mit den Unbekannten 
 $x$ und $y$:
 
 $$
@@ -17,10 +17,10 @@ $$
 \end{align}
 $$
 
-Die typische Fragestellung besteht darin, das lineare Gleichungssystem zu lösen. Das bedeutet, Werte für die Unbekannten zu bestimmen, sodass alle Gleichungen des Systems gleichzeitig erfüllt sind. Im vorliegenden Beispiel sind also die Werte von 
+Die typische Fragestellung besteht darin, LGS zu lösen. Das bedeutet, Werte für die Unbekannten zu bestimmen, sodass alle Gleichungen des Systems gleichzeitig erfüllt sind. Im vorliegenden Beispiel sind also die Werte von 
 $x$ und $y$ zu berechnen, die beide Gleichungen zugleich korrekt machen.
 
-Lineare Gleichungssysteme finden weitreichend Anwendungen:
+LGS finden weitreichend Anwendungen:
 
 - PageRank-Algorithmus – zur Berechnung der Bedeutung von Webseiten im Google-Suchranking.
 - Stromnetzberechnung – zur Bestimmung von Strömen und Spannungen in elektrischen Netzwerken.
@@ -32,7 +32,7 @@ Lineare Gleichungssysteme finden weitreichend Anwendungen:
 
 ## Lösungsverfahren
 
-Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches lineares Gleichungssystem nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden, und in der Folge auch die übrigen Unbekannten.
+Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches LGS nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden, und in der Folge auch die übrigen Unbekannten.
 
 ### Gleichsetzungsverfahren
 
@@ -48,7 +48,7 @@ Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden kö
 
 {%include info.html
 index="1"
-frage="Lösen linearer Gleichungssysteme mit 2 Gleichungen und 2 Unbekannten"
+frage="Lösen LGS mit 2 Gleichungen und 2 Unbekannten"
 antwort="
 
 - Gleichsetzungsverfahren: Beide Gleichungen nach der gleichen Unbekannten auflösen und gleichsetzen
@@ -67,7 +67,7 @@ Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additions
 
 Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
 
-Wir betrachten dazu das folgende lineare Gleichungssystem:
+Wir betrachten dazu das folgende LGS:
 
 $$
 \begin{align*}
@@ -182,7 +182,7 @@ Das folgende Video zeigt ein Beispiel, in dem ein Zeilentausch notwendig ist, um
 
 {%include info.html
 index="2"
-frage="Lösen linearer Gleichungssysteme mit 3 Gleichungen und 3 Unbekannten"
+frage="Lösen LGS mit 3 Gleichungen und 3 Unbekannten"
 antwort="
 
 1. Darstellung in Matrixform
@@ -196,7 +196,7 @@ antwort="
 
 {%include info.html
 index="3"
-frage="Lösen linearer Gleichungssysteme mit 4 Gleichungen und 4 Unbekannten"
+frage="Lösen LGS mit 4 Gleichungen und 4 Unbekannten"
 antwort="
 
 1. Darstellung in Matrixform
@@ -210,7 +210,7 @@ antwort="
 
 ## Lösungsarten
 
-Bisher haben wir nur lineare Gleichungssysteme mit genau einer Lösung betrachtet. Es gibt aber auch den Fall, dass keine oder unendliche viele Lösungen vorliegen. Dazu betrachten wir die folgenden drei Beispiele, in denen die linearen Gleichungssysteme bereits in Matrixform vorliegen.
+Bisher haben wir nur LGS mit genau einer Lösung betrachtet. Es gibt aber auch den Fall, dass keine oder unendliche viele Lösungen vorliegen. Dazu betrachten wir die folgenden drei Beispiele, in denen die LGS bereits in Matrixform vorliegen.
 
 ### Beispiel 1: Eine eindeutige Lösung
 
@@ -266,7 +266,7 @@ I:\quad & x_1+0\cdot 1+3\cdot 2 = 9 \Rightarrow x_1=3\\
 \end{align*}
 $$
 
-Das lineare Gleichungssystem hat also die eindeutige Lösung $x_1=3$, $x_2=1$ und $x_3=2$.
+Das LGS hat also die eindeutige Lösung $x_1=3$, $x_2=1$ und $x_3=2$.
 
 ### Beispiel 2: Keine Lösung
 
@@ -320,7 +320,7 @@ III:\quad & 0=-3 \Rightarrow \text{falsche Aussage}\\
 \end{align*}
 $$
 
-Das lineare Gleichungssystem hat also keine Lösung.
+Das LGS hat also keine Lösung.
 
 ### Beispiel 3: Unendlich viele Lösungen
 
@@ -377,13 +377,13 @@ I:\quad & x_1+2(4-t)+t=3 \Rightarrow x_1+8-2t+t=3 \Rightarrow x_1=t-5
 \end{align*}
 $$
 
-Das lineare Gleichungssystem hat also die unendlich vielen Lösungen $x_1=t-5$, $x_2=4-t$ und $x_3=t$, wobei $t$ eine beliebige reelle Zahl ist.
+Das LGS hat also die unendlich vielen Lösungen $x_1=t-5$, $x_2=4-t$ und $x_3=t$, wobei $t$ eine beliebige reelle Zahl ist.
 
 Statt $x_3$ hätten wir hier auch $x_1$ oder $x_2$ gleich $t$ setzen können. Die Gestalt der Lösung sähe dann anders aus, die Menge der Lösungen ist aber stets gleich.
 
 ### Zusammenfassung
 
-Lineare Gleichungssysteme können die drei folgenden Arten von Lösungen haben:
+LGS können die drei folgenden Arten von Lösungen haben:
 
 1. Eine eindeutige Lösung
 2. Keine Lösung
@@ -391,9 +391,9 @@ Lineare Gleichungssysteme können die drei folgenden Arten von Lösungen haben:
 
 ## Allgemeine Systeme
 
-Im Allgemeinen muss in einem linearern Gleichungssystem die Anzahl der Unbekannten nicht mit der Anzahl der Gleichungen übereinstimmen. Auch in diesen Fällen lässt sich das System systematisch mit dem Gauß-Algorithmus lösen. Statt von einer oberen Dreiecksform sprechen wir hier allgemeiner von einer Zeilenstufenform. Diese liegt vor, wenn in jeder Zeile das erste von Null verschiedene Element weiter rechts liegt als in der darüberliegenden Zeile und wenn alle Einträge unterhalb dieser führenden Elemente jeweils Null sind.
+Im Allgemeinen muss in einem LGS die Anzahl der Unbekannten nicht mit der Anzahl der Gleichungen übereinstimmen. Wir nennen LGS mit mehr Unbekannten als Gleichungen **unterbestimmt** und LGS mit weniger Unbekannten als Gleichungen **überbestimmt**. Auch in diesen Fällen lässt sich das System systematisch mit dem Gauß-Algorithmus lösen. Statt von einer oberen Dreiecksform sprechen wir hier allgemeiner von einer Zeilenstufenform. Diese liegt vor, wenn in jeder Zeile das erste von Null verschiedene Element weiter rechts liegt als in der darüberliegenden Zeile und wenn alle Einträge unterhalb dieser führenden Elemente jeweils Null sind.
 
-### Beispiel: Mehr Unbekannte als Gleichungen
+### Beispiel: Unterbestimmte LGS
 
 $$
 \begin{align*}
@@ -440,7 +440,7 @@ I:\quad & x_1+4(0,5+t)+3t=2 \Rightarrow x_1+2+4t+3t=5 \Rightarrow x_1=3-7t
 \end{align*}
 $$
 
-### Beispiel: Mehr Gleichungen als Unbekannte
+### Beispiel: Überbestimmte LGS
 
 $$
 \begin{align*}
@@ -497,19 +497,19 @@ $$
 Ausgeschrieben erhalten wir:
 
 $$
-III:\quad & 0x_2=-21 \Rightarrow\text{falsche Aussage}
+III:\quad  0x_2=-21 \Rightarrow\text{falsche Aussage}
 $$
 
-Das lineare Gleichungssystem hat also keine Lösung.
+Das LGS hat also keine Lösung.
 
 ### Zusammenfassung
 
-Diese Beispiele, zusammen mit den anfangs betrachteten  Gleichungssystemen, verdeutlichen die typischen Situationen:
+Die letzten beiden Beispiele verdeutlichen zusammen mit den zu Beginn betrachteten linearen Gleichungssystemen den generischen, also häufigen, jedoch nicht ausnahmslosen Fall.
 
-- Anzahl Gleichungen = Anzahl Unbekannte
-- Anzahl Gleichungen < Anzahl Unbekannte
-- Anzahl Gleichungen > Anzahl Unbekannte
+- Quadratisches LGS, d.h. Anzahl Gleichungen = Anzahl Unbekannte: eine eindeutige Lösung 
+- Unterbestimmtes LGS, d.h. Anzahl Gleichungen < Anzahl Unbekannte: unendlich viele Lösungen
+- Überbestimmtes LGS, d.h. Anzahl Gleichungen > Anzahl Unbekannte: keine Lösung
 
-Wie wir bereits gesehen, können aber auch Gleichungssystemene mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für die Fälle, in denen die Anzahlen nicht übereinstimmen. Eine systematische Betrachtung die alles ebdeckt, besprechen wir im nächsten Abschnitt.
+Wichtig: Wie wir bereits gesehen, können aber auch LGS mit der gleichen Anzahl an Gleichungen und Unbekannten unendlich viele oder auch keine Lösung besitzen. Ähnliches gilt für unter- und überbestimmte LGS. Eine systematische Untersuchung dieser Fälle erfolgt im nächsten Abschnitt.
 
 ## Das Rangkriterium
