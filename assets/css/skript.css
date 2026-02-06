@@ -47,8 +47,12 @@ iframe {
   position: absolute;
   z-index: 10;
   bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
+
+  inset-inline: 0px;
+  margin-inline: auto;
+
+  max-width: 900px;
+
   padding: 6px 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
@@ -56,12 +60,18 @@ iframe {
   color: #000;
   font-size: 0.9em;
   line-height: 1.4;
-  white-space: nowrap;
+
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+  text-align: left;
+
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
+
+
 
 .tooltip:hover .tooltiptext {
   opacity: 1;
