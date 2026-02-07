@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wissenschaftlicher Taschenrechner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .display {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 25px;
+            color: white;
+        }
+
+        .input-display {
+            font-size: 18px;
+            min-height: 30px;
+            margin-bottom: 10px;
+            opacity: 0.8;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+        }
+
+        .result-display {
+            font-size: 36px;
+            font-weight: 300;
+            min-height: 50px;
+            text-align: right;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+        }
+
+        .special-functions {
+            background: #f7fafc;
+            padding: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .function-buttons {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .function-buttons button {
+            flex: 1;
+            min-width: 70px;
+            padding: 8px;
+            font-size: 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            background: #ed8936;
+            color: white;
+        }
+
+        .function-buttons button:hover {
+            background: #dd6b20;
+            transform: translateY(-1px);
+        }
+
+        .function-buttons button.active {
+            background: #667eea;
+        }
+
+        .expandable {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .expandable.open {
+            max-height: 600px;
+        }
+
+        .panel {
+            background: white;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h4 {
+            margin-bottom: 6px;
+            color: #2d3748;
+            font-size: 13px;
+        }
+
+        .input-group {
+            margin-bottom: 6px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 3px;
+            color: #4a5568;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 4px 6px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-group input[type=number],
+        .input-row input[type=number] {
+            appearance: textfield;
+        }
+
+        .input-group input[type=number]::-webkit-outer-spin-button,
+        .input-group input[type=number]::-webkit-inner-spin-button,
+        .input-row input[type=number]::-webkit-outer-spin-button,
+        .input-row input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .input-row input {
+            width: 40px;
+            padding: 4px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 11px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+        }
+
+        .input-row input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .lgs-matrix {
+            margin-bottom: 6px;
+        }
+
+        .lgs-controls {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 6px;
+        }
+
+        .lgs-controls button {
+            flex: 1;
+            padding: 4px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 10px;
+            background: #48bb78;
+            color: white;
+            font-weight: 600;
+        }
+
+        .lgs-controls button:hover {
+            background: #38a169;
+        }
+
+        .lgs-controls button.remove {
+            background: #f56565;
+        }
+
+        .lgs-controls button.remove:hover {
+            background: #e53e3e;
+        }
+
+        .action-button {
+            width: 100%;
+            padding: 6px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            background: #667eea;
+            color: white;
+            margin-top: 6px;
+        }
+
+        .action-button:hover {
+            background: #5568d3;
+        }
+
+        .buttons {
+            padding: 12px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .operator {
+            background: #667eea;
+            color: white;
+        }
+
+        .operator:hover {
+            background: #5568d3;
+        }
+
+        .equals {
+            background: #48bb78;
+            color: white;
+        }
+
+        .equals:hover {
+            background: #38a169;
+        }
+
+        .top-key {
+            background: #ed8936;
+            color: white;
+            font-size: 12px;
+        }
+
+        .top-key:hover {
+            background: #dd6b20;
+        }
+
+        .spacer {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .clear {
+            background: #f56565;
+            color: white;
+        }
+
+        .clear:hover {
+            background: #e53e3e;
+        }
+
+        .special {
+            background: #ed8936;
+            color: white;
+            font-size: 12px;
+        }
+
+        .special:hover {
+            background: #dd6b20;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 600px) {
+            .result-display {
+                font-size: 28px;
+            }
+
+            button {
+                padding: 8px;
+                font-size: 12px;
+            }
+
+            .special {
+                font-size: 11px;
+            }
+
+            .buttons {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div class="display">
+            <div class="input-display" id="inputDisplay">0</div>
+            <div class="result-display" id="resultDisplay">0</div>
+        </div>
+
+        <div class="special-functions">
+            <div class="function-buttons">
+                <button onclick="togglePanel('lgs')" id="lgsBtn">LGS</button>
+                <button onclick="togglePanel('binom')" id="binomBtn">Binom</button>
+                <button onclick="togglePanel('equation')" id="equationBtn">Gleichung</button>
+            </div>
+
+            <!-- LGS Panel -->
+            <div id="lgsPanel" class="expandable">
+                <div class="panel">
+                    <h4>Lineares Gleichungssystem</h4>
+                    <div class="lgs-controls">
+                        <button onclick="addLGSVariable()">+ Variable</button>
+                        <button class="remove" onclick="removeLGSVariable()">- Variable</button>
+                        <button onclick="addLGSEquation()">+ Gleichung</button>
+                        <button class="remove" onclick="removeLGSEquation()">- Gleichung</button>
+                    </div>
+                    <div id="lgsMatrix"></div>
+                    <button class="action-button" onclick="solveLGS()">LGS lösen</button>
+                </div>
+            </div>
+
+            <!-- Binomial Panel -->
+            <div id="binomPanel" class="expandable">
+                <div class="panel">
+                    <h4>Binomialwahrscheinlichkeit P(a ≤ X ≤ b)</h4>
+                    <div class="input-row">
+                        <div style="flex: 1;">
+                            <label style="font-size: 11px; color: #718096;">a =</label>
+                            <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 11px; color: #718096;">b =</label>
+                            <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 11px; color: #718096;">n =</label>
+                            <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
+                        </div>
+                        <div style="flex: 1;">
+                            <label style="font-size: 11px; color: #718096;">p =</label>
+                            <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
+                        </div>
+                    </div>
+                    <button class="action-button" onclick="calculateBinomial()">Berechnen</button>
+                </div>
+            </div>
+
+            <!-- Gleichung Panel -->
+            <div id="equationPanel" class="expandable">
+                <div class="panel">
+                    <h4>Gleichung lösen</h4>
+                    <div class="input-group">
+                        <label>Gleichung (z.B. x^2 - 4 = 0 oder e^x - 5 = 0)</label>
+                        <input type="text" id="equationInput" placeholder="x^2 - 4 = 0">
+                    </div>
+                    <button class="action-button" onclick="solveEquation()">Lösen</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <!-- Reihe 1 -->
+            <button class="top-key" onclick="appendFunction('sqrt(')">√</button>
+            <button class="top-key" onclick="appendOperator('√')">x√y</button>
+            <button class="top-key" onclick="appendNumber('Math.PI')">π</button>
+            <button class="top-key" onclick="appendNumber('Math.E')">e</button>
+
+            <!-- Reihe 2 -->
+            <button class="top-key" onclick="appendFunction('sin(')">sin</button>
+            <button class="top-key" onclick="appendFunction('cos(')">cos</button>
+            <button class="top-key" onclick="appendFunction('tan(')">tan</button>
+            <button class="top-key" onclick="appendFunction('ln(')">ln</button>
+
+            <!-- Reihe 3 -->
+            <button class="top-key" onclick="appendFunction('exp(')">e^x</button>
+            <button class="top-key" onclick="factorial()">n!</button>
+            <button class="top-key" onclick="appendOperator('^')">^</button>
+            <button class="top-key spacer" disabled aria-hidden="true"></button>
+
+            <!-- Reihe 4 -->
+            <button class="top-key" onclick="appendNumber('(')">(</button>
+            <button class="top-key" onclick="appendNumber(')')">)</button>
+            <button class="top-key" onclick="appendNumber('x')">x</button>
+            <button class="top-key" onclick="appendOperator('=')">=</button>
+
+            <!-- Reihe 5 -->
+            <button class="clear" onclick="clearAll()">C</button>
+            <button class="clear" onclick="clearEntry()">CE</button>
+            <button class="clear" onclick="backspace()">⌫</button>
+            <button class="operator" onclick="appendOperator('/')">÷</button>
+
+            <!-- Reihe 6 -->
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button class="operator" onclick="appendOperator('*')">×</button>
+
+            <!-- Reihe 7 -->
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button class="operator" onclick="appendOperator('-')">−</button>
+
+            <!-- Reihe 8 -->
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button class="operator" onclick="appendOperator('+')">+</button>
+
+            <!-- Reihe 9 -->
+            <button onclick="toggleSign()">+/-</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="appendNumber('.')">.</button>
+            <button class="equals" onclick="calculate()">EXE</button>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '0';
+        let result = 0;
+        let shouldResetInput = false;
+        let lgsVariables = 2;
+        let lgsEquations = 2;
+        let activePanel = null;
+        let activeInputField = null;
+        let panelInputMode = false;
+
+        function updateDisplay() {
+            document.getElementById('inputDisplay').textContent = formatDisplay(currentInput);
+            document.getElementById('resultDisplay').textContent = result;
+        }
+
+        function formatDisplay(value) {
+            return value
+                .replace(/sqrt\(/g, '√(')
+                .replace(/exp\(/g, 'e^(');
+        }
+
+        function appendNumber(num) {
+            if (appendToActiveInput(String(num))) {
+                return;
+            }
+
+            // Ansonsten normale Taschenrechner-Funktion
+            if (shouldResetInput || currentInput === '0') {
+                currentInput = String(num);
+                shouldResetInput = false;
+            } else {
+                currentInput += num;
+            }
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (appendToActiveInput(op)) {
+                return;
+            }
+
+            // Ansonsten normale Taschenrechner-Funktion
+            shouldResetInput = false;
+            if (currentInput.slice(-1).match(/[\+\-\*\/\=]/)) {
+                currentInput = currentInput.slice(0, -1) + op;
+            } else {
+                currentInput += op;
+            }
+            updateDisplay();
+        }
+
+        function appendFunction(func) {
+            if (appendToActiveInput(func)) {
+                return;
+            }
+
+            if (shouldResetInput || currentInput === '0') {
+                currentInput = func;
+                shouldResetInput = false;
+            } else {
+                currentInput += func;
+            }
+            updateDisplay();
+        }
+
+        function clearAll() {
+            currentInput = '0';
+            result = 0;
+            shouldResetInput = false;
+            updateDisplay();
+        }
+
+        function clearEntry() {
+            currentInput = '0';
+            updateDisplay();
+        }
+
+        function backspace() {
+            if (activeInputField) {
+                const currentValue = activeInputField.value || '';
+                activeInputField.value = currentValue.slice(0, -1);
+                return;
+            }
+
+            // Ansonsten normale Taschenrechner-Funktion
+            if (currentInput.length > 1) {
+                currentInput = currentInput.slice(0, -1);
+            } else {
+                currentInput = '0';
+            }
+            updateDisplay();
+        }
+
+        function calculate() {
+            try {
+                let expression = addImplicitMultiplication(
+                    normalizeUnaryMinusExponent(normalizeConstants(convertRootInfix(currentInput)))
+                )
+                    .replace(/×/g, '*')
+                    .replace(/÷/g, '/')
+                    .replace(/−/g, '-')
+                    .replace(/\^/g, '**')
+                    .replace(/sqrt\(/g, 'Math.sqrt(')
+                    .replace(/exp\(/g, 'Math.exp(')
+                    .replace(/ln\(/g, 'Math.log(')
+                    .replace(/sin\(/g, 'Math.sin(')
+                    .replace(/cos\(/g, 'Math.cos(')
+                    .replace(/tan\(/g, 'Math.tan(');
+
+                result = eval(expression);
+                result = Math.round(result * 1000000000) / 1000000000;
+
+                currentInput = String(result);
+                shouldResetInput = true;
+                updateDisplay();
+            } catch (error) {
+                result = 'Fehler';
+                updateDisplay();
+            }
+        }
+
+        function addImplicitMultiplication(value) {
+            return value
+                .replace(/(\d)([a-zA-Z(])/g, '$1*$2')
+                .replace(/(\))([\d(])/g, '$1*$2')
+                .replace(/(\))([a-zA-Z])/g, '$1*$2');
+        }
+
+        function normalizeUnaryMinusExponent(value) {
+            return value
+                .replace(/(^|[+\-*/(=])\s*-\s*([a-zA-Z0-9.]+)\s*\^/g, '$1(-1)*$2^')
+                .replace(/(^|[+\-*/(=])\s*-\s*(\([^()]*\))\s*\^/g, '$1(-1)*$2^');
+        }
+
+        function normalizeConstants(value) {
+            return value
+                .replace(/(^|[^a-zA-Z0-9_.])e([^a-zA-Z0-9_]|$)/g, '$1Math.E$2')
+                .replace(/(^|[^a-zA-Z0-9_.])pi([^a-zA-Z0-9_]|$)/gi, '$1Math.PI$2')
+                .replace(/π/g, 'Math.PI');
+        }
+
+        function convertRootInfix(value) {
+            let expr = value;
+            let index = expr.indexOf('√');
+
+            while (index !== -1) {
+                const left = findLeftOperand(expr, index - 1);
+                const right = findRightOperand(expr, index + 1);
+
+                if (!left || !right) {
+                    break;
+                }
+
+                const leftValue = expr.slice(left.start, left.end + 1);
+                const rightValue = expr.slice(right.start, right.end + 1);
+
+                expr = `${expr.slice(0, left.start)}root(${leftValue},${rightValue})${expr.slice(right.end + 1)}`;
+                index = expr.indexOf('√');
+            }
+
+            return expr;
+        }
+
+        function findLeftOperand(expr, endIndex) {
+            let end = endIndex;
+            while (end >= 0 && expr[end] === ' ') {
+                end--;
+            }
+            if (end < 0) return null;
+
+            if (expr[end] === ')') {
+                let depth = 1;
+                let i = end - 1;
+                while (i >= 0) {
+                    if (expr[i] === ')') depth++;
+                    if (expr[i] === '(') depth--;
+                    if (depth === 0) break;
+                    i--;
+                }
+                if (i < 0) return null;
+                return { start: i, end };
+            }
+
+            let i = end;
+            while (i >= 0 && /[a-zA-Z0-9.]/.test(expr[i])) {
+                i--;
+            }
+            let start = i + 1;
+            if (start > 0 && expr[start - 1] === '-' && (start - 1 === 0 || /[+\-*/(=]/.test(expr[start - 2]))) {
+                start--;
+            }
+            return start <= end ? { start, end } : null;
+        }
+
+        function findRightOperand(expr, startIndex) {
+            let start = startIndex;
+            while (start < expr.length && expr[start] === ' ') {
+                start++;
+            }
+            if (start >= expr.length) return null;
+
+            if (expr[start] === '(') {
+                let depth = 1;
+                let i = start + 1;
+                while (i < expr.length) {
+                    if (expr[i] === '(') depth++;
+                    if (expr[i] === ')') depth--;
+                    if (depth === 0) break;
+                    i++;
+                }
+                if (i >= expr.length) return null;
+                return { start, end: i };
+            }
+
+            let i = start;
+            if (expr[i] === '-' && i + 1 < expr.length && /[a-zA-Z0-9(]/.test(expr[i + 1])) {
+                i++;
+            }
+            while (i < expr.length && /[a-zA-Z0-9.]/.test(expr[i])) {
+                i++;
+            }
+            const end = i - 1;
+            return end >= start ? { start, end } : null;
+        }
+
+        function root(x, y) {
+            return Math.pow(y, 1 / x);
+        }
+
+        function toggleSign() {
+            if (activeInputField) {
+                const value = activeInputField.value || '';
+                if (value.startsWith('-')) {
+                    activeInputField.value = value.slice(1);
+                } else if (value.length > 0) {
+                    activeInputField.value = '-' + value;
+                }
+                return;
+            }
+
+            const numericPattern = /^-?\d+(\.\d+)?$/;
+            if (numericPattern.test(currentInput)) {
+                currentInput = currentInput.startsWith('-') ? currentInput.slice(1) : '-' + currentInput;
+                updateDisplay();
+            }
+        }
+
+        function appendToActiveInput(value) {
+            if (!activeInputField || !panelInputMode) {
+                return false;
+            }
+
+            const currentValue = activeInputField.value || '';
+            if (activeInputField.type === 'number' || activeInputField.type === 'text') {
+                if (value === '.' && currentValue.includes('.')) {
+                    return true;
+                }
+                if (value === '.' && (currentValue === '' || currentValue === '-')) {
+                    activeInputField.value = `${currentValue}0.`;
+                    return true;
+                }
+            }
+
+            activeInputField.value = currentValue + value;
+            return true;
+        }
+
+        function factorial() {
+            try {
+                let n = parseInt(result || currentInput);
+                if (n < 0) {
+                    result = 'Fehler';
+                } else if (n === 0 || n === 1) {
+                    result = 1;
+                } else {
+                    let fact = 1;
+                    for (let i = 2; i <= n; i++) {
+                        fact *= i;
+                    }
+                    result = fact;
+                }
+                currentInput = String(result);
+                shouldResetInput = true;
+                updateDisplay();
+            } catch (error) {
+                result = 'Fehler';
+                updateDisplay();
+            }
+        }
+
+        // Panel Toggle
+        function togglePanel(panelName) {
+            const panels = ['lgs', 'binom', 'equation'];
+            const buttons = ['lgsBtn', 'binomBtn', 'equationBtn'];
+
+            panels.forEach((p, idx) => {
+                const panel = document.getElementById(p + 'Panel');
+                const btn = document.getElementById(buttons[idx]);
+
+                if (p === panelName) {
+                    if (activePanel === panelName) {
+                        panel.classList.remove('open');
+                        btn.classList.remove('active');
+                        activePanel = null;
+                        activeInputField = null;
+                        panelInputMode = false;
+                    } else {
+                        panel.classList.add('open');
+                        btn.classList.add('active');
+                        activePanel = panelName;
+                    }
+                } else {
+                    panel.classList.remove('open');
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (!activePanel) {
+                activeInputField = null;
+                panelInputMode = false;
+            }
+        }
+
+        // LGS Funktionen
+        function initLGS() {
+            lgsVariables = 2;
+            lgsEquations = 2;
+            renderLGS();
+        }
+
+        function renderLGS() {
+            const container = document.getElementById('lgsMatrix');
+            container.innerHTML = '';
+
+            const varNames = ['x', 'y', 'z', 'u', 'v', 'w'];
+
+            for (let i = 0; i < lgsEquations; i++) {
+                const row = document.createElement('div');
+                row.className = 'input-row';
+
+                for (let j = 0; j < lgsVariables; j++) {
+                    // + oder - Zeichen vor Variable (außer beim ersten)
+                    if (j > 0) {
+                        const plusMinus = document.createElement('span');
+                        plusMinus.textContent = '+';
+                        plusMinus.style.padding = '0 2px';
+                        plusMinus.style.fontSize = '11px';
+                        row.appendChild(plusMinus);
+                    }
+
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.inputMode = 'decimal';
+                    input.id = `a${i}${j}`;
+                    input.placeholder = '';
+                    input.value = '';
+                    row.appendChild(input);
+
+                    // Variablenname nach dem Input
+                    const varLabel = document.createElement('span');
+                    varLabel.textContent = varNames[j] || `x${j + 1}`;
+                    varLabel.style.padding = '0 2px';
+                    varLabel.style.fontSize = '11px';
+                    varLabel.style.fontWeight = 'bold';
+                    row.appendChild(varLabel);
+                }
+
+                const equals = document.createElement('span');
+                equals.textContent = '=';
+                equals.style.padding = '0 4px';
+                equals.style.fontWeight = 'bold';
+                equals.style.fontSize = '11px';
+                row.appendChild(equals);
+
+                const resultInput = document.createElement('input');
+                resultInput.type = 'text';
+                resultInput.inputMode = 'decimal';
+                resultInput.id = `b${i}`;
+                resultInput.placeholder = '';
+                resultInput.value = '';
+                row.appendChild(resultInput);
+
+                container.appendChild(row);
+            }
+        }
+
+        function addLGSVariable() {
+            if (lgsVariables < 5) {
+                lgsVariables++;
+                renderLGS();
+            }
+        }
+
+        function removeLGSVariable() {
+            if (lgsVariables > 1) {
+                lgsVariables--;
+                renderLGS();
+            }
+        }
+
+        function addLGSEquation() {
+            if (lgsEquations < 5) {
+                lgsEquations++;
+                renderLGS();
+            }
+        }
+
+        function removeLGSEquation() {
+            if (lgsEquations > 1) {
+                lgsEquations--;
+                renderLGS();
+            }
+        }
+
+        function solveLGS() {
+            try {
+                // Prüfe ob System lösbar ist
+                if (lgsEquations !== lgsVariables) {
+                    currentInput = 'LGS: Anzahl Gleichungen ≠ Variablen';
+                    result = 'Nicht eindeutig';
+                    updateDisplay();
+                    return;
+                }
+
+                // Matrix A und Vektor b erstellen
+                const A = [];
+                const b = [];
+
+                for (let i = 0; i < lgsEquations; i++) {
+                    A[i] = [];
+                    for (let j = 0; j < lgsVariables; j++) {
+                        A[i][j] = parseFloat(document.getElementById(`a${i}${j}`).value) || 0;
+                    }
+                    b[i] = parseFloat(document.getElementById(`b${i}`).value) || 0;
+                }
+
+                // Gauß-Elimination
+                const solution = gaussElimination(A, b);
+
+                if (solution === null) {
+                    currentInput = 'LGS: Keine eindeutige Lösung';
+                    result = 'Fehler';
+                } else {
+                    currentInput = 'LGS gelöst';
+                    result = solution.map((x, i) => `x${i + 1}=${x.toFixed(4)}`).join(', ');
+                }
+
+                shouldResetInput = true;
+                updateDisplay();
+            } catch (error) {
+                currentInput = 'LGS Fehler';
+                result = 'Fehler';
+                updateDisplay();
+            }
+        }
+
+        function gaussElimination(A, b) {
+            const n = A.length;
+            const augmented = A.map((row, i) => [...row, b[i]]);
+
+            // Vorwärtselimination
+            for (let i = 0; i < n; i++) {
+                // Pivot finden
+                let maxRow = i;
+                for (let k = i + 1; k < n; k++) {
+                    if (Math.abs(augmented[k][i]) > Math.abs(augmented[maxRow][i])) {
+                        maxRow = k;
+                    }
+                }
+
+                // Zeilen tauschen
+                [augmented[i], augmented[maxRow]] = [augmented[maxRow], augmented[i]];
+
+                // Prüfen auf Singularität
+                if (Math.abs(augmented[i][i]) < 1e-10) {
+                    return null;
+                }
+
+                // Elimination
+                for (let k = i + 1; k < n; k++) {
+                    const factor = augmented[k][i] / augmented[i][i];
+                    for (let j = i; j <= n; j++) {
+                        augmented[k][j] -= factor * augmented[i][j];
+                    }
+                }
+            }
+
+            // Rückwärtssubstitution
+            const x = new Array(n);
+            for (let i = n - 1; i >= 0; i--) {
+                x[i] = augmented[i][n];
+                for (let j = i + 1; j < n; j++) {
+                    x[i] -= augmented[i][j] * x[j];
+                }
+                x[i] /= augmented[i][i];
+            }
+
+            return x;
+        }
+
+        // Binomialwahrscheinlichkeit
+        function binomialCoefficient(n, k) {
+            if (k < 0 || k > n) return 0;
+            if (k === 0 || k === n) return 1;
+
+            let result = 1;
+            for (let i = 1; i <= k; i++) {
+                result *= (n - k + i) / i;
+            }
+            return Math.round(result);
+        }
+
+        function calculateBinomial() {
+            const n = parseInt(document.getElementById('binomN').value);
+            const p = parseFloat(document.getElementById('binomP').value);
+            const a = parseInt(document.getElementById('binomA').value);
+            const b = parseInt(document.getElementById('binomB').value);
+
+            let probability = 0;
+            for (let k = a; k <= b; k++) {
+                const binomCoeff = binomialCoefficient(n, k);
+                probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
+            }
+
+            currentInput = `Binom(n=${n}, p=${p}, ${a}≤X≤${b})`;
+            result = Math.round(probability * 1000000) / 1000000;
+            shouldResetInput = true;
+            updateDisplay();
+        }
+
+        // Gleichungslöser
+        function solveEquation() {
+            const equation = document.getElementById('equationInput').value;
+
+            try {
+                let [leftSide, rightSide] = equation.split('=').map(s => s.trim());
+                if (!rightSide) rightSide = '0';
+
+                function f(x) {
+                    let expr = `(${leftSide}) - (${rightSide})`;
+                    expr = addImplicitMultiplication(
+                        normalizeUnaryMinusExponent(normalizeConstants(convertRootInfix(expr)))
+                    )
+                        .replace(/x/g, `(${x})`)
+                        .replace(/\^/g, '**')
+                        .replace(/e\*\*/g, 'Math.E**')
+                        .replace(/sqrt/g, 'Math.sqrt')
+                        .replace(/root/g, 'root')
+                        .replace(/exp/g, 'Math.exp')
+                        .replace(/ln/g, 'Math.log')
+                        .replace(/log/g, 'Math.log10')
+                        .replace(/sin/g, 'Math.sin')
+                        .replace(/cos/g, 'Math.cos')
+                        .replace(/tan/g, 'Math.tan');
+                    return eval(expr);
+                }
+
+                function refineRoot(a, b, tolerance) {
+                    let fa = f(a);
+                    let fb = f(b);
+                    if (isNaN(fa) || isNaN(fb)) {
+                        return null;
+                    }
+                    if (Math.abs(fa) < tolerance) return a;
+                    if (Math.abs(fb) < tolerance) return b;
+                    if (fa * fb > 0) return null;
+
+                    let left = a;
+                    let right = b;
+                    for (let i = 0; i < 100; i++) {
+                        const mid = (left + right) / 2;
+                        const fm = f(mid);
+                        if (isNaN(fm)) {
+                            return null;
+                        }
+                        if (Math.abs(fm) < tolerance) {
+                            return mid;
+                        }
+                        if (fa * fm <= 0) {
+                            right = mid;
+                            fb = fm;
+                        } else {
+                            left = mid;
+                            fa = fm;
+                        }
+                    }
+                    return (left + right) / 2;
+                }
+
+                const tolerance = 0.000001;
+                const rangeMin = -100;
+                const rangeMax = 100;
+                const steps = 2000;
+                const step = (rangeMax - rangeMin) / steps;
+                const roots = [];
+
+                for (let i = 0; i < steps; i++) {
+                    const x1 = rangeMin + i * step;
+                    const x2 = x1 + step;
+                    const f1 = f(x1);
+                    const f2 = f(x2);
+
+                    if (isNaN(f1) || isNaN(f2)) {
+                        continue;
+                    }
+
+                    if (Math.abs(f1) < tolerance) {
+                        roots.push(x1);
+                        continue;
+                    }
+
+                    if (f1 * f2 < 0) {
+                        const root = refineRoot(x1, x2, tolerance);
+                        if (root !== null) {
+                            roots.push(root);
+                        }
+                    }
+                }
+
+                const uniqueRoots = roots
+                    .map(r => Math.round(r * 1000000) / 1000000)
+                    .sort((a, b) => a - b)
+                    .filter((r, idx, arr) => idx === 0 || Math.abs(r - arr[idx - 1]) > 0.00001);
+
+                if (uniqueRoots.length === 0) {
+                    result = 'Keine Lösung gefunden';
+                    currentInput = equation;
+                } else {
+                    result = uniqueRoots.join(', ');
+                    currentInput = `${equation} → x = ${result}`;
+                    shouldResetInput = true;
+                }
+
+                updateDisplay();
+            } catch (error) {
+                result = 'Fehler beim Lösen';
+                currentInput = equation;
+                updateDisplay();
+            }
+        }
+
+        // Tastatur-Support
+        document.addEventListener('keydown', function (event) {
+            if (activeInputField && document.activeElement === activeInputField) {
+                return;
+            }
+
+            if (event.key >= '0' && event.key <= '9') {
+                appendNumber(event.key);
+            } else if (event.key === '.') {
+                appendNumber('.');
+            } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
+                appendOperator(event.key);
+            } else if (event.key === 'Enter') {
+                calculate();
+            } else if (event.key === 'Escape') {
+                clearAll();
+            } else if (event.key === 'Backspace') {
+                backspace();
+            }
+        });
+
+        // Initialisierung
+        initLGS();
+        updateDisplay();
+
+        // Event-Listener für alle Input-Felder in den Panels
+        document.addEventListener('focusin', function (event) {
+            if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
+                activeInputField = event.target;
+                panelInputMode = true;
+            }
+        });
+
+        // Nur Fokus verlieren wenn außerhalb der Panels geklickt wird
+        document.addEventListener('click', function (event) {
+            const isDisplay = event.target.closest('.display');
+            const isPanelArea = event.target.closest('.special-functions');
+            const isKeypad = event.target.closest('.buttons');
+
+            if (isDisplay || (!isPanelArea && !isKeypad)) {
+                activeInputField = null;
+                panelInputMode = false;
+            }
+        });
+    </script>
+</body>
+
+</html>
