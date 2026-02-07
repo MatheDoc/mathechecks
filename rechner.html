@@ -12,20 +12,18 @@
             box-sizing: border-box;
         }
 
+        html,
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            background: transparent;
+            margin: 0;
+            padding: 0;
         }
 
         .calculator {
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: none;
             max-width: 500px;
             width: 100%;
             overflow: hidden;
@@ -35,6 +33,7 @@
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             padding: 25px;
             color: white;
+            position: relative;
         }
 
         .input-display {
@@ -53,6 +52,40 @@
             text-align: right;
             word-wrap: break-word;
             font-family: 'Courier New', monospace;
+        }
+
+        .result-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-row .result-display {
+            flex: 1;
+        }
+
+        .copy-result {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 32px;
+            height: 32px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .copy-result svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .copy-result:hover {
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .special-functions {
@@ -337,7 +370,16 @@
     <div class="calculator">
         <div class="display">
             <div class="input-display" id="inputDisplay">0</div>
-            <div class="result-display" id="resultDisplay">0</div>
+            <div class="result-row">
+                <div class="result-display" id="resultDisplay">0</div>
+                <button class="copy-result" onclick="copyResult()" aria-label="Ergebnis kopieren"
+                    title="Ergebnis kopieren">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path
+                            d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" />
+                    </svg>
+                </button>
+            </div>
         </div>
 
         <div class="special-functions">
@@ -482,6 +524,26 @@
         function updateDisplay() {
             document.getElementById('inputDisplay').textContent = formatDisplay(currentInput);
             document.getElementById('resultDisplay').textContent = result;
+        }
+
+        function copyResult() {
+            const value = String(result ?? '').trim();
+            if (!value) return;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value);
+                return;
+            }
+
+            const temp = document.createElement('textarea');
+            temp.value = value;
+            temp.setAttribute('readonly', '');
+            temp.style.position = 'absolute';
+            temp.style.left = '-9999px';
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand('copy');
+            document.body.removeChild(temp);
         }
 
         function applyTouchInputLock() {
@@ -1337,6 +1399,57 @@
         initLGS();
         updateDisplay();
         applyTouchInputLock();
+
+        function isDragAllowed(target) {
+            if (!target) return false;
+            return !target.closest('button, input, select, textarea, a');
+        }
+
+        (function setupCalculatorDrag() {
+            const calculator = document.querySelector('.calculator');
+            if (!calculator || !window.parent) return;
+
+            let dragging = false;
+
+            calculator.addEventListener('pointerdown', (event) => {
+                if (!isDragAllowed(event.target)) {
+                    return;
+                }
+                dragging = true;
+                window.parent.postMessage(
+                    {
+                        type: 'calculatorDragStart',
+                        clientX: event.clientX,
+                        clientY: event.clientY
+                    },
+                    window.location.origin
+                );
+            });
+
+            calculator.addEventListener('pointermove', (event) => {
+                if (!dragging) return;
+                window.parent.postMessage(
+                    {
+                        type: 'calculatorDragMove',
+                        clientX: event.clientX,
+                        clientY: event.clientY
+                    },
+                    window.location.origin
+                );
+            });
+
+            calculator.addEventListener('pointerup', () => {
+                if (!dragging) return;
+                dragging = false;
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
+            });
+
+            calculator.addEventListener('pointercancel', () => {
+                if (!dragging) return;
+                dragging = false;
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
+            });
+        })();
 
         // Event-Listener für alle Input-Felder in den Panels
         document.addEventListener('focusin', function (event) {

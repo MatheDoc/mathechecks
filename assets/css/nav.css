@@ -48,6 +48,75 @@
   background: #cfcfcf6a;
 }
 
+.calculator-toggle {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: white;
+  padding: 0.2rem 0.4rem;
+}
+
+.calculator-toggle:hover {
+  background: #cfcfcf6a;
+}
+
+.calculator-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
+}
+
+.calculator-overlay.open {
+  display: flex;
+}
+
+.calculator-modal {
+  position: relative;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border-radius: 16px;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.calculator-frame {
+  width: 100%;
+  height: 0;
+  border: 0;
+  background: transparent;
+  display: block;
+  box-sizing: border-box;
+}
+
+.calculator-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 32px;
+}
+
+.calculator-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
 #account-status-indicator {
   position: absolute;
   bottom: 2px;
