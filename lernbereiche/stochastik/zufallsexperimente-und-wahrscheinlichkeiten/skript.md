@@ -223,7 +223,7 @@ antwort="
 - $P(\overline{A})$: Wahrscheinlichkeit, dass $A$ **nicht** eintritt
 - $P(A\cup B)$: Wahrscheinlichkeit, dass $A$ **oder** $B$ eintritt
 - $P(A\cap B)$: Wahrscheinlichkeit, dass $A$ **und** $B$ eintritt
-- $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$ ist die Wahrscheinlichkeit, dass **entweder** $A$ **oder** $B$ eintritt (ausschließendes Oder)
+- $P(A\cup B)- P(A\cap B)=P(A\cap\overline{B})+P(\overline{A}\cap B)$: Wahrscheinlichkeit, dass **entweder** $A$ **oder** $B$ eintritt (ausschließendes Oder)
 "
 %}
 
