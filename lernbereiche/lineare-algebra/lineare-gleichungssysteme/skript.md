@@ -546,10 +546,6 @@ Wir betrachten das LGS $(A\mid y)$. Die Anzahl der Spalten von $A$, d.h. die Anz
 * $rg(A)=rg(A\mid y)<n$: unendlich viele Lösungen
 * $rg(A)<rg(A\mid y)$: keine Lösung
 
-### Beispiele
 
-{% include ttt.html text="$rg(A)=2$" tt="da die letzte Zeile von $A$ nur aus Nullen besteht" %} Matrixschreibweise
-Zeilenstufen
-Rangkriterium
 
 
