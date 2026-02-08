@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% include firebase-config.html %} {% include head-main.html %} {% include
+    mathjax.html %}
+    <link rel="stylesheet" href="{{ '/assets/css/flashcards.css' | relative_url }}" />
+</head>
+
+<body>
+    <header>
+        {% include nav-lernbereiche.html %}
+        <h1>{{ page.title }}</h1>
+        {% include nav-materialtyp.html %}
+    </header>
+
+    <main>
+        <section class="flashcards-shell" id="flashcards-app">
+            <div class="flashcards-header">
+                <div class="flashcards-meta">
+                    <div class="flashcards-counts" id="flashcards-counts"></div>
+                    <div class="flashcards-message" id="flashcards-message"></div>
+                </div>
+            </div>
+
+            <div class="flashcards-stage">
+
+                <div class="flashcards-card" id="flashcards-card" role="button" aria-pressed="false">
+                    <div class="flashcards-inner" id="flashcards-inner">
+                        <div class="flashcards-face flashcards-front" id="flashcards-front"></div>
+                        <div class="flashcards-face flashcards-back" id="flashcards-back"></div>
+                    </div>
+                </div>
+
+                <div class="flashcards-rating" id="flashcards-rating">
+                    <button class="flashcards-rate" data-grade="1" type="button">Schwer</button>
+                    <button class="flashcards-rate" data-grade="3" type="button">Mittel</button>
+                    <button class="flashcards-rate" data-grade="5" type="button">Leicht</button>
+                </div>
+
+                <div class="flashcards-actions">
+                    <button class="flashcards-reset" id="flashcards-reset" type="button">Fortschritt löschen</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    {% include footer.html %} {% include firebase-auth.html %}
+    <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/flashcards.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
+    <script src="/assets/js/cookie-consent.js"></script>
+</body>
+
+</html>
