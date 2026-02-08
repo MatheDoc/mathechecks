@@ -1304,7 +1304,7 @@
 
         // Gleichungslöser
         function solveEquation() {
-            const equation = document.getElementById('equationInput').value;
+            const equation = normalizeNumberString(document.getElementById('equationInput').value);
 
             try {
                 let [leftSide, rightSide] = equation.split('=').map(s => s.trim());
