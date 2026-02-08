@@ -1,227 +1,228 @@
 .flashcards-shell {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
 .flashcards-shell {
-  max-width: 980px;
-  margin: 0 auto;
+    max-width: 980px;
+    margin: 0 auto;
 }
 
 .flashcards-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
 }
 
 .flashcards-title h2 {
-  font-weight: 700;
-  font-size: clamp(24px, 4vw, 34px);
-  margin: 6px 0 0;
+    font-weight: 700;
+    font-size: clamp(24px, 4vw, 34px);
+    margin: 6px 0 0;
 }
 
 .flashcards-eyebrow {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--textfarbe);
-  margin: 0;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--textfarbe);
+    margin: 0;
 }
 
 .flashcards-meta {
-  text-align: center;
-  min-width: 0;
-  width: 100%;
+    text-align: center;
+    min-width: 0;
+    width: 100%;
 }
 
 .flashcards-counts {
-  font-weight: 600;
-  font-size: 1.1rem;
-  margin-bottom: 4px;
-  color: var(--hauptfarbe);
-  display: inline-block;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+    color: var(--hauptfarbe);
+    display: inline-block;
 }
 
 .flashcards-message {
-  font-size: 13px;
-  color: var(--textfarbe);
+    font-size: 13px;
+    color: var(--textfarbe);
 }
 
 .flashcards-stage {
-  background: var(--hintergrundfarbe);
-  border: 1px solid #e0e0e0;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-  position: relative;
+    background: var(--hintergrundfarbe);
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    position: relative;
 }
 
 .flashcards-card {
-  perspective: 1600px;
-  cursor: pointer;
-  position: relative;
-  background: transparent;
-  border-radius: 16px;
-  padding: 0;
+    perspective: 1600px;
+    cursor: pointer;
+    position: relative;
+    background: transparent;
+    border-radius: 16px;
+    padding: 0;
 }
 
 .flashcards-inner {
-  position: relative;
-  min-height: 300px;
-  height: auto;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    min-height: 300px;
+    height: auto;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .flashcards-card.is-flipped .flashcards-inner {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .flashcards-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  border-radius: 14px;
-  padding: 20px 20px 18px;
-  background: var(--hintergrund-hell);
-  border: 1px solid #d9d9d9;
-  overflow: auto;
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 20px 20px 18px;
+    background: var(--hintergrund-hell);
+    border: 1px solid #d9d9d9;
+    overflow: auto;
 }
 
 .flashcards-back {
-  transform: rotateY(180deg);
-  background: var(--hintergrund-hell);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    transform: rotateY(180deg);
+    background: var(--hintergrund-hell);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.flashcards-rating.is-active ~ .flashcards-card .flashcards-face {
-  border-color: var(--hauptfarbe);
+.flashcards-rating.is-active~.flashcards-card .flashcards-face {
+    border-color: var(--hauptfarbe);
 }
 
 .flashcards-front h3,
 .flashcards-back h3 {
-  font-weight: 600;
-  margin: 0 0 16px;
+    font-weight: 600;
+    margin: 0 0 16px;
 }
 
 .flashcards-front ol,
 .flashcards-back ol {
-  padding-left: 20px;
-  margin: 12px 0 0;
+    padding-left: 20px;
+    margin: 12px 0 0;
 }
 
 .flashcards-back ol {
-  padding-left: 0;
-  list-style-position: inside;
+    padding-left: 0;
+    list-style-position: inside;
 }
 
 .flashcards-front li,
 .flashcards-back li {
-  margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .flashcards-front p,
 .flashcards-back p {
-  margin-top: 8px;
+    margin-top: 8px;
 }
 
 .flashcards-flip {
-  background: var(--hintergrund-hell);
-  border: 1px solid var(--hauptfarbe);
-  border-radius: 999px;
-  padding: 8px 20px;
-  color: var(--hauptfarbe);
-  font-weight: 600;
-  position: absolute;
-  right: 28px;
-  top: 28px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: var(--hintergrund-hell);
+    border: 1px solid var(--hauptfarbe);
+    border-radius: 999px;
+    padding: 8px 20px;
+    color: var(--hauptfarbe);
+    font-weight: 600;
+    position: absolute;
+    right: 28px;
+    top: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .flashcards-flip:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 }
 
 .flashcards-rating {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  margin: 24px 0 8px;
-  opacity: 0.35;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin: 24px 0 8px;
+    opacity: 0.35;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
 
 .flashcards-rating.is-active {
-  opacity: 1;
-  pointer-events: auto;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .flashcards-rate {
-  border-radius: 12px;
-  padding: 10px 14px;
-  background: var(--hintergrund-hell);
-  border: 1px solid var(--hauptfarbe);
-  color: var(--hauptfarbe);
-  font-weight: 600;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
+    border-radius: 12px;
+    padding: 10px 14px;
+    background: var(--hintergrund-hell);
+    border: 1px solid var(--hauptfarbe);
+    color: var(--hauptfarbe);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .flashcards-rate:hover {
-  transform: translateY(-2px);
-  background: var(--hintergrund-hell-hover);
+    transform: translateY(-2px);
+    background: var(--hintergrund-hell-hover);
 }
 
 .flashcards-actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 
 .flashcards-reset {
-  background: transparent;
-  border: none;
-  color: var(--hauptfarbe);
-  font-weight: 600;
-  cursor: pointer;
+    background: transparent;
+    border: none;
+    color: var(--hauptfarbe);
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .flashcards-reset:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 @media (max-width: 720px) {
-  .flashcards-header {
-    align-items: flex-start;
-  }
+    .flashcards-header {
+        align-items: flex-start;
+    }
 
-  .flashcards-meta {
-    text-align: left;
-  }
+    .flashcards-meta {
+        text-align: left;
+    }
 
-  .flashcards-stage {
-    padding: 20px;
-  }
+    .flashcards-stage {
+        padding: 20px;
+    }
 
-  .flashcards-flip {
-    position: static;
-    margin-bottom: 16px;
-  }
+    .flashcards-flip {
+        position: static;
+        margin-bottom: 16px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flashcards-inner,
-  .flashcards-flip,
-  .flashcards-rate {
-    transition: none;
-  }
+
+    .flashcards-inner,
+    .flashcards-flip,
+    .flashcards-rate {
+        transition: none;
+    }
 }
