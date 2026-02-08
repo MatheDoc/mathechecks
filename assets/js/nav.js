@@ -6,10 +6,15 @@ function toggleMenu() {
 
 function toggleCalculatorOverlay(forceOpen) {
   const overlay = document.getElementById("calculator-overlay");
+  const toggleButton = document.querySelector(".calculator-toggle");
   if (!overlay) return;
   const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : !overlay.classList.contains("open");
   overlay.classList.toggle("open", shouldOpen);
   overlay.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+  if (toggleButton) {
+    toggleButton.classList.toggle("is-active", shouldOpen);
+    toggleButton.setAttribute("aria-pressed", shouldOpen ? "true" : "false");
+  }
   if (shouldOpen) {
     const width = Number(overlay.dataset.calcWidth || 0);
     const height = Number(overlay.dataset.calcHeight || 0);
@@ -145,19 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const iframe = overlay.querySelector(".calculator-frame");
     calculatorDragState.modal = modal || null;
     calculatorDragState.iframe = iframe || null;
-
-    overlay.addEventListener("click", (event) => {
-      if (event.target === overlay) {
-        toggleCalculatorOverlay(false);
-      }
-    });
   }
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      toggleCalculatorOverlay(false);
-    }
-  });
 
   links.forEach((link) => {
     link.classList.remove("ausgewählt");

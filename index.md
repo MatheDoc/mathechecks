@@ -80,7 +80,7 @@ typeWriter(vollerText, span, 50, () => {
   // Zeitverzögerter Neustart erst nach dem vollständigen Schreiben
   setTimeout(() => {
     ladeKompetenzBox();
-  }, 6000); // 5 Sekunden nach vollständiger Anzeige
+  }, 5000); // 5 Sekunden nach vollständiger Anzeige
 });
   
   } catch (err) {

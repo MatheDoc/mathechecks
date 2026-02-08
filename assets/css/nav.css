@@ -58,10 +58,18 @@
   cursor: pointer;
   color: white;
   padding: 0.2rem 0.4rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .calculator-toggle:hover {
   background: #cfcfcf6a;
+  transform: translateY(-1px);
+}
+
+.calculator-toggle.is-active {
+  background: #ffffff;
+  color: var(--hauptfarbe);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 
 .calculator-overlay {
@@ -70,8 +78,9 @@
   display: none;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
+  background: transparent;
   z-index: 3000;
+  pointer-events: none;
 }
 
 .calculator-overlay.open {
@@ -86,6 +95,7 @@
   border-radius: 16px;
   box-shadow: none;
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .calculator-frame {
@@ -95,27 +105,9 @@
   background: transparent;
   display: block;
   box-sizing: border-box;
+  touch-action: none;
 }
 
-.calculator-close {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  z-index: 2;
-  background: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  border: none;
-  border-radius: 999px;
-  width: 32px;
-  height: 32px;
-  font-size: 20px;
-  cursor: pointer;
-  line-height: 32px;
-}
-
-.calculator-close:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
 
 #account-status-indicator {
   position: absolute;
