@@ -56,6 +56,7 @@ let calculatorDragState = {
   iframe: null,
 };
 
+
 const setCalculatorOffsets = (modal, x, y) => {
   if (!modal) return;
   modal.dataset.offsetX = String(x);
@@ -73,12 +74,6 @@ window.addEventListener("message", (event) => {
   if (event.origin !== window.location.origin && event.origin !== "null") return;
   const data = event.data;
   if (!data || typeof data.type !== "string") return;
-
-  if (data.type === "calculatorSize") {
-    if (typeof data.width !== "number" || typeof data.height !== "number") return;
-    applyCalculatorSize(data.width, data.height);
-    return;
-  }
 
   if (!calculatorDragState.modal || !calculatorDragState.iframe) return;
   const iframeRect = calculatorDragState.iframe.getBoundingClientRect();
@@ -123,6 +118,7 @@ window.addEventListener("resize", () => {
     applyCalculatorSize(width, height);
   }
 });
+
 
 document.addEventListener("click", function (event) {
   const menu = document.getElementById("main-menu");

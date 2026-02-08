@@ -12,6 +12,34 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --calc-bg: #f8fafc;
+            --calc-border: #d3dae4;
+            --calc-shadow: none;
+            --display-start: #0b3e5c;
+            --display-end: #165a7a;
+            --panel-bg: #e7edf4;
+            --panel-border: #c3cedb;
+            --keypad-bg: #cdd6e2;
+            --key-bg: #f4f7fb;
+            --key-border: #b8c3d3;
+            --key-text: #111827;
+            --key-hover: #e7eef7;
+            --panel-text: #1f2937;
+            --panel-label: #374151;
+            --input-bg: #ffffff;
+            --input-border: #9fb0c4;
+            --input-border-focus: #2f6f91;
+            --input-text: #0b0f16;
+            --operator-bg: #14537a;
+            --operator-hover: #0f3f5d;
+            --panel-active-bg: var(--keypad-bg);
+            --danger-bg: #e35656;
+            --danger-hover: #cc4242;
+            --success-bg: #2f9d6a;
+            --success-hover: #278459;
+        }
+
         html,
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -21,24 +49,25 @@
         }
 
         .calculator {
-            background: white;
+            background: var(--calc-bg);
             border-radius: 20px;
-            box-shadow: none;
+            box-shadow: var(--calc-shadow);
             max-width: 500px;
             width: 100%;
             overflow: hidden;
             touch-action: none;
+            border: 1px solid var(--calc-border);
         }
 
         .display {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, var(--display-start) 0%, var(--display-end) 100%);
             padding: 25px;
             color: white;
             position: relative;
         }
 
         .input-display {
-            font-size: 18px;
+            font-size: 19px;
             min-height: 30px;
             margin-bottom: 10px;
             opacity: 0.8;
@@ -47,7 +76,7 @@
         }
 
         .result-display {
-            font-size: 36px;
+            font-size: 38px;
             font-weight: 300;
             min-height: 50px;
             text-align: right;
@@ -70,8 +99,8 @@
         }
 
         .copy-result {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             color: white;
             width: 32px;
             height: 32px;
@@ -94,14 +123,14 @@
         }
 
         .special-functions {
-            background: #f7fafc;
-            padding: 10px;
-            border-bottom: 2px solid #e2e8f0;
+            background: var(--panel-bg);
+            padding: 8px;
+            border-bottom: 1px solid var(--panel-border);
         }
 
         .function-buttons {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             flex-wrap: wrap;
             margin-bottom: 8px;
         }
@@ -109,24 +138,25 @@
         .function-buttons button {
             flex: 1;
             min-width: 70px;
-            padding: 8px;
-            font-size: 12px;
-            border: none;
-            border-radius: 6px;
+            padding: 6px;
+            font-size: 13px;
+            border: 1px solid var(--key-border);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 600;
-            background: #ed8936;
-            color: white;
+            background: var(--key-bg);
+            color: var(--key-text);
         }
 
         .function-buttons button:hover {
-            background: #dd6b20;
+            background: var(--key-hover);
             transform: translateY(-1px);
         }
 
         .function-buttons button.active {
-            background: #667eea;
+            background: var(--panel-active-bg);
+            color: var(--key-text);
         }
 
         .expandable {
@@ -149,8 +179,8 @@
 
         .panel h4 {
             margin-bottom: 6px;
-            color: #2d3748;
-            font-size: 13px;
+            color: var(--panel-text);
+            font-size: 14px;
         }
 
         .input-group {
@@ -160,18 +190,20 @@
         .input-group label {
             display: block;
             margin-bottom: 3px;
-            color: #4a5568;
-            font-size: 11px;
-            font-weight: 500;
+            color: var(--panel-label);
+            font-size: 12px;
+            font-weight: 600;
         }
 
         .input-group input {
             width: 100%;
-            padding: 4px 6px;
-            border: 1px solid #e2e8f0;
+            padding: 5px 7px;
+            border: 1px solid var(--input-border);
             border-radius: 4px;
-            font-size: 12px;
+            font-size: 13px;
             font-family: 'Courier New', monospace;
+            background: var(--input-bg);
+            color: var(--input-text);
         }
 
         .input-group input[type=number],
@@ -189,7 +221,7 @@
 
         .input-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--input-border-focus);
         }
 
         .input-row {
@@ -202,17 +234,34 @@
 
         .input-row input {
             width: 40px;
-            padding: 4px;
-            border: 1px solid #e2e8f0;
+            padding: 5px 4px;
+            border: 1px solid var(--input-border);
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 12px;
             text-align: center;
             font-family: 'Courier New', monospace;
+            background: var(--input-bg);
+            color: var(--input-text);
         }
 
         .input-row input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--input-border-focus);
+        }
+
+        .panel label {
+            color: var(--panel-label);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .lgs-operator,
+        .lgs-var-label,
+        .lgs-equals {
+            padding: 0 4px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--panel-label);
         }
 
         .lgs-matrix {
@@ -267,27 +316,28 @@
         }
 
         .buttons {
-            padding: 12px;
+            padding: 8px;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
+            gap: 2px;
+            background: var(--keypad-bg);
         }
 
         button {
-            padding: 10px;
-            font-size: 14px;
-            border: none;
-            border-radius: 10px;
+            padding: 8px;
+            font-size: 15px;
+            border: 1px solid var(--key-border);
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
             font-weight: 500;
-            background: #f5f5f5;
-            color: #333;
+            background: var(--key-bg);
+            color: var(--key-text);
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+            background: var(--key-hover);
         }
 
         button:active {
@@ -295,31 +345,31 @@
         }
 
         .operator {
-            background: #667eea;
+            background: var(--operator-bg);
             color: white;
         }
 
         .operator:hover {
-            background: #5568d3;
+            background: var(--operator-hover);
         }
 
         .equals {
-            background: #48bb78;
+            background: var(--success-bg);
             color: white;
         }
 
         .equals:hover {
-            background: #38a169;
+            background: var(--success-hover);
         }
 
         .top-key {
-            background: #ed8936;
-            color: white;
-            font-size: 12px;
+            background: var(--key-bg);
+            color: var(--key-text);
+            font-size: 13px;
         }
 
         .top-key:hover {
-            background: #dd6b20;
+            background: var(--key-hover);
         }
 
         .spacer {
@@ -328,22 +378,22 @@
         }
 
         .clear {
-            background: #f56565;
+            background: var(--danger-bg);
             color: white;
         }
 
         .clear:hover {
-            background: #e53e3e;
+            background: var(--danger-hover);
         }
 
         .special {
-            background: #ed8936;
-            color: white;
-            font-size: 12px;
+            background: var(--key-bg);
+            color: var(--key-text);
+            font-size: 13px;
         }
 
         .special:hover {
-            background: #dd6b20;
+            background: var(--key-hover);
         }
 
         .wide {
@@ -352,20 +402,21 @@
 
         @media (max-width: 600px) {
             .result-display {
-                font-size: 28px;
+                font-size: 30px;
             }
 
             button {
-                padding: 8px;
-                font-size: 12px;
+                padding: 7px;
+                font-size: 13px;
             }
 
             .special {
-                font-size: 11px;
+                font-size: 12px;
             }
 
             .buttons {
                 grid-template-columns: repeat(4, 1fr);
+                gap: 2px;
             }
         }
     </style>
@@ -414,19 +465,19 @@
                     <h4>Binomialwahrscheinlichkeit P(a ≤ X ≤ b)</h4>
                     <div class="input-row">
                         <div style="flex: 1;">
-                            <label style="font-size: 11px; color: #718096;">a =</label>
+                            <label class="panel-label">a =</label>
                             <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
                         </div>
                         <div style="flex: 1;">
-                            <label style="font-size: 11px; color: #718096;">b =</label>
+                            <label class="panel-label">b =</label>
                             <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
                         </div>
                         <div style="flex: 1;">
-                            <label style="font-size: 11px; color: #718096;">n =</label>
+                            <label class="panel-label">n =</label>
                             <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
                         </div>
                         <div style="flex: 1;">
-                            <label style="font-size: 11px; color: #718096;">p =</label>
+                            <label class="panel-label">p =</label>
                             <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
                         </div>
                     </div>
@@ -438,7 +489,7 @@
                 <div class="panel">
                     <h4>Gleichung lösen</h4>
                     <div class="input-group">
-                        <label>Gleichung (z.B. x^2 - 4 = 0 oder e^x - 5 = 0)</label>
+                        <label class="panel-label">Gleichung (z.B. x^2 - 4 = 0 oder e^x - 5 = 0)</label>
                         <input type="text" id="equationInput">
                     </div>
                 </div>
@@ -568,6 +619,8 @@
 
         function formatDisplay(value) {
             return value
+                .replace(/\*/g, '×')
+                .replace(/\//g, '÷')
                 .replace(/sqrt\(/g, '√(')
                 .replace(/exp\(/g, 'e^(')
                 .replace(/Math\.PI/g, 'π')
@@ -988,8 +1041,7 @@
                     if (j > 0) {
                         const plusMinus = document.createElement('span');
                         plusMinus.textContent = '+';
-                        plusMinus.style.padding = '0 2px';
-                        plusMinus.style.fontSize = '11px';
+                        plusMinus.className = 'lgs-operator';
                         row.appendChild(plusMinus);
                     }
 
@@ -1005,17 +1057,13 @@
                     // Variablenname nach dem Input
                     const varLabel = document.createElement('span');
                     varLabel.textContent = varNames[j] || `x${j + 1}`;
-                    varLabel.style.padding = '0 2px';
-                    varLabel.style.fontSize = '11px';
-                    varLabel.style.fontWeight = 'bold';
+                    varLabel.className = 'lgs-var-label';
                     row.appendChild(varLabel);
                 }
 
                 const equals = document.createElement('span');
                 equals.textContent = '=';
-                equals.style.padding = '0 4px';
-                equals.style.fontWeight = 'bold';
-                equals.style.fontSize = '11px';
+                equals.className = 'lgs-equals';
                 row.appendChild(equals);
 
                 const resultInput = document.createElement('input');
@@ -1404,6 +1452,7 @@
         initLGS();
         updateDisplay();
         applyTouchInputLock();
+
 
         function isDragAllowed(target) {
             if (!target) return false;
