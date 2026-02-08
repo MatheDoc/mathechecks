@@ -54,9 +54,28 @@
             box-shadow: var(--calc-shadow);
             max-width: 500px;
             width: 100%;
-            overflow: hidden;
-            touch-action: none;
+            max-height: 90vh;
+            overflow: auto;
+            touch-action: pan-y;
             border: 1px solid var(--calc-border);
+        }
+
+        .calculator {
+            scrollbar-width: auto;
+            scrollbar-color: #b8c3d3 #e7edf4;
+        }
+
+        .calculator::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .calculator::-webkit-scrollbar-thumb {
+            background: #b8c3d3;
+            border-radius: 10px;
+        }
+
+        .calculator::-webkit-scrollbar-track {
+            background: #e7edf4;
         }
 
         .display {
@@ -64,6 +83,7 @@
             padding: 25px;
             color: white;
             position: relative;
+            touch-action: none;
         }
 
         .input-display {
@@ -403,6 +423,10 @@
         @media (max-width: 600px) {
             .result-display {
                 font-size: 30px;
+            }
+
+            .calculator {
+                max-height: 85vh;
             }
 
             button {
@@ -1456,6 +1480,7 @@
 
         function isDragAllowed(target) {
             if (!target) return false;
+            if (!target.closest('.display')) return false;
             return !target.closest('button, input, select, textarea, a');
         }
 
