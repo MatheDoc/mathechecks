@@ -214,7 +214,7 @@ function checkNumericalAnswer(questionId, correctAnswer, tolerance) {
       feedbackElement.innerHTML = userAnswer + " ist richtig!";
       if (userAnswer !== correctAnswer) {
         feedbackElement.innerHTML +=
-          " (Die genauere Antwort ist " + correctAnswer + ".)";
+          " (Die Systemantwort ist " + correctAnswer + ".)";
       }
       feedbackElement.style.color = "green";
       return true;
