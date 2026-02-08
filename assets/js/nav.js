@@ -19,7 +19,7 @@ function toggleCalculatorOverlay(forceOpen) {
     const width = Number(overlay.dataset.calcWidth || 0);
     const height = Number(overlay.dataset.calcHeight || 0);
     if (!width || !height) {
-      applyCalculatorSize(520, 720);
+      applyCalculatorSize(520, 820);
     }
   }
 }

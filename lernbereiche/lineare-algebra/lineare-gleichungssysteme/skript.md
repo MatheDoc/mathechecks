@@ -436,7 +436,7 @@ II:\quad & -2\cdot x_2 + 2x_3=-1 \\
         & \text{Wir sehen, dass wir für $x_3$ jede beliebige reelle Zahl vorgeben können, und dann diese Gleichung nach $x_2$ auflösen können.}\\
         &x_3=t\text{ mit }t\in\mathbb{R}.\\
         &-2\cdot x_2+2\cdot t =-1 \Rightarrow x_2=0,5+t\\
-I:\quad & x_1+4(0,5+t)+3t=2 \Rightarrow x_1+2+4t+3t=5 \Rightarrow x_1=3-7t
+I:\quad & x_1+4(0,5+t)+3t=2 \Rightarrow x_1+2+4t+3t=2 \Rightarrow x_1=-7t
 \end{align*}
 $$
 

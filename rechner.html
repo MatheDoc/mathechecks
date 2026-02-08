@@ -13,6 +13,7 @@
         }
 
         :root {
+            --ui-font-size: 15px;
             --calc-bg: #f8fafc;
             --calc-border: #d3dae4;
             --calc-shadow: none;
@@ -54,10 +55,11 @@
             box-shadow: var(--calc-shadow);
             max-width: 500px;
             width: 100%;
-            max-height: 90vh;
+            max-height: 100%;
             overflow: auto;
             touch-action: pan-y;
             border: 1px solid var(--calc-border);
+            font-size: var(--ui-font-size);
         }
 
         .calculator {
@@ -159,7 +161,6 @@
             flex: 1;
             min-width: 70px;
             padding: 6px;
-            font-size: 13px;
             border: 1px solid var(--key-border);
             border-radius: 8px;
             cursor: pointer;
@@ -200,7 +201,8 @@
         .panel h4 {
             margin-bottom: 6px;
             color: var(--panel-text);
-            font-size: 14px;
+            font-size: inherit;
+            font-weight: 600;
         }
 
         .input-group {
@@ -211,7 +213,6 @@
             display: block;
             margin-bottom: 3px;
             color: var(--panel-label);
-            font-size: 12px;
             font-weight: 600;
         }
 
@@ -220,7 +221,7 @@
             padding: 5px 7px;
             border: 1px solid var(--input-border);
             border-radius: 4px;
-            font-size: 13px;
+            font-size: inherit;
             font-family: 'Courier New', monospace;
             background: var(--input-bg);
             color: var(--input-text);
@@ -257,7 +258,7 @@
             padding: 5px 4px;
             border: 1px solid var(--input-border);
             border-radius: 4px;
-            font-size: 12px;
+            font-size: inherit;
             text-align: center;
             font-family: 'Courier New', monospace;
             background: var(--input-bg);
@@ -271,15 +272,60 @@
 
         .panel label {
             color: var(--panel-label);
-            font-size: 12px;
             font-weight: 600;
+        }
+
+        .binom-row {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 2px;
+        }
+
+        .binom-field {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            min-width: 0;
+        }
+
+        .binom-input {
+            display: flex;
+            align-items: stretch;
+            gap: 1px;
+        }
+
+        .binom-input input {
+            flex: 1;
+            min-width: 0;
+            padding: 2px 3px;
+            font-size: inherit;
+        }
+
+        .binom-stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .binom-step {
+            width: 20px;
+            height: 18px;
+            padding: 0;
+            border-radius: 4px;
+            font-size: inherit;
+            border: 1px solid var(--key-border);
+            background: var(--key-bg);
+            color: var(--key-text);
+        }
+
+        .binom-step:hover {
+            background: var(--key-hover);
         }
 
         .lgs-operator,
         .lgs-var-label,
         .lgs-equals {
             padding: 0 4px;
-            font-size: 12px;
             font-weight: 600;
             color: var(--panel-label);
         }
@@ -300,7 +346,6 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 10px;
             background: #48bb78;
             color: white;
             font-weight: 600;
@@ -324,7 +369,6 @@
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 12px;
             font-weight: 600;
             background: #667eea;
             color: white;
@@ -345,7 +389,7 @@
 
         button {
             padding: 8px;
-            font-size: 15px;
+            font-size: inherit;
             border: 1px solid var(--key-border);
             border-radius: 8px;
             cursor: pointer;
@@ -385,7 +429,6 @@
         .top-key {
             background: var(--key-bg);
             color: var(--key-text);
-            font-size: 13px;
         }
 
         .top-key:hover {
@@ -409,7 +452,6 @@
         .special {
             background: var(--key-bg);
             color: var(--key-text);
-            font-size: 13px;
         }
 
         .special:hover {
@@ -426,21 +468,21 @@
             }
 
             .calculator {
-                max-height: 85vh;
+                max-height: 100%;
             }
 
             button {
                 padding: 7px;
-                font-size: 13px;
-            }
-
-            .special {
-                font-size: 12px;
             }
 
             .buttons {
                 grid-template-columns: repeat(4, 1fr);
                 gap: 2px;
+            }
+
+            .binom-step {
+                width: 22px;
+                height: 18px;
             }
         }
     </style>
@@ -487,22 +529,54 @@
             <div id="binomPanel" class="expandable">
                 <div class="panel">
                     <h4>Binomialwahrscheinlichkeit P(a ≤ X ≤ b)</h4>
-                    <div class="input-row">
-                        <div style="flex: 1;">
-                            <label class="panel-label">a =</label>
-                            <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
+                    <div class="binom-row">
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomA">a =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomA" data-step="1"
+                                        aria-label="a erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomA" data-step="-1"
+                                        aria-label="a verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
                         </div>
-                        <div style="flex: 1;">
-                            <label class="panel-label">b =</label>
-                            <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomB">b =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomB" data-step="1"
+                                        aria-label="b erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomB" data-step="-1"
+                                        aria-label="b verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
                         </div>
-                        <div style="flex: 1;">
-                            <label class="panel-label">n =</label>
-                            <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomN">n =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomN" data-step="1"
+                                        aria-label="n erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomN" data-step="-1"
+                                        aria-label="n verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
                         </div>
-                        <div style="flex: 1;">
-                            <label class="panel-label">p =</label>
-                            <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomP">p =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
+                                        aria-label="p erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
+                                        aria-label="p verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1052,6 +1126,11 @@
 
         function renderLGS() {
             const container = document.getElementById('lgsMatrix');
+            const existingValues = {};
+
+            container.querySelectorAll('input').forEach((input) => {
+                existingValues[input.id] = input.value;
+            });
             container.innerHTML = '';
 
             const varNames = ['x', 'y', 'z', 'u', 'v', 'w'];
@@ -1075,7 +1154,7 @@
                     input.readOnly = shouldLockTouchInputs;
                     input.id = `a${i}${j}`;
                     input.placeholder = '';
-                    input.value = '';
+                    input.value = existingValues[input.id] ?? '';
                     row.appendChild(input);
 
                     // Variablenname nach dem Input
@@ -1096,7 +1175,7 @@
                 resultInput.readOnly = shouldLockTouchInputs;
                 resultInput.id = `b${i}`;
                 resultInput.placeholder = '';
-                resultInput.value = '';
+                resultInput.value = existingValues[resultInput.id] ?? '';
                 row.appendChild(resultInput);
 
                 container.appendChild(row);
@@ -1135,14 +1214,6 @@
 
         function solveLGS() {
             try {
-                // Prüfe ob System lösbar ist
-                if (lgsEquations !== lgsVariables) {
-                    currentInput = 'LGS: Anzahl Gleichungen ≠ Variablen';
-                    result = 'Nicht eindeutig';
-                    updateDisplay();
-                    return;
-                }
-
                 // Matrix A und Vektor b erstellen
                 const A = [];
                 const b = [];
@@ -1307,7 +1378,16 @@
             const bInput = document.getElementById('binomB').value;
 
             const n = parseInt(normalizeNumberString(nInput));
-            const p = parseFloat(normalizeNumberString(pInput));
+            const pValue = normalizeNumberString(pInput);
+            let p = NaN;
+            if (pValue.includes('/')) {
+                const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
+                if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
+                    p = parts[0] / parts[1];
+                }
+            } else {
+                p = parseFloat(pValue);
+            }
             const aRaw = parseFloat(normalizeNumberString(aInput));
             const bRaw = parseFloat(normalizeNumberString(bInput));
             const a = Math.ceil(aRaw);
@@ -1324,6 +1404,48 @@
             result = Math.round(probability * 1000000) / 1000000;
             shouldResetInput = true;
             updateDisplay();
+        }
+
+        function formatStepValue(value, step) {
+            if (Math.abs(step) >= 1) {
+                return String(Math.round(value));
+            }
+            const decimals = step.toString().split('.')[1]?.length || 0;
+            const rounded = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+            return String(rounded).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+        }
+
+        function adjustBinomValue(targetId, step) {
+            const input = document.getElementById(targetId);
+            if (!input) return;
+            const raw = normalizeNumberString(input.value || '0');
+            const current = parseFloat(raw);
+            const next = (Number.isNaN(current) ? 0 : current) + step;
+            input.value = formatStepValue(next, step);
+            if (activePanel === 'binom') {
+                calculateBinomial();
+            }
+        }
+
+        function bindBinomControls() {
+            const binomInputs = document.querySelectorAll('#binomPanel input');
+            binomInputs.forEach((input) => {
+                input.addEventListener('input', () => {
+                    if (activePanel === 'binom') {
+                        calculateBinomial();
+                    }
+                });
+            });
+
+            const stepButtons = document.querySelectorAll('.binom-step');
+            stepButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const step = parseFloat(button.dataset.step || '0');
+                    if (!targetId || Number.isNaN(step)) return;
+                    adjustBinomValue(targetId, step);
+                });
+            });
         }
 
         // Gleichungslöser
@@ -1476,6 +1598,7 @@
         initLGS();
         updateDisplay();
         applyTouchInputLock();
+        bindBinomControls();
 
 
         function isDragAllowed(target) {

@@ -16,7 +16,7 @@ In Abhängigkeit von der Menge $x$ betrachten wir folgende Funktionen:
 Die Preis-Absatz-Funktion $p(x)$ gibt an, wie hoch der Preis in GE pro abgesetzter ME ist. Da es keine negativen Preise gibt, gilt stets $p(x) \geq 0$. Es treten zwei Fälle auf:
 
 - Im **Angebotspolypol** wird der Preis durch den Markt bestimmt. Dann ist $p(x)$ konstant, z. B. $p(x) = 32$ bei einem Marktpreis bzw. Gleichgewichtspreis von 32 GE.
-- Im **Angebotsmonopol** kann das Unternehmen den Preis selbst festlegen. Da mit steigendem Preis die Absatzmenge sinkt, ist $p(x)$ eine monoton fallende Funktion. Wir betrachten in diesem abschnitt lineare Preis-Absatz-Funktionen mit negativer Steigung und positivem y-Achsenabschnitt, z. B. $p(x) = -5x + 60$.
+- Im **Angebotsmonopol** kann das Unternehmen den Preis selbst festlegen. Da mit steigendem Preis die Absatzmenge sinkt, ist $p(x)$ eine monoton fallende Funktion. Wir betrachten in diesem Abschnitt lineare Preis-Absatz-Funktionen mit negativer Steigung und positivem y-Achsenabschnitt, z. B. $p(x) = -5x + 60$.
 
 ### Erlösfunktion
 
@@ -80,7 +80,7 @@ G(x) &= (-5x^2 + 60x) - (0{,}5x^3 - 6x^2 + 30x + 48) \\
 \end{align*}
 $$
 
-Sind zwei dieser vier ökonomischen Funktionen bekannt, können wir die übrigen zwei berechnen (außer die bekannten Funktionen waren $p$ und $E$).
+Sind zwei dieser vier ökonomischen Funktionen bekannt, können wir die übrigen zwei berechnen (außer die bekannten Funktionen wären $p$ und $E$).
 
 {% include info.html
 index="1"
