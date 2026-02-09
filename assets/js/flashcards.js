@@ -120,7 +120,7 @@ function updateCounts(dueCount, totalCount, nextDueText) {
     const countsEl = document.getElementById("flashcards-counts");
     const messageEl = document.getElementById("flashcards-message");
     if (countsEl) {
-        countsEl.textContent = `Fällig: ${dueCount} / Gesamt: ${totalCount}`;
+        countsEl.textContent = `Karten: ${dueCount} / ${totalCount}`;
     }
     if (messageEl) {
         messageEl.textContent = nextDueText || "";
@@ -195,6 +195,63 @@ function renderCard(card) {
 
     frontEl.innerHTML = buildFront(displayCard);
     backEl.innerHTML = buildBack(displayCard);
+
+    const enableTableDragScroll = (wrapper) => {
+        if (wrapper.dataset.dragScroll === "true") return;
+        wrapper.dataset.dragScroll = "true";
+
+        let isDragging = false;
+        let startX = 0;
+        let startScrollLeft = 0;
+
+        const onPointerDown = (event) => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            isDragging = true;
+            startX = event.clientX;
+            startScrollLeft = wrapper.scrollLeft;
+            wrapper.setPointerCapture?.(event.pointerId);
+        };
+
+        const onPointerMove = (event) => {
+            if (!isDragging) return;
+            const delta = event.clientX - startX;
+            wrapper.scrollLeft = startScrollLeft - delta;
+        };
+
+        const endDrag = () => {
+            isDragging = false;
+        };
+
+        wrapper.addEventListener("pointerdown", onPointerDown);
+        wrapper.addEventListener("pointermove", onPointerMove);
+        wrapper.addEventListener("pointerup", endDrag);
+        wrapper.addEventListener("pointercancel", endDrag);
+        wrapper.addEventListener("pointerleave", endDrag);
+    };
+
+    const markTables = (root) => {
+        root.querySelectorAll("table").forEach((table) => {
+            table.classList.add("flashcards-table");
+            if (table.parentElement?.classList.contains("flashcards-table-wrap")) {
+                enableTableDragScroll(table.parentElement);
+                return;
+            }
+            const wrapper = document.createElement("div");
+            wrapper.className = "flashcards-table-wrap";
+            wrapper.addEventListener("touchstart", (event) => event.stopPropagation(), {
+                passive: true,
+            });
+            wrapper.addEventListener("touchmove", (event) => event.stopPropagation(), {
+                passive: true,
+            });
+            table.parentNode?.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+            enableTableDragScroll(wrapper);
+        });
+    };
+
+    markTables(frontEl);
+    markTables(backEl);
 
     const adjustHeight = () => {
         innerEl.style.height = "auto";
@@ -395,7 +452,17 @@ function setupEvents() {
     const resetBtn = document.getElementById("flashcards-reset");
 
     flipBtn?.addEventListener("click", flipCard);
-    cardEl?.addEventListener("click", flipCard);
+    cardEl?.addEventListener("click", (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) {
+            flipCard();
+            return;
+        }
+        if (target.closest("table, .flashcards-table-wrap, a, button, input, select, textarea, details")) {
+            return;
+        }
+        flipCard();
+    });
     resetBtn?.addEventListener("click", resetProgress);
 
     document.querySelectorAll(".flashcards-rate").forEach((button) => {
