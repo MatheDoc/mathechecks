@@ -34,12 +34,23 @@
     text-align: center;
     min-width: 0;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+}
+
+.flashcards-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
 }
 
 .flashcards-counts {
     font-weight: 600;
     font-size: 1.1rem;
-    margin-bottom: 4px;
     color: var(--hauptfarbe);
     display: inline-block;
 }
@@ -86,8 +97,8 @@
     border-radius: 14px;
     padding: 20px 20px 18px;
     background: var(--hintergrund-hell);
-    border: 1px solid #d9d9d9;
-    overflow: auto;
+    border: 1px solid var(--hauptfarbe);
+    overflow: hidden;
 }
 
 .flashcards-back {
@@ -108,6 +119,10 @@
 .flashcards-back h3 {
     font-weight: 600;
     margin: 0 0 16px;
+}
+
+.flashcards-front h3 {
+    text-align: center;
 }
 
 .flashcards-front ol,
@@ -170,26 +185,59 @@
     padding: 10px 14px;
     background: var(--hintergrund-hell);
     border: 1px solid var(--hauptfarbe);
-    color: var(--hauptfarbe);
+    color: #111;
     font-weight: 600;
+    font-size: 1.4rem;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .flashcards-rate:hover {
     transform: translateY(-2px);
-    background: var(--hintergrund-hell-hover);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
 }
 
-.flashcards-actions {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+.flashcards-rate--hard {
+    background: #f27470;
+    border-color: #dc5a5a;
+}
+
+.flashcards-rate--medium {
+    background: #f7db6b;
+    border-color: #dcbf43;
+}
+
+.flashcards-rate--easy {
+    background: #6fbe73;
+    border-color: #55a85a;
+}
+
+.flashcards-rate--hard:hover {
+    background: #e74c3c;
+}
+
+.flashcards-rate--medium:hover {
+    background: #f1c40f;
+}
+
+.flashcards-rate--easy:hover {
+    background: #43a047;
+}
+
+.flashcards-rate-icon {
+    width: 28px;
+    height: 28px;
+    color: #111;
 }
 
 .flashcards-reset {
     background: transparent;
-    border: none;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    padding: 4px 10px;
     color: var(--hauptfarbe);
     font-weight: 600;
     cursor: pointer;
@@ -199,13 +247,32 @@
     text-decoration: underline;
 }
 
+.flashcards-face table {
+    display: block;
+    overflow-x: auto;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 0.75rem auto;
+}
+
+.flashcards-face th,
+.flashcards-face td {
+    border: 1px solid #999;
+    padding: 0.5em 1em;
+    text-align: center;
+}
+
+.flashcards-face thead {
+    font-weight: 700;
+}
+
 @media (max-width: 720px) {
     .flashcards-header {
-        align-items: flex-start;
+        align-items: center;
     }
 
     .flashcards-meta {
-        text-align: left;
+        text-align: center;
     }
 
     .flashcards-stage {
