@@ -242,9 +242,10 @@
         }
 
         .input-group input:focus {
-            outline: none;
+            outline: 2px solid var(--input-border-focus);
+            outline-offset: 0;
             border-color: var(--input-border-focus);
-            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
+            background: #eef6fb;
         }
 
         .input-row {
@@ -269,9 +270,10 @@
         }
 
         .input-row input:focus {
-            outline: none;
+            outline: 2px solid var(--input-border-focus);
+            outline-offset: 0;
             border-color: var(--input-border-focus);
-            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
+            background: #eef6fb;
         }
 
         .panel label {
@@ -312,9 +314,10 @@
         }
 
         .binom-input input:focus {
-            outline: none;
+            outline: 2px solid var(--input-border-focus);
+            outline-offset: 0;
             border-color: var(--input-border-focus);
-            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
+            background: #eef6fb;
         }
 
         .binom-stepper {
@@ -803,8 +806,16 @@
 
         function backspace() {
             if (activeInputField) {
-                const currentValue = activeInputField.value || '';
-                activeInputField.value = currentValue.slice(0, -1);
+                const value = activeInputField.value || '';
+                const start = activeInputField.selectionStart ?? value.length;
+                const end = activeInputField.selectionEnd ?? start;
+                if (start !== end) {
+                    activeInputField.value = value.slice(0, start) + value.slice(end);
+                    setInputCursor(activeInputField, start);
+                } else if (start > 0) {
+                    activeInputField.value = value.slice(0, start - 1) + value.slice(end);
+                    setInputCursor(activeInputField, start - 1);
+                }
                 return;
             }
 
@@ -1073,8 +1084,23 @@
                 }
             }
 
-            activeInputField.value = currentValue + value;
+            insertAtCursor(activeInputField, value);
             return true;
+        }
+
+        function insertAtCursor(input, value) {
+            const currentValue = input.value || '';
+            const start = input.selectionStart ?? currentValue.length;
+            const end = input.selectionEnd ?? start;
+            input.value = currentValue.slice(0, start) + value + currentValue.slice(end);
+            setInputCursor(input, start + value.length);
+        }
+
+        function setInputCursor(input, position) {
+            input.focus({ preventScroll: true });
+            if (input.setSelectionRange) {
+                input.setSelectionRange(position, position);
+            }
         }
 
         function normalizeNumberString(value) {
