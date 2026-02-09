@@ -45,6 +45,10 @@ function buildIndexCardId(entry, frageIndex) {
     return `${entry.Sammlung}::index::${frageIndex}`;
 }
 
+function buildGroupedInteractiveId(entry) {
+    return `${entry.Sammlung}::index::all`;
+}
+
 function extractMultipleChoice(text) {
     const result = [];
     let index = 0;
@@ -108,12 +112,13 @@ function buildFront(card) {
 }
 
 function buildBack(card) {
+    const questionBlock = buildFront(card);
     const cleanedAnswers = card.antworten.map((antwort) => cleanupAnswer(antwort));
     if (cleanedAnswers.length === 1) {
-        return `<h3>Antwort</h3><p>${cleanedAnswers[0]}</p>`;
+        return `${questionBlock}<h3>Antwort</h3><div class="flashcards-answer"><p>${cleanedAnswers[0]}</p></div>`;
     }
     const items = cleanedAnswers.map((antwort) => `<li>${antwort}</li>`).join("");
-    return `<h3>Antworten</h3><ol>${items}</ol>`;
+    return `${questionBlock}<h3>Antworten</h3><div class="flashcards-answer"><ol>${items}</ol></div>`;
 }
 
 function updateCounts(dueCount, totalCount, nextDueText) {
@@ -183,6 +188,13 @@ function renderCard(card) {
             const tasks = card.tasks || [];
             if (!tasks.length) return card;
             const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
+            if (card.mode === "grouped") {
+                return {
+                    einleitung: randomTask.einleitung || "",
+                    fragen: randomTask.fragen || [],
+                    antworten: randomTask.antworten || [],
+                };
+            }
             const frage = randomTask.fragen?.[card.index] ?? "";
             const antwort = randomTask.antworten?.[card.index] ?? "";
             return {
@@ -355,20 +367,20 @@ function buildCards(entries) {
         const sammlung = entry._sammlung;
         if (!Array.isArray(sammlung)) return;
 
-        if (entry.Ankityp === "gruppiert") {
-            sammlung.forEach((aufgabe, aufgabeIndex) => {
-                if (!aufgabe || !Array.isArray(aufgabe.fragen)) return;
-                cards.push({
-                    id: buildCardId(entry, aufgabeIndex, null),
-                    einleitung: aufgabe.einleitung || "",
-                    fragen: aufgabe.fragen || [],
-                    antworten: aufgabe.antworten || [],
-                });
-            });
-            return;
-        }
-
         if (entry.Typ === "interaktiv") {
+            if (entry.Ankityp === "gruppiert") {
+                cards.push({
+                    id: buildGroupedInteractiveId(entry),
+                    isInteractive: true,
+                    mode: "grouped",
+                    tasks: sammlung,
+                    fragen: [""],
+                    antworten: [""],
+                    einleitung: "",
+                });
+                return;
+            }
+
             const firstTask = sammlung[0];
             const count = Array.isArray(firstTask?.fragen) ? firstTask.fragen.length : 0;
             for (let index = 0; index < count; index += 1) {
@@ -382,6 +394,19 @@ function buildCards(entries) {
                     einleitung: "",
                 });
             }
+            return;
+        }
+
+        if (entry.Ankityp === "gruppiert") {
+            sammlung.forEach((aufgabe, aufgabeIndex) => {
+                if (!aufgabe || !Array.isArray(aufgabe.fragen)) return;
+                cards.push({
+                    id: buildCardId(entry, aufgabeIndex, null),
+                    einleitung: aufgabe.einleitung || "",
+                    fragen: aufgabe.fragen || [],
+                    antworten: aufgabe.antworten || [],
+                });
+            });
             return;
         }
 

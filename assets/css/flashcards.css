@@ -104,11 +104,8 @@
 .flashcards-back {
     transform: rotateY(180deg);
     background: var(--hintergrund-hell);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    display: block;
+    text-align: left;
 }
 
 .flashcards-rating.is-active~.flashcards-card .flashcards-face {
@@ -122,6 +119,18 @@
 }
 
 .flashcards-front h3 {
+    text-align: center;
+}
+
+.flashcards-back h3 {
+    text-align: center;
+}
+
+.flashcards-back h3:last-of-type {
+    margin-top: 28px;
+}
+
+.flashcards-back .flashcards-answer {
     text-align: center;
 }
 
