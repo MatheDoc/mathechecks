@@ -18,7 +18,11 @@
         <section class="flashcards-shell" id="flashcards-app">
             <div class="flashcards-header">
                 <div class="flashcards-meta">
-                    <div class="flashcards-counts" id="flashcards-counts"></div>
+                    <div class="flashcards-meta-row">
+                        <div class="flashcards-counts" id="flashcards-counts"></div>
+                        <button class="flashcards-reset" id="flashcards-reset" type="button">Fortschritt
+                            löschen</button>
+                    </div>
                     <div class="flashcards-message" id="flashcards-message"></div>
                 </div>
             </div>
@@ -33,13 +37,36 @@
                 </div>
 
                 <div class="flashcards-rating" id="flashcards-rating">
-                    <button class="flashcards-rate" data-grade="1" type="button">Schwer</button>
-                    <button class="flashcards-rate" data-grade="3" type="button">Mittel</button>
-                    <button class="flashcards-rate" data-grade="5" type="button">Leicht</button>
-                </div>
-
-                <div class="flashcards-actions">
-                    <button class="flashcards-reset" id="flashcards-reset" type="button">Fortschritt löschen</button>
+                    <button class="flashcards-rate flashcards-rate--hard" data-grade="1" type="button"
+                        aria-label="Schwer">
+                        <svg class="flashcards-rate-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                            <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3" />
+                            <circle cx="18" cy="20" r="2" fill="currentColor" />
+                            <circle cx="30" cy="20" r="2" fill="currentColor" />
+                            <path d="M16 34c2.5-4 6-6 8-6s5.5 2 8 6" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button class="flashcards-rate flashcards-rate--medium" data-grade="3" type="button"
+                        aria-label="Mittel">
+                        <svg class="flashcards-rate-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                            <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3" />
+                            <circle cx="18" cy="20" r="2" fill="currentColor" />
+                            <circle cx="30" cy="20" r="2" fill="currentColor" />
+                            <path d="M16 30h16" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button class="flashcards-rate flashcards-rate--easy" data-grade="5" type="button"
+                        aria-label="Leicht">
+                        <svg class="flashcards-rate-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+                            <circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="3" />
+                            <circle cx="18" cy="20" r="2" fill="currentColor" />
+                            <circle cx="30" cy="20" r="2" fill="currentColor" />
+                            <path d="M16 28c2.5 4 6 6 8 6s5.5-2 8-6" fill="none" stroke="currentColor" stroke-width="3"
+                                stroke-linecap="round" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </section>

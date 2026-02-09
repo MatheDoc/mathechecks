@@ -98,12 +98,13 @@ function cleanupAnswer(text) {
 }
 
 function buildFront(card) {
-    const intro = card.einleitung ? `<div class="flashcards-intro">${card.einleitung}</div>` : "";
     if (card.fragen.length === 1) {
-        return `${intro}<h3>Frage</h3><p>${card.fragen[0]}</p>`;
+        const intro = card.einleitung ? `<div class="flashcards-intro">${card.einleitung}</div>` : "";
+        return `<h3>Frage</h3>${intro}<p>${card.fragen[0]}</p>`;
     }
     const items = card.fragen.map((frage) => `<li>${frage}</li>`).join("");
-    return `${intro}<h3>Fragen</h3><ol>${items}</ol>`;
+    const intro = card.einleitung ? `<div class="flashcards-intro">${card.einleitung}</div>` : "";
+    return `<h3>Fragen</h3>${intro}<ol>${items}</ol>`;
 }
 
 function buildBack(card) {
