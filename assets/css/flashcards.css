@@ -98,7 +98,21 @@
     padding: 20px 20px 18px;
     background: var(--hintergrund-hell);
     border: 1px solid var(--hauptfarbe);
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.flashcards-face mjx-container {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.flashcards-face table mjx-container {
+    overflow: visible;
 }
 
 .flashcards-back {
