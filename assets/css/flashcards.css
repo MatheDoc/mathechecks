@@ -1,5 +1,5 @@
 .flashcards-shell {
-    margin-top: 1rem;
+    margin-top: 10rem;
 }
 
 .flashcards-shell {
@@ -167,7 +167,7 @@
 
 .flashcards-rating {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 12px;
     margin: 24px 0 8px;
     opacity: 0.35;
@@ -231,21 +231,6 @@
     width: 28px;
     height: 28px;
     color: #111;
-}
-
-@media (max-width: 540px) {
-    .flashcards-rating {
-        gap: 8px;
-    }
-
-    .flashcards-rate {
-        padding: 8px 6px;
-    }
-
-    .flashcards-rate-icon {
-        width: 24px;
-        height: 24px;
-    }
 }
 
 .flashcards-reset {
