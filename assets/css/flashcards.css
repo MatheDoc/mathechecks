@@ -167,8 +167,8 @@
 
 .flashcards-rating {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
     margin: 24px 0 8px;
     opacity: 0.35;
     pointer-events: none;
@@ -182,7 +182,7 @@
 
 .flashcards-rate {
     border-radius: 12px;
-    padding: 10px 14px;
+    padding: 8px 6px;
     background: var(--hintergrund-hell);
     border: 1px solid var(--hauptfarbe);
     color: #111;
@@ -228,9 +228,24 @@
 }
 
 .flashcards-rate-icon {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     color: #111;
+}
+
+@media (max-width: 540px) {
+    .flashcards-rating {
+        gap: 6px;
+    }
+
+    .flashcards-rate {
+        padding: 6px 4px;
+    }
+
+    .flashcards-rate-icon {
+        width: 24px;
+        height: 24px;
+    }
 }
 
 .flashcards-reset {
@@ -247,12 +262,23 @@
     text-decoration: underline;
 }
 
-.flashcards-face table {
+.flashcards-table-wrap {
     display: block;
     overflow-x: auto;
     max-width: 100%;
-    border-collapse: collapse;
     margin: 0.75rem auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    overscroll-behavior-x: contain;
+    pointer-events: auto;
+}
+
+.flashcards-face table {
+    display: table;
+    width: max-content;
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: 0;
 }
 
 .flashcards-face th,
