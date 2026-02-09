@@ -202,7 +202,7 @@
             margin-bottom: 6px;
             color: var(--panel-text);
             font-size: inherit;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .input-group {
@@ -213,7 +213,7 @@
             display: block;
             margin-bottom: 3px;
             color: var(--panel-label);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .input-group input {
@@ -225,6 +225,7 @@
             font-family: 'Courier New', monospace;
             background: var(--input-bg);
             color: var(--input-text);
+            caret-color: var(--input-text);
         }
 
         .input-group input[type=number],
@@ -243,6 +244,7 @@
         .input-group input:focus {
             outline: none;
             border-color: var(--input-border-focus);
+            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
         }
 
         .input-row {
@@ -263,16 +265,18 @@
             font-family: 'Courier New', monospace;
             background: var(--input-bg);
             color: var(--input-text);
+            caret-color: var(--input-text);
         }
 
         .input-row input:focus {
             outline: none;
             border-color: var(--input-border-focus);
+            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
         }
 
         .panel label {
             color: var(--panel-label);
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .binom-row {
@@ -297,8 +301,20 @@
         .binom-input input {
             flex: 1;
             min-width: 0;
-            padding: 2px 3px;
+            padding: 5px 4px;
             font-size: inherit;
+            font-family: 'Courier New', monospace;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--input-text);
+            caret-color: var(--input-text);
+        }
+
+        .binom-input input:focus {
+            outline: none;
+            border-color: var(--input-border-focus);
+            box-shadow: 0 0 0 2px rgba(47, 111, 145, 0.18);
         }
 
         .binom-stepper {
@@ -326,7 +342,7 @@
         .lgs-var-label,
         .lgs-equals {
             padding: 0 4px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--panel-label);
         }
 
@@ -514,7 +530,7 @@
             <!-- LGS Panel -->
             <div id="lgsPanel" class="expandable">
                 <div class="panel">
-                    <h4>Lineares Gleichungssystem</h4>
+                    <h4></h4>
                     <div class="lgs-controls">
                         <button onclick="addLGSVariable()">+ Var.</button>
                         <button class="remove" onclick="removeLGSVariable()">- Var.</button>
@@ -528,7 +544,7 @@
             <!-- Binomial Panel -->
             <div id="binomPanel" class="expandable">
                 <div class="panel">
-                    <h4>Binomialwahrscheinlichkeit P(a ≤ X ≤ b)</h4>
+                    <h4>P(a ≤ X ≤ b):</h4>
                     <div class="binom-row">
                         <div class="binom-field">
                             <label class="panel-label" for="binomA">a =</label>
@@ -585,9 +601,8 @@
             <!-- Gleichung Panel -->
             <div id="equationPanel" class="expandable">
                 <div class="panel">
-                    <h4>Gleichung lösen</h4>
+                    <h4></h4>
                     <div class="input-group">
-                        <label class="panel-label">Gleichung (z.B. x^2 - 4 = 0 oder e^x - 5 = 0)</label>
                         <input type="text" id="equationInput">
                     </div>
                 </div>
@@ -703,14 +718,19 @@
         function applyTouchInputLock() {
             const inputs = document.querySelectorAll('#binomPanel input, #equationPanel input, #lgsPanel input');
             inputs.forEach((input) => {
+                if (!input.dataset.defaultInputMode) {
+                    input.dataset.defaultInputMode = input.getAttribute('inputmode') || input.inputMode || '';
+                }
+
                 if (shouldLockTouchInputs) {
-                    input.readOnly = true;
+                    input.readOnly = false;
                     input.inputMode = 'none';
+                    input.autocapitalize = 'off';
+                    input.autocomplete = 'off';
+                    input.spellcheck = false;
                 } else {
                     input.readOnly = false;
-                    if (!input.dataset.inputModeLocked) {
-                        input.inputMode = 'decimal';
-                    }
+                    input.inputMode = input.dataset.defaultInputMode || '';
                 }
             });
         }
@@ -1150,8 +1170,8 @@
 
                     const input = document.createElement('input');
                     input.type = 'text';
-                    input.inputMode = shouldLockTouchInputs ? 'none' : 'decimal';
-                    input.readOnly = shouldLockTouchInputs;
+                    input.inputMode = 'decimal';
+                    input.readOnly = false;
                     input.id = `a${i}${j}`;
                     input.placeholder = '';
                     input.value = existingValues[input.id] ?? '';
@@ -1171,8 +1191,8 @@
 
                 const resultInput = document.createElement('input');
                 resultInput.type = 'text';
-                resultInput.inputMode = shouldLockTouchInputs ? 'none' : 'decimal';
-                resultInput.readOnly = shouldLockTouchInputs;
+                resultInput.inputMode = 'decimal';
+                resultInput.readOnly = false;
                 resultInput.id = `b${i}`;
                 resultInput.placeholder = '';
                 resultInput.value = existingValues[resultInput.id] ?? '';
@@ -1450,7 +1470,12 @@
 
         // Gleichungslöser
         function solveEquation() {
-            const equation = normalizeNumberString(document.getElementById('equationInput').value);
+            const equationInput = document.getElementById('equationInput');
+            let equation = normalizeNumberString(equationInput.value || '').trim();
+            if (equation && !equation.includes('=')) {
+                equation = `${equation} = 0`;
+                equationInput.value = equation;
+            }
 
             try {
                 let [leftSide, rightSide] = equation.split('=').map(s => s.trim());
