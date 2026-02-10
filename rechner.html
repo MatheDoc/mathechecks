@@ -110,6 +110,27 @@
             line-height: 1.1;
         }
 
+        .result-display.updated {
+            animation: resultPulse 360ms ease;
+        }
+
+        @keyframes resultPulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+
+            45% {
+                transform: scale(1.04);
+                text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+            }
+
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+
         .result-row {
             display: flex;
             align-items: center;
@@ -121,9 +142,9 @@
         }
 
         .copy-result {
-            background: rgba(255, 255, 255, 0.28);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            color: white;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.9);
             width: 32px;
             height: 32px;
             display: inline-flex;
@@ -132,6 +153,7 @@
             border-radius: 6px;
             cursor: pointer;
             padding: 0;
+            position: relative;
         }
 
         .copy-result svg {
@@ -141,7 +163,30 @@
         }
 
         .copy-result:hover {
-            background: rgba(255, 255, 255, 0.35);
+            background: transparent;
+            color: #ffffff;
+        }
+
+        .copy-check {
+            position: absolute;
+            right: -3px;
+            bottom: -3px;
+            font-size: 11px;
+            line-height: 1;
+            color: #0f6b3a;
+            background: #ffffff;
+            border: 1px solid rgba(15, 107, 58, 0.35);
+            border-radius: 999px;
+            padding: 2px 3px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+        }
+
+        .copy-result.copied .copy-check {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .special-functions {
@@ -510,12 +555,13 @@
         <div class="display">
             <div class="result-row">
                 <div class="result-display" id="resultDisplay">0</div>
-                <button class="copy-result" onclick="copyResult()" aria-label="Ergebnis kopieren"
+                <button class="copy-result" id="copyResultButton" onclick="copyResult()" aria-label="Ergebnis kopieren"
                     title="Ergebnis kopieren">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path
                             d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" />
                     </svg>
+                    <span class="copy-check" aria-hidden="true">✓</span>
                 </button>
             </div>
         </div>
@@ -634,7 +680,7 @@
             <button class="top-key" onclick="appendFunction('ln(')">ln</button>
 
             <!-- Reihe 3 -->
-            <button class="top-key" onclick="appendFunction('exp(')">e^x</button>
+            <button class="top-key" onclick="appendOperator('e^')">e^x</button>
             <button class="top-key" onclick="factorial()">n!</button>
             <button class="top-key" onclick="appendOperator('^')">^</button>
             <button class="top-key" onclick="appendFunction('log_(')">log</button>
@@ -686,6 +732,8 @@
         let activePanel = null;
         let activeInputField = null;
         let panelInputMode = false;
+        let shouldAnimateResult = false;
+        let copyFeedbackTimer = null;
         const isTouchDevice = (() => {
             if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
             return navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
@@ -705,6 +753,12 @@
             const resultDisplay = document.getElementById('resultDisplay');
             if (resultDisplay) {
                 resultDisplay.textContent = result;
+                if (shouldAnimateResult) {
+                    resultDisplay.classList.remove('updated');
+                    void resultDisplay.offsetWidth;
+                    resultDisplay.classList.add('updated');
+                    shouldAnimateResult = false;
+                }
             }
         }
 
@@ -713,10 +767,16 @@
             if (!value) return;
 
             if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(value);
+                navigator.clipboard.writeText(value)
+                    .then(() => showCopyFeedback())
+                    .catch(() => fallbackCopy(value));
                 return;
             }
 
+            fallbackCopy(value);
+        }
+
+        function fallbackCopy(value) {
             const temp = document.createElement('textarea');
             temp.value = value;
             temp.setAttribute('readonly', '');
@@ -726,6 +786,21 @@
             temp.select();
             document.execCommand('copy');
             document.body.removeChild(temp);
+            showCopyFeedback();
+        }
+
+        function showCopyFeedback() {
+            const copyButton = document.getElementById('copyResultButton');
+            if (!copyButton) return;
+            copyButton.classList.remove('copied');
+            void copyButton.offsetWidth;
+            copyButton.classList.add('copied');
+            if (copyFeedbackTimer) {
+                clearTimeout(copyFeedbackTimer);
+            }
+            copyFeedbackTimer = setTimeout(() => {
+                copyButton.classList.remove('copied');
+            }, 1200);
         }
 
         function applyTouchInputLock() {
@@ -854,11 +929,13 @@
 
         function calculate() {
             try {
+                const normalizedInput = normalizeNumberString(currentInput);
                 let expression = addImplicitMultiplication(
                     normalizeUnaryMinusExponent(
-                        normalizeConstants(convertRootInfix(convertLogBaseSyntax(currentInput)))
+                        convertRootInfix(convertLogBaseSyntax(normalizedInput))
                     )
-                )
+                );
+                expression = normalizeConstants(expression)
                     .replace(/×/g, '*')
                     .replace(/÷/g, '/')
                     .replace(/−/g, '-')
@@ -882,6 +959,7 @@
         }
 
         function handleExecute() {
+            shouldAnimateResult = true;
             if (!executeActivePanel()) {
                 calculate();
             }
@@ -939,9 +1017,9 @@
 
         function addImplicitMultiplication(value) {
             return value
-                .replace(/(\d)([a-zA-Z(])/g, '$1*$2')
+                .replace(/(\d)([a-zA-Zπ(])/g, '$1*$2')
                 .replace(/(\))([\d(])/g, '$1*$2')
-                .replace(/(\))([a-zA-Z])/g, '$1*$2');
+                .replace(/(\))([a-zA-Zπ])/g, '$1*$2');
         }
 
         function normalizeUnaryMinusExponent(value) {
@@ -1163,6 +1241,29 @@
 
         function normalizeNumberString(value) {
             return value.replace(/,/g, '.');
+        }
+
+        function replacePiInInput(input) {
+            const value = input.value || '';
+            if (!value.toLowerCase().includes('pi')) return;
+
+            const start = input.selectionStart ?? value.length;
+            const end = input.selectionEnd ?? start;
+            const before = value.slice(0, start);
+            const selection = value.slice(start, end);
+            const after = value.slice(end);
+
+            const newBefore = before.replace(/pi/gi, 'π');
+            const newSelection = selection.replace(/pi/gi, 'π');
+            const newAfter = after.replace(/pi/gi, 'π');
+            const nextValue = newBefore + newSelection + newAfter;
+
+            if (nextValue !== value) {
+                input.value = nextValue;
+                const nextStart = newBefore.length;
+                const nextEnd = newBefore.length + newSelection.length;
+                input.setSelectionRange(nextStart, nextEnd);
+            }
         }
 
         function factorial() {
@@ -1570,9 +1671,10 @@
                     let expr = `(${leftSide}) - (${rightSide})`;
                     expr = addImplicitMultiplication(
                         normalizeUnaryMinusExponent(
-                            normalizeConstants(convertRootInfix(convertLogBaseSyntax(expr)))
+                            convertRootInfix(convertLogBaseSyntax(expr))
                         )
-                    )
+                    );
+                    expr = normalizeConstants(expr)
                         .replace(/x/g, `(${x})`)
                         .replace(/\^/g, '**')
                         .replace(/e\*\*/g, 'Math.E**')
@@ -1709,6 +1811,10 @@
         updateDisplay();
         applyTouchInputLock();
         bindBinomControls();
+        const calInput = document.getElementById('calInput');
+        if (calInput) {
+            calInput.addEventListener('input', () => replacePiInInput(calInput));
+        }
         togglePanel('cal');
         requestAnimationFrame(() => focusPanelInput('cal'));
         window.addEventListener('load', () => focusPanelInput('cal'));
