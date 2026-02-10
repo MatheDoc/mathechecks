@@ -21,6 +21,20 @@ function toggleCalculatorOverlay(forceOpen) {
     if (!width || !height) {
       applyCalculatorSize(520, 820);
     }
+    const iframe = overlay.querySelector(".calculator-frame");
+    if (iframe) {
+      const sendFocus = () => {
+        iframe.focus();
+        if (iframe.contentWindow) {
+          iframe.contentWindow.postMessage({ type: "calculatorFocus" }, window.location.origin);
+        }
+      };
+      if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
+        setTimeout(sendFocus, 0);
+      } else {
+        iframe.addEventListener("load", sendFocus, { once: true });
+      }
+    }
   }
 }
 
