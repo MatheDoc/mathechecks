@@ -508,7 +508,6 @@
 <body>
     <div class="calculator">
         <div class="display">
-            <div class="input-display" id="inputDisplay">0</div>
             <div class="result-row">
                 <div class="result-display" id="resultDisplay">0</div>
                 <button class="copy-result" onclick="copyResult()" aria-label="Ergebnis kopieren"
@@ -523,9 +522,20 @@
 
         <div class="special-functions">
             <div class="function-buttons">
+                <button onclick="togglePanel('cal')" id="calBtn">CAL</button>
                 <button onclick="togglePanel('lgs')" id="lgsBtn">LGS</button>
-                <button onclick="togglePanel('binom')" id="binomBtn">Binom</button>
-                <button onclick="togglePanel('equation')" id="equationBtn">Gleichung</button>
+                <button onclick="togglePanel('binom')" id="binomBtn">BIN</button>
+                <button onclick="togglePanel('equation')" id="equationBtn">SOL</button>
+            </div>
+
+            <!-- CAL Panel -->
+            <div id="calPanel" class="expandable">
+                <div class="panel">
+                    <h4></h4>
+                    <div class="input-group">
+                        <input type="text" id="calInput" inputmode="decimal" autocomplete="off" autofocus>
+                    </div>
+                </div>
             </div>
 
             <!-- LGS Panel -->
@@ -692,8 +702,10 @@
         const shouldLockTouchInputs = isTouchDevice && isProbablyMobile && !isFinePointer;
 
         function updateDisplay() {
-            document.getElementById('inputDisplay').textContent = formatDisplay(currentInput);
-            document.getElementById('resultDisplay').textContent = result;
+            const resultDisplay = document.getElementById('resultDisplay');
+            if (resultDisplay) {
+                resultDisplay.textContent = result;
+            }
         }
 
         function copyResult() {
@@ -717,7 +729,7 @@
         }
 
         function applyTouchInputLock() {
-            const inputs = document.querySelectorAll('#binomPanel input, #equationPanel input, #lgsPanel input');
+            const inputs = document.querySelectorAll('#calPanel input, #binomPanel input, #equationPanel input, #lgsPanel input');
             inputs.forEach((input) => {
                 if (!input.dataset.defaultInputMode) {
                     input.dataset.defaultInputMode = input.getAttribute('inputmode') || input.inputMode || '';
@@ -791,6 +803,13 @@
         }
 
         function clearAll() {
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    calInput.value = '';
+                    setInputCursor(calInput, 0);
+                }
+            }
             currentInput = '0';
             result = 0;
             shouldResetInput = false;
@@ -798,6 +817,13 @@
         }
 
         function clearEntry() {
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    calInput.value = '';
+                    setInputCursor(calInput, 0);
+                }
+            }
             currentInput = '0';
             updateDisplay();
         }
@@ -862,6 +888,14 @@
         }
 
         function executeActivePanel() {
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    currentInput = calInput.value || '0';
+                }
+                calculate();
+                return true;
+            }
             if (activePanel === 'lgs') {
                 solveLGS();
                 return true;
@@ -875,6 +909,32 @@
                 return true;
             }
             return false;
+        }
+
+        function focusPanelInput(panelName) {
+            let input = null;
+            if (panelName === 'cal') {
+                input = document.getElementById('calInput');
+                if (input && (!input.value || input.value === '0')) {
+                    input.value = '';
+                }
+            } else if (panelName === 'equation') {
+                input = document.getElementById('equationInput');
+            } else if (panelName === 'binom') {
+                input = document.querySelector('#binomPanel input');
+            } else if (panelName === 'lgs') {
+                input = document.querySelector('#lgsPanel input');
+            }
+
+            if (!input) {
+                activeInputField = null;
+                panelInputMode = false;
+                return;
+            }
+
+            activeInputField = input;
+            panelInputMode = true;
+            setInputCursor(input, (input.value || '').length);
         }
 
         function addImplicitMultiplication(value) {
@@ -1130,8 +1190,8 @@
 
         // Panel Toggle
         function togglePanel(panelName) {
-            const panels = ['lgs', 'binom', 'equation'];
-            const buttons = ['lgsBtn', 'binomBtn', 'equationBtn'];
+            const panels = ['cal', 'lgs', 'binom', 'equation'];
+            const buttons = ['calBtn', 'lgsBtn', 'binomBtn', 'equationBtn'];
 
             panels.forEach((p, idx) => {
                 const panel = document.getElementById(p + 'Panel');
@@ -1148,6 +1208,7 @@
                         panel.classList.add('open');
                         btn.classList.add('active');
                         activePanel = panelName;
+                        focusPanelInput(panelName);
                     }
                 } else {
                     panel.classList.remove('open');
@@ -1648,6 +1709,26 @@
         updateDisplay();
         applyTouchInputLock();
         bindBinomControls();
+        togglePanel('cal');
+        requestAnimationFrame(() => focusPanelInput('cal'));
+        window.addEventListener('load', () => focusPanelInput('cal'));
+        window.addEventListener('focus', () => focusPanelInput(activePanel || 'cal'));
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                focusPanelInput(activePanel || 'cal');
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin && event.origin !== 'null') return;
+            if (event.data && event.data.type === 'calculatorFocus') {
+                if (!activePanel) {
+                    togglePanel('cal');
+                    return;
+                }
+                focusPanelInput(activePanel);
+            }
+        });
 
 
         function isDragAllowed(target) {
@@ -1715,6 +1796,15 @@
             const isDisplay = event.target.closest('.display');
             const isPanelArea = event.target.closest('.special-functions');
             const isKeypad = event.target.closest('.buttons');
+
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    activeInputField = calInput;
+                    panelInputMode = true;
+                    return;
+                }
+            }
 
             if (isDisplay || (!isPanelArea && !isKeypad)) {
                 activeInputField = null;
