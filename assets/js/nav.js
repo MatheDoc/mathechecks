@@ -8,16 +8,44 @@ function toggleCalculatorOverlay(forceOpen) {
   const overlay = document.getElementById("calculator-overlay");
   const toggleButton = document.querySelector(".calculator-toggle");
   if (!overlay) return;
-  const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : !overlay.classList.contains("open");
+  const modal = overlay.querySelector(".calculator-modal");
+  const hasOpenOverride = typeof forceOpen === "boolean";
+  const isOpen = overlay.classList.contains("open");
+  const isTranslucent = modal ? modal.classList.contains("is-translucent") : false;
+  let nextState = "closed";
+
+  if (hasOpenOverride) {
+    nextState = forceOpen ? "opaque" : "closed";
+  } else if (!isOpen) {
+    nextState = "opaque";
+  } else if (!isTranslucent) {
+    nextState = "translucent";
+  }
+
+  const shouldOpen = nextState !== "closed";
   overlay.classList.toggle("open", shouldOpen);
   overlay.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+
+  if (modal) {
+    modal.classList.toggle("is-translucent", nextState === "translucent");
+    if (!shouldOpen) {
+      modal.classList.remove("is-pending");
+    }
+  }
+
   if (toggleButton) {
     toggleButton.classList.toggle("is-active", shouldOpen);
+    toggleButton.classList.toggle("is-translucent", nextState === "translucent");
     toggleButton.setAttribute("aria-pressed", shouldOpen ? "true" : "false");
   }
+
   if (shouldOpen) {
     const width = Number(overlay.dataset.calcWidth || 0);
     const height = Number(overlay.dataset.calcHeight || 0);
+    const hasSize = Boolean(width && height);
+    if (modal) {
+      modal.classList.toggle("is-pending", !hasSize);
+    }
     if (!width || !height) {
       applyCalculatorSize(520, 820);
     }
@@ -27,6 +55,7 @@ function toggleCalculatorOverlay(forceOpen) {
         iframe.focus();
         if (iframe.contentWindow) {
           iframe.contentWindow.postMessage({ type: "calculatorFocus" }, window.location.origin);
+          iframe.contentWindow.postMessage({ type: "calculatorRequestSize" }, window.location.origin);
         }
       };
       if (iframe.contentDocument && iframe.contentDocument.readyState === "complete") {
@@ -66,6 +95,9 @@ let calculatorDragState = {
   startY: 0,
   startOffsetX: 0,
   startOffsetY: 0,
+  pendingOffsetX: 0,
+  pendingOffsetY: 0,
+  rafId: 0,
   modal: null,
   iframe: null,
 };
@@ -75,7 +107,7 @@ const setCalculatorOffsets = (modal, x, y) => {
   if (!modal) return;
   modal.dataset.offsetX = String(x);
   modal.dataset.offsetY = String(y);
-  modal.style.transform = `translate(${x}px, ${y}px)`;
+  modal.style.transform = `translate3d(${x}px, ${y}px, 0)`;
 };
 
 const getCalculatorOffsets = (modal) => {
@@ -89,15 +121,36 @@ window.addEventListener("message", (event) => {
   const data = event.data;
   if (!data || typeof data.type !== "string") return;
 
+  if (data.type === "calculatorSize") {
+    if (typeof data.width !== "number" || typeof data.height !== "number") return;
+    if (data.width > 0 && data.height > 0) {
+      applyCalculatorSize(Math.round(data.width), Math.round(data.height));
+      const overlay = document.getElementById("calculator-overlay");
+      const modal = overlay ? overlay.querySelector(".calculator-modal") : null;
+      if (overlay && overlay.classList.contains("open") && modal) {
+        modal.classList.remove("is-pending");
+      }
+    }
+    return;
+  }
+
   if (!calculatorDragState.modal || !calculatorDragState.iframe) return;
-  const iframeRect = calculatorDragState.iframe.getBoundingClientRect();
 
   if (data.type === "calculatorDragStart") {
-    if (typeof data.clientX !== "number" || typeof data.clientY !== "number") return;
+    if (typeof data.screenX !== "number" || typeof data.screenY !== "number") {
+      if (typeof data.clientX !== "number" || typeof data.clientY !== "number") return;
+    }
     const { x, y } = getCalculatorOffsets(calculatorDragState.modal);
     calculatorDragState.active = true;
     calculatorDragState.startOffsetX = x;
     calculatorDragState.startOffsetY = y;
+    document.documentElement.classList.add("calculator-dragging");
+    if (typeof data.screenX === "number" && typeof data.screenY === "number") {
+      calculatorDragState.startX = data.screenX;
+      calculatorDragState.startY = data.screenY;
+      return;
+    }
+    const iframeRect = calculatorDragState.iframe.getBoundingClientRect();
     calculatorDragState.startX = iframeRect.left + data.clientX;
     calculatorDragState.startY = iframeRect.top + data.clientY;
     return;
@@ -105,21 +158,39 @@ window.addEventListener("message", (event) => {
 
   if (data.type === "calculatorDragMove") {
     if (!calculatorDragState.active) return;
-    if (typeof data.clientX !== "number" || typeof data.clientY !== "number") return;
-    const currentX = iframeRect.left + data.clientX;
-    const currentY = iframeRect.top + data.clientY;
+    if (typeof data.screenX !== "number" || typeof data.screenY !== "number") {
+      if (typeof data.clientX !== "number" || typeof data.clientY !== "number") return;
+    }
+    let currentX;
+    let currentY;
+    if (typeof data.screenX === "number" && typeof data.screenY === "number") {
+      currentX = data.screenX;
+      currentY = data.screenY;
+    } else {
+      const iframeRect = calculatorDragState.iframe.getBoundingClientRect();
+      currentX = iframeRect.left + data.clientX;
+      currentY = iframeRect.top + data.clientY;
+    }
     const dx = currentX - calculatorDragState.startX;
     const dy = currentY - calculatorDragState.startY;
-    setCalculatorOffsets(
-      calculatorDragState.modal,
-      calculatorDragState.startOffsetX + dx,
-      calculatorDragState.startOffsetY + dy
-    );
+    calculatorDragState.pendingOffsetX = calculatorDragState.startOffsetX + dx;
+    calculatorDragState.pendingOffsetY = calculatorDragState.startOffsetY + dy;
+    if (!calculatorDragState.rafId) {
+      calculatorDragState.rafId = window.requestAnimationFrame(() => {
+        calculatorDragState.rafId = 0;
+        setCalculatorOffsets(
+          calculatorDragState.modal,
+          calculatorDragState.pendingOffsetX,
+          calculatorDragState.pendingOffsetY
+        );
+      });
+    }
     return;
   }
 
   if (data.type === "calculatorDragEnd") {
     calculatorDragState.active = false;
+    document.documentElement.classList.remove("calculator-dragging");
   }
 });
 

@@ -86,6 +86,19 @@
             color: white;
             position: relative;
             touch-action: none;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .display * {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .calculator.dragging .display,
+        .calculator.dragging .display * {
+            cursor: grabbing;
         }
 
         .input-display {
@@ -885,6 +898,13 @@
                     setInputCursor(calInput, 0);
                 }
             }
+            if (activePanel === 'equation') {
+                const equationInput = document.getElementById('equationInput');
+                if (equationInput) {
+                    equationInput.value = '';
+                    setInputCursor(equationInput, 0);
+                }
+            }
             currentInput = '0';
             result = 0;
             shouldResetInput = false;
@@ -897,6 +917,13 @@
                 if (calInput) {
                     calInput.value = '';
                     setInputCursor(calInput, 0);
+                }
+            }
+            if (activePanel === 'equation') {
+                const equationInput = document.getElementById('equationInput');
+                if (equationInput) {
+                    equationInput.value = '';
+                    setInputCursor(equationInput, 0);
                 }
             }
             currentInput = '0';
@@ -1210,13 +1237,34 @@
 
             const currentValue = activeInputField.value || '';
             if (activeInputField.type === 'number' || activeInputField.type === 'text') {
-                const hasSeparator = currentValue.includes('.') || currentValue.includes(',');
-                if ((value === '.' || value === ',') && hasSeparator) {
-                    return true;
-                }
-                if ((value === '.' || value === ',') && (currentValue === '' || currentValue === '-')) {
-                    activeInputField.value = `${currentValue}0${value}`;
-                    return true;
+                const isSeparator = value === '.' || value === ',';
+                const isExpressionInput = activeInputField.id === 'equationInput' || activeInputField.id === 'calInput';
+
+                if (isSeparator && isExpressionInput) {
+                    const cursor = activeInputField.selectionStart ?? currentValue.length;
+                    const left = currentValue.slice(0, cursor);
+                    let i = left.length - 1;
+                    while (i >= 0 && /[0-9.,]/.test(left[i])) {
+                        i--;
+                    }
+                    const segment = left.slice(i + 1);
+                    const hasSeparator = segment.includes('.') || segment.includes(',');
+                    if (hasSeparator) {
+                        return true;
+                    }
+                    if (segment === '') {
+                        insertAtCursor(activeInputField, `0${value}`);
+                        return true;
+                    }
+                } else if (isSeparator) {
+                    const hasSeparator = currentValue.includes('.') || currentValue.includes(',');
+                    if (hasSeparator) {
+                        return true;
+                    }
+                    if (currentValue === '' || currentValue === '-') {
+                        activeInputField.value = `${currentValue}0${value}`;
+                        return true;
+                    }
                 }
             }
 
@@ -1722,9 +1770,9 @@
                 }
 
                 const tolerance = 0.000001;
-                const rangeMin = -100;
-                const rangeMax = 100;
-                const steps = 2000;
+                const rangeMin = -1000;
+                const rangeMax = 1000;
+                const steps = 20000;
                 const step = (rangeMax - rangeMin) / steps;
                 const roots = [];
 
@@ -1834,6 +1882,9 @@
                 }
                 focusPanelInput(activePanel);
             }
+            if (event.data && event.data.type === 'calculatorRequestSize') {
+                postCalculatorSize();
+            }
         });
 
 
@@ -1841,6 +1892,20 @@
             if (!target) return false;
             if (!target.closest('.display')) return false;
             return !target.closest('button, input, select, textarea, a');
+        }
+
+        function postCalculatorSize() {
+            const calculator = document.querySelector('.calculator');
+            if (!calculator || !window.parent) return;
+            const rect = calculator.getBoundingClientRect();
+            window.parent.postMessage(
+                {
+                    type: 'calculatorSize',
+                    width: Math.ceil(rect.width),
+                    height: Math.ceil(rect.height)
+                },
+                window.location.origin
+            );
         }
 
         (function setupCalculatorDrag() {
@@ -1853,12 +1918,19 @@
                 if (!isDragAllowed(event.target)) {
                     return;
                 }
+                event.preventDefault();
                 dragging = true;
+                calculator.classList.add('dragging');
+                if (calculator.setPointerCapture) {
+                    calculator.setPointerCapture(event.pointerId);
+                }
                 window.parent.postMessage(
                     {
                         type: 'calculatorDragStart',
                         clientX: event.clientX,
-                        clientY: event.clientY
+                        clientY: event.clientY,
+                        screenX: event.screenX,
+                        screenY: event.screenY
                     },
                     window.location.origin
                 );
@@ -1870,21 +1942,31 @@
                     {
                         type: 'calculatorDragMove',
                         clientX: event.clientX,
-                        clientY: event.clientY
+                        clientY: event.clientY,
+                        screenX: event.screenX,
+                        screenY: event.screenY
                     },
                     window.location.origin
                 );
             });
 
-            calculator.addEventListener('pointerup', () => {
+            calculator.addEventListener('pointerup', (event) => {
                 if (!dragging) return;
                 dragging = false;
+                calculator.classList.remove('dragging');
+                if (calculator.releasePointerCapture) {
+                    calculator.releasePointerCapture(event.pointerId);
+                }
                 window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
             });
 
-            calculator.addEventListener('pointercancel', () => {
+            calculator.addEventListener('pointercancel', (event) => {
                 if (!dragging) return;
                 dragging = false;
+                calculator.classList.remove('dragging');
+                if (calculator.releasePointerCapture) {
+                    calculator.releasePointerCapture(event.pointerId);
+                }
                 window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
             });
         })();
@@ -1916,6 +1998,14 @@
                 activeInputField = null;
                 panelInputMode = false;
             }
+        });
+
+        window.addEventListener('load', () => {
+            postCalculatorSize();
+        });
+
+        window.addEventListener('resize', () => {
+            postCalculatorSize();
         });
     </script>
 </body>
