@@ -53,10 +53,9 @@
             background: var(--calc-bg);
             border-radius: 20px;
             box-shadow: var(--calc-shadow);
-            max-width: 500px;
+            max-width: 400px;
             width: 100%;
-            max-height: 100%;
-            overflow: auto;
+            overflow: hidden;
             touch-action: pan-y;
             border: 1px solid var(--calc-border);
             font-size: var(--ui-font-size);
@@ -82,7 +81,7 @@
 
         .display {
             background: linear-gradient(135deg, var(--display-start) 0%, var(--display-end) 100%);
-            padding: 25px;
+            padding: 16px 18px;
             color: white;
             position: relative;
             touch-action: none;
@@ -102,21 +101,22 @@
         }
 
         .input-display {
-            font-size: 20px;
-            min-height: 30px;
-            margin-bottom: 10px;
+            font-size: var(--ui-font-size);
+            min-height: 22px;
+            margin-bottom: 6px;
             opacity: 0.8;
             word-wrap: break-word;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 500;
         }
 
         .result-display {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 300;
-            min-height: 50px;
+            min-height: 36px;
             text-align: right;
             word-wrap: break-word;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -204,7 +204,7 @@
 
         .special-functions {
             background: var(--panel-bg);
-            padding: 8px;
+            padding: 6px;
             border-bottom: 1px solid var(--panel-border);
         }
 
@@ -244,33 +244,34 @@
         }
 
         .expandable.open {
-            max-height: 600px;
+            max-height: 1000px;
         }
 
         .panel {
             background: white;
-            padding: 8px;
+            padding: 6px;
             border-radius: 6px;
-            margin-top: 8px;
+            margin-top: 5px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .panel h4 {
-            margin-bottom: 6px;
+            margin-bottom: 3px;
             color: var(--panel-text);
             font-size: inherit;
             font-weight: 500;
         }
 
         .input-group {
-            margin-bottom: 6px;
+            margin-bottom: 2px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             color: var(--panel-label);
             font-weight: 500;
+            font-size: 14px;
         }
 
         .input-group input {
@@ -279,7 +280,8 @@
             border: 1px solid var(--input-border);
             border-radius: 4px;
             font-size: inherit;
-            font-family: 'Courier New', monospace;
+            font-family: inherit;
+            font-weight: 600;
             background: var(--input-bg);
             color: var(--input-text);
             caret-color: var(--input-text);
@@ -307,20 +309,21 @@
 
         .input-row {
             display: flex;
-            gap: 4px;
-            margin-bottom: 6px;
+            gap: 2px;
+            margin-bottom: 2px;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .input-row input {
             width: 40px;
-            padding: 5px 4px;
+            padding: 3px 2px;
             border: 1px solid var(--input-border);
             border-radius: 4px;
             font-size: inherit;
             text-align: center;
-            font-family: 'Courier New', monospace;
+            font-family: inherit;
+            font-weight: 600;
             background: var(--input-bg);
             color: var(--input-text);
             caret-color: var(--input-text);
@@ -341,13 +344,13 @@
         .binom-row {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 2px;
+            gap: 1px;
         }
 
         .binom-field {
             display: flex;
             flex-direction: column;
-            gap: 1px;
+            gap: 0;
             min-width: 0;
         }
 
@@ -360,9 +363,10 @@
         .binom-input input {
             flex: 1;
             min-width: 0;
-            padding: 5px 4px;
-            font-size: inherit;
-            font-family: 'Courier New', monospace;
+            padding: 3px 2px;
+            font-size: 14px;
+            font-family: inherit;
+            font-weight: 600;
             border: 1px solid var(--input-border);
             border-radius: 4px;
             background: var(--input-bg);
@@ -401,19 +405,20 @@
         .lgs-operator,
         .lgs-var-label,
         .lgs-equals {
-            padding: 0 4px;
+            padding: 0 2px;
             font-weight: 500;
             color: var(--panel-label);
+            font-size: 13px;
         }
 
         .lgs-matrix {
-            margin-bottom: 6px;
+            margin-bottom: 2px;
         }
 
         .lgs-controls {
             display: flex;
-            gap: 4px;
-            margin-bottom: 6px;
+            gap: 3px;
+            margin-bottom: 4px;
         }
 
         .lgs-controls button {
@@ -440,14 +445,14 @@
 
         .action-button {
             width: 100%;
-            padding: 6px;
+            padding: 5px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 600;
             background: #667eea;
             color: white;
-            margin-top: 6px;
+            margin-top: 3px;
         }
 
         .action-button:hover {
@@ -533,6 +538,52 @@
             background: var(--key-hover);
         }
 
+        .key-popover {
+            position: relative;
+            display: flex;
+        }
+
+        .key-popover>button {
+            width: 100%;
+        }
+
+        .key-popover-menu {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: calc(100% + 6px);
+            background: var(--keypad-bg);
+            border: 1px solid var(--key-border);
+            border-radius: 10px;
+            padding: 6px;
+            display: none;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 4px;
+            z-index: 5;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        .key-popover.open .key-popover-menu {
+            display: grid;
+        }
+
+        .key-popover-menu button {
+            padding: 6px 4px;
+            font-size: inherit;
+            font-weight: 600;
+        }
+
+        .blank-key {
+            color: transparent;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .blank-key:hover {
+            background: var(--key-bg);
+            transform: none;
+        }
+
         .wide {
             grid-column: span 2;
         }
@@ -540,10 +591,6 @@
         @media (max-width: 600px) {
             .result-display {
                 font-size: 30px;
-            }
-
-            .calculator {
-                max-height: 100%;
             }
 
             button {
@@ -681,33 +728,43 @@
 
         <div class="buttons">
             <!-- Reihe 1 -->
-            <button class="top-key" onclick="appendFunction('sqrt(')">√</button>
             <button class="top-key" onclick="appendOperator('√')">x√y</button>
-            <button class="top-key" onclick="appendNumber('π')">π</button>
-            <button class="top-key" onclick="appendNumber('e')">e</button>
+            <div class="key-popover" id="constKey">
+                <button class="top-key" type="button" onclick="toggleKeyPopover('constPopover', this)"
+                    aria-expanded="false" aria-controls="constPopover">const</button>
+                <div class="key-popover-menu" id="constPopover" role="menu">
+                    <button type="button" onclick="appendNumber('π'); closeKeyPopovers()">π</button>
+                    <button type="button" onclick="appendNumber('e'); closeKeyPopovers()">e</button>
+                </div>
+            </div>
+            <div class="key-popover" id="triKey">
+                <button class="top-key" type="button" onclick="toggleKeyPopover('triPopover', this)"
+                    aria-expanded="false" aria-controls="triPopover">tri</button>
+                <div class="key-popover-menu" id="triPopover" role="menu">
+                    <button type="button" onclick="appendFunction('sin('); closeKeyPopovers()">sin</button>
+                    <button type="button" onclick="appendFunction('cos('); closeKeyPopovers()">cos</button>
+                    <button type="button" onclick="appendFunction('tan('); closeKeyPopovers()">tan</button>
+                </div>
+            </div>
+            <button class="clear" onclick="clearAll()">C</button>
 
             <!-- Reihe 2 -->
-            <button class="top-key" onclick="appendFunction('sin(')">sin</button>
-            <button class="top-key" onclick="appendFunction('cos(')">cos</button>
-            <button class="top-key" onclick="appendFunction('tan(')">tan</button>
-            <button class="top-key" onclick="appendFunction('ln(')">ln</button>
-
-            <!-- Reihe 3 -->
-            <button class="top-key" onclick="appendOperator('e^')">e^x</button>
             <button class="top-key" onclick="factorial()">n!</button>
             <button class="top-key" onclick="appendOperator('^')">^</button>
-            <button class="top-key" onclick="appendFunction('log_(')">log</button>
-
-            <!-- Reihe 4 -->
-            <button class="top-key" onclick="appendNumber('(')">(</button>
-            <button class="top-key" onclick="appendNumber(')')">)</button>
-            <button class="top-key" onclick="appendNumber('x')">x</button>
-            <button class="top-key" onclick="appendOperator('=')">=</button>
-
-            <!-- Reihe 5 -->
-            <button class="clear" onclick="clearAll()">C</button>
-            <button class="clear" onclick="clearEntry()">CE</button>
+            <button class="top-key" type="button" onclick="appendAutoParen()">()</button>
             <button class="clear" onclick="backspace()">⌫</button>
+
+            <!-- Reihe 3 -->
+            <button class="top-key" onclick="appendOperator('=')">=</button>
+            <button class="top-key" onclick="appendNumber('x')">x</button>
+            <div class="key-popover" id="logKey">
+                <button class="top-key" type="button" onclick="toggleKeyPopover('logPopover', this)"
+                    aria-expanded="false" aria-controls="logPopover">log</button>
+                <div class="key-popover-menu" id="logPopover" role="menu">
+                    <button type="button" onclick="appendLogTemplate(); closeKeyPopovers()">log_()()</button>
+                    <button type="button" onclick="appendFunction('ln('); closeKeyPopovers()">ln</button>
+                </div>
+            </div>
             <button class="operator" onclick="appendOperator('/')">÷</button>
 
             <!-- Reihe 6 -->
@@ -889,6 +946,88 @@
             }
             updateDisplay();
         }
+
+        function appendLogTemplate() {
+            if (activeInputField && panelInputMode) {
+                const currentValue = activeInputField.value || '';
+                const start = activeInputField.selectionStart ?? currentValue.length;
+                const end = activeInputField.selectionEnd ?? start;
+                const template = 'log_()()';
+                activeInputField.value =
+                    currentValue.slice(0, start) + template + currentValue.slice(end);
+                setInputCursor(activeInputField, start + 5);
+                return;
+            }
+
+            appendFunction('log_()()');
+        }
+
+        function appendAutoParen() {
+            if (activeInputField && panelInputMode) {
+                const currentValue = activeInputField.value || '';
+                const cursor = activeInputField.selectionStart ?? currentValue.length;
+                const before = currentValue.slice(0, cursor);
+                const paren = shouldInsertClosingParen(before) ? ')' : '(';
+                insertAtCursor(activeInputField, paren);
+                return;
+            }
+
+            const paren = shouldInsertClosingParen(currentInput) ? ')' : '(';
+            if (shouldResetInput || currentInput === '0') {
+                currentInput = paren;
+                shouldResetInput = false;
+            } else {
+                currentInput += paren;
+            }
+            updateDisplay();
+        }
+
+        function shouldInsertClosingParen(value) {
+            const openCount = (value.match(/\(/g) || []).length;
+            const closeCount = (value.match(/\)/g) || []).length;
+            if (openCount <= closeCount) {
+                return false;
+            }
+            const trimmed = value.replace(/\s+/g, '');
+            if (!trimmed) {
+                return false;
+            }
+            const last = trimmed[trimmed.length - 1];
+            return !/[+\-*/^=,(]/.test(last);
+        }
+
+        function closeKeyPopovers() {
+            const popovers = document.querySelectorAll('.key-popover');
+            popovers.forEach((popover) => {
+                popover.classList.remove('open');
+                const trigger = popover.querySelector('button[aria-expanded]');
+                if (trigger) {
+                    trigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        function toggleKeyPopover(popoverId, trigger) {
+            const popover = document.getElementById(popoverId);
+            if (!popover) return;
+            const container = popover.closest('.key-popover');
+            if (!container) return;
+
+            const isOpen = container.classList.contains('open');
+            closeKeyPopovers();
+            if (!isOpen) {
+                container.classList.add('open');
+                if (trigger) {
+                    trigger.setAttribute('aria-expanded', 'true');
+                }
+            }
+        }
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('.key-popover')) {
+                closeKeyPopovers();
+            }
+        });
 
         function clearAll() {
             if (activePanel === 'cal') {
@@ -1369,6 +1508,12 @@
                 activeInputField = null;
                 panelInputMode = false;
             }
+
+            // Höhe an Parent melden, damit das iframe angepasst wird
+            try {
+                postCalculatorSize();
+                setTimeout(postCalculatorSize, 320);
+            } catch (e) { }
         }
 
         // LGS Funktionen
