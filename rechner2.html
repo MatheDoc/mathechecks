@@ -13,62 +13,46 @@
         }
 
         :root {
-            /* Fonts & Sizing */
             --ui-font-size: 15px;
-
-            /* Colors - Calculator Structure */
             --calc-bg: #f8fafc;
             --calc-border: #d3dae4;
-
-            /* Colors - Display */
+            --calc-shadow: none;
             --display-start: #0b3e5c;
             --display-end: #165a7a;
-
-            /* Colors - Panels */
             --panel-bg: #e7edf4;
             --panel-border: #c3cedb;
-            --panel-active-bg: #cdd6e2;
-
-            /* Colors - Keypad */
             --keypad-bg: #cdd6e2;
             --key-bg: #f4f7fb;
             --key-border: #b8c3d3;
-            --key-hover: #e7eef7;
-
-            /* Colors - Text */
             --key-text: #111827;
+            --key-hover: #e7eef7;
             --panel-text: #1f2937;
             --panel-label: #374151;
-
-            /* Colors - Inputs */
             --input-bg: #ffffff;
             --input-border: #9fb0c4;
             --input-border-focus: #2f6f91;
             --input-text: #0b0f16;
-
-            /* Colors - Buttons */
             --operator-bg: #14537a;
             --operator-hover: #0f3f5d;
+            --panel-active-bg: var(--keypad-bg);
             --danger-bg: #e35656;
             --danger-hover: #cc4242;
             --success-bg: #2f9d6a;
             --success-hover: #278459;
-
-            /* Transitions */
-            --transition-fast: 150ms;
-            --transition-panel: 280ms;
         }
 
         html,
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: transparent;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Calculator Container */
         .calculator {
             background: var(--calc-bg);
             border-radius: 20px;
+            box-shadow: var(--calc-shadow);
             max-width: 400px;
             width: 100%;
             overflow: hidden;
@@ -77,10 +61,9 @@
             font-size: var(--ui-font-size);
         }
 
-        /* Scrollbar Styling */
         .calculator {
             scrollbar-width: auto;
-            scrollbar-color: var(--key-border) var(--panel-bg);
+            scrollbar-color: #b8c3d3 #e7edf4;
         }
 
         .calculator::-webkit-scrollbar {
@@ -88,15 +71,14 @@
         }
 
         .calculator::-webkit-scrollbar-thumb {
-            background: var(--key-border);
+            background: #b8c3d3;
             border-radius: 10px;
         }
 
         .calculator::-webkit-scrollbar-track {
-            background: var(--panel-bg);
+            background: #e7edf4;
         }
 
-        /* Display Area */
         .display {
             background: linear-gradient(135deg, var(--display-start) 0%, var(--display-end) 100%);
             padding: 16px 18px;
@@ -118,14 +100,17 @@
             cursor: grabbing;
         }
 
-        .result-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .input-display {
+            font-size: var(--ui-font-size);
+            min-height: 22px;
+            margin-bottom: 6px;
+            opacity: 0.8;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 500;
         }
 
         .result-display {
-            flex: 1;
             font-size: 24px;
             font-weight: 300;
             min-height: 36px;
@@ -143,9 +128,7 @@
         }
 
         @keyframes resultPulse {
-
-            0%,
-            100% {
+            0% {
                 transform: scale(1);
                 text-shadow: 0 0 0 rgba(255, 255, 255, 0);
             }
@@ -154,9 +137,23 @@
                 transform: scale(1.04);
                 text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
             }
+
+            100% {
+                transform: scale(1);
+                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+            }
         }
 
-        /* Copy Button */
+        .result-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-row .result-display {
+            flex: 1;
+        }
+
         .copy-result {
             background: transparent;
             border: none;
@@ -170,7 +167,6 @@
             cursor: pointer;
             padding: 0;
             position: relative;
-            transition: color var(--transition-fast);
         }
 
         .copy-result svg {
@@ -180,6 +176,7 @@
         }
 
         .copy-result:hover {
+            background: transparent;
             color: #ffffff;
         }
 
@@ -205,15 +202,12 @@
             transform: scale(1);
         }
 
-        /* Special Functions Panel Container */
         .special-functions {
             background: var(--panel-bg);
             padding: 6px;
             border-bottom: 1px solid var(--panel-border);
-            position: relative;
         }
 
-        /* Function Toggle Buttons */
         .function-buttons {
             display: flex;
             gap: 4px;
@@ -227,7 +221,7 @@
             border: 1px solid var(--key-border);
             border-radius: 8px;
             cursor: pointer;
-            transition: all var(--transition-fast);
+            transition: all 0.2s;
             font-weight: 600;
             background: var(--key-bg);
             color: var(--key-text);
@@ -240,31 +234,17 @@
 
         .function-buttons button.active {
             background: var(--panel-active-bg);
-        }
-
-        /* Panel Container - OPTIMIZED FOR SMOOTH TRANSITIONS */
-        .panels-container {
-            position: relative;
-            overflow: hidden;
+            color: var(--key-text);
         }
 
         .expandable {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            opacity: 0;
-            transform: translateY(-10px);
-            pointer-events: none;
-            transition: opacity var(--transition-panel) ease,
-                transform var(--transition-panel) ease;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
         }
 
         .expandable.open {
-            position: relative;
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
+            max-height: 1000px;
         }
 
         .panel {
@@ -282,7 +262,6 @@
             font-weight: 500;
         }
 
-        /* Input Styling */
         .input-group {
             margin-bottom: 2px;
         }
@@ -295,8 +274,9 @@
             font-size: 14px;
         }
 
-        .input-group input,
-        .input-row input {
+        .input-group input {
+            width: 100%;
+            padding: 5px 7px;
             border: 1px solid var(--input-border);
             border-radius: 4px;
             font-size: inherit;
@@ -305,39 +285,28 @@
             background: var(--input-bg);
             color: var(--input-text);
             caret-color: var(--input-text);
-            transition: border-color var(--transition-fast), background-color var(--transition-fast);
         }
 
-        .input-group input {
-            width: 100%;
-            padding: 5px 7px;
-        }
-
-        .input-row input {
-            width: 40px;
-            padding: 3px 2px;
-            text-align: center;
-        }
-
-        /* Remove number input spinners */
-        input[type=number] {
+        .input-group input[type=number],
+        .input-row input[type=number] {
             appearance: textfield;
         }
 
-        input[type=number]::-webkit-outer-spin-button,
-        input[type=number]::-webkit-inner-spin-button {
+        .input-group input[type=number]::-webkit-outer-spin-button,
+        .input-group input[type=number]::-webkit-inner-spin-button,
+        .input-row input[type=number]::-webkit-outer-spin-button,
+        .input-row input[type=number]::-webkit-inner-spin-button {
             -webkit-appearance: none;
             margin: 0;
         }
 
-        input:focus {
+        .input-group input:focus {
             outline: 1px solid var(--input-border-focus);
             outline-offset: 0;
             border-color: var(--input-border-focus);
             background: #eef6fb;
         }
 
-        /* Input Row Layout */
         .input-row {
             display: flex;
             gap: 2px;
@@ -346,12 +315,32 @@
             flex-wrap: wrap;
         }
 
+        .input-row input {
+            width: 40px;
+            padding: 3px 2px;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            font-size: inherit;
+            text-align: center;
+            font-family: inherit;
+            font-weight: 600;
+            background: var(--input-bg);
+            color: var(--input-text);
+            caret-color: var(--input-text);
+        }
+
+        .input-row input:focus {
+            outline: 1px solid var(--input-border-focus);
+            outline-offset: 0;
+            border-color: var(--input-border-focus);
+            background: #eef6fb;
+        }
+
         .panel label {
             color: var(--panel-label);
             font-weight: 500;
         }
 
-        /* Binomial Panel Specific */
         .binom-row {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -376,6 +365,20 @@
             min-width: 0;
             padding: 3px 2px;
             font-size: 14px;
+            font-family: inherit;
+            font-weight: 600;
+            border: 1px solid var(--input-border);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--input-text);
+            caret-color: var(--input-text);
+        }
+
+        .binom-input input:focus {
+            outline: 1px solid var(--input-border-focus);
+            outline-offset: 0;
+            border-color: var(--input-border-focus);
+            background: #eef6fb;
         }
 
         .binom-stepper {
@@ -393,15 +396,12 @@
             border: 1px solid var(--key-border);
             background: var(--key-bg);
             color: var(--key-text);
-            cursor: pointer;
-            transition: background-color var(--transition-fast);
         }
 
         .binom-step:hover {
             background: var(--key-hover);
         }
 
-        /* LGS Panel Specific */
         .lgs-operator,
         .lgs-var-label,
         .lgs-equals {
@@ -429,7 +429,6 @@
             cursor: pointer;
             background: #48bb78;
             color: white;
-            transition: background-color var(--transition-fast);
         }
 
         .lgs-controls button:hover {
@@ -444,7 +443,22 @@
             background: #e53e3e;
         }
 
-        /* Keypad */
+        .action-button {
+            width: 100%;
+            padding: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            background: #667eea;
+            color: white;
+            margin-top: 3px;
+        }
+
+        .action-button:hover {
+            background: #5568d3;
+        }
+
         .buttons {
             padding: 8px;
             display: grid;
@@ -459,7 +473,7 @@
             border: 1px solid var(--key-border);
             border-radius: 8px;
             cursor: pointer;
-            transition: all var(--transition-fast);
+            transition: all 0.2s;
             font-weight: 500;
             background: var(--key-bg);
             color: var(--key-text);
@@ -474,7 +488,6 @@
             transform: translateY(0);
         }
 
-        /* Button Types */
         .operator {
             background: var(--operator-bg);
             color: white;
@@ -493,6 +506,20 @@
             background: var(--success-hover);
         }
 
+        .top-key {
+            background: var(--key-bg);
+            color: var(--key-text);
+        }
+
+        .top-key:hover {
+            background: var(--key-hover);
+        }
+
+        .spacer {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         .clear {
             background: var(--danger-bg);
             color: white;
@@ -502,7 +529,15 @@
             background: var(--danger-hover);
         }
 
-        /* Key Popover */
+        .special {
+            background: var(--key-bg);
+            color: var(--key-text);
+        }
+
+        .special:hover {
+            background: var(--key-hover);
+        }
+
         .key-popover {
             position: relative;
             display: flex;
@@ -534,10 +569,25 @@
 
         .key-popover-menu button {
             padding: 6px 4px;
+            font-size: inherit;
             font-weight: 600;
         }
 
-        /* Responsive Design */
+        .blank-key {
+            color: transparent;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        .blank-key:hover {
+            background: var(--key-bg);
+            transform: none;
+        }
+
+        .wide {
+            grid-column: span 2;
+        }
+
         @media (max-width: 600px) {
             .result-display {
                 font-size: 30px;
@@ -545,6 +595,11 @@
 
             button {
                 padding: 7px;
+            }
+
+            .buttons {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2px;
             }
 
             .binom-step {
@@ -579,95 +634,93 @@
                 <button onclick="togglePanel('equation')" id="equationBtn">SOL</button>
             </div>
 
-            <div class="panels-container">
-                <!-- CAL Panel -->
-                <div id="calPanel" class="expandable">
-                    <div class="panel">
-                        <h4></h4>
-                        <div class="input-group">
-                            <input type="text" id="calInput" inputmode="decimal" autocomplete="off">
+            <!-- CAL Panel -->
+            <div id="calPanel" class="expandable">
+                <div class="panel">
+                    <h4></h4>
+                    <div class="input-group">
+                        <input type="text" id="calInput" inputmode="decimal" autocomplete="off" autofocus>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LGS Panel -->
+            <div id="lgsPanel" class="expandable">
+                <div class="panel">
+                    <h4></h4>
+                    <div class="lgs-controls">
+                        <button onclick="addLGSVariable()">+ Var.</button>
+                        <button class="remove" onclick="removeLGSVariable()">- Var.</button>
+                        <button onclick="addLGSEquation()">+ Gl.</button>
+                        <button class="remove" onclick="removeLGSEquation()">- Gl.</button>
+                    </div>
+                    <div id="lgsMatrix"></div>
+                </div>
+            </div>
+
+            <!-- Binomial Panel -->
+            <div id="binomPanel" class="expandable">
+                <div class="panel">
+                    <h4>P(a ≤ X ≤ b):</h4>
+                    <div class="binom-row">
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomA">a =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomA" data-step="1"
+                                        aria-label="a erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomA" data-step="-1"
+                                        aria-label="a verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomB">b =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomB" data-step="1"
+                                        aria-label="b erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomB" data-step="-1"
+                                        aria-label="b verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomN">n =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomN" data-step="1"
+                                        aria-label="n erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomN" data-step="-1"
+                                        aria-label="n verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="binom-field">
+                            <label class="panel-label" for="binomP">p =</label>
+                            <div class="binom-input">
+                                <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
+                                <div class="binom-stepper" aria-hidden="true">
+                                    <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
+                                        aria-label="p erhöhen" tabindex="-1">▲</button>
+                                    <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
+                                        aria-label="p verringern" tabindex="-1">▼</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- LGS Panel -->
-                <div id="lgsPanel" class="expandable">
-                    <div class="panel">
-                        <h4></h4>
-                        <div class="lgs-controls">
-                            <button onclick="addLGSVariable()">+ Var.</button>
-                            <button class="remove" onclick="removeLGSVariable()">- Var.</button>
-                            <button onclick="addLGSEquation()">+ Gl.</button>
-                            <button class="remove" onclick="removeLGSEquation()">- Gl.</button>
-                        </div>
-                        <div id="lgsMatrix"></div>
-                    </div>
-                </div>
-
-                <!-- Binomial Panel -->
-                <div id="binomPanel" class="expandable">
-                    <div class="panel">
-                        <h4>P(a ≤ X ≤ b):</h4>
-                        <div class="binom-row">
-                            <div class="binom-field">
-                                <label class="panel-label" for="binomA">a =</label>
-                                <div class="binom-input">
-                                    <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
-                                    <div class="binom-stepper" aria-hidden="true">
-                                        <button type="button" class="binom-step" data-target="binomA" data-step="1"
-                                            aria-label="a erhöhen" tabindex="-1">▲</button>
-                                        <button type="button" class="binom-step" data-target="binomA" data-step="-1"
-                                            aria-label="a verringern" tabindex="-1">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="binom-field">
-                                <label class="panel-label" for="binomB">b =</label>
-                                <div class="binom-input">
-                                    <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
-                                    <div class="binom-stepper" aria-hidden="true">
-                                        <button type="button" class="binom-step" data-target="binomB" data-step="1"
-                                            aria-label="b erhöhen" tabindex="-1">▲</button>
-                                        <button type="button" class="binom-step" data-target="binomB" data-step="-1"
-                                            aria-label="b verringern" tabindex="-1">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="binom-field">
-                                <label class="panel-label" for="binomN">n =</label>
-                                <div class="binom-input">
-                                    <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
-                                    <div class="binom-stepper" aria-hidden="true">
-                                        <button type="button" class="binom-step" data-target="binomN" data-step="1"
-                                            aria-label="n erhöhen" tabindex="-1">▲</button>
-                                        <button type="button" class="binom-step" data-target="binomN" data-step="-1"
-                                            aria-label="n verringern" tabindex="-1">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="binom-field">
-                                <label class="panel-label" for="binomP">p =</label>
-                                <div class="binom-input">
-                                    <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
-                                    <div class="binom-stepper" aria-hidden="true">
-                                        <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
-                                            aria-label="p erhöhen" tabindex="-1">▲</button>
-                                        <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
-                                            aria-label="p verringern" tabindex="-1">▼</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gleichung Panel -->
-                <div id="equationPanel" class="expandable">
-                    <div class="panel">
-                        <h4></h4>
-                        <div class="input-group">
-                            <input type="text" id="equationInput">
-                        </div>
+            <!-- Gleichung Panel -->
+            <div id="equationPanel" class="expandable">
+                <div class="panel">
+                    <h4></h4>
+                    <div class="input-group">
+                        <input type="text" id="equationInput">
                     </div>
                 </div>
             </div>
@@ -714,22 +767,25 @@
             </div>
             <button class="operator" onclick="appendOperator('/')">÷</button>
 
-            <!-- Reihe 4-7 -->
+            <!-- Reihe 6 -->
             <button onclick="appendNumber('7')">7</button>
             <button onclick="appendNumber('8')">8</button>
             <button onclick="appendNumber('9')">9</button>
             <button class="operator" onclick="appendOperator('*')">×</button>
 
+            <!-- Reihe 7 -->
             <button onclick="appendNumber('4')">4</button>
             <button onclick="appendNumber('5')">5</button>
             <button onclick="appendNumber('6')">6</button>
             <button class="operator" onclick="appendOperator('-')">−</button>
 
+            <!-- Reihe 8 -->
             <button onclick="appendNumber('1')">1</button>
             <button onclick="appendNumber('2')">2</button>
             <button onclick="appendNumber('3')">3</button>
             <button class="operator" onclick="appendOperator('+')">+</button>
 
+            <!-- Reihe 9 -->
             <button onclick="toggleSign()">+/-</button>
             <button onclick="appendNumber('0')">0</button>
             <button onclick="appendNumber('.')">.</button>
@@ -748,20 +804,19 @@
         let panelInputMode = false;
         let shouldAnimateResult = false;
         let copyFeedbackTimer = null;
-
         const isTouchDevice = (() => {
             if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
             return navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
         })();
-
-        const isFinePointer = window.matchMedia ? window.matchMedia('(pointer: fine)').matches : false;
+        const isFinePointer = window.matchMedia
+            ? window.matchMedia('(pointer: fine)').matches
+            : false;
         const isProbablyMobile = (() => {
             if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
                 return navigator.userAgentData.mobile;
             }
             return /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
         })();
-
         const shouldLockTouchInputs = isTouchDevice && isProbablyMobile && !isFinePointer;
 
         function updateDisplay() {
@@ -838,11 +893,22 @@
             });
         }
 
+        function formatDisplay(value) {
+            return value
+                .replace(/\*/g, '×')
+                .replace(/\//g, '÷')
+                .replace(/sqrt\(/g, '√(')
+                .replace(/exp\(/g, 'e^(')
+                .replace(/Math\.PI/g, 'π')
+                .replace(/Math\.E/g, 'e');
+        }
+
         function appendNumber(num) {
             if (appendToActiveInput(String(num))) {
                 return;
             }
 
+            // Ansonsten normale Taschenrechner-Funktion
             if (shouldResetInput || currentInput === '0') {
                 currentInput = String(num);
                 shouldResetInput = false;
@@ -857,6 +923,7 @@
                 return;
             }
 
+            // Ansonsten normale Taschenrechner-Funktion
             shouldResetInput = false;
             if (currentInput.slice(-1).match(/[\+\-\*\/\=]/)) {
                 currentInput = currentInput.slice(0, -1) + op;
@@ -983,6 +1050,25 @@
             updateDisplay();
         }
 
+        function clearEntry() {
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    calInput.value = '';
+                    setInputCursor(calInput, 0);
+                }
+            }
+            if (activePanel === 'equation') {
+                const equationInput = document.getElementById('equationInput');
+                if (equationInput) {
+                    equationInput.value = '';
+                    setInputCursor(equationInput, 0);
+                }
+            }
+            currentInput = '0';
+            updateDisplay();
+        }
+
         function backspace() {
             if (activeInputField) {
                 const value = activeInputField.value || '';
@@ -998,6 +1084,7 @@
                 return;
             }
 
+            // Ansonsten normale Taschenrechner-Funktion
             if (currentInput.length > 1) {
                 currentInput = currentInput.slice(0, -1);
             } else {
@@ -1343,6 +1430,29 @@
             return value.replace(/,/g, '.');
         }
 
+        function replacePiInInput(input) {
+            const value = input.value || '';
+            if (!value.toLowerCase().includes('pi')) return;
+
+            const start = input.selectionStart ?? value.length;
+            const end = input.selectionEnd ?? start;
+            const before = value.slice(0, start);
+            const selection = value.slice(start, end);
+            const after = value.slice(end);
+
+            const newBefore = before.replace(/pi/gi, 'π');
+            const newSelection = selection.replace(/pi/gi, 'π');
+            const newAfter = after.replace(/pi/gi, 'π');
+            const nextValue = newBefore + newSelection + newAfter;
+
+            if (nextValue !== value) {
+                input.value = nextValue;
+                const nextStart = newBefore.length;
+                const nextEnd = newBefore.length + newSelection.length;
+                input.setSelectionRange(nextStart, nextEnd);
+            }
+        }
+
         function factorial() {
             try {
                 let n = parseInt(result || currentInput);
@@ -1366,47 +1476,47 @@
             }
         }
 
-        // OPTIMIZED: Smooth panel transitions
+        // Panel Toggle
         function togglePanel(panelName) {
             const panels = ['cal', 'lgs', 'binom', 'equation'];
             const buttons = ['calBtn', 'lgsBtn', 'binomBtn', 'equationBtn'];
 
-            // If clicking the same panel, close it
-            if (activePanel === panelName) {
-                const panel = document.getElementById(panelName + 'Panel');
-                const btn = document.getElementById(panelName + 'Btn');
-                panel.classList.remove('open');
-                btn.classList.remove('active');
-                activePanel = null;
-                activeInputField = null;
-                panelInputMode = false;
-                postCalculatorSize();
-                setTimeout(postCalculatorSize, 300);
-                return;
-            }
-
-            // Update all panels and buttons simultaneously
             panels.forEach((p, idx) => {
                 const panel = document.getElementById(p + 'Panel');
                 const btn = document.getElementById(buttons[idx]);
 
                 if (p === panelName) {
-                    panel.classList.add('open');
-                    btn.classList.add('active');
+                    if (activePanel === panelName) {
+                        panel.classList.remove('open');
+                        btn.classList.remove('active');
+                        activePanel = null;
+                        activeInputField = null;
+                        panelInputMode = false;
+                    } else {
+                        panel.classList.add('open');
+                        btn.classList.add('active');
+                        activePanel = panelName;
+                        focusPanelInput(panelName);
+                    }
                 } else {
                     panel.classList.remove('open');
                     btn.classList.remove('active');
                 }
             });
 
-            activePanel = panelName;
-            focusPanelInput(panelName);
+            if (!activePanel) {
+                activeInputField = null;
+                panelInputMode = false;
+            }
 
-            postCalculatorSize();
-            setTimeout(postCalculatorSize, 300);
+            // Höhe an Parent melden, damit das iframe angepasst wird
+            try {
+                postCalculatorSize();
+                setTimeout(postCalculatorSize, 320);
+            } catch (e) { }
         }
 
-        // LGS Functions
+        // LGS Funktionen
         function initLGS() {
             lgsVariables = 2;
             lgsEquations = 2;
@@ -1429,6 +1539,7 @@
                 row.className = 'input-row';
 
                 for (let j = 0; j < lgsVariables; j++) {
+                    // + oder - Zeichen vor Variable (außer beim ersten)
                     if (j > 0) {
                         const plusMinus = document.createElement('span');
                         plusMinus.textContent = '+';
@@ -1445,6 +1556,7 @@
                     input.value = existingValues[input.id] ?? '';
                     row.appendChild(input);
 
+                    // Variablenname nach dem Input
                     const varLabel = document.createElement('span');
                     varLabel.textContent = varNames[j] || `x${j + 1}`;
                     varLabel.className = 'lgs-var-label';
@@ -1501,6 +1613,7 @@
 
         function solveLGS() {
             try {
+                // Matrix A und Vektor b erstellen
                 const A = [];
                 const b = [];
 
@@ -1514,6 +1627,7 @@
                     b[i] = parseFloat(normalizeNumberString(resultValue)) || 0;
                 }
 
+                // Gauß-Elimination mit Sonderfaellen
                 const solution = solveLinearSystem(A, b);
 
                 if (solution.status === 'inconsistent') {
@@ -1578,6 +1692,7 @@
                 r++;
             }
 
+            // Inkonsistenz pruefen
             for (let i = 0; i < rows; i++) {
                 let allZero = true;
                 for (let j = 0; j < cols; j++) {
@@ -1643,7 +1758,7 @@
             return text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
         }
 
-        // Binomial
+        // Binomialwahrscheinlichkeit
         function binomialCoefficient(n, k) {
             if (k < 0 || k > n) return 0;
             if (k === 0 || k === n) return 1;
@@ -1732,7 +1847,7 @@
             });
         }
 
-        // Equation Solver
+        // Gleichungslöser
         function solveEquation() {
             const equationInput = document.getElementById('equationInput');
             let equation = normalizeNumberString(equationInput.value || '').trim();
@@ -1851,7 +1966,7 @@
             }
         }
 
-        // Keyboard Support
+        // Tastatur-Support
         document.addEventListener('keydown', function (event) {
             const isPanelInputFocused = activeInputField && document.activeElement === activeInputField;
             if (isPanelInputFocused && event.key !== 'Enter') {
@@ -1884,35 +1999,46 @@
             }
         });
 
-        // Focus Management
-        document.addEventListener('focusin', function (event) {
-            if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
-                activeInputField = event.target;
-                panelInputMode = true;
+        // Initialisierung
+        initLGS();
+        updateDisplay();
+        applyTouchInputLock();
+        bindBinomControls();
+        const calInput = document.getElementById('calInput');
+        if (calInput) {
+            calInput.addEventListener('input', () => replacePiInInput(calInput));
+        }
+        togglePanel('cal');
+        requestAnimationFrame(() => focusPanelInput('cal'));
+        window.addEventListener('load', () => focusPanelInput('cal'));
+        window.addEventListener('focus', () => focusPanelInput(activePanel || 'cal'));
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                focusPanelInput(activePanel || 'cal');
             }
         });
 
-        document.addEventListener('click', function (event) {
-            const isDisplay = event.target.closest('.display');
-            const isPanelArea = event.target.closest('.special-functions');
-            const isKeypad = event.target.closest('.buttons');
-
-            if (activePanel === 'cal') {
-                const calInput = document.getElementById('calInput');
-                if (calInput) {
-                    activeInputField = calInput;
-                    panelInputMode = true;
+        window.addEventListener('message', (event) => {
+            if (event.origin !== window.location.origin && event.origin !== 'null') return;
+            if (event.data && event.data.type === 'calculatorFocus') {
+                if (!activePanel) {
+                    togglePanel('cal');
                     return;
                 }
+                focusPanelInput(activePanel);
             }
-
-            if (isDisplay || (!isPanelArea && !isKeypad)) {
-                activeInputField = null;
-                panelInputMode = false;
+            if (event.data && event.data.type === 'calculatorRequestSize') {
+                postCalculatorSize();
             }
         });
 
-        // Iframe Communication
+
+        function isDragAllowed(target) {
+            if (!target) return false;
+            if (!target.closest('.display')) return false;
+            return !target.closest('button, input, select, textarea, a');
+        }
+
         function postCalculatorSize() {
             const calculator = document.querySelector('.calculator');
             if (!calculator || !window.parent) return;
@@ -1923,17 +2049,10 @@
                     width: Math.ceil(rect.width),
                     height: Math.ceil(rect.height)
                 },
-                '*'
+                window.location.origin
             );
         }
 
-        function isDragAllowed(target) {
-            if (!target) return false;
-            if (!target.closest('.display')) return false;
-            return !target.closest('button, input, select, textarea, a');
-        }
-
-        // Drag Support for iframe
         (function setupCalculatorDrag() {
             const calculator = document.querySelector('.calculator');
             if (!calculator || !window.parent) return;
@@ -1958,7 +2077,7 @@
                         screenX: event.screenX,
                         screenY: event.screenY
                     },
-                    '*'
+                    window.location.origin
                 );
             });
 
@@ -1972,7 +2091,7 @@
                         screenX: event.screenX,
                         screenY: event.screenY
                     },
-                    '*'
+                    window.location.origin
                 );
             });
 
@@ -1983,7 +2102,7 @@
                 if (calculator.releasePointerCapture) {
                     calculator.releasePointerCapture(event.pointerId);
                 }
-                window.parent.postMessage({ type: 'calculatorDragEnd' }, '*');
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
             });
 
             calculator.addEventListener('pointercancel', (event) => {
@@ -1993,65 +2112,45 @@
                 if (calculator.releasePointerCapture) {
                     calculator.releasePointerCapture(event.pointerId);
                 }
-                window.parent.postMessage({ type: 'calculatorDragEnd' }, '*');
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
             });
         })();
 
-        window.addEventListener('message', (event) => {
-            if (event.data && event.data.type === 'calculatorFocus') {
-                if (!activePanel) {
-                    togglePanel('cal');
+        // Event-Listener für alle Input-Felder in den Panels
+        document.addEventListener('focusin', function (event) {
+            if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
+                activeInputField = event.target;
+                panelInputMode = true;
+            }
+        });
+
+        // Nur Fokus verlieren wenn außerhalb der Panels geklickt wird
+        document.addEventListener('click', function (event) {
+            const isDisplay = event.target.closest('.display');
+            const isPanelArea = event.target.closest('.special-functions');
+            const isKeypad = event.target.closest('.buttons');
+
+            if (activePanel === 'cal') {
+                const calInput = document.getElementById('calInput');
+                if (calInput) {
+                    activeInputField = calInput;
+                    panelInputMode = true;
                     return;
                 }
-                focusPanelInput(activePanel);
             }
-            if (event.data && event.data.type === 'calculatorRequestSize') {
-                postCalculatorSize();
+
+            if (isDisplay || (!isPanelArea && !isKeypad)) {
+                activeInputField = null;
+                panelInputMode = false;
             }
         });
 
-        // Initialization
-        initLGS();
-        updateDisplay();
-        applyTouchInputLock();
-        bindBinomControls();
-
-        const calInput = document.getElementById('calInput');
-        if (calInput) {
-            calInput.addEventListener('input', () => {
-                const value = calInput.value || '';
-                if (value.toLowerCase().includes('pi')) {
-                    const start = calInput.selectionStart ?? value.length;
-                    const end = calInput.selectionEnd ?? start;
-                    const before = value.slice(0, start);
-                    const selection = value.slice(start, end);
-                    const after = value.slice(end);
-                    const newBefore = before.replace(/pi/gi, 'π');
-                    const newSelection = selection.replace(/pi/gi, 'π');
-                    const newAfter = after.replace(/pi/gi, 'π');
-                    const nextValue = newBefore + newSelection + newAfter;
-                    if (nextValue !== value) {
-                        calInput.value = nextValue;
-                        const nextStart = newBefore.length;
-                        const nextEnd = newBefore.length + newSelection.length;
-                        calInput.setSelectionRange(nextStart, nextEnd);
-                    }
-                }
-            });
-        }
-
-        togglePanel('cal');
-        requestAnimationFrame(() => focusPanelInput('cal'));
         window.addEventListener('load', () => {
-            focusPanelInput('cal');
             postCalculatorSize();
         });
-        window.addEventListener('resize', () => postCalculatorSize());
-        window.addEventListener('focus', () => focusPanelInput(activePanel || 'cal'));
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                focusPanelInput(activePanel || 'cal');
-            }
+
+        window.addEventListener('resize', () => {
+            postCalculatorSize();
         });
     </script>
 </body>
