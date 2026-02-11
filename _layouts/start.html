@@ -14,21 +14,13 @@
   </header>
   <main style="margin-top: -30px">
     {{ content }}
-    <h2>Anki-Karten</h2>
-    Anki ist ein digitales Karteikartensystem, das auf dem Prinzip der spaced
-    repetition (verteilte Wiederholung) basiert. Es hilft dabei, mathematische
-    Inhalte effizient und langfristig zu lernen. Jede Karte enthält eine
-    gezielte Frage (eine Teilaufgabe eines Checks) auf der Vorderseite und die
-    passende Antwort auf der Rückseite. Durch regelmäßiges Wiederholen
-    steigert sich der Lernerfolg deutlich. Anki ist kostenlos und werbefrei
-    verfügbar für Windows, macOS, Android und iOS (nicht kostenlos als App,
-    aber kostenlos als Webversion). Die Checks (gegliedert in Teilfragen)
-    können als Anki-Paket heruntergeladen und anschließend in Anki importiert
-    werden.
+    <h2>Übungen als Export</h2>
 
-    <a href="https://apps.ankiweb.net/" class="link-button">Anki Download-Seite</a>
+    <a href="{{ '/xml/' | append: page.gebiet  | append: '/' | append: page.lernbereich |  append: '.zip' | relative_url }}"
+      download class="link-button">Moodle-XML-Format</a>(ausgenommen statische Übungen und Multiple-Choice-Übungen mit
+    LaTeX-Formeln)
     <a href="{{ '/anki/' | append: page.gebiet  | append: '/' | append: page.lernbereich | append: '.apkg' | relative_url }}"
-      download class="link-button">Anki-Paket: {{ page.title }}</a>
+      download class="link-button">Anki-Paket</a>
   </main>
 
   {% include footer.html %} {% include firebase-auth.html %}
