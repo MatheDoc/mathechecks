@@ -2107,7 +2107,7 @@
             ['lgsPopup', 'binPopup'].forEach(popupId => {
                 const popup = document.getElementById(popupId);
                 const dragHandle = document.getElementById(popupId.replace('Popup', 'PopupDrag'));
-                
+
                 let dragState = null;
 
                 dragHandle.addEventListener('pointerdown', (e) => {
@@ -2118,7 +2118,7 @@
 
                     e.preventDefault();
                     e.stopPropagation();
-                    
+
                     dragState = {
                         startX: e.clientX,
                         startY: e.clientY,
@@ -2127,17 +2127,17 @@
                     };
 
                     dragHandle.style.cursor = 'grabbing';
-                    
+
                     if (dragHandle.setPointerCapture) {
                         dragHandle.setPointerCapture(e.pointerId);
                     }
                 });
-                
+
                 popup.addEventListener('pointerdown', (e) => {
                     // Bringe Popup nach vorne wenn Content-Bereich geklickt wird
                     bringToFront(popup);
                 });
-                
+
                 dragHandle.addEventListener('pointermove', (e) => {
                     if (!dragState) return;
 
@@ -2150,7 +2150,7 @@
 
                 dragHandle.addEventListener('pointerup', (e) => {
                     if (!dragState) return;
-                    
+
                     if (dragHandle.releasePointerCapture) {
                         try {
                             dragHandle.releasePointerCapture(e.pointerId);
@@ -2158,14 +2158,14 @@
                             // Ignore errors if pointer was already released
                         }
                     }
-                    
+
                     dragHandle.style.cursor = 'move';
                     dragState = null;
                 });
-                
+
                 dragHandle.addEventListener('pointercancel', (e) => {
                     if (!dragState) return;
-                    
+
                     if (dragHandle.releasePointerCapture) {
                         try {
                             dragHandle.releasePointerCapture(e.pointerId);
@@ -2173,7 +2173,7 @@
                             // Ignore errors if pointer was already released
                         }
                     }
-                    
+
                     dragHandle.style.cursor = 'move';
                     dragState = null;
                 });
@@ -2217,7 +2217,7 @@
             // Bringe Calculator nach vorne wenn irgendwo drauf geklickt wird
             calculator.addEventListener('pointerdown', (event) => {
                 bringToFront(calculator);
-                
+
                 if (!isDragAllowed(event.target)) {
                     return;
                 }
