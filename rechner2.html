@@ -16,16 +16,16 @@
             --ui-font-size: 15px;
             --calc-bg: #f8fafc;
             --calc-border: #d3dae4;
-            --calc-shadow: none;
             --display-start: #0b3e5c;
             --display-end: #165a7a;
             --panel-bg: #e7edf4;
             --panel-border: #c3cedb;
+            --panel-active-bg: #cdd6e2;
             --keypad-bg: #cdd6e2;
             --key-bg: #f4f7fb;
             --key-border: #b8c3d3;
-            --key-text: #111827;
             --key-hover: #e7eef7;
+            --key-text: #111827;
             --panel-text: #1f2937;
             --panel-label: #374151;
             --input-bg: #ffffff;
@@ -34,36 +34,31 @@
             --input-text: #0b0f16;
             --operator-bg: #14537a;
             --operator-hover: #0f3f5d;
-            --panel-active-bg: var(--keypad-bg);
             --danger-bg: #e35656;
             --danger-hover: #cc4242;
             --success-bg: #2f9d6a;
             --success-hover: #278459;
+            --transition-fast: 150ms;
+            --transition-panel: 280ms;
         }
 
         html,
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: transparent;
-            margin: 0;
-            padding: 0;
         }
 
         .calculator {
             background: var(--calc-bg);
             border-radius: 20px;
-            box-shadow: var(--calc-shadow);
             max-width: 400px;
             width: 100%;
             overflow: hidden;
             touch-action: pan-y;
             border: 1px solid var(--calc-border);
             font-size: var(--ui-font-size);
-        }
-
-        .calculator {
             scrollbar-width: auto;
-            scrollbar-color: #b8c3d3 #e7edf4;
+            scrollbar-color: var(--key-border) var(--panel-bg);
         }
 
         .calculator::-webkit-scrollbar {
@@ -71,17 +66,17 @@
         }
 
         .calculator::-webkit-scrollbar-thumb {
-            background: #b8c3d3;
+            background: var(--key-border);
             border-radius: 10px;
         }
 
         .calculator::-webkit-scrollbar-track {
-            background: #e7edf4;
+            background: var(--panel-bg);
         }
 
         .display {
             background: linear-gradient(135deg, var(--display-start) 0%, var(--display-end) 100%);
-            padding: 16px 18px;
+            padding: 16px 18px 12px 18px;
             color: white;
             position: relative;
             touch-action: none;
@@ -100,23 +95,20 @@
             cursor: grabbing;
         }
 
-        .input-display {
-            font-size: var(--ui-font-size);
-            min-height: 22px;
-            margin-bottom: 6px;
-            opacity: 0.8;
-            word-wrap: break-word;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 500;
+        .result-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .result-display {
+            flex: 1;
             font-size: 24px;
             font-weight: 300;
             min-height: 36px;
             text-align: right;
             word-wrap: break-word;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', 'Segoe UI Symbol', 'Courier New', Courier, monospace;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -128,7 +120,9 @@
         }
 
         @keyframes resultPulse {
-            0% {
+
+            0%,
+            100% {
                 transform: scale(1);
                 text-shadow: 0 0 0 rgba(255, 255, 255, 0);
             }
@@ -137,21 +131,6 @@
                 transform: scale(1.04);
                 text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
             }
-
-            100% {
-                transform: scale(1);
-                text-shadow: 0 0 0 rgba(255, 255, 255, 0);
-            }
-        }
-
-        .result-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .result-row .result-display {
-            flex: 1;
         }
 
         .copy-result {
@@ -167,6 +146,7 @@
             cursor: pointer;
             padding: 0;
             position: relative;
+            transition: color var(--transition-fast);
         }
 
         .copy-result svg {
@@ -176,7 +156,6 @@
         }
 
         .copy-result:hover {
-            background: transparent;
             color: #ffffff;
         }
 
@@ -202,156 +181,184 @@
             transform: scale(1);
         }
 
-        .special-functions {
-            background: var(--panel-bg);
+        .main-input {
+            background: white;
             padding: 6px;
             border-bottom: 1px solid var(--panel-border);
         }
 
-        .function-buttons {
-            display: flex;
-            gap: 4px;
-            flex-wrap: wrap;
-        }
-
-        .function-buttons button {
-            flex: 1;
-            min-width: 70px;
-            padding: 6px;
-            border: 1px solid var(--key-border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 600;
-            background: var(--key-bg);
-            color: var(--key-text);
-        }
-
-        .function-buttons button:hover {
-            background: var(--key-hover);
-            transform: translateY(-1px);
-        }
-
-        .function-buttons button.active {
-            background: var(--panel-active-bg);
-            color: var(--key-text);
-        }
-
-        .expandable {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .expandable.open {
-            max-height: 1000px;
-        }
-
-        .panel {
-            background: white;
-            padding: 6px;
-            border-radius: 6px;
-            margin-top: 5px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .panel h4 {
-            margin-bottom: 3px;
-            color: var(--panel-text);
-            font-size: inherit;
-            font-weight: 500;
-        }
-
-        .input-group {
-            margin-bottom: 2px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 2px;
-            color: var(--panel-label);
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .input-group input {
+        .main-input input {
             width: 100%;
-            padding: 5px 7px;
+            padding: 6px 8px;
             border: 1px solid var(--input-border);
-            border-radius: 4px;
-            font-size: inherit;
+            border-radius: 6px;
+            font-size: 15px;
             font-family: inherit;
             font-weight: 600;
             background: var(--input-bg);
             color: var(--input-text);
-            caret-color: var(--input-text);
+            transition: border-color var(--transition-fast);
         }
 
-        .input-group input[type=number],
-        .input-row input[type=number] {
-            appearance: textfield;
-        }
-
-        .input-group input[type=number]::-webkit-outer-spin-button,
-        .input-group input[type=number]::-webkit-inner-spin-button,
-        .input-row input[type=number]::-webkit-outer-spin-button,
-        .input-row input[type=number]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-
-        .input-group input:focus {
+        .main-input input:focus {
             outline: 1px solid var(--input-border-focus);
-            outline-offset: 0;
             border-color: var(--input-border-focus);
             background: #eef6fb;
         }
 
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: 100;
+            display: none;
+            pointer-events: none;
+        }
+
+        .popup-overlay.open {
+            display: block;
+        }
+
+        .popup {
+            position: fixed;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            z-index: 101;
+            width: 360px;
+            max-width: 90vw;
+            max-height: 80vh;
+            overflow: auto;
+            display: none;
+        }
+
+        .popup.open {
+            display: block;
+        }
+
+        .popup-drag-handle {
+            background: linear-gradient(135deg, var(--display-start) 0%, var(--display-end) 100%);
+            height: 16px;
+            border-radius: 12px 12px 0 0;
+            cursor: grab;
+            user-select: none;
+            position: relative;
+        }
+
+        .popup-close {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            line-height: 1;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-50%);
+        }
+
+        .popup-close:active {
+            background: rgba(255, 255, 255, 0.5);
+            transform: translateY(-50%);
+        }
+
+        .popup-content {
+            padding: 10px;
+        }
+
+        .popup-actions {
+            padding: 6px 10px 10px 10px;
+            display: flex;
+            gap: 6px;
+        }
+
+        .popup-actions button {
+            flex: 1;
+            padding: 6px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .popup-actions .btn-primary {
+            background: var(--success-bg);
+            color: white;
+        }
+
+        .popup-actions .btn-primary:hover {
+            background: var(--success-hover);
+        }
+
+        .popup-actions .btn-secondary {
+            background: var(--panel-bg);
+            color: var(--key-text);
+        }
+
+        .popup-actions .btn-secondary:hover {
+            background: var(--panel-active-bg);
+        }
+
         .input-row {
             display: flex;
-            gap: 2px;
+            gap: 1px;
             margin-bottom: 2px;
             align-items: center;
             flex-wrap: wrap;
         }
 
         .input-row input {
-            width: 40px;
-            padding: 3px 2px;
+            width: 38px;
+            padding: 4px 3px;
+            text-align: center;
             border: 1px solid var(--input-border);
             border-radius: 4px;
-            font-size: inherit;
-            text-align: center;
+            font-size: 13px;
             font-family: inherit;
             font-weight: 600;
             background: var(--input-bg);
             color: var(--input-text);
-            caret-color: var(--input-text);
+            transition: border-color var(--transition-fast);
         }
 
         .input-row input:focus {
             outline: 1px solid var(--input-border-focus);
-            outline-offset: 0;
             border-color: var(--input-border-focus);
             background: #eef6fb;
-        }
-
-        .panel label {
-            color: var(--panel-label);
-            font-weight: 500;
         }
 
         .binom-row {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 1px;
+            gap: 4px;
         }
 
         .binom-field {
             display: flex;
             flex-direction: column;
-            gap: 0;
+            gap: 2px;
             min-width: 0;
+        }
+
+        .binom-field label {
+            font-size: 12px;
         }
 
         .binom-input {
@@ -361,22 +368,20 @@
         }
 
         .binom-input input {
-            flex: 1;
+            width: 48px;
             min-width: 0;
-            padding: 3px 2px;
-            font-size: 14px;
-            font-family: inherit;
-            font-weight: 600;
+            padding: 4px 3px;
+            font-size: 13px;
             border: 1px solid var(--input-border);
             border-radius: 4px;
             background: var(--input-bg);
             color: var(--input-text);
-            caret-color: var(--input-text);
+            transition: border-color var(--transition-fast);
+            text-align: center;
         }
 
         .binom-input input:focus {
             outline: 1px solid var(--input-border-focus);
-            outline-offset: 0;
             border-color: var(--input-border-focus);
             background: #eef6fb;
         }
@@ -388,7 +393,7 @@
         }
 
         .binom-step {
-            width: 20px;
+            width: 32px;
             height: 18px;
             padding: 0;
             border-radius: 4px;
@@ -396,19 +401,27 @@
             border: 1px solid var(--key-border);
             background: var(--key-bg);
             color: var(--key-text);
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
         }
 
         .binom-step:hover {
             background: var(--key-hover);
         }
 
+        .panel-label {
+            color: var(--panel-label);
+            font-weight: 500;
+            font-size: 12px;
+        }
+
         .lgs-operator,
         .lgs-var-label,
         .lgs-equals {
-            padding: 0 2px;
+            padding: 0 1px;
             font-weight: 500;
             color: var(--panel-label);
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .lgs-matrix {
@@ -418,17 +431,20 @@
         .lgs-controls {
             display: flex;
             gap: 3px;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
 
         .lgs-controls button {
             flex: 1;
-            padding: 4px;
+            padding: 5px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             background: #48bb78;
             color: white;
+            transition: background-color var(--transition-fast);
+            font-weight: 600;
+            font-size: 13px;
         }
 
         .lgs-controls button:hover {
@@ -443,20 +459,14 @@
             background: #e53e3e;
         }
 
-        .action-button {
-            width: 100%;
-            padding: 5px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            background: #667eea;
-            color: white;
-            margin-top: 3px;
+        input[type=number] {
+            appearance: textfield;
         }
 
-        .action-button:hover {
-            background: #5568d3;
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
 
         .buttons {
@@ -473,7 +483,7 @@
             border: 1px solid var(--key-border);
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all var(--transition-fast);
             font-weight: 500;
             background: var(--key-bg);
             color: var(--key-text);
@@ -506,20 +516,6 @@
             background: var(--success-hover);
         }
 
-        .top-key {
-            background: var(--key-bg);
-            color: var(--key-text);
-        }
-
-        .top-key:hover {
-            background: var(--key-hover);
-        }
-
-        .spacer {
-            visibility: hidden;
-            pointer-events: none;
-        }
-
         .clear {
             background: var(--danger-bg);
             color: white;
@@ -527,15 +523,6 @@
 
         .clear:hover {
             background: var(--danger-hover);
-        }
-
-        .special {
-            background: var(--key-bg);
-            color: var(--key-text);
-        }
-
-        .special:hover {
-            background: var(--key-hover);
         }
 
         .key-popover {
@@ -551,7 +538,7 @@
             position: absolute;
             left: 0;
             right: 0;
-            bottom: calc(100% + 6px);
+            top: calc(100% + 6px);
             background: var(--keypad-bg);
             border: 1px solid var(--key-border);
             border-radius: 10px;
@@ -569,23 +556,7 @@
 
         .key-popover-menu button {
             padding: 6px 4px;
-            font-size: inherit;
             font-weight: 600;
-        }
-
-        .blank-key {
-            color: transparent;
-            cursor: default;
-            pointer-events: none;
-        }
-
-        .blank-key:hover {
-            background: var(--key-bg);
-            transform: none;
-        }
-
-        .wide {
-            grid-column: span 2;
         }
 
         @media (max-width: 600px) {
@@ -595,11 +566,6 @@
 
             button {
                 padding: 7px;
-            }
-
-            .buttons {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 2px;
             }
 
             .binom-step {
@@ -626,104 +592,8 @@
             </div>
         </div>
 
-        <div class="special-functions">
-            <div class="function-buttons">
-                <button onclick="togglePanel('cal')" id="calBtn">CAL</button>
-                <button onclick="togglePanel('lgs')" id="lgsBtn">LGS</button>
-                <button onclick="togglePanel('binom')" id="binomBtn">BIN</button>
-                <button onclick="togglePanel('equation')" id="equationBtn">SOL</button>
-            </div>
-
-            <!-- CAL Panel -->
-            <div id="calPanel" class="expandable">
-                <div class="panel">
-                    <h4></h4>
-                    <div class="input-group">
-                        <input type="text" id="calInput" inputmode="decimal" autocomplete="off" autofocus>
-                    </div>
-                </div>
-            </div>
-
-            <!-- LGS Panel -->
-            <div id="lgsPanel" class="expandable">
-                <div class="panel">
-                    <h4></h4>
-                    <div class="lgs-controls">
-                        <button onclick="addLGSVariable()">+ Var.</button>
-                        <button class="remove" onclick="removeLGSVariable()">- Var.</button>
-                        <button onclick="addLGSEquation()">+ Gl.</button>
-                        <button class="remove" onclick="removeLGSEquation()">- Gl.</button>
-                    </div>
-                    <div id="lgsMatrix"></div>
-                </div>
-            </div>
-
-            <!-- Binomial Panel -->
-            <div id="binomPanel" class="expandable">
-                <div class="panel">
-                    <h4>P(a ≤ X ≤ b):</h4>
-                    <div class="binom-row">
-                        <div class="binom-field">
-                            <label class="panel-label" for="binomA">a =</label>
-                            <div class="binom-input">
-                                <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
-                                <div class="binom-stepper" aria-hidden="true">
-                                    <button type="button" class="binom-step" data-target="binomA" data-step="1"
-                                        aria-label="a erhöhen" tabindex="-1">▲</button>
-                                    <button type="button" class="binom-step" data-target="binomA" data-step="-1"
-                                        aria-label="a verringern" tabindex="-1">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="binom-field">
-                            <label class="panel-label" for="binomB">b =</label>
-                            <div class="binom-input">
-                                <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
-                                <div class="binom-stepper" aria-hidden="true">
-                                    <button type="button" class="binom-step" data-target="binomB" data-step="1"
-                                        aria-label="b erhöhen" tabindex="-1">▲</button>
-                                    <button type="button" class="binom-step" data-target="binomB" data-step="-1"
-                                        aria-label="b verringern" tabindex="-1">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="binom-field">
-                            <label class="panel-label" for="binomN">n =</label>
-                            <div class="binom-input">
-                                <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
-                                <div class="binom-stepper" aria-hidden="true">
-                                    <button type="button" class="binom-step" data-target="binomN" data-step="1"
-                                        aria-label="n erhöhen" tabindex="-1">▲</button>
-                                    <button type="button" class="binom-step" data-target="binomN" data-step="-1"
-                                        aria-label="n verringern" tabindex="-1">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="binom-field">
-                            <label class="panel-label" for="binomP">p =</label>
-                            <div class="binom-input">
-                                <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
-                                <div class="binom-stepper" aria-hidden="true">
-                                    <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
-                                        aria-label="p erhöhen" tabindex="-1">▲</button>
-                                    <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
-                                        aria-label="p verringern" tabindex="-1">▼</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Gleichung Panel -->
-            <div id="equationPanel" class="expandable">
-                <div class="panel">
-                    <h4></h4>
-                    <div class="input-group">
-                        <input type="text" id="equationInput">
-                    </div>
-                </div>
-            </div>
+        <div class="main-input">
+            <input type="text" id="mainInput" inputmode="decimal" autocomplete="off" placeholder="Eingabe...">
         </div>
 
         <div class="buttons">
@@ -739,57 +609,137 @@
             </div>
             <div class="key-popover" id="triKey">
                 <button class="top-key" type="button" onclick="toggleKeyPopover('triPopover', this)"
-                    aria-expanded="false" aria-controls="triPopover">tri</button>
+                    aria-expanded="false" aria-controls="triPopover">tri/log</button>
                 <div class="key-popover-menu" id="triPopover" role="menu">
                     <button type="button" onclick="appendFunction('sin('); closeKeyPopovers()">sin</button>
                     <button type="button" onclick="appendFunction('cos('); closeKeyPopovers()">cos</button>
                     <button type="button" onclick="appendFunction('tan('); closeKeyPopovers()">tan</button>
+                    <button type="button" onclick="appendLogTemplate(); closeKeyPopovers()">log_()()</button>
+                    <button type="button" onclick="appendFunction('ln('); closeKeyPopovers()">ln</button>
                 </div>
             </div>
             <button class="clear" onclick="clearAll()">C</button>
 
             <!-- Reihe 2 -->
-            <button class="top-key" onclick="factorial()">n!</button>
+            <button class="top-key" onclick="openLGSPopup()">LGS</button>
             <button class="top-key" onclick="appendOperator('^')">^</button>
             <button class="top-key" type="button" onclick="appendAutoParen()">()</button>
             <button class="clear" onclick="backspace()">⌫</button>
 
             <!-- Reihe 3 -->
-            <button class="top-key" onclick="appendOperator('=')">=</button>
+            <button class="top-key" onclick="openBinPopup()">BIN</button>
             <button class="top-key" onclick="appendNumber('x')">x</button>
-            <div class="key-popover" id="logKey">
-                <button class="top-key" type="button" onclick="toggleKeyPopover('logPopover', this)"
-                    aria-expanded="false" aria-controls="logPopover">log</button>
-                <div class="key-popover-menu" id="logPopover" role="menu">
-                    <button type="button" onclick="appendLogTemplate(); closeKeyPopovers()">log_()()</button>
-                    <button type="button" onclick="appendFunction('ln('); closeKeyPopovers()">ln</button>
-                </div>
-            </div>
+            <button class="top-key" onclick="appendOperator('=')">=</button>
             <button class="operator" onclick="appendOperator('/')">÷</button>
 
-            <!-- Reihe 6 -->
+            <!-- Reihe 4-7 -->
             <button onclick="appendNumber('7')">7</button>
             <button onclick="appendNumber('8')">8</button>
             <button onclick="appendNumber('9')">9</button>
             <button class="operator" onclick="appendOperator('*')">×</button>
 
-            <!-- Reihe 7 -->
             <button onclick="appendNumber('4')">4</button>
             <button onclick="appendNumber('5')">5</button>
             <button onclick="appendNumber('6')">6</button>
             <button class="operator" onclick="appendOperator('-')">−</button>
 
-            <!-- Reihe 8 -->
             <button onclick="appendNumber('1')">1</button>
             <button onclick="appendNumber('2')">2</button>
             <button onclick="appendNumber('3')">3</button>
             <button class="operator" onclick="appendOperator('+')">+</button>
 
-            <!-- Reihe 9 -->
             <button onclick="toggleSign()">+/-</button>
             <button onclick="appendNumber('0')">0</button>
             <button onclick="appendNumber('.')">.</button>
             <button class="equals" onclick="handleExecute()">EXE</button>
+        </div>
+    </div>
+
+    <!-- LGS Popup -->
+    <div class="popup-overlay" id="lgsOverlay"></div>
+    <div class="popup" id="lgsPopup">
+        <div class="popup-drag-handle" id="lgsPopupDrag">
+            <button class="popup-close" onclick="closeLGSPopup()" aria-label="Schließen">×</button>
+        </div>
+        <div class="popup-content">
+            <div class="lgs-controls">
+                <button onclick="addLGSVariable()">+ Var.</button>
+                <button class="remove" onclick="removeLGSVariable()">- Var.</button>
+                <button onclick="addLGSEquation()">+ Gl.</button>
+                <button class="remove" onclick="removeLGSEquation()">- Gl.</button>
+            </div>
+            <div id="lgsMatrix"></div>
+        </div>
+        <div class="popup-actions">
+            <button class="btn-secondary" onclick="closeLGSPopup()">Abbrechen</button>
+            <button class="btn-primary" onclick="confirmLGS()">Bestätigen</button>
+        </div>
+    </div>
+
+    <!-- BIN Popup -->
+    <div class="popup-overlay" id="binOverlay"></div>
+    <div class="popup" id="binPopup">
+        <div class="popup-drag-handle" id="binPopupDrag">
+            <button class="popup-close" onclick="closeBinPopup()" aria-label="Schließen">×</button>
+        </div>
+        <div class="popup-content">
+            <div class="binom-row">
+                <div class="binom-field">
+                    <label class="panel-label" for="binomA">a =</label>
+                    <div class="binom-input">
+                        <input type="text" id="binomA" inputmode="decimal" autocomplete="off">
+                        <div class="binom-stepper" aria-hidden="true">
+                            <button type="button" class="binom-step" data-target="binomA" data-step="1"
+                                aria-label="a erhöhen" tabindex="-1">▲</button>
+                            <button type="button" class="binom-step" data-target="binomA" data-step="-1"
+                                aria-label="a verringern" tabindex="-1">▼</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="binom-field">
+                    <label class="panel-label" for="binomB">b =</label>
+                    <div class="binom-input">
+                        <input type="text" id="binomB" inputmode="decimal" autocomplete="off">
+                        <div class="binom-stepper" aria-hidden="true">
+                            <button type="button" class="binom-step" data-target="binomB" data-step="1"
+                                aria-label="b erhöhen" tabindex="-1">▲</button>
+                            <button type="button" class="binom-step" data-target="binomB" data-step="-1"
+                                aria-label="b verringern" tabindex="-1">▼</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="binom-field">
+                    <label class="panel-label" for="binomN">n =</label>
+                    <div class="binom-input">
+                        <input type="text" id="binomN" inputmode="decimal" autocomplete="off">
+                        <div class="binom-stepper" aria-hidden="true">
+                            <button type="button" class="binom-step" data-target="binomN" data-step="1"
+                                aria-label="n erhöhen" tabindex="-1">▲</button>
+                            <button type="button" class="binom-step" data-target="binomN" data-step="-1"
+                                aria-label="n verringern" tabindex="-1">▼</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="binom-field">
+                    <label class="panel-label" for="binomP">p =</label>
+                    <div class="binom-input">
+                        <input type="text" id="binomP" inputmode="decimal" autocomplete="off">
+                        <div class="binom-stepper" aria-hidden="true">
+                            <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
+                                aria-label="p erhöhen" tabindex="-1">▲</button>
+                            <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
+                                aria-label="p verringern" tabindex="-1">▼</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 6px; padding: 5px; background: #f0f4f8; border-radius: 4px; font-size: 13px;">
+                <strong>P(a &le; X &le; b):</strong> <span id="binomLiveResult">-</span>
+            </div>
+        </div>
+        <div class="popup-actions">
+            <button class="btn-secondary" onclick="closeBinPopup()">Abbrechen</button>
+            <button class="btn-primary" onclick="confirmBin()">Bestätigen</button>
         </div>
     </div>
 
@@ -799,24 +749,24 @@
         let shouldResetInput = false;
         let lgsVariables = 2;
         let lgsEquations = 2;
-        let activePanel = null;
         let activeInputField = null;
-        let panelInputMode = false;
         let shouldAnimateResult = false;
         let copyFeedbackTimer = null;
+        let popupDragState = null;
+
         const isTouchDevice = (() => {
             if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
             return navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
         })();
-        const isFinePointer = window.matchMedia
-            ? window.matchMedia('(pointer: fine)').matches
-            : false;
+
+        const isFinePointer = window.matchMedia ? window.matchMedia('(pointer: fine)').matches : false;
         const isProbablyMobile = (() => {
             if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
                 return navigator.userAgentData.mobile;
             }
             return /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
         })();
+
         const shouldLockTouchInputs = isTouchDevice && isProbablyMobile && !isFinePointer;
 
         function updateDisplay() {
@@ -874,7 +824,7 @@
         }
 
         function applyTouchInputLock() {
-            const inputs = document.querySelectorAll('#calPanel input, #binomPanel input, #equationPanel input, #lgsPanel input');
+            const inputs = document.querySelectorAll('#mainInput, #binomA, #binomB, #binomN, #binomP, #lgsMatrix input');
             inputs.forEach((input) => {
                 if (!input.dataset.defaultInputMode) {
                     input.dataset.defaultInputMode = input.getAttribute('inputmode') || input.inputMode || '';
@@ -893,29 +843,23 @@
             });
         }
 
-        function formatDisplay(value) {
-            return value
-                .replace(/\*/g, '×')
-                .replace(/\//g, '÷')
-                .replace(/sqrt\(/g, '√(')
-                .replace(/exp\(/g, 'e^(')
-                .replace(/Math\.PI/g, 'π')
-                .replace(/Math\.E/g, 'e');
-        }
-
         function appendNumber(num) {
             if (appendToActiveInput(String(num))) {
                 return;
             }
 
-            // Ansonsten normale Taschenrechner-Funktion
-            if (shouldResetInput || currentInput === '0') {
-                currentInput = String(num);
-                shouldResetInput = false;
+            const mainInput = document.getElementById('mainInput');
+            if (mainInput && activeInputField === mainInput) {
+                insertAtCursor(mainInput, String(num));
             } else {
-                currentInput += num;
+                if (shouldResetInput || currentInput === '0') {
+                    currentInput = String(num);
+                    shouldResetInput = false;
+                } else {
+                    currentInput += num;
+                }
+                updateDisplay();
             }
-            updateDisplay();
         }
 
         function appendOperator(op) {
@@ -923,14 +867,18 @@
                 return;
             }
 
-            // Ansonsten normale Taschenrechner-Funktion
-            shouldResetInput = false;
-            if (currentInput.slice(-1).match(/[\+\-\*\/\=]/)) {
-                currentInput = currentInput.slice(0, -1) + op;
+            const mainInput = document.getElementById('mainInput');
+            if (mainInput && activeInputField === mainInput) {
+                insertAtCursor(mainInput, op);
             } else {
-                currentInput += op;
+                shouldResetInput = false;
+                if (currentInput.slice(-1).match(/[\+\-\*\/\=]/)) {
+                    currentInput = currentInput.slice(0, -1) + op;
+                } else {
+                    currentInput += op;
+                }
+                updateDisplay();
             }
-            updateDisplay();
         }
 
         function appendFunction(func) {
@@ -938,13 +886,18 @@
                 return;
             }
 
-            if (shouldResetInput || currentInput === '0') {
-                currentInput = func;
-                shouldResetInput = false;
+            const mainInput = document.getElementById('mainInput');
+            if (mainInput && activeInputField === mainInput) {
+                insertAtCursor(mainInput, func);
             } else {
-                currentInput += func;
+                if (shouldResetInput || currentInput === '0') {
+                    currentInput = func;
+                    shouldResetInput = false;
+                } else {
+                    currentInput += func;
+                }
+                updateDisplay();
             }
-            updateDisplay();
         }
 
         function appendLogTemplate() {
@@ -1030,42 +983,13 @@
         });
 
         function clearAll() {
-            if (activePanel === 'cal') {
-                const calInput = document.getElementById('calInput');
-                if (calInput) {
-                    calInput.value = '';
-                    setInputCursor(calInput, 0);
-                }
-            }
-            if (activePanel === 'equation') {
-                const equationInput = document.getElementById('equationInput');
-                if (equationInput) {
-                    equationInput.value = '';
-                    setInputCursor(equationInput, 0);
-                }
+            const mainInput = document.getElementById('mainInput');
+            if (mainInput) {
+                mainInput.value = '';
             }
             currentInput = '0';
             result = 0;
             shouldResetInput = false;
-            updateDisplay();
-        }
-
-        function clearEntry() {
-            if (activePanel === 'cal') {
-                const calInput = document.getElementById('calInput');
-                if (calInput) {
-                    calInput.value = '';
-                    setInputCursor(calInput, 0);
-                }
-            }
-            if (activePanel === 'equation') {
-                const equationInput = document.getElementById('equationInput');
-                if (equationInput) {
-                    equationInput.value = '';
-                    setInputCursor(equationInput, 0);
-                }
-            }
-            currentInput = '0';
             updateDisplay();
         }
 
@@ -1084,7 +1008,6 @@
                 return;
             }
 
-            // Ansonsten normale Taschenrechner-Funktion
             if (currentInput.length > 1) {
                 currentInput = currentInput.slice(0, -1);
             } else {
@@ -1093,29 +1016,31 @@
             updateDisplay();
         }
 
+        function normalizeExpression(input) {
+            const normalized = normalizeNumberString(input);
+            let expression = addImplicitMultiplication(
+                normalizeUnaryMinusExponent(
+                    convertRootInfix(convertLogBaseSyntax(normalized))
+                )
+            );
+            return normalizeConstants(expression)
+                .replace(/×/g, '*')
+                .replace(/÷/g, '/')
+                .replace(/−/g, '-')
+                .replace(/\^/g, '**')
+                .replace(/sqrt\(/g, 'Math.sqrt(')
+                .replace(/exp\(/g, 'Math.exp(')
+                .replace(/ln\(/g, 'Math.log(')
+                .replace(/sin\(/g, 'Math.sin(')
+                .replace(/cos\(/g, 'Math.cos(')
+                .replace(/tan\(/g, 'Math.tan(');
+        }
+
         function calculate() {
             try {
-                const normalizedInput = normalizeNumberString(currentInput);
-                let expression = addImplicitMultiplication(
-                    normalizeUnaryMinusExponent(
-                        convertRootInfix(convertLogBaseSyntax(normalizedInput))
-                    )
-                );
-                expression = normalizeConstants(expression)
-                    .replace(/×/g, '*')
-                    .replace(/÷/g, '/')
-                    .replace(/−/g, '-')
-                    .replace(/\^/g, '**')
-                    .replace(/sqrt\(/g, 'Math.sqrt(')
-                    .replace(/exp\(/g, 'Math.exp(')
-                    .replace(/ln\(/g, 'Math.log(')
-                    .replace(/sin\(/g, 'Math.sin(')
-                    .replace(/cos\(/g, 'Math.cos(')
-                    .replace(/tan\(/g, 'Math.tan(');
-
+                const expression = normalizeExpression(currentInput);
                 result = eval(expression);
                 result = Math.round(result * 1000000000) / 1000000000;
-
                 shouldResetInput = true;
                 updateDisplay();
             } catch (error) {
@@ -1126,60 +1051,140 @@
 
         function handleExecute() {
             shouldAnimateResult = true;
-            if (!executeActivePanel()) {
-                calculate();
-            }
-        }
+            const mainInput = document.getElementById('mainInput');
+            const inputValue = mainInput.value || '0';
 
-        function executeActivePanel() {
-            if (activePanel === 'cal') {
-                const calInput = document.getElementById('calInput');
-                if (calInput) {
-                    currentInput = calInput.value || '0';
-                }
-                calculate();
-                return true;
-            }
-            if (activePanel === 'lgs') {
-                solveLGS();
-                return true;
-            }
-            if (activePanel === 'binom') {
-                calculateBinomial();
-                return true;
-            }
-            if (activePanel === 'equation') {
-                solveEquation();
-                return true;
-            }
-            return false;
-        }
-
-        function focusPanelInput(panelName) {
-            let input = null;
-            if (panelName === 'cal') {
-                input = document.getElementById('calInput');
-                if (input && (!input.value || input.value === '0')) {
-                    input.value = '';
-                }
-            } else if (panelName === 'equation') {
-                input = document.getElementById('equationInput');
-            } else if (panelName === 'binom') {
-                input = document.querySelector('#binomPanel input');
-            } else if (panelName === 'lgs') {
-                input = document.querySelector('#lgsPanel input');
-            }
-
-            if (!input) {
-                activeInputField = null;
-                panelInputMode = false;
+            // Check for LGS syntax: {eq1;eq2;...}
+            if (inputValue.trim().startsWith('{') && inputValue.trim().endsWith('}')) {
+                executeLGSFromInput(inputValue);
                 return;
             }
 
-            activeInputField = input;
-            panelInputMode = true;
-            setInputCursor(input, (input.value || '').length);
+            // Check for BIN syntax: bcd(a;b;n;p)
+            if (inputValue.trim().match(/^bcd\s*\(/i)) {
+                executeBinFromInput(inputValue);
+                return;
+            }
+
+            // Check for equation (single =)
+            const equalsCount = (inputValue.match(/=/g) || []).length;
+            if (equalsCount === 1) {
+                solveEquation(inputValue);
+                return;
+            }
+
+            // Normal calculation
+            currentInput = inputValue;
+            calculate();
         }
+
+        function executeLGSFromInput(input) {
+            try {
+                const content = input.trim().slice(1, -1); // Remove { }
+                const equations = content.split(';');
+
+                // Parse equations
+                const A = [];
+                const b = [];
+                const varPattern = /([+-]?\d*\.?\d*)\s*([a-z])/gi;
+
+                equations.forEach(eq => {
+                    const [left, right] = eq.split('=');
+                    const row = [0, 0, 0, 0, 0]; // Support up to 5 variables
+                    const varMap = { x: 0, y: 1, z: 2, u: 3, v: 4, w: 5 };
+
+                    // Handle implicit 1 or -1 coefficients
+                    let normalizedLeft = left
+                        .replace(/^\s*([a-z])/i, '1$1')  // Leading variable without coefficient
+                        .replace(/([+-])\s*([a-z])/gi, '$11$2');  // Variable after +/- without coefficient
+
+                    let match;
+                    const pattern = /([+-]?\d*\.?\d+)\s*([a-z])/gi;
+                    while ((match = pattern.exec(normalizedLeft)) !== null) {
+                        let coeffStr = match[1].trim();
+                        if (coeffStr === '' || coeffStr === '+') {
+                            coeffStr = '1';
+                        } else if (coeffStr === '-') {
+                            coeffStr = '-1';
+                        }
+                        const coeff = parseFloat(coeffStr);
+                        const varName = match[2].toLowerCase();
+                        if (varMap[varName] !== undefined) {
+                            row[varMap[varName]] += coeff;
+                        }
+                    }
+
+                    A.push(row.slice(0, Math.max(lgsVariables, 2)));
+                    b.push(parseFloat(right.trim()) || 0);
+                });
+
+                const solution = solveLinearSystem(A, b);
+
+                if (solution.status === 'inconsistent') {
+                    currentInput = 'LGS: Keine Lösung';
+                    result = 'Keine Lösung';
+                } else if (solution.status === 'infinite') {
+                    currentInput = 'LGS: Unendlich viele Lösungen';
+                    result = solution.parametric
+                        .map((expr) => expr.replace(/^x(\d+)/, (_, num) => `x${toSubscript(num)}`))
+                        .join(', ');
+                } else {
+                    currentInput = 'LGS gelöst';
+                    result = solution.values
+                        .map((x, i) => `x${toSubscript(i + 1)}=${formatNumber(x)}`)
+                        .join(', ');
+                }
+
+                shouldResetInput = true;
+                updateDisplay();
+            } catch (error) {
+                result = 'Fehler im LGS';
+                updateDisplay();
+            }
+        }
+
+        function executeBinFromInput(input) {
+            try {
+                const match = input.match(/bcd\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)/i);
+                if (!match) {
+                    throw new Error('Invalid format');
+                }
+
+                const aRaw = parseFloat(normalizeNumberString(match[1]));
+                const bRaw = parseFloat(normalizeNumberString(match[2]));
+                const n = parseInt(normalizeNumberString(match[3]));
+                const pValue = normalizeNumberString(match[4]);
+
+                let p = NaN;
+                if (pValue.includes('/')) {
+                    const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
+                    if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
+                        p = parts[0] / parts[1];
+                    }
+                } else {
+                    p = parseFloat(pValue);
+                }
+
+                const a = Math.ceil(aRaw);
+                const b = Math.floor(bRaw);
+
+                let probability = 0;
+                for (let k = a; k <= b; k++) {
+                    const binomCoeff = binomialCoefficient(n, k);
+                    probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
+                }
+
+                currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${match[4]})`;
+                result = Math.round(probability * 1000000) / 1000000;
+                shouldResetInput = true;
+                updateDisplay();
+            } catch (error) {
+                result = 'Fehler in BIN';
+                updateDisplay();
+            }
+        }
+
+
 
         function addImplicitMultiplication(value) {
             return value
@@ -1370,14 +1375,20 @@
         }
 
         function appendToActiveInput(value) {
-            if (!activeInputField || !panelInputMode) {
-                return false;
+            const mainInput = document.getElementById('mainInput');
+            if (!activeInputField || activeInputField !== mainInput) {
+                const popupInput = document.querySelector('#lgsPopup.open input, #binPopup.open input');
+                if (popupInput) {
+                    activeInputField = popupInput;
+                } else {
+                    return false;
+                }
             }
 
             const currentValue = activeInputField.value || '';
             if (activeInputField.type === 'number' || activeInputField.type === 'text') {
                 const isSeparator = value === '.' || value === ',';
-                const isExpressionInput = activeInputField.id === 'equationInput' || activeInputField.id === 'calInput';
+                const isExpressionInput = activeInputField.id === 'calInput';
 
                 if (isSeparator && isExpressionInput) {
                     const cursor = activeInputField.selectionStart ?? currentValue.length;
@@ -1430,97 +1441,102 @@
             return value.replace(/,/g, '.');
         }
 
-        function replacePiInInput(input) {
-            const value = input.value || '';
-            if (!value.toLowerCase().includes('pi')) return;
-
-            const start = input.selectionStart ?? value.length;
-            const end = input.selectionEnd ?? start;
-            const before = value.slice(0, start);
-            const selection = value.slice(start, end);
-            const after = value.slice(end);
-
-            const newBefore = before.replace(/pi/gi, 'π');
-            const newSelection = selection.replace(/pi/gi, 'π');
-            const newAfter = after.replace(/pi/gi, 'π');
-            const nextValue = newBefore + newSelection + newAfter;
-
-            if (nextValue !== value) {
-                input.value = nextValue;
-                const nextStart = newBefore.length;
-                const nextEnd = newBefore.length + newSelection.length;
-                input.setSelectionRange(nextStart, nextEnd);
-            }
-        }
-
-        function factorial() {
-            try {
-                let n = parseInt(result || currentInput);
-                if (n < 0) {
-                    result = 'Fehler';
-                } else if (n === 0 || n === 1) {
-                    result = 1;
-                } else {
-                    let fact = 1;
-                    for (let i = 2; i <= n; i++) {
-                        fact *= i;
-                    }
-                    result = fact;
-                }
-                currentInput = String(result);
-                shouldResetInput = true;
-                updateDisplay();
-            } catch (error) {
-                result = 'Fehler';
-                updateDisplay();
-            }
-        }
-
-        // Panel Toggle
-        function togglePanel(panelName) {
-            const panels = ['cal', 'lgs', 'binom', 'equation'];
-            const buttons = ['calBtn', 'lgsBtn', 'binomBtn', 'equationBtn'];
-
-            panels.forEach((p, idx) => {
-                const panel = document.getElementById(p + 'Panel');
-                const btn = document.getElementById(buttons[idx]);
-
-                if (p === panelName) {
-                    if (activePanel === panelName) {
-                        panel.classList.remove('open');
-                        btn.classList.remove('active');
-                        activePanel = null;
-                        activeInputField = null;
-                        panelInputMode = false;
-                    } else {
-                        panel.classList.add('open');
-                        btn.classList.add('active');
-                        activePanel = panelName;
-                        focusPanelInput(panelName);
-                    }
-                } else {
-                    panel.classList.remove('open');
-                    btn.classList.remove('active');
-                }
-            });
-
-            if (!activePanel) {
-                activeInputField = null;
-                panelInputMode = false;
-            }
-
-            // Höhe an Parent melden, damit das iframe angepasst wird
-            try {
-                postCalculatorSize();
-                setTimeout(postCalculatorSize, 320);
-            } catch (e) { }
-        }
-
-        // LGS Funktionen
-        function initLGS() {
-            lgsVariables = 2;
-            lgsEquations = 2;
+        function openLGSPopup() {
+            document.getElementById('lgsOverlay').classList.add('open');
+            document.getElementById('lgsPopup').classList.add('open');
+            centerPopup('lgsPopup');
             renderLGS();
+        }
+
+        function closeLGSPopup() {
+            document.getElementById('lgsOverlay').classList.remove('open');
+            document.getElementById('lgsPopup').classList.remove('open');
+        }
+
+        function confirmLGS() {
+            const varNames = ['x', 'y', 'z', 'u', 'v', 'w'];
+            const equations = [];
+
+            for (let i = 0; i < lgsEquations; i++) {
+                const terms = [];
+                for (let j = 0; j < lgsVariables; j++) {
+                    const coeff = parseFloat(document.getElementById(`a${i}${j}`).value || '0');
+                    if (coeff !== 0) {
+                        if (terms.length === 0) {
+                            // First term
+                            if (coeff === 1) {
+                                terms.push(varNames[j]);
+                            } else if (coeff === -1) {
+                                terms.push(`-${varNames[j]}`);
+                            } else {
+                                terms.push(`${coeff}${varNames[j]}`);
+                            }
+                        } else {
+                            // Subsequent terms
+                            if (coeff === 1) {
+                                terms.push(`+${varNames[j]}`);
+                            } else if (coeff === -1) {
+                                terms.push(`-${varNames[j]}`);
+                            } else if (coeff > 0) {
+                                terms.push(`+${coeff}${varNames[j]}`);
+                            } else {
+                                terms.push(`${coeff}${varNames[j]}`);
+                            }
+                        }
+                    }
+                }
+                const result = document.getElementById(`b${i}`).value || '0';
+                equations.push((terms.length > 0 ? terms.join('') : '0') + '=' + result);
+            }
+
+            const compactForm = '{' + equations.join(';') + '}';
+            const mainInput = document.getElementById('mainInput');
+            mainInput.value = compactForm;
+            activeInputField = mainInput;
+
+            closeLGSPopup();
+        }
+
+        function openBinPopup() {
+            document.getElementById('binOverlay').classList.add('open');
+            document.getElementById('binPopup').classList.add('open');
+            centerPopup('binPopup');
+            updateBinomLiveResult();
+        }
+
+        function closeBinPopup() {
+            document.getElementById('binOverlay').classList.remove('open');
+            document.getElementById('binPopup').classList.remove('open');
+        }
+
+        function confirmBin() {
+            const a = document.getElementById('binomA').value || '0';
+            const b = document.getElementById('binomB').value || '0';
+            const n = document.getElementById('binomN').value || '0';
+            const p = document.getElementById('binomP').value || '0';
+
+            const compactForm = `bcd(${a};${b};${n};${p})`;
+            const mainInput = document.getElementById('mainInput');
+            mainInput.value = compactForm;
+            activeInputField = mainInput;
+
+            closeBinPopup();
+        }
+
+        function centerPopup(popupId) {
+            const popup = document.getElementById(popupId);
+            const calculator = document.querySelector('.calculator');
+            if (!calculator) return;
+
+            const calcRect = calculator.getBoundingClientRect();
+            const popupRect = popup.getBoundingClientRect();
+
+            // Zentriere relativ zum Rechner
+            const left = calcRect.left + (calcRect.width - popupRect.width) / 2;
+            const top = calcRect.top + (calcRect.height - popupRect.height) / 2;
+            
+            popup.style.left = `${left}px`;
+            popup.style.top = `${top}px`;
         }
 
         function renderLGS() {
@@ -1539,7 +1555,6 @@
                 row.className = 'input-row';
 
                 for (let j = 0; j < lgsVariables; j++) {
-                    // + oder - Zeichen vor Variable (außer beim ersten)
                     if (j > 0) {
                         const plusMinus = document.createElement('span');
                         plusMinus.textContent = '+';
@@ -1556,7 +1571,6 @@
                     input.value = existingValues[input.id] ?? '';
                     row.appendChild(input);
 
-                    // Variablenname nach dem Input
                     const varLabel = document.createElement('span');
                     varLabel.textContent = varNames[j] || `x${j + 1}`;
                     varLabel.className = 'lgs-var-label';
@@ -1613,7 +1627,6 @@
 
         function solveLGS() {
             try {
-                // Matrix A und Vektor b erstellen
                 const A = [];
                 const b = [];
 
@@ -1627,7 +1640,6 @@
                     b[i] = parseFloat(normalizeNumberString(resultValue)) || 0;
                 }
 
-                // Gauß-Elimination mit Sonderfaellen
                 const solution = solveLinearSystem(A, b);
 
                 if (solution.status === 'inconsistent') {
@@ -1635,10 +1647,14 @@
                     result = 'Keine Lösung';
                 } else if (solution.status === 'infinite') {
                     currentInput = 'LGS: Unendlich viele Lösungen';
-                    result = solution.parametric.join(', ');
+                    result = solution.parametric
+                        .map((expr) => expr.replace(/^x(\d+)/, (_, num) => `x${toSubscript(num)}`))
+                        .join(', ');
                 } else {
                     currentInput = 'LGS gelöst';
-                    result = solution.values.map((x, i) => `x${i + 1}=${formatNumber(x)}`).join(', ');
+                    result = solution.values
+                        .map((x, i) => `x${toSubscript(i + 1)}=${formatNumber(x)}`)
+                        .join(', ');
                 }
 
                 shouldResetInput = true;
@@ -1692,7 +1708,6 @@
                 r++;
             }
 
-            // Inkonsistenz pruefen
             for (let i = 0; i < rows; i++) {
                 let allZero = true;
                 for (let j = 0; j < cols; j++) {
@@ -1758,7 +1773,19 @@
             return text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
         }
 
-        // Binomialwahrscheinlichkeit
+        const subscriptMap = {
+            '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄',
+            '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉'
+        };
+
+        function toSubscript(num) {
+            return String(num)
+                .split('')
+                .map((char) => subscriptMap[char] ?? char)
+                .join('');
+        }
+
+        // Binomial
         function binomialCoefficient(n, k) {
             if (k < 0 || k > n) return 0;
             if (k === 0 || k === n) return 1;
@@ -1821,18 +1848,53 @@
             const current = parseFloat(raw);
             const next = (Number.isNaN(current) ? 0 : current) + step;
             input.value = formatStepValue(next, step);
-            if (activePanel === 'binom') {
-                calculateBinomial();
+            updateBinomLiveResult();
+        }
+
+        function updateBinomLiveResult() {
+            const binPopup = document.getElementById('binPopup');
+            if (!binPopup.classList.contains('open')) return;
+
+            try {
+                const nInput = document.getElementById('binomN').value;
+                const pInput = document.getElementById('binomP').value;
+                const aInput = document.getElementById('binomA').value;
+                const bInput = document.getElementById('binomB').value;
+
+                const n = parseInt(normalizeNumberString(nInput));
+                const pValue = normalizeNumberString(pInput);
+                let p = NaN;
+                if (pValue.includes('/')) {
+                    const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
+                    if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
+                        p = parts[0] / parts[1];
+                    }
+                } else {
+                    p = parseFloat(pValue);
+                }
+                const aRaw = parseFloat(normalizeNumberString(aInput));
+                const bRaw = parseFloat(normalizeNumberString(bInput));
+                const a = Math.ceil(aRaw);
+                const b = Math.floor(bRaw);
+
+                let probability = 0;
+                for (let k = a; k <= b; k++) {
+                    const binomCoeff = binomialCoefficient(n, k);
+                    probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
+                }
+
+                const rounded = Math.round(probability * 1000000) / 1000000;
+                document.getElementById('binomLiveResult').textContent = rounded;
+            } catch (error) {
+                document.getElementById('binomLiveResult').textContent = 'Fehler';
             }
         }
 
         function bindBinomControls() {
-            const binomInputs = document.querySelectorAll('#binomPanel input');
+            const binomInputs = document.querySelectorAll('#binPopup input');
             binomInputs.forEach((input) => {
                 input.addEventListener('input', () => {
-                    if (activePanel === 'binom') {
-                        calculateBinomial();
-                    }
+                    updateBinomLiveResult();
                 });
             });
 
@@ -1847,14 +1909,9 @@
             });
         }
 
-        // Gleichungslöser
-        function solveEquation() {
-            const equationInput = document.getElementById('equationInput');
-            let equation = normalizeNumberString(equationInput.value || '').trim();
-            if (equation && !equation.includes('=')) {
-                equation = `${equation} = 0`;
-                equationInput.value = equation;
-            }
+        // Equation Solver
+        function solveEquation(equation) {
+            equation = normalizeNumberString(equation || '').trim();
 
             try {
                 let [leftSide, rightSide] = equation.split('=').map(s => s.trim());
@@ -1953,8 +2010,8 @@
                     result = 'Keine Lösung';
                     currentInput = equation;
                 } else {
-                    result = uniqueRoots.join(', ');
-                    currentInput = `${equation} → x =`;
+                    result = uniqueRoots.map((root, i) => `x${toSubscript(i + 1)}=${root}`).join(', ');
+                    currentInput = `${equation} →`;
                     shouldResetInput = true;
                 }
 
@@ -1966,7 +2023,7 @@
             }
         }
 
-        // Tastatur-Support
+        // Keyboard Support
         document.addEventListener('keydown', function (event) {
             const isPanelInputFocused = activeInputField && document.activeElement === activeInputField;
             if (isPanelInputFocused && event.key !== 'Enter') {
@@ -1999,46 +2056,64 @@
             }
         });
 
-        // Initialisierung
-        initLGS();
-        updateDisplay();
-        applyTouchInputLock();
-        bindBinomControls();
-        const calInput = document.getElementById('calInput');
-        if (calInput) {
-            calInput.addEventListener('input', () => replacePiInInput(calInput));
-        }
-        togglePanel('cal');
-        requestAnimationFrame(() => focusPanelInput('cal'));
-        window.addEventListener('load', () => focusPanelInput('cal'));
-        window.addEventListener('focus', () => focusPanelInput(activePanel || 'cal'));
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                focusPanelInput(activePanel || 'cal');
+        // Focus Management
+        document.addEventListener('focusin', function (event) {
+            if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
+                activeInputField = event.target;
             }
         });
 
-        window.addEventListener('message', (event) => {
-            if (event.origin !== window.location.origin && event.origin !== 'null') return;
-            if (event.data && event.data.type === 'calculatorFocus') {
-                if (!activePanel) {
-                    togglePanel('cal');
-                    return;
+        document.addEventListener('click', function (event) {
+            if (event.target.closest('#mainInput')) {
+                activeInputField = document.getElementById('mainInput');
+            }
+        });
+
+        // Popup Drag
+        function setupPopupDrag() {
+            ['lgsPopup', 'binPopup'].forEach(popupId => {
+                const popup = document.getElementById(popupId);
+                const dragHandle = document.getElementById(popupId.replace('Popup', 'PopupDrag'));
+
+                dragHandle.addEventListener('pointerdown', (e) => {
+                    if (e.target.closest('.popup-close')) return;
+
+                    const rect = popup.getBoundingClientRect();
+                    popupDragState = {
+                        popup: popup,
+                        startX: e.clientX,
+                        startY: e.clientY,
+                        initialLeft: rect.left,
+                        initialTop: rect.top
+                    };
+
+                    dragHandle.style.cursor = 'grabbing';
+                    e.preventDefault();
+                });
+            });
+
+            document.addEventListener('pointermove', (e) => {
+                if (!popupDragState) return;
+
+                const dx = e.clientX - popupDragState.startX;
+                const dy = e.clientY - popupDragState.startY;
+
+                popupDragState.popup.style.left = `${popupDragState.initialLeft + dx}px`;
+                popupDragState.popup.style.top = `${popupDragState.initialTop + dy}px`;
+            });
+
+            document.addEventListener('pointerup', () => {
+                if (popupDragState) {
+                    const dragHandle = document.getElementById(popupDragState.popup.id.replace('Popup', 'PopupDrag'));
+                    if (dragHandle) {
+                        dragHandle.style.cursor = 'grab';
+                    }
+                    popupDragState = null;
                 }
-                focusPanelInput(activePanel);
-            }
-            if (event.data && event.data.type === 'calculatorRequestSize') {
-                postCalculatorSize();
-            }
-        });
-
-
-        function isDragAllowed(target) {
-            if (!target) return false;
-            if (!target.closest('.display')) return false;
-            return !target.closest('button, input, select, textarea, a');
+            });
         }
 
+        // Iframe Communication
         function postCalculatorSize() {
             const calculator = document.querySelector('.calculator');
             if (!calculator || !window.parent) return;
@@ -2049,10 +2124,17 @@
                     width: Math.ceil(rect.width),
                     height: Math.ceil(rect.height)
                 },
-                window.location.origin
+                '*'
             );
         }
 
+        function isDragAllowed(target) {
+            if (!target) return false;
+            if (!target.closest('.display')) return false;
+            return !target.closest('button, input, select, textarea, a');
+        }
+
+        // Drag Support for iframe
         (function setupCalculatorDrag() {
             const calculator = document.querySelector('.calculator');
             if (!calculator || !window.parent) return;
@@ -2077,7 +2159,7 @@
                         screenX: event.screenX,
                         screenY: event.screenY
                     },
-                    window.location.origin
+                    '*'
                 );
             });
 
@@ -2091,7 +2173,7 @@
                         screenX: event.screenX,
                         screenY: event.screenY
                     },
-                    window.location.origin
+                    '*'
                 );
             });
 
@@ -2102,7 +2184,7 @@
                 if (calculator.releasePointerCapture) {
                     calculator.releasePointerCapture(event.pointerId);
                 }
-                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, '*');
             });
 
             calculator.addEventListener('pointercancel', (event) => {
@@ -2112,45 +2194,66 @@
                 if (calculator.releasePointerCapture) {
                     calculator.releasePointerCapture(event.pointerId);
                 }
-                window.parent.postMessage({ type: 'calculatorDragEnd' }, window.location.origin);
+                window.parent.postMessage({ type: 'calculatorDragEnd' }, '*');
             });
         })();
 
-        // Event-Listener für alle Input-Felder in den Panels
-        document.addEventListener('focusin', function (event) {
-            if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
-                activeInputField = event.target;
-                panelInputMode = true;
-            }
-        });
-
-        // Nur Fokus verlieren wenn außerhalb der Panels geklickt wird
-        document.addEventListener('click', function (event) {
-            const isDisplay = event.target.closest('.display');
-            const isPanelArea = event.target.closest('.special-functions');
-            const isKeypad = event.target.closest('.buttons');
-
-            if (activePanel === 'cal') {
-                const calInput = document.getElementById('calInput');
-                if (calInput) {
-                    activeInputField = calInput;
-                    panelInputMode = true;
-                    return;
+        window.addEventListener('message', (event) => {
+            if (event.data && event.data.type === 'calculatorFocus') {
+                const mainInput = document.getElementById('mainInput');
+                if (mainInput) {
+                    mainInput.focus();
                 }
             }
-
-            if (isDisplay || (!isPanelArea && !isKeypad)) {
-                activeInputField = null;
-                panelInputMode = false;
+            if (event.data && event.data.type === 'calculatorRequestSize') {
+                postCalculatorSize();
             }
         });
+
+        // Initialization
+        initLGS();
+        updateDisplay();
+        applyTouchInputLock();
+        bindBinomControls();
+        setupPopupDrag();
+
+        const mainInput = document.getElementById('mainInput');
+        if (mainInput) {
+            mainInput.addEventListener('input', () => {
+                const value = mainInput.value || '';
+                if (value.toLowerCase().includes('pi')) {
+                    const start = mainInput.selectionStart ?? value.length;
+                    const end = mainInput.selectionEnd ?? start;
+                    const before = value.slice(0, start);
+                    const selection = value.slice(start, end);
+                    const after = value.slice(end);
+                    const newBefore = before.replace(/pi/gi, 'π');
+                    const newSelection = selection.replace(/pi/gi, 'π');
+                    const newAfter = after.replace(/pi/gi, 'π');
+                    const nextValue = newBefore + newSelection + newAfter;
+                    if (nextValue !== value) {
+                        mainInput.value = nextValue;
+                        const nextStart = newBefore.length;
+                        const nextEnd = newBefore.length + newSelection.length;
+                        mainInput.setSelectionRange(nextStart, nextEnd);
+                    }
+                }
+            });
+            activeInputField = mainInput;
+        }
 
         window.addEventListener('load', () => {
             postCalculatorSize();
+            if (mainInput) mainInput.focus();
         });
-
-        window.addEventListener('resize', () => {
-            postCalculatorSize();
+        window.addEventListener('resize', () => postCalculatorSize());
+        window.addEventListener('focus', () => {
+            if (mainInput) mainInput.focus();
+        });
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden && mainInput) {
+                mainInput.focus();
+            }
         });
     </script>
 </body>

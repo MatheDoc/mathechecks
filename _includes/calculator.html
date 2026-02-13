@@ -1,0 +1,165 @@
+<div id="calculator-overlay" class="calculator-overlay" aria-hidden="true">
+    <div class="calculator-container">
+        <div class="calculator">
+            <div class="display">
+                <div class="result-row">
+                    <div class="result-display" id="resultDisplay">0</div>
+                    <button class="copy-result" id="copyResultButton" onclick="copyResult()"
+                        aria-label="Ergebnis kopieren" title="Ergebnis kopieren">
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path
+                                d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" />
+                        </svg>
+                        <span class="copy-check" aria-hidden="true">✓</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="main-input">
+                <input type="text" id="mainInput" inputmode="decimal" autocomplete="off" placeholder="Eingabe...">
+            </div>
+
+            <div class="buttons">
+                <!-- Reihe 1 -->
+                <button class="top-key" onclick="appendOperator('√')">x√y</button>
+                <div class="key-popover" id="constKey">
+                    <button class="top-key" type="button" onclick="toggleKeyPopover('constPopover', this)"
+                        aria-expanded="false" aria-controls="constPopover">const</button>
+                    <div class="key-popover-menu" id="constPopover" role="menu">
+                        <button type="button" onclick="appendNumber('π'); closeKeyPopovers()">π</button>
+                        <button type="button" onclick="appendNumber('e'); closeKeyPopovers()">e</button>
+                    </div>
+                </div>
+                <div class="key-popover" id="triKey">
+                    <button class="top-key" type="button" onclick="toggleKeyPopover('triPopover', this)"
+                        aria-expanded="false" aria-controls="triPopover">tri/log</button>
+                    <div class="key-popover-menu" id="triPopover" role="menu">
+                        <button type="button" onclick="appendFunction('sin('); closeKeyPopovers()">sin</button>
+                        <button type="button" onclick="appendFunction('cos('); closeKeyPopovers()">cos</button>
+                        <button type="button" onclick="appendFunction('tan('); closeKeyPopovers()">tan</button>
+                        <button type="button" onclick="appendLogTemplate(); closeKeyPopovers()">log_()()</button>
+                        <button type="button" onclick="appendFunction('ln('); closeKeyPopovers()">ln</button>
+                    </div>
+                </div>
+                <button class="clear" onclick="clearAll()">C</button>
+
+                <!-- Reihe 2 -->
+                <button class="top-key" onclick="openLGSPopup()">LGS</button>
+                <button class="top-key" onclick="appendOperator('^')">^</button>
+                <button class="top-key" type="button" onclick="appendAutoParen()">()</button>
+                <button class="clear" onclick="backspace()">⌫</button>
+
+                <!-- Reihe 3 -->
+                <button class="top-key" onclick="openBinPopup()">BIN</button>
+                <button class="top-key" onclick="appendNumber('x')">x</button>
+                <button class="top-key" onclick="appendOperator('=')">=</button>
+                <button class="operator" onclick="appendOperator('/')">÷</button>
+
+                <!-- Reihe 4-7 -->
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button class="operator" onclick="appendOperator('*')">×</button>
+
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button class="operator" onclick="appendOperator('-')">−</button>
+
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button class="operator" onclick="appendOperator('+')">+</button>
+
+                <button onclick="toggleSign()">+/-</button>
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button class="equals" onclick="handleExecute()">EXE</button>
+            </div>
+        </div>
+
+        <!-- LGS Popup -->
+        <div class="popup-overlay" id="lgsOverlay"></div>
+        <div class="popup" id="lgsPopup">
+            <div class="popup-drag-handle" id="lgsPopupDrag">
+                <button class="popup-close" onclick="closeLGSPopup()" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="lgs-controls">
+                    <button onclick="addLGSVariable()">+ Var.</button>
+                    <button class="remove" onclick="removeLGSVariable()">- Var.</button>
+                    <button onclick="addLGSEquation()">+ Gl.</button>
+                    <button class="remove" onclick="removeLGSEquation()">- Gl.</button>
+                </div>
+                <div id="lgsMatrix"></div>
+            </div>
+            <div class="popup-actions">
+                <button class="btn-secondary" onclick="closeLGSPopup()">Abbrechen</button>
+                <button class="btn-primary" onclick="confirmLGS()">Bestätigen</button>
+            </div>
+        </div>
+
+        <!-- BIN Popup -->
+        <div class="popup-overlay" id="binOverlay"></div>
+        <div class="popup" id="binPopup">
+            <div class="popup-drag-handle" id="binPopupDrag">
+                <button class="popup-close" onclick="closeBinPopup()" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="binom-row">
+                    <div class="binom-field">
+                        <div class="binom-input">
+                            <input type="text" id="binomA" inputmode="decimal" autocomplete="off" placeholder="a">
+                            <div class="binom-stepper" aria-hidden="true">
+                                <button type="button" class="binom-step" data-target="binomA" data-step="1"
+                                    aria-label="a erhöhen" tabindex="-1">▲</button>
+                                <button type="button" class="binom-step" data-target="binomA" data-step="-1"
+                                    aria-label="a verringern" tabindex="-1">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="binom-field">
+                        <div class="binom-input">
+                            <input type="text" id="binomB" inputmode="decimal" autocomplete="off" placeholder="b">
+                            <div class="binom-stepper" aria-hidden="true">
+                                <button type="button" class="binom-step" data-target="binomB" data-step="1"
+                                    aria-label="b erhöhen" tabindex="-1">▲</button>
+                                <button type="button" class="binom-step" data-target="binomB" data-step="-1"
+                                    aria-label="b verringern" tabindex="-1">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="binom-field">
+                        <div class="binom-input">
+                            <input type="text" id="binomN" inputmode="decimal" autocomplete="off" placeholder="n">
+                            <div class="binom-stepper" aria-hidden="true">
+                                <button type="button" class="binom-step" data-target="binomN" data-step="1"
+                                    aria-label="n erhöhen" tabindex="-1">▲</button>
+                                <button type="button" class="binom-step" data-target="binomN" data-step="-1"
+                                    aria-label="n verringern" tabindex="-1">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="binom-field">
+                        <div class="binom-input">
+                            <input type="text" id="binomP" inputmode="decimal" autocomplete="off" placeholder="p">
+                            <div class="binom-stepper" aria-hidden="true">
+                                <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
+                                    aria-label="p erhöhen" tabindex="-1">▲</button>
+                                <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
+                                    aria-label="p verringern" tabindex="-1">▼</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 6px; padding: 5px; background: #f0f4f8; border-radius: 4px; font-size: 13px;">
+                    <strong>P(a &le; X &le; b):</strong> <span id="binomLiveResult">-</span>
+                </div>
+            </div>
+            <div class="popup-actions">
+                <button class="btn-secondary" onclick="closeBinPopup()">Abbrechen</button>
+                <button class="btn-primary" onclick="confirmBin()">Bestätigen</button>
+            </div>
+        </div>
+    </div>
+</div>
