@@ -202,6 +202,7 @@ function appendRootTemplate() {
 }
 
 function appendAutoParen() {
+    // If we're editing inside a popup input field
     if (activeInputField && panelInputMode) {
         const currentValue = activeInputField.value || '';
         const cursor = activeInputField.selectionStart ?? currentValue.length;
@@ -211,6 +212,18 @@ function appendAutoParen() {
         return;
     }
 
+    // If the main input has focus, insert at the caret position
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput && activeInputField === mainInput) {
+        const value = mainInput.value || '';
+        const cursor = mainInput.selectionStart ?? value.length;
+        const before = value.slice(0, cursor);
+        const paren = shouldInsertClosingParen(before) ? ')' : '(';
+        insertAtCursor(mainInput, paren);
+        return;
+    }
+
+    // Fallback to editing the internal buffer
     const paren = shouldInsertClosingParen(currentInput) ? ')' : '(';
     if (shouldResetInput || currentInput === '0') {
         currentInput = paren;
@@ -1568,8 +1581,9 @@ document.addEventListener('keydown', function (event) {
         event.preventDefault();
     } else if (event.key >= '0' && event.key <= '9') {
         appendNumber(event.key);
-    } else if (event.key === '.' || event.key === ',') {
-        appendNumber(event.key);
+    } else if (event.key === '(' || event.key === ')') {
+        // Use context-aware parentheses insertion for both keys
+        appendAutoParen();
     } else if (event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') {
         appendOperator(event.key);
     } else if (event.key === '^') {
