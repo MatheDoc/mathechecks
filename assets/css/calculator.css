@@ -71,9 +71,9 @@
     -webkit-user-select: none;
 }
 
-.calculator.dragging .display,
-.calculator.dragging .display * {
-    cursor: move;
+.calculator.dragging,
+.calculator.dragging * {
+    cursor: move !important;
 }
 
 .calculator .result-row {
@@ -233,6 +233,11 @@
     -webkit-touch-callout: none;
 }
 
+.calculator-container .popup.dragging,
+.calculator-container .popup.dragging * {
+    cursor: move !important;
+}
+
 .calculator-container .popup-close {
     position: absolute;
     right: 6px;
@@ -362,7 +367,7 @@
     background: #ffffff;
     color: #0b0f16;
     transition: border-color 0.15s;
-    text-align: center;
+    text-align: left;
     margin: 0;
     font-weight: normal;
 }
@@ -469,7 +474,9 @@
 }
 
 .calculator button {
-    padding: 8px;
+    padding: 0 8px;
+    height: 36px;
+    /* Fixed button height for uniform rows */
     font-size: inherit;
     border: 1px solid #b8c3d3;
     border-radius: 8px;
@@ -478,6 +485,11 @@
     font-weight: 500;
     background: #f4f7fb;
     color: #111827;
+    line-height: 1;
+    /* Tight line height to avoid extra vertical space */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .calculator button:hover {
@@ -550,13 +562,52 @@
     font-weight: 600;
 }
 
+/* Popup menu buttons (const, tri/log) styled like digit buttons */
+.calculator-container .popup-content .const-menu,
+.calculator-container .popup-content .tri-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 4px;
+}
+
+.calculator-container .popup-content .const-menu button,
+.calculator-container .popup-content .tri-menu button {
+    padding: 0 8px;
+    height: 36px;
+    /* Match calculator button height */
+    font-size: inherit;
+    border: 1px solid #b8c3d3;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-weight: 500;
+    background: #f4f7fb;
+    color: #111827;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-container .popup-content .const-menu button:hover,
+.calculator-container .popup-content .tri-menu button:hover {
+    transform: translateY(-1px);
+    background: #e7eef7;
+}
+
+.calculator-container .popup-content .const-menu button:active,
+.calculator-container .popup-content .tri-menu button:active {
+    transform: translateY(0);
+}
+
 @media (max-width: 600px) {
     .calculator .result-display {
         font-size: 30px;
     }
 
     .calculator button {
-        padding: 7px;
+        padding: 0 7px;
+        /* Keep fixed height, reduce horizontal padding on small screens */
     }
 
     .calculator-container .binom-input input,

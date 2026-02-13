@@ -6,6 +6,7 @@ let shouldResetInput = false;
 let lgsVariables = 2;
 let lgsEquations = 2;
 let activeInputField = null;
+let panelInputMode = false;
 let shouldAnimateResult = false;
 let copyFeedbackTimer = null;
 let currentZIndex = 200;
@@ -86,14 +87,16 @@ function applyTouchInputLock() {
             input.dataset.defaultInputMode = input.getAttribute('inputmode') || input.inputMode || '';
         }
 
+        // Always disable browser stored info/autofill, regardless of device
+        input.readOnly = false;
+        input.autocapitalize = 'off';
+        input.autocomplete = 'off';
+        input.spellcheck = false;
+
+        // Lock touch keyboards when coarse pointer/mobile is detected
         if (shouldLockTouchInputs) {
-            input.readOnly = false;
             input.inputMode = 'none';
-            input.autocapitalize = 'off';
-            input.autocomplete = 'off';
-            input.spellcheck = false;
         } else {
-            input.readOnly = false;
             input.inputMode = input.dataset.defaultInputMode || '';
         }
     });
@@ -169,6 +172,33 @@ function appendLogTemplate() {
     }
 
     appendFunction('log_()()');
+}
+
+function appendRootTemplate() {
+    const template = '()^(1/)';
+    if (activeInputField && panelInputMode) {
+        const currentValue = activeInputField.value || '';
+        const start = activeInputField.selectionStart ?? currentValue.length;
+        const end = activeInputField.selectionEnd ?? start;
+        activeInputField.value = currentValue.slice(0, start) + template + currentValue.slice(end);
+        // Place cursor inside the first parentheses to enter the radicand y
+        setInputCursor(activeInputField, start + 1);
+        return;
+    }
+
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput && activeInputField === mainInput) {
+        insertAtCursor(mainInput, template);
+        setInputCursor(mainInput, (mainInput.selectionStart ?? 0));
+    } else {
+        if (shouldResetInput || currentInput === '0') {
+            currentInput = template;
+            shouldResetInput = false;
+        } else {
+            currentInput += template;
+        }
+        updateDisplay();
+    }
 }
 
 function appendAutoParen() {
@@ -247,6 +277,13 @@ function clearAll() {
     result = 0;
     shouldResetInput = false;
     updateDisplay();
+    // Return focus to main input after clearing
+    if (mainInput) {
+        activeInputField = mainInput;
+        panelInputMode = false;
+        mainInput.focus({ preventScroll: true });
+        setInputCursor(mainInput, 0);
+    }
 }
 
 function backspace() {
@@ -271,12 +308,26 @@ function backspace() {
     }
     updateDisplay();
 }
+function insertAns() {
+    const value = String(result ?? '').trim();
+    if (!value) return;
+
+    const mainInput = document.getElementById('mainInput');
+    if (!mainInput) return;
+
+    // Clear the input line first, then write the result
+    mainInput.value = '';
+    insertAtCursor(mainInput, value);
+    activeInputField = mainInput;
+    panelInputMode = false;
+    mainInput.focus({ preventScroll: true });
+}
 
 function normalizeExpression(input) {
     const normalized = normalizeNumberString(input);
     let expression = addImplicitMultiplication(
         normalizeUnaryMinusExponent(
-            convertRootInfix(convertLogBaseSyntax(normalized))
+            /* root infix disabled */ convertLogBaseSyntax(normalized)
         )
     );
     return normalizeConstants(expression)
@@ -295,14 +346,47 @@ function normalizeExpression(input) {
 function calculate() {
     try {
         const expression = normalizeExpression(currentInput);
-        result = eval(expression);
-        result = Math.round(result * 1000000000) / 1000000000;
+        const value = eval(expression);
+        result = formatGeneralResult(value);
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
         result = 'Fehler';
         updateDisplay();
     }
+}
+
+function formatGeneralResult(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value)) {
+        return 'Fehler';
+    }
+    const abs = Math.abs(value);
+    // Use scientific notation for very small or very large magnitudes
+    if (abs !== 0 && (abs < 1e-4 || abs >= 1e9)) {
+        return value.toExponential(8);
+    }
+    // Otherwise, keep up to 9 decimal places and trim trailing zeros,
+    // then format with German separators
+    const text = (Math.round(value * 1e9) / 1e9).toString();
+    const trimmed = text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+    return toGermanNumber(trimmed);
+}
+
+function toGermanNumber(text) {
+    // Convert a plain numeric string with '.' decimal to German format
+    // using ',' as decimal and '.' as thousands
+    if (typeof text !== 'string') text = String(text ?? '');
+    if (!text) return '';
+    let sign = '';
+    if (text.startsWith('-')) {
+        sign = '-';
+        text = text.slice(1);
+    }
+    const parts = text.split('.');
+    const intPart = parts[0] || '0';
+    const fracPart = parts[1] || '';
+    const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    return fracPart ? `${sign}${grouped},${fracPart}` : `${sign}${grouped}`;
 }
 
 function handleExecute() {
@@ -337,41 +421,59 @@ function handleExecute() {
 function executeLGSFromInput(input) {
     try {
         const content = input.trim().slice(1, -1); // Remove { }
-        const equations = content.split(';');
+        const equations = content.split(';').map(s => s.trim()).filter(s => s.length > 0);
 
-        // Parse equations
+        // Determine variables from both sides (single-letter variables a-z)
+        const varSet = new Set();
+        equations.forEach(eq => {
+            const [leftRaw, rightRaw] = eq.split('=');
+            const collect = (text) => {
+                (text.match(/[a-z]/gi) || []).forEach(v => varSet.add(v.toLowerCase()));
+            };
+            collect(leftRaw || '');
+            collect(rightRaw || '');
+        });
+
+        const varNames = Array.from(varSet).sort();
+        const varIndex = new Map(varNames.map((v, i) => [v, i]));
+
+        // Build matrix A and vector b using evaluation with parentheses and expressions allowed
         const A = [];
         const b = [];
-        const varPattern = /([+-]?\d*\.?\d*)\s*([a-z])/gi;
 
         equations.forEach(eq => {
-            const [left, right] = eq.split('=');
-            const row = [0, 0, 0, 0, 0]; // Support up to 5 variables
-            const varMap = { x: 0, y: 1, z: 2, u: 3, v: 4, w: 5 };
+            const [leftRaw, rightRaw] = eq.split('=');
+            const left = (leftRaw || '').trim();
+            const right = (rightRaw || '').trim();
 
-            // Handle implicit 1 or -1 coefficients
-            let normalizedLeft = left
-                .replace(/^\s*([a-z])/i, '1$1')  // Leading variable without coefficient
-                .replace(/([+-])\s*([a-z])/gi, '$11$2');  // Variable after +/- without coefficient
-
-            let match;
-            const pattern = /([+-]?\d*\.?\d+)\s*([a-z])/gi;
-            while ((match = pattern.exec(normalizedLeft)) !== null) {
-                let coeffStr = match[1].trim();
-                if (coeffStr === '' || coeffStr === '+') {
-                    coeffStr = '1';
-                } else if (coeffStr === '-') {
-                    coeffStr = '-1';
-                }
-                const coeff = parseFloat(coeffStr);
-                const varName = match[2].toLowerCase();
-                if (varMap[varName] !== undefined) {
-                    row[varMap[varName]] += coeff;
-                }
+            // Validate linearity for each side: disallow terms like x^2 or x*y
+            const isLeftLinear = isLinearExpression(left, varNames);
+            const isRightLinear = isLinearExpression(right, varNames);
+            if (!isLeftLinear || !isRightLinear) {
+                currentInput = 'LGS: Nichtlineare Terme gefunden';
+                result = 'Fehler: Nicht linear (x^2, xy, ...)';
+                shouldResetInput = true;
+                updateDisplay();
+                throw new Error('Nonlinear term found');
             }
 
-            A.push(row.slice(0, Math.max(lgsVariables, 2)));
-            b.push(parseFloat(right.trim()) || 0);
+            const row = new Array(varNames.length).fill(0);
+            // Coefficient of each variable: coeffLeft - coeffRight
+            varNames.forEach((v) => {
+                const idx = varIndex.get(v);
+                if (idx === undefined) return;
+                const coeffLeft = evaluateCoefficient(left, varNames, v);
+                const coeffRight = evaluateCoefficient(right, varNames, v);
+                row[idx] = (coeffLeft ?? 0) - (coeffRight ?? 0);
+            });
+
+            // Evaluate constants on both sides by substituting variables with 0
+            const leftConst = evaluateScalarExpression(left, varNames);
+            const rightConst = evaluateScalarExpression(right, varNames);
+
+            // Move constants to right: b_i = rightConst - leftConst
+            A.push(row);
+            b.push((rightConst ?? 0) - (leftConst ?? 0));
         });
 
         const solution = solveLinearSystem(A, b);
@@ -382,12 +484,12 @@ function executeLGSFromInput(input) {
         } else if (solution.status === 'infinite') {
             currentInput = 'LGS: Unendlich viele Lösungen';
             result = solution.parametric
-                .map((expr) => expr.replace(/^x(\d+)/, (_, num) => `x${toSubscript(num)}`))
+                .map((expr) => expr.replace(/^x(\d+)/, (_, num) => varNames[parseInt(num, 10) - 1] || `x${num}`))
                 .join(', ');
         } else {
             currentInput = 'LGS gelöst';
             result = solution.values
-                .map((x, i) => `x${toSubscript(i + 1)}=${formatNumber(x)}`)
+                .map((x, i) => `${varNames[i] || `x${i + 1}`}=${formatNumber(x)}`)
                 .join(', ');
         }
 
@@ -396,6 +498,102 @@ function executeLGSFromInput(input) {
     } catch (error) {
         result = 'Fehler im LGS';
         updateDisplay();
+    }
+}
+// Check if expression is linear in given variables using evaluation tests
+function isLinearExpression(expr, varNames) {
+    try {
+        const eps = 1e-9;
+        const baseline = evaluateWithAssignments(expr, varNames, {});
+        const coeffs = new Map();
+
+        for (let i = 0; i < varNames.length; i++) {
+            const v = varNames[i];
+            const val1 = evaluateWithAssignments(expr, varNames, { [v]: 1 });
+            const val2 = evaluateWithAssignments(expr, varNames, { [v]: 2 });
+            const c = (val1 - baseline);
+            coeffs.set(v, c);
+            // Check scaling: f(2) should equal baseline + 2*c
+            if (!Number.isFinite(val1) || !Number.isFinite(val2) || Math.abs((baseline + 2 * c) - val2) > eps) {
+                return false;
+            }
+        }
+
+        // Check cross terms: f(v=1,w=1) should equal baseline + c_v + c_w
+        for (let i = 0; i < varNames.length; i++) {
+            for (let j = i + 1; j < varNames.length; j++) {
+                const vi = varNames[i];
+                const vj = varNames[j];
+                const both = evaluateWithAssignments(expr, varNames, { [vi]: 1, [vj]: 1 });
+                const expected = baseline + (coeffs.get(vi) || 0) + (coeffs.get(vj) || 0);
+                if (!Number.isFinite(both) || Math.abs(both - expected) > eps) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
+// Evaluate expression with given variable assignments, others set to 0
+function evaluateWithAssignments(expr, varNames, assignments) {
+    try {
+        let normalized = normalizeNumberString(expr || '');
+        normalized = normalizeExpression(normalized);
+        varNames.forEach((v) => {
+            const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
+            const val = Object.prototype.hasOwnProperty.call(assignments, v) ? String(assignments[v]) : '0';
+            normalized = normalized.replace(re, `$1${val}$2`);
+        });
+        const value = eval(normalized);
+        return typeof value === 'number' ? value : NaN;
+    } catch (e) {
+        return NaN;
+    }
+}
+
+// Evaluate a scalar numeric expression, allowing functions and constants,
+// while substituting provided single-letter variables with 0.
+function evaluateScalarExpression(expr, varNames) {
+    try {
+        let normalized = normalizeNumberString(expr || '');
+        normalized = normalizeExpression(normalized);
+        // Replace single-letter variables with 0 using token boundaries
+        varNames.forEach((v) => {
+            const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
+            normalized = normalized.replace(re, '$10$2');
+        });
+        const value = eval(normalized);
+        return typeof value === 'number' && Number.isFinite(value) ? value : 0;
+    } catch (e) {
+        return 0;
+    }
+}
+
+// Evaluate the linear coefficient of targetVar in expr,
+// by setting targetVar=1 and others=0, then subtracting the baseline.
+function evaluateCoefficient(expr, varNames, targetVar) {
+    try {
+        let normalized = normalizeNumberString(expr || '');
+        normalized = normalizeExpression(normalized);
+
+        // Build expression with targetVar=1, others=0
+        varNames.forEach((v) => {
+            const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
+            normalized = normalized.replace(re, (match, p1, p2) => {
+                const val = v === targetVar ? '1' : '0';
+                return `${p1}${val}${p2}`;
+            });
+        });
+
+        const withOne = eval(normalized);
+        const baseline = evaluateScalarExpression(expr, varNames);
+        const coeff = (withOne ?? 0) - (baseline ?? 0);
+        return typeof coeff === 'number' && Number.isFinite(coeff) ? coeff : 0;
+    } catch (e) {
+        return 0;
     }
 }
 
@@ -431,7 +629,7 @@ function executeBinFromInput(input) {
         }
 
         currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${match[4]})`;
-        result = Math.round(probability * 1000000) / 1000000;
+        result = formatGeneralResult(probability);
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
@@ -715,11 +913,25 @@ function openLGSPopup() {
     bringToFront(popup);
     centerPopup('lgsPopup');
     renderLGS();
+    // Focus the first input in the LGS matrix
+    const firstLgsInput = document.querySelector('#lgsMatrix input');
+    if (firstLgsInput) {
+        panelInputMode = true;
+        activeInputField = firstLgsInput;
+        firstLgsInput.focus({ preventScroll: true });
+        setInputCursor(firstLgsInput, firstLgsInput.value?.length || 0);
+    }
 }
 
 function closeLGSPopup() {
     document.getElementById('lgsOverlay').classList.remove('open');
     document.getElementById('lgsPopup').classList.remove('open');
+    panelInputMode = false;
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput) {
+        activeInputField = mainInput;
+        mainInput.focus({ preventScroll: true });
+    }
 }
 
 function confirmLGS() {
@@ -774,11 +986,25 @@ function openBinPopup() {
     bringToFront(popup);
     centerPopup('binPopup');
     updateBinomLiveResult();
+    // Focus the first BIN input (a)
+    const aInput = document.getElementById('binomA');
+    if (aInput) {
+        panelInputMode = true;
+        activeInputField = aInput;
+        aInput.focus({ preventScroll: true });
+        setInputCursor(aInput, aInput.value?.length || 0);
+    }
 }
 
 function closeBinPopup() {
     document.getElementById('binOverlay').classList.remove('open');
     document.getElementById('binPopup').classList.remove('open');
+    panelInputMode = false;
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput) {
+        activeInputField = mainInput;
+        mainInput.focus({ preventScroll: true });
+    }
 }
 
 function confirmBin() {
@@ -847,6 +1073,10 @@ function renderLGS() {
             input.inputMode = 'decimal';
             input.readOnly = false;
             input.id = `a${i}${j}`;
+            input.name = `a${i}${j}`;
+            input.autocomplete = 'off';
+            input.autocapitalize = 'off';
+            input.spellcheck = false;
             input.placeholder = '';
             input.value = existingValues[input.id] ?? '';
             row.appendChild(input);
@@ -867,6 +1097,10 @@ function renderLGS() {
         resultInput.inputMode = 'decimal';
         resultInput.readOnly = false;
         resultInput.id = `b${i}`;
+        resultInput.name = `b${i}`;
+        resultInput.autocomplete = 'off';
+        resultInput.autocapitalize = 'off';
+        resultInput.spellcheck = false;
         resultInput.placeholder = '';
         resultInput.value = existingValues[resultInput.id] ?? '';
         row.appendChild(resultInput);
@@ -1018,10 +1252,9 @@ function solveLinearSystem(A, b) {
         }
     }
 
-    const paramNames = ['t', 's', 'r', 'u', 'v', 'w'];
     const paramMap = new Map();
     freeCols.forEach((col, idx) => {
-        paramMap.set(col, paramNames[idx] || `p${idx + 1}`);
+        paramMap.set(col, 'λ' + toSubscript(idx + 1));
     });
 
     const expressions = new Array(cols).fill('0');
@@ -1051,7 +1284,8 @@ function solveLinearSystem(A, b) {
 function formatNumber(value) {
     const rounded = Math.round(value * 1000000) / 1000000;
     const text = rounded.toFixed(6);
-    return text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+    const trimmed = text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+    return toGermanNumber(trimmed);
 }
 
 const subscriptMap = {
@@ -1108,7 +1342,7 @@ function calculateBinomial() {
 
     const pDisplay = pInput !== '' ? pInput : String(p);
     currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${pDisplay})`;
-    result = Math.round(probability * 1000000) / 1000000;
+    result = formatGeneralResult(probability);
     shouldResetInput = true;
     updateDisplay();
 }
@@ -1165,7 +1399,7 @@ function updateBinomLiveResult() {
         }
 
         const rounded = Math.round(probability * 1000000) / 1000000;
-        document.getElementById('binomLiveResult').textContent = rounded;
+        document.getElementById('binomLiveResult').textContent = formatGeneralResult(rounded);
     } catch (error) {
         document.getElementById('binomLiveResult').textContent = 'Fehler';
     }
@@ -1220,7 +1454,7 @@ function solveEquation(equation) {
             let expr = `(${leftSide}) - (${rightSide})`;
             expr = addImplicitMultiplication(
                 normalizeUnaryMinusExponent(
-                    convertRootInfix(convertLogBaseSyntax(expr))
+                    /* root infix disabled */ convertLogBaseSyntax(expr)
                 )
             );
             expr = normalizeConstants(expr)
@@ -1309,7 +1543,7 @@ function solveEquation(equation) {
             result = 'Keine Lösung';
             currentInput = equation;
         } else {
-            result = uniqueRoots.map((root, i) => `x${toSubscript(i + 1)}=${root}`).join(', ');
+            result = uniqueRoots.map((root, i) => `x${toSubscript(i + 1)}=${formatNumber(root)}`).join(', ');
             currentInput = `${equation} →`;
             shouldResetInput = true;
         }
@@ -1476,7 +1710,7 @@ function setupCalculatorDrag() {
 
 // Popup Drag
 function setupPopupDrag() {
-    ['lgsPopup', 'binPopup'].forEach(popupId => {
+    ['lgsPopup', 'binPopup', 'constPopup', 'triPopup'].forEach(popupId => {
         const popup = document.getElementById(popupId);
         const dragHandle = document.getElementById(popupId.replace('Popup', 'PopupDrag'));
 
@@ -1498,7 +1732,8 @@ function setupPopupDrag() {
                 initialTop: popup.offsetTop
             };
 
-            dragHandle.style.cursor = 'grabbing';
+            // Use CSS class to enforce consistent move cursor during drag
+            popup.classList.add('dragging');
 
             if (dragHandle.setPointerCapture) {
                 dragHandle.setPointerCapture(e.pointerId);
@@ -1531,7 +1766,7 @@ function setupPopupDrag() {
                 }
             }
 
-            dragHandle.style.cursor = 'move';
+            popup.classList.remove('dragging');
             dragState = null;
         });
 
@@ -1546,10 +1781,45 @@ function setupPopupDrag() {
                 }
             }
 
-            dragHandle.style.cursor = 'move';
+            popup.classList.remove('dragging');
             dragState = null;
         });
     });
+}
+function openConstPopup() {
+    document.getElementById('constOverlay').classList.add('open');
+    const popup = document.getElementById('constPopup');
+    popup.classList.add('open');
+    bringToFront(popup);
+    centerPopup('constPopup');
+}
+
+function closeConstPopup() {
+    document.getElementById('constOverlay').classList.remove('open');
+    document.getElementById('constPopup').classList.remove('open');
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput) {
+        activeInputField = mainInput;
+        mainInput.focus({ preventScroll: true });
+    }
+}
+
+function openTriPopup() {
+    document.getElementById('triOverlay').classList.add('open');
+    const popup = document.getElementById('triPopup');
+    popup.classList.add('open');
+    bringToFront(popup);
+    centerPopup('triPopup');
+}
+
+function closeTriPopup() {
+    document.getElementById('triOverlay').classList.remove('open');
+    document.getElementById('triPopup').classList.remove('open');
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput) {
+        activeInputField = mainInput;
+        mainInput.focus({ preventScroll: true });
+    }
 }
 
 // Initialization
@@ -1565,15 +1835,35 @@ function initCalculator() {
     if (mainInput) {
         mainInput.addEventListener('input', () => {
             const value = mainInput.value || '';
+            const start = mainInput.selectionStart ?? value.length;
+            const end = mainInput.selectionEnd ?? start;
+
+            // Replace 'pi' with 'π'
             if (value.toLowerCase().includes('pi')) {
-                const start = mainInput.selectionStart ?? value.length;
-                const end = mainInput.selectionEnd ?? start;
                 const before = value.slice(0, start);
                 const selection = value.slice(start, end);
                 const after = value.slice(end);
                 const newBefore = before.replace(/pi/gi, 'π');
                 const newSelection = selection.replace(/pi/gi, 'π');
                 const newAfter = after.replace(/pi/gi, 'π');
+                const nextValue = newBefore + newSelection + newAfter;
+                if (nextValue !== value) {
+                    mainInput.value = nextValue;
+                    const nextStart = newBefore.length;
+                    const nextEnd = newBefore.length + newSelection.length;
+                    mainInput.setSelectionRange(nextStart, nextEnd);
+                    return;
+                }
+            }
+
+            // Strip any '√' characters from input
+            if (value.includes('√')) {
+                const before = value.slice(0, start);
+                const selection = value.slice(start, end);
+                const after = value.slice(end);
+                const newBefore = before.replace(/√/g, '');
+                const newSelection = selection.replace(/√/g, '');
+                const newAfter = after.replace(/√/g, '');
                 const nextValue = newBefore + newSelection + newAfter;
                 if (nextValue !== value) {
                     mainInput.value = nextValue;

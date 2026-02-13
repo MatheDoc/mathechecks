@@ -16,41 +16,25 @@
             </div>
 
             <div class="main-input">
-                <input type="text" id="mainInput" inputmode="decimal" autocomplete="off" placeholder="Eingabe...">
+                <input type="text" id="mainInput" name="calc-main-input" inputmode="decimal" autocomplete="off"
+                    autocapitalize="off" spellcheck="false" placeholder="Eingabe">
             </div>
 
             <div class="buttons">
                 <!-- Reihe 1 -->
-                <button class="top-key" onclick="appendOperator('√')">x√y</button>
-                <div class="key-popover" id="constKey">
-                    <button class="top-key" type="button" onclick="toggleKeyPopover('constPopover', this)"
-                        aria-expanded="false" aria-controls="constPopover">const</button>
-                    <div class="key-popover-menu" id="constPopover" role="menu">
-                        <button type="button" onclick="appendNumber('π'); closeKeyPopovers()">π</button>
-                        <button type="button" onclick="appendNumber('e'); closeKeyPopovers()">e</button>
-                    </div>
-                </div>
-                <div class="key-popover" id="triKey">
-                    <button class="top-key" type="button" onclick="toggleKeyPopover('triPopover', this)"
-                        aria-expanded="false" aria-controls="triPopover">tri/log</button>
-                    <div class="key-popover-menu" id="triPopover" role="menu">
-                        <button type="button" onclick="appendFunction('sin('); closeKeyPopovers()">sin</button>
-                        <button type="button" onclick="appendFunction('cos('); closeKeyPopovers()">cos</button>
-                        <button type="button" onclick="appendFunction('tan('); closeKeyPopovers()">tan</button>
-                        <button type="button" onclick="appendLogTemplate(); closeKeyPopovers()">log_()()</button>
-                        <button type="button" onclick="appendFunction('ln('); closeKeyPopovers()">ln</button>
-                    </div>
-                </div>
+                <button class="top-key" onclick=""></button>
+                <button class="top-key" onclick="openLGSPopup()">LGS</button>
+                <button class="top-key" onclick="openBinPopup()">BINOM</button>
                 <button class="clear" onclick="clearAll()">C</button>
 
                 <!-- Reihe 2 -->
-                <button class="top-key" onclick="openLGSPopup()">LGS</button>
+                <button class="top-key" type="button" onclick="openTriPopup()">FUNC</button>
                 <button class="top-key" onclick="appendOperator('^')">^</button>
                 <button class="top-key" type="button" onclick="appendAutoParen()">()</button>
                 <button class="clear" onclick="backspace()">⌫</button>
 
                 <!-- Reihe 3 -->
-                <button class="top-key" onclick="openBinPopup()">BIN</button>
+                <button type="button" onclick="openConstPopup()">CONST</button>
                 <button class="top-key" onclick="appendNumber('x')">x</button>
                 <button class="top-key" onclick="appendOperator('=')">=</button>
                 <button class="operator" onclick="appendOperator('/')">÷</button>
@@ -71,9 +55,9 @@
                 <button onclick="appendNumber('3')">3</button>
                 <button class="operator" onclick="appendOperator('+')">+</button>
 
-                <button onclick="toggleSign()">+/-</button>
+                <button class="top-key" onclick="insertAns()">Ans</button>
                 <button onclick="appendNumber('0')">0</button>
-                <button onclick="appendNumber('.')">.</button>
+                <button onclick="appendNumber('.')">,</button>
                 <button class="equals" onclick="handleExecute()">EXE</button>
             </div>
         </div>
@@ -109,7 +93,8 @@
                 <div class="binom-row">
                     <div class="binom-field">
                         <div class="binom-input">
-                            <input type="text" id="binomA" inputmode="decimal" autocomplete="off" placeholder="a">
+                            <input type="text" id="binomA" name="calc-binom-a" inputmode="decimal" autocomplete="off"
+                                autocapitalize="off" spellcheck="false" placeholder="a">
                             <div class="binom-stepper" aria-hidden="true">
                                 <button type="button" class="binom-step" data-target="binomA" data-step="1"
                                     aria-label="a erhöhen" tabindex="-1">▲</button>
@@ -120,7 +105,8 @@
                     </div>
                     <div class="binom-field">
                         <div class="binom-input">
-                            <input type="text" id="binomB" inputmode="decimal" autocomplete="off" placeholder="b">
+                            <input type="text" id="binomB" name="calc-binom-b" inputmode="decimal" autocomplete="off"
+                                autocapitalize="off" spellcheck="false" placeholder="b">
                             <div class="binom-stepper" aria-hidden="true">
                                 <button type="button" class="binom-step" data-target="binomB" data-step="1"
                                     aria-label="b erhöhen" tabindex="-1">▲</button>
@@ -131,7 +117,8 @@
                     </div>
                     <div class="binom-field">
                         <div class="binom-input">
-                            <input type="text" id="binomN" inputmode="decimal" autocomplete="off" placeholder="n">
+                            <input type="text" id="binomN" name="calc-binom-n" inputmode="decimal" autocomplete="off"
+                                autocapitalize="off" spellcheck="false" placeholder="n">
                             <div class="binom-stepper" aria-hidden="true">
                                 <button type="button" class="binom-step" data-target="binomN" data-step="1"
                                     aria-label="n erhöhen" tabindex="-1">▲</button>
@@ -142,7 +129,8 @@
                     </div>
                     <div class="binom-field">
                         <div class="binom-input">
-                            <input type="text" id="binomP" inputmode="decimal" autocomplete="off" placeholder="p">
+                            <input type="text" id="binomP" name="calc-binom-p" inputmode="decimal" autocomplete="off"
+                                autocapitalize="off" spellcheck="false" placeholder="p">
                             <div class="binom-stepper" aria-hidden="true">
                                 <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
                                     aria-label="p erhöhen" tabindex="-1">▲</button>
@@ -159,6 +147,38 @@
             <div class="popup-actions">
                 <button class="btn-secondary" onclick="closeBinPopup()">Abbrechen</button>
                 <button class="btn-primary" onclick="confirmBin()">Bestätigen</button>
+            </div>
+        </div>
+
+        <!-- CONST Popup -->
+        <div class="popup-overlay" id="constOverlay"></div>
+        <div class="popup" id="constPopup">
+            <div class="popup-drag-handle" id="constPopupDrag">
+                <button class="popup-close" onclick="closeConstPopup()" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="const-menu" role="menu">
+                    <button type="button" onclick="appendNumber('π'); closeConstPopup()">π</button>
+                    <button type="button" onclick="appendNumber('e'); closeConstPopup()">e</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRI/LOG Popup -->
+        <div class="popup-overlay" id="triOverlay"></div>
+        <div class="popup" id="triPopup">
+            <div class="popup-drag-handle" id="triPopupDrag">
+                <button class="popup-close" onclick="closeTriPopup()" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="tri-menu" role="menu">
+                    <button type="button" onclick="appendRootTemplate(); closeTriPopup()">x√y</button>
+                    <button type="button" onclick="appendFunction('sin('); closeTriPopup()">sin</button>
+                    <button type="button" onclick="appendFunction('cos('); closeTriPopup()">cos</button>
+                    <button type="button" onclick="appendFunction('tan('); closeTriPopup()">tan</button>
+                    <button type="button" onclick="appendLogTemplate(); closeTriPopup()">log_()()</button>
+                    <button type="button" onclick="appendFunction('ln('); closeTriPopup()">ln</button>
+                </div>
             </div>
         </div>
     </div>
