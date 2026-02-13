@@ -630,13 +630,14 @@ function toggleSign() {
 
 function appendToActiveInput(value) {
     const mainInput = document.getElementById('mainInput');
-    if (!activeInputField || activeInputField !== mainInput) {
-        const popupInput = document.querySelector('#lgsPopup.open input, #binPopup.open input');
-        if (popupInput) {
-            activeInputField = popupInput;
-        } else {
-            return false;
-        }
+    if (!activeInputField || activeInputField === mainInput) {
+        return false;
+    }
+
+    // Check if activeInputField is still in an open popup
+    const isInOpenPopup = activeInputField.closest('#lgsPopup.open, #binPopup.open');
+    if (!isInOpenPopup) {
+        return false;
     }
 
     const currentValue = activeInputField.value || '';
@@ -658,6 +659,9 @@ function appendToActiveInput(value) {
             }
             if (segment === '') {
                 insertAtCursor(activeInputField, `0${value}`);
+                if (activeInputField.closest('#binPopup')) {
+                    updateBinomLiveResult();
+                }
                 return true;
             }
         } else if (isSeparator) {
@@ -667,12 +671,21 @@ function appendToActiveInput(value) {
             }
             if (currentValue === '' || currentValue === '-') {
                 activeInputField.value = `${currentValue}0${value}`;
+                if (activeInputField.closest('#binPopup')) {
+                    updateBinomLiveResult();
+                }
                 return true;
             }
         }
     }
 
     insertAtCursor(activeInputField, value);
+
+    // Trigger live result update for BIN popup inputs
+    if (activeInputField.closest('#binPopup')) {
+        updateBinomLiveResult();
+    }
+
     return true;
 }
 
@@ -1375,7 +1388,11 @@ function setupCalculatorDrag() {
         // Don't drag if clicking on buttons or inputs
         if (e.target.closest('button, input, select, textarea, a')) return;
 
-        bringToFront(calculator);
+        // Don't bring calculator to front if any popup is open
+        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open');
+        if (!hasOpenPopup) {
+            bringToFront(calculator);
+        }
 
         e.preventDefault();
         e.stopPropagation();
@@ -1448,9 +1465,12 @@ function setupCalculatorDrag() {
         dragState = null;
     });
 
-    // Bring calculator to front when clicked anywhere
+    // Bring calculator to front when clicked anywhere (but not if popup is open)
     calculator.addEventListener('pointerdown', (e) => {
-        bringToFront(calculator);
+        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open');
+        if (!hasOpenPopup) {
+            bringToFront(calculator);
+        }
     });
 }
 
