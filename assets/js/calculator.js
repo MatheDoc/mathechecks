@@ -81,7 +81,7 @@ function showCopyFeedback() {
 }
 
 function applyTouchInputLock() {
-    const inputs = document.querySelectorAll('#mainInput, #binomA, #binomB, #binomN, #binomP, #lgsMatrix input');
+    const inputs = document.querySelectorAll('#mainInput, #binomA, #binomB, #binomN, #binomP, #lgsMatrix input, #graphFunction, #graphXMin, #graphXMax, #graphYMin, #graphYMax');
     inputs.forEach((input) => {
         if (!input.dataset.defaultInputMode) {
             input.dataset.defaultInputMode = input.getAttribute('inputmode') || input.inputMode || '';
@@ -164,18 +164,19 @@ function appendLogTemplate() {
         const currentValue = activeInputField.value || '';
         const start = activeInputField.selectionStart ?? currentValue.length;
         const end = activeInputField.selectionEnd ?? start;
-        const template = 'log_()()';
+        const template = 'log(;)';
         activeInputField.value =
             currentValue.slice(0, start) + template + currentValue.slice(end);
-        setInputCursor(activeInputField, start + 5);
+        // Place cursor after '(', ready to type the value
+        setInputCursor(activeInputField, start + 4);
         return;
     }
 
-    appendFunction('log_()()');
+    appendFunction('log(;)');
 }
 
 function appendRootTemplate() {
-    const template = '()^(1/)';
+    const template = '^(1/)';
     if (activeInputField && panelInputMode) {
         const currentValue = activeInputField.value || '';
         const start = activeInputField.selectionStart ?? currentValue.length;
@@ -340,7 +341,7 @@ function normalizeExpression(input) {
     const normalized = normalizeNumberString(input);
     let expression = addImplicitMultiplication(
         normalizeUnaryMinusExponent(
-            /* root infix disabled */ convertLogBaseSyntax(normalized)
+            /* root infix disabled */ convertLogBaseSyntax(convertCustomENotation(normalized))
         )
     );
     return normalizeConstants(expression)
@@ -376,7 +377,15 @@ function formatGeneralResult(value) {
     const abs = Math.abs(value);
     // Use scientific notation for very small or very large magnitudes
     if (abs !== 0 && (abs < 1e-4 || abs >= 1e9)) {
-        return value.toExponential(8);
+        const exp = value.toExponential(8);
+        const [mantissa, exponent] = exp.split('e');
+        const mTrim = mantissa
+            .replace(/\.0+$/, '')
+            .replace(/(\.\d*?)0+$/, '$1');
+        const expNum = parseInt(exponent, 10);
+        const sign = expNum >= 0 ? '+' : '-';
+        const mantissaGerman = toGermanNumber(mTrim);
+        return `${mantissaGerman}${sign}E${Math.abs(expNum)}`;
     }
     // Otherwise, keep up to 9 decimal places and trim trailing zeros,
     // then format with German separators
@@ -398,8 +407,8 @@ function toGermanNumber(text) {
     const parts = text.split('.');
     const intPart = parts[0] || '0';
     const fracPart = parts[1] || '';
-    const grouped = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    return fracPart ? `${sign}${grouped},${fracPart}` : `${sign}${grouped}`;
+    // Remove thousands grouping: keep integer part as-is, only swap decimal '.' to ','
+    return fracPart ? `${sign}${intPart},${fracPart}` : `${sign}${intPart}`;
 }
 
 function handleExecute() {
@@ -419,6 +428,12 @@ function handleExecute() {
         return;
     }
 
+    // Check for GRAPH syntax: graph(function;options)
+    if (inputValue.trim().match(/^graph\s*\(/i)) {
+        executeGraphFromInput(inputValue);
+        return;
+    }
+
     // Check for equation (single =)
     const equalsCount = (inputValue.match(/=/g) || []).length;
     if (equalsCount === 1) {
@@ -433,13 +448,13 @@ function handleExecute() {
 
 function executeLGSFromInput(input) {
     try {
-        // Support new syntax lgs(eq1;eq2;...) and gracefully handle legacy {eq1;eq2;...}
+        // Support syntax lgs(eq1;eq2;...)
         let content = input.trim();
         const m = content.match(/^lgs\s*\((.*)\)\s*$/i);
         if (m) {
             content = m[1];
-        } else if (content.startsWith('{') && content.endsWith('}')) {
-            content = content.slice(1, -1);
+        } else {
+            throw new Error('Invalid LGS format');
         }
         const equations = content.split(';').map(s => s.trim()).filter(s => s.length > 0);
 
@@ -658,6 +673,20 @@ function executeBinFromInput(input) {
     }
 }
 
+function executeGraphFromInput(input) {
+    try {
+        // Graph functionality is now only available via the GRAPH button
+        result = 'Bitte GRAPH-Button verwenden';
+        currentInput = '';
+        shouldResetInput = true;
+        shouldResetInput = true;
+        updateDisplay();
+    } catch (error) {
+        result = 'Fehler: ' + error.message;
+        updateDisplay();
+    }
+}
+
 function addImplicitMultiplication(value) {
     return value
         .replace(/(\d)([a-zA-Zπ(])/g, '$1*$2')
@@ -701,34 +730,72 @@ function convertRootInfix(value) {
 }
 
 function convertLogBaseSyntax(value) {
+    // Support two syntaxes:
+    // - New: log(value;base) -> logBase(base,value)
+    // - Legacy: log_(base)(value) -> logBase(base,value)
     let expr = value;
-    let index = expr.indexOf('log_(');
 
-    while (index !== -1) {
-        const baseStart = index + 4;
-        const base = extractParenthesized(expr, baseStart);
-        if (!base) {
-            break;
-        }
+    // Handle legacy log_ syntax first (for backward compatibility)
+    let idxLegacy = expr.indexOf('log_(');
+    while (idxLegacy !== -1) {
+        const baseParen = extractParenthesized(expr, idxLegacy + 4);
+        if (!baseParen) break;
 
-        const afterBase = base.end + 1;
+        const afterBase = baseParen.end + 1;
         const valueStart = findNextNonSpace(expr, afterBase);
-        if (valueStart === null || expr[valueStart] !== '(') {
-            break;
+        if (valueStart === null || expr[valueStart] !== '(') break;
+
+        const valueParen = extractParenthesized(expr, valueStart);
+        if (!valueParen) break;
+
+        const baseStr = expr.slice(baseParen.start + 1, baseParen.end);
+        const valueStr = expr.slice(valueParen.start + 1, valueParen.end);
+        expr = `${expr.slice(0, idxLegacy)}logBase(${baseStr},${valueStr})${expr.slice(valueParen.end + 1)}`;
+        idxLegacy = expr.indexOf('log_(');
+    }
+
+    // Handle new log(value;base) syntax
+    let idx = expr.indexOf('log(');
+    while (idx !== -1) {
+        const argsParen = extractParenthesized(expr, idx + 3);
+        if (!argsParen) break;
+
+        const inner = expr.slice(argsParen.start + 1, argsParen.end);
+        // Split inner by top-level ';'
+        let depth = 0;
+        let sepPos = -1;
+        for (let i = 0; i < inner.length; i++) {
+            const ch = inner[i];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+            else if (ch === ';' && depth === 0) {
+                sepPos = i;
+                break;
+            }
+        }
+        if (sepPos === -1) {
+            // No separator; leave as-is
+            idx = expr.indexOf('log(', argsParen.end + 1);
+            continue;
         }
 
-        const valuePart = extractParenthesized(expr, valueStart);
-        if (!valuePart) {
-            break;
-        }
-
-        const baseValue = expr.slice(base.start + 1, base.end);
-        const valueValue = expr.slice(valuePart.start + 1, valuePart.end);
-        expr = `${expr.slice(0, index)}logBase(${baseValue},${valueValue})${expr.slice(valuePart.end + 1)}`;
-        index = expr.indexOf('log_(');
+        const valueStr = inner.slice(0, sepPos).trim();
+        const baseStr = inner.slice(sepPos + 1).trim();
+        const converted = `logBase(${baseStr},${valueStr})`;
+        expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        idx = expr.indexOf('log(');
     }
 
     return expr;
+}
+
+// Convert custom scientific notation with sign before 'E':
+// Examples: "4+E6" -> "4E+6", "2-E3" -> "2E-3"; supports decimals and optional spaces
+function convertCustomENotation(value) {
+    if (typeof value !== 'string') return value;
+    return value.replace(/(-?\d+(?:\.\d+)?)(\s*)([+\-])(\s*)E(\s*)(\d+)/g,
+        (match, mantissa, s1, sign, s2, s3, exp) => `${mantissa}E${sign}${exp}`
+    );
 }
 
 function extractParenthesized(expr, startIndex) {
@@ -1039,6 +1106,159 @@ function confirmBin() {
     activeInputField = mainInput;
 
     closeBinPopup();
+    handleExecute();
+}
+
+function openGraphPopup() {
+    document.getElementById('graphOverlay').classList.add('open');
+    const popup = document.getElementById('graphPopup');
+    popup.classList.add('open');
+    bringToFront(popup);
+    centerPopup('graphPopup');
+
+    // Reset preview
+    const preview = document.getElementById('graphPreview');
+    if (preview) {
+        preview.style.display = 'none';
+        preview.innerHTML = '';
+    }
+
+    // Focus the function input
+    const funcInput = document.getElementById('graphFunction');
+    if (funcInput) {
+        panelInputMode = true;
+        activeInputField = funcInput;
+        funcInput.focus({ preventScroll: true });
+        setInputCursor(funcInput, funcInput.value?.length || 0);
+    }
+
+    // Automatische Vorschau initialisieren
+    setupGraphAutoPreview();
+    // Automatische Vorschau für Graph-Popup
+    function setupGraphAutoPreview() {
+        const funcInput = document.getElementById('graphFunction');
+        const xMinInput = document.getElementById('graphXMin');
+        const xMaxInput = document.getElementById('graphXMax');
+        const yMinInput = document.getElementById('graphYMin');
+        const yMaxInput = document.getElementById('graphYMax');
+        if (!funcInput || !xMinInput || !xMaxInput || !yMinInput || !yMaxInput) return;
+
+        let lastValue = '';
+        let debounceTimer = null;
+
+        function tryPreview() {
+            const funcVal = funcInput.value.trim();
+            const xMinVal = xMinInput.value.trim();
+            const xMaxVal = xMaxInput.value.trim();
+            const yMinVal = yMinInput.value.trim();
+            const yMaxVal = yMaxInput.value.trim();
+            const current = funcVal + '|' + xMinVal + '|' + xMaxVal + '|' + yMinVal + '|' + yMaxVal;
+            if (current === lastValue) return;
+            lastValue = current;
+
+            // Nur Vorschau, wenn Funktionsfeld nicht leer und mindestens ein x-Zeichen enthalten ist
+            if (!funcVal || !/[a-zA-Z0-9]/.test(funcVal)) {
+                const preview = document.getElementById('graphPreview');
+                if (preview) {
+                    preview.style.display = 'none';
+                    preview.innerHTML = '';
+                }
+                return;
+            }
+            previewGraph();
+        }
+
+        function debouncedPreview() {
+            if (debounceTimer) clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(tryPreview, 250);
+        }
+
+        [funcInput, xMinInput, xMaxInput, yMinInput, yMaxInput].forEach(input => {
+            input.removeEventListener('input', debouncedPreview);
+            input.addEventListener('input', debouncedPreview);
+        });
+
+        // Initial preview
+        debouncedPreview();
+    }
+}
+
+function closeGraphPopup() {
+    document.getElementById('graphOverlay').classList.remove('open');
+    document.getElementById('graphPopup').classList.remove('open');
+    panelInputMode = false;
+    const mainInput = document.getElementById('mainInput');
+    if (mainInput) {
+        activeInputField = mainInput;
+        mainInput.focus({ preventScroll: true });
+    }
+}
+
+function previewGraph() {
+    const funcInput = document.getElementById('graphFunction').value.trim();
+    if (!funcInput) {
+        alert('Bitte geben Sie eine Funktion ein.');
+        return;
+    }
+
+    const xMin = parseFloat(document.getElementById('graphXMin').value) || -5;
+    const xMax = parseFloat(document.getElementById('graphXMax').value) || 5;
+    const yMinInput = document.getElementById('graphYMin').value.trim();
+    const yMaxInput = document.getElementById('graphYMax').value.trim();
+
+    const preview = document.getElementById('graphPreview');
+    preview.style.display = 'block';
+    preview.innerHTML = '';
+    preview.id = 'graphPreview'; // Ensure ID is set
+
+    const optionen = {
+        titel: '',
+        xAchse: '',
+        yAchse: '',
+        xMin: xMin,
+        xMax: xMax
+    };
+
+    if (yMinInput !== '') optionen.yMin = parseFloat(yMinInput);
+    if (yMaxInput !== '') optionen.yMax = parseFloat(yMaxInput);
+
+    const funktionen = [{
+        term: funcInput,
+        name: 'f(x)',
+        beschreibung: funcInput
+    }];
+
+    try {
+        zeichneGraph('graphPreview', funktionen, optionen);
+    } catch (error) {
+        preview.innerHTML = '<div style="color: red; padding: 10px;">Fehler beim Zeichnen ' + '</div>';
+    }
+}
+
+function confirmGraph() {
+    const funcInput = document.getElementById('graphFunction').value.trim();
+    if (!funcInput) {
+        alert('Bitte geben Sie eine Funktion ein.');
+        return;
+    }
+
+    const xMin = document.getElementById('graphXMin').value || '-5';
+    const xMax = document.getElementById('graphXMax').value || '5';
+    const yMin = document.getElementById('graphYMin').value.trim();
+    const yMax = document.getElementById('graphYMax').value.trim();
+
+    // Build the graph command string
+    let graphCmd = `graph(${funcInput}`;
+    graphCmd += `;xmin=${xMin};xmax=${xMax}`;
+    if (yMin !== '') graphCmd += `;ymin=${yMin}`;
+    if (yMax !== '') graphCmd += `;ymax=${yMax}`;
+    graphCmd += ')';
+
+    const mainInput = document.getElementById('mainInput');
+    mainInput.value = graphCmd;
+    activeInputField = mainInput;
+
+    closeGraphPopup();
     handleExecute();
 }
 
@@ -1474,7 +1694,7 @@ function solveEquation(equation) {
             let expr = `(${leftSide}) - (${rightSide})`;
             expr = addImplicitMultiplication(
                 normalizeUnaryMinusExponent(
-                    /* root infix disabled */ convertLogBaseSyntax(expr)
+                    /* root infix disabled */ convertLogBaseSyntax(convertCustomENotation(expr))
                 )
             );
             expr = normalizeConstants(expr)
@@ -1485,7 +1705,8 @@ function solveEquation(equation) {
                 .replace(/root/g, 'root')
                 .replace(/exp/g, 'Math.exp')
                 .replace(/ln/g, 'Math.log')
-                .replace(/log/g, 'Math.log10')
+                // Only replace standalone log(...) calls with Math.log10(...)
+                .replace(/log\s*\(/g, 'Math.log10(')
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan');
@@ -1731,7 +1952,7 @@ function setupCalculatorDrag() {
 
 // Popup Drag
 function setupPopupDrag() {
-    ['lgsPopup', 'binPopup', 'constPopup', 'triPopup'].forEach(popupId => {
+    ['lgsPopup', 'binPopup', 'constPopup', 'triPopup', 'graphPopup'].forEach(popupId => {
         const popup = document.getElementById(popupId);
         const dragHandle = document.getElementById(popupId.replace('Popup', 'PopupDrag'));
 

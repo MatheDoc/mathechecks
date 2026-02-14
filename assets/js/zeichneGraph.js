@@ -53,10 +53,6 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
   }
 
   const layout = {
-    title: {
-      text: optionen.titel || "",
-      y: 0.9,
-    },
     xaxis: {
       title: {
         text: optionen.xAchse || "x",
@@ -84,8 +80,15 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       xanchor: "center",
       y: -0.25,
     },
-    margin: { t: 100, r: 50, b: 40, l: 60 },
+    margin: { t: 40, r: 50, b: 40, l: 60 },
+    dragmode: 'pan',
   };
 
-  Plotly.newPlot(containerId, daten, layout);
+  const config = {
+    modeBarButtonsToRemove: [],
+    displayModeBar: true,
+    displaylogo: false,
+  };
+
+  Plotly.newPlot(containerId, daten, layout, config);
 }
