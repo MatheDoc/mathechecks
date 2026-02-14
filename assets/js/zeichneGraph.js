@@ -54,20 +54,14 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
 
   const layout = {
     xaxis: {
-      title: {
-        text: optionen.xAchse || "x",
-        y: 0.5,
-      },
+      ...(optionen.xAchse ? { title: { text: optionen.xAchse, y: 0.5 } } : {}),
       range:
         optionen.xMin !== undefined && optionen.xMax !== undefined
           ? [optionen.xMin, optionen.xMax]
           : undefined,
     },
     yaxis: {
-      title: {
-        text: optionen.yAchse || "f(x)",
-        y: 0.5,
-      },
+      ...(optionen.yAchse ? { title: { text: optionen.yAchse, y: 0.5 } } : {}),
       range:
         optionen.yMin !== undefined && optionen.yMax !== undefined
           ? [optionen.yMin, optionen.yMax]
