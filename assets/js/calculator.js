@@ -407,14 +407,14 @@ function handleExecute() {
     const mainInput = document.getElementById('mainInput');
     const inputValue = mainInput.value || '0';
 
-    // Check for LGS syntax: {eq1;eq2;...}
-    if (inputValue.trim().startsWith('{') && inputValue.trim().endsWith('}')) {
+    // Check for LGS syntax: lgs(eq1;eq2;...)
+    if (inputValue.trim().match(/^lgs\s*\(/i)) {
         executeLGSFromInput(inputValue);
         return;
     }
 
-    // Check for BIN syntax: bcd(a;b;n;p)
-    if (inputValue.trim().match(/^bcd\s*\(/i)) {
+    // Check for BIN syntax: binom(a;b;n;p)
+    if (inputValue.trim().match(/^binom\s*\(/i)) {
         executeBinFromInput(inputValue);
         return;
     }
@@ -433,7 +433,14 @@ function handleExecute() {
 
 function executeLGSFromInput(input) {
     try {
-        const content = input.trim().slice(1, -1); // Remove { }
+        // Support new syntax lgs(eq1;eq2;...) and gracefully handle legacy {eq1;eq2;...}
+        let content = input.trim();
+        const m = content.match(/^lgs\s*\((.*)\)\s*$/i);
+        if (m) {
+            content = m[1];
+        } else if (content.startsWith('{') && content.endsWith('}')) {
+            content = content.slice(1, -1);
+        }
         const equations = content.split(';').map(s => s.trim()).filter(s => s.length > 0);
 
         // Determine variables from both sides (single-letter variables a-z)
@@ -612,7 +619,7 @@ function evaluateCoefficient(expr, varNames, targetVar) {
 
 function executeBinFromInput(input) {
     try {
-        const match = input.match(/bcd\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)/i);
+        const match = input.match(/binom\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)/i);
         if (!match) {
             throw new Error('Invalid format');
         }
@@ -646,7 +653,7 @@ function executeBinFromInput(input) {
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
-        result = 'Fehler in BIN';
+        result = 'Fehler in BINOM';
         updateDisplay();
     }
 }
@@ -983,7 +990,7 @@ function confirmLGS() {
         equations.push((terms.length > 0 ? terms.join('') : '0') + '=' + result);
     }
 
-    const compactForm = '{' + equations.join(';') + '}';
+    const compactForm = 'lgs(' + equations.join(';') + ')';
     const mainInput = document.getElementById('mainInput');
     mainInput.value = compactForm;
     activeInputField = mainInput;
@@ -1026,7 +1033,7 @@ function confirmBin() {
     const n = document.getElementById('binomN').value || '0';
     const p = document.getElementById('binomP').value || '0';
 
-    const compactForm = `bcd(${a};${b};${n};${p})`;
+    const compactForm = `binom(${a};${b};${n};${p})`;
     const mainInput = document.getElementById('mainInput');
     mainInput.value = compactForm;
     activeInputField = mainInput;
