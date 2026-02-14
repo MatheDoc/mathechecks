@@ -22,7 +22,7 @@
 
             <div class="buttons">
                 <!-- Reihe 1 -->
-                <button class="top-key" onclick=""></button>
+                <button class="top-key" onclick="openGraphPopup()">GRAPH</button>
                 <button class="top-key" onclick="openLGSPopup()">LGS</button>
                 <button class="top-key" onclick="openBinPopup()">BINOM</button>
                 <button class="clear" onclick="clearAll()">C</button>
@@ -176,10 +176,40 @@
                     <button type="button" onclick="appendFunction('sin('); closeTriPopup()">sin</button>
                     <button type="button" onclick="appendFunction('cos('); closeTriPopup()">cos</button>
                     <button type="button" onclick="appendFunction('tan('); closeTriPopup()">tan</button>
-                    <button type="button" onclick="appendLogTemplate(); closeTriPopup()">log_()()</button>
+                    <button type="button" onclick="appendLogTemplate(); closeTriPopup()">log_x(y)</button>
                     <button type="button" onclick="appendFunction('ln('); closeTriPopup()">ln</button>
                 </div>
             </div>
+        </div>
+
+        <!-- GRAPH Popup -->
+        <div class="popup-overlay" id="graphOverlay"></div>
+        <div class="popup" id="graphPopup">
+            <div class="popup-drag-handle" id="graphPopupDrag">
+                <button class="popup-close" onclick="closeGraphPopup()" aria-label="Schließen">×</button>
+            </div>
+            <div class="popup-content">
+                <div class="graph-controls">
+                    <div class="graph-input">
+                        <span class="graph-fx-label" style="margin-right: 8px;">f(x) =</span>
+                        <input type="text" id="graphFunction" name="calc-graph-function"
+                            placeholder="z.B. x^2 + 2*x - 3" autocomplete="off" autocapitalize="off" spellcheck="false"
+                            style="flex:1; min-width:0;">
+                    </div>
+                    <div class="graph-params-row">
+                        <input type="text" id="graphXMin" name="calc-graph-xmin" value="-5" inputmode="decimal"
+                            autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xmin">
+                        <input type="text" id="graphXMax" name="calc-graph-xmax" value="5" inputmode="decimal"
+                            autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xmax">
+                        <input type="text" id="graphYMin" name="calc-graph-ymin" placeholder="ymin" inputmode="decimal"
+                            autocomplete="off" autocapitalize="off" spellcheck="false">
+                        <input type="text" id="graphYMax" name="calc-graph-ymax" placeholder="ymax" inputmode="decimal"
+                            autocomplete="off" autocapitalize="off" spellcheck="false">
+                    </div>
+                </div>
+                <div id="graphPreview" style="min-height: 300px;"></div>
+            </div>
+
         </div>
     </div>
 </div>
