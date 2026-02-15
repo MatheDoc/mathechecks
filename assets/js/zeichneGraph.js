@@ -62,10 +62,15 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
     },
     yaxis: {
       ...(optionen.yAchse ? { title: { text: optionen.yAchse, y: 0.5 } } : {}),
-      range:
-        optionen.yMin !== undefined && optionen.yMax !== undefined
-          ? [optionen.yMin, optionen.yMax]
-          : undefined,
+      // Allow setting yMin or yMax independently - use null for auto
+      ...(optionen.yMin !== undefined || optionen.yMax !== undefined
+        ? {
+          range: [
+            optionen.yMin !== undefined ? optionen.yMin : null,
+            optionen.yMax !== undefined ? optionen.yMax : null,
+          ],
+        }
+        : {}),
     },
     hovermode: "closest",
     legend: {

@@ -189,8 +189,6 @@ async function erstelleAufgabe(eintrag, index = 0) {
       adjustSelect2Width(`#${aufgabeDiv.id} select.mch`);
     }
 
-    // Listener für Icons hinzufügen
-    addCheckIconListeners(aufgabeDiv);
     return aufgabeDiv;
   } catch (err) {
     einleitung.innerHTML += `<p style="color:red;">Fehler beim Laden der Aufgabe.</p>`;
@@ -218,6 +216,20 @@ function applyInteractivity(container) {
     dropdownAutoWidth: true,
     templateResult: renderWithMathJax,
     templateSelection: renderWithMathJax,
+  });
+
+  // Füge Enter-Listener zu allen Input-Feldern hinzu
+  const inputs = container.querySelectorAll('input[id^="answer"]');
+  inputs.forEach(input => {
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        const checkIcon = input.nextElementSibling;
+        if (checkIcon && checkIcon.classList.contains('check-icon')) {
+          checkIcon.click();
+        }
+      }
+    });
   });
 }
 
