@@ -6,7 +6,7 @@
 }
 
 .calculator-container .graph-params-row label {
-    font-size: 12px;
+    font-size: 15px;
     margin-bottom: 0;
     font-weight: 400;
 }
@@ -243,7 +243,7 @@
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     z-index: 200;
-    width: 360px;
+    width: 450px;
     max-width: 90vw;
     max-height: 80vh;
     overflow: auto;
@@ -256,7 +256,7 @@
 }
 
 .calculator-container .popup-drag-handle {
-    background: linear-gradient(135deg, #0b3e5c 0%, #165a7a 100%);
+    background: linear-gradient(135deg, var(--hauptfarbe) 0%, var(--hauptfarbe-hover) 100%);
     height: 32px;
     border-radius: 12px 12px 0 0;
     cursor: move;
@@ -303,13 +303,13 @@
 
 .calculator-container .popup-content {
     padding: 10px;
-    font-size: 13px;
+    font-size: 15px;
     background: var(--hintergrundfarbe);
     /* Match calculator background */
 }
 
 .calculator-container .popup-actions {
-    padding: 6px 10px 10px 10px;
+    padding: 0px 10px 10px 10px;
     display: flex;
     gap: 6px;
     background: var(--hintergrundfarbe);
@@ -323,7 +323,7 @@
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .calculator-container .popup-actions .btn-primary {
@@ -373,10 +373,22 @@
     background: var(--hintergrund-hell);
 }
 
-.calculator-container .binom-row {
+.calculator-container .binom-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calculator-container .binom-inputs-row {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 4px;
+    gap: 8px;
+}
+
+.calculator-container .binom-steppers-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
 }
 
 .calculator-container .binom-field {
@@ -386,17 +398,11 @@
 }
 
 .calculator-container .binom-field label {
-    font-size: 12px;
+    font-size: 15px;
 }
 
-.calculator-container .binom-input {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-}
-
-.calculator-container .binom-input input {
-    width: 52px;
+.calculator-container .binom-field input {
+    width: 100%;
     min-width: 0;
     padding: 6px 8px;
     font-size: 15px;
@@ -410,24 +416,24 @@
     font-weight: normal;
 }
 
-.calculator-container .binom-input input:focus {
+.calculator-container .binom-field input:focus {
     outline: 1px solid var(--hauptfarbe-hover);
     border-color: var(--hauptfarbe-hover);
     background: var(--hintergrund-hell);
 }
 
-.calculator-container .binom-stepper {
+.calculator-container .binom-stepper-group {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
+    gap: 4px;
+    justify-content: center;
 }
 
 .calculator-container .binom-step {
-    width: 28px;
-    height: 14px;
+    flex: 1;
+    height: 28px;
     padding: 0;
     border-radius: 4px;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 1;
     border: 1px solid var(--borderfarbe);
     background: var(--hintergrund-hell);
@@ -446,7 +452,7 @@
 .calculator-container .panel-label {
     color: #374151;
     font-weight: 500;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .calculator-container .lgs-operator,
@@ -455,7 +461,7 @@
     padding: 0 1px;
     font-weight: 500;
     color: #374151;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .calculator-container .lgs-matrix {
@@ -478,7 +484,7 @@
     color: #ffffff;
     transition: background-color 0.15s;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .calculator-container .lgs-controls button:hover {
@@ -606,7 +612,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     gap: 4px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .calculator-container .popup-content .const-menu button,
@@ -689,11 +695,6 @@
     outline: 1px solid var(--hauptfarbe-hover);
     border-color: var(--hauptfarbe-hover);
     background: var(--hintergrund-hell);
-}
-
-.calculator-container #graphPopup {
-    min-width: 350px;
-    max-width: 500px;
 }
 
 /* Graph Result Container */

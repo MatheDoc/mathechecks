@@ -10,6 +10,7 @@ let panelInputMode = false;
 let shouldAnimateResult = false;
 let copyFeedbackTimer = null;
 let currentZIndex = 200;
+let graphAutoPreviewFn = null;
 
 const isTouchDevice = (() => {
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
@@ -169,6 +170,9 @@ function appendLogTemplate() {
             currentValue.slice(0, start) + template + currentValue.slice(end);
         // Place cursor after '(', ready to type the value
         setInputCursor(activeInputField, start + 4);
+        if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
+            graphAutoPreviewFn();
+        }
         return;
     }
 
@@ -184,6 +188,9 @@ function appendRootTemplate() {
         activeInputField.value = currentValue.slice(0, start) + template + currentValue.slice(end);
         // Place cursor inside the first parentheses to enter the radicand y
         setInputCursor(activeInputField, start + 1);
+        if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
+            graphAutoPreviewFn();
+        }
         return;
     }
 
@@ -311,6 +318,9 @@ function backspace() {
         } else if (start > 0) {
             activeInputField.value = value.slice(0, start - 1) + value.slice(end);
             setInputCursor(activeInputField, start - 1);
+        }
+        if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
+            graphAutoPreviewFn();
         }
         return;
     }
@@ -903,6 +913,9 @@ function toggleSign() {
         } else if (value.length > 0) {
             activeInputField.value = '-' + value;
         }
+        if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
+            graphAutoPreviewFn();
+        }
         return;
     }
 
@@ -920,7 +933,7 @@ function appendToActiveInput(value) {
     }
 
     // Check if activeInputField is still in an open popup
-    const isInOpenPopup = activeInputField.closest('#lgsPopup.open, #binPopup.open');
+    const isInOpenPopup = activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
     if (!isInOpenPopup) {
         return false;
     }
@@ -959,6 +972,9 @@ function appendToActiveInput(value) {
                 if (activeInputField.closest('#binPopup')) {
                     updateBinomLiveResult();
                 }
+                if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
+                    graphAutoPreviewFn();
+                }
                 return true;
             }
         }
@@ -980,6 +996,11 @@ function insertAtCursor(input, value) {
     const end = input.selectionEnd ?? start;
     input.value = currentValue.slice(0, start) + value + currentValue.slice(end);
     setInputCursor(input, start + value.length);
+
+    // Trigger preview update for Graph popup inputs
+    if (input.closest('#graphPopup') && graphAutoPreviewFn) {
+        graphAutoPreviewFn();
+    }
 }
 
 function setInputCursor(input, position) {
@@ -1178,6 +1199,9 @@ function openGraphPopup() {
             input.addEventListener('input', debouncedPreview);
         });
 
+        // Store reference globally so we can trigger it programmatically
+        graphAutoPreviewFn = debouncedPreview;
+
         // Initial preview
         debouncedPreview();
     }
@@ -1187,6 +1211,7 @@ function closeGraphPopup() {
     document.getElementById('graphOverlay').classList.remove('open');
     document.getElementById('graphPopup').classList.remove('open');
     panelInputMode = false;
+    graphAutoPreviewFn = null; // Clear the reference
     const mainInput = document.getElementById('mainInput');
     if (mainInput) {
         activeInputField = mainInput;
@@ -1195,14 +1220,28 @@ function closeGraphPopup() {
 }
 
 function previewGraph() {
-    const funcInput = document.getElementById('graphFunction').value.trim();
+    let funcInput = document.getElementById('graphFunction').value.trim();
     if (!funcInput) {
         alert('Bitte geben Sie eine Funktion ein.');
         return;
     }
 
-    const xMin = parseFloat(document.getElementById('graphXMin').value) || -5;
-    const xMax = parseFloat(document.getElementById('graphXMax').value) || 5;
+    // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
+    funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
+
+    // Transform for math.js: ln → log (natural log in math.js)
+    // Note: log(value;base) is already handled by convertLogBaseSyntax
+    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
+    // Transform standalone log(...) to log10(...) for decimal logarithm
+    // But need to preserve log(value;base) syntax which becomes logBase
+    funcInput = convertLogBaseSyntax(funcInput);
+    // Now replace remaining log( with log10(
+    funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
+
+    const xMinValue = document.getElementById('graphXMin').value.trim();
+    const xMaxValue = document.getElementById('graphXMax').value.trim();
+    const xMin = xMinValue === '' ? -5 : parseFloat(xMinValue);
+    const xMax = xMaxValue === '' ? 5 : parseFloat(xMaxValue);
     const yMinInput = document.getElementById('graphYMin').value.trim();
     const yMaxInput = document.getElementById('graphYMax').value.trim();
 
@@ -1236,14 +1275,23 @@ function previewGraph() {
 }
 
 function confirmGraph() {
-    const funcInput = document.getElementById('graphFunction').value.trim();
+    let funcInput = document.getElementById('graphFunction').value.trim();
     if (!funcInput) {
         alert('Bitte geben Sie eine Funktion ein.');
         return;
     }
 
-    const xMin = document.getElementById('graphXMin').value || '-5';
-    const xMax = document.getElementById('graphXMax').value || '5';
+    // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
+    funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
+
+    // Transform for math.js: ln → log (natural log in math.js)
+    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
+    // Transform standalone log(...) to log10(...) for decimal logarithm
+    funcInput = convertLogBaseSyntax(funcInput);
+    funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
+
+    const xMin = document.getElementById('graphXMin').value.trim() || '-5';
+    const xMax = document.getElementById('graphXMax').value.trim() || '5';
     const yMin = document.getElementById('graphYMin').value.trim();
     const yMax = document.getElementById('graphYMax').value.trim();
 
@@ -1704,9 +1752,10 @@ function solveEquation(equation) {
                 .replace(/sqrt/g, 'Math.sqrt')
                 .replace(/root/g, 'root')
                 .replace(/exp/g, 'Math.exp')
-                .replace(/ln/g, 'Math.log')
-                // Only replace standalone log(...) calls with Math.log10(...)
-                .replace(/log\s*\(/g, 'Math.log10(')
+                // Replace ln first, then log - use word boundaries to avoid conflicts
+                .replace(/\bln\b/g, 'Math.log')
+                // Only replace standalone log(...) calls with Math.log10(...), but not Math.log
+                .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
                 .replace(/sin/g, 'Math.sin')
                 .replace(/cos/g, 'Math.cos')
                 .replace(/tan/g, 'Math.tan');
@@ -1865,7 +1914,7 @@ function setupCalculatorDrag() {
         if (e.target.closest('button, input, select, textarea, a')) return;
 
         // Don't bring calculator to front if any popup is open
-        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open');
+        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open, #graphPopup.open');
         if (!hasOpenPopup) {
             bringToFront(calculator);
         }
@@ -1943,7 +1992,7 @@ function setupCalculatorDrag() {
 
     // Bring calculator to front when clicked anywhere (but not if popup is open)
     calculator.addEventListener('pointerdown', (e) => {
-        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open');
+        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open, #graphPopup.open');
         if (!hasOpenPopup) {
             bringToFront(calculator);
         }

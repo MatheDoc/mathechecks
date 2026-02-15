@@ -90,58 +90,54 @@
                 <button class="popup-close" onclick="closeBinPopup()" aria-label="Schließen">×</button>
             </div>
             <div class="popup-content">
-                <div class="binom-row">
-                    <div class="binom-field">
-                        <div class="binom-input">
+                <div class="binom-container">
+                    <div class="binom-inputs-row">
+                        <div class="binom-field">
                             <input type="text" id="binomA" name="calc-binom-a" inputmode="decimal" autocomplete="off"
                                 autocapitalize="off" spellcheck="false" placeholder="a">
-                            <div class="binom-stepper" aria-hidden="true">
-                                <button type="button" class="binom-step" data-target="binomA" data-step="1"
-                                    aria-label="a erhöhen" tabindex="-1">▲</button>
-                                <button type="button" class="binom-step" data-target="binomA" data-step="-1"
-                                    aria-label="a verringern" tabindex="-1">▼</button>
-                            </div>
                         </div>
-                    </div>
-                    <div class="binom-field">
-                        <div class="binom-input">
+                        <div class="binom-field">
                             <input type="text" id="binomB" name="calc-binom-b" inputmode="decimal" autocomplete="off"
                                 autocapitalize="off" spellcheck="false" placeholder="b">
-                            <div class="binom-stepper" aria-hidden="true">
-                                <button type="button" class="binom-step" data-target="binomB" data-step="1"
-                                    aria-label="b erhöhen" tabindex="-1">▲</button>
-                                <button type="button" class="binom-step" data-target="binomB" data-step="-1"
-                                    aria-label="b verringern" tabindex="-1">▼</button>
-                            </div>
                         </div>
-                    </div>
-                    <div class="binom-field">
-                        <div class="binom-input">
+                        <div class="binom-field">
                             <input type="text" id="binomN" name="calc-binom-n" inputmode="decimal" autocomplete="off"
                                 autocapitalize="off" spellcheck="false" placeholder="n">
-                            <div class="binom-stepper" aria-hidden="true">
-                                <button type="button" class="binom-step" data-target="binomN" data-step="1"
-                                    aria-label="n erhöhen" tabindex="-1">▲</button>
-                                <button type="button" class="binom-step" data-target="binomN" data-step="-1"
-                                    aria-label="n verringern" tabindex="-1">▼</button>
-                            </div>
                         </div>
-                    </div>
-                    <div class="binom-field">
-                        <div class="binom-input">
+                        <div class="binom-field">
                             <input type="text" id="binomP" name="calc-binom-p" inputmode="decimal" autocomplete="off"
                                 autocapitalize="off" spellcheck="false" placeholder="p">
-                            <div class="binom-stepper" aria-hidden="true">
-                                <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
-                                    aria-label="p erhöhen" tabindex="-1">▲</button>
-                                <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
-                                    aria-label="p verringern" tabindex="-1">▼</button>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="binom-steppers-row">
+                        <div class="binom-stepper-group">
+                            <button type="button" class="binom-step" data-target="binomA" data-step="-1"
+                                aria-label="a verringern" tabindex="-1">◀</button>
+                            <button type="button" class="binom-step" data-target="binomA" data-step="1"
+                                aria-label="a erhöhen" tabindex="-1">▶</button>
+                        </div>
+                        <div class="binom-stepper-group">
+                            <button type="button" class="binom-step" data-target="binomB" data-step="-1"
+                                aria-label="b verringern" tabindex="-1">◀</button>
+                            <button type="button" class="binom-step" data-target="binomB" data-step="1"
+                                aria-label="b erhöhen" tabindex="-1">▶</button>
+                        </div>
+                        <div class="binom-stepper-group">
+                            <button type="button" class="binom-step" data-target="binomN" data-step="-1"
+                                aria-label="n verringern" tabindex="-1">◀</button>
+                            <button type="button" class="binom-step" data-target="binomN" data-step="1"
+                                aria-label="n erhöhen" tabindex="-1">▶</button>
+                        </div>
+                        <div class="binom-stepper-group">
+                            <button type="button" class="binom-step" data-target="binomP" data-step="-0.01"
+                                aria-label="p verringern" tabindex="-1">◀</button>
+                            <button type="button" class="binom-step" data-target="binomP" data-step="0.01"
+                                aria-label="p erhöhen" tabindex="-1">▶</button>
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 6px; padding: 5px; background: #f0f4f8; border-radius: 4px; font-size: 13px;">
-                    <strong>P(a &le; X &le; b):</strong> <span id="binomLiveResult">-</span>
+                <div style="margin-top: 6px; padding: 5px; background: var(--hintergrund-hell); border-radius: 4px;">
+                    P(a &le; X &le; b) = <span id="binomLiveResult">-</span>
                 </div>
             </div>
             <div class="popup-actions">
@@ -197,10 +193,10 @@
                             style="flex:1; min-width:0;">
                     </div>
                     <div class="graph-params-row">
-                        <input type="text" id="graphXMin" name="calc-graph-xmin" value="-5" inputmode="decimal"
-                            autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xmin">
-                        <input type="text" id="graphXMax" name="calc-graph-xmax" value="5" inputmode="decimal"
-                            autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="xmax">
+                        <input type="text" id="graphXMin" name="calc-graph-xmin" inputmode="decimal" autocomplete="off"
+                            autocapitalize="off" spellcheck="false" placeholder="xmin">
+                        <input type="text" id="graphXMax" name="calc-graph-xmax" inputmode="decimal" autocomplete="off"
+                            autocapitalize="off" spellcheck="false" placeholder="xmax">
                         <input type="text" id="graphYMin" name="calc-graph-ymin" placeholder="ymin" inputmode="decimal"
                             autocomplete="off" autocapitalize="off" spellcheck="false">
                         <input type="text" id="graphYMax" name="calc-graph-ymax" placeholder="ymax" inputmode="decimal"
