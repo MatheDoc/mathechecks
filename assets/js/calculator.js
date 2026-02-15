@@ -1473,11 +1473,12 @@ function centerPopup(popupId) {
     if (!calculator) return;
 
     const calcRect = calculator.getBoundingClientRect();
-    const popupRect = popup.getBoundingClientRect();
 
-    // Center relative to calculator
-    const left = calcRect.left + (calcRect.width - popupRect.width) / 2;
-    const top = calcRect.top + (calcRect.height - popupRect.height) / 2;
+    // Position popup
+    const xoffset = 0
+    const yoffset = 50;
+    const left = calcRect.left - xoffset;
+    const top = calcRect.top - yoffset;
 
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
