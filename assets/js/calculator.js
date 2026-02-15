@@ -180,14 +180,14 @@ function appendLogTemplate() {
 }
 
 function appendRootTemplate() {
-    const template = '^(1/)';
+    const template = 'wurzel(;)';
     if (activeInputField && panelInputMode) {
         const currentValue = activeInputField.value || '';
         const start = activeInputField.selectionStart ?? currentValue.length;
         const end = activeInputField.selectionEnd ?? start;
         activeInputField.value = currentValue.slice(0, start) + template + currentValue.slice(end);
-        // Place cursor inside the first parentheses to enter the radicand y
-        setInputCursor(activeInputField, start + 1);
+        // Place cursor before the semicolon to enter x first
+        setInputCursor(activeInputField, start + 7);
         if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
             graphAutoPreviewFn();
         }
@@ -351,7 +351,7 @@ function normalizeExpression(input) {
     const normalized = normalizeNumberString(input);
     let expression = addImplicitMultiplication(
         normalizeUnaryMinusExponent(
-            /* root infix disabled */ convertLogBaseSyntax(convertCustomENotation(normalized))
+            /* root infix disabled */ convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized)))
         )
     );
     return normalizeConstants(expression)
@@ -799,6 +799,156 @@ function convertLogBaseSyntax(value) {
     return expr;
 }
 
+// Convert log syntax for math.js (used in graph plotting):
+// - log(value;base) -> logb(value, base) [temporary marker]
+// - log(value) -> log(value) (natural log in math.js)
+function convertLogBaseSyntaxForMathJS(value) {
+    let expr = value;
+
+    // Handle legacy log_ syntax first (for backward compatibility)
+    let idxLegacy = expr.indexOf('log_(');
+    while (idxLegacy !== -1) {
+        const baseParen = extractParenthesized(expr, idxLegacy + 4);
+        if (!baseParen) break;
+
+        const afterBase = baseParen.end + 1;
+        const valueStart = findNextNonSpace(expr, afterBase);
+        if (valueStart === null || expr[valueStart] !== '(') break;
+
+        const valueParen = extractParenthesized(expr, valueStart);
+        if (!valueParen) break;
+
+        const baseStr = expr.slice(baseParen.start + 1, baseParen.end);
+        const valueStr = expr.slice(valueParen.start + 1, valueParen.end);
+        // Use 'logb' as temporary marker to distinguish from standalone log()
+        expr = `${expr.slice(0, idxLegacy)}logb(${valueStr}, ${baseStr})${expr.slice(valueParen.end + 1)}`;
+        idxLegacy = expr.indexOf('log_(');
+    }
+
+    // Handle new log(value;base) syntax
+    let idx = expr.indexOf('log(');
+    while (idx !== -1) {
+        const argsParen = extractParenthesized(expr, idx + 3);
+        if (!argsParen) break;
+
+        const inner = expr.slice(argsParen.start + 1, argsParen.end);
+        // Split inner by top-level ';'
+        let depth = 0;
+        let sepPos = -1;
+        for (let i = 0; i < inner.length; i++) {
+            const ch = inner[i];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+            else if (ch === ';' && depth === 0) {
+                sepPos = i;
+                break;
+            }
+        }
+        if (sepPos === -1) {
+            // No separator; leave as-is
+            idx = expr.indexOf('log(', argsParen.end + 1);
+            continue;
+        }
+
+        const valueStr = inner.slice(0, sepPos).trim();
+        const baseStr = inner.slice(sepPos + 1).trim();
+        // Use 'logb' as temporary marker to distinguish from standalone log()
+        const converted = `logb(${valueStr}, ${baseStr})`;
+        expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        idx = expr.indexOf('log(');
+    }
+
+    return expr;
+}
+
+// Convert wurzel syntax:
+// - wurzel(x;y) -> Math.pow(x, 1/y) (y-te Wurzel aus x)
+// - wurzel(x) -> Math.sqrt(x) (Quadratwurzel)
+function convertWurzelSyntax(value) {
+    let expr = value;
+
+    let idx = expr.indexOf('wurzel(');
+    while (idx !== -1) {
+        const argsParen = extractParenthesized(expr, idx + 6);
+        if (!argsParen) break;
+
+        const inner = expr.slice(argsParen.start + 1, argsParen.end);
+        // Split inner by top-level ';'
+        let depth = 0;
+        let sepPos = -1;
+        for (let i = 0; i < inner.length; i++) {
+            const ch = inner[i];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+            else if (ch === ';' && depth === 0) {
+                sepPos = i;
+                break;
+            }
+        }
+        
+        if (sepPos === -1) {
+            // No separator; treat as sqrt
+            const valueStr = inner.trim();
+            const converted = `Math.sqrt(${valueStr})`;
+            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        } else {
+            // Has separator; x is radicand, y is root degree
+            const xStr = inner.slice(0, sepPos).trim();
+            const yStr = inner.slice(sepPos + 1).trim();
+            const converted = `Math.pow(${xStr}, 1/(${yStr}))`;
+            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        }
+        
+        idx = expr.indexOf('wurzel(');
+    }
+
+    return expr;
+}
+
+// Convert wurzel syntax for math.js (used in graph plotting):
+// - wurzel(x;y) -> (x)^(1/(y))
+// - wurzel(x) -> sqrt(x)
+function convertWurzelSyntaxForMathJS(value) {
+    let expr = value;
+
+    let idx = expr.indexOf('wurzel(');
+    while (idx !== -1) {
+        const argsParen = extractParenthesized(expr, idx + 6);
+        if (!argsParen) break;
+
+        const inner = expr.slice(argsParen.start + 1, argsParen.end);
+        // Split inner by top-level ';'
+        let depth = 0;
+        let sepPos = -1;
+        for (let i = 0; i < inner.length; i++) {
+            const ch = inner[i];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+            else if (ch === ';' && depth === 0) {
+                sepPos = i;
+                break;
+            }
+        }
+        
+        if (sepPos === -1) {
+            // No separator; treat as sqrt
+            const valueStr = inner.trim();
+            const converted = `sqrt(${valueStr})`;
+            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        } else {
+            // Has separator; x is radicand, y is root degree
+            const xStr = inner.slice(0, sepPos).trim();
+            const yStr = inner.slice(sepPos + 1).trim();
+            const converted = `(${xStr})^(1/(${yStr}))`;
+            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        }
+        
+        idx = expr.indexOf('wurzel(');
+    }
+
+    return expr;
+}
+
 // Convert custom scientific notation with sign before 'E':
 // Examples: "4+E6" -> "4E+6", "2-E3" -> "2E-3"; supports decimals and optional spaces
 function convertCustomENotation(value) {
@@ -1229,14 +1379,16 @@ function previewGraph() {
     // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
     funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
 
-    // Transform for math.js: ln → log (natural log in math.js)
-    // Note: log(value;base) is already handled by convertLogBaseSyntax
-    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
-    // Transform standalone log(...) to log10(...) for decimal logarithm
-    // But need to preserve log(value;base) syntax which becomes logBase
-    funcInput = convertLogBaseSyntax(funcInput);
-    // Now replace remaining log( with log10(
+    // Convert log(value;base) to temporary 'logb' marker first
+    funcInput = convertLogBaseSyntaxForMathJS(funcInput);
+    // Convert wurzel syntax
+    funcInput = convertWurzelSyntaxForMathJS(funcInput);
+    // Now replace remaining standalone log( with log10( (decimal logarithm)
     funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
+    // Transform ln → log (natural log in math.js)
+    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
+    // Convert 'logb' back to 'log' (these are log with custom base)
+    funcInput = funcInput.replace(/\blogb\s*\(/g, 'log(');
 
     const xMinValue = document.getElementById('graphXMin').value.trim();
     const xMaxValue = document.getElementById('graphXMax').value.trim();
@@ -1284,11 +1436,16 @@ function confirmGraph() {
     // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
     funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
 
-    // Transform for math.js: ln → log (natural log in math.js)
-    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
-    // Transform standalone log(...) to log10(...) for decimal logarithm
-    funcInput = convertLogBaseSyntax(funcInput);
+    // Convert log(value;base) to temporary 'logb' marker first
+    funcInput = convertLogBaseSyntaxForMathJS(funcInput);
+    // Convert wurzel syntax
+    funcInput = convertWurzelSyntaxForMathJS(funcInput);
+    // Now replace remaining standalone log( with log10( (decimal logarithm)
     funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
+    // Transform ln → log (natural log in math.js)
+    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
+    // Convert 'logb' back to 'log' (these are log with custom base)
+    funcInput = funcInput.replace(/\blogb\s*\(/g, 'log(');
 
     const xMin = document.getElementById('graphXMin').value.trim() || '-5';
     const xMax = document.getElementById('graphXMax').value.trim() || '5';
@@ -1742,7 +1899,7 @@ function solveEquation(equation) {
             let expr = `(${leftSide}) - (${rightSide})`;
             expr = addImplicitMultiplication(
                 normalizeUnaryMinusExponent(
-                    /* root infix disabled */ convertLogBaseSyntax(convertCustomENotation(expr))
+                    /* root infix disabled */ convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(expr)))
                 )
             );
             expr = normalizeConstants(expr)
