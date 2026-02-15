@@ -12,7 +12,7 @@ Mehrstufige Produktionsprozesse bezeichnen aufeinanderfolgende Herstellungsschri
 
 ## Darauf kommmt es an
 
-Wesentlich ist die sichere Übertragung der bekannten Formeln aus dem eindimensionalen Fall auf Situationen mit mehreren Gütern und mehreren Produktionsstufen. Ebenso wichtig ist der routinierte Umgang mit dem Taschenrechner bei der Matrizenrechnung.
+Die ökonomischen Formeln aus dem eindimensionalen Fall müssen auf Situationen mit mehreren Gütern und mehreren Produktionsstufen übertrgen. Eichtig ist der routinierte Umgang mit dem Taschenrechner bei der Matrizenrechnung.
 
 ## Vorkenntnisse
 
