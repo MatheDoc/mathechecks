@@ -885,7 +885,7 @@ function convertWurzelSyntax(value) {
                 break;
             }
         }
-        
+
         if (sepPos === -1) {
             // No separator; treat as sqrt
             const valueStr = inner.trim();
@@ -898,7 +898,7 @@ function convertWurzelSyntax(value) {
             const converted = `Math.pow(${xStr}, 1/(${yStr}))`;
             expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
         }
-        
+
         idx = expr.indexOf('wurzel(');
     }
 
@@ -929,7 +929,7 @@ function convertWurzelSyntaxForMathJS(value) {
                 break;
             }
         }
-        
+
         if (sepPos === -1) {
             // No separator; treat as sqrt
             const valueStr = inner.trim();
@@ -942,7 +942,7 @@ function convertWurzelSyntaxForMathJS(value) {
             const converted = `(${xStr})^(1/(${yStr}))`;
             expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
         }
-        
+
         idx = expr.indexOf('wurzel(');
     }
 
