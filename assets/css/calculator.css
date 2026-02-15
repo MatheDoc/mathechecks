@@ -12,10 +12,10 @@
 }
 
 .calculator-container .graph-params-row input {
-    width: 48px;
+    width: 56px;
     min-width: 0;
     padding: 4px 6px;
-    font-size: 14px;
+    font-size: 15px;
     border: 1px solid var(--borderfarbe);
     border-radius: 6px;
     background: #fff;
@@ -450,7 +450,7 @@
 }
 
 .calculator-container .panel-label {
-    color: #374151;
+    color: var(--textfarbe);
     font-weight: 500;
     font-size: 15px;
 }
@@ -460,7 +460,7 @@
 .calculator-container .lgs-equals {
     padding: 0 1px;
     font-weight: 500;
-    color: #374151;
+    color: var(--textfarbe);
     font-size: 15px;
 }
 
@@ -483,7 +483,7 @@
     background: var(--ok-farbe);
     color: #ffffff;
     transition: background-color 0.15s;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
 }
 
@@ -603,7 +603,7 @@
 
 .calculator .key-popover-menu button {
     padding: 6px 4px;
-    font-weight: 600;
+    font-weight: 500;
 }
 
 /* Popup menu buttons (const, tri/log) styled like digit buttons */

@@ -933,7 +933,7 @@ function appendToActiveInput(value) {
     }
 
     // Check if activeInputField is still in an open popup
-    const isInOpenPopup = activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
+    const isInOpenPopup = activeInputField.closest('#lgsPopup.open, #binPopup.open, #constPopup.open, #triPopup.open, #graphPopup.open');
     if (!isInOpenPopup) {
         return false;
     }
@@ -1913,11 +1913,8 @@ function setupCalculatorDrag() {
         // Don't drag if clicking on buttons or inputs
         if (e.target.closest('button, input, select, textarea, a')) return;
 
-        // Don't bring calculator to front if any popup is open
-        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open, #graphPopup.open');
-        if (!hasOpenPopup) {
-            bringToFront(calculator);
-        }
+        // Bring calculator to front when dragging
+        bringToFront(calculator);
 
         e.preventDefault();
         e.stopPropagation();
@@ -1990,12 +1987,9 @@ function setupCalculatorDrag() {
         dragState = null;
     });
 
-    // Bring calculator to front when clicked anywhere (but not if popup is open)
+    // Bring calculator to front when clicked anywhere
     calculator.addEventListener('pointerdown', (e) => {
-        const hasOpenPopup = document.querySelector('#lgsPopup.open, #binPopup.open, #graphPopup.open');
-        if (!hasOpenPopup) {
-            bringToFront(calculator);
-        }
+        bringToFront(calculator);
     });
 }
 
@@ -2088,10 +2082,15 @@ function openConstPopup() {
 function closeConstPopup() {
     document.getElementById('constOverlay').classList.remove('open');
     document.getElementById('constPopup').classList.remove('open');
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput) {
-        activeInputField = mainInput;
-        mainInput.focus({ preventScroll: true });
+
+    // Only return focus to main input if no other popup input is focused
+    const isInOtherPopup = activeInputField && activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
+    if (!isInOtherPopup) {
+        const mainInput = document.getElementById('mainInput');
+        if (mainInput) {
+            activeInputField = mainInput;
+            mainInput.focus({ preventScroll: true });
+        }
     }
 }
 
@@ -2106,10 +2105,15 @@ function openTriPopup() {
 function closeTriPopup() {
     document.getElementById('triOverlay').classList.remove('open');
     document.getElementById('triPopup').classList.remove('open');
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput) {
-        activeInputField = mainInput;
-        mainInput.focus({ preventScroll: true });
+
+    // Only return focus to main input if no other popup input is focused
+    const isInOtherPopup = activeInputField && activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
+    if (!isInOtherPopup) {
+        const mainInput = document.getElementById('mainInput');
+        if (mainInput) {
+            activeInputField = mainInput;
+            mainInput.focus({ preventScroll: true });
+        }
     }
 }
 
