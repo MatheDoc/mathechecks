@@ -395,7 +395,7 @@ function formatGeneralResult(value) {
         const expNum = parseInt(exponent, 10);
         const sign = expNum >= 0 ? '+' : '-';
         const mantissaGerman = toGermanNumber(mTrim);
-        return `${mantissaGerman}${sign}E${Math.abs(expNum)}`;
+        return `${mantissaGerman}E${sign}${Math.abs(expNum)}`;
     }
     // Otherwise, keep up to 9 decimal places and trim trailing zeros,
     // then format with German separators
@@ -699,7 +699,8 @@ function executeGraphFromInput(input) {
 
 function addImplicitMultiplication(value) {
     return value
-        .replace(/(\d)([a-zA-Zπ(])/g, '$1*$2')
+        .replace(/(\d)([a-df-zA-DF-Zπ(])/g, '$1*$2')  // Insert * between digit and letter (except e/E)
+        .replace(/(\d)([eE])(?![+\-\d])/g, '$1*$2')   // Insert * between digit and e/E only if NOT followed by +/- or digit
         .replace(/(\))([\d(])/g, '$1*$2')
         .replace(/(\))([a-zA-Zπ])/g, '$1*$2');
 }
@@ -949,12 +950,13 @@ function convertWurzelSyntaxForMathJS(value) {
     return expr;
 }
 
-// Convert custom scientific notation with sign before 'E':
-// Examples: "4+E6" -> "4E+6", "2-E3" -> "2E-3"; supports decimals and optional spaces
+// Convert scientific notation with capital 'E' to lowercase 'e' for JavaScript
+// Examples: "3E+22" -> "3e+22", "4E-11" -> "4e-11"
 function convertCustomENotation(value) {
     if (typeof value !== 'string') return value;
-    return value.replace(/(-?\d+(?:\.\d+)?)(\s*)([+\-])(\s*)E(\s*)(\d+)/g,
-        (match, mantissa, s1, sign, s2, s3, exp) => `${mantissa}E${sign}${exp}`
+    // Convert "3E+22" or "4E-11" to "3e+22" or "4e-11"
+    return value.replace(/(-?\d+(?:\.\d+)?)\s*E\s*([+\-])\s*(\d+)/gi,
+        (match, mantissa, sign, exp) => `${mantissa}e${sign}${exp}`
     );
 }
 
