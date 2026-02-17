@@ -140,30 +140,26 @@ function applyTouchInputLock() {
     });
 }
 
-function appendNumber(num) {
-    if (appendToActiveInput(String(num))) {
-        return;
-    }
-
+function appendValue(value) {
+    if (appendToActiveInput(value)) return;
     const mainInput = document.getElementById('mainInput');
     if (mainInput && activeInputField === mainInput) {
-        insertAtCursor(mainInput, String(num));
+        insertAtCursor(mainInput, value);
     } else {
         if (shouldResetInput || currentInput === '0') {
-            currentInput = String(num);
+            currentInput = value;
             shouldResetInput = false;
         } else {
-            currentInput += num;
+            currentInput += value;
         }
         updateDisplay();
     }
 }
 
-function appendOperator(op) {
-    if (appendToActiveInput(op)) {
-        return;
-    }
+function appendNumber(num) { appendValue(String(num)); }
 
+function appendOperator(op) {
+    if (appendToActiveInput(op)) return;
     const mainInput = document.getElementById('mainInput');
     if (mainInput && activeInputField === mainInput) {
         insertAtCursor(mainInput, op);
@@ -178,24 +174,7 @@ function appendOperator(op) {
     }
 }
 
-function appendFunction(func) {
-    if (appendToActiveInput(func)) {
-        return;
-    }
-
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput && activeInputField === mainInput) {
-        insertAtCursor(mainInput, func);
-    } else {
-        if (shouldResetInput || currentInput === '0') {
-            currentInput = func;
-            shouldResetInput = false;
-        } else {
-            currentInput += func;
-        }
-        updateDisplay();
-    }
-}
+function appendFunction(func) { appendValue(func); }
 
 function appendLogTemplate() {
     if (activeInputField && panelInputMode) {
@@ -205,7 +184,7 @@ function appendLogTemplate() {
         const template = 'log(;)';
         activeInputField.value =
             currentValue.slice(0, start) + template + currentValue.slice(end);
-        // Place cursor after '(', ready to type the value
+        // Place cursor after '(', ready to type the base
         setInputCursor(activeInputField, start + 4);
         if (activeInputField.closest('#graphPopup') && graphAutoPreviewFn) {
             graphAutoPreviewFn();
@@ -640,82 +619,52 @@ function evaluateWithAssignments(expr, varNames, assignments) {
     }
 }
 
-// Evaluate a scalar numeric expression, allowing functions and constants,
-// while substituting provided single-letter variables with 0.
+// Evaluate a scalar numeric expression with all variables set to 0
 function evaluateScalarExpression(expr, varNames) {
-    try {
-        let normalized = normalizeNumberString(expr || '');
-        normalized = normalizeExpression(normalized);
-        // Replace single-letter variables with 0 using token boundaries
-        varNames.forEach((v) => {
-            const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
-            normalized = normalized.replace(re, '$10$2');
-        });
-        const value = eval(normalized);
-        return typeof value === 'number' && Number.isFinite(value) ? value : 0;
-    } catch (e) {
-        return 0;
-    }
+    const value = evaluateWithAssignments(expr, varNames, {});
+    return Number.isFinite(value) ? value : 0;
 }
 
-// Evaluate the linear coefficient of targetVar in expr,
-// by setting targetVar=1 and others=0, then subtracting the baseline.
+// Evaluate the linear coefficient of targetVar in expr
 function evaluateCoefficient(expr, varNames, targetVar) {
-    try {
-        let normalized = normalizeNumberString(expr || '');
-        normalized = normalizeExpression(normalized);
+    const withOne = evaluateWithAssignments(expr, varNames, { [targetVar]: 1 });
+    const baseline = evaluateScalarExpression(expr, varNames);
+    const coeff = (withOne ?? 0) - (baseline ?? 0);
+    return Number.isFinite(coeff) ? coeff : 0;
+}
 
-        // Build expression with targetVar=1, others=0
-        varNames.forEach((v) => {
-            const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
-            normalized = normalized.replace(re, (match, p1, p2) => {
-                const val = v === targetVar ? '1' : '0';
-                return `${p1}${val}${p2}`;
-            });
-        });
-
-        const withOne = eval(normalized);
-        const baseline = evaluateScalarExpression(expr, varNames);
-        const coeff = (withOne ?? 0) - (baseline ?? 0);
-        return typeof coeff === 'number' && Number.isFinite(coeff) ? coeff : 0;
-    } catch (e) {
-        return 0;
+// Parse p-value string, supporting fractions like "1/6"
+function parsePValue(pStr) {
+    const normalized = normalizeNumberString(pStr);
+    if (normalized.includes('/')) {
+        const parts = normalized.split('/').map(p => parseFloat(p.trim()));
+        if (parts.length === 2 && parts.every(p => !isNaN(p)) && parts[1] !== 0) {
+            return parts[0] / parts[1];
+        }
     }
+    return parseFloat(normalized);
+}
+
+function computeBinomProbability(a, b, n, p) {
+    let probability = 0;
+    for (let k = a; k <= b; k++) {
+        probability += binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+    }
+    return probability;
 }
 
 function executeBinFromInput(input) {
     try {
         const match = input.match(/binom\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)/i);
-        if (!match) {
-            throw new Error('Invalid format');
-        }
+        if (!match) throw new Error('Invalid format');
 
-        const aRaw = parseFloat(normalizeNumberString(match[1]));
-        const bRaw = parseFloat(normalizeNumberString(match[2]));
+        const a = Math.ceil(parseFloat(normalizeNumberString(match[1])));
+        const b = Math.floor(parseFloat(normalizeNumberString(match[2])));
         const n = parseInt(normalizeNumberString(match[3]));
-        const pValue = normalizeNumberString(match[4]);
-
-        let p = NaN;
-        if (pValue.includes('/')) {
-            const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
-            if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
-                p = parts[0] / parts[1];
-            }
-        } else {
-            p = parseFloat(pValue);
-        }
-
-        const a = Math.ceil(aRaw);
-        const b = Math.floor(bRaw);
-
-        let probability = 0;
-        for (let k = a; k <= b; k++) {
-            const binomCoeff = binomialCoefficient(n, k);
-            probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
-        }
+        const p = parsePValue(match[4]);
 
         currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${match[4]})`;
-        result = probability;  // Store raw number, formatting happens in updateDisplay()
+        result = computeBinomProbability(a, b, n, p);
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
@@ -725,17 +674,10 @@ function executeBinFromInput(input) {
 }
 
 function executeGraphFromInput(input) {
-    try {
-        // Graph functionality is now only available via the GRAPH button
-        result = 'Bitte GRAPH-Button verwenden';
-        currentInput = '';
-        shouldResetInput = true;
-        shouldResetInput = true;
-        updateDisplay();
-    } catch (error) {
-        result = 'Fehler: ' + error.message;
-        updateDisplay();
-    }
+    result = 'Bitte GRAPH-Button verwenden';
+    currentInput = '';
+    shouldResetInput = true;
+    updateDisplay();
 }
 
 function addImplicitMultiplication(value) {
@@ -759,235 +701,123 @@ function normalizeConstants(value) {
         .replace(/π/g, 'Math.PI');
 }
 
-function convertRootInfix(value) {
-    let expr = value;
-    let index = expr.indexOf('√');
-
-    while (index !== -1) {
-        const left = findLeftOperand(expr, index - 1);
-        const right = findRightOperand(expr, index + 1);
-
-        if (!left || !right) {
-            break;
-        }
-
-        const leftValue = expr.slice(left.start, left.end + 1);
-        const rightValue = expr.slice(right.start, right.end + 1);
-
-        expr = `${expr.slice(0, left.start)}root(${leftValue},${rightValue})${expr.slice(right.end + 1)}`;
-        index = expr.indexOf('√');
+// Split string at first top-level semicolon (not inside parentheses)
+function splitTopLevelSemicolon(str) {
+    let depth = 0;
+    for (let i = 0; i < str.length; i++) {
+        const ch = str[i];
+        if (ch === '(') depth++;
+        else if (ch === ')') depth--;
+        else if (ch === ';' && depth === 0) return i;
     }
-
-    return expr;
+    return -1;
 }
 
 function convertLogBaseSyntax(value) {
-    // Support two syntaxes:
-    // - New: log(value;base) -> logBase(base,value)
-    // - Legacy: log_(base)(value) -> logBase(base,value)
+    // log(basis;wert) -> logBase(basis,wert) | log(2;8) = 3
     let expr = value;
-
-    // Handle legacy log_ syntax first (for backward compatibility)
-    let idxLegacy = expr.indexOf('log_(');
-    while (idxLegacy !== -1) {
-        const baseParen = extractParenthesized(expr, idxLegacy + 4);
-        if (!baseParen) break;
-
-        const afterBase = baseParen.end + 1;
-        const valueStart = findNextNonSpace(expr, afterBase);
-        if (valueStart === null || expr[valueStart] !== '(') break;
-
-        const valueParen = extractParenthesized(expr, valueStart);
-        if (!valueParen) break;
-
-        const baseStr = expr.slice(baseParen.start + 1, baseParen.end);
-        const valueStr = expr.slice(valueParen.start + 1, valueParen.end);
-        expr = `${expr.slice(0, idxLegacy)}logBase(${baseStr},${valueStr})${expr.slice(valueParen.end + 1)}`;
-        idxLegacy = expr.indexOf('log_(');
-    }
-
-    // Handle new log(value;base) syntax
     let idx = expr.indexOf('log(');
     while (idx !== -1) {
         const argsParen = extractParenthesized(expr, idx + 3);
         if (!argsParen) break;
-
         const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        // Split inner by top-level ';'
-        let depth = 0;
-        let sepPos = -1;
-        for (let i = 0; i < inner.length; i++) {
-            const ch = inner[i];
-            if (ch === '(') depth++;
-            else if (ch === ')') depth--;
-            else if (ch === ';' && depth === 0) {
-                sepPos = i;
-                break;
-            }
-        }
+        const sepPos = splitTopLevelSemicolon(inner);
         if (sepPos === -1) {
-            // No separator; leave as-is
             idx = expr.indexOf('log(', argsParen.end + 1);
             continue;
         }
-
-        const valueStr = inner.slice(0, sepPos).trim();
-        const baseStr = inner.slice(sepPos + 1).trim();
-        const converted = `logBase(${baseStr},${valueStr})`;
-        expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        const baseStr = inner.slice(0, sepPos).trim();
+        const valueStr = inner.slice(sepPos + 1).trim();
+        expr = `${expr.slice(0, idx)}logBase(${baseStr},${valueStr})${expr.slice(argsParen.end + 1)}`;
         idx = expr.indexOf('log(');
     }
-
     return expr;
 }
 
-// Convert log syntax for math.js (used in graph plotting):
-// - log(value;base) -> logb(value, base) [temporary marker]
-// - log(value) -> log(value) (natural log in math.js)
+// log(basis;wert) -> logb(wert, basis) for math.js graph plotting
 function convertLogBaseSyntaxForMathJS(value) {
     let expr = value;
-
-    // Handle legacy log_ syntax first (for backward compatibility)
-    let idxLegacy = expr.indexOf('log_(');
-    while (idxLegacy !== -1) {
-        const baseParen = extractParenthesized(expr, idxLegacy + 4);
-        if (!baseParen) break;
-
-        const afterBase = baseParen.end + 1;
-        const valueStart = findNextNonSpace(expr, afterBase);
-        if (valueStart === null || expr[valueStart] !== '(') break;
-
-        const valueParen = extractParenthesized(expr, valueStart);
-        if (!valueParen) break;
-
-        const baseStr = expr.slice(baseParen.start + 1, baseParen.end);
-        const valueStr = expr.slice(valueParen.start + 1, valueParen.end);
-        // Use 'logb' as temporary marker to distinguish from standalone log()
-        expr = `${expr.slice(0, idxLegacy)}logb(${valueStr}, ${baseStr})${expr.slice(valueParen.end + 1)}`;
-        idxLegacy = expr.indexOf('log_(');
-    }
-
-    // Handle new log(value;base) syntax
     let idx = expr.indexOf('log(');
     while (idx !== -1) {
         const argsParen = extractParenthesized(expr, idx + 3);
         if (!argsParen) break;
-
         const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        // Split inner by top-level ';'
-        let depth = 0;
-        let sepPos = -1;
-        for (let i = 0; i < inner.length; i++) {
-            const ch = inner[i];
-            if (ch === '(') depth++;
-            else if (ch === ')') depth--;
-            else if (ch === ';' && depth === 0) {
-                sepPos = i;
-                break;
-            }
-        }
+        const sepPos = splitTopLevelSemicolon(inner);
         if (sepPos === -1) {
-            // No separator; leave as-is
             idx = expr.indexOf('log(', argsParen.end + 1);
             continue;
         }
-
-        const valueStr = inner.slice(0, sepPos).trim();
-        const baseStr = inner.slice(sepPos + 1).trim();
-        // Use 'logb' as temporary marker to distinguish from standalone log()
-        const converted = `logb(${valueStr}, ${baseStr})`;
-        expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+        const baseStr = inner.slice(0, sepPos).trim();
+        const valueStr = inner.slice(sepPos + 1).trim();
+        expr = `${expr.slice(0, idx)}logb(${valueStr}, ${baseStr})${expr.slice(argsParen.end + 1)}`;
         idx = expr.indexOf('log(');
     }
-
     return expr;
 }
 
-// Convert wurzel syntax:
-// - wurzel(x;y) -> Math.pow(x, 1/y) (y-te Wurzel aus x)
-// - wurzel(x) -> Math.sqrt(x) (Quadratwurzel)
+// wurzel(x) -> Math.sqrt(x) | wurzel(x;n) -> Math.pow(x, 1/n)
 function convertWurzelSyntax(value) {
     let expr = value;
-
     let idx = expr.indexOf('wurzel(');
     while (idx !== -1) {
         const argsParen = extractParenthesized(expr, idx + 6);
         if (!argsParen) break;
-
         const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        // Split inner by top-level ';'
-        let depth = 0;
-        let sepPos = -1;
-        for (let i = 0; i < inner.length; i++) {
-            const ch = inner[i];
-            if (ch === '(') depth++;
-            else if (ch === ')') depth--;
-            else if (ch === ';' && depth === 0) {
-                sepPos = i;
-                break;
-            }
-        }
-
+        const sepPos = splitTopLevelSemicolon(inner);
         if (sepPos === -1) {
-            // No separator; treat as sqrt
-            const valueStr = inner.trim();
-            const converted = `Math.sqrt(${valueStr})`;
-            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+            expr = `${expr.slice(0, idx)}Math.sqrt(${inner.trim()})${expr.slice(argsParen.end + 1)}`;
         } else {
-            // Has separator; x is radicand, y is root degree
             const xStr = inner.slice(0, sepPos).trim();
             const yStr = inner.slice(sepPos + 1).trim();
-            const converted = `Math.pow(${xStr}, 1/(${yStr}))`;
-            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+            expr = `${expr.slice(0, idx)}Math.pow(${xStr}, 1/(${yStr}))${expr.slice(argsParen.end + 1)}`;
         }
-
         idx = expr.indexOf('wurzel(');
     }
-
     return expr;
 }
 
-// Convert wurzel syntax for math.js (used in graph plotting):
-// - wurzel(x;y) -> (x)^(1/(y))
-// - wurzel(x) -> sqrt(x)
+// binom(a;b;n;p) -> binom(a, b, n, p) for math.js graph plotting
+function convertBinomSyntaxForMathJS(value) {
+    let expr = value;
+    let idx = expr.indexOf('binom(');
+    while (idx !== -1) {
+        const argsParen = extractParenthesized(expr, idx + 5);
+        if (!argsParen) break;
+        const inner = expr.slice(argsParen.start + 1, argsParen.end);
+        // Replace all top-level semicolons with ', '
+        let converted = '';
+        let depth = 0;
+        for (let i = 0; i < inner.length; i++) {
+            const ch = inner[i];
+            if (ch === '(') { depth++; converted += ch; }
+            else if (ch === ')') { depth--; converted += ch; }
+            else if (ch === ';' && depth === 0) converted += ', ';
+            else converted += ch;
+        }
+        expr = `${expr.slice(0, argsParen.start + 1)}${converted}${expr.slice(argsParen.end)}`;
+        idx = expr.indexOf('binom(', argsParen.start + 1 + converted.length + 1);
+    }
+    return expr;
+}
+
+// wurzel(x) -> sqrt(x) | wurzel(x;n) -> (x)^(1/(n)) for math.js
 function convertWurzelSyntaxForMathJS(value) {
     let expr = value;
-
     let idx = expr.indexOf('wurzel(');
     while (idx !== -1) {
         const argsParen = extractParenthesized(expr, idx + 6);
         if (!argsParen) break;
-
         const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        // Split inner by top-level ';'
-        let depth = 0;
-        let sepPos = -1;
-        for (let i = 0; i < inner.length; i++) {
-            const ch = inner[i];
-            if (ch === '(') depth++;
-            else if (ch === ')') depth--;
-            else if (ch === ';' && depth === 0) {
-                sepPos = i;
-                break;
-            }
-        }
-
+        const sepPos = splitTopLevelSemicolon(inner);
         if (sepPos === -1) {
-            // No separator; treat as sqrt
-            const valueStr = inner.trim();
-            const converted = `sqrt(${valueStr})`;
-            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+            expr = `${expr.slice(0, idx)}sqrt(${inner.trim()})${expr.slice(argsParen.end + 1)}`;
         } else {
-            // Has separator; x is radicand, y is root degree
             const xStr = inner.slice(0, sepPos).trim();
             const yStr = inner.slice(sepPos + 1).trim();
-            const converted = `(${xStr})^(1/(${yStr}))`;
-            expr = `${expr.slice(0, idx)}${converted}${expr.slice(argsParen.end + 1)}`;
+            expr = `${expr.slice(0, idx)}(${xStr})^(1/(${yStr}))${expr.slice(argsParen.end + 1)}`;
         }
-
         idx = expr.indexOf('wurzel(');
     }
-
     return expr;
 }
 
@@ -1032,82 +862,8 @@ function extractParenthesized(expr, startIndex) {
     return { start: startIndex, end: i };
 }
 
-function findNextNonSpace(expr, startIndex) {
-    let i = startIndex;
-    while (i < expr.length && expr[i] === ' ') {
-        i++;
-    }
-    return i < expr.length ? i : null;
-}
-
 function logBase(base, value) {
     return Math.log(value) / Math.log(base);
-}
-
-function findLeftOperand(expr, endIndex) {
-    let end = endIndex;
-    while (end >= 0 && expr[end] === ' ') {
-        end--;
-    }
-    if (end < 0) return null;
-
-    if (expr[end] === ')') {
-        let depth = 1;
-        let i = end - 1;
-        while (i >= 0) {
-            if (expr[i] === ')') depth++;
-            if (expr[i] === '(') depth--;
-            if (depth === 0) break;
-            i--;
-        }
-        if (i < 0) return null;
-        return { start: i, end };
-    }
-
-    let i = end;
-    while (i >= 0 && /[a-zA-Z0-9.]/.test(expr[i])) {
-        i--;
-    }
-    let start = i + 1;
-    if (start > 0 && expr[start - 1] === '-' && (start - 1 === 0 || /[+\-*/(=]/.test(expr[start - 2]))) {
-        start--;
-    }
-    return start <= end ? { start, end } : null;
-}
-
-function findRightOperand(expr, startIndex) {
-    let start = startIndex;
-    while (start < expr.length && expr[start] === ' ') {
-        start++;
-    }
-    if (start >= expr.length) return null;
-
-    if (expr[start] === '(') {
-        let depth = 1;
-        let i = start + 1;
-        while (i < expr.length) {
-            if (expr[i] === '(') depth++;
-            if (expr[i] === ')') depth--;
-            if (depth === 0) break;
-            i++;
-        }
-        if (i >= expr.length) return null;
-        return { start, end: i };
-    }
-
-    let i = start;
-    if (expr[i] === '-' && i + 1 < expr.length && /[a-zA-Z0-9(]/.test(expr[i + 1])) {
-        i++;
-    }
-    while (i < expr.length && /[a-zA-Z0-9.]/.test(expr[i])) {
-        i++;
-    }
-    const end = i - 1;
-    return end >= start ? { start, end } : null;
-}
-
-function root(x, y) {
-    return Math.pow(y, 1 / x);
 }
 
 function toggleSign() {
@@ -1220,32 +976,45 @@ function normalizeNumberString(value) {
     return value.replace(/\./g, '').replace(/,/g, '.');
 }
 
-function openLGSPopup() {
-    document.getElementById('lgsOverlay').classList.add('open');
-    const popup = document.getElementById('lgsPopup');
+function openPopup(popupId) {
+    document.getElementById(popupId.replace('Popup', 'Overlay')).classList.add('open');
+    const popup = document.getElementById(popupId);
     popup.classList.add('open');
     bringToFront(popup);
-    centerPopup('lgsPopup');
-    renderLGS();
-    // Focus the first input in the LGS matrix
-    const firstLgsInput = document.querySelector('#lgsMatrix input');
-    if (firstLgsInput) {
-        panelInputMode = true;
-        activeInputField = firstLgsInput;
-        firstLgsInput.focus({ preventScroll: true });
-        setInputCursor(firstLgsInput, firstLgsInput.value?.length || 0);
-    }
+    centerPopup(popupId);
 }
 
-function closeLGSPopup() {
-    document.getElementById('lgsOverlay').classList.remove('open');
-    document.getElementById('lgsPopup').classList.remove('open');
+function closePopup(popupId) {
+    document.getElementById(popupId.replace('Popup', 'Overlay')).classList.remove('open');
+    document.getElementById(popupId).classList.remove('open');
+}
+
+function returnFocusToMain() {
     panelInputMode = false;
     const mainInput = document.getElementById('mainInput');
     if (mainInput) {
         activeInputField = mainInput;
         mainInput.focus({ preventScroll: true });
     }
+}
+
+function focusPanelInput(inputEl) {
+    if (!inputEl) return;
+    panelInputMode = true;
+    activeInputField = inputEl;
+    inputEl.focus({ preventScroll: true });
+    setInputCursor(inputEl, inputEl.value?.length || 0);
+}
+
+function openLGSPopup() {
+    openPopup('lgsPopup');
+    renderLGS();
+    focusPanelInput(document.querySelector('#lgsMatrix input'));
+}
+
+function closeLGSPopup() {
+    closePopup('lgsPopup');
+    returnFocusToMain();
 }
 
 function confirmLGS() {
@@ -1294,31 +1063,14 @@ function confirmLGS() {
 }
 
 function openBinPopup() {
-    document.getElementById('binOverlay').classList.add('open');
-    const popup = document.getElementById('binPopup');
-    popup.classList.add('open');
-    bringToFront(popup);
-    centerPopup('binPopup');
+    openPopup('binPopup');
     updateBinomLiveResult();
-    // Focus the first BIN input (a)
-    const aInput = document.getElementById('binomA');
-    if (aInput) {
-        panelInputMode = true;
-        activeInputField = aInput;
-        aInput.focus({ preventScroll: true });
-        setInputCursor(aInput, aInput.value?.length || 0);
-    }
+    focusPanelInput(document.getElementById('binomA'));
 }
 
 function closeBinPopup() {
-    document.getElementById('binOverlay').classList.remove('open');
-    document.getElementById('binPopup').classList.remove('open');
-    panelInputMode = false;
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput) {
-        activeInputField = mainInput;
-        mainInput.focus({ preventScroll: true });
-    }
+    closePopup('binPopup');
+    returnFocusToMain();
 }
 
 function confirmBin() {
@@ -1337,27 +1089,13 @@ function confirmBin() {
 }
 
 function openGraphPopup() {
-    document.getElementById('graphOverlay').classList.add('open');
-    const popup = document.getElementById('graphPopup');
-    popup.classList.add('open');
-    bringToFront(popup);
-    centerPopup('graphPopup');
+    openPopup('graphPopup');
 
     // Reset preview
     const preview = document.getElementById('graphPreview');
-    if (preview) {
-        preview.style.display = 'none';
-        preview.innerHTML = '';
-    }
+    if (preview) { preview.style.display = 'none'; preview.innerHTML = ''; }
 
-    // Focus the function input
-    const funcInput = document.getElementById('graphFunction');
-    if (funcInput) {
-        panelInputMode = true;
-        activeInputField = funcInput;
-        funcInput.focus({ preventScroll: true });
-        setInputCursor(funcInput, funcInput.value?.length || 0);
-    }
+    focusPanelInput(document.getElementById('graphFunction'));
 
     // Automatische Vorschau initialisieren
     setupGraphAutoPreview();
@@ -1414,50 +1152,32 @@ function openGraphPopup() {
 }
 
 function closeGraphPopup() {
-    document.getElementById('graphOverlay').classList.remove('open');
-    document.getElementById('graphPopup').classList.remove('open');
-    panelInputMode = false;
-    graphAutoPreviewFn = null; // Clear the reference
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput) {
-        activeInputField = mainInput;
-        mainInput.focus({ preventScroll: true });
-    }
+    closePopup('graphPopup');
+    graphAutoPreviewFn = null;
+    returnFocusToMain();
+}
+
+// Prepare a function expression for math.js graph plotting
+function prepareGraphExpression(input) {
+    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
+    if (/E/.test(input.replace(validENotation, '___VALID___'))) return null;
+    let expr = convertCustomENotation(input);
+    expr = expr.replace(/(\d),(\d)/g, '$1.$2');
+    expr = convertBinomSyntaxForMathJS(expr);
+    expr = convertLogBaseSyntaxForMathJS(expr);
+    expr = convertWurzelSyntaxForMathJS(expr);
+    expr = expr.replace(/\blog\s*\(/g, 'log10(');
+    expr = expr.replace(/\bln\s*\(/g, 'log(');
+    expr = expr.replace(/\blogb\s*\(/g, 'log(');
+    return expr;
 }
 
 function previewGraph() {
     let funcInput = document.getElementById('graphFunction').value.trim();
-    if (!funcInput) {
-        alert('Bitte geben Sie eine Funktion ein.');
-        return;
-    }
+    if (!funcInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
 
-    // Validate that capital 'E' is only used in scientific notation (silently)
-    // Valid E-notation patterns: number/constant + E + (+/-) + digits
-    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
-    const marked = funcInput.replace(validENotation, '___VALID___');
-    if (/E/.test(marked)) {
-        // Invalid E usage - silently abort without drawing
-        return;
-    }
-
-    // Convert valid E-notation to lowercase e for math.js
-    // "1E+3" -> "1e+3", "eE+5" -> "e*1e+5", "piE+2" -> "pi*1e+2"
-    funcInput = convertCustomENotation(funcInput);
-
-    // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
-    funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
-
-    // Convert log(value;base) to temporary 'logb' marker first
-    funcInput = convertLogBaseSyntaxForMathJS(funcInput);
-    // Convert wurzel syntax
-    funcInput = convertWurzelSyntaxForMathJS(funcInput);
-    // Now replace remaining standalone log( with log10( (decimal logarithm)
-    funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
-    // Transform ln → log (natural log in math.js)
-    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
-    // Convert 'logb' back to 'log' (these are log with custom base)
-    funcInput = funcInput.replace(/\blogb\s*\(/g, 'log(');
+    funcInput = prepareGraphExpression(funcInput);
+    if (!funcInput) return;
 
     const xMinValue = document.getElementById('graphXMin').value.trim();
     const xMaxValue = document.getElementById('graphXMax').value.trim();
@@ -1497,37 +1217,10 @@ function previewGraph() {
 
 function confirmGraph() {
     let funcInput = document.getElementById('graphFunction').value.trim();
-    if (!funcInput) {
-        alert('Bitte geben Sie eine Funktion ein.');
-        return;
-    }
+    if (!funcInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
 
-    // Validate that capital 'E' is only used in scientific notation (silently)
-    // Valid E-notation patterns: number/constant + E + (+/-) + digits
-    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
-    const marked = funcInput.replace(validENotation, '___VALID___');
-    if (/E/.test(marked)) {
-        // Invalid E usage - silently abort without drawing
-        return;
-    }
-
-    // Convert valid E-notation to lowercase e for math.js
-    // "1E+3" -> "1e+3", "eE+5" -> "e*1e+5", "piE+2" -> "pi*1e+2"
-    funcInput = convertCustomENotation(funcInput);
-
-    // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
-    funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
-
-    // Convert log(value;base) to temporary 'logb' marker first
-    funcInput = convertLogBaseSyntaxForMathJS(funcInput);
-    // Convert wurzel syntax
-    funcInput = convertWurzelSyntaxForMathJS(funcInput);
-    // Now replace remaining standalone log( with log10( (decimal logarithm)
-    funcInput = funcInput.replace(/\blog\s*\(/g, 'log10(');
-    // Transform ln → log (natural log in math.js)
-    funcInput = funcInput.replace(/\bln\s*\(/g, 'log(');
-    // Convert 'logb' back to 'log' (these are log with custom base)
-    funcInput = funcInput.replace(/\blogb\s*\(/g, 'log(');
+    funcInput = prepareGraphExpression(funcInput);
+    if (!funcInput) return;
 
     const xMin = document.getElementById('graphXMin').value.trim() || '-5';
     const xMax = document.getElementById('graphXMax').value.trim() || '5';
@@ -1841,36 +1534,19 @@ function binomialCoefficient(n, k) {
 }
 
 function calculateBinomial() {
-    const nInput = document.getElementById('binomN').value;
-    const pInput = document.getElementById('binomP').value;
     const aInput = document.getElementById('binomA').value;
     const bInput = document.getElementById('binomB').value;
+    const nInput = document.getElementById('binomN').value;
+    const pInput = document.getElementById('binomP').value;
 
+    const a = Math.ceil(parseFloat(normalizeNumberString(aInput)));
+    const b = Math.floor(parseFloat(normalizeNumberString(bInput)));
     const n = parseInt(normalizeNumberString(nInput));
-    const pValue = normalizeNumberString(pInput);
-    let p = NaN;
-    if (pValue.includes('/')) {
-        const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
-        if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
-            p = parts[0] / parts[1];
-        }
-    } else {
-        p = parseFloat(pValue);
-    }
-    const aRaw = parseFloat(normalizeNumberString(aInput));
-    const bRaw = parseFloat(normalizeNumberString(bInput));
-    const a = Math.ceil(aRaw);
-    const b = Math.floor(bRaw);
+    const p = parsePValue(pInput);
 
-    let probability = 0;
-    for (let k = a; k <= b; k++) {
-        const binomCoeff = binomialCoefficient(n, k);
-        probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
-    }
-
-    const pDisplay = pInput !== '' ? pInput : String(p);
-    currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${pDisplay})`;
-    result = probability;  // Store raw number, formatting happens in updateDisplay()
+    const probability = computeBinomProbability(a, b, n, p);
+    currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${pInput || p})`;
+    result = probability;
     shouldResetInput = true;
     updateDisplay();
 }
@@ -1895,39 +1571,14 @@ function adjustBinomValue(targetId, step) {
 }
 
 function updateBinomLiveResult() {
-    const binPopup = document.getElementById('binPopup');
-    if (!binPopup.classList.contains('open')) return;
-
+    if (!document.getElementById('binPopup').classList.contains('open')) return;
     try {
-        const nInput = document.getElementById('binomN').value;
-        const pInput = document.getElementById('binomP').value;
-        const aInput = document.getElementById('binomA').value;
-        const bInput = document.getElementById('binomB').value;
-
-        const n = parseInt(normalizeNumberString(nInput));
-        const pValue = normalizeNumberString(pInput);
-        let p = NaN;
-        if (pValue.includes('/')) {
-            const parts = pValue.split('/').map((part) => parseFloat(part.trim()));
-            if (parts.length === 2 && parts.every((part) => !Number.isNaN(part)) && parts[1] !== 0) {
-                p = parts[0] / parts[1];
-            }
-        } else {
-            p = parseFloat(pValue);
-        }
-        const aRaw = parseFloat(normalizeNumberString(aInput));
-        const bRaw = parseFloat(normalizeNumberString(bInput));
-        const a = Math.ceil(aRaw);
-        const b = Math.floor(bRaw);
-
-        let probability = 0;
-        for (let k = a; k <= b; k++) {
-            const binomCoeff = binomialCoefficient(n, k);
-            probability += binomCoeff * Math.pow(p, k) * Math.pow(1 - p, n - k);
-        }
-
-        const rounded = Math.round(probability * 1000000) / 1000000;
-        document.getElementById('binomLiveResult').textContent = formatGeneralResult(rounded);
+        const a = Math.ceil(parseFloat(normalizeNumberString(document.getElementById('binomA').value)));
+        const b = Math.floor(parseFloat(normalizeNumberString(document.getElementById('binomB').value)));
+        const n = parseInt(normalizeNumberString(document.getElementById('binomN').value));
+        const p = parsePValue(document.getElementById('binomP').value);
+        const probability = computeBinomProbability(a, b, n, p);
+        document.getElementById('binomLiveResult').textContent = formatGeneralResult(Math.round(probability * 1e6) / 1e6);
     } catch (error) {
         document.getElementById('binomLiveResult').textContent = 'Fehler';
     }
@@ -2106,8 +1757,6 @@ document.addEventListener('keydown', function (event) {
     } else if (event.key === '^') {
         appendOperator('^');
         event.preventDefault();
-    } else if (event.key === '(' || event.key === ')') {
-        appendNumber(event.key);
     } else if (event.key === '=') {
         appendOperator('=');
     } else if (event.key === 'Enter') {
@@ -2311,54 +1960,39 @@ function setupPopupDrag() {
         });
     });
 }
-function openConstPopup() {
-    document.getElementById('constOverlay').classList.add('open');
-    const popup = document.getElementById('constPopup');
-    popup.classList.add('open');
-    bringToFront(popup);
-    centerPopup('constPopup');
-}
+function openConstPopup() { openPopup('constPopup'); }
 
 function closeConstPopup() {
-    document.getElementById('constOverlay').classList.remove('open');
-    document.getElementById('constPopup').classList.remove('open');
-
-    // Only return focus to main input if no other popup input is focused
-    const isInOtherPopup = activeInputField && activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
-    if (!isInOtherPopup) {
-        const mainInput = document.getElementById('mainInput');
-        if (mainInput) {
-            activeInputField = mainInput;
-            mainInput.focus({ preventScroll: true });
-        }
+    closePopup('constPopup');
+    if (!activeInputField?.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open')) {
+        returnFocusToMain();
     }
 }
 
-function openTriPopup() {
-    document.getElementById('triOverlay').classList.add('open');
-    const popup = document.getElementById('triPopup');
-    popup.classList.add('open');
-    bringToFront(popup);
-    centerPopup('triPopup');
-}
+function openTriPopup() { openPopup('triPopup'); }
 
 function closeTriPopup() {
-    document.getElementById('triOverlay').classList.remove('open');
-    document.getElementById('triPopup').classList.remove('open');
-
-    // Only return focus to main input if no other popup input is focused
-    const isInOtherPopup = activeInputField && activeInputField.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open');
-    if (!isInOtherPopup) {
-        const mainInput = document.getElementById('mainInput');
-        if (mainInput) {
-            activeInputField = mainInput;
-            mainInput.focus({ preventScroll: true });
-        }
+    closePopup('triPopup');
+    if (!activeInputField?.closest('#lgsPopup.open, #binPopup.open, #graphPopup.open')) {
+        returnFocusToMain();
     }
 }
 
 // Initialization
 function initCalculator() {
+    // Register binom(a, b, n, p) as a custom math.js function for graph plotting
+    if (typeof math !== 'undefined') {
+        math.import({
+            binom: function (a, b, n, p) {
+                // When a === b (e.g. binom(x;x;n;p) for P(X=k) histogram),
+                // use floor for both so non-integer x still lands in the right bin.
+                // Otherwise use ceil(a)/floor(b) for cumulative ranges.
+                const aInt = a === b ? Math.floor(a) : Math.ceil(a);
+                return computeBinomProbability(aInt, Math.floor(b), Math.round(n), p);
+            }
+        }, { override: true });
+    }
+
     initLGS();
     updateDisplay();
     applyTouchInputLock();
