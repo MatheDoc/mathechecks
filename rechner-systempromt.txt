@@ -1,0 +1,107 @@
+SYSTEMPROMPT — RECHNERSEMANTIK
+
+Grundprinzip
+Der Rechner verhält sich wie ein wissenschaftlicher Taschenrechner mit toleranter Eingabe und eindeutig formatierter Ausgabe. Eingaben werden zuerst normalisiert, danach ausgewertet. Es gibt ein Standardeingabefeld, in dem gewöhnliche Rechnungen, Funktionen und erweiterte Funktionen eingegeben werden können.
+
+Zahlenformat
+Eingabe: Dezimalpunkt oder Dezimalkomma werden akzeptiert.
+Ausgabe: Verwendet Dezimalkomma mit automatischen Tausenderpunkten.
+Wissenschaftliche Schreibweise: 1E+3, 2,5E-4 usw.
+Sehr große/kleine Zahlen werden automatisch in wissenschaftlicher Notation dargestellt.
+
+Konstanten
+pi oder π = Kreiszahl
+e = Eulersche Zahl
+
+Klammern und Operatoren
+Die Taste "()" ist kontextsensitiv: fügt "(" oder ")" abhängig vom Klammerstand ein.
+Implizite Multiplikation: 2(3+4), 3pi, 2x, cos(x)sin(x).
+Standard-Prioritätsregeln: Potenz vor Punkt vor Strich.
+Vorzeichenwechsel: Taste +/- wechselt Vorzeichen des aktuellen Ausdrucks.
+
+Leerzeichen
+Leerzeichen werden vor der Auswertung entfernt.
+Sie haben keine mathematische Bedeutung.
+
+Bezeichner und Buchstaben
+Alle Buchstaben sind in der Eingabe zulässig.
+Bezeichner werden kontextabhängig interpretiert als:
+  - Konstante (e, pi)
+  - Funktion (sin, cos, ln, log, wurzel)
+  - Variable (x, y, z, ...)
+
+In rein numerischen Ausdrücken sind nur definierte Funktionen und Konstanten erlaubt.
+In Gleichungen oder symbolischen Kontexten sind Variablen erlaubt.
+Nicht interpretierbare Bezeichner erzeugen eine Fehlermeldung.
+
+Funktionen
+Trigonometrie: sin(x), cos(x), tan(x)
+Logarithmen:
+  - ln(x) = natürlicher Logarithmus
+  - log(basis;wert) = Logarithmus von wert zur Basis basis
+    Beispiel: log(2;8) = 3, da 2³ = 8
+Wurzelfunktionen:
+  - wurzel(x) = Quadratwurzel von x
+  - wurzel(x;n) = n-te Wurzel von x
+    Beispiel: wurzel(8;3) = 2, da 2³ = 8
+Exponentialfunktion: exp(x)
+
+Erweiterte Funktionen
+LGS: Lösung linearer Gleichungssysteme
+  - Syntax: lgs(eq1;eq2;eq3;...)
+  - Jede Gleichung enthält Variablen und Koeffizienten
+  - Unterstützt beliebig viele Variablen und Gleichungen
+  - Ausgabe: Lösungsvektor oder Hinweis auf Unlösbarkeit
+
+BINOM: Binomialverteilung
+  - Syntax: binom(a;b;n;p)
+  - a = untere Grenze
+  - b = obere Grenze
+  - n = Anzahl Versuche
+  - p = Erfolgswahrscheinlichkeit
+  - Berechnet: P(a ≤ X ≤ b)
+  - Popup-Menü mit Live-Vorschau und schrittweiser Anpassung
+
+GRAPH: Funktionsplotter
+  - Syntax: graph(funktion;optionen)
+  - Popup-Menü mit Funktionseingabe und Achsenbereichen (xMin, xMax, yMin, yMax)
+  - Live-Vorschau der Funktion
+  - Ausgabe: Interaktiver Graph
+
+Gleichungen
+Enthält ein Ausdruck genau ein "=" und keine spezielle Systemfunktion, wird er als einzelne Gleichung interpretiert.
+Die Gleichung wird als linke Seite minus rechte Seite gleich null behandelt.
+Bei genau einer Variable: numerische Lösung (z.B. x²+3x-5=0)
+Bei mehreren Variablen: Hinweis auf Gleichungssystem-Funktion (LGS)
+
+Bedienelemente
+C: Löscht alle Eingaben und setzt den Rechner zurück
+⌫: Löscht das letzte Zeichen
+Ans: Fügt das letzte Ergebnis an der Cursorposition ein
+EXE: Führt die Berechnung aus
+Copy-Button: Kopiert das Ergebnis in die Zwischenablage (mit visueller Bestätigung)
+
+Popup-Menüs
+CONST: Einfügen von Konstanten (π, e)
+FUNC: Einfügen von Funktionen (sin, cos, tan, ln, log, wurzel)
+
+Einheitliche Eingabelogik
+Alle Eingabefelder folgen denselben Interpretationsregeln.
+Das "="-Zeichen darf nur im Standardeingabefeld auftreten.
+In Popup-Feldern werden die Rechnertasten zur Eingabe verwendet.
+Fokus-Management: Aktives Eingabefeld erhält automatisch die Tastatureingaben.
+
+Ausgabe
+Numerisch korrekt formatiert mit Dezimalkomma und Tausenderpunkten.
+Mehrere Lösungen werden gesammelt dargestellt (z.B. bei Gleichungen).
+Unlösbare oder unklare Eingaben erzeugen verständliche Fehlermeldungen.
+Ergebnisse werden visuell hervorgehoben (Pulse-Animation).
+
+Touch-Geräte
+Auf Mobilgeräten wird die virtuelle Tastatur unterdrückt.
+Alle Eingaben erfolgen über die Rechnertasten.
+
+Fehlerprinzip
+Eingaben werden möglichst sinnvoll interpretiert.
+Ist keine eindeutige Interpretation möglich, wird keine Berechnung durchgeführt.
+Fehlermeldungen sind präzise und hilfreich.

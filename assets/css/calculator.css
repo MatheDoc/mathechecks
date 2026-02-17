@@ -6,7 +6,6 @@
 }
 
 .calculator-container .graph-params-row label {
-    font-size: 15px;
     margin-bottom: 0;
     font-weight: 400;
 }
@@ -15,20 +14,8 @@
     width: 56px;
     min-width: 0;
     padding: 4px 6px;
-    font-size: 15px;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 6px;
     background: #fff;
-    color: var(--textfarbe);
     text-align: left;
-    margin: 0;
-    font-weight: normal;
-}
-
-.calculator-container .graph-params-row input:focus {
-    outline: 1px solid var(--hauptfarbe-hover);
-    border-color: var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
 }
 
 /* Calculator Styles */
@@ -56,6 +43,27 @@
     width: 100%;
     height: 100%;
     pointer-events: none;
+    font-size: 15px;
+}
+
+/* Shared input base styles */
+.calculator-container input[type="text"],
+.calculator-container input[type="number"] {
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: normal;
+    border: 1px solid var(--borderfarbe);
+    border-radius: 6px;
+    color: var(--textfarbe);
+    transition: border-color 0.15s;
+    margin: 0;
+}
+
+/* Shared input focus */
+.calculator-container input:focus {
+    outline: 1px solid var(--hauptfarbe-hover);
+    border-color: var(--hauptfarbe-hover);
+    background: var(--hintergrund-hell);
 }
 
 .calculator {
@@ -65,7 +73,6 @@
     max-width: 90vw;
     overflow: hidden;
     border: 1px solid var(--borderfarbe);
-    font-size: 15px;
     scrollbar-width: auto;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
@@ -204,21 +211,7 @@
 .calculator .main-input input {
     width: 100%;
     padding: 6px 8px;
-    border: 1px solid var(--borderfarbe);
-
-    border-radius: 6px;
-    font-size: 15px;
-    font-family: inherit;
-    font-weight: normal;
     background: var(--hintergrundfarbe);
-    color: var(--textfarbe);
-    transition: border-color 0.15s;
-}
-
-.calculator .main-input input:focus {
-    outline: 1px solid var(--hauptfarbe-hover);
-    border-color: var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
 }
 
 .calculator-container .popup-overlay {
@@ -303,9 +296,7 @@
 
 .calculator-container .popup-content {
     padding: 10px;
-    font-size: 15px;
     background: var(--hintergrundfarbe);
-    /* Match calculator background */
 }
 
 .calculator-container .popup-actions {
@@ -323,7 +314,7 @@
     border: none;
     cursor: pointer;
     font-weight: 600;
-    font-size: 15px;
+    font-size: inherit;
 }
 
 .calculator-container .popup-actions .btn-primary {
@@ -356,21 +347,7 @@
     width: 38px;
     padding: 6px 8px;
     text-align: center;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 6px;
-    font-size: 15px;
-    font-family: inherit;
-    font-weight: normal;
     background: var(--hintergrundfarbe);
-    color: var(--textfarbe);
-    transition: border-color 0.15s;
-    margin: 0;
-}
-
-.calculator-container .input-row input:focus {
-    outline: 1px solid var(--hauptfarbe-hover);
-    border-color: var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
 }
 
 .calculator-container .binom-container {
@@ -397,29 +374,12 @@
     min-width: 0;
 }
 
-.calculator-container .binom-field label {
-    font-size: 15px;
-}
-
 .calculator-container .binom-field input {
     width: 100%;
     min-width: 0;
     padding: 6px 8px;
-    font-size: 15px;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 6px;
     background: #ffffff;
-    color: var(--textfarbe);
-    transition: border-color 0.15s;
     text-align: left;
-    margin: 0;
-    font-weight: normal;
-}
-
-.calculator-container .binom-field input:focus {
-    outline: 1px solid var(--hauptfarbe-hover);
-    border-color: var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
 }
 
 .calculator-container .binom-stepper-group {
@@ -452,7 +412,6 @@
 .calculator-container .panel-label {
     color: var(--textfarbe);
     font-weight: 500;
-    font-size: 15px;
 }
 
 .calculator-container .lgs-operator,
@@ -461,7 +420,6 @@
     padding: 0 1px;
     font-weight: 500;
     color: var(--textfarbe);
-    font-size: 15px;
 }
 
 .calculator-container .lgs-matrix {
@@ -484,7 +442,7 @@
     color: #ffffff;
     transition: background-color 0.15s;
     font-weight: 500;
-    font-size: 15px;
+    font-size: inherit;
 }
 
 .calculator-container .lgs-controls button:hover {
@@ -612,7 +570,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
     gap: 4px;
-    font-size: 15px;
 }
 
 .calculator-container .popup-content .const-menu button,
@@ -652,18 +609,6 @@
     gap: 10px;
 }
 
-.calculator-container .graph-row {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-}
-
-.calculator-container .graph-field {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
 
 .calculator-container .graph-fx-label {
     color: var(--textfarbe);
@@ -680,21 +625,8 @@
     width: 100%;
     min-width: 0;
     padding: 6px 8px;
-    font-size: 15px;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 6px;
     background: #ffffff;
-    color: var(--textfarbe);
-    transition: border-color 0.15s;
     text-align: left;
-    margin: 0;
-    font-weight: normal;
-}
-
-.calculator-container .graph-input input:focus {
-    outline: 1px solid var(--hauptfarbe-hover);
-    border-color: var(--hauptfarbe-hover);
-    background: var(--hintergrund-hell);
 }
 
 /* Graph Result Container */
@@ -720,7 +652,6 @@
         /* Keep fixed height, reduce horizontal padding on small screens */
     }
 
-    .calculator-container .binom-input input,
     .calculator-container .input-row input {
         margin: 0;
     }
