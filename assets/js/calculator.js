@@ -27,10 +27,42 @@ const isProbablyMobile = (() => {
 
 const shouldLockTouchInputs = isTouchDevice && isProbablyMobile && !isFinePointer;
 
+// Add thousands separators (.) to a number
+function addThousandsSeparators(value) {
+    if (typeof value === 'number') {
+        value = String(value);
+    }
+    if (typeof value !== 'string') return value;
+
+    // Split by comma (decimal separator)
+    const parts = value.split(',');
+    const intPart = parts[0] || '';
+    const fracPart = parts[1];
+
+    // Add dots every 3 digits from right to left in integer part
+    const formatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    return fracPart !== undefined ? `${formatted},${fracPart}` : formatted;
+}
+
+// Remove thousands separators (.) from a number
+function removeThousandsSeparators(value) {
+    if (typeof value !== 'string') return value;
+    return value.replace(/\./g, '');
+}
+
 function updateDisplay() {
     const resultDisplay = document.getElementById('resultDisplay');
     if (resultDisplay) {
-        resultDisplay.textContent = result;
+        // Check if result is already a formatted string (e.g., from equation solver, LGS, etc.)
+        // or if it's a number that needs formatting
+        let formattedResult;
+        if (typeof result === 'string') {
+            formattedResult = result; // Already formatted (equations, errors, etc.)
+        } else {
+            formattedResult = formatGeneralResult(result); // Format numbers
+        }
+        resultDisplay.textContent = formattedResult;
         if (shouldAnimateResult) {
             resultDisplay.classList.remove('updated');
             void resultDisplay.offsetWidth;
@@ -41,8 +73,13 @@ function updateDisplay() {
 }
 
 function copyResult() {
-    const value = String(result ?? '').trim();
+    let value = String(result ?? '').trim();
     if (!value) return;
+
+    // Remove thousands separators before copying
+    value = removeThousandsSeparators(value);
+    // Replace comma with dot for standard number format
+    value = value.replace(',', '.');
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(value)
@@ -349,6 +386,7 @@ function insertAns() {
 
 function normalizeExpression(input) {
     const normalized = normalizeNumberString(input);
+
     let expression = addImplicitMultiplication(
         normalizeUnaryMinusExponent(
             /* root infix disabled */ convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized)))
@@ -371,7 +409,7 @@ function calculate() {
     try {
         const expression = normalizeExpression(currentInput);
         const value = eval(expression);
-        result = formatGeneralResult(value);
+        result = value;  // Store the raw number, formatting happens in updateDisplay()
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
@@ -417,8 +455,11 @@ function toGermanNumber(text) {
     const parts = text.split('.');
     const intPart = parts[0] || '0';
     const fracPart = parts[1] || '';
-    // Remove thousands grouping: keep integer part as-is, only swap decimal '.' to ','
-    return fracPart ? `${sign}${intPart},${fracPart}` : `${sign}${intPart}`;
+
+    // Add thousands separators to integer part
+    const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    return fracPart ? `${sign}${formattedInt},${fracPart}` : `${sign}${formattedInt}`;
 }
 
 function handleExecute() {
@@ -674,7 +715,7 @@ function executeBinFromInput(input) {
         }
 
         currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${match[4]})`;
-        result = formatGeneralResult(probability);
+        result = probability;  // Store raw number, formatting happens in updateDisplay()
         shouldResetInput = true;
         updateDisplay();
     } catch (error) {
@@ -952,12 +993,24 @@ function convertWurzelSyntaxForMathJS(value) {
 
 // Convert scientific notation with capital 'E' to lowercase 'e' for JavaScript
 // Examples: "3E+22" -> "3e+22", "4E-11" -> "4e-11"
+// Constants with E: "eE+12" -> "e*1e+12", "piE+22" -> "pi*1e+22"
 function convertCustomENotation(value) {
     if (typeof value !== 'string') return value;
+
+    // First handle constants (e, pi, π) followed by E notation
+    // Convert "eE+12" to "e*1e+12" (Euler's number times 10^12)
+    // Convert "piE+22" to "pi*1e+22" (Pi times 10^22)
+    let result = value.replace(/(pi|π|e)\s*E\s*([+\-])\s*(\d+)/gi,
+        (match, constant, sign, exp) => `${constant}*1e${sign}${exp}`
+    );
+
+    // Then handle regular numbers with E notation
     // Convert "3E+22" or "4E-11" to "3e+22" or "4e-11"
-    return value.replace(/(-?\d+(?:\.\d+)?)\s*E\s*([+\-])\s*(\d+)/gi,
+    result = result.replace(/(-?\d+(?:\.\d+)?)\s*E\s*([+\-])\s*(\d+)/gi,
         (match, mantissa, sign, exp) => `${mantissa}e${sign}${exp}`
     );
+
+    return result;
 }
 
 function extractParenthesized(expr, startIndex) {
@@ -1163,7 +1216,8 @@ function setInputCursor(input, position) {
 }
 
 function normalizeNumberString(value) {
-    return value.replace(/,/g, '.');
+    // Remove thousands separators (.) then replace comma (decimal) with dot
+    return value.replace(/\./g, '').replace(/,/g, '.');
 }
 
 function openLGSPopup() {
@@ -1378,6 +1432,19 @@ function previewGraph() {
         return;
     }
 
+    // Validate that capital 'E' is only used in scientific notation (silently)
+    // Valid E-notation patterns: number/constant + E + (+/-) + digits
+    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
+    const marked = funcInput.replace(validENotation, '___VALID___');
+    if (/E/.test(marked)) {
+        // Invalid E usage - silently abort without drawing
+        return;
+    }
+
+    // Convert valid E-notation to lowercase e for math.js
+    // "1E+3" -> "1e+3", "eE+5" -> "e*1e+5", "piE+2" -> "pi*1e+2"
+    funcInput = convertCustomENotation(funcInput);
+
     // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
     funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
 
@@ -1434,6 +1501,19 @@ function confirmGraph() {
         alert('Bitte geben Sie eine Funktion ein.');
         return;
     }
+
+    // Validate that capital 'E' is only used in scientific notation (silently)
+    // Valid E-notation patterns: number/constant + E + (+/-) + digits
+    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
+    const marked = funcInput.replace(validENotation, '___VALID___');
+    if (/E/.test(marked)) {
+        // Invalid E usage - silently abort without drawing
+        return;
+    }
+
+    // Convert valid E-notation to lowercase e for math.js
+    // "1E+3" -> "1e+3", "eE+5" -> "e*1e+5", "piE+2" -> "pi*1e+2"
+    funcInput = convertCustomENotation(funcInput);
 
     // Replace commas with dots in decimal numbers (e.g., 2,5 -> 2.5)
     funcInput = funcInput.replace(/(\d),(\d)/g, '$1.$2');
@@ -1790,7 +1870,7 @@ function calculateBinomial() {
 
     const pDisplay = pInput !== '' ? pInput : String(p);
     currentInput = `Binom(a=${a}, b=${b}, n=${n}, p=${pDisplay})`;
-    result = formatGeneralResult(probability);
+    result = probability;  // Store raw number, formatting happens in updateDisplay()
     shouldResetInput = true;
     updateDisplay();
 }
@@ -2325,6 +2405,59 @@ function initCalculator() {
                     const nextStart = newBefore.length;
                     const nextEnd = newBefore.length + newSelection.length;
                     mainInput.setSelectionRange(nextStart, nextEnd);
+                    return;
+                }
+            }
+
+            // Format numbers with thousands separators as user types
+            // First, prevent manual dot input - dots should only be added automatically
+            // Allow dots only in valid thousand separator positions
+            const cleanValue = value.replace(/\s/g, '');
+
+            // Remove manually typed dots that are not part of proper number formatting
+            // Keep only dots that are in proper thousand separator positions (every 3 digits from right)
+            let sanitized = cleanValue;
+
+            // Check if it's a simple number (only digits, optional minus at start, optional comma for decimals, and dots for thousands)
+            if (/^-?[\d.,]*$/.test(cleanValue) && !cleanValue.match(/[+*/^=()a-zA-Zπ]/)) {
+                // Remove all dots first
+                const withoutDots = cleanValue.replace(/\./g, '');
+                // Check if we have a valid number structure (digits with at most one comma)
+                const commaCount = (withoutDots.match(/,/g) || []).length;
+                if (commaCount <= 1) {
+                    // Normalize comma to dot for processing
+                    const normalized = withoutDots.replace(',', '.');
+                    const parts = normalized.split('.');
+                    const intPart = parts[0] || '';
+                    const fracPart = parts[1];
+
+                    // Only format if we have digits in the integer part
+                    if (intPart && /^-?\d+$/.test(intPart)) {
+                        // Add thousands separators to integer part
+                        const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                        const formatted = fracPart !== undefined ? `${formattedInt},${fracPart}` : formattedInt;
+
+                        if (formatted !== value) {
+                            mainInput.value = formatted;
+                            // Adjust cursor position based on dots added/removed
+                            const dotsBeforeCursor = (value.slice(0, start).match(/\./g) || []).length;
+                            const dotsInFormatted = (formatted.slice(0, start).match(/\./g) || []).length;
+                            const cursorAdjustment = dotsInFormatted - dotsBeforeCursor;
+                            const newPosition = start + cursorAdjustment;
+                            mainInput.setSelectionRange(newPosition, newPosition);
+                        }
+                    }
+                }
+            } else {
+                // For expressions (not pure numbers), remove all dots that user might have typed
+                // Dots should never appear in expressions like "e.", "2+3.", etc.
+                const withoutDots = value.replace(/\./g, '');
+                if (withoutDots !== value) {
+                    mainInput.value = withoutDots;
+                    // Adjust cursor - count how many dots were removed before cursor
+                    const dotsRemovedBeforeCursor = (value.slice(0, start).match(/\./g) || []).length;
+                    const newPosition = start - dotsRemovedBeforeCursor;
+                    mainInput.setSelectionRange(newPosition, newPosition);
                 }
             }
         });
