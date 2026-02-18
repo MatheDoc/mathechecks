@@ -27,30 +27,6 @@ const isProbablyMobile = (() => {
 
 const shouldLockTouchInputs = isTouchDevice && isProbablyMobile && !isFinePointer;
 
-// Add thousands separators (.) to a number
-function addThousandsSeparators(value) {
-    if (typeof value === 'number') {
-        value = String(value);
-    }
-    if (typeof value !== 'string') return value;
-
-    // Split by comma (decimal separator)
-    const parts = value.split(',');
-    const intPart = parts[0] || '';
-    const fracPart = parts[1];
-
-    // Add dots every 3 digits from right to left in integer part
-    const formatted = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-    return fracPart !== undefined ? `${formatted},${fracPart}` : formatted;
-}
-
-// Remove thousands separators (.) from a number
-function removeThousandsSeparators(value) {
-    if (typeof value !== 'string') return value;
-    return value.replace(/\./g, '');
-}
-
 function updateDisplay() {
     const resultDisplay = document.getElementById('resultDisplay');
     if (resultDisplay) {
@@ -73,13 +49,12 @@ function updateDisplay() {
 }
 
 function copyResult() {
-    let value = String(result ?? '').trim();
+    const resultDisplay = document.getElementById('resultDisplay');
+    let value = (resultDisplay?.textContent || '').trim();
+    if (!value) {
+        value = String(result ?? '').trim();
+    }
     if (!value) return;
-
-    // Remove thousands separators before copying
-    value = removeThousandsSeparators(value);
-    // Replace comma with dot for standard number format
-    value = value.replace(',', '.');
 
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(value)
@@ -306,6 +281,17 @@ document.addEventListener('click', (event) => {
 });
 
 function clearAll() {
+    const popupInputToClear = getOpenPopupInputToClear();
+    if (popupInputToClear) {
+        popupInputToClear.value = '';
+        activeInputField = popupInputToClear;
+        panelInputMode = true;
+        if (popupInputToClear.closest('#graphPopup') && graphAutoPreviewFn) {
+            graphAutoPreviewFn();
+        }
+        return;
+    }
+
     const mainInput = document.getElementById('mainInput');
     if (mainInput) {
         mainInput.value = '';
@@ -368,7 +354,7 @@ function normalizeExpression(input) {
 
     let expression = addImplicitMultiplication(
         normalizeUnaryMinusExponent(
-            /* root infix disabled */ convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized)))
+            /* root infix disabled */ convertBinomSyntaxForMathJS(convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized))))
         )
     );
     return normalizeConstants(expression)
@@ -421,26 +407,6 @@ function formatGeneralResult(value) {
     return toGermanNumber(trimmed);
 }
 
-function toGermanNumber(text) {
-    // Convert a plain numeric string with '.' decimal to German format
-    // using ',' as decimal and '.' as thousands
-    if (typeof text !== 'string') text = String(text ?? '');
-    if (!text) return '';
-    let sign = '';
-    if (text.startsWith('-')) {
-        sign = '-';
-        text = text.slice(1);
-    }
-    const parts = text.split('.');
-    const intPart = parts[0] || '0';
-    const fracPart = parts[1] || '';
-
-    // Add thousands separators to integer part
-    const formattedInt = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
-    return fracPart ? `${sign}${formattedInt},${fracPart}` : `${sign}${formattedInt}`;
-}
-
 function handleExecute() {
     shouldAnimateResult = true;
     const mainInput = document.getElementById('mainInput');
@@ -453,7 +419,7 @@ function handleExecute() {
     }
 
     // Check for BIN syntax: binom(a;b;n;p)
-    if (inputValue.trim().match(/^binom\s*\(/i)) {
+    if (inputValue.trim().match(/^binom\s*\(.*\)\s*$/i)) {
         executeBinFromInput(inputValue);
         return;
     }
@@ -653,9 +619,22 @@ function computeBinomProbability(a, b, n, p) {
     return probability;
 }
 
+function binom(a, b, n, p) {
+    const aNum = Math.ceil(Number(a));
+    const bNum = Math.floor(Number(b));
+    const nNum = parseInt(Number(n), 10);
+    const pNum = Number(p);
+
+    if (!Number.isFinite(aNum) || !Number.isFinite(bNum) || !Number.isFinite(nNum) || !Number.isFinite(pNum)) {
+        return NaN;
+    }
+
+    return computeBinomProbability(aNum, bNum, nNum, pNum);
+}
+
 function executeBinFromInput(input) {
     try {
-        const match = input.match(/binom\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)/i);
+        const match = input.trim().match(/^binom\s*\(\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^;]+)\s*;\s*([^)]+)\s*\)$/i);
         if (!match) throw new Error('Invalid format');
 
         const a = Math.ceil(parseFloat(normalizeNumberString(match[1])));
@@ -671,199 +650,6 @@ function executeBinFromInput(input) {
         result = 'Fehler in BINOM';
         updateDisplay();
     }
-}
-
-function executeGraphFromInput(input) {
-    result = 'Bitte GRAPH-Button verwenden';
-    currentInput = '';
-    shouldResetInput = true;
-    updateDisplay();
-}
-
-function addImplicitMultiplication(value) {
-    return value
-        .replace(/(\d)([a-df-zA-DF-Zπ(])/g, '$1*$2')  // Insert * between digit and letter (except e/E)
-        .replace(/(\d)([eE])(?![+\-\d])/g, '$1*$2')   // Insert * between digit and e/E only if NOT followed by +/- or digit
-        .replace(/(\))([\d(])/g, '$1*$2')
-        .replace(/(\))([a-zA-Zπ])/g, '$1*$2');
-}
-
-function normalizeUnaryMinusExponent(value) {
-    return value
-        .replace(/(^|[+\-*/(=])\s*-\s*([a-zA-Z0-9.]+)\s*\^/g, '$1(-1)*$2^')
-        .replace(/(^|[+\-*/(=])\s*-\s*(\([^()]*\))\s*\^/g, '$1(-1)*$2^');
-}
-
-function normalizeConstants(value) {
-    return value
-        .replace(/(^|[^a-zA-Z0-9_.])e([^a-zA-Z0-9_]|$)/g, '$1Math.E$2')
-        .replace(/(^|[^a-zA-Z0-9_.])pi([^a-zA-Z0-9_]|$)/gi, '$1Math.PI$2')
-        .replace(/π/g, 'Math.PI');
-}
-
-// Split string at first top-level semicolon (not inside parentheses)
-function splitTopLevelSemicolon(str) {
-    let depth = 0;
-    for (let i = 0; i < str.length; i++) {
-        const ch = str[i];
-        if (ch === '(') depth++;
-        else if (ch === ')') depth--;
-        else if (ch === ';' && depth === 0) return i;
-    }
-    return -1;
-}
-
-function convertLogBaseSyntax(value) {
-    // log(basis;wert) -> logBase(basis,wert) | log(2;8) = 3
-    let expr = value;
-    let idx = expr.indexOf('log(');
-    while (idx !== -1) {
-        const argsParen = extractParenthesized(expr, idx + 3);
-        if (!argsParen) break;
-        const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        const sepPos = splitTopLevelSemicolon(inner);
-        if (sepPos === -1) {
-            idx = expr.indexOf('log(', argsParen.end + 1);
-            continue;
-        }
-        const baseStr = inner.slice(0, sepPos).trim();
-        const valueStr = inner.slice(sepPos + 1).trim();
-        expr = `${expr.slice(0, idx)}logBase(${baseStr},${valueStr})${expr.slice(argsParen.end + 1)}`;
-        idx = expr.indexOf('log(');
-    }
-    return expr;
-}
-
-// log(basis;wert) -> logb(wert, basis) for math.js graph plotting
-function convertLogBaseSyntaxForMathJS(value) {
-    let expr = value;
-    let idx = expr.indexOf('log(');
-    while (idx !== -1) {
-        const argsParen = extractParenthesized(expr, idx + 3);
-        if (!argsParen) break;
-        const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        const sepPos = splitTopLevelSemicolon(inner);
-        if (sepPos === -1) {
-            idx = expr.indexOf('log(', argsParen.end + 1);
-            continue;
-        }
-        const baseStr = inner.slice(0, sepPos).trim();
-        const valueStr = inner.slice(sepPos + 1).trim();
-        expr = `${expr.slice(0, idx)}logb(${valueStr}, ${baseStr})${expr.slice(argsParen.end + 1)}`;
-        idx = expr.indexOf('log(');
-    }
-    return expr;
-}
-
-// wurzel(x) -> Math.sqrt(x) | wurzel(x;n) -> Math.pow(x, 1/n)
-function convertWurzelSyntax(value) {
-    let expr = value;
-    let idx = expr.indexOf('wurzel(');
-    while (idx !== -1) {
-        const argsParen = extractParenthesized(expr, idx + 6);
-        if (!argsParen) break;
-        const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        const sepPos = splitTopLevelSemicolon(inner);
-        if (sepPos === -1) {
-            expr = `${expr.slice(0, idx)}Math.sqrt(${inner.trim()})${expr.slice(argsParen.end + 1)}`;
-        } else {
-            const xStr = inner.slice(0, sepPos).trim();
-            const yStr = inner.slice(sepPos + 1).trim();
-            expr = `${expr.slice(0, idx)}Math.pow(${xStr}, 1/(${yStr}))${expr.slice(argsParen.end + 1)}`;
-        }
-        idx = expr.indexOf('wurzel(');
-    }
-    return expr;
-}
-
-// binom(a;b;n;p) -> binom(a, b, n, p) for math.js graph plotting
-function convertBinomSyntaxForMathJS(value) {
-    let expr = value;
-    let idx = expr.indexOf('binom(');
-    while (idx !== -1) {
-        const argsParen = extractParenthesized(expr, idx + 5);
-        if (!argsParen) break;
-        const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        // Replace all top-level semicolons with ', '
-        let converted = '';
-        let depth = 0;
-        for (let i = 0; i < inner.length; i++) {
-            const ch = inner[i];
-            if (ch === '(') { depth++; converted += ch; }
-            else if (ch === ')') { depth--; converted += ch; }
-            else if (ch === ';' && depth === 0) converted += ', ';
-            else converted += ch;
-        }
-        expr = `${expr.slice(0, argsParen.start + 1)}${converted}${expr.slice(argsParen.end)}`;
-        idx = expr.indexOf('binom(', argsParen.start + 1 + converted.length + 1);
-    }
-    return expr;
-}
-
-// wurzel(x) -> sqrt(x) | wurzel(x;n) -> (x)^(1/(n)) for math.js
-function convertWurzelSyntaxForMathJS(value) {
-    let expr = value;
-    let idx = expr.indexOf('wurzel(');
-    while (idx !== -1) {
-        const argsParen = extractParenthesized(expr, idx + 6);
-        if (!argsParen) break;
-        const inner = expr.slice(argsParen.start + 1, argsParen.end);
-        const sepPos = splitTopLevelSemicolon(inner);
-        if (sepPos === -1) {
-            expr = `${expr.slice(0, idx)}sqrt(${inner.trim()})${expr.slice(argsParen.end + 1)}`;
-        } else {
-            const xStr = inner.slice(0, sepPos).trim();
-            const yStr = inner.slice(sepPos + 1).trim();
-            expr = `${expr.slice(0, idx)}(${xStr})^(1/(${yStr}))${expr.slice(argsParen.end + 1)}`;
-        }
-        idx = expr.indexOf('wurzel(');
-    }
-    return expr;
-}
-
-// Convert scientific notation with capital 'E' to lowercase 'e' for JavaScript
-// Examples: "3E+22" -> "3e+22", "4E-11" -> "4e-11"
-// Constants with E: "eE+12" -> "e*1e+12", "piE+22" -> "pi*1e+22"
-function convertCustomENotation(value) {
-    if (typeof value !== 'string') return value;
-
-    // First handle constants (e, pi, π) followed by E notation
-    // Convert "eE+12" to "e*1e+12" (Euler's number times 10^12)
-    // Convert "piE+22" to "pi*1e+22" (Pi times 10^22)
-    let result = value.replace(/(pi|π|e)\s*E\s*([+\-])\s*(\d+)/gi,
-        (match, constant, sign, exp) => `${constant}*1e${sign}${exp}`
-    );
-
-    // Then handle regular numbers with E notation
-    // Convert "3E+22" or "4E-11" to "3e+22" or "4e-11"
-    result = result.replace(/(-?\d+(?:\.\d+)?)\s*E\s*([+\-])\s*(\d+)/gi,
-        (match, mantissa, sign, exp) => `${mantissa}e${sign}${exp}`
-    );
-
-    return result;
-}
-
-function extractParenthesized(expr, startIndex) {
-    if (expr[startIndex] !== '(') {
-        return null;
-    }
-
-    let depth = 1;
-    let i = startIndex + 1;
-    while (i < expr.length) {
-        if (expr[i] === '(') depth++;
-        if (expr[i] === ')') depth--;
-        if (depth === 0) break;
-        i++;
-    }
-    if (i >= expr.length) {
-        return null;
-    }
-    return { start: startIndex, end: i };
-}
-
-function logBase(base, value) {
-    return Math.log(value) / Math.log(base);
 }
 
 function toggleSign() {
@@ -976,36 +762,6 @@ function normalizeNumberString(value) {
     return value.replace(/\./g, '').replace(/,/g, '.');
 }
 
-function openPopup(popupId) {
-    document.getElementById(popupId.replace('Popup', 'Overlay')).classList.add('open');
-    const popup = document.getElementById(popupId);
-    popup.classList.add('open');
-    bringToFront(popup);
-    centerPopup(popupId);
-}
-
-function closePopup(popupId) {
-    document.getElementById(popupId.replace('Popup', 'Overlay')).classList.remove('open');
-    document.getElementById(popupId).classList.remove('open');
-}
-
-function returnFocusToMain() {
-    panelInputMode = false;
-    const mainInput = document.getElementById('mainInput');
-    if (mainInput) {
-        activeInputField = mainInput;
-        mainInput.focus({ preventScroll: true });
-    }
-}
-
-function focusPanelInput(inputEl) {
-    if (!inputEl) return;
-    panelInputMode = true;
-    activeInputField = inputEl;
-    inputEl.focus({ preventScroll: true });
-    setInputCursor(inputEl, inputEl.value?.length || 0);
-}
-
 function openLGSPopup() {
     openPopup('lgsPopup');
     renderLGS();
@@ -1086,434 +842,6 @@ function confirmBin() {
 
     closeBinPopup();
     handleExecute();
-}
-
-function openGraphPopup() {
-    openPopup('graphPopup');
-
-    // Reset preview
-    const preview = document.getElementById('graphPreview');
-    if (preview) { preview.style.display = 'none'; preview.innerHTML = ''; }
-    const pointsInfo = document.getElementById('graphPointsInfo');
-    if (pointsInfo) { pointsInfo.style.display = 'none'; pointsInfo.innerHTML = ''; }
-
-    focusPanelInput(document.getElementById('graphFunction'));
-
-    // Automatische Vorschau initialisieren
-    setupGraphAutoPreview();
-    // Automatische Vorschau für Graph-Popup
-    function setupGraphAutoPreview() {
-        const funcInput = document.getElementById('graphFunction');
-        const xMinInput = document.getElementById('graphXMin');
-        const xMaxInput = document.getElementById('graphXMax');
-        const yMinInput = document.getElementById('graphYMin');
-        const yMaxInput = document.getElementById('graphYMax');
-        if (!funcInput || !xMinInput || !xMaxInput || !yMinInput || !yMaxInput) return;
-
-        let lastValue = '';
-        let debounceTimer = null;
-
-        function tryPreview() {
-            const funcVal = funcInput.value.trim();
-            const xMinVal = xMinInput.value.trim();
-            const xMaxVal = xMaxInput.value.trim();
-            const yMinVal = yMinInput.value.trim();
-            const yMaxVal = yMaxInput.value.trim();
-            const current = funcVal + '|' + xMinVal + '|' + xMaxVal + '|' + yMinVal + '|' + yMaxVal;
-            if (current === lastValue) return;
-            lastValue = current;
-
-            // Nur Vorschau, wenn Funktionsfeld nicht leer und mindestens ein x-Zeichen enthalten ist
-            if (!funcVal || !/[a-zA-Z0-9]/.test(funcVal)) {
-                const preview = document.getElementById('graphPreview');
-                if (preview) {
-                    preview.style.display = 'none';
-                    preview.innerHTML = '';
-                }
-                const pointsInfo = document.getElementById('graphPointsInfo');
-                if (pointsInfo) pointsInfo.style.display = 'none';
-                return;
-            }
-            previewGraph();
-        }
-
-        function debouncedPreview() {
-            if (debounceTimer) clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(tryPreview, 250);
-        }
-
-        [funcInput, xMinInput, xMaxInput, yMinInput, yMaxInput].forEach(input => {
-            input.removeEventListener('input', debouncedPreview);
-            input.addEventListener('input', debouncedPreview);
-        });
-
-        // Store reference globally so we can trigger it programmatically
-        graphAutoPreviewFn = debouncedPreview;
-
-        // Initial preview
-        debouncedPreview();
-    }
-}
-
-function closeGraphPopup() {
-    closePopup('graphPopup');
-    graphAutoPreviewFn = null;
-    returnFocusToMain();
-}
-
-// Prepare a function expression for math.js graph plotting
-function prepareGraphExpression(input) {
-    const validENotation = /((?:\d+(?:\.\d+)?)|(?:pi)|(?:\u03c0)|(?:e))\s*E\s*[+\-]\s*\d+/gi;
-    if (/E/.test(input.replace(validENotation, '___VALID___'))) return null;
-    let expr = convertCustomENotation(input);
-    expr = expr.replace(/(\d),(\d)/g, '$1.$2');
-    expr = convertBinomSyntaxForMathJS(expr);
-    expr = convertLogBaseSyntaxForMathJS(expr);
-    expr = convertWurzelSyntaxForMathJS(expr);
-    expr = expr.replace(/\blog\s*\(/g, 'log10(');
-    expr = expr.replace(/\bln\s*\(/g, 'log(');
-    expr = expr.replace(/\blogb\s*\(/g, 'log(');
-    return expr;
-}
-
-function previewGraph() {
-    const rawFuncInput = document.getElementById('graphFunction').value.trim();
-    if (!rawFuncInput) {
-        const pointsInfo = document.getElementById('graphPointsInfo');
-        if (pointsInfo) pointsInfo.style.display = 'none';
-        alert('Bitte geben Sie eine Funktion ein.');
-        return;
-    }
-
-    let funcInput = prepareGraphExpression(rawFuncInput);
-    if (!funcInput) return;
-
-    const xMinValue = document.getElementById('graphXMin').value.trim();
-    const xMaxValue = document.getElementById('graphXMax').value.trim();
-    const xMin = xMinValue === '' ? -5 : parseFloat(xMinValue);
-    const xMax = xMaxValue === '' ? 5 : parseFloat(xMaxValue);
-    const yMinInput = document.getElementById('graphYMin').value.trim();
-    const yMaxInput = document.getElementById('graphYMax').value.trim();
-
-    const preview = document.getElementById('graphPreview');
-    preview.style.display = 'block';
-    preview.innerHTML = '';
-    preview.id = 'graphPreview'; // Ensure ID is set
-
-    const optionen = {
-        titel: '',
-        xAchse: '',
-        yAchse: '',
-        xMin: xMin,
-        xMax: xMax
-    };
-
-    if (yMinInput !== '') optionen.yMin = parseFloat(yMinInput);
-    if (yMaxInput !== '') optionen.yMax = parseFloat(yMaxInput);
-
-    const funktionen = [{
-        term: funcInput,
-        name: 'f(x)',
-        beschreibung: funcInput
-    }];
-
-    try {
-        zeichneGraph('graphPreview', funktionen, optionen);
-        // Berechne und zeige wichtige Punkte an
-        analyzeGraphPoints(rawFuncInput, xMin, xMax);
-    } catch (error) {
-        preview.innerHTML = '<div style="color: red; padding: 10px;">Fehler beim Zeichnen ' + '</div>';
-    }
-}
-
-function confirmGraph() {
-    let funcInput = document.getElementById('graphFunction').value.trim();
-    if (!funcInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
-
-    funcInput = prepareGraphExpression(funcInput);
-    if (!funcInput) return;
-
-    const xMin = document.getElementById('graphXMin').value.trim() || '-5';
-    const xMax = document.getElementById('graphXMax').value.trim() || '5';
-    const yMin = document.getElementById('graphYMin').value.trim();
-    const yMax = document.getElementById('graphYMax').value.trim();
-
-    // Build the graph command string
-    let graphCmd = `graph(${funcInput}`;
-    graphCmd += `;xmin=${xMin};xmax=${xMax}`;
-    if (yMin !== '') graphCmd += `;ymin=${yMin}`;
-    if (yMax !== '') graphCmd += `;ymax=${yMax}`;
-    graphCmd += ')';
-
-    const mainInput = document.getElementById('mainInput');
-    mainInput.value = graphCmd;
-    activeInputField = mainInput;
-
-    closeGraphPopup();
-    handleExecute();
-}
-
-// Baue einen JS-auswertbaren Ausdruck basierend auf solveEquation-Pipeline
-function evaluateFunctionJS(rawExpr, x) {
-    try {
-        let expr = `(${rawExpr})`;
-        expr = addImplicitMultiplication(
-            normalizeUnaryMinusExponent(
-                convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(expr)))
-            )
-        );
-        expr = normalizeConstants(expr)
-            .replace(/\^/g, '**')
-            .replace(/e\*\*/g, 'Math.E**')
-            .replace(/sqrt/g, 'Math.sqrt')
-            .replace(/root/g, 'root')
-            .replace(/exp/g, 'Math.exp')
-            .replace(/\bln\b/g, 'Math.log')
-            // Nur standalone log(...) zu Math.log10(...)
-            .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-            .replace(/sin/g, 'Math.sin')
-            .replace(/cos/g, 'Math.cos')
-            .replace(/tan/g, 'Math.tan')
-            .replace(/x/g, `(${x})`);
-        return eval(expr);
-    } catch (e) {
-        return NaN;
-    }
-}
-
-// Finde Nullstellen via solveEquation-Logik und filtere auf [xMin,xMax]
-function findZerosUsingSolveEquation(rawExpr, xMin, xMax) {
-    const tolerance = 0.000001;
-    const rangeMin = -1000;
-    const rangeMax = 1000;
-    const steps = 20000;
-    const step = (rangeMax - rangeMin) / steps;
-    const roots = [];
-
-    function f(x) { return evaluateFunctionJS(rawExpr, x); }
-
-    function refineRoot(a, b) {
-        let fa = f(a);
-        let fb = f(b);
-        if (isNaN(fa) || isNaN(fb)) return null;
-        if (Math.abs(fa) < tolerance) return a;
-        if (Math.abs(fb) < tolerance) return b;
-        if (fa * fb > 0) return null;
-
-        let left = a, right = b;
-        for (let i = 0; i < 100; i++) {
-            const mid = (left + right) / 2;
-            const fm = f(mid);
-            if (isNaN(fm)) return null;
-            if (Math.abs(fm) < tolerance) return mid;
-            if (fa * fm <= 0) { right = mid; fb = fm; } else { left = mid; fa = fm; }
-        }
-        return (left + right) / 2;
-    }
-
-    for (let i = 0; i < steps; i++) {
-        const x1 = rangeMin + i * step;
-        const x2 = x1 + step;
-        const f1 = f(x1);
-        const f2 = f(x2);
-        if (isNaN(f1) || isNaN(f2)) continue;
-        if (Math.abs(f1) < tolerance) { roots.push(x1); continue; }
-        if (f1 * f2 < 0) {
-            const root = refineRoot(x1, x2);
-            if (root !== null) roots.push(root);
-        }
-    }
-
-    const uniqueRoots = roots
-        .map(r => Math.round(r * 1000000) / 1000000)
-        .sort((a, b) => a - b)
-        .filter((r, idx, arr) => idx === 0 || Math.abs(r - arr[idx - 1]) > 0.00001)
-        .filter(r => r >= xMin && r <= xMax);
-
-    return uniqueRoots;
-}
-
-// Extrempunkte numerisch per Nachbarschaftsvergleich
-function findExtremaNumericalJS(rawExpr, xMin, xMax) {
-    const range = xMax - xMin;
-    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
-    const h = range / steps;
-    const extrema = [];
-    function f(x) { return evaluateFunctionJS(rawExpr, x); }
-
-    for (let i = 1; i < steps; i++) {
-        const x = xMin + i * h;
-        const xPrev = x - h;
-        const xNext = x + h;
-        const yPrev = f(xPrev);
-        const y = f(x);
-        const yNext = f(xNext);
-        if (!Number.isFinite(yPrev) || !Number.isFinite(y) || !Number.isFinite(yNext)) continue;
-        // Max: höher als beide Nachbarn, Min: niedriger als beide Nachbarn
-        const isMax = y > yPrev && y > yNext;
-        const isMin = y < yPrev && y < yNext;
-        if (isMax || isMin) {
-            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-            extrema.push({ x: cleanX, y: cleanY, type: isMax ? 'Max' : 'Min' });
-        }
-    }
-
-    // Dedupliziere nahe Punkte
-    const unique = [];
-    for (const p of extrema) {
-        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
-    }
-    return unique.sort((a, b) => a.x - b.x);
-}
-
-// Wendepunkte numerisch über Vorzeichenwechsel der Krümmung
-function findWendepunkteNumericalJS(rawExpr, xMin, xMax) {
-    const range = xMax - xMin;
-    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
-    const h = range / steps;
-    const points = [];
-    function f(x) { return evaluateFunctionJS(rawExpr, x); }
-    function secondDiff(x) { return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h); }
-
-    // Bisection-Verfeinerung für Nullstelle der zweiten Ableitung
-    function refineInflection(a, b) {
-        let fa = secondDiff(a);
-        let fb = secondDiff(b);
-        if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
-        if (fa * fb > 0) return null;
-        let left = a, right = b;
-        for (let i = 0; i < 40; i++) {
-            const mid = (left + right) / 2;
-            const fm = secondDiff(mid);
-            if (!Number.isFinite(fm)) return null;
-            if (Math.abs(fm) < 1e-9) { return mid; }
-            if (fa * fm <= 0) { right = mid; fb = fm; } else { left = mid; fa = fm; }
-        }
-        return (left + right) / 2;
-    }
-
-    let prevX = xMin + h;
-    let prevS2 = secondDiff(prevX);
-    for (let i = 2; i < steps - 1; i++) {
-        const x = xMin + i * h;
-        const s2 = secondDiff(x);
-        if (!Number.isFinite(prevS2) || !Number.isFinite(s2)) { prevS2 = s2; prevX = x; continue; }
-        // Vorzeichenwechsel der zweiten Ableitung => möglicher Wendepunkt
-        if (prevS2 * s2 < 0) {
-            const xi = refineInflection(prevX, x) ?? x;
-            const y = f(xi);
-            if (Number.isFinite(y)) {
-                const cleanX = Math.abs(xi) < 1e-9 ? 0 : xi;
-                const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-                points.push({ x: cleanX, y: cleanY });
-            }
-        } else {
-            // Optional: lokales Minimum von |s2| als Wendekandidaten, wenn sehr klein
-            const s2Prev = prevS2;
-            const s2Next = secondDiff(x + h);
-            if (Number.isFinite(s2Next)) {
-                const isLocalMin = Math.abs(s2) < Math.abs(s2Prev) && Math.abs(s2) < Math.abs(s2Next);
-                if (isLocalMin && Math.abs(s2) < 1e-6) {
-                    const y = f(x);
-                    if (Number.isFinite(y)) {
-                        const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-                        const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-                        points.push({ x: cleanX, y: cleanY });
-                    }
-                }
-            }
-        }
-        prevS2 = s2; prevX = x;
-    }
-    const unique = [];
-    for (const p of points) {
-        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
-    }
-    return unique.sort((a, b) => a.x - b.x);
-}
-
-// Analysiere wichtige Punkte des Graphen
-function analyzeGraphPoints(funcExprRaw, xMin, xMax) {
-    const container = document.getElementById('graphPointsInfo');
-    if (!container) return;
-
-    container.innerHTML = '';
-    container.style.display = 'none';
-
-    try {
-        // Finde Nullstellen (Solver-Logik), Extrem- und Wendepunkte rein numerisch (JS)
-        const nullstellen = findZerosUsingSolveEquation(funcExprRaw, xMin, xMax);
-        const extrema = findExtremaNumericalJS(funcExprRaw, xMin, xMax);
-        const wendepunkte = findWendepunkteNumericalJS(funcExprRaw, xMin, xMax);
-
-        let html = '<div class="graph-points-list">';
-
-        if (nullstellen.length > 0) {
-            html += '<div class="point-category"><strong>Nullstellen:</strong></div>';
-            nullstellen.forEach(x => {
-                html += `<div class="point-item">x = ${formatPointValue(x)}</div>`;
-            });
-        }
-
-        if (extrema.length > 0) {
-            html += '<div class="point-category"><strong>Extrempunkte:</strong></div>';
-            extrema.forEach(p => {
-                html += `<div class="point-item">${p.type}(${formatPointValue(p.x)} | ${formatPointValue(p.y)})</div>`;
-            });
-        }
-
-        if (wendepunkte.length > 0) {
-            html += '<div class="point-category"><strong>Wendepunkte:</strong></div>';
-            wendepunkte.forEach(p => {
-                html += `<div class="point-item">W(${formatPointValue(p.x)} | ${formatPointValue(p.y)})</div>`;
-            });
-        }
-
-        if (nullstellen.length === 0 && extrema.length === 0 && wendepunkte.length === 0) {
-            html += '<div class="point-item" style="color: var(--textfarbe-schwach);">Keine besonderen Punkte im Bereich gefunden</div>';
-        }
-
-        html += '</div>';
-        container.innerHTML = html;
-        container.style.display = 'block';
-    } catch (error) {
-        container.innerHTML = '<div class="point-item" style="color: var(--warn-farbe);">Analyse nicht möglich</div>';
-        container.style.display = 'block';
-    }
-}
-
-// (alte findWendepunkteNumerical entfernt – siehe findWendepunkteNumericalJS)
-
-// Formatiere Punktwerte für die Anzeige
-function formatPointValue(value) {
-    if (!Number.isFinite(value)) return 'n.def.';
-    // Runde sehr kleine Werte auf 0
-    if (Math.abs(value) < 1e-9) return '0';
-    const absValue = Math.abs(value);
-    if (absValue < 0.001 || absValue > 99999) {
-        return value.toExponential(2).replace('.', ',');
-    }
-    // Verwende bis zu 5 Dezimalstellen, entferne trailing zeros
-    const formatted = value.toFixed(5).replace(/\.?0+$/, '');
-    return formatted.replace('.', ',');
-}
-
-function centerPopup(popupId) {
-    const popup = document.getElementById(popupId);
-    const calculator = document.querySelector('.calculator');
-    if (!calculator) return;
-
-    const calcRect = calculator.getBoundingClientRect();
-
-    // Position popup
-    const xoffset = 60
-    const yoffset = 50;
-    const left = calcRect.left + xoffset;
-    const top = calcRect.top - yoffset;
-
-    popup.style.left = `${left}px`;
-    popup.style.top = `${top}px`;
 }
 
 // LGS Functions
@@ -1998,9 +1326,24 @@ function solveEquation(equation) {
     }
 }
 
-// Keyboard Support
+// Keyboard & Focus: keyboard handling
 document.addEventListener('keydown', function (event) {
+    if (event.key.toLowerCase() === 'c') {
+        const popupInputToClear = getOpenPopupInputToClear();
+        if (popupInputToClear) {
+            event.preventDefault();
+            popupInputToClear.value = '';
+            activeInputField = popupInputToClear;
+            panelInputMode = true;
+            if (popupInputToClear.closest('#graphPopup') && graphAutoPreviewFn) {
+                graphAutoPreviewFn();
+            }
+            return;
+        }
+    }
+
     const isPanelInputFocused = activeInputField && document.activeElement === activeInputField;
+
     if (isPanelInputFocused && event.key !== 'Enter') {
         return;
     }
@@ -2030,13 +1373,41 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-// Focus Management
+// Keyboard & Focus: popup-input helper
+function getOpenPopupInputToClear() {
+    const activePopupInput =
+        activeInputField &&
+            activeInputField.tagName === 'INPUT' &&
+            activeInputField.closest('#lgsPopup.open, #binPopup.open, #constPopup.open, #triPopup.open, #graphPopup.open')
+            ? activeInputField
+            : null;
+
+    const focused = document.activeElement;
+    const focusedPopupInput =
+        focused &&
+            focused.tagName === 'INPUT' &&
+            focused.closest('#lgsPopup.open, #binPopup.open, #constPopup.open, #triPopup.open, #graphPopup.open')
+            ? focused
+            : null;
+
+    return activePopupInput || focusedPopupInput || null;
+}
+
+// Keyboard & Focus: focus tracking
 document.addEventListener('focusin', function (event) {
     if (event.target.tagName === 'INPUT' && event.target.type !== 'button') {
         activeInputField = event.target;
+        // Set panelInputMode if the input is inside a popup
+        const isInPopup = event.target.closest('#lgsPopup, #binPopup, #constPopup, #triPopup, #graphPopup');
+        if (isInPopup) {
+            panelInputMode = true;
+        } else if (event.target.id === 'mainInput') {
+            panelInputMode = false;
+        }
     }
 });
 
+// Keyboard & Focus: main input click tracking
 document.addEventListener('click', function (event) {
     if (event.target.closest('#mainInput')) {
         activeInputField = document.getElementById('mainInput');
@@ -2311,8 +1682,6 @@ function initCalculator() {
 
             // Remove manually typed dots that are not part of proper number formatting
             // Keep only dots that are in proper thousand separator positions (every 3 digits from right)
-            let sanitized = cleanValue;
-
             // Check if it's a simple number (only digits, optional minus at start, optional comma for decimals, and dots for thousands)
             if (/^-?[\d.,]*$/.test(cleanValue) && !cleanValue.match(/[+*/^=()a-zA-Zπ]/)) {
                 // Remove all dots first
