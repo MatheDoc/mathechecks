@@ -1210,6 +1210,8 @@ function previewGraph() {
 
     try {
         zeichneGraph('graphPreview', funktionen, optionen);
+        // Berechne und zeige wichtige Punkte an
+        analyzeGraphPoints(funcInput, xMin, xMax);
     } catch (error) {
         preview.innerHTML = '<div style="color: red; padding: 10px;">Fehler beim Zeichnen ' + '</div>';
     }
@@ -1240,6 +1242,220 @@ function confirmGraph() {
 
     closeGraphPopup();
     handleExecute();
+}
+
+// Analysiere wichtige Punkte des Graphen
+function analyzeGraphPoints(funcExpr, xMin, xMax) {
+    const container = document.getElementById('graphPointsInfo');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    try {
+        const expr = math.parse(funcExpr);
+        const f = expr.compile();
+
+        // Berechne Ableitungen
+        const derivative1 = math.derivative(funcExpr, 'x');
+        const derivative2 = math.derivative(derivative1, 'x');
+        const f1 = derivative1.compile();
+        const f2 = derivative2.compile();
+
+        const nullstellen = findZeros(f, xMin, xMax);
+        const extrema = findZeros(f1, xMin, xMax).map(x => {
+            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
+            const y = f.evaluate({ x: cleanX });
+            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
+            return {
+                x: cleanX,
+                y: cleanY,
+                type: f2.evaluate({ x: cleanX }) > 0 ? 'Min' : 'Max'
+            };
+        });
+        const wendepunkte = findZeros(f2, xMin, xMax).map(x => {
+            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
+            const y = f.evaluate({ x: cleanX });
+            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
+            return {
+                x: cleanX,
+                y: cleanY
+            };
+        });
+
+        let html = '<div class="graph-points-list">';
+
+        if (nullstellen.length > 0) {
+            html += '<div class="point-category"><strong>Nullstellen:</strong></div>';
+            nullstellen.forEach(x => {
+                html += `<div class="point-item">x = ${formatPointValue(x)}</div>`;
+            });
+        }
+
+        if (extrema.length > 0) {
+            html += '<div class="point-category"><strong>Extrempunkte:</strong></div>';
+            extrema.forEach(p => {
+                html += `<div class="point-item">${p.type}(${formatPointValue(p.x)} | ${formatPointValue(p.y)})</div>`;
+            });
+        }
+
+        if (wendepunkte.length > 0) {
+            html += '<div class="point-category"><strong>Wendepunkte:</strong></div>';
+            wendepunkte.forEach(p => {
+                html += `<div class="point-item">W(${formatPointValue(p.x)} | ${formatPointValue(p.y)})</div>`;
+            });
+        }
+
+        if (nullstellen.length === 0 && extrema.length === 0 && wendepunkte.length === 0) {
+            html += '<div class="point-item" style="color: var(--textfarbe-schwach);">Keine besonderen Punkte im Bereich gefunden</div>';
+        }
+
+        html += '</div>';
+        container.innerHTML = html;
+    } catch (error) {
+        container.innerHTML = '<div class="point-item" style="color: var(--warn-farbe);">Analyse nicht möglich</div>';
+    }
+}
+
+// Finde Nullstellen einer Funktion im Intervall [xMin, xMax]
+// Verwendet die gleiche robuste Logik wie der Gleichungslöser
+function findZeros(f, xMin, xMax, tolerance = 0.000001, maxResults = 20) {
+    const zeros = [];
+    const range = xMax - xMin;
+    const steps = Math.min(10000, Math.max(1000, Math.floor(range * 500)));
+    const step = range / steps;
+
+    // Hilfsfunktion zum Auswerten
+    function evaluate(x) {
+        try {
+            const result = f.evaluate({ x });
+            return Number.isFinite(result) ? result : NaN;
+        } catch (e) {
+            return NaN;
+        }
+    }
+
+    // Verfeinere Nullstelle mit Bisection (wie im Gleichungslöser)
+    function refineRoot(a, b) {
+        let fa = evaluate(a);
+        let fb = evaluate(b);
+
+        if (isNaN(fa) || isNaN(fb)) return null;
+        if (Math.abs(fa) < tolerance) return a;
+        if (Math.abs(fb) < tolerance) return b;
+        if (fa * fb > 0) return null;
+
+        let left = a;
+        let right = b;
+
+        for (let i = 0; i < 100; i++) {
+            const mid = (left + right) / 2;
+            const fm = evaluate(mid);
+
+            if (isNaN(fm)) return null;
+            if (Math.abs(fm) < tolerance) return mid;
+
+            if (fa * fm <= 0) {
+                right = mid;
+                fb = fm;
+            } else {
+                left = mid;
+                fa = fm;
+            }
+        }
+        return (left + right) / 2;
+    }
+
+    // Suche nach Nullstellen (wie im Gleichungslöser)
+    for (let i = 0; i < steps && zeros.length < maxResults; i++) {
+        const x1 = xMin + i * step;
+        const x2 = x1 + step;
+        const f1 = evaluate(x1);
+        const f2 = evaluate(x2);
+
+        if (isNaN(f1) || isNaN(f2)) continue;
+
+        // Direkte Nullstelle gefunden
+        if (Math.abs(f1) < tolerance) {
+            const cleanZero = Math.abs(x1) < tolerance ? 0 : x1;
+            if (!zeros.some(z => Math.abs(z - cleanZero) < tolerance)) {
+                zeros.push(cleanZero);
+            }
+            continue;
+        }
+
+        // Vorzeichenwechsel erkannt
+        if (f1 * f2 < 0) {
+            const root = refineRoot(x1, x2);
+            if (root !== null) {
+                const cleanZero = Math.abs(root) < tolerance ? 0 : root;
+                if (!zeros.some(z => Math.abs(z - cleanZero) < tolerance)) {
+                    zeros.push(cleanZero);
+                }
+            }
+        }
+    }
+
+    return zeros.sort((a, b) => a - b);
+}
+
+// Verfeinere eine Nullstelle mittels Bisektionsverfahren
+function refineZero(f, a, b, tolerance, maxIterations = 100) {
+    let iterations = 0;
+
+    try {
+        let fa = f.evaluate({ x: a });
+        let fb = f.evaluate({ x: b });
+
+        if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
+
+        // Wenn einer der Randwerte schon sehr nah an 0 ist
+        if (Math.abs(fa) < tolerance) return a;
+        if (Math.abs(fb) < tolerance) return b;
+
+        // Wenn kein Vorzeichenwechsel, versuche trotzdem den Punkt mit kleinerem Wert
+        if (fa * fb > 0) {
+            return Math.abs(fa) < Math.abs(fb) ? a : b;
+        }
+
+        while (Math.abs(b - a) > tolerance && iterations < maxIterations) {
+            const mid = (a + b) / 2;
+            const fMid = f.evaluate({ x: mid });
+
+            if (!Number.isFinite(fMid)) return null;
+
+            if (Math.abs(fMid) < tolerance) {
+                return Math.abs(mid) < tolerance * 100 ? 0 : mid;
+            }
+
+            if (fa * fMid <= 0) {
+                b = mid;
+                fb = fMid;
+            } else {
+                a = mid;
+                fa = fMid;
+            }
+            iterations++;
+        }
+
+        const result = (a + b) / 2;
+        return Math.abs(result) < tolerance * 100 ? 0 : result;
+    } catch (e) {
+        return null;
+    }
+}
+
+// Formatiere Punktwerte für die Anzeige
+function formatPointValue(value) {
+    if (!Number.isFinite(value)) return 'n.def.';
+    // Runde sehr kleine Werte auf 0
+    if (Math.abs(value) < 1e-9) return '0';
+    const absValue = Math.abs(value);
+    if (absValue < 0.001 || absValue > 99999) {
+        return value.toExponential(2).replace('.', ',');
+    }
+    // Verwende bis zu 5 Dezimalstellen, entferne trailing zeros
+    const formatted = value.toFixed(5).replace(/\.?0+$/, '');
+    return formatted.replace('.', ',');
 }
 
 function centerPopup(popupId) {
