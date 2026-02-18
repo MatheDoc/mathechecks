@@ -1173,10 +1173,10 @@ function prepareGraphExpression(input) {
 }
 
 function previewGraph() {
-    let funcInput = document.getElementById('graphFunction').value.trim();
-    if (!funcInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
+    const rawFuncInput = document.getElementById('graphFunction').value.trim();
+    if (!rawFuncInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
 
-    funcInput = prepareGraphExpression(funcInput);
+    let funcInput = prepareGraphExpression(rawFuncInput);
     if (!funcInput) return;
 
     const xMinValue = document.getElementById('graphXMin').value.trim();
@@ -1211,7 +1211,7 @@ function previewGraph() {
     try {
         zeichneGraph('graphPreview', funktionen, optionen);
         // Berechne und zeige wichtige Punkte an
-        analyzeGraphPoints(funcInput, xMin, xMax);
+        analyzeGraphPoints(rawFuncInput, xMin, xMax);
     } catch (error) {
         preview.innerHTML = '<div style="color: red; padding: 10px;">Fehler beim Zeichnen ' + '</div>';
     }
@@ -1244,43 +1244,198 @@ function confirmGraph() {
     handleExecute();
 }
 
+// Baue einen JS-auswertbaren Ausdruck basierend auf solveEquation-Pipeline
+function evaluateFunctionJS(rawExpr, x) {
+    try {
+        let expr = `(${rawExpr})`;
+        expr = addImplicitMultiplication(
+            normalizeUnaryMinusExponent(
+                convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(expr)))
+            )
+        );
+        expr = normalizeConstants(expr)
+            .replace(/\^/g, '**')
+            .replace(/e\*\*/g, 'Math.E**')
+            .replace(/sqrt/g, 'Math.sqrt')
+            .replace(/root/g, 'root')
+            .replace(/exp/g, 'Math.exp')
+            .replace(/\bln\b/g, 'Math.log')
+            // Nur standalone log(...) zu Math.log10(...)
+            .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
+            .replace(/sin/g, 'Math.sin')
+            .replace(/cos/g, 'Math.cos')
+            .replace(/tan/g, 'Math.tan')
+            .replace(/x/g, `(${x})`);
+        return eval(expr);
+    } catch (e) {
+        return NaN;
+    }
+}
+
+// Finde Nullstellen via solveEquation-Logik und filtere auf [xMin,xMax]
+function findZerosUsingSolveEquation(rawExpr, xMin, xMax) {
+    const tolerance = 0.000001;
+    const rangeMin = -1000;
+    const rangeMax = 1000;
+    const steps = 20000;
+    const step = (rangeMax - rangeMin) / steps;
+    const roots = [];
+
+    function f(x) { return evaluateFunctionJS(rawExpr, x); }
+
+    function refineRoot(a, b) {
+        let fa = f(a);
+        let fb = f(b);
+        if (isNaN(fa) || isNaN(fb)) return null;
+        if (Math.abs(fa) < tolerance) return a;
+        if (Math.abs(fb) < tolerance) return b;
+        if (fa * fb > 0) return null;
+
+        let left = a, right = b;
+        for (let i = 0; i < 100; i++) {
+            const mid = (left + right) / 2;
+            const fm = f(mid);
+            if (isNaN(fm)) return null;
+            if (Math.abs(fm) < tolerance) return mid;
+            if (fa * fm <= 0) { right = mid; fb = fm; } else { left = mid; fa = fm; }
+        }
+        return (left + right) / 2;
+    }
+
+    for (let i = 0; i < steps; i++) {
+        const x1 = rangeMin + i * step;
+        const x2 = x1 + step;
+        const f1 = f(x1);
+        const f2 = f(x2);
+        if (isNaN(f1) || isNaN(f2)) continue;
+        if (Math.abs(f1) < tolerance) { roots.push(x1); continue; }
+        if (f1 * f2 < 0) {
+            const root = refineRoot(x1, x2);
+            if (root !== null) roots.push(root);
+        }
+    }
+
+    const uniqueRoots = roots
+        .map(r => Math.round(r * 1000000) / 1000000)
+        .sort((a, b) => a - b)
+        .filter((r, idx, arr) => idx === 0 || Math.abs(r - arr[idx - 1]) > 0.00001)
+        .filter(r => r >= xMin && r <= xMax);
+
+    return uniqueRoots;
+}
+
+// Extrempunkte numerisch per Nachbarschaftsvergleich
+function findExtremaNumericalJS(rawExpr, xMin, xMax) {
+    const range = xMax - xMin;
+    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
+    const h = range / steps;
+    const extrema = [];
+    function f(x) { return evaluateFunctionJS(rawExpr, x); }
+
+    for (let i = 1; i < steps; i++) {
+        const x = xMin + i * h;
+        const xPrev = x - h;
+        const xNext = x + h;
+        const yPrev = f(xPrev);
+        const y = f(x);
+        const yNext = f(xNext);
+        if (!Number.isFinite(yPrev) || !Number.isFinite(y) || !Number.isFinite(yNext)) continue;
+        // Max: höher als beide Nachbarn, Min: niedriger als beide Nachbarn
+        const isMax = y > yPrev && y > yNext;
+        const isMin = y < yPrev && y < yNext;
+        if (isMax || isMin) {
+            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
+            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
+            extrema.push({ x: cleanX, y: cleanY, type: isMax ? 'Max' : 'Min' });
+        }
+    }
+
+    // Dedupliziere nahe Punkte
+    const unique = [];
+    for (const p of extrema) {
+        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
+    }
+    return unique.sort((a, b) => a.x - b.x);
+}
+
+// Wendepunkte numerisch über Vorzeichenwechsel der Krümmung
+function findWendepunkteNumericalJS(rawExpr, xMin, xMax) {
+    const range = xMax - xMin;
+    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
+    const h = range / steps;
+    const points = [];
+    function f(x) { return evaluateFunctionJS(rawExpr, x); }
+    function secondDiff(x) { return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h); }
+
+    // Bisection-Verfeinerung für Nullstelle der zweiten Ableitung
+    function refineInflection(a, b) {
+        let fa = secondDiff(a);
+        let fb = secondDiff(b);
+        if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
+        if (fa * fb > 0) return null;
+        let left = a, right = b;
+        for (let i = 0; i < 40; i++) {
+            const mid = (left + right) / 2;
+            const fm = secondDiff(mid);
+            if (!Number.isFinite(fm)) return null;
+            if (Math.abs(fm) < 1e-9) { return mid; }
+            if (fa * fm <= 0) { right = mid; fb = fm; } else { left = mid; fa = fm; }
+        }
+        return (left + right) / 2;
+    }
+
+    let prevX = xMin + h;
+    let prevS2 = secondDiff(prevX);
+    for (let i = 2; i < steps - 1; i++) {
+        const x = xMin + i * h;
+        const s2 = secondDiff(x);
+        if (!Number.isFinite(prevS2) || !Number.isFinite(s2)) { prevS2 = s2; prevX = x; continue; }
+        // Vorzeichenwechsel der zweiten Ableitung => möglicher Wendepunkt
+        if (prevS2 * s2 < 0) {
+            const xi = refineInflection(prevX, x) ?? x;
+            const y = f(xi);
+            if (Number.isFinite(y)) {
+                const cleanX = Math.abs(xi) < 1e-9 ? 0 : xi;
+                const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
+                points.push({ x: cleanX, y: cleanY });
+            }
+        } else {
+            // Optional: lokales Minimum von |s2| als Wendekandidaten, wenn sehr klein
+            const s2Prev = prevS2;
+            const s2Next = secondDiff(x + h);
+            if (Number.isFinite(s2Next)) {
+                const isLocalMin = Math.abs(s2) < Math.abs(s2Prev) && Math.abs(s2) < Math.abs(s2Next);
+                if (isLocalMin && Math.abs(s2) < 1e-6) {
+                    const y = f(x);
+                    if (Number.isFinite(y)) {
+                        const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
+                        const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
+                        points.push({ x: cleanX, y: cleanY });
+                    }
+                }
+            }
+        }
+        prevS2 = s2; prevX = x;
+    }
+    const unique = [];
+    for (const p of points) {
+        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
+    }
+    return unique.sort((a, b) => a.x - b.x);
+}
+
 // Analysiere wichtige Punkte des Graphen
-function analyzeGraphPoints(funcExpr, xMin, xMax) {
+function analyzeGraphPoints(funcExprRaw, xMin, xMax) {
     const container = document.getElementById('graphPointsInfo');
     if (!container) return;
 
     container.innerHTML = '';
 
     try {
-        const expr = math.parse(funcExpr);
-        const f = expr.compile();
-
-        // Berechne Ableitungen
-        const derivative1 = math.derivative(funcExpr, 'x');
-        const derivative2 = math.derivative(derivative1, 'x');
-        const f1 = derivative1.compile();
-        const f2 = derivative2.compile();
-
-        const nullstellen = findZeros(f, xMin, xMax);
-        const extrema = findZeros(f1, xMin, xMax).map(x => {
-            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-            const y = f.evaluate({ x: cleanX });
-            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-            return {
-                x: cleanX,
-                y: cleanY,
-                type: f2.evaluate({ x: cleanX }) > 0 ? 'Min' : 'Max'
-            };
-        });
-        const wendepunkte = findZeros(f2, xMin, xMax).map(x => {
-            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-            const y = f.evaluate({ x: cleanX });
-            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-            return {
-                x: cleanX,
-                y: cleanY
-            };
-        });
+        // Finde Nullstellen (Solver-Logik), Extrem- und Wendepunkte rein numerisch (JS)
+        const nullstellen = findZerosUsingSolveEquation(funcExprRaw, xMin, xMax);
+        const extrema = findExtremaNumericalJS(funcExprRaw, xMin, xMax);
+        const wendepunkte = findWendepunkteNumericalJS(funcExprRaw, xMin, xMax);
 
         let html = '<div class="graph-points-list">';
 
@@ -1316,133 +1471,7 @@ function analyzeGraphPoints(funcExpr, xMin, xMax) {
     }
 }
 
-// Finde Nullstellen einer Funktion im Intervall [xMin, xMax]
-// Verwendet die gleiche robuste Logik wie der Gleichungslöser
-function findZeros(f, xMin, xMax, tolerance = 0.000001, maxResults = 20) {
-    const zeros = [];
-    const range = xMax - xMin;
-    const steps = Math.min(10000, Math.max(1000, Math.floor(range * 500)));
-    const step = range / steps;
-
-    // Hilfsfunktion zum Auswerten
-    function evaluate(x) {
-        try {
-            const result = f.evaluate({ x });
-            return Number.isFinite(result) ? result : NaN;
-        } catch (e) {
-            return NaN;
-        }
-    }
-
-    // Verfeinere Nullstelle mit Bisection (wie im Gleichungslöser)
-    function refineRoot(a, b) {
-        let fa = evaluate(a);
-        let fb = evaluate(b);
-
-        if (isNaN(fa) || isNaN(fb)) return null;
-        if (Math.abs(fa) < tolerance) return a;
-        if (Math.abs(fb) < tolerance) return b;
-        if (fa * fb > 0) return null;
-
-        let left = a;
-        let right = b;
-
-        for (let i = 0; i < 100; i++) {
-            const mid = (left + right) / 2;
-            const fm = evaluate(mid);
-
-            if (isNaN(fm)) return null;
-            if (Math.abs(fm) < tolerance) return mid;
-
-            if (fa * fm <= 0) {
-                right = mid;
-                fb = fm;
-            } else {
-                left = mid;
-                fa = fm;
-            }
-        }
-        return (left + right) / 2;
-    }
-
-    // Suche nach Nullstellen (wie im Gleichungslöser)
-    for (let i = 0; i < steps && zeros.length < maxResults; i++) {
-        const x1 = xMin + i * step;
-        const x2 = x1 + step;
-        const f1 = evaluate(x1);
-        const f2 = evaluate(x2);
-
-        if (isNaN(f1) || isNaN(f2)) continue;
-
-        // Direkte Nullstelle gefunden
-        if (Math.abs(f1) < tolerance) {
-            const cleanZero = Math.abs(x1) < tolerance ? 0 : x1;
-            if (!zeros.some(z => Math.abs(z - cleanZero) < tolerance)) {
-                zeros.push(cleanZero);
-            }
-            continue;
-        }
-
-        // Vorzeichenwechsel erkannt
-        if (f1 * f2 < 0) {
-            const root = refineRoot(x1, x2);
-            if (root !== null) {
-                const cleanZero = Math.abs(root) < tolerance ? 0 : root;
-                if (!zeros.some(z => Math.abs(z - cleanZero) < tolerance)) {
-                    zeros.push(cleanZero);
-                }
-            }
-        }
-    }
-
-    return zeros.sort((a, b) => a - b);
-}
-
-// Verfeinere eine Nullstelle mittels Bisektionsverfahren
-function refineZero(f, a, b, tolerance, maxIterations = 100) {
-    let iterations = 0;
-
-    try {
-        let fa = f.evaluate({ x: a });
-        let fb = f.evaluate({ x: b });
-
-        if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
-
-        // Wenn einer der Randwerte schon sehr nah an 0 ist
-        if (Math.abs(fa) < tolerance) return a;
-        if (Math.abs(fb) < tolerance) return b;
-
-        // Wenn kein Vorzeichenwechsel, versuche trotzdem den Punkt mit kleinerem Wert
-        if (fa * fb > 0) {
-            return Math.abs(fa) < Math.abs(fb) ? a : b;
-        }
-
-        while (Math.abs(b - a) > tolerance && iterations < maxIterations) {
-            const mid = (a + b) / 2;
-            const fMid = f.evaluate({ x: mid });
-
-            if (!Number.isFinite(fMid)) return null;
-
-            if (Math.abs(fMid) < tolerance) {
-                return Math.abs(mid) < tolerance * 100 ? 0 : mid;
-            }
-
-            if (fa * fMid <= 0) {
-                b = mid;
-                fb = fMid;
-            } else {
-                a = mid;
-                fa = fMid;
-            }
-            iterations++;
-        }
-
-        const result = (a + b) / 2;
-        return Math.abs(result) < tolerance * 100 ? 0 : result;
-    } catch (e) {
-        return null;
-    }
-}
+// (alte findWendepunkteNumerical entfernt – siehe findWendepunkteNumericalJS)
 
 // Formatiere Punktwerte für die Anzeige
 function formatPointValue(value) {
@@ -1773,7 +1802,11 @@ function formatStepValue(value, step) {
     }
     const decimals = step.toString().split('.')[1]?.length || 0;
     const rounded = Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
-    return String(rounded).replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
+    const s = String(rounded)
+        .replace(/\.0+$/, '')
+        .replace(/(\.\d*?)0+$/, '$1');
+    // UI: Verwende Dezimalkomma für Anzeige im BINOM-Panel
+    return s.replace('.', ',');
 }
 
 function adjustBinomValue(targetId, step) {
