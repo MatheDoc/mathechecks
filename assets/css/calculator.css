@@ -642,6 +642,57 @@
     max-width: 80vw;
 }
 
+/* Graph Points Info */
+.calculator-container .graph-points-info {
+    margin-top: 10px;
+    padding: 8px;
+    background: var(--hintergrund-hell);
+    border-radius: 6px;
+    border: 1px solid var(--borderfarbe);
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 13px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+.calculator-container .graph-points-info::-webkit-scrollbar {
+    width: 6px;
+}
+
+.calculator-container .graph-points-info::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+}
+
+.calculator-container .graph-points-info::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+.calculator-container .graph-points-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calculator-container .point-category {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--hauptfarbe);
+}
+
+.calculator-container .point-category:first-child {
+    margin-top: 0;
+}
+
+.calculator-container .point-item {
+    padding: 2px 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--textfarbe);
+    line-height: 1.4;
+}
+
 @media (max-width: 600px) {
     .calculator .result-display {
         font-size: 30px;
