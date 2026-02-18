@@ -1094,6 +1094,8 @@ function openGraphPopup() {
     // Reset preview
     const preview = document.getElementById('graphPreview');
     if (preview) { preview.style.display = 'none'; preview.innerHTML = ''; }
+    const pointsInfo = document.getElementById('graphPointsInfo');
+    if (pointsInfo) { pointsInfo.style.display = 'none'; pointsInfo.innerHTML = ''; }
 
     focusPanelInput(document.getElementById('graphFunction'));
 
@@ -1128,6 +1130,8 @@ function openGraphPopup() {
                     preview.style.display = 'none';
                     preview.innerHTML = '';
                 }
+                const pointsInfo = document.getElementById('graphPointsInfo');
+                if (pointsInfo) pointsInfo.style.display = 'none';
                 return;
             }
             previewGraph();
@@ -1174,7 +1178,12 @@ function prepareGraphExpression(input) {
 
 function previewGraph() {
     const rawFuncInput = document.getElementById('graphFunction').value.trim();
-    if (!rawFuncInput) { alert('Bitte geben Sie eine Funktion ein.'); return; }
+    if (!rawFuncInput) {
+        const pointsInfo = document.getElementById('graphPointsInfo');
+        if (pointsInfo) pointsInfo.style.display = 'none';
+        alert('Bitte geben Sie eine Funktion ein.');
+        return;
+    }
 
     let funcInput = prepareGraphExpression(rawFuncInput);
     if (!funcInput) return;
@@ -1430,6 +1439,7 @@ function analyzeGraphPoints(funcExprRaw, xMin, xMax) {
     if (!container) return;
 
     container.innerHTML = '';
+    container.style.display = 'none';
 
     try {
         // Finde Nullstellen (Solver-Logik), Extrem- und Wendepunkte rein numerisch (JS)
@@ -1466,8 +1476,10 @@ function analyzeGraphPoints(funcExprRaw, xMin, xMax) {
 
         html += '</div>';
         container.innerHTML = html;
+        container.style.display = 'block';
     } catch (error) {
         container.innerHTML = '<div class="point-item" style="color: var(--warn-farbe);">Analyse nicht möglich</div>';
+        container.style.display = 'block';
     }
 }
 
