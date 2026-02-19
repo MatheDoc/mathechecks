@@ -1271,7 +1271,16 @@ function solveEquation(equation) {
                     fa = fm;
                 }
             }
-            return (left + right) / 2;
+            const candidate = (left + right) / 2;
+            const fc = f(candidate);
+            if (!Number.isFinite(fc)) {
+                return null;
+            }
+            const acceptanceTolerance = Math.max(tolerance * 10, 1e-4);
+            if (Math.abs(fc) > acceptanceTolerance) {
+                return null;
+            }
+            return candidate;
         }
 
         const tolerance = 0.000001;
