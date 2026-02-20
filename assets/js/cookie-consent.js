@@ -27,6 +27,7 @@
 
         const banner = document.createElement('div');
         banner.id = 'cookie-banner';
+        banner.setAttribute('data-nosnippet', '');
 
         banner.innerHTML =
             '<h2>Cookie-Einstellungen</h2>' +
