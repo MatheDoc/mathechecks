@@ -37,10 +37,10 @@ function centerPopup(popupId) {
 
     const calcRect = calculator.getBoundingClientRect();
 
-    const xoffset = 60;
-    const yoffset = 50;
+    const xoffset = 0;
+    const yoffset = 20;
     const left = calcRect.left + xoffset;
-    const top = calcRect.top - yoffset;
+    const top = calcRect.bottom + yoffset;
 
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
