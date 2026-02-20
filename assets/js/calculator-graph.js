@@ -202,10 +202,10 @@ function evaluateFunctionJS(rawExpr, x) {
 
 // Finde Nullstellen via solveEquation-Logik und filtere auf [xMin,xMax]
 function findZerosUsingSolveEquation(rawExpr, xMin, xMax) {
-    const tolerance = 0.000001;
-    const rangeMin = -1000;
-    const rangeMax = 1000;
-    const steps = 20000;
+    const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
+    const rangeMin = GRAPH_ANALYSIS_CONFIG.zerosRangeMin;
+    const rangeMax = GRAPH_ANALYSIS_CONFIG.zerosRangeMax;
+    const steps = GRAPH_ANALYSIS_CONFIG.zerosSteps;
     const step = (rangeMax - rangeMin) / steps;
     const roots = [];
 
@@ -244,107 +244,199 @@ function findZerosUsingSolveEquation(rawExpr, xMin, xMax) {
     }
 
     const uniqueRoots = roots
-        .map(r => Math.round(r * 1000000) / 1000000)
+        .map(r => Math.round(r * GRAPH_ANALYSIS_CONFIG.zerosRoundFactor) / GRAPH_ANALYSIS_CONFIG.zerosRoundFactor)
         .sort((a, b) => a - b)
-        .filter((r, idx, arr) => idx === 0 || Math.abs(r - arr[idx - 1]) > 0.00001)
+        .filter((r, idx, arr) => idx === 0 || Math.abs(r - arr[idx - 1]) > GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance)
         .filter(r => r >= xMin && r <= xMax);
 
     return uniqueRoots;
 }
 
-// Extrempunkte numerisch per Nachbarschaftsvergleich
-function findExtremaNumericalJS(rawExpr, xMin, xMax) {
+const GRAPH_ANALYSIS_CONFIG = Object.freeze({
+    zerosTolerance: 1e-6,
+    zerosRangeMin: -1000,
+    zerosRangeMax: 1000,
+    zerosSteps: 20000,
+    zerosRoundFactor: 1e6,
+    zerosDeduplicateTolerance: 1e-5,
+    gridMinSteps: 300,
+    gridMaxSteps: 3000,
+    gridStepsPerUnit: 200,
+    cleanValueEpsilon: 1e-9,
+    defaultSignTolerance: 1e-8,
+    defaultRefineIterations: 40,
+    extremaSignTolerance: 1e-7,
+    extremaRefineIterations: 45,
+    inflectionSignTolerance: 1e-8,
+    inflectionRefineIterations: 45,
+    deduplicateXFactor: 2
+});
+
+function getGraphAnalysisGrid(xMin, xMax) {
     const range = xMax - xMin;
-    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
-    const h = range / steps;
-    const extrema = [];
-    function f(x) { return evaluateFunctionJS(rawExpr, x); }
-
-    for (let i = 1; i < steps; i++) {
-        const x = xMin + i * h;
-        const xPrev = x - h;
-        const xNext = x + h;
-        const yPrev = f(xPrev);
-        const y = f(x);
-        const yNext = f(xNext);
-        if (!Number.isFinite(yPrev) || !Number.isFinite(y) || !Number.isFinite(yNext)) continue;
-        const isMax = y > yPrev && y > yNext;
-        const isMin = y < yPrev && y < yNext;
-        if (isMax || isMin) {
-            const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-            const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-            extrema.push({ x: cleanX, y: cleanY, type: isMax ? 'Max' : 'Min' });
-        }
-    }
-
-    const unique = [];
-    for (const p of extrema) {
-        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
-    }
-    return unique.sort((a, b) => a.x - b.x);
+    if (!Number.isFinite(range) || range <= 0) return null;
+    const steps = Math.min(
+        GRAPH_ANALYSIS_CONFIG.gridMaxSteps,
+        Math.max(GRAPH_ANALYSIS_CONFIG.gridMinSteps, Math.floor(range * GRAPH_ANALYSIS_CONFIG.gridStepsPerUnit))
+    );
+    return { range, steps, h: range / steps };
 }
 
-// Wendepunkte numerisch über Vorzeichenwechsel der Krümmung
-function findWendepunkteNumericalJS(rawExpr, xMin, xMax) {
-    const range = xMax - xMin;
-    const steps = Math.min(3000, Math.max(300, Math.floor(range * 200)));
-    const h = range / steps;
-    const points = [];
-    function f(x) { return evaluateFunctionJS(rawExpr, x); }
-    function secondDiff(x) { return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h); }
+function signWithTolerance(value, tolerance = GRAPH_ANALYSIS_CONFIG.defaultSignTolerance) {
+    if (!Number.isFinite(value)) return 0;
+    if (Math.abs(value) <= tolerance) return 0;
+    return value > 0 ? 1 : -1;
+}
 
-    function refineInflection(a, b) {
-        let fa = secondDiff(a);
-        let fb = secondDiff(b);
+function findSignChangeRoots(sampleFn, xMin, xMax, h, options = {}) {
+    const signTolerance = options.signTolerance ?? GRAPH_ANALYSIS_CONFIG.defaultSignTolerance;
+    const refineIterations = options.refineIterations ?? GRAPH_ANALYSIS_CONFIG.defaultRefineIterations;
+    const roots = [];
+    const steps = Math.max(1, Math.floor((xMax - xMin) / h));
+
+    function refineRoot(a, b) {
+        let left = a;
+        let right = b;
+        let fa = sampleFn(left);
+        let fb = sampleFn(right);
         if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
-        if (fa * fb > 0) return null;
-        let left = a, right = b;
-        for (let i = 0; i < 40; i++) {
+
+        let signA = signWithTolerance(fa, signTolerance);
+        let signB = signWithTolerance(fb, signTolerance);
+        if (signA === 0) return left;
+        if (signB === 0) return right;
+        if (signA === signB) return null;
+
+        for (let i = 0; i < refineIterations; i++) {
             const mid = (left + right) / 2;
-            const fm = secondDiff(mid);
+            const fm = sampleFn(mid);
             if (!Number.isFinite(fm)) return null;
-            if (Math.abs(fm) < 1e-9) { return mid; }
-            if (fa * fm <= 0) { right = mid; fb = fm; } else { left = mid; fa = fm; }
+            const signM = signWithTolerance(fm, signTolerance);
+            if (signM === 0) return mid;
+
+            if (signA !== signM) {
+                right = mid;
+                fb = fm;
+                signB = signM;
+            } else {
+                left = mid;
+                fa = fm;
+                signA = signM;
+            }
         }
         return (left + right) / 2;
     }
 
-    let prevX = xMin + h;
-    let prevS2 = secondDiff(prevX);
-    for (let i = 2; i < steps - 1; i++) {
-        const x = xMin + i * h;
-        const s2 = secondDiff(x);
-        if (!Number.isFinite(prevS2) || !Number.isFinite(s2)) { prevS2 = s2; prevX = x; continue; }
-        if (prevS2 * s2 < 0) {
-            const xi = refineInflection(prevX, x) ?? x;
-            const y = f(xi);
-            if (Number.isFinite(y)) {
-                const cleanX = Math.abs(xi) < 1e-9 ? 0 : xi;
-                const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-                points.push({ x: cleanX, y: cleanY });
-            }
-        } else {
-            const s2Prev = prevS2;
-            const s2Next = secondDiff(x + h);
-            if (Number.isFinite(s2Next)) {
-                const isLocalMin = Math.abs(s2) < Math.abs(s2Prev) && Math.abs(s2) < Math.abs(s2Next);
-                if (isLocalMin && Math.abs(s2) < 1e-6) {
-                    const y = f(x);
-                    if (Number.isFinite(y)) {
-                        const cleanX = Math.abs(x) < 1e-9 ? 0 : x;
-                        const cleanY = Math.abs(y) < 1e-9 ? 0 : y;
-                        points.push({ x: cleanX, y: cleanY });
-                    }
-                }
-            }
-        }
-        prevS2 = s2; prevX = x;
+    for (let i = 0; i < steps; i++) {
+        const x1 = xMin + i * h;
+        const x2 = i === steps - 1 ? xMax : x1 + h;
+        const v1 = sampleFn(x1);
+        const v2 = sampleFn(x2);
+        if (!Number.isFinite(v1) || !Number.isFinite(v2)) continue;
+
+        const s1 = signWithTolerance(v1, signTolerance);
+        const s2 = signWithTolerance(v2, signTolerance);
+        if (s1 === 0 && s2 === 0) continue;
+        if (s1 !== 0 && s2 !== 0 && s1 === s2) continue;
+
+        const root = refineRoot(x1, x2);
+        if (root !== null && Number.isFinite(root)) roots.push(root);
     }
+
+    return roots;
+}
+
+function deduplicatePointsByX(points, tolerance) {
     const unique = [];
-    for (const p of points) {
-        if (!unique.some(q => Math.abs(q.x - p.x) < h * 2)) unique.push(p);
+    for (const point of points) {
+        if (!unique.some(existing => Math.abs(existing.x - point.x) < tolerance)) unique.push(point);
     }
-    return unique.sort((a, b) => a.x - b.x);
+    return unique;
+}
+
+// Extrempunkte numerisch über Vorzeichenwechsel der 1. Ableitung
+function findExtremaNumericalJS(rawExpr, xMin, xMax) {
+    const grid = getGraphAnalysisGrid(xMin, xMax);
+    if (!grid) return [];
+
+    const { h } = grid;
+    const cache = new Map();
+    function f(x) {
+        if (cache.has(x)) return cache.get(x);
+        const value = evaluateFunctionJS(rawExpr, x);
+        cache.set(x, value);
+        return value;
+    }
+    function firstDiff(x) {
+        return (f(x + h) - f(x - h)) / (2 * h);
+    }
+
+    const roots = findSignChangeRoots(firstDiff, xMin, xMax, h, {
+        signTolerance: GRAPH_ANALYSIS_CONFIG.extremaSignTolerance,
+        refineIterations: GRAPH_ANALYSIS_CONFIG.extremaRefineIterations
+    });
+    const extrema = [];
+
+    for (const xr of roots) {
+        const leftSlope = firstDiff(xr - h);
+        const rightSlope = firstDiff(xr + h);
+        if (!Number.isFinite(leftSlope) || !Number.isFinite(rightSlope)) continue;
+
+        const leftSign = signWithTolerance(leftSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
+        const rightSign = signWithTolerance(rightSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
+        if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
+
+        const y = f(xr);
+        if (!Number.isFinite(y)) continue;
+
+        const cleanX = Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr;
+        const cleanY = Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y;
+        extrema.push({ x: cleanX, y: cleanY, type: leftSign > rightSign ? 'Max' : 'Min' });
+    }
+
+    return deduplicatePointsByX(extrema, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor).sort((a, b) => a.x - b.x);
+}
+
+// Wendepunkte numerisch über Vorzeichenwechsel der 2. Ableitung
+function findWendepunkteNumericalJS(rawExpr, xMin, xMax) {
+    const grid = getGraphAnalysisGrid(xMin, xMax);
+    if (!grid) return [];
+
+    const { h } = grid;
+    const cache = new Map();
+    function f(x) {
+        if (cache.has(x)) return cache.get(x);
+        const value = evaluateFunctionJS(rawExpr, x);
+        cache.set(x, value);
+        return value;
+    }
+    function secondDiff(x) {
+        return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
+    }
+
+    const roots = findSignChangeRoots(secondDiff, xMin, xMax, h, {
+        signTolerance: GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance,
+        refineIterations: GRAPH_ANALYSIS_CONFIG.inflectionRefineIterations
+    });
+    const points = [];
+
+    for (const xr of roots) {
+        const leftCurvature = secondDiff(xr - h);
+        const rightCurvature = secondDiff(xr + h);
+        if (!Number.isFinite(leftCurvature) || !Number.isFinite(rightCurvature)) continue;
+
+        const leftSign = signWithTolerance(leftCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
+        const rightSign = signWithTolerance(rightCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
+        if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
+
+        const y = f(xr);
+        if (!Number.isFinite(y)) continue;
+        const cleanX = Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr;
+        const cleanY = Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y;
+        points.push({ x: cleanX, y: cleanY });
+    }
+
+    return deduplicatePointsByX(points, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor).sort((a, b) => a.x - b.x);
 }
 
 // Analysiere wichtige Punkte des Graphen
