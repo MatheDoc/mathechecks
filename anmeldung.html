@@ -363,9 +363,9 @@
   <script>
     // Firebase Config
     const firebaseConfig = {
-      apiKey: "{{ site.firebase_api_key | default: 'AIzaSyCwCAYP5jSi29xrYxQyR3BUhalu5GliQa4' }}",
-      authDomain: "{{ site.firebase_auth_domain | default: 'mathechecks-c1e86.firebaseapp.com' }}",
-      projectId: "{{ site.firebase_project_id | default: 'mathechecks-c1e86' }}",
+    apiKey: "{{ site.firebase_api_key | default: '' }}",
+    authDomain: "{{ site.firebase_auth_domain | default: '' }}",
+    projectId: "{{ site.firebase_project_id | default: '' }}",
     };
 
     firebase.initializeApp(firebaseConfig);

@@ -569,6 +569,16 @@ async function initAuthBridge() {
     state.db = ready?.db || null;
     state.user = state.auth?.currentUser || null;
 
+    if (state.auth) {
+        await new Promise((resolve) => {
+            const unsubscribe = state.auth.onAuthStateChanged((user) => {
+                state.user = user || null;
+                unsubscribe();
+                resolve();
+            });
+        });
+    }
+
     window.addEventListener("mathechecks-auth-changed", async (event) => {
         state.user = event.detail?.user || null;
         await ensureProgressDoc();
