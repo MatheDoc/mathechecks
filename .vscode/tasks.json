@@ -1,0 +1,52 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Aufgaben: Alle JSON+XML (Batch)",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "aufgaben.cli",
+        "batch",
+        "--config",
+        "aufgaben/project_config.json"
+      ],
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Aufgaben: Sammlung JSON+XML",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "aufgaben.cli",
+        "target",
+        "--config",
+        "aufgaben/project_config.json",
+        "--sammlung",
+        "${input:sammlung}"
+      ],
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "sammlung",
+      "type": "pickString",
+      "description": "Welche Sammlung soll erzeugt werden?",
+      "options": [
+        "nullstellen",
+        "regression",
+        "funktionsterme",
+        "kennzahlen-rechnerisch-e1k3",
+        "kennzahlen-graphisch-e1k3",
+        "kennzahlen-rechnerisch-e2k3",
+        "kennzahlen-graphisch-e2k3",
+        "steckbrief-kennzahlen"
+      ],
+      "default": "steckbrief-kennzahlen"
+    }
+  ]
+}

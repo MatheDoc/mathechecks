@@ -1,0 +1,117 @@
+{
+    "defaults": {
+        "count": 20,
+        "outputDir": "aufgaben/exports/json",
+        "questionOrder": "fixed"
+    },
+    "jobs": [
+        {
+            "generator": "analysis.nullstellen.linear",
+            "seed": 123,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "nullstellen",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.nullstellen.quadratisch",
+            "seed": 321,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "quadratische-funktionen",
+                    "sammlung": "nullstellen",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.regression",
+            "seed": 42,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "analysis-diverses",
+                    "sammlung": "regression",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.funktionsterme",
+            "seed": 777,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "funktionsterme",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_rechnerisch",
+            "seed": 888,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "kennzahlen-rechnerisch-e1k3",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_graphisch",
+            "seed": 889,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "kennzahlen-graphisch-e1k3",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_rechnerisch_e2k3",
+            "seed": 990,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "kennzahlen-rechnerisch-e2k3",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.kennzahlen_graphisch_e2k3",
+            "seed": 991,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "kennzahlen-graphisch-e2k3",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.steckbrief_kennzahlen",
+            "seed": 993,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "steckbrief-kennzahlen",
+                    "questionOrder": "shuffle"
+                }
+            ]
+        }
+    ]
+}

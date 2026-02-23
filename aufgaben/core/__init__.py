@@ -1,0 +1,1 @@
+"""Core-Bausteine für Aufgabengenerierung."""

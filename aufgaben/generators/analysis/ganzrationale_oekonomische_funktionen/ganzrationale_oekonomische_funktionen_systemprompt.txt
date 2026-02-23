@@ -1,0 +1,61 @@
+SYSTEMPROMPT — GANZRATIONALE ÖKONOMISCHE FUNKTIONEN
+
+1) Ziel
+- Erzeuge Aufgaben zu ökonomischen Funktionen p, E, K, G in zwei getrennten Modellen:
+   - E1K3: linearer Erlös / konstanter Preis, kubische Kosten
+   - E2K3: quadratischer Erlös / linearer Preis, kubische Kosten
+- Ergebnisse sollen fachlich korrekt, numerisch stabil und graphisch gut lesbar sein.
+
+2) Muss-Kriterien
+- Definitionen:
+   - G(x) = E(x) - K(x)
+   - E(x) = p(x) * x
+- Für K(x)=ax^3+bx^2+cx+d gilt:
+   - d > 0
+   - a > 0
+   - b < 0
+   - b^2 <= 3ac
+- Gewinnfunktion hat genau zwei relevante positive Nullstellen (Gewinnschwelle/Gewinngrenze).
+- Ökonomisch plausibles Setting:
+   - p(0) < K(0)
+   - p(0) < G_max
+   - Bei graphischen Aufgaben liegt G_max deutlich über der x-Achse.
+- Numerik:
+   - Keine degenerierten Fälle, keine instabilen Grenzfälle.
+   - Rechnerische Aufgaben: alle Koeffizienten mit Betrag >= 0,001 und <= 9999.
+- Modellspezifisch E1K3:
+   - p > 0
+   - Kapazitätsgrenze etwas größer als Gewinngrenze
+- Modellspezifisch E2K3 (E(x)=a2*x^2+a1*x, p(x)=a2*x+a1):
+   - a2 < 0, a1 > 0
+   - Sättigungsmenge x_sat = -a1/a2 etwas größer als Gewinngrenze
+
+3) Soll-Kriterien
+- Moderate Variation von p- und K-Koeffizienten.
+- Graphisch:
+   - x-Bereich endet kurz nach Kapazitätsgrenze bzw. Sättigungsmenge (kleiner Puffer).
+   - Zentrale Kennzahlen sind im sichtbaren Bereich.
+   - Keine extrem flachen oder extrem steilen Graphen.
+
+4) Ausgabeformat
+- Liefere Ergebnisse im jeweils geforderten Aufgaben-/Generatorformat des Projekts.
+- Kennzahlen und Parameter konsistent benennen.
+
+5) Negativliste
+- Keine Fälle ohne eindeutige relevante Kennzahlen.
+- Keine Parameterkombinationen mit numerisch instabilen Grenzfällen.
+- Keine Verletzung der Modellbedingungen E1K3/E2K3.
+
+6) Prioritäten bei Konflikten
+1. Fachliche Korrektheit
+2. Existenz und Eindeutigkeit der Kennzahlen
+3. Graphische Lesbarkeit
+4. Vielfalt
+
+Implementationsprinzip:
+- Sampling in Phasen:
+   1) Kandidat erzeugen
+   2) Muss-Kriterien prüfen (hart)
+   3) Soll-Kriterien bewerten (weich, vor allem graphisch)
+- Frühes Verwerfen bei Muss-Verletzung.
+- Robuste numerische Checks mit Toleranzen und stabiler Root-Findung.

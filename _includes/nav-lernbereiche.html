@@ -3,6 +3,10 @@
     <i class="fa-solid fa-bars"></i>
   </button>
   <a class="logo" href="/index.html">MatheChecks</a>
+  <button id="account-button" class="auth-toggle" aria-label="Anmelden oder Konto öffnen" onclick="toggleAccountMenu()">
+    <i class="fa-regular fa-user"></i>
+    <span id="account-status-indicator"></span>
+  </button>
   <button class="calculator-toggle" aria-label="Rechner öffnen" onclick="toggleCalculatorOverlay()">
     <i class="fa-solid fa-calculator"></i>
   </button>
@@ -77,10 +81,13 @@
       <a href="{{ 'gluecksrad.html' | relative_url }}">Glücksrad</a>
     </li>
   -->
+    <li class="zusatzmaterial auth-menu-item">
+      <button id="account-menu-button" type="button" onclick="toggleAccountMenu(); toggleMenu();">
+        <i class="fa-regular fa-user"></i>
+        <span id="account-menu-text">Anmelden</span>
+      </button>
+    </li>
   </ul>
-  <!--<button id="account" aria-label="Einloggen oder registrieren" onclick="toggleAccountMenu()">
-    <i class="fa fa-user" aria-hidden="true"></i>
-  </button>-->
 
   {% include calculator.html %}
 </nav>
