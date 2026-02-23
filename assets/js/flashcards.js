@@ -553,10 +553,6 @@ async function loadData() {
         if (next) {
             renderCard(next);
         }
-
-        if (!state.user) {
-            updateCounts(0, state.cards.length, "Bitte anmelden, um den Lernfortschritt zu speichern.");
-        }
     } catch (err) {
         console.error("Flashcards: Fehler beim Laden", err);
         updateCounts(0, 0, "Fehler beim Laden der Flashcards.");
@@ -580,10 +576,6 @@ async function initAuthBridge() {
         const next = selectNextCard(state.cards);
         if (next) {
             renderCard(next);
-        }
-
-        if (!state.user) {
-            updateCounts(0, state.cards.length, "Bitte anmelden, um den Lernfortschritt zu speichern.");
         }
     });
 }
