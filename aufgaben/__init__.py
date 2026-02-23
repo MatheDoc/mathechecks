@@ -1,0 +1,1 @@
+"""Aufgabengenerator-Paket."""

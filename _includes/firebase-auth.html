@@ -1,7 +1,7 @@
 <!-- Firebase Auth Modal -->
 <div id="auth-modal-overlay" onclick="closeAuthModal(event)">
   <div id="auth-modal" onclick="event.stopPropagation()">
-    <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+    <button type="button" class="close-btn" onclick="closeAuthModal()">&times;</button>
 
     <!-- Login/Register Form -->
     <div id="auth-form">
@@ -30,6 +30,11 @@
             required
             placeholder="Mindestens 6 Zeichen"
           />
+          <div class="forgot-password-row" id="forgot-password-row">
+            <button type="button" class="link-button" id="forgot-password-btn">
+              Passwort vergessen?
+            </button>
+          </div>
         </div>
         <button type="submit" class="btn btn-primary" id="submit-btn">
           Login

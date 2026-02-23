@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aufgaben-Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']] },
+            svg: { fontCache: 'global' }
+        };
+    </script>
+    <script defer src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script defer src="./preview.js"></script>
+</head>
+
+<body>
+    <main class="page">
+        <h1>Aufgaben-Preview</h1>
+        <p class="hint">Getrennte Vorschau für generierte JSON-Dateien aus dem Aufgabenprojekt.</p>
+
+        <section class="toolbar">
+            <label for="jsonPath">JSON-Pfad</label>
+            <select id="jsonPath">
+                <option value="../exports/json/analysis/analysis-diverses/regression.json" selected>analysis /
+                    analysis-diverses / regression.json</option>
+                <option value="../exports/json/analysis/analysis-diverses/regression-test.json">analysis /
+                    analysis-diverses / regression-test.json</option>
+                <option value="../exports/json/analysis/lineare-funktionen/nullstellen.json">analysis /
+                    lineare-funktionen / nullstellen.json</option>
+                <option value="../exports/json/analysis/quadratische-funktionen/nullstellen.json">analysis /
+                    quadratische-funktionen / nullstellen.json</option>
+                <option value="../exports/json/analysis/ganzrationale-oekonomische-funktionen/funktionsterme.json">
+                    analysis /
+                    ganzrationale-oekonomische-funktionen / funktionsterme.json</option>
+            </select>
+            <button id="loadBtn" type="button">Laden</button>
+            <label class="inline-option">
+                <input id="showSolutions" type="checkbox" />
+                Lösungen anzeigen
+            </label>
+        </section>
+
+        <section id="status" class="status"></section>
+        <section id="list" class="list"></section>
+    </main>
+</body>
+
+</html>

@@ -64,6 +64,21 @@ lernbereich: themen-bezeichner
 - Mathematische Inhalte sollten zugänglich und korrekt formatiert sein
 - Interaktive Elemente sollten statische Fallback-Inhalte haben
 
+## Systemprompt-Konvention
+
+Für KI-gestützte Entwicklung und Content-Erzeugung werden Systemprompts an festen Stellen gepflegt:
+
+- Projektweit: `prompts/systemprompt-global.txt`
+- Feature- oder Modul-spezifisch: im jeweiligen Ordner als `<name>_systemprompt.txt`
+	- Beispiel: `aufgaben/generators/.../ganzrationale_oekonomische_funktionen_systemprompt.txt`
+
+Regeln:
+
+- Prompts immer in Klartext (`.txt`) mit kurzen, nummerierten Abschnitten.
+- Inhalt trennen in: Ziel, Muss-Kriterien, Soll-Kriterien, Ausgabeformat, Negativliste.
+- Fachlogik und Ausgabeschema strikt voneinander trennen.
+- Bei Änderungen immer die zugehörige Doku in `prompts/README.md` mitpflegen.
+
 ## Hinweise
 
 - Deutsch ist die primäre Inhaltssprache

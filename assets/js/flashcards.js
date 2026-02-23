@@ -1,26 +1,98 @@
 "use strict";
 
-const storageKey = `flashcards:${window.lernbereich || ""}`;
 const msPerDay = 24 * 60 * 60 * 1000;
 
 const state = {
     cards: [],
     progress: {},
     currentCard: null,
+    auth: null,
+    db: null,
+    user: null,
+    isSaving: false,
+    hasPendingSave: false,
 };
 
-function loadProgress() {
+function getProgressDocRef() {
+    if (!state.db || !state.user || !window.lernbereich) return null;
+    return state.db
+        .collection("users")
+        .doc(state.user.uid)
+        .collection("flashcards")
+        .doc(window.lernbereich);
+}
+
+async function ensureProgressDoc() {
+    const docRef = getProgressDocRef();
+    if (!docRef) return;
+
     try {
-        const raw = localStorage.getItem(storageKey);
-        state.progress = raw ? JSON.parse(raw) : {};
+        await docRef.set(
+            {
+                lernbereich: window.lernbereich,
+                lastSeenAt:
+                    typeof firebase !== "undefined" && firebase.firestore
+                        ? firebase.firestore.FieldValue.serverTimestamp()
+                        : Date.now(),
+            },
+            { merge: true }
+        );
     } catch (err) {
-        console.warn("Flashcards: progress reset due to error", err);
-        state.progress = {};
+        console.warn("Flashcards: Cloud-Handshake fehlgeschlagen", err);
     }
 }
 
-function saveProgress() {
-    localStorage.setItem(storageKey, JSON.stringify(state.progress));
+async function loadProgress() {
+    const docRef = getProgressDocRef();
+    if (!docRef) {
+        state.progress = {};
+        return;
+    }
+
+    try {
+        const snapshot = await docRef.get();
+        const data = snapshot.exists ? snapshot.data() : null;
+        state.progress = data?.progress && typeof data.progress === "object" ? data.progress : {};
+    } catch (err) {
+        console.warn("Flashcards: cloud progress konnte nicht geladen werden", err);
+        state.progress = {};
+        const details = err?.code ? ` (${err.code})` : "";
+        updateCounts(0, state.cards.length || 0, `Fortschritt konnte nicht geladen werden${details}.`);
+    }
+}
+
+async function saveProgress() {
+    const docRef = getProgressDocRef();
+    if (!docRef) return;
+
+    if (state.isSaving) {
+        state.hasPendingSave = true;
+        return;
+    }
+
+    state.isSaving = true;
+    try {
+        await docRef.set(
+            {
+                progress: state.progress,
+                updatedAt:
+                    typeof firebase !== "undefined" && firebase.firestore
+                        ? firebase.firestore.FieldValue.serverTimestamp()
+                        : Date.now(),
+            },
+            { merge: true }
+        );
+    } catch (err) {
+        console.warn("Flashcards: cloud progress konnte nicht gespeichert werden", err);
+        const details = err?.code ? ` (${err.code})` : "";
+        updateCounts(0, state.cards.length || 0, `Speichern fehlgeschlagen${details}.`);
+    } finally {
+        state.isSaving = false;
+        if (state.hasPendingSave) {
+            state.hasPendingSave = false;
+            saveProgress();
+        }
+    }
 }
 
 function getCardState(cardId) {
@@ -353,8 +425,22 @@ function rateCurrentCard(grade) {
 
 function resetProgress() {
     if (!window.confirm("Fortschritt wirklich löschen?")) return;
-    localStorage.removeItem(storageKey);
     state.progress = {};
+    const docRef = getProgressDocRef();
+    if (docRef) {
+        docRef
+            .set(
+                {
+                    progress: {},
+                    updatedAt:
+                        typeof firebase !== "undefined" && firebase.firestore
+                            ? firebase.firestore.FieldValue.serverTimestamp()
+                            : Date.now(),
+                },
+                { merge: true }
+            )
+            .catch((err) => console.warn("Flashcards: Reset konnte nicht gespeichert werden", err));
+    }
     const next = selectNextCard(state.cards);
     if (next) {
         renderCard(next);
@@ -454,21 +540,52 @@ async function loadData() {
         }
 
         state.cards = buildCards(entries);
-        loadProgress();
 
         if (!state.cards.length) {
             updateCounts(0, 0, "Keine Flashcards gefunden.");
             return;
         }
 
+        await loadProgress();
+        await ensureProgressDoc();
+
         const next = selectNextCard(state.cards);
         if (next) {
             renderCard(next);
+        }
+
+        if (!state.user) {
+            updateCounts(0, state.cards.length, "Bitte anmelden, um den Lernfortschritt zu speichern.");
         }
     } catch (err) {
         console.error("Flashcards: Fehler beim Laden", err);
         updateCounts(0, 0, "Fehler beim Laden der Flashcards.");
     }
+}
+
+async function initAuthBridge() {
+    if (!window.MATHECHECKS_AUTH_READY) {
+        return;
+    }
+
+    const ready = await window.MATHECHECKS_AUTH_READY;
+    state.auth = ready?.auth || null;
+    state.db = ready?.db || null;
+    state.user = state.auth?.currentUser || null;
+
+    window.addEventListener("mathechecks-auth-changed", async (event) => {
+        state.user = event.detail?.user || null;
+        await ensureProgressDoc();
+        await loadProgress();
+        const next = selectNextCard(state.cards);
+        if (next) {
+            renderCard(next);
+        }
+
+        if (!state.user) {
+            updateCounts(0, state.cards.length, "Bitte anmelden, um den Lernfortschritt zu speichern.");
+        }
+    });
 }
 
 function setupEvents() {
@@ -501,5 +618,5 @@ function setupEvents() {
 
 document.addEventListener("DOMContentLoaded", () => {
     setupEvents();
-    loadData();
+    initAuthBridge().then(loadData);
 });

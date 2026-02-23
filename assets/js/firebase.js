@@ -1,25 +1,9 @@
-// Firebase Config wird aus Umgebungsvariablen geladen
-// Für lokale Entwicklung: .env Datei verwenden
-// Für Production: Build-Zeit Umgebungsvariablen setzen
-const env = typeof process !== "undefined" ? process.env : {};
-const firebaseConfig = {
-  apiKey: env.VITE_FIREBASE_API_KEY || window.FIREBASE_API_KEY,
-  authDomain: env.VITE_FIREBASE_AUTH_DOMAIN || window.FIREBASE_AUTH_DOMAIN,
-  projectId: env.VITE_FIREBASE_PROJECT_ID || window.FIREBASE_PROJECT_ID,
-};
+(function () {
+  let resolveAuthReady = null;
+  window.MATHECHECKS_AUTH_READY = new Promise((resolve) => {
+    resolveAuthReady = resolve;
+  });
 
-const firebaseEnabled =
-  typeof firebase !== "undefined" &&
-  firebaseConfig.apiKey &&
-  firebaseConfig.projectId;
-
-if (!firebaseEnabled) {
-  console.info("Firebase ist deaktiviert.");
-} else {
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-
-  // DOM Elements
   const modalOverlay = document.getElementById("auth-modal-overlay");
   const authFormDiv = document.getElementById("auth-form");
   const userInfoDiv = document.getElementById("user-info");
@@ -32,39 +16,138 @@ if (!firebaseEnabled) {
   const formTitle = document.getElementById("form-title");
   const formSubtitle = document.getElementById("form-subtitle");
   const messageDiv = document.getElementById("message");
+  const forgotPasswordRow = document.getElementById("forgot-password-row");
+  const forgotPasswordBtn = document.getElementById("forgot-password-btn");
   const displayEmail = document.getElementById("display-email");
   const displayUid = document.getElementById("display-uid");
   const logoutBtn = document.getElementById("logout-btn");
+  const accountButton = document.getElementById("account-button");
+  const accountMenuText = document.getElementById("account-menu-text");
 
   let isLoginMode = true;
 
-  // Toggle Account Menu (wird von deinem Button aufgerufen)
-  function toggleAccountMenu() {
-    modalOverlay.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
-
-  // Close Modal
-  function closeAuthModal(event) {
-    if (!event || event.target === modalOverlay) {
-      modalOverlay.classList.remove("show");
-      document.body.style.overflow = "";
-      hideMessage();
-    }
-  }
-
-  // Show message
-  function showMessage(text, isError = false) {
+  function showMessage(text, isError) {
+    if (!messageDiv) return;
     messageDiv.className = isError ? "error" : "success";
     messageDiv.textContent = text;
     messageDiv.style.display = "block";
   }
 
   function hideMessage() {
+    if (!messageDiv) return;
     messageDiv.style.display = "none";
+    messageDiv.textContent = "";
   }
 
-  // Toggle between Login and Register
+  function updateNavAuthState(user) {
+    if (accountButton) {
+      accountButton.classList.toggle("is-logged-in", !!user);
+      accountButton.classList.toggle("is-logged-out", !user);
+      accountButton.setAttribute(
+        "aria-label",
+        user ? "Konto öffnen" : "Anmelden oder Konto öffnen"
+      );
+      const icon = accountButton.querySelector("i");
+      if (icon) {
+        icon.className = user ? "fa-solid fa-user-check" : "fa-regular fa-user";
+      }
+    }
+
+    if (accountMenuText) {
+      accountMenuText.textContent = user ? "Konto" : "Anmelden";
+    }
+  }
+
+  window.toggleAccountMenu = function toggleAccountMenu() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.add("show");
+    document.body.style.overflow = "hidden";
+  };
+
+  window.closeAuthModal = function closeAuthModal(event) {
+    if (!modalOverlay) return;
+    if (!event || event.target === modalOverlay) {
+      modalOverlay.classList.remove("show");
+      document.body.style.overflow = "";
+      hideMessage();
+    }
+  };
+
+  if (!modalOverlay || !authForm) {
+    return;
+  }
+
+  const globalConfig = window.MATHECHECKS_FIREBASE_CONFIG || {};
+  const firebaseConfig = {
+    apiKey: globalConfig.apiKey || window.FIREBASE_API_KEY || "",
+    authDomain: globalConfig.authDomain || window.FIREBASE_AUTH_DOMAIN || "",
+    projectId: globalConfig.projectId || window.FIREBASE_PROJECT_ID || "",
+  };
+
+  const firebaseEnabled =
+    typeof firebase !== "undefined" &&
+    !!firebaseConfig.apiKey &&
+    !!firebaseConfig.authDomain &&
+    !!firebaseConfig.projectId;
+
+  if (!firebaseEnabled) {
+    updateNavAuthState(null);
+    showMessage("Login ist momentan nicht verfügbar (Firebase-Konfiguration fehlt).", true);
+    submitBtn.disabled = true;
+    if (resolveAuthReady) {
+      resolveAuthReady({ auth: null, db: null });
+      resolveAuthReady = null;
+    }
+    return;
+  }
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+
+  const auth = firebase.auth();
+  const db = typeof firebase.firestore === "function" ? firebase.firestore() : null;
+  window.MATHECHECKS_AUTH = auth;
+  window.MATHECHECKS_DB = db;
+
+  if (resolveAuthReady) {
+    resolveAuthReady({ auth, db });
+    resolveAuthReady = null;
+  }
+
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+
+  function mapAuthError(error) {
+    switch (error.code) {
+      case "auth/email-already-in-use":
+        return "Diese E-Mail ist bereits registriert. Bitte logge dich ein.";
+      case "auth/invalid-email":
+        return "Ungültige E-Mail-Adresse.";
+      case "auth/weak-password":
+        return "Passwort zu schwach. Mindestens 6 Zeichen erforderlich.";
+      case "auth/user-not-found":
+        return "Kein Account mit dieser E-Mail gefunden.";
+      case "auth/wrong-password":
+      case "auth/invalid-login-credentials":
+      case "auth/invalid-credential":
+        return "Ungültige Anmeldedaten. Bitte E-Mail und Passwort prüfen.";
+      case "auth/popup-closed-by-user":
+        return "Anmeldung wurde abgebrochen.";
+      case "auth/popup-blocked":
+        return "Popup blockiert. Bitte Popups für diese Seite erlauben.";
+      case "auth/operation-not-allowed":
+        return "Diese Anmeldemethode ist in Firebase noch nicht aktiviert.";
+      case "auth/api-key-expired":
+        return "Der Firebase API-Key ist abgelaufen. Bitte in Firebase/Google Cloud einen neuen Web-API-Key setzen.";
+      case "auth/too-many-requests":
+        return "Zu viele Versuche. Bitte warte einen Moment.";
+      case "auth/missing-email":
+        return "Bitte zuerst eine E-Mail-Adresse eingeben.";
+      default:
+        return error.message || "Ein Fehler ist aufgetreten.";
+    }
+  }
+
   toggleMode.addEventListener("click", () => {
     isLoginMode = !isLoginMode;
     hideMessage();
@@ -75,25 +158,54 @@ if (!firebaseEnabled) {
       submitBtn.textContent = "Login";
       toggleText.textContent = "Noch kein Account?";
       toggleMode.textContent = "Jetzt registrieren";
+      if (forgotPasswordRow) {
+        forgotPasswordRow.classList.remove("hidden");
+      }
     } else {
       formTitle.textContent = "Registrierung";
       formSubtitle.textContent = "Erstelle einen neuen Account";
       submitBtn.textContent = "Registrieren";
       toggleText.textContent = "Schon registriert?";
       toggleMode.textContent = "Zum Login";
+      if (forgotPasswordRow) {
+        forgotPasswordRow.classList.add("hidden");
+      }
     }
   });
 
-  // Form Submit
-  authForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  if (forgotPasswordBtn) {
+    forgotPasswordBtn.addEventListener("click", async () => {
+      hideMessage();
+      const email = emailInput.value.trim();
+
+      if (!email) {
+        showMessage("Bitte gib zuerst deine E-Mail-Adresse ein.", true);
+        return;
+      }
+
+      try {
+        await auth.sendPasswordResetEmail(email);
+        showMessage("Passwort-Reset gesendet. Bitte prüfe dein E-Mail-Postfach.", false);
+      } catch (error) {
+        showMessage(mapAuthError(error), true);
+      }
+    });
+  }
+
+  authForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
     hideMessage();
 
     const email = emailInput.value.trim();
     const password = passwordInput.value;
 
+    if (!email) {
+      showMessage("Bitte eine E-Mail-Adresse eingeben.", true);
+      return;
+    }
+
     if (password.length < 6) {
-      showMessage("Passwort muss mindestens 6 Zeichen lang sein", true);
+      showMessage("Passwort muss mindestens 6 Zeichen lang sein.", true);
       return;
     }
 
@@ -105,85 +217,53 @@ if (!firebaseEnabled) {
     try {
       if (isLoginMode) {
         await auth.signInWithEmailAndPassword(email, password);
-        showMessage("Login erfolgreich!");
       } else {
         await auth.createUserWithEmailAndPassword(email, password);
-        showMessage("Registrierung erfolgreich!");
       }
+      hideMessage();
     } catch (error) {
-      console.error("Auth Error:", error);
-      let errorMessage = "Ein Fehler ist aufgetreten";
-
-      switch (error.code) {
-        case "auth/email-already-in-use":
-          errorMessage =
-            "Diese E-Mail ist bereits registriert. Bitte logge dich ein.";
-          break;
-        case "auth/invalid-email":
-          errorMessage = "Ungültige E-Mail-Adresse";
-          break;
-        case "auth/weak-password":
-          errorMessage =
-            "Passwort zu schwach. Mindestens 6 Zeichen erforderlich.";
-          break;
-        case "auth/user-not-found":
-          errorMessage = "Kein Account mit dieser E-Mail gefunden";
-          break;
-        case "auth/wrong-password":
-          errorMessage = "Falsches Passwort";
-          break;
-        case "auth/invalid-login-credentials":
-          errorMessage = "Falsches Passwort oder E-Mail nicht gefunden";
-          break;
-        case "auth/invalid-credential":
-          errorMessage =
-            "Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.";
-          break;
-        case "auth/too-many-requests":
-          errorMessage = "Zu viele Versuche. Bitte warte einen Moment.";
-          break;
-        default:
-          errorMessage = error.message;
-      }
-
-      showMessage(errorMessage, true);
+      showMessage(mapAuthError(error), true);
     } finally {
       submitBtn.disabled = false;
       submitBtn.textContent = isLoginMode ? "Login" : "Registrieren";
     }
   });
 
-  // Logout
   logoutBtn.addEventListener("click", async () => {
     try {
       await auth.signOut();
       emailInput.value = "";
       passwordInput.value = "";
-      closeAuthModal();
+      window.closeAuthModal();
     } catch (error) {
-      console.error("Logout Error:", error);
-      showMessage("Fehler beim Logout: " + error.message, true);
+      showMessage(mapAuthError(error), true);
     }
   });
 
-  // Auth State Observer
   auth.onAuthStateChanged((user) => {
+    updateNavAuthState(user);
+
+    window.dispatchEvent(
+      new CustomEvent("mathechecks-auth-changed", {
+        detail: { user },
+      })
+    );
+
     if (user) {
       authFormDiv.classList.add("hidden");
       userInfoDiv.classList.remove("hidden");
-      displayEmail.textContent = user.email;
-      displayUid.textContent = user.uid;
+      displayEmail.textContent = user.email || "";
+      displayUid.textContent = user.uid || "";
+      hideMessage();
     } else {
       authFormDiv.classList.remove("hidden");
       userInfoDiv.classList.add("hidden");
-      hideMessage();
     }
   });
 
-  // ESC-Taste zum Schließen
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.classList.contains("show")) {
-      closeAuthModal();
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modalOverlay.classList.contains("show")) {
+      window.closeAuthModal();
     }
   });
-}
+})();

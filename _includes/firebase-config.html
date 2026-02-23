@@ -1,6 +1,15 @@
 <!-- Firebase Scripts -->
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+  window.MATHECHECKS_FIREBASE_CONFIG = window.MATHECHECKS_FIREBASE_CONFIG || {
+    apiKey: "{{ site.firebase_api_key | default: 'AIzaSyCwCAYP5jSi29xrYxQyR3BUhalu5GliQa4' }}",
+    authDomain: "{{ site.firebase_auth_domain | default: 'mathechecks-c1e86.firebaseapp.com' }}",
+    projectId: "{{ site.firebase_project_id | default: 'mathechecks-c1e86' }}",
+  };
+</script>
 
 <!-- Modal Styles -->
 <style>
@@ -189,6 +198,28 @@
   }
 
   #auth-modal .toggle-link:hover {
+    text-decoration: underline;
+  }
+
+  #auth-modal .forgot-password-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+  }
+
+  #auth-modal .link-button {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #667eea;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      sans-serif;
+  }
+
+  #auth-modal .link-button:hover {
     text-decoration: underline;
   }
 
