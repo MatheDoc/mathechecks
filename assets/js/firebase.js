@@ -115,7 +115,7 @@
     resolveAuthReady = null;
   }
 
-  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => {});
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(() => { });
 
   function mapAuthError(error) {
     switch (error.code) {
