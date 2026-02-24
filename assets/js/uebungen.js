@@ -6,27 +6,22 @@ let aktuellerLernbereich = ""; // global
 
 async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
+    const pfad = window.location.pathname.toLowerCase();
+    if (!pfad.includes("uebungen.html")) {
+      return;
+    }
+
     aktuellerLernbereich = lernbereich;
     const responseKompetenzliste = await fetch("/kompetenzliste.json"); // Liquid wird nicht in js aufgelöst, daher ohne relative_url;
     const daten = await responseKompetenzliste.json();
 
     aktuelleEinträge = daten.filter(
-      (eintrag) => eintrag.Lernbereich === lernbereich && eintrag.Typ
+      (eintrag) => eintrag.Lernbereich === lernbereich
     );
 
-    const pfad = window.location.pathname.toLowerCase();
-
-    // Fallunterscheidung für die Seite: uebungen.html oder skript.html
     for (const [index, eintrag] of aktuelleEinträge.entries()) {
       const aufgabeDiv = await erstelleAufgabe(eintrag, index);
-
-      if (pfad.includes("uebungen.html")) {
-        zeigeOderErsetzeAufgabe(aufgabeDiv);
-      } else if (pfad.includes("skript.html")) {
-        zeigeInSkript(aufgabeDiv);
-      } else {
-        console.warn("Unbekannte Seite – Aufgabe nicht angezeigt.");
-      }
+      zeigeOderErsetzeAufgabe(aufgabeDiv);
     }
   } catch (err) {
     console.error("Fehler beim Laden der Kompetenzliste:", err);
@@ -40,23 +35,6 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
   } else {
     document.querySelector("main").appendChild(aufgabeDiv);
   }
-}
-
-function zeigeInSkript(aufgabeDiv) {
-  const zielId = aufgabeDiv.id.replace("aufgabe-", "skript-aufgabe-");
-  const zielDiv = document.getElementById(zielId);
-  if (!zielDiv) return;
-
-  zielDiv.classList.add("aufgabe");
-
-  // Entferne vorher das durch Select2 generierte DOM im Quell-Div
-  $(aufgabeDiv).find("select.mch").select2("destroy");
-
-  // Jetzt nur den ursprünglichen HTML-Code übernehmen
-  zielDiv.innerHTML = aufgabeDiv.innerHTML;
-
-  // Danach kannst du wieder interaktive Elemente initialisieren
-  applyInteractivity(zielDiv);
 }
 
 async function erstelleAufgabe(eintrag, index = 0) {
@@ -140,19 +118,6 @@ async function erstelleAufgabe(eintrag, index = 0) {
       ol.style.listStyleType = "none";
     }
 
-    /*
-    aufgabe.fragen.forEach((frage, i) => {
-      const li = document.createElement("li");
-      if (eintrag["Typ"] === "interaktiv") {
-        li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort-interaktiv">${aufgabe.antworten[i]}</span>`;
-      } else {
-        li.innerHTML = `<span class="frage">${frage} <i class="fas fa-eye eye-icon icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${aufgabe.antworten[i]}</span>`;
-      }
-
-      //li.innerHTML = `<span class="frage">${frage}</span><br><span class="antwort">${aufgabe.antworten[i]}</span>`;
-      ol.appendChild(li);
-    });*/
-
     // Fragen und Antworten gemeinsam verpacken
     let frageAntwortPaare = aufgabe.fragen.map((frage, i) => ({
       frage: frage,
@@ -167,11 +132,7 @@ async function erstelleAufgabe(eintrag, index = 0) {
     // Liste dynamisch erstellen
     frageAntwortPaare.forEach((paar) => {
       const li = document.createElement("li");
-      if (eintrag["Typ"] === "interaktiv") {
-        li.innerHTML = `<span class="frage">${paar.frage}</span><br><span class="antwort-interaktiv">${paar.antwort}</span>`;
-      } else {
-        li.innerHTML = `<span class="frage">${paar.frage} <i class="fas fa-eye eye-icon icon" onclick="antwortToggle(this)"></i></span><br><span class="antwort-statisch" style="display: none;">${paar.antwort}</span>`;
-      }
+      li.innerHTML = `<span class="frage">${paar.frage}</span><br><span class="antwort-interaktiv">${paar.antwort}</span>`;
       ol.appendChild(li);
     });
 

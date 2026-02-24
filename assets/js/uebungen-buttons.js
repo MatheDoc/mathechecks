@@ -129,13 +129,8 @@ async function reloadSingleTask(iconElement) {
   const eintrag = aktuelleEinträge[index];
   if (!eintrag) return;
 
-  const pfad = window.location.pathname.toLowerCase();
   const neueAufgabe = await erstelleAufgabe(eintrag, index);
-  if (pfad.includes("uebungen.html")) {
-    zeigeOderErsetzeAufgabe(neueAufgabe);
-  } else if (pfad.includes("skript.html")) {
-    zeigeInSkript(neueAufgabe);
-  }
+  zeigeOderErsetzeAufgabe(neueAufgabe);
 }
 
 // zu h2-tag im skript springen

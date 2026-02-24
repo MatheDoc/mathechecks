@@ -104,7 +104,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Zufallsexperimente
 
@@ -131,7 +130,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Wahrscheinlichkeiten - Einführung
 
@@ -227,7 +225,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Laplace-Experiment
 
@@ -268,7 +265,6 @@ frage="Ein Zufallsexperiment ist ein Laplace-Experiment, falls..."
 antwort="... jedes Ergebnis mit der gleichen Wahrscheinlichkeit eintritt."
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 ## Relative Häufigkeiten
 
@@ -294,7 +290,6 @@ antwort="In einer Urne befinden 1 rote, 2 blaue, 3 gelbe und 4 grüne Kugeln. F�
 "
 %}
 
-<div id="skript-aufgabe-5"></div>
 
 Das **Gesetz der großen Zahlen** beschreibt den Zusammnehang zwischen Laplace-Wahrscheinlochkeiten und relativen Häufigkeiten genauer.
 
@@ -349,7 +344,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-6"></div>
 
 ## Venn-Diagramme
 
@@ -365,4 +359,3 @@ frage="Interpretation Venn-Diagramme"
 antwort="Beschreibe die dunkel blaue Fläche mit Hilfe der Mengenoperationen."
 %}
 
-<div id="skript-aufgabe-7"></div>

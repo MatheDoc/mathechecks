@@ -93,7 +93,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 {% include info.html
 index="2"
@@ -101,7 +100,6 @@ frage="Berechnen von Gleichungen ökonomischer Funktionen mit Hilfe von $E(x)=p(
 antwort="siehe Info 1"
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Kennzahlen
 
@@ -128,7 +126,6 @@ frage="Mathematische Definition ökonomischer Kennzahlen"
 antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstelle, Extremstelle, Wendestelle)"
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ### Hinweise
 
@@ -207,7 +204,6 @@ frage="Graphische Bestimmung (Angebotspolypol)"
 antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Extremstellen, Wendestellen)"
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 {% include info.html
 index="5"
@@ -215,7 +211,6 @@ frage="Graphische Bestimmung (Angebotsmonopol)"
 antwort="siehe Info 4"
 %}
 
-<div id="skript-aufgabe-5"></div>
 
 ## Berechnungen
 
@@ -233,7 +228,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-6"></div>
 
 {% include info.html
 index="7"
@@ -390,6 +384,4 @@ Der gewinnmaximale Preis beträgt 34,05 GE.
 "
 %}
 
-<div id="skript-aufgabe-7"></div>
 
-<div id="skript-aufgabe-8"></div>

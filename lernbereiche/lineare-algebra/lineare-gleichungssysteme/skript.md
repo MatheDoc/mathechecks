@@ -57,7 +57,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-1"></div>
 
 ### Gauß-Algorithmus
 
@@ -192,7 +191,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 {%include info.html
 index="3"
@@ -206,7 +204,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Lösungsarten
 

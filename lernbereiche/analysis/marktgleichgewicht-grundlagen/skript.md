@@ -33,7 +33,6 @@ frage="Mathematische Definition der Kennzahlen zum Marktgleichgewicht"
 antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstelle, Schnittpunkt)"
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Graphische Darstellungen
 
@@ -65,7 +64,6 @@ frage="Graphische Bestimmung der Kennzahlen zum Marktgleichgewicht"
 antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Schnittpunkte)"
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Berechnungen
 
@@ -163,7 +161,6 @@ Der Umsatz im Marktgleichgewicht beträgt 208 GE.
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Marktsituationen
 
@@ -294,4 +291,3 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-4"></div>

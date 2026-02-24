@@ -30,7 +30,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Ableitungsregeln für Polynome
 
@@ -53,7 +52,6 @@ Potenzregel: $\frac{d}{dx}x^n = n\,x^{n-1}$; Linearität: Ableitung verteilt sic
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Bedeutung der Ableitung
 
@@ -78,7 +76,6 @@ ymin="-10"
 ymax="10"
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Höhere Ableitungen, Krümmung und Wendepunkte
 
@@ -100,7 +97,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 ## Kurvendiskussion bei Polynomen (Schema)
 
@@ -112,7 +108,6 @@ antwort="
 6. Zweite Ableitung: $f''(x)$, Krümmung und Wendepunkte (Vorzeichenwechsel von $f''$)
 7. Skizze/Plot und Zusammenfassung
 
-<div id="skript-aufgabe-5"></div>
 
 ## Beispiel einer vollständigen Kurvendiskussion
 
@@ -133,7 +128,6 @@ ymin="-5"
 ymax="10"
 %}
 
-<div id="skript-aufgabe-6"></div>
 
 ## Ausblick
 

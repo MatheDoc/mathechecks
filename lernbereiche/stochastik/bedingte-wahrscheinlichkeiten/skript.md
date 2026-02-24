@@ -65,7 +65,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Berechnungen
 
@@ -198,7 +197,6 @@ Wie lautet die Wahrscheinlichkeit 5 ? Da $A$ und $B$ stochastisch unabhängig si
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 Haben wir ein vollständig ausgefülltes Baumdiagramm vorliegen, so können wir wie gewohnt verschiedene Wahrscheinlichkeiten bestimmen.
 
@@ -223,7 +221,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ### Weitere Formulierungen der stochastischen Unabhängigkeit
 
@@ -422,7 +419,6 @@ frage="Rechenregel in Vier-Felder-Tafeln:"
 antwort="Wir können von 'innen nach außen addieren': Die Summe zweier innerer Wahrscheinlichkeiten einer Zeile (bzw. Spalte) ist die Wahrscheinlichkeit in der entsprechenden letzten Zeile (bzw. Spalte). Dies kann umgeformt werden, wenn z.B. eine Wahrscheinlichkeit in der letzten Zeile (bzw. Spalte) gegeben ist."
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, so können wir wie verschiedene Wahrscheinlichkeiten bestimmen.
 
@@ -438,7 +434,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-5"></div>
 
 ### Vier-Felder-Tafeln und stochastische Unabhängigkeit
 
@@ -460,7 +455,6 @@ Da $A$ und $B$ stochastisch unabhängig sind, ist die Vier-Felder-Tafel mutiplik
 "
 %}
 
-<div id="skript-aufgabe-6"></div>
 
 Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, können wir sie interpretieren. Um dabei festzustellen, ob $A$ und $B$ stochastisch unabhägig sind, müssen wir prüfen, ob die Vier-Felder-Tafel multiplikativ ist.
 
@@ -498,7 +492,6 @@ antwort="
 
 %}
 
-<div id="skript-aufgabe-7"></div>
 
 ## Vergleich: Baumdiagramme und Vier-Felder-Tafeln
 
@@ -542,7 +535,6 @@ $$
   "
   %}
 
-<div id="skript-aufgabe-8"></div>
 
 {% include info.html
 index="9"
@@ -582,7 +574,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-9"></div>
 
 ## Venn-Diagramme
 
@@ -598,4 +589,3 @@ frage="Venn-Diagramme mit bedingten Wahrscheinlichkeiten:"
 antwort="Das helle und das dunkle Blau bilden zusammen die Bedingung. Füllen das helle und dunkle Blau die ganze Fläche aus, gibt es also keine einschränkende Bedingung."
 %}
 
-<div id="skript-aufgabe-10"></div>
