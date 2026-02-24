@@ -1,3 +1,19 @@
+if (typeof window.scrollZuHash !== "function") {
+  window.scrollZuHash = function (hash) {
+    if (!hash) return;
+    const normalizedHash = hash.startsWith("#") ? hash : `#${hash}`;
+    const zielElement = document.querySelector(normalizedHash);
+    if (!zielElement) return;
+
+    const header = document.querySelector("header");
+    const headerHeight = header ? header.offsetHeight : 0;
+    const y =
+      zielElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+    window.scrollTo({ top: y, behavior: "smooth" });
+  };
+}
+
 // Laden der Aufgaben für den Lernbereich
 async function ladeUndScrolle(lernbereich) {
   if (typeof ladeAufgabenFürLernbereich === "function") {

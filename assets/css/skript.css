@@ -1,3 +1,22 @@
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th,
+td {
+  border: 1px solid #999;
+  padding: 0.5em 1em;
+  text-align: center;
+}
+
+thead {
+  font-weight: bold;
+}
+
 figure {
   display: flex;
   flex-direction: column;
