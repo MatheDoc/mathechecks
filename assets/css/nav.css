@@ -25,19 +25,29 @@
   display: none;
 }
 
-.hamburger {
-  position: absolute;
-  left: 1rem;
+.hamburger,
+.auth-toggle,
+.calculator-toggle {
   background: none;
   border: 1px solid #ffffff;
   border-radius: 5px;
-  font-size: 1.5rem;
   cursor: pointer;
   color: white;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.hamburger:hover {
+.hamburger:hover,
+.auth-toggle:hover,
+.calculator-toggle:hover {
   background: #cfcfcf6a;
+  transform: translateY(-1px);
+}
+
+.hamburger {
+  position: absolute;
+  left: 1rem;
+  font-size: 1.5rem;
+  padding: 0.2rem 0.4rem;
 }
 
 #account {
@@ -56,19 +66,8 @@
 .calculator-toggle {
   position: absolute;
   right: 1rem;
-  background: none;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
   font-size: 1.4rem;
-  cursor: pointer;
-  color: white;
   padding: 0.2rem 0.4rem;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.calculator-toggle:hover {
-  background: #cfcfcf6a;
-  transform: translateY(-1px);
 }
 
 .calculator-toggle.is-active {
@@ -80,19 +79,8 @@
 .auth-toggle {
   position: absolute;
   right: 4.2rem;
-  background: none;
-  border: 1px solid #ffffff;
-  border-radius: 5px;
   font-size: 1.2rem;
-  cursor: pointer;
-  color: white;
   padding: 0.25rem 0.45rem;
-  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.auth-toggle:hover {
-  background: #cfcfcf6a;
-  transform: translateY(-1px);
 }
 
 #account-status-indicator {
@@ -296,56 +284,48 @@
   .nav-text {
     display: none;
   }
+}
 
+@media (max-width: 520px) {
   .nav-lernbereiche {
     padding: 0.45rem 0.65rem;
   }
 
   .hamburger {
-    left: 0.65rem;
+    left: 0.55rem;
     font-size: 1.2rem;
     padding: 0.1rem 0.35rem;
   }
 
   .logo {
     font-size: 1.2rem;
-    max-width: calc(100% - 8.5rem);
+    max-width: calc(100% - 8rem);
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .logo-full {
-    display: inline;
-  }
-
-  .logo-short {
     display: none;
   }
 
+  .logo-short {
+    display: inline;
+  }
+
   .calculator-toggle {
-    right: 0.65rem;
+    right: 0.55rem;
     font-size: 1.15rem;
     padding: 0.15rem 0.35rem;
   }
 
   .auth-toggle {
-    right: 3.45rem;
+    right: 3.15rem;
     font-size: 1.05rem;
     padding: 0.15rem 0.35rem;
   }
 
   .auth-menu-item {
     display: none;
-  }
-}
-
-@media (max-width: 520px) {
-  .logo-full {
-    display: none;
-  }
-
-  .logo-short {
-    display: inline;
   }
 }
 
