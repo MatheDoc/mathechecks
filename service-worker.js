@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathechecks-cache-v18"; // Version hochsetzen!
+const CACHE_NAME = "mathechecks-cache-v19"; // Version hochsetzen!
 const urlsToCache = [
   "/",
   "/manifest.json",
