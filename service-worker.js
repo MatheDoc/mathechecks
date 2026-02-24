@@ -1,4 +1,4 @@
-const CACHE_NAME = "mathechecks-cache-v19"; // Version hochsetzen!
+const CACHE_NAME = "mathechecks-cache-v21"; // Version hochsetzen!
 const urlsToCache = [
   "/",
   "/manifest.json",
@@ -14,6 +14,7 @@ self.addEventListener("install", (event) => {
       return cache.addAll(urlsToCache);
     })
   );
+  self.skipWaiting();
 });
 
 // Aktivierungs-Event: alte Caches löschen
@@ -28,13 +29,16 @@ self.addEventListener("activate", (event) => {
           }
         })
       )
-    )
+    ).then(() => self.clients.claim())
   );
 });
 
 // Fetch-Event: Strategie je nach Dateityp
 self.addEventListener("fetch", (event) => {
   const request = event.request;
+  const url = new URL(request.url);
+  const isSameOrigin = url.origin === self.location.origin;
+  const isStaticAsset = /\.(css|js|mjs|json|svg|png|jpg|jpeg|webp|ico|woff2?)$/i.test(url.pathname);
 
   // 1. HTML-Seiten (Navigation) -> Network first
   if (request.mode === "navigate") {
@@ -57,7 +61,21 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // 2. Statische Dateien (Icons, Manifest, CSS/JS) -> Cache first
+  // 2. Eigene statische Dateien -> Network first (verhindert veraltete CSS/JS)
+  if (isSameOrigin && request.method === "GET" && isStaticAsset) {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => caches.match(request))
+    );
+    return;
+  }
+
+  // 3. Restliche Requests -> Cache first
   event.respondWith(
     caches.match(request).then((response) => {
       return (

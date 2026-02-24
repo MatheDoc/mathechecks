@@ -67,6 +67,14 @@ if (
   "serviceWorker" in navigator &&
   !["localhost", "127.0.0.1"].includes(location.hostname)
 ) {
+  let refreshing = false;
+
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (refreshing) return;
+    refreshing = true;
+    window.location.reload();
+  });
+
   window.addEventListener("load", () => {
     navigator.serviceWorker
       .register("/service-worker.js")
