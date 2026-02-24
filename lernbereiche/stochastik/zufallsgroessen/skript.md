@@ -97,7 +97,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Die Standardabweichung
 
@@ -170,7 +169,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Interpretationen
 
@@ -225,7 +223,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-3"></div>
 
 <!--
 #### Exkurs: Die Bedeutung der Standardabweichung
@@ -271,7 +268,6 @@ antwort="
    "
    %}
 
-<div id="skript-aufgabe-4"></div>
 
 ## Vervollständigung von Verteilungen
 
@@ -301,7 +297,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-5"></div>
 
 {%include info.html
 index="6"
@@ -336,7 +331,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-6"></div>
 
 {%include info.html
 index="7"
@@ -380,4 +374,3 @@ und setzen gleich: $0{,}5 -y = 4y - 1{,}35$. Es folgt $1{,}85 = 5y$ und so $y=0{
 "
 %}
 
-<div id="skript-aufgabe-7"></div>

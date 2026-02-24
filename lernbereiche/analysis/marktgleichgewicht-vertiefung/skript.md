@@ -29,7 +29,6 @@ frage="Graphische Bestimmung der Kennzahlen zum Marktgleichgewicht"
 antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Schnittpunkte)"
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ### Berechnungen
 
@@ -125,7 +124,6 @@ Der Umsatz im Marktgleichgewicht beträgt 246,28 GE.
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Konsumenten- und Produzentenrente
 
@@ -264,7 +262,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Abschöpfung der Konsumentenrente
 
@@ -304,4 +301,3 @@ Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ 
 "
 %}
 
-<div id="skript-aufgabe-4"></div>

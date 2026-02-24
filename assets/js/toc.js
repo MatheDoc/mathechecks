@@ -1,6 +1,8 @@
 // Laden der Aufgaben für den Lernbereich
 async function ladeUndScrolle(lernbereich) {
-  await ladeAufgabenFürLernbereich(lernbereich);
+  if (typeof ladeAufgabenFürLernbereich === "function") {
+    await ladeAufgabenFürLernbereich(lernbereich);
+  }
 
   // Dynamische Überschriftenebene basierend auf der URL
   const path = window.location.pathname;

@@ -30,8 +30,6 @@ with open(kompetenzliste_path, 'r', encoding='utf-8-sig') as f:
     kompetenzen = json.load(f)
 
 for eintrag in kompetenzen:
-    if eintrag.get('Typ') == 'statisch':
-        continue
     sammlung = eintrag.get('Sammlung')
     gebiet = eintrag.get('Gebiet')
     lernbereich = eintrag.get('Lernbereich')

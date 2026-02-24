@@ -103,4 +103,3 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-1"></div>

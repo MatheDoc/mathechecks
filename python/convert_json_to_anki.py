@@ -119,7 +119,7 @@ lernbereich_decks = {}
 
 for _, zeile in df.iterrows():
     # Liste der Pflichtfelder
-    pflichtfelder = ['Gebiet', 'Lernbereich', 'Nummer', 'Sammlung', 'Typ', 'Ankityp', 'LernbereichAnzeigename']
+    pflichtfelder = ['Gebiet', 'Lernbereich', 'Nummer', 'Sammlung', 'Ankityp', 'LernbereichAnzeigename']
     
     # Prüfen, ob eines der Felder leer oder nur aus Leerzeichen besteht
     if any(pd.isna(zeile[f]) or str(zeile[f]).strip() == '' for f in pflichtfelder):
@@ -130,7 +130,6 @@ for _, zeile in df.iterrows():
     lernbereich = zeile['Lernbereich']
     nummer = zeile['Nummer']
     sammlung = zeile['Sammlung']
-    typ = zeile['Typ']
     ankityp = zeile['Ankityp']
     lernbereichAnzeigename = zeile['LernbereichAnzeigename']
 
@@ -148,12 +147,10 @@ for _, zeile in df.iterrows():
     deck_name = f'MatheChecks::{gebiet}::{lernbereich}::Check{int(nummer):02d}'
     deck = genanki.Deck(deck_id, deck_name)
 
-    kombination = f"{typ}_{ankityp}"
-
-    if kombination == 'interaktiv_einzeln':
-        teilfragen_anzahl = len(daten[0]['fragen'])
+    if ankityp == 'einzeln':
+        teilfragen_anzahl = max(len(item.get('fragen', [])) for item in daten)
         for teilfrage_index in range(teilfragen_anzahl):
-            modelname = f'Interaktiv_Einzeln_Teilfrage_{teilfrage_index+1}'
+            modelname = f'Einzeln_Teilfrage_{teilfrage_index+1}'
             model_id = 1000 + teilfrage_index
             fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
             templates = []
@@ -165,21 +162,31 @@ for _, zeile in df.iterrows():
                 })
             model = genanki.Model(model_id, modelname, fields=[{'name': f} for f in fields], templates=templates, css=css_template)
             note_fields = [head]
-            for item in daten:
+            for item_index, item in enumerate(daten, start=1):
                 einleitung = item['einleitung'].strip()
-                frage = item['fragen'][teilfrage_index].strip()
+                fragen = item.get('fragen', [])
+                if teilfrage_index < len(fragen):
+                    frage = fragen[teilfrage_index].strip()
+                else:
+                    print(f"⚠️  Fehlende Teilfrage: Sammlung={sammlung}, Item={item_index}, Teilfrage={teilfrage_index+1}")
+                    frage = ''
                 frage_parsed = parse_mixed_answer_text(frage)
                 note_fields.append(f'{einleitung}<br><br>{frage_parsed}')
-            for item in daten:
-                antwort = item['antworten'][teilfrage_index].strip()
+            for item_index, item in enumerate(daten, start=1):
+                antworten = item.get('antworten', [])
+                if teilfrage_index < len(antworten):
+                    antwort = antworten[teilfrage_index].strip()
+                else:
+                    print(f"⚠️  Fehlende Antwort: Sammlung={sammlung}, Item={item_index}, Teilfrage={teilfrage_index+1}")
+                    antwort = ''
                 antwort_parsed = parse_mixed_answer_text(antwort)
                 note_fields.append(antwort_parsed)
             note = genanki.Note(model=model, fields=note_fields, guid=genanki.guid_for(sammlung + f'_Teilfrage_{teilfrage_index+1}'))
             deck.add_note(note)
         
-    elif kombination == 'interaktiv_gruppiert':
+    elif ankityp == 'gruppiert':
         model_id = 3000  # Einheitlich für alle Gruppiert-Notizen
-        modelname = 'Interaktiv_Gruppiert'
+        modelname = 'Gruppiert'
     
         fields = ['Head'] + [f'Item{i+1}_Frage' for i in range(item_count)] + [f'Item{i+1}_Antwort' for i in range(item_count)]
         templates = []
@@ -204,65 +211,8 @@ for _, zeile in df.iterrows():
             note_fields.append(antwort_block)
         note = genanki.Note(model=model, fields=note_fields, guid=genanki.guid_for(sammlung + '_gruppiert'))
         deck.add_note(note)
-
-    elif kombination == 'statisch_einzeln':
-        model_id = 4000
-        modelname = 'Statisch_Einzeln'
-        model = genanki.Model(
-            model_id,
-            modelname,
-            fields=[{'name': 'Head'}, {'name': 'Frage'}, {'name': 'Antwort'}],
-            templates=[{
-                'name': 'Karte',
-                'qfmt': '{{Head}}<br>{{Frage}}',
-                'afmt': '{{Head}}<br>{{Frage}}<hr id="answer">{{Antwort}}',
-            }],
-            css=css_template
-        )
-        for index, item in enumerate(daten):
-            einleitung = item['einleitung'].strip()
-            fragen = item['fragen']
-            antworten = item['antworten']
-            for i, (frage, antwort) in enumerate(zip(fragen, antworten)):
-                frage_parsed = parse_mixed_answer_text(frage.strip())
-                antwort_parsed = parse_mixed_answer_text(antwort.strip())
-                note = genanki.Note(
-                    model=model,
-                    fields=[head, f'{einleitung}<br><br>{frage_parsed}', antwort_parsed],
-                    guid=genanki.guid_for(f'{sammlung}_Item{index+1}_Frage{i+1}')
-                )
-                deck.add_note(note)
-
-    elif kombination == 'statisch_gruppiert':
-        model_id = 5000
-        modelname = 'Statisch_Gruppiert'
-        model = genanki.Model(
-            model_id,
-            modelname,
-            fields=[{'name': 'Head'}, {'name': 'Frage'}, {'name': 'Antwort'}],
-            templates=[{
-                'name': 'Karte',
-                'qfmt': '{{Head}}<br>{{Frage}}',
-                'afmt': '{{Head}}<br>{{Frage}}<hr id="answer">{{Antwort}}',
-            }],
-            css=css_template
-        )
-        for index, item in enumerate(daten):
-            einleitung = item['einleitung'].strip()
-            fragen = item['fragen']
-            antworten = item['antworten']
-            fragen_parsed = [parse_mixed_answer_text(f.strip()) for f in fragen]
-            antworten_parsed = [parse_mixed_answer_text(a.strip()) for a in antworten]
-            frage_block = einleitung + '<br><br><ol>' + ''.join(f'<li>{f}</li>' for f in fragen_parsed) + '</ol>'
-            antwort_block = '<ol>' + ''.join(f'<li>{a}</li>' for a in antworten_parsed) + '</ol>'
-            note = genanki.Note(
-                model=model,
-                fields=[head, frage_block, antwort_block],
-                guid=genanki.guid_for(f'{sammlung}_Item{index+1}_Gruppiert')
-            )
-            deck.add_note(note)
     else:
-        raise ValueError(f"Unbekannte Kombination: Typ={typ}, Ankityp={ankityp}")
+        raise ValueError(f"Unbekannter Ankityp: {ankityp}")
 
 
       

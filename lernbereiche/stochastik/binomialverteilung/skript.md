@@ -21,7 +21,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-1"></div>
 
 ## Die Bernoulli-Formel
 
@@ -117,7 +116,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-2"></div>
 
 ## Intervallwahrscheinlichkeiten
 
@@ -256,7 +254,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 {% include info.html
 index="4"
@@ -270,7 +267,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 ### Weitere Hinweise
 
@@ -466,7 +462,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-5"></div>
 
 ## Histogramme
 
@@ -487,7 +482,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-6"></div>
 
 {% include info.html
 index="7"
@@ -510,7 +504,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-7"></div>
 
 ## Bestimmung von n, p und k
 
@@ -621,7 +614,6 @@ Das kleinste $n$, für das $P(X\geq 144)\geq 0{,}29$ gilt, ist also $n=229$.
 "
 %}
 
-<div id="skript-aufgabe-8"></div>
 
 {% include info.html
 index="9"
@@ -641,7 +633,6 @@ Das kleinste $p$, für das $P(X\leq 142)\leq 0{,}31$ gilt, ist also $p=0{,}54$.
 "
 %}
 
-<div id="skript-aufgabe-9"></div>
 
 {% include info.html
 index="10"
@@ -662,7 +653,6 @@ Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
 "
 %}
 
-<div id="skript-aufgabe-10"></div>
 
 ## Erwartungswert und Standardabweichung
 
@@ -711,7 +701,6 @@ frage="Bestimmung von $\mu$ und $\sigma$"
 antwort="Direktes Anwenden der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$."
 %}
 
-<div id="skript-aufgabe-11"></div>
 
 ### Kombination der Formeln
 
@@ -734,7 +723,6 @@ Gegeben sind $n=200$ und $\mu=25$, gesucht sind $p$ und $\sigma$. Wegen $\mu=n\c
 "
 %}
 
-<div id="skript-aufgabe-12"></div>
 
 {% include info.html
 index="13"
@@ -749,7 +737,6 @@ Dann ist $\sigma=\sqrt{80\cdot 0{,}15\cdot (1-0{,}15)}=3{,}1937$.
 "
 %}
 
-<div id="skript-aufgabe-13"></div>
 
 {% include info.html
 index="14"
@@ -774,7 +761,6 @@ Dann ist $n=\frac{175}{0{,}35}=500$.
 "
 %}
 
-<div id="skript-aufgabe-14"></div>
 
 {% include info.html
 index="15"
@@ -798,7 +784,6 @@ Dann ist $\mu=240\cdot 0{,}1=24$.
 "
 %}
 
-<div id="skript-aufgabe-15"></div>
 
 ### Umgebungen des Erwartungswerts
 
@@ -856,7 +841,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-16"></div>
 
 ### Relative Umgebungen
 
@@ -886,7 +870,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-17"></div>
 
 ### Sigma-Umgebungen
 
@@ -916,7 +899,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-18"></div>
 
 ### Exkurs: Bedeutung der Standardabweichung
 

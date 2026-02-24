@@ -134,7 +134,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 {%include info.html
 index="2"
@@ -162,7 +161,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 <!-- ## Exkurs: p-Hacking-->
 
@@ -200,7 +198,6 @@ Damit folgt $k=68$, und somit $A=\\{69,70,...,200\\}$ und $\overline{A}=\\{0,1,2
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 {%include info.html
 index="4"
@@ -228,18 +225,15 @@ Damit folgt $k=95$, und somit $A=\\{0,1,2,...,94\\}$ und $\overline{A}=\\{95,96,
 "
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 {%include info.html
 index="5"
 frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
 antwort="siehe oben"%}
 
-<div id="skript-aufgabe-5"></div>
 
 {%include info.html
 index="6"
 frage="Rechtsseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
 antwort="siehe oben"%}
 
-<div id="skript-aufgabe-6"></div>

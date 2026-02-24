@@ -184,7 +184,6 @@ Damit sind alle Kriterien erfüllt. 👉 ertragsgesetzlich ✅
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 ### Nachweis für parametrisierte Funktionen
 
@@ -247,7 +246,6 @@ Also ist $K'_a(x)\geq 0$, falls $a\geq 27$.
 
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 ### Allgemeiner Nachweis
 
@@ -318,7 +316,6 @@ frage="Mathematische Definition Kostenkennzahlen"
 antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Graphische Darstellungen
 
@@ -343,7 +340,6 @@ frage="Graphische Bestimmung"
 antwort="Interpretation charakteristischer Punkte"
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 ## Berechnungen
 
@@ -362,7 +358,6 @@ antwort="
   "
   %}
 
-<div id="skript-aufgabe-5"></div>
 
 {% include info.html
 index="6"
@@ -443,7 +438,6 @@ Die langfristige Preisuntergrenze beträgt 19,36 GE / ME.
 "
 %}
 
-<div id="skript-aufgabe-6"></div>
 
 ### Exkurs: Alternative Bestimmung des Betriebsminimums und -optimums
 
@@ -643,4 +637,3 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-7"></div>

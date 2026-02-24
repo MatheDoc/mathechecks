@@ -30,7 +30,6 @@ so sind die Rohstoffe der Input und die Zwischenprodukte der Output. Die $4$ bed
 "
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 {%include info.html
 index="2"
@@ -49,7 +48,6 @@ Diese Gleichung kann, falls die jeweilgen inversen Matrizen existieren, nach $RZ
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 {%include info.html
 index="3"
@@ -65,7 +63,6 @@ antwort="Mit einer Produktionsmatrix lässt sich aus einem gegebenen Output der 
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 {%include info.html
 index="4"
@@ -79,7 +76,6 @@ antwort="Die Gleichungen (siehe 3. Info) können, falls die jeweilgen inversen M
 "
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 {%include info.html
 index="5"
@@ -185,4 +181,3 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-5"></div>

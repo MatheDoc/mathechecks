@@ -52,7 +52,6 @@ antwort="
 Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so können die Pfadendwahrscheinlichkeiten unmittelbar mit Hilfe der Pfadmultiplikationsregel berechnet werden."
 %}
 
-<div id="skript-aufgabe-1"></div>
 
 {%include info.html
 index="2"
@@ -68,7 +67,6 @@ Die Wahrscheinlichkeit 4 wird mit $x$ bezeichnet und kann wie folgt berechnet we
 "
 %}
 
-<div id="skript-aufgabe-2"></div>
 
 {%include info.html
 index="3"
@@ -83,7 +81,6 @@ Die Wahrscheinlichkeit 2 wird mit $x$ bezeichnet und kann wie folgt berechnet we
 "
 %}
 
-<div id="skript-aufgabe-3"></div>
 
 ## Baumdiagramme interpretieren
 
@@ -139,7 +136,6 @@ $$
 "
 %}
 
-<div id="skript-aufgabe-4"></div>
 
 ## Weitere Baumdigramme
 
@@ -157,7 +153,6 @@ antwort="
 "
 %}
 
-<div id="skript-aufgabe-5"></div>
 
 <!--### Urnenmodelle
 Ein wichtiges Beipsiel für mehrstufige Zufallsexperimente sind das Ziehen von Kugeln aus einer Urne. Hier müssen wir unterscheiden, ob Kugeln zurückgegelgt werden oder nicht.
