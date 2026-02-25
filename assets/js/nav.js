@@ -1,3 +1,21 @@
+const CALCULATOR_OVERLAY_STATE_KEY = "calculator-overlay-open-v1";
+
+function loadCalculatorOverlayState() {
+  try {
+    return localStorage.getItem(CALCULATOR_OVERLAY_STATE_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function saveCalculatorOverlayState(isOpen) {
+  try {
+    localStorage.setItem(CALCULATOR_OVERLAY_STATE_KEY, isOpen ? "1" : "0");
+  } catch {
+    // ignore storage issues
+  }
+}
+
 // Toggle visibility of the main menu
 function toggleMenu() {
   const menu = document.getElementById("main-menu");
@@ -15,6 +33,11 @@ function toggleCalculatorOverlay(forceOpen) {
 
   overlay.classList.toggle("open", shouldOpen);
   overlay.setAttribute("aria-hidden", shouldOpen ? "false" : "true");
+  saveCalculatorOverlayState(shouldOpen);
+
+  if (!shouldOpen && typeof window.clearStoredCalculatorPopupState === "function") {
+    window.clearStoredCalculatorPopupState();
+  }
 
   const toggleButton = document.querySelector(".calculator-toggle");
   if (toggleButton) {
@@ -50,6 +73,10 @@ document.addEventListener("click", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (loadCalculatorOverlayState()) {
+    toggleCalculatorOverlay(true);
+  }
+
   const links = document.querySelectorAll(".nav-materialtyp .nav-link");
   const currentPath = window.location.href.split("#")[0];
 

@@ -64,7 +64,7 @@ async function ladeUndScrolle(lernbereich) {
   });
 }
 
-ladeUndScrolle(lernbereich);
+ladeUndScrolle(window.lernbereich);
 
 // Spy für Toc n(wegen Header)
 const HEADER_OFFSET = 180;

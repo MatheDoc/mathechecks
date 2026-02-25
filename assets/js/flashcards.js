@@ -1,6 +1,8 @@
 "use strict";
 
 const msPerDay = 24 * 60 * 60 * 1000;
+const FLASHCARDS_VIEW_STATE_PREFIX = "flashcards-view-v1";
+const FLASHCARDS_VIEW_STATE_VERSION = 1;
 
 const state = {
     cards: [],
@@ -11,7 +13,83 @@ const state = {
     user: null,
     isSaving: false,
     hasPendingSave: false,
+    view: {
+        currentCardId: null,
+        interactiveTaskIndexByCard: {},
+    },
 };
+
+function getFlashcardsViewStorageKey() {
+    return `${FLASHCARDS_VIEW_STATE_PREFIX}:${window.lernbereich || "default"}`;
+}
+
+function createDefaultViewState() {
+    return {
+        version: FLASHCARDS_VIEW_STATE_VERSION,
+        currentCardId: null,
+        interactiveTaskIndexByCard: {},
+    };
+}
+
+function normalizeViewState(raw) {
+    const fallback = createDefaultViewState();
+    if (!raw || typeof raw !== "object") return fallback;
+
+    return {
+        version: FLASHCARDS_VIEW_STATE_VERSION,
+        currentCardId: typeof raw.currentCardId === "string" ? raw.currentCardId : null,
+        interactiveTaskIndexByCard:
+            raw.interactiveTaskIndexByCard && typeof raw.interactiveTaskIndexByCard === "object"
+                ? raw.interactiveTaskIndexByCard
+                : {},
+    };
+}
+
+function loadViewState() {
+    try {
+        const key = getFlashcardsViewStorageKey();
+        const raw = localStorage.getItem(key);
+        if (!raw) {
+            state.view = createDefaultViewState();
+            return;
+        }
+
+        const parsed = JSON.parse(raw);
+        const normalized = normalizeViewState(parsed);
+        state.view = normalized;
+
+        if (
+            parsed?.version !== FLASHCARDS_VIEW_STATE_VERSION ||
+            JSON.stringify(parsed) !== JSON.stringify(normalized)
+        ) {
+            localStorage.setItem(key, JSON.stringify(normalized));
+        }
+    } catch (err) {
+        console.warn("Flashcards: View-State konnte nicht geladen werden", err);
+        state.view = createDefaultViewState();
+    }
+}
+
+function saveViewState() {
+    try {
+        const normalized = normalizeViewState(state.view);
+        state.view = normalized;
+        localStorage.setItem(getFlashcardsViewStorageKey(), JSON.stringify(normalized));
+    } catch (err) {
+        console.warn("Flashcards: View-State konnte nicht gespeichert werden", err);
+    }
+}
+
+function findStoredCard(cards) {
+    const storedId = state.view?.currentCardId;
+    if (!storedId) return null;
+    return cards.find((card) => card.id === storedId) || null;
+}
+
+function chooseCardForDisplay(cards) {
+    const fallback = selectNextCard(cards);
+    return findStoredCard(cards) || fallback;
+}
 
 function getProgressDocRef() {
     if (!state.db || !state.user || !window.lernbereich) return null;
@@ -251,16 +329,40 @@ function renderCard(card) {
     if (!cardEl || !innerEl || !frontEl || !backEl) return;
 
     state.currentCard = card;
+    state.view.currentCardId = card.id;
     cardEl.classList.remove("is-flipped");
     cardEl.setAttribute("aria-pressed", "false");
     ratingEl?.classList.remove("is-active");
+    saveViewState();
 
-    const displayCard = card.isInteractive
+    const displayCard = (card.isVariantPool || card.isInteractive)
         ? (() => {
             const tasks = card.tasks || [];
             if (!tasks.length) return card;
-            const randomTask = tasks[Math.floor(Math.random() * tasks.length)];
-            if (card.mode === "grouped") {
+            const gespeicherterIndex = state.view.interactiveTaskIndexByCard?.[card.id];
+            const hatGueltigenIndex =
+                Number.isInteger(gespeicherterIndex) &&
+                gespeicherterIndex >= 0 &&
+                gespeicherterIndex < tasks.length;
+            const taskIndex = hatGueltigenIndex
+                ? gespeicherterIndex
+                : Math.floor(Math.random() * tasks.length);
+
+            state.view.interactiveTaskIndexByCard[card.id] = taskIndex;
+            saveViewState();
+
+            const randomTask = tasks[taskIndex];
+            if (card.mode === "single-index") {
+                const frage = randomTask.fragen?.[card.index] ?? "";
+                const antwort = randomTask.antworten?.[card.index] ?? "";
+                return {
+                    einleitung: randomTask.einleitung || "",
+                    fragen: [frage],
+                    antworten: [antwort],
+                };
+            }
+
+            if (card.mode === "grouped" || card.isVariantPool) {
                 return {
                     einleitung: randomTask.einleitung || "",
                     fragen: randomTask.fragen || [],
@@ -453,26 +555,17 @@ function buildCards(entries) {
         const sammlung = entry._sammlung;
         if (!Array.isArray(sammlung)) return;
 
-        if (entry.Typ === "interaktiv") {
-            if (entry.Ankityp === "gruppiert") {
-                cards.push({
-                    id: buildGroupedInteractiveId(entry),
-                    isInteractive: true,
-                    mode: "grouped",
-                    tasks: sammlung,
-                    fragen: [""],
-                    antworten: [""],
-                    einleitung: "",
-                });
-                return;
-            }
+        if (entry.Ankityp === "einzeln") {
+            const teilfragenCount = sammlung.reduce((max, aufgabe) => {
+                const count = Array.isArray(aufgabe?.fragen) ? aufgabe.fragen.length : 0;
+                return Math.max(max, count);
+            }, 0);
 
-            const firstTask = sammlung[0];
-            const count = Array.isArray(firstTask?.fragen) ? firstTask.fragen.length : 0;
-            for (let index = 0; index < count; index += 1) {
+            for (let index = 0; index < teilfragenCount; index += 1) {
                 cards.push({
                     id: buildIndexCardId(entry, index),
-                    isInteractive: true,
+                    isVariantPool: true,
+                    mode: "single-index",
                     index,
                     tasks: sammlung,
                     fragen: [""],
@@ -483,33 +576,14 @@ function buildCards(entries) {
             return;
         }
 
-        if (entry.Ankityp === "gruppiert") {
-            sammlung.forEach((aufgabe, aufgabeIndex) => {
-                if (!aufgabe || !Array.isArray(aufgabe.fragen)) return;
-                cards.push({
-                    id: buildCardId(entry, aufgabeIndex, null),
-                    einleitung: aufgabe.einleitung || "",
-                    fragen: aufgabe.fragen || [],
-                    antworten: aufgabe.antworten || [],
-                });
-            });
-            return;
-        }
-
-        sammlung.forEach((aufgabe, aufgabeIndex) => {
-            if (!aufgabe || !Array.isArray(aufgabe.fragen)) return;
-
-            if (entry.Ankityp === "einzeln") {
-                aufgabe.fragen.forEach((frage, frageIndex) => {
-                    const antwort = aufgabe.antworten?.[frageIndex] || "";
-                    cards.push({
-                        id: buildCardId(entry, aufgabeIndex, frageIndex),
-                        einleitung: aufgabe.einleitung || "",
-                        fragen: [frage],
-                        antworten: [antwort],
-                    });
-                });
-            }
+        cards.push({
+            id: `${entry.Sammlung}::check`,
+            isVariantPool: true,
+            mode: "grouped",
+            tasks: sammlung,
+            fragen: [""],
+            antworten: [""],
+            einleitung: "",
         });
     });
 
@@ -540,6 +614,7 @@ async function loadData() {
         }
 
         state.cards = buildCards(entries);
+        loadViewState();
 
         if (!state.cards.length) {
             updateCounts(0, 0, "Keine Flashcards gefunden.");
@@ -549,7 +624,7 @@ async function loadData() {
         await loadProgress();
         await ensureProgressDoc();
 
-        const next = selectNextCard(state.cards);
+        const next = chooseCardForDisplay(state.cards);
         if (next) {
             renderCard(next);
         }
@@ -583,7 +658,7 @@ async function initAuthBridge() {
         state.user = event.detail?.user || null;
         await ensureProgressDoc();
         await loadProgress();
-        const next = selectNextCard(state.cards);
+        const next = chooseCardForDisplay(state.cards);
         if (next) {
             renderCard(next);
         }

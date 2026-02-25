@@ -12,6 +12,93 @@ let copyFeedbackTimer = null;
 let currentZIndex = 200;
 let graphAutoPreviewFn = null;
 
+const CALCULATOR_CORE_STATE_KEY = 'calculator-core-state-v1';
+const CALCULATOR_PANEL_POSITION_KEY = 'calculator-panel-position-v1';
+
+function saveCalculatorCoreState() {
+    const mainInput = document.getElementById('mainInput');
+    const resultDisplay = document.getElementById('resultDisplay');
+
+    try {
+        localStorage.setItem(
+            CALCULATOR_CORE_STATE_KEY,
+            JSON.stringify({
+                input: mainInput?.value ?? currentInput ?? '',
+                resultText: resultDisplay?.textContent ?? '',
+            })
+        );
+    } catch {
+        // ignore storage issues
+    }
+}
+
+function restoreCalculatorCoreState() {
+    try {
+        const raw = localStorage.getItem(CALCULATOR_CORE_STATE_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        const input = typeof parsed?.input === 'string' ? parsed.input : '';
+        const resultText = typeof parsed?.resultText === 'string' ? parsed.resultText : '';
+
+        const mainInput = document.getElementById('mainInput');
+        const resultDisplay = document.getElementById('resultDisplay');
+
+        if (mainInput) {
+            mainInput.value = input;
+        }
+        currentInput = input;
+
+        if (resultDisplay) {
+            resultDisplay.textContent = resultText || '0';
+        }
+        result = resultText || 0;
+    } catch {
+        // ignore invalid state
+    }
+}
+
+function saveCalculatorPanelPosition() {
+    const calculator = document.querySelector('.calculator');
+    if (!calculator) return;
+
+    const left = parseFloat(calculator.style.left || '');
+    const top = parseFloat(calculator.style.top || '');
+    if (!Number.isFinite(left) || !Number.isFinite(top)) return;
+
+    try {
+        localStorage.setItem(
+            CALCULATOR_PANEL_POSITION_KEY,
+            JSON.stringify({ left, top })
+        );
+    } catch {
+        // ignore storage issues
+    }
+}
+
+function restoreCalculatorPanelPosition() {
+    const calculator = document.querySelector('.calculator');
+    if (!calculator) return;
+
+    try {
+        const raw = localStorage.getItem(CALCULATOR_PANEL_POSITION_KEY);
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        const left = Number(parsed?.left);
+        const top = Number(parsed?.top);
+        if (!Number.isFinite(left) || !Number.isFinite(top)) return;
+
+        calculator.style.position = 'fixed';
+        calculator.style.left = `${left}px`;
+        calculator.style.top = `${top}px`;
+        calculator.style.right = 'auto';
+        calculator.style.bottom = 'auto';
+        calculator.style.transform = 'none';
+        calculator.style.margin = '0';
+    } catch {
+        // ignore invalid state
+    }
+}
+
 const isTouchDevice = (() => {
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return true;
     return navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
@@ -45,6 +132,8 @@ function updateDisplay() {
             resultDisplay.classList.add('updated');
             shouldAnimateResult = false;
         }
+
+        saveCalculatorCoreState();
     }
 }
 
@@ -1499,6 +1588,7 @@ function setupCalculatorDrag() {
         display.style.cursor = 'move';
         calculator.classList.remove('dragging');
         dragState = null;
+        saveCalculatorPanelPosition();
     });
 
     display.addEventListener('pointercancel', (e) => {
@@ -1515,6 +1605,7 @@ function setupCalculatorDrag() {
         display.style.cursor = 'move';
         calculator.classList.remove('dragging');
         dragState = null;
+        saveCalculatorPanelPosition();
     });
 
     // Bring calculator to front when clicked anywhere
@@ -1582,6 +1673,9 @@ function setupPopupDrag() {
             }
 
             popup.classList.remove('dragging');
+            if (typeof savePopupPosition === 'function') {
+                savePopupPosition(popupId);
+            }
             dragState = null;
         });
 
@@ -1597,6 +1691,9 @@ function setupPopupDrag() {
             }
 
             popup.classList.remove('dragging');
+            if (typeof savePopupPosition === 'function') {
+                savePopupPosition(popupId);
+            }
             dragState = null;
         });
     });
@@ -1635,11 +1732,13 @@ function initCalculator() {
     }
 
     initLGS();
-    updateDisplay();
     applyTouchInputLock();
     bindBinomControls();
     setupCalculatorDrag();
     setupPopupDrag();
+    restoreCalculatorPanelPosition();
+    restoreCalculatorCoreState();
+    updateDisplay();
 
     const mainInput = document.getElementById('mainInput');
     if (mainInput) {
@@ -1735,7 +1834,15 @@ function initCalculator() {
             }
         });
         activeInputField = mainInput;
+
+        mainInput.addEventListener('input', () => {
+            currentInput = mainInput.value || '';
+            saveCalculatorCoreState();
+        });
     }
+
+    window.addEventListener('beforeunload', saveCalculatorCoreState);
+    window.addEventListener('pagehide', saveCalculatorCoreState);
 }
 
 // Initialize when DOM is ready
