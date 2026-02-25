@@ -3,11 +3,284 @@ let questionId = 1; // Eindeutige Frage-ID für jede Aufgabe
 
 let aktuelleEinträge = []; // global
 let aktuellerLernbereich = ""; // global
+let persistenzPausiert = false;
+
+const AUFGABEN_STATE_PREFIX = "aufgaben-zustand-v1";
+const AUFGABEN_STATE_VERSION = 2;
+
+function erzeugeLeerenAufgabenState() {
+  return {
+    version: AUFGABEN_STATE_VERSION,
+    tasks: {},
+  };
+}
+
+function migriereTaskState(taskState) {
+  const migriert = {
+    selectedTaskIndex:
+      Number.isInteger(taskState?.selectedTaskIndex)
+        ? taskState.selectedTaskIndex
+        : null,
+    shuffleOrder: Array.isArray(taskState?.shuffleOrder)
+      ? taskState.shuffleOrder
+      : null,
+    feedbackByKey: {},
+    solutionsVisible: Boolean(taskState?.solutionsVisible),
+  };
+
+  if (taskState?.feedbackByKey && typeof taskState.feedbackByKey === "object") {
+    migriert.feedbackByKey = { ...taskState.feedbackByKey };
+  }
+
+  if (
+    Object.keys(migriert.feedbackByKey).length === 0 &&
+    Array.isArray(taskState?.responses)
+  ) {
+    taskState.responses.forEach((response) => {
+      if (!response?.key) return;
+      migriert.feedbackByKey[response.key] = {
+        value: response.value ?? "",
+        feedbackHtml: response.feedbackHtml ?? "",
+        feedbackColor: response.feedbackColor ?? "",
+        feedbackOpacity: response.feedbackOpacity ?? "",
+      };
+    });
+  }
+
+  return migriert;
+}
+
+function migriereAufgabenState(state) {
+  const basis =
+    state && typeof state === "object" ? state : erzeugeLeerenAufgabenState();
+
+  const tasksQuelle =
+    basis.tasks && typeof basis.tasks === "object" ? basis.tasks : {};
+
+  const tasks = {};
+  Object.entries(tasksQuelle).forEach(([index, taskState]) => {
+    tasks[index] = migriereTaskState(taskState);
+  });
+
+  return {
+    version: AUFGABEN_STATE_VERSION,
+    tasks,
+  };
+}
+
+function istUebungenSeite() {
+  const pfad = window.location.pathname.toLowerCase();
+  return (
+    pfad.includes("/uebungen") ||
+    pfad.includes("/übungen") ||
+    pfad.includes("uebungen.html") ||
+    pfad.includes("übungen.html")
+  );
+}
+
+function istSkriptSeite() {
+  const pfad = window.location.pathname.toLowerCase();
+  return pfad.includes("/skript") || pfad.includes("skript.html");
+}
+
+function holeStorageKey() {
+  const lernbereich = aktuellerLernbereich || window.lernbereich || "default";
+  return `${AUFGABEN_STATE_PREFIX}:${lernbereich}`;
+}
+
+function ladeAufgabenState() {
+  try {
+    const storageKey = holeStorageKey();
+    const raw = localStorage.getItem(storageKey);
+    if (!raw) return erzeugeLeerenAufgabenState();
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") {
+      return erzeugeLeerenAufgabenState();
+    }
+
+    const migriert = migriereAufgabenState(parsed);
+    if (
+      parsed.version !== AUFGABEN_STATE_VERSION ||
+      JSON.stringify(parsed) !== JSON.stringify(migriert)
+    ) {
+      localStorage.setItem(storageKey, JSON.stringify(migriert));
+    }
+
+    return migriert;
+  } catch (error) {
+    console.warn("Aufgaben-Zustand konnte nicht gelesen werden:", error);
+    return erzeugeLeerenAufgabenState();
+  }
+}
+
+function speichereAufgabenState(state) {
+  try {
+    localStorage.setItem(holeStorageKey(), JSON.stringify(state));
+  } catch (error) {
+    console.warn("Aufgaben-Zustand konnte nicht gespeichert werden:", error);
+  }
+}
+
+function holeTaskState(index) {
+  const state = ladeAufgabenState();
+  return state.tasks?.[index] || null;
+}
+
+function aktualisiereTaskState(index, updater) {
+  const state = ladeAufgabenState();
+  if (!state.tasks[index]) {
+    state.tasks[index] = {};
+  }
+  updater(state.tasks[index]);
+  speichereAufgabenState(state);
+}
+
+function parseTaskIndex(aufgabeDiv) {
+  if (!aufgabeDiv?.id) return null;
+  const id = aufgabeDiv.id;
+  if (!id.startsWith("aufgabe-")) return null;
+  const index = parseInt(id.split("-").pop(), 10) - 1;
+  return Number.isNaN(index) ? null : index;
+}
+
+function setzeAufgabenIndexZurueck(index) {
+  aktualisiereTaskState(index, (taskState) => {
+    taskState.selectedTaskIndex = null;
+    taskState.shuffleOrder = null;
+    taskState.feedbackByKey = {};
+    taskState.solutionsVisible = false;
+  });
+}
+
+function holeControlKey(control) {
+  const li = control.closest("li");
+  const frageKey = li?.dataset?.frageKey || "";
+  const controlsInLi = li
+    ? Array.from(li.querySelectorAll('input[id^="answer"], select.mch'))
+    : [];
+  const indexInLi = controlsInLi.indexOf(control);
+  const typ = control.tagName === "SELECT" ? "select" : "input";
+  return `${frageKey}||${typ}||${indexInLi}`;
+}
+
+function holeFeedbackElementZuControl(control) {
+  if (!control) return null;
+  const questionId = control.id.replace("answer", "");
+  const aufgabeDiv = control.closest(".aufgabe");
+  if (!aufgabeDiv) return null;
+  return aufgabeDiv.querySelector(`[id="feedback${questionId}"]`);
+}
+
+function speichereGerendertenTaskZustand(aufgabeDiv) {
+  if (persistenzPausiert) return;
+
+  const index = parseTaskIndex(aufgabeDiv);
+  if (index === null) return;
+
+  const controls = Array.from(
+    aufgabeDiv.querySelectorAll('input[id^="answer"], select.mch')
+  );
+
+  const eyeIcon = aufgabeDiv.querySelector(".symbolleiste .eye-icon");
+  const solutionsVisible = !!eyeIcon?.classList.contains("fa-eye-slash");
+
+  const feedbackByKey = {};
+  controls.forEach((control) => {
+    const feedback = holeFeedbackElementZuControl(control);
+    const key = holeControlKey(control);
+    if (key) {
+      feedbackByKey[key] = {
+        value: control.value ?? "",
+        feedbackHtml: feedback ? feedback.innerHTML : "",
+        feedbackColor: feedback ? feedback.style.color || "" : "",
+        feedbackOpacity: feedback ? feedback.style.opacity || "" : "",
+      };
+    }
+  });
+
+  aktualisiereTaskState(index, (taskState) => {
+    taskState.feedbackByKey = feedbackByKey;
+    taskState.solutionsVisible = solutionsVisible;
+  });
+}
+
+function stelleGerendertenTaskZustandWiederHer(aufgabeDiv, index) {
+  const taskState = holeTaskState(index);
+  if (!taskState) return;
+
+  const controls = Array.from(
+    aufgabeDiv.querySelectorAll('input[id^="answer"], select.mch')
+  );
+
+  const gespeichertesFeedbackByKey = taskState.feedbackByKey || {};
+
+  controls.forEach((control) => {
+    const key = holeControlKey(control);
+    const response = gespeichertesFeedbackByKey[key];
+    if (!response) return;
+
+    if (response.value !== undefined) {
+      control.value = response.value;
+      if (control.tagName === "SELECT") {
+        $(control).val(response.value).trigger("change");
+      }
+    }
+
+    const feedback = holeFeedbackElementZuControl(control);
+    if (feedback) {
+      feedback.innerHTML = response.feedbackHtml || "";
+      feedback.style.color = response.feedbackColor || "";
+      feedback.style.opacity = response.feedbackOpacity || "";
+      if (feedback.innerHTML && typeof MathJax !== "undefined") {
+        MathJax.typesetPromise([feedback]);
+      }
+    }
+  });
+
+  if (taskState.solutionsVisible) {
+    const eyeIcon = aufgabeDiv.querySelector(".symbolleiste .eye-icon");
+    if (eyeIcon && !eyeIcon.classList.contains("fa-eye-slash")) {
+      toggleAllAnswers(eyeIcon);
+    }
+  }
+}
+
+function initialisiereAufgabenStateSync() {
+  document.addEventListener("input", (event) => {
+    const target = event.target;
+    if (!target.matches('input[id^="answer"]')) return;
+    const aufgabeDiv = target.closest(".aufgabe");
+    if (!aufgabeDiv) return;
+    speichereGerendertenTaskZustand(aufgabeDiv);
+  });
+
+  document.addEventListener("change", (event) => {
+    const target = event.target;
+    if (!target.matches("select.mch")) return;
+    const aufgabeDiv = target.closest(".aufgabe");
+    if (!aufgabeDiv) return;
+    speichereGerendertenTaskZustand(aufgabeDiv);
+  });
+
+  document.addEventListener("click", (event) => {
+    const trigger = event.target.closest(
+      ".check-icon, .eye-icon, .check-all-icon"
+    );
+    if (!trigger) return;
+    const aufgabeDiv = trigger.closest(".aufgabe");
+    if (!aufgabeDiv) return;
+
+    setTimeout(() => {
+      speichereGerendertenTaskZustand(aufgabeDiv);
+    }, 0);
+  });
+}
+
+initialisiereAufgabenStateSync();
 
 async function ladeAufgabenFürLernbereich(lernbereich) {
   try {
-    const pfad = window.location.pathname.toLowerCase();
-    if (!pfad.includes("uebungen.html")) {
+    if (!istUebungenSeite() && !istSkriptSeite()) {
       return;
     }
 
@@ -32,12 +305,33 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
   const bestehend = document.getElementById(aufgabeDiv.id);
   if (bestehend) {
     bestehend.replaceWith(aufgabeDiv);
-  } else {
-    document.querySelector("main").appendChild(aufgabeDiv);
+    return;
   }
+
+  if (istSkriptSeite()) {
+    const index = parseTaskIndex(aufgabeDiv);
+    if (index === null) return;
+
+    const infoBlock = document.getElementById(`check-${index + 1}`);
+    if (infoBlock) {
+      infoBlock.insertAdjacentElement("afterend", aufgabeDiv);
+      return;
+    }
+
+    const alleInfoBloecke = document.querySelectorAll('div.info[id^="check-"]');
+    if (alleInfoBloecke[index]) {
+      alleInfoBloecke[index].insertAdjacentElement("afterend", aufgabeDiv);
+      return;
+    }
+
+    document.querySelector("main").appendChild(aufgabeDiv);
+    return;
+  }
+
+  document.querySelector("main").appendChild(aufgabeDiv);
 }
 
-async function erstelleAufgabe(eintrag, index = 0) {
+async function erstelleAufgabe(eintrag, index = 0, options = {}) {
   const aufgabeDiv = document.createElement("div");
   aufgabeDiv.classList.add("aufgabe");
   aufgabeDiv.id = `aufgabe-${index + 1}`;
@@ -59,6 +353,12 @@ async function erstelleAufgabe(eintrag, index = 0) {
 
   const symbolContainer = document.createElement("div");
   symbolContainer.classList.add("symbolleiste");
+  const istSkript = istSkriptSeite();
+  const sprungIconClass = istSkript ? "fa-pen-to-square" : "fa-scroll";
+  const sprungTitle = istSkript
+    ? "Zum passenden Training"
+    : "Skriptabschnitt anzeigen";
+  const sprungOnclick = istSkript ? "zeigeTraining(this)" : "zeigeSkript(this)";
   symbolContainer.innerHTML = `<i
             class="fas fa-eye icon eye-icon"
             title="Lösungen anzeigen"
@@ -85,9 +385,9 @@ async function erstelleAufgabe(eintrag, index = 0) {
             onclick="kopiereAufgabeAlsBild(this)"
           ></i>
           <i
-            class="fa fa-scroll icon skript-icon"
-            title="Skriptabschnitt anzeigen"
-            onclick="zeigeSkript(this)"
+            class="fa ${sprungIconClass} icon skript-icon"
+            title="${sprungTitle}"
+            onclick="${sprungOnclick}"
           ></i>`;
   einleitung.appendChild(symbolContainer);
 
@@ -105,9 +405,34 @@ async function erstelleAufgabe(eintrag, index = 0) {
   */
 
   try {
+    persistenzPausiert = true;
+
     const responseSammlung = await fetch(`/json/${eintrag["Sammlung"]}.json`);
     const sammlung = await responseSammlung.json();
-    const zufall = Math.floor(Math.random() * sammlung.length);
+
+    let zufall;
+    const gespeicherterState = holeTaskState(index);
+    const gespeicherterIndex = gespeicherterState?.selectedTaskIndex;
+    const hatGueltigenGespeichertenIndex =
+      Number.isInteger(gespeicherterIndex) &&
+      gespeicherterIndex >= 0 &&
+      gespeicherterIndex < sammlung.length;
+
+    if (!options.erzwingeNeu && hatGueltigenGespeichertenIndex) {
+      zufall = gespeicherterIndex;
+    } else {
+      zufall = Math.floor(Math.random() * sammlung.length);
+    }
+
+    aktualisiereTaskState(index, (taskState) => {
+      taskState.selectedTaskIndex = zufall;
+      if (options.erzwingeNeu) {
+        taskState.shuffleOrder = null;
+        taskState.solutionsVisible = false;
+        taskState.feedbackByKey = {};
+      }
+    });
+
     const aufgabe = sammlung[zufall];
 
     einleitung.innerHTML += `<p>${aufgabe.einleitung}</p>`;
@@ -122,16 +447,38 @@ async function erstelleAufgabe(eintrag, index = 0) {
     let frageAntwortPaare = aufgabe.fragen.map((frage, i) => ({
       frage: frage,
       antwort: aufgabe.antworten[i],
+      originalIndex: i,
     }));
 
     // Paare mischen, falls Anktityp = einzeln
     if (eintrag["Ankityp"] === "einzeln") {
-      shuffleArray(frageAntwortPaare);
+      const gespeicherteReihenfolge = gespeicherterState?.shuffleOrder;
+      const istGueltigeReihenfolge =
+        Array.isArray(gespeicherteReihenfolge) &&
+        gespeicherteReihenfolge.length === frageAntwortPaare.length &&
+        new Set(gespeicherteReihenfolge).size === frageAntwortPaare.length;
+
+      if (istGueltigeReihenfolge) {
+        const indexMap = new Map(
+          frageAntwortPaare.map((paar) => [paar.originalIndex, paar])
+        );
+        frageAntwortPaare = gespeicherteReihenfolge
+          .map((originalIndex) => indexMap.get(originalIndex))
+          .filter(Boolean);
+      } else {
+        shuffleArray(frageAntwortPaare);
+        aktualisiereTaskState(index, (taskState) => {
+          taskState.shuffleOrder = frageAntwortPaare.map(
+            (paar) => paar.originalIndex
+          );
+        });
+      }
     }
 
     // Liste dynamisch erstellen
     frageAntwortPaare.forEach((paar) => {
       const li = document.createElement("li");
+      li.dataset.frageKey = String(paar.originalIndex);
       li.innerHTML = `<span class="frage">${paar.frage}</span><br><span class="antwort-interaktiv">${paar.antwort}</span>`;
       ol.appendChild(li);
     });
@@ -150,8 +497,14 @@ async function erstelleAufgabe(eintrag, index = 0) {
       adjustSelect2Width(`#${aufgabeDiv.id} select.mch`);
     }
 
+    stelleGerendertenTaskZustandWiederHer(aufgabeDiv, index);
+
+    persistenzPausiert = false;
+
     return aufgabeDiv;
   } catch (err) {
+    persistenzPausiert = false;
+
     einleitung.innerHTML += `<p style="color:red;">Fehler beim Laden der Aufgabe.</p>`;
     aufgabeDiv.appendChild(einleitung);
     console.error(

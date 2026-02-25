@@ -1,3 +1,35 @@
+function speichereFeedbackFuerFrage(questionId) {
+  if (typeof aktualisiereTaskState !== "function") return;
+  if (typeof parseTaskIndex !== "function") return;
+  if (typeof holeControlKey !== "function") return;
+
+  const control = document.getElementById(`answer${questionId}`);
+  if (!control) return;
+
+  const aufgabeDiv = control.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+
+  const taskIndex = parseTaskIndex(aufgabeDiv);
+  if (taskIndex === null) return;
+
+  const feedback = document.getElementById(`feedback${questionId}`);
+  const lokalesFeedback =
+    aufgabeDiv.querySelector(`[id="feedback${questionId}"]`) || feedback;
+  const key = holeControlKey(control);
+
+  aktualisiereTaskState(taskIndex, (taskState) => {
+    if (!taskState.feedbackByKey || typeof taskState.feedbackByKey !== "object") {
+      taskState.feedbackByKey = {};
+    }
+    taskState.feedbackByKey[key] = {
+      value: control.value ?? "",
+      feedbackHtml: lokalesFeedback ? lokalesFeedback.innerHTML : "",
+      feedbackColor: lokalesFeedback ? lokalesFeedback.style.color || "" : "",
+      feedbackOpacity: lokalesFeedback ? lokalesFeedback.style.opacity || "" : "",
+    };
+  });
+}
+
 // alle richtigen Antworten anzeigen
 function showAllAnswers(iconElement) {
   // Finde das umgebende Aufgaben-DIV
@@ -17,7 +49,9 @@ function showAllAnswers(iconElement) {
     .forEach((input) => {
       const questionId = input.id.replace("answer", "");
       const correctAnswer = input.getAttribute("data-correct-answer");
-      const feedbackElement = document.getElementById(`feedback${questionId}`);
+      const feedbackElement =
+        aufgabenDiv.querySelector(`[id="feedback${questionId}"]`) ||
+        document.getElementById(`feedback${questionId}`);
       if (feedbackElement) {
         feedbackElement.innerHTML = correctAnswer;
         feedbackElement.style.color = "blue";
@@ -30,7 +64,10 @@ function showAllAnswers(iconElement) {
   aufgabenDiv.querySelectorAll("select.mch").forEach((select) => {
     const questionId = select.id.replace("answer", "");
     const correctAnswer = select.getAttribute("data-correct-answer");
-    const feedbackElement = document.getElementById(`feedback${questionId}`);
+    const feedbackElement =
+      aufgabenDiv.querySelector(`[id="feedback${questionId}"]`) ||
+      document.getElementById(`feedback${questionId}`);
+    if (!feedbackElement) return;
     feedbackElement.innerHTML = correctAnswer;
     feedbackElement.style.color = "blue";
     feedbackElement.style.opacity = 1;
@@ -65,7 +102,10 @@ function hideAllAnswers(iconElement) {
   // Input Elemente
   aufgabenDiv.querySelectorAll('input[type="text"]').forEach((input) => {
     const questionId = input.id.replace("answer", "");
-    const feedbackElement = document.getElementById(`feedback${questionId}`);
+    const feedbackElement =
+      aufgabenDiv.querySelector(`[id="feedback${questionId}"]`) ||
+      document.getElementById(`feedback${questionId}`);
+    if (!feedbackElement) return;
     feedbackElement.innerHTML = "";
     input.style.display = "inline";
   });
@@ -73,7 +113,10 @@ function hideAllAnswers(iconElement) {
   // select2-Elemente
   aufgabenDiv.querySelectorAll("select.mch").forEach((select) => {
     const questionId = select.id.replace("answer", "");
-    const feedbackElement = document.getElementById(`feedback${questionId}`);
+    const feedbackElement =
+      aufgabenDiv.querySelector(`[id="feedback${questionId}"]`) ||
+      document.getElementById(`feedback${questionId}`);
+    if (!feedbackElement) return;
     feedbackElement.innerHTML = "";
     $(select).select2("destroy");
 
@@ -129,7 +172,13 @@ async function reloadSingleTask(iconElement) {
   const eintrag = aktuelleEinträge[index];
   if (!eintrag) return;
 
-  const neueAufgabe = await erstelleAufgabe(eintrag, index);
+  if (typeof setzeAufgabenIndexZurueck === "function") {
+    setzeAufgabenIndexZurueck(index);
+  }
+
+  const neueAufgabe = await erstelleAufgabe(eintrag, index, {
+    erzwingeNeu: true,
+  });
   zeigeOderErsetzeAufgabe(neueAufgabe);
 }
 
@@ -147,6 +196,23 @@ function zeigeSkript(iconElement) {
     scrollZuHash(zielHash);
   } else {
     window.location.href = `skript.html${zielHash}`;
+  }
+}
+
+// zum passenden Check im Training springen
+function zeigeTraining(iconElement) {
+  const aufgabeDiv = iconElement.closest(".aufgabe");
+  if (!aufgabeDiv) return;
+
+  const id = aufgabeDiv.id;
+  const index = parseInt(id.split("-").pop()) - 1;
+  const zielHash = `#aufgabe-${index + 1}`;
+
+  if (window.location.pathname.includes("uebungen.html")) {
+    history.replaceState(null, "", zielHash);
+    scrollZuHash(zielHash);
+  } else {
+    window.location.href = `uebungen.html${zielHash}`;
   }
 }
 
@@ -196,38 +262,61 @@ function shareWhatsApp(iconElement) {
 }
 
 function checkNumericalAnswer(questionId, correctAnswer, tolerance) {
-  let userAnswerString = document.getElementById(`answer${questionId}`).value;
+  const inputElement = document.getElementById(`answer${questionId}`);
+  let userAnswerString = inputElement.value;
   let sanitizedUserAnswerString = userAnswerString
     .replace(/^=/, "")
     .replace(",", ".")
     .trim();
   const userAnswer = parseFloat(sanitizedUserAnswerString);
   const feedbackElement = document.getElementById(`feedback${questionId}`);
+  const feedbackElementLocal =
+    inputElement
+      ?.closest(".aufgabe")
+      ?.querySelector(`[id="feedback${questionId}"]`) || feedbackElement;
+  if (!feedbackElementLocal) return false;
 
   if (!isNaN(userAnswer)) {
     if (Math.abs(userAnswer - correctAnswer) <= parseFloat(tolerance)) {
-      feedbackElement.innerHTML = userAnswer + " ist richtig!";
+      feedbackElementLocal.innerHTML = userAnswer + " ist richtig!";
       if (userAnswer !== correctAnswer) {
-        feedbackElement.innerHTML +=
+        feedbackElementLocal.innerHTML +=
           " (Die Systemantwort ist " + correctAnswer + ".)";
       }
-      feedbackElement.style.color = "green";
+      feedbackElementLocal.style.color = "green";
+      feedbackElementLocal.style.opacity = 1;
+
+      const aufgabeDiv = inputElement?.closest(".aufgabe");
+      if (
+        aufgabeDiv &&
+        typeof speichereGerendertenTaskZustand === "function"
+      ) {
+        speichereGerendertenTaskZustand(aufgabeDiv);
+      }
+      speichereFeedbackFuerFrage(questionId);
       return true;
     } else {
-      feedbackElement.innerHTML =
+      feedbackElementLocal.innerHTML =
         userAnswer +
         " ist falsch. Die richtige Antwort ist " +
         correctAnswer +
         ".";
-      feedbackElement.style.color = "red";
+      feedbackElementLocal.style.color = "red";
       //document.body.style.backgroundColor = "#fdbdbd";
     }
-    feedbackElement.style.transition = "opacity 0.5s ease-in-out";
-    feedbackElement.style.opacity = 1;
+    feedbackElementLocal.style.transition = "opacity 0.5s ease-in-out";
+    feedbackElementLocal.style.opacity = 1;
   } else {
-    feedbackElement.textContent = "Ungültige Eingabe";
-    feedbackElement.style.color = "orange";
+    feedbackElementLocal.textContent = "Ungültige Eingabe";
+    feedbackElementLocal.style.color = "orange";
+    feedbackElementLocal.style.opacity = 1;
   }
+
+  const aufgabeDiv = inputElement?.closest(".aufgabe");
+  if (aufgabeDiv && typeof speichereGerendertenTaskZustand === "function") {
+    speichereGerendertenTaskZustand(aufgabeDiv);
+  }
+  speichereFeedbackFuerFrage(questionId);
 }
 function checkMultipleChoiceAnswer(questionId) {
   const select = document.getElementById(`answer${questionId}`);
@@ -235,15 +324,40 @@ function checkMultipleChoiceAnswer(questionId) {
   const correctAnswer = select.dataset.correctAnswer;
 
   const feedback = document.getElementById(`feedback${questionId}`);
+  const feedbackLocal =
+    select
+      ?.closest(".aufgabe")
+      ?.querySelector(`[id="feedback${questionId}"]`) || feedback;
+  if (!feedbackLocal) return false;
   if (userAnswer === correctAnswer) {
-    feedback.textContent = "Richtig!";
-    feedback.style.color = "green";
+    feedbackLocal.textContent = "Richtig!";
+    feedbackLocal.style.color = "green";
+    feedbackLocal.style.opacity = 1;
+
+    const aufgabeDiv = select?.closest(".aufgabe");
+    if (
+      aufgabeDiv &&
+      typeof speichereGerendertenTaskZustand === "function"
+    ) {
+      speichereGerendertenTaskZustand(aufgabeDiv);
+    }
+    speichereFeedbackFuerFrage(questionId);
     return true;
   } else {
-    feedback.textContent = "Falsch. Die richtige Antwort ist: " + correctAnswer;
-    feedback.style.color = "red";
+    feedbackLocal.textContent = "Falsch. Die richtige Antwort ist: " + correctAnswer;
+    feedbackLocal.style.color = "red";
+    feedbackLocal.style.opacity = 1;
     //document.body.style.backgroundColor = "#fdbdbd";
-    MathJax.typesetPromise([feedback]);
+    MathJax.typesetPromise([feedbackLocal]);
+
+    const aufgabeDiv = select?.closest(".aufgabe");
+    if (
+      aufgabeDiv &&
+      typeof speichereGerendertenTaskZustand === "function"
+    ) {
+      speichereGerendertenTaskZustand(aufgabeDiv);
+    }
+    speichereFeedbackFuerFrage(questionId);
   }
 }
 
@@ -288,6 +402,10 @@ function checkAllQuestions(iconElement) {
     }
   } else {
     alert("Es wurden keine Fragen gefunden.");
+  }
+
+  if (typeof speichereGerendertenTaskZustand === "function") {
+    speichereGerendertenTaskZustand(aufgabenDiv);
   }
 }
 
