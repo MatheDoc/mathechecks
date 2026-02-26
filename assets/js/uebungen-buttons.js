@@ -195,7 +195,8 @@ function zeigeSkript(iconElement) {
     history.replaceState(null, "", zielHash);
     scrollZuHash(zielHash);
   } else {
-    window.location.href = `skript.html${zielHash}`;
+    try { sessionStorage.setItem("pending-scroll-target-v1", zielHash); } catch { }
+    window.location.href = "skript.html";
   }
 }
 

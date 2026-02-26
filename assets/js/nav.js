@@ -47,6 +47,10 @@ function toggleCalculatorOverlay(forceOpen) {
 
   // Focus main input when opening
   if (shouldOpen) {
+    if (typeof window.restoreCalculatorPopupState === "function") {
+      window.restoreCalculatorPopupState();
+    }
+
     setTimeout(() => {
       const mainInput = document.getElementById('mainInput');
       if (mainInput) {

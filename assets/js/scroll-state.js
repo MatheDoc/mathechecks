@@ -68,6 +68,7 @@
     function restoreScrollPosition() {
         if (hasRestored) return;
         if (window.location.hash) return;
+        try { if (sessionStorage.getItem("pending-scroll-target-v1")) return; } catch { }
 
         const y = loadStoredY();
         if (y === null) return;

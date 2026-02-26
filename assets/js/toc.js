@@ -46,9 +46,15 @@ async function ladeUndScrolle(lernbereich) {
 
   scrollSpy();
 
-  // 1. Bei initialem Seitenaufruf mit #hash
-  const hash = window.location.hash;
+  // 1. Bei initialem Seitenaufruf: pending Cross-Page-Ziel hat Vorrang vor URL-Hash
+  let pendingHash = null;
+  try {
+    pendingHash = sessionStorage.getItem("pending-scroll-target-v1");
+    if (pendingHash) sessionStorage.removeItem("pending-scroll-target-v1");
+  } catch { }
+  const hash = pendingHash || window.location.hash;
   if (hash) {
+    if (pendingHash) history.replaceState(null, "", pendingHash);
     scrollZuHash(hash);
   }
 

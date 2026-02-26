@@ -1,6 +1,7 @@
 // Calculator popup module
 
 const CALCULATOR_ACTIVE_POPUP_KEY = "calculator-active-popup-v1";
+const CALCULATOR_OPEN_POPUPS_KEY = "calculator-open-popups-v1";
 const CALCULATOR_POPUP_POSITIONS_KEY = "calculator-popup-positions-v1";
 const KNOWN_CALCULATOR_POPUPS = new Set([
     "lgsPopup",
@@ -33,21 +34,73 @@ function loadActiveCalculatorPopup() {
     }
 }
 
+function loadOpenCalculatorPopups() {
+    try {
+        const raw = localStorage.getItem(CALCULATOR_OPEN_POPUPS_KEY);
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) return [];
+
+        const valid = parsed.filter((popupId) => typeof popupId === "string" && KNOWN_CALCULATOR_POPUPS.has(popupId));
+        return [...new Set(valid)];
+    } catch {
+        return [];
+    }
+}
+
+function saveOpenCalculatorPopups(popupIds) {
+    try {
+        const valid = popupIds.filter((popupId) => KNOWN_CALCULATOR_POPUPS.has(popupId));
+        if (!valid.length) {
+            localStorage.removeItem(CALCULATOR_OPEN_POPUPS_KEY);
+            return;
+        }
+        localStorage.setItem(CALCULATOR_OPEN_POPUPS_KEY, JSON.stringify([...new Set(valid)]));
+    } catch {
+        // ignore storage issues
+    }
+}
+
+function setPopupOpenState(popupId, isOpen) {
+    const current = loadOpenCalculatorPopups();
+    const next = new Set(current);
+
+    if (isOpen) {
+        next.add(popupId);
+    } else {
+        next.delete(popupId);
+    }
+
+    saveOpenCalculatorPopups([...next]);
+}
+
 function restoreCalculatorPopupState() {
     const overlay = document.getElementById("calculator-overlay");
     if (!overlay || !overlay.classList.contains("open")) return;
 
-    const popupId = loadActiveCalculatorPopup();
-    if (!popupId) return;
+    const popupIds = loadOpenCalculatorPopups();
+    if (popupIds.length) {
+        popupIds.forEach((popupId) => {
+            const popup = document.getElementById(popupId);
+            if (!popup) return;
+            openPopup(popupId);
+        });
+        return;
+    }
 
-    const popup = document.getElementById(popupId);
-    if (!popup) {
+    const fallbackPopupId = loadActiveCalculatorPopup();
+    if (!fallbackPopupId) return;
+
+    const fallbackPopup = document.getElementById(fallbackPopupId);
+    if (!fallbackPopup) {
         saveActiveCalculatorPopup(null);
         return;
     }
 
-    openPopup(popupId);
+    openPopup(fallbackPopupId);
 }
+
+window.restoreCalculatorPopupState = restoreCalculatorPopupState;
 
 function loadPopupPositions() {
     try {
@@ -104,6 +157,7 @@ window.savePopupPosition = savePopupPosition;
 
 window.clearStoredCalculatorPopupState = function clearStoredCalculatorPopupState() {
     saveActiveCalculatorPopup(null);
+    saveOpenCalculatorPopups([]);
 };
 
 function openPopup(popupId) {
@@ -116,6 +170,8 @@ function openPopup(popupId) {
         centerPopup(popupId);
     }
     saveActiveCalculatorPopup(popupId);
+    setPopupOpenState(popupId, true);
+    document.dispatchEvent(new CustomEvent('calculator:popup-opened', { detail: { popupId } }));
 }
 
 function closePopup(popupId) {
@@ -126,6 +182,8 @@ function closePopup(popupId) {
     if (activePopup === popupId) {
         saveActiveCalculatorPopup(null);
     }
+    setPopupOpenState(popupId, false);
+    document.dispatchEvent(new CustomEvent('calculator:popup-closed', { detail: { popupId } }));
 }
 
 function returnFocusToMain() {

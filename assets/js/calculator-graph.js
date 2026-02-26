@@ -20,59 +20,66 @@ function openGraphPopup() {
 
     // Automatische Vorschau initialisieren
     setupGraphAutoPreview();
-    // Automatische Vorschau für Graph-Popup
-    function setupGraphAutoPreview() {
-        const funcInput = document.getElementById('graphFunction');
-        const xMinInput = document.getElementById('graphXMin');
-        const xMaxInput = document.getElementById('graphXMax');
-        const yMinInput = document.getElementById('graphYMin');
-        const yMaxInput = document.getElementById('graphYMax');
-        if (!funcInput || !xMinInput || !xMaxInput || !yMinInput || !yMaxInput) return;
-
-        let lastValue = '';
-        let debounceTimer = null;
-
-        function tryPreview() {
-            const funcVal = funcInput.value.trim();
-            const xMinVal = xMinInput.value.trim();
-            const xMaxVal = xMaxInput.value.trim();
-            const yMinVal = yMinInput.value.trim();
-            const yMaxVal = yMaxInput.value.trim();
-            const current = funcVal + '|' + xMinVal + '|' + xMaxVal + '|' + yMinVal + '|' + yMaxVal;
-            if (current === lastValue) return;
-            lastValue = current;
-
-            // Nur Vorschau, wenn Funktionsfeld nicht leer und mindestens ein x-Zeichen enthalten ist
-            if (!funcVal || !/[a-zA-Z0-9]/.test(funcVal)) {
-                const preview = document.getElementById('graphPreview');
-                if (preview) {
-                    preview.style.display = 'none';
-                    preview.innerHTML = '';
-                }
-                const pointsInfo = document.getElementById('graphPointsInfo');
-                if (pointsInfo) pointsInfo.style.display = 'none';
-                return;
-            }
-            previewGraph();
-        }
-
-        function debouncedPreview() {
-            if (debounceTimer) clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(tryPreview, 250);
-        }
-
-        [funcInput, xMinInput, xMaxInput, yMinInput, yMaxInput].forEach(input => {
-            input.removeEventListener('input', debouncedPreview);
-            input.addEventListener('input', debouncedPreview);
-        });
-
-        // Store reference globally so we can trigger it programmatically
-        graphAutoPreviewFn = debouncedPreview;
-
-        // Initial preview
-        debouncedPreview();
-    }
 }
+
+function setupGraphAutoPreview() {
+    const funcInput = document.getElementById('graphFunction');
+    const xMinInput = document.getElementById('graphXMin');
+    const xMaxInput = document.getElementById('graphXMax');
+    const yMinInput = document.getElementById('graphYMin');
+    const yMaxInput = document.getElementById('graphYMax');
+    if (!funcInput || !xMinInput || !xMaxInput || !yMinInput || !yMaxInput) return;
+
+    let lastValue = '';
+    let debounceTimer = null;
+
+    function tryPreview() {
+        const funcVal = funcInput.value.trim();
+        const xMinVal = xMinInput.value.trim();
+        const xMaxVal = xMaxInput.value.trim();
+        const yMinVal = yMinInput.value.trim();
+        const yMaxVal = yMaxInput.value.trim();
+        const current = funcVal + '|' + xMinVal + '|' + xMaxVal + '|' + yMinVal + '|' + yMaxVal;
+        if (current === lastValue) return;
+        lastValue = current;
+
+        // Nur Vorschau, wenn Funktionsfeld nicht leer und mindestens ein x-Zeichen enthalten ist
+        if (!funcVal || !/[a-zA-Z0-9]/.test(funcVal)) {
+            const preview = document.getElementById('graphPreview');
+            if (preview) {
+                preview.style.display = 'none';
+                preview.innerHTML = '';
+            }
+            const pointsInfo = document.getElementById('graphPointsInfo');
+            if (pointsInfo) pointsInfo.style.display = 'none';
+            return;
+        }
+        previewGraph();
+    }
+
+    function debouncedPreview() {
+        if (debounceTimer) clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(tryPreview, 250);
+    }
+
+    [funcInput, xMinInput, xMaxInput, yMinInput, yMaxInput].forEach(input => {
+        input.removeEventListener('input', debouncedPreview);
+        input.addEventListener('input', debouncedPreview);
+    });
+
+    // Store reference globally so we can trigger it programmatically
+    graphAutoPreviewFn = debouncedPreview;
+
+    // Initial preview
+    debouncedPreview();
+}
+
+document.addEventListener('calculator:popup-opened', (event) => {
+    if (event.detail?.popupId !== 'graphPopup') return;
+    queueMicrotask(() => {
+        setupGraphAutoPreview();
+    });
+});
 
 function closeGraphPopup() {
     closePopup('graphPopup');

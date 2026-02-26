@@ -14,6 +14,8 @@ let graphAutoPreviewFn = null;
 
 const CALCULATOR_CORE_STATE_KEY = 'calculator-core-state-v1';
 const CALCULATOR_PANEL_POSITION_KEY = 'calculator-panel-position-v1';
+const CALCULATOR_POPUP_INPUT_STATE_KEY = 'calculator-popup-input-state-v1';
+let isRestoringCalculatorPopupInputState = false;
 
 function saveCalculatorCoreState() {
     const mainInput = document.getElementById('mainInput');
@@ -96,6 +98,75 @@ function restoreCalculatorPanelPosition() {
         calculator.style.margin = '0';
     } catch {
         // ignore invalid state
+    }
+}
+
+function saveCalculatorPopupInputState() {
+    if (isRestoringCalculatorPopupInputState) return;
+
+    const overlay = document.getElementById('calculator-overlay');
+    if (!overlay) return;
+
+    try {
+        const fields = {};
+        overlay.querySelectorAll('.popup input[id], .popup textarea[id], .popup select[id]').forEach((inputEl) => {
+            fields[inputEl.id] = inputEl.value;
+        });
+
+        localStorage.setItem(
+            CALCULATOR_POPUP_INPUT_STATE_KEY,
+            JSON.stringify({
+                lgsVariables,
+                lgsEquations,
+                fields,
+            })
+        );
+    } catch {
+        // ignore storage issues
+    }
+}
+
+function restoreCalculatorPopupInputState() {
+    try {
+        const raw = localStorage.getItem(CALCULATOR_POPUP_INPUT_STATE_KEY);
+        if (!raw) return;
+
+        const parsed = JSON.parse(raw);
+        if (!parsed || typeof parsed !== 'object') return;
+
+        isRestoringCalculatorPopupInputState = true;
+
+        const restoredVariables = Number(parsed.lgsVariables);
+        const restoredEquations = Number(parsed.lgsEquations);
+        if (Number.isFinite(restoredVariables) && restoredVariables >= 1 && restoredVariables <= 5) {
+            lgsVariables = restoredVariables;
+        }
+        if (Number.isFinite(restoredEquations) && restoredEquations >= 1 && restoredEquations <= 5) {
+            lgsEquations = restoredEquations;
+        }
+
+        renderLGS();
+
+        const fields = parsed.fields;
+        if (fields && typeof fields === 'object') {
+            Object.entries(fields).forEach(([id, value]) => {
+                const inputEl = document.getElementById(id);
+                if (!inputEl) return;
+                inputEl.value = typeof value === 'string' ? value : '';
+            });
+        }
+
+        if (typeof updateBinomLiveResult === 'function') {
+            updateBinomLiveResult();
+        }
+
+        if (typeof graphAutoPreviewFn === 'function') {
+            graphAutoPreviewFn();
+        }
+    } catch {
+        // ignore invalid state
+    } finally {
+        isRestoringCalculatorPopupInputState = false;
     }
 }
 
@@ -1738,7 +1809,13 @@ function initCalculator() {
     setupPopupDrag();
     restoreCalculatorPanelPosition();
     restoreCalculatorCoreState();
+    restoreCalculatorPopupInputState();
     updateDisplay();
+
+    document.addEventListener('input', (event) => {
+        if (!event.target?.closest('#calculator-overlay .popup')) return;
+        saveCalculatorPopupInputState();
+    });
 
     const mainInput = document.getElementById('mainInput');
     if (mainInput) {
@@ -1841,8 +1918,14 @@ function initCalculator() {
         });
     }
 
-    window.addEventListener('beforeunload', saveCalculatorCoreState);
-    window.addEventListener('pagehide', saveCalculatorCoreState);
+    window.addEventListener('beforeunload', () => {
+        saveCalculatorCoreState();
+        saveCalculatorPopupInputState();
+    });
+    window.addEventListener('pagehide', () => {
+        saveCalculatorCoreState();
+        saveCalculatorPopupInputState();
+    });
 }
 
 // Initialize when DOM is ready
