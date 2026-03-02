@@ -80,19 +80,186 @@ def _build_figure_plotly_traces(spec: dict[str, Any]):
         trace_type = str(trace.get("kind", "scatter")).lower()
         if trace_type != "scatter":
             raise ValueError(f"Nicht unterstützter Trace-Typ: {trace_type}")
+        trace_kwargs = {
+            "x": trace.get("x", []),
+            "y": trace.get("y", []),
+            "mode": trace.get("mode", "lines"),
+            "name": trace.get("name"),
+            "line": trace.get("line"),
+            "marker": trace.get("marker"),
+        }
+        optional_keys = [
+            "fill",
+            "fillcolor",
+            "text",
+            "textposition",
+            "textfont",
+            "opacity",
+            "showlegend",
+            "hoverinfo",
+        ]
+        for key in optional_keys:
+            if key in trace:
+                trace_kwargs[key] = trace.get(key)
+
         fig.add_scatter(
-            x=trace.get("x", []),
-            y=trace.get("y", []),
-            mode=trace.get("mode", "lines"),
-            name=trace.get("name"),
-            line=trace.get("line"),
-            marker=trace.get("marker"),
+            **trace_kwargs,
         )
+    return fig
+
+
+def _build_figure_cost_curves(spec: dict[str, Any]):
+    go = _ensure_plotly()
+    fig = go.Figure()
+
+    params = spec.get("params", {}) if isinstance(spec.get("params"), dict) else {}
+    k3 = _to_float(params.get("k3"), 0.05)
+    k2 = _to_float(params.get("k2"), -1.0)
+    k1 = _to_float(params.get("k1"), 10.0)
+    k0 = _to_float(params.get("k0"), 80.0)
+    max_x = _to_float(params.get("maxX"), 30.0)
+    start_x = 0.5
+
+    points = max(40, int(_to_float(spec.get("points"), 300)))
+    x_values = [start_x + (max_x - start_x) * i / (points - 1) for i in range(points)]
+
+    gk_values = [3.0 * k3 * (x ** 2) + 2.0 * k2 * x + k1 for x in x_values]
+    k_values = [k3 * (x ** 2) + k2 * x + k1 + k0 / x for x in x_values]
+    kv_values = [k3 * (x ** 2) + k2 * x + k1 for x in x_values]
+
+    fig.add_scatter(
+        x=x_values, y=gk_values, mode="lines", name="GK(x)", line={"color": "#1f77b4"},
+    )
+    fig.add_scatter(
+        x=x_values, y=k_values, mode="lines", name="k(x)", line={"color": "#d62728"},
+    )
+    fig.add_scatter(
+        x=x_values, y=kv_values, mode="lines", name="kv(x)", line={"color": "#2ca02c"},
+    )
+    return fig
+
+
+def _build_figure_market_curves(spec: dict[str, Any]):
+    go = _ensure_plotly()
+    fig = go.Figure()
+
+    params = spec.get("params", {}) if isinstance(spec.get("params"), dict) else {}
+    supply_slope = max(0.01, _to_float(params.get("supplySlope"), 1.2))
+    demand_slope = max(0.01, _to_float(params.get("demandSlope"), 1.8))
+    min_price = _to_float(params.get("minPrice"), 5.0)
+    max_price = _to_float(params.get("maxPrice"), 20.0)
+    max_x = max(5.0, _to_float(params.get("maxX"), 20.0))
+
+    points = max(40, int(_to_float(spec.get("points"), 220)))
+    x_values = [max_x * i / (points - 1) for i in range(points)]
+
+    supply_values = [supply_slope * x + min_price for x in x_values]
+    demand_values = [-demand_slope * x + max_price for x in x_values]
+
+    eq_x = (max_price - min_price) / (supply_slope + demand_slope)
+    eq_y = supply_slope * eq_x + min_price
+
+    fig.add_scatter(
+        x=x_values,
+        y=supply_values,
+        mode="lines",
+        name="Angebot p_A(x)",
+        line={"color": "#d62728"},
+    )
+    fig.add_scatter(
+        x=x_values,
+        y=demand_values,
+        mode="lines",
+        name="Nachfrage p_N(x)",
+        line={"color": "#1f77b4"},
+    )
+    return fig
+
+
+def _eval_fn_params(p: dict[str, Any], x: float) -> float:
+    import math as _math
+    kind = p.get("type", "linear")
+    if kind == "linear":
+        return _to_float(p.get("a"), 1.0) * x + _to_float(p.get("b"), 0.0)
+    if kind == "quadratic":
+        a = _to_float(p.get("a"), 0.0)
+        b = _to_float(p.get("b"), 0.0)
+        c = _to_float(p.get("c"), 0.0)
+        return a * x * x + b * x + c
+    if kind == "exp":
+        A = _to_float(p.get("A"), 1.0)
+        rate = _to_float(p.get("rate"), 0.1)
+        c = _to_float(p.get("c"), 0.0)
+        return A * _math.exp(-rate * x) + c
+    return 0.0
+
+
+def _build_figure_market_equilibrium(spec: dict[str, Any]):
+    go = _ensure_plotly()
+    fig = go.Figure()
+
+    params = spec.get("params", {}) if isinstance(spec.get("params"), dict) else {}
+    supply_p = params.get("supply", {})
+    demand_p = params.get("demand", {})
+    eq_x = _to_float(params.get("eqX"), 10.0)
+    eq_p = _to_float(params.get("eqP"), 10.0)
+    max_x = max(1.0, _to_float(params.get("maxX"), 30.0))
+    sat_x = max(eq_x * 1.02, _to_float(params.get("satX"), max_x))
+
+    points = max(40, int(_to_float(spec.get("points"), 260)))
+    supply_x = [max_x * i / (points - 1) for i in range(points)]
+    supply_values = [_eval_fn_params(supply_p, x) for x in supply_x]
+
+    demand_points = max(40, round(points * sat_x / max_x))
+    demand_x = [sat_x * i / (demand_points - 1) for i in range(demand_points)]
+    demand_values = [_eval_fn_params(demand_p, x) for x in demand_x]
+
+    fig.add_scatter(x=supply_x, y=supply_values, mode="lines", name="Angebot p_A(x)", line={"color": "#d62728"})
+    fig.add_scatter(x=demand_x, y=demand_values, mode="lines", name="Nachfrage p_N(x)", line={"color": "#1f77b4"})
+    return fig
+
+
+def _build_figure_market_abschoepfung(spec: dict[str, Any]):
+    go = _ensure_plotly()
+    fig = go.Figure()
+
+    params = spec.get("params", {}) if isinstance(spec.get("params"), dict) else {}
+    supply_p = params.get("supply", {})
+    demand_p = params.get("demand", {})
+    eq_x = _to_float(params.get("eqX"), 10.0)
+    eq_p = _to_float(params.get("eqP"), 10.0)
+    x2 = _to_float(params.get("x2"), 5.0)
+    p2 = _to_float(params.get("p2"), 15.0)
+    max_x = max(1.0, _to_float(params.get("maxX"), 30.0))
+
+    points = max(40, int(_to_float(spec.get("points"), 280)))
+    x_values = [max_x * i / (points - 1) for i in range(points)]
+    supply_values = [_eval_fn_params(supply_p, x) for x in x_values]
+    demand_values = [_eval_fn_params(demand_p, x) for x in x_values]
+
+    kr2_curve_x = [x2 * i / 80 for i in range(81)]
+    kr2_curve_y = [_eval_fn_params(demand_p, x) for x in kr2_curve_x]
+    kr2_x = [0.0, x2] + list(reversed(kr2_curve_x))
+    kr2_y = [p2, p2] + list(reversed(kr2_curve_y))
+
+    kr1_curve_x = [x2 + (eq_x - x2) * i / 80 for i in range(81)]
+    kr1_curve_y = [_eval_fn_params(demand_p, x) for x in kr1_curve_x]
+    kr1_x = [x2, eq_x] + list(reversed(kr1_curve_x))
+    kr1_y = [eq_p, eq_p] + list(reversed(kr1_curve_y))
+
+    fig.add_scatter(x=kr2_x, y=kr2_y, mode="lines", name="KR2", line={"width": 0}, fill="toself", fillcolor="rgba(59, 130, 246, 0.25)")
+    fig.add_scatter(x=kr1_x, y=kr1_y, mode="lines", name="KR1", line={"width": 0}, fill="toself", fillcolor="rgba(16, 185, 129, 0.25)")
+    fig.add_scatter(x=x_values, y=supply_values, mode="lines", name="Angebot p_A(x)", line={"color": "#d62728"})
+    fig.add_scatter(x=x_values, y=demand_values, mode="lines", name="Nachfrage p_N(x)", line={"color": "#1f77b4"})
     return fig
 
 
 PLOTLY_SPEC_BUILDERS: dict[str, Callable[[dict[str, Any]], Any]] = {
     "economic-curves": _build_figure_economic_curves,
+    "cost-curves": _build_figure_cost_curves,
+    "market-curves": _build_figure_market_curves,
+    "market-equilibrium": _build_figure_market_equilibrium,
+    "market-abschoepfung": _build_figure_market_abschoepfung,
     "plotly": _build_figure_plotly_traces,
 }
 

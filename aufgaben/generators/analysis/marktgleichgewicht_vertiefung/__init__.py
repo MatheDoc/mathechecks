@@ -1,0 +1,1 @@
+"""Generatoren für marktgleichgewicht-vertiefung."""

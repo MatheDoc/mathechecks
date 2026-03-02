@@ -1,3 +1,4 @@
+import math
 import random
 
 
@@ -417,6 +418,114 @@ def _poly3_value(a3: float, a2: float, a1: float, a0: float, x: float) -> float:
     return a3 * (x ** 3) + a2 * (x ** 2) + a1 * x + a0
 
 
+def _solve_positive_root_for_betriebsoptimum(k3: float, k2: float, k0: float) -> float:
+    def target(x: float) -> float:
+        return 2.0 * k3 * (x ** 3) + k2 * (x ** 2) - k0
+
+    left = 1e-6
+    right = max(1.0, abs(k2) / max(k3, 1e-9))
+
+    while target(right) <= 0.0 and right < 1e6:
+        right *= 1.5
+
+    if target(right) <= 0.0:
+        raise ValueError("Konnte kein positives Intervall für das Betriebsoptimum bestimmen.")
+
+    for _ in range(100):
+        middle = (left + right) / 2.0
+        if target(middle) <= 0.0:
+            left = middle
+        else:
+            right = middle
+
+    return (left + right) / 2.0
+
+
+def _compute_k3_cost_kennzahlen(
+    k3: float,
+    k2: float,
+    k1: float,
+    k0: float,
+) -> tuple[float, float, float, float, float]:
+    x_wende = -k2 / (3.0 * k3)
+    x_betriebsminimum = -k2 / (2.0 * k3)
+    x_betriebsoptimum = _solve_positive_root_for_betriebsoptimum(k3=k3, k2=k2, k0=k0)
+
+    kurzfristige_preisuntergrenze = (
+        k3 * (x_betriebsminimum ** 2) + k2 * x_betriebsminimum + k1
+    )
+    langfristige_preisuntergrenze = (
+        _poly3_value(k3, k2, k1, k0, x_betriebsoptimum) / x_betriebsoptimum
+    )
+
+    return (
+        x_wende,
+        x_betriebsminimum,
+        x_betriebsoptimum,
+        kurzfristige_preisuntergrenze,
+        langfristige_preisuntergrenze,
+    )
+
+
+def _sample_k3_cost_coefficients_from_exact_kennzahlen(
+    rng: random.Random,
+) -> tuple[float, float, float, float, float, float, float, float, float]:
+    for _ in range(7000):
+        k3 = float(rng.choice([0.05, 0.08, 0.1, 0.12, 0.15, 0.2, 0.25, 0.3]))
+        x_wende = float(rng.choice([2, 4, 6, 8, 10, 12, 14]))
+
+        bo_min = int(math.floor(1.5 * x_wende + 1.0))
+        bo_max = int(math.floor(2.35 * x_wende))
+        if bo_max <= bo_min:
+            continue
+        x_betriebsoptimum = float(rng.randint(bo_min, bo_max))
+
+        k2 = -3.0 * x_wende * k3
+        k0 = 2.0 * (x_betriebsoptimum ** 3) * k3 + k2 * (x_betriebsoptimum ** 2)
+        if k0 <= 0.0:
+            continue
+
+        k1_lower = (k2 ** 2) / (3.0 * k3)
+        lower_int = int(math.ceil(k1_lower))
+        upper_int = lower_int + int(1.8 * x_wende) + 24
+        if upper_int <= lower_int:
+            continue
+        k1 = float(rng.randint(lower_int, upper_int))
+
+        if not _is_ertragsgesetzliche_k(k3, k2, k1, k0):
+            continue
+
+        (
+            computed_wende,
+            x_betriebsminimum,
+            computed_betriebsoptimum,
+            kurzfristige_preisuntergrenze,
+            langfristige_preisuntergrenze,
+        ) = _compute_k3_cost_kennzahlen(k3=k3, k2=k2, k1=k1, k0=k0)
+
+        if abs(computed_wende - x_wende) > 1e-6:
+            continue
+        if abs(computed_betriebsoptimum - x_betriebsoptimum) > 1e-5:
+            continue
+
+        if any(abs(coeff) > 99999 for coeff in [k3, k2, k1, k0]):
+            continue
+
+        return (
+            round(k3, 4),
+            round(k2, 4),
+            round(k1, 4),
+            round(k0, 4),
+            round(computed_wende, 4),
+            round(x_betriebsminimum, 4),
+            round(computed_betriebsoptimum, 4),
+            round(kurzfristige_preisuntergrenze, 4),
+            round(langfristige_preisuntergrenze, 4),
+        )
+
+    raise ValueError("Konnte keine geeigneten K3-Koeffizienten mit exakten Kennzahlen erzeugen.")
+
+
 def _is_one_decimal(value: float, eps: float = 1e-9) -> bool:
     return abs(value * 10.0 - round(value * 10.0)) < eps
 
@@ -432,23 +541,18 @@ def _make_zuordnung_table(points: list[tuple[float, float]], label: str) -> str:
 
 
 def _sample_steckbrief_k_coefficients(rng: random.Random) -> tuple[float, float, float, float]:
-    for _ in range(3000):
-        k3 = rng.choice([0.2, 0.25, 0.3, 0.4, 0.5, 0.6, 0.75, 1.0])
-        k2_abs = rng.choice([0.5, 0.75, 1.0, 1.25, 1.5, 2.0, 2.5, 3.0, 4.0, 5.0])
-        k2 = -float(k2_abs)
-
-        lower_k1 = (k2 ** 2) / (3.0 * k3) + 0.5
-        k1 = round(rng.uniform(lower_k1 + 0.2, lower_k1 + 40.0), 2)
-        k0 = float(rng.randint(20, 260))
-
-        if not _is_ertragsgesetzliche_k(k3, k2, k1, k0):
-            continue
-        if any(abs(coeff) > 9999 or abs(coeff) < 0.001 for coeff in [k3, k2, k1, k0]):
-            continue
-
-        return round(k3, 2), round(k2, 2), round(k1, 2), round(k0, 2)
-
-    raise ValueError("Konnte keine geeignete kubische Kostenfunktion für Steckbriefaufgaben erzeugen.")
+    (
+        k3,
+        k2,
+        k1,
+        k0,
+        _x_wende,
+        _x_betriebsminimum,
+        _x_betriebsoptimum,
+        _kpu,
+        _lpu,
+    ) = _sample_k3_cost_coefficients_from_exact_kennzahlen(rng)
+    return k3, k2, k1, k0
 
 
 def _sample_steckbrief_g_coefficients(

@@ -15,6 +15,8 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
 
     const yWerte = xWerte.map((x) => {
       try {
+        if (f.xmin !== undefined && x < f.xmin) return null;
+        if (f.xmax !== undefined && x > f.xmax) return null;
         return compiled.evaluate({ x: x });
       } catch (e) {
         return null;
@@ -50,6 +52,44 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       hoverinfo: "text+x+y",
     };
     daten.push(punktTrace);
+  }
+
+  // Flächen (schattierte Bereiche) hinzufügen, falls vorhanden
+  if (Array.isArray(optionen.flaechen)) {
+    const flaechenDaten = optionen.flaechen.map((fl) => {
+      const expr = math.parse(fl.term);
+      const compiled = expr.compile();
+      const xVon = fl.von !== undefined ? fl.von : min;
+      const xBis = fl.bis !== undefined ? fl.bis : max;
+
+      const xArea = [];
+      const yArea = [];
+      const numPoints = Math.ceil((xBis - xVon) / step) + 1;
+      for (let i = 0; i < numPoints; i++) {
+        const x = Math.min(xVon + i * step, xBis);
+        xArea.push(x);
+        try {
+          yArea.push(compiled.evaluate({ x: x }));
+        } catch (e) {
+          yArea.push(null);
+        }
+      }
+
+      return {
+        x: xArea,
+        y: yArea,
+        type: "scatter",
+        mode: "none",
+        fill: "tozeroy",
+        fillcolor: fl.farbe || "rgba(0,100,200,0.2)",
+        line: { width: 0 },
+        name: fl.name || "",
+        showlegend: !!fl.name,
+        hoverinfo: "skip",
+      };
+    });
+    // Flächen vor die Funktionsgraphen einfügen (damit sie dahinter liegen)
+    daten.unshift(...flaechenDaten);
   }
 
   const layout = {

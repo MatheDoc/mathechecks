@@ -14,10 +14,10 @@ const KNOWN_CALCULATOR_POPUPS = new Set([
 function saveActiveCalculatorPopup(popupId) {
     try {
         if (!popupId) {
-            localStorage.removeItem(CALCULATOR_ACTIVE_POPUP_KEY);
+            sessionStorage.removeItem(CALCULATOR_ACTIVE_POPUP_KEY);
             return;
         }
-        localStorage.setItem(CALCULATOR_ACTIVE_POPUP_KEY, popupId);
+        sessionStorage.setItem(CALCULATOR_ACTIVE_POPUP_KEY, popupId);
     } catch {
         // ignore storage issues
     }
@@ -25,7 +25,7 @@ function saveActiveCalculatorPopup(popupId) {
 
 function loadActiveCalculatorPopup() {
     try {
-        const popupId = localStorage.getItem(CALCULATOR_ACTIVE_POPUP_KEY);
+        const popupId = sessionStorage.getItem(CALCULATOR_ACTIVE_POPUP_KEY);
         if (!popupId) return null;
         if (!KNOWN_CALCULATOR_POPUPS.has(popupId)) return null;
         return popupId;
@@ -36,7 +36,7 @@ function loadActiveCalculatorPopup() {
 
 function loadOpenCalculatorPopups() {
     try {
-        const raw = localStorage.getItem(CALCULATOR_OPEN_POPUPS_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_OPEN_POPUPS_KEY);
         if (!raw) return [];
         const parsed = JSON.parse(raw);
         if (!Array.isArray(parsed)) return [];
@@ -52,10 +52,10 @@ function saveOpenCalculatorPopups(popupIds) {
     try {
         const valid = popupIds.filter((popupId) => KNOWN_CALCULATOR_POPUPS.has(popupId));
         if (!valid.length) {
-            localStorage.removeItem(CALCULATOR_OPEN_POPUPS_KEY);
+            sessionStorage.removeItem(CALCULATOR_OPEN_POPUPS_KEY);
             return;
         }
-        localStorage.setItem(CALCULATOR_OPEN_POPUPS_KEY, JSON.stringify([...new Set(valid)]));
+        sessionStorage.setItem(CALCULATOR_OPEN_POPUPS_KEY, JSON.stringify([...new Set(valid)]));
     } catch {
         // ignore storage issues
     }
@@ -104,7 +104,7 @@ window.restoreCalculatorPopupState = restoreCalculatorPopupState;
 
 function loadPopupPositions() {
     try {
-        const raw = localStorage.getItem(CALCULATOR_POPUP_POSITIONS_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_POPUP_POSITIONS_KEY);
         if (!raw) return {};
         const parsed = JSON.parse(raw);
         return parsed && typeof parsed === "object" ? parsed : {};
@@ -115,7 +115,7 @@ function loadPopupPositions() {
 
 function savePopupPositions(positions) {
     try {
-        localStorage.setItem(CALCULATOR_POPUP_POSITIONS_KEY, JSON.stringify(positions));
+        sessionStorage.setItem(CALCULATOR_POPUP_POSITIONS_KEY, JSON.stringify(positions));
     } catch {
         // ignore storage issues
     }
