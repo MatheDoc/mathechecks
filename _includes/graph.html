@@ -2,6 +2,7 @@
   class="diagramm"
   data-funktionen="{{ include.funktionen | escape }}"
   data-punkte="{{ include.punkte | escape }}"
+  data-flaechen="{{ include.flaechen | escape }}"
   data-titel="{{ include.titel | default: '' }}"
   data-xachse="{{ include.xachse | default: '' }}"
   data-yachse="{{ include.yachse | default: '' }}"
@@ -16,6 +17,7 @@
     const div = document.currentScript.previousElementSibling;
     const funktionen = JSON.parse(div.dataset.funktionen);
     const punkte = div.dataset.punkte ? JSON.parse(div.dataset.punkte) : null;
+    const flaechen = div.dataset.flaechen ? JSON.parse(div.dataset.flaechen) : null;
     const titel = div.dataset.titel;
     const xAchse = div.dataset.xachse;
     const yAchse = div.dataset.yachse;
@@ -35,6 +37,7 @@
     if (yMin !== null) optionen.yMin = yMin;
     if (yMax !== null) optionen.yMax = yMax;
     if (punkte) optionen.punkte = punkte;
+    if (flaechen) optionen.flaechen = flaechen;
 
     zeichneGraph(div.id || div, funktionen, optionen);
   })();

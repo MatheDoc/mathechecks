@@ -529,7 +529,7 @@ Gegegen: $P(X\leq 3)\approx 0{,}71$ und $p=0,4$
 
 Gesucht: $n$
 
-Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $n$ | $P(X\leq 3)$ |
 | --- | ------------ |
@@ -552,7 +552,7 @@ Gegegen: $P(X\geq 14)\approx 0{,}15$ und $n=20$
 
 Gesucht: $p$
 
-Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $p$  | $P(X\geq 14)$ |
 | ---- | ------------- |
@@ -575,7 +575,7 @@ Gegegen: $P(X\leq k)\approx 0{,}10$ und $n=200$ und $p=0{,}9$
 
 Gesucht: $k$
 
-Mit Hilfe eines Tafelswerks und Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $k$ | $P(X\leq k)$ |
 | --- | ------------ |

@@ -22,7 +22,7 @@ function saveCalculatorCoreState() {
     const resultDisplay = document.getElementById('resultDisplay');
 
     try {
-        localStorage.setItem(
+        sessionStorage.setItem(
             CALCULATOR_CORE_STATE_KEY,
             JSON.stringify({
                 input: mainInput?.value ?? currentInput ?? '',
@@ -36,7 +36,7 @@ function saveCalculatorCoreState() {
 
 function restoreCalculatorCoreState() {
     try {
-        const raw = localStorage.getItem(CALCULATOR_CORE_STATE_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_CORE_STATE_KEY);
         if (!raw) return;
         const parsed = JSON.parse(raw);
         const input = typeof parsed?.input === 'string' ? parsed.input : '';
@@ -68,7 +68,7 @@ function saveCalculatorPanelPosition() {
     if (!Number.isFinite(left) || !Number.isFinite(top)) return;
 
     try {
-        localStorage.setItem(
+        sessionStorage.setItem(
             CALCULATOR_PANEL_POSITION_KEY,
             JSON.stringify({ left, top })
         );
@@ -82,7 +82,7 @@ function restoreCalculatorPanelPosition() {
     if (!calculator) return;
 
     try {
-        const raw = localStorage.getItem(CALCULATOR_PANEL_POSITION_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_PANEL_POSITION_KEY);
         if (!raw) return;
         const parsed = JSON.parse(raw);
         const left = Number(parsed?.left);
@@ -113,7 +113,7 @@ function saveCalculatorPopupInputState() {
             fields[inputEl.id] = inputEl.value;
         });
 
-        localStorage.setItem(
+        sessionStorage.setItem(
             CALCULATOR_POPUP_INPUT_STATE_KEY,
             JSON.stringify({
                 lgsVariables,
@@ -128,7 +128,7 @@ function saveCalculatorPopupInputState() {
 
 function restoreCalculatorPopupInputState() {
     try {
-        const raw = localStorage.getItem(CALCULATOR_POPUP_INPUT_STATE_KEY);
+        const raw = sessionStorage.getItem(CALCULATOR_POPUP_INPUT_STATE_KEY);
         if (!raw) return;
 
         const parsed = JSON.parse(raw);
@@ -567,6 +567,42 @@ function formatGeneralResult(value) {
     return toGermanNumber(trimmed);
 }
 
+// Detect if input contains 'x' as a variable (not part of function names like 'exp')
+function containsVariableX(input) {
+    const cleaned = input.replace(/\bexp\b/gi, '___');
+    return /(?:^|[^a-zA-Z])x(?:[^a-zA-Z]|$)/i.test(cleaned);
+}
+
+// Expand/simplify a symbolic expression using math.js rationalize
+function expandExpression(input) {
+    try {
+        // Prepare input for math.js (handle decimal commas, special functions)
+        let expr = prepareGraphExpression(input);
+        if (!expr) {
+            result = 'Fehler: Ungültiger Ausdruck';
+            updateDisplay();
+            return;
+        }
+
+        // Use math.js rationalize to expand the expression
+        const expanded = math.rationalize(expr);
+        let output = expanded.toString({ implicit: 'hide', parenthesis: 'auto' });
+
+        // Clean up formatting: compact polynomial notation
+        output = output.replace(/ /g, '');
+        // Implizite Multiplikation: 2*x → 2x
+        output = output.replace(/(\d)\*([a-zA-Z])/g, '$1$2');
+
+        currentInput = `${input} →`;
+        result = output;
+        shouldResetInput = true;
+        updateDisplay();
+    } catch (error) {
+        result = 'Fehler: Ausdruck konnte nicht vereinfacht werden';
+        updateDisplay();
+    }
+}
+
 function handleExecute() {
     shouldAnimateResult = true;
     const mainInput = document.getElementById('mainInput');
@@ -594,6 +630,12 @@ function handleExecute() {
     const equalsCount = (inputValue.match(/=/g) || []).length;
     if (equalsCount === 1) {
         solveEquation(inputValue);
+        return;
+    }
+
+    // Check for symbolic expression with x (no equation) → expand/ausmultiplizieren
+    if (equalsCount === 0 && containsVariableX(inputValue)) {
+        expandExpression(inputValue);
         return;
     }
 

@@ -65,21 +65,68 @@ function escapeHtml(text) {
 }
 
 function parseMcOptions(raw) {
-    const options = [];
-    const pattern = /([~=])([^~=]+)/g;
-    let match = pattern.exec(raw);
-    while (match) {
-        options.push({
-            correct: match[1] === '=',
-            label: match[2].trim()
+    return raw
+        .split(/(?<!\\)~/)
+        .map((option) => option.trim())
+        .filter((option) => option.length > 0)
+        .map((option) => {
+            const correct = option.startsWith('=');
+            return {
+                correct,
+                label: correct ? option.slice(1).trim() : option
+            };
         });
-        match = pattern.exec(raw);
+}
+
+function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
+    const result = [];
+    let index = 0;
+
+    while (index < answerText.length) {
+        const start = answerText.indexOf('{', index);
+        if (start === -1) {
+            result.push(answerText.slice(index));
+            break;
+        }
+
+        result.push(answerText.slice(index, start));
+
+        const maybePlaceholder = answerText.slice(start);
+        const match = maybePlaceholder.match(/^\{(\d+):(NUMERICAL|MC):/);
+        if (!match) {
+            result.push('{');
+            index = start + 1;
+            continue;
+        }
+
+        let braceLevel = 1;
+        let end = start + 1;
+        while (end < answerText.length && braceLevel > 0) {
+            if (answerText[end] === '{') braceLevel += 1;
+            if (answerText[end] === '}') braceLevel -= 1;
+            end += 1;
+        }
+
+        if (braceLevel !== 0) {
+            result.push(answerText.slice(start));
+            break;
+        }
+
+        const id = match[1];
+        const kind = match[2];
+        const prefix = `{${id}:${kind}:`;
+        const fullMatch = answerText.slice(start, end);
+        const raw = fullMatch.slice(prefix.length, -1);
+
+        result.push(renderPlaceholder(kind, raw));
+        index = end;
     }
-    return options;
+
+    return result.join('');
 }
 
 function answerToPreview(answerText) {
-    return answerText.replace(/\{\d+:(NUMERICAL|MC):([^}]*)\}/g, (_, kind, raw) => {
+    return replaceAnswerPlaceholders(answerText, (kind, raw) => {
         if (kind === 'NUMERICAL') {
             return '<input class="answer-input" type="text" placeholder="Antwort" />';
         }
@@ -88,12 +135,12 @@ function answerToPreview(answerText) {
             .map((option) => `<option>${escapeHtml(option.label)}</option>`)
             .join('');
 
-        return `<select class="answer-select"><option selected disabled>Bitte wählen</option>${options}</select>`;
+        return `<select class="answer-select"><option selected disabled>Bitte w\u00e4hlen</option>${options}</select>`;
     });
 }
 
 function answerToSolution(answerText) {
-    return answerText.replace(/\{\d+:(NUMERICAL|MC):([^}]*)\}/g, (_, kind, raw) => {
+    return replaceAnswerPlaceholders(answerText, (kind, raw) => {
         if (kind === 'NUMERICAL') {
             const numericalMatch = raw.match(/=([^:}]+):([^:}]+)/);
             if (!numericalMatch) {
@@ -167,21 +214,199 @@ function buildPlotlyFigure(spec) {
                 },
             ],
         };
+    } else if (specType === 'cost-curves') {
+        const params = typeof spec?.params === 'object' && spec.params ? spec.params : {};
+        const k3 = toNumber(params.k3, 0.05);
+        const k2 = toNumber(params.k2, -1.0);
+        const k1 = toNumber(params.k1, 10.0);
+        const k0 = toNumber(params.k0, 80.0);
+        const maxX = Math.max(1, toNumber(params.maxX, 30.0));
+        const startX = 0.5;
+        const points = Math.max(40, Math.trunc(toNumber(spec?.points, 300)));
+
+        const x = [];
+        const gk = [];
+        const k = [];
+        const kv = [];
+        for (let i = 0; i < points; i += 1) {
+            const xi = startX + ((maxX - startX) * i) / (points - 1);
+            x.push(xi);
+            gk.push(3 * k3 * (xi ** 2) + 2 * k2 * xi + k1);
+            k.push(k3 * (xi ** 2) + k2 * xi + k1 + (k0 / xi));
+            kv.push(k3 * (xi ** 2) + k2 * xi + k1);
+        }
+
+        figure.data.push(
+            { x, y: gk, mode: 'lines', name: 'GK(x)', line: { color: '#1f77b4' } },
+            { x, y: k, mode: 'lines', name: 'k(x)', line: { color: '#d62728' } },
+            { x, y: kv, mode: 'lines', name: 'kv(x)', line: { color: '#2ca02c' } }
+        );
+
+        figure.layout = {
+            title: 'Grenzkosten-, Stückkosten- und variable Stückkostenfunktion',
+            xaxis: { title: 'Menge x', range: [0, maxX] },
+            yaxis: { title: 'Kosten' },
+        };
+    } else if (specType === 'market-curves') {
+        const params = typeof spec?.params === 'object' && spec.params ? spec.params : {};
+        const supplySlope = Math.max(0.01, toNumber(params.supplySlope, 1.2));
+        const demandSlope = Math.max(0.01, toNumber(params.demandSlope, 1.8));
+        const minPrice = toNumber(params.minPrice, 5.0);
+        const maxPrice = toNumber(params.maxPrice, 20.0);
+        const maxX = Math.max(5, toNumber(params.maxX, 20.0));
+        const points = Math.max(40, Math.trunc(toNumber(spec?.points, 220)));
+
+        const x = [];
+        const supply = [];
+        const demand = [];
+        for (let i = 0; i < points; i += 1) {
+            const xi = (maxX * i) / (points - 1);
+            x.push(xi);
+            supply.push(supplySlope * xi + minPrice);
+            demand.push(-demandSlope * xi + maxPrice);
+        }
+
+        const eqX = (maxPrice - minPrice) / (supplySlope + demandSlope);
+        const eqY = supplySlope * eqX + minPrice;
+
+        figure.data.push(
+            { x, y: supply, mode: 'lines', name: 'Angebot p_A(x)', line: { color: '#d62728' } },
+            { x, y: demand, mode: 'lines', name: 'Nachfrage p_N(x)', line: { color: '#1f77b4' } }
+        );
+
+        figure.layout = {
+            title: 'Angebots- und Nachfragefunktion',
+            xaxis: { title: 'Menge x', range: [0, maxX] },
+            yaxis: { title: 'Preis p', range: [0, Math.max(maxPrice, eqY) * 1.15] },
+        };
+    } else if (specType === 'market-equilibrium' || specType === 'market-abschoepfung') {
+        const params = typeof spec?.params === 'object' && spec.params ? spec.params : {};
+        const supplyP = params.supply ?? {};
+        const demandP = params.demand ?? {};
+        const eqX = toNumber(params.eqX, 10);
+        const eqP = toNumber(params.eqP, 10);
+        const maxX = Math.max(1, toNumber(params.maxX, 30));
+        const points = Math.max(40, Math.trunc(toNumber(spec?.points, 260)));
+
+        function evalFn(p, x) {
+            if (p.type === 'linear') return (p.a ?? 1) * x + (p.b ?? 0);
+            if (p.type === 'quadratic') return (p.a ?? 0) * x * x + (p.b ?? 0) * x + (p.c ?? 0);
+            if (p.type === 'exp') return (p.A ?? 1) * Math.exp(-(p.rate ?? 0.1) * x) + (p.c ?? 0);
+            return 0;
+        }
+
+        const x = [];
+        const supply = [];
+        for (let i = 0; i < points; i += 1) {
+            const xi = (maxX * i) / (points - 1);
+            x.push(xi);
+            supply.push(evalFn(supplyP, xi));
+        }
+
+        const satX = specType === 'market-equilibrium' ? Math.max(eqX * 1.02, toNumber(params.satX, maxX)) : maxX;
+        const demandPoints = Math.max(40, Math.round(points * satX / maxX));
+        const xDemand = [];
+        const demand = [];
+        for (let i = 0; i < demandPoints; i += 1) {
+            const xi = (satX * i) / (demandPoints - 1);
+            xDemand.push(xi);
+            demand.push(evalFn(demandP, xi));
+        }
+
+        if (specType === 'market-abschoepfung') {
+            const x2 = toNumber(params.x2, 5);
+            const p2 = toNumber(params.p2, 15);
+
+            const kr2CurveX = Array.from({ length: 81 }, (_, i) => x2 * i / 80);
+            const kr2CurveY = kr2CurveX.map((xi) => evalFn(demandP, xi));
+            const kr2X = [0, x2, ...kr2CurveX.slice().reverse()];
+            const kr2Y = [p2, p2, ...kr2CurveY.slice().reverse()];
+
+            const kr1CurveX = Array.from({ length: 81 }, (_, i) => x2 + (eqX - x2) * i / 80);
+            const kr1CurveY = kr1CurveX.map((xi) => evalFn(demandP, xi));
+            const kr1X = [x2, eqX, ...kr1CurveX.slice().reverse()];
+            const kr1Y = [eqP, eqP, ...kr1CurveY.slice().reverse()];
+
+            figure.data.push(
+                { x: kr2X, y: kr2Y, mode: 'lines', name: 'KR2', line: { width: 0 }, fill: 'toself', fillcolor: 'rgba(59, 130, 246, 0.25)' },
+                { x: kr1X, y: kr1Y, mode: 'lines', name: 'KR1', line: { width: 0 }, fill: 'toself', fillcolor: 'rgba(16, 185, 129, 0.25)' },
+                { x, y: supply, mode: 'lines', name: 'Angebot p_A(x)', line: { color: '#d62728' } },
+                { x, y: demand, mode: 'lines', name: 'Nachfrage p_N(x)', line: { color: '#1f77b4' } },
+            );
+            const maxY = Math.max(toNumber(params.maxY, 30), p2) * 1.12;
+            figure.layout = {
+                title: 'Preisdifferenzierung mit KR1 und KR2',
+                xaxis: { title: 'Menge x', range: [0, maxX] },
+                yaxis: { title: 'Preis p', range: [0, maxY] },
+                shapes: [
+                    { type: 'line', x0: x2, x1: x2, y0: 0, y1: p2, line: { color: '#374151', dash: 'dot' } },
+                    { type: 'line', x0: eqX, x1: eqX, y0: 0, y1: eqP, line: { color: '#374151', dash: 'dot' } },
+                    { type: 'line', x0: 0, x1: x2, y0: p2, y1: p2, line: { color: '#374151', dash: 'dot' } },
+                    { type: 'line', x0: 0, x1: eqX, y0: eqP, y1: eqP, line: { color: '#374151', dash: 'dot' } },
+                ],
+                annotations: [
+                    { x: x2, y: -0.08, xref: 'x', yref: 'paper', text: 'x_2', showarrow: false },
+                    { x: eqX, y: -0.08, xref: 'x', yref: 'paper', text: 'x_G', showarrow: false },
+                    { x: 0, y: p2, xref: 'paper', yref: 'y', xanchor: 'right', text: 'p_2', showarrow: false },
+                    { x: 0, y: eqP, xref: 'paper', yref: 'y', xanchor: 'right', text: 'p_G', showarrow: false },
+                ],
+            };
+        } else {
+            figure.data.push(
+                { x, y: supply, mode: 'lines', name: 'Angebot p_A(x)', line: { color: '#d62728' } },
+                { x: xDemand, y: demand, mode: 'lines', name: 'Nachfrage p_N(x)', line: { color: '#1f77b4' } },
+            );
+            const maxY = toNumber(params.maxY, Math.max(eqP, evalFn(demandP, 0)) * 1.12);
+            figure.layout = {
+                title: 'Angebots- und Nachfragefunktion',
+                xaxis: { title: 'Menge x', range: [0, maxX] },
+                yaxis: { title: 'Preis p', range: [0, maxY] },
+            };
+        }
     } else {
         const traces = Array.isArray(spec?.traces) ? spec.traces : [];
         traces.forEach((trace) => {
             if (!trace || typeof trace !== 'object') {
                 return;
             }
-            figure.data.push({
+            const plotlyTrace = {
                 x: Array.isArray(trace.x) ? trace.x : [],
                 y: Array.isArray(trace.y) ? trace.y : [],
                 mode: trace.mode ?? 'lines',
                 name: trace.name,
-                type: 'scatter',
-                line: trace.line,
-                marker: trace.marker,
-            });
+                type: trace.kind ?? 'scatter',
+            };
+            if (trace.line != null) {
+                plotlyTrace.line = trace.line;
+            }
+            if (trace.marker != null) {
+                plotlyTrace.marker = trace.marker;
+            }
+            if (trace.fill != null) {
+                plotlyTrace.fill = trace.fill;
+            }
+            if (trace.fillcolor != null) {
+                plotlyTrace.fillcolor = trace.fillcolor;
+            }
+            if (trace.text != null) {
+                plotlyTrace.text = trace.text;
+            }
+            if (trace.textposition != null) {
+                plotlyTrace.textposition = trace.textposition;
+            }
+            if (trace.textfont != null) {
+                plotlyTrace.textfont = trace.textfont;
+            }
+            if (trace.showlegend != null) {
+                plotlyTrace.showlegend = trace.showlegend;
+            }
+            if (trace.opacity != null) {
+                plotlyTrace.opacity = trace.opacity;
+            }
+            if (trace.hoverinfo != null) {
+                plotlyTrace.hoverinfo = trace.hoverinfo;
+            }
+            figure.data.push(plotlyTrace);
         });
     }
 

@@ -13,6 +13,10 @@
       <div id="message"></div>
 
       <form id="auth-form-element">
+        <div class="form-group hidden" id="username-group">
+          <label for="username">Benutzername</label>
+          <input type="text" id="username" placeholder="Dein Benutzername" maxlength="30" />
+        </div>
         <div class="form-group">
           <label for="email">E-Mail</label>
           <input type="email" id="email" required placeholder="deine@email.de" />
@@ -40,14 +44,48 @@
     <!-- User Info (when logged in) -->
     <div id="user-info" class="hidden user-info">
       <div class="avatar">👤</div>
-      <h2>Willkommen!</h2>
+      <h2 id="display-username">Willkommen!</h2>
       <p class="subtitle">Du bist eingeloggt</p>
       <div class="user-email" id="display-email"></div>
       <div class="user-id">
         <div class="user-id-label">User ID:</div>
         <div class="user-id-value" id="display-uid"></div>
       </div>
-      <button class="btn btn-danger" id="logout-btn">Logout</button>
+
+      <div id="user-message"></div>
+
+      <!-- Benutzername ändern -->
+      <div class="account-section">
+        <button type="button" class="btn btn-secondary" id="change-username-toggle">Benutzername ändern</button>
+        <div id="change-username-form" class="hidden">
+          <div class="form-group">
+            <label for="new-username">Neuer Benutzername</label>
+            <input type="text" id="new-username" placeholder="Neuer Benutzername" minlength="3" maxlength="30" />
+          </div>
+          <div class="btn-row">
+            <button type="button" class="btn btn-primary btn-sm" id="change-username-btn">Speichern</button>
+            <button type="button" class="btn btn-cancel btn-sm" id="change-username-cancel">Abbrechen</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="account-actions">
+        <button class="btn btn-danger" id="logout-btn">Logout</button>
+        <button type="button" class="btn btn-danger-outline" id="delete-account-toggle">Account löschen</button>
+      </div>
+
+      <!-- Account löschen: Bestätigung -->
+      <div id="delete-account-confirm" class="hidden danger-zone">
+        <p class="danger-text">Dein Account und alle Daten werden unwiderruflich gelöscht.</p>
+        <div class="form-group">
+          <label for="delete-confirm-password">Passwort zur Bestätigung</label>
+          <input type="password" id="delete-confirm-password" placeholder="Dein Passwort" />
+        </div>
+        <div class="btn-row">
+          <button type="button" class="btn btn-danger btn-sm" id="delete-account-btn">Endgültig löschen</button>
+          <button type="button" class="btn btn-cancel btn-sm" id="delete-account-cancel">Abbrechen</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
