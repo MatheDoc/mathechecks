@@ -23,6 +23,10 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 3. Konsistente Sprache, Notation und Begriffe
 4. Strukturierte, lernförderliche Darstellung
 
+## Referenz
+
+Übergreifende Lernarchitektur, Modultypen und Lernmethoden: [`konzept-lernarchitektur.md`](./konzept-lernarchitektur.md)
+
 ## Arbeitsmodus
 
 - Vom Konkreten zum Abstrakten arbeiten (Beispiel -> Muster -> Regel).

@@ -43,6 +43,18 @@ Alle JSONs aus dem Manifest nach Moodle-XML exportieren:
 python -m aufgaben.cli moodle-batch
 ```
 
+Interne Plausibilitätsprüfung für Binomial-Semantik ausführen:
+
+```bash
+python -m aufgaben.tools.validate_binomial_semantics
+```
+
+Alternativ direkt über die CLI:
+
+```bash
+python -m aufgaben.cli validate-binomial
+```
+
 ## Zuordnung zu Lernbereichen
 
 Die Zuordnung erfolgt über `aufgaben/project_config.json` (nicht hart im Code).

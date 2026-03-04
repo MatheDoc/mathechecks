@@ -20,6 +20,6 @@ def numerical(
 def mc(options: list[str], correct_index: int, points: int = 1) -> str:
     entries: list[str] = []
     for index, option in enumerate(options):
-        prefix = "=" if index == correct_index else "~"
-        entries.append(f"{prefix}{option}")
+        marker = "=" if index == correct_index else ""
+        entries.append(f"~{marker}{option}")
     return f"{{{points}:MC:{''.join(entries)}}}"

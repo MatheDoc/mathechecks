@@ -1,37 +1,181 @@
-const pathSelect = document.getElementById('jsonPath');
+const gebietSelect = document.getElementById('gebietSelect');
+const lernbereichSelect = document.getElementById('lernbereichSelect');
+const sammlungSelect = document.getElementById('sammlungSelect');
 const loadBtn = document.getElementById('loadBtn');
 const showSolutions = document.getElementById('showSolutions');
 const statusEl = document.getElementById('status');
 const listEl = document.getElementById('list');
 const MANIFEST_PATH = '../exports/json/manifest.json';
+const SELECTION_STORAGE_KEY = 'aufgaben.preview.selection';
 
-function toOptionLabel(relativePath) {
-    return relativePath.replaceAll('/', ' / ');
-}
+const catalog = {};
 
 function toPreviewPath(relativePath) {
     return `../exports/json/${relativePath}`;
 }
 
-function setPathOptions(entries) {
-    if (!Array.isArray(entries) || entries.length === 0) {
+function loadStoredSelection() {
+    try {
+        const raw = window.localStorage.getItem(SELECTION_STORAGE_KEY);
+        if (!raw) {
+            return { gebiet: '', lernbereich: '', sammlung: '' };
+        }
+        const parsed = JSON.parse(raw);
+        return {
+            gebiet: typeof parsed?.gebiet === 'string' ? parsed.gebiet : '',
+            lernbereich: typeof parsed?.lernbereich === 'string' ? parsed.lernbereich : '',
+            sammlung: typeof parsed?.sammlung === 'string' ? parsed.sammlung : '',
+        };
+    } catch {
+        return { gebiet: '', lernbereich: '', sammlung: '' };
+    }
+}
+
+function storeSelection() {
+    const selection = {
+        gebiet: gebietSelect.value || '',
+        lernbereich: lernbereichSelect.value || '',
+        sammlung: sammlungSelect.value || '',
+    };
+    try {
+        window.localStorage.setItem(SELECTION_STORAGE_KEY, JSON.stringify(selection));
+    } catch {
+        // Ignorieren, falls localStorage nicht verfügbar ist.
+    }
+}
+
+function resetSelect(selectEl, placeholder) {
+    selectEl.innerHTML = '';
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = placeholder;
+    selectEl.appendChild(option);
+    selectEl.value = '';
+    selectEl.disabled = true;
+}
+
+function fillSelect(selectEl, values, placeholder) {
+    resetSelect(selectEl, placeholder);
+    if (!Array.isArray(values) || values.length === 0) {
+        return;
+    }
+
+    values.forEach((value) => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        selectEl.appendChild(option);
+    });
+
+    selectEl.disabled = false;
+    selectEl.value = values[0];
+}
+
+function buildCatalog(entries) {
+    Object.keys(catalog).forEach((key) => {
+        delete catalog[key];
+    });
+
+    if (!Array.isArray(entries)) {
         return false;
     }
 
-    const previous = pathSelect.value;
-    const currentOptions = new Set(Array.from(pathSelect.options).map((option) => option.value));
+    entries.forEach((entry) => {
+        if (typeof entry !== 'string') {
+            return;
+        }
 
-    pathSelect.innerHTML = '';
-    entries.forEach((relativePath) => {
-        const option = document.createElement('option');
-        option.value = toPreviewPath(relativePath);
-        option.textContent = toOptionLabel(relativePath);
-        pathSelect.appendChild(option);
+        const parts = entry.split('/');
+        if (parts.length < 3) {
+            return;
+        }
+
+        const gebiet = parts[0];
+        const lernbereich = parts[1];
+        const fileName = parts.slice(2).join('/');
+        const sammlung = fileName.endsWith('.json') ? fileName.slice(0, -5) : fileName;
+
+        if (!catalog[gebiet]) {
+            catalog[gebiet] = {};
+        }
+        if (!catalog[gebiet][lernbereich]) {
+            catalog[gebiet][lernbereich] = [];
+        }
+
+        catalog[gebiet][lernbereich].push({ sammlung, relativePath: entry });
     });
 
-    if (previous && currentOptions.has(previous)) {
-        pathSelect.value = previous;
+    const gebiete = Object.keys(catalog);
+    return gebiete.length > 0;
+}
+
+function refreshLernbereichSelection(preferredLernbereich = '') {
+    const gebiet = gebietSelect.value;
+    const lernbereiche = gebiet && catalog[gebiet]
+        ? Object.keys(catalog[gebiet]).sort((a, b) => a.localeCompare(b, 'de'))
+        : [];
+
+    fillSelect(lernbereichSelect, lernbereiche, 'Bitte Lernbereich wählen');
+    if (preferredLernbereich && lernbereiche.includes(preferredLernbereich)) {
+        lernbereichSelect.value = preferredLernbereich;
     }
+}
+
+function refreshSammlungSelection(preferredSammlung = '') {
+    const gebiet = gebietSelect.value;
+    const lernbereich = lernbereichSelect.value;
+    const entries = (gebiet && lernbereich && catalog[gebiet]?.[lernbereich]) ? catalog[gebiet][lernbereich] : [];
+
+    sammlungSelect.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Bitte Sammlung wählen';
+    sammlungSelect.appendChild(placeholder);
+
+    if (entries.length === 0) {
+        sammlungSelect.value = '';
+        sammlungSelect.disabled = true;
+        return;
+    }
+
+    const sortedEntries = entries
+        .slice()
+        .sort((a, b) => a.sammlung.localeCompare(b.sammlung, 'de'));
+
+    sortedEntries
+        .forEach((entry) => {
+            const option = document.createElement('option');
+            option.value = entry.relativePath;
+            option.textContent = entry.sammlung;
+            sammlungSelect.appendChild(option);
+        });
+
+    sammlungSelect.disabled = false;
+    sammlungSelect.value = sortedEntries[0].relativePath;
+    if (preferredSammlung && sortedEntries.some((entry) => entry.relativePath === preferredSammlung)) {
+        sammlungSelect.value = preferredSammlung;
+    }
+}
+
+function setSelectionOptions(entries) {
+    const hasEntries = buildCatalog(entries);
+    if (!hasEntries) {
+        resetSelect(gebietSelect, 'Keine Gebiete gefunden');
+        resetSelect(lernbereichSelect, 'Keine Lernbereiche gefunden');
+        resetSelect(sammlungSelect, 'Keine Sammlungen gefunden');
+        return false;
+    }
+
+    const storedSelection = loadStoredSelection();
+    const gebiete = Object.keys(catalog).sort((a, b) => a.localeCompare(b, 'de'));
+    fillSelect(gebietSelect, gebiete, 'Bitte Gebiet wählen');
+    if (storedSelection.gebiet && gebiete.includes(storedSelection.gebiet)) {
+        gebietSelect.value = storedSelection.gebiet;
+    }
+
+    refreshLernbereichSelection(storedSelection.lernbereich);
+    refreshSammlungSelection(storedSelection.sammlung);
+    storeSelection();
 
     return true;
 }
@@ -44,9 +188,11 @@ async function loadManifestOptions() {
         }
 
         const entries = await response.json();
-        setPathOptions(entries);
+        setSelectionOptions(entries);
     } catch {
-        // Fallback: statische Optionen aus dem HTML bleiben aktiv.
+        resetSelect(gebietSelect, 'Manifest nicht geladen');
+        resetSelect(lernbereichSelect, 'Manifest nicht geladen');
+        resetSelect(sammlungSelect, 'Manifest nicht geladen');
     }
 }
 
@@ -363,6 +509,127 @@ function buildPlotlyFigure(spec) {
                 yaxis: { title: 'Preis p', range: [0, maxY] },
             };
         }
+    } else if (specType === 'ab-tree') {
+        // Baumdiagramm im Stil von zeichneBaumdiagramm.js
+        const pa = toNumber(spec?.pa, 0.5);
+        const pba = toNumber(spec?.pba, 0.5);
+        const pbna = toNumber(spec?.pbna, 0.5);
+        const givenSlots = new Set(Array.isArray(spec?.givenSlots) ? spec.givenSlots : []);
+
+        const pna = 1 - pa;
+        const pnba = 1 - pba;
+        const pnbna = 1 - pbna;
+        const pAB = pa * pba;
+        const pAnB = pa * pnba;
+        const pnAB = pna * pbna;
+        const pnAnB = pna * pnbna;
+
+        // Slot-Werte (Slots 1..6 auf 2 NKS, 7..10 auf 4 NKS)
+        const slotValues = {
+            1: pa, 2: pna, 3: pba, 4: pnba, 5: pbna, 6: pnbna,
+            7: pAB, 8: pAnB, 9: pnAB, 10: pnAnB,
+        };
+        const circledDigits = {
+            1: '①', 2: '②', 3: '③', 4: '④', 5: '⑤',
+            6: '⑥', 7: '⑦', 8: '⑧', 9: '⑨', 10: '⑩',
+        };
+        function fmtSlot(idx) {
+            const v = slotValues[idx];
+            if (givenSlots.has(idx)) {
+                return idx <= 6 ? v.toFixed(2) : v.toFixed(4);
+            }
+            return circledDigits[idx] ?? String(idx);
+        }
+
+        // Knoten-Positionen (identisch zu zeichneBaumdiagramm.js)
+        const nodes = [
+            { x: 0, y: 0.5 },      // Start
+            { x: 0.5, y: 0.75 },    // A
+            { x: 0.5, y: 0.25 },    // ¬A
+            { x: 1, y: 0.875 },     // B|A
+            { x: 1, y: 0.625 },     // ¬B|A
+            { x: 1, y: 0.375 },     // B|¬A
+            { x: 1, y: 0.125 },     // ¬B|¬A
+        ];
+
+        const nodeLabels = ['', 'A', 'A\u0305', 'B', 'B\u0305', 'B', 'B\u0305'];
+
+        // Kanten
+        const edgePairs = [
+            [0, 1], [0, 2], [1, 3], [1, 4], [2, 5], [2, 6],
+        ];
+        // Slot-Index pro Kante
+        const edgeSlots = [1, 2, 3, 4, 5, 6];
+
+        const edgeShapes = edgePairs.map(([fi, ti]) => ({
+            type: 'line',
+            x0: nodes[fi].x, y0: nodes[fi].y,
+            x1: nodes[ti].x, y1: nodes[ti].y,
+            line: { width: 2, color: 'gray' },
+            layer: 'below',
+        }));
+
+        // Kanten-Labels (Slot-Nummern oder Werte)
+        const edgeAnnotations = edgePairs.map(([fi, ti], i) => {
+            const xm = (nodes[fi].x + nodes[ti].x) / 2;
+            const ym = (nodes[fi].y + nodes[ti].y) / 2;
+            const isFirstStage = fi === 0;
+            const goesUp = nodes[ti].y > nodes[fi].y;
+            const yOff = isFirstStage
+                ? (goesUp ? -0.08 : 0.08)
+                : (goesUp ? -0.05 : 0.05);
+            const slotIdx = edgeSlots[i];
+            const isGiven = givenSlots.has(slotIdx);
+            return {
+                x: xm, y: ym - yOff,
+                text: fmtSlot(slotIdx),
+                showarrow: false,
+                font: { size: 18, color: '#111827' },
+            };
+        });
+
+        // Blatt-Labels (Pfad-Wahrscheinlichkeiten = Slots 7..10)
+        const leafSlots = [7, 8, 9, 10];
+        const leafNodes = [3, 4, 5, 6];
+        const leafAnnotations = leafNodes.map((ni, i) => {
+            const slotIdx = leafSlots[i];
+            const isGiven = givenSlots.has(slotIdx);
+            return {
+                x: nodes[ni].x + 0.15,
+                y: nodes[ni].y,
+                text: fmtSlot(slotIdx),
+                showarrow: false,
+                font: { size: 18, color: '#111827' },
+            };
+        });
+
+        // Knoten-Trace (blaue Kreise wie zeichneBaumdiagramm.js)
+        figure.data.push({
+            x: nodes.map(n => n.x),
+            y: nodes.map(n => n.y),
+            text: nodeLabels,
+            mode: 'markers+text',
+            type: 'scatter',
+            textposition: 'middle center',
+            textfont: { size: 20 },
+            marker: {
+                size: nodes.map((_, i) => (i === 0 ? 0 : 40)),
+                color: '#b3e0ff',
+                opacity: 1,
+                line: { width: 2, color: 'gray' },
+                symbol: 'circle',
+            },
+            hoverinfo: 'none',
+        });
+
+        figure.layout = {
+            xaxis: { visible: false, range: [0, 1.4] },
+            yaxis: { visible: false, range: [0, 1] },
+            shapes: edgeShapes,
+            annotations: [...edgeAnnotations, ...leafAnnotations],
+            margin: { l: 20, r: 20, t: 20, b: 20 },
+            dragmode: false,
+        };
     } else {
         const traces = Array.isArray(spec?.traces) ? spec.traces : [];
         traces.forEach((trace) => {
@@ -513,11 +780,13 @@ function typesetMath() {
 }
 
 async function loadJsonAndRender() {
-    const path = pathSelect.value.trim();
-    if (!path) {
-        setStatus('Bitte einen JSON-Pfad eintragen.', true);
+    const relativePath = sammlungSelect.value.trim();
+    if (!relativePath) {
+        setStatus('Bitte zuerst eine Sammlung auswählen.', true);
         return;
     }
+
+    const path = toPreviewPath(relativePath);
 
     setStatus('Lade JSON ...');
     listEl.innerHTML = '';
@@ -537,7 +806,7 @@ async function loadJsonAndRender() {
             listEl.appendChild(renderTask(task, index, showSolutions.checked));
         });
 
-        setStatus(`${payload.length} Aufgaben geladen: ${path}`);
+        setStatus(`${payload.length} Aufgaben geladen: ${relativePath}`);
         typesetMath();
     } catch (error) {
         setStatus(`Fehler beim Laden: ${error.message}`, true);
@@ -545,7 +814,21 @@ async function loadJsonAndRender() {
 }
 
 loadBtn.addEventListener('click', loadJsonAndRender);
-pathSelect.addEventListener('change', loadJsonAndRender);
+gebietSelect.addEventListener('change', () => {
+    refreshLernbereichSelection();
+    refreshSammlungSelection();
+    storeSelection();
+    loadJsonAndRender();
+});
+lernbereichSelect.addEventListener('change', () => {
+    refreshSammlungSelection();
+    storeSelection();
+    loadJsonAndRender();
+});
+sammlungSelect.addEventListener('change', () => {
+    storeSelection();
+    loadJsonAndRender();
+});
 showSolutions.addEventListener('change', loadJsonAndRender);
 
 loadManifestOptions().finally(loadJsonAndRender);

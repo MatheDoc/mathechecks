@@ -17,6 +17,7 @@ description: Globale Qualitäts- und Ausgabeleitplanken für MatheChecks
 - Keine erfundenen Quellen, Funktionen oder Datenstrukturen.
 - Lernbereichsstruktur als Pflicht: Checkliste (Kompetenzen), Training (Aufgaben), Skript (Erklärbezug).
 - Jede Kompetenz hat mindestens eine Aufgabe; jede Aufgabe hat einen klaren Skriptbezug.
+- Mathematische Inline-Notation in Aufgaben-/JSON-Texten als `\\(...\\)`; keine `$$...$$`-Notation.
 
 ## 3) Soll-Kriterien
 
@@ -35,6 +36,11 @@ description: Globale Qualitäts- und Ausgabeleitplanken für MatheChecks
 - Keine inkonsistenten Bezeichner oder Notationswechsel.
 - Keine unlösbaren oder didaktisch unklaren Grenzfälle.
 - Keine Inhalte ohne nachvollziehbare Verknüpfung Kompetenz -> Aufgabe -> Skript.
+
+## 5a) Rückfragen bei Unklarheiten
+
+- Bei erheblicher Mehrdeutigkeit im Auftrag (z. B. widersprüchliche Anforderungen, unklar welche Datei betroffen ist, unklares Zielformat) lieber kurz nachfragen als eine aufwändige Umsetzung rückgängig machen zu müssen.
+- Kleine Unklarheiten, die sich aus dem Kontext erschließen, eigenständig auflösen und die getroffene Annahme transparent benennen.
 
 ## 6) Prioritäten bei Konflikten
 
