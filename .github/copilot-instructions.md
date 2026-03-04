@@ -27,7 +27,7 @@ Alle Entscheidungen zu Struktur, Inhalt, UX und Technik werden daran gemessen.
 ## Inhaltskonventionen
 
 - Markdown-Dateien mit YAML-Frontmatter (`layout`, `title`, `description`; optional z. B. `lernbereich`).
-- Mathematische Notation in KaTeX/MathJax-konformer LaTeX-Syntax (`$...$`, `$$...$$`).
+- Mathematische Notation in Aufgaben-/JSON-Texten konsistent als Inline-LaTeX `\\(...\\)` (kein `$$...$$`).
 - Interaktive Komponenten über Includes einbinden.
 
 ## Struktur für Agenten und Prompts

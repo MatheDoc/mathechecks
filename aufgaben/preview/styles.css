@@ -22,10 +22,16 @@ h1 {
 
 .toolbar {
     display: grid;
-    grid-template-columns: 90px 1fr auto auto;
+    grid-template-columns: repeat(3, minmax(180px, 1fr)) auto auto;
     gap: 10px;
-    align-items: center;
+    align-items: end;
     margin-bottom: 14px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .toolbar select {
@@ -49,6 +55,7 @@ h1 {
     align-items: center;
     gap: 6px;
     font-size: 14px;
+    align-self: center;
 }
 
 .status {

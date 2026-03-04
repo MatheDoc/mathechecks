@@ -78,16 +78,23 @@ def _build_figure_plotly_traces(spec: dict[str, Any]):
         if not isinstance(trace, dict):
             continue
         trace_type = str(trace.get("kind", "scatter")).lower()
-        if trace_type != "scatter":
-            raise ValueError(f"Nicht unterstützter Trace-Typ: {trace_type}")
         trace_kwargs = {
             "x": trace.get("x", []),
             "y": trace.get("y", []),
-            "mode": trace.get("mode", "lines"),
             "name": trace.get("name"),
-            "line": trace.get("line"),
             "marker": trace.get("marker"),
         }
+        if trace_type == "scatter":
+            trace_kwargs["mode"] = trace.get("mode", "lines")
+            trace_kwargs["line"] = trace.get("line")
+        elif trace_type == "bar":
+            optional_bar_keys = ["width", "offset", "base"]
+            for key in optional_bar_keys:
+                if key in trace:
+                    trace_kwargs[key] = trace.get(key)
+        else:
+            raise ValueError(f"Nicht unterstützter Trace-Typ: {trace_type}")
+
         optional_keys = [
             "fill",
             "fillcolor",
@@ -102,9 +109,14 @@ def _build_figure_plotly_traces(spec: dict[str, Any]):
             if key in trace:
                 trace_kwargs[key] = trace.get(key)
 
-        fig.add_scatter(
-            **trace_kwargs,
-        )
+        if trace_type == "scatter":
+            fig.add_scatter(
+                **trace_kwargs,
+            )
+        else:
+            fig.add_bar(
+                **trace_kwargs,
+            )
     return fig
 
 
@@ -268,7 +280,8 @@ def _build_plotly_figure_from_spec(spec: dict[str, Any]):
     spec_type = str(spec.get("type", "plotly")).lower()
     builder = PLOTLY_SPEC_BUILDERS.get(spec_type)
     if builder is None:
-        raise ValueError(f"Nicht unterstützter visual.spec.type: {spec_type}")
+        # Unbekannter Spec-Typ (z.B. ab-tree) – wird nur clientseitig gerendert.
+        return None
 
     fig = builder(spec)
 
@@ -296,14 +309,49 @@ def _render_visual_spec_to_base64(visual: dict[str, Any]) -> tuple[str, str] | N
         return None
 
     fig = _build_plotly_figure_from_spec(spec)
-    image_bytes = fig.to_image(
-        format="png",
-        width=int(_to_float(spec.get("width"), 900)),
-        height=int(_to_float(spec.get("height"), 520)),
-        scale=_to_float(spec.get("scale"), 1.0),
-    )
-    encoded = base64.b64encode(image_bytes).decode("ascii")
-    return encoded, "image/png"
+    if fig is None:
+        return None
+    width = int(_to_float(spec.get("width"), 900))
+    height = int(_to_float(spec.get("height"), 520))
+    scale = _to_float(spec.get("scale"), 1.0)
+
+    # Kaleido 1.x can intermittently deadlock in oneshot_async_run on
+    # Python 3.14+.  Retry up to 3 times with a per-attempt timeout
+    # implemented via a daemon thread so we don't hang forever.
+    import threading
+
+    for attempt in range(3):
+        result: list[bytes | Exception] = []
+
+        def _render():
+            try:
+                result.append(fig.to_image(
+                    format="png", width=width, height=height, scale=scale,
+                ))
+            except Exception as exc:  # noqa: BLE001
+                result.append(exc)
+
+        t = threading.Thread(target=_render, daemon=True)
+        t.start()
+        t.join(timeout=30)
+
+        if t.is_alive():
+            # Thread still running → Kaleido deadlock; retry
+            import sys
+            print(
+                f"[WARN] Kaleido-Timeout (Versuch {attempt + 1}/3) – neuer Versuch …",
+                file=sys.stderr,
+            )
+            continue
+
+        if result and isinstance(result[0], bytes):
+            encoded = base64.b64encode(result[0]).decode("ascii")
+            return encoded, "image/png"
+
+        if result and isinstance(result[0], Exception):
+            raise result[0]
+
+    raise RuntimeError("Kaleido-Rendering 3× fehlgeschlagen (Timeout/Deadlock).")
 
 
 def _resolve_visual_image(visual: dict[str, Any]) -> tuple[str, str] | None:

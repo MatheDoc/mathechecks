@@ -29,6 +29,8 @@ def validate_task(task: Task) -> None:
         if spec is not None and not isinstance(spec, dict):
             raise ValueError("'visual.spec' muss ein Objekt sein.")
     for answer in task.antworten:
+        if answer == "---":
+            continue
         if PLACEHOLDER_PATTERN.search(answer) is None:
             raise ValueError("Jede Antwort muss einen gültigen Placeholder enthalten.")
 

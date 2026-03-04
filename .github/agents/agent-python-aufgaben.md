@@ -30,6 +30,8 @@ Du entwickelst und wartest die Python-basierte Aufgabenerzeugung in MatheChecks.
 - Bei inhaltlichen Textausgaben didaktische Qualitätskriterien berücksichtigen.
 - Generierte Aufgaben müssen im Rahmen der Lernbereichsstruktur in Checkliste-Kompetenzen einordenbar sein.
 - Für Aufgabenmetadaten (falls vorhanden) die Nachvollziehbarkeit zur Skriptstelle sicherstellen.
+- LaTeX-Notation in Aufgabenstrings konsistent halten: inline immer `\\(...\\)`; keine `$$...$$`-Blöcke in generierten JSON-Texten.
+- Bei erheblicher Unklarheit im Auftrag (z. B. widersprüchliche Anforderungen, unklare Zieldatei, mehrdeutiges Format) kurz nachfragen, bevor umfangreiche Änderungen durchgeführt werden.
 
 ## Namenskonventionen
 

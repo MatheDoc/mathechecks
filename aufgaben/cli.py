@@ -8,11 +8,45 @@ from aufgaben.core.moodle_xml import export_json_to_moodle_xml, export_manifest_
 from aufgaben.core.models import Task
 from aufgaben.core.validation import validate_batch
 from aufgaben.generators.registry import REGISTRY, build_generator
+from aufgaben.tools.validate_binomial_semantics import main as validate_binomial_semantics_main
 
 
 def _default_output(generator_key: str) -> str:
     file_name = generator_key.replace(".", "_") + ".json"
     return str(Path("aufgaben") / "exports" / "json" / file_name)
+
+
+def _derive_xml_output_path(json_output: str) -> Path:
+    json_path = Path(json_output)
+    parts = list(json_path.parts)
+
+    try:
+        json_index = parts.index("json")
+        if json_index > 0 and parts[json_index - 1] == "exports":
+            xml_parts = parts[:json_index] + ["xml"] + parts[json_index + 1 :]
+            return Path(*xml_parts).with_suffix(".xml")
+    except ValueError:
+        pass
+
+    return json_path.with_suffix(".xml")
+
+
+def _derive_category_from_json_output(json_output: str) -> str:
+    json_path = Path(json_output).with_suffix("")
+    parts = list(json_path.parts)
+
+    try:
+        json_index = parts.index("json")
+        if json_index > 0 and parts[json_index - 1] == "exports":
+            relative_parts = parts[json_index + 1 :]
+            if relative_parts:
+                return "/".join(relative_parts)
+    except ValueError:
+        pass
+
+    if json_path.stem:
+        return json_path.stem
+    return "aufgaben"
 
 
 def _refresh_manifest_for_output(output_path: str) -> None:
@@ -70,6 +104,7 @@ def run_single(
     seed: int | None,
     output: str,
     question_order: str = "fixed",
+    export_xml: bool = True,
 ) -> None:
     generator = build_generator(generator_key)
     tasks = generator.generate(count=count, seed=seed)
@@ -77,7 +112,26 @@ def run_single(
     validate_batch(tasks, expected_count=count)
     write_tasks(output, tasks)
     _refresh_manifest_for_output(output)
-    print(f"OK: {len(tasks)} Aufgaben geschrieben nach {output} (questionOrder={question_order})")
+
+    if export_xml:
+        xml_output = _derive_xml_output_path(output)
+        xml_category = _derive_category_from_json_output(output)
+        export_json_to_moodle_xml(
+            input_json_path=output,
+            output_xml_path=str(xml_output),
+            category=xml_category,
+            include_answers=True,
+        )
+        print(
+            f"OK: {len(tasks)} Aufgaben geschrieben nach {output} "
+            f"und XML nach {xml_output} (questionOrder={question_order})"
+        )
+        return
+
+    print(
+        f"OK: {len(tasks)} Aufgaben geschrieben nach {output} "
+        f"(nur JSON, questionOrder={question_order})"
+    )
 
 
 def run_batch(config_path: str) -> None:
@@ -113,6 +167,7 @@ def run_batch(config_path: str) -> None:
                     seed=target_seed,
                     output=output,
                     question_order=question_order,
+                    export_xml=False,
                 )
             continue
 
@@ -128,6 +183,7 @@ def run_batch(config_path: str) -> None:
             seed=seed,
             output=output,
             question_order=question_order,
+            export_xml=False,
         )
 
     write_manifest(default_output_dir)
@@ -176,6 +232,12 @@ def main() -> None:
     )
     moodle_batch_parser.add_argument("--without-answers", action="store_true")
 
+    validate_binomial_parser = subparsers.add_parser(
+        "validate-binomial",
+        help="Interne Plausibilitätsprüfung für Binomial-Generatoren ausführen",
+    )
+    validate_binomial_parser.set_defaults(command="validate-binomial")
+
     args = parser.parse_args()
 
     if args.command == "list":
@@ -216,6 +278,10 @@ def main() -> None:
             include_answers=not args.without_answers,
         )
         print(f"OK: {len(outputs)} Moodle-XML-Dateien geschrieben nach {args.output_root}")
+        return
+
+    if args.command == "validate-binomial":
+        validate_binomial_semantics_main()
         return
 
 
