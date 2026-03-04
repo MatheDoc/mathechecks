@@ -1,0 +1,127 @@
+"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen – ohne bedingte Wkt.
+
+Die Vier-Felder-Tafel ist vollständig ausgefüllt (alle 8 Felder sichtbar).
+Es werden 4 Wahrscheinlichkeiten abgefragt, je eine aus den Gruppen:
+
+  1. Einzel:     P(A), P(¬A), P(B), P(¬B)
+  2. Schnitt:    P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  3. Vereinigung: P(A∪B), P(A∪¬B), P(¬A∪B), P(¬A∪¬B)
+  4. Spezial:    symmetrische Differenz, Diagonalsumme, trivial 0/1
+
+Keine bedingten Wahrscheinlichkeiten.
+"""
+
+import random
+from decimal import Decimal, ROUND_HALF_UP
+
+from aufgaben.core.models import Task
+from aufgaben.core.placeholders import numerical
+from aufgaben.generators.base import TaskGenerator
+from aufgaben.generators.stochastik.methoden.shared import extended_probs, sample_ab_case, vft_slots
+from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
+
+
+# ── Gruppen ────────────────────────────────────────────────────────────────
+
+_GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
+_GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
+_GROUP_VEREINIGUNG = ["paub", "paunb", "pnaub", "pnaunb"]
+_GROUP_SPEZIAL = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
+
+
+# ── LaTeX-Notation ─────────────────────────────────────────────────────────
+
+_LATEX: dict[str, str] = {
+    "pa":     r"P(A)",
+    "pna":    r"P(\overline{A})",
+    "pb":     r"P(B)",
+    "pnb":    r"P(\overline{B})",
+    "pab":    r"P(A \cap B)",
+    "panb":   r"P(A \cap \overline{B})",
+    "pnab":   r"P(\overline{A} \cap B)",
+    "pnanb":  r"P(\overline{A} \cap \overline{B})",
+    "paub":   r"P(A \cup B)",
+    "paunb":  r"P(A \cup \overline{B})",
+    "pnaub":  r"P(\overline{A} \cup B)",
+    "pnaunb": r"P(\overline{A} \cup \overline{B})",
+}
+
+_SPEZIAL_LABELS: dict[str, list[str]] = {
+    "symdiff": [
+        r"P(A \cup B) - P(A \cap B)",
+        r"P(A \cap \overline{B}) + P(\overline{A} \cap B)",
+    ],
+    "diag_sum": [
+        r"P(A \cap B) + P(\overline{A} \cap \overline{B})",
+    ],
+    "trivial_0": [
+        r"P(A \cap \overline{A})",
+        r"P(B \cap \overline{B})",
+    ],
+    "trivial_1": [
+        r"P(A \cup \overline{A})",
+        r"P(B \cup \overline{B})",
+    ],
+}
+
+
+def _frage_text(key: str, scenario, rng: random.Random) -> str:
+    """Fragetext: Spezial-Wkt immer LaTeX; alle anderen 50/50 Text/LaTeX."""
+    if key in _SPEZIAL_LABELS:
+        return f"\\({rng.choice(_SPEZIAL_LABELS[key])}\\)."
+    prob_text = scenario.prob_texts.get(key, "")
+    if prob_text and rng.random() < 0.5:
+        return f"die Wahrscheinlichkeit, dass {prob_text}"
+    return f"\\({_LATEX[key]}\\)."
+
+
+class MethodenVierfelderFolgernOhneBedingtGenerator(TaskGenerator):
+    generator_key = "stochastik.methoden.vierfelder_folgern_ohneUnabh"
+
+    def generate(self, count: int, seed: int | None = None) -> list[Task]:
+        rng = random.Random(seed)
+        tasks: list[Task] = []
+
+        for index in range(count):
+            scenario = SCENARIOS[index % len(SCENARIOS)]
+            case = sample_ab_case(rng=rng, scenario=scenario)
+            probs = extended_probs(case)
+
+            chosen_keys: list[str] = [
+                rng.choice(_GROUP_EINZEL),
+                rng.choice(_GROUP_SCHNITT),
+                rng.choice(_GROUP_VEREINIGUNG),
+                rng.choice(_GROUP_SPEZIAL),
+            ]
+
+            slots = vft_slots(case)
+            intro = (
+                f"<p>{scenario.intro}</p>"
+                f"<p>\\(A\\): {scenario.event_a}<br>"
+                f"\\(B\\): {scenario.event_b}</p>"
+                "<p>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet</p>"
+            )
+
+            fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
+            antworten = [
+                numerical(probs[k], tolerance=0.0001, decimals=4)
+                for k in chosen_keys
+            ]
+
+            tasks.append(
+                Task(
+                    einleitung=intro,
+                    fragen=fragen,
+                    antworten=antworten,
+                    visual={
+                        "type": "plot",
+                        "spec": {
+                            "type": "vft",
+                            "slots": {str(k): v for k, v in slots.items()},
+                            "givenSlots": list(range(1, 9)),
+                        },
+                    },
+                )
+            )
+
+        return tasks

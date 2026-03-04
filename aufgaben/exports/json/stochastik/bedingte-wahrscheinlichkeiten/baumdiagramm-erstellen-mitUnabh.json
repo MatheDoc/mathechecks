@@ -1,0 +1,802 @@
+[
+  {
+    "einleitung": "<p>Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen.</p><p>\\(A\\): Ein Großkunde bestellt Halbleiter.<br>\\(B\\): Halbleiter werden in Premium-Qualität bestellt.</p><p>Hinweis: Die Art eines Kunden hat keine Auswirkung auf die Qualität der bestellten Halbleiter.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6600:0,0001}",
+      "{1:NUMERICAL:=0,3400:0,0001}",
+      "{1:NUMERICAL:=0,2200:0,0001}",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "{1:NUMERICAL:=0,1452:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0748:0,0001}",
+      "{1:NUMERICAL:=0,2652:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.66,
+        "pba": 0.22,
+        "pbna": 0.22,
+        "givenSlots": [
+          5,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München.</p><p>\\(A\\): Ein Passagier hat einen gültigen Fahrschein.<br>\\(B\\): Ein Passagier trägt eine Maske.</p><p>Hinweis: Ob ein Passagier einen gültigen Fahrschein besitzt oder nicht, hat keinen Einfluss darauf, ob er eine Maske trägt.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "{1:NUMERICAL:=0,2200:0,0001}",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "{1:NUMERICAL:=0,2200:0,0001}",
+      "{1:NUMERICAL:=0,3198:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4602:0,0001}",
+      "{1:NUMERICAL:=0,1298:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.41,
+        "pba": 0.78,
+        "pbna": 0.78,
+        "givenSlots": [
+          2,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet.</p><p>\\(A\\): Ein Kunde bestellt eine Schokolade.<br>\\(B\\): Ein Kunde bestellt ein heißes Getränk.</p><p>Hinweis: Die Wahl eines bestellten Getränks beeinflusst nicht die gewünschte Temperatur.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,7600:0,0001}",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "{1:NUMERICAL:=0,5900:0,0001}",
+      "{1:NUMERICAL:=0,0984:0,0001}",
+      "{1:NUMERICAL:=0,1416:0,0001}",
+      "{1:NUMERICAL:=0,3116:0,0001}",
+      "{1:NUMERICAL:=0,4484:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.24,
+        "pba": 0.41,
+        "pbna": 0.41,
+        "givenSlots": [
+          1,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen.</p><p>\\(A\\): Es wird eine Sechs geworfen.<br>\\(B\\): Es wird ein Zauberspruch aufgesagt.</p><p>Hinweis: Der Zauberspruch wirkt nicht.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,3500:0,0001}",
+      "{1:NUMERICAL:=0,8300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,8300:0,0001}",
+      "{1:NUMERICAL:=0,1700:0,0001}",
+      "{1:NUMERICAL:=0,5395:0,0001}",
+      "{1:NUMERICAL:=0,1105:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0595:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.65,
+        "pba": 0.83,
+        "pbna": 0.83,
+        "givenSlots": [
+          4,
+          9
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss.</p><p>\\(A\\): Ein Bewerber ist Mathematiker.<br>\\(B\\): Ein Bewerber hat einen Bachelor.</p><p>Hinweis: Die Fachrichtung eines Bewerbers hat keinen Einfluss darauf, ob der Bewerber einen Bachelor oder Master hat.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4700:0,0001}",
+      "{1:NUMERICAL:=0,5300:0,0001}",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "{1:NUMERICAL:=0,7900:0,0001}",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3713:0,0001}",
+      "{1:NUMERICAL:=0,1113:0,0001}",
+      "{1:NUMERICAL:=0,4187:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.47,
+        "pba": 0.21,
+        "pbna": 0.21,
+        "givenSlots": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst.</p><p>\\(A\\): Der Prüfling besteht.<br>\\(B\\): Der Prüfer ist ausgeschlafen.</p><p>Hinweis: Es gibt keinen Zusammenhang zwischen dem Bestehen einer Prüfung und der Müdigkeit eines Prüfers.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3500:0,0001}",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,8200:0,0001}",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "{1:NUMERICAL:=0,8200:0,0001}",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "{1:NUMERICAL:=0,2870:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5330:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.35,
+        "pba": 0.82,
+        "pbna": 0.82,
+        "givenSlots": [
+          8,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet.</p><p>\\(A\\): Eine Hantel ist aus Metall.<br>\\(B\\): Eine Hantel hat einen drehbaren Griff.</p><p>Hinweis: Das Material einer Hantel beeinflusst nicht die Art des Griffes.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,8500:0,0001}",
+      "{1:NUMERICAL:=0,1500:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1500:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,1200:0,0001}",
+      "{1:NUMERICAL:=0,1700:0,0001}",
+      "{1:NUMERICAL:=0,0300:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.8,
+        "pba": 0.85,
+        "pbna": 0.85,
+        "givenSlots": [
+          1,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden.</p><p>\\(A\\): Sie gewinnt ein Spiel.<br>\\(B\\): Sie dopt in einem Spiel.</p><p>Hinweis: Doping hat keinen Einfluss auf die Leistung der Fußballspielerin.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6600:0,0001}",
+      "{1:NUMERICAL:=0,3400:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2112:0,0001}",
+      "{1:NUMERICAL:=0,2312:0,0001}",
+      "{1:NUMERICAL:=0,1088:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.66,
+        "pba": 0.68,
+        "pbna": 0.68,
+        "givenSlots": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte.</p><p>\\(A\\): Ein Mitarbeiter arbeitet im Home-Office.<br>\\(B\\): Ein Mitarbeiter arbeitet in Vollzeit.</p><p>Hinweis: Es gibt keinen Zusammenhang zwischen der Arbeitsstätte und dem Umfang der Arbeitszeit.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1944:0,0001}",
+      "{1:NUMERICAL:=0,2044:0,0001}",
+      "{1:NUMERICAL:=0,0756:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.72,
+        "pba": 0.73,
+        "pbna": 0.73,
+        "givenSlots": [
+          2,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind.</p><p>\\(A\\): Ein Restaurant hat einen Biergarten.<br>\\(B\\): Ein Restaurant hat eine Spielecke.</p><p>Hinweis: Ob ein Restaurant einen Biergarten hat oder nicht, hat keinen Einfluss darauf, ob es auch über eine Spielecke verfügt.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6600:0,0001}",
+      "{1:NUMERICAL:=0,3400:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3400:0,0001}",
+      "{1:NUMERICAL:=0,4620:0,0001}",
+      "{1:NUMERICAL:=0,2380:0,0001}",
+      "{1:NUMERICAL:=0,1980:0,0001}",
+      "{1:NUMERICAL:=0,1020:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.7,
+        "pba": 0.66,
+        "pbna": 0.66,
+        "givenSlots": [
+          2,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich.</p><p>\\(A\\): Ein Kunde kauft nachhaltige Holzkohle.<br>\\(B\\): Ein Kunde kauft ein Originalprodukt.</p><p>Hinweis: Die Ökobilanz der gekauften Holzkohle hat keinen Effekt darauf, ob es sich um ein Original- oder Nachahmerprodukt handelt.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5200:0,0001}",
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "{1:NUMERICAL:=0,5200:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2080:0,0001}",
+      "{1:NUMERICAL:=0,2880:0,0001}",
+      "{1:NUMERICAL:=0,3120:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.4,
+        "pba": 0.48,
+        "pbna": 0.48,
+        "givenSlots": [
+          3,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot.</p><p>\\(A\\): Weiße Farbe ist im Sonderangebot.<br>\\(B\\): Matte Farbe ist im Sonderangebot.</p><p>Hinweis: Ob sich eine weiße oder beige Farbe im Sonderangebot befindet, hat keine Auswirkung darauf, ob die Farbe matt oder glänzend ist.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,6900:0,0001}",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,6900:0,0001}",
+      "{1:NUMERICAL:=0,2325:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0775:0,0001}",
+      "{1:NUMERICAL:=0,1725:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.75,
+        "pba": 0.31,
+        "pbna": 0.31,
+        "givenSlots": [
+          1,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt.</p><p>\\(A\\): Ein Opfer ist minderjährig.<br>\\(B\\): Ein Opfer alarmiert die Polizei.</p><p>Hinweis: Das Alter des Opfers hat keine Auswirkung darauf, ob die Polizei alarmiert wird.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3800:0,0001}",
+      "{1:NUMERICAL:=0,6200:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1710:0,0001}",
+      "{1:NUMERICAL:=0,3410:0,0001}",
+      "{1:NUMERICAL:=0,2790:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.38,
+        "pba": 0.55,
+        "pbna": 0.55,
+        "givenSlots": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse.</p><p>\\(A\\): Ein Glas hat einen Riss.<br>\\(B\\): Ein Glas hat einen Blaseneinschluss.</p><p>Hinweis: Die beiden Fehler hängen nicht voneinander ab.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,8300:0,0001}",
+      "{1:NUMERICAL:=0,1700:0,0001}",
+      "{1:NUMERICAL:=0,8300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4150:0,0001}",
+      "{1:NUMERICAL:=0,0850:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0850:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.5,
+        "pba": 0.83,
+        "pbna": 0.83,
+        "givenSlots": [
+          6,
+          9
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht.</p><p>\\(A\\): Ein vorgeschlagener Partner ist attraktiv.<br>\\(B\\): Ein vorgeschlagener Partner raucht.</p><p>Hinweis: Es gibt keinen Zusammenhang zwischen der Attraktivität eines vorgeschlagenen Partners und seinem Rauchverhalten.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5200:0,0001}",
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "{1:NUMERICAL:=0,2800:0,0001}",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "{1:NUMERICAL:=0,1456:0,0001}",
+      "{1:NUMERICAL:=0,3744:0,0001}",
+      "{1:NUMERICAL:=0,1344:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.52,
+        "pba": 0.28,
+        "pbna": 0.28,
+        "givenSlots": [
+          3,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen.</p><p>\\(A\\): Eine Smartwatch ist fehlerfrei.<br>\\(B\\): Eine Smartwatch wird aussortiert.</p><p>Hinweis: Das automatisierte Testverfahren ist überflüssig.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,6100:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,1950:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3050:0,0001}",
+      "{1:NUMERICAL:=0,3050:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.39,
+        "pba": 0.5,
+        "pbna": 0.5,
+        "givenSlots": [
+          1,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird.</p><p>\\(A\\): Es wird eine große Pommes bestellt.<br>\\(B\\): Es wird eine Pommes mit Ketchup bestellt.</p><p>Hinweis: Es gibt keinen Zusammenhang zwischen der Größe einer bestellten Pommes und dem gewünschten Dressing.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "{1:NUMERICAL:=0,4425:0,0001}",
+      "{1:NUMERICAL:=0,1475:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1025:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.59,
+        "pba": 0.75,
+        "pbna": 0.75,
+        "givenSlots": [
+          1,
+          9
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen verkauft neue und gebrauchte Beamer.</p><p>\\(A\\): Ein Kunde kauft Neuware.<br>\\(B\\): Ein Kunde reklamiert das Produkt.</p><p>Hinweis: Ob ein Produkt Neu- oder Gebrauchtware ist, hat keinen Einfluss darauf, ob es reklamiert wird.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2464:0,0001}",
+      "{1:NUMERICAL:=0,3136:0,0001}",
+      "{1:NUMERICAL:=0,1936:0,0001}",
+      "{1:NUMERICAL:=0,2464:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.56,
+        "pba": 0.44,
+        "pbna": 0.44,
+        "givenSlots": [
+          2,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen.</p><p>\\(A\\): Einem Follower gefällt Ambition.<br>\\(B\\): Einem Follower gefällt Bonny.</p><p>Hinweis: Die Bewertung der beiden Lippenstifte durch einen Follower ist stochastisch unabhängig.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "{1:NUMERICAL:=0,5900:0,0001}",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "{1:NUMERICAL:=0,1770:0,0001}",
+      "{1:NUMERICAL:=0,1230:0,0001}",
+      "{1:NUMERICAL:=0,4130:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.3,
+        "pba": 0.59,
+        "pbna": 0.59,
+        "givenSlots": [
+          3,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind.</p><p>\\(A\\): Ein Produkt ist biologisch.<br>\\(B\\): Ein Produkt ist regional.</p><p>Hinweis: Ob ein Produkt biologisch ist, hat keinen Einfluss darauf, ob es regional ist.</p><p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4900:0,0001}",
+      "{1:NUMERICAL:=0,5100:0,0001}",
+      "{1:NUMERICAL:=0,1900:0,0001}",
+      "{1:NUMERICAL:=0,8100:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,8100:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3969:0,0001}",
+      "{1:NUMERICAL:=0,0969:0,0001}",
+      "{1:NUMERICAL:=0,4131:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.49,
+        "pba": 0.19,
+        "pbna": 0.19,
+        "givenSlots": [
+          5,
+          7
+        ]
+      }
+    }
+  }
+]

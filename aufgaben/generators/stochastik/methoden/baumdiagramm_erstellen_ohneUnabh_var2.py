@@ -1,12 +1,17 @@
-"""Check 3 – Baumdiagramm vervollständigen (Pfadadditionsregel).
+"""Check 2 – Baumdiagramm vervollständigen (Pfadmultiplikation umgestellt).
+
+Kernidee: Die Pfadmultiplikationsregel a·b = c kann *nicht* direkt
+angewendet werden, sondern muss mindestens einmal nach b umgestellt
+werden: b = c / a.
 
 Gegeben sind immer genau 3 Wahrscheinlichkeiten:
-  1. Beide Endwkt eines Astes: {7,8} oder {9,10}
-  2. Eine weitere Wkt aus dem anderen Ast:
-       wenn {7,8} → {5, 6, 9, 10};  wenn {9,10} → {3, 4, 7, 8}
+  1. Eine Endwahrscheinlichkeit (Blatt): 7, 8, 9 oder 10
+  2. Eine Wkt aus demselben Ast:
+       wenn 7|8 → {1, 3, 4};  wenn 9|10 → {2, 5, 6}
+  3. Eine Wkt aus dem anderen Ast:
+       wenn 7|8 → {5, 6, 9, 10};  wenn 9|10 → {3, 4, 7, 8}
 
-Lösungsweg: Pfadaddition → P(A) = P(A∩B) + P(A∩¬B) bzw. P(¬A) analog,
-danach Komplementregel + ggf. umgestellte Pfadmultiplikation.
+Damit ist der gesamte Baum bestimmbar (7 Werte zu berechnen).
 """
 
 import random
@@ -47,21 +52,25 @@ def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 8 Kombinationen: beide Endwkt eines Astes + 1 Wkt anderer Ast
+# 48 Kombinationen: 1 Endwkt + 1 gleicher Ast + 1 anderer Ast
 # ---------------------------------------------------------------------------
 _PATTERNS: list[set[int]] = []
 
-# A-Ast komplett (7,8) + eine Wkt vom ¬A-Ast
-for _other in (5, 6, 9, 10):
-    _PATTERNS.append({7, 8, _other})
+# Endwkt aus A-Ast (7 oder 8)
+for _end in (7, 8):
+    for _same in (1, 3, 4):
+        for _other in (5, 6, 9, 10):
+            _PATTERNS.append({_end, _same, _other})
 
-# ¬A-Ast komplett (9,10) + eine Wkt vom A-Ast
-for _other in (3, 4, 7, 8):
-    _PATTERNS.append({9, 10, _other})
+# Endwkt aus ¬A-Ast (9 oder 10)
+for _end in (9, 10):
+    for _same in (2, 5, 6):
+        for _other in (3, 4, 7, 8):
+            _PATTERNS.append({_end, _same, _other})
 
 
-class MethodenBaumdiagrammCheck3Generator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_check3"
+class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohneUnabh_var2"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)

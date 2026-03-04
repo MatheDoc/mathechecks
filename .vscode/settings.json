@@ -1,4 +1,10 @@
 {
   "editor.formatOnSave": true,
   "editor.wordWrap": "on",
+  "chat.tools.terminal.autoApprove": {
+    "/^cd \"C:\\\\Users\\\\fue\\\\Meine Ablage\\\\mathechecks\" ; python -m aufgaben\\.cli batch --config aufgaben/project_config\\.json 2>&1 \\| Select-String -Pattern \"vierfelder\\|ERROR\\|Traceback\" -CaseSensitive:\\$false$/": {
+      "approve": true,
+      "matchCommandLine": true
+    }
+  },
 }

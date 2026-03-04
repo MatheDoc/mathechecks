@@ -684,14 +684,74 @@ function buildPlotlyFigure(spec) {
     return figure;
 }
 
-function renderVisual(task, wrapper) {
-    if (!window.Plotly) {
-        return;
+function buildVftTable(spec) {
+    const slots = typeof spec?.slots === 'object' && spec.slots ? spec.slots : {};
+    const givenSlots = new Set(Array.isArray(spec?.givenSlots) ? spec.givenSlots.map(Number) : []);
+    const circled = { 1: '①', 2: '②', 3: '③', 4: '④', 5: '⑤', 6: '⑥', 7: '⑦', 8: '⑧' };
+
+    function cell(idx) {
+        if (givenSlots.has(idx)) {
+            return Number(slots[String(idx)]).toFixed(4);
+        }
+        return circled[idx] ?? String(idx);
     }
 
+    const thStyle = 'border:1px solid #000;padding:4px 10px;background:#f3f4f6';
+    const tdStyle = 'border:1px solid #000;padding:4px 10px;text-align:center';
+    const tdBoldStyle = 'border:2px solid #000;padding:4px 10px;text-align:center';
+    const trTopStyle = 'border-top:2px solid #000';
+
+    const table = document.createElement('table');
+    table.style.cssText = 'border-collapse:collapse;text-align:center;margin:8px 0';
+
+    table.innerHTML = `
+        <tr>
+            <th style="${thStyle}"></th>
+            <th style="${thStyle}">\\(P(A)\\)</th>
+            <th style="${thStyle}">\\(P(\\overline{A})\\)</th>
+            <th style="${tdBoldStyle}"></th>
+        </tr>
+        <tr>
+            <th style="${thStyle}">\\(P(B)\\)</th>
+            <td style="${tdStyle}">${cell(1)}</td>
+            <td style="${tdStyle}">${cell(3)}</td>
+            <td style="${tdBoldStyle}">${cell(7)}</td>
+        </tr>
+        <tr>
+            <th style="${thStyle}">\\(P(\\overline{B})\\)</th>
+            <td style="${tdStyle}">${cell(2)}</td>
+            <td style="${tdStyle}">${cell(4)}</td>
+            <td style="${tdBoldStyle}">${cell(8)}</td>
+        </tr>
+        <tr style="${trTopStyle}">
+            <th style="${thStyle}"></th>
+            <td style="${tdStyle}">${cell(5)}</td>
+            <td style="${tdStyle}">${cell(6)}</td>
+            <td style="${tdBoldStyle}">1</td>
+        </tr>`;
+
+    return table;
+}
+
+function renderVisual(task, wrapper) {
     const visual = task?.visual;
     const spec = visual?.spec;
     if (!spec || typeof spec !== 'object') {
+        return;
+    }
+
+    const specType = String(spec?.type ?? '').toLowerCase();
+
+    // VFT: DOM-Tabelle, kein Plotly nötig
+    if (specType === 'vft') {
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'intro';
+        tableWrapper.appendChild(buildVftTable(spec));
+        wrapper.appendChild(tableWrapper);
+        return;
+    }
+
+    if (!window.Plotly) {
         return;
     }
 

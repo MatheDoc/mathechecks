@@ -134,6 +134,50 @@ def run_single(
     )
 
 
+def _collect_expected_outputs(jobs: list, defaults: dict, default_output_dir: str) -> set[Path]:
+    expected: set[Path] = set()
+    default_count = int(defaults.get("count", 20))
+    for job_index, job in enumerate(jobs, start=1):
+        generator_key = job["generator"]
+        targets = job.get("targets")
+        if targets:
+            for target_index, target in enumerate(targets, start=1):
+                output = _target_output(
+                    target=target,
+                    generator_key=generator_key,
+                    output_dir=default_output_dir,
+                    default_index=target_index,
+                )
+                expected.add(Path(output).resolve())
+        else:
+            output = job.get("output")
+            if output is None:
+                output = str(
+                    Path(default_output_dir) / f"{generator_key.replace('.', '_')}_{job_index}.json"
+                )
+            expected.add(Path(output).resolve())
+    return expected
+
+
+def _cleanup_stale_exports(output_dir: str, expected_outputs: set[Path]) -> None:
+    root = Path(output_dir)
+    removed = []
+    for json_file in root.rglob("*.json"):
+        if json_file.name in {"manifest.json"} or json_file.name.endswith("-test.json"):
+            continue
+        if json_file.resolve() not in expected_outputs:
+            json_file.unlink()
+            removed.append(json_file)
+    # remove empty subdirectories
+    for dirpath in sorted(root.rglob("*"), reverse=True):
+        if dirpath.is_dir() and not any(dirpath.iterdir()):
+            dirpath.rmdir()
+    if removed:
+        print(f"CLEANUP: {len(removed)} veraltete JSON(s) entfernt:")
+        for f in removed:
+            print(f"  - {f}")
+
+
 def run_batch(config_path: str) -> None:
     config = json.loads(Path(config_path).read_text(encoding="utf-8"))
     jobs = config.get("jobs", [])
@@ -186,6 +230,8 @@ def run_batch(config_path: str) -> None:
             export_xml=False,
         )
 
+    expected = _collect_expected_outputs(jobs, defaults, default_output_dir)
+    _cleanup_stale_exports(default_output_dir, expected)
     write_manifest(default_output_dir)
 
 
