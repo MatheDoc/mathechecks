@@ -1,0 +1,882 @@
+[
+  {
+    "einleitung": "<p>Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen.</p><p>\\(A\\): Ein Großkunde bestellt Halbleiter.<br>\\(B\\): Halbleiter werden in Premium-Qualität bestellt.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3658:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2394:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6200:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6052:0,0001}",
+      "{1:NUMERICAL:=0,3948:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3658,
+          "2": 0.2542,
+          "3": 0.2394,
+          "4": 0.1406,
+          "5": 0.62,
+          "6": 0.38,
+          "7": 0.6052,
+          "8": 0.3948
+        },
+        "givenSlots": [
+          2,
+          4,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München.</p><p>\\(A\\): Ein Passagier hat einen gültigen Fahrschein.<br>\\(B\\): Ein Passagier trägt eine Maske.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0858:0,0001}",
+      "{1:NUMERICAL:=0,2442:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3300:0,0001}",
+      "{1:NUMERICAL:=0,6700:0,0001}",
+      "{1:NUMERICAL:=0,4945:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.0858,
+          "2": 0.2442,
+          "3": 0.4087,
+          "4": 0.2613,
+          "5": 0.33,
+          "6": 0.67,
+          "7": 0.4945,
+          "8": 0.5055
+        },
+        "givenSlots": [
+          3,
+          4,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet.</p><p>\\(A\\): Ein Kunde bestellt eine Schokolade.<br>\\(B\\): Ein Kunde bestellt ein heißes Getränk.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1375:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5700:0,0001}",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "{1:NUMERICAL:=0,7075:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1375,
+          "2": 0.1125,
+          "3": 0.57,
+          "4": 0.18,
+          "5": 0.25,
+          "6": 0.75,
+          "7": 0.7075,
+          "8": 0.2925
+        },
+        "givenSlots": [
+          2,
+          5,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen.</p><p>\\(A\\): Es wird eine Sechs geworfen.<br>\\(B\\): Es wird ein Zauberspruch aufgesagt.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1485:0,0001}",
+      "{1:NUMERICAL:=0,3015:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,5555:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.407,
+          "2": 0.143,
+          "3": 0.1485,
+          "4": 0.3015,
+          "5": 0.55,
+          "6": 0.45,
+          "7": 0.5555,
+          "8": 0.4445
+        },
+        "givenSlots": [
+          1,
+          2,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss.</p><p>\\(A\\): Ein Bewerber ist Mathematiker.<br>\\(B\\): Ein Bewerber hat einen Bachelor.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1909:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2464:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,4373:0,0001}",
+      "{1:NUMERICAL:=0,5627:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1909,
+          "2": 0.0391,
+          "3": 0.2464,
+          "4": 0.5236,
+          "5": 0.23,
+          "6": 0.77,
+          "7": 0.4373,
+          "8": 0.5627
+        },
+        "givenSlots": [
+          2,
+          4,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst.</p><p>\\(A\\): Der Prüfling besteht.<br>\\(B\\): Der Prüfer ist ausgeschlafen.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,4648:0,0001}",
+      "{1:NUMERICAL:=0,0952:0,0001}",
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4076:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1276,
+          "2": 0.3124,
+          "3": 0.4648,
+          "4": 0.0952,
+          "5": 0.44,
+          "6": 0.56,
+          "7": 0.5924,
+          "8": 0.4076
+        },
+        "givenSlots": [
+          1,
+          2,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet.</p><p>\\(A\\): Eine Hantel ist aus Metall.<br>\\(B\\): Eine Hantel hat einen drehbaren Griff.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2912:0,0001}",
+      "{1:NUMERICAL:=0,2288:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3264:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5552:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2912,
+          "2": 0.2288,
+          "3": 0.1536,
+          "4": 0.3264,
+          "5": 0.52,
+          "6": 0.48,
+          "7": 0.4448,
+          "8": 0.5552
+        },
+        "givenSlots": [
+          3,
+          5,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden.</p><p>\\(A\\): Sie gewinnt ein Spiel.<br>\\(B\\): Sie dopt in einem Spiel.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,2040:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,5300:0,0001}",
+      "{1:NUMERICAL:=0,4700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.096,
+          "2": 0.204,
+          "3": 0.434,
+          "4": 0.266,
+          "5": 0.3,
+          "6": 0.7,
+          "7": 0.53,
+          "8": 0.47
+        },
+        "givenSlots": [
+          1,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte.</p><p>\\(A\\): Ein Mitarbeiter arbeitet im Home-Office.<br>\\(B\\): Ein Mitarbeiter arbeitet in Vollzeit.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2160:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,5240:0,0001}",
+      "{1:NUMERICAL:=0,4760:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.216,
+          "2": 0.234,
+          "3": 0.308,
+          "4": 0.242,
+          "5": 0.45,
+          "6": 0.55,
+          "7": 0.524,
+          "8": 0.476
+        },
+        "givenSlots": [
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind.</p><p>\\(A\\): Ein Restaurant hat einen Biergarten.<br>\\(B\\): Ein Restaurant hat eine Spielecke.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,3096:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0868:0,0001}",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6036:0,0001}",
+      "{1:NUMERICAL:=0,3964:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.4104,
+          "2": 0.3096,
+          "3": 0.1932,
+          "4": 0.0868,
+          "5": 0.72,
+          "6": 0.28,
+          "7": 0.6036,
+          "8": 0.3964
+        },
+        "givenSlots": [
+          1,
+          3,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich.</p><p>\\(A\\): Ein Kunde kauft nachhaltige Holzkohle.<br>\\(B\\): Ein Kunde kauft ein Originalprodukt.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4977:0,0001}",
+      "{1:NUMERICAL:=0,2923:0,0001}",
+      "{1:NUMERICAL:=0,1617:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "{1:NUMERICAL:=0,6594:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.4977,
+          "2": 0.2923,
+          "3": 0.1617,
+          "4": 0.0483,
+          "5": 0.79,
+          "6": 0.21,
+          "7": 0.6594,
+          "8": 0.3406
+        },
+        "givenSlots": [
+          4,
+          5,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot.</p><p>\\(A\\): Weiße Farbe ist im Sonderangebot.<br>\\(B\\): Matte Farbe ist im Sonderangebot.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,3840:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,6400:0,0001}",
+      "{1:NUMERICAL:=0,3600:0,0001}",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,6900:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.256,
+          "2": 0.384,
+          "3": 0.054,
+          "4": 0.306,
+          "5": 0.64,
+          "6": 0.36,
+          "7": 0.31,
+          "8": 0.69
+        },
+        "givenSlots": [
+          1,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt.</p><p>\\(A\\): Ein Opfer ist minderjährig.<br>\\(B\\): Ein Opfer alarmiert die Polizei.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2788:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,3940:0,0001}",
+      "{1:NUMERICAL:=0,6060:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2788,
+          "2": 0.4012,
+          "3": 0.1152,
+          "4": 0.2048,
+          "5": 0.68,
+          "6": 0.32,
+          "7": 0.394,
+          "8": 0.606
+        },
+        "givenSlots": [
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse.</p><p>\\(A\\): Ein Glas hat einen Riss.<br>\\(B\\): Ein Glas hat einen Blaseneinschluss.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1748:0,0001}",
+      "{1:NUMERICAL:=0,2852:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2052:0,0001}",
+      "{1:NUMERICAL:=0,4600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5096:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1748,
+          "2": 0.2852,
+          "3": 0.3348,
+          "4": 0.2052,
+          "5": 0.46,
+          "6": 0.54,
+          "7": 0.5096,
+          "8": 0.4904
+        },
+        "givenSlots": [
+          3,
+          6,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht.</p><p>\\(A\\): Ein vorgeschlagener Partner ist attraktiv.<br>\\(B\\): Ein vorgeschlagener Partner raucht.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4380:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0837:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5217:0,0001}",
+      "{1:NUMERICAL:=0,4783:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.438,
+          "2": 0.292,
+          "3": 0.0837,
+          "4": 0.1863,
+          "5": 0.73,
+          "6": 0.27,
+          "7": 0.5217,
+          "8": 0.4783
+        },
+        "givenSlots": [
+          2,
+          4,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen.</p><p>\\(A\\): Eine Smartwatch ist fehlerfrei.<br>\\(B\\): Eine Smartwatch wird aussortiert.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3952:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2208:0,0001}",
+      "{1:NUMERICAL:=0,5200:0,0001}",
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "{1:NUMERICAL:=0,6544:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3952,
+          "2": 0.1248,
+          "3": 0.2592,
+          "4": 0.2208,
+          "5": 0.52,
+          "6": 0.48,
+          "7": 0.6544,
+          "8": 0.3456
+        },
+        "givenSlots": [
+          2,
+          3,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird.</p><p>\\(A\\): Es wird eine große Pommes bestellt.<br>\\(B\\): Es wird eine Pommes mit Ketchup bestellt.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,1872:0,0001}",
+      "{1:NUMERICAL:=0,3552:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4280:0,0001}",
+      "{1:NUMERICAL:=0,5720:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.0728,
+          "2": 0.1872,
+          "3": 0.3552,
+          "4": 0.3848,
+          "5": 0.26,
+          "6": 0.74,
+          "7": 0.428,
+          "8": 0.572
+        },
+        "givenSlots": [
+          1,
+          4,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen verkauft neue und gebrauchte Beamer.</p><p>\\(A\\): Ein Kunde kauft Neuware.<br>\\(B\\): Ein Kunde reklamiert das Produkt.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,0800:0,0001}",
+      "{1:NUMERICAL:=0,3240:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3560:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.32,
+          "2": 0.08,
+          "3": 0.324,
+          "4": 0.276,
+          "5": 0.4,
+          "6": 0.6,
+          "7": 0.644,
+          "8": 0.356
+        },
+        "givenSlots": [
+          1,
+          4,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen.</p><p>\\(A\\): Einem Follower gefällt Ambition.<br>\\(B\\): Einem Follower gefällt Bonny.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0480:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,5444:0,0001}",
+      "{1:NUMERICAL:=0,4556:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.048,
+          "2": 0.272,
+          "3": 0.4964,
+          "4": 0.1836,
+          "5": 0.32,
+          "6": 0.68,
+          "7": 0.5444,
+          "8": 0.4556
+        },
+        "givenSlots": [
+          2,
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind.</p><p>\\(A\\): Ein Produkt ist biologisch.<br>\\(B\\): Ein Produkt ist regional.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,4104:0,0001}",
+      "{1:NUMERICAL:=0,4600:0,0001}",
+      "{1:NUMERICAL:=0,5400:0,0001}",
+      "{1:NUMERICAL:=0,2032:0,0001}",
+      "{1:NUMERICAL:=0,7968:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.0736,
+          "2": 0.3864,
+          "3": 0.1296,
+          "4": 0.4104,
+          "5": 0.46,
+          "6": 0.54,
+          "7": 0.2032,
+          "8": 0.7968
+        },
+        "givenSlots": [
+          1,
+          2,
+          3
+        ]
+      }
+    }
+  }
+]

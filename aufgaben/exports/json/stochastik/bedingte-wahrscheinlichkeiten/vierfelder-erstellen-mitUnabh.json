@@ -1,0 +1,862 @@
+[
+  {
+    "einleitung": "<p>Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen.</p><p>\\(A\\): Ein Großkunde bestellt Halbleiter.<br>\\(B\\): Halbleiter werden in Premium-Qualität bestellt.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2772:0,0001}",
+      "{1:NUMERICAL:=0,0828:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3600:0,0001}",
+      "{1:NUMERICAL:=0,6400:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2772,
+          "2": 0.0828,
+          "3": 0.4928,
+          "4": 0.1472,
+          "5": 0.36,
+          "6": 0.64,
+          "7": 0.77,
+          "8": 0.23
+        },
+        "givenSlots": [
+          3,
+          4
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München.</p><p>\\(A\\): Ein Passagier hat einen gültigen Fahrschein.<br>\\(B\\): Ein Passagier trägt eine Maske.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,3450:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4050:0,0001}",
+      "{1:NUMERICAL:=0,4600:0,0001}",
+      "{1:NUMERICAL:=0,5400:0,0001}",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "{1:NUMERICAL:=0,7500:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.115,
+          "2": 0.345,
+          "3": 0.135,
+          "4": 0.405,
+          "5": 0.46,
+          "6": 0.54,
+          "7": 0.25,
+          "8": 0.75
+        },
+        "givenSlots": [
+          1,
+          3
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet.</p><p>\\(A\\): Ein Kunde bestellt eine Schokolade.<br>\\(B\\): Ein Kunde bestellt ein heißes Getränk.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0600:0,0001}",
+      "{1:NUMERICAL:=0,1900:0,0001}",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "{1:NUMERICAL:=0,5700:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7600:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.06,
+          "2": 0.19,
+          "3": 0.18,
+          "4": 0.57,
+          "5": 0.25,
+          "6": 0.75,
+          "7": 0.24,
+          "8": 0.76
+        },
+        "givenSlots": [
+          5,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen.</p><p>\\(A\\): Es wird eine Sechs geworfen.<br>\\(B\\): Es wird ein Zauberspruch aufgesagt.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5904:0,0001}",
+      "{1:NUMERICAL:=0,1296:0,0001}",
+      "{1:NUMERICAL:=0,2296:0,0001}",
+      "{1:NUMERICAL:=0,0504:0,0001}",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1800:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.5904,
+          "2": 0.1296,
+          "3": 0.2296,
+          "4": 0.0504,
+          "5": 0.72,
+          "6": 0.28,
+          "7": 0.82,
+          "8": 0.18
+        },
+        "givenSlots": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss.</p><p>\\(A\\): Ein Bewerber ist Mathematiker.<br>\\(B\\): Ein Bewerber hat einen Bachelor.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1848:0,0001}",
+      "{1:NUMERICAL:=0,0552:0,0001}",
+      "{1:NUMERICAL:=0,7600:0,0001}",
+      "{1:NUMERICAL:=0,2400:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.5852,
+          "2": 0.1748,
+          "3": 0.1848,
+          "4": 0.0552,
+          "5": 0.76,
+          "6": 0.24,
+          "7": 0.77,
+          "8": 0.23
+        },
+        "givenSlots": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst.</p><p>\\(A\\): Der Prüfling besteht.<br>\\(B\\): Der Prüfer ist ausgeschlafen.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3968:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2432:0,0001}",
+      "{1:NUMERICAL:=0,1368:0,0001}",
+      "{1:NUMERICAL:=0,6200:0,0001}",
+      "{1:NUMERICAL:=0,3800:0,0001}",
+      "{1:NUMERICAL:=0,6400:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3968,
+          "2": 0.2232,
+          "3": 0.2432,
+          "4": 0.1368,
+          "5": 0.62,
+          "6": 0.38,
+          "7": 0.64,
+          "8": 0.36
+        },
+        "givenSlots": [
+          2,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet.</p><p>\\(A\\): Eine Hantel ist aus Metall.<br>\\(B\\): Eine Hantel hat einen drehbaren Griff.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6156:0,0001}",
+      "{1:NUMERICAL:=0,1444:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,0456:0,0001}",
+      "{1:NUMERICAL:=0,7600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,8100:0,0001}",
+      "{1:NUMERICAL:=0,1900:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.6156,
+          "2": 0.1444,
+          "3": 0.1944,
+          "4": 0.0456,
+          "5": 0.76,
+          "6": 0.24,
+          "7": 0.81,
+          "8": 0.19
+        },
+        "givenSlots": [
+          3,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden.</p><p>\\(A\\): Sie gewinnt ein Spiel.<br>\\(B\\): Sie dopt in einem Spiel.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "{1:NUMERICAL:=0,4466:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3234:0,0001}",
+      "{1:NUMERICAL:=0,5800:0,0001}",
+      "{1:NUMERICAL:=0,4200:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1334,
+          "2": 0.4466,
+          "3": 0.0966,
+          "4": 0.3234,
+          "5": 0.58,
+          "6": 0.42,
+          "7": 0.23,
+          "8": 0.77
+        },
+        "givenSlots": [
+          1,
+          3
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte.</p><p>\\(A\\): Ein Mitarbeiter arbeitet im Home-Office.<br>\\(B\\): Ein Mitarbeiter arbeitet in Vollzeit.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1540:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3960:0,0001}",
+      "{1:NUMERICAL:=0,3240:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.154,
+          "2": 0.126,
+          "3": 0.396,
+          "4": 0.324,
+          "5": 0.28,
+          "6": 0.72,
+          "7": 0.55,
+          "8": 0.45
+        },
+        "givenSlots": [
+          2,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind.</p><p>\\(A\\): Ein Restaurant hat einen Biergarten.<br>\\(B\\): Ein Restaurant hat eine Spielecke.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1960:0,0001}",
+      "{1:NUMERICAL:=0,2940:0,0001}",
+      "{1:NUMERICAL:=0,2040:0,0001}",
+      "{1:NUMERICAL:=0,3060:0,0001}",
+      "{1:NUMERICAL:=0,4900:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,6000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.196,
+          "2": 0.294,
+          "3": 0.204,
+          "4": 0.306,
+          "5": 0.49,
+          "6": 0.51,
+          "7": 0.4,
+          "8": 0.6
+        },
+        "givenSlots": [
+          6,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich.</p><p>\\(A\\): Ein Kunde kauft nachhaltige Holzkohle.<br>\\(B\\): Ein Kunde kauft ein Originalprodukt.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3080:0,0001}",
+      "{1:NUMERICAL:=0,0920:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1380:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.308,
+          "2": 0.092,
+          "3": 0.462,
+          "4": 0.138,
+          "5": 0.4,
+          "6": 0.6,
+          "7": 0.77,
+          "8": 0.23
+        },
+        "givenSlots": [
+          3,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot.</p><p>\\(A\\): Weiße Farbe ist im Sonderangebot.<br>\\(B\\): Matte Farbe ist im Sonderangebot.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1000:0,0001}",
+      "{1:NUMERICAL:=0,1000:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5000:0,0001}",
+      "{1:NUMERICAL:=0,5000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1,
+          "2": 0.1,
+          "3": 0.4,
+          "4": 0.4,
+          "5": 0.2,
+          "6": 0.8,
+          "7": 0.5,
+          "8": 0.5
+        },
+        "givenSlots": [
+          4,
+          6
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt.</p><p>\\(A\\): Ein Opfer ist minderjährig.<br>\\(B\\): Ein Opfer alarmiert die Polizei.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3850:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1650:0,0001}",
+      "{1:NUMERICAL:=0,1350:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.385,
+          "2": 0.315,
+          "3": 0.165,
+          "4": 0.135,
+          "5": 0.7,
+          "6": 0.3,
+          "7": 0.55,
+          "8": 0.45
+        },
+        "givenSlots": [
+          2,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse.</p><p>\\(A\\): Ein Glas hat einen Riss.<br>\\(B\\): Ein Glas hat einen Blaseneinschluss.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1110:0,0001}",
+      "{1:NUMERICAL:=0,2590:0,0001}",
+      "{1:NUMERICAL:=0,1890:0,0001}",
+      "{1:NUMERICAL:=0,4410:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.111,
+          "2": 0.259,
+          "3": 0.189,
+          "4": 0.441,
+          "5": 0.37,
+          "6": 0.63,
+          "7": 0.3,
+          "8": 0.7
+        },
+        "givenSlots": [
+          5,
+          7
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht.</p><p>\\(A\\): Ein vorgeschlagener Partner ist attraktiv.<br>\\(B\\): Ein vorgeschlagener Partner raucht.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1716:0,0001}",
+      "{1:NUMERICAL:=0,2684:0,0001}",
+      "{1:NUMERICAL:=0,2184:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "{1:NUMERICAL:=0,3900:0,0001}",
+      "{1:NUMERICAL:=0,6100:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1716,
+          "2": 0.2684,
+          "3": 0.2184,
+          "4": 0.3416,
+          "5": 0.44,
+          "6": 0.56,
+          "7": 0.39,
+          "8": 0.61
+        },
+        "givenSlots": [
+          4,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen.</p><p>\\(A\\): Eine Smartwatch ist fehlerfrei.<br>\\(B\\): Eine Smartwatch wird aussortiert.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4440:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2960:0,0001}",
+      "{1:NUMERICAL:=0,1040:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,7400:0,0001}",
+      "{1:NUMERICAL:=0,2600:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.444,
+          "2": 0.156,
+          "3": 0.296,
+          "4": 0.104,
+          "5": 0.6,
+          "6": 0.4,
+          "7": 0.74,
+          "8": 0.26
+        },
+        "givenSlots": [
+          2,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird.</p><p>\\(A\\): Es wird eine große Pommes bestellt.<br>\\(B\\): Es wird eine Pommes mit Ketchup bestellt.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,3577:0,0001}",
+      "{1:NUMERICAL:=0,3723:0,0001}",
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "{1:NUMERICAL:=0,4900:0,0001}",
+      "{1:NUMERICAL:=0,5100:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1323,
+          "2": 0.1377,
+          "3": 0.3577,
+          "4": 0.3723,
+          "5": 0.27,
+          "6": 0.73,
+          "7": 0.49,
+          "8": 0.51
+        },
+        "givenSlots": [
+          1,
+          2
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Unternehmen verkauft neue und gebrauchte Beamer.</p><p>\\(A\\): Ein Kunde kauft Neuware.<br>\\(B\\): Ein Kunde reklamiert das Produkt.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1702:0,0001}",
+      "{1:NUMERICAL:=0,5698:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2002:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2600:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1702,
+          "2": 0.5698,
+          "3": 0.0598,
+          "4": 0.2002,
+          "5": 0.74,
+          "6": 0.26,
+          "7": 0.23,
+          "8": 0.77
+        },
+        "givenSlots": [
+          3,
+          5
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen.</p><p>\\(A\\): Einem Follower gefällt Ambition.<br>\\(B\\): Einem Follower gefällt Bonny.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1625:0,0001}",
+      "{1:NUMERICAL:=0,4875:0,0001}",
+      "{1:NUMERICAL:=0,0875:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,3500:0,0001}",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1625,
+          "2": 0.4875,
+          "3": 0.0875,
+          "4": 0.2625,
+          "5": 0.65,
+          "6": 0.35,
+          "7": 0.25,
+          "8": 0.75
+        },
+        "givenSlots": [
+          4,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "<p>Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind.</p><p>\\(A\\): Ein Produkt ist biologisch.<br>\\(B\\): Ein Produkt ist regional.</p><p>Die Ereignisse \\(A\\) und \\(B\\) sind stochastisch unabhängig.</p><p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1720:0,0001}",
+      "{1:NUMERICAL:=0,2280:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "{1:NUMERICAL:=0,4300:0,0001}",
+      "{1:NUMERICAL:=0,5700:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.172,
+          "2": 0.228,
+          "3": 0.258,
+          "4": 0.342,
+          "5": 0.4,
+          "6": 0.6,
+          "7": 0.43,
+          "8": 0.57
+        },
+        "givenSlots": [
+          3,
+          4
+        ]
+      }
+    }
+  }
+]

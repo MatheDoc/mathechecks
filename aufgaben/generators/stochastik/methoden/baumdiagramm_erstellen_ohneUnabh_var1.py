@@ -37,8 +37,8 @@ def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
     }
 
 
-class MethodenBaumdiagrammCheck1Generator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_check1"
+class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohneUnabh_var1"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
