@@ -582,13 +582,25 @@
             ]
         },
         {
-            "generator": "stochastik.methoden.baumdiagramm_komplex_3kat",
+            "generator": "stochastik.mehrstufige_zufallsexperimente.baumdiagramm_komplex_3kat",
             "seed": 3100,
             "targets": [
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-komplex-3kat",
+                    "sammlung": "baumdiagramm-komplex-var1",
+                    "questionOrder": "fixed"
+                }
+            ]
+        },
+        {
+            "generator": "stochastik.mehrstufige_zufallsexperimente.baumdiagramm_komplex_nutzung_3kat",
+            "seed": 3110,
+            "targets": [
+                {
+                    "gebiet": "stochastik",
+                    "lernbereich": "mehrstufige-zufallsexperimente",
+                    "sammlung": "baumdiagramm-komplex-var2",
                     "questionOrder": "fixed"
                 }
             ]
