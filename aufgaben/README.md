@@ -29,20 +29,6 @@ Batch aus Konfiguration ausführen:
 python -m aufgaben.cli batch --config aufgaben/project_config.json
 ```
 
-Eine JSON nach Moodle-XML exportieren:
-
-```bash
-python -m aufgaben.cli moodle \
-	--input aufgaben/exports/json/analysis/ganzrationale-oekonomische-funktionen/funktionsterme.json \
-	--output aufgaben/exports/xml/analysis/ganzrationale-oekonomische-funktionen/funktionsterme.xml
-```
-
-Alle JSONs aus dem Manifest nach Moodle-XML exportieren:
-
-```bash
-python -m aufgaben.cli moodle-batch
-```
-
 Interne Plausibilitätsprüfung für Binomial-Semantik ausführen:
 
 ```bash
@@ -134,5 +120,4 @@ Beispiel:
 }
 ```
 
-Für Moodle-XML kann optional ein Bild eingebettet werden, wenn `visual.imageBase64` (plus optional `visual.mimeType`) vorhanden ist.
-Wenn stattdessen `visual.spec` vorhanden ist, wird beim Moodle-Export automatisch ein PNG gerendert (Plotly/Kaleido) und als Base64 eingebettet.
+Wenn `visual.spec` vorhanden ist, kann die Web-Vorschau (`preview.js`) das Diagramm clientseitig rendern.
