@@ -1,0 +1,262 @@
+[
+  {
+    "einleitung": "In einem großen Elektronikfachmarkt wurden über mehrere Monate die Laptopverkäufe ausgewertet. Die Laptops wurden nach der Preisklasse in Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P) eingeteilt. Zusätzlich wurde erfasst, ob ein Gerät Windows (W) oder macOS (m) nutzt. Bei den Einsteigergeräten liegt der Windows-Anteil bei 30 %, bei den Mittelklassegeräten bei 80 %. Von insgesamt 100.000 erfassten Laptops nutzen 40 % Windows; darunter wurden 80.000 Einsteigergeräte und 5.000 Premiumgeräte verkauft. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Laptop ein Premiumgerät mit macOS ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Premiumlaptop Windows nutzt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Laptop entweder ein Einsteigergerät mit macOS oder ein Mittelklassegerät mit macOS ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0100:0,0010}",
+      "{1:NUMERICAL:=0,8000:0,0010}",
+      "{1:NUMERICAL:=0,5900:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "An einer Hochschule wurden die Ergebnisse einer Abschlussprüfung ausgewertet. Die Studierenden wurden nach ihrem Studienfortschritt in drei Gruppen eingeteilt: Erstsemester (E), Mittelsemester (M) und Abschlussstudierende (A). Beim Ergebnis wird unterschieden zwischen bestanden (B) und nicht bestanden (N). Erstsemester bestehen die Prüfung mit 55 %, Mittelsemester mit 75 %. Von insgesamt 40.000 Prüfungsteilnehmenden haben 75 % die Prüfung bestanden; darunter waren 14.000 Erstsemester und 16.000 Abschlussstudierende. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person in der Abschlussphase die Prüfung bestanden hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Abschlussstudierende die Prüfung bestanden hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person ein Erstsemester oder ein Mittelsemester ist und die Prüfung bestanden hat."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3700:0,0010}",
+      "{1:NUMERICAL:=0,9250:0,0010}",
+      "{1:NUMERICAL:=0,3800:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "In einer Klinik wurde der Genesungsverlauf nach einer Standardbehandlung dokumentiert. Die Patientinnen und Patienten wurden nach dem Schweregrad eingeteilt: leicht (L), mittelschwer (M) und schwer (S) erkrankt. Beim Verlauf wird unterschieden zwischen genesen (G) und nicht genesen (N). Leicht Erkrankte genesen mit 15 %, mittelschwer Erkrankte mit 55 %. Von insgesamt 2.000 behandelten Patientinnen und Patienten sind 25 % genesen; darunter waren 1.500 leicht Erkrankte und 100 schwer Erkrankte. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person schwer erkrankt war und genesen ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte schwer erkrankte Person genesen ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person leicht erkrankt und genesen oder mittelschwer erkrankt und genesen ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0275:0,0010}",
+      "{1:NUMERICAL:=0,5500:0,0010}",
+      "{1:NUMERICAL:=0,2225:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Im Rahmen einer schulweiten Befragung ging es um die Nutzung von Lern-Apps. Die Befragten wurden in drei Gruppen eingeteilt: Starter-Nutzende (S), Pro-Nutzende (P) und Gelegenheits-Nutzende (G). Als Nutzungszweck wird unterschieden zwischen Prüfungsvorbereitung (V) und Unterhaltung (U). Starter-Nutzende verwenden die App in 30 % der Fälle zur Prüfungsvorbereitung, Pro-Nutzende in 75 % der Fälle. Von insgesamt 2.000 Befragten nutzen 45 % eine Lern-App zur Prüfungsvorbereitung; darunter waren 1.200 Starter-Nutzende und 400 Gelegenheits-Nutzende. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person zu den Gelegenheits-Nutzenden gehört und die App zur Prüfungsvorbereitung nutzt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person aus der Gruppe der Gelegenheits-Nutzenden die App zur Prüfungsvorbereitung nutzt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person eine Starter-Version oder eine Pro-Version zur Unterhaltung nutzt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1200:0,0010}",
+      "{1:NUMERICAL:=0,6000:0,0010}",
+      "{1:NUMERICAL:=0,4700:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Sportverein hat die Verletzungsstatistik seiner Mitglieder ausgewertet. Die Mitglieder wurden nach ihrer Hauptsportart eingeteilt: Laufende (L), Radfahrende (R) und Schwimmende (S). Außerdem wurde erfasst, ob sich jemand verletzt hat: verletzt (V) oder unverletzt (U). Laufende verletzen sich in 25 % der Fälle und Radfahrende in 25 % der Fälle. Von insgesamt 80.000 erfassten Sporttreibenden haben sich 35 % verletzt; darunter waren 8.000 Laufende und 16.000 Schwimmende. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Sportler schwimmt und sich verletzt hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schwimmender sich nicht verletzt hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Sportler läuft und sich nicht verletzt hat oder Rad fährt und sich nicht verletzt hat."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1500:0,0010}",
+      "{1:NUMERICAL:=0,2500:0,0010}",
+      "{1:NUMERICAL:=0,6000:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Medienunternehmen hat das Nutzungsverhalten seiner Streamingkundschaft untersucht. Die Konten wurden in Basis-Abo (B), Standard-Abo (S) und Premium-Abo (P) eingeteilt. Erfasst wurde, ob Inhalte überwiegend mobil (M) oder am TV-Gerät (T) konsumiert werden. Beim Basis-Abo liegt der mobile Anteil bei 90 %, beim Standard-Abo bei 35 %. Von insgesamt 100.000 erfassten Konten nutzen 70 % den Dienst überwiegend mobil; darunter waren 65.000 Basis-Abos und 5.000 Premium-Abos. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Konto ein Premium-Abo mit TV-Nutzung ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Premium-Konto überwiegend mobil genutzt wird.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Konto entweder Basis mit mobiler Nutzung oder Standard mit mobiler Nutzung ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0400:0,0010}",
+      "{1:NUMERICAL:=0,2000:0,0010}",
+      "{1:NUMERICAL:=0,6900:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Eine Stadtbibliothek hat die Ausleihdaten des vergangenen Jahres ausgewertet. Die Ausleihen wurden in Jugendmedien (J), Sachmedien (S) und Belletristik (B) eingeteilt. Zusätzlich wurde erfasst, ob die Medien digital (D) oder physisch (P) ausgeliehen wurden. Bei Jugendmedien beträgt der Digitalanteil 20 %, bei Sachmedien 35 %. Von insgesamt 2.000 Ausleihen erfolgten 20 % digital; darunter waren 200 Jugendmedien und 1.400 Belletristik-Ausleihen. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Ausleihe Belletristik in physischer Form betrifft.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Belletristik-Ausleihe physisch ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Ausleihe entweder Jugendmedien digital oder Sachmedien digital ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5900:0,0010}",
+      "{1:NUMERICAL:=0,8429:0,0010}",
+      "{1:NUMERICAL:=0,0900:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "In einer Pendlerstudie wurde das Verkehrsverhalten in einer Region untersucht. Die Wege wurden nach Distanz in kurz (K), mittel (M) und lang (L) eingeteilt. Außerdem wurde erfasst, ob der Weg mit dem ÖPNV (O) oder mit dem Auto (A) zurückgelegt wurde. Bei kurzen Wegen liegt der ÖPNV-Anteil bei 60 %, bei mittleren Wegen bei 45 %. Von insgesamt 20.000 ausgewerteten Wegen wurden 55 % mit dem ÖPNV zurückgelegt; darunter waren 11.000 kurze und 3.000 lange Wege. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg lang ist und mit dem Auto zurückgelegt wurde.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter langer Weg mit dem ÖPNV erfolgt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg entweder kurz mit Auto oder mittel mit Auto ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0650:0,0010}",
+      "{1:NUMERICAL:=0,5667:0,0010}",
+      "{1:NUMERICAL:=0,3850:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Festivalteam hat Daten zum Konzertpublikum erhoben. Die Tickets wurden in Frühbuchung (F), Normalpreis (N) und Abendkasse (A) eingeteilt. Zusätzlich wurde erfasst, ob Besucherinnen und Besucher früh (E) oder spät (S) auf das Gelände kamen. Bei Frühbuchungen liegt der Früh-Anteil bei 25 %, bei Normalpreis-Tickets bei 40 %. Von insgesamt 100.000 Tickets entfielen 40 % auf frühes Kommen; darunter waren 65.000 Frühbuchungen und 20.000 Abendkassen-Tickets. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Ticket zur Abendkasse gehört und die Person früh kommt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Abendkassen-Ticket spät kommt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Ticket entweder Frühbuchung mit spätem Kommen oder Normalpreis mit spätem Kommen ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1775:0,0010}",
+      "{1:NUMERICAL:=0,1125:0,0010}",
+      "{1:NUMERICAL:=0,5775:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Unternehmen hat die Teilnahme an internen Schulungen analysiert. Die Mitarbeitenden wurden nach Abteilung in Vertrieb (V), Technik (T) und Verwaltung (W) gruppiert. Beim Ergebnis wurde unterschieden zwischen bestanden (B) und nicht bestanden (N). Im Vertrieb liegt die Bestehensquote bei 60 %, in der Technik bei 65 %. Von insgesamt 4.000 Schulungsteilnahmen wurden 40 % bestanden; darunter waren 1.000 Teilnahmen aus dem Vertrieb und 2.600 aus der Verwaltung. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme aus der Verwaltung stammt und nicht bestanden wurde.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme aus der Verwaltung bestanden wurde.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme entweder im Vertrieb nicht bestanden oder in der Technik nicht bestanden wurde."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4650:0,0010}",
+      "{1:NUMERICAL:=0,2846:0,0010}",
+      "{1:NUMERICAL:=0,1350:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Museum hat Besucherströme über mehrere Monate dokumentiert. Die Besuche wurden nach Ticketart in regulär (R), ermäßigt (E) und Gruppe (G) eingeteilt. Zusätzlich wurde erfasst, ob der Besuch mit Führung (F) oder ohne Führung (O) stattfand. Bei regulären Tickets liegt der Anteil mit Führung bei 20 %, bei ermäßigten Tickets bei 55 %. Von insgesamt 40.000 Besuchen fanden 35 % mit Führung statt; darunter waren 18.000 reguläre und 12.000 Gruppen-Besuche. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch ein Gruppenbesuch mit Führung ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Gruppenbesuch ohne Führung stattfindet.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch entweder regulär mit Führung oder ermäßigt mit Führung ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1225:0,0010}",
+      "{1:NUMERICAL:=0,5917:0,0010}",
+      "{1:NUMERICAL:=0,2275:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Für einen kommunalen Bericht wurden Mietanzeigen ausgewertet. Die Wohnungen wurden nach Größe in klein (K), mittel (M) und groß (G) eingeteilt. Als Merkmal wurde erfasst, ob ein Balkon (B) vorhanden ist oder nicht (N). Bei kleinen Wohnungen liegt der Balkonanteil bei 40 %, bei mittleren Wohnungen bei 10 %. Von insgesamt 4.000 ausgewerteten Wohnungen haben 25 % einen Balkon; darunter waren 800 kleine und 2.000 große Wohnungen. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung groß ist und einen Balkon hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte große Wohnung keinen Balkon hat.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung entweder klein mit Balkon oder mittel mit Balkon ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1400:0,0010}",
+      "{1:NUMERICAL:=0,7200:0,0010}",
+      "{1:NUMERICAL:=0,1100:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Trägerverein hat das Engagement in seinen Projekten ausgewertet. Die Einsätze wurden den Bereichen Nachhilfe (N), Umwelt (U) und Seniorenhilfe (S) zugeordnet. Zusätzlich wurde erfasst, ob der Einsatz regelmäßig (R) oder unregelmäßig (Ue) erfolgt. Im Bereich Nachhilfe liegt der Anteil regelmäßiger Einsätze bei 55 %, im Umweltbereich bei 5 %. Von insgesamt 40.000 dokumentierten Einsätzen erfolgten 60 % regelmäßig; darunter waren 4.000 Einsätze in der Nachhilfe und 28.000 in der Seniorenhilfe. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe unregelmäßig erfolgt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe regelmäßig ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz entweder in der Nachhilfe unregelmäßig oder im Umweltbereich unregelmäßig erfolgt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1650:0,0010}",
+      "{1:NUMERICAL:=0,7643:0,0010}",
+      "{1:NUMERICAL:=0,2350:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Eine Handelskette hat Retouren aus dem Online-Shop analysiert. Die Bestellungen wurden in Kleidung (K), Elektronik (E) und Haushalt (H) eingeteilt. Erfasst wurde, ob eine Bestellung retourniert (R) oder behalten (B) wurde. Bei Kleidung liegt die Retourenquote bei 15 %, bei Elektronik bei 85 %. Von insgesamt 80.000 Bestellungen wurden 80 % retourniert; darunter waren 8.000 Bestellungen aus Kleidung und 16.000 aus Haushalt. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Bestellung aus dem Haushalt stammt und retourniert wird.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Haushaltsbestellung retourniert wird.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Bestellung entweder Kleidung behalten oder Elektronik behalten wurde."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1900:0,0010}",
+      "{1:NUMERICAL:=0,9500:0,0010}",
+      "{1:NUMERICAL:=0,1900:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Eine Volkshochschule hat die Teilnahme an Kulturkursen ausgewertet. Die Teilnahmen wurden in Musik (M), Theater (T) und Fotografie (F) eingeteilt. Zusätzlich wurde erfasst, ob der Kurs online (O) oder in Präsenz (P) besucht wurde. Bei Musikkursen liegt der Online-Anteil bei 45 %, bei Theaterkursen bei 55 %. Von insgesamt 80.000 Kurs-Teilnahmen fanden 50 % online statt; darunter waren 40.000 Musik- und 28.000 Fotografie-Teilnahmen. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme ein Fotokurs in Präsenz ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme im Fotokurs online stattfindet.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme entweder Musik in Präsenz oder Theater in Präsenz ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1575:0,0010}",
+      "{1:NUMERICAL:=0,5500:0,0010}",
+      "{1:NUMERICAL:=0,3425:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Tourismusverband hat Buchungsdaten aus der Ferienzeit analysiert. Die Reisen wurden in Städtereise (S), Natururlaub (N) und Küstenurlaub (K) eingeteilt. Erfasst wurde, ob die Buchung früh (F) oder kurzfristig (Kf) erfolgte. Bei Städtereisen liegt der Anteil früher Buchungen bei 95 %, bei Natururlauben bei 95 %. Von insgesamt 100.000 Buchungen waren 90 % frühe Buchungen; darunter waren 20.000 Städtereisen und 65.000 Küstenreisen. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Buchung Küstenurlaub und kurzfristige Buchung ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Küstenreise kurzfristig gebucht wurde.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Buchung entweder Städtereise früh oder Natururlaub früh ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0825:0,0010}",
+      "{1:NUMERICAL:=0,1269:0,0010}",
+      "{1:NUMERICAL:=0,3325:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "An einer Schule wurde die Bearbeitung von Hausaufgaben ausgewertet. Die Klassen wurden in Unterstufe (U), Mittelstufe (M) und Oberstufe (O) eingeteilt. Als Merkmal wurde erfasst, ob Aufgaben pünktlich (P) oder verspätet (V) abgegeben wurden. In der Unterstufe liegt die Pünktlichkeitsquote bei 95 %, in der Mittelstufe bei 80 %. Von insgesamt 5.000 Abgaben wurden 90 % pünktlich abgegeben; darunter waren 4.250 Abgaben aus der Unterstufe und 250 aus der Oberstufe. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Abgabe aus der Oberstufe verspätet ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Oberstufen-Abgabe pünktlich erfolgt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Abgabe entweder aus der Unterstufe pünktlich oder aus der Mittelstufe pünktlich ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0375:0,0010}",
+      "{1:NUMERICAL:=0,2500:0,0010}",
+      "{1:NUMERICAL:=0,8875:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Ein Gesundheitszentrum hat die Teilnahme an Präventionskursen ausgewertet. Die Teilnehmenden wurden in die Altersgruppen jung (J), mittel (M) und älter (A) eingeteilt. Zusätzlich wurde erfasst, ob der Kurs vollständig (V) oder nur teilweise (T) besucht wurde. In der jungen Gruppe liegt die vollständige Teilnahme bei 90 %, in der mittleren Gruppe bei 95 %. Von insgesamt 5.000 erfassten Teilnahmen wurden 55 % vollständig besucht; darunter waren 250 aus der jungen und 3.250 aus der älteren Gruppe. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme aus der älteren Gruppe teilweise ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme aus der älteren Gruppe vollständig erfolgt.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Teilnahme entweder aus der jungen Gruppe teilweise oder aus der mittleren Gruppe teilweise ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4300:0,0010}",
+      "{1:NUMERICAL:=0,3385:0,0010}",
+      "{1:NUMERICAL:=0,0200:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Eine Arbeitsagentur hat Ergebnisse eines Weiterbildungsprogramms ausgewertet. Die Teilnehmenden wurden nach Vorerfahrung in gering (G), mittel (M) und hoch (H) eingeteilt. Beim Programmausgang wurde unterschieden zwischen direkter Vermittlung (D) und keiner direkten Vermittlung (K). Bei geringer Vorerfahrung liegt die direkte Vermittlungsquote bei 5 %, bei mittlerer Vorerfahrung bei 45 %. Von insgesamt 20.000 Teilnehmenden wurden 15 % direkt vermittelt; darunter waren 14.000 mit geringer und 2.000 mit hoher Vorerfahrung. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person mit hoher Vorerfahrung nicht direkt vermittelt wird.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person mit hoher Vorerfahrung direkt vermittelt wird.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person entweder mit geringer Vorerfahrung nicht direkt oder mit mittlerer Vorerfahrung nicht direkt vermittelt wird."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0750:0,0010}",
+      "{1:NUMERICAL:=0,2500:0,0010}",
+      "{1:NUMERICAL:=0,7750:0,0010}"
+    ]
+  },
+  {
+    "einleitung": "Eine Ernährungsstudie hat das Kaufverhalten in Supermärkten untersucht. Die Einkäufe wurden in frisch (F), gemischt (G) und überwiegend fertig (V) eingeteilt. Zusätzlich wurde erfasst, ob der Einkauf geplant (P) oder spontan (S) war. Bei frischen Einkäufen liegt der Anteil geplanter Einkäufe bei 15 %, bei gemischten Einkäufen bei 60 %. Von insgesamt 10.000 erfassten Einkäufen waren 25 % geplant; darunter waren 8.000 frische und 500 überwiegend fertige Einkäufe. Für die folgenden Fragen ist es sinnvoll, das Baumdiagramm zuerst vollständig auszufüllen.",
+    "fragen": [
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einkauf überwiegend fertig und spontan ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter überwiegend fertiger Einkauf geplant ist.",
+      "Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einkauf entweder frisch geplant oder gemischt geplant ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0100:0,0010}",
+      "{1:NUMERICAL:=0,8000:0,0010}",
+      "{1:NUMERICAL:=0,2100:0,0010}"
+    ]
+  }
+]
