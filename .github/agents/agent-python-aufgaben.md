@@ -56,8 +56,10 @@ Eigene kompakte Spec-Typen sind gegenüber rohen `"plotly"`-Trace-Arrays bevorzu
 | `market-abschoepfung` | Preisdifferenzierung mit KR1/KR2-Flächen |
 | `economic-curves` | Erlös-, Kosten-, Gewinnfunktion |
 | `plotly` | Fallback: explizite Trace-Arrays mit x/y-Werten |
+| `vft` | Vier-Felder-Tafel als DOM-Tabelle (kein Plotly) |
+| `wkt-tabelle` | Diskrete Wahrscheinlichkeitsverteilung (x-Zeile + P-Zeile, `null` = leere Zelle) |
 
-Neue Diagrammtypen erhalten einen eigenen Typ in `moodle_xml.py` (`_build_figure_*`) und `preview.js` (entsprechender `else if`-Branch).
+Neue Diagrammtypen erhalten einen eigenen Branch in `preview.js` (`renderVisual` → `else if (specType === '...')`). Tabellendaten nie als HTML in `einleitung` hartcodieren, sondern als `visual` mit passendem `spec.type` übergeben.
 
 ### Parameter-Format für Funktionen in Specs
 

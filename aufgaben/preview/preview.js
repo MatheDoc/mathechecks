@@ -684,6 +684,45 @@ function buildPlotlyFigure(spec) {
     return figure;
 }
 
+function buildWktTable(spec) {
+    const xVals = Array.isArray(spec?.x) ? spec.x : [];
+    const pVals = Array.isArray(spec?.p) ? spec.p : [];
+
+    const thStyle = 'border:1px solid #000;padding:4px 10px;background:#f3f4f6;font-weight:bold';
+    const tdStyle = 'border:1px solid #000;padding:4px 10px;text-align:center';
+
+    const table = document.createElement('table');
+    table.style.cssText = 'border-collapse:collapse;text-align:center;margin:8px 0';
+
+    const rowX = document.createElement('tr');
+    const thX = document.createElement('th');
+    thX.style.cssText = thStyle;
+    thX.innerHTML = '\\( x \\)';
+    rowX.appendChild(thX);
+    xVals.forEach(v => {
+        const td = document.createElement('td');
+        td.style.cssText = tdStyle;
+        td.innerHTML = v == null ? '' : `\\( ${v} \\)`;
+        rowX.appendChild(td);
+    });
+
+    const rowP = document.createElement('tr');
+    const thP = document.createElement('th');
+    thP.style.cssText = thStyle;
+    thP.innerHTML = '\\( P \\)';
+    rowP.appendChild(thP);
+    pVals.forEach(v => {
+        const td = document.createElement('td');
+        td.style.cssText = tdStyle;
+        td.innerHTML = v == null ? '' : `\\( ${String(v).replace('.', '{,}')} \\)`;
+        rowP.appendChild(td);
+    });
+
+    table.appendChild(rowX);
+    table.appendChild(rowP);
+    return table;
+}
+
 function buildVftTable(spec) {
     const slots = typeof spec?.slots === 'object' && spec.slots ? spec.slots : {};
     const givenSlots = new Set(Array.isArray(spec?.givenSlots) ? spec.givenSlots.map(Number) : []);
@@ -747,6 +786,15 @@ function renderVisual(task, wrapper) {
         const tableWrapper = document.createElement('div');
         tableWrapper.className = 'intro';
         tableWrapper.appendChild(buildVftTable(spec));
+        wrapper.appendChild(tableWrapper);
+        return;
+    }
+
+    // WKT-Tabelle: Wahrscheinlichkeitsverteilung als DOM-Tabelle
+    if (specType === 'wkt-tabelle') {
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'intro';
+        tableWrapper.appendChild(buildWktTable(spec));
         wrapper.appendChild(tableWrapper);
         return;
     }

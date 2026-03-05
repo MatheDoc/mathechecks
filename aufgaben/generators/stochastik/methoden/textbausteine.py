@@ -18,6 +18,10 @@ class ABScenarioTemplate:
     independence_claim: str = ""
     # Formulierung der stochastischen Abhängigkeit (kontextbezogen)
     dependence_claim: str = ""
+    # Interpretation: P(B∪¬B) = 1 (Tautologie, kontextbezogen)
+    trivial_1_text: str = ""
+    # Interpretation: P(A∩¬A) = 0 (Unmöglichkeitsereignis, kontextbezogen)
+    trivial_0_text: str = ""
 
 
 SCENARIOS: list[ABScenarioTemplate] = [
@@ -50,6 +54,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die Art eines Kunden hat keine Auswirkung auf die Qualität der bestellten Halbleiter.",
         dependence_claim="Die Art eines Kunden hat eine Auswirkung auf die Qualität der bestellten Halbleiter.",
+        trivial_1_text="ein Halbleiter in Premium- oder Basis-Qualität bestellt wird",
+        trivial_0_text="weder ein Großkunde noch ein Kleinkunde Halbleiter bestellt",
     ),
     # 2) Zugbegleiterin
     ABScenarioTemplate(
@@ -80,6 +86,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Ob ein Passagier einen gültigen Fahrschein besitzt oder nicht, hat keinen Einfluss darauf, ob er eine Maske trägt.",
         dependence_claim="Ob ein Passagier einen gültigen Fahrschein besitzt oder nicht, hat einen Einfluss darauf, ob er eine Maske trägt.",
+        trivial_1_text="ein Passagier eine Maske trägt oder nicht",
+        trivial_0_text="ein Passagier weder einen gültigen Fahrschein noch einen ungültigen hat",
     ),
     # 3) Eisstand
     ABScenarioTemplate(
@@ -110,6 +118,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die Wahl eines bestellten Getränks beeinflusst nicht die gewünschte Temperatur.",
         dependence_claim="Die Wahl eines bestellten Getränks beeinflusst die gewünschte Temperatur.",
+        trivial_1_text="ein Kunde ein heißes oder kaltes Getränk bestellt",
+        trivial_0_text="ein Kunde weder eine Schokolade noch einen Kaffee bestellt",
     ),
     # 4) Würfel
     ABScenarioTemplate(
@@ -140,6 +150,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Der Zauberspruch wirkt nicht.",
         dependence_claim="Der Zauberspruch wirkt.",
+        trivial_1_text="ein Zauberspruch aufgesagt wird oder nicht",
+        trivial_0_text="weder eine Sechs noch eine andere Zahl geworfen wird",
     ),
     # 5) Bundesbank
     ABScenarioTemplate(
@@ -170,6 +182,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die Fachrichtung eines Bewerbers hat keinen Einfluss darauf, ob der Bewerber einen Bachelor oder Master hat.",
         dependence_claim="Die Fachrichtung eines Bewerbers hat einen Einfluss darauf, ob der Bewerber einen Bachelor oder Master hat.",
+        trivial_1_text="ein Bewerber einen Bachelor oder Master hat",
+        trivial_0_text="ein Bewerber weder Mathematiker noch Wirtschaftswissenschaftler ist",
     ),
     # 6) Führerscheinprüfung
     ABScenarioTemplate(
@@ -200,6 +214,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Es gibt keinen Zusammenhang zwischen dem Bestehen einer Prüfung und der Müdigkeit eines Prüfers.",
         dependence_claim="Es gibt einen Zusammenhang zwischen dem Bestehen einer Prüfung und der Müdigkeit eines Prüfers.",
+        trivial_1_text="ein Prüfer ausgeschlafen ist oder nicht",
+        trivial_0_text="ein Prüfling weder besteht noch durchfällt",
     ),
     # 7) Hanteln
     ABScenarioTemplate(
@@ -230,6 +246,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Das Material einer Hantel beeinflusst nicht die Art des Griffes.",
         dependence_claim="Das Material einer Hantel beeinflusst die Art des Griffes.",
+        trivial_1_text="eine Hantel einen drehbaren Griff hat oder nicht",
+        trivial_0_text="eine Hantel weder aus Metall noch aus Kunststoff ist",
     ),
     # 8) Fußballspielerin
     ABScenarioTemplate(
@@ -260,6 +278,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Doping hat keinen Einfluss auf die Leistung der Fußballspielerin.",
         dependence_claim="Doping hat einen Einfluss auf die Leistung der Fußballspielerin.",
+        trivial_1_text="sie in einem Spiel dopt oder nicht",
+        trivial_0_text="sie ein Spiel weder gewinnt noch verliert",
     ),
     # 9) Home-Office
     ABScenarioTemplate(
@@ -290,6 +310,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Es gibt keinen Zusammenhang zwischen der Arbeitsstätte und dem Umfang der Arbeitszeit.",
         dependence_claim="Es gibt einen Zusammenhang zwischen der Arbeitsstätte und dem Umfang der Arbeitszeit.",
+        trivial_1_text="ein Mitarbeiter in Vollzeit oder Teilzeit arbeitet",
+        trivial_0_text="ein Mitarbeiter weder im Home-Office noch in Präsenz arbeitet",
     ),
     # 10) Restaurants
     ABScenarioTemplate(
@@ -320,6 +342,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Ob ein Restaurant einen Biergarten hat oder nicht, hat keinen Einfluss darauf, ob es auch über eine Spielecke verfügt.",
         dependence_claim="Ob ein Restaurant einen Biergarten hat oder nicht, hat einen Einfluss darauf, ob es auch über eine Spielecke verfügt.",
+        trivial_1_text="ein Restaurant über eine Spielecke verfügt oder nicht",
+        trivial_0_text="ein Restaurant weder über einen Biergarten noch ohne Biergarten ist",
     ),
     # 11) Holzkohle
     ABScenarioTemplate(
@@ -350,6 +374,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die Ökobilanz der gekauften Holzkohle hat keinen Effekt darauf, ob es sich um ein Original- oder Nachahmerprodukt handelt.",
         dependence_claim="Die Ökobilanz der gekauften Holzkohle hat einen Effekt darauf, ob es sich um ein Original- oder Nachahmerprodukt handelt.",
+        trivial_1_text="ein Kunde ein Original- oder Nachahmerprodukt kauft",
+        trivial_0_text="ein Kunde weder nachhaltige noch konventionelle Holzkohle kauft",
     ),
     # 12) Wandfarbe
     ABScenarioTemplate(
@@ -380,6 +406,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Ob sich eine weiße oder beige Farbe im Sonderangebot befindet, hat keine Auswirkung darauf, ob die Farbe matt oder glänzend ist.",
         dependence_claim="Ob sich eine weiße oder beige Farbe im Sonderangebot befindet, hat eine Auswirkung darauf, ob die Farbe matt oder glänzend ist.",
+        trivial_1_text="matte oder glänzende Farbe im Sonderangebot ist",
+        trivial_0_text="weder weiße noch beige Farbe im Sonderangebot ist",
     ),
     # 13) Erpressung
     ABScenarioTemplate(
@@ -410,6 +438,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Das Alter des Opfers hat keine Auswirkung darauf, ob die Polizei alarmiert wird.",
         dependence_claim="Das Alter des Opfers hat eine Auswirkung darauf, ob die Polizei alarmiert wird.",
+        trivial_1_text="ein Opfer die Polizei alarmiert oder nicht",
+        trivial_0_text="ein Opfer weder minderjährig noch erwachsen ist",
     ),
     # 14) Glaserei
     ABScenarioTemplate(
@@ -440,6 +470,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die beiden Fehler hängen nicht voneinander ab.",
         dependence_claim="Die beiden Fehler hängen voneinander ab.",
+        trivial_1_text="ein Glas einen Blaseneinschluss hat oder nicht",
+        trivial_0_text="ein Glas weder einen Riss hat noch keinen Riss hat",
     ),
     # 15) Partnerbörse
     ABScenarioTemplate(
@@ -470,6 +502,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Es gibt keinen Zusammenhang zwischen der Attraktivität eines vorgeschlagenen Partners und seinem Rauchverhalten.",
         dependence_claim="Es gibt einen Zusammenhang zwischen der Attraktivität eines vorgeschlagenen Partners und seinem Rauchverhalten.",
+        trivial_1_text="ein vorgeschlagener Partner raucht oder nicht raucht",
+        trivial_0_text="ein vorgeschlagener Partner weder attraktiv noch unattraktiv ist",
     ),
     # 16) Smartwatches
     ABScenarioTemplate(
@@ -500,6 +534,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Das automatisierte Testverfahren ist überflüssig.",
         dependence_claim="Fehlerbehaftete Smartwatches werden mit einer anderen Wahrscheinlichkeit als fehlerfreie Smartwatches aussortiert.",
+        trivial_1_text="eine Smartwatch aussortiert wird oder nicht",
+        trivial_0_text="eine Smartwatch weder fehlerfrei noch fehlerbehaftet ist",
     ),
     # 17) Pommes
     ABScenarioTemplate(
@@ -530,6 +566,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Es gibt keinen Zusammenhang zwischen der Größe einer bestellten Pommes und dem gewünschten Dressing.",
         dependence_claim="Es gibt einen Zusammenhang zwischen der Größe einer bestellten Pommes und dem gewünschten Dressing.",
+        trivial_1_text="eine Pommes mit Ketchup oder Mayonnaise bestellt wird",
+        trivial_0_text="weder eine große noch eine kleine Pommes bestellt wird",
     ),
     # 18) Beamer
     ABScenarioTemplate(
@@ -560,6 +598,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Ob ein Produkt Neu- oder Gebrauchtware ist, hat keinen Einfluss darauf, ob es reklamiert wird.",
         dependence_claim="Ob ein Produkt Neu- oder Gebrauchtware ist, hat einen Einfluss darauf, ob es reklamiert wird.",
+        trivial_1_text="ein Kunde ein Produkt reklamiert oder nicht",
+        trivial_0_text="ein Kunde weder Neuware noch Gebrauchtware kauft",
     ),
     # 19) Lippenstifte
     ABScenarioTemplate(
@@ -590,6 +630,8 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Die Bewertung der beiden Lippenstifte durch einen Follower ist stochastisch unabhängig.",
         dependence_claim="Die Bewertung der beiden Lippenstifte durch einen Follower ist stochastisch abhängig.",
+        trivial_1_text="einem Follower Bonny gefällt oder nicht gefällt",
+        trivial_0_text="einem Follower Ambition weder gefällt noch missfällt",
     ),
     # 20) Lebensmittelkonzern
     ABScenarioTemplate(
@@ -620,5 +662,7 @@ SCENARIOS: list[ABScenarioTemplate] = [
         },
         independence_claim="Ob ein Produkt biologisch ist, hat keinen Einfluss darauf, ob es regional ist.",
         dependence_claim="Ob ein Produkt biologisch ist, hat einen Einfluss darauf, ob es regional ist.",
+        trivial_1_text="ein Produkt regional ist oder nicht regional ist",
+        trivial_0_text="ein Produkt weder biologisch noch nicht biologisch ist",
     ),
 ]

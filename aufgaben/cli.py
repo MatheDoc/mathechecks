@@ -4,7 +4,6 @@ import random
 from pathlib import Path
 
 from aufgaben.core.io import write_manifest, write_tasks
-from aufgaben.core.moodle_xml import export_json_to_moodle_xml, export_manifest_to_moodle_xml
 from aufgaben.core.models import Task
 from aufgaben.core.validation import validate_batch
 from aufgaben.generators.registry import REGISTRY, build_generator
@@ -14,39 +13,6 @@ from aufgaben.tools.validate_binomial_semantics import main as validate_binomial
 def _default_output(generator_key: str) -> str:
     file_name = generator_key.replace(".", "_") + ".json"
     return str(Path("aufgaben") / "exports" / "json" / file_name)
-
-
-def _derive_xml_output_path(json_output: str) -> Path:
-    json_path = Path(json_output)
-    parts = list(json_path.parts)
-
-    try:
-        json_index = parts.index("json")
-        if json_index > 0 and parts[json_index - 1] == "exports":
-            xml_parts = parts[:json_index] + ["xml"] + parts[json_index + 1 :]
-            return Path(*xml_parts).with_suffix(".xml")
-    except ValueError:
-        pass
-
-    return json_path.with_suffix(".xml")
-
-
-def _derive_category_from_json_output(json_output: str) -> str:
-    json_path = Path(json_output).with_suffix("")
-    parts = list(json_path.parts)
-
-    try:
-        json_index = parts.index("json")
-        if json_index > 0 and parts[json_index - 1] == "exports":
-            relative_parts = parts[json_index + 1 :]
-            if relative_parts:
-                return "/".join(relative_parts)
-    except ValueError:
-        pass
-
-    if json_path.stem:
-        return json_path.stem
-    return "aufgaben"
 
 
 def _refresh_manifest_for_output(output_path: str) -> None:
@@ -104,7 +70,6 @@ def run_single(
     seed: int | None,
     output: str,
     question_order: str = "fixed",
-    export_xml: bool = True,
 ) -> None:
     generator = build_generator(generator_key)
     tasks = generator.generate(count=count, seed=seed)
@@ -112,25 +77,9 @@ def run_single(
     validate_batch(tasks, expected_count=count)
     write_tasks(output, tasks)
     _refresh_manifest_for_output(output)
-
-    if export_xml:
-        xml_output = _derive_xml_output_path(output)
-        xml_category = _derive_category_from_json_output(output)
-        export_json_to_moodle_xml(
-            input_json_path=output,
-            output_xml_path=str(xml_output),
-            category=xml_category,
-            include_answers=True,
-        )
-        print(
-            f"OK: {len(tasks)} Aufgaben geschrieben nach {output} "
-            f"und XML nach {xml_output} (questionOrder={question_order})"
-        )
-        return
-
     print(
         f"OK: {len(tasks)} Aufgaben geschrieben nach {output} "
-        f"(nur JSON, questionOrder={question_order})"
+        f"(questionOrder={question_order})"
     )
 
 
@@ -211,7 +160,6 @@ def run_batch(config_path: str) -> None:
                     seed=target_seed,
                     output=output,
                     question_order=question_order,
-                    export_xml=False,
                 )
             continue
 
@@ -227,7 +175,6 @@ def run_batch(config_path: str) -> None:
             seed=seed,
             output=output,
             question_order=question_order,
-            export_xml=False,
         )
 
     expected = _collect_expected_outputs(jobs, defaults, default_output_dir)
@@ -250,33 +197,6 @@ def main() -> None:
 
     batch_parser = subparsers.add_parser("batch", help="Mehrere Generator-Jobs aus Config ausführen")
     batch_parser.add_argument("--config", type=str, default=str(Path("aufgaben") / "project_config.json"))
-
-    moodle_parser = subparsers.add_parser("moodle", help="Eine Aufgaben-JSON nach Moodle-XML exportieren")
-    moodle_parser.add_argument("--input", type=str, required=True)
-    moodle_parser.add_argument("--output", type=str, required=True)
-    moodle_parser.add_argument("--category", type=str, default=None)
-    moodle_parser.add_argument("--without-answers", action="store_true")
-
-    moodle_batch_parser = subparsers.add_parser(
-        "moodle-batch",
-        help="Alle JSONs aus Manifest nach Moodle-XML exportieren",
-    )
-    moodle_batch_parser.add_argument(
-        "--manifest",
-        type=str,
-        default=str(Path("aufgaben") / "exports" / "json" / "manifest.json"),
-    )
-    moodle_batch_parser.add_argument(
-        "--exports-root",
-        type=str,
-        default=str(Path("aufgaben") / "exports" / "json"),
-    )
-    moodle_batch_parser.add_argument(
-        "--output-root",
-        type=str,
-        default=str(Path("aufgaben") / "exports" / "xml"),
-    )
-    moodle_batch_parser.add_argument("--without-answers", action="store_true")
 
     validate_binomial_parser = subparsers.add_parser(
         "validate-binomial",
@@ -304,26 +224,6 @@ def main() -> None:
 
     if args.command == "batch":
         run_batch(args.config)
-        return
-
-    if args.command == "moodle":
-        output = export_json_to_moodle_xml(
-            input_json_path=args.input,
-            output_xml_path=args.output,
-            category=args.category,
-            include_answers=not args.without_answers,
-        )
-        print(f"OK: Moodle-XML geschrieben nach {output}")
-        return
-
-    if args.command == "moodle-batch":
-        outputs = export_manifest_to_moodle_xml(
-            manifest_path=args.manifest,
-            exports_json_root=args.exports_root,
-            output_root=args.output_root,
-            include_answers=not args.without_answers,
-        )
-        print(f"OK: {len(outputs)} Moodle-XML-Dateien geschrieben nach {args.output_root}")
         return
 
     if args.command == "validate-binomial":

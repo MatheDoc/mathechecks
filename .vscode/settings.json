@@ -1,8 +1,27 @@
 {
   "editor.formatOnSave": true,
   "editor.wordWrap": "on",
+  "files.exclude": {
+    "_site/**": true
+  },
+  "search.exclude": {
+    "_site/**": true,
+    "aufgaben/exports/**": true
+  },
   "chat.tools.terminal.autoApprove": {
     "/^cd \"C:\\\\Users\\\\fue\\\\Meine Ablage\\\\mathechecks\" ; python -m aufgaben\\.cli batch --config aufgaben/project_config\\.json 2>&1 \\| Select-String -Pattern \"vierfelder\\|ERROR\\|Traceback\" -CaseSensitive:\\$false$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -m aufgaben\\.cli batch --config aufgaben/project_config\\.json 2>&1 \\| Select-String \"ohne-struktur\\|ERROR\\|FEHLER\\|Traceback\\|59 job\" \\| Select-Object -Last 20$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -m aufgaben\\.cli batch --config aufgaben/project_config\\.json 2>&1 \\| Select-String \"jobs\\|OK:\\|ERROR\\|CLEANUP\" \\| Select-Object -Last 5$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^python -c \"\nimport json\nwith open\\('aufgaben/exports/json/stochastik/bedingte-wahrscheinlichkeiten/ohne-struktur-mitInfoUnabh\\.json', encoding='utf-8'\\) as f:\n    data = json\\.load\\(f\\)\nt = data\\[0\\]\nprint\\('=== mitInfoUnabh task 1 ==='\\)\nprint\\('einleitung:', t\\['einleitung'\\]\\[:400\\]\\)\nprint\\(\\)\nprint\\('fragen count:', len\\(t\\['fragen'\\]\\)\\)\nprint\\('fragen:', t\\['fragen'\\]\\)\n\"$/": {
       "approve": true,
       "matchCommandLine": true
     }
