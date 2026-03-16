@@ -116,8 +116,8 @@ function previewGraph() {
 
     const xMinValue = document.getElementById('graphXMin').value.trim();
     const xMaxValue = document.getElementById('graphXMax').value.trim();
-    const xMin = xMinValue === '' ? -5 : parseFloat(xMinValue);
-    const xMax = xMaxValue === '' ? 5 : parseFloat(xMaxValue);
+    const xMin = xMinValue === '' ? -5 : parseFloat(normalizeNumberString(xMinValue));
+    const xMax = xMaxValue === '' ? 5 : parseFloat(normalizeNumberString(xMaxValue));
     const yMinInput = document.getElementById('graphYMin').value.trim();
     const yMaxInput = document.getElementById('graphYMax').value.trim();
 
@@ -134,8 +134,8 @@ function previewGraph() {
         xMax: xMax
     };
 
-    if (yMinInput !== '') optionen.yMin = parseFloat(yMinInput);
-    if (yMaxInput !== '') optionen.yMax = parseFloat(yMaxInput);
+    if (yMinInput !== '') optionen.yMin = parseFloat(normalizeNumberString(yMinInput));
+    if (yMaxInput !== '') optionen.yMax = parseFloat(normalizeNumberString(yMaxInput));
 
     const funktionen = [{
         term: funcInput,
@@ -183,6 +183,8 @@ function confirmGraph() {
 function evaluateFunctionJS(rawExpr, x) {
     try {
         let expr = `(${rawExpr})`;
+        // Analyse arbeitet mit dem Rohterm aus dem Popup: Dezimalkommas zu Dezimalpunkten normalisieren.
+        expr = expr.replace(/(\d),(\d)/g, '$1.$2');
         expr = addImplicitMultiplication(
             normalizeUnaryMinusExponent(
                 convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(expr)))
