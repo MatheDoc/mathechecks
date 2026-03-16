@@ -1,0 +1,16 @@
+{% if page.gebiet and page.lernbereich %}
+{% assign module_base = '/dev/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append:
+'/' %}
+{% else %}
+{% assign module_base = '/dev/moduletypen/' %}
+{% endif %}
+
+<nav class="mod-tab-nav" aria-label="Modultyp-Navigation">
+    {% for mt in site.data.dev_moduletypen %}
+    <a class="mod-tab{% if page.module_key == mt.key %} active{% endif %}"
+        href="{{ module_base | append: mt.key | append: '.html' | relative_url }}">
+        <span class="tab-dot" aria-hidden="true">{{ mt.icon }}</span>
+        <span class="mod-tab-label">{{ mt.name }}</span>
+    </a>
+    {% endfor %}
+</nav>

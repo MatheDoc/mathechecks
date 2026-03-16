@@ -55,7 +55,6 @@ class ErtragsgesetzlicheKostenKennzahlenRechnerischK3Generator(TaskGenerator):
                     _num_tol(x_wende, 0.1),
                 ),
             ]
-            rng.shuffle(items)
 
             tasks.append(
                 Task(

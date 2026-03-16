@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatheChecks – Karten-Design Prototypen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ─── RESET & BASE ─────────────────────────── */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --font: 'Inter', system-ui, -apple-system, sans-serif;
+
+            /* Neutrals */
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+
+            /* Accent-Palette – je Modultyp */
+            --aufgaben: #6366f1;
+            /* Indigo */
+            --flashcards: #f59e0b;
+            /* Amber */
+            --kompetenz: #10b981;
+            /* Emerald */
+            --feynman: #ec4899;
+            /* Pink */
+            --blurting: #3b82f6;
+            /* Blue */
+            --skript: #8b5cf6;
+            /* Violet */
+
+            --radius: 20px;
+            --radius-sm: 12px;
+            --transition: 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+            padding: 2rem 1rem 4rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.4rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            margin-bottom: 3rem;
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+        }
+
+        section>h2 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-400);
+            margin-bottom: 1.5rem;
+            padding-left: 4px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE A – Glasmorphism + Gradient-Accent
+       ───────────────────────────────────────────── */
+        .card-a {
+            position: relative;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem 1.5rem;
+            overflow: hidden;
+            transition: transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .card-a:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--accent);
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .card-a .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: var(--accent);
+            background: color-mix(in srgb, var(--accent) 12%, transparent);
+            border-radius: 100px;
+            padding: 4px 12px;
+            margin-bottom: 1rem;
+        }
+
+        .card-a .badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .card-a h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-a p {
+            font-size: 0.88rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-a .progress-bar {
+            height: 6px;
+            background: var(--gray-200);
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .card-a .progress-bar .fill {
+            height: 100%;
+            border-radius: 100px;
+            background: var(--accent);
+            transition: width 0.6s ease;
+        }
+
+        .card-a .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.6rem;
+            font-size: 0.78rem;
+            color: var(--gray-400);
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE B – Soft Solid + Icon-Circle
+       ───────────────────────────────────────────── */
+        .card-b {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 8px 32px rgba(0, 0, 0, 0.06);
+            transition: transform var(--transition), box-shadow var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-b:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.10);
+        }
+
+        .card-b .icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            font-size: 1.5rem;
+            background: color-mix(in srgb, var(--accent) 14%, transparent);
+            margin-bottom: 1.25rem;
+        }
+
+        .card-b h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-b p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.55;
+            flex: 1;
+        }
+
+        .card-b .tag-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 1.25rem;
+        }
+
+        .card-b .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: var(--gray-100);
+            color: var(--gray-500);
+        }
+
+        .card-b .tag.active {
+            background: color-mix(in srgb, var(--accent) 14%, transparent);
+            color: var(--accent);
+        }
+
+        .card-b .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 1.25rem;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--accent);
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            transition: gap var(--transition);
+        }
+
+        .card-b .cta:hover {
+            gap: 10px;
+        }
+
+        .card-b .cta svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE C – Dark / Gradient Overlay
+       ───────────────────────────────────────────── */
+        .card-c {
+            position: relative;
+            background: var(--gray-900);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem 1.5rem;
+            overflow: hidden;
+            color: #fff;
+            transition: transform var(--transition);
+        }
+
+        .card-c::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 35%, transparent), transparent 60%);
+            pointer-events: none;
+        }
+
+        .card-c:hover {
+            transform: translateY(-5px) scale(1.015);
+        }
+
+        .card-c .content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-c .emoji {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-c h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.45rem;
+        }
+
+        .card-c p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.55;
+            margin-bottom: 1.25rem;
+        }
+
+        .card-c .stat-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .card-c .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-c .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .card-c .stat-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: rgba(255, 255, 255, 0.45);
+            font-weight: 600;
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE D – Bento / Kompakt mit Indicator
+       ───────────────────────────────────────────── */
+        .card-d {
+            background: #fff;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1.25rem 1rem;
+            transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .card-d:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+            transform: translateY(-3px);
+        }
+
+        .card-d .top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-d .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+
+        .card-d .type-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--gray-400);
+        }
+
+        .card-d h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .card-d p {
+            font-size: 0.82rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .card-d .chip-row {
+            display: flex;
+            gap: 6px;
+            margin-top: auto;
+        }
+
+        .card-d .chip {
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: var(--gray-100);
+            color: var(--gray-600);
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE E – Outlined Accent + Hover-Fill
+       ───────────────────────────────────────────── */
+        .card-e {
+            position: relative;
+            background: #fff;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            overflow: hidden;
+            transition: border-color var(--transition), color var(--transition);
+        }
+
+        .card-e::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent);
+            opacity: 0;
+            transition: opacity var(--transition);
+            pointer-events: none;
+        }
+
+        .card-e:hover {
+            border-color: var(--accent);
+        }
+
+        .card-e:hover::after {
+            opacity: 0.05;
+        }
+
+        .card-e .icon-emoji {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-e h3 {
+            position: relative;
+            z-index: 1;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.35rem;
+        }
+
+        .card-e p {
+            position: relative;
+            z-index: 1;
+            font-size: 0.83rem;
+            color: var(--gray-500);
+            line-height: 1.55;
+            margin-bottom: 1rem;
+        }
+
+        .card-e .actions {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            gap: 8px;
+        }
+
+        .card-e .btn {
+            font-family: var(--font);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .card-e .btn-primary {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .card-e .btn-primary:hover {
+            background: color-mix(in srgb, var(--accent) 85%, black);
+        }
+
+        .card-e .btn-ghost {
+            background: transparent;
+            color: var(--gray-500);
+            border: 1.5px solid var(--gray-200);
+        }
+
+        .card-e .btn-ghost:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ─────────────────────────────────────────────
+       VARIANTE F – Neumorphism Soft
+       ───────────────────────────────────────────── */
+        .card-f {
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            padding: 1.75rem 1.5rem 1.5rem;
+            box-shadow:
+                8px 8px 20px rgba(0, 0, 0, 0.06),
+                -8px -8px 20px rgba(255, 255, 255, 0.9);
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+
+        .card-f:hover {
+            transform: translateY(-4px);
+            box-shadow:
+                12px 12px 30px rgba(0, 0, 0, 0.08),
+                -8px -8px 20px rgba(255, 255, 255, 0.9);
+        }
+
+        .card-f .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .card-f .icon-box {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            font-size: 1.2rem;
+            background: #fff;
+            box-shadow:
+                3px 3px 8px rgba(0, 0, 0, 0.05),
+                -3px -3px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .card-f .header-text .label {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+        }
+
+        .card-f .header-text h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .card-f p {
+            font-size: 0.84rem;
+            color: var(--gray-500);
+            line-height: 1.55;
+            margin-bottom: 1.2rem;
+        }
+
+        .card-f .progress-ring {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .card-f .ring-svg {
+            width: 44px;
+            height: 44px;
+            transform: rotate(-90deg);
+        }
+
+        .card-f .ring-bg {
+            fill: none;
+            stroke: var(--gray-200);
+            stroke-width: 5;
+        }
+
+        .card-f .ring-fill {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 5;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.6s ease;
+        }
+
+        .card-f .ring-label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        .card-f .ring-label span {
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        /* ─── RESPONSIVE ─────────────────────────────── */
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            body {
+                padding: 1.25rem 0.75rem 3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Karten-Design Prototypen</h1>
+    <p class="subtitle">6 Varianten für Modul-Karten – Aufgaben, Flashcards, Kompetenz, Feynman, Blurting, Skript</p>
+
+
+    <!-- ════════ VARIANTE A ════════ -->
+    <section>
+        <h2>A – Glasmorphism + Gradient-Accent-Bar</h2>
+        <div class="grid">
+            <div class="card-a" style="--accent: var(--aufgaben);">
+                <div class="badge"><span class="dot"></span> Aufgaben</div>
+                <h3>Ableitungsregeln anwenden</h3>
+                <p>Kettenregel, Produktregel und Quotientenregel sicher einsetzen und kombinieren.</p>
+                <div class="progress-bar">
+                    <div class="fill" style="width: 68%;"></div>
+                </div>
+                <div class="meta"><span>12 / 18 gelöst</span><span>68 %</span></div>
+            </div>
+            <div class="card-a" style="--accent: var(--flashcards);">
+                <div class="badge"><span class="dot"></span> Flashcards</div>
+                <h3>Stochastik Grundbegriffe</h3>
+                <p>Wahrscheinlichkeit, Ergebnis, Ereignis, Laplace-Experiment sicher abrufen.</p>
+                <div class="progress-bar">
+                    <div class="fill" style="width: 45%;"></div>
+                </div>
+                <div class="meta"><span>9 / 20 gelernt</span><span>45 %</span></div>
+            </div>
+            <div class="card-a" style="--accent: var(--kompetenz);">
+                <div class="badge"><span class="dot"></span> Kompetenz</div>
+                <h3>Integralrechnung</h3>
+                <p>Stammfunktionen bestimmen, bestimmte Integrale berechnen und Flächen interpretieren.</p>
+                <div class="progress-bar">
+                    <div class="fill" style="width: 90%;"></div>
+                </div>
+                <div class="meta"><span>9 / 10 erreicht</span><span>90 %</span></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════ VARIANTE B ════════ -->
+    <section>
+        <h2>B – Soft Solid + Icon-Circle + CTA</h2>
+        <div class="grid">
+            <div class="card-b" style="--accent: var(--feynman);">
+                <div class="icon-circle">🧠</div>
+                <h3>Feynman: Normalverteilung</h3>
+                <p>Erkläre die Normalverteilung so einfach, dass es jeder versteht – ohne Formel-Jargon.</p>
+                <div class="tag-row">
+                    <span class="tag active">Stochastik</span>
+                    <span class="tag">Verteilungen</span>
+                </div>
+                <button class="cta">Erklärung starten <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></button>
+            </div>
+            <div class="card-b" style="--accent: var(--blurting);">
+                <div class="icon-circle">✍️</div>
+                <h3>Blurting: Vektorrechnung</h3>
+                <p>Schreibe alles auf, was du über Vektoren weißt – dann vergleiche mit dem Skript.</p>
+                <div class="tag-row">
+                    <span class="tag active">Lineare Algebra</span>
+                    <span class="tag">Vektoren</span>
+                </div>
+                <button class="cta">Blurting starten <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></button>
+            </div>
+            <div class="card-b" style="--accent: var(--skript);">
+                <div class="icon-circle">📖</div>
+                <h3>Skript: Kurvendiskussion</h3>
+                <p>Vollständige Kurvendiskussion Schritt für Schritt – Nullstellen, Extrema, Wendepunkte.</p>
+                <div class="tag-row">
+                    <span class="tag active">Analysis</span>
+                    <span class="tag">Funktionen</span>
+                </div>
+                <button class="cta">Zum Skript <svg viewBox="0 0 24 24">
+                        <path d="M5 12h14M13 6l6 6-6 6" />
+                    </svg></button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════ VARIANTE C ════════ -->
+    <section>
+        <h2>C – Dark / Gradient Overlay + Stats</h2>
+        <div class="grid">
+            <div class="card-c" style="--accent: var(--aufgaben);">
+                <div class="content">
+                    <div class="emoji">📐</div>
+                    <h3>Training: Gleichungssysteme</h3>
+                    <p>Lineare Gleichungssysteme mit Gauß-Verfahren und Matrixmethoden lösen.</p>
+                    <div class="stat-row">
+                        <div class="stat"><span class="stat-value">24</span><span class="stat-label">Aufgaben</span>
+                        </div>
+                        <div class="stat"><span class="stat-value">78%</span><span class="stat-label">Richtig</span>
+                        </div>
+                        <div class="stat"><span class="stat-value">3:12</span><span class="stat-label">Ø Zeit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-c" style="--accent: var(--flashcards);">
+                <div class="content">
+                    <div class="emoji">🃏</div>
+                    <h3>Flashcards: Binomialverteilung</h3>
+                    <p>Formeln, Voraussetzungen und typische Aufgabentypen sicher parat haben.</p>
+                    <div class="stat-row">
+                        <div class="stat"><span class="stat-value">40</span><span class="stat-label">Karten</span></div>
+                        <div class="stat"><span class="stat-value">62%</span><span class="stat-label">Sicher</span>
+                        </div>
+                        <div class="stat"><span class="stat-value">5</span><span class="stat-label">Neu</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-c" style="--accent: var(--kompetenz);">
+                <div class="content">
+                    <div class="emoji">🎯</div>
+                    <h3>Kompetenz: Matrizenrechnung</h3>
+                    <p>Addition, Multiplikation, Inverse und Determinante sicher beherrschen.</p>
+                    <div class="stat-row">
+                        <div class="stat"><span class="stat-value">8/10</span><span class="stat-label">Checks</span>
+                        </div>
+                        <div class="stat"><span class="stat-value">A</span><span class="stat-label">Level</span></div>
+                        <div class="stat"><span class="stat-value">2d</span><span class="stat-label">Zuletzt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════ VARIANTE D ════════ -->
+    <section>
+        <h2>D – Bento / Kompakt mit Indicator</h2>
+        <div class="grid">
+            <div class="card-d" style="--accent: var(--blurting);">
+                <div class="top-row">
+                    <span class="type-label">Blurting</span>
+                    <span class="indicator"></span>
+                </div>
+                <h3>Wahrscheinlichkeitsrechnung</h3>
+                <p>Alles aus dem Gedächtnis aufschreiben: Additionssatz, Multiplikationssatz, bedingte Wkt.</p>
+                <div class="chip-row">
+                    <span class="chip">Stochastik</span>
+                    <span class="chip">Grundlagen</span>
+                </div>
+            </div>
+            <div class="card-d" style="--accent: var(--feynman);">
+                <div class="top-row">
+                    <span class="type-label">Feynman</span>
+                    <span class="indicator"></span>
+                </div>
+                <h3>Extremwertprobleme</h3>
+                <p>Erkläre den kompletten Lösungsweg – Zielfunktion, Nebenbedingung, Optimierung.</p>
+                <div class="chip-row">
+                    <span class="chip">Analysis</span>
+                    <span class="chip">Anwendung</span>
+                </div>
+            </div>
+            <div class="card-d" style="--accent: var(--skript);">
+                <div class="top-row">
+                    <span class="type-label">Skript</span>
+                    <span class="indicator"></span>
+                </div>
+                <h3>Ebenengleichungen</h3>
+                <p>Parameter-, Normalen- und Koordinatenform – Umwandlung und Anwendung.</p>
+                <div class="chip-row">
+                    <span class="chip">Lineare Algebra</span>
+                    <span class="chip">Geometrie</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════ VARIANTE E ════════ -->
+    <section>
+        <h2>E – Outlined Accent + Hover-Fill + Buttons</h2>
+        <div class="grid">
+            <div class="card-e" style="--accent: var(--aufgaben);">
+                <div class="icon-emoji">🔢</div>
+                <h3>Aufgaben: Exponentialfunktionen</h3>
+                <p>Wachstums- und Zerfallsprozesse modellieren, Gleichungen lösen, Graphen skizzieren.</p>
+                <div class="actions">
+                    <button class="btn btn-primary">Üben</button>
+                    <button class="btn btn-ghost">Übersicht</button>
+                </div>
+            </div>
+            <div class="card-e" style="--accent: var(--flashcards);">
+                <div class="icon-emoji">💡</div>
+                <h3>Flashcards: Trigonometrie</h3>
+                <p>Sinus, Kosinus, Tangens – Definitionen, Werte und Zusammenhänge auf Abruf.</p>
+                <div class="actions">
+                    <button class="btn btn-primary">Lernen</button>
+                    <button class="btn btn-ghost">Stapel ansehen</button>
+                </div>
+            </div>
+            <div class="card-e" style="--accent: var(--kompetenz);">
+                <div class="icon-emoji">✅</div>
+                <h3>Kompetenz: Grenzwerte</h3>
+                <p>Grenzwertbegriff verstehen, Regeln anwenden und Grenzwerte sicher berechnen.</p>
+                <div class="actions">
+                    <button class="btn btn-primary">Check starten</button>
+                    <button class="btn btn-ghost">Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ════════ VARIANTE F ════════ -->
+    <section>
+        <h2>F – Neumorphism Soft + Progress-Ring</h2>
+        <div class="grid">
+            <div class="card-f" style="--accent: var(--feynman);">
+                <div class="header">
+                    <div class="icon-box">🧠</div>
+                    <div class="header-text">
+                        <span class="label">Feynman</span>
+                        <h3>Hypothesentests</h3>
+                    </div>
+                </div>
+                <p>Signifikanzniveau, Ablehnungsbereich und Testentscheidung verständlich erklären.</p>
+                <div class="progress-ring">
+                    <svg class="ring-svg" viewBox="0 0 44 44">
+                        <circle class="ring-bg" cx="22" cy="22" r="18" />
+                        <circle class="ring-fill" cx="22" cy="22" r="18" stroke-dasharray="113.1"
+                            stroke-dashoffset="33.9" />
+                    </svg>
+                    <span class="ring-label"><span>70 %</span> erklärt</span>
+                </div>
+            </div>
+            <div class="card-f" style="--accent: var(--blurting);">
+                <div class="header">
+                    <div class="icon-box">✍️</div>
+                    <div class="header-text">
+                        <span class="label">Blurting</span>
+                        <h3>Differentialrechnung</h3>
+                    </div>
+                </div>
+                <p>Ableitungsbegriff, Ableitungsregeln und Anwendungen aus dem Kopf reproduzieren.</p>
+                <div class="progress-ring">
+                    <svg class="ring-svg" viewBox="0 0 44 44">
+                        <circle class="ring-bg" cx="22" cy="22" r="18" />
+                        <circle class="ring-fill" cx="22" cy="22" r="18" stroke-dasharray="113.1"
+                            stroke-dashoffset="56.6" />
+                    </svg>
+                    <span class="ring-label"><span>50 %</span> erinnert</span>
+                </div>
+            </div>
+            <div class="card-f" style="--accent: var(--skript);">
+                <div class="header">
+                    <div class="icon-box">📖</div>
+                    <div class="header-text">
+                        <span class="label">Skript</span>
+                        <h3>Stochastische Prozesse</h3>
+                    </div>
+                </div>
+                <p>Markov-Ketten, Übergangsmatrizen und stationäre Verteilungen verstehen.</p>
+                <div class="progress-ring">
+                    <svg class="ring-svg" viewBox="0 0 44 44">
+                        <circle class="ring-bg" cx="22" cy="22" r="18" />
+                        <circle class="ring-fill" cx="22" cy="22" r="18" stroke-dasharray="113.1"
+                            stroke-dashoffset="79.2" />
+                    </svg>
+                    <span class="ring-label"><span>30 %</span> gelesen</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

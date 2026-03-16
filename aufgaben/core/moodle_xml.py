@@ -440,35 +440,4 @@ def export_json_to_moodle_xml(
     return target_path
 
 
-def export_manifest_to_moodle_xml(
-    manifest_path: str,
-    exports_json_root: str,
-    output_root: str,
-    include_answers: bool = True,
-) -> list[Path]:
-    manifest_file = Path(manifest_path)
-    exports_root = Path(exports_json_root)
-    output_base = Path(output_root)
 
-    entries = json.loads(manifest_file.read_text(encoding="utf-8"))
-    if not isinstance(entries, list):
-        raise ValueError("Manifest muss ein Array von relativen Pfaden sein.")
-
-    created: list[Path] = []
-    for entry in entries:
-        if not isinstance(entry, str):
-            continue
-        rel_path = Path(entry)
-        input_path = exports_root / rel_path
-        output_path = output_base / rel_path.with_suffix(".xml")
-        category = str(rel_path.with_suffix("")).replace("\\", "/")
-        created.append(
-            export_json_to_moodle_xml(
-                input_json_path=str(input_path),
-                output_xml_path=str(output_path),
-                category=category,
-                include_answers=include_answers,
-            )
-        )
-
-    return created

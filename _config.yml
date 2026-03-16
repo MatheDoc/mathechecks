@@ -11,12 +11,26 @@ firebase_project_id: "mathechecks-c1e86"
 
 lang: de_DE
 
+markdown: kramdown
+kramdown:
+  input: Kramdown
+  math_engine: mathjax
+
 port: 4001 # Port für den lokalen Server ohne Admin
 
 plugins:
   - jekyll-seo-tag
 
+defaults:
+  - scope:
+      path: "dev"
+      type: "pages"
+    values:
+      published: false
+
 exclude:
   - functions
   - xls
   - html
+  - lernbereiche
+

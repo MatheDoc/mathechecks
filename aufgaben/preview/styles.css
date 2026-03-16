@@ -1,3 +1,5 @@
+@import "../runtime/task-render.css";
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -75,59 +77,4 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 14px;
-}
-
-.task {
-    background: #fff;
-    border: 1px solid #dfe5f1;
-    border-radius: 10px;
-    padding: 14px;
-}
-
-.task h2 {
-    margin: 0 0 10px;
-    font-size: 18px;
-}
-
-.intro {
-    margin-bottom: 10px;
-}
-
-.qa-list {
-    margin: 0;
-    padding-left: 22px;
-}
-
-.qa-item {
-    margin-bottom: 10px;
-}
-
-.frage {
-    margin-bottom: 6px;
-}
-
-.answer-preview {
-    margin-bottom: 4px;
-}
-
-.answer-input,
-.answer-select {
-    min-width: 160px;
-    padding: 6px;
-    border: 1px solid #cfd6e4;
-    border-radius: 6px;
-    background: #fff;
-}
-
-.solution {
-    font-size: 13px;
-}
-
-.solution-badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 12px;
-    background: #edf6ed;
-    color: #1f6d2d;
-    border: 1px solid #bfe3c5;
 }

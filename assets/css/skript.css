@@ -173,31 +173,118 @@ iframe {
 }
 
 /* info */
-.info {
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.mc-note {
+  margin: 1rem 0;
+}
+
+.mc-note__card {
+  border: 1px solid #d8dce7;
   border-radius: 12px;
-  margin-bottom: 1rem;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(20, 25, 40, 0.04);
+  overflow: hidden;
+}
+
+.mc-note__summary {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  cursor: pointer;
+  background: #f6f8fc;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.16s ease, border-color 0.16s ease;
+}
+
+.mc-note__summary:hover {
+  background: #eef3fb;
+}
+
+.mc-note__head {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #374158;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.mc-note__index {
+  color: #6b7488;
+}
+
+.mc-note__title {
+  font-weight: 600;
+  color: #1f2430;
+}
+
+.mc-note__icon {
+  color: #64708a;
+  transition: transform 0.16s ease, color 0.16s ease;
+}
+
+.mc-note__card[open] .mc-note__summary {
+  border-bottom-color: #d8dce7;
+  background: #f2f5fb;
+}
+
+.mc-note__card[open] .mc-note__icon {
+  transform: rotate(90deg);
+  color: #4d5a76;
+}
+
+.mc-note__content {
+  padding: 12px;
+  line-height: 1.5;
+}
+
+.mc-note__content> :first-child {
+  margin-top: 0;
+}
+
+.mc-note__content> :last-child {
+  margin-bottom: 0;
+}
+
+.mc-note--hilfe .mc-note__summary {
+  background: #eef8f1;
+}
+
+.mc-note--hilfe .mc-note__summary:hover {
+  background: #e5f3ea;
+}
+
+.mc-note--hilfe .mc-note__head {
+  color: #1f6d3b;
+}
+
+.mc-note--beispiel .mc-note__summary {
+  background: #edf4ff;
+}
+
+.mc-note--beispiel .mc-note__summary:hover {
+  background: #e2edff;
+}
+
+.mc-note--beispiel .mc-note__head {
+  color: #2b5eb6;
+}
+
+.info {
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .info-card {
   line-height: 1.25;
 }
 
-.info-card summary {
-  background-color: #fddef3;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 0 0 12px 12px;
-}
-
-.info-card summary:hover {
-  background-color: #f9cfeb;
-}
-
 .info-card div {
-  padding: 0.5rem 1rem;
+  padding: 0;
 }
 
 details summary {

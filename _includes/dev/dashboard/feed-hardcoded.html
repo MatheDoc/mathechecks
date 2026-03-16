@@ -1,0 +1,466 @@
+<section class="greeting">
+  <h2>Hey <span>Schueler:in</span>, was steht an?</h2>
+  <p>Samstag, 28. Februar 2026 · 5 Aktionen warten · Streak: 12 Tage · <a
+      href="{{ '/dev/statistik.html' | relative_url }}">Detailstatistik</a></p>
+</section>
+
+<div class="bento">
+  <div class="card lb-bar" id="lbBar">
+    <span class="lb-bar-label">Meine aktive Session</span>
+    <div id="lbChips">
+      <span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>
+    </div>
+    <button class="lb-add-btn" type="button" id="lbOpenBtn">Bearbeiten</button>
+  </div>
+
+  <article class="card action-feed">
+    <div class="card-header">
+      <span class="card-title">Deine naechsten Aktionen</span>
+      <button class="btn-ghost" type="button" style="padding:6px 12px;font-size:0.76rem;">Alle anzeigen</button>
+    </div>
+    <ul class="action-list">
+      <li class="action-card action-featured" data-type="training">
+        <div class="action-icon action-icon-featured"
+          style="background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;">▶</div>
+        <div class="action-body">
+          <div class="action-title">Training: Nullstellen kubischer Funktionen</div>
+          <div class="action-desc">Du hast gestern 3 Aufgaben bearbeitet und 2 richtig. Heute empfehlen wir 5 weitere,
+            um das Thema zu sichern.</div>
+          <div class="action-badges">
+            <span class="action-badge type-training">Training</span>
+            <span class="action-badge">Analysis</span>
+            <span class="action-badge">ca. 12 min</span>
+            <span class="action-badge">5 Aufgaben</span>
+          </div>
+        </div>
+        <button class="hero-go" type="button">Starten -></button>
+      </li>
+
+      <li class="action-card action-onboard" data-type="quiz">
+        <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">N</div>
+        <div class="action-body">
+          <div class="action-title">Neuer Bereich: Binomialverteilung - Einstiegs-Quiz</div>
+          <div class="action-desc">Du hast diesen Bereich gerade hinzugefuegt. Starte mit 5 kurzen Fragen (ca. 3 min),
+            damit wir einschaetzen koennen, wo du stehst.</div>
+          <div class="action-badges">
+            <span class="action-badge type-quiz">Einstiegs-Quiz</span>
+            <span class="action-badge">Stochastik</span>
+            <span class="action-badge">ca. 3 min</span>
+          </div>
+        </div>
+        <span class="action-arrow">›</span>
+      </li>
+
+      <li class="action-card" data-type="quiz">
+        <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">?</div>
+        <div class="action-body">
+          <div class="action-title">Quick-Quiz: Vierfeldertafel ablesen</div>
+          <div class="action-desc">5 kurze Fragen - teste, ob du Randwahrscheinlichkeiten und bedingte
+            Wahrscheinlichkeiten sicher abliest.</div>
+          <div class="action-badges">
+            <span class="action-badge type-quiz">Quiz</span>
+            <span class="action-badge">Stochastik</span>
+            <span class="action-badge">ca. 3 min</span>
+          </div>
+        </div>
+        <span class="action-arrow">›</span>
+      </li>
+
+      <li class="action-card" data-type="training">
+        <div class="action-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+        <div class="action-body">
+          <div class="action-title">Trainings-Session: Ableitung Potenzregel</div>
+          <div class="action-desc">8 Aufgaben mit steigendem Schwierigkeitsgrad. Letztes Mal: 6/8 richtig - heute
+            sichern.</div>
+          <div class="action-badges">
+            <span class="action-badge type-training">Training</span>
+            <span class="action-badge">Analysis</span>
+            <span class="action-badge">ca. 10 min</span>
+          </div>
+        </div>
+        <span class="action-arrow">›</span>
+      </li>
+
+      <li class="action-card" data-type="flashcards">
+        <div class="action-icon" style="background:var(--teal-soft);color:var(--teal);">K</div>
+        <div class="action-body">
+          <div class="action-title">Flashcards: Matrizenrechnung Basics</div>
+          <div class="action-desc">12 Karten faellig - Begriffe und Rechenregeln auffrischen, bevor du in die Aufgaben
+            gehst.</div>
+          <div class="action-badges">
+            <span class="action-badge type-flashcards">Flashcards</span>
+            <span class="action-badge">Lineare Algebra</span>
+            <span class="action-badge">ca. 5 min</span>
+          </div>
+        </div>
+        <span class="action-arrow">›</span>
+      </li>
+    </ul>
+  </article>
+
+  <article class="card skills-area">
+    <div class="card-header">
+      <span class="card-title">Kompetenzfortschritt</span>
+    </div>
+    <div class="skill-rows">
+      <div class="skill-row">
+        <div class="skill-top"><span class="skill-name">Ableitungsregeln</span><span class="skill-pct">82%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill gradient-1" data-progress="82"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-top"><span class="skill-name">Wahrscheinlichkeit und Vierfeldertafel</span><span
+            class="skill-pct">68%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill gradient-2" data-progress="68"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-top"><span class="skill-name">Lineare Gleichungssysteme</span><span
+            class="skill-pct">55%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill gradient-3" data-progress="55"></div>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-top"><span class="skill-name">Kurvendiskussion</span><span class="skill-pct">41%</span></div>
+        <div class="skill-track">
+          <div class="skill-fill gradient-4" data-progress="41"></div>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<div class="lb-overlay" id="lbOverlay">
+  <div class="lb-modal">
+    <div class="lb-modal-head">
+      <div>
+        <h2>Lernbereiche verwalten</h2>
+        <p>Aktiviere Lernbereiche und waehle die Kompetenzen aus, die du trainieren moechtest.</p>
+      </div>
+      <button class="lb-close" id="lbCloseBtn" type="button">X</button>
+    </div>
+
+    <div id="lbAccordionContainer"></div>
+
+    <div class="lb-modal-footer">
+      <button class="btn-ghost" type="button" id="lbResetBtn">Zurücksetzen</button>
+      <button class="btn-primary" type="button" id="lbSaveBtn">Übernehmen</button>
+    </div>
+  </div>
+</div>
+
+<script id="dev-gebiete-dashboard-data" type="application/json">{{ site.data.dev_gebiete | jsonify }}</script>
+<script id="dev-lernbereiche-dashboard-data" type="application/json">{{ site.data.dev_lernbereiche | jsonify }}</script>
+<script>
+  const DEV_GEBIETE = JSON.parse(document.getElementById('dev-gebiete-dashboard-data')?.textContent || '[]');
+  const DEV_LERNBEREICHE = JSON.parse(document.getElementById('dev-lernbereiche-dashboard-data')?.textContent || '[]');
+
+  document.querySelectorAll('.skill-fill').forEach((el) => {
+    requestAnimationFrame(() => {
+      el.style.width = `${el.dataset.progress}%`;
+    });
+  });
+
+  document.querySelectorAll('.action-feed .action-card').forEach((card) => {
+    card.addEventListener('click', (ev) => {
+      if (ev.target.closest('button, a')) return;
+      window.location.href = "{{ '/dev/module-designs.html' | relative_url }}";
+    });
+  });
+
+  document.querySelectorAll('.action-feed .hero-go').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      window.location.href = "{{ '/dev/module-designs.html' | relative_url }}";
+    });
+  });
+
+  (function () {
+    const STORAGE_KEY = 'mathechecks-lernbereiche-v2';
+    const GEBIET_META = {
+      ...Object.fromEntries((DEV_GEBIETE || []).map((g) => [g.key, {
+        group: g.name,
+        icon: g.icon,
+        iconBg: g.icon_bg,
+        iconColor: g.icon_color,
+        color: g.chip_color
+      }]))
+    };
+
+    const LERNBEREICH_ALIASES = {
+      'differentialrechnung-ganzrationaler-funktionen': ['differentialrechnung'],
+      'zufallsexperimente-und-wahrscheinlichkeiten': ['zufallsexperimente']
+    };
+
+    const LERNBEREICHE_META = (DEV_LERNBEREICHE || []).map((lb) => ({
+      gebiet: lb.gebiet,
+      slug: lb.slug,
+      name: lb.name
+    }));
+
+    let LERNBEREICHE = [];
+
+    let state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    let draft = {};
+
+    const overlay = document.getElementById('lbOverlay');
+    const chipsBox = document.getElementById('lbChips');
+    const container = document.getElementById('lbAccordionContainer');
+
+    function normalizeKey(value) {
+      return String(value || '').toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+
+    function buildCheckIndex(checks) {
+      const index = new Map();
+      const add = (rawKey, kompetenz) => {
+        const key = normalizeKey(rawKey);
+        if (!key || !kompetenz) return;
+        if (!index.has(key)) index.set(key, []);
+        const list = index.get(key);
+        if (!list.includes(kompetenz)) list.push(kompetenz);
+      };
+
+      checks.forEach((entry) => {
+        const kompetenz = String(entry['Ich kann'] || '').trim();
+        if (!kompetenz) return;
+        add(entry.Lernbereich, kompetenz);
+        add(entry.LernbereichAnzeigename, kompetenz);
+      });
+
+      return index;
+    }
+
+    function buildLernbereicheFromData(checks) {
+      const checkIndex = buildCheckIndex(checks);
+      const grouped = new Map();
+
+      LERNBEREICHE_META.forEach((lbMeta) => {
+        const gebietMeta = GEBIET_META[lbMeta.gebiet];
+        if (!gebietMeta) return;
+        if (!grouped.has(lbMeta.gebiet)) {
+          grouped.set(lbMeta.gebiet, {
+            group: gebietMeta.group,
+            icon: gebietMeta.icon,
+            iconBg: gebietMeta.iconBg,
+            iconColor: gebietMeta.iconColor,
+            items: []
+          });
+        }
+
+        const candidates = [lbMeta.slug, lbMeta.name, ...(LERNBEREICH_ALIASES[lbMeta.slug] || [])]
+          .map(normalizeKey)
+          .filter(Boolean);
+        const kompetenzen = [];
+        candidates.forEach((key) => {
+          const found = checkIndex.get(key) || [];
+          found.forEach((item) => {
+            if (!kompetenzen.includes(item)) kompetenzen.push(item);
+          });
+        });
+
+        grouped.get(lbMeta.gebiet).items.push({
+          id: lbMeta.slug,
+          name: lbMeta.name,
+          color: gebietMeta.color,
+          kompetenzen
+        });
+      });
+
+      return Array.from(grouped.values());
+    }
+
+    async function initLernbereiche() {
+      try {
+        const response = await fetch("{{ '/dev/checks.json' | relative_url }}", { cache: 'no-store' });
+        if (!response.ok) throw new Error(`checks.json konnte nicht geladen werden (${response.status})`);
+        const checks = await response.json();
+        LERNBEREICHE = buildLernbereicheFromData(Array.isArray(checks) ? checks : []);
+      } catch (error) {
+        console.error('Lernbereichsdaten konnten nicht geladen werden:', error);
+        LERNBEREICHE = buildLernbereicheFromData([]);
+      }
+      syncChips();
+    }
+
+    function buildModal() {
+      container.innerHTML = '';
+      LERNBEREICHE.forEach((group) => {
+        const divider = document.createElement('div');
+        divider.className = 'lb-group-divider';
+        divider.innerHTML = `<div class="lb-group-div-icon" style="background:${group.iconBg};color:${group.iconColor};">${group.icon}</div><span>${group.group}</span>`;
+        container.appendChild(divider);
+
+        group.items.forEach((lb) => {
+          const lbState = draft[lb.id] || { active: false, kompetenzen: {} };
+          const item = document.createElement('div');
+          item.className = 'lb-accord-item' + (lbState.active ? ' active' : '');
+          item.dataset.id = lb.id;
+
+          const totalK = lb.kompetenzen.length;
+          const activeK = lb.kompetenzen.filter((k) => lbState.kompetenzen[k] !== false).length;
+
+          item.innerHTML = `
+            <div class="lb-accord-head">
+              <label class="lb-toggle" onclick="event.stopPropagation()">
+                <input type="checkbox" ${lbState.active ? 'checked' : ''}>
+                <span class="lb-toggle-slider"></span>
+              </label>
+              <span class="lb-accord-title">${lb.name}</span>
+              <span class="lb-accord-count">${lbState.active ? activeK + '/' + totalK : totalK} Kompetenzen</span>
+              <span class="lb-accord-arrow">›</span>
+            </div>
+            <div class="lb-accord-body">
+              <div class="lb-kompetenz-actions">
+                <button class="btn-ghost btn-xs" data-action="all" type="button">Alle auswählen</button>
+                <button class="btn-ghost btn-xs" data-action="none" type="button">Alle abwählen</button>
+              </div>
+              <div class="lb-kompetenz-list">
+                ${lb.kompetenzen.map((k) => {
+            const checked = lbState.kompetenzen[k] !== false;
+            const disabled = !lbState.active;
+            return `<label class="lb-kompetenz${disabled ? ' disabled' : ''}">
+                    <input type="checkbox" ${checked ? 'checked' : ''} ${disabled ? 'disabled' : ''} data-k="${k}">
+                    ${k}
+                  </label>`;
+          }).join('')}
+              </div>
+            </div>`;
+
+          const toggle = item.querySelector('.lb-toggle input');
+          toggle.addEventListener('change', () => {
+            const isActive = toggle.checked;
+            if (!draft[lb.id]) draft[lb.id] = { active: false, kompetenzen: {} };
+            draft[lb.id].active = isActive;
+            if (isActive) {
+              lb.kompetenzen.forEach((k) => {
+                if (draft[lb.id].kompetenzen[k] === undefined) draft[lb.id].kompetenzen[k] = true;
+              });
+              item.classList.add('active');
+            } else {
+              item.classList.remove('active');
+            }
+            const checkboxes = item.querySelectorAll('.lb-kompetenz input');
+            const labels = item.querySelectorAll('.lb-kompetenz');
+            checkboxes.forEach((cb, i) => {
+              cb.disabled = !isActive;
+              if (isActive && draft[lb.id].kompetenzen[lb.kompetenzen[i]] !== false) cb.checked = true;
+              labels[i].classList.toggle('disabled', !isActive);
+            });
+            updateCount(item, lb);
+          });
+
+          item.querySelector('.lb-accord-head').addEventListener('click', (e) => {
+            if (e.target.closest('.lb-toggle')) return;
+            item.classList.toggle('open');
+          });
+
+          item.querySelectorAll('.lb-kompetenz input').forEach((cb) => {
+            cb.addEventListener('change', () => {
+              if (!draft[lb.id]) draft[lb.id] = { active: true, kompetenzen: {} };
+              draft[lb.id].kompetenzen[cb.dataset.k] = cb.checked;
+              updateCount(item, lb);
+            });
+          });
+
+          item.querySelector('[data-action="all"]').addEventListener('click', () => {
+            if (!draft[lb.id]?.active) return;
+            item.querySelectorAll('.lb-kompetenz input').forEach((cb) => {
+              cb.checked = true;
+              draft[lb.id].kompetenzen[cb.dataset.k] = true;
+            });
+            updateCount(item, lb);
+          });
+
+          item.querySelector('[data-action="none"]').addEventListener('click', () => {
+            if (!draft[lb.id]?.active) return;
+            item.querySelectorAll('.lb-kompetenz input').forEach((cb) => {
+              cb.checked = false;
+              draft[lb.id].kompetenzen[cb.dataset.k] = false;
+            });
+            updateCount(item, lb);
+          });
+
+          container.appendChild(item);
+        });
+      });
+    }
+
+    function updateCount(item, lb) {
+      const lbState = draft[lb.id] || { active: false, kompetenzen: {} };
+      const total = lb.kompetenzen.length;
+      const active = lb.kompetenzen.filter((k) => lbState.kompetenzen[k] !== false).length;
+      item.querySelector('.lb-accord-count').textContent = (lbState.active ? `${active}/${total}` : total) + ' Kompetenzen';
+    }
+
+    function syncChips() {
+      const activeIds = [];
+      LERNBEREICHE.forEach((g) => g.items.forEach((lb) => {
+        if (state[lb.id]?.active) activeIds.push(lb);
+      }));
+
+      if (!activeIds.length) {
+        chipsBox.innerHTML = '<span class="lb-chip-empty">Noch keine Lernbereiche gewaehlt - klicke auf Bearbeiten.</span>';
+        return;
+      }
+
+      chipsBox.innerHTML = '';
+      activeIds.forEach((lb) => {
+        const s = state[lb.id];
+        const total = lb.kompetenzen.length;
+        const active = lb.kompetenzen.filter((k) => s.kompetenzen[k] !== false).length;
+        const chip = document.createElement('span');
+        chip.className = 'lb-chip';
+        chip.innerHTML = `<span class="lb-chip-dot" style="background:${lb.color}"></span>${lb.name} <span style="opacity:.5;font-size:0.72em;">${active}/${total}</span>`;
+        chipsBox.appendChild(chip);
+      });
+    }
+
+    const open = () => {
+      if (!LERNBEREICHE.length) return;
+      draft = JSON.parse(JSON.stringify(state));
+      buildModal();
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const close = () => {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    };
+
+    document.getElementById('lbOpenBtn').addEventListener('click', open);
+    document.getElementById('lbCloseBtn').addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') close();
+    });
+
+    document.getElementById('lbSaveBtn').addEventListener('click', () => {
+      state = JSON.parse(JSON.stringify(draft));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      syncChips();
+      close();
+    });
+
+    document.getElementById('lbResetBtn').addEventListener('click', () => {
+      draft = {};
+      buildModal();
+    });
+
+    const oldKey = 'mathechecks-lernbereiche';
+    const oldData = JSON.parse(localStorage.getItem(oldKey) || 'null');
+    if (oldData && Array.isArray(oldData) && !localStorage.getItem(STORAGE_KEY)) {
+      oldData.forEach((id) => {
+        state[id] = { active: true, kompetenzen: {} };
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    initLernbereiche();
+  })();
+</script>

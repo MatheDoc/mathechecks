@@ -1,0 +1,634 @@
+/* Shared task rendering styles for preview and dev training runtime cards. */
+
+/* Preview scope */
+.task {
+    background: #fff;
+    border: 1px solid #dfe5f1;
+    border-radius: 12px;
+    padding: 14px;
+    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.04);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.task h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+.task .intro {
+    margin-bottom: 10px;
+    color: #3d4452;
+    line-height: 1.6;
+    min-width: 0;
+    width: 100%;
+}
+
+.task .task-intro-column {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.task .intro .js-plotly-plot,
+.task .intro .plotly,
+.task .intro .plot-container,
+.task .intro .svg-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.task .qa-list {
+    margin: 0;
+    padding-left: 0;
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    counter-reset: qa-counter;
+}
+
+.task .qa-item {
+    counter-increment: qa-counter;
+    position: relative;
+    color: #3d4452;
+    line-height: 1.55;
+    background: #f7f9fd;
+    border: 1px solid #d9e0ec;
+    border-radius: 12px;
+    padding: 10px 10px 10px 42px;
+    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+
+.task .qa-item::before {
+    content: counter(qa-counter);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 1px solid #cdd7e8;
+    background: #fff;
+    color: #2f3a4c;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task .qa-item:hover {
+    background: #eaf1fb;
+    border-color: #b8c7dc;
+    box-shadow: 0 0 0 1px #c7d6ea;
+}
+
+.task .frage {
+    margin-bottom: 6px;
+    color: #1f2430;
+}
+
+.task .answer-preview {
+    margin-bottom: 4px;
+    line-height: 1.55;
+}
+
+.task .answer-input,
+.task .answer-select {
+    min-width: 0;
+    width: min(100px, 100%);
+    max-width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #cfd6e4;
+    border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.task .answer-select {
+    cursor: pointer;
+}
+
+.task .answer-input.is-correct,
+.task .answer-select.is-correct {
+    border-color: #4eaf68;
+    background: #f1fbf3;
+}
+
+.task .select2-container .select2-selection.is-correct {
+    border-color: #4eaf68;
+    background: #f1fbf3;
+}
+
+.task .answer-input.is-incorrect,
+.task .answer-select.is-incorrect {
+    border-color: #d65c5c;
+    background: #fff4f4;
+}
+
+.task .select2-container .select2-selection.is-incorrect {
+    border-color: #d65c5c;
+    background: #fff4f4;
+}
+
+.task .answer-field-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    vertical-align: middle;
+    white-space: nowrap;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.task .answer-field-group.answer-field-group--input,
+.dev-training__runtime-task .answer-field-group.answer-field-group--input {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    max-width: fit-content;
+}
+
+.task .answer-field-group.answer-field-group--input .answer-input,
+.dev-training__runtime-task .answer-field-group.answer-field-group--input .answer-input {
+    width: 100px;
+    flex: 0 0 auto;
+}
+
+.task .answer-preview .answer-field-group.answer-field-group--select2,
+.dev-training__runtime-task .answer-preview .answer-field-group.answer-field-group--select2 {
+    width: auto;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.task .answer-field-group .answer-input,
+.task .answer-field-group .answer-select {
+    vertical-align: middle;
+}
+
+.task .answer-field-group .select2-container,
+.dev-training__runtime-task .answer-field-group .select2-container {
+    width: auto !important;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.task .answer-field-group.answer-field-group--select2 .select2-container,
+.dev-training__runtime-task .answer-field-group.answer-field-group--select2 .select2-container {
+    width: var(--mc-select-width, 100px) !important;
+    max-width: 100%;
+    min-width: 0;
+    flex: 0 1 auto;
+}
+
+.task .answer-field-group .select2-container .select2-selection,
+.dev-training__runtime-task .answer-field-group .select2-container .select2-selection {
+    min-height: 34px;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.task .answer-field-group .select2-container .select2-selection__rendered,
+.dev-training__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.25;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.select2-dropdown.mc-select2-dropdown {
+    max-width: min(92vw, 36rem);
+}
+
+.select2-dropdown.mc-select2-dropdown .select2-results__option {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+.task .answer-check-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid #cfd6e4;
+    background: #f8f9fc;
+    color: #7a8498;
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+    margin-left: 0;
+    transition: background 0.12s, border-color 0.12s;
+}
+
+.task .answer-check-btn:hover {
+    background: #eef2f8;
+    border-color: #a0acbe;
+    color: #253043;
+}
+
+.task .task-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+    min-height: 28px;
+}
+
+.task .task-toolbar__stats {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    font-size: 11.5px;
+    color: #7a8498;
+}
+
+.task .task-toolbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.task .task-toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #8a94a8;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.task .task-toolbar-link {
+    text-decoration: none;
+}
+
+.task .task-toolbar-btn:hover {
+    background: #eef2f8;
+    border-color: #cfd6e4;
+    color: #253043;
+}
+
+.task .task-toolbar-btn i {
+    font-size: 14px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.task .task-feedback {
+    font-size: 12.5px;
+}
+
+.task .task-feedback.is-correct {
+    color: #1f6d2d;
+}
+
+.task .task-feedback.is-incorrect {
+    color: #b13636;
+}
+
+.task .task-feedback.is-neutral {
+    color: #5c6677;
+}
+
+.task .solution {
+    font-size: 12.5px;
+}
+
+.task .solution-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: #edf6ed;
+    color: #1f6d2d;
+    border: 1px solid #bfe3c5;
+}
+
+/* Dev training runtime scope */
+.dev-training__runtime-task {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dev-training__runtime-task .intro {
+    margin-bottom: 10px;
+    color: var(--text-dim);
+    line-height: 1.6;
+    min-width: 0;
+    width: 100%;
+}
+
+.dev-training__runtime-task .task-intro-column {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    min-width: 0;
+}
+
+.dev-training__runtime-task .intro .js-plotly-plot,
+.dev-training__runtime-task .intro .plotly,
+.dev-training__runtime-task .intro .plot-container,
+.dev-training__runtime-task .intro .svg-container {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.dev-training__runtime-task .qa-list {
+    margin: 0;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    display: grid;
+    gap: 10px;
+    list-style: none;
+    counter-reset: qa-counter;
+}
+
+.dev-training__runtime-task .qa-item {
+    counter-increment: qa-counter;
+    position: relative;
+    color: #3d4452;
+    line-height: 1.55;
+    background: var(--mt-training-soft, #f7f9fd);
+    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 14%, #d9e0ec);
+    border-radius: 12px;
+    padding: 10px 10px 10px 42px;
+    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
+}
+
+.dev-training__runtime-task .qa-item::before {
+    content: counter(qa-counter);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 16%, #cdd7e8);
+    background: #fff;
+    color: #2f3a4c;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dev-training__runtime-task .qa-item:hover {
+    background: color-mix(in srgb, var(--mt-training-soft, #f7f9fd) 72%, #b7d5ff);
+    border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 22%, #b8c7dc);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--mt-training, #4c9aff) 18%, #c7d6ea);
+    transform: none;
+}
+
+.dev-training__runtime-task .frage {
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.dev-training__runtime-task .answer-preview {
+    margin-bottom: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.dev-training__runtime-task .answer-input,
+.dev-training__runtime-task .answer-select {
+    min-width: 0;
+    width: min(100px, 100%);
+    max-width: 100%;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #aaa;
+    color: var(--text);
+    box-sizing: border-box;
+}
+
+.dev-training__runtime-task .answer-select {
+    cursor: pointer;
+}
+
+.dev-training__runtime-task .answer-input.is-correct,
+.dev-training__runtime-task .answer-select.is-correct {
+    border-color: var(--green);
+    background: color-mix(in srgb, var(--green-soft) 78%, transparent);
+}
+
+.dev-training__runtime-task .select2-container .select2-selection.is-correct {
+    border-color: var(--green);
+    background: color-mix(in srgb, var(--green-soft) 78%, transparent);
+}
+
+.dev-training__runtime-task .answer-input.is-incorrect,
+.dev-training__runtime-task .answer-select.is-incorrect {
+    border-color: var(--rose);
+    background: color-mix(in srgb, var(--rose-soft) 78%, transparent);
+}
+
+.dev-training__runtime-task .select2-container .select2-selection.is-incorrect {
+    border-color: var(--rose);
+    background: color-mix(in srgb, var(--rose-soft) 78%, transparent);
+}
+
+.dev-training__runtime-task .answer-field-group {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.dev-training__runtime-task .answer-field-group .answer-input,
+.dev-training__runtime-task .answer-field-group .answer-select {
+    vertical-align: middle;
+}
+
+.dev-training__runtime-task .answer-check-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 0;
+    line-height: 1;
+    margin-left: 4px;
+    transition: background 0.12s, border-color 0.12s;
+}
+
+.dev-training__runtime-task .answer-check-btn:hover {
+    border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 55%, var(--border));
+    background: color-mix(in srgb, var(--mt-training-soft, var(--accent-soft)) 60%, transparent);
+    color: var(--text);
+}
+
+.dev-training__runtime-task .task-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 4px;
+    min-height: 28px;
+}
+
+.dev-training__runtime-task .task-toolbar__stats {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+}
+
+.dev-training__runtime-task .task-toolbar__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.dev-training__runtime-task .task-toolbar-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: color-mix(in srgb, var(--text) 72%, var(--text-dim));
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+
+.dev-training__runtime-task .task-toolbar-link {
+    text-decoration: none;
+}
+
+.dev-training__runtime-task .task-toolbar-btn:hover {
+    background: color-mix(in srgb, var(--mt-training-soft, var(--accent-soft)) 60%, transparent);
+    border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 35%, var(--border));
+    color: var(--text);
+}
+
+.dev-training__runtime-task .task-toolbar-btn i {
+    font-size: 14px;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.dev-training__runtime-task .task-feedback {
+    font-size: 0.78rem;
+}
+
+.dev-training__runtime-task .task-feedback.is-correct {
+    color: var(--green);
+}
+
+.dev-training__runtime-task .task-feedback.is-incorrect {
+    color: var(--rose);
+}
+
+.dev-training__runtime-task .task-feedback.is-neutral {
+    color: var(--text-dim);
+}
+
+.dev-training__runtime-task .solution {
+    font-size: 0.78rem;
+}
+
+.dev-training__runtime-task .solution-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--green-soft);
+    color: var(--green);
+    border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+}
+
+@media (min-width: 1080px) {
+    .task {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 16px;
+        row-gap: 10px;
+        align-items: start;
+    }
+
+    .task .task-toolbar,
+    .task h2 {
+        grid-column: 1 / -1;
+    }
+
+    .task .task-intro-column {
+        grid-column: 1;
+        grid-row: 2;
+        margin-bottom: 0;
+        min-width: 0;
+    }
+
+    .task .qa-list {
+        grid-column: 2;
+        grid-row: 2;
+        min-width: 0;
+        align-self: start;
+    }
+
+    .dev-training__runtime-task {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 16px;
+        row-gap: 10px;
+        align-items: start;
+    }
+
+    .dev-training__runtime-task .task-toolbar,
+    .dev-training__runtime-task h2 {
+        grid-column: 1 / -1;
+    }
+
+    .dev-training__runtime-task .task-intro-column {
+        grid-column: 1;
+        grid-row: 2;
+        margin-bottom: 0;
+        min-width: 0;
+    }
+
+    .dev-training__runtime-task .qa-list {
+        grid-column: 2;
+        grid-row: 2;
+        min-width: 0;
+        align-self: start;
+    }
+}

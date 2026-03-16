@@ -51,7 +51,6 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
                 eq_quantity=eq_x,
                 eq_price=eq_p,
             )
-            rng.shuffle(items)
 
             tasks.append(
                 Task(

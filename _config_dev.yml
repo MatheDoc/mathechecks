@@ -1,0 +1,12 @@
+defaults:
+  - scope:
+      path: "dev"
+      type: "pages"
+    values:
+      published: true
+
+# Local dev build should include regular lernbereiche pages again.
+exclude:
+  - functions
+  - xls
+  - html

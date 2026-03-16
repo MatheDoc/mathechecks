@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blurting 2 - Designvorschlag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f3ea;
+      --bg-alt: #efe6d6;
+      --ink: #1e2a29;
+      --ink-soft: #4d5f5b;
+      --line: #d5c8b2;
+      --card: rgba(255, 251, 242, 0.86);
+      --brand: #0f8a6f;
+      --brand-soft: rgba(15, 138, 111, 0.14);
+      --accent: #d26d29;
+      --accent-soft: rgba(210, 109, 41, 0.16);
+      --ok: #218f5d;
+      --warn: #b5542a;
+      --shadow: 0 12px 36px rgba(39, 45, 41, 0.14);
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "IBM Plex Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at -10% -10%, rgba(15, 138, 111, 0.16), transparent 60%),
+        radial-gradient(900px 420px at 110% 10%, rgba(210, 109, 41, 0.12), transparent 60%),
+        linear-gradient(160deg, var(--bg), var(--bg-alt));
+    }
+
+    .ambient-lines {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.25;
+      background-image:
+        linear-gradient(to right, rgba(30, 42, 41, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(30, 42, 41, 0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at 30% 20%, black, transparent 70%);
+    }
+
+    .shell {
+      width: min(1100px, 94vw);
+      margin: 0 auto;
+      padding: 26px 0 38px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .brand-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(140deg, var(--brand), #125547);
+      box-shadow: var(--shadow);
+      font-size: 0.84rem;
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 11px;
+      background: rgba(255, 255, 255, 0.5);
+      color: var(--ink-soft);
+    }
+
+    .pill strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .layout {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1.45fr 1fr;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow);
+    }
+
+    .main {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .main::before {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      top: -150px;
+      right: -90px;
+      background: radial-gradient(circle, rgba(15, 138, 111, 0.2), transparent 70%);
+      pointer-events: none;
+    }
+
+    .phase-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .phase {
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.73rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border: 1px solid transparent;
+    }
+
+    .phase.brainstorm {
+      color: var(--brand);
+      background: var(--brand-soft);
+      border-color: rgba(15, 138, 111, 0.25);
+    }
+
+    .phase.reveal {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: rgba(210, 109, 41, 0.25);
+    }
+
+    .check-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      line-height: 1.15;
+      margin: 0;
+      letter-spacing: -0.01em;
+      max-width: 92%;
+    }
+
+    .prompt {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 70ch;
+    }
+
+    .timer-wrap {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.54);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .timer-dot {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+      background: conic-gradient(var(--brand) var(--timer-progress), rgba(30, 42, 41, 0.12) 0deg);
+    }
+
+    .timer-dot::before {
+      content: "";
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #fff9ee;
+      position: absolute;
+    }
+
+    .timer-label {
+      position: relative;
+      z-index: 1;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .timer-copy small {
+      display: block;
+      color: var(--ink-soft);
+      margin-top: 2px;
+      font-size: 0.8rem;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--brand);
+      background: transparent;
+      color: var(--brand);
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-family: inherit;
+      transition: all 160ms ease;
+    }
+
+    .btn-ghost:hover {
+      transform: translateY(-1px);
+      background: var(--brand-soft);
+    }
+
+    .keyword-box {
+      border: 1px dashed var(--line);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.46);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    .keyword-box.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .keyword-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      border: 1px solid rgba(30, 42, 41, 0.2);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    .decision {
+      margin-top: auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    .decision-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-ok {
+      color: #fff;
+      background: linear-gradient(135deg, #2d9b62, var(--ok));
+      box-shadow: 0 8px 20px rgba(33, 143, 93, 0.25);
+    }
+
+    .btn-no {
+      color: #fff;
+      background: linear-gradient(135deg, #cf6b36, var(--warn));
+      box-shadow: 0 8px 20px rgba(181, 84, 42, 0.25);
+    }
+
+    .feedback {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.58);
+      padding: 12px 14px;
+      display: none;
+    }
+
+    .feedback.show {
+      display: block;
+    }
+
+    .feedback strong {
+      font-family: "Space Grotesk", sans-serif;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feedback a {
+      color: var(--brand);
+      font-weight: 600;
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 2px;
+    }
+
+    .side {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .side h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.06rem;
+    }
+
+    .check-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .check-item {
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.62);
+      display: grid;
+      gap: 4px;
+      cursor: pointer;
+      transition: border-color 160ms ease, transform 160ms ease;
+    }
+
+    .check-item:hover {
+      transform: translateY(-1px);
+      border-color: rgba(30, 42, 41, 0.35);
+    }
+
+    .check-item.active {
+      border-color: rgba(15, 138, 111, 0.45);
+      box-shadow: inset 0 0 0 1px rgba(15, 138, 111, 0.25);
+    }
+
+    .check-item.done {
+      background: rgba(33, 143, 93, 0.08);
+      border-color: rgba(33, 143, 93, 0.36);
+    }
+
+    .check-item small {
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+    }
+
+    .legend {
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .legend span::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: 1px;
+    }
+
+    .legend .l-open::before {
+      background: #9b8f7b;
+    }
+
+    .legend .l-active::before {
+      background: var(--brand);
+    }
+
+    .legend .l-done::before {
+      background: var(--ok);
+    }
+
+    .side-note {
+      margin-top: auto;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .fade-in {
+      animation: rise 420ms ease;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(9px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .main {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(1100px, 96vw);
+      }
+
+      .main,
+      .side {
+        padding: 16px;
+      }
+
+      .timer-wrap {
+        grid-template-columns: 1fr;
+        justify-items: start;
+      }
+
+      .check-title {
+        font-size: 1.45rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-lines" aria-hidden="true"></div>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-badge">MC</div>
+        <span>Blurting Prototype 2</span>
+      </div>
+      <div class="meta">
+        <span class="pill"><strong>Lernbereich:</strong> Analysis - Kurvendiskussion</span>
+        <span class="pill"><strong>Session-Tempo:</strong> x = 1 Tag</span>
+      </div>
+    </header>
+
+    <section class="layout">
+      <article class="card main fade-in">
+        <div class="phase-row">
+          <span id="phaseTag" class="phase brainstorm">Brainstorm</span>
+          <span id="checkCounter" class="pill">Check 1 von 4</span>
+        </div>
+
+        <h1 id="concept" class="check-title">Monotonie</h1>
+        <p id="prompt" class="prompt"></p>
+
+        <section class="timer-wrap" aria-live="polite">
+          <div class="timer-dot" id="timerDot" style="--timer-progress: 360deg;">
+            <span id="timerText" class="timer-label">03:00</span>
+          </div>
+          <div class="timer-copy">
+            <strong id="timerHeadline">Denkzeit laeuft</strong>
+            <small id="timerSub">Nenne moeglichst viele passende Stichwoerter aus dem Kopf.</small>
+          </div>
+          <button class="btn-ghost" id="revealBtn" type="button">Stichwoerter einblenden</button>
+        </section>
+
+        <section id="keywordBox" class="keyword-box" aria-live="polite">
+          <strong>Referenz-Stichwoerter</strong>
+          <div id="keywordGrid" class="keyword-grid"></div>
+        </section>
+
+        <section class="decision">
+          <div class="decision-row">
+            <button id="canBtn" class="btn btn-ok" type="button" disabled>Kann ich</button>
+            <button id="cantBtn" class="btn btn-no" type="button" disabled>Kann ich nicht</button>
+          </div>
+          <div id="feedback" class="feedback"></div>
+        </section>
+      </article>
+
+      <aside class="card side fade-in">
+        <h2>Aktive Checks (Beispiel)</h2>
+        <div class="legend">
+          <span class="l-open">offen</span>
+          <span class="l-active">aktuell</span>
+          <span class="l-done">abgeschlossen</span>
+        </div>
+        <div id="checkList" class="check-list"></div>
+        <p class="side-note">
+          Idee fuer den Feed: Solange bei einem Check in Blurting "Kann ich nicht" aktiv ist,
+          bleibt genau dieser Eintrag oben, inklusive 10-Minuten-Cooldown und direktem Skript-Link.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const checks = [
+      {
+        id: "A1",
+        label: "Monotonie begruenden",
+        concept: "Monotonie",
+        prompt: "Welche Begriffe und Entscheidungsschritte brauchst du, um Monotonieintervalle einer Funktion zu bestimmen?",
+        keywords: ["1. Ableitung", "kritische Stellen", "Vorzeichenwechsel", "Intervallschreibweise", "streng steigend/fallend", "Randpunkte"],
+        scriptUrl: "../lernbereiche/analysis/kurvendiskussion/skript.html"
+      },
+      {
+        id: "A2",
+        label: "Extrempunkte erkennen",
+        concept: "Extrempunkte",
+        prompt: "Sammle Stichwoerter fuer das Vorgehen bei Hoch- und Tiefpunkten inklusive Plausibilitaetscheck.",
+        keywords: ["f'(x)=0", "2. Ableitung", "Vorzeichenkriterium", "Hochpunkt/Tiefpunkt", "Koordinaten berechnen", "Kontext pruefen"],
+        scriptUrl: "../lernbereiche/analysis/kurvendiskussion/skript.html"
+      },
+      {
+        id: "A3",
+        label: "Wendepunkte pruefen",
+        concept: "Wendepunkte",
+        prompt: "Welche Signale zeigen dir, dass ein Wendepunkt vorliegt, und wie verifizierst du ihn?",
+        keywords: ["2. Ableitung = 0", "Krummungsverhalten", "Vorzeichenwechsel f''", "3. Ableitung ungleich 0", "Wendestelle", "Skizzencheck"],
+        scriptUrl: "../lernbereiche/analysis/kurvendiskussion/skript.html"
+      },
+      {
+        id: "A4",
+        label: "Asymptotisches Verhalten",
+        concept: "Grenzverhalten",
+        prompt: "Notiere alles, was du fuer Verhalten im Unendlichen und moegliche Asymptoten brauchst.",
+        keywords: ["lim x->infty", "dominanter Term", "horizontale Asymptote", "schiefe Asymptote", "Polstellen", "Definitionsbereich"],
+        scriptUrl: "../lernbereiche/analysis/kurvendiskussion/skript.html"
+      }
+    ];
+
+    const state = {
+      currentIndex: 0,
+      currentPhase: "brainstorm",
+      durationSec: 180,
+      remainingSec: 180,
+      timerId: null,
+      doneSet: new Set(),
+      cooldownUntil: null
+    };
+
+    const phaseTag = document.getElementById("phaseTag");
+    const checkCounter = document.getElementById("checkCounter");
+    const conceptEl = document.getElementById("concept");
+    const promptEl = document.getElementById("prompt");
+    const timerDot = document.getElementById("timerDot");
+    const timerText = document.getElementById("timerText");
+    const timerHeadline = document.getElementById("timerHeadline");
+    const timerSub = document.getElementById("timerSub");
+    const revealBtn = document.getElementById("revealBtn");
+    const keywordBox = document.getElementById("keywordBox");
+    const keywordGrid = document.getElementById("keywordGrid");
+    const canBtn = document.getElementById("canBtn");
+    const cantBtn = document.getElementById("cantBtn");
+    const feedback = document.getElementById("feedback");
+    const checkList = document.getElementById("checkList");
+
+    function formatSec(sec) {
+      const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+      const ss = String(sec % 60).padStart(2, "0");
+      return `${mm}:${ss}`;
+    }
+
+    function updateTimerUI() {
+      timerText.textContent = formatSec(state.remainingSec);
+      const ratio = state.remainingSec / state.durationSec;
+      timerDot.style.setProperty("--timer-progress", `${Math.max(0.04, ratio) * 360}deg`);
+    }
+
+    function setPhase(phase) {
+      state.currentPhase = phase;
+      phaseTag.classList.remove("brainstorm", "reveal");
+      if (phase === "brainstorm") {
+        phaseTag.textContent = "Brainstorm";
+        phaseTag.classList.add("brainstorm");
+      } else {
+        phaseTag.textContent = "Selbstcheck";
+        phaseTag.classList.add("reveal");
+      }
+    }
+
+    function revealKeywords(auto = false) {
+      setPhase("reveal");
+      keywordBox.classList.add("visible");
+      canBtn.disabled = false;
+      cantBtn.disabled = false;
+      revealBtn.disabled = true;
+      timerHeadline.textContent = auto ? "Zeit um - vergleiche jetzt" : "Vergleiche jetzt";
+      timerSub.textContent = "Pruefe deine Stichwoerter und entscheide dann ehrlich: Kann ich oder kann ich nicht?";
+      stopTimer();
+    }
+
+    function startTimer() {
+      stopTimer();
+      state.remainingSec = state.durationSec;
+      updateTimerUI();
+      timerHeadline.textContent = "Denkzeit laeuft";
+      timerSub.textContent = "Nenne moeglichst viele passende Stichwoerter aus dem Kopf.";
+
+      state.timerId = window.setInterval(() => {
+        state.remainingSec -= 1;
+        updateTimerUI();
+
+        if (state.remainingSec <= 0) {
+          revealKeywords(true);
+        }
+      }, 1000);
+    }
+
+    function stopTimer() {
+      if (state.timerId) {
+        clearInterval(state.timerId);
+        state.timerId = null;
+      }
+    }
+
+    function renderKeywords() {
+      const item = checks[state.currentIndex];
+      keywordGrid.innerHTML = "";
+      item.keywords.forEach((kw) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = kw;
+        keywordGrid.appendChild(chip);
+      });
+    }
+
+    function renderCheckList() {
+      checkList.innerHTML = "";
+      checks.forEach((item, idx) => {
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = "check-item";
+        if (idx === state.currentIndex) el.classList.add("active");
+        if (state.doneSet.has(item.id)) el.classList.add("done");
+        el.innerHTML = `<strong>${item.id} - ${item.label}</strong><small>${item.concept}</small>`;
+        el.addEventListener("click", () => {
+          state.currentIndex = idx;
+          loadCurrentCheck();
+        });
+        checkList.appendChild(el);
+      });
+    }
+
+    function cooldownTick() {
+      const ms = state.cooldownUntil - Date.now();
+      if (ms <= 0) {
+        state.cooldownUntil = null;
+        feedback.classList.remove("show");
+        feedback.innerHTML = "";
+        canBtn.disabled = false;
+        cantBtn.disabled = false;
+        timerHeadline.textContent = "Neue Runde moeglich";
+        timerSub.textContent = "Du kannst denselben Check erneut versuchen.";
+        return;
+      }
+
+      const sec = Math.ceil(ms / 1000);
+      const mm = String(Math.floor(sec / 60)).padStart(2, "0");
+      const ss = String(sec % 60).padStart(2, "0");
+      feedback.innerHTML = `<strong>Noch nicht sicher - das ist okay.</strong>
+        <p>Nutze den Skriptabschnitt und starte dann neu. Cooldown: <b>${mm}:${ss}</b></p>
+        <p><a href="${checks[state.currentIndex].scriptUrl}">Zum passenden Skriptabschnitt</a></p>`;
+    }
+
+    function handleCan() {
+      const current = checks[state.currentIndex];
+      state.doneSet.add(current.id);
+      feedback.classList.add("show");
+      feedback.innerHTML = "<strong>Sauber.</strong><p>Dieser Blurting-Schritt ist abgeschlossen. Du kannst zum naechsten Check wechseln.</p>";
+      renderCheckList();
+
+      const nextIndex = state.currentIndex + 1;
+      if (nextIndex < checks.length) {
+        state.currentIndex = nextIndex;
+        window.setTimeout(loadCurrentCheck, 650);
+      } else {
+        timerHeadline.textContent = "Alle Beispiel-Checks bearbeitet";
+        timerSub.textContent = "Im echten Feed waere als naechster Schritt das naechste Modul oder ein neuer faelliger Check dran.";
+      }
+    }
+
+    function handleCant() {
+      canBtn.disabled = true;
+      cantBtn.disabled = true;
+      state.cooldownUntil = Date.now() + 10 * 60 * 1000;
+      feedback.classList.add("show");
+      cooldownTick();
+      const cooldownId = window.setInterval(() => {
+        if (!state.cooldownUntil) {
+          clearInterval(cooldownId);
+          return;
+        }
+        cooldownTick();
+      }, 1000);
+    }
+
+    function loadCurrentCheck() {
+      stopTimer();
+      const item = checks[state.currentIndex];
+      setPhase("brainstorm");
+      checkCounter.textContent = `Check ${state.currentIndex + 1} von ${checks.length}`;
+      conceptEl.textContent = item.concept;
+      promptEl.textContent = item.prompt;
+
+      keywordBox.classList.remove("visible");
+      feedback.classList.remove("show");
+      feedback.innerHTML = "";
+      revealBtn.disabled = false;
+      canBtn.disabled = true;
+      cantBtn.disabled = true;
+      state.cooldownUntil = null;
+
+      renderKeywords();
+      renderCheckList();
+      startTimer();
+    }
+
+    revealBtn.addEventListener("click", () => revealKeywords(false));
+    canBtn.addEventListener("click", handleCan);
+    cantBtn.addEventListener("click", handleCant);
+
+    loadCurrentCheck();
+  </script>
+</body>
+</html>

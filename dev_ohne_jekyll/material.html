@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Material – MatheChecks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
+    
+</head>
+
+<body class="page-material">
+
+    <div class="shell">
+
+        <!-- ═══════════════════ Topbar ═══════════════════ -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="brand">
+                    <div class="logo">M</div>
+                    <div class="brand-text">
+                        <h1>MatheChecks</h1>
+                        <p>Lernplattform</p>
+                    </div>
+                </div>
+                <span class="page-context">Material durchsuchen</span>
+            </div>
+
+            <div class="topbar-right">
+                <nav class="nav-pills" aria-label="Hauptnavigation">
+                    <a href="dashboard.html">Dashboard</a>
+                    <a class="active" href="material.html">Material</a>
+                </nav>
+                <div class="theme-toggle" id="themeToggle" title="Light / Dark Mode">
+                    <span class="theme-toggle-icon moon">🌙</span>
+                    <span class="theme-toggle-icon sun">☀️</span>
+                </div>
+                <div class="avatar" title="Profil">S</div>
+            </div>
+        </header>
+
+        <!-- ═══════════════════ Headline ═══════════════════ -->
+        <section class="greeting">
+            <h2>Material durchstöbern</h2>
+            <p>Alle Lernmaterialien nach Typ und Lernbereich filtern.</p>
+        </section>
+
+        <!-- ═══════════════════ Filter-Bar ═══════════════════ -->
+        <div class="card" style="padding: 16px 20px; margin-bottom: 8px;">
+            <div class="filter-bar">
+                <label>Lernbereich:</label>
+                <select class="filter-select" id="filterLB">
+                    <option value="all">Alle Lernbereiche</option>
+                    <optgroup label="Analysis">
+                        <option value="analysis">📈 Gesamte Analysis</option>
+                        <option value="lineare-funktionen">&ensp;Lineare Funktionen</option>
+                        <option value="ganzrationale-oekonomische-funktionen">&ensp;Ganzrationale ökonom. Funktionen
+                        </option>
+                        <option value="differentialrechnung">&ensp;Differentialrechnung</option>
+                        <option value="ertragsgesetzl-kostenfunktionen">&ensp;Ertragsgesetzl. Kostenfunktionen</option>
+                        <option value="marktgleichgewicht-grundlagen">&ensp;Marktgleichgewicht (Grundlagen)</option>
+                        <option value="marktgleichgewicht-vertiefung">&ensp;Marktgleichgewicht (Vertiefung)</option>
+                        <option value="produktlebenszyklus">&ensp;Produktlebenszyklus</option>
+                        <option value="analysis-diverses">&ensp;Analysis Diverses</option>
+                    </optgroup>
+                    <optgroup label="Stochastik">
+                        <option value="stochastik">🎲 Gesamte Stochastik</option>
+                        <option value="zufallsexperimente">&ensp;Zufallsexperimente & Wahrscheinlichkeiten</option>
+                        <option value="mehrstufige-zufallsexperimente">&ensp;Mehrstufige Zufallsexperimente</option>
+                        <option value="bedingte-wahrscheinlichkeiten">&ensp;Bedingte Wahrscheinlichkeiten</option>
+                        <option value="zufallsgroessen">&ensp;Zufallsgrößen</option>
+                        <option value="binomialverteilung">&ensp;Binomialverteilung</option>
+                        <option value="hypothesentests">&ensp;Hypothesentests</option>
+                    </optgroup>
+                    <optgroup label="Lineare Algebra">
+                        <option value="linalg">🔢 Gesamte Lineare Algebra</option>
+                        <option value="lineare-gleichungssysteme">&ensp;Lineare Gleichungssysteme</option>
+                        <option value="matrizenrechnung">&ensp;Matrizenrechnung</option>
+                        <option value="mehrstufige-produktionsprozesse">&ensp;Mehrstufige Produktionsprozesse</option>
+                    </optgroup>
+                </select>
+
+                <label>Typ:</label>
+                <select class="filter-select" id="filterType">
+                    <option value="all">Alle Typen</option>
+                    <option value="start">Startseiten</option>
+                    <option value="checkliste">Checklisten</option>
+                    <option value="training">Trainings</option>
+                    <option value="skript">Skripte</option>
+                    <option value="flashcards">Flashcards</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ═══════════════════ Startseiten ═══════════════════ -->
+        <div class="section-head">
+            <div class="section-icon"
+                style="background:linear-gradient(135deg,var(--accent-soft),var(--teal-soft));color:var(--accent);">🏠
+            </div>
+            <h3>Startseiten</h3>
+            <span class="section-count">5 verfügbar</span>
+        </div>
+        <div class="material-grid" data-type="start">
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon"
+                        style="background:linear-gradient(135deg,var(--accent-soft),var(--teal-soft));color:var(--accent);">
+                        🏠</div>
+                    <div>
+                        <div class="mat-card-title">Differentialrechnung</div>
+                        <div class="mat-card-sub">Überblick · Lernpfad · Einstieg</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Was erwartet dich? Themen, Voraussetzungen, empfohlener Lernweg und direkter
+                    Sprung zu Checkliste, Training & Skript.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon"
+                        style="background:linear-gradient(135deg,var(--accent-soft),var(--teal-soft));color:var(--accent);">
+                        🏠</div>
+                    <div>
+                        <div class="mat-card-title">Lineare Funktionen</div>
+                        <div class="mat-card-sub">Überblick · Lernpfad · Einstieg</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Grundlagen, zentrale Begriffe und der schnellste Weg durch den Lernbereich –
+                    alles auf einer Seite.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon"
+                        style="background:linear-gradient(135deg,var(--teal-soft),var(--accent-soft));color:var(--teal);">
+                        🏠</div>
+                    <div>
+                        <div class="mat-card-title">Bedingte Wahrscheinlichkeiten</div>
+                        <div class="mat-card-sub">Überblick · Lernpfad · Einstieg</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Vierfeldertafel, Baumdiagramme, Unabhängigkeit – Überblick und
+                    Voraussetzungen für den Lernbereich.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon"
+                        style="background:linear-gradient(135deg,var(--teal-soft),var(--accent-soft));color:var(--teal);">
+                        🏠</div>
+                    <div>
+                        <div class="mat-card-title">Binomialverteilung</div>
+                        <div class="mat-card-sub">Überblick · Lernpfad · Einstieg</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Bernoulli-Ketten, Formel, kumulierte Verteilung – Einstiegsseite mit
+                    Lernpfadempfehlung.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="linalg">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon"
+                        style="background:linear-gradient(135deg,var(--amber-soft),var(--accent-soft));color:var(--amber);">
+                        🏠</div>
+                    <div>
+                        <div class="mat-card-title">Lineare Gleichungssysteme</div>
+                        <div class="mat-card-sub">Überblick · Lernpfad · Einstieg</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Gauß-Verfahren, Lösungsmengen, Sonderfälle – Orientierung und empfohlener
+                    Einstieg.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-linalg">Lineare Algebra</span></div>
+            </a>
+        </div>
+
+        <!-- ═══════════════════ Checklisten ═══════════════════ -->
+        <div class="section-head">
+            <div class="section-icon" style="background:var(--green-soft);color:var(--green);">☑</div>
+            <h3>Checklisten</h3>
+            <span class="section-count">8 verfügbar</span>
+        </div>
+        <div class="material-grid" data-type="checkliste">
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--green-soft);color:var(--green);">☑</div>
+                    <div>
+                        <div class="mat-card-title">Lineare Funktionen</div>
+                        <div class="mat-card-sub">12 Kompetenzen · 8 gesichert</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Steigung, y-Achsenabschnitt, Geradengleichung aufstellen, Schnittpunkte
+                    berechnen.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--green-soft);color:var(--green);">☑</div>
+                    <div>
+                        <div class="mat-card-title">Differentialrechnung</div>
+                        <div class="mat-card-sub">18 Kompetenzen · 14 gesichert</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Ableitungsregeln, Tangentengleichung, Extremstellen, Wendepunkte.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--green-soft);color:var(--green);">☑</div>
+                    <div>
+                        <div class="mat-card-title">Bedingte Wahrscheinlichkeiten</div>
+                        <div class="mat-card-sub">10 Kompetenzen · 6 gesichert</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Vierfeldertafel, Baumdiagramme, stochastische Unabhängigkeit prüfen.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="linalg">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--green-soft);color:var(--green);">☑</div>
+                    <div>
+                        <div class="mat-card-title">Lineare Gleichungssysteme</div>
+                        <div class="mat-card-sub">9 Kompetenzen · 5 gesichert</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Gauß-Verfahren, Lösungsmengen, Sonderfälle, Textaufgaben modellieren.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-linalg">Lineare Algebra</span></div>
+            </a>
+        </div>
+
+        <!-- ═══════════════════ Trainings ═══════════════════ -->
+        <div class="section-head">
+            <div class="section-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+            <h3>Trainings</h3>
+            <span class="section-count">12 verfügbar</span>
+        </div>
+        <div class="material-grid" data-type="training">
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+                    <div>
+                        <div class="mat-card-title">Nullstellen kubischer Funktionen</div>
+                        <div class="mat-card-sub">15 Aufgaben · zuletzt 78 %</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Polynomdivision, Substitution, rationale Nullstellen – von leicht bis
+                    anspruchsvoll.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+                    <div>
+                        <div class="mat-card-title">Ableitung Potenzregel</div>
+                        <div class="mat-card-sub">20 Aufgaben · zuletzt 85 %</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Systematisch Potenzregel, Summenregel und Faktorregel trainieren.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+                    <div>
+                        <div class="mat-card-title">Vierfeldertafel ablesen</div>
+                        <div class="mat-card-sub">10 Aufgaben · zuletzt 72 %</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Randwahrscheinlichkeiten, bedingte Wahrscheinlichkeiten und Unabhängigkeit
+                    prüfen.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+                    <div>
+                        <div class="mat-card-title">Binomialverteilung berechnen</div>
+                        <div class="mat-card-sub">12 Aufgaben · neu</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Binomialkoeffizient, Formel anwenden, kumulierte Verteilung, Erwartungswert.
+                </div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="linalg">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+                    <div>
+                        <div class="mat-card-title">Gauß-Verfahren Schritt für Schritt</div>
+                        <div class="mat-card-sub">8 Aufgaben · zuletzt 62 %</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Vom Gleichungssystem zur Stufenform – mit Zwischenschritten und
+                    Kontrollmöglichkeiten.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-linalg">Lineare Algebra</span></div>
+            </a>
+        </div>
+
+        <!-- ═══════════════════ Skripte ═══════════════════ -->
+        <div class="section-head">
+            <div class="section-icon" style="background:var(--teal-soft);color:var(--teal);">📖</div>
+            <h3>Skripte</h3>
+            <span class="section-count">6 verfügbar</span>
+        </div>
+        <div class="material-grid" data-type="skript">
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--teal-soft);color:var(--teal);">📖</div>
+                    <div>
+                        <div class="mat-card-title">Differentialrechnung – Theorie</div>
+                        <div class="mat-card-sub">14 Abschnitte · ≈ 25 min Lesezeit</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Grenzwerte, Ableitungsbegriff, Regeln, Anwendungen – kompakt erklärt mit
+                    Beispielen.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--teal-soft);color:var(--teal);">📖</div>
+                    <div>
+                        <div class="mat-card-title">Stochastik Grundlagen</div>
+                        <div class="mat-card-sub">10 Abschnitte · ≈ 18 min Lesezeit</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Von Zufallsexperimenten über Pfadregeln bis zur Vierfeldertafel – alles auf
+                    einen Blick.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="linalg">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--teal-soft);color:var(--teal);">📖</div>
+                    <div>
+                        <div class="mat-card-title">Matrizen & Produktionsprozesse</div>
+                        <div class="mat-card-sub">8 Abschnitte · ≈ 15 min Lesezeit</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Matrizenmultiplikation, Stücklistenmatrizen, mehrstufige Fertigung – Schritt
+                    für Schritt.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-linalg">Lineare Algebra</span></div>
+            </a>
+        </div>
+
+        <!-- ═══════════════════ Flashcards ═══════════════════ -->
+        <div class="section-head">
+            <div class="section-icon" style="background:var(--amber-soft);color:var(--amber);">🃏</div>
+            <h3>Flashcards</h3>
+            <span class="section-count">4 Decks</span>
+        </div>
+        <div class="material-grid" data-type="flashcards">
+            <a class="mat-card" href="module-designs.html" data-lb="analysis">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--amber-soft);color:var(--amber);">🃏</div>
+                    <div>
+                        <div class="mat-card-title">Analysis Begriffe & Regeln</div>
+                        <div class="mat-card-sub">42 Karten · 8 fällig</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Definitionen, Ableitungsregeln, Fachbegriffe – zum schnellen Wiederholen
+                    zwischendurch.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-analysis">Analysis</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="stochastik">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--amber-soft);color:var(--amber);">🃏</div>
+                    <div>
+                        <div class="mat-card-title">Stochastik Formeln</div>
+                        <div class="mat-card-sub">28 Karten · 4 fällig</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Pfadregeln, Binomialkoeffizient, Erwartungswert, Varianz – Formel-Flashcards.
+                </div>
+                <div class="mat-card-badges"><span class="mat-badge lb-stochastik">Stochastik</span></div>
+            </a>
+            <a class="mat-card" href="module-designs.html" data-lb="linalg">
+                <div class="mat-card-head">
+                    <div class="mat-card-icon" style="background:var(--amber-soft);color:var(--amber);">🃏</div>
+                    <div>
+                        <div class="mat-card-title">Matrizenrechnung Basics</div>
+                        <div class="mat-card-sub">18 Karten · 12 fällig</div>
+                    </div>
+                </div>
+                <div class="mat-card-desc">Matrizentypen, Multiplikationsregeln, Einheitsmatrix, Inverse – kompakte
+                    Karten.</div>
+                <div class="mat-card-badges"><span class="mat-badge lb-linalg">Lineare Algebra</span></div>
+            </a>
+        </div>
+
+        <div style="height:40px;"></div>
+
+    </div><!-- /shell -->
+
+    <script>
+        // ═══════════════ Theme Toggle ═══════════════
+        (function () {
+            const THEME_KEY = 'mathechecks-theme';
+            const toggle = document.getElementById('themeToggle');
+            if (localStorage.getItem(THEME_KEY) === 'light') {
+                document.documentElement.classList.add('light');
+                toggle.classList.add('active');
+            }
+            toggle.addEventListener('click', () => {
+                const isLight = document.documentElement.classList.toggle('light');
+                toggle.classList.toggle('active', isLight);
+                localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+            });
+        })();
+
+        // ═══════════════ Filter Logic ═══════════════
+        (function () {
+            const filterLB = document.getElementById('filterLB');
+            const filterType = document.getElementById('filterType');
+
+            function applyFilters() {
+                const lb = filterLB.value;
+                const type = filterType.value;
+
+                // Show/hide sections
+                document.querySelectorAll('.section-head').forEach(head => {
+                    const grid = head.nextElementSibling;
+                    if (!grid || !grid.dataset.type) return;
+                    const sectionType = grid.dataset.type;
+                    if (type !== 'all' && sectionType !== type) {
+                        head.style.display = 'none';
+                        grid.style.display = 'none';
+                        return;
+                    }
+                    head.style.display = '';
+                    grid.style.display = '';
+
+                    // Map each dropdown value to the data-lb it matches
+                    const areaMap = {
+                        'analysis': 'analysis', 'stochastik': 'stochastik', 'linalg': 'linalg',
+                        'lineare-funktionen': 'analysis', 'ganzrationale-oekonomische-funktionen': 'analysis',
+                        'differentialrechnung': 'analysis', 'ertragsgesetzl-kostenfunktionen': 'analysis',
+                        'marktgleichgewicht-grundlagen': 'analysis', 'marktgleichgewicht-vertiefung': 'analysis',
+                        'produktlebenszyklus': 'analysis', 'analysis-diverses': 'analysis',
+                        'zufallsexperimente': 'stochastik', 'mehrstufige-zufallsexperimente': 'stochastik',
+                        'bedingte-wahrscheinlichkeiten': 'stochastik', 'zufallsgroessen': 'stochastik',
+                        'binomialverteilung': 'stochastik', 'hypothesentests': 'stochastik',
+                        'lineare-gleichungssysteme': 'linalg', 'matrizenrechnung': 'linalg',
+                        'mehrstufige-produktionsprozesse': 'linalg'
+                    };
+                    const matchArea = areaMap[lb] || null;
+
+                    // Filter cards within section
+                    let visibleCount = 0;
+                    grid.querySelectorAll('.mat-card').forEach(card => {
+                        const cardLB = card.dataset.lb;
+                        const show = lb === 'all' || cardLB === matchArea;
+                        card.style.display = show ? '' : 'none';
+                        if (show) visibleCount++;
+                    });
+                    if (visibleCount === 0) {
+                        head.style.display = 'none';
+                        grid.style.display = 'none';
+                    }
+                });
+            }
+
+            filterLB.addEventListener('change', applyFilters);
+            filterType.addEventListener('change', applyFilters);
+        })();
+    </script>
+
+</body>
+
+</html>
+

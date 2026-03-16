@@ -1,0 +1,112 @@
+<header class="topbar">
+    <div class="topbar-left">
+        <div class="brand">
+            <div class="logo">M</div>
+            <div class="brand-text">
+                <h1>MatheChecks</h1>
+                <p>Lernplattform</p>
+            </div>
+        </div>
+        {% assign show_lb_switch = false %}
+        {% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
+        {% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
+        <span class="page-context">{% if page.module_key %}Lernbereich{% else %}{{ page.page_context | default: "Dev"
+            }}{% endif %}</span>
+        {% if show_lb_switch %}
+        <div class="lb-row">
+            <select class="lb-switch" data-lb-nav="true" aria-label="Lernbereich auswählen">
+                {% for lb in site.data.dev_lernbereiche %}
+                {% assign target_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug |
+                append: '/start.html' %}
+                <option value="{{ target_url | relative_url }}" data-gebiet="{{ lb.gebiet }}" {% if
+                    page.lernbereich==lb.slug %}selected{% endif %}>{{ lb.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+    </div>
+    <div class="topbar-right">
+        <nav class="nav-pills" aria-label="Hauptnavigation">
+            <a {% if page.nav=="dashboard" and page.module_key==nil %}class="active" {% endif
+                %}href="{{ '/dev/dashboard.html' | relative_url }}">Dashboard</a>
+            <a {% if page.nav=="material" and page.module_key==nil %}class="active" {% endif
+                %}href="{{ '/dev/material.html' | relative_url }}">Material</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" title="Light / Dark Mode" type="button">
+            <span class="theme-toggle-icon moon">🌙</span>
+            <span class="theme-toggle-icon sun">☀️</span>
+        </button>
+        <div class="avatar" title="Anmelden">S</div>
+    </div>
+</header>
+
+<style id="dev-moduletypen-runtime-colors">
+    /* Runtime-generated from dev_moduletypen-data. */
+</style>
+
+<script id="dev-moduletypen-data" type="application/json">{{ site.data.dev_moduletypen | jsonify }}</script>
+<script id="dev-gebiete-data" type="application/json">{{ site.data.dev_gebiete | jsonify }}</script>
+<script>
+    (() => {
+        const dataNode = document.getElementById('dev-moduletypen-data');
+        const styleNode = document.getElementById('dev-moduletypen-runtime-colors');
+        if (!dataNode || !styleNode) return;
+
+        let moduletypen = [];
+        try {
+            moduletypen = JSON.parse(dataNode.textContent || '[]');
+        } catch (err) {
+            console.error('dev_moduletypen konnte nicht geparst werden', err);
+            return;
+        }
+
+        const rootVars = [];
+        const iconRules = [];
+
+        moduletypen.forEach((mt) => {
+            if (!mt || !mt.key || !mt.system_color || !mt.system_rgb) return;
+            rootVars.push(`--mt-${mt.key}: ${mt.system_color};`);
+            rootVars.push(`--mt-${mt.key}-rgb: ${mt.system_rgb};`);
+            rootVars.push(`--mt-${mt.key}-soft: ${mt.system_soft || `rgba(${mt.system_rgb}, 0.12)`};`);
+            rootVars.push(`--mt-${mt.key}-border: rgba(${mt.system_rgb}, 0.30);`);
+
+            iconRules.push(`.module-icon-${mt.key} { background: rgba(${mt.system_rgb}, 0.12); color: ${mt.system_color}; }`);
+        });
+
+        if (!rootVars.length && !iconRules.length) return;
+        styleNode.textContent = `:root {\n  ${rootVars.join('\n  ')}\n}\n\n${iconRules.join('\n')}`;
+    })();
+
+    (() => {
+        const dataNode = document.getElementById('dev-gebiete-data');
+        if (!dataNode) return;
+        let gebiete = [];
+        try {
+            gebiete = JSON.parse(dataNode.textContent || '[]');
+        } catch (err) {
+            console.error('dev_gebiete konnte nicht geparst werden', err);
+            return;
+        }
+
+        const rules = [];
+        gebiete.forEach((g) => {
+            if (!g || !g.key) return;
+            rules.push(`.lb-switch option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
+            rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
+            rules.push(`.lb-switch[data-gebiet="${g.key}"] { background-color: ${g.select_bg_dark}; }`);
+            rules.push(`.filter-select.lb-gebiet-filter[data-gebiet="${g.key}"] { background-color: ${g.select_bg_dark}; }`);
+            rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
+            rules.push(`html.light .lb-switch option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
+            rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
+            rules.push(`html.light .lb-switch[data-gebiet="${g.key}"] { background-color: ${g.select_bg_light}; }`);
+            rules.push(`html.light .filter-select.lb-gebiet-filter[data-gebiet="${g.key}"] { background-color: ${g.select_bg_light}; }`);
+            rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
+        });
+
+        if (!rules.length) return;
+        const style = document.createElement('style');
+        style.id = 'dev-gebiete-runtime-styles';
+        style.textContent = rules.join('\n');
+        document.head.appendChild(style);
+    })();
+</script>

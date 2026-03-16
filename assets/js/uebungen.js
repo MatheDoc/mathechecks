@@ -312,15 +312,23 @@ function zeigeOderErsetzeAufgabe(aufgabeDiv) {
     const index = parseTaskIndex(aufgabeDiv);
     if (index === null) return;
 
+    const findeEinfuegeAnker = (element) => {
+      if (!element) return null;
+      const listenpunkt = element.closest("li");
+      return listenpunkt || element;
+    };
+
     const infoBlock = document.getElementById(`check-${index + 1}`);
     if (infoBlock) {
-      infoBlock.insertAdjacentElement("afterend", aufgabeDiv);
+      const anker = findeEinfuegeAnker(infoBlock);
+      anker.insertAdjacentElement("afterend", aufgabeDiv);
       return;
     }
 
-    const alleInfoBloecke = document.querySelectorAll('div.info[id^="check-"]');
+    const alleInfoBloecke = document.querySelectorAll('[id^="check-"].info');
     if (alleInfoBloecke[index]) {
-      alleInfoBloecke[index].insertAdjacentElement("afterend", aufgabeDiv);
+      const anker = findeEinfuegeAnker(alleInfoBloecke[index]);
+      anker.insertAdjacentElement("afterend", aufgabeDiv);
       return;
     }
 

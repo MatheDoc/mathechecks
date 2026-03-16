@@ -1,22 +1,88 @@
-﻿# MatheChecks  Copilot Instructions
+﻿# MatheChecks – Copilot Instructions
 
-## Projekt
-Jekyll-Lernplattform für Sekundarstufe II Mathematik. Deutsch. Fachlich korrekt > schön formuliert. Kleine Änderungen > große Umbauten.
+## Projektkontext
+Jekyll-Lernplattform für Mathematik (Sekundarstufe II).
 
-## Konventionen
-- Mathe-Notation: immer `\(...\)` (kein `$$...$$`)
-- Markdown-Dateien: YAML-Frontmatter mit `layout`, `title`, `description` (+ optional `lernbereich`, `gebiet`)
-- Interaktive Komponenten über `_includes/` einbinden
+Mathematische Aussagen müssen fachlich korrekt und konsistent sein.
 
-## Lernbereichs-Architektur (verbindlich)
-Jeder Lernbereich hat: `start.md`, `skript.md`, `uebungen.md`, `kompetenzliste.md`, `flashcards.md`
-- `kompetenzliste.md` + `flashcards.md`: nur YAML-Frontmatter nötig  werden automatisch aus `kompetenzliste.json` gerendert
-- Jede Kompetenz hat mind. eine Aufgabe im Training und einen Bezug im Skript
+Sprache: Deutsch  
+Priorität: fachliche Korrektheit vor Stil.
+
+Änderungsprinzip:
+- Kleine, gezielte Änderungen bevorzugen
+- Bestehende Struktur respektieren
+- Keine großen Umbauten ohne explizite Nachfrage
+
+
+## Inhaltliche Grundstruktur
+
+- Fachlich sind Inhalte in **Lernbereiche** gegliedert.
+- **Checks** unterteilen Lernbereiche weiter in einzelne Einheiten.
+- Die Zuordnung von Checks zu Lernbereichen und Modulen erfolgt über `dev/checks.json`.
+
+Gebiete der Plattform:
+
+Analysis  
+Lineare Algebra  
+Stochastik
+
+
+## Module eines Lernbereichs
+
+Jeder Lernbereich enthält mindestens folgende Dateien:
+
+`start.md`  
+`einstiegsquiz.md`  
+`kompetenzliste.md`  
+`training.md`  
+`blurting.md`  
+`feynman.md`  
+`skript.md`  
+`flashcards.md`
+
+
+## Check-Struktur
+
+Jeder Check ist über `checks.json` verknüpft mit:
+
+- genau einem Kompetenzlisteneintrag
+- einer Aufgabensammlung im Training
+- einem Blurting-Eintrag
+- einem Feynman-Eintrag
+- einem Bezug im Skript
+
+
+## Aufgabensammlungen
+
+Aufgabensammlungen liegen in
+
+`aufgaben/exports/json`
+
+Sie werden vom Python-Aufgabengenerator erzeugt.
+
+
+## Weitere Dokumentation
+
+Lernbereiche  
+→ `dev/lernbereiche/README.md`
+
+Aufgabengenerator  
+→ `aufgaben/README.md`
+
+Feed-System  
+→ `dev/feed/README.md`
+
+Glossar  
+→ `.github/glossary.md`
+
 
 ## Datei-Rollen
-- `.github/agents/agent-<rolle>.md`  Rollen und Zuständigkeiten
-- `.github/prompts/systemprompt-<kontext>.prompt.md`  harte Ausgaberegeln
-- `.github/prompts/prompt-<zweck>.prompt.md`  konkrete Arbeitsaufträge
 
-## Qualität
-Bei Änderungen prüfen: fachliche Korrektheit, Verständlichkeit, Kompetenz-Aufgabe-Skript-Verknüpfung.
+`.github/agents/agent-<rolle>.md`  
+Rollen und Zuständigkeiten
+
+`.github/prompts/systemprompt-<kontext>.md`  
+harte Ausgaberegeln
+
+`.github/prompts/prompt-<zweck>.md`  
+konkrete Arbeitsaufträge

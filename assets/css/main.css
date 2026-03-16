@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --hauptfarbe: #156082;
   --hauptfarbe-hover: #1d7ca6;
   --hintergrund-hell: #deeaef;
@@ -31,7 +31,7 @@ body {
 
 main {
   flex: 1;
-  /* Füllt den verfügbaren Platz */
+  /* FÃ¼llt den verfÃ¼gbaren Platz */
 }
 
 body {
@@ -109,7 +109,7 @@ main {
 }
 
 mjx-container[display="true"] {
-  /* Für MathJax Version 3 */
+  /* FÃ¼r MathJax Version 3 */
   display: inline-flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -120,11 +120,12 @@ i:hover {
   cursor: pointer;
 }
 
-/* auch relevant für Übungen*/
+/* auch relevant fÃ¼r Ãœbungen*/
 img,
 .diagramm {
   flex: 1 1 300px;
-  /* flexibel: nimmt mind. 300px ein, wächst aber mit */
+  min-width: 0;
+  /* flexibel: nimmt mind. 300px ein, wÃ¤chst aber mit */
   max-width: 500px;
   /* freiwillige Obergrenze, kein harter Zwang */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -283,3 +284,21 @@ img,
   padding-top: 10rem;
 }
 */
+
+/* Plotly: vertikales Touch-Scrollen auf mobilen Geraeten ermoeglichen */
+.js-plotly-plot .main-svg,
+.js-plotly-plot .svg-container {
+  touch-action: pan-y !important;
+}
+
+@media (pointer: coarse) {
+
+  .js-plotly-plot,
+  .js-plotly-plot .plot-container,
+  .js-plotly-plot .svg-container,
+  .js-plotly-plot .main-svg,
+  .js-plotly-plot .draglayer,
+  .js-plotly-plot .nsewdrag {
+    touch-action: pan-y !important;
+  }
+}

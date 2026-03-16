@@ -1,942 +1,2168 @@
 [
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 1,
-    "Ich kann": "prüfen, ob eine Zufallsgröße binomialverteilt ist.",
-    "Sammlung": "stochastik_binomialverteilung_pruefung-binomial",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 2,
-    "Ich kann": "die Parameter der Bernoulli-Formel im Sachzusammenhang interpretieren.",
-    "Sammlung": "stochastik_binomialverteilung_interpretation-parameter",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 3,
-    "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Bereichsparameter_kumuliert",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 4,
-    "Ich kann": "die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Bereichsparameter_GTR",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 5,
-    "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Bereichswahrscheinlichkeiten_Berechnung",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 6,
-    "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Histogramme_einzeln",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 7,
-    "Ich kann": "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Histogramme_kumuliert",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 8,
-    "Ich kann": "Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Npk_n",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 9,
-    "Ich kann": "Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Npk_p",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 10,
-    "Ich kann": "Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Npk_k",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 11,
-    "Ich kann": "bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_n p gegeben",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 12,
-    "Ich kann": "bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_n mu gegeben",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 13,
-    "Ich kann": "bei gegebener Trefferwahrscheinlichkeit  und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_p mu gegeben",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 14,
-    "Ich kann": "bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_mu sigma gegeben",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 15,
-    "Ich kann": "bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_p sigma gegeben",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 16,
-    "Ich kann": "Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Umgebungen_absolut",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 17,
-    "Ich kann": "Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Umgebungen_relativ",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "binomialverteilung",
-    "LernbereichAnzeigename": "Binomialverteilung",
-    "Nummer": 18,
-    "Ich kann": "Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_Umgebungen_sigma",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 1,
-    "Ich kann": "Baumdiagramme vervollständigen (direkte Anwendung der Pfadmultiplikationsregel).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var1KeineInfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 2,
-    "Ich kann": "Baumdiagramme vervollständigen (indirekte Anwendung der Pfadmultiplikationsregel).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var2KeineInfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 3,
-    "Ich kann": "Baumdiagramme vervollständigen (Anwendung der Pfadadditionsregel).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var3KeineInfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 4,
-    "Ich kann": "Baumdiagramme interpretieren (ohne bedingte Wahrscheinlichkeiten).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammFolgern_OhneBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 5,
-    "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 1).",
-    "Sammlung": "baumdiagramm-komplex-var1",
-    "Typ": "statisch",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "mehrstufige-zufallsexperimente",
-    "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
-    "Nummer": 6,
-    "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. (Variante 2).",
-    "Sammlung": "baumdiagramm-komplex-var2",
-    "Typ": "statisch",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 1,
-    "Ich kann": "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (mit bedingten Wahrscheinlichkeiten).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Interpretationen_mitBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 2,
-    "Ich kann": "Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen.",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_InfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 3,
-    "Ich kann": "Baumdiagramme interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammFolgern_MitBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 4,
-    "Ich kann": "Vier-Felder-Tafeln vervollständigen.",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelErstellen_keineInfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 5,
-    "Ich kann": "Vier-Felder-Tafeln interpretieren.",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelFolgern_OhneBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 6,
-    "Ich kann": "Vier-Felder-Tafeln unter Verwendung  stochastischer Unabhängigkeit vervollständigen.",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelErstellen_InfoUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 7,
-    "Ich kann": "Vier-Felder-Tafeln interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelFolgern_MitBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 8,
-    "Ich kann": "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (ohne Verwendung stochastischer Unabhängigkeit).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_ohneGegUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 9,
-    "Ich kann": "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (unter Verwendung stochastischer Unabhängigkeit).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_mitGegUnabh",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "bedingte-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Bedingte Wahrscheinlichkeiten",
-    "Nummer": 10,
-    "Ich kann": "Venn-Diagramme interpretieren (mit bedingten Wahrscheinlichkeiten).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Venn_MitBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 1,
-    "Ich kann": "Mengen unter Berücksichtigung der Mengenoperationen symbolisch, textuell und in Mengenschreibweise beschreiben.",
-    "Sammlung": "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_mengenoperationen",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 2,
-    "Ich kann": "die Grundbegriffe eines Zufallsexperiments erläutern.",
-    "Sammlung": "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_grundbegriffe-zufallsexperiment",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 3,
-    "Ich kann": "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Interpretationen_ohneBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 4,
-    "Ich kann": "entscheiden, ob ein Laplace-Experiment vorliegt.",
-    "Sammlung": "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_laplace",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 5,
-    "Ich kann": "Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen.",
-    "Sammlung": "Stochastik_basics_Empirie_absoluteHäufigkeiten",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 6,
-    "Ich kann": "den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden.",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_nurSylvester",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-    "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-    "Nummer": 7,
-    "Ich kann": "Venn-Diagramme interpretieren (ohne bedingten Wahrscheinlichkeiten).",
-    "Sammlung": "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Venn_OhneBedingt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 1,
-    "Ich kann": "den Erwartungswert einer allgemeinen Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_BestimmungEX",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 2,
-    "Ich kann": "die Standardabweichung einer allgemeinen Zufallsgröße berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_BestimmungSX",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 3,
-    "Ich kann": "den Erwartungswert und die Standardabweichung im Sachzusammenhang interpretieren.",
-    "Sammlung": "stochastik_zufallsgroessen_interpretationen",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 4,
-    "Ich kann": "die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen.",
-    "Sammlung": "stochastik_zufallsgroessen_aufstellen-wkt-verteilung",
-    "Typ": "statisch",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 5,
-    "Ich kann": "eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_FehlendeWkt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 6,
-    "Ich kann": "bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_FehlenderWert",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "zufallsgroessen",
-    "LernbereichAnzeigename": "Zufallsgrößen",
-    "Nummer": 7,
-    "Ich kann": "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
-    "Sammlung": "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_ZweiFehlendeWkt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 1,
-    "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenErgebnis_linksseitig",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 2,
-    "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenErgebnis_rechtsseitig",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 3,
-    "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe).",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_linksseitig",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 4,
-    "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe).",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_rechtsseitig",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 5,
-    "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_linksseitigOhneStruktur",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "stochastik",
-    "Lernbereich": "hypothesentests",
-    "LernbereichAnzeigename": "Hypothesentests",
-    "Nummer": 6,
-    "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
-    "Sammlung": "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_rechtsseitigOhneStruktur",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 1,
-    "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_Funktionsterme_E1K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 2,
-    "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_Funktionsterme_E2K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 3,
-    "Ich kann": "die mathematische Definition ökonomischer Kennzahlen angeben.",
-    "Sammlung": "ganzrationale-oekonomische-funktionen_kennzahlen-definition",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 4,
-    "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenGraphisch_E1K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 5,
-    "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenGraphisch_E2K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 6,
-    "Ich kann": "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
-    "Sammlung": "ganzrationale-oekonomische-funktionen_kennzahlen-ansatz",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 7,
-    "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenRechnerisch_E1K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ganzrationale-oekonomische-funktionen",
-    "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-    "Nummer": 8,
-    "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenRechnerisch_E2K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 1,
-    "Ich kann": "prüfen, ob eine Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
-    "Sammlung": "ertragsgesetzliche-kostenfunktionen_nachweis",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 2,
-    "Ich kann": "prüfen, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
-    "Sammlung": "ertragsgesetzliche-kostenfunktionen_nachweis_parameter",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 3,
-    "Ich kann": "die mathematische Definition von Kostenkennzahlen angeben.",
-    "Sammlung": "ertragsgesetzliche-kostenfunktionen_kennzahlen-definition",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 4,
-    "Ich kann": "Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen.",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KostenkennzahlenGraphisch_K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 5,
-    "Ich kann": "den Ansatz zur Berechnung von Kostenkennzahlen angeben.",
-    "Sammlung": "ertragsgesetzliche-kostenfunktionen_kennzahlen-ansatz",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 6,
-    "Ich kann": "Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen.",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_KostenkennzahlenRechnerisch_K3",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-    "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-    "Nummer": 7,
-    "Ich kann": "Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen.",
-    "Sammlung": "Analysis_Wirtschaft_Ökonomische Funktionen_Steckbriefaufgaben_kubischKennzahlen",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-grundlagen",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
-    "Nummer": 1,
-    "Ich kann": "die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben.",
-    "Sammlung": "marktgleichgewicht-grundlagen_kennzahlen-definition",
-    "Typ": "statisch",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-grundlagen",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
-    "Nummer": 2,
-    "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenGraphisch_Linear",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-grundlagen",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
-    "Nummer": 3,
-    "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenRechnerisch_Linear",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-grundlagen",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
-    "Nummer": 4,
-    "Ich kann": "feststellen, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_Marktungleichgewicht_Bestimmung",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-vertiefung",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
-    "Nummer": 1,
-    "Ich kann": "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenGraphisch_Allgemein",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-vertiefung",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
-    "Nummer": 2,
-    "Ich kann": "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenRechnerisch_LinearQuadratischExp",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-vertiefung",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
-    "Nummer": 3,
-    "Ich kann": "die Produzenten- und Konsumentenrente berechnen.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_Renten_BestimmungPRKR",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "marktgleichgewicht-vertiefung",
-    "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
-    "Nummer": 4,
-    "Ich kann": "den Verkaufspreis auf einem Teilmarkt berechnen, so dass die Konsumentenrente maximal abgeschöpft wird.",
-    "Sammlung": "Analysis_Wirtschaft_Marktgleichgewicht_AbschöpfungKR_BestimmungPreis",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "analysis-diverses",
-    "LernbereichAnzeigename": "Analysis - Diverses",
-    "Nummer": 1,
-    "Ich kann": "eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen.",
-    "Sammlung": "analysis_regression",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "lineare-gleichungssysteme",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 1,
-    "Ich kann": "eindeutig lösbare lineare Gleichungssysteme mit 2 Unbekannten und 2 Gleichungen lösen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_2x2",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "lineare-gleichungssysteme",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 2,
-    "Ich kann": "eindeutig lösbare lineare Gleichungssysteme mit 3 Unbekannten und 3 Gleichungen lösen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_3x3",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "lineare-gleichungssysteme",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 3,
-    "Ich kann": "eindeutig lösbare lineare Gleichungssysteme mit 4 Unbekannten und 4 Gleichungen lösen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_4x4",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "matrizenrechnung",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 4,
-    "Ich kann": "das Inverse einer 2x2-Matrix berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_2x2",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "matrizenrechnung",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 5,
-    "Ich kann": "das Inverse einer 3x3-Matrix berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_3x3",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "matrizenrechnung",
-    "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-    "Nummer": 6,
-    "Ich kann": "das Inverse einer 4x4-Matrix berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_4x4",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "mehrstufige-produktionsprozesse",
-    "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
-    "Nummer": 1,
-    "Ich kann": "die Elemente von Produktionsmatrizen interpretieren.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Matrizenelemente_Interpretation",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "mehrstufige-produktionsprozesse",
-    "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
-    "Nummer": 2,
-    "Ich kann": "bei einem 2-stufigen MPP aus zwei gegebenen Produktionsmatrizen die dritte berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Produktionsmatrizen_allgemein",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "mehrstufige-produktionsprozesse",
-    "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
-    "Nummer": 3,
-    "Ich kann": "ausgehend von herzustellenden Zwischen- oder Endprodukten die dafür benötigten Rohstoffe oder Zwischenprodukte berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var1",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "mehrstufige-produktionsprozesse",
-    "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
-    "Nummer": 4,
-    "Ich kann": "ausgehend von verfügbaren Rohstoffen oder Zwischenprodukten die daraus herstellbaren Zwischen- oder Endprodukte berechnen, wenn das Lager vollständig geräumt werden soll.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var2",
-    "Typ": "interaktiv",
-    "Ankityp": "gruppiert"
-  },
-  {
-    "Gebiet": "lineare-algebra",
-    "Lernbereich": "mehrstufige-produktionsprozesse",
-    "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
-    "Nummer": 5,
-    "Ich kann": "Kennzahlen mehrstufiger Produktionsprozesse berechnen.",
-    "Sammlung": "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_EKG_Kennzahlen",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "produktlebenszyklus",
-    "LernbereichAnzeigename": "Produktlebenszyklus",
-    "Nummer": 1,
-    "Ich kann": "den Graphen der Produktlebenszyklusfunktion interpretieren.",
-    "Sammlung": "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenGraphisch_Umsatz",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "produktlebenszyklus",
-    "LernbereichAnzeigename": "Produktlebenszyklus",
-    "Nummer": 2,
-    "Ich kann": "den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren.",
-    "Sammlung": "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenGraphisch_Abeitung",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "produktlebenszyklus",
-    "LernbereichAnzeigename": "Produktlebenszyklus",
-    "Nummer": 3,
-    "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (ohne Integration).",
-    "Sammlung": "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenRechnerisch_gesamt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "produktlebenszyklus",
-    "LernbereichAnzeigename": "Produktlebenszyklus",
-    "Nummer": 4,
-    "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (mit Integration).",
-    "Sammlung": "Analysis_Wirtschaft_Produktlebenszyklus_Integrale_Gemischt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  },
-  {
-    "Gebiet": "analysis",
-    "Lernbereich": "produktlebenszyklus",
-    "LernbereichAnzeigename": "Produktlebenszyklus",
-    "Nummer": 5,
-    "Ich kann": "Kennzahlen des EKG-Zyklus berechnen",
-    "Sammlung": "Analysis_Wirtschaft_Produktlebenszyklus_EKGZyklus_Gemischt",
-    "Typ": "interaktiv",
-    "Ankityp": "einzeln"
-  }
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  1,
+        "check_id":  "stochastik__binomialverteilung__01",
+        "Ich kann":  "prüfen, ob eine Zufallsgröße binomialverteilt ist.",
+        "Sammlung":  "stochastik_binomialverteilung_pruefung-binomial",
+        "Schlagwort":  "Binomialtest",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-01",
+        "blurting":  {
+                         "begriff":  "Binomialtest",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialtest",
+                                                       "Binomialverteilung",
+                                                       "prüfen",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: prüfen, ob eine Zufallsgröße binomialverteilt ist."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  2,
+        "check_id":  "stochastik__binomialverteilung__02",
+        "Ich kann":  "die Parameter der Bernoulli-Formel im Sachzusammenhang interpretieren.",
+        "Sammlung":  "stochastik_binomialverteilung_interpretation-parameter",
+        "Schlagwort":  "Bernoulli-Parameter",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-02",
+        "blurting":  {
+                         "begriff":  "Bernoulli-Parameter",
+                         "referenz_stichwoerter":  [
+                                                       "Bernoulli-Parameter",
+                                                       "Binomialverteilung",
+                                                       "parameter",
+                                                       "bernoulli-formel"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Parameter der Bernoulli-Formel im Sachzusammenhang interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  3,
+        "check_id":  "stochastik__binomialverteilung__03",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Bereichsparameter_kumuliert",
+        "Schlagwort":  "Kumulierte Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-03",
+        "blurting":  {
+                         "begriff":  "Kumulierte Wkt",
+                         "referenz_stichwoerter":  [
+                                                       "Kumulierte Wkt",
+                                                       "Binomialverteilung",
+                                                       "intervallwahrscheinlichkeiten",
+                                                       "kumulierter"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  4,
+        "check_id":  "stochastik__binomialverteilung__04",
+        "Ich kann":  "die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Bereichsparameter_GTR",
+        "Schlagwort":  "Intervallparameter",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-04",
+        "blurting":  {
+                         "begriff":  "Intervallparameter",
+                         "referenz_stichwoerter":  [
+                                                       "Intervallparameter",
+                                                       "Binomialverteilung",
+                                                       "parameter",
+                                                       "intervallwahrscheinlichkeiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  5,
+        "check_id":  "stochastik__binomialverteilung__05",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Bereichswahrscheinlichkeiten_Berechnung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-05",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "intervallwahrscheinlichkeiten",
+                                                       "berechnen",
+                                                       "Kompetenz 05"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Intervallwahrscheinlichkeiten der Binomialverteilung berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  6,
+        "check_id":  "stochastik__binomialverteilung__06",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Histogramme_einzeln",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-06",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "intervallwahrscheinlichkeiten",
+                                                       "histogramms",
+                                                       "einzelwahrscheinlichkeiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  7,
+        "check_id":  "stochastik__binomialverteilung__07",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Histogramme_kumuliert",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-07",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "intervallwahrscheinlichkeiten",
+                                                       "histogramms",
+                                                       "kumulierten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  8,
+        "check_id":  "stochastik__binomialverteilung__08",
+        "Ich kann":  "Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Npk_n",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-08",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 08",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "versuchsanzahlen",
+                                                       "binomialverteilter",
+                                                       "zufallsgrößen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  9,
+        "check_id":  "stochastik__binomialverteilung__09",
+        "Ich kann":  "Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Npk_p",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-09",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 09",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "trefferwahrscheinlichkeiten",
+                                                       "binomialverteilter",
+                                                       "zufallsgrößen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  10,
+        "check_id":  "stochastik__binomialverteilung__10",
+        "Ich kann":  "Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Npk_k",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-10",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 10",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "intervallgrenzen",
+                                                       "binomialverteilter",
+                                                       "zufallsgrößen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  11,
+        "check_id":  "stochastik__binomialverteilung__11",
+        "Ich kann":  "bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_n p gegeben",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-11",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 11",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "versuchsanzahl",
+                                                       "trefferwahrscheinlichkeit",
+                                                       "erwartungswert"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  12,
+        "check_id":  "stochastik__binomialverteilung__12",
+        "Ich kann":  "bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_n mu gegeben",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-12",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 12",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "versuchsanzahl",
+                                                       "erwartungswert",
+                                                       "standardabweichung"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  13,
+        "check_id":  "stochastik__binomialverteilung__13",
+        "Ich kann":  "bei gegebener Trefferwahrscheinlichkeit  und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_p mu gegeben",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-13",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 13",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "trefferwahrscheinlichkeit",
+                                                       "erwartungswert",
+                                                       "versuchsanzahl"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebener Trefferwahrscheinlichkeit  und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  14,
+        "check_id":  "stochastik__binomialverteilung__14",
+        "Ich kann":  "bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_mu sigma gegeben",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-14",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 14",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "erwartungswert",
+                                                       "standardabweichung",
+                                                       "versuchsanzahl"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  15,
+        "check_id":  "stochastik__binomialverteilung__15",
+        "Ich kann":  "bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Kennzahlen_p sigma gegeben",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-15",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 15",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "trefferwahrscheinlichkeit",
+                                                       "standardabweichung",
+                                                       "erwartungswert"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  16,
+        "check_id":  "stochastik__binomialverteilung__16",
+        "Ich kann":  "Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Umgebungen_absolut",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-16",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 16",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "absoluten",
+                                                       "umgebungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  17,
+        "check_id":  "stochastik__binomialverteilung__17",
+        "Ich kann":  "Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Umgebungen_relativ",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-17",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 17",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "relativen",
+                                                       "umgebungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  18,
+        "check_id":  "stochastik__binomialverteilung__18",
+        "Ich kann":  "Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_Umgebungen_sigma",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-18",
+        "blurting":  {
+                         "begriff":  "Binomialverteilung - Kompetenz 18",
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "sigma-umgebungen",
+                                                       "erwartungswerts"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  1,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__01",
+        "Ich kann":  "Baumdiagramme vervollständigen (direkte Anwendung der Pfadmultiplikationsregel).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var1KeineInfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-01",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "direkte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme vervollständigen (direkte Anwendung der Pfadmultiplikationsregel)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  2,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__02",
+        "Ich kann":  "Baumdiagramme vervollständigen (indirekte Anwendung der Pfadmultiplikationsregel).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var2KeineInfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-02",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "indirekte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme vervollständigen (indirekte Anwendung der Pfadmultiplikationsregel)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  3,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__03",
+        "Ich kann":  "Baumdiagramme vervollständigen (Anwendung der Pfadadditionsregel).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_Var3KeineInfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-03",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "anwendung"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme vervollständigen (Anwendung der Pfadadditionsregel)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  4,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__04",
+        "Ich kann":  "Baumdiagramme interpretieren (ohne bedingte Wahrscheinlichkeiten).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammFolgern_OhneBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-04",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "interpretieren",
+                                                       "bedingte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme interpretieren (ohne bedingte Wahrscheinlichkeiten)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  5,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__05",
+        "Ich kann":  "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 1).",
+        "Sammlung":  "baumdiagramm-komplex-var1",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-05",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "komplexer",
+                                                       "sachverhalte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 1)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  6,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__06",
+        "Ich kann":  "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. (Variante 2).",
+        "Sammlung":  "baumdiagramm-komplex-var2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-06",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Zufallsexperimente - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "komplexer",
+                                                       "sachverhalte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. (Variante 2)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  1,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__01",
+        "Ich kann":  "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (mit bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Interpretationen_mitBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-01",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "textuelle",
+                                                       "symbolische",
+                                                       "beschreibungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (mit bedingten Wahrscheinlichkeiten)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  2,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__02",
+        "Ich kann":  "Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen.",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammErstellen_InfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-02",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "baumdiagramme",
+                                                       "stochastischer",
+                                                       "unabhängigkeit"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  3,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__03",
+        "Ich kann":  "Baumdiagramme interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BaumdiagrammFolgern_MitBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-03",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "baumdiagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Baumdiagramme interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  4,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__04",
+        "Ich kann":  "Vier-Felder-Tafeln vervollständigen.",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelErstellen_keineInfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-04",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "vervollständigen",
+                                                       "Kompetenz 04"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Vier-Felder-Tafeln vervollständigen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  5,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__05",
+        "Ich kann":  "Vier-Felder-Tafeln interpretieren.",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelFolgern_OhneBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-05",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "interpretieren",
+                                                       "Kompetenz 05"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Vier-Felder-Tafeln interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  6,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__06",
+        "Ich kann":  "Vier-Felder-Tafeln unter Verwendung  stochastischer Unabhängigkeit vervollständigen.",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelErstellen_InfoUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-06",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "stochastischer",
+                                                       "unabhängigkeit"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Vier-Felder-Tafeln unter Verwendung  stochastischer Unabhängigkeit vervollständigen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  7,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__07",
+        "Ich kann":  "Vier-Felder-Tafeln interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_VierFelderTafelFolgern_MitBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-07",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Vier-Felder-Tafeln interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  8,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__08",
+        "Ich kann":  "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (ohne Verwendung stochastischer Unabhängigkeit).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_ohneGegUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-08",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 08",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "baumdiagramm",
+                                                       "vier-felder-tafel"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (ohne Verwendung stochastischer Unabhängigkeit)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  9,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__09",
+        "Ich kann":  "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (unter Verwendung stochastischer Unabhängigkeit).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_mitGegUnabh",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-09",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 09",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "baumdiagramm",
+                                                       "vier-felder-tafel"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (unter Verwendung stochastischer Unabhängigkeit)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  10,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__10",
+        "Ich kann":  "Venn-Diagramme interpretieren (mit bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Venn_MitBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-10",
+        "blurting":  {
+                         "begriff":  "Bedingte Wahrscheinlichkeiten - Kompetenz 10",
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "venn-diagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Venn-Diagramme interpretieren (mit bedingten Wahrscheinlichkeiten)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  1,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__01",
+        "Ich kann":  "Mengen unter Berücksichtigung der Mengenoperationen symbolisch, textuell und in Mengenschreibweise beschreiben.",
+        "Sammlung":  "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_mengenoperationen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-01",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "mengen",
+                                                       "berücksichtigung",
+                                                       "mengenoperationen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Mengen unter Berücksichtigung der Mengenoperationen symbolisch, textuell und in Mengenschreibweise beschreiben."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  2,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__02",
+        "Ich kann":  "die Grundbegriffe eines Zufallsexperiments erläutern.",
+        "Sammlung":  "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_grundbegriffe-zufallsexperiment",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "grundbegriffe",
+                                                       "zufallsexperiments",
+                                                       "erläutern"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Grundbegriffe eines Zufallsexperiments erläutern."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  3,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__03",
+        "Ich kann":  "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Interpretationen_ohneBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "textuelle",
+                                                       "symbolische",
+                                                       "beschreibungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  4,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__04",
+        "Ich kann":  "entscheiden, ob ein Laplace-Experiment vorliegt.",
+        "Sammlung":  "stochastik_zufallsexperimente-und-wahrscheinlichkeiten_laplace",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "entscheiden",
+                                                       "laplace-experiment",
+                                                       "vorliegt"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: entscheiden, ob ein Laplace-Experiment vorliegt."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  5,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05",
+        "Ich kann":  "Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen.",
+        "Sammlung":  "Stochastik_basics_Empirie_absoluteHäufigkeiten",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "absoluter",
+                                                       "häufigkeiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  6,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__06",
+        "Ich kann":  "den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden.",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_BayesUndSylvester_nurSylvester",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-06",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "satz",
+                                                       "gegenwahrscheinlichkeit",
+                                                       "sylvester"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  7,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__07",
+        "Ich kann":  "Venn-Diagramme interpretieren (ohne bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "Stochastik_Allgemein_Methoden der Wahrscheinlichkeitsrechnung_Venn_OhneBedingt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-07",
+        "blurting":  {
+                         "begriff":  "Zufallsexperimente und Wahrscheinlichkeiten - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "venn-diagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Venn-Diagramme interpretieren (ohne bedingten Wahrscheinlichkeiten)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  1,
+        "check_id":  "stochastik__zufallsgroessen__01",
+        "Ich kann":  "den Erwartungswert einer allgemeinen Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_BestimmungEX",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-01",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "allgemeinen",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Erwartungswert einer allgemeinen Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  2,
+        "check_id":  "stochastik__zufallsgroessen__02",
+        "Ich kann":  "die Standardabweichung einer allgemeinen Zufallsgröße berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_BestimmungSX",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-02",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "standardabweichung",
+                                                       "allgemeinen",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Standardabweichung einer allgemeinen Zufallsgröße berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  3,
+        "check_id":  "stochastik__zufallsgroessen__03",
+        "Ich kann":  "den Erwartungswert und die Standardabweichung im Sachzusammenhang interpretieren.",
+        "Sammlung":  "stochastik_zufallsgroessen_interpretationen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-03",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "standardabweichung",
+                                                       "sachzusammenhang"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Erwartungswert und die Standardabweichung im Sachzusammenhang interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  4,
+        "check_id":  "stochastik__zufallsgroessen__04",
+        "Ich kann":  "die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen.",
+        "Sammlung":  "stochastik_zufallsgroessen_aufstellen-wkt-verteilung",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-04",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "wahrscheinlichkeitsverteilung",
+                                                       "histogramm",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  5,
+        "check_id":  "stochastik__zufallsgroessen__05",
+        "Ich kann":  "eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_FehlendeWkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-05",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "fehlende",
+                                                       "wahrscheinlichkeit",
+                                                       "wahrscheinlichkeitsverteilung"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  6,
+        "check_id":  "stochastik__zufallsgroessen__06",
+        "Ich kann":  "bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_FehlenderWert",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-06",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "einen",
+                                                       "fehlenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  7,
+        "check_id":  "stochastik__zufallsgroessen__07",
+        "Ich kann":  "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "Stochastik_Allgemein_Zufallsgrößen_Kennzahlen_ZweiFehlendeWkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-07",
+        "blurting":  {
+                         "begriff":  "Zufallsgrößen - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "zwei",
+                                                       "fehlende"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  1,
+        "check_id":  "stochastik__hypothesentests__01",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenErgebnis_linksseitig",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-hypothesentests-01",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "anwenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  2,
+        "check_id":  "stochastik__hypothesentests__02",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenErgebnis_rechtsseitig",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-hypothesentests-02",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "anwenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  3,
+        "check_id":  "stochastik__hypothesentests__03",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe).",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_linksseitig",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-03",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  4,
+        "check_id":  "stochastik__hypothesentests__04",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe).",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_rechtsseitig",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-04",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  5,
+        "check_id":  "stochastik__hypothesentests__05",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_linksseitigOhneStruktur",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-05",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe)."
+                    }
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  6,
+        "check_id":  "stochastik__hypothesentests__06",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
+        "Sammlung":  "Stochastik_Allgemein_Binomialverteilung_HypothesenAblehnungsbereich_rechtsseitigOhneStruktur",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-06",
+        "blurting":  {
+                         "begriff":  "Hypothesentests - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  1,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__01",
+        "Ich kann":  "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_Funktionsterme_E1K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-01",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "gleichungen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  2,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__02",
+        "Ich kann":  "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_Funktionsterme_E2K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-02",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "gleichungen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  3,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__03",
+        "Ich kann":  "die mathematische Definition ökonomischer Kennzahlen angeben.",
+        "Sammlung":  "ganzrationale-oekonomische-funktionen_kennzahlen-definition",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-03",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die mathematische Definition ökonomischer Kennzahlen angeben."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  4,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__04",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenGraphisch_E1K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-04",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  5,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__05",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenGraphisch_E2K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-05",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  6,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__06",
+        "Ich kann":  "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
+        "Sammlung":  "ganzrationale-oekonomische-funktionen_kennzahlen-ansatz",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-06",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "ansatz",
+                                                       "berechnung",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Ansatz zur Berechnung ökonomischer Kennzahlen angeben."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  7,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__07",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenRechnerisch_E1K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-07",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  8,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__08",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KennzahlenRechnerisch_E2K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-08",
+        "blurting":  {
+                         "begriff":  "Ganzrationale ökonomische Funktionen - Kompetenz 08",
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  1,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__01",
+        "Ich kann":  "prüfen, ob eine Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
+        "Sammlung":  "ertragsgesetzliche-kostenfunktionen_nachweis",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-01",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "prüfen",
+                                                       "funktion",
+                                                       "verlauf"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: prüfen, ob eine Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  2,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__02",
+        "Ich kann":  "prüfen, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
+        "Sammlung":  "ertragsgesetzliche-kostenfunktionen_nachweis_parameter",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-02",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "prüfen",
+                                                       "welche",
+                                                       "parameter"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: prüfen, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  3,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__03",
+        "Ich kann":  "die mathematische Definition von Kostenkennzahlen angeben.",
+        "Sammlung":  "ertragsgesetzliche-kostenfunktionen_kennzahlen-definition",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "kostenkennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die mathematische Definition von Kostenkennzahlen angeben."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  4,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__04",
+        "Ich kann":  "Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen.",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KostenkennzahlenGraphisch_K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "kennzahlen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  5,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__05",
+        "Ich kann":  "den Ansatz zur Berechnung von Kostenkennzahlen angeben.",
+        "Sammlung":  "ertragsgesetzliche-kostenfunktionen_kennzahlen-ansatz",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "ansatz",
+                                                       "berechnung",
+                                                       "kostenkennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Ansatz zur Berechnung von Kostenkennzahlen angeben."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  6,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__06",
+        "Ich kann":  "Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen.",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_KostenkennzahlenRechnerisch_K3",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "kennzahlen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  7,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__07",
+        "Ich kann":  "Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen.",
+        "Sammlung":  "Analysis_Wirtschaft_Ökonomische Funktionen_Steckbriefaufgaben_kubischKennzahlen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-07",
+        "blurting":  {
+                         "begriff":  "Ertragsgesetzliche Kostenfunktionen - Kompetenz 07",
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "gleichungen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  1,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__01",
+        "Ich kann":  "die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben.",
+        "Sammlung":  "marktgleichgewicht-grundlagen_kennzahlen-definition",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-01",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Grundlagen - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "kennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  2,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__02",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenGraphisch_Linear",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-02",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Grundlagen - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "linearer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  3,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__03",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenRechnerisch_Linear",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-03",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Grundlagen - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "linearer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  4,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__04",
+        "Ich kann":  "feststellen, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_Marktungleichgewicht_Bestimmung",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-04",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Grundlagen - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "feststellen",
+                                                       "nachfrage-",
+                                                       "angebotsüberschuss"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: feststellen, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  1,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__01",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenGraphisch_Allgemein",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-01",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Vertiefung - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "beliebigen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  2,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__02",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenRechnerisch_LinearQuadratischExp",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-02",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Vertiefung - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "beliebigen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  3,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__03",
+        "Ich kann":  "die Produzenten- und Konsumentenrente berechnen.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_Renten_BestimmungPRKR",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-03",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Vertiefung - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "produzenten-",
+                                                       "konsumentenrente",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Produzenten- und Konsumentenrente berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  4,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__04",
+        "Ich kann":  "den Verkaufspreis auf einem Teilmarkt berechnen, so dass die Konsumentenrente maximal abgeschöpft wird.",
+        "Sammlung":  "Analysis_Wirtschaft_Marktgleichgewicht_AbschöpfungKR_BestimmungPreis",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-04",
+        "blurting":  {
+                         "begriff":  "Marktgleichgewicht - Vertiefung - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "verkaufspreis",
+                                                       "teilmarkt",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Verkaufspreis auf einem Teilmarkt berechnen, so dass die Konsumentenrente maximal abgeschöpft wird."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "analysis-diverses",
+        "LernbereichAnzeigename":  "Analysis - Diverses",
+        "Nummer":  1,
+        "check_id":  "analysis__analysis-diverses__01",
+        "Ich kann":  "eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen.",
+        "Sammlung":  "analysis_regression",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-analysis-diverses-01",
+        "blurting":  {
+                         "begriff":  "Analysis - Diverses - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Analysis - Diverses",
+                                                       "lineare",
+                                                       "quadratische",
+                                                       "kubische"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  1,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__01",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 2 Unbekannten und 2 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_2x2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-01",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: eindeutig lösbare lineare Gleichungssysteme mit 2 Unbekannten und 2 Gleichungen lösen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  2,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__02",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 3 Unbekannten und 3 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_3x3",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-02",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: eindeutig lösbare lineare Gleichungssysteme mit 3 Unbekannten und 3 Gleichungen lösen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  3,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__03",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 4 Unbekannten und 4 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_4x4",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-03",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: eindeutig lösbare lineare Gleichungssysteme mit 4 Unbekannten und 4 Gleichungen lösen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  4,
+        "check_id":  "lineare-algebra__matrizenrechnung__04",
+        "Ich kann":  "das Inverse einer 2x2-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_2x2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-04",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "2x2-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: das Inverse einer 2x2-Matrix berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  5,
+        "check_id":  "lineare-algebra__matrizenrechnung__05",
+        "Ich kann":  "das Inverse einer 3x3-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_3x3",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-05",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "3x3-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: das Inverse einer 3x3-Matrix berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  6,
+        "check_id":  "lineare-algebra__matrizenrechnung__06",
+        "Ich kann":  "das Inverse einer 4x4-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_4x4",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-06",
+        "blurting":  {
+                         "begriff":  "Lineare Gleichungssysteme - Kompetenz 06",
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "4x4-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: das Inverse einer 4x4-Matrix berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  1,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__01",
+        "Ich kann":  "die Elemente von Produktionsmatrizen interpretieren.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Matrizenelemente_Interpretation",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-01",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Produktionsprozesse - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "elemente",
+                                                       "produktionsmatrizen",
+                                                       "interpretieren"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: die Elemente von Produktionsmatrizen interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  2,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__02",
+        "Ich kann":  "bei einem 2-stufigen MPP aus zwei gegebenen Produktionsmatrizen die dritte berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Produktionsmatrizen_allgemein",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Produktionsprozesse - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "2-stufigen",
+                                                       "zwei",
+                                                       "produktionsmatrizen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: bei einem 2-stufigen MPP aus zwei gegebenen Produktionsmatrizen die dritte berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  3,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__03",
+        "Ich kann":  "ausgehend von herzustellenden Zwischen- oder Endprodukten die dafür benötigten Rohstoffe oder Zwischenprodukte berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var1",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-03",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Produktionsprozesse - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "ausgehend",
+                                                       "herzustellenden",
+                                                       "zwischen-"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: ausgehend von herzustellenden Zwischen- oder Endprodukten die dafür benötigten Rohstoffe oder Zwischenprodukte berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  4,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__04",
+        "Ich kann":  "ausgehend von verfügbaren Rohstoffen oder Zwischenprodukten die daraus herstellbaren Zwischen- oder Endprodukte berechnen, wenn das Lager vollständig geräumt werden soll.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-04",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Produktionsprozesse - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "ausgehend",
+                                                       "verfügbaren",
+                                                       "rohstoffen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: ausgehend von verfügbaren Rohstoffen oder Zwischenprodukten die daraus herstellbaren Zwischen- oder Endprodukte berechnen, wenn das Lager vollständig geräumt werden soll."
+                    }
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  5,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__05",
+        "Ich kann":  "Kennzahlen mehrstufiger Produktionsprozesse berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_EKG_Kennzahlen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-05",
+        "blurting":  {
+                         "begriff":  "Mehrstufige Produktionsprozesse - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "kennzahlen",
+                                                       "mehrstufiger",
+                                                       "produktionsprozesse"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen mehrstufiger Produktionsprozesse berechnen."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  1,
+        "check_id":  "analysis__produktlebenszyklus__01",
+        "Ich kann":  "den Graphen der Produktlebenszyklusfunktion interpretieren.",
+        "Sammlung":  "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenGraphisch_Umsatz",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-01",
+        "blurting":  {
+                         "begriff":  "Produktlebenszyklus - Kompetenz 01",
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "graphen",
+                                                       "produktlebenszyklusfunktion",
+                                                       "interpretieren"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Graphen der Produktlebenszyklusfunktion interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  2,
+        "check_id":  "analysis__produktlebenszyklus__02",
+        "Ich kann":  "den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren.",
+        "Sammlung":  "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenGraphisch_Abeitung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-02",
+        "blurting":  {
+                         "begriff":  "Produktlebenszyklus - Kompetenz 02",
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "graphen",
+                                                       "ableitung",
+                                                       "produktlebenszyklusfunktion"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  3,
+        "check_id":  "analysis__produktlebenszyklus__03",
+        "Ich kann":  "Kenzahlen des Produktlebenszyklus berechnen (ohne Integration).",
+        "Sammlung":  "Analysis_Wirtschaft_Produktlebenszyklus_KennzahlenRechnerisch_gesamt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-03",
+        "blurting":  {
+                         "begriff":  "Produktlebenszyklus - Kompetenz 03",
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kenzahlen",
+                                                       "berechnen",
+                                                       "integration"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kenzahlen des Produktlebenszyklus berechnen (ohne Integration)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  4,
+        "check_id":  "analysis__produktlebenszyklus__04",
+        "Ich kann":  "Kenzahlen des Produktlebenszyklus berechnen (mit Integration).",
+        "Sammlung":  "Analysis_Wirtschaft_Produktlebenszyklus_Integrale_Gemischt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-04",
+        "blurting":  {
+                         "begriff":  "Produktlebenszyklus - Kompetenz 04",
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kenzahlen",
+                                                       "berechnen",
+                                                       "integration"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kenzahlen des Produktlebenszyklus berechnen (mit Integration)."
+                    }
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  5,
+        "check_id":  "analysis__produktlebenszyklus__05",
+        "Ich kann":  "Kennzahlen des EKG-Zyklus berechnen",
+        "Sammlung":  "Analysis_Wirtschaft_Produktlebenszyklus_EKGZyklus_Gemischt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-05",
+        "blurting":  {
+                         "begriff":  "Produktlebenszyklus - Kompetenz 05",
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kennzahlen",
+                                                       "ekg-zyklus",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre den Gedankenweg hinter dieser Kompetenz in einfachen Worten: Kennzahlen des EKG-Zyklus berechnen."
+                    }
+    }
 ]

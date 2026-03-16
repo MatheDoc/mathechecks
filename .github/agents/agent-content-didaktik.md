@@ -14,7 +14,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
 - Terminologie, Symbolik und didaktische Progression
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
-- Konsistenz der Kette Kompetenz -> Aufgabe -> Skript über alle Lernbereiche
+- Konsistenz der Check-Kette: Kompetenzliste -> Training -> Blurting -> Feynman -> Skript -> Flashcards über alle Lernbereiche
 
 ## Prioritäten
 
@@ -23,9 +23,28 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 3. Konsistente Sprache, Notation und Begriffe
 4. Strukturierte, lernförderliche Darstellung
 
-## Referenz
+## Lernmethoden
 
-Übergreifende Lernarchitektur, Modultypen und Lernmethoden: [`konzept-lernarchitektur.md`](./konzept-lernarchitektur.md)
+Didaktische Prinzipien, die quer zu Modulen und Feed-Einträgen angewendet werden.
+
+| Methode | Kurzbeschreibung | Typische Module |
+|---|---|---|
+| **Retrieval Practice** | Aktives Abrufen statt passives Wiederlesen | Training, Blurting, Feynman, Flashcards |
+| **Spaced Repetition** | Wiederholungen in zeitlichen Abständen | Training-Intervalle, Flashcards |
+| **Worked Examples + Fading** | Vormachen, dann schrittweise mehr Eigenleistung | Skript, Training |
+| **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Einstiegsquiz, Training, Blurting/Feynman |
+| **Diagnose & Feedback** | Fehler sichtbar machen und nächste Aktion ableiten | Training, Laufende Checks, Kompetenzliste |
+| **Metakognition** | Selbstbewertung und Plausibilitätschecks | Blurting/Feynman (`kann`/`kann nicht`), Kompetenzliste |
+
+## Lernarchitektur
+
+Lernmethoden  (didaktische Prinzipien – anwendbar auf alle Ebenen)
+      │
+      ├── Lernbereich  (Inhaltsbereich, z. B. „Marktgleichgewicht")
+          ├── Module (Skript, Kompetenzliste, Training, Flashcards, ...)    
+      │
+      └── Aktionsfeed  (dynamische Lernsteuerung, kontextabhängig)
+              └── Feed-Einträge (Aktionstypen, zeitlich und progressionsabhängig)
 
 ## Arbeitsmodus
 

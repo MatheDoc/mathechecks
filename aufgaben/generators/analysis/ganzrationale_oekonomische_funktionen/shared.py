@@ -53,7 +53,7 @@ def _build_intro(given_expressions: list[str]) -> str:
     parts = ["Gegeben:"]
     for expression in given_expressions:
         parts.append(f"</p> <p>{expression}")
-    parts.append("</p> <p>Bestimmen Sie die Koeffizienten der angegebenen Funktionen:")
+    parts.append("</p> <p>Bestimmen Sie die Koeffizienten der angegebenen Funktionen.")
     return "".join(parts)
 
 
@@ -125,6 +125,25 @@ def _answers_for_e(price: float) -> str:
 
 def _answers_for_p(price: float) -> str:
     return "\\( p(x)= \\)" + f"{_num(price)}"
+
+
+def _answers_for_e_quadratic(a2: float, a1: float) -> str:
+    return (
+        "\\( E(x)= \\)"
+        f"{_num(a2)}"
+        "\\( x^2 \\)+"
+        f"{_num(a1)}"
+        "\\( x \\)"
+    )
+
+
+def _answers_for_p_linear(a2: float, a1: float) -> str:
+    return (
+        "\\( p(x)= \\)"
+        f"{_num(a2)}"
+        "\\( x \\)+"
+        f"{_num(a1)}"
+    )
 
 
 def _num_tol(value: float, tolerance: float = 0.1, decimals: int = 4) -> str:
@@ -291,7 +310,6 @@ def _kennzahlen_items(
         ("den maximalen Erlös.", _num_tol(e_max)),
         ("die gewinnmaximale Menge.", _num_tol(x_gain_max)),
     ]
-    rng.shuffle(items)
     return items
 
 
@@ -344,7 +362,6 @@ def _e2k3_kennzahlen_items(
         ("den Höchstpreis.", _num_tol(p_höchst)),
         ("die Fixkosten.", _num_tol(k0)),
     ]
-    rng.shuffle(items)
     return items
 
 

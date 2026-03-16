@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+
+echo "[pre-commit] Running mojibake check..."
+
+if command -v pwsh >/dev/null 2>&1; then
+  pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/check-mojibake.ps1 -Root . -StagedOnly
+  status=$?
+elif command -v powershell >/dev/null 2>&1; then
+  powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-mojibake.ps1 -Root . -StagedOnly
+  status=$?
+else
+  echo "[pre-commit] ERROR: No PowerShell runtime found (pwsh/powershell)."
+  echo "[pre-commit] Commit blocked because encoding check could not run."
+  exit 1
+fi
+
+if [ "$status" -ne 0 ]; then
+  echo "[pre-commit] Commit blocked: potential mojibake detected."
+  exit "$status"
+fi
+
+echo "[pre-commit] OK"
+exit 0
