@@ -1,44 +1,13 @@
-{% assign note_index = include.index | default: "" %}
-{% assign note_check = include.check | default: "" %}
-{% assign note_key = include.key | default: "" %}
-{% if note_check == "" and note_key != "" %}
-{% assign note_check = note_key %}
-{% endif %}
-{% if note_check == "" and note_index != "" %}
-{% assign note_check = note_index %}
-{% endif %}
+{% capture frage_inline %} {{ include.frage | markdownify | strip_html |
+strip_newlines }} {% endcapture %}
 
-{% capture frage_inline %}{{ include.frage | markdownify | strip_html | strip_newlines | strip }}{% endcapture %}
-{% assign frage_title = frage_inline %}
-{% if frage_title != "" %}
-{% assign frage_last = frage_title | slice: -1, 1 %}
-{% if frage_last == ":" %}
-{% assign frage_title = frage_title | slice: 0, -1 %}
-{% endif %}
-{% endif %}
-
-{% assign badge_suffix = "" %}
-{% if note_index != "" %}
-{% assign note_num = note_index | plus: 0 %}
-{% if note_num < 10 %} {% assign badge_suffix=" 0" | append: note_num %} {% else %} {% assign badge_suffix=" " | append:
-  note_num %} {% endif %} {% elsif note_check !="" %} {% assign badge_suffix=" " | append: note_check %} {% endif %} {%
-  capture note_id %} {% if note_check !="" %} check-{{ note_check | slugify }} {% elsif note_index !="" %} check-{{
-  note_index }} {% else %} info-{{ frage_inline | slugify }} {% endif %} {% endcapture %} <article
-  id="{{ note_id | strip }}" class="info mc-note card dev-training__task-card dev-check-card dev-check-card--skript"
-  data-note-open="false" {% if note_check !="" %}data-check="{{ note_check | escape }}" {% endif %} {% if note_key !=""
-  %}data-key="{{ note_key | escape }}" {% endif %}>
-  <div class="mc-note__summary dev-check-card__header">
-    <span class="dev-check-card__header-left mc-note__head">
-      <span class="dev-check-card__badge dev-check-card__badge--skript">Check{{ badge_suffix }}</span>
-      <h3 class="mc-note__title dev-check-card__title dev-check-card__title--skript">{{ frage_title }}</h3>
-    </span>
-    <span class="dev-check-card__header-actions">
-      <button type="button" class="mc-note__toggle mc-note__icon dev-check-card__action-btn" aria-expanded="false"
-        aria-controls="{{ note_id | strip }}-content" aria-label="Info ein- oder ausklappen"
-        title="Info ein- oder ausklappen">
-        <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
-      </button>
-    </span>
-  </div>
-  <div id="{{ note_id | strip }}-content" class="mc-note__content" hidden>{{ include.antwort | markdownify }}</div>
-  </article>
+<div id="check-{{include.index}}" class="info">
+  <h5>{{include.index}}. Info</h5>
+  <details class="info-card">
+    <summary>
+      {{ frage_inline }}
+      <i class="fas fa-arrow-circle-right icon" style="color: #931ab1cc"></i>
+    </summary>
+    <div>{{ include.antwort | markdownify }}</div>
+  </details>
+</div>
