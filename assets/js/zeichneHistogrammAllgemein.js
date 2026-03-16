@@ -48,7 +48,11 @@ function zeichneHistogrammAllgemein(
     dragmode: false,
   };
 
-  const config = { scrollZoom: false };
+  const config = {
+    scrollZoom: false,
+    staticPlot: true,
+    responsive: true,
+  };
 
   Plotly.newPlot(div, data, layout, config);
 }

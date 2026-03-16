@@ -1,0 +1,94 @@
+# ──────────────────────────────────────────────────────────
+# Modultypen – Farbdefinitionen
+# ──────────────────────────────────────────────────────────
+# Jedes Modul hat genau EINE Kennfarbe.
+# Abgeleitete Werte (border, icon-bg) werden im
+# Template (_includes/dev/topbar.html) aus system_rgb
+# berechnet.
+#
+# Felder:
+#   system_color  – Hex-Primaerfarbe (Dark-Mode-Variante)
+#   system_rgb    – RGB-Tripel fuer rgba()-Ableitungen
+#   system_soft   – Blasse Variante fuer Hintergruende
+#   color_name    – Kurzbeschreibung des Farbtons (Deutsch)
+# ──────────────────────────────────────────────────────────
+
+- key: start
+  name: Start
+  icon: "🏠"
+  color_name: "Koralle"
+  system_color: "#f76c6c"
+  system_rgb: "247, 108, 108"
+  system_soft: "#fff4f4"
+  subtitle: "Ueberblick · Lernpfad · Einstieg"
+  description: "Ziele, Voraussetzungen und empfohlener Start in den Lernbereich."
+
+- key: einstiegsquiz
+  name: Einstiegsquiz
+  icon: "❓"
+  color_name: "Bernstein"
+  system_color: "#f5a623"
+  system_rgb: "245, 166, 35"
+  system_soft: "#fff7eb"
+  subtitle: "Standortbestimmung · Einstieg"
+  description: "Schneller Check zum Vorwissen und passender Startpunkt."
+
+- key: kompetenzliste
+  name: Kompetenzliste
+  icon: "☑️"
+  color_name: "Blau"
+  system_color: "#4c9aff"
+  system_rgb: "76, 154, 255"
+  system_soft: "#f2f7ff"
+  subtitle: "Kompetenzen · Lernziele"
+  description: "Alle Kompetenzen mit Fokus auf dem naechsten sinnvollen Schritt."
+
+- key: training
+  name: Training
+  icon: "🏋️"
+  color_name: "Preview-Blau"
+  system_color: "#4c9aff"
+  system_rgb: "76, 154, 255"
+  system_soft: "#f7f9fd"
+  subtitle: "Ueben · Anwenden · Festigen"
+  description: "Aufgaben in sinnvoller Progression vom Einstieg bis Transfer."
+
+- key: blurting
+  name: Blurting
+  icon: "💭"
+  color_name: "Teal"
+  system_color: "#3dd6c8"
+  system_rgb: "61, 214, 200"
+  system_soft: "#eefaf8"
+  subtitle: "Aktiv erinnern · Luecken finden"
+  description: "Freies Erinnern der Kernideen fuer langfristige Verankerung."
+
+- key: feynman
+  name: Feynman
+  icon: "🎓"
+  color_name: "Lavendel"
+  system_color: "#a78bfa"
+  system_rgb: "167, 139, 250"
+  system_soft: "#f5f1ff"
+  subtitle: "Erklaeren · Verstehen"
+  description: "Konzepte in eigenen Worten erklaeren und Denkfehler erkennen."
+
+- key: skript
+  name: Skript
+  icon: "📖"
+  color_name: "Gruen"
+  system_color: "#4ade80"
+  system_rgb: "74, 222, 128"
+  system_soft: "#edf9f1"
+  subtitle: "Theorie · Beispiele · Struktur"
+  description: "Kompakte Theorie mit Beispielen und klaren Leitgedanken."
+
+- key: flashcards
+  name: Flashcards
+  icon: "🗂️"
+  color_name: "Pink"
+  system_color: "#f472b6"
+  system_rgb: "244, 114, 182"
+  system_soft: "#fff1f8"
+  subtitle: "Wiederholen · Automatisieren"
+  description: "Gezielte Wiederholung zentraler Begriffe und Verfahren."

@@ -120,13 +120,16 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       y: -0.25,
     },
     margin: { t: 40, r: 50, b: 40, l: 60 },
-    dragmode: 'pan',
+    dragmode: false,
   };
 
   const config = {
     modeBarButtonsToRemove: [],
     displayModeBar: true,
     displaylogo: false,
+    scrollZoom: false,
+    staticPlot: true,
+    responsive: true,
   };
 
   Plotly.newPlot(containerId, daten, layout, config);

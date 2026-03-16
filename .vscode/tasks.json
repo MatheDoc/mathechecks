@@ -2,6 +2,22 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Qualitaet: Mojibake-Check",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "scripts/check-mojibake.ps1",
+        "-Root",
+        "."
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
       "label": "Aufgaben: Alle JSONs (Batch)",
       "type": "shell",
       "command": "python",

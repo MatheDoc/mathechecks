@@ -555,7 +555,7 @@ function buildCards(entries) {
         const sammlung = entry._sammlung;
         if (!Array.isArray(sammlung)) return;
 
-        if (entry.Ankityp === "einzeln") {
+        if (entry.Flashtyp === "einzeln") {
             const teilfragenCount = sammlung.reduce((max, aufgabe) => {
                 const count = Array.isArray(aufgabe?.fragen) ? aufgabe.fragen.length : 0;
                 return Math.max(max, count);

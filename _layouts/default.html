@@ -2,17 +2,55 @@
 <html lang="de">
 
 <head>
+  {% assign is_module_page = false %}
+  {% if page.name == 'blurting.md' or page.name == 'feynman.md' %}
+  {% assign is_module_page = true %}
+  {% endif %}
+
+  {% if is_module_page %}
+  {% include firebase-config.html %}
+  {% include head-main.html %}
+  {% include mathjax.html %}
+  <link rel="stylesheet" href="{{ '/dev/shared.css' | relative_url }}" />
+  {% else %}
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ page.title }}</title>
   {% include firebase-config.html %}
+  {% include mathjax.html %}
+  {% endif %}
 </head>
 
 <body>
+  {% if is_module_page %}
+  <header>
+    {% include nav-lernbereiche.html %}
+    <h1>{{ page.title }}</h1>
+    {% include nav-materialtyp.html %}
+  </header>
+
+  <main>
+    {% if page.name == 'blurting.md' %}
+    {% include dev/moduletypen/blurting-content.html %}
+    {% elsif page.name == 'feynman.md' %}
+    {% include dev/moduletypen/feynman-content.html %}
+    {% endif %}
+  </main>
+
+  {% include footer.html %}{% include firebase-auth.html %}
+  <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/calculator-helpers.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
+  <script src="/assets/js/cookie-consent.js"></script>
+  {% else %}
   <header>
     <h1>{{ page.title }}</h1>
   </header>
   <main>{{ content }}</main>
+  {% endif %}
 </body>
 
 </html>

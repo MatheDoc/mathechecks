@@ -1,0 +1,62 @@
+<script>
+    (function () {
+        const filterLB = document.getElementById('filterLB');
+        const filterType = document.getElementById('filterType');
+        if (!filterLB || !filterType) return;
+
+        function applyDropdownGebietTint() {
+            const selected = filterLB.selectedOptions && filterLB.selectedOptions[0];
+            const gebiet = (selected && selected.dataset && selected.dataset.gebiet) || 'all';
+            filterLB.dataset.gebiet = String(gebiet).trim().toLowerCase();
+        }
+
+        function cardMatchesLbFilter(card, value) {
+            if (value === 'all') return true;
+            const cardLb = card.dataset.lb || '';
+            const cardGebiet = card.dataset.gebiet || '';
+            return value === cardLb || value === cardGebiet;
+        }
+
+        function applyFilters() {
+            const lb = String(filterLB.value || 'all').trim();
+            const type = String(filterType.value || 'all').trim();
+
+            const sections = Array.from(document.querySelectorAll('.section-head[data-type]'));
+            sections.forEach((head) => {
+                const sectionType = head.dataset.type || '';
+                const grid = head.nextElementSibling;
+                if (!grid || !grid.classList.contains('material-grid')) return;
+
+                if (type !== 'all' && sectionType !== type) {
+                    head.style.display = 'none';
+                    grid.style.display = 'none';
+                    return;
+                }
+
+                let visibleCount = 0;
+                Array.from(grid.querySelectorAll('.mat-card')).forEach((card) => {
+                    const show = cardMatchesLbFilter(card, lb);
+                    card.style.display = show ? '' : 'none';
+                    if (show) visibleCount += 1;
+                });
+
+                if (visibleCount === 0) {
+                    head.style.display = 'none';
+                    grid.style.display = 'none';
+                } else {
+                    head.style.display = '';
+                    grid.style.display = '';
+                }
+            });
+        }
+
+        filterLB.addEventListener('change', () => {
+            applyDropdownGebietTint();
+            applyFilters();
+        });
+        filterType.addEventListener('change', applyFilters);
+
+        applyDropdownGebietTint();
+        applyFilters();
+    })();
+</script>

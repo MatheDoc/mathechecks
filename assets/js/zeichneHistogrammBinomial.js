@@ -80,6 +80,7 @@ function zeichneHistogrammEinzeln(
 
   const config = {
     scrollZoom: false,
+    staticPlot: true,
     responsive: true,
   };
 
@@ -148,18 +149,16 @@ function zeichneHistogrammKumuliert(n, p, a, b, divID, titel = "") {
       // Pfeil oben (nach oben zeigend)
       {
         type: "path",
-        path: `M ${xPfeil - 0.05} ${yOben - 0.02} L ${xPfeil} ${yOben} L ${
-          xPfeil + 0.05
-        } ${yOben - 0.02} Z`,
+        path: `M ${xPfeil - 0.05} ${yOben - 0.02} L ${xPfeil} ${yOben} L ${xPfeil + 0.05
+          } ${yOben - 0.02} Z`,
         fillcolor: "black",
         line: { color: "black" },
       },
       // Pfeil unten (nach unten zeigend)
       {
         type: "path",
-        path: `M ${xPfeil - 0.05} ${yUnten + 0.02} L ${xPfeil} ${yUnten} L ${
-          xPfeil + 0.05
-        } ${yUnten + 0.02} Z`,
+        path: `M ${xPfeil - 0.05} ${yUnten + 0.02} L ${xPfeil} ${yUnten} L ${xPfeil + 0.05
+          } ${yUnten + 0.02} Z`,
         fillcolor: "black",
         line: { color: "black" },
       },
@@ -181,6 +180,7 @@ function zeichneHistogrammKumuliert(n, p, a, b, divID, titel = "") {
 
   const config = {
     scrollZoom: false,
+    staticPlot: true,
     responsive: true,
   };
 

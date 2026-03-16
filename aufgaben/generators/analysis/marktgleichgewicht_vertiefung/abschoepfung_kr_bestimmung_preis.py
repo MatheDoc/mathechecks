@@ -48,7 +48,6 @@ class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
                 ("die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).", _num_tol(x2, tolerance=0.1)),
                 ("den Preis \\( p_2 \\).", _num_tol(p2, tolerance=0.1)),
             ]
-            rng.shuffle(fragen_antworten)
             fragen = [f for f, _ in fragen_antworten]
             antworten = [a for _, a in fragen_antworten]
 

@@ -1,10 +1,8 @@
 import argparse
 import json
-import random
 from pathlib import Path
 
-from aufgaben.core.io import write_manifest, write_tasks
-from aufgaben.core.models import Task
+from aufgaben.core.io import write_tasks
 from aufgaben.core.validation import validate_batch
 from aufgaben.generators.registry import REGISTRY, build_generator
 from aufgaben.tools.validate_binomial_semantics import main as validate_binomial_semantics_main
@@ -13,14 +11,6 @@ from aufgaben.tools.validate_binomial_semantics import main as validate_binomial
 def _default_output(generator_key: str) -> str:
     file_name = generator_key.replace(".", "_") + ".json"
     return str(Path("aufgaben") / "exports" / "json" / file_name)
-
-
-def _refresh_manifest_for_output(output_path: str) -> None:
-    path = Path(output_path)
-    for candidate in [path.parent, *path.parents]:
-        if candidate.name == "json" and candidate.parent.name == "exports":
-            write_manifest(str(candidate))
-            return
 
 
 def _slug(text: str) -> str:
@@ -42,48 +32,22 @@ def _target_output(
     return str(Path(output_dir) / gebiet / lernbereich / f"{file_stem}.json")
 
 
-def _resolve_question_order(target: dict, job: dict, defaults: dict) -> str:
-    raw = target.get("questionOrder", job.get("questionOrder", defaults.get("questionOrder", "fixed")))
-    value = str(raw).strip().lower()
-    if value not in {"fixed", "shuffle"}:
-        raise ValueError(f"Ungültiger Wert für questionOrder: {raw}. Erlaubt: fixed, shuffle")
-    return value
-
-
-def _apply_question_order(tasks: list[Task], question_order: str, seed: int | None) -> None:
-    if question_order == "fixed":
-        return
-
-    rng = random.Random(seed)
-    for task in tasks:
-        if len(task.fragen) <= 1:
-            continue
-        pairs = list(zip(task.fragen, task.antworten))
-        rng.shuffle(pairs)
-        task.fragen = [question for question, _ in pairs]
-        task.antworten = [answer for _, answer in pairs]
-
-
 def run_single(
     generator_key: str,
     count: int,
     seed: int | None,
     output: str,
-    question_order: str = "fixed",
 ) -> None:
     generator = build_generator(generator_key)
     tasks = generator.generate(count=count, seed=seed)
-    _apply_question_order(tasks, question_order=question_order, seed=seed)
     validate_batch(tasks, expected_count=count)
     write_tasks(output, tasks)
-    _refresh_manifest_for_output(output)
-    print(
-        f"OK: {len(tasks)} Aufgaben geschrieben nach {output} "
-        f"(questionOrder={question_order})"
-    )
+    print(f"OK: {len(tasks)} Aufgaben geschrieben nach {output}")
 
 
-def _collect_expected_outputs(jobs: list, defaults: dict, default_output_dir: str) -> set[Path]:
+def _collect_expected_outputs(
+    jobs: list, defaults: dict, default_output_dir: str, static: list | None = None,
+) -> set[Path]:
     expected: set[Path] = set()
     default_count = int(defaults.get("count", 20))
     for job_index, job in enumerate(jobs, start=1):
@@ -105,33 +69,53 @@ def _collect_expected_outputs(jobs: list, defaults: dict, default_output_dir: st
                     Path(default_output_dir) / f"{generator_key.replace('.', '_')}_{job_index}.json"
                 )
             expected.add(Path(output).resolve())
+
+    for entry in static or []:
+        gebiet = _slug(entry.get("gebiet", "unsorted"))
+        lernbereich = _slug(entry.get("lernbereich", "unsorted"))
+        sammlung = _slug(entry.get("sammlung", "unknown"))
+        path = Path(default_output_dir) / gebiet / lernbereich / f"{sammlung}.json"
+        expected.add(path.resolve())
+
     return expected
 
 
-def _cleanup_stale_exports(output_dir: str, expected_outputs: set[Path]) -> None:
+def _report_unlisted_exports(output_dir: str, expected_outputs: set[Path]) -> None:
     root = Path(output_dir)
-    removed = []
+    unlisted = []
     for json_file in root.rglob("*.json"):
-        if json_file.name in {"manifest.json"} or json_file.name.endswith("-test.json"):
-            continue
         if json_file.resolve() not in expected_outputs:
-            json_file.unlink()
-            removed.append(json_file)
-    # remove empty subdirectories
-    for dirpath in sorted(root.rglob("*"), reverse=True):
-        if dirpath.is_dir() and not any(dirpath.iterdir()):
-            dirpath.rmdir()
-    if removed:
-        print(f"CLEANUP: {len(removed)} veraltete JSON(s) entfernt:")
-        for f in removed:
+            unlisted.append(json_file)
+
+    if unlisted:
+        print(f"HINWEIS: {len(unlisted)} JSON(s) in {root} sind nicht in project_config.json gelistet:")
+        for f in sorted(unlisted):
             print(f"  - {f}")
 
 
-def run_batch(config_path: str) -> None:
+def _job_matches_filter(job: dict, filter_text: str) -> bool:
+    """Prüft ob ein Job den Filter-Text im Generator-Key oder einer Sammlung enthält."""
+    text = filter_text.lower()
+    if text in job["generator"].lower():
+        return True
+    for target in job.get("targets", []):
+        if text in target.get("sammlung", "").lower():
+            return True
+    return False
+
+
+def run_batch(config_path: str, filter_text: str | None = None) -> None:
     config = json.loads(Path(config_path).read_text(encoding="utf-8"))
     jobs = config.get("jobs", [])
     if not jobs:
         raise ValueError("Batch-Konfiguration enthält keine Jobs.")
+
+    if filter_text:
+        jobs = [j for j in jobs if _job_matches_filter(j, filter_text)]
+        if not jobs:
+            print(f"Keine Jobs gefunden für Filter '{filter_text}'.")
+            return
+        print(f"Filter '{filter_text}': {len(jobs)} Job(s) ausgewählt.")
 
     defaults = config.get("defaults", {})
     default_count = int(defaults.get("count", 20))
@@ -147,7 +131,6 @@ def run_batch(config_path: str) -> None:
             for target_index, target in enumerate(targets, start=1):
                 target_count = int(target.get("count", count))
                 target_seed = target.get("seed", seed)
-                question_order = _resolve_question_order(target=target, job=job, defaults=defaults)
                 output = _target_output(
                     target=target,
                     generator_key=generator_key,
@@ -159,12 +142,10 @@ def run_batch(config_path: str) -> None:
                     count=target_count,
                     seed=target_seed,
                     output=output,
-                    question_order=question_order,
                 )
             continue
 
         output = job.get("output")
-        question_order = _resolve_question_order(target={}, job=job, defaults=defaults)
         if output is None:
             output = str(
                 Path(default_output_dir) / f"{generator_key.replace('.', '_')}_{job_index}.json"
@@ -174,12 +155,12 @@ def run_batch(config_path: str) -> None:
             count=count,
             seed=seed,
             output=output,
-            question_order=question_order,
         )
 
-    expected = _collect_expected_outputs(jobs, defaults, default_output_dir)
-    _cleanup_stale_exports(default_output_dir, expected)
-    write_manifest(default_output_dir)
+    if not filter_text:
+        static = config.get("static", [])
+        expected = _collect_expected_outputs(jobs, defaults, default_output_dir, static=static)
+        _report_unlisted_exports(default_output_dir, expected)
 
 
 def main() -> None:
@@ -197,6 +178,8 @@ def main() -> None:
 
     batch_parser = subparsers.add_parser("batch", help="Mehrere Generator-Jobs aus Config ausführen")
     batch_parser.add_argument("--config", type=str, default=str(Path("aufgaben") / "project_config.json"))
+    batch_parser.add_argument("--filter", type=str, default=None,
+                              help="Nur Jobs ausführen, deren Generator-Key oder Sammlung diesen Text enthält")
 
     validate_binomial_parser = subparsers.add_parser(
         "validate-binomial",
@@ -218,12 +201,11 @@ def main() -> None:
             count=args.count,
             seed=args.seed,
             output=output,
-            question_order="fixed",
         )
         return
 
     if args.command == "batch":
-        run_batch(args.config)
+        run_batch(args.config, filter_text=args.filter)
         return
 
     if args.command == "validate-binomial":

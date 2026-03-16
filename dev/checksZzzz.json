@@ -1,0 +1,2224 @@
+[
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  1,
+        "check_id":  "stochastik__binomialverteilung__01",
+        "Ich kann":  "die Bedingungen einer binomialverteilten Zufallsgröße überprüfen.",
+        "Sammlung":  "pruefung-binomial",
+        "Schlagwort":  "Eigenschaften Binomialverteilung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "feste Versuchsanzahl",
+                                                       "zwei mögliche Ausgänge",
+                                                       "gleichbleibende Treffer-Wkt"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Bedingungen einer binomialverteilten Zufallsgröße überprüfen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  2,
+        "check_id":  "stochastik__binomialverteilung__02",
+        "Ich kann":  "die Parameter der Bernoulli-Formel im Sachzusammenhang interpretieren.",
+        "Sammlung":  "interpretation-parameter",
+        "Schlagwort":  "Bernoulli-Parameter",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Trefferanzahl \\(k\\)",
+                                                       "Versuchsanzahl \\(n\\)",
+                                                       "Treffer-Wkt \\(p\\)",
+                                                       "Wkt. für genau \\(k\\) Treffer \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Parameter der Bernoulli-Formel im Sachzusammenhang interpretieren kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  3,
+        "check_id":  "stochastik__binomialverteilung__03",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben.",
+        "Sammlung":  "bereichsparameter-kumuliert",
+        "Schlagwort":  "Intervall-Wkt durch kumulierte Wkt. ausdrücken",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)",
+                                                       "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)",
+                                                       "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe kumulierter Wahrscheinlichkeiten angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  4,
+        "check_id":  "stochastik__binomialverteilung__04",
+        "Ich kann":  "die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben.",
+        "Sammlung":  "bereichsparameter-gtr",
+        "Schlagwort":  "Intervallparameter GTR",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Identifikation von \\(n\\) und \\(p\\)",
+                                                       "ganzzahlige Intervallgrenzen bestimmen",
+                                                       "\\(Binom(a;b;n;p)=P(a\\leq X\\leq b)\\)"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Parameter von Intervallwahrscheinlichkeiten der Binomialverteilung entsprechend der Eingabe im Taschenrechner angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  5,
+        "check_id":  "stochastik__binomialverteilung__05",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung berechnen.",
+        "Sammlung":  "bereichswahrscheinlichkeiten-berechnung",
+        "Schlagwort":  "Intervall-Wkt berechnen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilt oder nicht",
+                                                       "\\(n\\) und \\(p\\) im Sachzusammenhang",
+                                                       "Treffer und Niete",
+                                                       "gerundete Intervallgrenzen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Intervallwahrscheinlichkeiten der Binomialverteilung berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  6,
+        "check_id":  "stochastik__binomialverteilung__06",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen.",
+        "Sammlung":  "histogramme-einzeln",
+        "Schlagwort":  "Histogramm Einzel-Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(x\\)-Achse Trefferanzahlen",
+                                                       "\\(y\\)-Achse Einzel-Wkt \\(P(X=k)\\)",
+                                                       "Intervall-Wkt durch Addition der Einzel-Wkt"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der Einzelwahrscheinlichkeiten bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  7,
+        "check_id":  "stochastik__binomialverteilung__07",
+        "Ich kann":  "Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen.",
+        "Sammlung":  "histogramme-kumuliert",
+        "Schlagwort":  "Histogramm kumuliert",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-07",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(x\\)-Achse Trefferanzahlen",
+                                                       "\\(y\\)-Achse Kumul-Wkt \\(P(X\\leq k)\\)",
+                                                       "Einzel-Wkt als Stufenhöhen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Intervallwahrscheinlichkeiten der Binomialverteilung mithilfe eines Histogramms der kumulierten Wahrscheinlichkeiten bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  8,
+        "check_id":  "stochastik__binomialverteilung__08",
+        "Ich kann":  "Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "npk-n",
+        "Schlagwort":  "Bestimmung Versuchsanzahl",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-08",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(a, b, p\\) bestimmen",
+                                                       "Ansatz formulieren",
+                                                       "\\(n\\) mit Tabelle bestimmen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Versuchsanzahlen binomialverteilter Zufallsgrößen bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  9,
+        "check_id":  "stochastik__binomialverteilung__09",
+        "Ich kann":  "Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "npk-p",
+        "Schlagwort":  "Bestimmung Treffer-Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-09",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(a, b, n\\) bestimmen",
+                                                       "Ansatz formulieren",
+                                                       "\\(p\\) mit Tabelle bestimmen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Trefferwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  10,
+        "check_id":  "stochastik__binomialverteilung__10",
+        "Ich kann":  "Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen.",
+        "Sammlung":  "npk-k",
+        "Schlagwort":  "Bestimmung Intervallgrenzen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-10",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(a\\text{ oder }b, p, n\\) bestimmen",
+                                                       "Ansatz formulieren",
+                                                       "\\(k\\) mit Tabelle bestimmen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Intervallgrenzen binomialverteilter Zufallsgrößen bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  11,
+        "check_id":  "stochastik__binomialverteilung__11",
+        "Ich kann":  "bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-n-p-gegeben",
+        "Schlagwort":  "Berechnung von \\(\\mu\\) und \\(\\sigma\\)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-11",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(n\\) und \\(p\\) identifizieren",
+                                                       "\\(\\mu=n\\cdot p\\)",
+                                                       "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebener Versuchsanzahl und Trefferwahrscheinlichkeit den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  12,
+        "check_id":  "stochastik__binomialverteilung__12",
+        "Ich kann":  "bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-n-mu-gegeben",
+        "Schlagwort":  "Berechnung von \\(p\\) und \\(\\sigma\\)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-12",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "\\(n\\) und \\(\\mu\\) identifizieren",
+                                                       "\\(\\mu=n\\cdot p\\) nach \\(p\\) umstellen",
+                                                       "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebener Versuchsanzahl und gegebenem Erwartungswert die Standardabweichung und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  13,
+        "check_id":  "stochastik__binomialverteilung__13",
+        "Ich kann":  "bei gegebener Trefferwahrscheinlichkeit  und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-p-mu-gegeben",
+        "Schlagwort":  "n und σ aus p, E(X)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-13",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "trefferwahrscheinlichkeit",
+                                                       "erwartungswert",
+                                                       "versuchsanzahl"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebener Trefferwahrscheinlichkeit und gegebenem Erwartungswert die Versuchsanzahl und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  14,
+        "check_id":  "stochastik__binomialverteilung__14",
+        "Ich kann":  "bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-mu-sigma-gegeben",
+        "Schlagwort":  "n und p aus E(X), σ",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-14",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "erwartungswert",
+                                                       "standardabweichung",
+                                                       "versuchsanzahl"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebenem Erwartungswert und gegebener Standardabweichung die Versuchsanzahl und die Trefferwahrscheinlichkeit einer binomialverteilten Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  15,
+        "check_id":  "stochastik__binomialverteilung__15",
+        "Ich kann":  "bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-p-sigma-gegeben",
+        "Schlagwort":  "E(X) und n aus p, σ",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-15",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "trefferwahrscheinlichkeit",
+                                                       "standardabweichung",
+                                                       "erwartungswert"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebener Trefferwahrscheinlichkeit und Standardabweichung den Erwartungswert und die Versuchsanzahl einer binomialverteilten Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  16,
+        "check_id":  "stochastik__binomialverteilung__16",
+        "Ich kann":  "Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "umgebungen-absolut",
+        "Schlagwort":  "Absolute Umgebung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-16",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "absoluten",
+                                                       "umgebungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten von absoluten Umgebungen des Erwartungswerts berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  17,
+        "check_id":  "stochastik__binomialverteilung__17",
+        "Ich kann":  "Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "umgebungen-relativ",
+        "Schlagwort":  "Relative Umgebung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-17",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "relativen",
+                                                       "umgebungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten von relativen Umgebungen des Erwartungswerts berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "binomialverteilung",
+        "LernbereichAnzeigename":  "Binomialverteilung",
+        "Nummer":  18,
+        "check_id":  "stochastik__binomialverteilung__18",
+        "Ich kann":  "Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen.",
+        "Sammlung":  "umgebungen-sigma",
+        "Schlagwort":  "Sigma-Umgebung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-binomialverteilung-18",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Binomialverteilung",
+                                                       "wahrscheinlichkeiten",
+                                                       "sigma-umgebungen",
+                                                       "erwartungswerts"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten von Sigma-Umgebungen des Erwartungswerts berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  1,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__01",
+        "Ich kann":  "Baumdiagramme vervollständigen (direkte Anwendung der Pfadmultiplikationsregel).",
+        "Sammlung":  "baumdiagramm-erstellen-ohneUnabh-var1",
+        "Schlagwort":  "Pfadmultiplikation direkt",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "direkte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme vervollständigen kann (direkte Anwendung der Pfadmultiplikationsregel)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  2,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__02",
+        "Ich kann":  "Baumdiagramme vervollständigen (indirekte Anwendung der Pfadmultiplikationsregel).",
+        "Sammlung":  "baumdiagramm-erstellen-ohneUnabh-var2",
+        "Schlagwort":  "Pfadmultiplikation indirekt",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "indirekte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme vervollständigen kann (indirekte Anwendung der Pfadmultiplikationsregel)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  3,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__03",
+        "Ich kann":  "Baumdiagramme vervollständigen (Anwendung der Pfadadditionsregel).",
+        "Sammlung":  "baumdiagramm-erstellen-ohneUnabh-var3",
+        "Schlagwort":  "Pfadadditionsregel",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "vervollständigen",
+                                                       "anwendung"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme vervollständigen kann (Anwendung der Pfadadditionsregel)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  4,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__04",
+        "Ich kann":  "Baumdiagramme interpretieren (ohne bedingte Wahrscheinlichkeiten).",
+        "Sammlung":  "baumdiagramm-folgern-ohneUnabh",
+        "Schlagwort":  "Baumdiagramm interpretieren",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "interpretieren",
+                                                       "bedingte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme interpretieren kann (ohne bedingte Wahrscheinlichkeiten)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  5,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__05",
+        "Ich kann":  "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 1).",
+        "Sammlung":  "baumdiagramm-komplex-var1",
+        "Schlagwort":  "Komplexes Baumdiagramm I",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "komplexer",
+                                                       "sachverhalte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren kann (Variante 1)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "mehrstufige-zufallsexperimente",
+        "LernbereichAnzeigename":  "Mehrstufige Zufallsexperimente",
+        "Nummer":  6,
+        "check_id":  "stochastik__mehrstufige-zufallsexperimente__06",
+        "Ich kann":  "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. (Variante 2).",
+        "Sammlung":  "baumdiagramm-komplex-var2",
+        "Schlagwort":  "Komplexes Baumdiagramm II",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-mehrstufige-zufallsexperimente-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Zufallsexperimente",
+                                                       "baumdiagramme",
+                                                       "komplexer",
+                                                       "sachverhalte"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. kann (Variante 2)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  1,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__01",
+        "Ich kann":  "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (mit bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "interpretationen-mitBedingt",
+        "Schlagwort":  "Notation bed. Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "textuelle",
+                                                       "symbolische",
+                                                       "beschreibungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln kann (mit bedingten Wahrscheinlichkeiten)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  2,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__02",
+        "Ich kann":  "Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen.",
+        "Sammlung":  "baumdiagramm-erstellen-mitUnabh",
+        "Schlagwort":  "Baum + Unabhängigkeit",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "baumdiagramme",
+                                                       "stochastischer",
+                                                       "unabhängigkeit"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  3,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__03",
+        "Ich kann":  "Baumdiagramme interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
+        "Sammlung":  "baumdiagramm-folgern-mitUnabh",
+        "Schlagwort":  "Baum + bed. Wkt + Unabh.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "baumdiagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Baumdiagramme interpretieren kann (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  4,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__04",
+        "Ich kann":  "Vier-Felder-Tafeln vervollständigen.",
+        "Sammlung":  "vierfelder-erstellen-ohneUnabh",
+        "Schlagwort":  "Vierfeldertafel ergänzen",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "vervollständigen",
+                                                       "Kompetenz 04"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Vier-Felder-Tafeln vervollständigen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  5,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__05",
+        "Ich kann":  "Vier-Felder-Tafeln interpretieren.",
+        "Sammlung":  "vierfelder-folgern-ohneUnabh",
+        "Schlagwort":  "Vierfeldertafel interpretieren",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "interpretieren",
+                                                       "Kompetenz 05"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Vier-Felder-Tafeln interpretieren kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  6,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__06",
+        "Ich kann":  "Vier-Felder-Tafeln unter Verwendung  stochastischer Unabhängigkeit vervollständigen.",
+        "Sammlung":  "vierfelder-folgern-mitUnabh",
+        "Schlagwort":  "Vierfeldertafel + Unabh.",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "stochastischer",
+                                                       "unabhängigkeit"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Vier-Felder-Tafeln unter Verwendung stochastischer Unabhängigkeit vervollständigen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  7,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__07",
+        "Ich kann":  "Vier-Felder-Tafeln interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
+        "Sammlung":  "vierfelder-folgern-mitUnabh",
+        "Schlagwort":  "Vierfeldertafel + bed. Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-07",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "vier-felder-tafeln",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Vier-Felder-Tafeln interpretieren kann (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  8,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__08",
+        "Ich kann":  "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (ohne Verwendung stochastischer Unabhängigkeit).",
+        "Sammlung":  "ohne-struktur-ohneInfoUnabh",
+        "Schlagwort":  "Wkt ohne Hilfsmittel",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-08",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "baumdiagramm",
+                                                       "vier-felder-tafel"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen kann (ohne Verwendung stochastischer Unabhängigkeit)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  9,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__09",
+        "Ich kann":  "Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen (unter Verwendung stochastischer Unabhängigkeit).",
+        "Sammlung":  "ohne-struktur-mitInfoUnabh",
+        "Schlagwort":  "Wkt + Unabhängigkeit",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-09",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "baumdiagramm",
+                                                       "vier-felder-tafel"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten ohne Baumdiagramm und Vier-Felder-Tafel berechnen kann (unter Verwendung stochastischer Unabhängigkeit)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "bedingte-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Bedingte Wahrscheinlichkeiten",
+        "Nummer":  10,
+        "check_id":  "stochastik__bedingte-wahrscheinlichkeiten__10",
+        "Ich kann":  "Venn-Diagramme interpretieren (mit bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "venn-mitBedingt",
+        "Schlagwort":  "Venn-Diagramm + bed. Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-bedingte-wahrscheinlichkeiten-10",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Bedingte Wahrscheinlichkeiten",
+                                                       "venn-diagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Venn-Diagramme interpretieren kann (mit bedingten Wahrscheinlichkeiten)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  1,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__01",
+        "Ich kann":  "Mengen unter Berücksichtigung der Mengenoperationen symbolisch, textuell und in Mengenschreibweise beschreiben.",
+        "Sammlung":  "mengenoperationen",
+        "Schlagwort":  "Mengenoperationen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "mengen",
+                                                       "berücksichtigung",
+                                                       "mengenoperationen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Mengen unter Berücksichtigung der Mengenoperationen symbolisch, textuell und in Mengenschreibweise beschreiben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  2,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__02",
+        "Ich kann":  "die Grundbegriffe eines Zufallsexperiments erläutern.",
+        "Sammlung":  "grundbegriffe-zufallsexperiment",
+        "Schlagwort":  "Grundbegriffe",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "grundbegriffe",
+                                                       "zufallsexperiments",
+                                                       "erläutern"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Grundbegriffe eines Zufallsexperiments erläutern kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  3,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__03",
+        "Ich kann":  "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "interpretationen-ohneBedingt",
+        "Schlagwort":  "Wkt-Notation",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "textuelle",
+                                                       "symbolische",
+                                                       "beschreibungen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln kann (ohne bedingten Wahrscheinlichkeiten)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  4,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__04",
+        "Ich kann":  "Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen.",
+        "Sammlung":  "absolute-haeufigkeiten",
+        "Schlagwort":  "Relative Häufigkeit",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "wahrscheinlichkeiten",
+                                                       "absoluter",
+                                                       "häufigkeiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  5,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05",
+        "Ich kann":  "den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden.",
+        "Sammlung":  "sylvester",
+        "Schlagwort":  "Gegenwkt + Sylvester",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "satz",
+                                                       "gegenwahrscheinlichkeit",
+                                                       "sylvester"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsexperimente-und-wahrscheinlichkeiten",
+        "LernbereichAnzeigename":  "Zufallsexperimente und Wahrscheinlichkeiten",
+        "Nummer":  6,
+        "check_id":  "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__06",
+        "Ich kann":  "Venn-Diagramme interpretieren (ohne bedingten Wahrscheinlichkeiten).",
+        "Sammlung":  "venn-ohneBedingt",
+        "Schlagwort":  "Venn-Diagramm",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsexperimente und Wahrscheinlichkeiten",
+                                                       "venn-diagramme",
+                                                       "interpretieren",
+                                                       "bedingten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Venn-Diagramme interpretieren kann (ohne bedingten Wahrscheinlichkeiten)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  1,
+        "check_id":  "stochastik__zufallsgroessen__01",
+        "Ich kann":  "den Erwartungswert einer allgemeinen Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-erwartungswert",
+        "Schlagwort":  "Erwartungswert",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "allgemeinen",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Erwartungswert einer allgemeinen Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  2,
+        "check_id":  "stochastik__zufallsgroessen__02",
+        "Ich kann":  "die Standardabweichung einer allgemeinen Zufallsgröße berechnen.",
+        "Sammlung":  "kennzahlen-standardabweichung",
+        "Schlagwort":  "Standardabweichung",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "standardabweichung",
+                                                       "allgemeinen",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Standardabweichung einer allgemeinen Zufallsgröße berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  3,
+        "check_id":  "stochastik__zufallsgroessen__03",
+        "Ich kann":  "den Erwartungswert und die Standardabweichung im Sachzusammenhang interpretieren.",
+        "Sammlung":  "interpretationen",
+        "Schlagwort":  "E(X) und σ interpretieren",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "standardabweichung",
+                                                       "sachzusammenhang"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Erwartungswert und die Standardabweichung im Sachzusammenhang interpretieren kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  4,
+        "check_id":  "stochastik__zufallsgroessen__04",
+        "Ich kann":  "die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen.",
+        "Sammlung":  "aufstellen-wkt-verteilung",
+        "Schlagwort":  "Wkt-Verteilung + Histogramm",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "wahrscheinlichkeitsverteilung",
+                                                       "histogramm",
+                                                       "zufallsgröße"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  5,
+        "check_id":  "stochastik__zufallsgroessen__05",
+        "Ich kann":  "eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "kennzahlen-fehlende-wsk",
+        "Schlagwort":  "Fehlende Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "fehlende",
+                                                       "wahrscheinlichkeit",
+                                                       "wahrscheinlichkeitsverteilung"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  6,
+        "check_id":  "stochastik__zufallsgroessen__06",
+        "Ich kann":  "bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "kennzahlen-fehlender-wert",
+        "Schlagwort":  "Fehlender Wert bei E(X)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "einen",
+                                                       "fehlenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "zufallsgroessen",
+        "LernbereichAnzeigename":  "Zufallsgrößen",
+        "Nummer":  7,
+        "check_id":  "stochastik__zufallsgroessen__07",
+        "Ich kann":  "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung":  "kennzahlen-fehlende-wsk-zwei",
+        "Schlagwort":  "Zwei fehlende Wkt",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-zufallsgroessen-07",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Zufallsgrößen",
+                                                       "erwartungswert",
+                                                       "zwei",
+                                                       "fehlende"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  1,
+        "check_id":  "stochastik__hypothesentests__01",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Sammlung":  "hypothesenergebnis-linksseitig",
+        "Schlagwort":  "Linksseitiger Test anwenden",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-hypothesentests-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "anwenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  2,
+        "check_id":  "stochastik__hypothesentests__02",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Sammlung":  "hypothesenergebnis-rechtsseitig",
+        "Schlagwort":  "Rechtsseitiger Test anwenden",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-stochastik-hypothesentests-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "anwenden"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen kann."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  3,
+        "check_id":  "stochastik__hypothesentests__03",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe).",
+        "Sammlung":  "ablehnungsbereich-linksseitig-mit-struktur",
+        "Schlagwort":  "Linksseitiger Test herleiten I",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines linksseitigen Hypothesentests herleiten kann (mit Strukturhilfe)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  4,
+        "check_id":  "stochastik__hypothesentests__04",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe).",
+        "Sammlung":  "ablehnungsbereich-rechtsseitig-mit-struktur",
+        "Schlagwort":  "Rechtsseitiger Test herleiten I",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten kann (mit Strukturhilfe)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  5,
+        "check_id":  "stochastik__hypothesentests__05",
+        "Ich kann":  "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
+        "Sammlung":  "ablehnungsbereich-linksseitig-ohne-struktur",
+        "Schlagwort":  "Linksseitiger Test herleiten II",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "linksseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines linksseitigen Hypothesentests herleiten kann (ohne Strukturhilfe)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "stochastik",
+        "Lernbereich":  "hypothesentests",
+        "LernbereichAnzeigename":  "Hypothesentests",
+        "Nummer":  6,
+        "check_id":  "stochastik__hypothesentests__06",
+        "Ich kann":  "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
+        "Sammlung":  "ablehnungsbereich-rechtsseitig-ohne-struktur",
+        "Schlagwort":  "Rechtsseitiger Test herleiten II",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-stochastik-hypothesentests-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Hypothesentests",
+                                                       "entscheidungsregel",
+                                                       "rechtsseitigen",
+                                                       "herleiten"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten kann (ohne Strukturhilfe)."
+                    },
+        "questionOrder":  "fixed"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  1,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__01",
+        "Ich kann":  "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
+        "Sammlung":  "funktionsterme-e1k3",
+        "Schlagwort":  "Kubische Fkt (Polypol)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "gleichungen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Gleichungen kubischer, ökonomischer Funktionen berechnen kann (Angebotspolypol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  2,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__02",
+        "Ich kann":  "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
+        "Sammlung":  "funktionsterme-e2k3",
+        "Schlagwort":  "Kubische Fkt (Monopol)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "gleichungen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Gleichungen kubischer, ökonomischer Funktionen berechnen kann (Angebotsmonopol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  3,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__03",
+        "Ich kann":  "die mathematische Definition ökonomischer Kennzahlen angeben.",
+        "Sammlung":  "kennzahlen-definition",
+        "Schlagwort":  "Ökon. Kennzahlen Def.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die mathematische Definition ökonomischer Kennzahlen angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  4,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__04",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
+        "Sammlung":  "kennzahlen-graphisch-e1k3",
+        "Schlagwort":  "Kennzahlen graphisch (Pol.)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen kann (Angebotspolypol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  5,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__05",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
+        "Sammlung":  "kennzahlen-graphisch-e2k3",
+        "Schlagwort":  "Kennzahlen graphisch (Mon.)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen kann (Angebotsmonopol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  6,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__06",
+        "Ich kann":  "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
+        "Sammlung":  "kennzahlen-ansatz",
+        "Schlagwort":  "Berechnungsansätze",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "ansatz",
+                                                       "berechnung",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Ansatz zur Berechnung ökonomischer Kennzahlen angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  7,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__07",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
+        "Sammlung":  "kennzahlen-rechnerisch-e1k3",
+        "Schlagwort":  "Kennzahlen berechnen (Pol.)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-07",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen kubischer, ökonomischer Funktionen berechnen kann (Angebotspolypol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ganzrationale-oekonomische-funktionen",
+        "LernbereichAnzeigename":  "Ganzrationale ökonomische Funktionen",
+        "Nummer":  8,
+        "check_id":  "analysis__ganzrationale-oekonomische-funktionen__08",
+        "Ich kann":  "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
+        "Sammlung":  "kennzahlen-rechnerisch-e2k3",
+        "Schlagwort":  "Kennzahlen berechnen (Mon.)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ganzrationale-oekonomische-funktionen-08",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ganzrationale ökonomische Funktionen",
+                                                       "kennzahlen",
+                                                       "kubischer",
+                                                       "ökonomischer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen kubischer, ökonomischer Funktionen berechnen kann (Angebotsmonopol)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  1,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__01",
+        "Ich kann":  "eine Funktion hinsichtlich eines ertragsgesetzlichen Kostenverlaufs überprüfen.",
+        "Sammlung":  "nachweis",
+        "Schlagwort":  "Ertragsgesetzl. prüfen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "prüfen",
+                                                       "funktion",
+                                                       "verlauf"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eine Funktion hinsichtlich eines ertragsgesetzlichen Kostenverlaufs überprüfen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  2,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__02",
+        "Ich kann":  "prüfen, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
+        "Sammlung":  "nachweis-parameter",
+        "Schlagwort":  "Parameter ertragsgesetzl.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "prüfen",
+                                                       "welche",
+                                                       "parameter"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man prüfen kann, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  3,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__03",
+        "Ich kann":  "die mathematische Definition von Kostenkennzahlen angeben.",
+        "Sammlung":  "kennzahlen-definition",
+        "Schlagwort":  "Kostenkennzahlen Def.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "kostenkennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die mathematische Definition von Kostenkennzahlen angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  4,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__04",
+        "Ich kann":  "Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen.",
+        "Sammlung":  "kennzahlen-graphisch-k3",
+        "Schlagwort":  "Kostenkennzahlen graphisch",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "kennzahlen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  5,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__05",
+        "Ich kann":  "den Ansatz zur Berechnung von Kostenkennzahlen angeben.",
+        "Sammlung":  "kennzahlen-ansatz",
+        "Schlagwort":  "Kostenansätze",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "ansatz",
+                                                       "berechnung",
+                                                       "kostenkennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Ansatz zur Berechnung von Kostenkennzahlen angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  6,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__06",
+        "Ich kann":  "Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen.",
+        "Sammlung":  "kennzahlen-rechnerisch-k3",
+        "Schlagwort":  "Kostenkennzahlen berechnen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "kennzahlen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "ertragsgesetzliche-kostenfunktionen",
+        "LernbereichAnzeigename":  "Ertragsgesetzliche Kostenfunktionen",
+        "Nummer":  7,
+        "check_id":  "analysis__ertragsgesetzliche-kostenfunktionen__07",
+        "Ich kann":  "Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen.",
+        "Sammlung":  "steckbrief-kennzahlen-k3",
+        "Schlagwort":  "Kostenfunktion aufstellen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-ertragsgesetzliche-kostenfunktionen-07",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Ertragsgesetzliche Kostenfunktionen",
+                                                       "gleichungen",
+                                                       "ertragsgesetzlicher",
+                                                       "kostenfunktionen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  1,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__01",
+        "Ich kann":  "die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben.",
+        "Sammlung":  "kennzahlen-definition",
+        "Schlagwort":  "Marktgleichgewicht Def.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "mathematische",
+                                                       "definition",
+                                                       "kennzahlen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  2,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__02",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Sammlung":  "kennzahlen-graphisch-linear",
+        "Schlagwort":  "MGG graphisch (linear)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "linearer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  3,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__03",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Sammlung":  "kennzahlen-rechnerisch-linear",
+        "Schlagwort":  "MGG berechnen (linear)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "linearer"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-grundlagen",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Grundlagen",
+        "Nummer":  4,
+        "check_id":  "analysis__marktgleichgewicht-grundlagen__04",
+        "Ich kann":  "feststellen, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen.",
+        "Sammlung":  "marktungleichgewicht-bestimmung",
+        "Schlagwort":  "Angebots-/Nachfrageübersch.",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-grundlagen-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Grundlagen",
+                                                       "feststellen",
+                                                       "nachfrage-",
+                                                       "angebotsüberschuss"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man feststellen kann, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  1,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__01",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Sammlung":  "kennzahlen-graphisch-allgemein",
+        "Schlagwort":  "MGG graphisch (allgemein)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "beliebigen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  2,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__02",
+        "Ich kann":  "Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Sammlung":  "kennzahlen-rechnerisch-lqe",
+        "Schlagwort":  "MGG berechnen (allgemein)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "kennzahlen",
+                                                       "marktgleichgewichts",
+                                                       "beliebigen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen des Marktgleichgewichts mit beliebigen Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  3,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__03",
+        "Ich kann":  "die Produzenten- und Konsumentenrente berechnen.",
+        "Sammlung":  "renten-bestimmung-prkr",
+        "Schlagwort":  "Produzenten-/Konsumentenrente",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "produzenten-",
+                                                       "konsumentenrente",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Produzenten- und Konsumentenrente berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename":  "Marktgleichgewicht - Vertiefung",
+        "Nummer":  4,
+        "check_id":  "analysis__marktgleichgewicht-vertiefung__04",
+        "Ich kann":  "den Verkaufspreis auf einem Teilmarkt berechnen (wenn die die Konsumentenrente maximal abgeschöpft werden soll).",
+        "Sammlung":  "abschoepfung-kr-bestimmung-preis",
+        "Schlagwort":  "Max. Rentenabschöpfung",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-marktgleichgewicht-vertiefung-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Marktgleichgewicht - Vertiefung",
+                                                       "verkaufspreis",
+                                                       "teilmarkt",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Verkaufspreis auf einem Teilmarkt berechnen kann (wenn die die Konsumentenrente maximal abgeschöpft werden soll)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "analysis-diverses",
+        "LernbereichAnzeigename":  "Analysis - Diverses",
+        "Nummer":  1,
+        "check_id":  "analysis__analysis-diverses__01",
+        "Ich kann":  "eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen.",
+        "Sammlung":  "regression",
+        "Schlagwort":  "Regression + R²",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-analysis-analysis-diverses-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Analysis - Diverses",
+                                                       "lineare",
+                                                       "quadratische",
+                                                       "kubische"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  1,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__01",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 2 Unbekannten und 2 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_2x2",
+        "Schlagwort":  "LGS 2x2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eindeutig lösbare lineare Gleichungssysteme mit 2 Unbekannten und 2 Gleichungen lösen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  2,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__02",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 3 Unbekannten und 3 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_3x3",
+        "Schlagwort":  "LGS 3x3",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eindeutig lösbare lineare Gleichungssysteme mit 3 Unbekannten und 3 Gleichungen lösen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "lineare-gleichungssysteme",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  3,
+        "check_id":  "lineare-algebra__lineare-gleichungssysteme__03",
+        "Ich kann":  "eindeutig lösbare lineare Gleichungssysteme mit 4 Unbekannten und 4 Gleichungen lösen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_LGSlösen_4x4",
+        "Schlagwort":  "LGS 4x4",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-lineare-gleichungssysteme-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "eindeutig",
+                                                       "lösbare",
+                                                       "lineare"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man eindeutig lösbare lineare Gleichungssysteme mit 4 Unbekannten und 4 Gleichungen lösen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  4,
+        "check_id":  "lineare-algebra__matrizenrechnung__04",
+        "Ich kann":  "das Inverse einer 2x2-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_2x2",
+        "Schlagwort":  "Inverse 2x2",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "2x2-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man das Inverse einer 2x2-Matrix berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  5,
+        "check_id":  "lineare-algebra__matrizenrechnung__05",
+        "Ich kann":  "das Inverse einer 3x3-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_3x3",
+        "Schlagwort":  "Inverse 3x3",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "3x3-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man das Inverse einer 3x3-Matrix berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "matrizenrechnung",
+        "LernbereichAnzeigename":  "Lineare Gleichungssysteme",
+        "Nummer":  6,
+        "check_id":  "lineare-algebra__matrizenrechnung__06",
+        "Ich kann":  "das Inverse einer 4x4-Matrix berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Inverse_4x4",
+        "Schlagwort":  "Inverse 4x4",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-matrizenrechnung-06",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Lineare Gleichungssysteme",
+                                                       "inverse",
+                                                       "4x4-matrix",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man das Inverse einer 4x4-Matrix berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  1,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__01",
+        "Ich kann":  "die Elemente von Produktionsmatrizen interpretieren.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Matrizenelemente_Interpretation",
+        "Schlagwort":  "Produktionsmatrizen interpret.",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "elemente",
+                                                       "produktionsmatrizen",
+                                                       "interpretieren"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man die Elemente von Produktionsmatrizen interpretieren kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  2,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__02",
+        "Ich kann":  "bei einem 2-stufigen MPP aus zwei gegebenen Produktionsmatrizen die dritte berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Produktionsmatrizen_allgemein",
+        "Schlagwort":  "Dritte Matrix berechnen",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "2-stufigen",
+                                                       "zwei",
+                                                       "produktionsmatrizen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man bei einem 2-stufigen MPP aus zwei gegebenen Produktionsmatrizen die dritte berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  3,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__03",
+        "Ich kann":  "ausgehend von herzustellenden Zwischen- oder Endprodukten die dafür benötigten Rohstoffe oder Zwischenprodukte berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var1",
+        "Schlagwort":  "Rohstoffbedarf",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "ausgehend",
+                                                       "herzustellenden",
+                                                       "zwischen-"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man ausgehend von herzustellenden Zwischen- oder Endprodukten die dafür benötigten Rohstoffe oder Zwischenprodukte berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  4,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__04",
+        "Ich kann":  "ausgehend von verfügbaren Rohstoffen oder Zwischenprodukten die daraus herstellbaren Zwischen- oder Endprodukte berechnen (wenn das Lager vollständig geräumt werden soll).",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_Mengenvektoren_var2",
+        "Schlagwort":  "Max. Produktion",
+        "Flashtyp":  "gruppiert",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "ausgehend",
+                                                       "verfügbaren",
+                                                       "rohstoffen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man ausgehend von verfügbaren Rohstoffen oder Zwischenprodukten die daraus herstellbaren Zwischen- oder Endprodukte berechnen kann (wenn das Lager vollständig geräumt werden soll)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "lineare-algebra",
+        "Lernbereich":  "mehrstufige-produktionsprozesse",
+        "LernbereichAnzeigename":  "Mehrstufige Produktionsprozesse",
+        "Nummer":  5,
+        "check_id":  "lineare-algebra__mehrstufige-produktionsprozesse__05",
+        "Ich kann":  "Kennzahlen mehrstufiger Produktionsprozesse berechnen.",
+        "Sammlung":  "LineareAlgebra_Wirtschaft_Mehrstufige Produktionsprozesse_EKG_Kennzahlen",
+        "Schlagwort":  "MPP-Kennzahlen",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-lineare-algebra-mehrstufige-produktionsprozesse-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Mehrstufige Produktionsprozesse",
+                                                       "kennzahlen",
+                                                       "mehrstufiger",
+                                                       "produktionsprozesse"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen mehrstufiger Produktionsprozesse berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  1,
+        "check_id":  "analysis__produktlebenszyklus__01",
+        "Ich kann":  "den Graphen der Produktlebenszyklusfunktion interpretieren.",
+        "Sammlung":  "kennzahlen-graphisch-umsatz",
+        "Schlagwort":  "PLZ-Graph interpretieren",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-01",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "graphen",
+                                                       "produktlebenszyklusfunktion",
+                                                       "interpretieren"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Graphen der Produktlebenszyklusfunktion interpretieren kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  2,
+        "check_id":  "analysis__produktlebenszyklus__02",
+        "Ich kann":  "den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren.",
+        "Sammlung":  "kennzahlen-graphisch-ableitung",
+        "Schlagwort":  "PLZ-Ableitung interpretieren",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-02",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "graphen",
+                                                       "ableitung",
+                                                       "produktlebenszyklusfunktion"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren kann."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  3,
+        "check_id":  "analysis__produktlebenszyklus__03",
+        "Ich kann":  "Kenzahlen des Produktlebenszyklus berechnen (ohne Integration).",
+        "Sammlung":  "kennzahlen-rechnerisch-gesamt",
+        "Schlagwort":  "PLZ-Kennzahlen (ohne Integral)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-03",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kenzahlen",
+                                                       "berechnen",
+                                                       "integration"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kenzahlen des Produktlebenszyklus berechnen kann (ohne Integration)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  4,
+        "check_id":  "analysis__produktlebenszyklus__04",
+        "Ich kann":  "Kenzahlen des Produktlebenszyklus berechnen (mit Integration).",
+        "Sammlung":  "integrale-gemischt",
+        "Schlagwort":  "PLZ-Kennzahlen (mit Integral)",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-04",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kenzahlen",
+                                                       "berechnen",
+                                                       "integration"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kenzahlen des Produktlebenszyklus berechnen kann (mit Integration)."
+                    },
+        "questionOrder":  "shuffle"
+    },
+    {
+        "Gebiet":  "analysis",
+        "Lernbereich":  "produktlebenszyklus",
+        "LernbereichAnzeigename":  "Produktlebenszyklus",
+        "Nummer":  5,
+        "check_id":  "analysis__produktlebenszyklus__05",
+        "Ich kann":  "Kennzahlen des EKG-Zyklus berechnen",
+        "Sammlung":  "ekg-zyklus-gemischt",
+        "Schlagwort":  "EKG-Zyklus",
+        "Flashtyp":  "einzeln",
+        "skript_anchor":  "check-analysis-produktlebenszyklus-05",
+        "blurting":  {
+                         "referenz_stichwoerter":  [
+                                                       "Produktlebenszyklus",
+                                                       "kennzahlen",
+                                                       "ekg-zyklus",
+                                                       "berechnen"
+                                                   ]
+                     },
+        "feynman":  {
+                        "prompt":  "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man Kennzahlen des EKG-Zyklus berechnen kann."
+                    },
+        "questionOrder":  "shuffle"
+    }
+]

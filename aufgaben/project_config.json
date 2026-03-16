@@ -1,8 +1,7 @@
 {
     "defaults": {
         "count": 20,
-        "outputDir": "aufgaben/exports/json",
-        "questionOrder": "fixed"
+        "outputDir": "aufgaben/exports/json"
     },
     "jobs": [
         {
@@ -12,8 +11,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "lineare-funktionen",
-                    "sammlung": "nullstellen",
-                    "questionOrder": "shuffle"
+                    "sammlung": "nullstellen"
                 }
             ]
         },
@@ -24,8 +22,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "quadratische-funktionen",
-                    "sammlung": "nullstellen",
-                    "questionOrder": "shuffle"
+                    "sammlung": "nullstellen"
                 }
             ]
         },
@@ -36,8 +33,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "analysis-diverses",
-                    "sammlung": "regression",
-                    "questionOrder": "shuffle"
+                    "sammlung": "regression"
                 }
             ]
         },
@@ -48,8 +44,18 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "funktionsterme",
-                    "questionOrder": "shuffle"
+                    "sammlung": "funktionsterme-e1k3"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.ganzrationale_oekonomische_funktionen.funktionsterme_e2k3",
+            "seed": 778,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "ganzrationale-oekonomische-funktionen",
+                    "sammlung": "funktionsterme-e2k3"
                 }
             ]
         },
@@ -60,8 +66,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-rechnerisch-e1k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-rechnerisch-e1k3"
                 }
             ]
         },
@@ -72,8 +77,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-graphisch-e1k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-graphisch-e1k3"
                 }
             ]
         },
@@ -84,8 +88,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-rechnerisch-e2k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-rechnerisch-e2k3"
                 }
             ]
         },
@@ -96,8 +99,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "kennzahlen-graphisch-e2k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-graphisch-e2k3"
                 }
             ]
         },
@@ -108,8 +110,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ganzrationale-oekonomische-funktionen",
-                    "sammlung": "steckbrief-kennzahlen",
-                    "questionOrder": "shuffle"
+                    "sammlung": "steckbrief-kennzahlen"
                 }
             ]
         },
@@ -120,8 +121,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ertragsgesetzliche-kostenfunktionen",
-                    "sammlung": "kennzahlen-graphisch-k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-graphisch-k3"
                 }
             ]
         },
@@ -132,8 +132,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ertragsgesetzliche-kostenfunktionen",
-                    "sammlung": "kennzahlen-rechnerisch-k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-rechnerisch-k3"
                 }
             ]
         },
@@ -144,8 +143,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "ertragsgesetzliche-kostenfunktionen",
-                    "sammlung": "steckbrief-kennzahlen-k3",
-                    "questionOrder": "shuffle"
+                    "sammlung": "steckbrief-kennzahlen-k3"
                 }
             ]
         },
@@ -156,8 +154,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-grundlagen",
-                    "sammlung": "kennzahlen-rechnerisch-linear",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-rechnerisch-linear"
                 }
             ]
         },
@@ -168,8 +165,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-grundlagen",
-                    "sammlung": "kennzahlen-graphisch-linear",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-graphisch-linear"
                 }
             ]
         },
@@ -180,8 +176,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-grundlagen",
-                    "sammlung": "marktungleichgewicht-bestimmung",
-                    "questionOrder": "shuffle"
+                    "sammlung": "marktungleichgewicht-bestimmung"
                 }
             ]
         },
@@ -192,8 +187,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-vertiefung",
-                    "sammlung": "kennzahlen-graphisch-allgemein",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-graphisch-allgemein"
                 }
             ]
         },
@@ -204,8 +198,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-vertiefung",
-                    "sammlung": "kennzahlen-rechnerisch-lqe",
-                    "questionOrder": "shuffle"
+                    "sammlung": "kennzahlen-rechnerisch-lqe"
                 }
             ]
         },
@@ -216,8 +209,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-vertiefung",
-                    "sammlung": "renten-bestimmung-prkr",
-                    "questionOrder": "shuffle"
+                    "sammlung": "renten-bestimmung-prkr"
                 }
             ]
         },
@@ -228,8 +220,7 @@
                 {
                     "gebiet": "analysis",
                     "lernbereich": "marktgleichgewicht-vertiefung",
-                    "sammlung": "abschoepfung-kr-bestimmung-preis",
-                    "questionOrder": "shuffle"
+                    "sammlung": "abschoepfung-kr-bestimmung-preis"
                 }
             ]
         },
@@ -240,8 +231,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "bereichswahrscheinlichkeiten-berechnung",
-                    "questionOrder": "fixed"
+                    "sammlung": "bereichswahrscheinlichkeiten-berechnung"
                 }
             ]
         },
@@ -252,8 +242,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "bereichsparameter-kumuliert",
-                    "questionOrder": "fixed"
+                    "sammlung": "bereichsparameter-kumuliert"
                 }
             ]
         },
@@ -264,8 +253,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "bereichsparameter-gtr",
-                    "questionOrder": "fixed"
+                    "sammlung": "bereichsparameter-gtr"
                 }
             ]
         },
@@ -276,8 +264,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-n",
-                    "questionOrder": "fixed"
+                    "sammlung": "npk-n"
                 }
             ]
         },
@@ -288,8 +275,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-p",
-                    "questionOrder": "fixed"
+                    "sammlung": "npk-p"
                 }
             ]
         },
@@ -300,8 +286,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "npk-k",
-                    "questionOrder": "fixed"
+                    "sammlung": "npk-k"
                 }
             ]
         },
@@ -312,8 +297,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "histogramme-einzeln",
-                    "questionOrder": "fixed"
+                    "sammlung": "histogramme-einzeln"
                 }
             ]
         },
@@ -324,8 +308,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "histogramme-kumuliert",
-                    "questionOrder": "fixed"
+                    "sammlung": "histogramme-kumuliert"
                 }
             ]
         },
@@ -336,8 +319,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-absolut",
-                    "questionOrder": "fixed"
+                    "sammlung": "umgebungen-absolut"
                 }
             ]
         },
@@ -348,8 +330,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-relativ",
-                    "questionOrder": "fixed"
+                    "sammlung": "umgebungen-relativ"
                 }
             ]
         },
@@ -360,8 +341,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "umgebungen-sigma",
-                    "questionOrder": "fixed"
+                    "sammlung": "umgebungen-sigma"
                 }
             ]
         },
@@ -372,8 +352,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-n-p-gegeben",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-n-p-gegeben"
                 }
             ]
         },
@@ -384,8 +363,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-n-mu-gegeben",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-n-mu-gegeben"
                 }
             ]
         },
@@ -396,8 +374,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-p-mu-gegeben",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-p-mu-gegeben"
                 }
             ]
         },
@@ -408,8 +385,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-p-sigma-gegeben",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-p-sigma-gegeben"
                 }
             ]
         },
@@ -420,8 +396,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "kennzahlen-mu-sigma-gegeben",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-mu-sigma-gegeben"
                 }
             ]
         },
@@ -432,8 +407,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "binomialverteilung",
-                    "sammlung": "interpretation-parameter",
-                    "questionOrder": "fixed"
+                    "sammlung": "interpretation-parameter"
                 }
             ]
         },
@@ -444,8 +418,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "hypothesenergebnis-linksseitig",
-                    "questionOrder": "fixed"
+                    "sammlung": "hypothesenergebnis-linksseitig"
                 }
             ]
         },
@@ -456,8 +429,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "hypothesenergebnis-rechtsseitig",
-                    "questionOrder": "fixed"
+                    "sammlung": "hypothesenergebnis-rechtsseitig"
                 }
             ]
         },
@@ -468,8 +440,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "ablehnungsbereich-linksseitig-mit-struktur",
-                    "questionOrder": "fixed"
+                    "sammlung": "ablehnungsbereich-linksseitig-mit-struktur"
                 }
             ]
         },
@@ -480,8 +451,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "ablehnungsbereich-rechtsseitig-mit-struktur",
-                    "questionOrder": "fixed"
+                    "sammlung": "ablehnungsbereich-rechtsseitig-mit-struktur"
                 }
             ]
         },
@@ -492,8 +462,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "ablehnungsbereich-linksseitig-ohne-struktur",
-                    "questionOrder": "fixed"
+                    "sammlung": "ablehnungsbereich-linksseitig-ohne-struktur"
                 }
             ]
         },
@@ -504,8 +473,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "hypothesentests",
-                    "sammlung": "ablehnungsbereich-rechtsseitig-ohne-struktur",
-                    "questionOrder": "fixed"
+                    "sammlung": "ablehnungsbereich-rechtsseitig-ohne-struktur"
                 }
             ]
         },
@@ -516,8 +484,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var1",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var1"
                 }
             ]
         },
@@ -528,8 +495,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var2",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var2"
                 }
             ]
         },
@@ -540,8 +506,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var3",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-erstellen-ohneUnabh-var3"
                 }
             ]
         },
@@ -552,8 +517,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-folgern-ohneUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-folgern-ohneUnabh"
                 }
             ]
         },
@@ -564,8 +528,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "baumdiagramm-erstellen-mitUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-erstellen-mitUnabh"
                 }
             ]
         },
@@ -576,8 +539,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "baumdiagramm-folgern-mitUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-folgern-mitUnabh"
                 }
             ]
         },
@@ -588,8 +550,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-komplex-var1",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-komplex-var1"
                 }
             ]
         },
@@ -600,8 +561,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "mehrstufige-zufallsexperimente",
-                    "sammlung": "baumdiagramm-komplex-var2",
-                    "questionOrder": "fixed"
+                    "sammlung": "baumdiagramm-komplex-var2"
                 }
             ]
         },
@@ -612,8 +572,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "vierfelder-erstellen-ohneUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "vierfelder-erstellen-ohneUnabh"
                 }
             ]
         },
@@ -624,8 +583,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "vierfelder-erstellen-mitUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "vierfelder-erstellen-mitUnabh"
                 }
             ]
         },
@@ -636,8 +594,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "vierfelder-folgern-ohneUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "vierfelder-folgern-ohneUnabh"
                 }
             ]
         },
@@ -648,8 +605,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "vierfelder-folgern-mitUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "vierfelder-folgern-mitUnabh"
                 }
             ]
         },
@@ -660,8 +616,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-                    "sammlung": "interpretationen-ohneBedingt",
-                    "questionOrder": "fixed"
+                    "sammlung": "interpretationen-ohneBedingt"
                 }
             ]
         },
@@ -672,8 +627,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "interpretationen-mitBedingt",
-                    "questionOrder": "fixed"
+                    "sammlung": "interpretationen-mitBedingt"
                 }
             ]
         },
@@ -684,8 +638,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "ohne-struktur-ohneInfoUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "ohne-struktur-ohneInfoUnabh"
                 }
             ]
         },
@@ -696,8 +649,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "bedingte-wahrscheinlichkeiten",
-                    "sammlung": "ohne-struktur-mitInfoUnabh",
-                    "questionOrder": "fixed"
+                    "sammlung": "ohne-struktur-mitInfoUnabh"
                 }
             ]
         },
@@ -708,8 +660,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-vergleich",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-vergleich"
                 }
             ]
         },
@@ -720,8 +671,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-fehlende-wsk",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-fehlende-wsk"
                 }
             ]
         },
@@ -732,8 +682,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-erwartungswert",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-erwartungswert"
                 }
             ]
         },
@@ -744,8 +693,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-standardabweichung",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-standardabweichung"
                 }
             ]
         },
@@ -756,8 +704,7 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-fehlender-wert",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-fehlender-wert"
                 }
             ]
         },
@@ -768,10 +715,121 @@
                 {
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-fehlende-wsk-zwei",
-                    "questionOrder": "fixed"
+                    "sammlung": "kennzahlen-fehlende-wsk-zwei"
                 }
             ]
+        }
+    ],
+    "static": [
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ertragsgesetzliche-kostenfunktionen",
+            "sammlung": "nachweis"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ertragsgesetzliche-kostenfunktionen",
+            "sammlung": "nachweis-parameter"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ertragsgesetzliche-kostenfunktionen",
+            "sammlung": "kennzahlen-definition"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ertragsgesetzliche-kostenfunktionen",
+            "sammlung": "kennzahlen-ansatz"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ganzrationale-oekonomische-funktionen",
+            "sammlung": "kennzahlen-definition"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "ganzrationale-oekonomische-funktionen",
+            "sammlung": "kennzahlen-ansatz"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "marktgleichgewicht-grundlagen",
+            "sammlung": "kennzahlen-definition"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "bedingte-wahrscheinlichkeiten",
+            "sammlung": "venn-mitBedingt"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "binomialverteilung",
+            "sammlung": "pruefung-binomial"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "mengenoperationen"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "grundbegriffe-zufallsexperiment"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "laplace"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsgroessen",
+            "sammlung": "interpretationen"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsgroessen",
+            "sammlung": "aufstellen-wkt-verteilung"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "produktlebenszyklus",
+            "sammlung": "ekg-zyklus-gemischt"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "produktlebenszyklus",
+            "sammlung": "integrale-gemischt"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "produktlebenszyklus",
+            "sammlung": "kennzahlen-graphisch-ableitung"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "produktlebenszyklus",
+            "sammlung": "kennzahlen-graphisch-umsatz"
+        },
+        {
+            "gebiet": "analysis",
+            "lernbereich": "produktlebenszyklus",
+            "sammlung": "kennzahlen-rechnerisch-gesamt"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "absolute-haeufigkeiten"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "sylvester"
+        },
+        {
+            "gebiet": "stochastik",
+            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+            "sammlung": "venn-ohneBedingt"
         }
     ]
 }

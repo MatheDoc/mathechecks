@@ -31,25 +31,25 @@ function zeichneBaumdiagramm(
   // Kanten mit Labels (je nach symbol=true/false)
   const edges = symbol
     ? [
-        { from: nodes[0], to: nodes[1], label: "P(A)" },
-        { from: nodes[0], to: nodes[2], label: "P(A\u0305)" },
-        { from: nodes[1], to: nodes[3], label: "P<sub>A</sub>(B)" },
-        { from: nodes[1], to: nodes[4], label: "P<sub>A</sub>(B\u0305)" },
-        { from: nodes[2], to: nodes[5], label: "P<sub>A\u0305</sub>(B)" },
-        {
-          from: nodes[2],
-          to: nodes[6],
-          label: "P<sub>A\u0305</sub>(B\u0305)",
-        },
-      ]
+      { from: nodes[0], to: nodes[1], label: "P(A)" },
+      { from: nodes[0], to: nodes[2], label: "P(A\u0305)" },
+      { from: nodes[1], to: nodes[3], label: "P<sub>A</sub>(B)" },
+      { from: nodes[1], to: nodes[4], label: "P<sub>A</sub>(B\u0305)" },
+      { from: nodes[2], to: nodes[5], label: "P<sub>A\u0305</sub>(B)" },
+      {
+        from: nodes[2],
+        to: nodes[6],
+        label: "P<sub>A\u0305</sub>(B\u0305)",
+      },
+    ]
     : [
-        { from: nodes[0], to: nodes[1], label: `${pa.toFixed(4)}` },
-        { from: nodes[0], to: nodes[2], label: `${(1 - pa).toFixed(4)}` },
-        { from: nodes[1], to: nodes[3], label: `${pba.toFixed(4)}` },
-        { from: nodes[1], to: nodes[4], label: `${(1 - pba).toFixed(4)}` },
-        { from: nodes[2], to: nodes[5], label: `${pbna.toFixed(4)}` },
-        { from: nodes[2], to: nodes[6], label: `${(1 - pbna).toFixed(4)}` },
-      ];
+      { from: nodes[0], to: nodes[1], label: `${pa.toFixed(4)}` },
+      { from: nodes[0], to: nodes[2], label: `${(1 - pa).toFixed(4)}` },
+      { from: nodes[1], to: nodes[3], label: `${pba.toFixed(4)}` },
+      { from: nodes[1], to: nodes[4], label: `${(1 - pba).toFixed(4)}` },
+      { from: nodes[2], to: nodes[5], label: `${pbna.toFixed(4)}` },
+      { from: nodes[2], to: nodes[6], label: `${(1 - pbna).toFixed(4)}` },
+    ];
 
   // Wahrscheinlichkeiten an den Enden
   const leafProbs = [
@@ -101,42 +101,42 @@ function zeichneBaumdiagramm(
 
   const leafLabels = symbol
     ? [
-        {
-          x: nodes[3].x + 0.25,
-          y: nodes[3].y,
-          text: "P(A ∩ B)",
-          showarrow: false,
-          font: { size: 15 },
-        },
-        {
-          x: nodes[4].x + 0.25,
-          y: nodes[4].y,
-          text: "P(A ∩ B̅)",
-          showarrow: false,
-          font: { size: 15 },
-        },
-        {
-          x: nodes[5].x + 0.25,
-          y: nodes[5].y,
-          text: "P(Ā ∩ B)",
-          showarrow: false,
-          font: { size: 15 },
-        },
-        {
-          x: nodes[6].x + 0.25,
-          y: nodes[6].y,
-          text: "P(Ā ∩ B̅)",
-          showarrow: false,
-          font: { size: 15 },
-        },
-      ]
-    : leafProbs.map((lp) => ({
-        x: lp.node.x + 0.25,
-        y: lp.node.y,
-        text: `${lp.prob.toFixed(4)}`,
+      {
+        x: nodes[3].x + 0.25,
+        y: nodes[3].y,
+        text: "P(A ∩ B)",
         showarrow: false,
         font: { size: 15 },
-      }));
+      },
+      {
+        x: nodes[4].x + 0.25,
+        y: nodes[4].y,
+        text: "P(A ∩ B̅)",
+        showarrow: false,
+        font: { size: 15 },
+      },
+      {
+        x: nodes[5].x + 0.25,
+        y: nodes[5].y,
+        text: "P(Ā ∩ B)",
+        showarrow: false,
+        font: { size: 15 },
+      },
+      {
+        x: nodes[6].x + 0.25,
+        y: nodes[6].y,
+        text: "P(Ā ∩ B̅)",
+        showarrow: false,
+        font: { size: 15 },
+      },
+    ]
+    : leafProbs.map((lp) => ({
+      x: lp.node.x + 0.25,
+      y: lp.node.y,
+      text: `${lp.prob.toFixed(4)}`,
+      showarrow: false,
+      font: { size: 15 },
+    }));
 
   // Knoten
   const nodeTrace = {
@@ -174,6 +174,7 @@ function zeichneBaumdiagramm(
 
   const config = {
     scrollZoom: false,
+    staticPlot: true,
     responsive: true,
   };
 

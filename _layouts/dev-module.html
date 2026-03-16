@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% include dev/head.html %}
+    {% include mathjax.html %}
+    <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    {% if page.module_key == 'skript' %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
+    {% endif %}
+</head>
+
+<body
+    class="{{ page.body_class | default: 'page-module-designs' }}{% if page.module_key == 'skript' %} page-skript-md{% endif %}"
+    data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
+    data-module-key="{{ page.module_key | default: '' | escape }}">
+    <div class="shell">
+        {% include dev/topbar.html %}
+        <div class="designs-body">
+            {% include dev/moduletypen/sidebar.html %}
+            <div class="mod-main">
+                {% include dev/moduletypen/nav.html %}
+                <main class="mod-content">
+                    {{ content }}
+                </main>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script type="module" src="{{ '/dev/assets/js/app.js' | relative_url }}"></script>
+    {% include dev/theme-script.html %}
+    {{ page.after_scripts }}
+</body>
+
+</html>

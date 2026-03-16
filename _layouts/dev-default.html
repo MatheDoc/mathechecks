@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    {% include dev/head.html %}
+    {% include mathjax.html %}
+</head>
+
+<body class="page-dev-default {{ page.body_class | default: 'page-dashboard' }}">
+    <div class="shell">
+        {% include dev/topbar.html %}
+        <main class="dev-default-main">
+            {{ content }}
+        </main>
+    </div>
+    {% include dev/theme-script.html %}
+    {{ page.after_scripts }}
+</body>
+
+</html>

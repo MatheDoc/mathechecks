@@ -58,7 +58,6 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                     _num_tol(x_wende, 0.5),
                 ),
             ]
-            rng.shuffle(items)
 
             intro = (
                 "Das Diagramm zeigt die Grenzkosten-, Stückkosten- und variable "

@@ -1,0 +1,1253 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modul-Designs – MatheChecks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  
+</head>
+
+<body class="page-module-designs">
+  <div class="designs-shell">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <div class="brand">
+          <div class="logo">M</div>
+          <div class="brand-text">
+            <h1>MatheChecks</h1>
+            <p>Lernplattform</p>
+          </div>
+        </div>
+        <span class="page-context">Lernbereich</span>
+        <div class="lb-row">
+          <select class="lb-switch" aria-label="Lernbereich auswählen">
+            <option selected>Differenzialrechnung</option>
+            <option>Lineare Funktionen</option>
+            <option>Ganzrationale Funktionen</option>
+            <option>Wendepunkte und Krümmung</option>
+            <option>Binomialverteilung</option>
+            <option>Bedingte Wahrscheinlichkeiten</option>
+            <option>Lineare Gleichungssysteme</option>
+          </select>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <nav class="nav-pills" aria-label="Hauptnavigation">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="material.html">Material</a>
+        </nav>
+        <button class="theme-toggle" id="themeToggle" title="Light / Dark Mode" type="button">
+          <span class="theme-toggle-icon moon">🌙</span>
+          <span class="theme-toggle-icon sun">☀️</span>
+        </button>
+        <div class="avatar" title="Anmelden">S</div>
+      </div>
+    </header>
+
+    <div class="designs-body">
+
+    <!-- ════════ Feed Sidebar (collapsible) ════════ -->
+    <aside class="feed-sidebar" id="feedSidebar">
+      <div class="sidebar-brand">
+        <button class="sidebar-toggle" id="sidebarToggle" title="Aktionsfeed aus-/einblenden"
+          aria-label="Aktionsfeed aus-/einblenden" aria-expanded="true">&#8249;</button>
+      </div>
+      <div class="sidebar-body">
+        <ul class="action-list">
+          <li class="action-card action-featured" data-type="training" style="cursor:default;">
+            <div class="action-icon action-icon-featured"
+              style="background:linear-gradient(135deg,var(--rose),var(--accent));color:#fff;">🏋️</div>
+            <div class="action-body">
+              <div class="action-title">Extremstellen</div>
+              <div class="action-badges">
+                <span class="action-badge type-training">Training</span>
+                <span class="action-badge">jetzt fällig</span>
+              </div>
+            </div>
+          </li>
+          <li class="action-card" data-type="training">
+            <div class="action-icon" style="background:var(--rose-soft);color:var(--rose);">🏋️</div>
+            <div class="action-body">
+              <div class="action-title">Wendepunkte</div>
+              <div class="action-badges"><span class="action-badge type-training">Training</span><span
+                  class="action-badge">morgen</span></div>
+            </div>
+            <span class="action-arrow">›</span>
+          </li>
+          <li class="action-card" data-type="flashcards">
+            <div class="action-icon" style="background:var(--teal-soft);color:var(--teal);">💭</div>
+            <div class="action-body">
+              <div class="action-title">Monotonie</div>
+              <div class="action-badges"><span class="action-badge type-flashcards">Blurting</span><span
+                  class="action-badge">in 2 Tagen</span></div>
+            </div>
+            <span class="action-arrow">›</span>
+          </li>
+          <li class="action-card" data-type="quiz">
+            <div class="action-icon" style="background:rgba(167,139,250,.1);color:#a78bfa;">🎓</div>
+            <div class="action-body">
+              <div class="action-title">Ableitungsregeln</div>
+              <div class="action-badges"><span class="action-badge"
+                  style="background:rgba(167,139,250,.1);color:#a78bfa;">Feynman</span><span class="action-badge">in 3
+                  Tagen</span></div>
+            </div>
+            <span class="action-arrow">›</span>
+          </li>
+          <li class="action-card" data-type="checkliste">
+            <div class="action-icon" style="background:var(--green-soft);color:var(--green);">☑️</div>
+            <div class="action-body">
+              <div class="action-title">Kompetenzliste</div>
+              <div class="action-badges"><span class="action-badge type-checkliste">Kompetenzliste</span><span
+                  class="action-badge">in 5 Tagen</span></div>
+            </div>
+            <span class="action-arrow">›</span>
+          </li>
+        </ul>
+      </div><!-- /sidebar-body -->
+    </aside><!-- /feed-sidebar -->
+
+    <!-- ════════ Rechte Spalte ════════ -->
+    <div class="mod-main">
+
+      <div class="mod-tab-nav" id="tabBar">
+        <button class="mod-tab active" data-mod="start"> <span class="tab-dot dot-start"></span>Start</button>
+        <button class="mod-tab" data-mod="quiz"> <span class="tab-dot dot-quiz"></span>Einstiegsquiz</button>
+        <button class="mod-tab" data-mod="kompetenz"> <span class="tab-dot dot-kl"></span>Kompetenzliste</button>
+        <button class="mod-tab" data-mod="training"> <span class="tab-dot dot-training"></span>Training</button>
+        <button class="mod-tab" data-mod="blurting"> <span class="tab-dot dot-blurt"></span>Blurting</button>
+        <button class="mod-tab" data-mod="feynman"> <span class="tab-dot dot-feynman"></span>Feynman</button>
+        <button class="mod-tab" data-mod="skript"> <span class="tab-dot dot-skript"></span>Skript</button>
+        <button class="mod-tab" data-mod="flashcards"> <span class="tab-dot dot-flash"></span>Flashcards</button>
+      </div>
+
+      <main class="mod-content">
+
+
+        <!-- ══════════════════════════════════════
+         START
+         ══════════════════════════════════════ -->
+        <div class="mod-panel active" id="panel-start">
+          <div class="page-shell w-wide">
+
+            <!-- Hero -->
+            <div class="s-hero">
+              <div class="s-hero-eyebrow">📐 Analysis · Lernbereich</div>
+              <h1>Differenzialrechnung</h1>
+              <p class="s-hero-desc">
+                Von den Grundregeln der Ableitung bis zur vollständigen Kurvendiskussion –
+                alle Werkzeuge, die du für die Analysis brauchst.
+              </p>
+              <div class="s-hero-actions">
+                <button class="hero-go">Weiter lernen →</button>
+                <button class="btn-ghost">Kompetenzliste ansehen</button>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div style="margin-bottom:8px" class="sect-label">Fortschritt</div>
+            <div class="s-stats">
+              <div class="s-stat c-accent">
+                <div class="s-stat-val">5</div>
+                <div class="s-stat-lbl">Checks gesamt</div>
+              </div>
+              <div class="s-stat c-green">
+                <div class="s-stat-val">2</div>
+                <div class="s-stat-lbl">Abgeschlossen</div>
+              </div>
+              <div class="s-stat c-teal">
+                <div class="s-stat-val">2</div>
+                <div class="s-stat-lbl">In Bearbeitung</div>
+              </div>
+              <div class="s-stat c-amber">
+                <div class="s-stat-val">40&thinsp;%</div>
+                <div class="s-stat-lbl">Gesamtfortschritt</div>
+              </div>
+            </div>
+
+            <!-- Module tiles -->
+            <div style="margin-bottom:8px" class="sect-label">Module</div>
+            <div class="s-mods">
+              <div class="s-mod s-done">
+                <div class="s-mod-icon">📝</div>
+                <div class="s-mod-name">Einstiegsquiz</div>
+                <div class="s-mod-desc">Vorwissen testen, in den Lernbereich einsteigen</div>
+                <div class="s-mod-badge done">✓ erledigt</div>
+              </div>
+              <div class="s-mod s-done">
+                <div class="s-mod-icon">☑️</div>
+                <div class="s-mod-name">Kompetenzliste</div>
+                <div class="s-mod-desc">Alle 5 Lernziele im Überblick</div>
+                <div class="s-mod-badge done">2 / 5 abgeschl.</div>
+              </div>
+              <div class="s-mod s-next">
+                <div class="s-mod-icon">🏋️</div>
+                <div class="s-mod-name">Training</div>
+                <div class="s-mod-desc">Interaktive Aufgaben mit Feedback</div>
+                <div class="s-mod-badge next">→ Nächste Aktion</div>
+              </div>
+              <div class="s-mod">
+                <div class="s-mod-icon">💭</div>
+                <div class="s-mod-name">Blurting</div>
+                <div class="s-mod-desc">Begriffe aktiv abrufen</div>
+                <div class="s-mod-badge locked">⏳ morgen fällig</div>
+              </div>
+              <div class="s-mod">
+                <div class="s-mod-icon">🎓</div>
+                <div class="s-mod-name">Feynman</div>
+                <div class="s-mod-desc">Methoden selbst erklären</div>
+                <div class="s-mod-badge locked">🔒 gesperrt</div>
+              </div>
+              <div class="s-mod">
+                <div class="s-mod-icon">📖</div>
+                <div class="s-mod-name">Skript</div>
+                <div class="s-mod-desc">Inhalte nachlesen und vertiefen</div>
+                <div class="s-mod-badge">immer verfügbar</div>
+              </div>
+              <div class="s-mod">
+                <div class="s-mod-icon">🃏</div>
+                <div class="s-mod-name">Flashcards</div>
+                <div class="s-mod-desc">Begriffe per Spaced Repetition wiederholen</div>
+                <div class="s-mod-badge locked">🔒 gesperrt</div>
+              </div>
+            </div>
+
+            <!-- Export -->
+            <div class="sect-label">Export</div>
+            <div class="s-export">
+              <span class="s-export-lbl">Lernmaterialien exportieren</span>
+              <button class="btn-ghost">⬇ Moodle-Paket</button>
+              <button class="btn-ghost">⬇ Anki-Deck</button>
+              <button class="btn-ghost">⬇ PDF Klausur</button>
+            </div>
+
+          </div>
+        </div><!-- /panel-start -->
+
+
+        <!-- ══════════════════════════════════════
+         EINSTIEGSQUIZ
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-quiz">
+          <div class="page-shell w-narrow">
+
+            <!-- Progress steps -->
+            <div class="qz-steps">
+              <div class="qz-step done"></div>
+              <div class="qz-step active"></div>
+              <div class="qz-step"></div>
+              <div class="qz-step"></div>
+            </div>
+
+            <!-- Sub: Frage -->
+            <div class="sub active" id="quiz-frage">
+              <div class="qz-card">
+                <div class="qz-num">Frage 2 von 4</div>
+                <p class="qz-text">
+                  An einer Stelle x₀ gilt f′(x₀) = 0. Was können wir darüber sagen?
+                </p>
+                <div class="qz-options">
+                  <button class="qz-opt">
+                    <span class="qz-mark">A</span>
+                    f hat an der Stelle x₀ immer einen Extrempunkt.
+                  </button>
+                  <button class="qz-opt">
+                    <span class="qz-mark">B</span>
+                    f hat an der Stelle x₀ auf jeden Fall ein Minimum.
+                  </button>
+                  <button class="qz-opt">
+                    <span class="qz-mark">C</span>
+                    x₀ ist eine notwendige, aber nicht hinreichende Bedingung für einen Extrempunkt.
+                  </button>
+                  <button class="qz-opt">
+                    <span class="qz-mark">D</span>
+                    Die Funktion ist an der Stelle x₀ nicht definiert.
+                  </button>
+                </div>
+                <div class="qz-nav">
+                  <span class="qz-nav-lbl">Wähle eine Antwort</span>
+                  <button class="btn-ghost" style="opacity:.4;cursor:not-allowed">Weiter →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Antwort + Erklärung -->
+            <div class="sub" id="quiz-antwort">
+              <div class="qz-card">
+                <div class="qz-num">Frage 2 von 4</div>
+                <p class="qz-text">
+                  An einer Stelle x₀ gilt f′(x₀) = 0. Was können wir darüber sagen?
+                </p>
+                <div class="qz-options">
+                  <button class="qz-opt wrong">
+                    <span class="qz-mark">✗</span>
+                    f hat an der Stelle x₀ immer einen Extrempunkt.
+                  </button>
+                  <button class="qz-opt">
+                    <span class="qz-mark">B</span>
+                    f hat an der Stelle x₀ auf jeden Fall ein Minimum.
+                  </button>
+                  <button class="qz-opt correct">
+                    <span class="qz-mark">✓</span>
+                    x₀ ist eine notwendige, aber nicht hinreichende Bedingung für einen Extrempunkt.
+                  </button>
+                  <button class="qz-opt selected">
+                    <span class="qz-mark">D</span>
+                    Die Funktion ist an der Stelle x₀ nicht definiert.
+                  </button>
+                </div>
+
+                <!-- Vorausschauende Erklärung -->
+                <div class="qz-exp">
+                  <div class="qz-exp-head">
+                    <span>💡</span> Vorausschauende Erklärung
+                  </div>
+                  <p class="qz-exp-text">
+                    f′(x₀) = 0 bedeutet: die Tangente an dieser Stelle ist waagerecht – das ist
+                    <strong>notwendig</strong> für einen Extrempunkt, aber nicht hinreichend.
+                    Auch Sattelpunkte erfüllen diese Bedingung.
+                    Im Lernbereich wirst du sehen, wie die <strong>hinreichende Bedingung</strong>
+                    (Vorzeichenwechsel von f′ oder f″(x₀) ≠ 0) den Unterschied macht.
+                  </p>
+                </div>
+
+                <div class="qz-nav">
+                  <span class="qz-nav-lbl">Frage 2 von 4</span>
+                  <button class="btn-primary">Weiter →</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /panel-quiz -->
+
+
+        <!-- ══════════════════════════════════════
+         KOMPETENZLISTE
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-kompetenz">
+          <div class="page-shell w-mid">
+
+            <!-- Intro -->
+            <div class="kl-intro">
+              <div class="kl-intro-text">
+                <h3>Differenzialrechnung – Lernziele</h3>
+                <p>Markiere einen Check als abgeschlossen, sobald du dir sicher bist
+                  und 3 fehlerfreie Trainingsabschlüsse erzielt hast.</p>
+              </div>
+              <div class="kl-overall">
+                <div class="kl-pct">40<span style="font-size:1rem">%</span></div>
+                <div class="kl-pct-lbl">Fortschritt</div>
+              </div>
+            </div>
+
+            <!-- Checks -->
+            <div class="kl-list">
+
+              <!-- Check 1: abgeschlossen -->
+              <div class="kl-row kl-done">
+                <div>
+                  <div class="kl-row-meta">
+                    <span class="kl-idx">1</span>
+                    <span class="kl-check-name">Ableitungsregeln</span>
+                  </div>
+                  <div class="kl-kompetenz">Ich kann Ableitungen mit Produkt-, Quotienten- und Kettenregel berechnen.
+                  </div>
+                  <div class="kl-bar">
+                    <div class="kl-bar-fill green" style="width:100%"></div>
+                  </div>
+                </div>
+                <div class="kl-actions">
+                  <span class="kl-status done">✓ abgeschlossen</span>
+                  <button class="kl-mark-btn marked">✓ abgeschlossen</button>
+                </div>
+              </div>
+
+              <!-- Check 2: abgeschlossen -->
+              <div class="kl-row kl-done">
+                <div>
+                  <div class="kl-row-meta">
+                    <span class="kl-idx">2</span>
+                    <span class="kl-check-name">Monotonieverhalten</span>
+                  </div>
+                  <div class="kl-kompetenz">Ich kann Monotoniebereiche einer Funktion bestimmen und begründen.</div>
+                  <div class="kl-bar">
+                    <div class="kl-bar-fill green" style="width:100%"></div>
+                  </div>
+                </div>
+                <div class="kl-actions">
+                  <span class="kl-status done">✓ abgeschlossen</span>
+                  <button class="kl-mark-btn marked">✓ abgeschlossen</button>
+                </div>
+              </div>
+
+              <!-- Check 3: fast fertig (Markierung möglich) -->
+              <div class="kl-row kl-almost">
+                <div>
+                  <div class="kl-row-meta">
+                    <span class="kl-idx">3</span>
+                    <span class="kl-check-name">Extremstellen</span>
+                  </div>
+                  <div class="kl-kompetenz">Ich kann Extremstellen berechnen und zwischen Hoch-, Tief- und Sattelpunkten
+                    unterscheiden.</div>
+                  <div class="kl-bar">
+                    <div class="kl-bar-fill teal" style="width:90%"></div>
+                  </div>
+                  <div class="kl-hint">3 automatisierte Trainingsabschlüsse erreicht – Markierung freigegeben.</div>
+                </div>
+                <div class="kl-actions">
+                  <span class="kl-status almost">⬤ freigegeben</span>
+                  <button class="kl-mark-btn off">Als abgeschlossen markieren</button>
+                </div>
+              </div>
+
+              <!-- Check 4: in Bearbeitung -->
+              <div class="kl-row">
+                <div>
+                  <div class="kl-row-meta">
+                    <span class="kl-idx">4</span>
+                    <span class="kl-check-name">Wendepunkte</span>
+                  </div>
+                  <div class="kl-kompetenz">Ich kann Wendepunkte und Krümmungsverhalten einer Funktion bestimmen.</div>
+                  <div class="kl-bar">
+                    <div class="kl-bar-fill accent" style="width:65%"></div>
+                  </div>
+                  <div class="kl-hint warn">⚠ Noch 1 automatisierter Trainingsabschluss nötig.</div>
+                </div>
+                <div class="kl-actions">
+                  <span class="kl-status prog">⬤ in Bearbeitung</span>
+                  <button class="kl-mark-btn dis">Noch nicht markierbar</button>
+                </div>
+              </div>
+
+              <!-- Check 5: gesperrt -->
+              <div class="kl-row kl-locked">
+                <div>
+                  <div class="kl-row-meta">
+                    <span class="kl-idx">5</span>
+                    <span class="kl-check-name">Kurvendiskussion</span>
+                  </div>
+                  <div class="kl-kompetenz">Ich kann eine vollständige Kurvendiskussion strukturiert durchführen.</div>
+                  <div class="kl-bar">
+                    <div class="kl-bar-fill accent" style="width:0%"></div>
+                  </div>
+                  <div class="kl-hint">Noch nicht gestartet.</div>
+                </div>
+                <div class="kl-actions">
+                  <span class="kl-status locked">🔒 gesperrt</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div><!-- /panel-kompetenz -->
+
+
+        <!-- ══════════════════════════════════════
+         TRAINING
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-training">
+          <div class="page-shell w-narrow">
+
+            <!-- Sub: Frage -->
+            <div class="sub active" id="tr-frage">
+              <div class="tr-card">
+                <div class="tr-q-tag">Frage 3 von 4</div>
+                <p class="tr-q-text">Gegeben ist f(x) = x³ − 3x² + 2. Welche Aussage über die Extremstellen ist korrekt?
+                </p>
+                <div class="tr-q-ctx">f(x) = x³ − 3x² + 2
+                  f′(x) = 3x² − 6x = 3x(x − 2)</div>
+                <div class="tr-opts">
+                  <button class="tr-opt"><span class="tr-opt-key">A</span>f hat einen Hochpunkt bei x = 0 und einen
+                    Tiefpunkt bei x = 2.</button>
+                  <button class="tr-opt"><span class="tr-opt-key">B</span>f hat einen Tiefpunkt bei x = 0 und einen
+                    Hochpunkt bei x = 2.</button>
+                  <button class="tr-opt"><span class="tr-opt-key">C</span>f hat bei x = 0 und x = 2
+                    Sattelpunkte.</button>
+                  <button class="tr-opt"><span class="tr-opt-key">D</span>f hat keine Extremstellen.</button>
+                </div>
+              </div>
+              <div class="tr-footer">
+                <span class="tr-weiter-hint">Wähle eine Antwort – du kannst nach 3 richtigen Fragen weitermachen.</span>
+                <button class="btn-ghost">Lösung anzeigen</button>
+              </div>
+            </div>
+
+            <!-- Sub: Falsch -->
+            <div class="sub" id="tr-falsch">
+              <div class="tr-card fb-wrong">
+                <div class="tr-q-tag">Frage 3 von 4</div>
+                <p class="tr-q-text">Gegeben ist f(x) = x³ − 3x² + 2. Welche Aussage über die Extremstellen ist korrekt?
+                </p>
+                <div class="tr-q-ctx">f(x) = x³ − 3x² + 2
+                  f′(x) = 3x² − 6x = 3x(x − 2)</div>
+                <div class="tr-opts">
+                  <button class="tr-opt wrong"><span class="tr-opt-key">B</span>f hat einen Tiefpunkt bei x = 0 und
+                    einen Hochpunkt bei x = 2.</button>
+                  <button class="tr-opt correct"><span class="tr-opt-key">A</span>f hat einen Hochpunkt bei x = 0 und
+                    einen Tiefpunkt bei x = 2.</button>
+                </div>
+                <div class="tr-fb wrong">
+                  <span class="tr-fb-icon">✗</span>
+                  <div>
+                    <div class="tr-fb-title">Nicht ganz.</div>
+                    <div class="tr-fb-text">
+                      Prüfe das Vorzeichen von f′: Bei x = 0 wechselt f′ von + nach −, das ist ein
+                      <strong>Hochpunkt</strong>. Bei x = 2 wechselt f′ von − nach +, das ist ein
+                      <strong>Tiefpunkt</strong>.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tr-footer">
+                <span class="tr-weiter-hint">Diese Frage zählt noch nicht – versuch es nochmal oder geh weiter.</span>
+                <button class="btn-primary">Nächste Frage →</button>
+              </div>
+            </div>
+
+            <!-- Sub: Richtig -->
+            <div class="sub" id="tr-richtig">
+              <div class="tr-card fb-correct">
+                <div class="tr-q-tag">Frage 3 von 4</div>
+                <p class="tr-q-text">Gegeben ist f(x) = x³ − 3x² + 2. Welche Aussage über die Extremstellen ist korrekt?
+                </p>
+                <div class="tr-q-ctx">f(x) = x³ − 3x² + 2
+                  f′(x) = 3x² − 6x = 3x(x − 2)</div>
+                <div class="tr-opts">
+                  <button class="tr-opt correct"><span class="tr-opt-key">✓</span>f hat einen Hochpunkt bei x = 0 und
+                    einen Tiefpunkt bei x = 2.</button>
+                </div>
+                <div class="tr-fb correct">
+                  <span class="tr-fb-icon">✓</span>
+                  <div>
+                    <div class="tr-fb-title">Richtig!</div>
+                    <div class="tr-fb-text">
+                      Vorzeichenwechsel bei x = 0: + → −, Hochpunkt. Bei x = 2: − → +, Tiefpunkt.
+                      f(0) = 2 und f(2) = −2 sind die zugehörigen y-Werte.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tr-footer">
+                <span class="tr-weiter-hint">Noch 1 richtige Frage bis zum Trainingsabschluss.</span>
+                <button class="btn-primary">Nächste Frage →</button>
+              </div>
+            </div>
+
+            <!-- Manuell abschließen -->
+            <div style="text-align:center;margin-top:12px;">
+              <button class="btn-ghost" style="font-size:.75rem">Training manuell als abgeschlossen markieren</button>
+            </div>
+
+          </div>
+        </div><!-- /panel-training -->
+
+
+        <!-- ══════════════════════════════════════
+         BLURTING
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-blurting">
+          <div class="page-shell w-narrow">
+            <!-- Sub: Brainstorm -->
+            <div class="sub active" id="bl-brainstorm">
+              <div class="bl-card">
+                <div class="phase-badge teal">💭 Blurting</div>
+                <p
+                  style="font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">
+                  Begriff</p>
+                <h2 class="bl-concept">Extremstellen</h2>
+                <p class="bl-prompt">Schreib alles auf, was dir zu diesem Begriff einfällt – Definitionen, Formeln,
+                  Rechenregeln, Beispiele. Keine vollständigen Sätze nötig.</p>
+                <div class="bl-timer-row">
+                  <div class="bl-timer-ring">
+                    <svg width="50" height="50" viewBox="0 0 50 50">
+                      <circle class="bl-track" cx="25" cy="25" r="20" />
+                      <circle class="bl-arc" id="blArc" cx="25" cy="25" r="20" stroke-dasharray="125.66"
+                        stroke-dashoffset="31" />
+                    </svg>
+                    <span class="bl-timer-num" id="blNum">4:09</span>
+                  </div>
+                  <div class="bl-timer-info">
+                    <div class="bl-ti-t">Brainstorm-Zeit</div>
+                    <div class="bl-ti-s">Schreib alles auf – danach Selbstcheck</div>
+                  </div>
+                  <button class="bl-reveal-btn" onclick="setBlSub('reveal')">Jetzt auswerten</button>
+                </div>
+                <textarea class="bl-textarea"
+                  placeholder="z. B. f′(x) = 0 notwendige Bedingung · Vorzeichenwechsel f′ · f″(x₀) ≠ 0 hinreichend · Hoch-/Tiefpunkt · Sattelstelle …">f'(x) = 0 notwendige Bedingung
+Vorzeichenwechsel der Ableitung
+Hochpunkt → f' wechselt von + nach -</textarea>
+              </div>
+            </div>
+
+            <!-- Sub: Auswertung -->
+            <div class="sub" id="bl-reveal">
+              <div class="bl-card reveal">
+                <div class="phase-badge teal">👁 Auswertung</div>
+                <p
+                  style="font-size:.72rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px;">
+                  Begriff</p>
+                <h2 class="bl-concept">Extremstellen</h2>
+                <p class="bl-prompt">Vergleiche deine Notizen mit den Referenz-Stichwörtern.</p>
+                <div class="bl-divider">
+                  <hr><span>Referenz-Stichwörter</span>
+                  <hr>
+                </div>
+                <div class="sect-label">Kernbegriffe</div>
+                <div class="bl-kws">
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>notwendige Bedingung f′(x₀) = 0</span>
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>hinreichende Bedingung</span>
+                  <span class="bl-kw"><span class="bl-kwdot"></span>Vorzeichenwechsel f′</span>
+                  <span class="bl-kw"><span class="bl-kwdot"></span>f″(x₀) ≠ 0</span>
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>Hoch-/Tiefpunkt</span>
+                  <span class="bl-kw"><span class="bl-kwdot"></span>Sattelpunkt</span>
+                </div>
+                <div class="bl-divider">
+                  <hr><span>Selbsteinschätzung</span>
+                  <hr>
+                </div>
+                <p class="bl-selbst-lbl">Wie sicher bist du bei diesem Begriff?</p>
+                <div class="bl-selbst-btns">
+                  <button class="bl-sb yes" onclick="setBlSub('kann')">
+                    <span class="bl-sb-icon">✓</span>
+                    <span class="bl-sb-title">Kann ich</span>
+                    <span class="bl-sb-sub">Wesentliche Punkte getroffen</span>
+                  </button>
+                  <button class="bl-sb no" onclick="setBlSub('kn')">
+                    <span class="bl-sb-icon">↺</span>
+                    <span class="bl-sb-title">Noch nicht</span>
+                    <span class="bl-sb-sub">Nochmal ins Skript schauen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Kann ✓ -->
+            <div class="sub" id="bl-kann">
+              <div class="bl-card p-kann">
+                <div class="phase-badge green">✓ Abgeschlossen</div>
+                <div class="outcome">
+                  <div class="oc-icon green">✓</div>
+                  <h3 class="oc-title green">Super gemacht!</h3>
+                  <p class="oc-sub">Du hast <strong>Extremstellen</strong> sicher abgerufen. Dieser Check ist im
+                    Lernpfad weiter vorgerückt.</p>
+                  <button class="btn-primary" style="padding:13px 32px;font-size:.92rem;">Nächster Check →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Kann nicht ↺ -->
+            <div class="sub" id="bl-kn">
+              <div class="bl-card p-kn">
+                <div class="phase-badge amber">↺ Wiederholung nötig</div>
+                <div class="outcome">
+                  <div class="oc-icon amber">📖</div>
+                  <h3 class="oc-title amber">Kein Problem – schau nochmal ins Skript</h3>
+                  <p class="oc-sub">Lies den Abschnitt zu <strong>Extremstellen</strong> im Skript und versuche das
+                    Blurting dann erneut. Du kannst nach 10 Minuten wieder starten.</p>
+                  <a class="skript-link" href="#">
+                    📖 Skript: Extremstellen lesen
+                    <span style="margin-left:auto;font-size:.85rem;opacity:.6">↗</span>
+                  </a>
+                  <div class="cooldown-row">
+                    🕑 Erneut möglich in <span class="cooldown-pill">09:42</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /panel-blurting -->
+
+
+        <!-- ══════════════════════════════════════
+         FEYNMAN
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-feynman">
+          <div class="page-shell w-narrow">
+            <!-- Sub: Schreiben -->
+            <div class="sub active" id="fy-write">
+              <!-- Prompt -->
+              <div class="fy-prompt-card">
+                <div class="fy-prompt-head">
+                  <div class="fy-prompt-icon">🎓</div>
+                  <span class="fy-prompt-lbl">Feynman-Technik</span>
+                </div>
+                <p class="fy-prompt-text">
+                  Erkläre, wie man die Extremstellen einer Funktion bestimmt und
+                  zwischen Hoch-, Tief- und Sattelpunkten unterscheidet.
+                </p>
+                <p class="fy-prompt-hint">
+                  Stell dir vor, du erklärst das einem Mitschüler, der das Thema noch nicht kennt.
+                  Keine Fachbegriffe ohne Erklärung.
+                </p>
+              </div>
+
+              <div class="fy-card">
+                <div class="phase-badge violet">✍ Erkläre in eigenen Worten</div>
+
+                <!-- Timer -->
+                <div class="fy-timer-row">
+                  <div class="fy-ring">
+                    <svg width="50" height="50" viewBox="0 0 50 50">
+                      <circle class="fy-track" cx="25" cy="25" r="20" />
+                      <circle class="fy-arc" id="fyArc" cx="25" cy="25" r="20" stroke-dasharray="125.66"
+                        stroke-dashoffset="50" />
+                    </svg>
+                    <span class="fy-ring-num" id="fyNum">3:21</span>
+                  </div>
+                  <div>
+                    <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:2px;">Erklärungszeit
+                    </div>
+                    <div style="font-size:.72rem;color:var(--text-muted);">Schreib drauf los – du kannst danach
+                      einschätzen</div>
+                  </div>
+                </div>
+
+                <textarea class="fy-write"
+                  placeholder="Um Extremstellen zu finden, leitet man die Funktion ab und setzt f′(x) = 0. Man bekommt kandidaten für Extremstellen. Dann muss man prüfen ob wirklich ein Extrempunkt vorliegt …">Um Extremstellen zu finden, berechnet man zuerst die Ableitung f′(x) und löst f′(x) = 0. Die Lösungen heißen kritische Stellen.</textarea>
+
+                <div style="text-align:right;margin-top:8px;">
+                  <button class="bl-reveal-btn" onclick="setFySub('bewertung')">Selbsteinschätzung</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Selbsteinschätzung -->
+            <div class="sub" id="fy-bewertung">
+              <div class="fy-prompt-card">
+                <div class="fy-prompt-head">
+                  <div class="fy-prompt-icon">🎓</div>
+                  <span class="fy-prompt-lbl">Feynman-Technik</span>
+                </div>
+                <p class="fy-prompt-text">Erkläre, wie man die Extremstellen einer Funktion bestimmt …</p>
+              </div>
+              <div class="fy-card">
+                <div class="phase-badge violet">📋 Selbsteinschätzung</div>
+                <p style="font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:18px;">
+                  Überprüfe deine Erklärung: Hast du die wesentlichen Schritte und Begriffe abgedeckt?
+                </p>
+                <div class="bl-kws" style="margin-bottom:22px;">
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>f′(x) = 0 als Ausgangspunkt</span>
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>hinreichende Bedingung erklärt</span>
+                  <span class="bl-kw"><span class="bl-kwdot"></span>Sattelpunkt erwähnt</span>
+                  <span class="bl-kw hit"><span class="bl-kwdot"></span>Unterschied Hoch-/Tiefpunkt</span>
+                </div>
+                <p class="bl-selbst-lbl">Wie vollständig war deine Erklärung?</p>
+                <div class="bl-selbst-btns">
+                  <button class="bl-sb yes" onclick="setFySub('kann')">
+                    <span class="bl-sb-icon">✓</span>
+                    <span class="bl-sb-title">Kann ich erklären</span>
+                    <span class="bl-sb-sub">Ich hätte es einem Mitschüler klar gemacht</span>
+                  </button>
+                  <button class="bl-sb no" onclick="setFySub('kn')">
+                    <span class="bl-sb-icon">↺</span>
+                    <span class="bl-sb-title">Noch Lücken</span>
+                    <span class="bl-sb-sub">Ich brauche nochmal das Skript</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Kann ✓ -->
+            <div class="sub" id="fy-kann">
+              <div class="fy-prompt-card">
+                <div class="fy-prompt-head">
+                  <div class="fy-prompt-icon">🎓</div><span class="fy-prompt-lbl">Feynman-Technik</span>
+                </div>
+                <p class="fy-prompt-text">Erkläre, wie man die Extremstellen einer Funktion bestimmt …</p>
+              </div>
+              <div class="fy-card p-kann">
+                <div class="phase-badge green">✓ Verstanden</div>
+                <div class="outcome">
+                  <div class="oc-icon violet">🎓</div>
+                  <h3 class="oc-title violet">Sehr gut erklärt!</h3>
+                  <p class="oc-sub">Du hast <strong>Extremstellen</strong> in eigenen Worten erklären können. Das zeigt
+                    echtes Verständnis.</p>
+                  <button class="btn-primary" style="padding:13px 32px;font-size:.92rem;">Nächster Check →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub: Kann nicht ↺ -->
+            <div class="sub" id="fy-kn">
+              <div class="fy-prompt-card">
+                <div class="fy-prompt-head">
+                  <div class="fy-prompt-icon">🎓</div><span class="fy-prompt-lbl">Feynman-Technik</span>
+                </div>
+                <p class="fy-prompt-text">Erkläre, wie man die Extremstellen einer Funktion bestimmt …</p>
+              </div>
+              <div class="fy-card p-kn">
+                <div class="phase-badge amber">↺ Vertiefung nötig</div>
+                <div class="outcome">
+                  <div class="oc-icon amber">📖</div>
+                  <h3 class="oc-title amber">Schau nochmal ins Skript</h3>
+                  <p class="oc-sub">Lies dir den Abschnitt nochmal durch und versuche es dann erneut zu erklären. Nach
+                    10 Minuten kannst du neu starten.</p>
+                  <a class="skript-link" href="#">
+                    📖 Skript: Extremstellen lesen
+                    <span style="margin-left:auto;font-size:.85rem;opacity:.6">↗</span>
+                  </a>
+                  <div class="cooldown-row">
+                    🕑 Erneut möglich in <span class="cooldown-pill">09:42</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /panel-feynman -->
+
+
+        <!-- ══════════════════════════════════════
+         SKRIPT
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-skript">
+          <div class="page-shell w-wide">
+            <div class="sk-layout">
+
+              <!-- Content -->
+              <div class="sk-content">
+
+                <!-- Sub: Volltext -->
+                <div class="sub active" id="sk-full">
+
+                  <div class="sk-section">
+                    <h2 class="sk-h2">3. Extremstellen</h2>
+                    <p class="sk-text">
+                      Eine Funktion f besitzt an der Stelle x₀ eine Extremstelle, wenn f dort ein
+                      lokales Maximum oder Minimum annimmt. Um Extremstellen zu finden, untersucht man
+                      die erste Ableitung f′.
+                    </p>
+
+                    <div class="sk-box def">
+                      <div class="sk-box-lbl">Definition</div>
+                      <div class="sk-box-text">
+                        <strong>Notwendige Bedingung:</strong> Wenn f an der Stelle x₀ ein lokales Extremum hat und
+                        f an x₀ differenzierbar ist, dann gilt <span class="sk-math">f′(x₀) = 0</span>.
+                      </div>
+                    </div>
+
+                    <div class="sk-box thm">
+                      <div class="sk-box-lbl">Hinreichende Bedingung (Vorzeichenkriterium)</div>
+                      <div class="sk-box-text">
+                        Wenn f′(x₀) = 0 und f′ bei x₀ das Vorzeichen wechselt, dann hat f an x₀ ein Extremum:<br>
+                        <strong>+ → −</strong>: Hochpunkt &nbsp;|&nbsp; <strong>− → +</strong>: Tiefpunkt &nbsp;|&nbsp;
+                        <strong>kein Wechsel</strong>: Sattelpunkt
+                      </div>
+                    </div>
+
+                    <p class="sk-text">
+                      Alternativ kann man das <strong>zweite Ableitungskriterium</strong> nutzen:
+                      Wenn f′(x₀) = 0 und f″(x₀) &lt; 0, liegt ein Hochpunkt vor;
+                      bei f″(x₀) &gt; 0 ein Tiefpunkt. Bei f″(x₀) = 0 ist keine Aussage möglich.
+                    </p>
+                  </div>
+
+                  <!-- Worked example -->
+                  <div class="sk-example">
+                    <div class="sk-ex-head">
+                      <span class="sk-ex-title">Beispiel: f(x) = x³ − 3x² + 2</span>
+                      <span class="sk-ex-badge">Lernbeispiel</span>
+                    </div>
+                    <div class="sk-ex-steps">
+                      <div class="sk-step">
+                        <div class="sk-step-num">1</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Ableitung berechnen</div>
+                          <div class="sk-step-math">f′(x) = 3x² − 6x = 3x(x − 2)</div>
+                        </div>
+                      </div>
+                      <div class="sk-step">
+                        <div class="sk-step-num">2</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Notwendige Bedingung: f′(x) = 0</div>
+                          <div class="sk-step-math">3x(x − 2) = 0 &nbsp;→&nbsp; x₁ = 0, x₂ = 2</div>
+                        </div>
+                      </div>
+                      <div class="sk-step">
+                        <div class="sk-step-num">3</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Vorzeichentabelle von f′</div>
+                          <div class="sk-step-math">x &lt; 0: f′ &gt; 0 | 0 &lt; x &lt; 2: f′ &lt; 0 | x &gt; 2: f′ &gt;
+                            0</div>
+                        </div>
+                      </div>
+                      <div class="sk-step">
+                        <div class="sk-step-num">4</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Schluss: Extrempunkte</div>
+                          <div class="sk-step-math">HP: (0 | f(0)) = (0 | 2) &nbsp; TP: (2 | f(2)) = (2 | −2)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Info-Include -->
+                  <div class="sk-info-box">
+                    <span class="sk-info-icon">💡</span>
+                    <div class="sk-info-text">
+                      <strong>Zur Aufgabe 3:</strong> Genau diese Funktion kommt im Training vor.
+                      Wenn du dir unsicher bist, lies diesen Abschnitt nochmal durch –
+                      besonders den Punkt zur <a class="sk-info-link">Vorzeichentabelle</a>.
+                    </div>
+                  </div>
+
+                </div><!-- /sk-full -->
+
+                <!-- Sub: Fading-Beispiel -->
+                <div class="sub" id="sk-faded">
+
+                  <div class="sk-section">
+                    <h2 class="sk-h2">3. Extremstellen</h2>
+                    <p class="sk-text">Im nächsten Beispiel sind die letzten Schritte ausgeblendet. Versuche sie selbst
+                      zu erarbeiten, bevor du draufzeigst.</p>
+                  </div>
+
+                  <!-- Worked example with fading -->
+                  <div class="sk-example">
+                    <div class="sk-ex-head">
+                      <span class="sk-ex-title">Fading-Beispiel: f(x) = 2x³ − 9x² + 12x − 4</span>
+                      <span class="sk-ex-badge">Selbst erarbeiten</span>
+                    </div>
+                    <div class="sk-ex-steps">
+                      <div class="sk-step">
+                        <div class="sk-step-num">1</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Ableitung berechnen</div>
+                          <div class="sk-step-math">f′(x) = 6x² − 18x + 12 = 6(x² − 3x + 2)</div>
+                        </div>
+                      </div>
+                      <div class="sk-step">
+                        <div class="sk-step-num">2</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">f′(x) = 0 lösen</div>
+                          <div class="sk-step-math">6(x − 1)(x − 2) = 0 &nbsp;→&nbsp; x₁ = 1, x₂ = 2</div>
+                        </div>
+                      </div>
+                      <div class="sk-step faded" title="Zeigen">
+                        <div class="sk-step-num">3</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Vorzeichenwechsel prüfen</div>
+                          <div class="sk-step-math">x &lt; 1: f′ &gt; 0 | 1 &lt; x &lt; 2: f′ &lt; 0 | x &gt; 2: f′ &gt;
+                            0</div>
+                        </div>
+                      </div>
+                      <div class="sk-step faded" title="Zeigen">
+                        <div class="sk-step-num">4</div>
+                        <div class="sk-step-body">
+                          <div class="sk-step-desc">Extrempunkte bestimmen</div>
+                          <div class="sk-step-math">HP: (1 | 1) &nbsp;&nbsp; TP: (2 | 0)</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sk-fade-hint">
+                    👆 Die ausgeblendeten Schritte einblenden – drauf zeigen oder klicken
+                  </div>
+
+                </div><!-- /sk-faded -->
+
+              </div><!-- /sk-content -->
+            </div><!-- /sk-layout -->
+          </div>
+        </div><!-- /panel-skript -->
+
+
+        <!-- ══════════════════════════════════════
+         FLASHCARDS
+         ══════════════════════════════════════ -->
+        <div class="mod-panel" id="panel-flashcards">
+          <div class="page-shell w-card">
+            <!-- Progress (keine Zahl, nur Bar) -->
+            <div class="fc-progress" style="margin-bottom:24px;">
+              <div class="fc-prog-bar" style="height:4px;max-width:100%;">
+                <div class="fc-prog-fill" style="width:38%"></div>
+              </div>
+              <div class="fc-prog-lbl" style="margin-top:6px;">Fortschritt dieser Runde</div>
+            </div>
+
+            <!-- Sub: Vorderseite -->
+            <div class="sub active" id="fc-front">
+              <div class="fc-scene" onclick="setFcSub('back')">
+                <div class="fc-card" id="fcCard">
+                  <div class="fc-face front">
+                    <span class="fc-face-lbl">Begriff</span>
+                    <div class="fc-term">Notwendige Bedingung</div>
+                    <div class="fc-term-cat">Extremstellen · Analysis</div>
+                  </div>
+                  <div class="fc-face back">
+                    <span class="fc-face-lbl">Antwort</span>
+                    <div class="fc-answer">Damit f an x₀ ein lokales Extremum haben kann, muss gelten:</div>
+                    <div class="fc-formula">f ′(x₀) = 0</div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="fc-flip-hint">
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Karte umdrehen
+              </p>
+
+              <div class="fc-btns" style="opacity:.3;pointer-events:none;">
+                <button class="fc-btn yes">
+                  <span class="fc-btn-icon">✓</span>
+                  <span class="fc-btn-title">Gewusst</span>
+                  <span class="fc-btn-sub">Setze ich hinten an</span>
+                </button>
+                <button class="fc-btn no">
+                  <span class="fc-btn-icon">✗</span>
+                  <span class="fc-btn-title">Nicht gewusst</span>
+                  <span class="fc-btn-sub">Kommt nochmal</span>
+                </button>
+              </div>
+              <p style="text-align:center;font-size:.72rem;color:var(--text-muted);">Erst Karte umdrehen, dann
+                einschätzen</p>
+            </div>
+
+            <!-- Sub: Rückseite (nach Flip) -->
+            <div class="sub" id="fc-back">
+              <div class="fc-scene" onclick="setFcSub('front')">
+                <div class="fc-card flipped">
+                  <div class="fc-face front">
+                    <span class="fc-face-lbl">Begriff</span>
+                    <div class="fc-term">Notwendige Bedingung</div>
+                    <div class="fc-term-cat">Extremstellen · Analysis</div>
+                  </div>
+                  <div class="fc-face back">
+                    <span class="fc-face-lbl">Antwort</span>
+                    <div class="fc-answer">Damit f an x₀ ein lokales Extremum haben kann, muss gelten:</div>
+                    <div class="fc-formula">f ′(x₀) = 0</div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="fc-flip-hint">
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+                Zurückdrehen
+              </p>
+
+              <div class="fc-btns">
+                <button class="fc-btn yes" onclick="setFcSub('front')">
+                  <span class="fc-btn-icon">✓</span>
+                  <span class="fc-btn-title">Gewusst</span>
+                  <span class="fc-btn-sub">Nächste Karte</span>
+                </button>
+                <button class="fc-btn no" onclick="setFcSub('front')">
+                  <span class="fc-btn-icon">✗</span>
+                  <span class="fc-btn-title">Nicht gewusst</span>
+                  <span class="fc-btn-sub">Kommt nochmal</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div><!-- /panel-flashcards -->
+
+
+      </main><!-- /mod-content -->
+
+    </div><!-- /mod-main -->
+
+    </div><!-- /designs-body -->
+
+    <!-- ════════ DEV BAR ════════ -->
+    <div class="dev-bar" id="devBar">
+      <span class="dev-lbl">Demo</span>
+      <div id="devBtns" style="display:flex;gap:4px;flex-wrap:wrap;"></div>
+    </div>
+
+  </div><!-- /designs-shell -->
+
+
+  <script>
+
+    /* ── Config: Sub-States per Module ──────────────── */
+    const MODULE_SUBS = {
+      start: [],
+      quiz: [['Frage', 'quiz-frage'], ['Antwort + Erklärung', 'quiz-antwort']],
+      kompetenz: [],
+      training: [['Frage', 'tr-frage'], ['Falsch', 'tr-falsch'], ['Richtig', 'tr-richtig']],
+      blurting: [['Brainstorm', 'bl-brainstorm'], ['Auswertung', 'bl-reveal'], ['Kann ✓', 'bl-kann'], ['Kann nicht ↺', 'bl-kn']],
+      feynman: [['Schreiben', 'fy-write'], ['Selbsteinschätzung', 'fy-bewertung'], ['Kann ✓', 'fy-kann'], ['Kann nicht ↺', 'fy-kn']],
+      skript: [['Volltext', 'sk-full'], ['Fading-Bsp.', 'sk-faded']],
+      flashcards: [['Vorderseite', 'fc-front'], ['Rückseite', 'fc-back']],
+    };
+
+    const MOD_DOT_CLASS = {
+      start: 'dot-start', quiz: 'dot-quiz', kompetenz: 'dot-kl',
+      training: 'dot-training', blurting: 'dot-blurt', feynman: 'dot-feynman',
+      skript: 'dot-skript', flashcards: 'dot-flash',
+    };
+    const MOD_LABEL = {
+      start: 'Start', quiz: 'Einstiegsquiz', kompetenz: 'Kompetenzliste',
+      training: 'Training', blurting: 'Blurting', feynman: 'Feynman',
+      skript: 'Skript', flashcards: 'Flashcards',
+    };
+
+    let currentMod = 'start';
+
+    /* ── Tab Switching ──────────────────────────────── */
+    document.getElementById('tabBar').addEventListener('click', e => {
+      const btn = e.target.closest('[data-mod]');
+      if (!btn) return;
+      switchMod(btn.dataset.mod);
+    });
+
+    function switchMod(mod) {
+      // hide all panels
+      document.querySelectorAll('.mod-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.mod-tab').forEach(b => b.classList.remove('active'));
+
+      document.getElementById('panel-' + mod).classList.add('active');
+      document.querySelector(`[data-mod="${mod}"]`).classList.add('active');
+
+      currentMod = mod;
+      updateDevBar(mod);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ── Dev Bar ────────────────────────────────────── */
+    function updateDevBar(mod) {
+      const container = document.getElementById('devBtns');
+      container.innerHTML = '';
+      const subs = MODULE_SUBS[mod];
+      if (!subs || subs.length === 0) {
+        container.innerHTML = '<span style="font-size:.67rem;color:var(--text-muted);padding:4px 6px;">Keine Sub-States</span>';
+        return;
+      }
+      subs.forEach(([label, id], i) => {
+        const btn = document.createElement('button');
+        btn.textContent = label;
+        btn.dataset.subId = id;
+        btn.dataset.mod = mod;
+        if (i === 0) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          setSubState(mod, id);
+          container.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+        container.appendChild(btn);
+      });
+    }
+
+    function setSubState(mod, id) {
+      const panel = document.getElementById('panel-' + mod);
+      panel.querySelectorAll('.sub').forEach(s => s.classList.remove('active'));
+      const target = document.getElementById(id);
+      if (target) target.classList.add('active');
+    }
+
+    /* ── Module-internal setters (called inline) ────── */
+    function setBlSub(name) {
+      const map = { brainstorm: 'bl-brainstorm', reveal: 'bl-reveal', kann: 'bl-kann', kn: 'bl-kn' };
+      setSubState('blurting', map[name]);
+      syncDevBar('blurting', map[name]);
+    }
+    function setFySub(name) {
+      const map = { write: 'fy-write', bewertung: 'fy-bewertung', kann: 'fy-kann', kn: 'fy-kn' };
+      setSubState('feynman', map[name]);
+      syncDevBar('feynman', map[name]);
+    }
+    function setFcSub(name) {
+      const map = { front: 'fc-front', back: 'fc-back' };
+      setSubState('flashcards', map[name]);
+      syncDevBar('flashcards', map[name]);
+    }
+
+    function syncDevBar(mod, activeId) {
+      const btns = document.getElementById('devBtns').querySelectorAll('button');
+      btns.forEach(b => {
+        b.classList.toggle('active', b.dataset.subId === activeId);
+      });
+    }
+
+    /* ── Sidebar Toggle ─────────────────────────────── */
+    const feedSidebar = document.getElementById('feedSidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+
+    function syncSidebarToggleIcon() {
+      const isCollapsed = feedSidebar.classList.contains('collapsed');
+      sidebarToggle.textContent = isCollapsed ? '›' : '‹';
+      sidebarToggle.setAttribute('aria-expanded', String(!isCollapsed));
+      sidebarToggle.title = isCollapsed ? 'Aktionsfeed einblenden' : 'Aktionsfeed ausblenden';
+    }
+
+    sidebarToggle.addEventListener('click', function () {
+      feedSidebar.classList.toggle('collapsed');
+      syncSidebarToggleIcon();
+    });
+
+    syncSidebarToggleIcon();
+
+    /* ── Theme Toggle ───────────────────────────────── */
+    (function () {
+      const THEME_KEY = 'mathechecks-theme';
+      const toggle = document.getElementById('themeToggle');
+      if (localStorage.getItem(THEME_KEY) === 'light') {
+        document.documentElement.classList.add('light');
+        toggle.classList.add('active');
+      }
+      toggle.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light');
+        toggle.classList.toggle('active', isLight);
+        localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+      });
+    })();
+
+    /* ── Blurting Timer (visual demo) ──────────────── */
+    const BL_TOTAL = 300;
+    let blSeconds = 249; // start mid-run for demo
+    const blArc = document.getElementById('blArc');
+    const blNum = document.getElementById('blNum');
+    const BL_CIRC = 2 * Math.PI * 20;
+
+    function updateBlTimer() {
+      if (!document.getElementById('panel-blurting').classList.contains('active')) return;
+      const frac = blSeconds / BL_TOTAL;
+      blArc.style.strokeDashoffset = BL_CIRC * (1 - frac);
+      const m = Math.floor(blSeconds / 60);
+      const s = blSeconds % 60;
+      blNum.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      blArc.classList.toggle('warn', blSeconds <= 60 && blSeconds > 0);
+      if (blSeconds > 0) blSeconds--;
+    }
+    setInterval(updateBlTimer, 1000);
+
+    /* ── Feynman Timer (visual demo) ────────────────── */
+    const FY_TOTAL = 300;
+    let fySeconds = 201;
+    const fyArc = document.getElementById('fyArc');
+    const fyNum = document.getElementById('fyNum');
+    const FY_CIRC = 2 * Math.PI * 20;
+
+    function updateFyTimer() {
+      if (!document.getElementById('panel-feynman').classList.contains('active')) return;
+      const frac = fySeconds / FY_TOTAL;
+      fyArc.style.strokeDashoffset = FY_CIRC * (1 - frac);
+      const m = Math.floor(fySeconds / 60);
+      const s = fySeconds % 60;
+      fyNum.textContent = `${m}:${s.toString().padStart(2, '0')}`;
+      if (fySeconds > 0) fySeconds--;
+    }
+    setInterval(updateFyTimer, 1000);
+
+    /* ── Init ───────────────────────────────────────── */
+    updateDevBar('start');
+
+  </script>
+</body>
+
+</html>
+

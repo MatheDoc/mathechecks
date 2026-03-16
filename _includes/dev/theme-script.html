@@ -1,0 +1,102 @@
+<script>
+    (function () {
+        const root = document.documentElement;
+        const topbar = document.querySelector('.topbar');
+        if (!root || !topbar) return;
+
+        function syncModuleStickyTop() {
+            root.style.setProperty('--module-sticky-top', `${topbar.offsetHeight}px`);
+        }
+
+        syncModuleStickyTop();
+        window.addEventListener('resize', syncModuleStickyTop);
+    })();
+
+    (function () {
+        const THEME_KEY = 'mathechecks-theme';
+        const toggle = document.getElementById('themeToggle');
+        if (!toggle) return;
+
+        if (localStorage.getItem(THEME_KEY) === 'light') {
+            document.documentElement.classList.add('light');
+            toggle.classList.add('active');
+        }
+
+        toggle.addEventListener('click', () => {
+            const isLight = document.documentElement.classList.toggle('light');
+            toggle.classList.toggle('active', isLight);
+            localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+        });
+    })();
+
+    (function () {
+        const feedSidebar = document.getElementById('feedSidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        if (!feedSidebar || !sidebarToggle) return;
+
+        function syncSidebarToggle() {
+            const isCollapsed = feedSidebar.classList.contains('collapsed');
+            sidebarToggle.innerHTML = isCollapsed ? '&#8250;' : '&#8249;';
+            sidebarToggle.setAttribute('aria-expanded', String(!isCollapsed));
+            sidebarToggle.title = isCollapsed ? 'Aktionsfeed einblenden' : 'Aktionsfeed ausblenden';
+        }
+
+        sidebarToggle.addEventListener('click', function () {
+            feedSidebar.classList.toggle('collapsed');
+            syncSidebarToggle();
+        });
+
+        syncSidebarToggle();
+    })();
+
+    (function () {
+        const feedSidebar = document.getElementById('feedSidebar');
+        if (!feedSidebar) return;
+
+        const feedCards = Array.from(feedSidebar.querySelectorAll('.action-card[data-feed-slot]'));
+        if (feedCards.length === 0) return;
+
+        const searchParams = new URLSearchParams(window.location.search);
+        const lernbereich =
+            (typeof window.lernbereich === 'string' && window.lernbereich.trim()) ||
+            searchParams.get('lernbereich') ||
+            document.body?.dataset?.lernbereich ||
+            '';
+
+        if (!lernbereich) return;
+
+        fetch('/dev/checks.json')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('dev/checks.json konnte nicht geladen werden');
+                }
+                return response.json();
+            })
+            .then((entries) => {
+                if (!Array.isArray(entries)) return;
+
+                const checks = entries
+                    .filter((entry) => entry && entry.Lernbereich === lernbereich)
+                    .sort((a, b) => (Number(a.Nummer) || 0) - (Number(b.Nummer) || 0));
+
+                if (checks.length === 0) return;
+
+                feedCards.forEach((card, index) => {
+                    const titleNode = card.querySelector('.action-title');
+                    if (!titleNode) return;
+
+                    const slot = Number(card.dataset.feedSlot) || index + 1;
+                    const check = checks[slot - 1] || checks[index];
+                    if (!check) return;
+
+                    const schlagwort = typeof check.Schlagwort === 'string' ? check.Schlagwort.trim() : '';
+                    if (schlagwort) {
+                        titleNode.textContent = schlagwort;
+                    }
+                });
+            })
+            .catch(() => {
+                // Keep the hardcoded fallback labels when dynamic feed data is unavailable.
+            });
+    })();
+</script>
