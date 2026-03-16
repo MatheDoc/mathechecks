@@ -982,7 +982,8 @@ function confirmLGS() {
     for (let i = 0; i < lgsEquations; i++) {
         const terms = [];
         for (let j = 0; j < lgsVariables; j++) {
-            const coeff = parseFloat(document.getElementById(`a${i}${j}`).value || '0');
+            const coeffRaw = document.getElementById(`a${i}${j}`).value || '0';
+            const coeff = parseFloat(normalizeNumberString(coeffRaw));
             if (coeff !== 0) {
                 if (terms.length === 0) {
                     // First term
@@ -1539,7 +1540,7 @@ function solveEquation(equation) {
 
 // Keyboard & Focus: keyboard handling
 document.addEventListener('keydown', function (event) {
-    if (event.key.toLowerCase() === 'c') {
+    if (!event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'c') {
         const popupInputToClear = getOpenPopupInputToClear();
         if (popupInputToClear) {
             event.preventDefault();
