@@ -2,16 +2,16 @@
 
 ## LaTeX/MathJax-Konvention
 - Zielsyntax nach Dateityp:
-	- Markdown-Dateien: Inline `$...$`, Display `$$...$$`
-	- JSON-Dateien: Inline `\(...\)`, Display `\[...\]`
+	- Markdown-Dateien: Inline `$...$`, Display `$$...$$`, Komma mit geschweiften Klammern `{,}`, z.B. `$0{,}5$`
+	- JSON-Dateien: Inline `\(...\)`, Display `\[...\]`, Komma mit geschweiften Klammern `{,}`, z.B. `\\( 0{,}5 \\)`
 - JSON-Dateien:
 	- In JSON-Strings Backslashes escapen, also `\\(` `\\)` `\\[` `\\]`.
-	- Beispiel inline in JSON-String: `"Die Formel ist \\\\(p=\\frac{k}{n}\\\\)"`
-- Markdown-Dateien:
-	- Immer `$...$` und `$$...$$` schreiben.
-	- Nicht verwenden: `\(...\)`, `\[...\]`.
+	- Beispiel inline in JSON-String: `"Die Formel ist \\( p=\\frac{k}{n} \\)"`
+	- bei Replacement-Strings keine geschweiften Klammern für Kommas verwenden, richtig ist zB. `"{1:NUMERICAL:=0,1461:0,0001}"`
 - Reines HTML:
 	- Ebenfalls `$...$` und `$$...$$` im Text/Markup verwenden.
+- Reiner Text:
+	keine geschweiften Klammern für Kommas verwenden, z.B. `0,5` statt `0{,}5`.
 
 
 

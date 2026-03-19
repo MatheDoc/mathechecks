@@ -162,89 +162,88 @@ function renderCard(check) {
     : "";
 
   return `
-    <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--blurting" data-bl-check-viewport data-check-id="${escapeHtml(
+    <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-bl-check-viewport data-check-id="${escapeHtml(
     checkId
   )}">
-      <div class="check-viewport-item__inner">
-        <article class="card dev-training__task-card dev-check-card dev-check-card--blurting" data-bl-card>
-          <div class="dev-check-card__header">
-            ${renderCheckMetaRowMarkup({
+      <article class="dev-check-card dev-check-card--blurting" data-bl-card>
+        <div class="dev-check-card__header">
+          ${renderCheckMetaRowMarkup({
     numberText: checkNummer,
     titleText: begriff,
     prefix: "Check",
+    tone: "blurting",
     rowClass: "dev-check-card__header-left",
-    badgeClass: "dev-check-card__badge dev-check-card__badge--blurting",
-    titleClass: "dev-training__task-title dev-check-card__title dev-check-card__title--blurting",
     titleTag: "h3",
   })}
-            <div class="dev-check-card__header-actions">
-              ${skriptIcon}
-              <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
-            </div>
+          <div class="dev-check-card__header-actions">
+            ${skriptIcon}
+            <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
           </div>
-          <p class="bl-prompt">Schreib alles auf, was dir zu diesem Begriff einfällt. Nach Ablauf der Zeit folgt der Selbstcheck.</p>
+        </div>
+        <div class="dev-check-card__body">
+        <p class="bl-prompt">Schreib alles auf, was dir zu diesem Begriff einfällt. Nach Ablauf der Zeit folgt der Selbstcheck.</p>
 
-          <div data-bl-stage="write">
-            <div class="bl-timer-row">
-              <div class="bl-timer-ring">
-                <svg width="50" height="50" viewBox="0 0 50 50">
-                  <circle class="bl-track" cx="25" cy="25" r="20" />
-                  <circle class="bl-arc" data-bl-arc cx="25" cy="25" r="20" stroke-dasharray="${BL_RING_CIRCUMFERENCE.toFixed(
+        <div data-bl-stage="write">
+          <div class="bl-timer-row">
+            <div class="bl-timer-ring">
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <circle class="bl-track" cx="25" cy="25" r="20" />
+                <circle class="bl-arc" data-bl-arc cx="25" cy="25" r="20" stroke-dasharray="${BL_RING_CIRCUMFERENCE.toFixed(
     2
   )}" stroke-dashoffset="0" />
-                </svg>
-                <span class="bl-timer-num" data-bl-num>${formatTimer(BL_TOTAL_SECONDS)}</span>
-              </div>
-              <div class="bl-timer-info">
-                <div class="bl-ti-t">Brainstorm-Zeit</div>
-                <div class="bl-ti-s">Erst schreiben, dann mit Stichwörtern vergleichen.</div>
-              </div>
-              <button class="bl-reveal-btn" type="button" data-bl-reveal>Jetzt auswerten</button>
+              </svg>
+              <span class="bl-timer-num" data-bl-num>${formatTimer(BL_TOTAL_SECONDS)}</span>
             </div>
-
-            <textarea
-              class="bl-textarea"
-              data-bl-input
-              placeholder="Notiere hier Begriffe, Formeln und Lösungswege."></textarea>
+            <div class="bl-timer-info">
+              <div class="bl-ti-t">Brainstorm-Zeit</div>
+              <div class="bl-ti-s">Erst schreiben, dann mit Stichwörtern vergleichen.</div>
+            </div>
+            <button class="bl-reveal-btn" type="button" data-bl-reveal>Jetzt auswerten</button>
           </div>
 
-          <div data-bl-stage="evaluate" hidden>
-            <div class="bl-divider">
-              <hr><span>Referenz-Stichwörter</span><hr>
-            </div>
-            ${refs.length ? `<div class="bl-kws" style="margin-bottom:18px;">${refsMarkup}</div>` : "<p style=\"font-size:.82rem;color:var(--text-muted);margin-bottom:18px;\">Keine Referenz-Stichwörter hinterlegt.</p>"}
-            <p class="bl-selbst-lbl">Wie sicher bist du bei diesem Begriff?</p>
-            <div class="bl-selbst-btns">
-              <button class="bl-sb yes" type="button" data-bl-answer="yes">
-                <span class="bl-sb-icon">✓</span>
-                <span class="bl-sb-title">Kann ich</span>
-                <span class="bl-sb-sub">Die wichtigsten Punkte waren da.</span>
-              </button>
-              <button class="bl-sb no" type="button" data-bl-answer="no">
-                <span class="bl-sb-icon">↺</span>
-                <span class="bl-sb-title">Noch nicht</span>
-                <span class="bl-sb-sub">Ich wiederhole erst im Skript.</span>
-              </button>
-            </div>
-          </div>
+          <textarea
+            class="bl-textarea"
+            data-bl-input
+            placeholder="Notiere hier Begriffe, Formeln und Lösungswege."></textarea>
+        </div>
 
-          <div data-bl-stage="result-yes" hidden>
-            <div class="outcome">
-              <div class="oc-icon green">✓</div>
-              <h3 class="oc-title green">Sehr gut</h3>
-              <p class="oc-sub">Du konntest den Begriff aktiv abrufen.</p>
-            </div>
+        <div data-bl-stage="evaluate" hidden>
+          <div class="bl-divider">
+            <hr><span>Referenz-Stichwörter</span><hr>
           </div>
+          ${refs.length ? `<div class="bl-kws" style="margin-bottom:18px;">${refsMarkup}</div>` : "<p style=\"font-size:.82rem;color:var(--text-muted);margin-bottom:18px;\">Keine Referenz-Stichwörter hinterlegt.</p>"}
+          <p class="bl-selbst-lbl">Wie sicher bist du bei diesem Begriff?</p>
+          <div class="bl-selbst-btns">
+            <button class="bl-sb yes" type="button" data-bl-answer="yes">
+              <span class="bl-sb-icon">✓</span>
+              <span class="bl-sb-title">Kann ich</span>
+              <span class="bl-sb-sub">Die wichtigsten Punkte waren da.</span>
+            </button>
+            <button class="bl-sb no" type="button" data-bl-answer="no">
+              <span class="bl-sb-icon">↺</span>
+              <span class="bl-sb-title">Noch nicht</span>
+              <span class="bl-sb-sub">Ich wiederhole erst im Skript.</span>
+            </button>
+          </div>
+        </div>
 
-          <div data-bl-stage="result-no" hidden>
-            <div class="outcome">
-              <div class="oc-icon amber">📖</div>
-              <h3 class="oc-title amber">Gute Einschätzung</h3>
-              <p class="oc-sub">Wiederhole den Abschnitt im Skript und versuche es danach erneut.</p>
-            </div>
+        <div data-bl-stage="result-yes" hidden>
+          <div class="outcome">
+            <div class="oc-icon green">✓</div>
+            <h3 class="oc-title green">Sehr gut</h3>
+            <p class="oc-sub">Du konntest den Begriff aktiv abrufen.</p>
           </div>
-        </article>
-      </div>
+        </div>
+
+        <div data-bl-stage="result-no" hidden>
+          <div class="outcome">
+            <div class="oc-icon amber">📖</div>
+            <h3 class="oc-title amber">Gute Einschätzung</h3>
+            <p class="oc-sub">Wiederhole den Abschnitt im Skript und versuche es danach erneut.</p>
+          </div>
+        </div>
+        </div>
+      </article>
     </section>
   `;
 }

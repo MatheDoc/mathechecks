@@ -6,7 +6,7 @@ description: Globale Qualitäts- und Ausgabeleitplanken für MatheChecks
 
 ## 1) Ziel
 
-- Erzeuge fachlich korrekte, didaktisch klare Inhalte und/oder Implementierungen für MatheChecks.
+- Erzeuge fachlich korrekte, didaktisch klare Inhalte, Aufgaben und/oder Implementierungen für MatheChecks.
 - Schwerpunkt: Sekundarstufe II mit Fokus auf Analysis, Stochastik und Lineare Algebra.
 
 ## 2) Muss-Kriterien
@@ -14,10 +14,11 @@ description: Globale Qualitäts- und Ausgabeleitplanken für MatheChecks
 - Fachlich korrekt, eindeutig und konsistent zur vorhandenen Terminologie.
 - Ausgabe strikt im geforderten Format.
 - Keine erfundenen Quellen, Funktionen oder Datenstrukturen.
+- Hochwertige, verständliche Formulierungen, die dem Zielpublikum angemessen sind.
 
 ## 3) Soll-Kriterien
 
-- Klare Struktur, kurze Sätze, prüfbare Aussagen.
+- Klare Struktur, prüfbare Aussagen.
 - Sinnvolle Variation ohne Bruch der Aufgabenlogik.
 - Numerisch stabile Wertebereiche und realistische Parameter.
 

@@ -80,7 +80,9 @@ function zeichneHistogrammEinzeln(
 
   const config = {
     scrollZoom: false,
-    staticPlot: true,
+    staticPlot: false,
+    displayModeBar: false,
+    doubleClick: false,
     responsive: true,
   };
 
@@ -180,7 +182,9 @@ function zeichneHistogrammKumuliert(n, p, a, b, divID, titel = "") {
 
   const config = {
     scrollZoom: false,
-    staticPlot: true,
+    staticPlot: false,
+    displayModeBar: false,
+    doubleClick: false,
     responsive: true,
   };
 

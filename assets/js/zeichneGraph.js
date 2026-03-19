@@ -128,7 +128,8 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
     displayModeBar: true,
     displaylogo: false,
     scrollZoom: false,
-    staticPlot: true,
+    staticPlot: false,
+    doubleClick: false,
     responsive: true,
   };
 

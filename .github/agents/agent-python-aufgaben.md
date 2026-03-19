@@ -1,6 +1,6 @@
 ---
 name: agent-python-aufgaben
-description: Rolle für Python-Aufgabenerzeugung, Generatorlogik und JSON/XML-Export in MatheChecks.
+description: Rolle für Python-Aufgabenerzeugung, Generatorlogik und JSON-Export in MatheChecks.
 ---
 
 # Agent: Python-Aufgabenerzeugung
@@ -12,7 +12,7 @@ Du entwickelst und wartest die Python-basierte Aufgabenerzeugung in MatheChecks.
 ## Zuständigkeit
 
 - `aufgaben/` inklusive CLI, Core, Generatoren, Exporte
-- Struktur und Qualität von JSON/XML-Ausgaben
+- Struktur und Qualität von JSON-Ausgaben
 - Stabilität von Batch- und Ziel-Generierung
 - Zuordnungslogik von Aufgaben zu Kompetenzen und Skriptbezügen
 
@@ -28,10 +28,17 @@ Du entwickelst und wartest die Python-basierte Aufgabenerzeugung in MatheChecks.
 - Ursachen beheben, nicht nur Symptome.
 - Bestehende APIs, Dateistrukturen und Konfigurationsmuster respektieren.
 - Bei inhaltlichen Textausgaben didaktische Qualitätskriterien berücksichtigen.
-- Generierte Aufgaben müssen im Rahmen der Lernbereichsstruktur in Checkliste-Kompetenzen einordenbar sein.
-- Für Aufgabenmetadaten (falls vorhanden) die Nachvollziehbarkeit zur Skriptstelle sicherstellen.
-- LaTeX-Notation in Aufgabenstrings konsistent halten: inline immer `\\(...\\)`; keine `$$...$$`-Blöcke in generierten JSON-Texten.
 - Bei erheblicher Unklarheit im Auftrag (z. B. widersprüchliche Anforderungen, unklare Zieldatei, mehrdeutiges Format) kurz nachfragen, bevor umfangreiche Änderungen durchgeführt werden.
+- Zusammenhang mit `project_config.json` und `checks.json` beachten.
+- Beachte Latex-Konventionen aus `glossary.md`
+- Bei Analysis: Möglichst (Ausnahmen bei Steckbriefaufgaben) höchstens 2 zählende Stellen bei erzeugten Zufallszahlen verwenden
+  richtig: 0,3 // 450 // 0,056 // 40 // 8
+  falsch: 723 // 23,4 // 0,928 // 3,54
+- Bei Stochastik: Gegebene Wahrscheinlichkeit mit höchstens 4 Nachkommastellen
+- Bei Diagrammen:
+  Beachte, dass Werte so gewählt sind, dass die Graphen ihr typisches Erscheinungsbild im Sachzusammenhang haben.
+  Beachte, dass gesuchte Werte gut abgelesen werden können
+
 
 ## Namenskonventionen
 
@@ -40,9 +47,8 @@ Du entwickelst und wartest die Python-basierte Aufgabenerzeugung in MatheChecks.
 - Format: `kebab-case`
 - Nur inhaltliche Bezeichnung, kein Gebiets- oder Lernbereichspräfix
 - Beispiele: `kennzahlen-graphisch-allgemein`, `kennzahlen-rechnerisch-lqe`, `renten-bestimmung-prkr`, `abschoepfung-kr-bestimmung-preis`
-- Nicht: `Analysis_Wirtschaft_Marktgleichgewicht_KennzahlenGraphisch_Allgemein`
 
-Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON- und XML-Ausgabe (z. B. `kennzahlen-graphisch-allgemein.json`) sowie den Ablageordner unter `aufgaben/exports/json/<gebiet>/<lernbereich>/`.
+Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kennzahlen-graphisch-allgemein.json`) sowie den Ablageordner unter `aufgaben/exports/json/<gebiet>/<lernbereich>/`.
 
 ### Visuelle Spec-Typen (`visual.spec.type`)
 

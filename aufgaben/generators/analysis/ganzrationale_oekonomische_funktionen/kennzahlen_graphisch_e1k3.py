@@ -6,6 +6,7 @@ from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared i
     _kennzahlen_items,
     _sample_kennzahlen_parameters,
 )
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
 class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
@@ -73,7 +74,7 @@ class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
                         "title": "Erlös-, Kosten- und Gewinnfunktion",
                         "xaxis": {
                             "title": "Menge x",
-                            "range": [0.0, float(capacity) * rng.uniform(1.04, 1.16)],
+                            "range": [0.0, float(capacity) * uniform_sig(rng, 1.04, 1.16)],
                         },
                         "yaxis": {"title": "Wert"},
                     },

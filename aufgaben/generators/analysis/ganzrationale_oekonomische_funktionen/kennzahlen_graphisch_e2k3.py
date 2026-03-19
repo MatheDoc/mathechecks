@@ -7,6 +7,7 @@ from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared i
     _e2k3_kennzahlen_items,
     _sample_e2k3_parameters,
 )
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
 class EconomicPolynomialKennzahlenGraphischE2K3Generator(TaskGenerator):
@@ -40,7 +41,7 @@ class EconomicPolynomialKennzahlenGraphischE2K3Generator(TaskGenerator):
                 break
 
             x_sättigung = -a1 / a2
-            max_x = x_sättigung * rng.uniform(1.04, 1.14)
+            max_x = x_sättigung * uniform_sig(rng, 1.04, 1.14)
             y_min, y_max = _e2k3_graph_y_range(
                 a2=a2,
                 a1=a1,

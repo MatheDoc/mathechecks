@@ -29,7 +29,7 @@ def _to_cdf_difference(a: int, b: int) -> tuple[int, int]:
 def _cdf_answer_from_interval(a: int, b: int) -> str:
     upper_k, lower_k = _to_cdf_difference(a=a, b=b)
     return (
-        "\\( P = P(X\\leq \\)"
+        "\\( P(X\\leq \\)"
         f"{numerical(upper_k, tolerance=0, decimals=0)}"
         "\\( ) - P(X\\leq \\)"
         f"{numerical(lower_k, tolerance=0, decimals=0)}"

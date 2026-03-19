@@ -420,38 +420,34 @@ function buildWktTable(spec) {
     const xVals = Array.isArray(spec?.x) ? spec.x : [];
     const pVals = Array.isArray(spec?.p) ? spec.p : [];
 
-    const thStyle = "border:1px solid #000;padding:4px 10px;background:#f3f4f6;font-weight:bold";
-    const tdStyle = "border:1px solid #000;padding:4px 10px;text-align:center";
-
     const table = document.createElement("table");
-    table.style.cssText = "border-collapse:collapse;text-align:center;margin:8px 0";
 
+    const thead = document.createElement("thead");
     const rowX = document.createElement("tr");
     const thX = document.createElement("th");
-    thX.style.cssText = thStyle;
-    thX.innerHTML = "\\( x \\)";
+    thX.innerHTML = "\\( x_i \\)";
     rowX.appendChild(thX);
     xVals.forEach((v) => {
-        const td = document.createElement("td");
-        td.style.cssText = tdStyle;
-        td.innerHTML = v == null ? "" : `\\( ${v} \\)`;
-        rowX.appendChild(td);
+        const th = document.createElement("th");
+        th.innerHTML = v == null ? "" : `\\( ${v} \\)`;
+        rowX.appendChild(th);
     });
+    thead.appendChild(rowX);
 
+    const tbody = document.createElement("tbody");
     const rowP = document.createElement("tr");
-    const thP = document.createElement("th");
-    thP.style.cssText = thStyle;
-    thP.innerHTML = "\\( P \\)";
-    rowP.appendChild(thP);
+    const tdP = document.createElement("td");
+    tdP.innerHTML = "\\( P(X=x_i) \\)";
+    rowP.appendChild(tdP);
     pVals.forEach((v) => {
         const td = document.createElement("td");
-        td.style.cssText = tdStyle;
         td.innerHTML = v == null ? "" : `\\( ${String(v).replace(".", "{,}")} \\)`;
         rowP.appendChild(td);
     });
+    tbody.appendChild(rowP);
 
-    table.appendChild(rowX);
-    table.appendChild(rowP);
+    table.appendChild(thead);
+    table.appendChild(tbody);
     return table;
 }
 
@@ -467,39 +463,38 @@ function buildVftTable(spec) {
         return circled[idx] ?? String(idx);
     }
 
-    const thStyle = "border:1px solid #000;padding:4px 10px;background:#f3f4f6";
-    const tdStyle = "border:1px solid #000;padding:4px 10px;text-align:center";
-    const tdBoldStyle = "border:2px solid #000;padding:4px 10px;text-align:center";
-    const trTopStyle = "border-top:2px solid #000";
-
     const table = document.createElement("table");
-    table.style.cssText = "border-collapse:collapse;text-align:center;margin:8px 0";
+    table.classList.add("vft-table");
 
     table.innerHTML = `
+        <thead>
         <tr>
-            <th style="${thStyle}"></th>
-            <th style="${thStyle}">\\(P(A)\\)</th>
-            <th style="${thStyle}">\\(P(\\overline{A})\\)</th>
-            <th style="${tdBoldStyle}"></th>
+            <th></th>
+            <th>\\(P(A)\\)</th>
+            <th>\\(P(\\overline{A})\\)</th>
+            <th class="vft-sum"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>\\(P(B)\\)</td>
+            <td>${cell(1)}</td>
+            <td>${cell(3)}</td>
+            <td class="vft-sum">${cell(7)}</td>
         </tr>
         <tr>
-            <th style="${thStyle}">\\(P(B)\\)</th>
-            <td style="${tdStyle}">${cell(1)}</td>
-            <td style="${tdStyle}">${cell(3)}</td>
-            <td style="${tdBoldStyle}">${cell(7)}</td>
+            <td>\\(P(\\overline{B})\\)</td>
+            <td>${cell(2)}</td>
+            <td>${cell(4)}</td>
+            <td class="vft-sum">${cell(8)}</td>
         </tr>
-        <tr>
-            <th style="${thStyle}">\\(P(\\overline{B})\\)</th>
-            <td style="${tdStyle}">${cell(2)}</td>
-            <td style="${tdStyle}">${cell(4)}</td>
-            <td style="${tdBoldStyle}">${cell(8)}</td>
+        <tr class="vft-sum-row">
+            <td></td>
+            <td>${cell(5)}</td>
+            <td>${cell(6)}</td>
+            <td class="vft-sum">1</td>
         </tr>
-        <tr style="${trTopStyle}">
-            <th style="${thStyle}"></th>
-            <td style="${tdStyle}">${cell(5)}</td>
-            <td style="${tdStyle}">${cell(6)}</td>
-            <td style="${tdBoldStyle}">1</td>
-        </tr>`;
+        </tbody>`;
 
     return table;
 }
@@ -516,7 +511,10 @@ export function renderVisual(task, wrapper) {
     if (specType === "vft") {
         const tableWrapper = document.createElement("div");
         tableWrapper.className = "intro";
-        tableWrapper.appendChild(buildVftTable(spec));
+        const scrollWrapper = document.createElement("div");
+        scrollWrapper.className = "intro-table-scroll";
+        scrollWrapper.appendChild(buildVftTable(spec));
+        tableWrapper.appendChild(scrollWrapper);
         wrapper.appendChild(tableWrapper);
         return;
     }
@@ -524,7 +522,10 @@ export function renderVisual(task, wrapper) {
     if (specType === "wkt-tabelle") {
         const tableWrapper = document.createElement("div");
         tableWrapper.className = "intro";
-        tableWrapper.appendChild(buildWktTable(spec));
+        const scrollWrapper = document.createElement("div");
+        scrollWrapper.className = "intro-table-scroll";
+        scrollWrapper.appendChild(buildWktTable(spec));
+        tableWrapper.appendChild(scrollWrapper);
         wrapper.appendChild(tableWrapper);
         return;
     }
@@ -558,6 +559,13 @@ export function renderVisual(task, wrapper) {
             },
             margin: { l: 40, r: 20, t: 35, b: 90 },
         },
-        { responsive: true, displaylogo: false, scrollZoom: false, staticPlot: true }
+        {
+            responsive: true,
+            displaylogo: false,
+            scrollZoom: false,
+            staticPlot: false,
+            doubleClick: false,
+            displayModeBar: false,
+        }
     );
 }

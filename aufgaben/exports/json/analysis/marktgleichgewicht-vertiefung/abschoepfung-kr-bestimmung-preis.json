@@ -1,13 +1,13 @@
 [
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,021x^2+0,231x+3,08 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=38,73\\cdot e^{-0,053x}-1,11 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,021x^2+0,23x+3,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=39\\cdot e^{-0,053x}-1,1 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=7,8016:0,1}",
-      "{1:NUMERICAL:=24,5037:0,1}"
+      "{1:NUMERICAL:=7,825:0,1}",
+      "{1:NUMERICAL:=24,6604:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -17,21 +17,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.021,
-            "b": 0.231,
-            "c": 3.08
+            "b": 0.23,
+            "c": 3.1
           },
           "demand": {
             "type": "exp",
-            "A": 38.73,
+            "A": 39.0,
             "rate": 0.053,
-            "c": -1.11
+            "c": -1.1
           },
-          "eqX": 17.8688,
-          "eqP": 13.9128,
-          "x2": 7.8016,
-          "p2": 24.5037,
-          "maxX": 22.872,
-          "maxY": 42.134
+          "eqX": 17.9319,
+          "eqP": 13.977,
+          "x2": 7.825,
+          "p2": 24.6604,
+          "maxX": 22.953,
+          "maxY": 42.56
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -49,14 +49,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,814x+8,45 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-2,37x+24,98 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,8x+8,5 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-2,4x+25 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,9754:0,1}",
-      "{1:NUMERICAL:=20,2983:0,1}"
+      "{1:NUMERICAL:=1,9643:0,1}",
+      "{1:NUMERICAL:=20,2857:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -65,20 +65,20 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 1.814,
-            "b": 8.45
+            "a": 1.8,
+            "b": 8.5
           },
           "demand": {
             "type": "linear",
-            "a": -2.37,
-            "b": 24.98
+            "a": -2.4,
+            "b": 25.0
           },
-          "eqX": 3.9508,
-          "eqP": 15.6167,
-          "x2": 1.9754,
-          "p2": 20.2983,
+          "eqX": 3.9286,
+          "eqP": 15.5714,
+          "x2": 1.9643,
+          "p2": 20.2857,
           "maxX": 10.0,
-          "maxY": 27.978
+          "maxY": 28.0
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -96,14 +96,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,048x^2+0,169x+5,78 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,117x^2-0,012x+13,75 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,048x^2+0,17x+5,8 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,12x^2-0,012x+14 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,7039:0,1}",
-      "{1:NUMERICAL:=12,1005:0,1}"
+      "{1:NUMERICAL:=3,7285:0,1}",
+      "{1:NUMERICAL:=12,287:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -113,21 +113,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.048,
-            "b": 0.169,
-            "c": 5.78
+            "b": 0.17,
+            "c": 5.8
           },
           "demand": {
             "type": "quadratic",
-            "a": -0.117,
+            "a": -0.12,
             "b": -0.012,
-            "c": 13.75
+            "c": 14.0
           },
-          "eqX": 6.4232,
-          "eqP": 8.8459,
-          "x2": 3.7039,
-          "p2": 12.1005,
+          "eqX": 6.4657,
+          "eqP": 8.9058,
+          "x2": 3.7285,
+          "p2": 12.287,
           "maxX": 10.0,
-          "maxY": 15.4
+          "maxY": 15.68
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -145,14 +145,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-21,59\\cdot e^{-0,154x}+23,13 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1,387x+18,96 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-22\\cdot e^{-0,15x}+24 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1,4x+19 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,3135:0,1}",
-      "{1:NUMERICAL:=15,7512:0,1}"
+      "{1:NUMERICAL:=2,234:0,1}",
+      "{1:NUMERICAL:=15,8724:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -161,21 +161,21 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -21.59,
-            "rate": 0.154,
-            "c": 23.13
+            "A": -22.0,
+            "rate": 0.15,
+            "c": 24.0
           },
           "demand": {
             "type": "linear",
-            "a": -1.387,
-            "b": 18.96
+            "a": -1.4,
+            "b": 19.0
           },
-          "eqX": 4.6269,
-          "eqP": 12.5424,
-          "x2": 2.3135,
-          "p2": 15.7512,
+          "eqX": 4.468,
+          "eqP": 12.7447,
+          "x2": 2.234,
+          "p2": 15.8724,
           "maxX": 10.0,
-          "maxY": 21.235
+          "maxY": 21.28
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -193,14 +193,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-21,17\\cdot e^{-0,195x}+23,54 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,063x^2-0,053x+13,37 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-21\\cdot e^{-0,2x}+23 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,063x^2-0,053x+13 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,8926:0,1}",
-      "{1:NUMERICAL:=13,044:0,1}"
+      "{1:NUMERICAL:=1,8707:0,1}",
+      "{1:NUMERICAL:=12,6804:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -209,22 +209,22 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -21.17,
-            "rate": 0.195,
-            "c": 23.54
+            "A": -21.0,
+            "rate": 0.2,
+            "c": 23.0
           },
           "demand": {
             "type": "quadratic",
             "a": -0.063,
             "b": -0.053,
-            "c": 13.37
+            "c": 13.0
           },
-          "eqX": 3.3353,
-          "eqP": 12.4924,
-          "x2": 1.8926,
-          "p2": 13.044,
+          "eqX": 3.2973,
+          "eqP": 12.1403,
+          "x2": 1.8707,
+          "p2": 12.6804,
           "maxX": 10.0,
-          "maxY": 14.974
+          "maxY": 14.56
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -242,14 +242,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-16,21\\cdot e^{-0,152x}+19,63 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=16,77\\cdot e^{-0,1x}-4,16 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-16\\cdot e^{-0,15x}+19 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=17\\cdot e^{-0,1x}-4,2 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,2661:0,1}",
-      "{1:NUMERICAL:=10,6156:0,1}"
+      "{1:NUMERICAL:=1,3761:0,1}",
+      "{1:NUMERICAL:=10,6145:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -258,22 +258,22 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -16.21,
-            "rate": 0.152,
-            "c": 19.63
+            "A": -16.0,
+            "rate": 0.15,
+            "c": 19.0
           },
           "demand": {
             "type": "exp",
-            "A": 16.77,
+            "A": 17.0,
             "rate": 0.1,
-            "c": -4.16
+            "c": -4.2
           },
-          "eqX": 2.6199,
-          "eqP": 8.7448,
-          "x2": 1.2661,
-          "p2": 10.6156,
+          "eqX": 2.8565,
+          "eqP": 8.576,
+          "x2": 1.3761,
+          "p2": 10.6145,
           "maxX": 10.0,
-          "maxY": 14.123
+          "maxY": 14.56
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -291,14 +291,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,012x^2+0,322x+7,06 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=30,86\\cdot e^{-0,188x}-5,82 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,012x^2+0,32x+7,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=31\\cdot e^{-0,19x}-5,8 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,8249:0,1}",
-      "{1:NUMERICAL:=16,0777:0,1}"
+      "{1:NUMERICAL:=1,8146:0,1}",
+      "{1:NUMERICAL:=16,1598:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -308,21 +308,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.012,
-            "b": 0.322,
-            "c": 7.06
+            "b": 0.32,
+            "c": 7.1
           },
           "demand": {
             "type": "exp",
-            "A": 30.86,
-            "rate": 0.188,
-            "c": -5.82
+            "A": 31.0,
+            "rate": 0.19,
+            "c": -5.8
           },
-          "eqX": 4.0599,
-          "eqP": 8.5651,
-          "x2": 1.8249,
-          "p2": 16.0777,
+          "eqX": 4.0398,
+          "eqP": 8.5886,
+          "x2": 1.8146,
+          "p2": 16.1598,
           "maxX": 10.0,
-          "maxY": 28.045
+          "maxY": 28.0
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -340,14 +340,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,04x^2+0,092x+9,14 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1,494x+40,72 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,04x^2+0,092x+9,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1,5x+41 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=7,2815:0,1}",
-      "{1:NUMERICAL:=29,8415:0,1}"
+      "{1:NUMERICAL:=7,3236:0,1}",
+      "{1:NUMERICAL:=30,0146:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -358,19 +358,19 @@
             "type": "quadratic",
             "a": 0.04,
             "b": 0.092,
-            "c": 9.14
+            "c": 9.1
           },
           "demand": {
             "type": "linear",
-            "a": -1.494,
-            "b": 40.72
+            "a": -1.5,
+            "b": 41.0
           },
-          "eqX": 14.5629,
-          "eqP": 18.963,
-          "x2": 7.2815,
-          "p2": 29.8415,
-          "maxX": 18.641,
-          "maxY": 45.606
+          "eqX": 14.6472,
+          "eqP": 19.0292,
+          "x2": 7.3236,
+          "p2": 30.0146,
+          "maxX": 18.748,
+          "maxY": 45.92
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -388,14 +388,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,006x^2+0,223x+7,07 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=38,12\\cdot e^{-0,15x}-8,75 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,006x^2+0,22x+7,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=38\\cdot e^{-0,15x}-8,8 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,3766:0,1}",
-      "{1:NUMERICAL:=17,9391:0,1}"
+      "{1:NUMERICAL:=2,3611:0,1}",
+      "{1:NUMERICAL:=17,8667:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -404,22 +404,22 @@
         "params": {
           "supply": {
             "type": "quadratic",
-            "a": 0.006,
-            "b": 0.223,
-            "c": 7.07
+            "a": 0.0058,
+            "b": 0.22,
+            "c": 7.1
           },
           "demand": {
             "type": "exp",
-            "A": 38.12,
+            "A": 38.0,
             "rate": 0.15,
-            "c": -8.75
+            "c": -8.8
           },
-          "eqX": 5.3153,
-          "eqP": 8.4248,
-          "x2": 2.3766,
-          "p2": 17.9391,
+          "eqX": 5.2759,
+          "eqP": 8.4222,
+          "x2": 2.3611,
+          "p2": 17.8667,
           "maxX": 10.0,
-          "maxY": 32.894
+          "maxY": 32.48
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -437,14 +437,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-16,24\\cdot e^{-0,2x}+18,34 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,139x^2-0,218x+27,97 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-16\\cdot e^{-0,2x}+18 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,14x^2-0,22x+28 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,9705:0,1}",
-      "{1:NUMERICAL:=23,4524:0,1}"
+      "{1:NUMERICAL:=5,0123:0,1}",
+      "{1:NUMERICAL:=23,3801:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -453,22 +453,22 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -16.24,
+            "A": -16.0,
             "rate": 0.2,
-            "c": 18.34
+            "c": 18.0
           },
           "demand": {
             "type": "quadratic",
-            "a": -0.139,
-            "b": -0.218,
-            "c": 27.97
+            "a": -0.14,
+            "b": -0.22,
+            "c": 28.0
           },
-          "eqX": 8.7196,
-          "eqP": 15.5007,
-          "x2": 4.9705,
-          "p2": 23.4524,
-          "maxX": 11.161,
-          "maxY": 31.326
+          "eqX": 8.7923,
+          "eqP": 15.243,
+          "x2": 5.0123,
+          "p2": 23.3801,
+          "maxX": 11.254,
+          "maxY": 31.36
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -486,14 +486,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,059x^2+0,235x+1,44 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=39,33\\cdot e^{-0,149x}-7,73 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,059x^2+0,24x+1,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=39\\cdot e^{-0,15x}-7,7 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,0261:0,1}",
-      "{1:NUMERICAL:=17,3257:0,1}"
+      "{1:NUMERICAL:=3,0024:0,1}",
+      "{1:NUMERICAL:=17,1584:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -503,21 +503,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.059,
-            "b": 0.235,
-            "c": 1.44
+            "b": 0.24,
+            "c": 1.4
           },
           "demand": {
             "type": "exp",
-            "A": 39.33,
-            "rate": 0.149,
-            "c": -7.73
+            "A": 39.0,
+            "rate": 0.15,
+            "c": -7.7
           },
-          "eqX": 7.0492,
-          "eqP": 6.0284,
-          "x2": 3.0261,
-          "p2": 17.3257,
+          "eqX": 6.9925,
+          "eqP": 5.963,
+          "x2": 3.0024,
+          "p2": 17.1584,
           "maxX": 10.0,
-          "maxY": 35.392
+          "maxY": 34.72
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -535,14 +535,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-6,19\\cdot e^{-0,248x}+7,37 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=22,2\\cdot e^{-0,097x}-1,32 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-6,2\\cdot e^{-0,25x}+7,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=22\\cdot e^{-0,097x}-1,3 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,4454:0,1}",
-      "{1:NUMERICAL:=13,1039:0,1}"
+      "{1:NUMERICAL:=4,4084:0,1}",
+      "{1:NUMERICAL:=13,0454:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -551,22 +551,22 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -6.19,
-            "rate": 0.248,
-            "c": 7.37
+            "A": -6.2,
+            "rate": 0.25,
+            "c": 7.4
           },
           "demand": {
             "type": "exp",
-            "A": 22.2,
+            "A": 22.0,
             "rate": 0.097,
-            "c": -1.32
+            "c": -1.3
           },
-          "eqX": 10.2622,
-          "eqP": 6.8843,
-          "x2": 4.4454,
-          "p2": 13.1039,
-          "maxX": 13.136,
-          "maxY": 23.386
+          "eqX": 10.1604,
+          "eqP": 6.9111,
+          "x2": 4.4084,
+          "p2": 13.0454,
+          "maxX": 13.005,
+          "maxY": 23.52
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -584,14 +584,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,478x+8,03 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=19,98\\cdot e^{-0,216x}-4,09 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,5x+8 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=20\\cdot e^{-0,22x}-4,1 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,7301:0,1}",
-      "{1:NUMERICAL:=12,9749:0,1}"
+      "{1:NUMERICAL:=0,721:0,1}",
+      "{1:NUMERICAL:=12,9663:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -600,21 +600,21 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 1.478,
-            "b": 8.03
+            "a": 1.5,
+            "b": 8.0
           },
           "demand": {
             "type": "exp",
-            "A": 19.98,
-            "rate": 0.216,
-            "c": -4.09
+            "A": 20.0,
+            "rate": 0.22,
+            "c": -4.1
           },
-          "eqX": 1.5247,
-          "eqP": 10.2836,
-          "x2": 0.7301,
-          "p2": 12.9749,
+          "eqX": 1.5061,
+          "eqP": 10.2592,
+          "x2": 0.721,
+          "p2": 12.9663,
           "maxX": 10.0,
-          "maxY": 17.797
+          "maxY": 17.92
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -632,14 +632,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,038x^2+0,148x+5,08 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=22,68\\cdot e^{-0,035x}-2,15 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,038x^2+0,15x+5,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=23\\cdot e^{-0,035x}-2,2 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=5,7928:0,1}",
-      "{1:NUMERICAL:=16,3678:0,1}"
+      "{1:NUMERICAL:=5,8242:0,1}",
+      "{1:NUMERICAL:=16,5585:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -649,21 +649,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.038,
-            "b": 0.148,
-            "c": 5.08
+            "b": 0.15,
+            "c": 5.1
           },
           "demand": {
             "type": "exp",
-            "A": 22.68,
+            "A": 23.0,
             "rate": 0.035,
-            "c": -2.15
+            "c": -2.2
           },
-          "eqX": 12.2667,
-          "eqP": 12.6134,
-          "x2": 5.7928,
-          "p2": 16.3678,
-          "maxX": 15.701,
-          "maxY": 22.994
+          "eqX": 12.3374,
+          "eqP": 12.7347,
+          "x2": 5.8242,
+          "p2": 16.5585,
+          "maxX": 15.792,
+          "maxY": 23.52
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -681,14 +681,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-14,81\\cdot e^{-0,162x}+17,96 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,657x+13,15 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-15\\cdot e^{-0,16x}+18 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,66x+13 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,0815:0,1}",
-      "{1:NUMERICAL:=11,7825:0,1}"
+      "{1:NUMERICAL:=2,0705:0,1}",
+      "{1:NUMERICAL:=11,6335:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -697,21 +697,21 @@
         "params": {
           "supply": {
             "type": "exp",
-            "A": -14.81,
-            "rate": 0.162,
-            "c": 17.96
+            "A": -15.0,
+            "rate": 0.16,
+            "c": 18.0
           },
           "demand": {
             "type": "linear",
-            "a": -0.657,
-            "b": 13.15
+            "a": -0.66,
+            "b": 13.0
           },
-          "eqX": 4.163,
-          "eqP": 10.4149,
-          "x2": 2.0815,
-          "p2": 11.7825,
+          "eqX": 4.1409,
+          "eqP": 10.267,
+          "x2": 2.0705,
+          "p2": 11.6335,
           "maxX": 10.0,
-          "maxY": 14.728
+          "maxY": 14.56
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -729,14 +729,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,561x+8,84 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,106x^2-0,161x+43,7 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,56x+8,8 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,11x^2-0,16x+44 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=8,6225:0,1}",
-      "{1:NUMERICAL:=34,4309:0,1}"
+      "{1:NUMERICAL:=8,5482:0,1}",
+      "{1:NUMERICAL:=34,5945:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -745,21 +745,21 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 0.561,
-            "b": 8.84
+            "a": 0.56,
+            "b": 8.8
           },
           "demand": {
             "type": "quadratic",
-            "a": -0.106,
-            "b": -0.161,
-            "c": 43.7
+            "a": -0.11,
+            "b": -0.16,
+            "c": 44.0
           },
-          "eqX": 15.0461,
-          "eqP": 17.2808,
-          "x2": 8.6225,
-          "p2": 34.4309,
-          "maxX": 19.259,
-          "maxY": 48.944
+          "eqX": 14.9127,
+          "eqP": 17.1511,
+          "x2": 8.5482,
+          "p2": 34.5945,
+          "maxX": 19.088,
+          "maxY": 49.28
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -777,14 +777,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,155x+6,42 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=28,69\\cdot e^{-0,202x}-6,34 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,2x+6,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=29\\cdot e^{-0,2x}-6,3 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,3256:0,1}",
-      "{1:NUMERICAL:=15,6104:0,1}"
+      "{1:NUMERICAL:=1,3455:0,1}",
+      "{1:NUMERICAL:=15,858:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -793,21 +793,21 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 1.155,
-            "b": 6.42
+            "a": 1.2,
+            "b": 6.4
           },
           "demand": {
             "type": "exp",
-            "A": 28.69,
-            "rate": 0.202,
-            "c": -6.34
+            "A": 29.0,
+            "rate": 0.2,
+            "c": -6.3
           },
-          "eqX": 2.8684,
-          "eqP": 9.733,
-          "x2": 1.3256,
-          "p2": 15.6104,
+          "eqX": 2.9128,
+          "eqP": 9.8954,
+          "x2": 1.3455,
+          "p2": 15.858,
           "maxX": 10.0,
-          "maxY": 25.032
+          "maxY": 25.76
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -825,14 +825,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,064x^2+0,221x+3,43 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1,008x+17,64 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,064x^2+0,22x+3,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-1x+18 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,0624:0,1}",
-      "{1:NUMERICAL:=13,5451:0,1}"
+      "{1:NUMERICAL:=4,1642:0,1}",
+      "{1:NUMERICAL:=13,8358:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -842,20 +842,20 @@
           "supply": {
             "type": "quadratic",
             "a": 0.064,
-            "b": 0.221,
-            "c": 3.43
+            "b": 0.22,
+            "c": 3.4
           },
           "demand": {
             "type": "linear",
-            "a": -1.008,
-            "b": 17.64
+            "a": -1.0,
+            "b": 18.0
           },
-          "eqX": 8.1247,
-          "eqP": 9.4503,
-          "x2": 4.0624,
-          "p2": 13.5451,
-          "maxX": 10.4,
-          "maxY": 19.757
+          "eqX": 8.3285,
+          "eqP": 9.6715,
+          "x2": 4.1642,
+          "p2": 13.8358,
+          "maxX": 10.66,
+          "maxY": 20.16
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -873,14 +873,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,02x^2+0,324x+7,26 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=34,17\\cdot e^{-0,123x}-8,31 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,02x^2+0,32x+7,3 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=34\\cdot e^{-0,12x}-8,3 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,4163:0,1}",
-      "{1:NUMERICAL:=17,0747:0,1}"
+      "{1:NUMERICAL:=2,4507:0,1}",
+      "{1:NUMERICAL:=17,0373:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -890,21 +890,21 @@
           "supply": {
             "type": "quadratic",
             "a": 0.02,
-            "b": 0.324,
-            "c": 7.26
+            "b": 0.32,
+            "c": 7.3
           },
           "demand": {
             "type": "exp",
-            "A": 34.17,
-            "rate": 0.123,
-            "c": -8.31
+            "A": 34.0,
+            "rate": 0.12,
+            "c": -8.3
           },
-          "eqX": 5.2837,
-          "eqP": 9.5303,
-          "x2": 2.4163,
-          "p2": 17.0747,
+          "eqX": 5.3529,
+          "eqP": 9.586,
+          "x2": 2.4507,
+          "p2": 17.0373,
           "maxX": 10.0,
-          "maxY": 28.963
+          "maxY": 29.12
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",
@@ -922,14 +922,14 @@
     }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,679x+2,22 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=26,57\\cdot e^{-0,179x}-7,42 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,7x+2,2 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=27\\cdot e^{-0,18x}-7,4 \\).</p> <p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, dass die Konsumentenrente maximal abgeschöpft wird.</p> <p>Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
       "die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).",
       "den Preis \\( p_2 \\)."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,4774:0,1}",
-      "{1:NUMERICAL:=12,9756:0,1}"
+      "{1:NUMERICAL:=1,4927:0,1}",
+      "{1:NUMERICAL:=13,2383:0,1}"
     ],
     "visual": {
       "type": "plot",
@@ -938,21 +938,21 @@
         "params": {
           "supply": {
             "type": "linear",
-            "a": 1.679,
-            "b": 2.22
+            "a": 1.7,
+            "b": 2.2
           },
           "demand": {
             "type": "exp",
-            "A": 26.57,
-            "rate": 0.179,
-            "c": -7.42
+            "A": 27.0,
+            "rate": 0.18,
+            "c": -7.4
           },
-          "eqX": 3.1934,
-          "eqP": 7.5817,
-          "x2": 1.4774,
-          "p2": 12.9756,
+          "eqX": 3.2312,
+          "eqP": 7.693,
+          "x2": 1.4927,
+          "p2": 13.2383,
           "maxX": 10.0,
-          "maxY": 21.448
+          "maxY": 22.4
         },
         "layout": {
           "title": "Preisdifferenzierung mit KR1 und KR2",

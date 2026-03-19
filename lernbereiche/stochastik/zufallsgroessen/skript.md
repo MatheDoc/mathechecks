@@ -15,7 +15,7 @@ Eine **Zufallsgröße** $X$ ordnet jedem Ergebnis eines Zufallsexperiment eine r
 
 Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X$:
 
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
+|  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
 | $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
 
@@ -31,7 +31,7 @@ Beispielsweise bedeutet $P(X=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Bi
 
 Die Wahrscheinlichkeitsverteilung sowie das Histogramm eines weiteren Biathleten B könnten wie folgt aussehen:
 
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
+|  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | -------- |
 | $P(X = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
 

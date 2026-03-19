@@ -1,6 +1,8 @@
 import math
 import random
 
+from aufgaben.generators.analysis.shared_numbers import randint_sig, uniform_sig
+
 
 def _count_decimals(value: float, max_decimals: int = 4) -> int:
     text = f"{value:.{max_decimals}f}".rstrip("0").rstrip(".")
@@ -76,9 +78,9 @@ def _gain_coeff_terms_from_roots(k3: float, r1: float, r2: float, s: float) -> t
 
 def _sample_cost_coefficients(rng: random.Random) -> tuple[float, float, float, float]:
     while True:
-        k3 = round(rng.uniform(0.01, 0.08), 2)
-        k1 = round(rng.uniform(5.0, 55.0), 1)
-        k0 = round(rng.uniform(20.0, 180.0), 0)
+        k3 = uniform_sig(rng, 0.01, 0.08)
+        k1 = uniform_sig(rng, 5.0, 55.0)
+        k0 = uniform_sig(rng, 20.0, 180.0)
 
         # Ertragsgesetzlich: k2 < 0 und k2^2 <= 3*k3*k1
         k2_limit = (3.0 * k3 * k1) ** 0.5
@@ -86,7 +88,7 @@ def _sample_cost_coefficients(rng: random.Random) -> tuple[float, float, float, 
         if upper < 0.15:
             continue
 
-        k2_abs = round(rng.uniform(0.15, upper), 2)
+        k2_abs = uniform_sig(rng, 0.15, upper)
         k2 = -k2_abs
 
         if _is_ertragsgesetzliche_k(k3, k2, k1, k0):
@@ -186,31 +188,40 @@ def _sample_kennzahlen_parameters(
     rng: random.Random,
     for_graph: bool = False,
 ) -> tuple[float, float, float, float, float, float, float, float, int]:
-    for _ in range(4000):
+    for _ in range(12000):
         # Aufbau über gewünschte Gewinn-Nullstellen r1 < r2 und negative dritte Nullstelle -s.
-        r1 = rng.uniform(3.0, 35.0)
-        r2 = rng.uniform(r1 + 4.0, min(95.0, r1 + 45.0))
-        s = rng.uniform(2.0, min(40.0, r1 + r2 - 0.8))
-        k3 = round(rng.uniform(0.01, 0.16), 2)
+        r1 = uniform_sig(rng, 3.0, 35.0)
+        r2 = uniform_sig(rng, r1 + 4.0, min(95.0, r1 + 45.0))
+        s = uniform_sig(rng, 2.0, min(40.0, r1 + r2 - 0.8))
+        k3 = uniform_sig(rng, 0.01, 0.16)
 
         k2_raw = -k3 * (r1 + r2 - s)
         if k2_raw >= -0.15:
             continue
-        k2 = round(k2_raw, 2)
+        k2 = round(k2_raw, 10)
         if k2 >= 0:
+            continue
+        if not _has_max_sig_digits(k2, max_digits=2):
             continue
 
         g2_root, g1_raw, k0_raw = _gain_coeff_terms_from_roots(k3, r1, r2, s)
-        k0 = round(k0_raw, 0)
+        k0 = round(k0_raw, 10)
         if k0 <= 0:
+            continue
+        if not _has_max_sig_digits(k0, max_digits=2):
             continue
 
         k1_min = (k2 ** 2) / (3.0 * k3) + 0.2
-        k1 = round(rng.uniform(max(3.0, k1_min), max(3.0, k1_min) + 28.0), 1)
-        price = round(k1 + g1_raw, 1)
+        k1 = uniform_sig(rng, max(3.0, k1_min), max(3.0, k1_min) + 28.0)
+        price = round(k1 + g1_raw, 10)
         if price <= 0:
             continue
-        if abs(round(price - k1, 1)) < 1e-9:
+        if not _has_max_sig_digits(price, max_digits=2):
+            continue
+        g1 = round(price - k1, 10)
+        if abs(g1) < 1e-9:
+            continue
+        if not _has_max_sig_digits(g1, max_digits=2):
             continue
 
         # Konsistenzbedingungen ertragsgesetzlich.
@@ -261,7 +272,7 @@ def _sample_kennzahlen_parameters(
         if x_break_even_low <= 0 or x_break_even_high <= x_break_even_low:
             continue
 
-        capacity = int(max(8, round(x_break_even_high + rng.uniform(2.0, 12.0))))
+        capacity = int(max(8, round(x_break_even_high + uniform_sig(rng, 2.0, 12.0))))
         if capacity <= x_break_even_high:
             capacity = int(x_break_even_high) + 2
 
@@ -507,7 +518,7 @@ def _sample_k3_cost_coefficients_from_exact_kennzahlen(
         upper_int = lower_int + int(1.8 * x_wende) + 24
         if upper_int <= lower_int:
             continue
-        k1 = float(rng.randint(lower_int, upper_int))
+        k1 = float(randint_sig(rng, lower_int, upper_int))
 
         if not _is_ertragsgesetzliche_k(k3, k2, k1, k0):
             continue
@@ -545,6 +556,22 @@ def _sample_k3_cost_coefficients_from_exact_kennzahlen(
 
 def _is_one_decimal(value: float, eps: float = 1e-9) -> bool:
     return abs(value * 10.0 - round(value * 10.0)) < eps
+
+
+def _has_max_sig_digits(value: float, max_digits: int = 2, max_decimals: int = 10) -> bool:
+    text = f"{abs(value):.{max_decimals}f}".rstrip("0").rstrip(".")
+    if not text:
+        return True
+    if "." in text:
+        int_part, frac_part = text.split(".", 1)
+    else:
+        int_part, frac_part = text, ""
+
+    # Count significant digits: drop leading and trailing zeros in the joined digit string.
+    digits_text = (int_part + frac_part).lstrip("0").rstrip("0")
+    if not digits_text:
+        return True
+    return len(digits_text) <= max_digits
 
 
 def _make_zuordnung_table(points: list[tuple[float, float]], label: str) -> str:
@@ -649,99 +676,114 @@ def _sample_e2k3_parameters(
     rng: random.Random,
     for_graph: bool = False,
 ) -> tuple[float, float, float, float, float, float, float, float, float]:
-    for _ in range(9000):
-        a1 = round(rng.uniform(12.0, 120.0), 1)
-        a2 = round(-rng.uniform(0.12, 8.0), 2)
+    for _ in range(80000):
+        # Alle in der Angabe auftauchenden Koeffizienten werden direkt mit <=2
+        # signifikanten Stellen gezogen (keine nachträgliche Rundung auf Anzeigewerte).
+        a1 = uniform_sig(rng, 12.0, 140.0)
+        a2 = -uniform_sig(rng, 0.12, 8.0)
 
         x_sättigung = -a1 / a2
         if not (8.0 <= x_sättigung <= 140.0):
             continue
 
-        x_erlös_max = x_sättigung / 2.0
-        if x_erlös_max <= 1.5:
+        k3 = uniform_sig(rng, 0.01, 0.22)
+        k1 = uniform_sig(rng, 4.0, 120.0)
+
+        k2_limit = (3.0 * k3 * k1) ** 0.5
+        k2_upper = min(5.0, k2_limit)
+        if k2_upper < 0.12:
             continue
+        k2 = -uniform_sig(rng, 0.12, k2_upper)
 
-        lower_r1 = max(0.5, x_erlös_max * 0.2)
-        upper_r1 = max(lower_r1 + 1.0, x_erlös_max * 0.85)
-        r1 = rng.uniform(lower_r1, upper_r1)
-
-        lower_r2 = max(r1 + 2.0, x_erlös_max * 1.05)
-        upper_r2 = min(x_sättigung * 0.98, r1 + 70.0)
-        if upper_r2 <= lower_r2:
+        k0_lower = max(12.0, a1 + 0.2)
+        k0_upper = min(950.0, k0_lower + 420.0)
+        if k0_upper <= k0_lower:
             continue
-        r2 = rng.uniform(lower_r2, upper_r2)
-
-        s_upper = min(70.0, r1 + r2 - 0.2)
-        if s_upper <= 0.5:
-            continue
-        s = rng.uniform(0.5, s_upper)
-
-        k3 = round(rng.uniform(0.003, 0.35), 4)
-
-        g2, g1, k0_root = _gain_coeff_terms_from_roots(k3, r1, r2, s)
-        if abs(g2) < 0.001 or abs(g1) < 0.001:
-            continue
-
-        k2 = a2 - g2
-        k1 = a1 - g1
-        k0 = k0_root
+        k0 = uniform_sig(rng, k0_lower, k0_upper)
 
         if not _is_ertragsgesetzliche_k(k3, k2, k1, k0):
             continue
 
-        x_wende = -k2 / (3.0 * k3)
-        if x_wende <= 0.0:
+        g3 = -k3
+        g2 = a2 - k2
+        g1 = a1 - k1
+        g0 = -k0
+
+        all_coeffs = [a2, a1, k3, k2, k1, k0, g3, g2, g1, g0]
+        if not all(_has_max_sig_digits(coeff, max_digits=2) for coeff in all_coeffs):
+            continue
+        if not all(0.001 <= abs(coeff) <= 9999 for coeff in all_coeffs):
             continue
 
-        discr = 4.0 * (g2 ** 2) + 12.0 * k3 * g1
+        # Existenz eines lokalen Gewinnmaximums.
+        discr = 4.0 * (g2 ** 2) - 12.0 * g3 * g1
         if discr <= 0.0:
             continue
-
         sqrt_discr = discr ** 0.5
-        crit_1 = (2.0 * g2 - sqrt_discr) / (6.0 * k3)
-        crit_2 = (2.0 * g2 + sqrt_discr) / (6.0 * k3)
-        candidates = [
-            candidate
-            for candidate in [crit_1, crit_2]
-            if candidate > 0 and (-6.0 * k3 * candidate + 2.0 * g2) < 0
-        ]
-        if not candidates:
-            continue
-        x_gain_max = min(candidates)
+        crit_1 = (-2.0 * g2 - sqrt_discr) / (6.0 * g3)
+        crit_2 = (-2.0 * g2 + sqrt_discr) / (6.0 * g3)
 
-        if not (r1 < x_gain_max < r2):
-            continue
-
-        g3 = -k3
-        g0 = -k0
-        g_max = g3 * (x_gain_max ** 3) + g2 * (x_gain_max ** 2) + g1 * x_gain_max + g0
-        if g_max <= 0.0:
+        x_gain_max: float | None = None
+        for candidate in [crit_1, crit_2]:
+            if candidate <= 0.0:
+                continue
+            second = 6.0 * g3 * candidate + 2.0 * g2
+            if second < 0.0:
+                x_gain_max = candidate
+                break
+        if x_gain_max is None:
             continue
 
-        # Muss-Kriterien (E2K3): p(0)=a1 < K(0)=k0 und p(0) < G_max.
+        def g_val(x: float) -> float:
+            return g3 * (x ** 3) + g2 * (x ** 2) + g1 * x + g0
+
+        g_at_zero = g_val(0.0)
+        g_max = g_val(x_gain_max)
+        if g_at_zero >= 0.0 or g_max <= 0.0:
+            continue
+
+        # Gewinnschwelle links vom Maximum.
+        try:
+            x_break_even_low = _bisection_root(g_val, 0.0, x_gain_max)
+        except ValueError:
+            continue
+
+        # Gewinngrenze rechts vom Maximum.
+        right = max(x_gain_max + 1.0, x_sättigung)
+        while g_val(right) > 0.0 and right < 600.0:
+            right *= 1.2
+        if g_val(right) > 0.0:
+            continue
+        try:
+            x_break_even_high = _bisection_root(g_val, x_gain_max, right)
+        except ValueError:
+            continue
+
+        if x_break_even_low <= 0.0 or x_break_even_high <= x_break_even_low:
+            continue
+
+        # Muss-Kriterien (E2K3).
         if a1 >= k0:
             continue
         if a1 >= g_max:
             continue
+        if x_sättigung <= x_break_even_high * 1.01:
+            continue
 
-        if for_graph:
-            if g_max < max(8.0, 0.12 * k0):
-                continue
-            # Sättigungsmenge etwas größer als Gewinngrenze.
-            if not (x_sättigung >= r2 * 1.02):
-                continue
-
-        x_sat = -a1 / a2
-        x_e_max = x_sat / 2.0
+        x_e_max = x_sättigung / 2.0
         e_max = a2 * (x_e_max ** 2) + a1 * x_e_max
         if e_max <= 0.0:
             continue
 
-        k_end = k3 * ((x_sat * 1.05) ** 3) + k2 * ((x_sat * 1.05) ** 2) + k1 * (x_sat * 1.05) + k0
+        if for_graph and g_max < max(8.0, 0.12 * k0):
+            continue
+
+        k_end_x = x_sättigung * 1.05
+        k_end = k3 * (k_end_x ** 3) + k2 * (k_end_x ** 2) + k1 * k_end_x + k0
         if k_end > e_max * 2.25:
             continue
 
-        g_min_local, _ = _g_local_extrema_values(a2, a1, k3, k2, k1, k0, x_max=x_sat * 1.05)
+        g_min_local, _ = _g_local_extrema_values(a2, a1, k3, k2, k1, k0, x_max=k_end_x)
         g_floor = min(-k0, g_min_local if g_min_local is not None else -k0)
         if abs(g_floor) > e_max * 1.10:
             continue
@@ -750,7 +792,17 @@ def _sample_e2k3_parameters(
         if p_gain_max <= 0.0:
             continue
 
-        return a2, a1, k3, k2, k1, k0, r1, r2, x_gain_max
+        return (
+            a2,
+            a1,
+            k3,
+            k2,
+            k1,
+            k0,
+            x_break_even_low,
+            x_break_even_high,
+            x_gain_max,
+        )
 
     raise ValueError("Konnte keine gültigen E2K3-Parameter erzeugen.")
 

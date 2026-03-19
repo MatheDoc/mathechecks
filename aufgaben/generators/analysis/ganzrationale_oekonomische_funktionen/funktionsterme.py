@@ -11,8 +11,10 @@ from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared i
     _erlös_latex,
     _poly3_latex,
     _preis_latex,
+    _has_max_sig_digits,
     _sample_cost_coefficients,
 )
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
 class EconomicPolynomialFunctionTermsGenerator(TaskGenerator):
@@ -35,13 +37,15 @@ class EconomicPolynomialFunctionTermsGenerator(TaskGenerator):
 
         while len(tasks) < count:
             k3, k2, k1, k0 = _sample_cost_coefficients(rng)
-            price = round(rng.uniform(3.0, 60.0), 1)
+            price = uniform_sig(rng, 3.0, 60.0)
 
             g3 = -k3
             g2 = -k2
-            g1 = round(price - k1, 1)
+            g1 = round(price - k1, 10)
             g0 = -k0
             if abs(g1) < 1e-9:
+                continue
+            if not _has_max_sig_digits(g1, max_digits=2):
                 continue
 
             variant = variants[len(tasks) % len(variants)]

@@ -1,13 +1,8 @@
 <div class="check-jump-nav-wrap">
     <nav id="dev-training-jump-nav" class="check-jump-nav" aria-label="Check-Navigation"></nav>
 </div>
-<div class="page-shell page-shell--training w-wide">
-    <section id="dev-training-root" class="dev-training"
-        data-lernbereich="{{ page.lernbereich | default: '' | escape }}">
-        <div class="dev-training__toolbar">
-            <div id="dev-training-checks" class="dev-training__checks" aria-label="Checks"></div>
-        </div>
-
-        <div id="dev-training-task" class="dev-training__task"></div>
+<div class="page-shell page-shell--fluid w-wide">
+    <section id="dev-training-root" data-lernbereich="{{ page.lernbereich | default: '' | escape }}">
+        <div id="dev-training-task"></div>
     </section>
 </div>

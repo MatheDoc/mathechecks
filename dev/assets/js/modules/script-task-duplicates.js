@@ -124,20 +124,21 @@ function findCheckForNote(noteNode, checksByLookupKey) {
 
 function createEmptyTaskCard(check) {
     const card = document.createElement("article");
-    card.className = "card dev-training__task-card dev-check-card dev-check-card--training";
+    card.className = "dev-check-card dev-check-card--training";
 
     const header = document.createElement("div");
     header.className = "dev-check-card__header";
 
-    const headerLeft = createCheckMetaRowNode({
-        numberText: formatCheckNumber(check?.Nummer),
-        titleText: check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`,
-        prefix: "Check",
-        rowClass: "dev-check-card__header-left",
-        badgeClass: "dev-check-card__badge dev-check-card__badge--training",
-        titleClass: "dev-training__task-title dev-check-card__title dev-check-card__title--training",
-        titleTag: "h3",
-    });
+    const headerLeft = createCheckMetaRowNode(
+        {
+            numberText: formatCheckNumber(check?.Nummer),
+            titleText: check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`,
+            prefix: "Check",
+            tone: "training",
+            rowClass: "dev-check-card__header-left",
+            titleTag: "h3",
+        }
+    );
 
     const headerRight = document.createElement("div");
     headerRight.className = "dev-check-card__header-actions";
@@ -155,7 +156,7 @@ function createEmptyTaskCard(check) {
     card.appendChild(header);
 
     const body = document.createElement("div");
-    body.className = "dev-training__task-body";
+    body.className = "dev-check-card__body";
     body.textContent = "Keine Aufgabe in dieser Sammlung gefunden.";
     card.appendChild(body);
 
@@ -167,20 +168,21 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
 
     const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
     const card = document.createElement("article");
-    card.className = "card dev-training__task-card dev-check-card dev-check-card--training";
+    card.className = "dev-check-card dev-check-card--training";
 
     const header = document.createElement("div");
     header.className = "dev-check-card__header";
 
-    const headerLeft = createCheckMetaRowNode({
-        numberText: formatCheckNumber(check?.Nummer),
-        titleText: titel,
-        prefix: "Check",
-        rowClass: "dev-check-card__header-left",
-        badgeClass: "dev-check-card__badge dev-check-card__badge--training",
-        titleClass: "dev-training__task-title dev-check-card__title dev-check-card__title--training",
-        titleTag: "h3",
-    });
+    const headerLeft = createCheckMetaRowNode(
+        {
+            numberText: formatCheckNumber(check?.Nummer),
+            titleText: titel,
+            prefix: "Check",
+            tone: "training",
+            rowClass: "dev-check-card__header-left",
+            titleTag: "h3",
+        }
+    );
 
     const headerRight = document.createElement("div");
     headerRight.className = "dev-check-card__header-actions";
@@ -209,7 +211,7 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
     card.appendChild(header);
 
     const body = document.createElement("div");
-    body.className = "dev-training__task-body";
+    body.className = "dev-check-card__body";
     card.appendChild(body);
 
     const runtimeTaskNode = renderRuntimeTask(
@@ -218,7 +220,7 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
             index: 0,
             showSolution: false,
             showTaskHeading: false,
-            containerClass: "dev-training__runtime-task",
+            containerClass: "dev-check-card__runtime-task",
             interaction: {
                 enablePerQuestionCheck: true,
                 enableReload: true,
@@ -275,7 +277,7 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
     }
 
     if (runtimeToolbar) {
-        runtimeToolbar.style.display = "none";
+        runtimeToolbar.remove();
     }
 
     return card;
@@ -363,7 +365,7 @@ export async function initScriptTaskDuplicatesModule({
                 const card = createTaskCard(check, aufgabe, taskUiStateKey, usePersistedState);
                 host.appendChild(card);
 
-                const runtimeRoot = host.querySelector(".dev-training__runtime-task");
+                const runtimeRoot = host.querySelector(".dev-check-card__runtime-task");
                 if (runtimeRoot) {
                     runtimeRoot.addEventListener("task:reload", async () => {
                         const nextRandomIndex = pickRandomTaskIndex(
@@ -381,7 +383,7 @@ export async function initScriptTaskDuplicatesModule({
             await renderTaskCardForIndex(taskIndex);
         } catch (error) {
             const message = document.createElement("p");
-            message.className = "dev-training__status";
+            message.className = "dev-module__status";
             message.style.color = "var(--rose)";
             message.textContent = error?.message || "Aufgabe konnte nicht geladen werden.";
             host.appendChild(message);

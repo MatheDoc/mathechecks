@@ -14,7 +14,8 @@
             }}{% endif %}</span>
         {% if show_lb_switch %}
         <div class="lb-row">
-            <select class="lb-switch" data-lb-nav="true" aria-label="Lernbereich auswählen">
+            <select class="lb-switch filter-select lb-gebiet-filter" data-lb-nav="true"
+                aria-label="Lernbereich auswählen">
                 {% for lb in site.data.dev_lernbereiche %}
                 {% assign target_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug |
                 append: '/start.html' %}
@@ -91,15 +92,9 @@
         const rules = [];
         gebiete.forEach((g) => {
             if (!g || !g.key) return;
-            rules.push(`.lb-switch option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
             rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
-            rules.push(`.lb-switch[data-gebiet="${g.key}"] { background-color: ${g.select_bg_dark}; }`);
-            rules.push(`.filter-select.lb-gebiet-filter[data-gebiet="${g.key}"] { background-color: ${g.select_bg_dark}; }`);
             rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
-            rules.push(`html.light .lb-switch option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
             rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
-            rules.push(`html.light .lb-switch[data-gebiet="${g.key}"] { background-color: ${g.select_bg_light}; }`);
-            rules.push(`html.light .filter-select.lb-gebiet-filter[data-gebiet="${g.key}"] { background-color: ${g.select_bg_light}; }`);
             rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
         });
 
