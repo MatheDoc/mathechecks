@@ -20,7 +20,15 @@ $extensions = @(
 )
 
 # Exclude generated/legacy areas to avoid noisy findings outside maintained source content.
-$excludeRegex = "\\\.git\\|\\_site\\|\\node_modules\\|\\aufgaben\\exports\\|\\html\\|\\xml_alt\\|\\xml\\|\\json\\"
+$excludeRegex = "(^|/)\.git/|(^|/)_site/|(^|/)node_modules/|(^|/)aufgaben/exports/|(^|/)html/|(^|/)xml_alt/|(^|/)xml/|(^|/)json/"
+
+function Test-IsExcludedPath {
+    param([string]$Path)
+
+    # Normalize separators so filtering behaves identically on Windows and Linux runners.
+    $normalizedPath = $Path.Replace('\\', '/')
+    return $normalizedPath -match $excludeRegex
+}
 
 if ($StagedOnly) {
     $stagedPaths = git diff --cached --name-only --diff-filter=ACMR
@@ -36,7 +44,7 @@ if ($StagedOnly) {
         }
 
         $item = Get-Item -Path $fullPath
-        if ($item.FullName -match $excludeRegex) {
+        if (Test-IsExcludedPath -Path $item.FullName) {
             continue
         }
 
@@ -47,7 +55,7 @@ if ($StagedOnly) {
 }
 else {
     $files = Get-ChildItem -Path $Root -Recurse -File | Where-Object {
-        $_.FullName -notmatch $excludeRegex -and
+        -not (Test-IsExcludedPath -Path $_.FullName) -and
         $extensions -contains $_.Extension.ToLowerInvariant()
     }
 }
