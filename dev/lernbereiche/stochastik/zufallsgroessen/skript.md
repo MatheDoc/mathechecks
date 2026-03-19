@@ -22,7 +22,7 @@ Eine **Zufallsgröße** $X$ ordnet jedem Ergebnis eines Zufallsexperiment eine r
 
 Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X$:
 
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
+|  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
 | $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
 
@@ -38,7 +38,7 @@ Beispielsweise bedeutet $P(X=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Bi
 
 Die Wahrscheinlichkeitsverteilung sowie das Histogramm eines weiteren Biathleten B könnten wie folgt aussehen:
 
-| Fehlschüsse $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
+|  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | -------- |
 | $P(X = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
 
@@ -265,18 +265,65 @@ Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden
 
 Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsgröße erstellt werden.
 
-{%include info.html
-index="4"
-frage="Auf der Wahrscheinlichkeitsverteilung einer Zufallsgröße"
-antwort="
+### Beispiel: Elektronikfachmarkt
 
-1. Zeile: Welche Werte nimmt die Zufallsgröße an?
-2. Zeile: Welche Wahrscheinlichkeiten gehören zu den einzelnen Werten?
-   "
-   %}
+Für eine statistische Untersuchung in einem großen Elektronikfachmarkt wurden Aufzeichnungen über die Verkäufe von Laptops mit Windows- bzw. macOS-Betriebssystem geführt. Zusätzlich wurden drei Gerätekategorien erfasst: Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P). Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
+
+<img src="Elektronikfachmarkt-baumdiagramm.png" alt="Baumdiagramm Elektronikfachmarkt" width="400">
+
+Der Gewinn bei Windows-Geräten beträgt unabhängig von der Gerätekategorie 180&nbsp;€ pro Stück. Bei macOS-Geräten beläuft sich der Gewinn auf 130&nbsp;€ für Einsteigergeräte, 210&nbsp;€ für Mittelklassegeräte und 290 € für Premiumgeräte.
+
+Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die den Gewinn pro Laptop angibt?
+
+Zunächst berechnen wir $P(\\{W\\})=0{,}04+0{,}35+0{,}06=0{,}45$. Wir erhalten:
+
+<table><tr><td>$x_i$</td><td>$180$</td><td>$130$</td><td>$210$</td><td>$290$</td></tr><tr><td>$P(X = x_i)$</td><td>$0{,}45 $</td><td>$0{,}16$</td><td>$0{,}35$</td><td>$0{,}04$</td></tr></table>
+
+Wie sieht das Histogramm der Zufallsgröße aus?
+
+<img src="Elektronikfachmarkt-histogramm.png" alt="Histogramm Elektronikfachmarkt" width="400">
+
+Wie hoch ist der erwartete Gewinn pro Laptop? Und wie hoch ist der Gesamtgewinn bei 80.000 verkauften Laptops?
+
+Wir berechnen den Erwartungswert:
+
+$$
+\begin{align*}
+E(X) &= 180 \cdot 0{,}45 + 130 \cdot 0{,}16 + 210 \cdot 0{,}35 + 290 \cdot 0{,}04 \\ &= 81 + 20{,}8 + 73{,}5 + 11{,}6 \\ &= 186{,}9.
+\end{align*}
+$$
+
+Der Gesamtgewinn beträgt dann $186{,}9 \\cdot 80.000 = 14.952.000$ €.
 
 
-## Vervollständigung von Verteilungen
+### Beipsiel: Lern-Apps
+
+Es wurden 2.000 Schülerinnen und Schülern befragt, welche Versionen von Lern-Apps sie nutzen: Starter-Versionen (S), Pro-Versionen (P) oder keine Lern-Apps (k). Außerdem wurde untersucht, ob sie die Apps zur Unterhaltung (U) oder zur Vorbereitung auf Prüfungen (V) verwenden. Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
+
+<img src="Lernapp-baumdiagramm.png" alt="Baumdiagramm Lernapp" width="400">
+
+Jugendliche, die mit Pro-Versionen von Lern-Apps gezielt für Prüfungen gelernt haben, erreichen in der Abiturprüfung im Durchschnitt 11,3 Punkte. Diejenigen, die mit Starter-Versionen gezielt gelernt haben, erzielen im Mittel 10,4 Punkte, jene, die Lern-Apps zur Unterhaltung nutzen, 9,1 Punkte. Jugendliche ohne Nutzung von Lern-Apps erreichen durchschnittlich 7,3 Punkte.
+
+Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die die Punkte in der Abiturprüfung angibt?
+
+Die Wahrscheinlichkeit, dass ein Jugendlicher Lern-Apps nur zur Unterhaltung nutzt beträgt $0{,}357+0{,}048=0{,}405.$ Wir erhalten:
+
+<table><tr><td>$ x_i $</td><td>$ 11{,}3 $</td><td>$ 10{,}4 $</td><td>$ 9{,}1 $</td><td>$ 7{,}3 $</td></tr><tr><td>$ P(X = x_i) $</td><td>$ 0{,}112 $</td><td>$ 0{,}243 $</td><td>$ 0{,}405 $</td><td>$ 0{,}24 $</td></tr></table>
+
+Wie sieht das Histogramm der Zufallsgröße aus?
+
+<img src="Lernapp-histogramm.png" alt="Histogramm Lernapp" width="400">
+
+Wie viele Punkte erreichen Jugendliche in der Abiturprüfung im langfristigen Mittel?
+
+Wir berechnen den Erwartungswert:
+$$
+\begin{align*}
+E(X) &= 11{,}3 \cdot 0{,}112 + 10{,}4 \cdot 0{,}243 + 9{,}1 \cdot 0{,}405 + 7{,}3 \cdot 0{,}24 \\
+&= 1{,}2656 + 2{,}5272 + 3{,}6855 + 1{,}752 \\
+&= 9{,}2303
+\end{align*}
+ $$
 
 Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
 

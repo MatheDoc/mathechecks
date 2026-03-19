@@ -3,6 +3,7 @@ import math
 
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
 def _fmt_number(value: float, decimals: int = 2) -> str:
@@ -142,7 +143,7 @@ class LinearRegressionGenerator(TaskGenerator):
 
                 if art == "linear":
                     y_values = [
-                        2.0 * x + 3.0 + rng.uniform(-3.0, 3.0)
+                        2.0 * x + 3.0 + uniform_sig(rng, -3.0, 3.0)
                         for x in x_values
                     ]
                     coeffs = list(_polyfit(x_values, y_values, degree=1))
@@ -152,7 +153,7 @@ class LinearRegressionGenerator(TaskGenerator):
 
                 elif art == "quadratisch":
                     y_values = [
-                        1.0 * (x ** 2) - 2.0 * x + 5.0 + rng.uniform(-5.0, 5.0)
+                        1.0 * (x ** 2) - 2.0 * x + 5.0 + uniform_sig(rng, -5.0, 5.0)
                         for x in x_values
                     ]
                     coeffs = list(_polyfit(x_values, y_values, degree=2))
@@ -162,7 +163,7 @@ class LinearRegressionGenerator(TaskGenerator):
 
                 elif art == "kubisch":
                     y_values = [
-                        -0.5 * (x ** 3) + 2.0 * (x ** 2) - x + 4.0 + rng.uniform(-7.0, 7.0)
+                        -0.5 * (x ** 3) + 2.0 * (x ** 2) - x + 4.0 + uniform_sig(rng, -7.0, 7.0)
                         for x in x_values
                     ]
                     coeffs = list(_polyfit(x_values, y_values, degree=3))
@@ -171,10 +172,10 @@ class LinearRegressionGenerator(TaskGenerator):
                     frage_funktion = "Bestimmen Sie die kubische Regressionsfunktion."
 
                 else:
-                    b_true = rng.uniform(0.08, 0.35)
-                    log_a_true = rng.uniform(0.8, 2.0)
+                    b_true = uniform_sig(rng, 0.08, 0.35)
+                    log_a_true = uniform_sig(rng, 0.8, 2.0)
                     log_y = [
-                        log_a_true + b_true * x + rng.uniform(-0.2, 0.2)
+                        log_a_true + b_true * x + uniform_sig(rng, -0.2, 0.2)
                         for x in x_values
                     ]
                     y_values = [math.exp(value) for value in log_y]

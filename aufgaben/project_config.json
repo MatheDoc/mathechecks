@@ -214,6 +214,17 @@
             ]
         },
         {
+            "generator": "analysis.marktgleichgewicht_vertiefung.abschoepfung_kr_berechnung_betrag",
+            "seed": 1305,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "marktgleichgewicht-vertiefung",
+                    "sammlung": "abschoepfung-kr-berechnung-betrag"
+                }
+            ]
+        },
+        {
             "generator": "analysis.marktgleichgewicht_vertiefung.abschoepfung_kr_bestimmung_preis",
             "seed": 1303,
             "targets": [
@@ -654,6 +665,28 @@
             ]
         },
         {
+            "generator": "stochastik.methoden.absolute_haeufigkeiten",
+            "seed": 30141,
+            "targets": [
+                {
+                    "gebiet": "stochastik",
+                    "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+                    "sammlung": "absolute-haeufigkeiten"
+                }
+            ]
+        },
+        {
+            "generator": "stochastik.methoden.sylvester",
+            "seed": 30142,
+            "targets": [
+                {
+                    "gebiet": "stochastik",
+                    "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
+                    "sammlung": "sylvester"
+                }
+            ]
+        },
+        {
             "generator": "stochastik.zufallsgroessen.kennzahlen_vergleich",
             "seed": 3015,
             "targets": [
@@ -698,17 +731,6 @@
             ]
         },
         {
-            "generator": "stochastik.zufallsgroessen.kennzahlen_tabelle_fehlender_wert",
-            "seed": 3019,
-            "targets": [
-                {
-                    "gebiet": "stochastik",
-                    "lernbereich": "zufallsgroessen",
-                    "sammlung": "kennzahlen-fehlender-wert"
-                }
-            ]
-        },
-        {
             "generator": "stochastik.zufallsgroessen.kennzahlen_tabelle_fehlende_wsk_zwei",
             "seed": 3020,
             "targets": [
@@ -716,6 +738,61 @@
                     "gebiet": "stochastik",
                     "lernbereich": "zufallsgroessen",
                     "sammlung": "kennzahlen-fehlende-wsk-zwei"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.produktlebenszyklus.ekg_zyklus_gemischt",
+            "seed": 1401,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "produktlebenszyklus",
+                    "sammlung": "ekg-zyklus-gemischt"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.produktlebenszyklus.integrale_gemischt",
+            "seed": 1402,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "produktlebenszyklus",
+                    "sammlung": "integrale-gemischt"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.produktlebenszyklus.kennzahlen_graphisch_ableitung",
+            "seed": 1403,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "produktlebenszyklus",
+                    "sammlung": "kennzahlen-graphisch-ableitung"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.produktlebenszyklus.kennzahlen_graphisch_umsatz",
+            "seed": 1404,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "produktlebenszyklus",
+                    "sammlung": "kennzahlen-graphisch-umsatz"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.produktlebenszyklus.kennzahlen_rechnerisch_gesamt",
+            "seed": 1405,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "produktlebenszyklus",
+                    "sammlung": "kennzahlen-rechnerisch-gesamt"
                 }
             ]
         }
@@ -773,16 +850,6 @@
         },
         {
             "gebiet": "stochastik",
-            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-            "sammlung": "grundbegriffe-zufallsexperiment"
-        },
-        {
-            "gebiet": "stochastik",
-            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-            "sammlung": "laplace"
-        },
-        {
-            "gebiet": "stochastik",
             "lernbereich": "zufallsgroessen",
             "sammlung": "interpretationen"
         },
@@ -790,41 +857,6 @@
             "gebiet": "stochastik",
             "lernbereich": "zufallsgroessen",
             "sammlung": "aufstellen-wkt-verteilung"
-        },
-        {
-            "gebiet": "analysis",
-            "lernbereich": "produktlebenszyklus",
-            "sammlung": "ekg-zyklus-gemischt"
-        },
-        {
-            "gebiet": "analysis",
-            "lernbereich": "produktlebenszyklus",
-            "sammlung": "integrale-gemischt"
-        },
-        {
-            "gebiet": "analysis",
-            "lernbereich": "produktlebenszyklus",
-            "sammlung": "kennzahlen-graphisch-ableitung"
-        },
-        {
-            "gebiet": "analysis",
-            "lernbereich": "produktlebenszyklus",
-            "sammlung": "kennzahlen-graphisch-umsatz"
-        },
-        {
-            "gebiet": "analysis",
-            "lernbereich": "produktlebenszyklus",
-            "sammlung": "kennzahlen-rechnerisch-gesamt"
-        },
-        {
-            "gebiet": "stochastik",
-            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-            "sammlung": "absolute-haeufigkeiten"
-        },
-        {
-            "gebiet": "stochastik",
-            "lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-            "sammlung": "sylvester"
         },
         {
             "gebiet": "stochastik",

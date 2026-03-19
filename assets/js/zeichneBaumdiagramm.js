@@ -174,7 +174,9 @@ function zeichneBaumdiagramm(
 
   const config = {
     scrollZoom: false,
-    staticPlot: true,
+    staticPlot: false,
+    displayModeBar: false,
+    doubleClick: false,
     responsive: true,
   };
 

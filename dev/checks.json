@@ -33,7 +33,7 @@
             "Versuchsanzahl \\(n\\)",
             "Treffer-Wkt \\(p\\)",
             "Nieten-Wkt \\(1-p\\)",
-            "Wkt. für genau \\(k\\) Treffer \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)"
+            "Wkt für genau \\(k\\) Treffer \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)"
         ],
         "questionOrder": "shuffle"
     },
@@ -286,7 +286,7 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-16",
         "Stichwoerter": [
-            "Erwartungswert \\(\\pm\\) absoluter Wert",
+            "\\(\\mu\\pm\\) absoluter Wert",
             "innerhalb / außerhalb",
             "Intervall-Wkt"
         ],
@@ -304,7 +304,7 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-17",
         "Stichwoerter": [
-            "Erwartungswert \\(\\pm\\) relativer Wert",
+            "\\(\\mu\\pm\\) relativer Wert",
             "innerhalb / außerhalb",
             "Intervall-Wkt"
         ],
@@ -322,7 +322,7 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-18",
         "Stichwoerter": [
-            "Erwartungswert \\(\\pm\\) Vielfaches von \\(\\sigma\\)",
+            "\\(\\mu\\pm\\) Vielfaches von \\(\\sigma\\)",
             "innerhalb / außerhalb",
             "Intervall-Wkt"
         ],
@@ -389,15 +389,15 @@
         "check_id": "stochastik__mehrstufige-zufallsexperimente__04",
         "Ich kann": "Baumdiagramme interpretieren (ohne bedingte Wahrscheinlichkeiten).",
         "Sammlung": "baumdiagramm-folgern-ohneUnabh",
-        "Schlagwort": "Baumdiagramm interpretieren",
+        "Schlagwort": "Baumdiagramm interpretieren (ohne bed Wkt)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-04",
         "Stichwoerter": [
-            "Mehrstufige Zufallsexperimente",
             "A-Wkt \\(P(A)\\): 1. Pfad-Wkt",
             "B-Wkt \\(P(B)\\): Summe zweier Pfadend-Wkt",
             "Und-Wkt \\P(A\\cap B)\\): eine Pfadend-Wkt",
-            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier Pfadend-Wkt"
+            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier Pfadend-Wkt",
+            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier Pfadend-Wkt"
         ],
         "questionOrder": "shuffle"
     },
@@ -416,7 +416,7 @@
             "Pfadmultiplikationsregel",
             "Pfadadditionsregel",
             "Gegen-Wkt",
-            "rel. Häufigkeiten als Wkt interpretieren"
+            "rel Häufigkeiten als Wkt"
         ],
         "questionOrder": "shuffle"
     },
@@ -426,7 +426,7 @@
         "LernbereichAnzeigename": "Mehrstufige Zufallsexperimente",
         "Nummer": 6,
         "check_id": "stochastik__mehrstufige-zufallsexperimente__06",
-        "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren. (Variante 2).",
+        "Ich kann": "Baumdiagramme komplexer Sachverhalte aufstellen und interpretieren (Variante 2).",
         "Sammlung": "baumdiagramm-komplex-var2",
         "Schlagwort": "Komplexes Baumdiagramm II",
         "Flashtyp": "gruppiert",
@@ -435,7 +435,7 @@
             "Pfadmultiplikationsregel",
             "Pfadadditionsregel",
             "Gegen-Wkt",
-            "rel. Häufigkeiten als Wkt interpretieren"
+            "rel Häufigkeiten als Wkt"
         ],
         "questionOrder": "shuffle"
     },
@@ -447,14 +447,17 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__01",
         "Ich kann": "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (mit bedingten Wahrscheinlichkeiten).",
         "Sammlung": "interpretationen-mitBedingt",
-        "Schlagwort": "Notation bed. Wkt",
+        "Schlagwort": "Bedingte Wkt symbolisch",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-01",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "textuelle",
-            "symbolische",
-            "beschreibungen"
+            "\\(P(A)\\): Wkt von \\( A \\)",
+            "\\(P(B)\\): Wkt von \\( B \\)",
+            "\\P(A\\cap B)\\): Wkt von \\( A \\) und \\( B \\)",
+            "\\(P(A\\cup B)\\): Wkt von \\( A \\) oder \\( B \\)",
+            "\\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wkt von entweder \\( A \\) oder \\( B \\) (aber nicht beide)",
+            "\\( P_A(B) \\): Wkt von \\( B \\) unter Bed \\( A \\)",
+            "\\( P_B(A) \\): Wkt von \\( A \\) unter Bed \\( B \\)"
         ],
         "questionOrder": "shuffle"
     },
@@ -466,14 +469,14 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__02",
         "Ich kann": "Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen.",
         "Sammlung": "baumdiagramm-erstellen-mitUnabh",
-        "Schlagwort": "Baum + Unabhängigkeit",
+        "Schlagwort": "Baumdiagarmm vervollständigen bei Unabhängigkeit",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-02",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "baumdiagramme",
-            "stochastischer",
-            "unabhängigkeit"
+            "Pfadadditionsregel",
+            "Pfadmultiplikationsregel",
+            "Gleiche Wkt für \\( B \\) und \\( \\overline{B} \\) auf zweiten Pfad",
+            "\\( P_A(B)=P_{\\overline{A}}(B) \\)"
         ],
         "questionOrder": "fixed"
     },
@@ -485,14 +488,17 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__03",
         "Ich kann": "Baumdiagramme interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
         "Sammlung": "baumdiagramm-folgern-mitUnabh",
-        "Schlagwort": "Baum + bed. Wkt + Unabh.",
+        "Schlagwort": "Baumdiagramm interpretieren (ohne bed Wkt)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-03",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "baumdiagramme",
-            "interpretieren",
-            "bedingten"
+            "A-Wkt \\(P(A)\\): 1. Pfad-Wkt",
+            "B-Wkt \\(P(B)\\): Summe zweier Pfadend-Wkt",
+            "Und-Wkt \\P(A\\cap B)\\): eine Pfadend-Wkt",
+            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier Pfadend-Wkt",
+            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier Pfadend-Wkt",
+            "Wkt unter A-Bed \\( P_A(B) \\): 2. Pfad-Wkt",
+            "Wkt unter B-Bed \\( P_B(A) \\): \\( \\frac{A\\cap B}{B} \\)"
         ],
         "questionOrder": "shuffle"
     },
@@ -504,14 +510,12 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__04",
         "Ich kann": "Vier-Felder-Tafeln vervollständigen.",
         "Sammlung": "vierfelder-erstellen-ohneUnabh",
-        "Schlagwort": "Vierfeldertafel ergänzen",
+        "Schlagwort": "4VT ergänzen ohne st Unbh",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-04",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "vier-felder-tafeln",
-            "vervollständigen",
-            "Kompetenz 04"
+            "Innere Wkt = Und-Wkt",
+            "Summe innere Wkt = äußere Wkt"
         ],
         "questionOrder": "fixed"
     },
@@ -523,14 +527,15 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__05",
         "Ich kann": "Vier-Felder-Tafeln interpretieren.",
         "Sammlung": "vierfelder-folgern-ohneUnabh",
-        "Schlagwort": "Vierfeldertafel interpretieren",
+        "Schlagwort": "4VT interpretieren ohne bed Wkt",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-05",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "vier-felder-tafeln",
-            "interpretieren",
-            "Kompetenz 05"
+            "A-Wkt \\(P(A)\\): letzte Zeile/Spalte",
+            "B-Wkt \\(P(B)\\): letzte Zeile/Spalte",
+            "Und-Wkt \\P(A\\cap B)\\): eine innere Wkt",
+            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier inneneren Wkt",
+            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier ineren Wkt"
         ],
         "questionOrder": "shuffle"
     },
@@ -542,14 +547,14 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__06",
         "Ich kann": "Vier-Felder-Tafeln unter Verwendung  stochastischer Unabhängigkeit vervollständigen.",
         "Sammlung": "vierfelder-folgern-mitUnabh",
-        "Schlagwort": "Vierfeldertafel + Unabh.",
+        "Schlagwort": "4VT ergänzen mit st Unbh",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-06",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "vier-felder-tafeln",
-            "stochastischer",
-            "unabhängigkeit"
+            "Innere Wkt = Und-Wkt",
+            "Summe innere Wkt = äußere Wkt",
+            "4VT ist multiplikativ",
+            "\\( P(A) \\cdot P(B) = P(A\\cap B) \\)"
         ],
         "questionOrder": "fixed"
     },
@@ -561,14 +566,17 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__07",
         "Ich kann": "Vier-Felder-Tafeln interpretieren (mit bedingten Wahrscheinlichkeiten und Prüfung auf stochastische Unabhängigkeit).",
         "Sammlung": "vierfelder-folgern-mitUnabh",
-        "Schlagwort": "Vierfeldertafel + bed. Wkt",
+        "Schlagwort": "4VT interpretieren mit bed Wkt",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-07",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "vier-felder-tafeln",
-            "interpretieren",
-            "bedingten"
+            "A-Wkt \\(P(A)\\): letzte Zeile/Spalte",
+            "B-Wkt \\(P(B)\\): letzte Zeile/Spalte",
+            "Und-Wkt \\P(A\\cap B)\\): eine innere Wkt",
+            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier inneneren Wkt",
+            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier ineren Wkt",
+            "Wkt unter A-Bed \\( P_A(B) \\): innere Wkt geteilt durch äußere Wkt der Zeile/Spalte",
+            "Wkt unter B-Bed \\( P_B(A) \\): innere Wkt geteilt durch äußere Wkt der Zeile/Spalte"
         ],
         "questionOrder": "shuffle"
     },
@@ -584,10 +592,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-08",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "wahrscheinlichkeiten",
-            "baumdiagramm",
-            "vier-felder-tafel"
+            "Satz von der Gegen-Wkt",
+            "Satz von der totalen Wkt",
+            "Satz von Sylvester",
+            "Satz von der bed Wkt"
         ],
         "questionOrder": "shuffle"
     },
@@ -603,10 +611,12 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-09",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "wahrscheinlichkeiten",
-            "baumdiagramm",
-            "vier-felder-tafel"
+            "Satz von der Gegen-Wkt",
+            "Satz von der totalen Wkt",
+            "Satz von Sylvester",
+            "Satz von der bed Wkt",
+            "Unabhängigkeit: \\( P_A(B) = P_{\\overline{A}}(B) \\)",
+            "Unabhängigkeit: \\( P(A) \\cdot P(B) = P(A\\cap B) \\)"
         ],
         "questionOrder": "shuffle"
     },
@@ -618,14 +628,13 @@
         "check_id": "stochastik__bedingte-wahrscheinlichkeiten__10",
         "Ich kann": "Venn-Diagramme interpretieren (mit bedingten Wahrscheinlichkeiten).",
         "Sammlung": "venn-mitBedingt",
-        "Schlagwort": "Venn-Diagramm + bed. Wkt",
+        "Schlagwort": "Venn-Diagramm mit bed Wkt",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-10",
         "Stichwoerter": [
-            "Bedingte Wahrscheinlichkeiten",
-            "venn-diagramme",
-            "interpretieren",
-            "bedingten"
+            "Flächen = Ereignisse",
+            "Flächeninhalte = Wahrscheinlichkeiten",
+            "Bedingung = eingefärbte Fläche"
         ],
         "questionOrder": "shuffle"
     },
@@ -654,30 +663,11 @@
         "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
         "Nummer": 2,
         "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__02",
-        "Ich kann": "die Grundbegriffe eines Zufallsexperiments erläutern.",
-        "Sammlung": "grundbegriffe-zufallsexperiment",
-        "Schlagwort": "Grundbegriffe",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
-        "Stichwoerter": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "grundbegriffe",
-            "zufallsexperiments",
-            "erläutern"
-        ],
-        "questionOrder": "shuffle"
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
-        "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-        "Nummer": 3,
-        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__03",
         "Ich kann": "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten).",
         "Sammlung": "interpretationen-ohneBedingt",
         "Schlagwort": "Wkt-Notation",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
+        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
         "Stichwoerter": [
             "Zufallsexperimente und Wahrscheinlichkeiten",
             "textuelle",
@@ -690,13 +680,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
         "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-        "Nummer": 4,
-        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__04",
+        "Nummer": 3,
+        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__03",
         "Ich kann": "Wahrscheinlichkeiten mithilfe absoluter Häufigkeiten berechnen.",
         "Sammlung": "absolute-haeufigkeiten",
         "Schlagwort": "Relative Häufigkeit",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
+        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
         "Stichwoerter": [
             "Zufallsexperimente und Wahrscheinlichkeiten",
             "wahrscheinlichkeiten",
@@ -709,13 +699,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
         "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-        "Nummer": 5,
-        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05",
+        "Nummer": 4,
+        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__04",
         "Ich kann": "den Satz von der Gegenwahrscheinlichkeit und von Sylvester anwenden.",
         "Sammlung": "sylvester",
         "Schlagwort": "Gegenwkt + Sylvester",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
+        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
         "Stichwoerter": [
             "Zufallsexperimente und Wahrscheinlichkeiten",
             "satz",
@@ -728,13 +718,13 @@
         "Gebiet": "stochastik",
         "Lernbereich": "zufallsexperimente-und-wahrscheinlichkeiten",
         "LernbereichAnzeigename": "Zufallsexperimente und Wahrscheinlichkeiten",
-        "Nummer": 6,
-        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__06",
+        "Nummer": 5,
+        "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05",
         "Ich kann": "Venn-Diagramme interpretieren (ohne bedingten Wahrscheinlichkeiten).",
         "Sammlung": "venn-ohneBedingt",
         "Schlagwort": "Venn-Diagramm",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-06",
+        "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
         "Stichwoerter": [
             "Zufallsexperimente und Wahrscheinlichkeiten",
             "venn-diagramme",
@@ -755,12 +745,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-01",
         "Stichwoerter": [
-            "Zufallsgrößen",
-            "erwartungswert",
-            "allgemeinen",
-            "zufallsgröße"
+            "\\( E(X) = \\sum x_i \\cdot P(X=x_i) \\)",
+            "Zeile x Zeile",
+            "Durschnittswert"
         ],
-        "questionOrder": "fixed"
+        "questionOrder": "shuffle"
     },
     {
         "Gebiet": "stochastik",
@@ -774,12 +763,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-02",
         "Stichwoerter": [
-            "Zufallsgrößen",
-            "standardabweichung",
-            "allgemeinen",
-            "zufallsgröße"
+            "Schwankungsmaß",
+            "\\( \\sigma(X) = \\sqrt{E((X-E(X))^2)} \\) = \\( \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)",
+            "Wurzel aus durchschnittlicher quadratischer Abweichung"
         ],
-        "questionOrder": "fixed"
+        "questionOrder": "shuffle"
     },
     {
         "Gebiet": "stochastik",
@@ -793,8 +781,8 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-03",
         "Stichwoerter": [
-            "Zufallsgrößen",
-            "erwartungswert",
+            "\\E(X)\\): Durchschnittswert",
+            "\\(\\sigma(X)\\): Schwankungsmaß",
             "standardabweichung",
             "sachzusammenhang"
         ],
@@ -825,16 +813,15 @@
         "LernbereichAnzeigename": "Zufallsgrößen",
         "Nummer": 5,
         "check_id": "stochastik__zufallsgroessen__05",
-        "Ich kann": "eine fehlende Wahrscheinlichkeit einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Ich kann": "eine fehlende Wahrscheinlichkeit und bei gegebenen Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen.",
         "Sammlung": "kennzahlen-fehlende-wsk",
-        "Schlagwort": "Fehlende Wkt",
+        "Schlagwort": "Wkt und Wert bestimmen",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-05",
         "Stichwoerter": [
-            "Zufallsgrößen",
-            "fehlende",
-            "wahrscheinlichkeit",
-            "wahrscheinlichkeitsverteilung"
+            "Summe aller Wkt = 1",
+            "Ansatz: Formel-Erwartungswert",
+            "nach fehlendem Wert umformen"
         ],
         "questionOrder": "fixed"
     },
@@ -844,35 +831,16 @@
         "LernbereichAnzeigename": "Zufallsgrößen",
         "Nummer": 6,
         "check_id": "stochastik__zufallsgroessen__06",
-        "Ich kann": "bei gegebenem Erwartungswert einen fehlenden Wert einer Wahrscheinlichkeitsverteilung berechnen.",
-        "Sammlung": "kennzahlen-fehlender-wert",
-        "Schlagwort": "Fehlender Wert bei E(X)",
+        "Ich kann": "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
+        "Sammlung": "kennzahlen-fehlende-wsk-zwei",
+        "Schlagwort": "Zwei Wkt bstimmen",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-06",
         "Stichwoerter": [
-            "Zufallsgrößen",
-            "erwartungswert",
-            "einen",
-            "fehlenden"
-        ],
-        "questionOrder": "fixed"
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "zufallsgroessen",
-        "LernbereichAnzeigename": "Zufallsgrößen",
-        "Nummer": 7,
-        "check_id": "stochastik__zufallsgroessen__07",
-        "Ich kann": "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
-        "Sammlung": "kennzahlen-fehlende-wsk-zwei",
-        "Schlagwort": "Zwei fehlende Wkt",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsgroessen-07",
-        "Stichwoerter": [
-            "Zufallsgrößen",
-            "erwartungswert",
-            "zwei",
-            "fehlende"
+            "Summe aller Wkt = 1",
+            "Ansatz: Formel-Erwartungswert",
+            "2 Gleichungen mit 2 Unbekannten",
+            "Lösen des Gleichungssystems"
         ],
         "questionOrder": "fixed"
     },
@@ -884,14 +852,15 @@
         "check_id": "stochastik__hypothesentests__01",
         "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
         "Sammlung": "hypothesenergebnis-linksseitig",
-        "Schlagwort": "Linksseitiger Test anwenden",
+        "Schlagwort": "Linkss. E-Regel anwenden",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-01",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "linksseitigen",
-            "anwenden"
+            "\\( H_1 \\): Wkt ist kleiner als geg. Wert",
+            "Annahmebreich",
+            "Ablehnungsbereich",
+            "Wkt für Fehler 1. Art",
+            "Stichprobenergebnis"
         ],
         "questionOrder": "fixed"
     },
@@ -903,14 +872,15 @@
         "check_id": "stochastik__hypothesentests__02",
         "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
         "Sammlung": "hypothesenergebnis-rechtsseitig",
-        "Schlagwort": "Rechtsseitiger Test anwenden",
+        "Schlagwort": "Rechtss. E-Regel anwenden",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-02",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "rechtsseitigen",
-            "anwenden"
+            "\\( H_1 \\): Wkt ist größer als geg. Wert",
+            "Annahmebreich",
+            "Ablehnungsbereich",
+            "Wkt für Fehler 1. Art",
+            "Stichprobenergebnis"
         ],
         "questionOrder": "fixed"
     },
@@ -922,14 +892,15 @@
         "check_id": "stochastik__hypothesentests__03",
         "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (mit Strukturhilfe).",
         "Sammlung": "ablehnungsbereich-linksseitig-mit-struktur",
-        "Schlagwort": "Linksseitiger Test herleiten I",
+        "Schlagwort": "Linkss. E-Regel herleiten (mit Struktur)",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-03",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "linksseitigen",
-            "herleiten"
+            "\\(H_0, H_1\\) formulieren",
+            "\\( A=\\{k+1,\\ldots, n\\}\\)",
+            "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
+            "Ansatz mit Signifikanzniveau",
+            "Bestimmung von \\( k \\) mit TR oder TW"
         ],
         "questionOrder": "fixed"
     },
@@ -941,14 +912,15 @@
         "check_id": "stochastik__hypothesentests__04",
         "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (mit Strukturhilfe).",
         "Sammlung": "ablehnungsbereich-rechtsseitig-mit-struktur",
-        "Schlagwort": "Rechtsseitiger Test herleiten I",
+        "Schlagwort": "Rechtss. E-Regel herleiten (mit Struktur)",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-04",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "rechtsseitigen",
-            "herleiten"
+            "\\(H_0, H_1\\) formulieren",
+            "\\( A=\\{0,\\ldots, k-1\\}\\)",
+            "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
+            "Ansatz mit Signifikanzniveau",
+            "Bestimmung von \\( k \\) mit TR oder TW"
         ],
         "questionOrder": "fixed"
     },
@@ -960,14 +932,15 @@
         "check_id": "stochastik__hypothesentests__05",
         "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
         "Sammlung": "ablehnungsbereich-linksseitig-ohne-struktur",
-        "Schlagwort": "Linksseitiger Test herleiten II",
+        "Schlagwort": "Linkss. E-Regel herleiten (ohne Struktur)",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-05",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "linksseitigen",
-            "herleiten"
+            "\\(H_0, H_1\\) formulieren",
+            "\\( A=\\{k+1,\\ldots, n\\}\\)",
+            "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
+            "Ansatz mit Signifikanzniveau",
+            "Bestimmung von \\( k \\) mit TR oder TW"
         ],
         "questionOrder": "fixed"
     },
@@ -979,14 +952,15 @@
         "check_id": "stochastik__hypothesentests__06",
         "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests herleiten (ohne Strukturhilfe).",
         "Sammlung": "ablehnungsbereich-rechtsseitig-ohne-struktur",
-        "Schlagwort": "Rechtsseitiger Test herleiten II",
+        "Schlagwort": "Rechtss. E-Regel herleiten (ohne Struktur)",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-06",
         "Stichwoerter": [
-            "Hypothesentests",
-            "entscheidungsregel",
-            "rechtsseitigen",
-            "herleiten"
+            "\\(H_0, H_1\\) formulieren",
+            "\\( A=\\{0,\\ldots, k-1\\}\\)",
+            "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
+            "Ansatz mit Signifikanzniveau",
+            "Bestimmung von \\( k \\) mit TR oder TW"
         ],
         "questionOrder": "fixed"
     },
@@ -1414,11 +1388,30 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
         "Nummer": 4,
         "check_id": "analysis__marktgleichgewicht-vertiefung__04",
+        "Ich kann": "den abgeschöpften Teil der Konsumentenrente bei vorgegebenem Teilmarktpreis berechnen.",
+        "Sammlung": "abschoepfung-kr-berechnung-betrag",
+        "Schlagwort": "Rentenabschöpfung berechnen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-04",
+        "Stichwoerter": [
+            "Marktgleichgewicht - Vertiefung",
+            "teilmarktpreis",
+            "konsumentenrente",
+            "abschöpfung"
+        ],
+        "questionOrder": "shuffle"
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "marktgleichgewicht-vertiefung",
+        "LernbereichAnzeigename": "Marktgleichgewicht - Vertiefung",
+        "Nummer": 5,
+        "check_id": "analysis__marktgleichgewicht-vertiefung__05",
         "Ich kann": "den Verkaufspreis auf einem Teilmarkt berechnen (wenn die die Konsumentenrente maximal abgeschöpft werden soll).",
         "Sammlung": "abschoepfung-kr-bestimmung-preis",
         "Schlagwort": "Max. Rentenabschöpfung",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-04",
+        "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-05",
         "Stichwoerter": [
             "Marktgleichgewicht - Vertiefung",
             "verkaufspreis",

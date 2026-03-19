@@ -86,7 +86,7 @@ function renderRow(check) {
     const feynmanLink = renderModuleActionLink(feynmanHref, "feynman", "Zum Feynman", "fa-lightbulb");
 
     return `
-        <article class="card dev-training__task-card dev-check-card dev-check-card--kompetenzliste kl-row" data-check-id="${escapeHtml(getCheckId(check))}">
+        <article class="dev-check-card dev-check-card--kompetenzliste kl-row" data-check-id="${escapeHtml(getCheckId(check))}">
             <div class="dev-check-card__header">
                 ${renderCheckMetaRowMarkup({
         numberText: nummer,

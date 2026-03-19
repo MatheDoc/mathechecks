@@ -1,14 +1,13 @@
-"""Kennzahlen diskreter Zufallsgrößen aus Wahrscheinlichkeitstabelle – 5 Varianten.
+"""Kennzahlen diskreter Zufallsgrößen aus Wahrscheinlichkeitstabelle – 4 Varianten.
 
 Jede Aufgabe zeigt eine 5-elementige Wahrscheinlichkeitsverteilung als visual-Tabelle
 (spec.type = "wkt-tabelle"). None-Einträge in x bzw. p markieren fehlende Zellen.
 
 Varianten (je ein Generator, je eine Sammlung):
-  1. KennzahlenTabelleFehlWsk        – eine P_i fehlt, bestimmen
-  2. KennzahlenTabelleEW             – volle Tabelle, E(X) berechnen
-  3. KennzahlenTabelleSigma          – volle Tabelle + E(X) gegeben, σ(X) berechnen
-  4. KennzahlenTabelleFehlWert       – ein x_i fehlt, E(X) gegeben, x_i bestimmen
-  5. KennzahlenTabelleFehlWsk2       – zwei P_i fehlen, E(X) gegeben, beide bestimmen
+    1. KennzahlenTabelleFehlWsk        – eine P_i und eine x_i fehlen, E(X) gegeben
+    2. KennzahlenTabelleEW             – volle Tabelle, E(X) berechnen
+    3. KennzahlenTabelleSigma          – volle Tabelle + E(X) gegeben, σ(X) berechnen
+    4. KennzahlenTabelleFehlWsk2       – zwei P_i fehlen, E(X) gegeben, beide bestimmen
 """
 
 from __future__ import annotations
@@ -70,10 +69,10 @@ def _gen_data(rng: random.Random) -> tuple[list[int], list[float], float, float]
     return x, p, ex, sx
 
 
-# ── Variante 1: Fehlende Wahrscheinlichkeit ────────────────────────────────
+# ── Variante 1: Fehlende Wahrscheinlichkeit + fehlender x-Wert ─────────────
 
 class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
-    """Eine Wahrscheinlichkeit P(X = x_i) fehlt in der Tabelle."""
+    """Eine Wahrscheinlichkeit und ein x-Wert fehlen, E(X) ist gegeben."""
 
     generator_key = "stochastik.zufallsgroessen.kennzahlen_tabelle_fehlende_wsk"
 
@@ -81,19 +80,24 @@ class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
         rng = random.Random(seed)
         tasks: list[Task] = []
         for _ in range(count):
-            x, p, _ex, _sx = _gen_data(rng)
-            idx = rng.randint(0, 4)
-            p_disp: list[float | None] = [round(pi, 2) if i != idx else None for i, pi in enumerate(p)]
-            frage = "Bestimmen Sie die fehlende Wahrscheinlichkeit."
+            x, p, ex, _sx = _gen_data(rng)
+            idx_p = rng.randint(0, 4)
+            idx_x = (idx_p + rng.randint(1, 4)) % 5
+            x_disp: list[int | None] = [xi if i != idx_x else None for i, xi in enumerate(x)]
+            p_disp: list[float | None] = [round(pi, 2) if i != idx_p else None for i, pi in enumerate(p)]
+            frage = (
+                "Bestimmen Sie den fehlenden Wert der Zufallsgröße und die fehlende Wahrscheinlichkeit."
+                f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
+            )
             antwort = (
-                f"\\( P(X={x[idx]})= \\) "
-                + numerical(p[idx], tolerance=0.01, decimals=2)
+                f"\\( x_i= \\) {numerical(float(x[idx_x]), tolerance=0.5, decimals=0)}"
+                f" und \\( P(X={x[idx_p]})= \\) {numerical(p[idx_p], tolerance=0.01, decimals=2)}"
             )
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
                 fragen=[frage],
                 antworten=[antwort],
-                visual=_wkt_visual(list(x), p_disp),
+                visual=_wkt_visual(x_disp, p_disp),
             ))
         return tasks
 
@@ -149,36 +153,7 @@ class KennzahlenTabelleSigmaGenerator(TaskGenerator):
         return tasks
 
 
-# ── Variante 4: Fehlender x-Wert ──────────────────────────────────────────
-
-class KennzahlenTabelleFehlWertGenerator(TaskGenerator):
-    """Ein x-Wert fehlt in der Tabelle, E(X) gegeben – x_i bestimmen."""
-
-    generator_key = "stochastik.zufallsgroessen.kennzahlen_tabelle_fehlender_wert"
-
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
-        for _ in range(count):
-            x, p, ex, _sx = _gen_data(rng)
-            idx = rng.randint(0, 4)
-            x_disp: list[int | None] = [xi if i != idx else None for i, xi in enumerate(x)]
-            p_disp: list[float | None] = [round(pi, 2) for pi in p]
-            frage = (
-                "Bestimmen Sie den fehlenden Wert der Zufallsgröße."
-                f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
-            )
-            antwort = numerical(float(x[idx]), tolerance=0.5, decimals=2)
-            tasks.append(Task(
-                einleitung=_EINLEITUNG,
-                fragen=[frage],
-                antworten=[antwort],
-                visual=_wkt_visual(x_disp, p_disp),
-            ))
-        return tasks
-
-
-# ── Variante 5: Zwei fehlende Wahrscheinlichkeiten ────────────────────────
+# ── Variante 4: Zwei fehlende Wahrscheinlichkeiten ────────────────────────
 
 class KennzahlenTabelleFehlWsk2Generator(TaskGenerator):
     """Zwei Wahrscheinlichkeiten fehlen, E(X) gegeben – beide P_i bestimmen."""

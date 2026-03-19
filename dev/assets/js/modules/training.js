@@ -9,6 +9,7 @@ import {
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
+import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
 async function renderMath(targetNode, retries = 4) {
   if (!targetNode) return;
@@ -49,12 +50,6 @@ function resizePlotlyInNode(targetNode, retries = 4) {
 function finalizeTaskRender(targetNode) {
   void renderMath(targetNode);
   requestAnimationFrame(() => resizePlotlyInNode(targetNode));
-}
-
-function setStatus(statusNode, message, isError = false) {
-  if (!statusNode) return;
-  statusNode.textContent = message;
-  statusNode.style.color = isError ? "var(--rose)" : "var(--text-dim)";
 }
 
 function getCheckId(check) {
@@ -173,25 +168,22 @@ function createTaskCardNode(
 ) {
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
-  card.className = "card dev-training__task-card dev-check-card dev-check-card--training";
+  card.className = "dev-check-card dev-check-card--training";
 
   // ── Unified card header row ──
   const header = document.createElement("div");
   header.className = "dev-check-card__header";
 
-  const headerLeft = document.createElement("div");
-  headerLeft.className = "dev-check-card__header-left";
-
-  const meta = document.createElement("span");
-  meta.className = "dev-check-card__badge dev-check-card__badge--training";
-  meta.textContent = `Check ${check.Nummer}`;
-
-  const heading = document.createElement("h3");
-  heading.className = "dev-training__task-title dev-check-card__title dev-check-card__title--training";
-  heading.textContent = titel;
-
-  headerLeft.appendChild(meta);
-  headerLeft.appendChild(heading);
+  const headerLeft = createCheckMetaRowNode(
+    {
+      numberText: formatCheckNumber(check?.Nummer),
+      titleText: titel,
+      prefix: "Check",
+      tone: "training",
+      rowClass: "dev-check-card__header-left",
+      titleTag: "h3",
+    }
+  );
 
   const headerRight = document.createElement("div");
   headerRight.className = "dev-check-card__header-actions";
@@ -230,7 +222,7 @@ function createTaskCardNode(
   card.appendChild(header);
 
   const body = document.createElement("div");
-  body.className = "dev-training__task-body";
+  body.className = "dev-check-card__body";
   card.appendChild(body);
 
   if (!aufgabe) {
@@ -246,7 +238,7 @@ function createTaskCardNode(
     index: 0,
     showSolution: false,
     showTaskHeading: false,
-    containerClass: "dev-training__runtime-task",
+    containerClass: "dev-check-card__runtime-task",
     interaction: {
       enablePerQuestionCheck: true,
       enableReload: true,
@@ -304,33 +296,10 @@ function createTaskCardNode(
   }
 
   if (runtimeToolbar) {
-    runtimeToolbar.style.display = "none";
+    runtimeToolbar.remove();
   }
 
   return card;
-}
-
-function setTaskContent(
-  taskHost,
-  check,
-  aufgabe,
-  onReloadTask = null,
-  scriptInfoHref = "",
-  taskUiStateKey = "",
-  readPersistedState = true
-) {
-  taskHost.innerHTML = "";
-  taskHost.appendChild(
-    createTaskCardNode(
-      check,
-      aufgabe,
-      onReloadTask,
-      scriptInfoHref,
-      taskUiStateKey,
-      readPersistedState
-    )
-  );
-  finalizeTaskRender(taskHost);
 }
 
 function createBrowseTaskCardNode(check, sammlung, options = {}) {
@@ -351,13 +320,9 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   const checkId = getCheckId(check);
   const anchorId = getTrainingCheckAnchorId(check);
   const viewportNode = document.createElement("section");
-  viewportNode.className = "check-viewport-item check-viewport-item--training";
+  viewportNode.className = "check-viewport-item check-viewport-item--scroll-card";
   viewportNode.id = anchorId;
   viewportNode.dataset.checkId = checkId;
-
-  const innerNode = document.createElement("div");
-  innerNode.className = "check-viewport-item__inner";
-  viewportNode.appendChild(innerNode);
 
   if (hasTasks && typeof onTaskIndexChange === "function") {
     onTaskIndexChange(taskIndex);
@@ -365,7 +330,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
 
   if (!hasTasks) {
     cardNode = createTaskCardNode(check, null, null, scriptInfoHref);
-    innerNode.appendChild(cardNode);
+    viewportNode.appendChild(cardNode);
     return viewportNode;
   }
 
@@ -389,20 +354,17 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     );
 
   cardNode = renderCurrentCard();
-  innerNode.appendChild(cardNode);
+  viewportNode.appendChild(cardNode);
   return viewportNode;
 }
 
 function renderInfoFallback(root, text) {
-  root.innerHTML = `<p class="dev-training__status">${text}</p>`;
+  root.innerHTML = `<p class="dev-module__status">${text}</p>`;
   finalizeTaskRender(root);
 }
 
 function bindShell(root) {
   return {
-    checksHost: root.querySelector("#dev-training-checks"),
-    nextBtn: root.querySelector("#dev-training-next"),
-    statusNode: root.querySelector("#dev-training-status"),
     taskHost: root.querySelector("#dev-training-task"),
     jumpNav: document.getElementById("dev-training-jump-nav"),
   };
@@ -510,7 +472,7 @@ function bindTrainingJumpNavScrollSync(navNode, cardNodes) {
 function setTaskMessage(taskHost, message, isError = false) {
   if (!taskHost) return;
   const color = isError ? "var(--rose)" : "var(--text-dim)";
-  taskHost.innerHTML = `<p class="dev-training__status" style="color:${color};">${message}</p>`;
+  taskHost.innerHTML = `<p class="dev-module__status" style="color:${color};">${message}</p>`;
   finalizeTaskRender(taskHost);
 }
 
@@ -521,7 +483,7 @@ export async function initTrainingModule({
   usePersistedState = true,
 }) {
   const shell = bindShell(root);
-  if (!shell.checksHost || !shell.taskHost) {
+  if (!shell.taskHost) {
     renderInfoFallback(root, "Training-Shell nicht gefunden.");
     return;
   }
@@ -540,24 +502,14 @@ export async function initTrainingModule({
   const state = usePersistedState
     ? loadTrainingState(lernbereich)
     : { selectedCheckId: null, taskIndexByCheckId: {} };
-  let selectedCheck = null;
-  const checkById = new Map();
   const hasPreferredCheckId = typeof preferredCheckId === "string" && preferredCheckId.trim() !== "";
   const preferredCheckIdFromHash = resolvePreferredCheckIdFromHash(checks);
-
-  checks.forEach((check) => {
-    checkById.set(getCheckId(check), check);
-  });
 
   function persist() {
     saveTrainingState(lernbereich, state);
   }
 
   async function renderBrowseFallback(preferredCheckIdForBrowse = "") {
-    if (shell.nextBtn) shell.nextBtn.style.display = "none";
-    shell.checksHost.style.display = "none";
-    const toolbar = shell.checksHost.closest(".dev-training__toolbar");
-    if (toolbar) toolbar.style.display = "none";
     shell.taskHost.innerHTML = "";
 
     const preferredId = typeof preferredCheckIdForBrowse === "string"
@@ -595,9 +547,9 @@ export async function initTrainingModule({
           });
         } catch (error) {
           const card = document.createElement("article");
-          card.className = "card dev-training__task-card";
+          card.className = "dev-check-card";
           const message = document.createElement("p");
-          message.className = "dev-training__status";
+          message.className = "dev-module__status";
           message.style.color = "var(--rose)";
           message.textContent = error.message;
           card.appendChild(message);
@@ -624,96 +576,6 @@ export async function initTrainingModule({
       shell.taskHost.querySelectorAll(".check-viewport-item[data-check-id]")
     );
     finalizeTaskRender(shell.taskHost);
-  }
-
-  async function loadCheck(check, options = {}) {
-    shell.taskHost.innerHTML = "";
-
-    try {
-      const sammlung = await getAufgabenSammlung(check.Sammlung, {
-        gebiet: check.Gebiet,
-        lernbereich: check.Lernbereich,
-      });
-      const checkId = getCheckId(check);
-
-      if (!Array.isArray(sammlung) || sammlung.length === 0) {
-        state.selectedCheckId = checkId;
-        persist();
-        setTaskContent(
-          shell.taskHost,
-          check,
-          null,
-          null,
-          buildScriptInfoHref(check),
-          "",
-          usePersistedState
-        );
-        return;
-      }
-
-      let taskIndex = usePersistedState
-        ? loadTaskIndexForCheck(
-          lernbereich,
-          checkId,
-          Number.isInteger(state.taskIndexByCheckId[checkId])
-            ? state.taskIndexByCheckId[checkId]
-            : 0
-        )
-        : Number.isInteger(state.taskIndexByCheckId[checkId])
-          ? state.taskIndexByCheckId[checkId]
-          : 0;
-
-      if (options.nextTask) {
-        taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
-      }
-
-      if (taskIndex < 0 || taskIndex >= sammlung.length) {
-        taskIndex = 0;
-      }
-
-      state.selectedCheckId = checkId;
-      state.taskIndexByCheckId[checkId] = taskIndex;
-      saveTaskIndexForCheck(lernbereich, checkId, taskIndex);
-      persist();
-
-      const aufgabe = sammlung[taskIndex] || null;
-      const scriptInfoHref = buildScriptInfoHref(check);
-      const taskUiStateKey = buildTaskUiStateKey({
-        lernbereich,
-        checkId,
-        taskIndex,
-      });
-      setTaskContent(shell.taskHost, check, aufgabe, () => {
-        void loadCheck(check, { nextTask: true });
-      }, scriptInfoHref, taskUiStateKey, usePersistedState);
-    } catch (error) {
-      setTaskMessage(shell.taskHost, error.message, true);
-    }
-  }
-
-  checks.forEach((check, index) => {
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "btn-ghost";
-    btn.textContent = `${check.Nummer}. ${check.Schlagwort || "Check"}`;
-    const checkId = getCheckId(check);
-    btn.dataset.checkId = checkId;
-    btn.addEventListener("click", () => {
-      selectedCheck = check;
-      shell.checksHost.querySelectorAll("button").forEach((el) => el.classList.remove("active"));
-      btn.classList.add("active");
-      loadCheck(check);
-    });
-    shell.checksHost.appendChild(btn);
-
-    if (index === 0 && !selectedCheck) selectedCheck = check;
-  });
-
-  if (shell.nextBtn) {
-    shell.nextBtn.addEventListener("click", () => {
-      if (!selectedCheck) return;
-      loadCheck(selectedCheck, { nextTask: true });
-    });
   }
 
   const preferredIdForBrowse =

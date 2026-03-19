@@ -7,6 +7,7 @@ from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
     _num_tol,
     _signed,
 )
+from aufgaben.generators.analysis.shared_numbers import round_sig, uniform_sig
 
 
 PriceFunction = Callable[[float], float]
@@ -113,8 +114,8 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
     kind = rng.choice(["linear", "quadratic", "exp"])
 
     if kind == "linear":
-        slope = round(rng.uniform(0.22, 2.3), 3)
-        intercept = round(rng.uniform(1.2, 9.8), 2)
+        slope = uniform_sig(rng, 0.22, 2.3)
+        intercept = uniform_sig(rng, 1.2, 9.8)
         return (
             lambda x: slope * x + intercept,
             _latex_supply_linear(slope, intercept),
@@ -124,9 +125,9 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
         )
 
     if kind == "quadratic":
-        a2 = round(rng.uniform(0.004, 0.065), 3)
-        a1 = round(rng.uniform(0.05, 0.34), 3)
-        a0 = round(rng.uniform(1.0, 9.2), 2)
+        a2 = uniform_sig(rng, 0.004, 0.065)
+        a1 = uniform_sig(rng, 0.05, 0.34)
+        a0 = uniform_sig(rng, 1.0, 9.2)
         return (
             lambda x: a2 * (x ** 2) + a1 * x + a0,
             _latex_supply_quadratic(a2, a1, a0),
@@ -135,10 +136,10 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
             {"type": "quadratic", "a": a2, "b": a1, "c": a0},
         )
 
-    amplitude = round(rng.uniform(4.2, 22.0), 2)
-    rate = round(rng.uniform(0.04, 0.32), 3)
-    min_price = round(rng.uniform(1.0, 9.0), 2)
-    ceiling = round(min_price + amplitude, 2)
+    amplitude = uniform_sig(rng, 4.2, 22.0)
+    rate = uniform_sig(rng, 0.04, 0.32)
+    min_price = uniform_sig(rng, 1.0, 9.0)
+    ceiling = round_sig(min_price + amplitude)
     return (
         lambda x: -amplitude * math.exp(-rate * x) + ceiling,
         _latex_supply_exp(amplitude, rate, ceiling),
@@ -156,8 +157,8 @@ def _build_demand_function(
     kind = rng.choice(["linear", "quadratic", "exp"])
 
     if kind == "linear":
-        slope_abs = round(rng.uniform(0.2, 2.5), 3)
-        intercept = round(rng.uniform(min_price + 4.0, min_price + 34.0), 2)
+        slope_abs = uniform_sig(rng, 0.2, 2.5)
+        intercept = uniform_sig(rng, min_price + 4.0, min_price + 34.0)
         return (
             lambda x: -slope_abs * x + intercept,
             lambda _x: -slope_abs,
@@ -168,9 +169,9 @@ def _build_demand_function(
         )
 
     if kind == "quadratic":
-        a2 = round(rng.uniform(0.015, 0.14), 3)
-        a1 = round(rng.uniform(0.01, 0.28), 3)
-        a0 = round(rng.uniform(min_price + 4.0, min_price + 36.0), 2)
+        a2 = uniform_sig(rng, 0.015, 0.14)
+        a1 = uniform_sig(rng, 0.01, 0.28)
+        a0 = uniform_sig(rng, min_price + 4.0, min_price + 36.0)
         return (
             lambda x: -(a2 * (x ** 2)) - a1 * x + a0,
             lambda x: -2.0 * a2 * x - a1,
@@ -180,13 +181,13 @@ def _build_demand_function(
             {"type": "quadratic", "a": -a2, "b": -a1, "c": a0},
         )
 
-    amplitude = round(rng.uniform(6.0, 42.0), 2)
-    rate = round(rng.uniform(0.03, 0.24), 3)
-    floor = round(rng.uniform(-9.0, -0.3), 2)
-    max_price = round(amplitude + floor, 2)
+    amplitude = uniform_sig(rng, 6.0, 42.0)
+    rate = uniform_sig(rng, 0.03, 0.24)
+    floor = uniform_sig(rng, -9.0, -0.3)
+    max_price = round_sig(amplitude + floor)
     if max_price <= min_price + 4.0:
-        floor = round(min_price + 4.5 - amplitude, 2)
-        max_price = round(amplitude + floor, 2)
+        floor = round_sig(min_price + 4.5 - amplitude)
+        max_price = round_sig(amplitude + floor)
 
     return (
         lambda x: amplitude * math.exp(-rate * x) + floor,

@@ -5,6 +5,7 @@ from collections.abc import Callable
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _num_tol
+from aufgaben.generators.analysis.shared_numbers import round_sig, uniform_sig
 
 
 PriceFunction = Callable[[float], float]
@@ -63,8 +64,8 @@ def _build_supply(rng: random.Random) -> tuple[PriceFunction, str, tuple[str, fl
     model = rng.choice(["linear", "quadratic", "exp"])
 
     if model == "linear":
-        slope = round(rng.uniform(0.18, 2.1), 3)
-        intercept = round(rng.uniform(1.2, 9.5), 2)
+        slope = uniform_sig(rng, 0.18, 2.1)
+        intercept = uniform_sig(rng, 1.2, 9.5)
         return (
             lambda x: slope * x + intercept,
             f"\\( p_A(x)={_fmt(slope)}x+{_fmt(intercept, 2)} \\)",
@@ -72,19 +73,19 @@ def _build_supply(rng: random.Random) -> tuple[PriceFunction, str, tuple[str, fl
         )
 
     if model == "quadratic":
-        a2 = round(rng.uniform(0.01, 0.08), 3)
-        a1 = round(rng.uniform(0.01, 0.2), 3)
-        a0 = round(rng.uniform(1.2, 8.5), 2)
+        a2 = uniform_sig(rng, 0.01, 0.08)
+        a1 = uniform_sig(rng, 0.01, 0.2)
+        a0 = uniform_sig(rng, 1.2, 8.5)
         return (
             lambda x: a2 * (x ** 2) + a1 * x + a0,
             f"\\( p_A(x)={_fmt(a2)}x^2+{_fmt(a1)}x+{_fmt(a0, 2)} \\)",
             ("quadratic", a2, a1, a0),
         )
 
-    amplitude = round(rng.uniform(5.0, 32.0), 2)
-    rate = round(rng.uniform(0.04, 0.35), 3)
-    shift = round(rng.uniform(1.0, 12.0), 2)
-    ceiling = round(amplitude + shift, 2)
+    amplitude = uniform_sig(rng, 5.0, 32.0)
+    rate = uniform_sig(rng, 0.04, 0.35)
+    shift = uniform_sig(rng, 1.0, 12.0)
+    ceiling = round_sig(amplitude + shift)
     return (
         lambda x: -amplitude * math.exp(-rate * x) + ceiling,
         f"\\( p_A(x)=-{_fmt(amplitude, 2)}\\cdot e^{{-{_fmt(rate)}x}}+{_fmt(ceiling, 2)} \\)",
@@ -96,8 +97,8 @@ def _build_demand(rng: random.Random, min_price: float) -> tuple[PriceFunction, 
     model = rng.choice(["linear", "quadratic", "exp"])
 
     if model == "linear":
-        slope = round(rng.uniform(0.2, 2.4), 3)
-        intercept = round(rng.uniform(min_price + 4.0, min_price + 32.0), 2)
+        slope = uniform_sig(rng, 0.2, 2.4)
+        intercept = uniform_sig(rng, min_price + 4.0, min_price + 32.0)
         return (
             lambda x: -slope * x + intercept,
             f"\\( p_N(x)=-{_fmt(slope)}x+{_fmt(intercept, 2)} \\)",
@@ -105,20 +106,20 @@ def _build_demand(rng: random.Random, min_price: float) -> tuple[PriceFunction, 
         )
 
     if model == "quadratic":
-        a2 = round(rng.uniform(0.015, 0.14), 3)
-        a1 = round(rng.uniform(0.0, 0.26), 3)
-        a0 = round(rng.uniform(min_price + 4.0, min_price + 36.0), 2)
+        a2 = uniform_sig(rng, 0.015, 0.14)
+        a1 = uniform_sig(rng, 0.0, 0.26)
+        a0 = uniform_sig(rng, min_price + 4.0, min_price + 36.0)
         return (
             lambda x: -(a2 * (x ** 2)) - a1 * x + a0,
             f"\\( p_N(x)=-{_fmt(a2)}x^2-{_fmt(a1)}x+{_fmt(a0, 2)} \\)",
             ("quadratic", a2, a1, a0),
         )
 
-    amplitude = round(rng.uniform(6.0, 48.0), 2)
-    rate = round(rng.uniform(0.03, 0.25), 3)
-    floor = round(rng.uniform(-8.0, 2.0), 2)
+    amplitude = uniform_sig(rng, 6.0, 48.0)
+    rate = uniform_sig(rng, 0.03, 0.25)
+    floor = uniform_sig(rng, -8.0, 2.0)
     if amplitude + floor <= min_price + 4.0:
-        floor = round(min_price + 5.0 - amplitude, 2)
+        floor = round_sig(min_price + 5.0 - amplitude)
     return (
         lambda x: amplitude * math.exp(-rate * x) + floor,
         f"\\( p_N(x)={_fmt(amplitude, 2)}\\cdot e^{{-{_fmt(rate)}x}}{_sign_term(floor)} \\)",

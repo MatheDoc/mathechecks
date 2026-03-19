@@ -311,88 +311,87 @@ function renderCard(check, examplesByCheck) {
     : "";
 
   return `
-    <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--feynman" data-fy-check-viewport data-check-id="${escapeHtml(
+    <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-fy-check-viewport data-check-id="${escapeHtml(
     checkId
   )}">
-      <div class="check-viewport-item__inner">
-        <article class="card dev-training__task-card dev-check-card dev-check-card--feynman" data-fy-card>
-          <div class="dev-check-card__header">
-            ${renderCheckMetaRowMarkup({
+      <article class="dev-check-card dev-check-card--feynman" data-fy-card>
+        <div class="dev-check-card__header">
+          ${renderCheckMetaRowMarkup({
     numberText: checkNummer,
     titleText: titel,
     prefix: "Check",
+    tone: "feynman",
     rowClass: "dev-check-card__header-left",
-    badgeClass: "dev-check-card__badge dev-check-card__badge--feynman",
-    titleClass: "dev-training__task-title dev-check-card__title dev-check-card__title--feynman",
     titleTag: "h3",
   })}
-            <div class="dev-check-card__header-actions">
-              ${skriptIcon}
-              <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
-            </div>
+          <div class="dev-check-card__header-actions">
+            ${skriptIcon}
+            <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
           </div>
-          <p class="fy-prompt-text" style="margin-bottom:6px;">${escapeHtml(prompt)}</p>
-          <p class="fy-prompt-hint">Schreib zuerst deine Erklärung. Nach Ablauf der Zeit bekommst du ein Auswertungsbeispiel.</p>
+        </div>
+        <div class="dev-check-card__body">
+        <p class="fy-prompt-text" style="margin-bottom:6px;">${escapeHtml(prompt)}</p>
+        <p class="fy-prompt-hint">Schreib zuerst deine Erklärung. Nach Ablauf der Zeit bekommst du ein Auswertungsbeispiel.</p>
 
-          <div data-fy-stage="write">
-            <div class="fy-timer-row">
-              <div class="fy-ring">
-                <svg width="50" height="50" viewBox="0 0 50 50">
-                  <circle class="fy-track" cx="25" cy="25" r="20" />
-                  <circle class="fy-arc" data-fy-arc cx="25" cy="25" r="20" stroke-dasharray="${FY_RING_CIRCUMFERENCE.toFixed(
+        <div data-fy-stage="write">
+          <div class="fy-timer-row">
+            <div class="fy-ring">
+              <svg width="50" height="50" viewBox="0 0 50 50">
+                <circle class="fy-track" cx="25" cy="25" r="20" />
+                <circle class="fy-arc" data-fy-arc cx="25" cy="25" r="20" stroke-dasharray="${FY_RING_CIRCUMFERENCE.toFixed(
     2
   )}" stroke-dashoffset="0" />
-                </svg>
-                <span class="fy-ring-num" data-fy-num>${formatTimer(FY_TOTAL_SECONDS)}</span>
-              </div>
-              <div>
-                <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:2px;">Erklärungszeit</div>
-                <div style="font-size:.72rem;color:var(--text-muted);">Schreib in eigenen Worten, danach folgt der Abgleich.</div>
-              </div>
-              <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
+              </svg>
+              <span class="fy-ring-num" data-fy-num>${formatTimer(FY_TOTAL_SECONDS)}</span>
             </div>
-
-            <textarea
-              class="fy-write"
-              data-fy-input
-              placeholder="Erkläre den Lösungsweg so, dass ein Mitschüler ihn versteht."></textarea>
+            <div>
+              <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:2px;">Erklärungszeit</div>
+              <div style="font-size:.72rem;color:var(--text-muted);">Schreib in eigenen Worten, danach folgt der Abgleich.</div>
+            </div>
+            <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
           </div>
 
-          <div data-fy-stage="evaluate" hidden>
-            <p style="font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:14px;">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
-            <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
-            <p class="bl-selbst-lbl">Konntest du es schlüssig erklären?</p>
-            <div class="bl-selbst-btns">
-              <button class="bl-sb yes" type="button" data-fy-answer="yes">
-                <span class="bl-sb-icon">✓</span>
-                <span class="bl-sb-title">Kann ich</span>
-                <span class="bl-sb-sub">Ich habe die Kerngedanken getroffen.</span>
-              </button>
-              <button class="bl-sb no" type="button" data-fy-answer="no">
-                <span class="bl-sb-icon">↺</span>
-                <span class="bl-sb-title">Noch nicht</span>
-                <span class="bl-sb-sub">Ich brauche noch Wiederholung.</span>
-              </button>
-            </div>
-          </div>
+          <textarea
+            class="fy-write"
+            data-fy-input
+            placeholder="Erkläre den Lösungsweg so, dass ein Mitschüler ihn versteht."></textarea>
+        </div>
 
-          <div data-fy-stage="result-yes" hidden>
-            <div class="outcome">
-              <div class="oc-icon violet">🎓</div>
-              <h3 class="oc-title violet">Stark erklärt</h3>
-              <p class="oc-sub">Du kannst den Inhalt bereits verständlich erklären.</p>
-            </div>
+        <div data-fy-stage="evaluate" hidden>
+          <p style="font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:14px;">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
+          <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
+          <p class="bl-selbst-lbl">Konntest du es schlüssig erklären?</p>
+          <div class="bl-selbst-btns">
+            <button class="bl-sb yes" type="button" data-fy-answer="yes">
+              <span class="bl-sb-icon">✓</span>
+              <span class="bl-sb-title">Kann ich</span>
+              <span class="bl-sb-sub">Ich habe die Kerngedanken getroffen.</span>
+            </button>
+            <button class="bl-sb no" type="button" data-fy-answer="no">
+              <span class="bl-sb-icon">↺</span>
+              <span class="bl-sb-title">Noch nicht</span>
+              <span class="bl-sb-sub">Ich brauche noch Wiederholung.</span>
+            </button>
           </div>
+        </div>
 
-          <div data-fy-stage="result-no" hidden>
-            <div class="outcome">
-              <div class="oc-icon amber">📖</div>
-              <h3 class="oc-title amber">Guter Zwischenstand</h3>
-              <p class="oc-sub">Nutze das Skript zur Wiederholung und versuche es danach erneut.</p>
-            </div>
+        <div data-fy-stage="result-yes" hidden>
+          <div class="outcome">
+            <div class="oc-icon violet">🎓</div>
+            <h3 class="oc-title violet">Stark erklärt</h3>
+            <p class="oc-sub">Du kannst den Inhalt bereits verständlich erklären.</p>
           </div>
-        </article>
-      </div>
+        </div>
+
+        <div data-fy-stage="result-no" hidden>
+          <div class="outcome">
+            <div class="oc-icon amber">📖</div>
+            <h3 class="oc-title amber">Guter Zwischenstand</h3>
+            <p class="oc-sub">Nutze das Skript zur Wiederholung und versuche es danach erneut.</p>
+          </div>
+        </div>
+        </div>
+      </article>
     </section>
   `;
 }

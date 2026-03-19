@@ -9,6 +9,7 @@ from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
     _num_tol,
     _sample_linear_market_parameters,
 )
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
 class MarketEquilibriumUngleichgewichtBestimmungGenerator(TaskGenerator):
@@ -33,10 +34,10 @@ class MarketEquilibriumUngleichgewichtBestimmungGenerator(TaskGenerator):
 
                 mode = rng.choice(["nachfrage", "angebot"])
                 if mode == "nachfrage":
-                    margin = max(2.0, (eq_price - min_price) * rng.uniform(0.25, 0.8))
+                    margin = max(2.0, (eq_price - min_price) * uniform_sig(rng, 0.25, 0.8))
                     market_price = round(max(0.0, eq_price - margin))
                 else:
-                    margin = max(2.0, (max_price - eq_price) * rng.uniform(0.25, 0.8))
+                    margin = max(2.0, (max_price - eq_price) * uniform_sig(rng, 0.25, 0.8))
                     market_price = round(min(max_price - 1.0, eq_price + margin))
 
                 if abs(market_price - eq_price) < 0.75:

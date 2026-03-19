@@ -1,5 +1,7 @@
 import random
 
+from aufgaben.generators.analysis.shared_numbers import uniform_sig
+
 
 def _fmt_number(value: float, max_decimals: int = 4) -> str:
     rounded = round(float(value), max_decimals)
@@ -32,10 +34,10 @@ def _sample_linear_market_parameters(
     rng: random.Random,
 ) -> tuple[float, float, float, float, float, float, float]:
     while True:
-        supply_slope = round(rng.uniform(0.1, 4.5), 2)
-        demand_slope = round(rng.uniform(0.2, 5.8), 2)
-        min_price = round(rng.uniform(1.0, 15.0), 1)
-        max_price = round(rng.uniform(min_price + 4.0, 45.0), 1)
+        supply_slope = uniform_sig(rng, 0.1, 4.5)
+        demand_slope = uniform_sig(rng, 0.2, 5.8)
+        min_price = uniform_sig(rng, 1.0, 15.0)
+        max_price = uniform_sig(rng, min_price + 4.0, 45.0)
 
         sat_quantity = max_price / demand_slope
         eq_quantity = (max_price - min_price) / (supply_slope + demand_slope)

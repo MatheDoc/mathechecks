@@ -14,7 +14,7 @@ permalink: /dev/lernbereiche/analysis/produktlebenszyklus/skript.html
 
 ## Einführung
 
-Der **Produktlebenszyklus** beschreibt die Entwicklung des jährlichen Umsatzes eines Produkts über die Zeit seit seiner Markteinführung. Die Umsatzfunktion $u(t)$ gibt den jährlichen Umsatz in Geldeinheiten (GE) zum Zeitpunkt $t$ (in Jahren nach der Produkteinführung) an.
+Der **Produktlebenszyklus** beschreibt die Entwicklung des jährlichen Umsatzes eines Produkts über die Zeit seit seiner Markteinführung. Die Umsatzfunktion $u(t)$ gibt den (wöchentlichen, monatlichen, jährlichen) Umsatz in Geldeinheiten (GE) zum Zeitpunkt $t$ (in Wochen, Monsten, Jahren) nach der Produkteinführung an.
 
 Typische Produktlebenszyklusfunktionen bestehen aus einem Produkt von Polynomen und der natürlichen Exponentialfunktion, z.B.:
 
@@ -22,9 +22,9 @@ $$
 u(t) = (-2t^2+24t) \cdot e^{-0{,}2t}
 $$
 
-Der Produktlebenszyklus durchläuft dabei folgende **Phasen**:
+Der Produktlebenszyklus durchläuft dabei häufig folgende Phasen:
 
-1. **Einführungsphase**: Der Umsatz steigt zunächst an.
+1. **Einführungsphase**: Der Umsatz steigt zunächst langsam an.
 2. **Wachstumsphase**: Der Umsatz wächst immer stärker.
 3. **Reifephase**: Das Umsatzwachstum verlangsamt sich, der maximale Umsatz wird erreicht.
 4. **Degenerationsphase**: Der Umsatz geht zurück.
@@ -41,10 +41,10 @@ Die folgenden **Kennzahlen** beschreiben den Produktlebenszyklus:
 | Kennzahl | Bedeutung |
 |---|---|
 | $u(0)$ | Jährlicher Umsatz bei der **Produkteinführung** |
-| Maximale Stelle von $u$ | **Zeitpunkt des höchsten jährlichen Umsatzes** |
+| Extremstelle (Hochpunkt) von $u$ | **Zeitpunkt des höchsten jährlichen Umsatzes** |
 | Maximum von $u$ | **Höhe des höchsten jährlichen Umsatzes** |
-| Maximale Stelle von $u^{\prime}$ | Zeitpunkt des **stärksten Umsatzanstiegs** |
-| Minimale Stelle von $u^{\prime}$ | Zeitpunkt des **stärksten Umsatzrückgangs** |
+| Extremstelle (Hochpunkt) von $u^{\prime}$ | Zeitpunkt des **stärksten Umsatzanstiegs** |
+| Extremstelle (Tiefpunkt) von $u^{\prime}$ | Zeitpunkt des **stärksten Umsatzrückgangs** |
 | $u^{\prime}(t_0)$ | **Jährliche Veränderung des Umsatzes** zum Zeitpunkt $t_0$ |
 | $u(t)=0$ für $t>0$ | **Marktaustritt** |
 | $\lim\limits_{t \to \infty}u(t)$ | **Langfristig zu erwartender jährlicher Umsatz** |
