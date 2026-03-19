@@ -27,16 +27,57 @@
         {% endif %}
     </div>
     <div class="topbar-right">
-        <nav class="nav-pills" aria-label="Hauptnavigation">
-            <a {% if page.nav=="dashboard" and page.module_key==nil %}class="active" {% endif
-                %}href="{{ '/dev/dashboard.html' | relative_url }}">Dashboard</a>
-            <a {% if page.nav=="material" and page.module_key==nil %}class="active" {% endif
-                %}href="{{ '/dev/material.html' | relative_url }}">Material</a>
-        </nav>
-        <button class="theme-toggle" id="themeToggle" title="Light / Dark Mode" type="button">
-            <span class="theme-toggle-icon moon">🌙</span>
-            <span class="theme-toggle-icon sun">☀️</span>
-        </button>
+        <div class="topbar-inline-actions">
+            <nav class="nav-pills" aria-label="Hauptnavigation">
+                <a {% if page.nav=="dashboard" and page.module_key==nil %}class="active" {% endif
+                    %}href="{{ '/dev/dashboard.html' | relative_url }}" title="Dashboard" aria-label="Dashboard">
+                    <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
+                    <span class="visually-hidden">Dashboard</span>
+                </a>
+                <a {% if page.nav=="material" and page.module_key==nil %}class="active" {% endif
+                    %}href="{{ '/dev/material.html' | relative_url }}" title="Material durchsuchen"
+                    aria-label="Material durchsuchen">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
+                    <span class="visually-hidden">Material durchsuchen</span>
+                </a>
+            </nav>
+            <button class="topbar-icon-button" id="calculatorToggle" title="Taschenrechner (folgt)" type="button"
+                aria-label="Taschenrechner">
+                <span class="topbar-nav-glyph" aria-hidden="true">🧮</span>
+                <span class="visually-hidden">Taschenrechner</span>
+            </button>
+            <button class="theme-toggle" id="themeToggle" data-theme-toggle="true" title="Light / Dark Mode"
+                type="button">
+                <span class="theme-toggle-icon moon">🌙</span>
+                <span class="theme-toggle-icon sun">☀️</span>
+            </button>
+        </div>
+        <details class="topbar-actions-menu">
+            <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
+                <span class="topbar-nav-glyph" aria-hidden="true">⋯</span>
+                <span class="visually-hidden">Weitere Aktionen</span>
+            </summary>
+            <div class="topbar-actions-popover" role="menu" aria-label="Schnellaktionen">
+                <a class="topbar-actions-item" href="{{ '/dev/dashboard.html' | relative_url }}" role="menuitem">
+                    <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="topbar-actions-item" href="{{ '/dev/material.html' | relative_url }}" role="menuitem">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
+                    <span>Material durchsuchen</span>
+                </a>
+                <button class="topbar-actions-item" id="calculatorToggleMenu" type="button" role="menuitem"
+                    aria-label="Taschenrechner">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🧮</span>
+                    <span>Taschenrechner</span>
+                </button>
+                <button class="topbar-actions-item" id="themeToggleMenu" data-theme-toggle="true" type="button"
+                    role="menuitem" aria-label="Light / Dark Mode wechseln">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🌗</span>
+                    <span>Light / Dark</span>
+                </button>
+            </div>
+        </details>
         <div class="avatar" title="Anmelden">S</div>
     </div>
 </header>

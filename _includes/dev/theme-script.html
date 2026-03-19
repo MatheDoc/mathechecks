@@ -14,18 +14,55 @@
 
     (function () {
         const THEME_KEY = 'mathechecks-theme';
-        const toggle = document.getElementById('themeToggle');
-        if (!toggle) return;
+        const toggles = Array.from(document.querySelectorAll('[data-theme-toggle="true"]'));
+        if (!toggles.length) return;
 
-        if (localStorage.getItem(THEME_KEY) === 'light') {
-            document.documentElement.classList.add('light');
-            toggle.classList.add('active');
+        function applyThemeState(isLight) {
+            document.documentElement.classList.toggle('light', isLight);
+            toggles.forEach((toggle) => toggle.classList.toggle('active', isLight));
         }
 
-        toggle.addEventListener('click', () => {
-            const isLight = document.documentElement.classList.toggle('light');
-            toggle.classList.toggle('active', isLight);
-            localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+        applyThemeState(localStorage.getItem(THEME_KEY) === 'light');
+
+        toggles.forEach((toggle) => {
+            toggle.addEventListener('click', () => {
+                const isLight = !document.documentElement.classList.contains('light');
+                applyThemeState(isLight);
+                localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+            });
+        });
+    })();
+
+    (function () {
+        const actionsMenu = document.querySelector('.topbar-actions-menu');
+        if (!actionsMenu) return;
+
+        const calculatorToggle = document.getElementById('calculatorToggle');
+        const calculatorToggleMenu = document.getElementById('calculatorToggleMenu');
+
+        if (calculatorToggle && calculatorToggleMenu) {
+            calculatorToggleMenu.addEventListener('click', () => {
+                calculatorToggle.click();
+                actionsMenu.removeAttribute('open');
+            });
+        }
+
+        const menuItems = Array.from(actionsMenu.querySelectorAll('.topbar-actions-item'));
+        menuItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                window.setTimeout(() => actionsMenu.removeAttribute('open'), 0);
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!actionsMenu.hasAttribute('open')) return;
+            if (actionsMenu.contains(event.target)) return;
+            actionsMenu.removeAttribute('open');
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') return;
+            actionsMenu.removeAttribute('open');
         });
     })();
 
