@@ -1,0 +1,297 @@
+/* ════════════════════════════════════════════════════════════
+   MODULE: EINSTIEG – Interaktive Neugier-Karten
+   ════════════════════════════════════════════════════════════ */
+
+.ei-wrap {
+    padding: 0 0 32px;
+}
+
+/* ─── Progress dots ──────────────────────────────────────── */
+
+.ei-progress {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.ei-dot {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    transition: background 300ms ease;
+}
+
+.ei-dot.active {
+    background: linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 40%, transparent));
+}
+
+.ei-dot.done {
+    background: var(--amber);
+}
+
+/* ─── Card ───────────────────────────────────────────────── */
+
+.ei-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 28px 24px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: eiFadeIn 300ms ease;
+}
+
+.ei-card[hidden] {
+    display: none;
+}
+
+@keyframes eiFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── Badge (card type label) ────────────────────────────── */
+
+.ei-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--amber);
+    margin-bottom: 14px;
+}
+
+.ei-badge--wusstest-du::before {
+    content: "💡 ";
+}
+
+.ei-badge--schaetzfrage::before {
+    content: "📊 ";
+}
+
+.ei-badge--vorwissen::before {
+    content: "🧠 ";
+}
+
+.ei-badge--alltag::before {
+    content: "🌍 ";
+}
+
+/* ─── Text ───────────────────────────────────────────────── */
+
+.ei-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+/* ─── Detail (reveal area) ───────────────────────────────── */
+
+.ei-detail {
+    background: linear-gradient(135deg,
+            var(--amber-soft),
+            color-mix(in srgb, var(--amber-soft) 50%, transparent));
+    border: 1px solid color-mix(in srgb, var(--amber) 20%, transparent);
+    border-radius: var(--r);
+    padding: 16px;
+    margin-bottom: 20px;
+    animation: eiFadeIn 300ms ease;
+}
+
+.ei-detail p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin: 0;
+}
+
+.ei-detail[hidden] {
+    display: none;
+}
+
+/* ─── Reveal button ──────────────────────────────────────── */
+
+.ei-reveal-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: var(--r);
+    border: 1px solid color-mix(in srgb, var(--amber) 30%, var(--border));
+    background: var(--surface);
+    color: var(--amber);
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 180ms ease;
+    margin-bottom: 20px;
+}
+
+.ei-reveal-btn:hover {
+    background: var(--amber-soft);
+    border-color: color-mix(in srgb, var(--amber) 50%, var(--border));
+}
+
+.ei-reveal-btn[hidden] {
+    display: none;
+}
+
+/* ─── Options (schaetzfrage / vorwissen) ─────────────────── */
+
+.ei-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ei-opt {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    color: var(--text);
+    text-align: left;
+    width: 100%;
+    transition: all 160ms ease;
+}
+
+.ei-opt:hover:not(:disabled) {
+    background: var(--surface-hi);
+}
+
+.ei-opt:disabled {
+    cursor: default;
+}
+
+.ei-opt--correct {
+    background: var(--green-soft);
+    border-color: color-mix(in srgb, var(--green) 35%, transparent);
+    color: var(--green);
+}
+
+.ei-opt--selected {
+    background: var(--amber-soft);
+    border-color: color-mix(in srgb, var(--amber) 30%, transparent);
+    color: var(--amber);
+}
+
+/* ─── Feedback ───────────────────────────────────────────── */
+
+.ei-feedback {
+    background: linear-gradient(135deg,
+            var(--green-soft),
+            color-mix(in srgb, var(--green-soft) 50%, transparent));
+    border: 1px solid color-mix(in srgb, var(--green) 20%, transparent);
+    border-radius: var(--r);
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    animation: eiFadeIn 250ms ease;
+}
+
+.ei-feedback[hidden] {
+    display: none;
+}
+
+.ei-feedback p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin: 0;
+}
+
+/* ─── Navigation ─────────────────────────────────────────── */
+
+.ei-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 4px;
+}
+
+.ei-btn-next {
+    padding: 10px 22px;
+    border-radius: var(--r);
+    border: none;
+    background: var(--amber);
+    color: #fff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 180ms ease;
+}
+
+.ei-btn-next:hover:not(:disabled) {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.ei-btn-next:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* ─── Final card ─────────────────────────────────────────── */
+
+.ei-card--final {
+    text-align: center;
+    padding: 40px 28px;
+    background: linear-gradient(135deg, var(--amber-soft), var(--surface));
+    border-color: color-mix(in srgb, var(--amber) 20%, var(--border));
+}
+
+.ei-final-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.ei-final-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-body);
+    margin: 0;
+}
+
+/* ─── Placeholder ────────────────────────────────────────── */
+
+.ei-placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+    text-align: center;
+    padding: 40px 0;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+    .ei-card {
+        padding: 22px 18px;
+    }
+
+    .ei-text {
+        font-size: 0.98rem;
+    }
+
+    .ei-card--final {
+        padding: 32px 20px;
+    }
+}

@@ -1,0 +1,479 @@
+# ──────────────────────────────────────────────────────────
+# Einstieg – Inhalte pro Lernbereich
+# ──────────────────────────────────────────────────────────
+# Jeder Lernbereich hat 4 Karten:
+#   wusstest-du   – Spannender Fakt zum Aufdecken
+#   schaetzfrage  – Schätzfrage mit 3 Optionen
+#   vorwissen     – Leichte MC-Frage (immer ermutigend)
+#   alltag        – Alltagsbezug zum Aufdecken
+#
+# korrekt = 0-basierter Index der richtigen Antwort
+# ──────────────────────────────────────────────────────────
+
+
+# ══════════════════════ ANALYSIS ═════════════════════════
+
+lineare-funktionen:
+  karten:
+    - typ: wusstest-du
+      text: "Jeder Handytarif mit Grundgebühr und Minutenpreis ist eine lineare Funktion: f(x) = mx + b."
+      detail: "Die Grundgebühr ist der y-Achsenabschnitt b, der Minutenpreis die Steigung m – das Prinzip steckt überall."
+    - typ: schaetzfrage
+      frage: "Eine Taxifahrt kostet 3,50 € Grundgebühr plus 2,00 € pro km. Was zahlst du für 8 km?"
+      optionen:
+        - "15,50 €"
+        - "19,50 €"
+        - "22,00 €"
+      korrekt: 1
+      erklaerung: "3,50 + 2,00 · 8 = 19,50 €. Lineare Funktionen machen solche Berechnungen einfach."
+    - typ: vorwissen
+      frage: "Der Graph einer linearen Funktion ist immer …"
+      optionen:
+        - "eine Gerade"
+        - "eine Parabel"
+        - "ein Kreis"
+      korrekt: 0
+      feedback_richtig: "Genau! Darauf baut alles Weitere auf."
+      feedback_falsch: "Das klären wir gleich – lineare Funktionen erzeugen immer gerade Graphen."
+    - typ: alltag
+      text: "Du jobbst für 12,50 € pro Stunde."
+      detail: "Dein Verdienst ist eine lineare Funktion: f(x) = 12,50x. Nach 4 Stunden hast du 50 € – ganz ohne Taschenrechner."
+  abschluss: "Gut aufgewärmt! Lineare Funktionen begleiten dich überall – lass uns loslegen."
+
+differentialrechnung-ganzrationaler-funktionen:
+  karten:
+    - typ: wusstest-du
+      text: "Dein Tachometer zeigt eine Ableitung an: Er misst, wie schnell sich dein Ort ändert – die momentane Änderungsrate."
+      detail: "Die Geschwindigkeit v(t) ist die Ableitung des Weges s(t). Das ist die Kernidee der Differentialrechnung."
+    - typ: schaetzfrage
+      frage: "Ein Auto beschleunigt gleichmäßig. Nach 5 Sekunden fährt es 50 km/h. Die Beschleunigung ist …"
+      optionen:
+        - "5 km/h pro s"
+        - "10 km/h pro s"
+        - "25 km/h pro s"
+      korrekt: 1
+      erklaerung: "50 km/h ÷ 5 s = 10 km/h pro Sekunde. Die Ableitung beschreibt genau diese Änderungsrate."
+    - typ: vorwissen
+      frage: "Wenn die Ableitung an einer Stelle positiv ist, dann ist die Funktion dort …"
+      optionen:
+        - "fallend"
+        - "steigend"
+        - "konstant"
+      korrekt: 1
+      feedback_richtig: "Perfekt! Diese Verbindung ist zentral für alles, was kommt."
+      feedback_falsch: "Kein Problem – die Verbindung zwischen Vorzeichen der Ableitung und Monotonie erkunden wir gemeinsam."
+    - typ: alltag
+      text: "Wetterdienste beobachten, wie schnell die Temperatur steigt oder fällt."
+      detail: "Die Änderungsrate der Temperatur über die Zeit ist eine Ableitung – und hilft, Unwetterwarnungen auszulösen."
+  abschluss: "Änderungsraten begegnen dir täglich. Jetzt lernst du, sie mathematisch zu greifen."
+
+analysis-diverses:
+  karten:
+    - typ: wusstest-du
+      text: "Jede Formel in deinem Taschenrechner – ob Zins, Rabatt oder Entfernung – ist eine mathematische Funktion."
+      detail: "Funktionen ordnen jedem Eingabewert genau einen Ausgabewert zu. Das ist das Grundprinzip der Analysis."
+    - typ: schaetzfrage
+      frage: "Wie viele verschiedene Funktionstypen lernst du typischerweise in der Oberstufe?"
+      optionen:
+        - "6–8"
+        - "3–4"
+        - "Über 12"
+      korrekt: 0
+      erklaerung: "Von linear über quadratisch bis exponentiell – etwa 6 bis 8 verschiedene Funktionstypen begegnen dir."
+    - typ: vorwissen
+      frage: "Eine Funktion ordnet jedem x-Wert … zu."
+      optionen:
+        - "mehrere y-Werte"
+        - "keinen y-Wert"
+        - "genau einen y-Wert"
+      korrekt: 2
+      feedback_richtig: "Genau! Eindeutigkeit ist die wichtigste Eigenschaft einer Funktion."
+      feedback_falsch: "Das ist die Schlüsseleigenschaft – und wir klären sie hier gleich genauer."
+    - typ: alltag
+      text: "Die Benzinpreis-Anzeige an der Tankstelle ist eine Funktion: Jedem Zeitpunkt ist genau ein Preis zugeordnet."
+      detail: "Auch wenn sich der Preis ändert – zu jedem Zeitpunkt gibt es genau einen Wert. Das ist eine Funktion."
+  abschluss: "Funktionen sind das Werkzeug der Analysis. Bereit für den Einstieg!"
+
+ganzrationale-oekonomische-funktionen:
+  karten:
+    - typ: wusstest-du
+      text: "Unternehmen nutzen ganzrationale Funktionen, um Kosten, Erlöse und Gewinne mathematisch zu modellieren."
+      detail: "Eine typische Kostenfunktion wie K(x) = 0,5x³ − 3x² + 10x + 50 beschreibt, wie die Kosten mit der Stückzahl steigen."
+    - typ: schaetzfrage
+      frage: "Ein Unternehmen produziert T-Shirts. Ab welcher Stückzahl wird typischerweise Gewinn erzielt?"
+      optionen:
+        - "Ab dem 1. Stück"
+        - "Nie – Kosten steigen immer schneller"
+        - "Erst ab einer bestimmten Menge"
+      korrekt: 2
+      erklaerung: "Den Punkt, ab dem Erlöse die Kosten übersteigen, nennt man Break-even-Point – eine zentrale Anwendung."
+    - typ: vorwissen
+      frage: "Der Gewinn eines Unternehmens berechnet sich als …"
+      optionen:
+        - "Erlös minus Kosten"
+        - "Kosten minus Erlös"
+        - "Erlös mal Kosten"
+      korrekt: 0
+      feedback_richtig: "Richtig! G(x) = E(x) − K(x) ist die Grundformel der Gewinnrechnung."
+      feedback_falsch: "Kein Stress – diese Formel wird dir hier ganz vertraut werden."
+    - typ: alltag
+      text: "Ein Startup berechnet: Wie viele Abos brauchen wir, um die Entwicklungskosten reinzuholen?"
+      detail: "Genau das ist die Frage nach dem Break-even-Point – und ganzrationale Funktionen liefern die Antwort."
+  abschluss: "Mathe trifft Wirtschaft – das wird spannend. Los geht's!"
+
+ertragsgesetzliche-kostenfunktionen:
+  karten:
+    - typ: wusstest-du
+      text: "Das Ertragsgesetz stammt ursprünglich aus der Landwirtschaft: Mehr Dünger bringt irgendwann immer weniger Ertrag."
+      detail: "Dieses Prinzip – erst steigende, dann sinkende Erträge – wird mit S-förmigen Kostenfunktionen modelliert."
+    - typ: schaetzfrage
+      frage: "Eine Fabrik verdoppelt die Mitarbeiterzahl. Um wie viel steigt die Produktion?"
+      optionen:
+        - "Verdoppelt sich auch"
+        - "Bleibt gleich"
+        - "Steigt, aber weniger als doppelt"
+      korrekt: 2
+      erklaerung: "Typisch für das Ertragsgesetz: Mehr Input bringt ab einem Punkt immer weniger zusätzlichen Output."
+    - typ: vorwissen
+      frage: "Eine ertragsgesetzliche Kostenfunktion hat typischerweise …"
+      optionen:
+        - "einen linearen Verlauf"
+        - "einen S-förmigen Verlauf"
+        - "einen konstanten Verlauf"
+      korrekt: 1
+      feedback_richtig: "Genau! Der S-förmige Verlauf ist das Erkennungsmerkmal."
+      feedback_falsch: "Kein Problem – den typischen Kurvenverlauf schauen wir uns gemeinsam an."
+    - typ: alltag
+      text: "In einer Bäckerei wird ab 5 Uhr gebacken. Die ersten 100 Brötchen gehen schnell – aber die nächsten 100 dauern länger."
+      detail: "Die steigenden Grenzkosten bei hoher Auslastung – genau das beschreibt die ertragsgesetzliche Kostenfunktion."
+  abschluss: "Kosten clever modellieren – genau das lernst du hier."
+
+marktgleichgewicht-grundlagen:
+  karten:
+    - typ: wusstest-du
+      text: "Wenn ein neues Smartphone erscheint, bestimmen Angebot und Nachfrage den Preis – nicht allein der Hersteller."
+      detail: "Der Gleichgewichtspreis entsteht dort, wo Angebots- und Nachfragefunktion sich schneiden."
+    - typ: schaetzfrage
+      frage: "Konzerttickets sind ausverkauft und werden für das Doppelte weiterverkauft. Was ist passiert?"
+      optionen:
+        - "Angebot ist größer als Nachfrage"
+        - "Nachfrage ist größer als Angebot"
+        - "Der Markt ist im Gleichgewicht"
+      korrekt: 1
+      erklaerung: "Bei Überschussnachfrage steigen die Preise – der Markt ist nicht im Gleichgewicht."
+    - typ: vorwissen
+      frage: "Im Marktgleichgewicht gilt …"
+      optionen:
+        - "Der Preis ist immer niedrig"
+        - "Angebot ist größer als Nachfrage"
+        - "Angebot gleich Nachfrage"
+      korrekt: 2
+      feedback_richtig: "Genau! Das Gleichgewicht ist der Kern der Markttheorie."
+      feedback_falsch: "Das ist die zentrale Idee – und wir erarbeiten sie hier Schritt für Schritt."
+    - typ: alltag
+      text: "Warum kosten Erdbeeren im Winter mehr als im Sommer?"
+      detail: "Weniger Angebot bei gleichbleibender Nachfrage ergibt einen höheren Gleichgewichtspreis. Marktmechanismen in Aktion."
+  abschluss: "Angebot und Nachfrage – ein faszinierendes Zusammenspiel. Bereit!"
+
+marktgleichgewicht-vertiefung:
+  karten:
+    - typ: wusstest-du
+      text: "Die CO₂-Steuer verschiebt das Marktgleichgewicht: Produkte mit hohem CO₂-Ausstoß werden teurer."
+      detail: "Steuern und Subventionen verändern Angebots- oder Nachfragekurven – mit messbaren Folgen für Preise und Mengen."
+    - typ: schaetzfrage
+      frage: "Der Staat besteuert ein Produkt mit 2 € pro Stück. Wer trägt die Steuerlast?"
+      optionen:
+        - "Nur der Käufer"
+        - "Nur der Verkäufer"
+        - "Beide – je nach Elastizität"
+      korrekt: 2
+      erklaerung: "Die Aufteilung der Steuerlast hängt von den Elastizitäten ab – das ist eine Kernfrage der Vertiefung."
+    - typ: vorwissen
+      frage: "Die Konsumentenrente ist …"
+      optionen:
+        - "der Vorteil, den Käufer durch einen niedrigeren Preis haben"
+        - "der Gewinn des Unternehmens"
+        - "die Differenz zwischen Angebot und Nachfrage"
+      korrekt: 0
+      feedback_richtig: "Genau! Dieses Konzept vertiefen wir hier weiter."
+      feedback_falsch: "Kein Problem – Konsumenten- und Produzentenrente sind zentrale Begriffe, die wir hier klären."
+    - typ: alltag
+      text: "Streamingdienste bieten Studententarife an – ein Beispiel für Preisdifferenzierung."
+      detail: "Verschiedene Preise für verschiedene Gruppen verändern die Nachfragekurven und damit die Wohlfahrtseffekte."
+  abschluss: "Steuern, Subventionen, Wohlfahrt – jetzt wird's konkret."
+
+produktlebenszyklus:
+  karten:
+    - typ: wusstest-du
+      text: "Das iPhone 1 (2007) hatte einen klassischen Produktlebenszyklus: Einführung, Wachstum, Reife, Rückgang – in nur 3 Jahren."
+      detail: "Mathematisch lässt sich der Absatzverlauf häufig mit einer glockenförmigen Funktion beschreiben."
+    - typ: schaetzfrage
+      frage: "Wie lange dauert der Lebenszyklus eines typischen Smartphones am Markt?"
+      optionen:
+        - "6 Monate"
+        - "1–2 Jahre"
+        - "5–10 Jahre"
+      korrekt: 1
+      erklaerung: "Die meisten Smartphone-Modelle durchlaufen ihren Zyklus in 1–2 Jahren, bevor ein Nachfolger kommt."
+    - typ: vorwissen
+      frage: "In welcher Phase des Produktlebenszyklus sind die Umsätze am höchsten?"
+      optionen:
+        - "Einführungsphase"
+        - "Reifephase"
+        - "Rückgangsphase"
+      korrekt: 1
+      feedback_richtig: "Genau! In der Reifephase erreicht das Produkt seinen Höhepunkt."
+      feedback_falsch: "Kein Problem – die typischen Phasen und ihren Verlauf schauen wir uns hier genau an."
+    - typ: alltag
+      text: "Vinyl-Schallplatten waren 'tot' – und erleben jetzt ein Comeback."
+      detail: "Der Produktlebenszyklus ist ein Modell – die Realität zeigt manchmal überraschende Revival-Phasen."
+  abschluss: "Vom Launch bis zum Rückgang – du wirst Produktverläufe mathematisch verstehen."
+
+
+# ══════════════════ LINEARE ALGEBRA ══════════════════════
+
+lineare-gleichungssysteme:
+  karten:
+    - typ: wusstest-du
+      text: "GPS-Navigation löst ein riesiges lineares Gleichungssystem, um deinen Standort auf wenige Meter genau zu bestimmen."
+      detail: "Mindestens 4 Satellitensignale werden zu einem LGS verknüpft. Die Lösung ist dein Standort."
+    - typ: schaetzfrage
+      frage: "Drei Freunde kaufen zusammen Snacks. Wie viele Gleichungen brauchst du, um die Einzelpreise zu berechnen?"
+      optionen:
+        - "3 Gleichungen"
+        - "1 Gleichung reicht"
+        - "Unendlich viele"
+      korrekt: 0
+      erklaerung: "Für 3 Unbekannte brauchst du mindestens 3 Gleichungen – eine Grundregel linearer Gleichungssysteme."
+    - typ: vorwissen
+      frage: "Ein lineares Gleichungssystem mit 2 Unbekannten hat …"
+      optionen:
+        - "immer genau eine Lösung"
+        - "immer zwei Lösungen"
+        - "genau eine, keine oder unendlich viele Lösungen"
+      korrekt: 2
+      feedback_richtig: "Perfekt! Diese drei Fälle sind die Basis für alles Weitere."
+      feedback_falsch: "Das ist eine spannende Frage – drei verschiedene Fälle sind möglich, und wir klären sie hier."
+    - typ: alltag
+      text: "Speditionen planen optimale Routen: Welcher LKW fährt wohin, damit alles pünktlich ankommt?"
+      detail: "Solche Logistikprobleme führen auf lineare Gleichungssysteme – und du lernst, sie systematisch zu lösen."
+  abschluss: "Gleichungen lösen mit System – das Handwerkszeug wartet auf dich."
+
+matrizenrechnung:
+  karten:
+    - typ: wusstest-du
+      text: "Jedes Bild auf deinem Bildschirm wird durch eine Matrix aus Pixelwerten dargestellt."
+      detail: "Ein Full-HD-Bild ist eine Matrix mit 1920 × 1080 = über 2 Millionen Einträgen – pro Farbkanal."
+    - typ: schaetzfrage
+      frage: "Du drehst ein Bild um 90°. Wie viele Rechenoperationen braucht der Computer ungefähr?"
+      optionen:
+        - "Wenige Dutzend"
+        - "Tausende"
+        - "Millionen"
+      korrekt: 2
+      erklaerung: "Jeder Pixel muss umgerechnet werden – bei Millionen Pixeln sind es Millionen Matrizenoperationen."
+    - typ: vorwissen
+      frage: "Eine Matrix ist …"
+      optionen:
+        - "eine rechteckige Anordnung von Zahlen"
+        - "eine besondere Gleichung"
+        - "ein Koordinatensystem"
+      korrekt: 0
+      feedback_richtig: "Genau! Mit dieser einfachen Idee lässt sich erstaunlich viel berechnen."
+      feedback_falsch: "Kein Problem – eine Matrix ist im Grunde eine Zahlentabelle, und wir zeigen dir, was man damit alles machen kann."
+    - typ: alltag
+      text: "Social-Media-Filter verändern dein Selfie – mathematisch wird eine Bildmatrix mit einer Filtermatrix multipliziert."
+      detail: "Helligkeit, Kontrast, Weichzeichner – alles Matrizenoperationen, die in Echtzeit ablaufen."
+  abschluss: "Zahlen in Zeilen und Spalten – klingt einfach, kann aber erstaunlich viel."
+
+mehrstufige-produktionsprozesse:
+  karten:
+    - typ: wusstest-du
+      text: "In einem Auto stecken etwa 10.000 Einzelteile, die in mehrstufigen Produktionsprozessen zusammengefügt werden."
+      detail: "Matrizen helfen, den Materialbedarf über alle Stufen hinweg effizient zu berechnen."
+    - typ: schaetzfrage
+      frage: "Für einen Tisch brauchst du 4 Beine und 1 Platte. Für 50 Tische brauchst du …"
+      optionen:
+        - "200 Beine und 50 Platten"
+        - "54 Beine und 51 Platten"
+        - "100 Beine und 25 Platten"
+      korrekt: 0
+      erklaerung: "50 × 4 = 200 Beine und 50 × 1 = 50 Platten. Genau solche Berechnungen macht man mit Matrizen."
+    - typ: vorwissen
+      frage: "Bei einem zweistufigen Produktionsprozess werden …"
+      optionen:
+        - "alle Teile auf einmal zusammengesetzt"
+        - "Zwischenprodukte zu Endprodukten weiterverarbeitet"
+        - "immer genau zwei Produkte hergestellt"
+      korrekt: 1
+      feedback_richtig: "Genau! Diese Stufenstruktur modellieren wir hier mit Matrizen."
+      feedback_falsch: "Das ist der Kern – und wir zeigen dir, wie Matrizen die Stufenstruktur abbilden."
+    - typ: alltag
+      text: "Ein Smartphone besteht aus Display, Akku und Chip – jedes Teil hat eigene Rohstoffe."
+      detail: "Wie viel Silizium, Lithium und Glas brauchst du für 1000 Smartphones? Matrizen rechnen das in Sekunden."
+  abschluss: "Von Rohstoffen bis zum fertigen Produkt – Matrizen machen die Rechnung."
+
+
+# ══════════════════════ STOCHASTIK ═══════════════════════
+
+zufallsexperimente-und-wahrscheinlichkeiten:
+  karten:
+    - typ: wusstest-du
+      text: "Bei 23 Personen in einem Raum liegt die Wahrscheinlichkeit bei über 50 %, dass zwei am selben Tag Geburtstag haben."
+      detail: "Das 'Geburtstagsparadoxon' ueberrascht fast alle – und zeigt, wie unintuitiv Wahrscheinlichkeiten sein können."
+    - typ: schaetzfrage
+      frage: "Du wirfst zwei Würfel. Wie wahrscheinlich ist eine Augensumme von 7?"
+      optionen:
+        - "Etwa 8 %"
+        - "Etwa 17 %"
+        - "Etwa 25 %"
+      korrekt: 1
+      erklaerung: "6 von 36 möglichen Kombinationen ergeben die 7 – das sind etwa 17 %. Mehr als die meisten denken!"
+    - typ: vorwissen
+      frage: "Bei einem fairen Würfel ist die Wahrscheinlichkeit für eine 6 …"
+      optionen:
+        - "1/6"
+        - "1/3"
+        - "1/2"
+      korrekt: 0
+      feedback_richtig: "Genau! Das ist die Grundlage für alles, was kommt."
+      feedback_falsch: "Kein Problem – mit Laplace-Wahrscheinlichkeiten starten wir hier ganz von vorn."
+    - typ: alltag
+      text: "Wettervorhersagen wie 'Regenwahrscheinlichkeit 70 %' basieren auf stochastischen Modellen."
+      detail: "Meteorologen nutzen Wahrscheinlichkeitsrechnung, um aus Millionen Datenpunkten Vorhersagen zu treffen."
+  abschluss: "Der Zufall hat Regeln – und du lernst sie hier kennen."
+
+mehrstufige-zufallsexperimente:
+  karten:
+    - typ: wusstest-du
+      text: "Die Chance, im Lotto 6 Richtige zu tippen, liegt bei etwa 1 zu 14 Millionen."
+      detail: "Um das zu berechnen, multipliziert man die Wahrscheinlichkeiten mehrerer Stufen – genau das lernst du hier."
+    - typ: schaetzfrage
+      frage: "Du wirfst eine Münze dreimal. Wie viele verschiedene Ergebnisse sind möglich?"
+      optionen:
+        - "8"
+        - "6"
+        - "9"
+      korrekt: 0
+      erklaerung: "2 × 2 × 2 = 8 Möglichkeiten. Bei mehrstufigen Experimenten multipliziert man die Anzahlen pro Stufe."
+    - typ: vorwissen
+      frage: "In einem Baumdiagramm wird die Wahrscheinlichkeit eines Pfades berechnet durch …"
+      optionen:
+        - "Addition entlang des Pfades"
+        - "Die letzte Wahrscheinlichkeit am Pfad"
+        - "Multiplikation entlang des Pfades"
+      korrekt: 2
+      feedback_richtig: "Genau! Die Pfadmultiplikationsregel ist das zentrale Werkzeug."
+      feedback_falsch: "Das klären wir hier – die Pfadregeln sind das Herzstück mehrstufiger Experimente."
+    - typ: alltag
+      text: "Bei Qualitätskontrollen wird ein Produkt mehrfach getestet – jeder Test ist eine Stufe im Zufallsexperiment."
+      detail: "Ob ein Airbag im Auto zuverlässig auslöst, wird mit mehrstufigen Zufallsexperimenten überprüft."
+  abschluss: "Schritt für Schritt durch den Zufall – mit Baumdiagramm wird's uebersichtlich."
+
+bedingte-wahrscheinlichkeiten:
+  karten:
+    - typ: wusstest-du
+      text: "Ein medizinischer Test ist zu 99 % genau – trotzdem kann bei seltenen Krankheiten die Hälfte der positiven Ergebnisse falsch sein."
+      detail: "Das sogenannte Bayes-Paradoxon zeigt: Ohne bedingte Wahrscheinlichkeiten kann man Testergebnisse leicht falsch einschätzen."
+    - typ: schaetzfrage
+      frage: "Ein Krankheitstest ist zu 99 % zuverlässig, die Krankheit betrifft 1 % aller Menschen. Wie viel Prozent der positiv Getesteten sind wirklich krank?"
+      optionen:
+        - "Über 90 %"
+        - "Etwa 50 %"
+        - "Unter 10 %"
+      korrekt: 1
+      erklaerung: "Überraschend: Nur etwa die Hälfte! Die wenigen Kranken werden von den vielen falsch-positiven Gesunden überlagert."
+    - typ: vorwissen
+      frage: "P(A|B) bedeutet …"
+      optionen:
+        - "Wahrscheinlichkeit von A und B zusammen"
+        - "Wahrscheinlichkeit von A, wenn B eingetreten ist"
+        - "Wahrscheinlichkeit von A oder B"
+      korrekt: 1
+      feedback_richtig: "Perfekt! Dieses Konzept ist der Schlüssel zum Lernbereich."
+      feedback_falsch: "Das ist die zentrale Notation – und wir erarbeiten sie hier Schritt für Schritt."
+    - typ: alltag
+      text: "Spam-Filter entscheiden: Ist diese E-Mail Spam, gegeben dass bestimmte Wörter vorkommen?"
+      detail: "Das ist bedingte Wahrscheinlichkeit in Aktion: P(Spam | enthält 'Gewinn'). So funktionieren auch Empfehlungsalgorithmen."
+  abschluss: "Wahrscheinlichkeiten mit Vorbedingung – ueberraschend und faszinierend."
+
+binomialverteilung:
+  karten:
+    - typ: wusstest-du
+      text: "In der Qualitätskontrolle wird die Binomialverteilung genutzt, um zu entscheiden, ob eine ganze Lieferung angenommen wird."
+      detail: "Statt alle Teile zu prüfen, wird eine Stichprobe genommen – die Binomialverteilung sagt, wie wahrscheinlich bestimmte Fehleranzahlen sind."
+    - typ: schaetzfrage
+      frage: "Du rätst bei 10 Multiple-Choice-Fragen (je 4 Antworten). Wie viele triffst du im Schnitt richtig?"
+      optionen:
+        - "2–3"
+        - "1–2"
+        - "4–5"
+      korrekt: 0
+      erklaerung: "Im Schnitt 2,5 – also 2 bis 3. Das ist der Erwartungswert: n · p = 10 · 0,25."
+    - typ: vorwissen
+      frage: "Ein Bernoulli-Experiment hat …"
+      optionen:
+        - "genau zwei mögliche Ergebnisse"
+        - "beliebig viele Ergebnisse"
+        - "immer gleiche Wahrscheinlichkeit für alle Ergebnisse"
+      korrekt: 0
+      feedback_richtig: "Genau! Treffer oder Niete – darauf baut die Binomialverteilung auf."
+      feedback_falsch: "Kein Stress – Bernoulli-Experimente sind der Baustein der Binomialverteilung, und wir starten von Grund auf."
+    - typ: alltag
+      text: "Wie wahrscheinlich ist es, dass dein Zug bei den nächsten 10 Fahrten mindestens 8-mal pünktlich kommt?"
+      detail: "Genau solche Fragen – wie oft tritt ein Ereignis bei wiederholten Versuchen ein – beantwortet die Binomialverteilung."
+  abschluss: "Wie oft trifft man bei wiederholten Versuchen? Genau das beantwortet die Binomialverteilung."
+
+hypothesentests:
+  karten:
+    - typ: wusstest-du
+      text: "Bevor ein neues Medikament zugelassen wird, muss es einen Hypothesentest bestehen – mit strengen statistischen Kriterien."
+      detail: "Forscher testen: Wirkt das Medikament besser als ein Placebo? Hypothesentests liefern die mathematische Antwort."
+    - typ: schaetzfrage
+      frage: "Eine Münze wird 100-mal geworfen und zeigt 60-mal Kopf. Ist die Münze fair?"
+      optionen:
+        - "Ja, das ist normal"
+        - "Wahrscheinlich nicht"
+        - "Unmöglich zu sagen"
+      korrekt: 1
+      erklaerung: "60 von 100 weicht deutlich von den erwarteten 50 ab. Ein Hypothesentest prüft, ob das noch Zufall sein kann."
+    - typ: vorwissen
+      frage: "Die Nullhypothese ist …"
+      optionen:
+        - "das gewünschte Ergebnis"
+        - "immer falsch"
+        - "die Annahme, die man überprüfen möchte"
+      korrekt: 2
+      feedback_richtig: "Genau! Die Nullhypothese ist der Ausgangspunkt jedes Tests."
+      feedback_falsch: "Das ist die Basis – wir klären hier, was Null- und Alternativhypothese bedeuten."
+    - typ: alltag
+      text: "A/B-Tests in Apps: Welche Button-Farbe bringt mehr Klicks? Hypothesentests liefern die Entscheidung."
+      detail: "Unternehmen wie Netflix oder Amazon nutzen tausende Hypothesentests pro Woche, um ihre Produkte zu verbessern."
+  abschluss: "Mut zur Entscheidung – Hypothesentests geben dir die Werkzeuge dafür."
+
+zufallsgroessen:
+  karten:
+    - typ: wusstest-du
+      text: "Versicherungen berechnen ihre Beiträge mit dem Erwartungswert: Sie wissen nicht, wer einen Schaden hat – aber im Schnitt passt die Rechnung."
+      detail: "Der Erwartungswert einer Zufallsgröße gibt an, welchen Wert man 'im Mittel' langfristig erwarten kann."
+    - typ: schaetzfrage
+      frage: "Ein Glücksrad hat die Gewinne 0 €, 1 €, 5 € und 20 € (alle gleich wahrscheinlich). Was gewinnst du im Schnitt pro Dreh?"
+      optionen:
+        - "5,00 €"
+        - "6,50 €"
+        - "8,00 €"
+      korrekt: 1
+      erklaerung: "(0 + 1 + 5 + 20) ÷ 4 = 6,50 €. Das ist der Erwartungswert – dein 'mittlerer' Gewinn pro Dreh."
+    - typ: vorwissen
+      frage: "Eine Zufallsgröße ordnet jedem Ergebnis eines Zufallsexperiments …"
+      optionen:
+        - "eine Zahl zu"
+        - "eine Farbe zu"
+        - "einen Namen zu"
+      korrekt: 0
+      feedback_richtig: "Genau! Zufallsgrößen machen Zufallsexperimente berechenbar."
+      feedback_falsch: "Kein Problem – Zufallsgrößen übersetzen Ergebnisse in Zahlen, und das klären wir hier."
+    - typ: alltag
+      text: "Beim Brettspiel zählt: Wie viele Felder rückst du im Schnitt pro Wurf vor?"
+      detail: "Der Erwartungswert eines Würfels ist 3,5 – darum sind Spielbretter so designt, wie sie sind."
+  abschluss: "Was passiert im Durchschnitt? Zufallsgrößen machen den Zufall berechenbar."

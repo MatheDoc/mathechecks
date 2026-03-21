@@ -27,42 +27,23 @@
         {% endif %}
     </div>
     <div class="topbar-right">
-        <div class="topbar-inline-actions">
-            <nav class="nav-pills" aria-label="Hauptnavigation">
-                <a {% if page.nav=="dashboard" and page.module_key==nil %}class="active" {% endif
-                    %}href="{{ '/dev/dashboard.html' | relative_url }}" title="Dashboard" aria-label="Dashboard">
-                    <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
-                    <span class="visually-hidden">Dashboard</span>
-                </a>
-                <a {% if page.nav=="material" and page.module_key==nil %}class="active" {% endif
-                    %}href="{{ '/dev/material.html' | relative_url }}" title="Material durchsuchen"
-                    aria-label="Material durchsuchen">
-                    <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
-                    <span class="visually-hidden">Material durchsuchen</span>
-                </a>
-            </nav>
-            <button class="topbar-icon-button" id="calculatorToggle" title="Taschenrechner (folgt)" type="button"
-                aria-label="Taschenrechner">
-                <span class="topbar-nav-glyph" aria-hidden="true">🧮</span>
-                <span class="visually-hidden">Taschenrechner</span>
-            </button>
-            <button class="theme-toggle" id="themeToggle" data-theme-toggle="true" title="Light / Dark Mode"
-                type="button">
-                <span class="theme-toggle-icon moon">🌙</span>
-                <span class="theme-toggle-icon sun">☀️</span>
-            </button>
-        </div>
         <details class="topbar-actions-menu">
             <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
-                <span class="topbar-nav-glyph" aria-hidden="true">⋯</span>
+                <span class="topbar-dots-vertical" aria-hidden="true">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </span>
                 <span class="visually-hidden">Weitere Aktionen</span>
             </summary>
             <div class="topbar-actions-popover" role="menu" aria-label="Schnellaktionen">
-                <a class="topbar-actions-item" href="{{ '/dev/dashboard.html' | relative_url }}" role="menuitem">
+                <a class="topbar-actions-item {% if page.nav==" dashboard" and page.module_key==nil %}active{% endif %}"
+                    href="{{ '/dev/dashboard.html' | relative_url }}" role="menuitem">
                     <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
                     <span>Dashboard</span>
                 </a>
-                <a class="topbar-actions-item" href="{{ '/dev/material.html' | relative_url }}" role="menuitem">
+                <a class="topbar-actions-item {% if page.nav==" material" and page.module_key==nil %}active{% endif %}"
+                    href="{{ '/dev/material.html' | relative_url }}" role="menuitem">
                     <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
                     <span>Material durchsuchen</span>
                 </a>
