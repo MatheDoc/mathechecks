@@ -1,44 +1,114 @@
 /* ════════════════════════════════════════════════════════════
    MODULE: EINSTIEG – Interaktive Neugier-Karten
    ════════════════════════════════════════════════════════════ */
-
-.ei-wrap {
-    padding: 0 0 32px;
-}
-
-/* ─── Progress dots ──────────────────────────────────────── */
-
-.ei-progress {
+.ei-card-progress {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid color-mix(in srgb, var(--amber) 18%, var(--border));
+}
+
+.ei-card-progress-dots {
+    display: inline-flex;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 28px;
 }
 
-.ei-dot {
-    flex: 1;
-    height: 4px;
-    border-radius: 2px;
-    background: var(--border);
-    transition: background 300ms ease;
+.ei-step-dot {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--amber) 24%, var(--border));
+    background: var(--surface-hi);
+    box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--card-surface-2) 75%, transparent);
+    transition: background 220ms ease, border-color 220ms ease, transform 220ms ease;
 }
 
-.ei-dot.active {
-    background: linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 40%, transparent));
-}
-
-.ei-dot.done {
+.ei-step-dot::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border-radius: 999px;
     background: var(--amber);
+    transform: scale(0);
+    opacity: 0;
+}
+
+.ei-step-dot.is-done {
+    background: color-mix(in srgb, var(--amber) 88%, #fff 12%);
+    border-color: color-mix(in srgb, var(--amber) 82%, var(--border));
+    animation: eiStepFill 260ms ease-out;
+}
+
+.ei-step-dot.is-done::after {
+    transform: scale(1);
+    opacity: 0.95;
+    animation: eiStepInnerFill 260ms ease-out;
+}
+
+.ei-step-dot.is-active {
+    background: var(--amber);
+    border-color: var(--amber);
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber-soft) 70%, transparent);
+    animation: eiStepPulse 360ms ease-out;
+}
+
+@keyframes eiStepFill {
+    from {
+        transform: scale(0.9);
+        filter: saturate(0.8);
+    }
+
+    to {
+        transform: scale(1);
+        filter: saturate(1);
+    }
+}
+
+@keyframes eiStepInnerFill {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 0.95;
+    }
+}
+
+@keyframes eiStepPulse {
+    0% {
+        transform: scale(0.95);
+    }
+
+    65% {
+        transform: scale(1.16);
+    }
+
+    100% {
+        transform: scale(1.12);
+    }
 }
 
 /* ─── Card ───────────────────────────────────────────────── */
 
 .ei-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
+    --ei-accent-soft: var(--amber-soft);
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--card-surface-1) 86%, var(--ei-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 90%, var(--ei-accent-soft)));
+    border: 1px solid color-mix(in srgb, var(--amber) 18%, var(--border));
     border-radius: var(--r-lg);
     padding: 28px 24px;
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     animation: eiFadeIn 300ms ease;
 }
 
@@ -255,8 +325,10 @@
 .ei-card--final {
     text-align: center;
     padding: 40px 28px;
-    background: linear-gradient(135deg, var(--amber-soft), var(--surface));
-    border-color: color-mix(in srgb, var(--amber) 20%, var(--border));
+    background: linear-gradient(145deg,
+            color-mix(in srgb, var(--card-surface-1) 86%, var(--amber-soft)),
+            color-mix(in srgb, var(--card-surface-2) 90%, var(--amber-soft)));
+    border-color: color-mix(in srgb, var(--amber) 18%, var(--border));
 }
 
 .ei-final-icon {

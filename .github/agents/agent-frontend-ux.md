@@ -36,7 +36,8 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 
 - Die Module `skript` und `start` sind gleich gestaltet (beide zugehörigen Webseiten entstehen direkt aus Markdown-Dateien).
 - Die Module `training`, `blurting` und `feynman` sind ähnlich gestaltet: Der Inhalt wird zur Laufzeit per JavaScript erzeugt und besteht aus einer Karte pro Check (siehe `card.css`). Karten im Modul `training` sind breiter als in `blurting` und `feynman`.
-- Karten arbeiten mit Modul-Systemfarben.
+- Die Module `einstieg`, `kompetenzliste` und `flashcards` sind grundsätzlich ähnlich wie `training`, `blurting` und `feynman` gestaltet. Auch  `einstieg`, `kompetenzliste` und `flashcards` verwenden zentrierte Karten, die sich an `card.css` orientieren.
+- Module arbeiten mit Modul-Systemfarben.
 
 ## Übergabeformat
 

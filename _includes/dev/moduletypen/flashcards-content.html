@@ -1,5 +1,44 @@
-<div class="page-shell w-wide">
+<div class="page-shell w-narrow dev-fc-shell">
     <section id="dev-flashcards-root" data-lernbereich="{{ page.lernbereich | default: '' | escape }}">
-        <p style="color:var(--text-dim);line-height:1.6;">Flashcards werden geladen ...</p>
+        <article class="dev-check-card dev-check-card--flashcards dev-fc-app" data-dev-fc-app>
+            <div class="dev-check-card__header">
+                <div class="dev-check-card__header-left">
+                    <div class="dev-fc-counter-wrap">
+                        <div class="dev-fc-counter" id="dev-fc-counter">Karten 0 von 0</div>
+                    </div>
+                </div>
+                <div class="dev-check-card__header-actions">
+                    <button class="dev-check-card__action-btn" id="dev-fc-reset" type="button"
+                        title="Fortschritt loeschen" aria-label="Fortschritt loeschen">
+                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="dev-fc-message" id="dev-fc-message"></div>
+
+            <div class="dev-check-card__body dev-fc-body">
+                <div class="dev-fc-card" id="dev-fc-card" role="button" aria-pressed="false">
+                    <div class="dev-fc-inner" id="dev-fc-inner">
+                        <section class="dev-fc-face dev-fc-front" id="dev-fc-front"></section>
+                        <section class="dev-fc-face dev-fc-back" id="dev-fc-back"></section>
+                    </div>
+                </div>
+
+                <div class="dev-fc-rating" id="dev-fc-rating" aria-label="Selbsteinschaetzung">
+                    <button class="dev-fc-rate dev-fc-rate--hard" type="button" data-grade="2" title="Schwer"
+                        aria-label="Schwer">
+                        <i class="fa-regular fa-face-frown" aria-hidden="true"></i>
+                    </button>
+                    <button class="dev-fc-rate dev-fc-rate--medium" type="button" data-grade="3" title="Mittel"
+                        aria-label="Mittel">
+                        <i class="fa-regular fa-face-meh" aria-hidden="true"></i>
+                    </button>
+                    <button class="dev-fc-rate dev-fc-rate--easy" type="button" data-grade="5" title="Leicht"
+                        aria-label="Leicht">
+                        <i class="fa-regular fa-face-smile" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </article>
     </section>
 </div>

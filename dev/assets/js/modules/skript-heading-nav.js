@@ -1,5 +1,24 @@
 const skriptHeadingNavCleanup = new WeakMap();
 
+function ensureSkriptContentContainer(root) {
+    const existingContainer = root.querySelector(":scope > .mod-script-content");
+    if (existingContainer) return existingContainer;
+
+    const container = document.createElement("div");
+    container.className = "mod-script-content";
+
+    const movableNodes = Array.from(root.children).filter((node) => {
+        return !node.classList.contains("check-jump-nav-wrap");
+    });
+
+    movableNodes.forEach((node) => {
+        container.appendChild(node);
+    });
+
+    root.appendChild(container);
+    return container;
+}
+
 function slugifyHeading(text) {
     return String(text || "")
         .normalize("NFD")
@@ -132,9 +151,11 @@ function bindHeadingScrollSync(navNode, headings) {
 export function initSkriptHeadingNav({ root }) {
     if (!root) return;
 
-    const headings = Array.from(root.querySelectorAll("h2"));
     const existingWrap = root.querySelector("#dev-skript-h2-jump-nav")?.closest(".check-jump-nav-wrap");
     if (existingWrap) existingWrap.remove();
+
+    const contentContainer = ensureSkriptContentContainer(root);
+    const headings = Array.from(contentContainer.querySelectorAll("h2"));
 
     if (headings.length < 2) return;
 

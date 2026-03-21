@@ -23,10 +23,16 @@
         {% include dev/topbar.html %}
         <div class="designs-body">
             {% include dev/moduletypen/sidebar.html %}
-            <div class="mod-main">
+            <div class="mod-main mod-main-shell">
                 {% include dev/moduletypen/nav.html %}
-                <main class="mod-content">
+                <main class="mod-content mod-content-stage">
+                    {% if page.module_key == 'start' %}
+                    <div class="mod-start-content">
+                        {{ content }}
+                    </div>
+                    {% else %}
                     {{ content }}
+                    {% endif %}
                 </main>
             </div>
         </div>

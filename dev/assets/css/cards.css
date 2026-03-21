@@ -36,6 +36,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 0.82rem;
     gap: 12px;
     margin-bottom: 10px;
     padding: 0 2px 8px;
@@ -54,7 +55,6 @@
     display: inline-flex;
     align-items: center;
     position: relative;
-    font-size: 0.66rem;
     font-weight: 750;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -90,6 +90,10 @@
     color: var(--mt-kompetenzliste, var(--blue));
 }
 
+.dev-check-card__badge--flashcards {
+    color: var(--mt-flashcards, var(--amber));
+}
+
 .dev-check-card__badge--skript {
     color: var(--mt-skript, var(--green));
 }
@@ -113,7 +117,7 @@
     color: var(--text-muted);
     cursor: pointer;
     padding: 0;
-    font-size: 0.8rem;
+    font-size: inherit;
     text-decoration: none;
     transition: color 0.15s, transform 0.15s;
 }
@@ -136,7 +140,7 @@
 }
 
 .dev-check-card__action-btn i {
-    font-size: 13px;
+    font-size: inherit;
     line-height: 1;
     pointer-events: none;
 }
@@ -146,7 +150,7 @@
 }
 
 .dev-check-card__title {
-    font-size: 0.96rem;
+    font-size: inherit;
     font-weight: 680;
     line-height: 1.25;
     margin-bottom: 0;
@@ -178,6 +182,12 @@
     --dcc-border: var(--mt-kompetenzliste-border, rgba(76, 154, 255, .3));
 }
 
+.dev-check-card--flashcards {
+    --dcc-accent: var(--mt-flashcards, var(--amber));
+    --dcc-accent-soft: var(--mt-flashcards-soft, var(--amber-soft));
+    --dcc-border: color-mix(in srgb, var(--mt-flashcards, var(--amber)) 36%, var(--border));
+}
+
 .dev-check-card--skript {
     --dcc-accent: var(--mt-skript, var(--green));
     --dcc-accent-soft: var(--mt-skript-soft, var(--green-soft));
@@ -198,6 +208,10 @@
 
 .dev-check-card__title--kompetenzliste {
     color: var(--mt-kompetenzliste, var(--blue));
+}
+
+.dev-check-card__title--flashcards {
+    color: var(--mt-flashcards, var(--amber));
 }
 
 .dev-check-card__title--skript {
