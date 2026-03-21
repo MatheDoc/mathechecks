@@ -99,16 +99,6 @@
 /* ─── Card ───────────────────────────────────────────────── */
 
 .ei-card {
-    --ei-accent-soft: var(--amber-soft);
-    background: linear-gradient(145deg,
-            color-mix(in srgb, var(--card-surface-1) 86%, var(--ei-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 90%, var(--ei-accent-soft)));
-    border: 1px solid color-mix(in srgb, var(--amber) 18%, var(--border));
-    border-radius: var(--r-lg);
-    padding: 28px 24px;
-    box-shadow: none;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     animation: eiFadeIn 300ms ease;
 }
 
@@ -325,10 +315,6 @@
 .ei-card--final {
     text-align: center;
     padding: 40px 28px;
-    background: linear-gradient(145deg,
-            color-mix(in srgb, var(--card-surface-1) 86%, var(--amber-soft)),
-            color-mix(in srgb, var(--card-surface-2) 90%, var(--amber-soft)));
-    border-color: color-mix(in srgb, var(--amber) 18%, var(--border));
 }
 
 .ei-final-icon {
@@ -355,10 +341,6 @@
 /* ─── Responsive ─────────────────────────────────────────── */
 
 @media (max-width: 600px) {
-    .ei-card {
-        padding: 22px 18px;
-    }
-
     .ei-text {
         font-size: 0.98rem;
     }

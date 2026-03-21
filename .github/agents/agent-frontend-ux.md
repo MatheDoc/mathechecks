@@ -34,10 +34,22 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 
 ## Hinweise zu Modulen
 
+- Benennung: In der UI kann von `Einstieg` gesprochen werden, der technische `module_key` lautet jedoch `einstiegsquiz`.
 - Die Module `skript` und `start` sind gleich gestaltet (beide zugehörigen Webseiten entstehen direkt aus Markdown-Dateien).
-- Die Module `training`, `blurting` und `feynman` sind ähnlich gestaltet: Der Inhalt wird zur Laufzeit per JavaScript erzeugt und besteht aus einer Karte pro Check (siehe `card.css`). Karten im Modul `training` sind breiter als in `blurting` und `feynman`.
-- Die Module `einstieg`, `kompetenzliste` und `flashcards` sind grundsätzlich ähnlich wie `training`, `blurting` und `feynman` gestaltet. Auch  `einstieg`, `kompetenzliste` und `flashcards` verwenden zentrierte Karten, die sich an `card.css` orientieren.
+- Die Module `training`, `blurting` und `feynman` sind ähnlich gestaltet: Der Inhalt wird zur Laufzeit per JavaScript erzeugt und besteht aus einer Karte pro Check (siehe `cards.css`). Karten im Modul `training` sind breiter als in `blurting` und `feynman`.
+- Die Module `einstieg`/`einstiegsquiz` und `flashcards` zeigen jeweils nur eine aktive Karte gleichzeitig.
+- Das Modul `kompetenzliste` zeigt pro Check genau eine kompakte Karte in einer Listenansicht (direkt nacheinander).
+- Die Module `einstieg`, `kompetenzliste` und `flashcards` nutzen ebenfalls das gemeinsame Card-Design (`dev-check-card`) mit modulspezifischen Anpassungen.
 - Module arbeiten mit Modul-Systemfarben.
+
+## Konsistenz- und Cleanup-Regeln
+
+- Vor neuen Styles zuerst prüfen, ob bestehende Card- und Header-Klassen (`dev-check-card*`) ausreichen.
+- Ungenutzte Klassen löschen.
+- Ungenutzte Legacy-Selektoren in CSS gezielt abbauen.
+- Bei Vereinheitlichungen wenn möglich zuerst Klassenzuweisung/Markup angleichen und im zweiten Schritt alte Selektoren entfernen.
+- Bei Vereinheitlichung immer die didaktische Funktion erhalten (z. B. Fokus, Progression, Selbstcheck-Feedback).
+- Änderungen an Strukturklassen nur zusammen mit Prüfung auf Desktop und Mobil.
 
 ## Übergabeformat
 

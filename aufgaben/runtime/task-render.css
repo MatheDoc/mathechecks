@@ -389,7 +389,7 @@
     position: relative;
     color: var(--text-body);
     line-height: 1.55;
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 88%, var(--mt-training-soft, var(--accent-soft)) 12%);
+    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training, var(--accent-soft)) 10%);
     border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border));
     border-radius: 12px;
     padding: 10px 10px 10px 42px;
@@ -417,7 +417,7 @@
 }
 
 .dev-check-card__runtime-task .qa-item:hover {
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 78%, var(--mt-training, #4c9aff) 22%);
+    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 80%, var(--mt-training, #4c9aff) 20%);
     border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 58%, var(--border));
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, #4c9aff) 42%, var(--border));
     transform: none;
