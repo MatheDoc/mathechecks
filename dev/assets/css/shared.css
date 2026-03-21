@@ -1882,7 +1882,7 @@ body.page-module-designs .shell {
   min-height: 52px;
   box-sizing: border-box;
   padding-left: 20px;
-  padding-left: 20px;
+  padding-right: 20px;
   justify-content: center;
   width: 100%;
   background: var(--nav-rail-bg);
@@ -2069,8 +2069,28 @@ body.page-module-designs .shell {
 
 /* Content Area */
 .mod-content {
-  flex: 1;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 100%;
   padding: 0 0 72px;
+}
+
+.mod-main-shell {
+  min-height: 0;
+}
+
+.mod-content-stage {
+  min-height: 100%;
+}
+
+.mod-script-content {
+  margin: 0 auto;
+  padding: 14px clamp(14px, 2.4vw, 30px) 72px;
+}
+
+.mod-start-content {
+  margin: 0 auto;
+  padding: 14px clamp(14px, 2.4vw, 30px) 72px;
 }
 
 .mod-panel {
@@ -3177,11 +3197,7 @@ body.page-module-designs .shell {
   border-bottom: 0;
 }
 
-.page-skript-md .mod-content {
-  max-width: none;
-  margin: 0;
-  padding: 28px 24px 64px;
-}
+
 
 .page-skript-md .mod-content h2[id] {
   scroll-margin-top: calc(var(--module-sticky-top) + 112px);
@@ -3448,7 +3464,6 @@ body.page-module-designs .shell {
 
 .page-skript-md .mod-content .mc-note+.mc-note-task .dev-check-card__title {
   margin: 0;
-  font-size: 1.05rem;
   line-height: 1.3;
   white-space: nowrap;
   overflow: hidden;
@@ -3900,6 +3915,367 @@ body.page-module-designs .shell {
   transition: width 400ms ease;
 }
 
+/* MODULE: DEV FLASHCARDS */
+.dev-fc-shell {
+  display: grid;
+  margin-top: 25px;
+  padding-bottom: 25px;
+}
+
+.dev-fc-app {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.dev-fc-counter-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.dev-fc-counter {
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--mt-flashcards, var(--amber));
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+
+.dev-fc-message {
+  min-height: 1.2em;
+  font-size: .8rem;
+  color: var(--text-dim);
+  margin: -2px 2px 2px;
+}
+
+.dev-fc-message-static {
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.dev-fc-body {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 14px;
+  min-height: 0;
+}
+
+.dev-fc-card {
+  perspective: 1200px;
+  cursor: pointer;
+  min-height: 0;
+  align-self: start;
+}
+
+.dev-fc-inner {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 420ms cubic-bezier(.2, .65, .2, 1);
+}
+
+.dev-fc-card.is-flipped .dev-fc-inner {
+  transform: rotateY(180deg);
+}
+
+.dev-fc-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  padding: 18px 18px 16px;
+  border: 1px solid color-mix(in srgb, var(--mt-flashcards, var(--amber)) 26%, var(--border));
+  background: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-flashcards-soft, var(--amber-soft)) 8%);
+  overflow: hidden;
+}
+
+.dev-fc-front,
+.dev-fc-back {
+  background: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-flashcards-soft, var(--amber-soft)) 8%);
+}
+
+.dev-fc-back {
+  transform: rotateY(180deg);
+}
+
+.dev-fc-face-label {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.dev-fc-scroll {
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  gap: 10px;
+  padding-right: 4px;
+  overflow-anchor: none;
+}
+
+.dev-fc-scroll.is-no-scroll {
+  overflow-y: hidden;
+}
+
+.dev-fc-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dev-fc-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--mt-flashcards, var(--amber)) 35%, var(--border));
+  border-radius: 999px;
+}
+
+.dev-fc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dev-fc-intro {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  font-size: .92rem;
+  color: var(--text-body);
+}
+
+.dev-fc-text {
+  line-height: 1.6;
+  font-size: .92rem;
+  color: var(--text-body);
+}
+
+.dev-fc-answer-tone {
+  color: var(--mt-flashcards, var(--amber));
+  font-weight: 700;
+  border-top: 1px solid color-mix(in srgb, var(--mt-flashcards, var(--amber)) 30%, var(--border));
+  padding-top: 10px;
+  margin-top: 6px;
+}
+
+.dev-fc-section-title {
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--mt-flashcards, var(--amber));
+  margin-top: 4px;
+}
+
+.dev-fc-list {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 8px;
+  font-size: .92rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.dev-fc-list li {
+  margin: 0;
+}
+
+.dev-fc-visual {
+  margin-bottom: 10px;
+}
+
+/* Keep flashcard scrolling usable when pointer is over Plotly visuals. */
+.dev-fc-visual .js-plotly-plot,
+.dev-fc-visual .plotly,
+.dev-fc-visual .plot-container,
+.dev-fc-visual .svg-container {
+  touch-action: pan-y !important;
+}
+
+.dev-fc-visual .draglayer,
+.dev-fc-visual .nsewdrag,
+.dev-fc-visual .zoomlayer {
+  pointer-events: none !important;
+}
+
+/* Flashcards tables mirror training/runtime table styling */
+.dev-fc-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #dfe5f1);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0 20px;
+  display: block;
+}
+
+.dev-fc-scroll .intro-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.dev-fc-scroll .intro-table-scroll>table {
+  display: table;
+  width: 100%;
+  min-width: 36rem;
+  table-layout: fixed;
+  margin-bottom: 0;
+}
+
+.dev-fc-scroll .intro-table-scroll thead,
+.dev-fc-scroll .intro-table-scroll tbody,
+.dev-fc-scroll .intro-table-scroll tr {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.dev-fc-scroll .intro-table-scroll thead {
+  display: table-header-group;
+}
+
+.dev-fc-scroll .intro-table-scroll tbody {
+  display: table-row-group;
+}
+
+.dev-fc-scroll .intro-table-scroll tr {
+  display: table-row;
+}
+
+.dev-fc-scroll .intro-table-scroll th,
+.dev-fc-scroll .intro-table-scroll td {
+  white-space: nowrap;
+}
+
+.dev-fc-scroll thead,
+.dev-fc-scroll tbody,
+.dev-fc-scroll tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+
+.dev-fc-scroll th,
+.dev-fc-scroll td {
+  border-bottom: 1px solid var(--border, #dfe5f1);
+  border-right: 1px solid var(--border, #dfe5f1);
+  padding: 10px 12px;
+  text-align: center;
+  font-size: .83rem;
+  color: var(--text-body, #3d4452);
+  vertical-align: middle;
+}
+
+.dev-fc-scroll th mjx-container,
+.dev-fc-scroll td mjx-container {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dev-fc-scroll th:last-child,
+.dev-fc-scroll td:last-child {
+  border-right: 0;
+}
+
+.dev-fc-scroll thead th {
+  font-weight: 700;
+  color: var(--text, #1a1a2e);
+  background: var(--surface-hi, rgba(0, 0, 0, 0.06));
+}
+
+.dev-fc-scroll tr:last-child td {
+  border-bottom: 0;
+}
+
+.dev-fc-scroll .vft-table .vft-sum-row th,
+.dev-fc-scroll .vft-table .vft-sum-row td {
+  border-top: 2px solid var(--text, #1a1a2e);
+}
+
+.dev-fc-scroll .vft-table .vft-sum {
+  border-left: 2px solid var(--text, #1a1a2e);
+}
+
+.dev-fc-rating {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  opacity: .35;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.dev-fc-rating.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.dev-fc-rate {
+  min-height: 42px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-hi) 85%, transparent);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.dev-fc-rate:hover {
+  transform: translateY(-1px);
+}
+
+.dev-fc-rate:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--mt-flashcards, var(--amber)) 45%, #fff);
+  outline-offset: 2px;
+}
+
+.dev-fc-rate--hard {
+  border-color: color-mix(in srgb, var(--rose) 70%, var(--border));
+  background: color-mix(in srgb, var(--rose) 26%, var(--rose-soft));
+  color: color-mix(in srgb, var(--rose) 78%, var(--text));
+}
+
+.dev-fc-rate--medium {
+  border-color: color-mix(in srgb, var(--amber) 72%, var(--border));
+  background: color-mix(in srgb, var(--amber) 28%, var(--amber-soft));
+  color: color-mix(in srgb, var(--amber) 82%, var(--text));
+}
+
+.dev-fc-rate--easy {
+  border-color: color-mix(in srgb, var(--green) 70%, var(--border));
+  background: color-mix(in srgb, var(--green) 24%, var(--green-soft));
+  color: color-mix(in srgb, var(--green) 82%, var(--text));
+}
+
+.dev-fc-rate i {
+  font-size: 1.08rem;
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .dev-fc-face {
+    padding: 14px 14px 12px;
+  }
+
+  .dev-fc-inner {
+    min-height: 0;
+  }
+}
+
 .fc-prog-lbl {
   font-size: .72rem;
   color: var(--text-muted);
@@ -3989,12 +4365,7 @@ html.light .dev-bar {
   }
 
   .dev-check-card__badge {
-    font-size: 0.62rem;
     padding: 2px 7px;
-  }
-
-  .dev-check-card__title {
-    font-size: 0.95rem;
   }
 
   .dev-check-card {

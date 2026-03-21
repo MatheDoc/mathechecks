@@ -591,9 +591,10 @@ async function bootstrap() {
     initSkriptHeadingNav({
       root: contentRoot,
     });
-    await initSkriptInfoCards(contentRoot, context.lernbereich);
+    const scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
+    await initSkriptInfoCards(scriptContentRoot, context.lernbereich);
     await initScriptTaskDuplicatesModule({
-      root: contentRoot,
+      root: scriptContentRoot,
       lernbereich: context.lernbereich,
       usePersistedState: true,
     });

@@ -6,7 +6,6 @@ export async function initEinstiegsquizModule({ lernbereich } = {}) {
     if (!wrap) return;
 
     const cards = [...wrap.querySelectorAll(".ei-card")];
-    const dots = [...wrap.querySelectorAll(".ei-dot")];
     let current = 0;
 
     /* ── Reveal buttons (wusstest-du, alltag) ─────────────── */
@@ -63,14 +62,7 @@ export async function initEinstiegsquizModule({ lernbereich } = {}) {
     function goTo(idx) {
         if (idx >= cards.length) return;
         cards[current].hidden = true;
-        if (dots[current]) {
-            dots[current].classList.remove("active");
-            dots[current].classList.add("done");
-        }
         current = idx;
         cards[current].hidden = false;
-        if (dots[current]) {
-            dots[current].classList.add("active");
-        }
     }
 }
