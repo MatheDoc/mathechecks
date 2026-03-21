@@ -2,95 +2,100 @@
 {% assign einstieg = site.data.dev_einstieg[lb] %}
 
 {% if einstieg %}
-<div class="ei-wrap page-shell w-narrow dev-fc-shell" data-total="{{ einstieg.karten | size }}">
+<div class="page-shell w-narrow">
+    <div class="ei-wrap check-viewport-item check-viewport-item--narrow" data-total="{{ einstieg.karten | size }}">
 
-    {% for karte in einstieg.karten %}
-    {% assign current_idx = forloop.index0 %}
-    <article class="ei-card dev-check-card dev-check-card--einstiegsquiz" data-typ="{{ karte.typ }}"
-        data-index="{{ forloop.index0 }}" {% unless forloop.first %} hidden{% endunless %}>
+        {% for karte in einstieg.karten %}
+        {% assign current_idx = forloop.index0 %}
+        <article class="ei-card dev-check-card dev-check-card--einstiegsquiz" data-typ="{{ karte.typ }}"
+            data-index="{{ forloop.index0 }}" {% unless forloop.first %} hidden{% endunless %}>
 
-        <div class="ei-card-progress" aria-label="Fortschritt">
-            <div class="ei-card-progress-dots" aria-hidden="true">
-                {% for step in einstieg.karten %}
-                {% assign step_idx = forloop.index0 %}
-                <span
-                    class="ei-step-dot{% if step_idx < current_idx %} is-done{% elsif step_idx == current_idx %} is-active{% endif %}"></span>
+            <div class="ei-card-progress" aria-label="Fortschritt">
+                <div class="ei-card-progress-dots" aria-hidden="true">
+                    {% for step in einstieg.karten %}
+                    {% assign step_idx = forloop.index0 %}
+                    <span
+                        class="ei-step-dot{% if step_idx < current_idx %} is-done{% elsif step_idx == current_idx %} is-active{% endif %}"></span>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% case karte.typ %}
+            {% when 'wusstest-du' %}{% assign karten_label = "Wusstest du?" %}
+            {% when 'schaetzfrage' %}{% assign karten_label = "Was schaetzt du?" %}
+            {% when 'vorwissen' %}{% assign karten_label = "Kurz nachgedacht" %}
+            {% when 'alltag' %}{% assign karten_label = "Mathe im Alltag" %}
+            {% endcase %}
+
+            <span class="ei-badge ei-badge--{{ karte.typ }}">{{ karten_label }}</span>
+
+            {% if karte.typ == 'wusstest-du' or karte.typ == 'alltag' %}
+            <p class="ei-text">{{ karte.text }}</p>
+            <div class="ei-detail" hidden>
+                <p>{{ karte.detail }}</p>
+            </div>
+            {% if karte.typ == 'alltag' %}
+            <button class="ei-reveal-btn" type="button">Mehr erfahren</button>
+            {% else %}
+            <button class="ei-reveal-btn" type="button">Aufdecken</button>
+            {% endif %}
+            {% endif %}
+
+            {% if karte.typ == 'schaetzfrage' %}
+            <p class="ei-text">{{ karte.frage }}</p>
+            <div class="ei-options" data-korrekt="{{ karte.korrekt }}">
+                {% for opt in karte.optionen %}
+                <button class="ei-opt" type="button" data-idx="{{ forloop.index0 }}">{{ opt }}</button>
                 {% endfor %}
             </div>
-        </div>
+            <div class="ei-feedback" hidden>
+                <p>{{ karte.erklaerung }}</p>
+            </div>
+            {% endif %}
 
-        {% case karte.typ %}
-        {% when 'wusstest-du' %}{% assign karten_label = "Wusstest du?" %}
-        {% when 'schaetzfrage' %}{% assign karten_label = "Was schaetzt du?" %}
-        {% when 'vorwissen' %}{% assign karten_label = "Kurz nachgedacht" %}
-        {% when 'alltag' %}{% assign karten_label = "Mathe im Alltag" %}
-        {% endcase %}
-
-        <span class="ei-badge ei-badge--{{ karte.typ }}">{{ karten_label }}</span>
-
-        {% if karte.typ == 'wusstest-du' or karte.typ == 'alltag' %}
-        <p class="ei-text">{{ karte.text }}</p>
-        <div class="ei-detail" hidden>
-            <p>{{ karte.detail }}</p>
-        </div>
-        {% if karte.typ == 'alltag' %}
-        <button class="ei-reveal-btn" type="button">Mehr erfahren</button>
-        {% else %}
-        <button class="ei-reveal-btn" type="button">Aufdecken</button>
-        {% endif %}
-        {% endif %}
-
-        {% if karte.typ == 'schaetzfrage' %}
-        <p class="ei-text">{{ karte.frage }}</p>
-        <div class="ei-options" data-korrekt="{{ karte.korrekt }}">
-            {% for opt in karte.optionen %}
-            <button class="ei-opt" type="button" data-idx="{{ forloop.index0 }}">{{ opt }}</button>
-            {% endfor %}
-        </div>
-        <div class="ei-feedback" hidden>
-            <p>{{ karte.erklaerung }}</p>
-        </div>
-        {% endif %}
-
-        {% if karte.typ == 'vorwissen' %}
-        <p class="ei-text">{{ karte.frage }}</p>
-        <div class="ei-options" data-korrekt="{{ karte.korrekt }}">
-            {% for opt in karte.optionen %}
-            <button class="ei-opt" type="button" data-idx="{{ forloop.index0 }}">{{ opt }}</button>
-            {% endfor %}
-        </div>
-        <div class="ei-feedback ei-fb--richtig" hidden>
-            <p>{{ karte.feedback_richtig }}</p>
-        </div>
-        <div class="ei-feedback ei-fb--falsch" hidden>
-            <p>{{ karte.feedback_falsch }}</p>
-        </div>
-        {% endif %}
-
-        <div class="ei-nav">
-            <button class="ei-btn-next" type="button" disabled>Weiter →</button>
-        </div>
-    </article>
-    {% endfor %}
-
-    <!-- Abschlusskarte -->
-    <article class="ei-card ei-card--final dev-check-card dev-check-card--einstiegsquiz"
-        data-index="{{ einstieg.karten | size }}" hidden>
-        <div class="ei-card-progress" aria-label="Fortschritt">
-            <div class="ei-card-progress-dots" aria-hidden="true">
-                {% for step in einstieg.karten %}
-                <span class="ei-step-dot is-done"></span>
+            {% if karte.typ == 'vorwissen' %}
+            <p class="ei-text">{{ karte.frage }}</p>
+            <div class="ei-options" data-korrekt="{{ karte.korrekt }}">
+                {% for opt in karte.optionen %}
+                <button class="ei-opt" type="button" data-idx="{{ forloop.index0 }}">{{ opt }}</button>
                 {% endfor %}
             </div>
-        </div>
-        <div class="ei-final-icon">🚀</div>
-        <p class="ei-final-text">{{ einstieg.abschluss | default: "Super – du hast einen ersten Einblick bekommen. Jetzt
-            kann es richtig losgehen!" }}</p>
-    </article>
+            <div class="ei-feedback ei-fb--richtig" hidden>
+                <p>{{ karte.feedback_richtig }}</p>
+            </div>
+            <div class="ei-feedback ei-fb--falsch" hidden>
+                <p>{{ karte.feedback_falsch }}</p>
+            </div>
+            {% endif %}
 
+            <div class="ei-nav">
+                <button class="ei-btn-next" type="button" disabled>Weiter →</button>
+            </div>
+        </article>
+        {% endfor %}
+
+        <!-- Abschlusskarte -->
+        <article class="ei-card ei-card--final dev-check-card dev-check-card--einstiegsquiz"
+            data-index="{{ einstieg.karten | size }}" hidden>
+            <div class="ei-card-progress" aria-label="Fortschritt">
+                <div class="ei-card-progress-dots" aria-hidden="true">
+                    {% for step in einstieg.karten %}
+                    <span class="ei-step-dot is-done"></span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="ei-final-icon">🚀</div>
+            <p class="ei-final-text">{{ einstieg.abschluss | default: "Super – du hast einen ersten Einblick bekommen.
+                Jetzt
+                kann es richtig losgehen!" }}</p>
+        </article>
+
+    </div>
 </div>
 {% else %}
-<div class="ei-wrap page-shell w-narrow dev-fc-shell">
-    <p class="ei-placeholder">Einstieg wird vorbereitet …</p>
+<div class="page-shell w-narrow">
+    <div class="ei-wrap check-viewport-item check-viewport-item--narrow">
+        <p class="ei-placeholder">Einstieg wird vorbereitet …</p>
+    </div>
 </div>
 {% endif %}

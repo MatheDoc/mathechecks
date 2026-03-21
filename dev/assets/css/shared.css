@@ -2114,7 +2114,9 @@ body.page-module-designs .shell {
 /* Shared helpers */
 .page-shell {
   margin: 0 auto;
-  padding: 0px 0px 0px;
+  padding: 0;
+  padding-inline: clamp(12px, 2.2vw, 28px);
+  box-sizing: border-box;
 }
 
 .w-wide {
@@ -2123,9 +2125,6 @@ body.page-module-designs .shell {
 
 .page-shell--fluid {
   width: 100%;
-  box-sizing: border-box;
-  margin-inline: auto;
-  padding-inline: clamp(12px, 2.2vw, 28px);
 }
 
 .page-shell--fluid.w-wide {
@@ -2651,7 +2650,7 @@ body.page-module-designs .shell {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 30px 6px;
+  padding-block: var(--check-container-pad-y);
 }
 
 .kl-row {
@@ -2688,16 +2687,6 @@ body.page-module-designs .shell {
   gap: 6px;
 }
 
-/* MODULE: BLURTING */
-.bl-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 30px 28px;
-  backdrop-filter: blur(14px);
-  transition: border-color 300ms, box-shadow 300ms;
-}
-
 .bl-prompt {
   font-size: .9rem;
   color: var(--text-dim);
@@ -2721,43 +2710,6 @@ body.page-module-designs .shell {
 
 .bl-timer-ring svg {
   transform: rotate(-90deg);
-}
-
-.bl-arc {
-  fill: none;
-  stroke: var(--teal);
-  stroke-width: 3;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s linear, stroke 300ms;
-}
-
-.bl-track {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 3;
-}
-
-.bl-timer-num {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .68rem;
-  font-weight: 700;
-  color: var(--text);
-}
-
-.bl-timer-info .bl-ti-t {
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 2px;
-}
-
-.bl-timer-info .bl-ti-s {
-  font-size: .72rem;
-  color: var(--text-muted);
 }
 
 .bl-reveal-btn {
@@ -3042,42 +2994,6 @@ body.page-module-designs .shell {
 }
 
 /* MODULE: FEYNMAN */
-.fy-prompt-card {
-  background: linear-gradient(135deg,
-      rgba(var(--mt-feynman-rgb, 167, 139, 250), .1),
-      rgba(var(--mt-feynman-rgb, 167, 139, 250), .04));
-  border: 1px solid rgba(var(--mt-feynman-rgb, 167, 139, 250), .2);
-  border-radius: 20px;
-  padding: 26px 28px;
-  margin-bottom: 20px;
-}
-
-.fy-prompt-head {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.fy-prompt-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .14);
-  border: 1px solid rgba(var(--mt-feynman-rgb, 167, 139, 250), .2);
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
-.fy-prompt-lbl {
-  font-size: .68rem;
-  font-weight: 700;
-  color: var(--mt-feynman, #a78bfa);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-}
 
 .fy-prompt-text {
   font-size: 1.05rem;
@@ -3916,15 +3832,14 @@ body.page-module-designs .shell {
 }
 
 /* MODULE: DEV FLASHCARDS */
-.dev-fc-shell {
-  display: grid;
-  margin-top: 25px;
-  padding-bottom: 25px;
-}
 
 .dev-fc-app {
   max-width: 100%;
   margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .dev-fc-counter-wrap {
@@ -4002,15 +3917,6 @@ body.page-module-designs .shell {
   transform: rotateY(180deg);
 }
 
-.dev-fc-face-label {
-  font-size: .72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  color: var(--text-dim);
-  margin-bottom: 10px;
-}
-
 .dev-fc-scroll {
   min-height: 0;
   max-height: 100%;
@@ -4058,15 +3964,6 @@ body.page-module-designs .shell {
   border-top: 1px solid color-mix(in srgb, var(--mt-flashcards, var(--amber)) 30%, var(--border));
   padding-top: 10px;
   margin-top: 6px;
-}
-
-.dev-fc-section-title {
-  font-size: .76rem;
-  font-weight: 700;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-  color: var(--mt-flashcards, var(--amber));
-  margin-top: 4px;
 }
 
 .dev-fc-list {
@@ -4527,12 +4424,13 @@ html.light .dev-bar {
     display: none;
   }
 
-  .page-shell--fluid {
+  .page-shell {
     padding-inline: 12px;
   }
 
   .check-viewport-item {
     min-height: auto;
+    max-height: none;
     padding: 0;
   }
 
