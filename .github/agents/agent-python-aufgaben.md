@@ -79,6 +79,6 @@ Alle Parameterwerte sind auf sinnvolle Dezimalstellen gerundet (max. 3–4 NKS).
 
 ## Übergabeformat
 
-- kurze Änderungsliste
+- kurze Liste der Änderungen
 - betroffene Dateien
 - Verifikationshinweis (z. B. CLI-Task oder Batch-Run)

@@ -11,7 +11,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 
 ## Zuständigkeit
 
-- Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
+- Einstiege, Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
 - Terminologie, Symbolik und didaktische Progression
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
 - Konsistenz der Check-Kette: Kompetenzliste -> Training -> Blurting -> Feynman -> Skript -> Flashcards über alle Lernbereiche
@@ -59,5 +59,5 @@ Lernmethoden  (didaktische Prinzipien – anwendbar auf alle Ebenen)
 
 ## Übergabeformat
 
-- kurze Liste der inhaltlichen Änderungen
+- kurze Liste der Änderungen
 - betroffene Dateien

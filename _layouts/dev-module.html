@@ -16,7 +16,7 @@
 </head>
 
 <body
-    class="{{ page.body_class | default: 'page-module-designs' }}{% if page.module_key == 'skript' %} page-skript-md{% endif %}"
+    class="{{ page.body_class | default: 'page-module-designs' }}{% if page.module_key == 'skript' or page.module_key == 'start' %} page-skript-md{% endif %}"
     data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
     data-module-key="{{ page.module_key | default: '' | escape }}">
     <div class="shell">

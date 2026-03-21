@@ -37,16 +37,6 @@
         const actionsMenu = document.querySelector('.topbar-actions-menu');
         if (!actionsMenu) return;
 
-        const calculatorToggle = document.getElementById('calculatorToggle');
-        const calculatorToggleMenu = document.getElementById('calculatorToggleMenu');
-
-        if (calculatorToggle && calculatorToggleMenu) {
-            calculatorToggleMenu.addEventListener('click', () => {
-                calculatorToggle.click();
-                actionsMenu.removeAttribute('open');
-            });
-        }
-
         const menuItems = Array.from(actionsMenu.querySelectorAll('.topbar-actions-item'));
         menuItems.forEach((item) => {
             item.addEventListener('click', () => {
