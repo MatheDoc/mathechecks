@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import binom_cdf, prob_at_least
 from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
@@ -164,3 +164,4 @@ class BinomialNpkKGenerator(TaskGenerator):
                 raise ValueError("Konnte keine eindeutige npk-k Aufgabe erzeugen.")
 
         return tasks
+

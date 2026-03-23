@@ -1,4 +1,4 @@
-"""Check 2 – Baumdiagramm vervollständigen (Pfadmultiplikation umgestellt).
+"""Check 2 �?" Baumdiagramm vervollständigen (Pfadmultiplikation umgestellt).
 
 Kernidee: Die Pfadmultiplikationsregel a·b = c kann *nicht* direkt
 angewendet werden, sondern muss mindestens einmal nach b umgestellt
@@ -7,9 +7,9 @@ werden: b = c / a.
 Gegeben sind immer genau 3 Wahrscheinlichkeiten:
   1. Eine Endwahrscheinlichkeit (Blatt): 7, 8, 9 oder 10
   2. Eine Wkt aus demselben Ast:
-       wenn 7|8 → {1, 3, 4};  wenn 9|10 → {2, 5, 6}
+       wenn 7|8 �?' {1, 3, 4};  wenn 9|10 �?' {2, 5, 6}
   3. Eine Wkt aus dem anderen Ast:
-       wenn 7|8 → {5, 6, 9, 10};  wenn 9|10 → {3, 4, 7, 8}
+       wenn 7|8 �?' {5, 6, 9, 10};  wenn 9|10 �?' {3, 4, 7, 8}
 
 Damit ist der gesamte Baum bestimmbar (7 Werte zu berechnen).
 """
@@ -17,7 +17,7 @@ Damit ist der gesamte Baum bestimmbar (7 Werte zu berechnen).
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -94,7 +94,7 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
             antworten = [
                 "---"
                 if idx in given_slots
-                else numerical(slot_probs[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slot_probs[idx])
                 for idx in range(1, 11)
             ]
 
@@ -108,3 +108,4 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
             )
 
         return tasks
+

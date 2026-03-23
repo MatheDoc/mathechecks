@@ -93,3 +93,4 @@ class AblehnungsbereichLinksseitigOhneStrukturGenerator(TaskGenerator):
             ))
 
         return tasks
+

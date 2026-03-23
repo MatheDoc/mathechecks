@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -24,7 +24,7 @@ def _slot_probabilities(case: ABCase) -> dict[int, float]:
 
 
 def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
-    """Kompakter ab-tree Spec – Rendering erfolgt clientseitig in preview.js."""
+    """Kompakter ab-tree Spec �?" Rendering erfolgt clientseitig in preview.js."""
     return {
         "type": "plot",
         "spec": {
@@ -67,7 +67,7 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
             antworten = [
                 "---"
                 if idx in given_slots
-                else numerical(slot_probs[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slot_probs[idx])
                 for idx in range(1, 11)
             ]
 
@@ -81,3 +81,4 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
             )
 
         return tasks
+

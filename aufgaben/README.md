@@ -211,3 +211,51 @@ Beispiel:
 ```
 
 Wenn `visual.spec` vorhanden ist, kann die Web-Vorschau (`preview.js`) das Diagramm clientseitig rendern.
+
+### Visuelle Spec-Typen (`visual.spec.type`)
+
+Eigene kompakte Spec-Typen sind gegenüber rohen `"plotly"`-Trace-Arrays bevorzugt:
+
+| Typ | Beschreibung |
+|---|---|
+| `cost-curves` | Grenzkosten-, Stückkosten-, variable Stückkostenfunktion (K3-Polynom) |
+| `market-curves` | Einfaches lineares Marktdiagramm |
+| `market-equilibrium` | Marktgleichgewicht mit variablen Funktionstypen (linear/quadratisch/exp); `p_N` endet bei `satX` |
+| `market-abschoepfung` | Preisdifferenzierung mit KR1/KR2-Flächen |
+| `economic-curves` | Erlös-, Kosten-, Gewinnfunktion |
+| `plotly` | Fallback: explizite Trace-Arrays mit x/y-Werten |
+| `vft` | Vier-Felder-Tafel als DOM-Tabelle (kein Plotly) |
+| `wkt-tabelle` | Diskrete Wahrscheinlichkeitsverteilung (x-Zeile + P-Zeile, `null` = leere Zelle) |
+
+Neue Diagrammtypen erhalten einen eigenen Branch in `preview.js` (`renderVisual` → `else if (specType === '...')`). Tabellendaten nie als HTML in `einleitung` hartcodieren, sondern als `visual` mit passendem `spec.type` übergeben.
+
+### Parameter-Format für Funktionen in Specs
+
+```json
+{ "type": "linear",    "a": 1.5,  "b": 3.2 }
+{ "type": "quadratic", "a": 0.03, "b": 0.15, "c": 2.0 }
+{ "type": "exp",       "A": -18.5, "rate": 0.12, "c": 21.0 }
+```
+
+Alle Parameterwerte sind auf sinnvolle Dezimalstellen gerundet (max. 3–4 NKS).
+
+## Namenskonventionen
+
+### Sammlung-Namen (`sammlung` in `project_config.json`)
+
+- Format: `kebab-case`
+- Nur inhaltliche Bezeichnung, kein Gebiets- oder Lernbereichspräfix
+- Beispiele: `kennzahlen-graphisch-allgemein`, `kennzahlen-rechnerisch-lqe`, `renten-bestimmung-prkr`, `abschoepfung-kr-bestimmung-preis`
+
+Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kennzahlen-graphisch-allgemein.json`) sowie den Ablageordner unter `aufgaben/exports/json/<gebiet>/<lernbereich>/`.
+
+## Toleranzregeln
+
+- **Analysis:** Möglichst (Ausnahmen bei Steckbriefaufgaben) höchstens 2 zählende Stellen bei erzeugten Zufallszahlen.
+  Richtig: `0,3` · `450` · `0,056` · `40` · `8`
+  Falsch: `723` · `23,4` · `0,928` · `3,54`
+- **Stochastik:** Gegebene Wahrscheinlichkeit mit höchstens 4 Nachkommastellen.
+- **Diagramme:**
+  - Werte so wählen, dass Graphen ihr typisches Erscheinungsbild im Sachzusammenhang haben.
+  - Gesuchte Werte müssen gut abgelesen werden können.
+  - Standardtoleranz für Ableseaufgaben: ein Viertel der Schrittweite der jeweiligen Achse.

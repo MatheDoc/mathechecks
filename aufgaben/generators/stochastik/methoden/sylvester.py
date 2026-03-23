@@ -1,4 +1,4 @@
-"""Generator fuer Kontextaufgaben mit zwei Ereignissen A und B (Sammlung "sylvester").
+﻿"""Generator fuer Kontextaufgaben mit zwei Ereignissen A und B (Sammlung "sylvester").
 
 Die Kontexte stammen aus textbausteine.py, die Wahrscheinlichkeiten aus shared.py.
 """
@@ -6,7 +6,7 @@ Die Kontexte stammen aus textbausteine.py, die Wahrscheinlichkeiten aus shared.p
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import extended_probs, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -89,10 +89,12 @@ class SylvesterGenerator(TaskGenerator):
                 _question_text(q2, scenario, rng),
             ]
             antworten = [
-                numerical(probs[q1], tolerance=0.0001, decimals=4),
-                numerical(probs[q2], tolerance=0.0001, decimals=4),
+                numerical_stochastik_calc(probs[q1]),
+                numerical_stochastik_calc(probs[q2]),
             ]
 
             tasks.append(Task(einleitung=einleitung, fragen=fragen, antworten=antworten))
 
         return tasks
+
+

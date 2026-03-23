@@ -1,9 +1,9 @@
 import random
 
+from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
-    _axis_tick_step,
     _num_tol,
     _sample_k3_cost_coefficients_from_exact_kennzahlen,
 )
@@ -48,8 +48,8 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
             lowest = min(min_y_values)
             span = max(highest - lowest, 5.0)
             y_max = round(highest + 2.5 * span, 1)
-            x_tolerance = _axis_tick_step(max_x) / 4.0
-            y_tolerance = _axis_tick_step(y_max) / 4.0
+            x_tolerance = graph_read_tolerance_from_span(max_x)
+            y_tolerance = graph_read_tolerance_from_span(y_max)
 
             items = [
                 ("die kurzfristige Preisuntergrenze.", _num_tol(kurzfristige_preisuntergrenze, y_tolerance)),

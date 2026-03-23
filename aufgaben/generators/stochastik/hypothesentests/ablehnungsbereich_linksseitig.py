@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import mc, numerical
+from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import binom_cdf
 from aufgaben.generators.stochastik.hypothesentests.shared import (
@@ -91,11 +91,11 @@ class AblehnungsbereichLinksseitigGenerator(TaskGenerator):
             num_alpha = numerical(alpha_req, tolerance=0, decimals=2)
             mc_leq    = mc(["≤", "≥"], correct_index=0)
 
-            # Annahmebereich-Grenzen: [k+1, … , n]  —  Distraktoren: 0 bzw. k-1
+            # Annahmebereich-Grenzen: [k+1, … , n]  -  Distraktoren: 0 bzw. k-1
             mc_an_low = mc(["0", "k+1"], correct_index=1)
             mc_an_up  = mc(["k-1", str(n)], correct_index=1)
 
-            # Ablehnungsbereich-Grenzen: [0, … , k]  —  Distraktoren: k bzw. n
+            # Ablehnungsbereich-Grenzen: [0, … , k]  -  Distraktoren: k bzw. n
             mc_ab_low = mc(["0", "k"], correct_index=0)
             mc_ab_up  = mc(["k", str(n)], correct_index=0)
 
@@ -112,8 +112,8 @@ class AblehnungsbereichLinksseitigGenerator(TaskGenerator):
                 f"so dass \\( P(X \\) {mc_leq} \\( k) \\) &leq; {num_alpha} ist."
             )
             a4 = (
-                f"\\( P(X \\) {mc_leq}{k} \\() = \\) {numerical(p_at_k, tolerance=0.0001, decimals=4)}<br>"
-                f"\\( P(X \\) {mc_leq}{k + 1} \\( ) = \\){numerical(p_at_k1, tolerance=0.0001, decimals=4)}<br>"
+                f"\\( P(X \\) {mc_leq}{k} \\() = \\) {numerical_stochastik_calc(p_at_k)}<br>"
+                f"\\( P(X \\) {mc_leq}{k + 1} \\( ) = \\){numerical_stochastik_calc(p_at_k1)}<br>"
                 f"Der Ablehnungsbereich lautet daher \\( [ \\) {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} \\( ] \\)."
             )
 
@@ -124,3 +124,4 @@ class AblehnungsbereichLinksseitigGenerator(TaskGenerator):
             ))
 
         return tasks
+

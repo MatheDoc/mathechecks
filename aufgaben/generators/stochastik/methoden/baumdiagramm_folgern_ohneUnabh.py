@@ -1,16 +1,16 @@
-"""Check 4 – Wahrscheinlichkeiten aus vollständigem Baumdiagramm bestimmen.
+"""Check 4 �?" Wahrscheinlichkeiten aus vollständigem Baumdiagramm bestimmen.
 
 Das Baumdiagramm ist vollständig ausgefüllt (alle 10 Werte sichtbar).
 Es werden 4 Wahrscheinlichkeiten abgefragt, je eine aus den Gruppen:
 
   1. Einzel: P(A), P(¬A), P(B) oder P(¬B)
-  2. Schnitt: P(A∩B), P(A∩¬B), P(¬A∩B) oder P(¬A∩¬B)
-  3. Vereinigung: P(A∪B), P(A∪¬B), P(¬A∪B) oder P(¬A∪¬B)
+  2. Schnitt: P(A�^�B), P(A�^�¬B), P(¬A�^�B) oder P(¬A�^�¬B)
+  3. Vereinigung: P(A�^�B), P(A�^�¬B), P(¬A�^�B) oder P(¬A�^�¬B)
   4. Spezial:
-       - P(A∪B) − P(A∩B)  bzw. äquivalent  P(A∩¬B) + P(¬A∩B)
-       - P(A∩B) + P(¬A∩¬B)
-       - P(A∩¬A) oder P(B∩¬B)   [trivial = 0]
-       - P(A∪¬A) oder P(B∪¬B)   [trivial = 1]
+       - P(A�^�B) �^' P(A�^�B)  bzw. äquivalent  P(A�^�¬B) + P(¬A�^�B)
+       - P(A�^�B) + P(¬A�^�¬B)
+       - P(A�^�¬A) oder P(B�^�¬B)   [trivial = 0]
+       - P(A�^�¬A) oder P(B�^�¬B)   [trivial = 1]
 
 Keine bedingten Wahrscheinlichkeiten.
 """
@@ -19,7 +19,7 @@ import random
 from decimal import Decimal, ROUND_HALF_UP
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -60,7 +60,7 @@ def _extended_probs(c: ABCase) -> dict[str, float]:
     }
 
 
-# ── Gruppen ────────────────────────────────────────────────────────────────
+# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 _GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
@@ -68,7 +68,7 @@ _GROUP_VEREINIGUNG = ["paub", "paunb", "pnaub", "pnaunb"]
 _GROUP_SPEZIAL = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
 
 
-# ── LaTeX / Frage-Texte ───────────────────────────────────────────────────
+# �"?�"? LaTeX / Frage-Texte �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 _LATEX: dict[str, str] = {
     "pa":    r"P(A)",
@@ -167,7 +167,7 @@ class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
             for key in chosen_keys:
                 fragen.append(_frage_text(key, scenario, rng))
                 antworten.append(
-                    numerical(probs[key], tolerance=0.0001, decimals=4)
+                    numerical_stochastik_calc(probs[key])
                 )
 
             tasks.append(
@@ -180,3 +180,5 @@ class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
             )
 
         return tasks
+
+

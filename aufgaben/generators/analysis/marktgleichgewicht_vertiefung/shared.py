@@ -2,6 +2,7 @@ import math
 import random
 from collections.abc import Callable
 
+from aufgaben.core.tolerances import axis_tick_step
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
     _fmt_number,
     _num_tol,
@@ -14,22 +15,7 @@ PriceFunction = Callable[[float], float]
 
 
 def _axis_tick_step(span: float) -> float:
-    if span <= 0:
-        return 1.0
-    target = span / 7.0
-    power = 10 ** math.floor(math.log10(target))
-    mantissa = target / power
-    if mantissa <= 1.0:
-        base = 1.0
-    elif mantissa <= 2.0:
-        base = 2.0
-    elif mantissa <= 2.5:
-        base = 2.5
-    elif mantissa <= 5.0:
-        base = 5.0
-    else:
-        base = 10.0
-    return base * power
+    return axis_tick_step(span)
 
 
 def _latex_supply_linear(slope: float, intercept: float) -> str:

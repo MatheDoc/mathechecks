@@ -32,7 +32,7 @@ Stochastik
 Jeder Lernbereich enthält mindestens folgende Dateien:
 
 `start.md`  
-`einstiegsquiz.md`  
+`warmup.md`  
 `kompetenzliste.md`  
 `training.md`  
 `blurting.md`  
@@ -63,6 +63,9 @@ Sie werden vom Python-Aufgabengenerator erzeugt.
 
 ## Weitere Dokumentation
 
+Datenmodell & Inhalts-Architektur  
+→ `.github/datenmodell.md`
+
 Lernbereiche  
 → `dev/lernbereiche/README.md`
 
@@ -79,10 +82,7 @@ Glossar
 ## Datei-Rollen
 
 `.github/agents/agent-<rolle>.md`  
-Rollen und Zuständigkeiten
-
-`.github/prompts/systemprompt-<kontext>.md`  
-harte Ausgaberegeln
+Rollen, Zuständigkeiten und Pflichtlektüre
 
 `.github/prompts/prompt-<zweck>.md`  
 konkrete Arbeitsaufträge

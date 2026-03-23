@@ -1,6 +1,7 @@
 import math
 import random
 
+from aufgaben.core.tolerances import axis_tick_step
 from aufgaben.generators.analysis.shared_numbers import randint_sig, uniform_sig
 
 
@@ -157,22 +158,7 @@ def _num_tol(value: float, tolerance: float = 0.1, decimals: int = 4) -> str:
 
 
 def _axis_tick_step(span: float) -> float:
-    if span <= 0:
-        return 1.0
-    target = span / 7.0
-    power = 10 ** math.floor(math.log10(target))
-    mantissa = target / power
-    if mantissa <= 1.0:
-        base = 1.0
-    elif mantissa <= 2.0:
-        base = 2.0
-    elif mantissa <= 2.5:
-        base = 2.5
-    elif mantissa <= 5.0:
-        base = 5.0
-    else:
-        base = 10.0
-    return base * power
+    return axis_tick_step(span)
 
 
 def _g_value(x: float, k3: float, k2: float, k1: float, k0: float, price: float) -> float:

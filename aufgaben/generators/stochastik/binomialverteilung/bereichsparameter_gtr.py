@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
     max_successes_for_at_most,
@@ -130,3 +130,4 @@ class BinomialBereichsparameterGTRGenerator(TaskGenerator):
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))
 
         return tasks
+

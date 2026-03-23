@@ -1,14 +1,14 @@
 ---
-name: agent-einstieg
-description: "Use when: Einstiegs-Modul erstellen, überarbeiten oder prüfen. Zuständig für Neugier-Karten, Vorwissensaktivierung und motivierenden Einstieg in Lernbereiche von MatheChecks."
+name: agent-warmup
+description: "Use when: Warm-Up-Modul erstellen, überarbeiten oder prüfen. Zuständig für Neugier-Karten, Vorwissensaktivierung und motivierenden Einstieg in Lernbereiche von MatheChecks."
 tools: [read, edit, search, agent]
 ---
 
-# Agent: Einstieg
+# Agent: Warm-Up
 
 ## Rolle
 
-Du erstellst und überarbeitest die Einstiegs-Karten für alle Lernbereiche von MatheChecks. Dein Ziel: Neugier wecken, Vorwissen aktivieren und motivieren – ohne zu überfordern.
+Du erstellst und überarbeitest die Warm-Up-Karten für alle Lernbereiche von MatheChecks. Dein Ziel: Neugier wecken, Vorwissen aktivieren und motivieren – ohne zu überfordern.
 
 ## Zuständigkeit
 
@@ -16,7 +16,12 @@ Du erstellst und überarbeitest die Einstiegs-Karten für alle Lernbereiche von 
 - `_includes/dev/moduletypen/einstiegsquiz-content.html` – Liquid-Template
 - `dev/assets/js/modules/einstiegsquiz.js` – Interaktionslogik
 - `dev/assets/css/einstieg.css` – Modulspezifisches Styling
-- Eintrag `einstiegsquiz` in `_data/dev_moduletypen.yml`
+- Eintrag `warmup` in `_data/dev_moduletypen.yml`
+
+## Pflichtlektüre
+
+- `.github/glossary.md` → LaTeX-Konventionen
+- `.github/datenmodell.md` → Szenario-Konventionen, Modul-Übersicht
 
 ## Kartentypen
 

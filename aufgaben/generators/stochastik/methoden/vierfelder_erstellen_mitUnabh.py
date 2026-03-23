@@ -1,25 +1,25 @@
-"""Vier-Felder-Tafel vervollständigen – mit Hinweis zur stochastischen Unabhängigkeit.
+"""Vier-Felder-Tafel vervollständigen �?" mit Hinweis zur stochastischen Unabhängigkeit.
 
 Nur 2 Zellen der Tafel sind gegeben. Dank P(B|A) = P(B|¬A) = P(B) genügt das.
 
 Muster (3 mögliche Kombinationstypen):
 
   1. eines von {[1,2], [3,4], [1,3], [2,4]}
-       → vollständige Zeile oder Spalte der Innenzellen
+       �?' vollständige Zeile oder Spalte der Innenzellen
   2. {5oder6} UND {7oder8}
-       → je eine Randwahrscheinlichkeit
+       �?' je eine Randwahrscheinlichkeit
   3. {1oder2oder3oder4} UND {5oder6oder7oder8}
-       → eine Innenzelle + eine Randwahrscheinlichkeit
+       �?' eine Innenzelle + eine Randwahrscheinlichkeit
 
 Slot-Nummerierung:
-  1 = P(A∩B)   2 = P(A∩B̄)   3 = P(Ā∩B)   4 = P(Ā∩B̄)
-  5 = P(A)     6 = P(Ā)      7 = P(B)     8 = P(B̄)
+  1 = P(A�^�B)   2 = P(A�^�B�")   3 = P(�?�^�B)   4 = P(�?�^�B�")
+  5 = P(A)     6 = P(�?)      7 = P(B)     8 = P(B�")
 """
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import sample_ab_case_independent, vft_slots
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -60,7 +60,7 @@ class MethodenVierfelderErstellenInfoUnabhGenerator(TaskGenerator):
             fragen = ["" for _ in range(8)]
             antworten = [
                 "---" if idx in given_set
-                else numerical(slots[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slots[idx])
                 for idx in range(1, 9)
             ]
 
@@ -81,3 +81,5 @@ class MethodenVierfelderErstellenInfoUnabhGenerator(TaskGenerator):
             )
 
         return tasks
+
+

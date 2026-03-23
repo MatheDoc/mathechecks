@@ -1,6 +1,6 @@
 [
   {
-    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. 14 Halbleiter werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der defekte Halbleiter angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. 14 Halbleiter werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der defekte Halbleiter angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Halbleitern sind genau 4 defekte Halbleiter.",
       "Von den kontrollierten Halbleitern sind mindestens 4 defekte Halbleiter.",
@@ -8,10 +8,10 @@
       "Von den kontrollierten Halbleitern sind mehr als 3 und höchstens 7 defekte Halbleiter."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,23:0,01}",
-      "{1:NUMERICAL:=0,67:0,01}",
-      "{1:NUMERICAL:=0,55:0,01}",
-      "{1:NUMERICAL:=0,64:0,01}"
+      "{1:NUMERICAL:=0,23:0,05}",
+      "{1:NUMERICAL:=0,67:0,05}",
+      "{1:NUMERICAL:=0,55:0,05}",
+      "{1:NUMERICAL:=0,64:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -75,7 +75,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -93,7 +93,7 @@
     }
   },
   {
-    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. In einer Stichprobe befinden sich 13 Passagiere.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Passagiere ohne gültigen Fahrschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. In einer Stichprobe befinden sich 13 Passagiere.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Passagiere ohne gültigen Fahrschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Passagieren sind genau 7 Passagiere ohne gültigen Fahrschein.",
       "Von den kontrollierten Passagieren sind mindestens 8 Passagiere ohne gültigen Fahrschein.",
@@ -101,10 +101,10 @@
       "Von den kontrollierten Passagieren sind mehr als 4 und höchstens 9 Passagiere ohne gültigen Fahrschein."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,16:0,01}",
-      "{1:NUMERICAL:=0,14:0,01}",
-      "{1:NUMERICAL:=0,86:0,01}",
-      "{1:NUMERICAL:=0,71:0,01}"
+      "{1:NUMERICAL:=0,16:0,05}",
+      "{1:NUMERICAL:=0,14:0,05}",
+      "{1:NUMERICAL:=0,86:0,05}",
+      "{1:NUMERICAL:=0,71:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -166,7 +166,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -184,7 +184,7 @@
     }
   },
   {
-    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. In einer Stichprobe befinden sich 11 Bestellungen.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Bestellungen mit Streuseln angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. In einer Stichprobe befinden sich 11 Bestellungen.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Bestellungen mit Streuseln angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den betrachteten Bestellungen sind genau 6 Bestellungen mit Streuseln.",
       "Von den betrachteten Bestellungen sind mindestens 10 Bestellungen mit Streuseln.",
@@ -192,10 +192,10 @@
       "Von den betrachteten Bestellungen sind mehr als 6 und höchstens 8 Bestellungen mit Streuseln."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,13:0,01}",
-      "{1:NUMERICAL:=0,11:0,01}",
-      "{1:NUMERICAL:=0,69:0,01}",
-      "{1:NUMERICAL:=0,48:0,01}"
+      "{1:NUMERICAL:=0,13:0,05}",
+      "{1:NUMERICAL:=0,11:0,05}",
+      "{1:NUMERICAL:=0,69:0,05}",
+      "{1:NUMERICAL:=0,48:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -253,7 +253,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -271,7 +271,7 @@
     }
   },
   {
-    "einleitung": "Eine Trainerin protokolliert Treffer bei Freiwürfen. 11 Freiwürfe werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Treffer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Trainerin protokolliert Treffer bei Freiwürfen. 11 Freiwürfe werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Treffer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den beobachteten Freiwürfen sind genau 9 Treffer.",
       "Von den beobachteten Freiwürfen sind mindestens 7 Treffer.",
@@ -279,10 +279,10 @@
       "Von den beobachteten Freiwürfen sind mehr als 5 und höchstens 10 Treffer."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,21:0,01}",
-      "{1:NUMERICAL:=0,81:0,01}",
-      "{1:NUMERICAL:=0,98:0,01}",
-      "{1:NUMERICAL:=0,91:0,01}"
+      "{1:NUMERICAL:=0,21:0,05}",
+      "{1:NUMERICAL:=0,81:0,05}",
+      "{1:NUMERICAL:=0,98:0,05}",
+      "{1:NUMERICAL:=0,91:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -340,7 +340,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -358,7 +358,7 @@
     }
   },
   {
-    "einleitung": "Eine Ärztin bewertet Eignungstests von Bewerbern. Es werden 17 Bewerber betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der erfolgreiche Bewerber angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Ärztin bewertet Eignungstests von Bewerbern. Es werden 17 Bewerber betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der erfolgreiche Bewerber angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den Bewerbern sind genau 12 erfolgreiche Bewerber.",
       "Von den Bewerbern sind mindestens 11 erfolgreiche Bewerber.",
@@ -366,10 +366,10 @@
       "Von den Bewerbern sind mehr als 11 und höchstens 16 erfolgreiche Bewerber."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,19:0,01}",
-      "{1:NUMERICAL:=0,65:0,01}",
-      "{1:NUMERICAL:=0,35:0,01}",
-      "{1:NUMERICAL:=0,45:0,01}"
+      "{1:NUMERICAL:=0,19:0,05}",
+      "{1:NUMERICAL:=0,65:0,05}",
+      "{1:NUMERICAL:=0,35:0,05}",
+      "{1:NUMERICAL:=0,45:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -439,7 +439,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -457,7 +457,7 @@
     }
   },
   {
-    "einleitung": "Ein Fahrlehrer wertet theoretische Führerscheinprüfungen aus. 17 Prüfungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der nicht bestandene Prüfungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Fahrlehrer wertet theoretische Führerscheinprüfungen aus. 17 Prüfungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der nicht bestandene Prüfungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den ausgewerteten Prüfungen sind genau 6 nicht bestandene Prüfungen.",
       "Von den ausgewerteten Prüfungen sind mindestens 10 nicht bestandene Prüfungen.",
@@ -465,10 +465,10 @@
       "Von den ausgewerteten Prüfungen sind mehr als 5 und höchstens 8 nicht bestandene Prüfungen."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,09:0,01}",
-      "{1:NUMERICAL:=0,31:0,01}",
-      "{1:NUMERICAL:=0,83:0,01}",
-      "{1:NUMERICAL:=0,43:0,01}"
+      "{1:NUMERICAL:=0,09:0,05}",
+      "{1:NUMERICAL:=0,31:0,05}",
+      "{1:NUMERICAL:=0,83:0,05}",
+      "{1:NUMERICAL:=0,43:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -538,7 +538,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -556,7 +556,7 @@
     }
   },
   {
-    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. In einer Stichprobe befinden sich 16 Turnschuhe.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der gefälschte Turnschuhe angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. In einer Stichprobe befinden sich 16 Turnschuhe.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der gefälschte Turnschuhe angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den untersuchten Turnschuhen sind genau 5 gefälschte Turnschuhe.",
       "Von den untersuchten Turnschuhen sind mindestens 3 gefälschte Turnschuhe.",
@@ -564,10 +564,10 @@
       "Von den untersuchten Turnschuhen sind mehr als 2 und höchstens 5 gefälschte Turnschuhe."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,18:0,01}",
-      "{1:NUMERICAL:=0,80:0,01}",
-      "{1:NUMERICAL:=0,92:0,01}",
-      "{1:NUMERICAL:=0,61:0,01}"
+      "{1:NUMERICAL:=0,18:0,05}",
+      "{1:NUMERICAL:=0,80:0,05}",
+      "{1:NUMERICAL:=0,92:0,05}",
+      "{1:NUMERICAL:=0,61:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -635,7 +635,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -653,7 +653,7 @@
     }
   },
   {
-    "einleitung": "Eine Fußballspielerin dokumentiert Torschüsse im Training. In einer Stichprobe befinden sich 17 Torschüsse.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Fehlschüsse angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Fußballspielerin dokumentiert Torschüsse im Training. In einer Stichprobe befinden sich 17 Torschüsse.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Fehlschüsse angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den beobachteten Torschüssen sind genau 8 Fehlschüsse.",
       "Von den beobachteten Torschüssen sind mindestens 7 Fehlschüsse.",
@@ -661,10 +661,10 @@
       "Von den beobachteten Torschüssen sind mehr als 8 und höchstens 10 Fehlschüsse."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,19:0,01}",
-      "{1:NUMERICAL:=0,76:0,01}",
-      "{1:NUMERICAL:=0,41:0,01}",
-      "{1:NUMERICAL:=0,29:0,01}"
+      "{1:NUMERICAL:=0,19:0,05}",
+      "{1:NUMERICAL:=0,76:0,05}",
+      "{1:NUMERICAL:=0,41:0,05}",
+      "{1:NUMERICAL:=0,29:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -734,7 +734,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -752,7 +752,7 @@
     }
   },
   {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. In einer Stichprobe befinden sich 10 befragte Mitarbeitende.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der zufriedene Mitarbeitende angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. In einer Stichprobe befinden sich 10 befragte Mitarbeitende.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der zufriedene Mitarbeitende angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den befragten Mitarbeitenden sind genau 5 zufriedene Mitarbeitende.",
       "Von den befragten Mitarbeitenden sind mindestens 5 zufriedene Mitarbeitende.",
@@ -760,10 +760,10 @@
       "Von den befragten Mitarbeitenden sind mehr als 3 und höchstens 6 zufriedene Mitarbeitende."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,17:0,01}",
-      "{1:NUMERICAL:=0,88:0,01}",
-      "{1:NUMERICAL:=0,78:0,01}",
-      "{1:NUMERICAL:=0,50:0,01}"
+      "{1:NUMERICAL:=0,17:0,05}",
+      "{1:NUMERICAL:=0,88:0,05}",
+      "{1:NUMERICAL:=0,78:0,05}",
+      "{1:NUMERICAL:=0,50:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -819,7 +819,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -837,7 +837,7 @@
     }
   },
   {
-    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. 17 Bestellungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der vegetarische Gerichte angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. 17 Bestellungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der vegetarische Gerichte angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Bestellungen sind genau 6 vegetarische Gerichte.",
       "Von den kontrollierten Bestellungen sind mindestens 8 vegetarische Gerichte.",
@@ -845,10 +845,10 @@
       "Von den kontrollierten Bestellungen sind mehr als 3 und höchstens 7 vegetarische Gerichte."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,19:0,01}",
-      "{1:NUMERICAL:=0,30:0,01}",
-      "{1:NUMERICAL:=0,32:0,01}",
-      "{1:NUMERICAL:=0,64:0,01}"
+      "{1:NUMERICAL:=0,19:0,05}",
+      "{1:NUMERICAL:=0,30:0,05}",
+      "{1:NUMERICAL:=0,32:0,05}",
+      "{1:NUMERICAL:=0,64:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -918,7 +918,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -936,7 +936,7 @@
     }
   },
   {
-    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Es werden 14 Pflanzen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der zu trockene Pflanzen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Es werden 14 Pflanzen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der zu trockene Pflanzen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den geprüften Pflanzen sind genau 2 zu trockene Pflanzen.",
       "Von den geprüften Pflanzen sind mindestens 7 zu trockene Pflanzen.",
@@ -944,10 +944,10 @@
       "Von den geprüften Pflanzen sind mehr als 3 und höchstens 7 zu trockene Pflanzen."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,11:0,01}",
-      "{1:NUMERICAL:=0,09:0,01}",
-      "{1:NUMERICAL:=0,58:0,01}",
-      "{1:NUMERICAL:=0,61:0,01}"
+      "{1:NUMERICAL:=0,11:0,05}",
+      "{1:NUMERICAL:=0,09:0,05}",
+      "{1:NUMERICAL:=0,58:0,05}",
+      "{1:NUMERICAL:=0,61:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1011,7 +1011,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1029,7 +1029,7 @@
     }
   },
   {
-    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. In einer Stichprobe befinden sich 12 Werkzeuge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Werkzeuge mit Akku angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. In einer Stichprobe befinden sich 12 Werkzeuge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Werkzeuge mit Akku angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den registrierten Werkzeugen sind genau 4 Werkzeuge mit Akku.",
       "Von den registrierten Werkzeugen sind mindestens 7 Werkzeuge mit Akku.",
@@ -1037,10 +1037,10 @@
       "Von den registrierten Werkzeugen sind mehr als 4 und höchstens 7 Werkzeuge mit Akku."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,24:0,01}",
-      "{1:NUMERICAL:=0,07:0,01}",
-      "{1:NUMERICAL:=0,93:0,01}",
-      "{1:NUMERICAL:=0,37:0,01}"
+      "{1:NUMERICAL:=0,24:0,05}",
+      "{1:NUMERICAL:=0,07:0,05}",
+      "{1:NUMERICAL:=0,93:0,05}",
+      "{1:NUMERICAL:=0,37:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1100,7 +1100,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1118,7 +1118,7 @@
     }
   },
   {
-    "einleitung": "Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. In einer Stichprobe befinden sich 18 Computer.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Computer ohne ausreichenden Virenschutz angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. In einer Stichprobe befinden sich 18 Computer.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Computer ohne ausreichenden Virenschutz angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den untersuchten Computern sind genau 14 Computer ohne ausreichenden Virenschutz.",
       "Von den untersuchten Computern sind mindestens 13 Computer ohne ausreichenden Virenschutz.",
@@ -1126,10 +1126,10 @@
       "Von den untersuchten Computern sind mehr als 11 und höchstens 15 Computer ohne ausreichenden Virenschutz."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,19:0,01}",
-      "{1:NUMERICAL:=0,61:0,01}",
-      "{1:NUMERICAL:=0,79:0,01}",
-      "{1:NUMERICAL:=0,70:0,01}"
+      "{1:NUMERICAL:=0,19:0,05}",
+      "{1:NUMERICAL:=0,61:0,05}",
+      "{1:NUMERICAL:=0,79:0,05}",
+      "{1:NUMERICAL:=0,70:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1201,7 +1201,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1219,7 +1219,7 @@
     }
   },
   {
-    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. In einer Stichprobe befinden sich 16 Krüge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Krüge mit Kratzer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. In einer Stichprobe befinden sich 16 Krüge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Krüge mit Kratzer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den überprüften Krügen sind genau 4 Krüge mit Kratzer.",
       "Von den überprüften Krügen sind mindestens 5 Krüge mit Kratzer.",
@@ -1227,10 +1227,10 @@
       "Von den überprüften Krügen sind mehr als 5 und höchstens 9 Krüge mit Kratzer."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,17:0,01}",
-      "{1:NUMERICAL:=0,68:0,01}",
-      "{1:NUMERICAL:=0,32:0,01}",
-      "{1:NUMERICAL:=0,46:0,01}"
+      "{1:NUMERICAL:=0,17:0,05}",
+      "{1:NUMERICAL:=0,68:0,05}",
+      "{1:NUMERICAL:=0,32:0,05}",
+      "{1:NUMERICAL:=0,46:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1298,7 +1298,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1316,7 +1316,7 @@
     }
   },
   {
-    "einleitung": "Eine Plattform wertet Reaktionen auf Produktempfehlungen aus. 15 angezeigte Empfehlungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der angeklickte Empfehlungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Plattform wertet Reaktionen auf Produktempfehlungen aus. 15 angezeigte Empfehlungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der angeklickte Empfehlungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den angezeigten Empfehlungen sind genau 10 angeklickte Empfehlungen.",
       "Von den angezeigten Empfehlungen sind mindestens 8 angeklickte Empfehlungen.",
@@ -1324,10 +1324,10 @@
       "Von den angezeigten Empfehlungen sind mehr als 7 und höchstens 9 angeklickte Empfehlungen."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,18:0,01}",
-      "{1:NUMERICAL:=0,76:0,01}",
-      "{1:NUMERICAL:=0,98:0,01}",
-      "{1:NUMERICAL:=0,39:0,01}"
+      "{1:NUMERICAL:=0,18:0,05}",
+      "{1:NUMERICAL:=0,76:0,05}",
+      "{1:NUMERICAL:=0,98:0,05}",
+      "{1:NUMERICAL:=0,39:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1393,7 +1393,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1411,7 +1411,7 @@
     }
   },
   {
-    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. In einer Stichprobe befinden sich 15 Pakete.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Pakete mit Gutschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. In einer Stichprobe befinden sich 15 Pakete.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Pakete mit Gutschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Paketen sind genau 2 Pakete mit Gutschein.",
       "Von den kontrollierten Paketen sind mindestens 3 Pakete mit Gutschein.",
@@ -1419,10 +1419,10 @@
       "Von den kontrollierten Paketen sind mehr als 2 und höchstens 4 Pakete mit Gutschein."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,16:0,01}",
-      "{1:NUMERICAL:=0,76:0,01}",
-      "{1:NUMERICAL:=0,69:0,01}",
-      "{1:NUMERICAL:=0,45:0,01}"
+      "{1:NUMERICAL:=0,16:0,05}",
+      "{1:NUMERICAL:=0,76:0,05}",
+      "{1:NUMERICAL:=0,69:0,05}",
+      "{1:NUMERICAL:=0,45:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1488,7 +1488,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1506,7 +1506,7 @@
     }
   },
   {
-    "einleitung": "Ein Verlag prüft Drucke auf Rechtschreibfehler. In einer Stichprobe befinden sich 14 gedruckte Seiten.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Seiten mit Rechtschreibfehler angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Verlag prüft Drucke auf Rechtschreibfehler. In einer Stichprobe befinden sich 14 gedruckte Seiten.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Seiten mit Rechtschreibfehler angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den geprüften Seiten sind genau 4 Seiten mit Rechtschreibfehler.",
       "Von den geprüften Seiten sind mindestens 8 Seiten mit Rechtschreibfehler.",
@@ -1514,10 +1514,10 @@
       "Von den geprüften Seiten sind mehr als 6 und höchstens 11 Seiten mit Rechtschreibfehler."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,13:0,01}",
-      "{1:NUMERICAL:=0,19:0,01}",
-      "{1:NUMERICAL:=0,42:0,01}",
-      "{1:NUMERICAL:=0,36:0,01}"
+      "{1:NUMERICAL:=0,13:0,05}",
+      "{1:NUMERICAL:=0,19:0,05}",
+      "{1:NUMERICAL:=0,42:0,05}",
+      "{1:NUMERICAL:=0,36:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1581,7 +1581,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1599,7 +1599,7 @@
     }
   },
   {
-    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Es werden 17 Wasserproben betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der auffällige Wasserproben angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Es werden 17 Wasserproben betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der auffällige Wasserproben angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den analysierten Wasserproben sind genau 4 auffällige Wasserproben.",
       "Von den analysierten Wasserproben sind mindestens 4 auffällige Wasserproben.",
@@ -1607,10 +1607,10 @@
       "Von den analysierten Wasserproben sind mehr als 5 und höchstens 9 auffällige Wasserproben."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,20:0,01}",
-      "{1:NUMERICAL:=0,77:0,01}",
-      "{1:NUMERICAL:=0,42:0,01}",
-      "{1:NUMERICAL:=0,36:0,01}"
+      "{1:NUMERICAL:=0,20:0,05}",
+      "{1:NUMERICAL:=0,77:0,05}",
+      "{1:NUMERICAL:=0,42:0,05}",
+      "{1:NUMERICAL:=0,36:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1680,7 +1680,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1698,7 +1698,7 @@
     }
   },
   {
-    "einleitung": "Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Es werden 16 Serviceanfragen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der im Erstkontakt gelöste Anfragen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Es werden 16 Serviceanfragen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der im Erstkontakt gelöste Anfragen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den erfassten Serviceanfragen sind genau 10 im Erstkontakt gelöste Anfragen.",
       "Von den erfassten Serviceanfragen sind mindestens 14 im Erstkontakt gelöste Anfragen.",
@@ -1706,10 +1706,10 @@
       "Von den erfassten Serviceanfragen sind mehr als 10 und höchstens 12 im Erstkontakt gelöste Anfragen."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,08:0,01}",
-      "{1:NUMERICAL:=0,28:0,01}",
-      "{1:NUMERICAL:=0,72:0,01}",
-      "{1:NUMERICAL:=0,36:0,01}"
+      "{1:NUMERICAL:=0,08:0,05}",
+      "{1:NUMERICAL:=0,28:0,05}",
+      "{1:NUMERICAL:=0,72:0,05}",
+      "{1:NUMERICAL:=0,36:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1777,7 +1777,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02
@@ -1795,7 +1795,7 @@
     }
   },
   {
-    "einleitung": "Eine Schule dokumentiert Anwesenheiten im Mathekurs. Es werden 15 Teilnahmen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Anwesenheiten angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Schule dokumentiert Anwesenheiten im Mathekurs. Es werden 15 Teilnahmen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Anwesenheiten angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den dokumentierten Teilnahmen sind genau 3 Anwesenheiten.",
       "Von den dokumentierten Teilnahmen sind mindestens 2 Anwesenheiten.",
@@ -1803,10 +1803,10 @@
       "Von den dokumentierten Teilnahmen sind mehr als 3 und höchstens 6 Anwesenheiten."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,25:0,01}",
-      "{1:NUMERICAL:=0,87:0,01}",
-      "{1:NUMERICAL:=0,57:0,01}",
-      "{1:NUMERICAL:=0,40:0,01}"
+      "{1:NUMERICAL:=0,25:0,05}",
+      "{1:NUMERICAL:=0,87:0,05}",
+      "{1:NUMERICAL:=0,57:0,05}",
+      "{1:NUMERICAL:=0,40:0,05}"
     ],
     "visual": {
       "type": "plot",
@@ -1872,7 +1872,7 @@
             ]
           },
           "yaxis": {
-            "title": "F(k) = P(X ≤ k)",
+            "title": "F(k) = P(X �?� k)",
             "range": [
               0,
               1.02

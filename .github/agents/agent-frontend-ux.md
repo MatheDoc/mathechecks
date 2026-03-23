@@ -34,12 +34,12 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 
 ## Hinweise zu Modulen
 
-- Benennung: In der UI kann von `Einstieg` gesprochen werden, der technische `module_key` lautet jedoch `einstiegsquiz`.
+- Benennung: In der UI wird vom `Warm-Up` gesprochen, der technische `module_key` lautet `warmup`.
 - Die Module `skript` und `start` sind gleich gestaltet (beide zugehörigen Webseiten entstehen direkt aus Markdown-Dateien).
 - Die Module `training`, `blurting` und `feynman` sind ähnlich gestaltet: Der Inhalt wird zur Laufzeit per JavaScript erzeugt und besteht aus einer Karte pro Check (siehe `cards.css`). Karten im Modul `training` sind breiter als in `blurting` und `feynman`.
-- Die Module `einstieg`/`einstiegsquiz` und `flashcards` zeigen jeweils nur eine aktive Karte gleichzeitig.
+- Die Module `warmup` und `flashcards` zeigen jeweils nur eine aktive Karte gleichzeitig.
 - Das Modul `kompetenzliste` zeigt pro Check genau eine kompakte Karte in einer Listenansicht (direkt nacheinander).
-- Die Module `einstieg`, `kompetenzliste` und `flashcards` nutzen ebenfalls das gemeinsame Card-Design (`dev-check-card`) mit modulspezifischen Anpassungen.
+- Die Module `warmup`, `kompetenzliste` und `flashcards` nutzen ebenfalls das gemeinsame Card-Design (`dev-check-card`) mit modulspezifischen Anpassungen.
 - Module arbeiten mit Modul-Systemfarben.
 
 ## Konsistenz- und Cleanup-Regeln

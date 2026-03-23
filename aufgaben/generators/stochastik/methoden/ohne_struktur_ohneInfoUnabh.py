@@ -1,11 +1,11 @@
-"""Wahrscheinlichkeiten ohne Struktur berechnen – 3 gegebene Wkt, ohne Info zur stoch. Unabhängigkeit.
+"""Wahrscheinlichkeiten ohne Struktur berechnen �?" 3 gegebene Wkt, ohne Info zur stoch. Unabhängigkeit.
 
-Szenario: Drei von {P(A), P(B), P(A∩B), P(A∪B)} sind bekannt.
+Szenario: Drei von {P(A), P(B), P(A�^�B), P(A�^�B)} sind bekannt.
 A und B können unabhängig oder abhängig sein (kein Hinweis in der Aufgabe).
 Keine VFT, kein Baumdiagramm.
 
 Es werden genau 7 Teilaufgaben gestellt:
-  1–6: Je eine Wahrscheinlichkeit aus den Gruppen
+  1�?"6: Je eine Wahrscheinlichkeit aus den Gruppen
        EINZEL, SCHNITT, VEREINIGUNG, COND_A, COND_B, SPEZIAL
   7:   MC-Frage zur stochastischen Unabhängigkeit
 """
@@ -13,7 +13,7 @@ Es werden genau 7 Teilaufgaben gestellt:
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import mc, numerical
+from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
     extended_probs,
@@ -23,7 +23,7 @@ from aufgaben.generators.stochastik.methoden.shared import (
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
-# ── Gruppen ────────────────────────────────────────────────────────────────
+# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 _GROUP_EINZEL      = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT     = ["pab", "panb", "pnab", "pnanb"]
@@ -33,7 +33,7 @@ _GROUP_COND_A      = ["pba", "pnba", "pbna", "pnbna"]
 _GROUP_COND_B      = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 
 # Mögliche 3-Anker aus {pa, pb, pab, paub}.
-# Da paub = pa + pb − pab, bestimmt jede Kombination von 3 die vierte eindeutig.
+# Da paub = pa + pb �^' pab, bestimmt jede Kombination von 3 die vierte eindeutig.
 _ANCHOR3_OPTS = [
     ("pa", "pb", "pab"),
     ("pa", "pb", "paub"),
@@ -42,7 +42,7 @@ _ANCHOR3_OPTS = [
 ]
 
 
-# ── LaTeX-Notation ─────────────────────────────────────────────────────────
+# �"?�"? LaTeX-Notation �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 _LATEX: dict[str, str] = {
     "pa":      r"P(A)",
@@ -86,17 +86,17 @@ _SPEZIAL_LABELS: dict[str, list[str]] = {
 }
 
 
-# ── Hilfsfunktionen ─────────────────────────────────────────────────────────
+# �"?�"? Hilfsfunktionen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 def _pct_str(value: float) -> str:
-    """Wert als Prozentzahl mit deutschem Komma, z. B. 0.69 → '69%', 0.084 → '8,4%'."""
+    """Wert als Prozentzahl mit deutschem Komma, z. B. 0.69 �?' '69%', 0.084 �?' '8,4%'."""
     pct = value * 100
     s = f"{pct:.4f}".rstrip("0").rstrip(".")
     return s.replace(".", ",") + "%"
 
 
 def _dec_str(value: float) -> str:
-    """Wert als Dezimalzahl mit deutschem Komma, z. B. 0.6348 → '0,6348'."""
+    """Wert als Dezimalzahl mit deutschem Komma, z. B. 0.6348 �?' '0,6348'."""
     s = f"{value:.4f}".rstrip("0").rstrip(".")
     return s.replace(".", ",")
 
@@ -119,7 +119,7 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
     return f"\\({_LATEX[key]}\\)."
 
 
-# ── Generator ──────────────────────────────────────────────────────────────
+# �"?�"? Generator �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
     generator_key = "stochastik.methoden.ohneStruktur_ohneInfoUnabh"
@@ -131,7 +131,7 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
         for index in range(count):
             scenario = SCENARIOS[index % len(SCENARIOS)]
 
-            # 50 % unabhängig, 50 % abhängig – ohne Hinweis in der Aufgabe
+            # 50 % unabhängig, 50 % abhängig �?" ohne Hinweis in der Aufgabe
             is_independent = rng.choice([True, False])
             if is_independent:
                 case = sample_ab_case_independent(rng=rng, scenario=scenario)
@@ -184,10 +184,10 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
-            fragen.append(f"Überprüfen Sie die folgende Behauptung: {claim_text}")
+            fragen.append(f"�oberprüfen Sie die folgende Behauptung: {claim_text}")
 
             antworten = [
-                numerical(probs[k], tolerance=0.0001, decimals=4)
+                numerical_stochastik_calc(probs[k])
                 for k in chosen_keys
             ]
             antworten.append(mc_answer)
@@ -195,3 +195,4 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
             tasks.append(Task(einleitung=einleitung, fragen=fragen, antworten=antworten))
 
         return tasks
+

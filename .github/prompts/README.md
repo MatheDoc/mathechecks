@@ -1,35 +1,23 @@
-# Prompt-Strategie für MatheChecks
+# Prompt-Dateien für MatheChecks
 
-Diese Konvention hält Prompt-Dateien schlank, auffindbar und konsistent.
+Konkrete, wiederverwendbare Arbeitsaufträge.
 
 ## Dateitypen
 
-- **Systemprompts** in `.github/prompts/`:
-  - Namensschema: `systemprompt-<kontext>.prompt.md`
-  - Zweck: globale oder domänenspezifische, wiederverwendbare Regeln
-- **Task-/Feature-Prompts** in `.github/prompts/` oder modulnah:
-  - Namensschema: `prompt-<zweck>.prompt.md`
-  - Zweck: konkreter Arbeitsauftrag für einen klaren Use Case
+| Typ | Namensschema | Zweck |
+|---|---|---|
+| **Task-Prompt** | `prompt-<zweck>.md` | Konkreter Arbeitsauftrag für einen klaren Use Case |
+| **Systemprompt** | `systemprompt-<kontext>.md` | Domänenspezifische, verbindliche Ausgaberegeln |
 
-## Standardstruktur je Systemprompt
+## Aktuelle Prompts
 
-1. Ziel
-2. Muss-Kriterien
-3. Soll-Kriterien
-4. Ausgabeformat
-5. Negativliste
-6. Prioritäten bei Konflikten
+- `prompt-aufgaben.md` – 20 JSON-Aufgaben erzeugen (verweist auf `aufgaben/README.md`)
+- `prompt-rechnersemantik.md` – Rechnerverhalten und Eingabelogik
+- `systemprompt-template.prompt.md` – Vorlage für neue Systemprompts
 
 ## Empfehlungen
 
-- Prompts in Markdown halten und kurz, präzise, testbar formulieren.
-- YAML-Frontmatter mit mindestens `description` verwenden.
-- Output-Anforderungen immer eindeutig und maschinenprüfbar beschreiben.
+- Prompts kurz, präzise, testbar formulieren.
+- YAML-Frontmatter mit `description` verwenden.
 - Fachlogik und Formatregeln nicht vermischen.
-- Bei lokalen Modulprompts ebenfalls `prompt-...` bzw. `systemprompt-...` verwenden.
-- In inhaltlichen Prompts die Verknüpfung Kompetenz -> Aufgabe -> Skript explizit als Pflichtkriterium aufnehmen.
-
-## Startpunkt
-
-- Für neue Systemprompts die Vorlage `systemprompt-template.prompt.md` verwenden.
-- Rollen-/Verantwortungsebene liegt in `.github/agents/`.
+- Technische Specs nicht im Prompt duplizieren – auf Referenzdokumente verweisen.

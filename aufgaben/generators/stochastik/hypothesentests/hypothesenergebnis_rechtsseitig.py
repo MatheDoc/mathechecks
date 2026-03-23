@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import mc, numerical
+from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.hypothesentests.shared import sample_rechtsseitig
 
@@ -37,9 +37,9 @@ _STICHPROBE = [
 ]
 
 _ENTSCHEIDUNG_RECHTS = [
-    "Werden dabei mindestens {k} {success_plural} festgestellt, gilt die Vermutung als bestätigt – andernfalls hält man an der bisherigen Annahme fest.",
+    "Werden dabei mindestens {k} {success_plural} festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
     "Falls mindestens {k} {success_plural} auftreten, sieht man die Vermutung als bestätigt an.",
-    "Treten mindestens {k} {success_plural} auf, geht man von der neuen Annahme aus – ansonsten bleibt man beim bisherigen Wert.",
+    "Treten mindestens {k} {success_plural} auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
     "Treten in der Stichprobe mindestens {k} {success_plural} auf, wird die Vermutung als richtig angesehen.",
 ]
 
@@ -88,10 +88,11 @@ class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
             decision_correct = 0 if case.reject_h0 else 1
 
             answers = [
-                numerical(case.alpha, tolerance=0.0001, decimals=4),
+                numerical_stochastik_calc(case.alpha),
                 mc(decision_options, correct_index=decision_correct),
             ]
 
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))
 
         return tasks
+

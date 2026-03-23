@@ -2,7 +2,7 @@ import math
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
     binom_cdf,
@@ -96,8 +96,10 @@ class BinomialUmgebungenRelativGenerator(TaskGenerator):
                 Task(
                     einleitung=intro,
                     fragen=[question],
-                    antworten=[numerical(probability, tolerance=0.0001, decimals=4)],
+                    antworten=[numerical_stochastik_calc(probability)],
                 )
             )
 
         return tasks
+
+

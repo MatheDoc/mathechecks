@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import binom_cdf, prob_at_least
 from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
@@ -63,7 +63,7 @@ def _build_question(
             f"Wahrscheinlichkeit für {event_text} {comp_text} beträgt."
         ),
         (
-            f"Wie groß muss/darf die Anzahl der {sample_object_plural} sein ({amount_text}), damit das Ereignis "
+            f"Wie gro�Y muss/darf die Anzahl der {sample_object_plural} sein ({amount_text}), damit das Ereignis "
             f"\"{event_text}\" mit einer Wahrscheinlichkeit von {comp_text} auftritt?"
         ),
     ]
@@ -162,3 +162,4 @@ class BinomialNpkNGenerator(TaskGenerator):
                 raise ValueError("Konnte keine eindeutige npk-n Aufgabe erzeugen.")
 
         return tasks
+

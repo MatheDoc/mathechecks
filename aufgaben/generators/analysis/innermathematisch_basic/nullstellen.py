@@ -1,7 +1,7 @@
-import random
+﻿import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical_analysis_calc
 from aufgaben.generators.base import TaskGenerator
 
 
@@ -56,7 +56,7 @@ class LinearNullstelleGenerator(TaskGenerator):
                 Task(
                     einleitung=f"Gegeben: {_linear_function_latex(a, b)}",
                     fragen=["Bestimmen Sie die Nullstelle der Funktion \\( f \\)."],
-                    antworten=[f"\\(x=\\){numerical(x0, tolerance=0.01, decimals=2)}"],
+                    antworten=[f"\\(x=\\){numerical_analysis_calc(x0)}"],
                 )
             )
 
@@ -97,11 +97,12 @@ class QuadraticNullstelleGenerator(TaskGenerator):
                     ],
                     antworten=[
                         "\\(x_1=\\)"
-                        f"{numerical(x_low, tolerance=0.01, decimals=2)}"
+                        f"{numerical_analysis_calc(x_low)}"
                         "\\(,\\;x_2=\\)"
-                        f"{numerical(x_high, tolerance=0.01, decimals=2)}"
+                        f"{numerical_analysis_calc(x_high)}"
                     ],
                 )
             )
 
         return tasks
+
