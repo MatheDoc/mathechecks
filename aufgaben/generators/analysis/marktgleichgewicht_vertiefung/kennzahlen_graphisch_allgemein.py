@@ -1,9 +1,9 @@
 import random
 
+from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
-    _axis_tick_step,
     _kennzahlen_items_allgemein,
     _sample_market_params,
 )
@@ -44,8 +44,8 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
 
             max_x = max(12.0, sat_quantity * 1.1)
             max_y = round(max(max_price, eq_p) * 1.12, 3)
-            tolerance_x = _axis_tick_step(max_x) / 4.0
-            tolerance_y = _axis_tick_step(max_y) / 4.0
+            tolerance_x = graph_read_tolerance_from_span(max_x)
+            tolerance_y = graph_read_tolerance_from_span(max_y)
 
             items = _kennzahlen_items_allgemein(
                 min_price=min_price,

@@ -1,9 +1,17 @@
 # ──────────────────────────────────────────────────────────
 # Lernbereiche mit Kernszenarien
 # ──────────────────────────────────────────────────────────
-# szenario: Durchgängiger Anwendungskontext für Einstieg und Skript.
-#           Übungsaufgaben sind bewusst NICHT an das Szenario gebunden,
-#           um kontextunabhängigen Transfer zu sichern.
+# Felder pro Lernbereich:
+#   gebiet            – Fachgebiet (analysis, lineare-algebra, stochastik)
+#   slug              – URL-Slug / Schlüssel
+#   name              – Anzeigename
+#   szenario          – Durchgängiger Anwendungskontext (Kurzfassung)
+#   szenario_einstieg – Offene Frage zu Beginn des Skripts (motivierend, noch nicht lösbar)
+#   szenario_abschluss– Auflösung am Ende des Skripts (Frage mit gelernten Methoden beantworten)
+#   szenario_bild     – Dateiname des charakteristischen Bilds (in dev/assets/img/szenarien/)
+#
+# Übungsaufgaben sind bewusst NICHT an das Szenario gebunden,
+# um kontextunabhängigen Transfer zu sichern.
 # ──────────────────────────────────────────────────────────
 
 # ══════════════════════ ANALYSIS ═════════════════════════
@@ -12,41 +20,65 @@
   slug: analysis-diverses
   name: Analysis - Diverses
   szenario: "Streaming-Dienst – Nutzerzahlen über die Zeit modellieren verschiedene Funktionstypen (lineares Wachstum, Sättigung, Rückgang)."
+  szenario_einstieg: "Die Nutzerzahlen eines Streaming-Dienstes entwickeln sich über die Jahre ganz unterschiedlich – welcher Funktionstyp beschreibt welche Phase?"
+  szenario_abschluss: "Ordne den Phasen (Wachstum, Sättigung, Rückgang) jeweils den passenden Funktionstyp zu und begründe deine Wahl."
+  szenario_bild: "analysis-diverses.svg"
 
 - gebiet: analysis
   slug: differentialrechnung-ganzrationaler-funktionen
   name: Differentialrechnung ganzrationaler Funktionen
   szenario: "E-Scooter-Fahrt durch die Stadt – Weg, Geschwindigkeit (= Ableitung) und Beschleunigung (= zweite Ableitung) an einem Alltagsbeispiel."
+  szenario_einstieg: "Du fährst mit dem E-Scooter durch die Stadt. An welcher Stelle der Strecke warst du am schnellsten – und woran erkennst du das mathematisch?"
+  szenario_abschluss: "Bestimme aus der Weg-Funktion die Geschwindigkeit (erste Ableitung) und finde den Hochpunkt – dort warst du am schnellsten."
+  szenario_bild: "differentialrechnung.svg"
 
 - gebiet: analysis
   slug: lineare-funktionen
   name: Lineare Funktionen
   szenario: "Handytarif-Vergleich – Grundgebühr (y-Achsenabschnitt) und Minutenpreis (Steigung); Schnittpunkt = ab wann lohnt sich welcher Tarif?"
+  szenario_einstieg: "Tarif A kostet 5 € im Monat plus 0,10 € pro Minute. Tarif B hat keine Grundgebühr, aber 0,20 € pro Minute. Ab wie vielen Minuten lohnt sich Tarif A?"
+  szenario_abschluss: "Stelle beide Tarife als lineare Funktionen auf und berechne den Schnittpunkt – er liefert die Antwort."
+  szenario_bild: "lineare-funktionen.svg"
 
 - gebiet: analysis
   slug: ganzrationale-oekonomische-funktionen
   name: Ganzrationale ökonomische Funktionen
   szenario: "Online-Shop für Custom-Sneaker – Kosten-, Erlös- und Gewinnfunktion, Break-even-Point und Gewinnmaximierung eines kleinen Unternehmens."
+  szenario_einstieg: "Dein Custom-Sneaker-Shop läuft an. Ab welcher Stückzahl schreibst du schwarze Zahlen – und bei welcher Menge verdienst du am meisten?"
+  szenario_abschluss: "Berechne den Break-even-Point ($G(x)=0$) und das Gewinnmaximum ($G'(x)=0$) – zwei Antworten auf eine unternehmerische Kernfrage."
+  szenario_bild: "ganzrationale-oekonomische-funktionen.svg"
 
 - gebiet: analysis
   slug: ertragsgesetzliche-kostenfunktionen
   name: Ertragsgesetzliche Kostenfunktionen
   szenario: "Café-Betrieb – erst effiziente Produktion, dann steigende Grenzkosten bei Überlastung; S-förmiger Kostenverlauf direkt erlebbar."
+  szenario_einstieg: "Das Café läuft gut und die Nachfrage steigt. Lohnt es sich, die Produktion immer weiter hochzufahren – oder gibt es eine Grenze?"
+  szenario_abschluss: "Berechne das Betriebsoptimum (Minimum der Stückkosten) und zeige, warum darüber hinaus die Grenzkosten explodieren."
+  szenario_bild: "ertragsgesetzliche-kostenfunktionen.svg"
 
 - gebiet: analysis
   slug: marktgleichgewicht-grundlagen
   name: Marktgleichgewicht - Grundlagen
   szenario: "Sneaker-Reselling – limitierte Drops, Nachfrageüberschuss, Preisbildung auf dem Sekundärmarkt als Angebot-Nachfrage-Modell."
+  szenario_einstieg: "Limitierte Sneaker kosten im Laden 120 €, werden aber für 350 € weiterverkauft. Wie kommt dieser Preis zustande?"
+  szenario_abschluss: "Stelle Angebots- und Nachfragefunktion auf und berechne den Gleichgewichtspreis. Erkläre, warum bei limitiertem Angebot der Reselling-Preis deutlich darüber liegt."
+  szenario_bild: "marktgleichgewicht-grundlagen.svg"
 
 - gebiet: analysis
   slug: marktgleichgewicht-vertiefung
   name: Marktgleichgewicht - Vertiefung
   szenario: "CO₂-Steuer auf Flugreisen – Steuerlastverteilung, Konsumenten-/Produzentenrente und Wohlfahrtseffekte an einem politisch aktuellen Beispiel."
+  szenario_einstieg: "Die CO₂-Steuer auf Flüge steigt um 2 € pro Ticket. Zahlt das am Ende der Fluggast, die Airline – oder beide?"
+  szenario_abschluss: "Berechne die Steuerverteilung über die Elastizitäten und vergleiche Konsumenten- und Produzentenrente vorher und nachher."
+  szenario_bild: "marktgleichgewicht-vertiefung.svg"
 
 - gebiet: analysis
   slug: produktlebenszyklus
   name: Produktlebenszyklus
   szenario: "Smartphone-Launch (iPhone) – Einführung, Wachstum, Reife, Rückgang eines konkreten Produkts mit glockenförmiger Absatzkurve."
+  szenario_einstieg: "Das neue iPhone ist am Markt. Wann sollte Apple das Vorgängermodell vom Markt nehmen – und woran erkennt man den richtigen Zeitpunkt mathematisch?"
+  szenario_abschluss: "Berechne den Wendepunkt der Absatzfunktion – dort beginnt der stärkste Rückgang. Erkläre, warum das ein sinnvolles Entscheidungskriterium ist."
+  szenario_bild: "produktlebenszyklus.svg"
 
 # ══════════════════ LINEARE ALGEBRA ══════════════════════
 
@@ -54,16 +86,25 @@
   slug: lineare-gleichungssysteme
   name: Lineare Gleichungssysteme
   szenario: "Festival-Catering (3 Food-Trucks) – verschiedene Bestellkombinationen ergeben 3 Gleichungen mit 3 Unbekannten; Lösbarkeit und Gauß-Verfahren."
+  szenario_einstieg: "Drei Food-Trucks bieten verschiedene Kombi-Pakete an. Ein Burger, eine Pommes, ein Getränk – was kostet jedes Produkt einzeln?"
+  szenario_abschluss: "Stelle das LGS aus den drei Bestellungen auf und löse es mit dem Gauß-Verfahren – die Einzelpreise sind dein Ergebnis."
+  szenario_bild: "lineare-gleichungssysteme.svg"
 
 - gebiet: lineare-algebra
   slug: matrizenrechnung
   name: Matrizenrechnung
   szenario: "Social-Media-Bildfilter – Bildmatrix mal Filtermatrix; Addition, Skalarmultiplikation und Multiplikation am selben visuellen Kontext."
+  szenario_einstieg: "Du legst einen Vintage-Filter über dein Selfie. Was passiert dabei mathematisch mit jedem einzelnen Pixel?"
+  szenario_abschluss: "Rechne einen kleinen Bildausschnitt (3×3-Matrix) mit einer Filtermatrix durch und vergleiche Original und Ergebnis."
+  szenario_bild: "matrizenrechnung.svg"
 
 - gebiet: lineare-algebra
   slug: mehrstufige-produktionsprozesse
   name: Mehrstufige Produktionsprozesse
   szenario: "Smartphone-Fertigung – Rohstoffe → Bauteile → Endprodukt; Bedarfsmatrizen über mehrere Produktionsstufen."
+  szenario_einstieg: "Für 1000 Smartphones: Wie viel Silizium, Lithium und Glas braucht man insgesamt – über alle Produktionsstufen hinweg?"
+  szenario_abschluss: "Berechne die Gesamtbedarfsmatrix durch Multiplikation der Stufenmatrizen und lies die konkreten Rohstoffmengen ab."
+  szenario_bild: "mehrstufige-produktionsprozesse.svg"
 
 # ══════════════════════ STOCHASTIK ═══════════════════════
 
@@ -71,28 +112,46 @@
   slug: zufallsexperimente-und-wahrscheinlichkeiten
   name: Zufallsexperimente und Wahrscheinlichkeiten
   szenario: "Tombola auf dem Schulfest – Lose, Gewinnchancen, Laplace-Wahrscheinlichkeit und Gegenereignis an einer konkreten Losverteilung."
+  szenario_einstieg: "Bei der Schulfest-Tombola gibt es 200 Lose, davon 30 Gewinnlose. Wie stehen deine Chancen, wenn du 3 Lose kaufst?"
+  szenario_abschluss: "Berechne die Wahrscheinlichkeit über das Gegenereignis: $P(\\text{mind. 1 Gewinn}) = 1 - P(\\text{kein Gewinn})$."
+  szenario_bild: "zufallsexperimente.svg"
 
 - gebiet: stochastik
   slug: mehrstufige-zufallsexperimente
   name: Mehrstufige Zufallsexperimente
   szenario: "Qualitätskontrolle (Kopfhörer-Produktion) – mehrere Prüfschritte als Stufen, Baumdiagramm und Pfadregeln."
+  szenario_einstieg: "Ein Kopfhörer durchläuft drei Prüfstationen. Wie wahrscheinlich ist es, dass ein fehlerhaftes Exemplar alle drei Kontrollen passiert?"
+  szenario_abschluss: "Zeichne das Baumdiagramm mit 3 Stufen, wende die Pfadmultiplikation an und berechne die (erschreckend hohe oder niedrige) Wahrscheinlichkeit."
+  szenario_bild: "mehrstufige-zufallsexperimente.svg"
 
 - gebiet: stochastik
   slug: bedingte-wahrscheinlichkeiten
   name: Bedingte Wahrscheinlichkeiten
   szenario: "Medizinischer Schnelltest – falsch-positive Ergebnisse, Bayes-Paradoxon und bedingte Wahrscheinlichkeiten an einem eindrücklichen Beispiel."
+  szenario_einstieg: "Dein Schnelltest ist positiv. Der Test erkennt Kranke zu 99 %, aber auch 1 % der Gesunden werden falsch-positiv getestet. Die Krankheit betrifft 0,5 % der Bevölkerung. Wie wahrscheinlich ist es, dass du wirklich krank bist?"
+  szenario_abschluss: "Berechne $P(\\text{krank} \\mid \\text{positiv})$ mit dem Satz von Bayes – das Ergebnis von etwa 33 % überrascht fast alle."
+  szenario_bild: "bedingte-wahrscheinlichkeiten.svg"
 
 - gebiet: stochastik
   slug: binomialverteilung
   name: Binomialverteilung
   szenario: "Pünktlichkeit der Bahn – bei 10 Fahrten: Bernoulli-Kette, Erwartungswert und Sigma-Regeln aus Schülererfahrung."
+  szenario_einstieg: "Zehnmal Bahn diese Woche. Die Pünktlichkeitsquote liegt bei 80 %. Wie wahrscheinlich ist es, dass sie mindestens achtmal pünktlich kommt?"
+  szenario_abschluss: "Berechne $P(X \\geq 8)$ mit der Binomialformel bei $n=10$ und $p=0{,}8$ – und vergleiche mit deinem Bauchgefühl."
+  szenario_bild: "binomialverteilung.svg"
 
 - gebiet: stochastik
   slug: hypothesentests
   name: Hypothesentests
   szenario: "A/B-Test einer App – welcher Button-Text bringt mehr Klicks? Nullhypothese, Signifikanzniveau und Ablehnungsbereich."
+  szenario_einstieg: "Version A oder B – welcher Button-Text bringt wirklich mehr Klicks? Oder ist der Unterschied nur Zufall?"
+  szenario_abschluss: "Formuliere die Nullhypothese, lege das Signifikanzniveau fest und triff eine begründete Entscheidung – der A/B-Test liefert die Daten."
+  szenario_bild: "hypothesentests.svg"
 
 - gebiet: stochastik
   slug: zufallsgroessen
   name: Zufallsgrößen
   szenario: "Glücksrad auf dem Jahrmarkt – Auszahlungsbeträge als Zufallsgröße; Erwartungswert = lohnt sich das Spielen? Varianz = wie riskant?"
+  szenario_einstieg: "Das Glücksrad kostet 2 € pro Dreh. Die Gewinne: 0 €, 1 €, 5 € und 20 €. Lohnt sich das Spielen auf Dauer – oder verdient nur der Betreiber?"
+  szenario_abschluss: "Berechne den Erwartungswert ($E(X)=1{,}50\\,€ < 2\\,€$ Einsatz) und die Varianz – auf Dauer verliert man, aber einzelne Drehs können sich lohnen."
+  szenario_bild: "zufallsgroessen.svg"

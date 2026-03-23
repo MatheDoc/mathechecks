@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
     max_successes_for_min_failure_percent,
@@ -181,15 +181,17 @@ class BinomialBereichswahrscheinlichkeitenBerechnungGenerator(TaskGenerator):
             ]
 
             answers = [
-                numerical(exact_probability, tolerance=0.0001, decimals=4),
-                numerical(at_least_probability, tolerance=0.0001, decimals=4),
-                numerical(less_than_probability, tolerance=0.0001, decimals=4),
-                numerical(interval_probability, tolerance=0.0001, decimals=4),
-                numerical(percent_probability, tolerance=0.0001, decimals=4),
-                numerical(union_probability, tolerance=0.0001, decimals=4),
-                numerical(edge_probability, tolerance=0.0001, decimals=4),
+                numerical_stochastik_calc(exact_probability),
+                numerical_stochastik_calc(at_least_probability),
+                numerical_stochastik_calc(less_than_probability),
+                numerical_stochastik_calc(interval_probability),
+                numerical_stochastik_calc(percent_probability),
+                numerical_stochastik_calc(union_probability),
+                numerical_stochastik_calc(edge_probability),
             ]
 
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))
 
         return tasks
+
+

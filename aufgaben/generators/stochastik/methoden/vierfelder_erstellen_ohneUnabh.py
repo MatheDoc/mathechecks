@@ -1,27 +1,27 @@
-"""Vier-Felder-Tafel vervollständigen – ohne Information zur stochastischen Unabhängigkeit.
+"""Vier-Felder-Tafel vervollständigen �?" ohne Information zur stochastischen Unabhängigkeit.
 
 3 Zellen der Tafel sind gegeben. Muster (5 mögliche Kombinationstypen):
 
   1. {1oder2oder3oder4} UND {5oder6} UND {7oder8}
-       → eine Innenzelle + eine Spalten-Randwkt + eine Zeilen-Randwkt
+       �?' eine Innenzelle + eine Spalten-Randwkt + eine Zeilen-Randwkt
   2. beliebige 3 von {1,2,3,4}
-       → drei der vier Schnittwahrscheinlichkeiten
-  3. [1∧4 ODER 2∧3] UND eines aus {5,6,7,8}
-       → Diagonalpaar + eine Randwkt
-  4. [1∧2 ODER 3∧4] UND eines aus {7,8}
-       → vollständige Zeile + Zeilen-Randwkt
-  5. [1∧3 ODER 2∧4] UND eines aus {5,6}
-       → vollständige Spalte + Spalten-Randwkt
+       �?' drei der vier Schnittwahrscheinlichkeiten
+  3. [1�^�4 ODER 2�^�3] UND eines aus {5,6,7,8}
+       �?' Diagonalpaar + eine Randwkt
+  4. [1�^�2 ODER 3�^�4] UND eines aus {7,8}
+       �?' vollständige Zeile + Zeilen-Randwkt
+  5. [1�^�3 ODER 2�^�4] UND eines aus {5,6}
+       �?' vollständige Spalte + Spalten-Randwkt
 
 Slot-Nummerierung:
-  1 = P(A∩B)   2 = P(A∩B̄)   3 = P(Ā∩B)   4 = P(Ā∩B̄)
-  5 = P(A)     6 = P(Ā)      7 = P(B)     8 = P(B̄)
+  1 = P(A�^�B)   2 = P(A�^�B�")   3 = P(�?�^�B)   4 = P(�?�^�B�")
+  5 = P(A)     6 = P(�?)      7 = P(B)     8 = P(B�")
 """
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import sample_ab_case, vft_slots
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -73,7 +73,7 @@ class MethodenVierfelderErstellenOhneUnabhGenerator(TaskGenerator):
             fragen = ["" for _ in range(8)]
             antworten = [
                 "---" if idx in given_set
-                else numerical(slots[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slots[idx])
                 for idx in range(1, 9)
             ]
 
@@ -94,3 +94,5 @@ class MethodenVierfelderErstellenOhneUnabhGenerator(TaskGenerator):
             )
 
         return tasks
+
+

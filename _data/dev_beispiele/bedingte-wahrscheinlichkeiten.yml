@@ -1,0 +1,29 @@
+# ──────────────────────────────────────────────────────────
+# Beispiele – Bedingte Wahrscheinlichkeiten
+# ──────────────────────────────────────────────────────────
+# Pro Check ein Standardbeispiel (Aufgabe + Lösungsweg).
+# Wird konsumiert von: Feynman-Modul, Skript (Check-Anker).
+#
+# Format:
+#   check-slug:
+#     aufgabe: "..."          (Inline-String, LaTeX mit \\)
+#     loesung: |              (Block-String, LaTeX ohne Doppel-Escaping)
+# ──────────────────────────────────────────────────────────
+
+# Beispiel-Eintrag (Platzhalter – konkreter Check-Slug folgt aus checks.json)
+bedingte-wkt-berechnen:
+  aufgabe: "Ein Schnelltest erkennt Kranke zu $99\\,\\%$. Bei Gesunden zeigt er in $1\\,\\%$ der Fälle falsch-positiv an. Die Krankheit betrifft $0{,}5\\,\\%$ der Bevölkerung. Berechne die Wahrscheinlichkeit, bei positivem Test tatsächlich krank zu sein."
+  loesung: |
+    Gegeben: $P(K) = 0{,}005$, $P(+ \mid K) = 0{,}99$, $P(+ \mid \overline{K}) = 0{,}01$.
+
+    Gesucht: $P(K \mid +)$.
+
+    $$\begin{align*}
+    P(+) &= P(+ \mid K) \cdot P(K) + P(+ \mid \overline{K}) \cdot P(\overline{K}) \\
+          &= 0{,}99 \cdot 0{,}005 + 0{,}01 \cdot 0{,}995 \\
+          &= 0{,}00495 + 0{,}00995 = 0{,}0149
+    \end{align*}$$
+
+    $$P(K \mid +) = \frac{P(+ \mid K) \cdot P(K)}{P(+)} = \frac{0{,}00495}{0{,}0149} \approx 33{,}2\,\%$$
+
+    Obwohl der Test zu 99 % genau ist, bist du mit nur etwa 33 % Wahrscheinlichkeit tatsächlich krank.

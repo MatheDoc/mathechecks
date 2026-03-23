@@ -1,18 +1,18 @@
-"""Check 3 – Baumdiagramm vervollständigen (Pfadadditionsregel).
+"""Check 3 �?" Baumdiagramm vervollständigen (Pfadadditionsregel).
 
 Gegeben sind immer genau 3 Wahrscheinlichkeiten:
   1. Beide Endwkt eines Astes: {7,8} oder {9,10}
   2. Eine weitere Wkt aus dem anderen Ast:
-       wenn {7,8} → {5, 6, 9, 10};  wenn {9,10} → {3, 4, 7, 8}
+       wenn {7,8} �?' {5, 6, 9, 10};  wenn {9,10} �?' {3, 4, 7, 8}
 
-Lösungsweg: Pfadaddition → P(A) = P(A∩B) + P(A∩¬B) bzw. P(¬A) analog,
+Lösungsweg: Pfadaddition �?' P(A) = P(A�^�B) + P(A�^�¬B) bzw. P(¬A) analog,
 danach Komplementregel + ggf. umgestellte Pfadmultiplikation.
 """
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -85,7 +85,7 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
             antworten = [
                 "---"
                 if idx in given_slots
-                else numerical(slot_probs[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slot_probs[idx])
                 for idx in range(1, 11)
             ]
 
@@ -99,3 +99,5 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
             )
 
         return tasks
+
+

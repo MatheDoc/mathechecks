@@ -1,4 +1,4 @@
-"""Generator fuer Aufgaben mit absoluten Haeufigkeiten im AB-Kontext.
+﻿"""Generator fuer Aufgaben mit absoluten Haeufigkeiten im AB-Kontext.
 
 Erzeugt JSON-Aufgaben fuer die Sammlung "absolute-haeufigkeiten".
 Die Kontexte stammen aus textbausteine.py.
@@ -7,7 +7,7 @@ Die Kontexte stammen aus textbausteine.py.
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
@@ -81,3 +81,4 @@ class AbsoluteHaeufigkeitenGenerator(TaskGenerator):
             tasks.append(Task(einleitung=einleitung, fragen=fragen, antworten=antworten))
 
         return tasks
+

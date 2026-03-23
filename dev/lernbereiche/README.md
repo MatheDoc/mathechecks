@@ -2,12 +2,14 @@
 
 Jeder Lernbereich besteht aus einem definierten Set an Seiten.
 
-Verbindliche Modultypen pro Lernbereich: `start`, `einstiegsquiz`, `training`, `blurting`, `feynman`, `kompetenzliste`, `skript`, `flashcards`.
+Verbindliche Modultypen pro Lernbereich: `start`, `warmup`, `training`, `blurting`, `feynman`, `kompetenzliste`, `skript`, `flashcards`.
+
+→ Datenmodell & Architektur: `.github/datenmodell.md`
 
 | Modul | Zweck | Didaktischer Kern | Zusammenhang mit anderen Modulen |
 |---|---|---|---|
-| **Start** | Überblick, Vorwissensaktivierung, Exportmöglichkeiten (Moodle, Anki) | Orientierung, Motivation, Einstiegsquiz mit vorausschauenden Erklärungen | Einstieg in die Kompetenz-Aufgabe-Skript-Kette |
-| **Einstiegsquiz** | Kurzer motivierender Einstiegstest | Vorwissensaktivierung, kognitive Aktivierung | Startpunkt der Feed-Kette, danach erster Trainingsschritt |
+| **Start** | Überblick, Vorwissensaktivierung, Exportmöglichkeiten (Moodle, Anki) | Orientierung, Motivation | Einstieg in die Kompetenz-Aufgabe-Skript-Kette |
+| **Warm-Up** | Kurzer motivierender Einstieg (4 Karten) | Vorwissensaktivierung, kognitive Aktivierung, Neugier wecken | Startpunkt der Feed-Kette, danach erster Trainingsschritt |
 | **Kompetenzliste** | Übersicht aller Kompetenzen des Lernbereichs | Lernziel-Orientierung | Jede Kompetenz ist mit Training und Skript verknüpft |
 | **Training** | Interaktive Aufgaben | Üben mit formativem Feedback | Zu jeder Kompetenz in der Kompetenzliste gibt es genau eine Aufgabensammlung im Training |
 | **Blurting** | Stichwortartiger Abruf eines Begriffs | Active Recall mit Selbstüberprüfung | Zwischenmodul in der Feed-Kette vor dem zweiten Training |

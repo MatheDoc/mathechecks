@@ -1,7 +1,8 @@
 import random
 
+from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
     binom_cdf,
@@ -51,7 +52,7 @@ def _build_visual(n: int, cdf: list[float]) -> dict:
                     "range": [-0.5, n + 0.5],
                 },
                 "yaxis": {
-                    "title": "F(k) = P(X ≤ k)",
+                    "title": "F(k) = P(X �?� k)",
                     "range": [0, 1.02],
                     "tickformat": ".2f",
                 },
@@ -118,7 +119,7 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
             ]
             intro = (
                 f"{rng.choice(intro_base_variants)}</p> "
-                f"<p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der "
+                f"<p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der "
                 f"{scenario.success_plural} angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten "
                 f"der folgenden Ereignisse (auf 2 NKS gerundet)."
             )
@@ -134,10 +135,10 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
             ]
 
             answers = [
-                numerical(exact_probability, tolerance=0.01, decimals=2),
-                numerical(at_least_probability, tolerance=0.01, decimals=2),
-                numerical(less_than_probability, tolerance=0.01, decimals=2),
-                numerical(interval_probability, tolerance=0.01, decimals=2),
+                numerical(exact_probability, tolerance=graph_read_tolerance_from_span(1.02), decimals=2),
+                numerical(at_least_probability, tolerance=graph_read_tolerance_from_span(1.02), decimals=2),
+                numerical(less_than_probability, tolerance=graph_read_tolerance_from_span(1.02), decimals=2),
+                numerical(interval_probability, tolerance=graph_read_tolerance_from_span(1.02), decimals=2),
             ]
 
             visual = _build_visual(n=n, cdf=_cdf_values(n=n, p=p))
@@ -145,3 +146,4 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers, visual=visual))
 
         return tasks
+

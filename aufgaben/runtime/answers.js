@@ -166,7 +166,7 @@ export function answerToPreview(answerText) {
             .map((option) => {
                 const latexLabel = unescapeMoodleText(option.label);
                 const encodedLatex = encodeURIComponent(latexLabel);
-                return `<option data-latex="${escapeHtmlAttribute(encodedLatex)}">${escapeHtml(latexLabel)}</option>`;
+                return `<option value="${escapeHtmlAttribute(latexLabel)}" data-latex="${escapeHtmlAttribute(encodedLatex)}">${escapeHtml(latexLabel)}</option>`;
             })
             .join("");
 

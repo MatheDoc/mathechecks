@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
     max_successes_for_at_most,
@@ -95,7 +95,7 @@ class BinomialBereichsparameterKumuliertGenerator(TaskGenerator):
 
             intro = (
                 f"{rng.choice(intro_variants)}</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese "
-                "ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. "
+                "ausschlie�Ylich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. "
                 "Tritt ein angezeigter Term in der Lösung nicht auf, setzen Sie \\( k=-1 \\)."
             )
 
@@ -121,3 +121,4 @@ class BinomialBereichsparameterKumuliertGenerator(TaskGenerator):
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))
 
         return tasks
+

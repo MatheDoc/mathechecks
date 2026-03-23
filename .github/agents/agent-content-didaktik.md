@@ -16,7 +16,12 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
 - Konsistenz der Check-Kette: Kompetenzliste -> Training -> Blurting -> Feynman -> Skript -> Flashcards über alle Lernbereiche
 - Prüfung auf sprachliche Richtigkeit
-- Beachte Latex-Konventionen aus `glossary.md`
+## Pflichtlektüre
+
+Vor jeder Arbeit diese Referenzdokumente lesen:
+
+- `.github/glossary.md` → LaTeX-Konventionen, Terminologie
+- `.github/datenmodell.md` → Inhalts-Architektur, Datenquellen, Modulübersicht
 
 ## Prioritäten
 
@@ -34,7 +39,7 @@ Didaktische Prinzipien, die quer zu Modulen und Feed-Einträgen angewendet werde
 | **Retrieval Practice** | Aktives Abrufen statt passives Wiederlesen | Training, Blurting, Feynman, Flashcards |
 | **Spaced Repetition** | Wiederholungen in zeitlichen Abständen | Training-Intervalle, Flashcards |
 | **Worked Examples + Fading** | Vormachen, dann schrittweise mehr Eigenleistung | Skript, Training |
-| **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Einstiegsquiz, Training, Blurting/Feynman |
+| **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Warm-Up, Training, Blurting/Feynman |
 | **Diagnose & Feedback** | Fehler sichtbar machen und nächste Aktion ableiten | Training, Laufende Checks, Kompetenzliste |
 | **Metakognition** | Selbstbewertung und Plausibilitätschecks | Blurting/Feynman (`kann`/`kann nicht`), Kompetenzliste |
 
@@ -53,7 +58,6 @@ Lernmethoden  (didaktische Prinzipien – anwendbar auf alle Ebenen)
 - Vom Konkreten zum Abstrakten arbeiten (Beispiel -> Muster -> Regel).
 - Lernziele und typische Fehlvorstellungen explizit machen.
 - Mathematische Notation konsequent in LaTeX/MathJax-Syntax schreiben.
-- Bestehende Projektkonventionen aus `.github/copilot-instructions.md` einhalten.
 - Die Lernbereichsstruktur Checkliste/Training/Skript als Pflichtmodell behandeln.
 
 

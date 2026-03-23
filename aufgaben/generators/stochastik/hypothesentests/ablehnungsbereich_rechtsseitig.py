@@ -1,7 +1,7 @@
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import mc, numerical
+from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import binom_cdf
 from aufgaben.generators.stochastik.hypothesentests.shared import (
@@ -91,11 +91,11 @@ class AblehnungsbereichRechtsseitigGenerator(TaskGenerator):
             num_alpha = numerical(alpha_req, tolerance=0, decimals=2)
             mc_geq    = mc(["≥", "≤"], correct_index=0)
 
-            # Annahmebereich-Grenzen: [0, … , k-1]  —  Distraktoren: k bzw. n
+            # Annahmebereich-Grenzen: [0, … , k-1]  -  Distraktoren: k bzw. n
             mc_an_low = mc(["0", "k"], correct_index=0)
             mc_an_up  = mc(["k-1", str(n)], correct_index=0)
 
-            # Ablehnungsbereich-Grenzen: [k, … , n]  —  Distraktoren: 0 bzw. k+1
+            # Ablehnungsbereich-Grenzen: [k, … , n]  -  Distraktoren: 0 bzw. k+1
             mc_ab_low = mc(["k", "0"], correct_index=0)
             mc_ab_up  = mc([str(n), "k+1"], correct_index=0)
 
@@ -112,8 +112,8 @@ class AblehnungsbereichRechtsseitigGenerator(TaskGenerator):
                 f"so dass \\( P(X \\) {mc_geq} \\( k \\) ) &leq; {num_alpha} ist."
             )
             a4 = (
-                f"\\( P(X \\) {mc_geq}{k - 1} \\( ) = \\) {numerical(p_at_km1, tolerance=0.0001, decimals=4)}<br>"
-                f"\\( P(X \\) {mc_geq}{k} \\( ) = \\) {numerical(p_at_k, tolerance=0.0001, decimals=4)}<br>"
+                f"\\( P(X \\) {mc_geq}{k - 1} \\( ) = \\) {numerical_stochastik_calc(p_at_km1)}<br>"
+                f"\\( P(X \\) {mc_geq}{k} \\( ) = \\) {numerical_stochastik_calc(p_at_k)}<br>"
                 f"Der Ablehnungsbereich lautet daher \\( [ \\) {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} \\( ] \\)."
             )
 
@@ -124,3 +124,4 @@ class AblehnungsbereichRechtsseitigGenerator(TaskGenerator):
             ))
 
         return tasks
+

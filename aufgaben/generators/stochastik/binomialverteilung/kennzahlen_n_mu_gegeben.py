@@ -2,7 +2,7 @@ import math
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
 
@@ -55,7 +55,7 @@ class BinomialKennzahlenNMuGegebenGenerator(TaskGenerator):
                             "anzutreffen (in\u00a0% auf eine ganze Zahl gerundet)."
                         ),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgrö�Ye (auf 2 NKS gerundet).",
                             "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
                         ]),
                     ],
@@ -67,3 +67,4 @@ class BinomialKennzahlenNMuGegebenGenerator(TaskGenerator):
             )
 
         return tasks
+

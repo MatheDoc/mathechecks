@@ -164,7 +164,8 @@ function createTaskCardNode(
   onReloadTask = null,
   scriptInfoHref = "",
   taskUiStateKey = "",
-  readPersistedState = true
+  readPersistedState = true,
+  shuffleSeed = ""
 ) {
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
@@ -231,7 +232,7 @@ function createTaskCardNode(
   }
 
   const effectiveAufgabe = check?.questionOrder === "shuffle"
-    ? shuffleQuestionsInTask(aufgabe, taskUiStateKey)
+    ? shuffleQuestionsInTask(aufgabe, shuffleSeed || taskUiStateKey)
     : aufgabe;
 
   const runtimeTaskNode = renderRuntimeTask(effectiveAufgabe, {
@@ -334,24 +335,30 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     return viewportNode;
   }
 
-  const renderCurrentCard = () =>
-    createTaskCardNode(
+  let shuffleNonce = Date.now();
+
+  const renderCurrentCard = (shouldReadPersistedState = readPersistedState) => {
+    const stateKey = buildTaskUiStateKey({ lernbereich: check.Lernbereich, checkId, taskIndex });
+    return createTaskCardNode(
       check,
       sammlung[taskIndex] || null,
       () => {
         taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
+        shuffleNonce = Date.now();
         if (typeof onTaskIndexChange === "function") {
           onTaskIndexChange(taskIndex);
         }
-        const nextCard = renderCurrentCard();
+        const nextCard = renderCurrentCard(false);
         cardNode.replaceWith(nextCard);
         cardNode = nextCard;
         finalizeTaskRender(viewportNode);
       },
       scriptInfoHref,
-      buildTaskUiStateKey({ lernbereich: check.Lernbereich, checkId, taskIndex }),
-      readPersistedState
+      stateKey,
+      shouldReadPersistedState,
+      `${stateKey}::${shuffleNonce}`
     );
+  };
 
   cardNode = renderCurrentCard();
   viewportNode.appendChild(cardNode);

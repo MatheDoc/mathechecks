@@ -1,13 +1,13 @@
-"""Kennzahlen diskreter Zufallsgrößen aus Wahrscheinlichkeitstabelle – 4 Varianten.
+"""Kennzahlen diskreter Zufallsgrö�Yen aus Wahrscheinlichkeitstabelle �?" 4 Varianten.
 
 Jede Aufgabe zeigt eine 5-elementige Wahrscheinlichkeitsverteilung als visual-Tabelle
 (spec.type = "wkt-tabelle"). None-Einträge in x bzw. p markieren fehlende Zellen.
 
 Varianten (je ein Generator, je eine Sammlung):
-    1. KennzahlenTabelleFehlWsk        – eine P_i und eine x_i fehlen, E(X) gegeben
-    2. KennzahlenTabelleEW             – volle Tabelle, E(X) berechnen
-    3. KennzahlenTabelleSigma          – volle Tabelle + E(X) gegeben, σ(X) berechnen
-    4. KennzahlenTabelleFehlWsk2       – zwei P_i fehlen, E(X) gegeben, beide bestimmen
+    1. KennzahlenTabelleFehlWsk        �?" eine P_i und eine x_i fehlen, E(X) gegeben
+    2. KennzahlenTabelleEW             �?" volle Tabelle, E(X) berechnen
+    3. KennzahlenTabelleSigma          �?" volle Tabelle + E(X) gegeben, �f(X) berechnen
+    4. KennzahlenTabelleFehlWsk2       �?" zwei P_i fehlen, E(X) gegeben, beide bestimmen
 """
 
 from __future__ import annotations
@@ -16,11 +16,11 @@ import random
 from math import sqrt
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 
 
-# ── Hilfsfunktionen ────────────────────────────────────────────────────────
+# �"?�"? Hilfsfunktionen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 def _fmt(value: float, dec: int) -> str:
     """Zahl mit deutschem Dezimalkomma formatieren."""
@@ -30,7 +30,7 @@ def _fmt(value: float, dec: int) -> str:
 
 
 def _wkt_visual(x_disp: list[int | None], p_disp: list[float | None]) -> dict:
-    """visual-Spec für eine Wahrscheinlichkeitstabelle. None → leere Zelle."""
+    """visual-Spec für eine Wahrscheinlichkeitstabelle. None �?' leere Zelle."""
     return {
         "type": "plot",
         "spec": {
@@ -41,16 +41,16 @@ def _wkt_visual(x_disp: list[int | None], p_disp: list[float | None]) -> dict:
     }
 
 
-_EINLEITUNG = "Die Tabelle zeigt die Wahrscheinlichkeitsverteilung einer Zufallsgröße \\( X \\)."
+_EINLEITUNG = "Die Tabelle zeigt die Wahrscheinlichkeitsverteilung einer Zufallsgrö�Ye \\( X \\)."
 
 
 def _gen_data(rng: random.Random) -> tuple[list[int], list[float], float, float]:
-    """Erzeugt (x, p, E(X), σ(X)) mit Σ p_i = 1,00 (auf 2 NKS).
+    """Erzeugt (x, p, E(X), �f(X)) mit Σ p_i = 1,00 (auf 2 NKS).
 
-    x-Werte: ganzzahlig, streng aufsteigend (Schritte 1–3).
+    x-Werte: ganzzahlig, streng aufsteigend (Schritte 1�?"3).
     P-Werte: auf 2 NKS gerundet, Summe = 1,00 (exakt).
     E(X): auf 4 NKS gerundet.
-    σ(X): auf 4 NKS gerundet.
+    �f(X): auf 4 NKS gerundet.
     """
     x = [rng.randint(-5, -2)]
     for _ in range(4):
@@ -69,7 +69,7 @@ def _gen_data(rng: random.Random) -> tuple[list[int], list[float], float, float]
     return x, p, ex, sx
 
 
-# ── Variante 1: Fehlende Wahrscheinlichkeit + fehlender x-Wert ─────────────
+# �"?�"? Variante 1: Fehlende Wahrscheinlichkeit + fehlender x-Wert �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
     """Eine Wahrscheinlichkeit und ein x-Wert fehlen, E(X) ist gegeben."""
@@ -86,12 +86,12 @@ class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
             x_disp: list[int | None] = [xi if i != idx_x else None for i, xi in enumerate(x)]
             p_disp: list[float | None] = [round(pi, 2) if i != idx_p else None for i, pi in enumerate(p)]
             frage = (
-                "Bestimmen Sie den fehlenden Wert der Zufallsgröße und die fehlende Wahrscheinlichkeit."
+                "Bestimmen Sie den fehlenden Wert der Zufallsgrö�Ye und die fehlende Wahrscheinlichkeit."
                 f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
             )
             antwort = (
                 f"\\( x_i= \\) {numerical(float(x[idx_x]), tolerance=0.5, decimals=0)}"
-                f" und \\( P(X={x[idx_p]})= \\) {numerical(p[idx_p], tolerance=0.01, decimals=2)}"
+                f" und \\( P(X={x[idx_p]})= \\) {numerical_stochastik_calc(p[idx_p])}"
             )
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
@@ -102,10 +102,10 @@ class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
         return tasks
 
 
-# ── Variante 2: Erwartungswert ─────────────────────────────────────────────
+# �"?�"? Variante 2: Erwartungswert �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 class KennzahlenTabelleEWGenerator(TaskGenerator):
-    """Volle Tabelle gegeben – E(X) berechnen."""
+    """Volle Tabelle gegeben �?" E(X) berechnen."""
 
     generator_key = "stochastik.zufallsgroessen.kennzahlen_tabelle_ew"
 
@@ -116,7 +116,7 @@ class KennzahlenTabelleEWGenerator(TaskGenerator):
             x, p, ex, _sx = _gen_data(rng)
             p_disp: list[float | None] = [round(pi, 2) for pi in p]
             frage = "Bestimmen Sie den Erwartungswert."
-            antwort = "\\( E(X)= \\) " + numerical(ex, tolerance=0.0001, decimals=4)
+            antwort = "\\( E(X)= \\) " + numerical_stochastik_calc(ex)
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
                 fragen=[frage],
@@ -126,10 +126,10 @@ class KennzahlenTabelleEWGenerator(TaskGenerator):
         return tasks
 
 
-# ── Variante 3: Standardabweichung ────────────────────────────────────────
+# �"?�"? Variante 3: Standardabweichung �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 class KennzahlenTabelleSigmaGenerator(TaskGenerator):
-    """Volle Tabelle + E(X) gegeben – σ(X) berechnen (auf 4 NKS)."""
+    """Volle Tabelle + E(X) gegeben �?" �f(X) berechnen (auf 4 NKS)."""
 
     generator_key = "stochastik.zufallsgroessen.kennzahlen_tabelle_sigma"
 
@@ -143,7 +143,7 @@ class KennzahlenTabelleSigmaGenerator(TaskGenerator):
                 "Bestimmen Sie die Standardabweichung (auf 4 Dezimalstellen gerundet)."
                 f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
             )
-            antwort = "\\( \\sigma(X)= \\) " + numerical(sx, tolerance=0.0001, decimals=4)
+            antwort = "\\( \\sigma(X)= \\) " + numerical_stochastik_calc(sx)
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
                 fragen=[frage],
@@ -153,10 +153,10 @@ class KennzahlenTabelleSigmaGenerator(TaskGenerator):
         return tasks
 
 
-# ── Variante 4: Zwei fehlende Wahrscheinlichkeiten ────────────────────────
+# �"?�"? Variante 4: Zwei fehlende Wahrscheinlichkeiten �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
 
 class KennzahlenTabelleFehlWsk2Generator(TaskGenerator):
-    """Zwei Wahrscheinlichkeiten fehlen, E(X) gegeben – beide P_i bestimmen."""
+    """Zwei Wahrscheinlichkeiten fehlen, E(X) gegeben �?" beide P_i bestimmen."""
 
     generator_key = "stochastik.zufallsgroessen.kennzahlen_tabelle_fehlende_wsk_zwei"
 
@@ -173,8 +173,8 @@ class KennzahlenTabelleFehlWsk2Generator(TaskGenerator):
                 "Bestimmen Sie die fehlenden Wahrscheinlichkeiten."
                 f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
             )
-            num1 = numerical(p[idx1], tolerance=0.01, decimals=2)
-            num2 = numerical(p[idx2], tolerance=0.01, decimals=2)
+            num1 = numerical_stochastik_calc(p[idx1])
+            num2 = numerical_stochastik_calc(p[idx2])
             antwort = (
                 f"\\( P(X={x[idx1]})= \\) {num1}"
                 f" und \\( P(X={x[idx2]})= \\) {num2}"
@@ -186,3 +186,4 @@ class KennzahlenTabelleFehlWsk2Generator(TaskGenerator):
                 visual=_wkt_visual(list(x), p_disp),
             ))
         return tasks
+

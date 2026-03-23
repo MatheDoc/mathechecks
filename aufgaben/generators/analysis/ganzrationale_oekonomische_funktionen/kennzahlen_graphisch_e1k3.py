@@ -1,9 +1,9 @@
 import random
 
+from aufgaben.core.tolerances import graph_read_tolerance_from_span
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
-    _axis_tick_step,
     _kennzahlen_items,
     _sample_kennzahlen_parameters,
 )
@@ -51,8 +51,8 @@ class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
                 y_values.extend((e_value, k_value, g_value))
 
             y_span = max(1.0, max(y_values) - min(y_values))
-            x_tolerance = _axis_tick_step(x_axis_max) / 4.0
-            y_tolerance = _axis_tick_step(y_span) / 4.0
+            x_tolerance = graph_read_tolerance_from_span(x_axis_max)
+            y_tolerance = graph_read_tolerance_from_span(y_span)
 
             items = _kennzahlen_items(
                 rng=rng,

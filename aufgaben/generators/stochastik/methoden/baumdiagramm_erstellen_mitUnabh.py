@@ -1,4 +1,4 @@
-"""Check 2 (bedingte-wahrscheinlichkeiten) – Baumdiagramm vervollständigen mit Unabhängigkeit.
+"""Check 2 (bedingte-wahrscheinlichkeiten) �?" Baumdiagramm vervollständigen mit Unabhängigkeit.
 
 Kernidee: A und B sind stochastisch unabhängig, d. h. P(B|A) = P(B|¬A) = P(B).
 Der vollständige Baum ist daher aus P(A) und P(B) bestimmbar.
@@ -8,8 +8,8 @@ sowie genau 2 Wahrscheinlichkeiten aus folgenden Kombinationen:
 
   Fall 1: 1 oder 2  + beliebige aus {3,4,5,6,7,8,9,10}
   Fall 2: 3,4,5 oder 6 + beliebige aus {1,2,7,8,9,10}
-  Fall 3: 7 → {1..6, 8, 9};  8 → {1..6, 7, 10}
-  Fall 4: 9 → {1..6, 7, 10}; 10 → {1..6, 8, 9}
+  Fall 3: 7 �?' {1..6, 8, 9};  8 �?' {1..6, 7, 10}
+  Fall 4: 9 �?' {1..6, 7, 10}; 10 �?' {1..6, 8, 9}
 
 Insgesamt 36 eindeutige Kombinationen (ungeordnete Paare).
 """
@@ -17,7 +17,7 @@ Insgesamt 36 eindeutige Kombinationen (ungeordnete Paare).
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case_independent
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -75,13 +75,13 @@ for _anchor in (3, 4, 5, 6):
     for _other in (1, 2, 7, 8, 9, 10):
         _add(_anchor, _other)
 
-# Fall 3: Anker 7 → {1..6,8,9}; Anker 8 → {1..6,7,10}
+# Fall 3: Anker 7 �?' {1..6,8,9}; Anker 8 �?' {1..6,7,10}
 for _other in (1, 2, 3, 4, 5, 6, 8, 9):
     _add(7, _other)
 for _other in (1, 2, 3, 4, 5, 6, 7, 10):
     _add(8, _other)
 
-# Fall 4: Anker 9 → {1..6,7,10}; Anker 10 → {1..6,8,9}
+# Fall 4: Anker 9 �?' {1..6,7,10}; Anker 10 �?' {1..6,8,9}
 for _other in (1, 2, 3, 4, 5, 6, 7, 10):
     _add(9, _other)
 for _other in (1, 2, 3, 4, 5, 6, 8, 9):
@@ -122,7 +122,7 @@ class MethodenBaumdiagrammErstellenMitUnabhGenerator(TaskGenerator):
             antworten = [
                 "---"
                 if idx in given_slots
-                else numerical(slot_probs[idx], tolerance=0.0001, decimals=4)
+                else numerical_stochastik_calc(slot_probs[idx])
                 for idx in range(1, 11)
             ]
 
@@ -136,3 +136,4 @@ class MethodenBaumdiagrammErstellenMitUnabhGenerator(TaskGenerator):
             )
 
         return tasks
+

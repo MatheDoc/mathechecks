@@ -2,7 +2,7 @@ import math
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
 
@@ -48,19 +48,21 @@ class BinomialKennzahlenNPGegebenGenerator(TaskGenerator):
                     fragen=[
                         rng.choice([
                             f"Bestimmen Sie, wie viele {scenario.success_plural} im Durchschnitt zu erwarten sind.",
-                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgröße.",
+                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgrö�Ye.",
                             f"Wie viele {scenario.success_plural} sind im Mittel zu erwarten?",
                         ]),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgrö�Ye (auf 2 NKS gerundet).",
                             "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
                         ]),
                     ],
                     antworten=[
-                        numerical(mu, tolerance=0.01, decimals=2),
+                        numerical_stochastik_calc(mu),
                         numerical(sigma, tolerance=0.01, decimals=4),
                     ],
                 )
             )
 
         return tasks
+
+
