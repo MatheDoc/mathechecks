@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _axis_tick_step,
     _kennzahlen_items,
     _sample_kennzahlen_parameters,
 )
@@ -39,6 +40,20 @@ class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
                 used_params.add(key)
                 break
 
+            x_axis_max = float(capacity) * uniform_sig(rng, 1.04, 1.16)
+            plot_points = 300
+            y_values: list[float] = []
+            for index in range(plot_points + 1):
+                x_value = (capacity * index) / plot_points
+                e_value = price * x_value
+                k_value = k3 * (x_value ** 3) + k2 * (x_value ** 2) + k1 * x_value + k0
+                g_value = e_value - k_value
+                y_values.extend((e_value, k_value, g_value))
+
+            y_span = max(1.0, max(y_values) - min(y_values))
+            x_tolerance = _axis_tick_step(x_axis_max) / 4.0
+            y_tolerance = _axis_tick_step(y_span) / 4.0
+
             items = _kennzahlen_items(
                 rng=rng,
                 k3=k3,
@@ -50,6 +65,8 @@ class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
                 x_break_even_high=x_break_even_high,
                 x_gain_max=x_gain_max,
                 capacity=capacity,
+                x_tolerance=x_tolerance,
+                y_tolerance=y_tolerance,
             )
 
             intro = (
@@ -74,7 +91,7 @@ class EconomicPolynomialKennzahlenGraphischGenerator(TaskGenerator):
                         "title": "Erlös-, Kosten- und Gewinnfunktion",
                         "xaxis": {
                             "title": "Menge x",
-                            "range": [0.0, float(capacity) * uniform_sig(rng, 1.04, 1.16)],
+                            "range": [0.0, x_axis_max],
                         },
                         "yaxis": {"title": "Wert"},
                     },

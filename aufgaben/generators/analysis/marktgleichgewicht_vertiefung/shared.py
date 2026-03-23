@@ -13,6 +13,25 @@ from aufgaben.generators.analysis.shared_numbers import round_sig, uniform_sig
 PriceFunction = Callable[[float], float]
 
 
+def _axis_tick_step(span: float) -> float:
+    if span <= 0:
+        return 1.0
+    target = span / 7.0
+    power = 10 ** math.floor(math.log10(target))
+    mantissa = target / power
+    if mantissa <= 1.0:
+        base = 1.0
+    elif mantissa <= 2.0:
+        base = 2.0
+    elif mantissa <= 2.5:
+        base = 2.5
+    elif mantissa <= 5.0:
+        base = 5.0
+    else:
+        base = 10.0
+    return base * power
+
+
 def _latex_supply_linear(slope: float, intercept: float) -> str:
     return f"\\( p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)} \\)"
 
@@ -308,11 +327,16 @@ def _kennzahlen_items_allgemein(
     sat_quantity: float,
     eq_quantity: float,
     eq_price: float,
+    x_tolerance: float | None = None,
+    y_tolerance: float | None = None,
 ) -> list[tuple[str, str]]:
+    x_tol = 0.5 if x_tolerance is None else x_tolerance
+    y_tol = 0.25 if y_tolerance is None else y_tolerance
+
     return [
-        ("den Mindestangebotspreis.", _num_tol(min_price, tolerance=0.25)),
-        ("den Höchstpreis.", _num_tol(max_price, tolerance=0.25)),
-        ("die Sättigungsmenge.", _num_tol(sat_quantity, tolerance=0.5)),
-        ("die Gleichgewichtsmenge.", _num_tol(eq_quantity, tolerance=0.5)),
-        ("den Gleichgewichtspreis.", _num_tol(eq_price, tolerance=0.25)),
+        ("den Mindestangebotspreis.", _num_tol(min_price, tolerance=y_tol)),
+        ("den Höchstpreis.", _num_tol(max_price, tolerance=y_tol)),
+        ("die Sättigungsmenge.", _num_tol(sat_quantity, tolerance=x_tol)),
+        ("die Gleichgewichtsmenge.", _num_tol(eq_quantity, tolerance=x_tol)),
+        ("den Gleichgewichtspreis.", _num_tol(eq_price, tolerance=y_tol)),
     ]

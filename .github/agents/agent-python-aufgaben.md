@@ -38,6 +38,7 @@ Du entwickelst und wartest die Python-basierte Aufgabenerzeugung in MatheChecks.
 - Bei Diagrammen:
   Beachte, dass Werte so gewählt sind, dass die Graphen ihr typisches Erscheinungsbild im Sachzusammenhang haben.
   Beachte, dass gesuchte Werte gut abgelesen werden können
+  Für Ableseaufgaben gilt als Standardtoleranz: ein Viertel der Schrittweite der jeweiligen Achse (x bzw. y).
 
 
 ## Namenskonventionen
