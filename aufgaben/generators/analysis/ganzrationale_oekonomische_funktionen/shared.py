@@ -151,7 +151,8 @@ def _answers_for_p_linear(a2: float, a1: float) -> str:
 def _num_tol(value: float, tolerance: float = 0.1, decimals: int = 4) -> str:
     rounded_value = round(value, decimals)
     value_text = _format_number(rounded_value)
-    tolerance_text = _format_number(round(tolerance, 1))
+    # Keep quarter-step tolerances like 1.25 exact in exported NUMERICAL answers.
+    tolerance_text = _format_number(round(tolerance, 3))
     return f"{{1:NUMERICAL:={value_text}:{tolerance_text}}}"
 
 
