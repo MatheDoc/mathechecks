@@ -155,6 +155,25 @@ def _num_tol(value: float, tolerance: float = 0.1, decimals: int = 4) -> str:
     return f"{{1:NUMERICAL:={value_text}:{tolerance_text}}}"
 
 
+def _axis_tick_step(span: float) -> float:
+    if span <= 0:
+        return 1.0
+    target = span / 7.0
+    power = 10 ** math.floor(math.log10(target))
+    mantissa = target / power
+    if mantissa <= 1.0:
+        base = 1.0
+    elif mantissa <= 2.0:
+        base = 2.0
+    elif mantissa <= 2.5:
+        base = 2.5
+    elif mantissa <= 5.0:
+        base = 5.0
+    else:
+        base = 10.0
+    return base * power
+
+
 def _g_value(x: float, k3: float, k2: float, k1: float, k0: float, price: float) -> float:
     return -k3 * (x ** 3) - k2 * (x ** 2) + (price - k1) * x - k0
 
@@ -303,23 +322,28 @@ def _kennzahlen_items(
     x_break_even_high: float,
     x_gain_max: float,
     capacity: int,
+    x_tolerance: float | None = None,
+    y_tolerance: float | None = None,
 ) -> list[tuple[str, str]]:
+    x_tol = 0.1 if x_tolerance is None else x_tolerance
+    y_tol = 0.1 if y_tolerance is None else y_tolerance
+
     g_max = _g_value(x_gain_max, k3, k2, k1, k0, price)
     x_wende = -k2 / (3.0 * k3)
     e_max = price * capacity
 
     items = [
-        ("den Verkaufspreis.", _num_tol(price)),
-        ("die Gewinnschwelle.", _num_tol(x_break_even_low)),
-        ("die Fixkosten.", _num_tol(k0)),
-        ("den maximalen Gewinn.", _num_tol(g_max)),
-        ("die Gewinngrenze.", _num_tol(x_break_even_high)),
+        ("den Verkaufspreis.", _num_tol(price, tolerance=y_tol)),
+        ("die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
+        ("die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
+        ("den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
+        ("die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
         (
             "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
-            _num_tol(x_wende),
+            _num_tol(x_wende, tolerance=x_tol),
         ),
-        ("den maximalen Erlös.", _num_tol(e_max)),
-        ("die gewinnmaximale Menge.", _num_tol(x_gain_max)),
+        ("den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
+        ("die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
     ]
     return items
 
@@ -343,7 +367,12 @@ def _e2k3_kennzahlen_items(
     x_break_even_low: float,
     x_break_even_high: float,
     x_gain_max: float,
+    x_tolerance: float | None = None,
+    y_tolerance: float | None = None,
 ) -> list[tuple[str, str]]:
+    x_tol = 0.1 if x_tolerance is None else x_tolerance
+    y_tol = 0.1 if y_tolerance is None else y_tolerance
+
     g3 = -k3
     g2 = a2 - k2
     g1 = a1 - k1
@@ -358,20 +387,20 @@ def _e2k3_kennzahlen_items(
     p_höchst = a1
 
     items = [
-        ("den maximalen Gewinn.", _num_tol(g_max)),
-        ("die Gewinnschwelle.", _num_tol(x_break_even_low)),
-        ("die erlösmaximale Menge.", _num_tol(x_erlös_max)),
-        ("die Sättigungsmenge.", _num_tol(x_sättigung)),
-        ("den maximalen Erlös.", _num_tol(e_max)),
-        ("den gewinnmaximalen Verkaufspreis.", _num_tol(p_gain_max)),
-        ("die Gewinngrenze.", _num_tol(x_break_even_high)),
+        ("den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
+        ("die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
+        ("die erlösmaximale Menge.", _num_tol(x_erlös_max, tolerance=x_tol)),
+        ("die Sättigungsmenge.", _num_tol(x_sättigung, tolerance=x_tol)),
+        ("den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
+        ("den gewinnmaximalen Verkaufspreis.", _num_tol(p_gain_max, tolerance=y_tol)),
+        ("die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
         (
             "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
-            _num_tol(x_wende),
+            _num_tol(x_wende, tolerance=x_tol),
         ),
-        ("die gewinnmaximale Menge.", _num_tol(x_gain_max)),
-        ("den Höchstpreis.", _num_tol(p_höchst)),
-        ("die Fixkosten.", _num_tol(k0)),
+        ("die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
+        ("den Höchstpreis.", _num_tol(p_höchst, tolerance=y_tol)),
+        ("die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
     ]
     return items
 

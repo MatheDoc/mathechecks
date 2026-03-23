@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _axis_tick_step,
     _e2k3_graph_y_range,
     _e2k3_kennzahlen_items,
     _sample_e2k3_parameters,
@@ -51,6 +52,8 @@ class EconomicPolynomialKennzahlenGraphischE2K3Generator(TaskGenerator):
                 k0=k0,
                 x_max=max_x,
             )
+            x_tolerance = _axis_tick_step(max_x) / 4.0
+            y_tolerance = _axis_tick_step(max(1.0, y_max - y_min)) / 4.0
             points = 280
             x_values = [max_x * index / (points - 1) for index in range(points)]
             p_values = [a2 * x + a1 for x in x_values]
@@ -69,6 +72,8 @@ class EconomicPolynomialKennzahlenGraphischE2K3Generator(TaskGenerator):
                 x_break_even_low=x_break_even_low,
                 x_break_even_high=x_break_even_high,
                 x_gain_max=x_gain_max,
+                x_tolerance=x_tolerance,
+                y_tolerance=y_tolerance,
             )
 
             intro = (

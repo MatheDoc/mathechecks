@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _axis_tick_step,
     _num_tol,
     _sample_k3_cost_coefficients_from_exact_kennzahlen,
 )
@@ -47,15 +48,17 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
             lowest = min(min_y_values)
             span = max(highest - lowest, 5.0)
             y_max = round(highest + 2.5 * span, 1)
+            x_tolerance = _axis_tick_step(max_x) / 4.0
+            y_tolerance = _axis_tick_step(y_max) / 4.0
 
             items = [
-                ("die kurzfristige Preisuntergrenze.", _num_tol(kurzfristige_preisuntergrenze, 2.5)),
-                ("das Betriebsminimum.", _num_tol(x_betriebsminimum, 0.5)),
-                ("die langfristige Preisuntergrenze.", _num_tol(langfristige_preisuntergrenze, 2.5)),
-                ("das Betriebsoptimum.", _num_tol(x_betriebsoptimum, 0.5)),
+                ("die kurzfristige Preisuntergrenze.", _num_tol(kurzfristige_preisuntergrenze, y_tolerance)),
+                ("das Betriebsminimum.", _num_tol(x_betriebsminimum, x_tolerance)),
+                ("die langfristige Preisuntergrenze.", _num_tol(langfristige_preisuntergrenze, y_tolerance)),
+                ("das Betriebsoptimum.", _num_tol(x_betriebsoptimum, x_tolerance)),
                 (
                     "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
-                    _num_tol(x_wende, 0.5),
+                    _num_tol(x_wende, x_tolerance),
                 ),
             ]
 

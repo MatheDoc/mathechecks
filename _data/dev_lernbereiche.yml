@@ -1,51 +1,98 @@
+# ──────────────────────────────────────────────────────────
+# Lernbereiche mit Kernszenarien
+# ──────────────────────────────────────────────────────────
+# szenario: Durchgängiger Anwendungskontext für Einstieg und Skript.
+#           Übungsaufgaben sind bewusst NICHT an das Szenario gebunden,
+#           um kontextunabhängigen Transfer zu sichern.
+# ──────────────────────────────────────────────────────────
+
+# ══════════════════════ ANALYSIS ═════════════════════════
+
 - gebiet: analysis
   slug: analysis-diverses
   name: Analysis - Diverses
+  szenario: "Streaming-Dienst – Nutzerzahlen über die Zeit modellieren verschiedene Funktionstypen (lineares Wachstum, Sättigung, Rückgang)."
+
 - gebiet: analysis
   slug: differentialrechnung-ganzrationaler-funktionen
   name: Differentialrechnung ganzrationaler Funktionen
+  szenario: "E-Scooter-Fahrt durch die Stadt – Weg, Geschwindigkeit (= Ableitung) und Beschleunigung (= zweite Ableitung) an einem Alltagsbeispiel."
+
 - gebiet: analysis
   slug: lineare-funktionen
   name: Lineare Funktionen
+  szenario: "Handytarif-Vergleich – Grundgebühr (y-Achsenabschnitt) und Minutenpreis (Steigung); Schnittpunkt = ab wann lohnt sich welcher Tarif?"
+
 - gebiet: analysis
   slug: ganzrationale-oekonomische-funktionen
   name: Ganzrationale ökonomische Funktionen
+  szenario: "Online-Shop für Custom-Sneaker – Kosten-, Erlös- und Gewinnfunktion, Break-even-Point und Gewinnmaximierung eines kleinen Unternehmens."
+
 - gebiet: analysis
   slug: ertragsgesetzliche-kostenfunktionen
   name: Ertragsgesetzliche Kostenfunktionen
+  szenario: "Café-Betrieb – erst effiziente Produktion, dann steigende Grenzkosten bei Überlastung; S-förmiger Kostenverlauf direkt erlebbar."
+
 - gebiet: analysis
   slug: marktgleichgewicht-grundlagen
   name: Marktgleichgewicht - Grundlagen
+  szenario: "Sneaker-Reselling – limitierte Drops, Nachfrageüberschuss, Preisbildung auf dem Sekundärmarkt als Angebot-Nachfrage-Modell."
+
 - gebiet: analysis
   slug: marktgleichgewicht-vertiefung
   name: Marktgleichgewicht - Vertiefung
+  szenario: "CO₂-Steuer auf Flugreisen – Steuerlastverteilung, Konsumenten-/Produzentenrente und Wohlfahrtseffekte an einem politisch aktuellen Beispiel."
+
 - gebiet: analysis
   slug: produktlebenszyklus
   name: Produktlebenszyklus
+  szenario: "Smartphone-Launch (iPhone) – Einführung, Wachstum, Reife, Rückgang eines konkreten Produkts mit glockenförmiger Absatzkurve."
+
+# ══════════════════ LINEARE ALGEBRA ══════════════════════
+
 - gebiet: lineare-algebra
   slug: lineare-gleichungssysteme
   name: Lineare Gleichungssysteme
+  szenario: "Festival-Catering (3 Food-Trucks) – verschiedene Bestellkombinationen ergeben 3 Gleichungen mit 3 Unbekannten; Lösbarkeit und Gauß-Verfahren."
+
 - gebiet: lineare-algebra
   slug: matrizenrechnung
   name: Matrizenrechnung
+  szenario: "Social-Media-Bildfilter – Bildmatrix mal Filtermatrix; Addition, Skalarmultiplikation und Multiplikation am selben visuellen Kontext."
+
 - gebiet: lineare-algebra
   slug: mehrstufige-produktionsprozesse
   name: Mehrstufige Produktionsprozesse
+  szenario: "Smartphone-Fertigung – Rohstoffe → Bauteile → Endprodukt; Bedarfsmatrizen über mehrere Produktionsstufen."
+
+# ══════════════════════ STOCHASTIK ═══════════════════════
+
 - gebiet: stochastik
   slug: zufallsexperimente-und-wahrscheinlichkeiten
   name: Zufallsexperimente und Wahrscheinlichkeiten
+  szenario: "Tombola auf dem Schulfest – Lose, Gewinnchancen, Laplace-Wahrscheinlichkeit und Gegenereignis an einer konkreten Losverteilung."
+
 - gebiet: stochastik
   slug: mehrstufige-zufallsexperimente
   name: Mehrstufige Zufallsexperimente
+  szenario: "Qualitätskontrolle (Kopfhörer-Produktion) – mehrere Prüfschritte als Stufen, Baumdiagramm und Pfadregeln."
+
 - gebiet: stochastik
   slug: bedingte-wahrscheinlichkeiten
   name: Bedingte Wahrscheinlichkeiten
+  szenario: "Medizinischer Schnelltest – falsch-positive Ergebnisse, Bayes-Paradoxon und bedingte Wahrscheinlichkeiten an einem eindrücklichen Beispiel."
+
 - gebiet: stochastik
   slug: binomialverteilung
   name: Binomialverteilung
+  szenario: "Pünktlichkeit der Bahn – bei 10 Fahrten: Bernoulli-Kette, Erwartungswert und Sigma-Regeln aus Schülererfahrung."
+
 - gebiet: stochastik
   slug: hypothesentests
   name: Hypothesentests
+  szenario: "A/B-Test einer App – welcher Button-Text bringt mehr Klicks? Nullhypothese, Signifikanzniveau und Ablehnungsbereich."
+
 - gebiet: stochastik
   slug: zufallsgroessen
   name: Zufallsgrößen
+  szenario: "Glücksrad auf dem Jahrmarkt – Auszahlungsbeträge als Zufallsgröße; Erwartungswert = lohnt sich das Spielen? Varianz = wie riskant?"

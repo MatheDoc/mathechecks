@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _axis_tick_step,
     _kennzahlen_items_allgemein,
     _sample_market_params,
 )
@@ -43,6 +44,8 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
 
             max_x = max(12.0, sat_quantity * 1.1)
             max_y = round(max(max_price, eq_p) * 1.12, 3)
+            tolerance_x = _axis_tick_step(max_x) / 4.0
+            tolerance_y = _axis_tick_step(max_y) / 4.0
 
             items = _kennzahlen_items_allgemein(
                 min_price=min_price,
@@ -50,6 +53,8 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
                 sat_quantity=sat_quantity,
                 eq_quantity=eq_x,
                 eq_price=eq_p,
+                x_tolerance=tolerance_x,
+                y_tolerance=tolerance_y,
             )
 
             tasks.append(

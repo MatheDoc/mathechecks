@@ -1,3 +1,4 @@
+import math
 import random
 
 from aufgaben.generators.analysis.shared_numbers import uniform_sig
@@ -20,6 +21,25 @@ def _num_tol(value: float, tolerance: float, decimals: int = 4) -> str:
     value_text = _fmt_number(round(value, decimals), max_decimals=decimals)
     tol_text = _fmt_number(round(tolerance, 2), max_decimals=2)
     return f"{{1:NUMERICAL:={value_text}:{tol_text}}}"
+
+
+def _axis_tick_step(span: float) -> float:
+    if span <= 0:
+        return 1.0
+    target = span / 7.0
+    power = 10 ** math.floor(math.log10(target))
+    mantissa = target / power
+    if mantissa <= 1.0:
+        base = 1.0
+    elif mantissa <= 2.0:
+        base = 2.0
+    elif mantissa <= 2.5:
+        base = 2.5
+    elif mantissa <= 5.0:
+        base = 5.0
+    else:
+        base = 10.0
+    return base * power
 
 
 def _latex_supply(slope: float, intercept: float) -> str:
@@ -62,14 +82,26 @@ def _kennzahlen_items(
     sat_quantity: float,
     eq_quantity: float,
     eq_price: float,
-    tolerance: float,
+    tolerance: float | None = None,
+    x_tolerance: float | None = None,
+    y_tolerance: float | None = None,
 ) -> list[tuple[str, str]]:
+    # Backward compatibility for older callers that pass a single tolerance value.
+    if tolerance is not None:
+        if x_tolerance is None:
+            x_tolerance = tolerance
+        if y_tolerance is None:
+            y_tolerance = tolerance
+
+    x_tol = 0.5 if x_tolerance is None else x_tolerance
+    y_tol = 0.5 if y_tolerance is None else y_tolerance
+
     return [
-        ("den Mindestangebotspreis.", _num_tol(min_price, tolerance)),
-        ("den Höchstpreis.", _num_tol(max_price, tolerance)),
-        ("die Sättigungsmenge.", _num_tol(sat_quantity, tolerance)),
-        ("die Gleichgewichtsmenge.", _num_tol(eq_quantity, tolerance)),
-        ("den Gleichgewichtspreis.", _num_tol(eq_price, tolerance)),
+        ("den Mindestangebotspreis.", _num_tol(min_price, y_tol)),
+        ("den Höchstpreis.", _num_tol(max_price, y_tol)),
+        ("die Sättigungsmenge.", _num_tol(sat_quantity, x_tol)),
+        ("die Gleichgewichtsmenge.", _num_tol(eq_quantity, x_tol)),
+        ("den Gleichgewichtspreis.", _num_tol(eq_price, y_tol)),
     ]
 
 
