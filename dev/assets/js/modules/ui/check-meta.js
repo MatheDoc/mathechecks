@@ -8,8 +8,8 @@ function escapeHtml(value) {
 }
 
 function sanitizeTagName(tagName) {
-  const value = String(tagName || "h3").toLowerCase();
-  return /^[a-z][a-z0-9-]*$/.test(value) ? value : "h3";
+  const value = String(tagName || "span").toLowerCase();
+  return /^[a-z][a-z0-9-]*$/.test(value) ? value : "span";
 }
 
 function normalizeClassName(parts) {
@@ -44,7 +44,7 @@ export function renderCheckMetaRowMarkup({
   rowClass = "",
   badgeClass = "",
   titleClass = "",
-  titleTag = "h3",
+  titleTag = "span",
 }) {
   const tagName = sanitizeTagName(titleTag);
   const rowClassName = normalizeClassName(["dev-check-card__header-left", rowClass]);

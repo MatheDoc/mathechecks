@@ -182,7 +182,7 @@ function createTaskCardNode(
       prefix: "Check",
       tone: "training",
       rowClass: "dev-check-card__header-left",
-      titleTag: "h3",
+      titleTag: "span",
     }
   );
 

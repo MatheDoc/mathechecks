@@ -136,7 +136,7 @@ function createEmptyTaskCard(check) {
             prefix: "Check",
             tone: "training",
             rowClass: "dev-check-card__header-left",
-            titleTag: "h3",
+            titleTag: "span",
         }
     );
 
@@ -180,7 +180,7 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
             prefix: "Check",
             tone: "training",
             rowClass: "dev-check-card__header-left",
-            titleTag: "h3",
+            titleTag: "span",
         }
     );
 
@@ -296,6 +296,68 @@ function upsertTaskHostAfter(noteNode) {
     return host;
 }
 
+async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedState, taskIndexByCheckId }) {
+    try {
+        const sammlung = await getAufgabenSammlung(check.Sammlung, {
+            gebiet: check.Gebiet,
+            lernbereich: check.Lernbereich,
+        });
+
+        const checkId = getCheckId(check);
+        let taskIndex = usePersistedState
+            ? loadTaskIndexForCheck(
+                lernbereich,
+                checkId,
+                Number.isInteger(taskIndexByCheckId[checkId]) ? taskIndexByCheckId[checkId] : 0
+            )
+            : Number.isInteger(taskIndexByCheckId[checkId])
+                ? taskIndexByCheckId[checkId]
+                : 0;
+
+        if (!Array.isArray(sammlung) || sammlung.length === 0) {
+            taskIndex = 0;
+        } else if (taskIndex < 0 || taskIndex >= sammlung.length) {
+            taskIndex = 0;
+        }
+
+        const renderTaskCardForIndex = async (nextTaskIndex) => {
+            const normalizedTaskIndex = Number.isInteger(nextTaskIndex) ? nextTaskIndex : 0;
+            const aufgabe = Array.isArray(sammlung) ? sammlung[normalizedTaskIndex] || null : null;
+            const taskUiStateKey = buildTaskUiStateKey({
+                lernbereich,
+                checkId,
+                taskIndex: normalizedTaskIndex,
+            });
+
+            host.innerHTML = "";
+            const card = createTaskCard(check, aufgabe, taskUiStateKey, usePersistedState);
+            host.appendChild(card);
+
+            const runtimeRoot = host.querySelector(".dev-check-card__runtime-task");
+            if (runtimeRoot) {
+                runtimeRoot.addEventListener("task:reload", async () => {
+                    const nextRandomIndex = pickRandomTaskIndex(
+                        normalizedTaskIndex,
+                        Array.isArray(sammlung) ? sammlung.length : 0
+                    );
+                    saveTaskIndexForCheck(lernbereich, checkId, nextRandomIndex);
+                    await renderTaskCardForIndex(nextRandomIndex);
+                });
+            }
+
+            await finalizeTaskRender(host);
+        };
+
+        await renderTaskCardForIndex(taskIndex);
+    } catch (error) {
+        const message = document.createElement("p");
+        message.className = "dev-module__status";
+        message.style.color = "var(--rose)";
+        message.textContent = error?.message || "Aufgabe konnte nicht geladen werden.";
+        host.appendChild(message);
+    }
+}
+
 export async function initScriptTaskDuplicatesModule({
     root,
     lernbereich,
@@ -304,7 +366,8 @@ export async function initScriptTaskDuplicatesModule({
     if (!root || !lernbereich) return;
 
     const noteNodes = Array.from(root.querySelectorAll(".mc-note[data-check], .mc-note[data-key]"));
-    if (noteNodes.length === 0) return;
+    const ankerNodes = Array.from(root.querySelectorAll(".check-anker[data-nummer]"));
+    if (noteNodes.length === 0 && ankerNodes.length === 0) return;
 
     const checks = await getChecksByLernbereich(lernbereich);
     if (!Array.isArray(checks) || checks.length === 0) return;
@@ -324,69 +387,24 @@ export async function initScriptTaskDuplicatesModule({
             ? trainingState.taskIndexByCheckId
             : {};
 
+    const opts = { lernbereich, usePersistedState, taskIndexByCheckId };
+
     for (const noteNode of noteNodes) {
         const check = findCheckForNote(noteNode, checksByLookupKey);
         if (!check) continue;
 
         const host = upsertTaskHostAfter(noteNode);
-        try {
-            const sammlung = await getAufgabenSammlung(check.Sammlung, {
-                gebiet: check.Gebiet,
-                lernbereich: check.Lernbereich,
-            });
+        await renderCheckTaskInHost(host, check, opts);
+    }
 
-            const checkId = getCheckId(check);
-            let taskIndex = usePersistedState
-                ? loadTaskIndexForCheck(
-                    lernbereich,
-                    checkId,
-                    Number.isInteger(taskIndexByCheckId[checkId]) ? taskIndexByCheckId[checkId] : 0
-                )
-                : Number.isInteger(taskIndexByCheckId[checkId])
-                    ? taskIndexByCheckId[checkId]
-                    : 0;
+    for (const ankerNode of ankerNodes) {
+        const nummer = normalizeLookupKey(ankerNode.dataset.nummer);
+        const check = checksByLookupKey.get(nummer);
+        if (!check) continue;
 
-            if (!Array.isArray(sammlung) || sammlung.length === 0) {
-                taskIndex = 0;
-            } else if (taskIndex < 0 || taskIndex >= sammlung.length) {
-                taskIndex = 0;
-            }
+        const host = ankerNode.querySelector(".check-anker__aufgabe");
+        if (!host) continue;
 
-            const renderTaskCardForIndex = async (nextTaskIndex) => {
-                const normalizedTaskIndex = Number.isInteger(nextTaskIndex) ? nextTaskIndex : 0;
-                const aufgabe = Array.isArray(sammlung) ? sammlung[normalizedTaskIndex] || null : null;
-                const taskUiStateKey = buildTaskUiStateKey({
-                    lernbereich,
-                    checkId,
-                    taskIndex: normalizedTaskIndex,
-                });
-
-                host.innerHTML = "";
-                const card = createTaskCard(check, aufgabe, taskUiStateKey, usePersistedState);
-                host.appendChild(card);
-
-                const runtimeRoot = host.querySelector(".dev-check-card__runtime-task");
-                if (runtimeRoot) {
-                    runtimeRoot.addEventListener("task:reload", async () => {
-                        const nextRandomIndex = pickRandomTaskIndex(
-                            normalizedTaskIndex,
-                            Array.isArray(sammlung) ? sammlung.length : 0
-                        );
-                        saveTaskIndexForCheck(lernbereich, checkId, nextRandomIndex);
-                        await renderTaskCardForIndex(nextRandomIndex);
-                    });
-                }
-
-                await finalizeTaskRender(host);
-            };
-
-            await renderTaskCardForIndex(taskIndex);
-        } catch (error) {
-            const message = document.createElement("p");
-            message.className = "dev-module__status";
-            message.style.color = "var(--rose)";
-            message.textContent = error?.message || "Aufgabe konnte nicht geladen werden.";
-            host.appendChild(message);
-        }
+        await renderCheckTaskInHost(host, check, opts);
     }
 }

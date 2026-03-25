@@ -71,12 +71,12 @@ Setze zunächst `x = 1`.
 
 ### `blurting`
 - **Zweck:** Active Recall auf Begriffsebene (primär: Begriffe nennen, nicht ausformuliert erklären)
-- **Aufbau:** Dem/der Schüler:in wird ein Schlüsselbegriff präsentiert und zum Brainstormen aufgefordert; danach (Timer) Selbstüberprüfung mit eingeblendeten Referenz-Stichwörtern und Selbsteinschätzung (`kann` / `kann nicht`)
+- **Aufbau:** Dem/der Schüler:in wird ein Schlüsselbegriff präsentiert und zum Brainstormen aufgefordert; danach (Timer) Selbstüberprüfung mit eingeblendeten Referenz-Begriffen und Selbsteinschätzung (`kann` / `kann nicht`)
 - **Abschlussbedingung:** Selbsteinschätzung `kann`
 - **Bei `kann nicht`:** Skript-Link zum passenden Abschnitt einblenden; nach 10 Minuten kann `blurting` erneut durchgeführt werden
 - **Feed-Priorität:** `blurting` bleibt für den betroffenen Check an erster Stelle im Feed, bis `kann` ausgewählt wird
 - **Auslöser:** `x` Tage nach Abschluss des vorherigen Moduls (`training`)
-- **Implementierung:** Schlüsselbegriffe pro Lernbereich müssen pro Check noch annotiert werden (in `checks.json`, Feld `blurting`); UI braucht Begriff, Referenz-Stichwörter und 2-stufige Selbsteinschätzung, zeitgesteuert (z. B. 5 min)
+- **Implementierung:** Schlüsselbegriffe pro Check in `checks.json`, Feld `Blurting`; UI braucht Begriff, Referenz-Begriffe und 2-stufige Selbsteinschätzung, zeitgesteuert (z. B. 5 min)
 
 ### `feynman`
 - **Zweck:** Tieferes Verständnis durch Erklären einer Methode/Technik

@@ -129,7 +129,7 @@ class BinomialHistogrammeEinzelnGenerator(TaskGenerator):
             ]
             intro = (
                 f"{rng.choice(intro_base_variants)}</p> "
-                f"<p>Das Histogramm zeigt die Verteilung der Zufallsgrö�Ye X, die die Anzahl der "
+                f"<p>Das Histogramm zeigt die Verteilung der Zufallsgröße X, die die Anzahl der "
                 f"{scenario.success_plural} angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten "
                 f"der folgenden Ereignisse (auf 2 NKS gerundet)."
             )

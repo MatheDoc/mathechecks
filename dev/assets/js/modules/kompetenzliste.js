@@ -95,7 +95,7 @@ function renderRow(check) {
         tone: "kompetenzliste",
         rowClass: "kl-check-meta-row",
         titleClass: "kl-check-name",
-        titleTag: "h3",
+        titleTag: "span",
     })}
                 <div class="dev-check-card__header-actions kl-actions">
                     ${trainingLink}

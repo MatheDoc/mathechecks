@@ -148,10 +148,10 @@ function renderCard(check) {
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
   const scriptHref = buildScriptInfoHref(check);
-  const refs = Array.isArray(check?.blurting?.referenz_stichwoerter)
-    ? check.blurting.referenz_stichwoerter
-    : Array.isArray(check?.Stichwoerter)
-      ? check.Stichwoerter
+  const refs = Array.isArray(check?.Blurting) && check.Blurting.length
+    ? check.Blurting
+    : Array.isArray(check?.Tipps)
+      ? check.Tipps
       : [];
   const refsMarkup = refs
     .map((ref) => `<span class="bl-kw"><span class="bl-kwdot"></span>${escapeHtml(ref)}</span>`)
@@ -173,7 +173,7 @@ function renderCard(check) {
     prefix: "Check",
     tone: "blurting",
     rowClass: "dev-check-card__header-left",
-    titleTag: "h3",
+    titleTag: "span",
   })}
           <div class="dev-check-card__header-actions">
             ${skriptIcon}
@@ -196,7 +196,7 @@ function renderCard(check) {
             </div>
             <div class="bl-timer-info">
               <div class="bl-ti-t">Brainstorm-Zeit</div>
-              <div class="bl-ti-s">Erst schreiben, dann mit Stichwörtern vergleichen.</div>
+              <div class="bl-ti-s">Erst schreiben, dann vergleichen.</div>
             </div>
             <button class="bl-reveal-btn" type="button" data-bl-reveal>Jetzt auswerten</button>
           </div>
@@ -209,9 +209,9 @@ function renderCard(check) {
 
         <div data-bl-stage="evaluate" hidden>
           <div class="bl-divider">
-            <hr><span>Referenz-Stichwörter</span><hr>
+            <hr><span>Referenz-Begriffe</span><hr>
           </div>
-          ${refs.length ? `<div class="bl-kws" style="margin-bottom:18px;">${refsMarkup}</div>` : "<p style=\"font-size:.82rem;color:var(--text-muted);margin-bottom:18px;\">Keine Referenz-Stichwörter hinterlegt.</p>"}
+          ${refs.length ? `<div class="bl-kws" style="margin-bottom:18px;">${refsMarkup}</div>` : "<p style=\"font-size:.82rem;color:var(--text-muted);margin-bottom:18px;\">Keine Referenz-Begriffe hinterlegt.</p>"}
           <p class="bl-selbst-lbl">Wie sicher bist du bei diesem Begriff?</p>
           <div class="bl-selbst-btns">
             <button class="bl-sb yes" type="button" data-bl-answer="yes">

@@ -1,4 +1,4 @@
----
+﻿---
 layout: dev-module
 title: Binomialverteilung - Skript (Dev)
 description: Dev-Lernbereich Binomialverteilung, Modul Skript.
@@ -17,16 +17,7 @@ permalink: /dev/lernbereiche/stochastik/binomialverteilung/skript.html
 Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$. Eine gleichbleibende Trefferwahrscheinlichkeit bedeutet im Übrigen, dass die auftretenden Ereignisse voneinander unabhängig sind.
 Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**. Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben.
 
-{% include info.html
-index="1"
-frage="Bedingungen der Binomialverteilung:"
-antwort="
-
-- Es gibt eine feste Anzahl an Versuchen (Stufen).
-- Es gibt es in jedem Versuch genau zwei mögliche Ausgänge.
-- Die Wahrscheinlichkeit für einen Treffer ist in jedem Versuch gleich.
-  "
-  %}
+{% include dev/check-anker.html nummer=1 %}
 
 
 ## Die Bernoulli-Formel
@@ -64,11 +55,9 @@ $$
 
 Diese Formel bildet die Grundlage für viele Wahrscheinlichkeitsberechnungen. Sie ist in einigen Taschenrechnern als Funktion integriert und in Tafelwerken dokumentiert.
 
-### Anwendung
+### Beispiele
 
-{% include flip-card.html
-frage="Eine Basketballspielerin habe von der Freiwurflinie eine Trefferwahrscheinlichkeit von 70 % und wirft 4 Mal. Wie groß ist die Wahrscheinlichkeit, dass sie genau 3 Treffer erzielt?"
-antwort="
+Eine Basketballspielerin habe von der Freiwurflinie eine Trefferwahrscheinlichkeit von 70 % und wirft 4 Mal. Wie groß ist die Wahrscheinlichkeit, dass sie genau 3 Treffer erzielt?
 
 $$
 \begin{align*}
@@ -77,12 +66,8 @@ P(X=4)&=\binom{4}{3}\cdot 0{,}7^3\cdot (1-0{,}7)^{4-3}\\
 \end{align*}
 $$
 
-"
-%}
 
-{% include flip-card.html
-frage="Ein Virentest erkennt eine Infektion mit 92 % Wahrscheinlichkeit. Bei 12 getesteten infizierten Personen: Wie groß ist die Wahrscheinlichkeit, dass genau 11 positive Tests erfolgen?"
-antwort="
+Ein Virentest erkennt eine Infektion mit 92 % Wahrscheinlichkeit. Bei 12 getesteten infizierten Personen: Wie groß ist die Wahrscheinlichkeit, dass genau 11 positive Tests erfolgen?
 
 $$
 \begin{align*}
@@ -91,37 +76,15 @@ P(X=11)&=\binom{12}{11}\cdot 0{,}92^{11}\cdot 0{,}08^{12-11}\\
 \end{align*}
 $$
 
-" %}
 
-{% include flip-card.html
-frage="Die Wahrscheinlichkeit, dass ein Paket zu spät geliefert wird, beträgt 10 %. Bei 8 Sendungen: Wie wahrscheinlich ist es, dass genau 2 zu spät ankommen?"
-antwort="
 
-$$
-\begin{align*}
-P(X=2)&=\binom{8}{2}\cdot 0{,}1^2\cdot 0{,}9^{8-2}\\
-&=0{,}1488
-\end{align*}
-$$
 
-" %}
 
 ### Interpretationen
 
 Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel auch inhaltlich interpretieren zu können.
 
-{% include info.html
-index="2"
-frage="Interpretation der Bernoulli-Formel $P(X=k)=\binom{n}{k}\cdot p^k\cdot (1-p)^{n-k}$"
-antwort="
-
-- $n$: Anzahl der Versuche
-- $p$: Trefferwahrscheinlichkeit
-- $1-p$: Nietenwahrscheinlichkeit
-- $k$: Anzahl der Treffer
-- $P(X=k)$: Wahrscheinlichkeit für genau $k$ Treffer
-  "
-  %}
+{% include dev/check-anker.html nummer=2 %}
 
 
 ## Intervallwahrscheinlichkeiten
@@ -245,34 +208,10 @@ $$
 
 Für Bereichswahrscheinlichkeiten werden die Bernoulli-Formeln mehrfach nacheinander angewendet. Dies kann bei vielen Summanden aufwendig und fehleranfällig sein. Typischerweise werden Bereichswahrscheinlichkeiten daher mit Tafelwerken oder Taschenrechnern bestimmt. In Tafelwerken befinden sich in der Regel die **kumulierten Wahrscheinlichkeiten** $P(X\leq k)$.
 
-{% include info.html
-index="3"
-frage="Tafelwerke: Gesuchte Wahrscheinlichkeiten auf Wahrscheinlichkeiten der Art $P(X\leq k)$ zurückführen."
-antwort="
-
-$$
-\begin{align*}
-P(X=k)&=P(X\leq k)-P(X\leq k-1)\\
-P(X\geq k)&=1-P(X\leq k-1)\\
-P(a<X<b)&=P(X\leq b-1)-P(X\leq a)\\
-\end{align*}
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer=3 %}
 
 
-{% include info.html
-index="4"
-frage="Taschenrechner: Direktes Bestimmen der Bereichswahrscheinlichkeiten."
-antwort="
-
-$$
-P(a\leq X\leq b)=Bcd(a;b;n;p)
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer=4 %}
 
 
 ### Weitere Hinweise
@@ -457,17 +396,7 @@ $$
 
 " %}
 
-{% include info.html
-index="5"
-frage="Kurzfragen zur Berechnung von Bereichswahrscheinlichkeiten:"
-antwort="
-
-- Binomialverteilt?
-- $n$ und $p$ ?
-- Treffer im Sachzusammenhang?
-- Intervallgrenzen inklusive korrekter Rundung?
-  "
-  %}
+{% include dev/check-anker.html nummer=5 %}
 
 
 ## Histogramme
@@ -479,37 +408,10 @@ Wie jede Zufallsgröße können binomialverteilte Zufallsgrößen in Histogramme
 
 {%include histogramm-binomial.html %}
 
-{% include info.html
-index="6"
-frage="Histogramm der Einzelwahrscheinlichkeiten"
-antwort="
-
-- Die Wahrscheinlichkeiten der Art $P(X=k)$ können direkt abgelesen werden.
-- Bei Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ ermitteln wir alle Balken, die innerhalb des Intervalls $[a;b]$ liegen, und addieren deren Wahrscheinlichkeiten.
-  "
-  %}
+{% include dev/check-anker.html nummer=6 %}
 
 
-{% include info.html
-index="7"
-frage="Histogramm der kumulierten Wahrscheinlichkeiten"
-antwort="
-
-- Die kumulierten Wahrscheinlichkeiten $P(X\leq k)$ können direkt abgelesen werden.
-- Die Einzelwahrscheinlichkeiten $P(X=k)$ können als Stufenhöhen aufgefasst werden:
-
-$$
-P(X=k)=P(X\leq k)- P(X\leq k-1).
-$$
-
-- Die Wahrscheinlichkeiten der Form $P(a\leq X\leq b)$ entsprechen dann den Höhen mehrerer Stufen:
-
-$$
-P(a\leq X\leq b)=P(X\leq b)- P(X\leq a-1).
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer=7 %}
 
 
 ## Bestimmung von n, p und k
@@ -601,64 +503,13 @@ Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist al
 
 Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarte Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
 
-{% include info.html
-index="8"
-frage="Beispiel zur Bestimmung von $n$:"
-antwort="
-Der Besitzer eines Restaurants untersucht, wie viele Gäste vegetarische Gerichte bestellen. Allgemeine Statistiken zeigen, dass 61% aller Gäste vegetarische Gerichte bestellen. Wie viele Gerichte müssen mindestens untersucht werden, damit die Wahrscheinlichkeit für mindestens 144 vegetarische Gerichte mindestens 29% beträgt?
+{% include dev/check-anker.html nummer=8 %}
 
-Gegeben ist $p=0{,}61$ und $k=144$. Gesucht ist das kleinste $n$, so dass $P(X\geq 144)\geq 0{,}29$ ist. Wir bestimmen:
+{% include dev/check-anker.html nummer=9 %}
 
-$$
-\begin{align*}
-\text{für }n=228 \text{ gilt: } P(X\geq 144)=0{,}2753<0{,}29\\
-\text{für }n=229 \text{ gilt: } P(X\geq 144)=0{,}3042\geq 0{,}29
-\end{align*}
-$$
-
-Das kleinste $n$, für das $P(X\geq 144)\geq 0{,}29$ gilt, ist also $n=229$.
-
-"
-%}
+{% include dev/check-anker.html nummer=10 %}
 
 
-{% include info.html
-index="9"
-frage="Beispiel zur Bestimmung von $p$:"
-antwort=" Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt. Wie hoch muss der Anteil der zufriedenen Mitarbeiter mindestens sein, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)?
-
-Gegeben ist $n=274$ und $k=142$. Gesucht ist das kleinste $p$, so dass $P(X\leq 142)\leq 0{,}31$ ist. Wir bestimmen:
-
-$$
-\begin{align*}
-\text{für }p=0{,}53 \text{ gilt: } P(X\leq 142)=0{,}3706>0{,}31\\
-\text{für }p=0{,}54 \text{ gilt: } P(X\leq 142)=0{,}2538\leq 0{,}31
-\end{align*}
-$$
-
-Das kleinste $p$, für das $P(X\leq 142)\leq 0{,}31$ gilt, ist also $p=0{,}54$.
-"
-%}
-
-
-{% include info.html
-index="10"
-frage="Beispiel zur Bestimmung von $k$:"
-antwort="
-Ein potentieller Werbepartner studiert den Bekanntheitsgrad einer Influencerin. An einer Umfrage zum Bekanntheitsgrad der Influencerin nehmen 158 User teil. Man weiß, dass jeder 2. User der Influencerin folgt. Wie viele Follower der Influencerin dürfen höchstens in der Stichprobe vorhanden sein, damit die Wahrscheinlichkeit für mindestens diese Anzahl der Follower der Influencerin mindestens 87% beträgt?
-
-Gegeben ist $n=158$ und $p=0{,}5$. Gesucht ist das größte $k$, so dass $P(X\geq k)\geq 0{,}87$ ist. Wir bestimmen:
-
-$$
-\begin{align*}
-\text{Es gilt: } P(X\geq 72)=0{,}8837\geq 0{,}87\\
-\text{Es gilt: } P(X\geq 73)=0{,}8495< 0{,}87
-\end{align*}
-$$
-
-Das größte $k$, für das $P(X\geq k)\geq 0{,}87$ gilt, ist also $k=72$.
-"
-%}
 
 
 ## Erwartungswert und Standardabweichung
@@ -702,14 +553,12 @@ $$
 
 ist noch aufwendiger und wird hier übersprungen.
 
-{% include info.html
-index="11"
-frage="Bestimmung von $\mu$ und $\sigma$"
-antwort="Direktes Anwenden der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$."
-%}
+### Anwendung der Formeln
 
+Sind $n$ und $p$ gegeben, so können wir nun direkt mit den Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen
 
-### Kombination der Formeln
+{% include dev/check-anker.html nummer=11 %}
+
 
 In den beiden Gleichungen
 
@@ -719,77 +568,14 @@ $$
 
 werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit können wir häufig, wenn zwei Werte dieser vier Größen bekannt sind, die Werte der anderen beiden Größen berechnen.
 
-{% include info.html
-index="12"
-frage="Bestimmung von $p$ und $\sigma$"
-antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
+{% include dev/check-anker.html nummer=12 %}
 
-Beispiel: Polizisten kontrollieren in der Nähe einer Diskothek insgesamt 200 Autofahrer. Sie gehen davon aus, dass unter diesen etwa 25 alkoholisierte Personen am Steuer sitzen. Mit welcher Wahrscheinlichkeit ist ein kontrollierter Autofahrer alkoholisiert? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl alkoholisierter Fahrer beschreibt?
+{% include dev/check-anker.html nummer=13 %}
 
-Gegeben sind $n=200$ und $\mu=25$, gesucht sind $p$ und $\sigma$. Wegen $\mu=n\cdot p$ ist $25=200 \cdot p$ und so $p=\frac{25}{200}=0{,}4$. Dann ist $\sigma=\sqrt{200\cdot 0{,}4\cdot (1-0{,}4)}=6{,}9282$.
-"
-%}
+{% include dev/check-anker.html nummer=14 %}
 
+{% include dev/check-anker.html nummer=15 %}
 
-{% include info.html
-index="13"
-frage="Bestimmung von $n$ und $\sigma$"
-antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
-
-Beispiel: Auf einem gebührenpflichtigen Parkplatz parken erfahrungsgemäß 15 % der Autofahrer ohne gültigen Parkschein. Eine Mitarbeiterin des Ordnungsamts beginnt ihren Dienst mit 12 Überweisungsträgern, die sie bei festgestellten Verstößen hinter die Scheibenwischer der Fahrzeuge legt. Mit wie vielen Fahrzeugen ohne gültigen Parkschein rechnet die Mitarbeiterin an diesem Tag? Wie groß ist die Standardabweichung der binomialverteilten Zufallsgröße, die die Anzahl der Falschparker beschreibt?
-
-Gegeben sind $p=0{,}15$ und $\mu=12$, gesucht sind $n$ und $\sigma$.
-Wegen $\mu=n\cdot p$ ist $12=n \cdot 0{,}15$ und so $n=\frac{12}{0{,}15}=80$.
-Dann ist $\sigma=\sqrt{80\cdot 0{,}15\cdot (1-0{,}15)}=3{,}1937$.
-"
-%}
-
-
-{% include info.html
-index="14"
-frage="Bestimmung von $p$ und $\sigma$"
-antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
-
-Beispiel: Im Rahmen einer Umfrage vor einer Wahl wurde untersucht, wie viele Wahlberechtigte noch unentschlossen sind. Es wird die Zufallsgröße betrachtet, die die Anzahl der unentschlossenen Wahlberechtigten angibt. Die Auswertung erfolgte mithilfe einer statistischen Software. In der Ergebnisübersicht sind folgende Werte angegeben: $\mu=175$ und $\sigma=10{,}6653$. Wie viele Wahlberechtigte wurden befragt? Mit welcher Wahrscheinlichkeit ist ein zufällig ausgewählter Wahlberechtigter noch unentschlossen?
-
-Gegeben sind $\mu=175$ und $\sigma=10{,}6653$, gesucht sind $n$ und $p$.
-Wegen $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist $\sigma=\sqrt{\mu\cdot (1-p)}$. Mit Werten ergibt sich:
-
-$$
-\begin{align*}
-10{,}6653&=\sqrt{175\cdot (1-p)}\quad |()^2\\
-113{,}7486&=175\cdot (1-p)\quad|:175\\
-0{,}65&=1-p\quad\\
-p&=0{,}35
-\end{align*}
-$$
-
-Dann ist $n=\frac{175}{0{,}35}=500$.
-"
-%}
-
-
-{% include info.html
-index="15"
-frage="Bestimmung von $n$ und $\mu$"
-antwort="Umstellen der Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$.
-
-Beispiel: Eine Maschine produziert ein bestimmtes Bauteil. Erfahrungsgemäß ist etwa jedes zehnte Bauteil fehlerhaft. Bei einer Qualitätskontrolle ergibt sich eine Standardabweichung von $4{,}6476$ für die Anzahl fehlerhafter Bauteile. Wie viele Bauteile wurden kontrolliert? Wie viele fehlerhafte Bauteile werden in der Stichprobe erwartet?
-
-Gegeben sind $p=0{,}1$ und $\sigma=4{,}6476$, gesucht sind $n$ und $\mu$.
-Wegen $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist:
-
-$$
-\begin{align*}
-4{,}6476&=\sqrt{n\cdot 0{,}1\cdot (1-0{,}1)}\quad |()^2\\
-21,6002&=n\cdot 0{,}09\quad |:0{,}09\\
-n&=240
-\end{align*}
-$$
-
-Dann ist $\mu=240\cdot 0{,}1=24$.
-"
-%}
 
 
 ### Umgebungen des Erwartungswerts
@@ -822,89 +608,23 @@ Es gibt verschiedene Möglichkeiten, Umgebungen des Erwartungswerts anzugeben:
 
 ### Absolute Umgebungen
 
-Eine mögliche Idee ist es, Normbereiche mit Hilfe absoluter Abweichungen vom Erwartungswert anzugeben.
+Eine mögliche Idee ist es, Normbereiche einfach mit Hilfe absoluter Abweichungen vom Erwartungswert anzugeben.
 
-{% include info.html
-index="16"
-frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $2$ vom Erwartungswert abweicht?"
-antwort="
-Wir berechnen $\mu=7{,}5$. Gesucht ist:
-
-$$
-\begin{align*}
-P(\mu-2\leq X\leq \mu +2)&=P(7{,}5-2\leq X\leq 7{,}5 +2)\\
-                        &=P(5{,}5\leq X\leq 9{,}5)\\
-                        &=P(6\leq X\leq 9) \\
-                        &=0{,}6171
-\end{align*}
-$$
-
-Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als $2$ vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>2)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
-
-$$
-P(|\mu-X|>2)=1-0{,}6171=0{,}3929
-$$
-
-"
-%}
-
+{% include dev/check-anker.html nummer=16 %}
 
 ### Relative Umgebungen
 
-Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir nun alternativ eine relative Abweichung vom Erwartungswert.
+Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir alternativ eine relative Abweichung vom Erwartungswert.
 
-{% include info.html
-index="17"
-frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $10\%$ vom Erwartungswert abweicht?"
-antwort="
-Wir berechnen $\mu=7{,}5$. Gesucht ist:
-
-$$
-\begin{align*}
-P(0{,}9\cdot \mu\leq X\leq 1{,}1\cdot \mu)&=P(0{,}9\cdot 7{,}5\leq X\leq 1{,}1\cdot 7{,}5)\\
-                        &=P(6{,}75\leq X\leq 8{,}25)\\
-                        &=P(7\leq X\leq 8) \\
-                        &=0{,}3363
-\end{align*}
-$$
-
-Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als $10\%$ vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>0{,}1\cdot\mu=0{,}75)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
-
-$$
-P(|\mu-X|>0{,}75)=1-0{,}3363=0{,}6637
-$$
-
-"
-%}
-
+{% include dev/check-anker.html nummer=17 %}
 
 ### Sigma-Umgebungen
 
 Eine gute Idee ist es, Normbereiche mit Hilfe der Standardabweichung $\sigma$ anzugeben, da $\sigma$ ein Maß für die Schwankung ist: Schwanken die Werte der Zufallsgröße relativ stark, sollte auch der Normbereich relativ groß gefasst werden.
 
-{% include info.html
-index="18"
-frage="Beispiel: $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens die doppelte Standardabweichung vom Erwartungswert abweicht?"
-antwort="
-Wir berechnen $\mu=7{,}5$ und $\sigma\approx 2{,}29$. Gesucht ist:
+{% include dev/check-anker.html nummer=18 %}
 
-$$
-\begin{align*}
-P(\mu-2\sigma\leq X\leq \mu+2\sigma)&=P(7{,}5-2\cdot 2{,}29\leq X\leq 7{,}5+2\cdot 2{,}29)\\
-                        &=P(2{,}92\leq X\leq 12{,}08)\\
-                        &=P(3\leq X\leq 12) \\
-                        &=0{,}9736
-\end{align*}
-$$
 
-Alternativ könnten wir auch nach der Wahrscheinlichkeit für 'nicht-normale' Werte fragen: Mit welcher Wahrscheinlichkeit weicht $X$ um mehr als die doppelte Standardabweichung vom Erwartungswert ab (symbolisch: $P(\|\mu-X\|>2\sigma)$)? Dies entspricht dem Gegenereignis zum oben betrachteten Ereignis, daher ist
-
-$$
-P(|\mu-X|>2\sigma)=1-0{,}9736=0{,}0264
-$$
-
-"
-%}
 
 
 ### Exkurs: Bedeutung der Standardabweichung
