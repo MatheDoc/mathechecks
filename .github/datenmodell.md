@@ -12,9 +12,9 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
 | Datenentität | Datei/Ordner | Granularität | Inhalt |
 |---|---|---|---|
 | **Lernbereich-Metadaten** | `_data/dev_lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Szenario (Kontext, Einstiegsfrage, Abschluss, Bild) |
-| **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Stichwörter, Skript-Anker |
+| **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, Blurting-Begriffe, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
-| **Beispiele** | `_data/dev_beispiele/<lernbereich>.yml` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (YAML mit LaTeX) |
+| **Beispiele** | `dev/lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
 | **Warm-Up** | `_data/dev_warmup.yml` | pro Lernbereich | 4 Karten (Wusstest-du, Schätzfrage, Vorwissen, Alltag) + Abschlusstext |
 | **Modultypen** | `_data/dev_moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/dev_gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik |
@@ -23,7 +23,7 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
 ## Modul → Datenquelle (Konsumenten-Matrix)
 
 ```
-                    dev_lernbereiche  checks.json  dev_beispiele  Aufgaben-JSON  dev_warmup
+                    dev_lernbereiche  checks.json  beispiele/*.md  Aufgaben-JSON  dev_warmup
                     (pro LB)          (pro Check)  (pro Check)    (pro Check)    (pro LB)
                     ────────────────  ───────────  ─────────────  ─────────────  ──────────
 Start               Name, Gebiet
@@ -31,11 +31,11 @@ Warm-Up                                                                         
 Kompetenzliste                        Kompetenztext
 Skript (Szenario)   szenario_einstieg
 Skript (Fachinhalt) (direkt in MD)
-Skript (Check-Anker)                  Stichwörter  Beispiel       1 Aufgabe
+Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
 Skript (Abschluss)  szenario_abschluss
 Training                                                          Aufgaben
-Blurting                              Stichwörter
-Feynman                               Stichwörter  Beispiel
+Blurting                              Blurting
+Feynman                               Tipps        Beispiel
 Flashcards                                                        Aufgaben
 ```
 
@@ -68,25 +68,27 @@ Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/dev_l
 - Das Szenario dient als **roter Faden**, nicht als Korsett.
 
 
-## Beispiele (`_data/dev_beispiele/`)
+## Beispiele
 
-Pro Lernbereich eine YAML-Datei. Jeder Check hat einen Eintrag mit `aufgabe` und `loesung`.
+Pro Check eine Markdown-Datei im Ordner `beispiele/` des jeweiligen Lernbereichs.
 
-### Format
+### Pfad
 
-```yaml
-check-slug:
-  aufgabe: "Aufgabentext mit $LaTeX$."       # Inline-String
-  loesung: |                                   # Block-String (| bewahrt Zeilenumbrüche)
-    Lösungsweg mit $$align$$-Umgebungen.
-    Kein Doppel-Escaping nötig im |-Block.
+```
+dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 ```
 
-### Konvention
+### Namenskonvention
 
-- Kurze Aufgabentexte als Inline-Strings (`"..."`, LaTeX mit `\\`)
-- Lösungswege als `|`-Blöcke (LaTeX ohne Doppel-Escaping)
-- Schlüssel = Check-Slug aus `checks.json`
+- `<NN>` = zweistellige Nummer aus `checks.json` (steuert die Reihenfolge analog zum Skript)
+- `<sammlung>` = `Sammlung`-Wert aus `checks.json` (1:1, keine Transformation)
+- Beispiel: `07-kennzahlen-rechnerisch-e1k3.md`
+
+### Inhalt
+
+- Reines Markdown + LaTeX/MathJax — kein Front Matter, keine Metadaten
+- Die Zuordnung zum Check ergibt sich aus Pfad und Dateiname
+- Typischer Inhalt: Aufgabenstellung, Lösungsweg mit `$$align$$`-Umgebungen
 
 
 ## Modulübersicht (Inhaltsquelle pro Modul)
@@ -97,7 +99,7 @@ check-slug:
 | Warm-Up | `warmup.md` | `dev_warmup.yml` | 4 Karten + Abschluss, via Liquid-Template |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
-| Blurting | `blurting.md` | `checks.json` (Stichwörter) | Active Recall, via JS |
-| Feynman | `feynman.md` | `checks.json` + `dev_beispiele/` | Stichwörter + Beispiel, via JS |
+| Blurting | `blurting.md` | `checks.json` (Blurting-Begriffe) | Active Recall, via JS |
+| Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `dev_lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Spaced Repetition, via JS |

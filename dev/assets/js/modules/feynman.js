@@ -322,7 +322,7 @@ function renderCard(check, examplesByCheck) {
     prefix: "Check",
     tone: "feynman",
     rowClass: "dev-check-card__header-left",
-    titleTag: "h3",
+    titleTag: "span",
   })}
           <div class="dev-check-card__header-actions">
             ${skriptIcon}

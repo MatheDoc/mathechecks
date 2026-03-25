@@ -3,6 +3,7 @@ import { initBlurtingModule } from "./modules/blurting.js";
 import { initFeynmanModule } from "./modules/feynman.js";
 import { initFlashcardsModule } from "./modules/flashcards.js";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
+import { initCheckAnker } from "./modules/check-anker.js";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
 import { initStartModule } from "./modules/start.js";
 import { initEinstiegsquizModule } from "./modules/einstiegsquiz.js";
@@ -593,6 +594,7 @@ async function bootstrap() {
     });
     const scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
     await initSkriptInfoCards(scriptContentRoot, context.lernbereich);
+    await initCheckAnker({ root: scriptContentRoot, lernbereich: context.lernbereich });
     await initScriptTaskDuplicatesModule({
       root: scriptContentRoot,
       lernbereich: context.lernbereich,
