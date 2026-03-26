@@ -1,61 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
-
-/* ------------------------------------------------------------------ */
-/*  Markdown-light → HTML (für Beispiel-Dateien)                      */
-/* ------------------------------------------------------------------ */
-
-function mdToHtml(raw) {
-    const lines = raw.split("\n");
-    const out = [];
-    let inParagraph = false;
-
-    for (const line of lines) {
-        const trimmed = line.trimEnd();
-
-        // Headings
-        const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
-        if (headingMatch) {
-            if (inParagraph) { out.push("</p>"); inParagraph = false; }
-            const level = headingMatch[1].length;
-            out.push(`<h${level}>${headingMatch[2]}</h${level}>`);
-            continue;
-        }
-
-        // Empty line → close paragraph
-        if (!trimmed) {
-            if (inParagraph) { out.push("</p>"); inParagraph = false; }
-            continue;
-        }
-
-        // Display-math block start ($$) or LaTeX environments — pass through
-        if (trimmed.startsWith("$$") || trimmed.startsWith("\\begin{")) {
-            if (inParagraph) { out.push("</p>"); inParagraph = false; }
-            out.push(trimmed);
-            continue;
-        }
-
-        // Inside display-math or LaTeX — pass through
-        if (!inParagraph && (trimmed.startsWith("\\end{") || trimmed === "$$")) {
-            out.push(trimmed);
-            continue;
-        }
-
-        // Regular text
-        if (!inParagraph) {
-            // Don't wrap lines that are clearly LaTeX continuation
-            if (trimmed.startsWith("&") || trimmed.startsWith("\\\\")) {
-                out.push(trimmed);
-                continue;
-            }
-            out.push("<p>");
-            inParagraph = true;
-        }
-        out.push(trimmed);
-    }
-
-    if (inParagraph) out.push("</p>");
-    return out.join("\n");
-}
+import { initSkriptVisuals } from "./skript-visuals.js";
 
 /* ------------------------------------------------------------------ */
 /*  MathJax helper                                                     */
@@ -94,7 +38,7 @@ function renderTipps(container, check) {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Beispiel rendern (fetch + markdown-light)                          */
+/*  Beispiel rendern (fetch Jekyll-processed HTML)                     */
 /* ------------------------------------------------------------------ */
 
 async function renderBeispiel(container, check) {
@@ -108,15 +52,16 @@ async function renderBeispiel(container, check) {
         return;
     }
 
-    const url = `/dev/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.md`;
+    const url = `/dev/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
 
     try {
         const resp = await fetch(url);
         if (!resp.ok) { container.hidden = true; return; }
-        const md = await resp.text();
-        if (!md.trim()) { container.hidden = true; return; }
+        const html = await resp.text();
+        if (!html.trim()) { container.hidden = true; return; }
 
-        container.innerHTML = mdToHtml(md);
+        container.innerHTML = html;
+        initSkriptVisuals(container);
         await typesetNode(container);
     } catch {
         container.hidden = true;

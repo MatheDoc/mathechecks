@@ -1,4 +1,7 @@
-﻿Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt. Wie hoch muss der Anteil der zufriedenen Mitarbeiter mindestens sein, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)?
+---
+layout: null
+---
+Ein Unternehmen untersucht, wie zufrieden seine Mitarbeiter sind. Dazu werden 274 Mitarbeiter befragt. Wie hoch muss der Anteil der zufriedenen Mitarbeiter mindestens sein, damit die Wahrscheinlichkeit für höchstens 142 zufriedene Mitarbeiter höchstens 31% beträgt (auf 2 NKS gerundet)?
 
 Gegeben ist $n=274$ und $k=142$. Gesucht ist das kleinste $p$, so dass $P(X\leq 142)\leq 0{,}31$ ist. Wir bestimmen:
 

@@ -1,11 +1,11 @@
-"""Check 3 �?" Baumdiagramm vervollständigen (Pfadadditionsregel).
+"""Check 3 - Baumdiagramm vervollständigen (Pfadadditionsregel).
 
 Gegeben sind immer genau 3 Wahrscheinlichkeiten:
   1. Beide Endwkt eines Astes: {7,8} oder {9,10}
   2. Eine weitere Wkt aus dem anderen Ast:
-       wenn {7,8} �?' {5, 6, 9, 10};  wenn {9,10} �?' {3, 4, 7, 8}
+    wenn {7,8} -> {5, 6, 9, 10};  wenn {9,10} -> {3, 4, 7, 8}
 
-Lösungsweg: Pfadaddition �?' P(A) = P(A�^�B) + P(A�^�¬B) bzw. P(¬A) analog,
+Lösungsweg: Pfadaddition -> P(A) = P(A∩B) + P(A∩¬B) bzw. P(¬A) analog,
 danach Komplementregel + ggf. umgestellte Pfadmultiplikation.
 """
 

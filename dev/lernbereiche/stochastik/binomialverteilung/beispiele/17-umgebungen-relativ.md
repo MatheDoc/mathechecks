@@ -1,4 +1,7 @@
-﻿Es seien $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $10\%$ vom Erwartungswert abweicht?
+---
+layout: null
+---
+Es seien $n=25$ und $p=0{,}3$. Wie groß ist die Wahrscheinlichkeit, dass $X$ um höchstens $10\%$ vom Erwartungswert abweicht?
 
 Wir berechnen $\mu=7{,}5$. Gesucht ist:
 

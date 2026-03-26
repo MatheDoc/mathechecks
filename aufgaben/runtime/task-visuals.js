@@ -1,3 +1,6 @@
+import { buildBaumdiagrammFigure } from "../../dev/assets/js/visuals/baumdiagramm.js";
+import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../dev/assets/js/visuals/histogramm.js";
+
 function toNumber(value, fallback) {
     const numeric = Number(value);
     return Number.isFinite(numeric) ? numeric : fallback;
@@ -254,136 +257,31 @@ function buildPlotlyFigure(spec) {
             };
         }
     } else if (specType === "ab-tree") {
-        const pa = toNumber(spec?.pa, 0.5);
-        const pba = toNumber(spec?.pba, 0.5);
-        const pbna = toNumber(spec?.pbna, 0.5);
-        const givenSlots = new Set(Array.isArray(spec?.givenSlots) ? spec.givenSlots : []);
-
-        const pna = 1 - pa;
-        const pnba = 1 - pba;
-        const pnbna = 1 - pbna;
-        const pAB = pa * pba;
-        const pAnB = pa * pnba;
-        const pnAB = pna * pbna;
-        const pnAnB = pna * pnbna;
-
-        const slotValues = {
-            1: pa,
-            2: pna,
-            3: pba,
-            4: pnba,
-            5: pbna,
-            6: pnbna,
-            7: pAB,
-            8: pAnB,
-            9: pnAB,
-            10: pnAnB,
-        };
-        const circledDigits = {
-            1: "①",
-            2: "②",
-            3: "③",
-            4: "④",
-            5: "⑤",
-            6: "⑥",
-            7: "⑦",
-            8: "⑧",
-            9: "⑨",
-            10: "⑩",
-        };
-        function fmtSlot(idx) {
-            const value = slotValues[idx];
-            if (givenSlots.has(idx)) {
-                return idx <= 6 ? value.toFixed(2) : value.toFixed(4);
-            }
-            return circledDigits[idx] ?? String(idx);
-        }
-
-        const nodes = [
-            { x: 0, y: 0.5 },
-            { x: 0.5, y: 0.75 },
-            { x: 0.5, y: 0.25 },
-            { x: 1, y: 0.875 },
-            { x: 1, y: 0.625 },
-            { x: 1, y: 0.375 },
-            { x: 1, y: 0.125 },
-        ];
-        const nodeLabels = ["", "A", "A\u0305", "B", "B\u0305", "B", "B\u0305"];
-        const edgePairs = [
-            [0, 1],
-            [0, 2],
-            [1, 3],
-            [1, 4],
-            [2, 5],
-            [2, 6],
-        ];
-        const edgeSlots = [1, 2, 3, 4, 5, 6];
-
-        const edgeShapes = edgePairs.map(([fromIndex, toIndex]) => ({
-            type: "line",
-            x0: nodes[fromIndex].x,
-            y0: nodes[fromIndex].y,
-            x1: nodes[toIndex].x,
-            y1: nodes[toIndex].y,
-            line: { width: 2, color: "gray" },
-            layer: "below",
-        }));
-
-        const edgeAnnotations = edgePairs.map(([fromIndex, toIndex], i) => {
-            const xMid = (nodes[fromIndex].x + nodes[toIndex].x) / 2;
-            const yMid = (nodes[fromIndex].y + nodes[toIndex].y) / 2;
-            const isFirstStage = fromIndex === 0;
-            const goesUp = nodes[toIndex].y > nodes[fromIndex].y;
-            const yOffset = isFirstStage ? (goesUp ? -0.08 : 0.08) : goesUp ? -0.05 : 0.05;
-            const slotIdx = edgeSlots[i];
-            return {
-                x: xMid,
-                y: yMid - yOffset,
-                text: fmtSlot(slotIdx),
-                showarrow: false,
-                font: { size: 18, color: "#111827" },
-            };
+        const treeFigure = buildBaumdiagrammFigure({
+            pa: toNumber(spec?.pa, 0.5),
+            pba: toNumber(spec?.pba, 0.5),
+            pbna: toNumber(spec?.pbna, 0.5),
+            mode: "slots",
+            givenSlots: Array.isArray(spec?.givenSlots) ? spec.givenSlots : [],
+            edgeDecimals: 2,
+            leafDecimals: 4,
         });
-
-        const leafSlots = [7, 8, 9, 10];
-        const leafNodes = [3, 4, 5, 6];
-        const leafAnnotations = leafNodes.map((nodeIdx, i) => {
-            const slotIdx = leafSlots[i];
-            return {
-                x: nodes[nodeIdx].x + 0.15,
-                y: nodes[nodeIdx].y,
-                text: fmtSlot(slotIdx),
-                showarrow: false,
-                font: { size: 18, color: "#111827" },
-            };
+        figure.data = treeFigure.data;
+        figure.layout = treeFigure.layout;
+    } else if (specType === "binomial-histogramm-einzeln") {
+        const hFig = buildHistogrammEinzelnFigure({
+            n: toNumber(spec?.n, 10),
+            p: toNumber(spec?.p, 0.5),
         });
-
-        figure.data.push({
-            x: nodes.map((node) => node.x),
-            y: nodes.map((node) => node.y),
-            text: nodeLabels,
-            mode: "markers+text",
-            type: "scatter",
-            textposition: "middle center",
-            textfont: { size: 20 },
-            marker: {
-                size: nodes.map((_, index) => (index === 0 ? 0 : 40)),
-                color: "#b3e0ff",
-                opacity: 1,
-                line: { width: 2, color: "gray" },
-                symbol: "circle",
-            },
-            hoverinfo: "none",
+        figure.data = hFig.data;
+        figure.layout = hFig.layout;
+    } else if (specType === "binomial-histogramm-kumuliert") {
+        const hFig = buildHistogrammKumuliertFigure({
+            n: toNumber(spec?.n, 10),
+            p: toNumber(spec?.p, 0.5),
         });
-
-        figure.layout = {
-            xaxis: { visible: false, range: [0, 1.4] },
-            yaxis: { visible: false, range: [0, 1] },
-            shapes: edgeShapes,
-            annotations: [...edgeAnnotations, ...leafAnnotations],
-            margin: { l: 20, r: 20, t: 20, b: 20 },
-            dragmode: false,
-        };
+        figure.data = hFig.data;
+        figure.layout = hFig.layout;
     } else {
         const traces = Array.isArray(spec?.traces) ? spec.traces : [];
         traces.forEach((trace) => {

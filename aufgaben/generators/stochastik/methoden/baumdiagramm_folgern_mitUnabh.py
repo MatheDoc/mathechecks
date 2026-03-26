@@ -1,12 +1,12 @@
-"""Check 3 (bedingte-wahrscheinlichkeiten) �?" Wahrscheinlichkeiten aus Baumdiagramm bestimmen.
+"""Check 3 (bedingte-wahrscheinlichkeiten) - Wahrscheinlichkeiten aus Baumdiagramm bestimmen.
 
 Das Baumdiagramm ist vollständig ausgefüllt (alle 10 Werte sichtbar).
-A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig �?" ohne Angabe in der Aufgabe.
+A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig - ohne Angabe in der Aufgabe.
 
 Es werden genau 7 Teilaufgaben gestellt:
   1. Einzel: P(A), P(¬A), P(B) oder P(¬B)
-  2. Schnitt: P(A�^�B), P(A�^�¬B), P(¬A�^�B) oder P(¬A�^�¬B)
-  3. Vereinigung: P(A�^�B), P(A�^�¬B), P(¬A�^�B) oder P(¬A�^�¬B)
+  2. Schnitt: P(A∩B), P(A∩¬B), P(¬A∩B) oder P(¬A∩¬B)
+  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B) oder P(¬A∩¬B)
   4. Spezial: Symmetrische Differenz, Diagonalsumme oder trivial 0/1
   5. Bedingte Wkt (A/¬A-Bedingung): P(B|A), P(¬B|A), P(B|¬A) oder P(¬B|¬A)
   6. Bedingte Wkt (B/¬B-Bedingung): P(A|B), P(¬A|B), P(A|¬B) oder P(¬A|¬B)
@@ -73,7 +73,7 @@ def _extended_probs(c: ABCase) -> dict[str, float]:
     }
 
 
-# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
@@ -83,7 +83,7 @@ _GROUP_COND_A = ["pba", "pnba", "pbna", "pnbna"]
 _GROUP_COND_B = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 
 
-# �"?�"? LaTeX-Notation �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _LATEX: dict[str, str] = {
     "pa":    r"P(A)",
@@ -162,7 +162,7 @@ class MethodenBaumdiagrammFolgernMitUnabhGenerator(TaskGenerator):
         for index in range(count):
             scenario = SCENARIOS[index % len(SCENARIOS)]
 
-            # 50 % unabhängig, 50 % abhängig �?" ohne Hinweis in der Aufgabe
+            # 50 % unabhängig, 50 % abhängig - ohne Hinweis in der Aufgabe
             is_independent = rng.choice([True, False])
             if is_independent:
                 case = sample_ab_case_independent(rng=rng, scenario=scenario)
@@ -210,7 +210,7 @@ class MethodenBaumdiagrammFolgernMitUnabhGenerator(TaskGenerator):
 
             fragen: list[str] = [_frage_text(k, scenario, rng) for k in chosen_keys]
             fragen.append(
-                f"�oberprüfen Sie die folgende Behauptung: {claim_text}"
+                f"Überprüfen Sie die folgende Behauptung: {claim_text}"
             )
 
             antworten: list[str] = [

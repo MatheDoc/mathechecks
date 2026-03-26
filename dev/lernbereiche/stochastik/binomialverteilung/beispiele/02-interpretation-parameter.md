@@ -1,4 +1,7 @@
-﻿Mit einer kleinen Wahrscheinlichkeit werden Pakete zu spät geliefert wird. Welche Bedeutung könnten die Parameter in folgender Formel haben?
+---
+layout: null
+---
+Mit einer kleinen Wahrscheinlichkeit werden Pakete zu spät geliefert wird. Welche Bedeutung könnten die Parameter in folgender Formel haben?
 
 $$
 \begin{align*}

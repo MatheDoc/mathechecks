@@ -55,7 +55,7 @@ class BinomialKennzahlenNMuGegebenGenerator(TaskGenerator):
                             "anzutreffen (in\u00a0% auf eine ganze Zahl gerundet)."
                         ),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgrö�Ye (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
                             "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
                         ]),
                     ],

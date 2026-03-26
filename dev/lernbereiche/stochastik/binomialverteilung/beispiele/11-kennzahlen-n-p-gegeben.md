@@ -1,4 +1,7 @@
-﻿Eine Münze wird 20-mal geworfen. Dann ist die Anzahl der Kopf-Würfe eine binomialverteilte Zufallsgröße mit den Parametern $n=20$ und $p=0{,}5$. Wir erhalten so:
+---
+layout: null
+---
+Eine Münze wird 20-mal geworfen. Dann ist die Anzahl der Kopf-Würfe eine binomialverteilte Zufallsgröße mit den Parametern $n=20$ und $p=0{,}5$. Wir erhalten so:
 
 $$
 \begin{align*}

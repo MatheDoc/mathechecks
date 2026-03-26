@@ -1,12 +1,12 @@
-"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen �?" mit bedingten Wkt.
+"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen - mit bedingten Wkt.
 
 Die Vier-Felder-Tafel ist vollständig ausgefüllt (alle 8 Felder sichtbar).
 A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig (ohne Hinweis in der Aufgabe).
 
 Es werden genau 7 Teilaufgaben gestellt:
   1. Einzel:      P(A), P(¬A), P(B), P(¬B)
-  2. Schnitt:     P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
-  3. Vereinigung: P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
+  2. Schnitt:     P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
   4. Spezial:     symmetrische Differenz, Diagonalsumme, trivial 0/1
   5. Bedingte Wkt (A/¬A-Bedingung): P(B|A), P(¬B|A), P(B|¬A), P(¬B|¬A)
   6. Bedingte Wkt (B/¬B-Bedingung): P(A|B), P(¬A|B), P(A|¬B), P(¬A|¬B)
@@ -27,7 +27,7 @@ from aufgaben.generators.stochastik.methoden.shared import (
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
-# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
@@ -37,7 +37,7 @@ _GROUP_COND_A = ["pba", "pnba", "pbna", "pnbna"]
 _GROUP_COND_B = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 
 
-# �"?�"? LaTeX-Notation �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _LATEX: dict[str, str] = {
     "pa":      r"P(A)",
@@ -101,7 +101,7 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
         for index in range(count):
             scenario = SCENARIOS[index % len(SCENARIOS)]
 
-            # 50 % unabhängig, 50 % abhängig �?" ohne Hinweis in der Aufgabe
+            # 50 % unabhängig, 50 % abhängig - ohne Hinweis in der Aufgabe
             is_independent = rng.choice([True, False])
             if is_independent:
                 case = sample_ab_case_independent(rng=rng, scenario=scenario)
@@ -146,7 +146,7 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
-            fragen.append(f"�oberprüfen Sie die folgende Behauptung: {claim_text}")
+            fragen.append(f"Überprüfen Sie die folgende Behauptung: {claim_text}")
 
             antworten = [
                 numerical_stochastik_calc(probs[k])

@@ -5,7 +5,6 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
-    binom_cdf,
     prob_at_least,
     prob_between_open_closed,
     prob_exactly,
@@ -21,50 +20,16 @@ def _sample_parameters(rng: random.Random) -> tuple[int, float]:
     return n, p
 
 
-def _cdf_values(n: int, p: float) -> list[float]:
-    return [binom_cdf(n=n, p=p, k=k) for k in range(n + 1)]
-
-
-def _build_visual(n: int, cdf: list[float]) -> dict:
-    x_values = list(range(n + 1))
-
+def _build_visual(n: int, p: float) -> dict:
     return {
         "type": "plot",
         "spec": {
-            "type": "plotly",
-            "traces": [
-                {
-                    "kind": "bar",
-                    "x": x_values,
-                    "y": cdf,
-                    "name": "F(k)",
-                    "marker": {
-                        "color": "rgba(209, 213, 219, 0.95)",
-                        "line": {"color": "rgba(107, 114, 128, 0.9)", "width": 1},
-                    },
-                    "hoverinfo": "x+y",
-                }
-            ],
-            "layout": {
-                "xaxis": {
-                    "title": "k",
-                    "dtick": 1,
-                    "range": [-0.5, n + 0.5],
-                },
-                "yaxis": {
-                    "title": "F(k) = P(X �?� k)",
-                    "range": [0, 1.02],
-                    "tickformat": ".2f",
-                },
-                "showlegend": False,
-                "bargap": 0,
-                "bargroupgap": 0,
-            },
-            "width": 760,
-            "height": 520,
-            "scale": 1,
+            "type": "binomial-histogramm-kumuliert",
+            "n": n,
+            "p": p,
         },
     }
+
 
 
 class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
@@ -119,7 +84,7 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
             ]
             intro = (
                 f"{rng.choice(intro_base_variants)}</p> "
-                f"<p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der "
+                f"<p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der "
                 f"{scenario.success_plural} angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten "
                 f"der folgenden Ereignisse (auf 2 NKS gerundet)."
             )
@@ -141,7 +106,7 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
                 numerical(interval_probability, tolerance=graph_read_tolerance_from_span(1.02), decimals=2),
             ]
 
-            visual = _build_visual(n=n, cdf=_cdf_values(n=n, p=p))
+            visual = _build_visual(n=n, p=p)
 
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers, visual=visual))
 

@@ -1,6 +1,6 @@
 [
   {
-    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. 14 Halbleiter werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der defekte Halbleiter angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. 14 Halbleiter werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der defekte Halbleiter angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Halbleitern sind genau 4 defekte Halbleiter.",
       "Von den kontrollierten Halbleitern sind mindestens 4 defekte Halbleiter.",
@@ -16,84 +16,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14
-            ],
-            "y": [
-              0.005544817676234272,
-              0.04042091726298317,
-              0.14226923707066297,
-              0.3253010002033049,
-              0.5514380698708081,
-              0.7546336976879849,
-              0.8915698816517346,
-              0.9618808001258752,
-              0.9895211430767602,
-              0.9977998931393441,
-              0.9996596123563013,
-              0.9999634400017594,
-              0.9999975655706334,
-              0.9999999243056057,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              14.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 14,
+        "p": 0.31
       }
     }
   },
   {
-    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. In einer Stichprobe befinden sich 13 Passagiere.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Passagiere ohne gültigen Fahrschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. In einer Stichprobe befinden sich 13 Passagiere.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Passagiere ohne gültigen Fahrschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Passagieren sind genau 7 Passagiere ohne gültigen Fahrschein.",
       "Von den kontrollierten Passagieren sind mindestens 8 Passagiere ohne gültigen Fahrschein.",
@@ -109,82 +39,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13
-            ],
-            "y": [
-              0.0006704603875249616,
-              0.007245677170445198,
-              0.037007184714189414,
-              0.11932995119483863,
-              0.2745878002592209,
-              0.48541161635717156,
-              0.6974683202685604,
-              0.8574409214648714,
-              0.9479517352996263,
-              0.9858851173161415,
-              0.9973316817141075,
-              0.9996867164945502,
-              0.9999828173587579,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              13.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 13,
+        "p": 0.43
       }
     }
   },
   {
-    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. In einer Stichprobe befinden sich 11 Bestellungen.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Bestellungen mit Streuseln angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. In einer Stichprobe befinden sich 11 Bestellungen.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Bestellungen mit Streuseln angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den betrachteten Bestellungen sind genau 6 Bestellungen mit Streuseln.",
       "Von den betrachteten Bestellungen sind mindestens 10 Bestellungen mit Streuseln.",
@@ -200,78 +62,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11
-            ],
-            "y": [
-              1.7714700000000029e-06,
-              4.723920000000007e-05,
-              0.0005776960500000007,
-              0.004290894000000003,
-              0.02161915110000002,
-              0.07822479096000005,
-              0.2103046173000001,
-              0.4304376612000001,
-              0.6872595457500001,
-              0.8870099004000002,
-              0.98022673257,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              11.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 11,
+        "p": 0.7
       }
     }
   },
   {
-    "einleitung": "Eine Trainerin protokolliert Treffer bei Freiwürfen. 11 Freiwürfe werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Treffer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Trainerin protokolliert Treffer bei Freiwürfen. 11 Freiwürfe werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Treffer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den beobachteten Freiwürfen sind genau 9 Treffer.",
       "Von den beobachteten Freiwürfen sind mindestens 7 Treffer.",
@@ -287,78 +85,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11
-            ],
-            "y": [
-              1.2200509765705845e-06,
-              3.4077285897316325e-05,
-              0.0004362951616512728,
-              0.0033905161111544685,
-              0.017856011794928735,
-              0.06743774527655501,
-              0.18882750655915725,
-              0.4011100940238065,
-              0.6609732614374287,
-              0.8730455015106147,
-              0.9768877707878298,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              11.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 11,
+        "p": 0.71
       }
     }
   },
   {
-    "einleitung": "Eine Ärztin bewertet Eignungstests von Bewerbern. Es werden 17 Bewerber betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der erfolgreiche Bewerber angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Ärztin bewertet Eignungstests von Bewerbern. Es werden 17 Bewerber betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der erfolgreiche Bewerber angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den Bewerbern sind genau 12 erfolgreiche Bewerber.",
       "Von den Bewerbern sind mindestens 11 erfolgreiche Bewerber.",
@@ -374,90 +108,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17
-            ],
-            "y": [
-              1.0842803560596577e-08,
-              3.686553210602837e-07,
-              5.925273239878954e-06,
-              5.985715304017782e-05,
-              0.0004262766893304437,
-              0.002275617643077786,
-              0.00945541193409688,
-              0.03135680124199547,
-              0.08449987823910234,
-              0.1876599688805451,
-              0.3478615214060798,
-              0.545757556878799,
-              0.7378331207199679,
-              0.8812379534520621,
-              0.9607734069001145,
-              0.9916518770622995,
-              0.9991444470281239,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              17.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 17,
+        "p": 0.66
       }
     }
   },
   {
-    "einleitung": "Ein Fahrlehrer wertet theoretische Führerscheinprüfungen aus. 17 Prüfungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der nicht bestandene Prüfungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Fahrlehrer wertet theoretische Führerscheinprüfungen aus. 17 Prüfungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der nicht bestandene Prüfungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den ausgewerteten Prüfungen sind genau 6 nicht bestandene Prüfungen.",
       "Von den ausgewerteten Prüfungen sind mindestens 10 nicht bestandene Prüfungen.",
@@ -473,90 +131,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17
-            ],
-            "y": [
-              7.62939453125e-06,
-              0.0001373291015625,
-              0.0011749267578125,
-              0.0063629150390625,
-              0.0245208740234375,
-              0.0717315673828125,
-              0.1661529541015625,
-              0.3145294189453125,
-              0.5,
-              0.6854705810546875,
-              0.8338470458984375,
-              0.9282684326171875,
-              0.9754791259765625,
-              0.9936370849609375,
-              0.9988250732421875,
-              0.9998626708984375,
-              0.9999923706054688,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              17.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 17,
+        "p": 0.5
       }
     }
   },
   {
-    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. In einer Stichprobe befinden sich 16 Turnschuhe.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der gefälschte Turnschuhe angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. In einer Stichprobe befinden sich 16 Turnschuhe.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der gefälschte Turnschuhe angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den untersuchten Turnschuhen sind genau 5 gefälschte Turnschuhe.",
       "Von den untersuchten Turnschuhen sind mindestens 3 gefälschte Turnschuhe.",
@@ -572,88 +154,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16
-            ],
-            "y": [
-              0.010022595757618546,
-              0.0634764397982508,
-              0.19711104989983141,
-              0.4049871100578457,
-              0.6301861752290279,
-              0.8103454273659736,
-              0.9204427481163293,
-              0.9728700437117368,
-              0.9925302795600146,
-              0.998355534626171,
-              0.9997147608082741,
-              0.9999618928413838,
-              0.9999962167348713,
-              0.9999997371342033,
-              0.9999999885912985,
-              0.9999999997671694,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              16.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 16,
+        "p": 0.25
       }
     }
   },
   {
-    "einleitung": "Eine Fußballspielerin dokumentiert Torschüsse im Training. In einer Stichprobe befinden sich 17 Torschüsse.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Fehlschüsse angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Fußballspielerin dokumentiert Torschüsse im Training. In einer Stichprobe befinden sich 17 Torschüsse.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Fehlschüsse angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den beobachteten Torschüssen sind genau 8 Fehlschüsse.",
       "Von den beobachteten Torschüssen sind mindestens 7 Fehlschüsse.",
@@ -669,90 +177,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17
-            ],
-            "y": [
-              2.0544225965628155e-05,
-              0.0003302581230700979,
-              0.002527473694981053,
-              0.01226984462703906,
-              0.042507958180313436,
-              0.1122267784861649,
-              0.2358790258210713,
-              0.40819226536863623,
-              0.5991998658105124,
-              0.7685839643155724,
-              0.8887507964625584,
-              0.9565636399897597,
-              0.9866315989121981,
-              0.9968869985446698,
-              0.9994854016860507,
-              0.9999462505450881,
-              0.9999973352063494,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              17.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 17,
+        "p": 0.47
       }
     }
   },
   {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. In einer Stichprobe befinden sich 10 befragte Mitarbeitende.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der zufriedene Mitarbeitende angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. In einer Stichprobe befinden sich 10 befragte Mitarbeitende.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der zufriedene Mitarbeitende angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den befragten Mitarbeitenden sind genau 5 zufriedene Mitarbeitende.",
       "Von den befragten Mitarbeitenden sind mindestens 5 zufriedene Mitarbeitende.",
@@ -768,76 +200,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10
-            ],
-            "y": [
-              4.8085843724178486e-05,
-              0.0008668448044331635,
-              0.007140308733108765,
-              0.035625226030879066,
-              0.12050258095193786,
-              0.29392766289874983,
-              0.5400037926881454,
-              0.7794292162670166,
-              0.9323055847008229,
-              0.9901506970811821,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              10.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 10,
+        "p": 0.63
       }
     }
   },
   {
-    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. 17 Bestellungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der vegetarische Gerichte angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. 17 Bestellungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der vegetarische Gerichte angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Bestellungen sind genau 6 vegetarische Gerichte.",
       "Von den kontrollierten Bestellungen sind mindestens 8 vegetarische Gerichte.",
@@ -853,90 +223,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17
-            ],
-            "y": [
-              0.0002955688905823059,
-              0.0033752060408431058,
-              0.018475362390508964,
-              0.06475003507496885,
-              0.16401667164001993,
-              0.32220286023077865,
-              0.5161085107613862,
-              0.7028655658807271,
-              0.8459455677866738,
-              0.9336397625032218,
-              0.9766382063642388,
-              0.9934088604214684,
-              0.9985482544067484,
-              0.9997597740806977,
-              0.9999719295996382,
-              0.9999979357600245,
-              0.9999999281674734,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              17.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 17,
+        "p": 0.38
       }
     }
   },
   {
-    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Es werden 14 Pflanzen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der zu trockene Pflanzen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Es werden 14 Pflanzen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der zu trockene Pflanzen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den geprüften Pflanzen sind genau 2 zu trockene Pflanzen.",
       "Von den geprüften Pflanzen sind mindestens 7 zu trockene Pflanzen.",
@@ -952,84 +246,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14
-            ],
-            "y": [
-              0.006782230728489994,
-              0.04747561509942996,
-              0.16083575727561986,
-              0.35516742957765973,
-              0.5842011862193496,
-              0.7805158347693695,
-              0.9067181088372394,
-              0.9685314675643594,
-              0.9917114770870293,
-              0.9983343369506493,
-              0.9997535212071393,
-              0.9999746927795793,
-              0.9999983897337693,
-              0.9999999521703093,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              14.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 14,
+        "p": 0.3
       }
     }
   },
   {
-    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. In einer Stichprobe befinden sich 12 Werkzeuge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Werkzeuge mit Akku angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. In einer Stichprobe befinden sich 12 Werkzeuge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Werkzeuge mit Akku angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den registrierten Werkzeugen sind genau 4 Werkzeuge mit Akku.",
       "Von den registrierten Werkzeugen sind mindestens 7 Werkzeuge mit Akku.",
@@ -1045,80 +269,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12
-            ],
-            "y": [
-              0.006831675453247417,
-              0.04906385098241326,
-              0.16872168164838322,
-              0.37419472420610944,
-              0.6123566598980194,
-              0.8086598311349876,
-              0.9266400199087211,
-              0.9787351681984217,
-              0.995508227306848,
-              0.9993485236683731,
-              0.9999420240151543,
-              0.9999976135793156,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              12.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 12,
+        "p": 0.34
       }
     }
   },
   {
-    "einleitung": "Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. In einer Stichprobe befinden sich 18 Computer.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Computer ohne ausreichenden Virenschutz angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. In einer Stichprobe befinden sich 18 Computer.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Computer ohne ausreichenden Virenschutz angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den untersuchten Computern sind genau 14 Computer ohne ausreichenden Virenschutz.",
       "Von den untersuchten Computern sind mindestens 13 Computer ohne ausreichenden Virenschutz.",
@@ -1134,92 +292,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17,
-              18
-            ],
-            "y": [
-              1.1190373035819335e-10,
-              5.291447821223141e-09,
-              1.1850148295012842e-07,
-              1.6710962504322578e-06,
-              1.6642545794009933e-05,
-              0.0001244369825077692,
-              0.0007250059870558563,
-              0.003372412211186199,
-              0.012732884217932765,
-              0.03947708995149439,
-              0.10137082322059413,
-              0.21712014258098844,
-              0.3907441216215799,
-              0.5968033494939302,
-              0.786041415907313,
-              0.9158046614479184,
-              0.978369083404996,
-              0.9972961354256245,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              18.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 18,
+        "p": 0.72
       }
     }
   },
   {
-    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. In einer Stichprobe befinden sich 16 Krüge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Krüge mit Kratzer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. In einer Stichprobe befinden sich 16 Krüge.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Krüge mit Kratzer angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den überprüften Krügen sind genau 4 Krüge mit Kratzer.",
       "Von den überprüften Krügen sind mindestens 5 Krüge mit Kratzer.",
@@ -1235,88 +315,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16
-            ],
-            "y": [
-              0.0012962923816305,
-              0.011980884133251594,
-              0.053262261355424015,
-              0.15250436013195973,
-              0.3186596921744931,
-              0.524088102699807,
-              0.7181038237514925,
-              0.8608859561271918,
-              0.9436346919358357,
-              0.9815263689391204,
-              0.9951903373130322,
-              0.999029799500743,
-              0.9998539264854789,
-              0.9999845573362062,
-              0.9999989776249228,
-              0.9999999681094004,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              16.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 16,
+        "p": 0.34
       }
     }
   },
   {
-    "einleitung": "Eine Plattform wertet Reaktionen auf Produktempfehlungen aus. 15 angezeigte Empfehlungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der angeklickte Empfehlungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Plattform wertet Reaktionen auf Produktempfehlungen aus. 15 angezeigte Empfehlungen werden zufällig ausgewählt.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der angeklickte Empfehlungen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den angezeigten Empfehlungen sind genau 10 angeklickte Empfehlungen.",
       "Von den angezeigten Empfehlungen sind mindestens 8 angeklickte Empfehlungen.",
@@ -1332,86 +338,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15
-            ],
-            "y": [
-              1.5550983149915397e-06,
-              3.5122464382491845e-05,
-              0.00037325227379414125,
-              0.002481752792645645,
-              0.011584303813053358,
-              0.04040164826302704,
-              0.1095164174723135,
-              0.23739078141005254,
-              0.4214051100033843,
-              0.6273615265590645,
-              0.8051873106095787,
-              0.9215035108200037,
-              0.9772974605144352,
-              0.995825657692511,
-              0.9996345902134394,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              15.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 15,
+        "p": 0.59
       }
     }
   },
   {
-    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. In einer Stichprobe befinden sich 15 Pakete.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Pakete mit Gutschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. In einer Stichprobe befinden sich 15 Pakete.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Pakete mit Gutschein angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den kontrollierten Paketen sind genau 2 Pakete mit Gutschein.",
       "Von den kontrollierten Paketen sind mindestens 3 Pakete mit Gutschein.",
@@ -1427,86 +361,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15
-            ],
-            "y": [
-              0.013363461010158062,
-              0.08018076606094837,
-              0.2360878111794591,
-              0.46128687635064125,
-              0.6864859415218234,
-              0.851631922647357,
-              0.9433796899393201,
-              0.9827001616358757,
-              0.9958069855347276,
-              0.9992050509899855,
-              0.999884664081037,
-              0.9999876357614994,
-              0.9999990770593286,
-              0.9999999571591616,
-              0.9999999990686774,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              15.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 15,
+        "p": 0.25
       }
     }
   },
   {
-    "einleitung": "Ein Verlag prüft Drucke auf Rechtschreibfehler. In einer Stichprobe befinden sich 14 gedruckte Seiten.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Seiten mit Rechtschreibfehler angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Verlag prüft Drucke auf Rechtschreibfehler. In einer Stichprobe befinden sich 14 gedruckte Seiten.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Seiten mit Rechtschreibfehler angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den geprüften Seiten sind genau 4 Seiten mit Rechtschreibfehler.",
       "Von den geprüften Seiten sind mindestens 8 Seiten mit Rechtschreibfehler.",
@@ -1522,84 +384,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14
-            ],
-            "y": [
-              0.00048751940841603066,
-              0.005429957548909583,
-              0.02869350258950854,
-              0.09607756408641584,
-              0.23026478999836056,
-              0.42460491028462527,
-              0.6356984892162576,
-              0.810396623504505,
-              0.9210889758336962,
-              0.9745266631650299,
-              0.9938747913367197,
-              0.9989695962471333,
-              0.9998919316188462,
-              0.9999946851615833,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              14.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 14,
+        "p": 0.42
       }
     }
   },
   {
-    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Es werden 17 Wasserproben betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der auffällige Wasserproben angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Es werden 17 Wasserproben betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der auffällige Wasserproben angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den analysierten Wasserproben sind genau 4 auffällige Wasserproben.",
       "Von den analysierten Wasserproben sind mindestens 4 auffällige Wasserproben.",
@@ -1615,90 +407,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16,
-              17
-            ],
-            "y": [
-              0.0029606831241262245,
-              0.023518665943763253,
-              0.09069404642483073,
-              0.22788320374532062,
-              0.4240057314640491,
-              0.6322823313230931,
-              0.80242377909527,
-              0.911629255633146,
-              0.9673855728795968,
-              0.9901592799239218,
-              0.9976008292679829,
-              0.9995350604035071,
-              0.9999300794382269,
-              0.9999921355162705,
-              0.9999993774730644,
-              0.9999999690695349,
-              0.9999999992742843,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              17.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 17,
+        "p": 0.29
       }
     }
   },
   {
-    "einleitung": "Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Es werden 16 Serviceanfragen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der im Erstkontakt gelöste Anfragen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Es werden 16 Serviceanfragen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der im Erstkontakt gelöste Anfragen angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den erfassten Serviceanfragen sind genau 10 im Erstkontakt gelöste Anfragen.",
       "Von den erfassten Serviceanfragen sind mindestens 14 im Erstkontakt gelöste Anfragen.",
@@ -1714,88 +430,14 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15,
-              16
-            ],
-            "y": [
-              3.0113614963390595e-11,
-              1.73837686379573e-09,
-              4.716264961683749e-08,
-              7.987278897126194e-07,
-              9.458809178998109e-06,
-              8.314822814964555e-05,
-              0.000562129451458854,
-              0.002988138244843157,
-              0.012664605136637369,
-              0.04316013715926155,
-              0.11884450299722886,
-              0.265209309659083,
-              0.48143004677318574,
-              0.7173072145340251,
-              0.896512595235442,
-              0.9812278661124756,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              16.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 16,
+        "p": 0.78
       }
     }
   },
   {
-    "einleitung": "Eine Schule dokumentiert Anwesenheiten im Mathekurs. Es werden 15 Teilnahmen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgrö�Ye X, die die Anzahl der Anwesenheiten angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
+    "einleitung": "Eine Schule dokumentiert Anwesenheiten im Mathekurs. Es werden 15 Teilnahmen betrachtet.</p> <p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der Anwesenheiten angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
     "fragen": [
       "Von den dokumentierten Teilnahmen sind genau 3 Anwesenheiten.",
       "Von den dokumentierten Teilnahmen sind mindestens 2 Anwesenheiten.",
@@ -1811,81 +453,9 @@
     "visual": {
       "type": "plot",
       "spec": {
-        "type": "plotly",
-        "traces": [
-          {
-            "kind": "bar",
-            "x": [
-              0,
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              9,
-              10,
-              11,
-              12,
-              13,
-              14,
-              15
-            ],
-            "y": [
-              0.02406683831733906,
-              0.1258880773522351,
-              0.3269197544211323,
-              0.57262513750534,
-              0.7805296924227466,
-              0.9095371341920092,
-              0.9701816581006368,
-              0.99217362830926,
-              0.9983764917014358,
-              0.9997372338131097,
-              0.9999675132473931,
-              0.9999970362517884,
-              0.9999998119188682,
-              0.9999999925835894,
-              0.9999999998631203,
-              1.0
-            ],
-            "name": "F(k)",
-            "marker": {
-              "color": "rgba(209, 213, 219, 0.95)",
-              "line": {
-                "color": "rgba(107, 114, 128, 0.9)",
-                "width": 1
-              }
-            },
-            "hoverinfo": "x+y"
-          }
-        ],
-        "layout": {
-          "xaxis": {
-            "title": "k",
-            "dtick": 1,
-            "range": [
-              -0.5,
-              15.5
-            ]
-          },
-          "yaxis": {
-            "title": "F(k) = P(X �?� k)",
-            "range": [
-              0,
-              1.02
-            ],
-            "tickformat": ".2f"
-          },
-          "showlegend": false,
-          "bargap": 0,
-          "bargroupgap": 0
-        },
-        "width": 760,
-        "height": 520,
-        "scale": 1
+        "type": "binomial-histogramm-kumuliert",
+        "n": 15,
+        "p": 0.22
       }
     }
   }

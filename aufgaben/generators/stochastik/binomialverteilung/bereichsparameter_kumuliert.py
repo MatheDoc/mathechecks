@@ -95,7 +95,7 @@ class BinomialBereichsparameterKumuliertGenerator(TaskGenerator):
 
             intro = (
                 f"{rng.choice(intro_variants)}</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese "
-                "ausschlie�Ylich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. "
+                "ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. "
                 "Tritt ein angezeigter Term in der Lösung nicht auf, setzen Sie \\( k=-1 \\)."
             )
 

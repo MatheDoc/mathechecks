@@ -1,23 +1,23 @@
-"""Komplexes Baumdiagramm �?" 3 Kategorien �- 2 Ausgänge (Rückwärts-Modus).
+"""Komplexes Baumdiagramm - 3 Kategorien - 2 Ausgänge (Rückwärts-Modus).
 
 Struktur: Zweistufiger Baum
   Stufe 1: drei Kategorien A, B, C  (P(A) + P(B) + P(C) = 1)
-  Stufe 2: je zwei Ausgänge D, D�"    (P(D|X) + P(D�"|X) = 1)
+  Stufe 2: je zwei Ausgänge D, ¬D    (P(D|X) + P(¬D|X) = 1)
 
 Im Szenario-Text werden gegeben:
-  - P(A), P(C)  �?' P(B) = 1 �^' P(A) �^' P(C) ist ableitbar
+  - P(A), P(C)  -> P(B) = 1 - P(A) - P(C) ist ableitbar
   - P(D|A), P(D|B)  als Prozentzahlen
   - P(D) gesamt  als Prozentzahl
 
-Der/die Lernende muss das Baumdiagramm aufstellen und daraus drei Grö�Yen
-bestimmen. Jede Frage wählt zufällig zwischen Ausgang D und D�":
-  1. P(C �^� D)  bzw. P(C �^� D�")   �?" Verbundwahrscheinlichkeit für Kategorie C
-  2. P(D|C)   bzw. P(D�"|C)      �?" bedingte Wahrscheinlichkeit für Kategorie C
+Der/die Lernende muss das Baumdiagramm aufstellen und daraus drei Größen
+bestimmen. Jede Frage wählt zufällig zwischen Ausgang D und ¬D:
+  1. P(C ∩ D)  bzw. P(C ∩ ¬D)   - Verbundwahrscheinlichkeit für Kategorie C
+  2. P(D|C)   bzw. P(¬D|C)      - bedingte Wahrscheinlichkeit für Kategorie C
                                    (Rückwärts-Rechnung: P(D|C) nicht direkt gegeben)
-  3. P(A�^�D) + P(B�^�D)  bzw. entsprechend D�"
-                                 �?" Verbund über die beiden direkt gegebenen Kategorien
+  3. P(A∩D) + P(B∩D)  bzw. entsprechend ¬D
+                                 - Verbund über die beiden direkt gegebenen Kategorien
 
-Kein Visual in der Ausgabe �?" alle Fragen sind rein textuelle numerical-Slots.
+Kein Visual in der Ausgabe - alle Fragen sind rein textuelle numerical-Slots.
 """
 
 import random
@@ -72,12 +72,12 @@ class Template3Kat:
     # Satz 5: absolute Häufigkeiten + P(D) gesamt
     abs_stat_tmpl: str     # Platzhalter: {n_fmt}, {p_d_pct}, {count_a_fmt}, {count_c_fmt}
     # Fragetexte: je Ausgang d (positiv) und nd (negativ)
-    q1_d: str            # Q1: P(C �^� D)   �?" joint für cat_c, Ausgang D
-    q1_nd: str           # Q1: P(C �^� D�")  �?" joint für cat_c, Ausgang D�"
-    q2_d: str            # Q2: P(D|C)     �?" konditional, Ausgang D (Rückwärts-Berechnung)
-    q2_nd: str           # Q2: P(D�"|C)    �?" konditional, Ausgang D�"
-    q3_d: str            # Q3: P(A�^�D)+P(B�^�D)   �?" joint A und B, Ausgang D
-    q3_nd: str           # Q3: P(A�^�D�")+P(B�^�D�")  �?" joint A und B, Ausgang D�"
+    q1_d: str            # Q1: P(C ∩ D)   - joint für cat_c, Ausgang D
+    q1_nd: str           # Q1: P(C ∩ ¬D)  - joint für cat_c, Ausgang ¬D
+    q2_d: str            # Q2: P(D|C)     - konditional, Ausgang D (Rückwärts-Berechnung)
+    q2_nd: str           # Q2: P(¬D|C)    - konditional, Ausgang ¬D
+    q3_d: str            # Q3: P(A∩D)+P(B∩D)   - joint A und B, Ausgang D
+    q3_nd: str           # Q3: P(A∩¬D)+P(B∩¬D)  - joint A und B, Ausgang ¬D
     # Formatierungshilfen für Angaben im Szenariotext
     label_a: str         # kurzes Label, z. B. "E" für Einsteigergeräte
     label_b: str
@@ -88,7 +88,7 @@ class Template3Kat:
 TEMPLATES: list[Template3Kat] = [
     # 1) Laptops
     Template3Kat(
-        intro="In einem gro�Yen Elektronikfachmarkt wurden über mehrere Monate die Laptopverkäufe ausgewertet.",
+        intro="In einem großen Elektronikfachmarkt wurden über mehrere Monate die Laptopverkäufe ausgewertet.",
         stage1_text="Die Laptops wurden nach der Preisklasse in Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P) eingeteilt.",
         stage2_text="Zusätzlich wurde erfasst, ob ein Gerät Windows (W) oder macOS (m) nutzt.",
         things="Laptops",
@@ -270,7 +270,7 @@ TEMPLATES: list[Template3Kat] = [
     Template3Kat(
         intro="Ein Sportverein hat die Verletzungsstatistik seiner Mitglieder ausgewertet.",
         stage1_text="Die Mitglieder wurden nach ihrer Hauptsportart eingeteilt: Laufende (L), Radfahrende (R) und Schwimmende (S).",
-        stage2_text="Au�Yerdem wurde erfasst, ob sich jemand verletzt hat: verletzt (V) oder unverletzt (U).",
+        stage2_text="Außerdem wurde erfasst, ob sich jemand verletzt hat: verletzt (V) oder unverletzt (U).",
         things="Sporttreibenden",
         cat_a="Laufende (L)",
         cat_b="Radfahrende (R)",
@@ -360,21 +360,21 @@ TEMPLATES: list[Template3Kat] = [
     Template3Kat(
         intro="In einer Pendlerstudie wurde das Verkehrsverhalten in einer Region untersucht.",
         stage1_text="Die Wege wurden nach Distanz in kurz (K), mittel (M) und lang (L) eingeteilt.",
-        stage2_text="Au�Yerdem wurde erfasst, ob der Weg mit dem �-PNV (O) oder mit dem Auto (A) zurückgelegt wurde.",
+        stage2_text="Außerdem wurde erfasst, ob der Weg mit dem ÖPNV (O) oder mit dem Auto (A) zurückgelegt wurde.",
         things="Wege",
         cat_a="kurz (K)",
         cat_b="mittel (M)",
         cat_c="lang (L)",
-        out_d="mit dem �-PNV (O)",
+        out_d="mit dem ÖPNV (O)",
         out_nd="mit dem Auto (A)",
-        chance_stat_tmpl="Bei kurzen Wegen liegt der �-PNV-Anteil bei {p_d_a_pct}\u00a0%, bei mittleren Wegen bei {p_d_b_pct}\u00a0%.",
-        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg lang ist und mit dem �-PNV zurückgelegt wurde.",
+        chance_stat_tmpl="Bei kurzen Wegen liegt der ÖPNV-Anteil bei {p_d_a_pct}\u00a0%, bei mittleren Wegen bei {p_d_b_pct}\u00a0%.",
+        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg lang ist und mit dem ÖPNV zurückgelegt wurde.",
         q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg lang ist und mit dem Auto zurückgelegt wurde.",
-        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter langer Weg mit dem �-PNV erfolgt.",
+        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter langer Weg mit dem ÖPNV erfolgt.",
         q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter langer Weg mit dem Auto erfolgt.",
-        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg entweder kurz mit �-PNV oder mittel mit �-PNV ist.",
+        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg entweder kurz mit ÖPNV oder mittel mit ÖPNV ist.",
         q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Weg entweder kurz mit Auto oder mittel mit Auto ist.",
-        abs_stat_tmpl="Von insgesamt {n_fmt} ausgewerteten Wegen wurden {p_d_pct}\u00a0% mit dem �-PNV zurückgelegt; darunter waren {count_a_fmt} kurze und {count_c_fmt} lange Wege.",
+        abs_stat_tmpl="Von insgesamt {n_fmt} ausgewerteten Wegen wurden {p_d_pct}\u00a0% mit dem ÖPNV zurückgelegt; darunter waren {count_a_fmt} kurze und {count_c_fmt} lange Wege.",
         label_a="K", label_b="M", label_c="L", label_d="O",
     ),
     # 9) Konzertpublikum
@@ -422,64 +422,64 @@ TEMPLATES: list[Template3Kat] = [
     # 11) Museum
     Template3Kat(
         intro="Ein Museum hat Besucherströme über mehrere Monate dokumentiert.",
-        stage1_text="Die Besuche wurden nach Ticketart in regulär (R), ermä�Yigt (E) und Gruppe (G) eingeteilt.",
+        stage1_text="Die Besuche wurden nach Ticketart in regulär (R), ermäßigt (E) und Gruppe (G) eingeteilt.",
         stage2_text="Zusätzlich wurde erfasst, ob der Besuch mit Führung (F) oder ohne Führung (O) stattfand.",
         things="Besuche",
         cat_a="regulär (R)",
-        cat_b="ermä�Yigt (E)",
+        cat_b="ermäßigt (E)",
         cat_c="Gruppe (G)",
         out_d="mit Führung (F)",
         out_nd="ohne Führung (O)",
-        chance_stat_tmpl="Bei regulären Tickets liegt der Anteil mit Führung bei {p_d_a_pct}\u00a0%, bei ermä�Yigten Tickets bei {p_d_b_pct}\u00a0%.",
+        chance_stat_tmpl="Bei regulären Tickets liegt der Anteil mit Führung bei {p_d_a_pct}\u00a0%, bei ermäßigten Tickets bei {p_d_b_pct}\u00a0%.",
         q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch ein Gruppenbesuch mit Führung ist.",
         q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch ein Gruppenbesuch ohne Führung ist.",
         q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Gruppenbesuch mit Führung stattfindet.",
         q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Gruppenbesuch ohne Führung stattfindet.",
-        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch entweder regulär mit Führung oder ermä�Yigt mit Führung ist.",
-        q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch entweder regulär ohne Führung oder ermä�Yigt ohne Führung ist.",
+        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch entweder regulär mit Führung oder ermäßigt mit Führung ist.",
+        q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Besuch entweder regulär ohne Führung oder ermäßigt ohne Führung ist.",
         abs_stat_tmpl="Von insgesamt {n_fmt} Besuchen fanden {p_d_pct}\u00a0% mit Führung statt; darunter waren {count_a_fmt} reguläre und {count_c_fmt} Gruppen-Besuche.",
         label_a="R", label_b="E", label_c="G", label_d="F",
     ),
     # 12) Wohnungsmarkt
     Template3Kat(
         intro="Für einen kommunalen Bericht wurden Mietanzeigen ausgewertet.",
-        stage1_text="Die Wohnungen wurden nach Grö�Ye in klein (K), mittel (M) und gro�Y (G) eingeteilt.",
+        stage1_text="Die Wohnungen wurden nach Größe in klein (K), mittel (M) und groß (G) eingeteilt.",
         stage2_text="Als Merkmal wurde erfasst, ob ein Balkon (B) vorhanden ist oder nicht (N).",
         things="Wohnungen",
         cat_a="klein (K)",
         cat_b="mittel (M)",
-        cat_c="gro�Y (G)",
+        cat_c="groß (G)",
         out_d="Balkon (B)",
         out_nd="kein Balkon (N)",
         chance_stat_tmpl="Bei kleinen Wohnungen liegt der Balkonanteil bei {p_d_a_pct}\u00a0%, bei mittleren Wohnungen bei {p_d_b_pct}\u00a0%.",
-        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung gro�Y ist und einen Balkon hat.",
-        q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung gro�Y ist und keinen Balkon hat.",
-        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte gro�Ye Wohnung einen Balkon hat.",
-        q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte gro�Ye Wohnung keinen Balkon hat.",
+        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung groß ist und einen Balkon hat.",
+        q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung groß ist und keinen Balkon hat.",
+        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte große Wohnung einen Balkon hat.",
+        q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte große Wohnung keinen Balkon hat.",
         q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung entweder klein mit Balkon oder mittel mit Balkon ist.",
         q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Wohnung entweder klein ohne Balkon oder mittel ohne Balkon ist.",
-        abs_stat_tmpl="Von insgesamt {n_fmt} ausgewerteten Wohnungen haben {p_d_pct}\u00a0% einen Balkon; darunter waren {count_a_fmt} kleine und {count_c_fmt} gro�Ye Wohnungen.",
+        abs_stat_tmpl="Von insgesamt {n_fmt} ausgewerteten Wohnungen haben {p_d_pct}\u00a0% einen Balkon; darunter waren {count_a_fmt} kleine und {count_c_fmt} große Wohnungen.",
         label_a="K", label_b="M", label_c="G", label_d="B",
     ),
     # 13) Ehrenamt
     Template3Kat(
         intro="Ein Trägerverein hat das Engagement in seinen Projekten ausgewertet.",
         stage1_text="Die Einsätze wurden den Bereichen Nachhilfe (N), Umwelt (U) und Seniorenhilfe (S) zugeordnet.",
-        stage2_text="Zusätzlich wurde erfasst, ob der Einsatz regelmä�Yig (R) oder unregelmä�Yig (Ue) erfolgt.",
+        stage2_text="Zusätzlich wurde erfasst, ob der Einsatz regelmäßig (R) oder unregelmäßig (Ue) erfolgt.",
         things="Einsätze",
         cat_a="Nachhilfe (N)",
         cat_b="Umwelt (U)",
         cat_c="Seniorenhilfe (S)",
-        out_d="regelmä�Yig (R)",
-        out_nd="unregelmä�Yig (Ue)",
-        chance_stat_tmpl="Im Bereich Nachhilfe liegt der Anteil regelmä�Yiger Einsätze bei {p_d_a_pct}\u00a0%, im Umweltbereich bei {p_d_b_pct}\u00a0%.",
-        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe regelmä�Yig erfolgt.",
-        q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe unregelmä�Yig erfolgt.",
-        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe regelmä�Yig ist.",
-        q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe unregelmä�Yig ist.",
-        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz entweder in der Nachhilfe regelmä�Yig oder im Umweltbereich regelmä�Yig erfolgt.",
-        q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz entweder in der Nachhilfe unregelmä�Yig oder im Umweltbereich unregelmä�Yig erfolgt.",
-        abs_stat_tmpl="Von insgesamt {n_fmt} dokumentierten Einsätzen erfolgten {p_d_pct}\u00a0% regelmä�Yig; darunter waren {count_a_fmt} Einsätze in der Nachhilfe und {count_c_fmt} in der Seniorenhilfe.",
+        out_d="regelmäßig (R)",
+        out_nd="unregelmäßig (Ue)",
+        chance_stat_tmpl="Im Bereich Nachhilfe liegt der Anteil regelmäßiger Einsätze bei {p_d_a_pct}\u00a0%, im Umweltbereich bei {p_d_b_pct}\u00a0%.",
+        q1_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe regelmäßig erfolgt.",
+        q1_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe unregelmäßig erfolgt.",
+        q2_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe regelmäßig ist.",
+        q2_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz in der Seniorenhilfe unregelmäßig ist.",
+        q3_d="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz entweder in der Nachhilfe regelmäßig oder im Umweltbereich regelmäßig erfolgt.",
+        q3_nd="Bestimmen Sie die Wahrscheinlichkeit, dass ein zufällig ausgewählter Einsatz entweder in der Nachhilfe unregelmäßig oder im Umweltbereich unregelmäßig erfolgt.",
+        abs_stat_tmpl="Von insgesamt {n_fmt} dokumentierten Einsätzen erfolgten {p_d_pct}\u00a0% regelmäßig; darunter waren {count_a_fmt} Einsätze in der Nachhilfe und {count_c_fmt} in der Seniorenhilfe.",
         label_a="N", label_b="U", label_c="S", label_d="R",
     ),
     # 14) Einzelhandel
@@ -643,7 +643,7 @@ class Case3Kat:
     p_c: float
     p_d_a: float   # P(D|A)
     p_d_b: float   # P(D|B)
-    p_d_c: float   # P(D|C) �?" berechnet aus den übrigen
+    p_d_c: float   # P(D|C) - berechnet aus den übrigen
     p_d: float     # P(D) gesamt
 
 
@@ -655,7 +655,7 @@ def _sample_case(rng: random.Random) -> Case3Kat | None:
     P(D) als Vielfaches von 0,05.
     Gibt None zurück, wenn P(D|C) nicht in (0,02 ; 0,98) liegt.
     """
-    steps = list(range(1, 20))  # 0.05 �?� 0.95
+    steps = list(range(1, 20))  # 0.05 - 0.95
 
     pa = Decimal(rng.choice(steps)) * Decimal("0.05")
     pc_max = int((Decimal("0.90") - pa) / Decimal("0.05"))
@@ -670,8 +670,8 @@ def _sample_case(rng: random.Random) -> Case3Kat | None:
     p_d_a = Decimal(rng.choice(steps)) * Decimal("0.05")
     p_d_b = Decimal(rng.choice(steps)) * Decimal("0.05")
 
-    # P(D) so wählen, dass P(D|C) = (P(D) �^' pa·p_d_a �^' pb·p_d_b) / pc �^^ (0.02, 0.98)
-    # d.h. P(D) �^^ ( pa·p_d_a + pb·p_d_b + 0.02·pc , pa·p_d_a + pb·p_d_b + 0.98·pc )
+    # P(D) so wählen, dass P(D|C) = (P(D) - pa·p_d_a - pb·p_d_b) / pc in (0.02, 0.98)
+    # d.h. P(D) in ( pa·p_d_a + pb·p_d_b + 0.02·pc , pa·p_d_a + pb·p_d_b + 0.98·pc )
     base = _r4(pa * p_d_a + pb * p_d_b)
     pd_low = _r2(base + Decimal("0.02") * pc) + Decimal("0.01")
     pd_high = _r2(base + Decimal("0.98") * pc) - Decimal("0.01")
@@ -824,19 +824,19 @@ class MethodenBaumdiagrammKomplex3KatGenerator(TaskGenerator):
             pb = Decimal(str(case.p_b))
             pc = Decimal(str(case.p_c))
 
-            # Q1: P(C �^� D) und P(C �^� D�")
+            # Q1: P(C ∩ D) und P(C ∩ ¬D)
             p_c_and_d  = _f(_r4(pc * dc))
             p_c_and_nd = _f(_r4(pc * (Decimal("1") - dc)))
 
-            # Q2: P(D|C) und P(D�"|C)
+            # Q2: P(D|C) und P(¬D|C)
             p_d_given_c  = case.p_d_c
             p_nd_given_c = _f(_r4(Decimal("1") - dc))
 
-            # Q3: P(A�^�D)+P(B�^�D) und P(A�^�D�")+P(B�^�D�")
+            # Q3: P(A∩D)+P(B∩D) und P(A∩¬D)+P(B∩¬D)
             p_ab_and_d  = _f(_r4(pa * da + pb * db))
             p_ab_and_nd = _f(_r4(pa * (Decimal("1") - da) + pb * (Decimal("1") - db)))
 
-            # Zufällige Ausgang-Wahl pro Frage (D oder D�")
+            # Zufällige Ausgang-Wahl pro Frage (D oder ¬D)
             q1_use_d = rng.choice([True, False])
             q2_use_d = rng.choice([True, False])
             q3_use_d = rng.choice([True, False])

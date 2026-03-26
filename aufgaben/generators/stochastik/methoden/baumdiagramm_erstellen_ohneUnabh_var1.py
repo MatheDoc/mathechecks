@@ -24,7 +24,7 @@ def _slot_probabilities(case: ABCase) -> dict[int, float]:
 
 
 def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
-    """Kompakter ab-tree Spec �?" Rendering erfolgt clientseitig in preview.js."""
+    """Kompakter ab-tree Spec - Rendering erfolgt clientseitig in preview.js."""
     return {
         "type": "plot",
         "spec": {

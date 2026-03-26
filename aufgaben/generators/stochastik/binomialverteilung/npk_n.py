@@ -63,7 +63,7 @@ def _build_question(
             f"Wahrscheinlichkeit für {event_text} {comp_text} beträgt."
         ),
         (
-            f"Wie gro�Y muss/darf die Anzahl der {sample_object_plural} sein ({amount_text}), damit das Ereignis "
+            f"Wie groß muss/darf die Anzahl der {sample_object_plural} sein ({amount_text}), damit das Ereignis "
             f"\"{event_text}\" mit einer Wahrscheinlichkeit von {comp_text} auftritt?"
         ),
     ]

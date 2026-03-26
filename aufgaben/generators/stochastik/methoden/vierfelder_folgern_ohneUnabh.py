@@ -1,11 +1,11 @@
-"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen �?" ohne bedingte Wkt.
+"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen - ohne bedingte Wkt.
 
 Die Vier-Felder-Tafel ist vollständig ausgefüllt (alle 8 Felder sichtbar).
 Es werden 4 Wahrscheinlichkeiten abgefragt, je eine aus den Gruppen:
 
   1. Einzel:     P(A), P(¬A), P(B), P(¬B)
-  2. Schnitt:    P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
-  3. Vereinigung: P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
+  2. Schnitt:    P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
   4. Spezial:    symmetrische Differenz, Diagonalsumme, trivial 0/1
 
 Keine bedingten Wahrscheinlichkeiten.
@@ -21,7 +21,7 @@ from aufgaben.generators.stochastik.methoden.shared import extended_probs, sampl
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
-# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
@@ -29,7 +29,7 @@ _GROUP_VEREINIGUNG = ["paub", "paunb", "pnaub", "pnaunb"]
 _GROUP_SPEZIAL = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
 
 
-# �"?�"? LaTeX-Notation �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _LATEX: dict[str, str] = {
     "pa":     r"P(A)",

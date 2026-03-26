@@ -24,46 +24,13 @@ def _pmf_values(n: int, p: float) -> list[float]:
     return [prob_exactly(n=n, p=p, k=k) for k in range(n + 1)]
 
 
-def _build_visual(n: int, pmf: list[float]) -> dict:
-    x_values = list(range(n + 1))
-    max_y = max(pmf)
-    y_max = min(1.0, max(0.12, max_y * 1.2))
-
+def _build_visual(n: int, p: float) -> dict:
     return {
         "type": "plot",
         "spec": {
-            "type": "plotly",
-            "traces": [
-                {
-                    "kind": "bar",
-                    "x": x_values,
-                    "y": pmf,
-                    "name": "P(X = k)",
-                    "marker": {
-                        "color": "rgba(209, 213, 219, 0.95)",
-                        "line": {"color": "rgba(107, 114, 128, 0.9)", "width": 1},
-                    },
-                    "hoverinfo": "x+y",
-                }
-            ],
-            "layout": {
-                "xaxis": {
-                    "title": "k",
-                    "dtick": 1,
-                    "range": [-0.5, n + 0.5],
-                },
-                "yaxis": {
-                    "title": "P(X = k)",
-                    "range": [0, y_max],
-                    "tickformat": ".2f",
-                },
-                "showlegend": False,
-                "bargap": 0,
-                "bargroupgap": 0,
-            },
-            "width": 760,
-            "height": 520,
-            "scale": 1,
+            "type": "binomial-histogramm-einzeln",
+            "n": n,
+            "p": p,
         },
     }
 
@@ -154,7 +121,7 @@ class BinomialHistogrammeEinzelnGenerator(TaskGenerator):
                 numerical(interval_probability, tolerance=graph_tolerance, decimals=2),
             ]
 
-            visual = _build_visual(n=n, pmf=pmf)
+            visual = _build_visual(n=n, p=p)
 
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers, visual=visual))
 

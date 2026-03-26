@@ -5,6 +5,7 @@ import { initFlashcardsModule } from "./modules/flashcards.js";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
 import { initCheckAnker } from "./modules/check-anker.js";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
+import { initSkriptVisuals } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js";
 import { initEinstiegsquizModule } from "./modules/einstiegsquiz.js";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js";
@@ -593,6 +594,7 @@ async function bootstrap() {
       root: contentRoot,
     });
     const scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
+    initSkriptVisuals(scriptContentRoot);
     await initSkriptInfoCards(scriptContentRoot, context.lernbereich);
     await initCheckAnker({ root: scriptContentRoot, lernbereich: context.lernbereich });
     await initScriptTaskDuplicatesModule({
