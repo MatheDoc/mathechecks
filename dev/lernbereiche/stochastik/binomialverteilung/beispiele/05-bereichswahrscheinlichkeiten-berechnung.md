@@ -1,4 +1,7 @@
-﻿Wir suchen die Wahrscheinlichkeiten der angegebnen Ereignisse
+---
+layout: null
+---
+Wir suchen die Wahrscheinlichkeiten der angegebnen Ereignisse
 
 1. mit Hilfe kumulierter Wahrscheinlichkeiten,
 2. mit Hilfe des Taschenrechners.

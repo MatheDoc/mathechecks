@@ -5,8 +5,8 @@ Struktur: Zweistufiges Modell mit einer terminalen Gruppe
   Stufe 2: nur S und P verzweigen nach U/V; k bleibt terminal
 
 Gegeben werden im Text:
-  - P(S�^�U) und P(S�^�V) als Prozentwerte
-  - |P�^�V| als absolute Häufigkeit
+  - P(S∩U) und P(S∩V) als Prozentwerte
+  - |P∩V| als absolute Häufigkeit
   - |k| als absolute Häufigkeit
 
 Gefragt werden drei kontextbezogene Wahrscheinlichkeiten:
@@ -151,7 +151,7 @@ TEMPLATES: list[TemplateNutzung] = [
         q_group_p="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person zur Pro-Gruppe gehört.",
     ),
     TemplateNutzung(
-        intro="Für ein Mathe-Förderprogramm wurde die Nutzung einer �obungs-App untersucht.",
+        intro="Für ein Mathe-Förderprogramm wurde die Nutzung einer Übungs-App untersucht.",
         stage1_text="Die Teilnehmenden wurden in drei Gruppen eingeteilt: Starter-Modus (S), Pro-Modus (P) und keine Nutzung (k).",
         stage2_text="Bei S und P wurde unterschieden zwischen Wiederholung (U) und gezielter Prüfungsvorbereitung (V).",
         chance_stat_tmpl=(
@@ -161,7 +161,7 @@ TEMPLATES: list[TemplateNutzung] = [
         abs_stat_tmpl=(
             "Insgesamt umfasst die Erhebung {n_fmt} Teilnehmende. "
             "{count_pv_fmt} nutzen den Pro-Modus zur gezielten Prüfungsvorbereitung, "
-            "{count_k_fmt} nutzen keine �obungs-App."
+            "{count_k_fmt} nutzen keine Übungs-App."
         ),
         q_total_u="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die App zur Wiederholung nutzt.",
         q_total_v="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die App zur gezielten Prüfungsvorbereitung nutzt.",
@@ -190,14 +190,14 @@ TEMPLATES: list[TemplateNutzung] = [
     TemplateNutzung(
         intro="Ein Verlag hat die Nutzung einer Nachrichtenplattform untersucht.",
         stage1_text="Die Lesenden wurden in Basis-Zugang (S), Plus-Zugang (P) und keine Nutzung (k) eingeteilt.",
-        stage2_text="Bei S und P wurde unterschieden zwischen �oberblick (U) und vertiefter Recherche (V).",
-        chance_stat_tmpl="{p_su_pct} % nutzen den Basis-Zugang für �oberblick, {p_sv_pct} % für vertiefte Recherche.",
+        stage2_text="Bei S und P wurde unterschieden zwischen Überblick (U) und vertiefter Recherche (V).",
+        chance_stat_tmpl="{p_su_pct} % nutzen den Basis-Zugang für Überblick, {p_sv_pct} % für vertiefte Recherche.",
         abs_stat_tmpl="Insgesamt wurden {n_fmt} Lesende erfasst. {count_pv_fmt} nutzen Plus für vertiefte Recherche, {count_k_fmt} nutzen die Plattform nicht.",
-        q_total_u="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die Plattform für �oberblick nutzt.",
+        q_total_u="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die Plattform für Überblick nutzt.",
         q_total_v="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person die Plattform für vertiefte Recherche nutzt.",
-        q_cond_u_s="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Basis-Zugang die Plattform für �oberblick nutzt.",
+        q_cond_u_s="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Basis-Zugang die Plattform für Überblick nutzt.",
         q_cond_v_s="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Basis-Zugang die Plattform für vertiefte Recherche nutzt.",
-        q_cond_u_p="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Plus-Zugang die Plattform für �oberblick nutzt.",
+        q_cond_u_p="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Plus-Zugang die Plattform für Überblick nutzt.",
         q_cond_v_p="Bestimmen Sie die Wahrscheinlichkeit, dass eine Person mit Plus-Zugang die Plattform für vertiefte Recherche nutzt.",
         q_group_s="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person zur Basis-Gruppe gehört.",
         q_group_p="Bestimmen Sie die Wahrscheinlichkeit, dass eine zufällig ausgewählte Person zur Plus-Gruppe gehört.",

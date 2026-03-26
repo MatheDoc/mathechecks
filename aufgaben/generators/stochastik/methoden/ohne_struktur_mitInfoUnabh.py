@@ -1,13 +1,13 @@
-"""Wahrscheinlichkeiten ohne Struktur berechnen �?" 2 gegebene Wkt + stoch. Unabhängigkeit.
+"""Wahrscheinlichkeiten ohne Struktur berechnen - 2 gegebene Wkt + stoch. Unabhängigkeit.
 
-Szenario: Zwei von {P(A), P(B), P(A�^�B), P(A�^�B)} sind bekannt;
+Szenario: Zwei von {P(A), P(B), P(A∩B), P(A∩B)} sind bekannt;
 A und B sind stochastisch unabhängig.
 Keine VFT, kein Baumdiagramm.
 
 Es werden genau 6 Wahrscheinlichkeitsfragen gestellt aus je einer Gruppe:
   1. EINZEL:      P(A), P(¬A), P(B), P(¬B)
-  2. SCHNITT:     P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
-  3. VEREINIGUNG: P(A�^�B), P(A�^�¬B), P(¬A�^�B), P(¬A�^�¬B)
+  2. SCHNITT:     P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  3. VEREINIGUNG: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
   4. COND_A:      P_A(B), P_A(¬B), P_{¬A}(B), P_{¬A}(¬B)
   5. COND_B:      P_B(A), P_B(¬A), P_{¬B}(A), P_{¬B}(¬A)
   6. SPEZIAL:     symdiff, diag_sum, trivial_0, trivial_1
@@ -25,7 +25,7 @@ from aufgaben.generators.stochastik.methoden.shared import (
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
-# �"?�"? Gruppen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _GROUP_EINZEL      = ["pa", "pna", "pb", "pnb"]
 _GROUP_SCHNITT     = ["pab", "panb", "pnab", "pnanb"]
@@ -44,7 +44,7 @@ _ANCHOR2_OPTS = [
 ]
 
 
-# �"?�"? LaTeX-Notation �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 _LATEX: dict[str, str] = {
     "pa":      r"P(A)",
@@ -88,17 +88,17 @@ _SPEZIAL_LABELS: dict[str, list[str]] = {
 }
 
 
-# �"?�"? Hilfsfunktionen �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 def _pct_str(value: float) -> str:
-    """Wert als Prozentzahl mit deutschem Komma, z. B. 0.69 �?' '69%', 0.084 �?' '8,4%'."""
+    """Wert als Prozentzahl mit deutschem Komma, z. B. 0.69 -> '69%', 0.084 -> '8,4%'."""
     pct = value * 100
     s = f"{pct:.4f}".rstrip("0").rstrip(".")
     return s.replace(".", ",") + "%"
 
 
 def _dec_str(value: float) -> str:
-    """Wert als Dezimalzahl mit deutschem Komma, z. B. 0.6348 �?' '0,6348'."""
+    """Wert als Dezimalzahl mit deutschem Komma, z. B. 0.6348 -> '0,6348'."""
     s = f"{value:.4f}".rstrip("0").rstrip(".")
     return s.replace(".", ",")
 
@@ -121,7 +121,7 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
     return f"\\({_LATEX[key]}\\)."
 
 
-# �"?�"? Generator �"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?�"?
+# ---------------------------------------------------------------------------
 
 class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
     generator_key = "stochastik.methoden.ohneStruktur_mitInfoUnabh"
@@ -158,7 +158,7 @@ class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
                 f"<p>\\(A\\): {scenario.event_a}<br>"
                 f"\\(B\\): {scenario.event_b}</p>"
                 f"<p>Es ist bekannt, dass {given_text}. "
-                "Au�Yerdem sind \\(A\\) und \\(B\\) stochastisch unabhängig.</p>"
+                "Außerdem sind \\(A\\) und \\(B\\) stochastisch unabhängig.</p>"
                 "<p>Berechnen Sie (auf 4 NKS gerundet)</p>"
             )
 

@@ -25,7 +25,7 @@ Da generell die Summe aller Wahrscheinlichkeiten eines Zufallsexperiments immer 
 
 Kopf ($K$) und Zahl ($Z$) treten bei einem einmaligen Wurf beide mit einer Wahrscheinlichkeit von 50&nbsp;% auf. Daraus ergibt sich folgendes Baumdiagramm:
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.5"
     pba="0.5"
     pbna="0.5"
@@ -59,6 +59,7 @@ antwort="
 Sind alle Pfadwahrscheinlichkeiten gegeben – gegebenenfalls durch Berechnung von Gegenwahrscheinlichkeiten –, so können die Pfadendwahrscheinlichkeiten unmittelbar mit Hilfe der Pfadmultiplikationsregel berechnet werden."
 %}
 
+{% include dev/check-anker.html nummer=1 %}
 
 {%include info.html
 index="2"
@@ -98,7 +99,7 @@ Häufig liegt eine Situation vor, in der zwei Ereignisse $A$ und $B$ und deren G
 
 Das Baumdiagramm habe die Gestalt
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.5"
     pba="0.4"
     pbna="0.1"
@@ -106,7 +107,7 @@ Das Baumdiagramm habe die Gestalt
 %}
 Hinweise:
 
-- Die Ergebnisemenge ist $S=\\{AB, A\overline{B}, \overline{A}B, \overline{A}\overline{B}\\}$.
+- Die Ergebnismenge ist $S=\\{AB, A\overline{B}, \overline{A}B, \overline{A}\overline{B}\\}$.
 - Es gilt $A=\\{AB, A\overline{B}\\}$ und $B=\\{AB, \overline{A}B\\}$.
 - Auf der ersten Stufe stehen die Wahrscheinlichkeiten von $A$ und $\overline{A}$: $P(A)=0{,}5$ und $P(\overline{A})=0{,}5$.
 - Auf der zweiten Stufe stehen die Wahrscheinlichkeiten von $B$ und $\overline{B}$ **in Abhängigkeit** davon, ob $A$ eingetreten ist oder nicht (diese Wahrscheinlichkeiten sind im Allgemeinen nicht $P(B)$ und $P(\overline{B})$).

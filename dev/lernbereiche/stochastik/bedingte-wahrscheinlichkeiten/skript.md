@@ -21,7 +21,7 @@ Wir betrachten ein mehrstufiges Zufallsexperiment mit den zwei Ereignissen
 
 Das Baumdiagramm habe die Gestalt
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.7"
     pba="0.9"
     pbna="0.2"
@@ -31,12 +31,12 @@ Das Baumdiagramm habe die Gestalt
 Hat ein Schüler gelernt, so besteht er mit einer Wahrscheinlichkeit von 90&nbsp;% die Prüfung, hat er nicht gelernt, besteht er die Prüfung nur mit einer Wahrscheinlichkeit von 20&nbsp;%. Die Wahrscheinlichkeit, dass ein Schüler die Prüfung besteht, hängt also davon ab, ob er gelernt hat. Mit anderen Worten: Die Wahrscheinlichkeit für $B$ (und auch für $\overline{B}$) hängt davon ab, ob $A$ eingetreten ist (oder nicht). Diese Wahrscheinlichkeiten der zweiten Stufe des Baumdiagramms heißen **bedingte Wahrscheinlichkeiten**, da für sie eine Bedingung $-$ hier $A$ oder $\overline{A}$ $-$ vorliegt.
 Wir verwenden die folgenden Bezeichnungen
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.7"
     pba="0.9"
     pbna="0.2"
     titel="Bezeichnungen"
-    symbol="true"
+    mode="symbol"
 %}
 
 Es ergeben sich die folgenden Interpretationen:
@@ -113,7 +113,7 @@ Zusammengefasst:
 
 Es ist wichtig zu erwähnen, dass im Baumdiagramm
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.5"
     pba="0.1"
     pbna="0.3"
@@ -126,7 +126,7 @@ Dafür berechnen wir zunächst $P(B)=0{,}05+0{,}15=0{,}2$. Damit ist $P(\overlin
 
 Das inverse Baumdiagramm lautet schließlich
 
-{% include baumdiagramm.html
+{% include dev/baumdiagramm.html
     pa="0.2"
     pba="0.25"
     pbna="0.5625"

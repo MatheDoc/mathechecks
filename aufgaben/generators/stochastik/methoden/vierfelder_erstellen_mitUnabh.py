@@ -1,19 +1,19 @@
-"""Vier-Felder-Tafel vervollständigen �?" mit Hinweis zur stochastischen Unabhängigkeit.
+"""Vier-Felder-Tafel vervollständigen - mit Hinweis zur stochastischen Unabhängigkeit.
 
 Nur 2 Zellen der Tafel sind gegeben. Dank P(B|A) = P(B|¬A) = P(B) genügt das.
 
 Muster (3 mögliche Kombinationstypen):
 
   1. eines von {[1,2], [3,4], [1,3], [2,4]}
-       �?' vollständige Zeile oder Spalte der Innenzellen
+       -> vollständige Zeile oder Spalte der Innenzellen
   2. {5oder6} UND {7oder8}
-       �?' je eine Randwahrscheinlichkeit
+       -> je eine Randwahrscheinlichkeit
   3. {1oder2oder3oder4} UND {5oder6oder7oder8}
-       �?' eine Innenzelle + eine Randwahrscheinlichkeit
+       -> eine Innenzelle + eine Randwahrscheinlichkeit
 
 Slot-Nummerierung:
-  1 = P(A�^�B)   2 = P(A�^�B�")   3 = P(�?�^�B)   4 = P(�?�^�B�")
-  5 = P(A)     6 = P(�?)      7 = P(B)     8 = P(B�")
+  1 = P(A∩B)   2 = P(A∩¬B)   3 = P(¬A∩B)   4 = P(¬A∩¬B)
+  5 = P(A)     6 = P(¬A)      7 = P(B)     8 = P(¬B)
 """
 
 import random

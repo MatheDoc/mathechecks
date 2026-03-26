@@ -1,9 +1,14 @@
-﻿Was kann als binomalverteilte Zufallsgröße interpretiert werden?
+---
+layout: null
+---
+Wir betrachten folgende Situationen:
 
 1. 10 maliges Ziehen mit Zurücklegen von Losen (Treffer/Niete)
 2. 20 maliges Ziehen ohne Zurücklegen von Losen (Treffer/Niete)
 3. 3 maliges Werfen eines Würfels
 4. Eingabe eines Passworts (richtig/falsch) bis man das richtige Passwort eingibt 
+
+Was kann als binomalverteilte Zufallsgröße interpretiert werden?
 
 1. alle Bedingungen der Binomialverteilung sind erfüllt: feste Anzahl von Versuchen (10), nur zwei mögliche Ergebnisse (Treffer/Niete) und konstante Wahrscheinlichkeit für Treffer bei jedem Ziehen (da mit Zurücklegen)
 2. nicht binomialverteilt, da die Wahrscheinlichkeit für einen Treffer sich bei jedem Ziehen ändert (ohne Zurücklegen)

@@ -48,11 +48,11 @@ class BinomialKennzahlenNPGegebenGenerator(TaskGenerator):
                     fragen=[
                         rng.choice([
                             f"Bestimmen Sie, wie viele {scenario.success_plural} im Durchschnitt zu erwarten sind.",
-                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgrö�Ye.",
+                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgröße.",
                             f"Wie viele {scenario.success_plural} sind im Mittel zu erwarten?",
                         ]),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgrö�Ye (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
                             "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
                         ]),
                     ],

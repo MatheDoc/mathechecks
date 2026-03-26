@@ -37,7 +37,7 @@ class BinomialKennzahlenPSigmaGegebenGenerator(TaskGenerator):
                 ),
                 (
                     f"{scenario.intro_prefix} Mit Wahrscheinlichkeit {_percent_text(p)} tritt "
-                    f"{scenario.success_event_accusative} auf. Für die Zufallsgrö�Ye gilt "
+                    f"{scenario.success_event_accusative} auf. Für die Zufallsgröße gilt "
                     f"\\(\\sigma = {_de(sigma, 4)}\\)."
                 ),
             ]
@@ -48,7 +48,7 @@ class BinomialKennzahlenPSigmaGegebenGenerator(TaskGenerator):
                     fragen=[
                         rng.choice([
                             f"Bestimmen Sie, wie viele {scenario.success_plural} im Durchschnitt zu erwarten sind.",
-                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgrö�Ye.",
+                            "Bestimmen Sie den Erwartungswert \\(\\mu\\) der Zufallsgröße.",
                         ]),
                         (
                             f"Bestimmen Sie die Anzahl der insgesamt betrachteten {scenario.sample_object_plural} "

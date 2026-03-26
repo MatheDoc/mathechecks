@@ -406,7 +406,11 @@ Wie jede Zufallsgröße können binomialverteilte Zufallsgrößen in Histogramme
 - Einzelwahrscheinlichkeiten: Hier wird jeder Trefferanzahl $k$ die Wahrscheinlichkeit $P(X=k)$ zugeordnet.
 - Kumulierte Wahrscheinlichkeiten: Hier wird jeder Trefferanzahl $k$ die kumulierte Wahrscheinlichkeit $P(X\leq k)$ zugeordnet.
 
-{%include histogramm-binomial.html %}
+Die folgende Übersicht zeigt die Histogramme und zugehörigen Intervallwahrscheinlichkeiten.
+
+{%include dev/histogramm-binomial.html %}
+
+Damit können wir auch mit Hilfe von Histogrammen Intervallwahrscheinlichkeiten bestimmen.  
 
 {% include dev/check-anker.html nummer=6 %}
 
@@ -588,7 +592,7 @@ Häufig interssieren wir uns dafür, was die "normalen" Werte einer Zufallsgrö�
 
 Wir betrachten beispielhaft die Binomialverteilung mit $n=10$ und $p=0{,}4$:
 
-{% include histogramm-binomial-einzel.html
+{% include dev/histogramm-binomial-einzel.html
 n=10
 p=0.4
 a=4
