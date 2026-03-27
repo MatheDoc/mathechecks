@@ -42,6 +42,9 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 - Die Module `warmup`, `kompetenzliste` und `flashcards` nutzen ebenfalls das gemeinsame Card-Design (`dev-check-card`) mit modulspezifischen Anpassungen.
 - Module arbeiten mit Modul-Systemfarben.
 
+## Check-Anker in Skripten
+- Für jeden Check gibt es Hinweise, Beispiel und Aufgabe. 
+
 ## Konsistenz- und Cleanup-Regeln
 
 - Vor neuen Styles zuerst prüfen, ob bestehende Card- und Header-Klassen (`dev-check-card*`) ausreichen.
