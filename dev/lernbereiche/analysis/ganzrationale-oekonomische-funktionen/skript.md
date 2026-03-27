@@ -146,7 +146,7 @@ Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen gra
 
 ### Angebotsmonopol (mit Kapazitätsgrenze $x=13$)
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"E(x)", "term":"32x", "beschreibung":"Erlösfunktion"},
     {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
@@ -176,7 +176,7 @@ Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen gra
 
 ### Angebotspolypol
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"E(x)", "term":"-5x^2+60x", "beschreibung":"Erlösfunktion"},
     {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},

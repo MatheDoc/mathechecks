@@ -72,7 +72,7 @@ Die Ableitung $f'(x)$ gibt die Steigung der Tangente an den Graphen von $f$ im P
 
 Wir betrachten $f(x)=x^3-3x$ und seine Ableitung $f'(x)=3x^2-3$. Beide Funktionen sind unten überlagert dargestellt.
 
-{% include graph.html
+{% include dev/graph.html
 funktionen='[{"term":"x^3-3x","name":"f(x)"},{"term":"3x^2-3","name":"f\'(x)"}]'
 titel="f und f'"
 xachse="x"
@@ -124,7 +124,7 @@ Gegeben sei $f(x)=x^4-2x^2$.
 - $f''(x)=12x^2-4$ → Krümmung und Wendepunkte: $f''(x)=0 \Rightarrow x=\pm \tfrac{2}{\sqrt{12}}=\pm \tfrac{1}{\sqrt{3}}$
 - Nullstellen: $f(x)=x^2(x^2-2)$ → $x=0$ (doppelte NS) und $x=\pm\sqrt{2}$
 
-{% include graph.html
+{% include dev/graph.html
 funktionen='[{"term":"x^4-2x^2","name":"f(x)"},{"term":"4x^3-4x","name":"f\'(x)"}]'
 titel="Kurvendiskussion: f und f'"
 xachse="x"

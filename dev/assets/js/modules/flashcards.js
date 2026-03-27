@@ -369,8 +369,13 @@ function syncCardViewportHeight() {
 
     const bodyRect = bodyNode.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+    const viewportNode = state.root?.closest(".check-viewport-item");
+    const viewportRect = viewportNode?.getBoundingClientRect();
+    const viewportBottom = viewportRect
+        ? Math.min(viewportRect.bottom, viewportHeight)
+        : viewportHeight;
     const bottomSafeSpace = 26;
-    const available = Math.max(220, viewportHeight - bodyRect.top - bottomSafeSpace);
+    const available = Math.max(220, viewportBottom - bodyRect.top - bottomSafeSpace);
     const ratingHeight = ratingNode.offsetHeight || 0;
     const verticalGap = 30;
     const maxCardHeight = Math.max(220, available - ratingHeight - verticalGap);
@@ -404,6 +409,15 @@ function syncCardViewportHeight() {
 
     setScrollState(frontNode);
     setScrollState(backNode);
+}
+
+function syncCardViewportHeightWithRetry(targetNode, retries = 4) {
+    resizePlotlyInNode(targetNode, 0);
+    syncCardViewportHeight();
+    if (retries <= 0) return;
+
+    // Plotly can settle asynchronously; resync a few times to avoid clipped bottoms.
+    setTimeout(() => syncCardViewportHeightWithRetry(targetNode, retries - 1), 140);
 }
 
 function insertVisualIntoFace(faceNode, task) {
@@ -457,8 +471,7 @@ async function renderCurrentCard(card, options = {}) {
 
     await renderMath(innerNode);
     requestAnimationFrame(() => {
-        resizePlotlyInNode(innerNode);
-        syncCardViewportHeight();
+        syncCardViewportHeightWithRetry(innerNode, 5);
     });
     updateCounterAndMessage();
 }
@@ -475,8 +488,7 @@ function flipCurrentCard() {
 
     // Re-sync after flip animation/layout changes to avoid transient phantom scrollbars.
     requestAnimationFrame(() => {
-        resizePlotlyInNode(cardNode, 2);
-        syncCardViewportHeight();
+        syncCardViewportHeightWithRetry(cardNode, 2);
     });
 }
 
