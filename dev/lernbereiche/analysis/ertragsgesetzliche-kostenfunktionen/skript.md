@@ -24,7 +24,7 @@ Die Kosten eines Unternehmens lassen sich durch verschiedene Funktionen modellie
 
 Die folgende graphische Darstellung zeigt verschiedene Funktionen dritten Grades und dient der Unterscheidung zwischen ertragsgesetzlichem und nicht-ertragsgesetzlichem Verlauf:
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
     {"name":"f(x)", "term":"0.5*x^3-6*x^2+30*x-50", "beschreibung":"f(x)"},
@@ -53,7 +53,7 @@ Aus der Grafik ist ersichtlich, dass nur die Funktion $K(x)$ den Anforderungen a
 
 Auch mit Hilfe der Graphen der Grenzkostenfunktionen können wir - bis auf den positiven y-Abschnitt - prüfen, ob ein ertragsgesetzlicher Kostenverlauf vorliegt. Das folgende Diagramm zeigt die Graphen vierer Ableitungsfunktionen.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Kostenfunktion"},
     {"name":"f\u2032(x)", "term":"-1.5*x^2+8*x+35", "beschreibung":"f(x)"},
@@ -201,7 +201,7 @@ $$
 
 so könnte nur für einen bestimmen Paramterbereich ein ertragsgesetzlicher Verlauf vorliegen. Dazu betrachten wir die Graphen zu den Parametern $a=40$, $a=30$, $a=20$ und $a=10$.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"K<sub>40</sub>(x)", "term":"x^3-9*x^2+40*x+60", "beschreibung":"K<sub>40</sub>(x)"},
     {"name":"K<sub>30</sub>", "term":"x^3-9*x^2+30*x+60", "beschreibung":"K<sub>30</sub>(x)"},
@@ -325,7 +325,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
 
 ## Graphische Darstellungen
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Grenzkostenfunktion"},
     {"name":"k(x)", "term":"0.5*x^2-6*x+30+48/x", "beschreibung":"Stückkostenfunktion"},
@@ -554,7 +554,7 @@ Gesucht: $K(x)=ax^3+bx^2+cx+d$.
 
 Graphisch lässt sich die Situation so darstellen: Wir suchen den eine Funktion $K(x)$, deren Graph durch die angegebenen Punkte verläuft.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"K(x)", "term":"x^3-9*x^2+28*x+5", "beschreibung":"Kostenfunktion"}
    ]'

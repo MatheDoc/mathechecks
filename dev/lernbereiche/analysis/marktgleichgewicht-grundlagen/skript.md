@@ -44,7 +44,7 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
 
 Das folgende Diagramm veranschaulicht die Kennzahlen zum Marktgleichgewicht.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"p<sub>N</sub>(x)", "term":"-2*x+42", "beschreibung":"Nachfragefunktion"},
     {"name":"p<sub>A</sub>(x)", "term":"1.5x+14", "beschreibung":"Angebotsfunktion"}
@@ -180,7 +180,7 @@ Der im vorherigen Abschnitt behandelte Fall: Im Marktgleichgewicht stimmen angeb
 
 Ein äußerer Eingriff, hier die Festlegung eines **Höchstpreises**, kann ein Ungleichgewicht verursachen. Das folgende Diagramm zeigt die Situation bei einem Höchstpreis $p_H$ von 20 GE.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"p<sub>N</sub>(x)", "term":"-2*x+42", "beschreibung":"Nachfragefunktion"},
     {"name":"p<sub>A</sub>(x)", "term":"1.5x+14", "beschreibung":"Angebotsfunktion"},
@@ -235,7 +235,7 @@ $$
 
 Ein äußerer Eingriff, hier die Festlegung eines **Mindestpreises**, kann ein Ungleichgewicht verursachen. Das folgende Diagramm zeigt die Situation bei einem Mindestpreis $p_M$ von 35 GE.
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"p<sub>N</sub>(x)", "term":"-2*x+42", "beschreibung":"Nachfragefunktion"},
     {"name":"p<sub>A</sub>(x)", "term":"1.5x+14", "beschreibung":"Angebotsfunktion"},

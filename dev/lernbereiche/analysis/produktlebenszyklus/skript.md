@@ -60,7 +60,7 @@ $$u_1(t)=(-t^2+20t)\cdot e^{-0{,}2t} \qquad \text{(Marktaustritt)}$$
 
 $$u_2(t)=(3t^2+8)\cdot e^{-0{,}3t}+2 \qquad \text{(langfristiger Umsatz)}$$
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"u₁(t)", "term":"(-1*x^2+20*x)*exp(-0.2*x)", "beschreibung":"Marktaustritt", "xmax":20},
     {"name":"u₂(t)", "term":"(3*x^2+8)*exp(-0.3*x)+2", "beschreibung":"langfristiger Umsatz"}
@@ -130,7 +130,7 @@ Für das obige Beispiel gilt:
 
 $$u^{\prime}(t) = (0{,}4t^2-8{,}8t+24)\cdot e^{-0{,}2t}$$
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"u\u2032(t)", "term":"(0.4*x^2-8.8*x+24)*exp(-0.2*x)", "beschreibung":"Ableitung der Umsatzfunktion"}
    ]'
@@ -424,7 +424,7 @@ Falls die Kosten **nie** gedeckt werden ($G(t)<0$ für alle $t$), gibt es keine 
 
 Das folgende Diagramm zeigt den typischen Verlauf am Beispiel der Gewinnfunktion $G(t)=(-0{,}4t^3+11t^2)\cdot e^{-0{,}2t}-36{,}5$:
 
-{% include graph.html
+{% include dev/graph.html
    funktionen='[
     {"name":"G(t)", "term":"(-0.4*x^3+11*x^2)*exp(-0.2*x)-36.5", "beschreibung":"Gewinnfunktion"}
    ]'

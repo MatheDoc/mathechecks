@@ -1,5 +1,6 @@
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
+import { buildGraphFigure } from "../visuals/graph.js";
 
 const PLOTLY_CONFIG = {
     scrollZoom: false,
@@ -34,6 +35,31 @@ export function initSkriptVisuals(root) {
 
         const figure = buildBaumdiagrammFigure(opts);
         window.Plotly.newPlot(div, figure.data, figure.layout, PLOTLY_CONFIG);
+    });
+
+    /* ---- Graphen (symbolische Funktionen) ---- */
+    root.querySelectorAll(".graph-auto").forEach((div) => {
+        if (!window.math) return;
+        let funktionen;
+        try { funktionen = JSON.parse(div.dataset.funktionen); } catch { return; }
+        const punkte = div.dataset.punkte ? JSON.parse(div.dataset.punkte) : null;
+        const flaechen = div.dataset.flaechen ? JSON.parse(div.dataset.flaechen) : null;
+
+        const figure = buildGraphFigure({
+            funktionen,
+            punkte,
+            flaechen,
+            titel: div.dataset.titel || "",
+            xAchse: div.dataset.xachse || "",
+            yAchse: div.dataset.yachse || "",
+            xMin: div.dataset.xmin !== "" ? Number(div.dataset.xmin) : -5,
+            xMax: div.dataset.xmax !== "" ? Number(div.dataset.xmax) : 20,
+            yMin: div.dataset.ymin !== "" ? Number(div.dataset.ymin) : null,
+            yMax: div.dataset.ymax !== "" ? Number(div.dataset.ymax) : null,
+        });
+
+        const graphConfig = { ...PLOTLY_CONFIG, displayModeBar: true, displaylogo: false };
+        window.Plotly.newPlot(div, figure.data, figure.layout, graphConfig);
     });
 
     /* ---- Histogramme (Einzelwahrscheinlichkeiten) ---- */
