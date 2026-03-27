@@ -27,7 +27,8 @@
 
 .hamburger,
 .auth-toggle,
-.calculator-toggle {
+.calculator-toggle,
+.beta-toggle {
   background: none;
   border: 1px solid #ffffff;
   border-radius: 5px;
@@ -38,7 +39,8 @@
 
 .hamburger:hover,
 .auth-toggle:hover,
-.calculator-toggle:hover {
+.calculator-toggle:hover,
+.beta-toggle:hover {
   background: #cfcfcf6a;
   transform: translateY(-1px);
 }
@@ -81,6 +83,14 @@
   right: 4.2rem;
   font-size: 1.2rem;
   padding: 0.25rem 0.45rem;
+}
+
+.beta-toggle {
+  position: absolute;
+  right: 8.4rem;
+  font-size: 1.2rem;
+  padding: 0.25rem 0.45rem;
+
 }
 
 #account-status-indicator {
@@ -320,7 +330,13 @@
 
   .auth-toggle {
     right: 3.15rem;
-    font-size: 1.05rem;
+    font-size: 1.15rem;
+    padding: 0.15rem 0.35rem;
+  }
+
+  .beta-toggle {
+    right: 6.3rem;
+    font-size: 1.15rem;
     padding: 0.15rem 0.35rem;
   }
 
