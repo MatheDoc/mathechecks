@@ -314,6 +314,20 @@ function buildPlotlyFigure(spec) {
     return figure;
 }
 
+function ensureEqualColumns(table) {
+    if (!table || table.querySelector(':scope > colgroup[data-auto-eq]')) return;
+    const maxCols = Array.from(table.rows).reduce((max, row) =>
+        Math.max(max, Array.from(row.cells).reduce((s, c) =>
+            s + (parseInt(c.getAttribute("colspan"), 10) || 1), 0)), 0);
+    if (maxCols < 1) return;
+    const cg = document.createElement("colgroup");
+    cg.dataset.autoEq = "";
+    for (let i = 0; i < maxCols; i++) {
+        cg.appendChild(document.createElement("col"));
+    }
+    table.insertBefore(cg, table.firstChild);
+}
+
 function buildWktTable(spec) {
     const xVals = Array.isArray(spec?.x) ? spec.x : [];
     const pVals = Array.isArray(spec?.p) ? spec.p : [];
@@ -410,8 +424,10 @@ export function renderVisual(task, wrapper) {
         const tableWrapper = document.createElement("div");
         tableWrapper.className = "intro";
         const scrollWrapper = document.createElement("div");
-        scrollWrapper.className = "intro-table-scroll";
-        scrollWrapper.appendChild(buildVftTable(spec));
+        scrollWrapper.className = "table-scroll";
+        const tbl = buildVftTable(spec);
+        ensureEqualColumns(tbl);
+        scrollWrapper.appendChild(tbl);
         tableWrapper.appendChild(scrollWrapper);
         wrapper.appendChild(tableWrapper);
         return;
@@ -421,8 +437,10 @@ export function renderVisual(task, wrapper) {
         const tableWrapper = document.createElement("div");
         tableWrapper.className = "intro";
         const scrollWrapper = document.createElement("div");
-        scrollWrapper.className = "intro-table-scroll";
-        scrollWrapper.appendChild(buildWktTable(spec));
+        scrollWrapper.className = "table-scroll";
+        const tbl = buildWktTable(spec);
+        ensureEqualColumns(tbl);
+        scrollWrapper.appendChild(tbl);
         tableWrapper.appendChild(scrollWrapper);
         wrapper.appendChild(tableWrapper);
         return;

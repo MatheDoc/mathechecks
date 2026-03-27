@@ -277,7 +277,9 @@ Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die den Gewinn 
 
 Zunächst berechnen wir $P(\\{W\\})=0{,}04+0{,}35+0{,}06=0{,}45$. Wir erhalten:
 
-<table><tr><td>$x_i$</td><td>$180$</td><td>$130$</td><td>$210$</td><td>$290$</td></tr><tr><td>$P(X = x_i)$</td><td>$0{,}45 $</td><td>$0{,}16$</td><td>$0{,}35$</td><td>$0{,}04$</td></tr></table>
+|$x_i$|$180$|$130$|$210$|$290$|
+|-----|-----|-----|-----|-----|
+|$P(X = x_i)$|$0{,}45 $|$0{,}16$|$0{,}35$|$0{,}04$|
 
 Wie sieht das Histogramm der Zufallsgröße aus?
 
@@ -308,7 +310,9 @@ Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die die Punkte 
 
 Die Wahrscheinlichkeit, dass ein Jugendlicher Lern-Apps nur zur Unterhaltung nutzt beträgt $0{,}357+0{,}048=0{,}405.$ Wir erhalten:
 
-<table><tr><td>$ x_i $</td><td>$ 11{,}3 $</td><td>$ 10{,}4 $</td><td>$ 9{,}1 $</td><td>$ 7{,}3 $</td></tr><tr><td>$ P(X = x_i) $</td><td>$ 0{,}112 $</td><td>$ 0{,}243 $</td><td>$ 0{,}405 $</td><td>$ 0{,}24 $</td></tr></table>
+| $x_i$ | $11{,}3$ | $10{,}4$ | $9{,}1$ | $ 7{,}3 $ |
+| ----- | -------- | -------- | ------- | --------- |
+|$ P(X = x_i) $|$ 0{,}112 $|$ 0{,}243 $|$ 0{,}405 $|$ 0{,}24 $|
 
 Wie sieht das Histogramm der Zufallsgröße aus?
 

@@ -233,6 +233,89 @@ body {
   overflow-x: hidden;
 }
 
+/* ─────────────────────── Tables (Global Dev Default) ─────────────────────── */
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background: var(--surface, #fff);
+  border: 1px solid var(--border, #dfe5f1);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 16px 0 20px;
+}
+
+.table-scroll {
+  display: block;
+  margin: 16px 0 20px;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.table-scroll>table {
+  --table-col-width: 9.5rem;
+  width: max-content;
+  table-layout: fixed;
+  margin: 0 auto;
+}
+
+.table-scroll>table>colgroup>col {
+  width: var(--table-col-width, 9.5rem);
+}
+
+.table-scroll th,
+.table-scroll td,
+.page-skript-md .mod-content .table-scroll th,
+.page-skript-md .mod-content .table-scroll td {
+  white-space: nowrap;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--border, #dfe5f1);
+  border-right: 1px solid var(--border, #dfe5f1);
+  padding: 10px 12px;
+  text-align: center;
+  font-size: .83rem;
+  color: var(--text-body, #3d4452);
+  vertical-align: middle;
+}
+
+th mjx-container,
+td mjx-container {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+th:last-child,
+td:last-child {
+  border-right: 0;
+}
+
+thead th {
+  font-weight: 700;
+  color: var(--text, #1a1a2e);
+  background: var(--surface-hi, rgba(0, 0, 0, 0.06));
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Sonderlinien fuer Vierfeldertafeln */
+.vft-table .vft-sum-row th,
+.vft-table .vft-sum-row td {
+  border-top: 2px solid var(--text, #1a1a2e);
+}
+
+.vft-table .vft-sum {
+  border-left: 2px solid var(--text, #1a1a2e);
+}
+
 /* Ambient background blobs */
 body::before,
 body::after {
@@ -3224,51 +3307,6 @@ body.page-module-designs .shell {
   margin-bottom: 0;
 }
 
-.page-skript-md .mod-content table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0 20px;
-  display: block;
-}
-
-.page-skript-md .mod-content thead,
-.page-skript-md .mod-content tbody,
-.page-skript-md .mod-content tr {
-  width: 100%;
-  display: table;
-  table-layout: fixed;
-}
-
-.page-skript-md .mod-content th,
-.page-skript-md .mod-content td {
-  border-bottom: 1px solid var(--border);
-  border-right: 1px solid var(--border);
-  padding: 10px 12px;
-  text-align: center;
-  font-size: .83rem;
-  color: var(--text-body);
-  vertical-align: middle;
-}
-
-.page-skript-md .mod-content th:last-child,
-.page-skript-md .mod-content td:last-child {
-  border-right: 0;
-}
-
-.page-skript-md .mod-content th {
-  font-weight: 700;
-  color: var(--text);
-  background: var(--surface-hi);
-}
-
-.page-skript-md .mod-content tr:last-child td {
-  border-bottom: 0;
-}
-
 .page-skript-md .mod-content mjx-container[display="true"] {
   color: var(--text-body);
   display: block;
@@ -4021,110 +4059,6 @@ body.page-module-designs .shell {
 .dev-fc-visual .nsewdrag,
 .dev-fc-visual .zoomlayer {
   pointer-events: none !important;
-}
-
-/* Flashcards tables mirror training/runtime table styling */
-.dev-fc-scroll table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--surface, #fff);
-  border: 1px solid var(--border, #dfe5f1);
-  border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0 20px;
-  display: block;
-}
-
-.dev-fc-scroll .intro-table-scroll {
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-}
-
-.dev-fc-scroll .intro-table-scroll>table {
-  display: table;
-  width: 100%;
-  min-width: 36rem;
-  table-layout: fixed;
-  margin-bottom: 0;
-}
-
-.dev-fc-scroll .intro-table-scroll thead,
-.dev-fc-scroll .intro-table-scroll tbody,
-.dev-fc-scroll .intro-table-scroll tr {
-  width: 100%;
-  table-layout: fixed;
-}
-
-.dev-fc-scroll .intro-table-scroll thead {
-  display: table-header-group;
-}
-
-.dev-fc-scroll .intro-table-scroll tbody {
-  display: table-row-group;
-}
-
-.dev-fc-scroll .intro-table-scroll tr {
-  display: table-row;
-}
-
-.dev-fc-scroll .intro-table-scroll th,
-.dev-fc-scroll .intro-table-scroll td {
-  white-space: nowrap;
-}
-
-.dev-fc-scroll thead,
-.dev-fc-scroll tbody,
-.dev-fc-scroll tr {
-  width: 100%;
-  display: table;
-  table-layout: fixed;
-}
-
-.dev-fc-scroll th,
-.dev-fc-scroll td {
-  border-bottom: 1px solid var(--border, #dfe5f1);
-  border-right: 1px solid var(--border, #dfe5f1);
-  padding: 10px 12px;
-  text-align: center;
-  font-size: .83rem;
-  color: var(--text-body, #3d4452);
-  vertical-align: middle;
-}
-
-.dev-fc-scroll th mjx-container,
-.dev-fc-scroll td mjx-container {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.dev-fc-scroll th:last-child,
-.dev-fc-scroll td:last-child {
-  border-right: 0;
-}
-
-.dev-fc-scroll thead th {
-  font-weight: 700;
-  color: var(--text, #1a1a2e);
-  background: var(--surface-hi, rgba(0, 0, 0, 0.06));
-}
-
-.dev-fc-scroll tr:last-child td {
-  border-bottom: 0;
-}
-
-.dev-fc-scroll .vft-table .vft-sum-row th,
-.dev-fc-scroll .vft-table .vft-sum-row td {
-  border-top: 2px solid var(--text, #1a1a2e);
-}
-
-.dev-fc-scroll .vft-table .vft-sum {
-  border-left: 2px solid var(--text, #1a1a2e);
 }
 
 .dev-fc-rating {

@@ -53,6 +53,10 @@ Lernmethoden  (didaktische Prinzipien – anwendbar auf alle Ebenen)
       └── Aktionsfeed  (dynamische Lernsteuerung, kontextabhängig)
               └── Feed-Einträge (Aktionstypen, zeitlich und progressionsabhängig)
 
+## Skripte
+
+- Verwende nur h2 (##) und h3 (###) tags
+
 ## Arbeitsmodus
 
 - Vom Konkreten zum Abstrakten arbeiten (Beispiel -> Muster -> Regel).
