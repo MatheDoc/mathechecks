@@ -15,8 +15,53 @@ function parseNum(raw) {
     return parseFloat(String(raw).replace(",", "."));
 }
 
+function ensureEqualColumns(table) {
+    if (!table) return;
+
+    const hasManualColgroup = Array.from(table.children).some(
+        (c) => c.tagName === "COLGROUP"
+    );
+    if (hasManualColgroup) return;
+
+    const firstRow = table.querySelector("tr");
+    if (!firstRow) return;
+
+    const cols = [...firstRow.children].reduce((sum, cell) => {
+        const colspan = parseInt(cell.getAttribute("colspan") || "1", 10);
+        return sum + (Number.isFinite(colspan) && colspan > 0 ? colspan : 1);
+    }, 0);
+
+    if (cols < 1) return;
+
+    const cg = document.createElement("colgroup");
+    for (let i = 0; i < cols; i++) {
+        cg.appendChild(document.createElement("col"));
+    }
+    table.insertBefore(cg, table.firstChild);
+}
+
+function wrapTablesForHorizontalScroll(root) {
+    if (!root) return;
+
+    root.querySelectorAll("table").forEach((table) => {
+        ensureEqualColumns(table);
+
+        if (table.parentElement.classList.contains("table-scroll")) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("table-scroll");
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+    });
+}
+
 export function initSkriptVisuals(root) {
-    if (!root || !window.Plotly) return;
+    if (!root) return;
+
+    // Keep table semantics intact and move horizontal scrolling to the wrapper.
+    wrapTablesForHorizontalScroll(root);
+
+    if (!window.Plotly) return;
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");
