@@ -7,7 +7,7 @@ Für eine statistische Untersuchung wurden in einem großen Elektronikfachmarkt 
 Zunächst erstellen wir das Baumdiagramm und tragen die gegebenen Wahrscheinlichkeiten ein:
 
 <figure>
-<img src='Elektronikfachmarkt.png'>
+<img src='Elektronikfachmarkt.png' class="diagramm" style="max-width: 600px">
 </figure>
 
 - Welchen Wert hat $y$ ?
