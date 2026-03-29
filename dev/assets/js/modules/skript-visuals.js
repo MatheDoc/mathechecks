@@ -15,6 +15,31 @@ function parseNum(raw) {
     return parseFloat(String(raw).replace(",", "."));
 }
 
+function parseSlots(raw) {
+    if (raw == null || String(raw).trim() === "") return [];
+
+    const text = String(raw).trim();
+
+    if (text.startsWith("[") && text.endsWith("]")) {
+        try {
+            const parsed = JSON.parse(text);
+            if (Array.isArray(parsed)) {
+                return parsed
+                    .map(Number)
+                    .filter((n) => Number.isInteger(n) && n >= 1 && n <= 10);
+            }
+        } catch {
+            // Fall back to separator-based parsing below.
+        }
+    }
+
+    return text
+        .replace(/[{}\[\]]/g, "")
+        .split(/[\s,;]+/)
+        .map(Number)
+        .filter((n) => Number.isInteger(n) && n >= 1 && n <= 10);
+}
+
 function ensureEqualColumns(table) {
     if (!table) return;
 
@@ -76,6 +101,7 @@ export function initSkriptVisuals(root) {
             labelB: div.dataset.labelB || "B",
             labelBbar: div.dataset.labelBbar || "B\u0305",
             mode: div.dataset.mode || "numeric",
+            givenSlots: parseSlots(div.dataset.givenSlots),
         };
 
         const figure = buildBaumdiagrammFigure(opts);
