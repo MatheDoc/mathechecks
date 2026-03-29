@@ -2,7 +2,7 @@
 layout: null
 ---
 
-Fir betrachten die Ereignisse
+Wir betrachten die Ereignisse
 
 - $A$: Eine Person putzt sich regelmäßig die Zähne.
 - $B$: Eine Person hat gesunde Zähne.
