@@ -54,23 +54,10 @@ Wichtig ist die Unterscheidung zwischen $P(A\cap B)$, $P_A(B)$ und $P_B(A)$:
 - $P_A(B)$ bezeichnet die Wahrscheinlichkeit, dass ein Schüler die Prüfung besteht, **wenn** er gelernt hat.
 - $P_B(A)$ bezeichnet die Wahrscheinlichkeit, dass ein Schüler gelernt hat, **wenn** er die Prüfung besteht.
 
-{% include info.html
-index="1"
-frage="Wenn wir Wahrscheinlichkeiten im Sachzusammenhang interpretieren möchten, müssen wir darauf achten, wie $A$ und $B$ miteinander in Beziehung stehen:"
-antwort= "
+Wenn wir Wahrscheinlichkeiten im Sachzusammenhang interpretieren möchten, müssen wir darauf achten, wie $A$ und $B$ miteinander in Beziehung stehen.
 
-$$
-\begin{align*}
-P(A\cup B)&: \text{Wkt. für $A$ oder $B$}\\
-P(A\cap B)&: \text{Wkt. für $A$ und $B$}\\
-P(A\cup B)-P(A\cap B) \text{ oder } P(A\cap\overline{B})+P(\overline{A}\cap B)&: \text{Wkt. für entweder $A$ oder $B$ }\\
-P_A(B)&: \text{Wkt. für $B$ unter der Bedingung $A$}\\
-P_B(A)&: \text {Wkt. für $A$ und der Bedingung $B$}\\
-\end{align*}
-$$
+{% include dev/check-anker.html nummer=1 %}
 
-"
-%}
 
 
 ## Berechnungen
@@ -193,41 +180,13 @@ Auf unser Beispiel bezogen (mit dem 2. Baumdiagramm) bedeutet die stochastische 
 
 ### Baumdiagramme und stochastische Unabhängigkeit
 
-{% include info.html
-index="2"
-frage="Sind zwei Ereignisse $A$ und $B$ stochastisch unabhängig, so können wir diese Information beim Erstellen von Baumdiagrammen gezielt nutzen: Die beiden Wahrscheinlichkeitspaare auf der zweiten Stufe stimmen überein."
-antwort="Ein Baumdiagramm mit stochastisch unabhängigen Ereignissen $A$ und $B$ habe die Gestalt
+Sind zwei Ereignisse $A$ und $B$ stochastisch unabhängig, so können wir diese Information beim Erstellen von Baumdiagrammen gezielt nutzen: Die beiden Wahrscheinlichkeitspaare auf der zweiten Stufe stimmen überein.
 
-<figure><img src='Beispiel3.png'></figure>
-
-Wie lautet die Wahrscheinlichkeit 5 ? Da $A$ und $B$ stochastisch unabhängig sind gilt $P_A(B)=P_{\overline{A}}(B)$. Die Wahrscheinlichkeit 5 ist also $0{,}3$. Das restliche Baumdigramm kann nun wie gewohnt vervollständigt werden.
-"
-%}
-
+{% include dev/check-anker.html nummer=2 %}
 
 Haben wir ein vollständig ausgefülltes Baumdiagramm vorliegen, so können wir wie gewohnt verschiedene Wahrscheinlichkeiten bestimmen.
 
-{% include info.html
-index="3"
-frage="Bestimmung von Wahrscheinlichkeiten anhand eines Baumdiagramms (1. Stufe A und 2. Stufe B):
-"
-antwort="
-
-$$
-\begin{align*}
-P(A)&: \text{entsprechnde Wkt. auf der 1. Stufe}\\
-P(B)&: \text{Achtung: Diese Wahrscheinlchkeit kann nicht direkt abgelesen werden (wenn $A$ und $B$ stochastisch abhängig sind). Stattdessen verwenden wir $P(B)=P(A\cap B)+P(\overline{A}\cap B)$.}\\
-P(A\cup B)&: \text{Summe der drei entsprechenden Pfadendwahrscheinlichkeiten}\\
-P(A\cap B)&: \text{entsprechende Pfadendwahrscheinlichkeit}\\
-P(A\cup B)-P(A\cap B) \text{ oder } P(A\cap\overline{B})+P(\overline{A}\cap B)&: \text{Summe der zwei entsprechenden Pfadendwahrscheinlichkeiten}\\
-P_A(B)&: \text{entsprechnde Wkt. auf der 2. Stufe}\\
-P_B(A)&: \text {Achtung: Diese Wkt. kann nicht direkt abgelesen werden, da keine $B$-Bedingung vorliegt. Stattdessen verwenden wir die Formel $P_B(A)=\frac{P(A\cap B)}{P(B)}$.}\\
-\end{align*}
-$$
-
-"
-%}
-
+{% include dev/check-anker.html nummer=3 %}
 
 ### Weitere Formulierungen der stochastischen Unabhängigkeit
 
@@ -420,48 +379,18 @@ Damit lautet die vollständige Vier-Felder-Tafel
 
 Hier können wir z.B. ablesen, dass Romeo mit einer Wahrschheinlichkeit von 60&nbsp;% anwesend ist.
 
-{% include info.html
-index="4"
-frage="Rechenregel in Vier-Felder-Tafeln:"
-antwort="Wir können von 'innen nach außen addieren': Die Summe zweier innerer Wahrscheinlichkeiten einer Zeile (bzw. Spalte) ist die Wahrscheinlichkeit in der entsprechenden letzten Zeile (bzw. Spalte). Dies kann umgeformt werden, wenn z.B. eine Wahrscheinlichkeit in der letzten Zeile (bzw. Spalte) gegeben ist."
-%}
+{% include dev/check-anker.html nummer=4 %}
 
+Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, so können wir wie gewohnt verschiedene Wahrscheinlichkeiten bestimmen.
 
-Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, so können wir wie verschiedene Wahrscheinlichkeiten bestimmen.
-
-{% include info.html
-index="5"
-frage="Bestimmung von Wahrscheinlichkeiten anhand einer Vier-Felder-Tafel:"
-antwort="
-
-- $P(A)$ und $P(B)$ stehen in der letzten Zeile und Spalte.
-- Die $\cap$-Wahrscheinlichkeiten stehen per Definition im Inneren der Tafel.
-- Die $\cup$-Wahrscheinlichkeiten sind die Summe der drei zugehörigen inneren Wahrscheinlichkeiten.
-
-"
-%}
+{% include dev/check-anker.html nummer=5 %}
 
 
 ### Vier-Felder-Tafeln und stochastische Unabhängigkeit
 
-Eine Formulierung der stochastischen Unabhängigkeit ist $P(A\cap B)=P(A)\cdot P(B)$. Diese Bedingung kann leicht anhand einer Vier-Felder-Tafel geprüft werden: Der innere Wert $P(A\cap B)$ ist das Produkt der entsprechenden äußeren Wahrscheinlichkeiten $P(A)$ und $P(B)$. Ist dies der Fall, so sagen wir, dass die Vier-Felder-Tafel **multiplikativ** ist.
+Eine Formulierung der stochastischen Unabhängigkeit ist $P(A\cap B)=P(A)\cdot P(B)$. Diese Bedingung kann leicht anhand einer Vier-Felder-Tafel geprüft werden: Der innere Wert $P(A\cap B)$ ist das Produkt der entsprechenden äußeren Wahrscheinlichkeiten $P(A)$ und $P(B)$. Ist dies der Fall, so sagen wir, dass die Vier-Felder-Tafel **multiplikativ** ist. Sind zwei Ereignisse $A$ und $B$ stochastisch unabhängig, so können wir diese Information beim Erstellen von Vier-Felder-Tafeln gezielt nutzen: Wir können "von außen nach innen multiplizieren."
 
-{% include info.html
-index="6"
-frage="Sind zwei Ereignisse $A$ und $B$ stochastisch unabhängig, so können wir diese Information beim Erstellen von Vier-Felder-Tafeln gezielt nutzen: Wir können 'von außen nach innen multiplizieren.'"
-antwort="
-Eine Vier-Felder-Tafel mit stochastisch unabhängigen Ereignissen $A$ und $B$ habe die Gestalt
-
-|                | $B$     | $\overline{B}$ | $\Sigma$ |
-| -------------- | ------- | -------------- | -------- |
-| $A$            | $x$     |                | $0{,}7$  |
-| $\overline{A}$ |         |                |          |
-| $\Sigma$       | $0{,}2$ |                | $1$      |
-
-Da $A$ und $B$ stochastisch unabhängig sind, ist die Vier-Felder-Tafel mutiplikativ, und es gilt $P(A\cap B)=P(A)\cdot P(B)$. Die Wahrscheinlichkeit $x$ ist also $0{,}2\cdot 0{,}7=0{,}14$. Die restliche Vier-Felder-Tafel kann nun wie gewohnt vervollständigt werden.
-"
-%}
-
+{% include dev/check-anker.html nummer=6 %}
 
 Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, können wir sie interpretieren. Um dabei festzustellen, ob $A$ und $B$ stochastisch unabhägig sind, müssen wir prüfen, ob die Vier-Felder-Tafel multiplikativ ist.
 
@@ -489,15 +418,9 @@ Die Vier-Felder-Tafel hatte die Gestalt
 
 Wir erkennen, dass $0{,}6 \cdot 0{,}75 = 0{,}45$ ist. Die Vier-Felder-Tafel ist multiplikativ, und $A$ und $B$ sind stochastisch unabhängig.
 
-{% include info.html
-index="7"
-frage="Bestimmung von bedingten Wahrscheinlichkeiten anhand einer Vier-Felder-Tafel:"
-antwort="
+Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, so können wir ein weiteres Mal wie gewohnt verschiedene Wahrscheinlichkeiten bestimmen.
 
-- Bedingte Wahrscheinlichkeiten müssen mit Formeln der Art $P_B(A)=\frac{P(A\cap B)}{P(B)}$ berechnet werden.
-- $A$ und $B$ sind stochastisch unabhängig, wenn die Vier-Felder-Tafel multiplikativ ist."
-
-%}
+{% include dev/check-anker.html nummer=7 %}
 
 
 ## Vergleich: Baumdiagramme und Vier-Felder-Tafeln
@@ -510,90 +433,14 @@ Baumdiagramme und Vierfeldertafeln stellen Wahrscheinlichkeiten, die beim Betrac
 
 Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, können wir mit den vorgestellten Formeln arbeiten. Dabei kann es jedoch hilfreich sein, sich das Baumdiagramm oder die Vierfeldertafel gedanklich vorzustellen.
 
-{% include info.html
-index="8"
-frage="Formel-Übersicht:"
-antwort="
+{% include dev/check-anker.html nummer=8 %}
 
-- Satz von der Gegenwahrscheinlichkeit:
-
-$$
-P(\overline{A})=1-P(A)
-$$
-
-- Satz von Sylvester:
-
-$$
-P(A\cup B) = P(A)+ P(B) + P(A\cap B)
-$$
-
-- Formel für die bedingte Wahrscheinlichkeit:
-
-$$
-P_A(B)=\frac{P(A\cap B)}{P(B)}
-$$
-
-- Zerlegungssatz:
-
-$$
-P(A)=P(A\cap B) + P(A\cap \overline{B})
-$$
-
-  "
-  %}
-
-
-{% include info.html
-index="9"
-frage="Formel-Übersicht und Lösungsstrategie, wenn zwei der Wahrscheinlichkeiten $P(A)$, $P(B)$, $P(A\cup B)$ und $P(A\cap B)$ gegeben sind und stochastische Unabhängigkeit vorliegt:"
-antwort="
-
-- Satz von der Gegenwahrscheinlichkeit:
-
-$$
-P(\overline{A})=1-P(A)
-$$
-
-- Satz von Sylvester:
-
-$$
-P(A\cup B) = P(A)+ P(B) + P(A\cap B)
-$$
-
-- Formel für die bedingte Wahrscheinlichkeit bei stochastischer Unabhängigkeit:
-
-$$
-P_A(B)=P(B)
-$$
-
-- Zerlegungssatz:
-
-$$
-P(A)=P(A\cap B) + P(A\cap \overline{B})
-$$
-
-- Stochastische Unabhängigkeit:
-
-$$
-P(A)\cdot P(B)=P(A\cap B)
-$$
-
-"
-%}
-
+{% include dev/check-anker.html nummer=9 %}
 
 ## Venn-Diagramme
 
-Bedingte Wahrscheinlichkeiten können auch in Venn-Diagrammen dargestellt werden. Das Ereignis, auf das die jeweilige Bedingung nicht zutrifft, wird weiß gefärbt. Das dunkle Blau bezeichnet den Teil, das dunkle zusammen mit dem hellen Blau das Ganze:
+Bedingte Wahrscheinlichkeiten können auch in Venn-Diagrammen dargestellt werden. Das Ereignis, auf das die jeweilige Bedingung nicht zutrifft, wird weiß gefärbt. Das dunkle Blau bezeichnet den Teil, und das dunkle zusammen mit dem hellen Blau das Ganze.
 
-| $P_A(B)$                                                | $P_B(\overline{A})$                                      | $P_A(\overline{B})$                                      |
-| ------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| <img src="v1.png" style="width: 25vw">|  <img src="v2.png" style="width: 25vw;">|  <img src="v3.png" style="width: 25vw;">|
-
-{% include info.html
-index="10"
-frage="Venn-Diagramme mit bedingten Wahrscheinlichkeiten:"
-antwort="Das helle und das dunkle Blau bilden zusammen die Bedingung. Füllen das helle und dunkle Blau die ganze Fläche aus, gibt es also keine einschränkende Bedingung."
-%}
+{% include dev/check-anker.html nummer=10 %}
 
 
