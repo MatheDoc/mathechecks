@@ -7,7 +7,7 @@ Was halten Jugendliche von Lern-Apps? Zu dieser Frage wurde eine Befragung unter
 Zunächst erstellen wir das Baumdiagramm und tragen die gegebenen Wahrscheinlichkeiten ein:
 
 <figure>
-    <img src='Lernapp.png'>
+    <img src='Lernapp.png' class="diagramm" style="max-width: 600px">
 </figure>
 
 - Welchen Wert hat $d$ ?
