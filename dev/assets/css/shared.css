@@ -2823,6 +2823,21 @@ body.page-module-designs .shell {
   background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .22);
 }
 
+.fy-ki-btn {
+  border-color: rgba(245, 166, 35, .35);
+  background: rgba(245, 166, 35, .12);
+  color: #f5a623;
+}
+
+.fy-ki-btn:hover {
+  background: rgba(245, 166, 35, .22);
+}
+
+.fy-ki-btn:disabled {
+  opacity: .55;
+  cursor: wait;
+}
+
 .bl-textarea {
   width: 100%;
   min-height: 120px;
@@ -3140,6 +3155,7 @@ body.page-module-designs .shell {
   align-items: center;
   gap: 12px;
   margin-bottom: 18px;
+  flex-wrap: wrap;
 }
 
 .fy-ring {
