@@ -388,8 +388,8 @@ Um dies zu veranschaulichen, betrachten wir die Umgebungswahrscheinlichkeiten
 2. in Abhängigkeit von $p$ bei festem $n$.
 
 <div class="diagramm-row">
-  <img src="wkt-n.png" class="diagramm" style="max-width: 600px">
-  <img src="wkt-p.png" class="diagramm" style="max-width: 600px">
+  <img src="wkt-n.png" class="diagramm">
+  <img src="wkt-p.png" class="diagramm">
 </div>
 
 Man erkennt, dass die Umgebungswahrscheinlichkeiten bei absoluten und relativen Umgebungen stark von $n$ und $p$ abhängen. Im Gegensatz dazu bleiben die Wahrscheinlichkeiten bei Sigma-Umgebungen vergleichsweise konstant.
