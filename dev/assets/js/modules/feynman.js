@@ -279,14 +279,7 @@ function buildFeynmanPromptFromIchKann(check) {
   const { core, trailing } = splitTrailingParenthesis(cleaned);
   let action = core;
 
-  const commaIdx = core.indexOf(",");
-  if (commaIdx > 0) {
-    const verb = core.slice(0, commaIdx).trim();
-    const rest = core.slice(commaIdx + 1).trim();
-    if (verb && rest) {
-      action = `${verb} kann, ${rest}`;
-    }
-  } else if (!/\bkann\b/i.test(core)) {
+  if (!/\bkann\b/i.test(core)) {
     action = `${core} kann`;
   }
 

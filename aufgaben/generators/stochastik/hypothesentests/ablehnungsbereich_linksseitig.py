@@ -45,9 +45,9 @@ _STICHPROBE = [
 ]
 
 _ALPHA_SATZ = [
-    "Das Signifikanzniveau soll höchstens {a} betragen.",
-    "Der Test soll ein Signifikanzniveau von höchstens {a} einhalten.",
-    "Als maximales Signifikanzniveau werden {a} festgelegt.",
+    "Das Signifikanzniveau soll {a} betragen.",
+    "Der Test soll ein Signifikanzniveau von {a} einhalten.",
+    "Als Signifikanzniveau werden {a} festgelegt.",
 ]
 
 
