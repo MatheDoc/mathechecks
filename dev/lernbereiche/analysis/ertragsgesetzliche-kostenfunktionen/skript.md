@@ -88,108 +88,7 @@ Um rechnerisch zu prüfen, ob eine Kostenfunktion $K(x)$ einen ertragsgesetzlich
 - Monotonie: Die Funktion ist monoton wachsend, d.h.$K'(x)\geq 0$.
 - Wendepunkt: Die Wendestelle $x_w$ ist positiv, d.h. $x_w>0$.
 
-{% include info.html
-index="1"
-frage="Welche Funktionen haben einen ertragsgesetzlichen Verkauf?
-
-$$
-\begin{align*}
-K_1(x)&=3x^2+4x+2\\
-K_2(x)&=0{,}5x^3-6x^2+30x-50\\
-K_3(x)&=0{,}5x^3-6x^2+15x+48\\
-K_4(x)&=0{,}5x^3+1{,}5x^2+7{,}5x+110{,}5\\
-K_5(x)&=0{,}5x^3-6x^2+30x+48\\
-\end{align*}
-$$
-
-"
-antwort="
-
-### $K_1(x)$
-
-$K_1(x)=3x^2+4x+2$ ist keine Funktion dritten Grades. 👉 nicht-ertragsgesetzlich ❌
-
-### $K_2(x)$
-
-$K_2(x)=0{,}5x^3-6x^2+30x-50$ besitzt einen negativen y-Abschnitt. 👉 nicht-ertragsgesetzlich ❌
-
-### $K_3(x)$
-
-Um zu prüfen, ob $K_3(x)=0{,}5x^3-6x^2+15x+48$ monoton wachsend ist, können wir versuchen Extremstellen zu bestimmen. **Wenn es Extremstellen gibt, dann ist die Funktion nicht monoton wachsend.** Wir berechnen $K_3'(x)=1{,}5x^2-12x^2+15$. Die notwendige Bedignung für Extrema lautet:
-
-$$
-\begin{align*}
-1{,}5x^2-12x^2+15&=0\quad |:(1{,}5)\\
-5x^2-8x^2+10&=0\quad |\text{ pq-Formel}\\
-x_{1,2}=-\frac{-8}{2}\pm\sqrt{\left(\frac{-8}{2}\right)^2-10}\\
-x_{1,2}=4\pm\sqrt{6}
-\end{align*}
-$$
-
-Da der Term unter Wurzel positiv ist, existieren die einfachen Nullstellen $x_1$ und $x_2$. Es liegen also Extrema vor. 👉 nicht-ertragsgesetzlich ❌
-
-(Wären beide Extremstellen negativ, so könnte durchaus im ökonomischen Definitionsbereich ein monotones Wachstum vorliegen. Da aber die Wendestelle positiv sein muss, können wir annehmen, dass zumindest die größere Extremstelle positiv ist.)
-
-### $K_4(x)$
-
-Wir bestimmen die Wendestelle von $K_4(x)=0{,}5x^3+1{,}5x^2+7{,}5x+110{,}5$. Wir haben $K_4^{\prime\prime}(x)=3x+3$ und $K_4^{\prime\prime\prime}(x)=3$. Die notwendige Bedingung lautet:
-
-$$
-\begin{align*}
-3x+3&=0\\
-x&=-1
-\end{align*}
-$$
-
-Die hinreichende Bedingung:
-
-$$
-K_4'''(-1)=3>0\text{ (minimale Steigung)}
-$$
-
-Die Wendestelle ist also negativ. 👉 nicht-ertragsgesetzlich ❌
-
-### $K_5(x)$
-
-Für $K_5(x)=0{,}5x^3-6x^2+30x+48$ gilt:
-
-- Die Funktion ist ganzrational dritten Grades. ✔️
-- Der y-Achsenabschnitt ist positiv. ✔️
-- Wir versuchen die Extremstellen zu berechnen: Es ist $K_5'(x)=1{,}5x^2-12x+30$. Die notwendige Bedingung lautet
-
-  $$
-  \begin{align*}
-  1{,}5x^2-12x^2+30&=0\quad |:(1{,}5)\\
-  x^2-8x^2+20&=0\quad |\text{ pq-Formel}\\
-  x_{1,2}=-\frac{-8}{2}\pm\sqrt{\left(\frac{-8}{2}\right)^2-20}\\
-  x_{1,2}=4\pm\sqrt{-4}
-  \end{align*}
-  $$
-
-  Da der Term unter Wurzel negativ ist, existieren keine Extremstellen. Die Funktion $K_5(x)$ ist also monoton, und zwar monoton wachsend, weil z.B. der Leitkoeffizient $0{,}5>0$ ist. ✔️
-
-- Wir berechnen die Wendestelle: Es ist $K_5^{\prime\prime}(x)=3x-12$. Die notwendige Bedingung lautet:
-
-  $$
-  \begin{align*}
-  3x-12&=0\\
-  x&=4
-  \end{align*}
-  $$
-
-  Die hinreichende Bedingung:
-
-  $$
-  K_5'''(4)=3>0\text{ (minimale Steigung)}
-  $$
-
-  Die Wendestelle $x_w$ ist also positiv. ✔️
-
-Damit sind alle Kriterien erfüllt. 👉 ertragsgesetzlich ✅
-
-"
-%}
-
+{% include dev/check-anker.html nummer="1" %}
 
 ### Nachweis für parametrisierte Funktionen
 
@@ -219,39 +118,7 @@ so könnte nur für einen bestimmen Paramterbereich ein ertragsgesetzlicher Verl
 
 Wir erkennen, dass nur $K_{40}$ und $K_{30}$ ertragsgesetzlich sind, $K_{20}$ und $K_{10}$ sind nicht monoton wachsend. Um feststellen zu können, für welche Paramter $a$ ein ertragsgesetzlicher Verlauf vorliegt, müssen wir die Kriterien in Abhängigkeit des Paramters $a$ prüfen.
 
-{% include info.html
-index="2"
-frage="Für welche Parameter ist $K_a(x)=x^3-9x^2+ax+60$ ertragsgesetzlich?"
-antwort="
-
-- Da $K_a(0)=60$ für alle $a$ liegt immer ein positiver y-Abschnitt vor.
-- Da $K_a^{\prime\prime}(x)=6x-18$ und $6x-18=0$ falls $x=3$ ist die Wendestelle immer positiv.
-- Zur Monotonie: Wir berechnen die Nullstellen von $K_a'(x)=3x^2-18x+a$.
-
-$$
-\begin{align*}
-3x^2-18x+a&=0\quad |:(3)\\
-x^2-6x+\frac{a}{3}&=0\quad |\text{ pq-Formel}\\
-x_{1,2}&=-\frac{-6}{2}\pm\sqrt{\left(\frac{-6}{2}\right)^2-\frac{a}{3}}\\
-x_{1,2}&=3\pm\sqrt{9-\frac{a}{3}}
-\end{align*}
-$$
-
-Nun ist $K'_a(x)\geq 0$ genau dann, wenn keine einfachen Nullstellen existieren. Dies ist genau dann der Fall, falls der Term unter der Wurzel nicht positiv ist, d.h. falls
-
-$$
-\begin{align*}
-9-\frac{a}{3}&\leq 0\quad |+\frac{a}{3}\\
-9&\leq \frac{a}{3}\quad |\cdot 3\\
-27&\leq a
-\end{align*}
-$$
-
-Also ist $K'_a(x)\geq 0$, falls $a\geq 27$.
-"
-
-%}
-
+{% include dev/check-anker.html nummer="2" %}
 
 ### Allgemeiner Nachweis
 
@@ -316,20 +183,23 @@ Diese Kostenfunktionen werden mit Hilfe folgender Kennzahlen beschrieben und ana
 - **Betriebsoptimum:** Menge, bei die geringsten Stückkosten auftreten.
 - **Langfristige Preisuntergrenze:** Stückkosten, wenn im Betriebsoptimum produziert wird - entspricht bei dem Preis, bei dem die Stückkosten gedeckt sind.
 
-{% include info.html
-index="3"
-frage="Mathematische Definition Kostenkennzahlen"
-antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
-%}
+{% include dev/check-anker.html nummer="3" %}
 
 
 ## Graphische Darstellungen
+
+Die Kostenkennzahlen lassen wie folgt graphisch veranschaulichen.
 
 {% include dev/graph.html
    funktionen='[
     {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Grenzkostenfunktion"},
     {"name":"k(x)", "term":"0.5*x^2-6*x+30+48/x", "beschreibung":"Stückkostenfunktion"},
     {"name":"k<sub>v</sub>(x)", "term":"0.5*x^2-6*x+30", "beschreibung":"variable Stückkostenfunktion"}
+   ]'
+   punkte='[
+     {"x":4,"y":6,"text":"Übergang von einem degressiven zu einem progressiven Kostenwachstum"},
+     {"x":6,"y":12,"text":"BM und LPU"},
+     {"x":6.98,"y":19.36,"text":"BO und KPU"}
    ]'
    titel="Kostenfunktionen"
    xachse="Menge x in ME"
@@ -340,109 +210,22 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe"
    ymax=80
 %}
 
-{% include info.html
-index="4"
-frage="Graphische Bestimmung"
-antwort="Interpretation charakteristischer Punkte"
-%}
+{% include dev/check-anker.html nummer="4" %}
+
+
 
 
 ## Berechnungen
 
 Um Kostenkennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
 
-{% include info.html
-index="5"
-frage="Ansatz zur Berechnung von Extrem- und Wendestellen / Ableitung gebrochenrationaler Funktionen"
-antwort="
+{% include dev/check-anker.html nummer="5" %}
 
-- Extremstellen: Notwendige Bedingung $f'(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
-- Wendestellen: Notwendige Bedingung $f^{\prime\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
-- Ableitung von $f(x)=\frac{1}{x}$: $f'(x)=-\frac{1}{x^2}$
-- Ableitung von $f(x)=\frac{1}{x^2}$: $f'(x)=-\frac{1}{x^3}$
+Jetzt sind wir in der Lage, die Kostenkennzahlen mit Hilfe der Differentialrechnung zu berechnen.
 
-  "
-  %}
+{% include dev/check-anker.html nummer="6" %}
 
 
-{% include info.html
-index="6"
-frage="Berechnung Kostenkennzahlen für $K(x)=0{,}5x^3 - 6x^2 + 30x + 48$"
-antwort="
-Wir bestimmen zunächst:
-
-- Grenzkosten: $K'(x) = 1{,}5x^2-12x+30$
-- variablen Stückkosten: $k_v(x)=0{,}5x^2 - 6x + 30 $
-- Stückkosten: $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$
-
-### Übergang vom degressiven zum progressiven Kostenwachstum
-
-Wendestelle von $K(x)=0{,}5x^3-6x^2+30x+48$:
-
-Bestimme $K^{\prime\prime}(x)=3x-12$ und $K^{\prime\prime\prime}(x)=3$.
-
-$$
-\begin{align*}
-3x - 12 =  0 \Rightarrow x = 4\\
-K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
-\end{align*}
-$$
-
-Der Übergang vom degressiven zum progressiven Kostenwachstum findet bei 4 ME statt.
-
-### Betriebsminimum
-
-Extremstelle von $k_v(x)=0{,}5x^2 - 6x + 30$.
-
-Bestimme $k_v'(x)=x-6$ und $k_v^{\prime\prime}(x)=1$.
-
-$$
-\begin{align*}
-x-6&=0 \Rightarrow x = 6\\
-k_v^{\prime\prime}(6)&=1 > 0 (\text{ Minimum})
-\end{align*}
-$$
-
-Das Betriebsminimum beträgt 6 ME.
-
-### Kurzfristige Preisuntergrenze
-
-Einsetzen des Betriebsminimums in $k_v(x)$:
-
-$$
-k_v(6) =  12
-$$
-
-Die kurzristige Preisuntergrenze beträgt 12 GE / ME.
-
-### Betriebsoptimum
-
-Extremstelle von $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$.
-
-Bestimme $k'(x)=x-6-\frac{48}{x^2}$ und $k^{\prime\prime}(x)=1+\frac{96}{x^3}$.
-
-$$
-\begin{align*}
-x-6-\frac{48}{x^2} &= 0\quad |\cdot(x^2)\\
-x^3-6x^2-48&0 \Rightarrow x = 6{,}98\\
-k^{\prime\prime}(6{,}98)&=1{,}8 > 0 (\text{ Minimum})
-\end{align*}
-$$
-
-Das Betriebsoptimum beträgt 6,98 ME.
-
-### Langfristige Preisuntergrenze
-
-Einsetzen des Betriebsoptimums in $k(x)$:
-
-$$
-k(6{,}98) =  19{,}36
-$$
-
-Die langfristige Preisuntergrenze beträgt 19,36 GE / ME.
-
-"
-%}
 
 
 ### Exkurs: Alternative Bestimmung des Betriebsminimums und -optimums
@@ -543,7 +326,7 @@ Es folgt die Behauptung, da die jeweils letzten Gleichungen identisch sind.
 
 Ist die Gleichung einer ertragsgesetzlichen Kostenfunktion nicht bekannt, liegen jedoch Informationen über einzelne Kostenkennzahlen vor, so können wir unter Umständen die Funktionsgleichung $K(x)=ax^3+bx^2+cx+d$ rekonstruieren, das heißt die Koeffizienten bestimmen.
 
-### Beispiel: Vorgabe Mengen
+### Beispiel
 
 Gegeben: Für eine ertragsgesetzliche Kostenfunktion $K(x)$ sei bekannt:
 
@@ -592,54 +375,13 @@ $$
 
 Damit ist $K(x)=x^3-9x^2+28x+5$.
 
-### Beispiel: Vorgabe allgemeine Informationen
-
-Gegeben: Für eine ertragsgesetzliche Kostenfunktion $K(x)$ sei bekannt:
-
-1. Die Kosten bei 2 ME betragen 88 GE.
-2. Das Betriebsminimum liegt bei 6 ME.
-3. Die Fixkosten betragen 48 GE.
-4. Die Grenzkosten bei 1 ME betragen 19,5 GE/ME.
-
-Gesucht: $K(x)=ax^3+bx^2+cx+d$.
-
-Um die gegebenen Informationen verwerten zu können, werden wir noch weitere Funktionen benötigen:
-
-- variable Stückkosten: $k_v(x)=ax^2+bx+c$
-- Ableitung der variablen Stückkosten: $k_v'(x)=2ax+b$
-- Grenzkosten: $K'(x)=3ax^2+2bx+c$
-
-Nun müssen Gleichungen finden, die den Vorgaben 1 - 4 entsprechen. Erwähnenswert ist die 2. Vorgabe. Da das Betriebsminimum eine Extremstelle der variablen Stückkostenfunktion $k_v(x)$ ist, gilt $k_v'(6)=0$.
-
-Aus den Vorgaben 1 - 4 erhalten wir folgende Gleichungen:
-
-$$
-\begin{alignat*}{5}
-&K(2)=88      \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d           = 88     \;&\Rightarrow\;&\; 8a + 4b + 2c + 1d = 88 \\
-&k_v'(6)=0      \;&\Rightarrow\;&\; 2a\cdot 6 + b                   = 0      \;&\Rightarrow\;&\; 12a + b +0c +0d = 0 \\
-&K(0)=48      \;&\Rightarrow\;&\; a\cdot 0^3 + b\cdot 0^2 + c\cdot 0 + 1d           = 48     \;&\Rightarrow\;&\; 0a+0b+0c+1d = 48 \\
-&K'(1)=19{,}5 \;&\Rightarrow\;&\; 3a\cdot 1^2 + 2b\cdot 1 + c                      = 19{,}5 \;&\Rightarrow\;&\; 3a + 2b + 1c +0d= 19{,}5
-\end{alignat*}
-$$
-
-Die jeweils letzten Gleichungen bilden ein lineares Gleichungssystem mit vier Gleichungen und vier Unbekannten. Dieses kann mit Hilfe des Gauß-Algorithmus oder dem Taschenrechner eindeutig gelöst werden. Wir erhalten:
-
-$$
-a=0{,}5,\quad b=-6,\quad c=30,\quad d=48
-$$
-
-Damit ist $K(x)=0{,}5x^3-6x^2+30x+48$.
-
-{% include info.html
-index="7"
-frage="Plan zum Aufstellen von Funktionsgleichungen"
-antwort="
+Wir können den Plan zum Aufstellen von Funktionsgleichungen wie folgt zusammenfassen:
 
 1. Aufstellen der allgemeinen Funktion: $K(x)=ax^3+bx^2+cx+d$, ggf. weitere, z.B. $k_v(x)=ax^2+bx+c$.
 2. Gegebene Informationen durch Gleichungen ausdrücken.
 3. Aufstellen eines linearen Gleichungssystems.
 4. Lösen des Gleichungssystems und Angabe der gesuchten Funktion.
 
-"
-%}
+{% include dev/check-anker.html nummer="7" %}
+
 

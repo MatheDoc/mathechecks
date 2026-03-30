@@ -19,7 +19,7 @@ Wie hängen zwei Größen voneinander ab? Diese Frage stellt sich in nahezu säm
 1. Welche Funktionsart (linear, quadratisch, kubisch, exponentiell etc.) ist am ehesten geeignet?
 2. Welchen Wert haben die Parameter der gewählten Funktionsart (bei linearen Funktionen müssen z.B. die Werte der Steigung und des y-Abschnitts bestimmt werden)?
 
-<img src="bsp-regression.png">
+<img src="bsp-regression.png" class="diagramm">
 
 Die erste Frage kann grob beantwortet werden, indem man die vorliegenden Datenpunkte graphisch darstellt und sich dann überlegt, welcher Funktionsgraph am besten zu der Punktwolke passt (hier gibt es natürlich auch systematischere Verfahren). Die 2. Frage kann direkt mit Hilfe des GTRs (siehe Beispiele) beantwortet werden. Hat man sich bei der 1. Frage für eine lineare Funktion entschieden, so spricht man auch von einer linearen Regression (entsprechend: quadratisch, exponentiell etc.).
 
@@ -39,7 +39,7 @@ Gegeben sind folgende Werte:
 | --- | ----- | ----- | ---- | ---- | ---- |
 | y   | -2,67 | -0,77 | 0,81 | 2,39 | 4,24 |
 
-<img src="lin-reg.png">
+<img src="lin-reg.png" class="diagramm">
 
 Wir vermuten, dass die Datenpunkte in etwa auf einer Geraden liegen, daher wird mit dem GTR eine lineare Regression durchgeführt:
 
@@ -61,7 +61,7 @@ Gegeben sind folgende Werte:
 | --- | ------ | ------ | ---- | ---- | ------ |
 | y   | -47,24 | -14,85 | 5,83 | 2,42 | -34,33 |
 
-<img src="quad-reg.png">
+<img src="quad-reg.png" class="diagramm">
 
 Wir vermuten, dass die Datenpunkte in etwa auf einer Parabel liegen, daher wird mit dem GTR eine quadratische Regression durchgeführt:
 
@@ -75,38 +75,7 @@ Wir vermuten, dass die Datenpunkte in etwa auf einer Parabel liegen, daher wird 
 - Die Regressionsfunktion lautet also $f(x)=-0{,}59x^2+4{,}30x+2{,}74$.
 - Das Bestimmtheitsmaß lautet $R^2=0{,}994$. Dieser Wert liegt sehr nah an $1$, die quadratische Regression ist also gut geeignet, um den Zusammenhang zwischen den beiden Größen zu beschreiben.
 
-### Beispiel: Exponentielle Regression
 
-Gegeben sind folgende Werte:
 
-| x   | 1     | 2     | 3     | 5      | 7      |
-| --- | ----- | ----- | ----- | ------ | ------ |
-| y   | 11,08 | 20,91 | 45,02 | 195,77 | 703,49 |
-
-<img src="exp-reg.png">
-
-Wir vermuten, dass die Datenpunkte in etwa aufdem Graphen einer Exponentialfunktion liegen, daher wird mit dem GTR eine lineare Regression durchgeführt:
-
-- Menü 2 (Statistik) auswählen
-- in List1 und List2 die x- und y-Werte der Datenpunkte eingeben
-- Graph1 wählen um Datenpunkte anzeigen zu lassen
-- CALC wählen und Regressionsart festlegen (hier: $EXP$ für eine exponentielle Regression, zuvor: mit F6 weiterblättern)
-- evtl.: Regressionsfunktion präzisieren (hier: $ae^{bx}$)
-- im Anschluss werden die Parameter der Regressionsfunktion angezeigt (hier $a=5{,}43$ und $b=0{,}70$)
-- DRAW zeigt die Datenpunkte und den Graphen der Regressionsfunktion an
-- Die Regressionsfunktion lautet also $f(x)=5{,}43x\cdot e^{0{,}70x}$.
-- Das Bestimmtheitsmaß lautet $R^2=0{,}999$. Dieser Wert liegt sehr nah an $1$, die exponentielle Regression ist also gut geeignet, um den Zusammenhang zwischen den beiden Größen zu beschreiben.
-
-{%include info.html
-index="1"
-frage="Bestimmung der Regressionsfunktion"
-antwort="
-
-- vertraut machen, wie Regressionsfunktionen mit dem GTR aufstellt werden
-- gegebenen Werte eingeben
-- Art der Regression (linear, exponentiell etc.) festlegen
-- Ergebnis inkl. Bestimmtheitsmaß notieren
-
-"
-%}
+{% include dev/check-anker.html nummer="1" %}
 
