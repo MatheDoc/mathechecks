@@ -256,14 +256,14 @@ table {
 }
 
 .table-scroll>table {
-  --table-col-width: 9.5rem;
+  --table-col-width: 7rem;
   width: max-content;
   table-layout: fixed;
   margin: 0 auto;
 }
 
 .table-scroll>table>colgroup>col {
-  width: var(--table-col-width, 9.5rem);
+  width: var(--table-col-width, 7rem);
 }
 
 .table-scroll th,
@@ -3250,7 +3250,8 @@ body.page-module-designs .shell {
   flex: 1 1 420px;
   min-width: 0;
   width: 100%;
-  max-width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   height: auto;
   border: 0;
   border-radius: 0;

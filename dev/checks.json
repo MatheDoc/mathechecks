@@ -686,10 +686,9 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "mengen",
-            "berücksichtigung",
-            "mengenoperationen"
+            "$\\overline{A}$: Komplement von $A$",
+            "$A\\cup B$: $A$ oder $B$",
+            "$A\\cap B$: $A$ und $B$"
         ],
         "Blurting": []
     },
@@ -706,10 +705,11 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "textuelle",
-            "symbolische",
-            "beschreibungen"
+            "\\(P(A)\\): Wkt von \\( A \\)",
+            "\\(P(B)\\): Wkt von \\( B \\)",
+            "\\(P(A\\cap B)\\): Wkt von \\( A \\) und \\( B \\)",
+            "\\(P(A\\cup B)\\): Wkt von \\( A \\) oder \\( B \\)",
+            "\\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wkt von entweder \\( A \\) oder \\( B \\) (aber nicht beide)"
         ],
         "Blurting": []
     },
@@ -726,10 +726,9 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "wahrscheinlichkeiten",
-            "absoluter",
-            "häufigkeiten"
+            "Gesamtanzahl berechnen",
+            "Rel Häufigkeit = Anzahl / Gesamtanzahl",
+            "Zwischen 0 und 1"
         ],
         "Blurting": []
     },
@@ -746,10 +745,8 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "satz",
-            "gegenwahrscheinlichkeit",
-            "sylvester"
+            "$P(A) = 1 - P(\\overline{A})$",
+            "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$"
         ],
         "Blurting": []
     },
@@ -766,10 +763,9 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Zufallsexperimente und Wahrscheinlichkeiten",
-            "venn-diagramme",
-            "interpretieren",
-            "bedingten"
+            "Flächen = Ereignisse",
+            "Flächeninhalte = Wahrscheinlichkeiten",
+            "Dunkles Blau: betroffnendes Ereignis"
         ],
         "Blurting": []
     },
@@ -788,7 +784,7 @@
         "Tipps": [
             "\\( E(X) = \\sum x_i \\cdot P(X=x_i) \\)",
             "Zeile x Zeile",
-            "Durschnittswert"
+            "Durchschnittswert"
         ],
         "Blurting": []
     },
@@ -824,10 +820,8 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\E(X)\\): Durchschnittswert",
-            "\\(\\sigma(X)\\): Schwankungsmaß",
-            "standardabweichung",
-            "sachzusammenhang"
+            "Erwartungswert: \\(E(X)\\): Durchschnittswert",
+            "Standardabweichung \\(\\sigma(X)\\): Schwankungsmaß"
         ],
         "Blurting": []
     },
@@ -836,26 +830,6 @@
         "Lernbereich": "zufallsgroessen",
         "LernbereichAnzeigename": "Zufallsgrößen",
         "Nummer": 4,
-        "check_id": "stochastik__zufallsgroessen__04",
-        "Ich kann": "die Wahrscheinlichkeitsverteilung und das Histogramm einer Zufallsgröße aufstellen.",
-        "Sammlung": "aufstellen-wkt-verteilung",
-        "Schlagwort": "Wkt-Verteilung + Histogramm",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-stochastik-zufallsgroessen-04",
-        "questionOrder": "shuffle",
-        "Tipps": [
-            "Zufallsgrößen",
-            "wahrscheinlichkeitsverteilung",
-            "histogramm",
-            "zufallsgröße"
-        ],
-        "Blurting": []
-    },
-    {
-        "Gebiet": "stochastik",
-        "Lernbereich": "zufallsgroessen",
-        "LernbereichAnzeigename": "Zufallsgrößen",
-        "Nummer": 5,
         "check_id": "stochastik__zufallsgroessen__05",
         "Ich kann": "bei gegebenen Erwartungswert eine fehlende Wahrscheinlichkeit und einen fehlenden Wert der Wahrscheinlichkeitsverteilung berechnen.",
         "Sammlung": "kennzahlen-fehlende-wsk",
@@ -874,7 +848,7 @@
         "Gebiet": "stochastik",
         "Lernbereich": "zufallsgroessen",
         "LernbereichAnzeigename": "Zufallsgrößen",
-        "Nummer": 6,
+        "Nummer": 5,
         "check_id": "stochastik__zufallsgroessen__06",
         "Ich kann": "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
         "Sammlung": "kennzahlen-fehlende-wsk-zwei",

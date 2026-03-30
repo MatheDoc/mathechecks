@@ -91,18 +91,7 @@ Der Erwartungswert für Biathlet B beträgt also $1{,}72$. Auch Biathlet B verfe
 
 Wären die Erwartungswerte der beiden Biathleten unterschiedlich gewesen, hätten wir eine fundierte Entscheidungsgrundlage gehabt, um zu entscheiden, welcher der treffsicherere Biathlet ist.
 
-{%include info.html
-index="1"
-frage="Formel für den Erwartungswert:"
-antwort="
-'Zeile der Werte mal Zeile der Wahrscheinlichkeiten':
-
-$$
-E(X) = x_1 \cdot P(X = x_1) + x_2 \cdot P(X = x_2) + \ldots + x_n \cdot P(X = x_n)
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer="1" %}
 
 
 ## Die Standardabweichung
@@ -164,17 +153,7 @@ $$
 
 Die Standardabweichung von Biathlet B beträgt also ungefähr $1{,}75$. Die Anzahl der Fehlschüsse schwankt hier also stärker um den Erwartungswert als bei Biathlet A.
 
-{%include info.html
-index="2"
-frage="Formel für die Standardabweichung:"
-antwort="'Zeile der quadrierten Abweichungen vom Erwartungswert mal Zeile der Wahrscheinlichkeiten':
-
-$$
-\sigma(X) = \sqrt{(x_1-E(X))^2 \cdot P(X = x_1) + (x_2-E(X))^2 \cdot P(X = x_2) + \ldots + (x_n-E(X))^2 \cdot P(X = x_n)}
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer="2" %}
 
 
 ## Interpretationen
@@ -220,15 +199,9 @@ Letztlich hängt die Entscheidung davon ab, ob der Fokus auf Konstanz oder auf d
 
 In vielen Anwendungssituationen ist eine kleine Standardabweichung vorteilhaft, weil sie weniger Unsicherheit bedeutet. So ist es für die meisten Menschen vorteilhaft, monatlich in etwa die gleichen Einnahmen und Ausgaben zu haben, da sie dadurch mehr Planungssicherheit gewinnen. Das Gleiche gilt für Unternehmen oder Regierungen, die ebenfalls von stabilen Einnahmen und Ausgaben profitieren, um langfristig erfolgreich agieren zu können.
 
-{%include info.html
-index="3"
-frage="Bedeutung des Erwartungswerts und der Standardabweichung:"
-antwort="
+{% include dev/check-anker.html nummer="3" %}
 
-- Erwartungswert $E(X)$: Langfristiger Mittelwert
-- Standardabweichung $\sigma(X)$: Maß für die Schwankung
-  "
-  %}
+
 
 
 <!--
@@ -269,7 +242,7 @@ Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsg
 
 Für eine statistische Untersuchung in einem großen Elektronikfachmarkt wurden Aufzeichnungen über die Verkäufe von Laptops mit Windows- bzw. macOS-Betriebssystem geführt. Zusätzlich wurden drei Gerätekategorien erfasst: Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P). Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
 
-<img src="Elektronikfachmarkt-baumdiagramm.png" alt="Baumdiagramm Elektronikfachmarkt" width="400">
+<img src="Elektronikfachmarkt-baumdiagramm.png" alt="Baumdiagramm Elektronikfachmarkt" class="diagramm">
 
 Der Gewinn bei Windows-Geräten beträgt unabhängig von der Gerätekategorie 180&nbsp;€ pro Stück. Bei macOS-Geräten beläuft sich der Gewinn auf 130&nbsp;€ für Einsteigergeräte, 210&nbsp;€ für Mittelklassegeräte und 290 € für Premiumgeräte.
 
@@ -283,7 +256,7 @@ Zunächst berechnen wir $P(\\{W\\})=0{,}04+0{,}35+0{,}06=0{,}45$. Wir erhalten:
 
 Wie sieht das Histogramm der Zufallsgröße aus?
 
-<img src="Elektronikfachmarkt-histogramm.png" alt="Histogramm Elektronikfachmarkt" width="400">
+<img src="Elektronikfachmarkt-histogramm.png" alt="Histogramm Elektronikfachmarkt" class="diagramm">
 
 Wie hoch ist der erwartete Gewinn pro Laptop? Und wie hoch ist der Gesamtgewinn bei 80.000 verkauften Laptops?
 
@@ -298,11 +271,11 @@ $$
 Der Gesamtgewinn beträgt dann $186{,}9 \\cdot 80.000 = 14.952.000$ €.
 
 
-### Beipsiel: Lern-Apps
+### Beispiel: Lern-Apps
 
 Es wurden 2.000 Schülerinnen und Schülern befragt, welche Versionen von Lern-Apps sie nutzen: Starter-Versionen (S), Pro-Versionen (P) oder keine Lern-Apps (k). Außerdem wurde untersucht, ob sie die Apps zur Unterhaltung (U) oder zur Vorbereitung auf Prüfungen (V) verwenden. Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
 
-<img src="Lernapp-baumdiagramm.png" alt="Baumdiagramm Lernapp" width="400">
+<img src="Lernapp-baumdiagramm.png" alt="Baumdiagramm Lernapp" class="diagramm">
 
 Jugendliche, die mit Pro-Versionen von Lern-Apps gezielt für Prüfungen gelernt haben, erreichen in der Abiturprüfung im Durchschnitt 11,3 Punkte. Diejenigen, die mit Starter-Versionen gezielt gelernt haben, erzielen im Mittel 10,4 Punkte, jene, die Lern-Apps zur Unterhaltung nutzen, 9,1 Punkte. Jugendliche ohne Nutzung von Lern-Apps erreichen durchschnittlich 7,3 Punkte.
 
@@ -316,7 +289,7 @@ Die Wahrscheinlichkeit, dass ein Jugendlicher Lern-Apps nur zur Unterhaltung nut
 
 Wie sieht das Histogramm der Zufallsgröße aus?
 
-<img src="Lernapp-histogramm.png" alt="Histogramm Lernapp" width="400">
+<img src="Lernapp-histogramm.png" alt="Histogramm Lernapp" class="diagramm">
 
 Wie viele Punkte erreichen Jugendliche in der Abiturprüfung im langfristigen Mittel?
 
@@ -329,106 +302,14 @@ E(X) &= 11{,}3 \cdot 0{,}112 + 10{,}4 \cdot 0{,}243 + 9{,}1 \cdot 0{,}405 + 7{,}
 \end{align*}
  $$
 
+## Vervollständigen von Verteilungen
+
 Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
 
-{%include info.html
-index="5"
-frage="Fehlende Wahrscheinlichkeit:"
-antwort="
+{% include dev/check-anker.html nummer="4" %}
 
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $2$      | $5$      |
-| ------------ | -------- | -------- | ---- | -------- | -------- |
-| $P(X = x_i)$ | $0{,}07$ | $0{,}06$ |      | $0{,}41$ | $0{,}44$ |
-
-Hier kann leicht der fehlende Wert berechnet werden, da die Summe der Wahrscheinlichkeiten 1 ergeben muss. Daher ist
-
-$$
-\begin{align*}
-P(X = -1) & = 1 - (0,07 + 0,06 + 0,41 + 0,44) \\
-& = 1 - 0,98 \\
-& = 0,02
-\end{align*}
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer="5" %}
 
 
-{%include info.html
-index="6"
-frage="Fehlender Wert:"
-antwort="
 
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-5$     | $x$      | $0$      | $1$      | $4$     |
-| ------------ | -------- | -------- | -------- | -------- | ------- |
-| $P(X = x_i)$ | $0{,}05$ | $0{,}39$ | $0{,}37$ | $0{,}09$ | $0{,}1$ |
-
-Außerdem ist bekannt, dass $E(X)=-0{,}93$.
-
-Um $x$ zu berechnen, verwenden wir die Definition des Erwartungswerts:
-
-$$
--0{,}93 = (-5 \cdot 0{,}05) + (x \cdot 0{,}39) + (0\cdot 0{,}37)  + (1 \cdot 0{,}09) + (4 \cdot 0{,}10)
-$$
-
-Diese Gleichung können wir nach $x$ auflösen
-
-$$
-\begin{align*}
--0{,}93 & = -0{,}25 + 0{,}39x + 0{,}09 + 0{,}40\\
--0{,}93 & = 0{,}39x + 0{,}24 \quad |-0{,}24\\
--1{,}17 & =0{,}39x \quad |:0{,}39\\
-x&=-3
-\end{align*}
-$$
-
-"
-%}
-
-
-{%include info.html
-index="7"
-frage="Zwei fehlende Wahrscheinlichkeiten:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $1$      | $4$ |
-| ------------ | -------- | -------- | ---- | -------- | --- |
-| $P(X = x_i)$ | $0{,}15$ | $0{,}27$ | $x$  | $0{,}08$ | $y$ |
-
-Außerdem ist bekannt, dass $E(X)=0{,}29$
-
-Da wir zwei Unbekannte haben, sind auch zwei Gleichungen nötig, um sie zu bestimmen:
-
-1. Die Summe der Wahrscheinlichkeiten muss 1 ergeben:
-
-   $$
-   0{,}15 + 0{,}27 + x + 0{,}08 +y = 1
-   $$
-
-2. Der gegebene Erwartungswert:
-
-   $$
-   0{,}29 = (-4 \cdot 0{,}15) + (-2 \cdot 0{,}27) + (-1 \cdot x) + (1 \cdot 0{,}08) + (4 \cdot y)
-   $$
-
-Die Gleichungen lassen sich vereinfachen:
-
-1. $x + y = 0{,}5$
-2. $- x + 4y = 1{,}35$
-
-Nun gibt es verschiedene Techniken, dieses Gleichungssystem zu lösen. Wir lösen zunächst nach $x$ auf:
-
-1. $x = 0{,}5 - y $
-2. $x = 4y - 1{,}35 $
-
-und setzen gleich: $0{,}5 -y = 4y - 1{,}35$. Es folgt $1{,}85 = 5y$ und so $y=0{,}37$. Nun folgt $x=0{,}5 - 0{,}37 = 0{,}13$.
-
-"
-%}
 
