@@ -870,18 +870,16 @@
         "LernbereichAnzeigename": "Hypothesentests",
         "Nummer": 1,
         "check_id": "stochastik__hypothesentests__01",
-        "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Ich kann": "die Entscheidungsregel eines linksseitigen Hypothesentests anwenden und die Wahrscheinlichkeit für den Fehler 1. Art bestimmen.",
         "Sammlung": "hypothesenergebnis-linksseitig",
-        "Schlagwort": "Linkss. E-Regel anwenden",
+        "Schlagwort": "Linkss. E-Regel + Wkt Fehler 1. Art",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\( H_1 \\): Wkt ist kleiner als geg Wert",
-            "Annahmebreich",
-            "Ablehnungsbereich",
-            "Wkt für Fehler 1. Art",
-            "Stichprobenergebnis"
+            "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
+            "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "\\( P(X\\leq k) \\)"
         ],
         "Blurting": []
     },
@@ -891,18 +889,16 @@
         "LernbereichAnzeigename": "Hypothesentests",
         "Nummer": 2,
         "check_id": "stochastik__hypothesentests__02",
-        "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und das Signifikanzniveau bestimmen.",
+        "Ich kann": "die Entscheidungsregel eines rechtsseitigen Hypothesentests anwenden und die Wahrscheinlichkeit für den Fehler 1. Art bestimmen.",
         "Sammlung": "hypothesenergebnis-rechtsseitig",
-        "Schlagwort": "Rechtss. E-Regel anwenden",
+        "Schlagwort": "Rechtss. E-Regel + Wkt Fehler 1. Art",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\( H_1 \\): Wkt ist größer als geg Wert",
-            "Annahmebreich",
-            "Ablehnungsbereich",
-            "Wkt für Fehler 1. Art",
-            "Stichprobenergebnis"
+            "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
+            "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "\\( P(X\\geq k) \\)"
         ],
         "Blurting": []
     },

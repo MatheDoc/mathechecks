@@ -46,7 +46,7 @@ Ein Hypothesentest soll standardisiert, objektiv und reproduzierbar sein. Daher 
 
 Im Beispiel könnten sich Lehrerin und Schüler **vorab** auf folgende Regel einigen:
 
-> Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt.
+    "Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt."
 
 Erst **nachdem** diese Regel festgelegt wurde, wird die Datenerhebung durchgeführt. Das Ergebnis wird anschließend nach der vorher definierten Regel interpretiert – unabhängig von persönlichen Meinungen oder Interessen.
 
@@ -130,68 +130,16 @@ Das zentrale Prinzip lautet: Wir legen eine Schranke für die maximal tolerierte
 
 Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich im Rahmen des vorgegebenen Signifikanzniveaus möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
 
-{%include info.html
-index="3"
-frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel"
-antwort="
-Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}05$. Außerdem gelte
+Wir betrachten zunächst die Herleitung der Entscheidungsregel für einen linksseitigen Test, bevor wir uns dem rechtsseitigen Test zuwenden. In beiden Fällen werden wir die Entscheidungsregel zunächst mit Strukturhilfe herleiten, bevor wir sie ohne Strukturhilfe formulieren.
 
-|Nullhypothese | Gegenhypothese |
-| $H_0: 0{,}4$ | $H_1: p<0{,}4$ |
-| $A=\\{k+1,k+2,...,200\\}$ | $\overline{A}=\\{0,1,2,...,k\\}$ |
+{% include dev/check-anker.html nummer="3" %}
 
-Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p<0{,}4$ bei kleinen Stichprobenergebnissen für $H_1$ entscheiden, und bei großen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das größte $k$, so dass $P(X\leq k)<0{,}05$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
+{% include dev/check-anker.html nummer="4" %}
 
-$$
-\begin{align*}
-P(X\leq 68)&=Bcd(0;68;200;0{,}4)\\
-            &=0{,}0475<0{,}05\\
-            \\
-P(X\leq 69)&=Bcd(0;69;200;0{,}4)\\
-            &=0{,}0639>0{,}05
-\end{align*}
-$$
+{% include dev/check-anker.html nummer="5" %}
 
-Damit folgt $k=68$, und somit $A=\\{69,70,...,200\\}$ und $\overline{A}=\\{0,1,2,...,68\\}$.
-"
-%}
+{% include dev/check-anker.html nummer="6" %}
 
 
-{%include info.html
-index="4"
-frage="Rechtssseitiger Hypothesentest: Herleitung der Entscheidungsregel"
-antwort="
-Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}02$. Außerdem gelte
 
-|Nullhypothese | Gegenhypothese |
-| $H_0: 0{,}4$ | $H_1: p>0{,}4$ |
-| $A=\\{0,1,2,...,k-1\\}$ | $\overline{A}=\\{k,k+1,...,200\\}$ |
-
-Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p>0{,}4$ bei großen Stichprobenergebnissen für $H_1$ entscheiden, und bei kleinen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das kleinste $k$, so dass $P(X\geq k)<0{,}02$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
-
-$$
-\begin{align*}
-P(X\geq 94)&=Bcd(94;200;200;0{,}4)\\
-            &=0{,}0263>0{,}02\\
-            \\
-P(X\geq 95)&=Bcd(95;200;200;0{,}4)\\
-            &=0{,}0188<0{,}02
-\end{align*}
-$$
-
-Damit folgt $k=95$, und somit $A=\\{0,1,2,...,94\\}$ und $\overline{A}=\\{95,96,...,200\\}$.
-"
-%}
-
-
-{%include info.html
-index="5"
-frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
-antwort="siehe oben"%}
-
-
-{%include info.html
-index="6"
-frage="Rechtsseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
-antwort="siehe oben"%}
 

@@ -74,9 +74,9 @@ class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
             )
 
             questions = [
-                "Bestimmen Sie das Signifikanzniveau \\(\\alpha\\) der Entscheidungsregel.",
+                "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art",
                 (
-                    f"In der Stichprobe werden \\(x={case.observed_x}\\) {sc.success_plural} festgestellt. "
+                    f"In der Stichprobe werden \\({case.observed_x}\\) {sc.success_plural} festgestellt. "
                     "Ist von der Null- oder der Gegenhypothese auszugehen?"
                 ),
             ]
