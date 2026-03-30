@@ -1154,15 +1154,15 @@
         "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__01",
         "Ich kann": "eine Funktion hinsichtlich eines ertragsgesetzlichen Kostenverlaufs überprüfen.",
         "Sammlung": "nachweis",
-        "Schlagwort": "Ertragsgesetzl. prüfen",
+        "Schlagwort": "Ertragsgesetz prüfen ohne Param",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "prüfen",
-            "funktion",
-            "verlauf"
+            "Grad 3",
+            "pos y-Abschnitt",
+            "monoton wachsend",
+            "pos Wendestelle"
         ],
         "Blurting": []
     },
@@ -1174,15 +1174,15 @@
         "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__02",
         "Ich kann": "prüfen, für welche Parameter eine parametrisierte Funktion den Verlauf einer ertragsgesetzlichen Kostenfunktion aufweist.",
         "Sammlung": "nachweis-parameter",
-        "Schlagwort": "Parameter ertragsgesetzl.",
+        "Schlagwort": "Ertragsgesetz prüfen mit Param",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "prüfen",
-            "welche",
-            "parameter"
+            "Grad 3",
+            "pos y-Abschnitt",
+            "monoton wachsend",
+            "pos Wendestelle"
         ],
         "Blurting": []
     },
@@ -1199,10 +1199,10 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "mathematische",
-            "definition",
-            "kostenkennzahlen"
+            "Extremstelle",
+            "Minimum",
+            "Wendestelle",
+            "BM, KPU, BO, LPU, Übergang deg-prog"
         ],
         "Blurting": []
     },
@@ -1219,10 +1219,11 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "kennzahlen",
-            "ertragsgesetzlicher",
-            "kostenfunktionen"
+            "Extrempunkte",
+            "Grenzkosten $K'$",
+            "var Stückosten $k_v$",
+            "Stückkosten $k$",
+            "BM, KPU, BO, LPU, Übergang deg-prog"
         ],
         "Blurting": []
     },
@@ -1239,10 +1240,9 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "ansatz",
-            "berechnung",
-            "kostenkennzahlen"
+            "Mathematische Definition von Kostenkennzahlen",
+            "Bedinungen Extremstellen",
+            "Bedingungen Wendestellen"
         ],
         "Blurting": []
     },
@@ -1259,10 +1259,9 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "kennzahlen",
-            "ertragsgesetzlicher",
-            "kostenfunktionen"
+            "Extrem- und Wendestellen berechnen",
+            "$f(x)=\frac{1}{x} \\Rightarrow f'(x)=-\frac{1}{x^2}$",
+            "$f(x)=\frac{1}{x^2} \\Rightarrow f'(x)=-\frac{2}{x^3}$"
         ],
         "Blurting": []
     },
@@ -1279,10 +1278,10 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ertragsgesetzliche Kostenfunktionen",
-            "gleichungen",
-            "ertragsgesetzlicher",
-            "kostenfunktionen"
+            "Allgemeine Form",
+            "Informationen -> Gleichung",
+            "LGS aufstellen",
+            "LGS lösen"
         ],
         "Blurting": []
     },
@@ -1474,15 +1473,14 @@
         "check_id": "analysis__analysis-diverses__01",
         "Ich kann": "eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen.",
         "Sammlung": "regression",
-        "Schlagwort": "Regression + R²",
+        "Schlagwort": "Regressionfunktion + R²",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-analysis-diverses-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Analysis - Diverses",
-            "lineare",
-            "quadratische",
-            "kubische"
+            "Regression im TR",
+            "Wahl Regressionsfunktion",
+            "Bestimmheitsmaß nahe 1?"
         ],
         "Blurting": []
     },
