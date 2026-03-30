@@ -2,6 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 
 const FY_TOTAL_SECONDS = 300;
+const FY_BEISPIEL_CACHE = new Map();
 const FY_RING_CIRCUMFERENCE = 2 * Math.PI * 20;
 const FY_STATE_PREFIX = "dev-feynman-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
@@ -119,107 +120,51 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-function consumePageEvaluationExamplesMap() {
-  const contentRoot = document.querySelector(".mod-content");
-  if (!contentRoot) return new Map();
-
-  const markerHeading = Array.from(contentRoot.querySelectorAll("h2, h3")).find((heading) => {
-    const text = String(heading.textContent || "").trim().toLowerCase();
-    return text === "feynman-auswertungsbeispiele" || text === "feynman-auswertungsbeispiel";
-  });
-
-  if (!markerHeading) return new Map();
-
-  const markerLevel = Number(markerHeading.tagName.slice(1));
-
-  const nodes = [markerHeading];
-  let cursor = markerHeading.nextElementSibling;
-
-  while (cursor) {
-    if (cursor.matches("h1, h2, h3, h4, h5, h6")) {
-      const level = Number(cursor.tagName.slice(1));
-      if (level <= markerLevel) break;
-    }
-    nodes.push(cursor);
-    cursor = cursor.nextElementSibling;
-  }
-
-  const examples = new Map();
-  let currentKey = "";
-  let currentNodes = [];
-
-  const flushCurrent = () => {
-    if (!currentKey) return;
-    const markup = currentNodes.map((node) => node.outerHTML).join("").trim();
-    if (!markup) return;
-    examples.set(currentKey, markup);
-  };
-
-  const parseHeadingKey = (text) => {
-    const normalized = String(text || "").trim();
-    if (!normalized) return "";
-
-    const checkIdMatch = normalized.match(/([a-z0-9-]+__[a-z0-9-]+__[0-9]{2})/i);
-    if (checkIdMatch) {
-      return `id:${checkIdMatch[1].toLowerCase()}`;
-    }
-
-    const checkNumMatch = normalized.match(/check\s*0*([0-9]{1,3})/i);
-    if (checkNumMatch) {
-      return `num:${Number(checkNumMatch[1])}`;
-    }
-
-    if (/^0*[0-9]{1,3}$/.test(normalized)) {
-      return `num:${Number(normalized)}`;
-    }
-
-    if (/allgemein|standard|default/i.test(normalized)) {
-      return "default";
-    }
-
-    return "";
-  };
-
-  for (const node of nodes.slice(1)) {
-    if (node.matches("h3, h4, h5, h6")) {
-      const key = parseHeadingKey(node.textContent || "");
-      if (key) {
-        flushCurrent();
-        currentKey = key;
-        currentNodes = [];
-        continue;
-      }
-    }
-
-    if (currentKey) {
-      currentNodes.push(node);
-    }
-  }
-
-  flushCurrent();
-  nodes.forEach((node) => node.remove());
-  return examples;
+function buildBeispielUrl(check) {
+  const nummer = String(Number(check.Nummer) || 0).padStart(2, "0");
+  const sammlung = String(check.Sammlung || "").trim();
+  const gebiet = String(check.Gebiet || "").trim();
+  const lernbereich = String(check.Lernbereich || "").trim();
+  if (!sammlung || !gebiet || !lernbereich) return "";
+  return `/dev/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
 }
 
-function getEvaluationExampleMarkup(examplesByCheck, check) {
-  const checkId = String(check?.check_id || "").toLowerCase();
-  const nummer = Number(check?.Nummer);
-
-  if (checkId && examplesByCheck.has(`id:${checkId}`)) {
-    return examplesByCheck.get(`id:${checkId}`) || "";
+async function fetchBeispielHtml(check) {
+  const url = buildBeispielUrl(check);
+  if (!url) return "";
+  if (FY_BEISPIEL_CACHE.has(url)) return FY_BEISPIEL_CACHE.get(url);
+  try {
+    const resp = await fetch(url);
+    if (!resp.ok) { FY_BEISPIEL_CACHE.set(url, ""); return ""; }
+    const html = (await resp.text()).trim();
+    FY_BEISPIEL_CACHE.set(url, html);
+    return html;
+  } catch {
+    FY_BEISPIEL_CACHE.set(url, "");
+    return "";
   }
+}
 
-  if (Number.isFinite(nummer) && examplesByCheck.has(`num:${nummer}`)) {
-    return examplesByCheck.get(`num:${nummer}`) || "";
-  }
+function getEvaluationExamplePlaceholder() {
+  return `<div data-fy-beispiel-slot class="fy-beispiel-loading"><p style="margin:0;color:var(--text-muted);font-size:.82rem;">Beispiel wird geladen…</p></div>`;
+}
 
-  if (examplesByCheck.has("default")) {
-    return examplesByCheck.get("default") || "";
-  }
-
-  return `
-    <p style="margin:0;color:var(--text-dim);line-height:1.55;">Kein Auswertungsbeispiel fuer diesen Check hinterlegt. Fuege in der Feynman-MD unter "Feynman-Auswertungsbeispiele" einen Unterpunkt wie "Check 01" oder die check_id hinzu.</p>
-  `;
+async function hydrateBeispielSlots(root, checks) {
+  const slots = root.querySelectorAll("[data-fy-beispiel-slot]");
+  const tasks = Array.from(slots).map(async (slot, i) => {
+    const check = checks[i];
+    if (!check) return;
+    const html = await fetchBeispielHtml(check);
+    if (html) {
+      slot.innerHTML = html;
+      slot.classList.remove("fy-beispiel-loading");
+      await renderMath(slot);
+    } else {
+      slot.innerHTML = `<p style="margin:0;color:var(--text-dim);line-height:1.55;">Kein Auswertungsbeispiel fuer diesen Check hinterlegt.</p>`;
+      slot.classList.remove("fy-beispiel-loading");
+    }
+  });
+  await Promise.all(tasks);
 }
 
 function toSlug(value) {
@@ -290,14 +235,107 @@ function buildFeynmanPromptFromIchKann(check) {
   return `Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man ${action}.`;
 }
 
-function renderCard(check, examplesByCheck) {
+function convertJsonLatexToMarkdown(text) {
+  return String(text || "")
+    .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
+    .replace(/\\\[(.+?)\\\]/gs, (_, m) => `$$${m}$$`);
+}
+
+function htmlToPlainText(html) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = html;
+  return tmp.textContent || "";
+}
+
+function buildKiAgentPrompt(check, beispielHtml) {
+  const schlagwort = check.Schlagwort || `Check ${check.Nummer}`;
+  const lernbereich = check.LernbereichAnzeigename || check.Lernbereich || "";
+  const ichKann = check["Ich kann"] || "";
+  const cleaned = cleanIchKannStatement(ichKann);
+
+  const tipps = Array.isArray(check.Tipps) ? check.Tipps : [];
+  const blurting = Array.isArray(check.Blurting) ? check.Blurting : [];
+
+  const tippsBlock = tipps.length > 0
+    ? `Folgende Stichpunkte sollte eine vollständige Erklärung abdecken:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    : "";
+
+  const blurtingBlock = blurting.length > 0
+    ? `\nWichtige Fachbegriffe, die vorkommen sollten:\n${blurting.map(b => `- ${convertJsonLatexToMarkdown(b)}`).join("\n")}`
+    : "";
+
+  const beispielText = beispielHtml
+    ? htmlToPlainText(beispielHtml).trim()
+    : "";
+  const beispielBlock = beispielText
+    ? `\n# Referenzbeispiel (nur intern – NICHT dem Lernenden zeigen)\n${beispielText}`
+    : "";
+
+  return `# Rolle
+Du bist ein freundlicher, neugieriger Mitschüler. Du verstehst das Thema
+noch NICHT und möchtest es anhand eines konkreten Beispiels erklärt
+bekommen. Du sprichst Deutsch und duzt dein Gegenüber.
+
+# Thema
+Check: ${schlagwort}
+Lernbereich: ${lernbereich}
+Lernziel: Ich kann ${convertJsonLatexToMarkdown(ichKann)}
+
+# Dein Wissen (nur intern – NICHT dem Lernenden zeigen)
+${tippsBlock}${blurtingBlock}${beispielBlock}
+
+# Regeln
+1. Erkläre NICHTS selbst. Du bist der Zuhörer, nicht der Lehrer.
+2. Bitte den Lernenden, sich ein eigenes Beispiel auszudenken oder eines
+   aus dem Unterricht zu nehmen und dir Schritt für Schritt zu erklären.
+3. Stelle nach jedem Erklärungsschritt genau EINE Rückfrage – z. B. zu
+   einem Rechenschritt, einer Begriffsverwendung oder einer Begründung.
+4. Variiere deine Reaktionen: kurze Bestätigungen, Nachfassen,
+   Verständnisfragen. Wiederhole dich nicht.
+5. Gib KEINE Hinweise, die die Antwort verraten.
+6. Bleib natürlich und neugierig, aber nicht übertrieben lobend.
+7. Antworte immer auf Deutsch.
+
+# Ablauf
+## Phase 1 – Start
+Begrüße den Lernenden und bitte ihn, dir anhand eines selbst gewählten
+Beispiels zu erklären, wie man ${cleaned || "diesen Inhalt anwendet"}.
+
+## Phase 2 – Gemeinsam durch das Beispiel (3–5 Runden)
+- Lass den Lernenden das Beispiel Schritt für Schritt durchgehen.
+- Frage bei jedem Schritt nach dem Warum oder bitte um eine
+  Veranschaulichung, wenn etwas unklar ist.
+- Orientiere dich an den internen Stichpunkten. Wenn ein Aspekt im
+  Beispiel noch nicht aufgetaucht ist, lenke mit einer natürlichen
+  Frage dorthin, OHNE die Antwort zu verraten.
+
+## Phase 3 – Zusammenfassung
+Wenn das Beispiel durchgearbeitet ist ODER nach 5 Runden:
+1. Fasse in 2–3 Sätzen zusammen, was du jetzt verstanden hast.
+2. Benenne offen, welche Punkte noch unklar geblieben sind.
+3. Gib eine ehrliche Einschätzung:
+   ✅ Gut erklärt: [Punkte]
+   ❓ Noch unklar / fehlend: [Punkte]
+`;
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function renderCard(check) {
   const prompt = buildFeynmanPromptFromIchKann(check);
   const titel = check.Schlagwort || `Check ${check.Nummer}`;
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
   const scriptHref = buildScriptInfoHref(check);
-  const evaluationExampleMarkup = getEvaluationExampleMarkup(examplesByCheck, check);
+  const evaluationExampleMarkup = getEvaluationExamplePlaceholder();
 
   const skriptIcon = scriptHref
     ? `<a class="dev-check-card__action-btn" href="${escapeHtml(scriptHref)}" title="Im Skript nachschlagen" aria-label="Im Skript nachschlagen"><i class="fa-solid fa-book-open" aria-hidden="true"></i></a>`
@@ -342,6 +380,7 @@ function renderCard(check, examplesByCheck) {
               <div style="font-size:.72rem;color:var(--text-muted);">Schreib in eigenen Worten, danach folgt der Abgleich.</div>
             </div>
             <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
+            <button class="bl-reveal-btn fy-ki-btn" type="button" data-fy-ki-copy title="KI-Lernpartner in die Zwischenablage kopieren – füge den Text in eine KI deiner Wahl ein">✨ KI-Lernpartner</button>
           </div>
 
           <textarea
@@ -487,10 +526,11 @@ function bindJumpNavScrollSync(navNode, cardNodes) {
   });
 }
 
-function initInteractiveFeynmanCards(root) {
+function initInteractiveFeynmanCards(root, checks) {
   const cards = root.querySelectorAll("[data-fy-card]");
 
-  cards.forEach((card) => {
+  cards.forEach((card, index) => {
+    const check = checks[index];
     const stages = {
       write: card.querySelector('[data-fy-stage="write"]'),
       evaluate: card.querySelector('[data-fy-stage="evaluate"]'),
@@ -540,6 +580,23 @@ function initInteractiveFeynmanCards(root) {
     card.querySelector('[data-fy-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-fy-answer="no"]')?.addEventListener("click", () => setResult(false));
 
+    const kiButton = card.querySelector("[data-fy-ki-copy]");
+    if (kiButton && check) {
+      kiButton.addEventListener("click", async () => {
+        kiButton.disabled = true;
+        kiButton.textContent = "⏳ Wird erstellt…";
+        try {
+          const beispielHtml = await fetchBeispielHtml(check);
+          const agentPrompt = buildKiAgentPrompt(check, beispielHtml);
+          const ok = await copyToClipboard(agentPrompt);
+          kiButton.textContent = ok ? "✅ Kopiert!" : "❌ Fehler";
+          setTimeout(() => { kiButton.textContent = "✨ KI-Lernpartner"; }, 2000);
+        } finally {
+          kiButton.disabled = false;
+        }
+      });
+    }
+
     updateTimerView();
     timerId = window.setInterval(() => {
       secondsLeft -= 1;
@@ -586,7 +643,6 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   const byId = new Map(checks.map((check) => [getCheckId(check), check]));
   const state = loadFeynmanState(lernbereich);
   const navNode = document.getElementById("dev-feynman-jump-nav");
-  const examplesByCheck = consumePageEvaluationExamplesMap();
   const hasPreferred = typeof preferredCheckId === "string" && preferredCheckId.trim() !== "";
 
   const preferredSelected = hasPreferred ? byId.get(preferredCheckId.trim()) : null;
@@ -596,10 +652,11 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   saveFeynmanState(lernbereich, state);
 
   renderJumpNav(navNode, checks, selectedCheckId);
-  root.innerHTML = checks.map((check) => renderCard(check, examplesByCheck)).join("");
+  root.innerHTML = checks.map((check) => renderCard(check)).join("");
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-fy-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveFeynmanCards(root);
+  initInteractiveFeynmanCards(root, checks);
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
+  await hydrateBeispielSlots(root, checks);
 }
