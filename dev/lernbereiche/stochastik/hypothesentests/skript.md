@@ -115,58 +115,9 @@ $$
 
 Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}1$), wir jedoch die Nullhypothese beibehalten. Ohne zusätzliche Informationen über den tatsächlichen Wert von $p$ unter der Gegenhypothese kann diese Wahrscheinlichkeit nicht bestimmt werden.
 
-{%include info.html
-index="1"
-frage="Linksseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
-antwort="
-Beispiel: Gegeben ist ein Hypothesentest mit:
+{% include dev/check-anker.html nummer="1" %}
 
-- $n=200$
-- $H_0$: $p=0{,}4$
-- $H_1$: $p<0{,}4$
-- $A=\\{71,72,...,200\\}$ und $\overline{A}=\\{0,1,...,70\\}$
-- Stichprobenergebnis: $k=69$
-
-Anwendung der Entscheidungsregel: Da $69\in\overline{A}$ wird die Nullhypothese abgelehnt und die Gegenhypothese angenommen.
-
-Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art:
-
-$$
-\begin{align*}
-P(X\leq 70) &= Bcd(0;70;200;0{,}4) \\
-            &= 0{,}0844
-\end{align*}
-$$
-
-"
-%}
-
-
-{%include info.html
-index="2"
-frage="Rechtsseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
-antwort="
-Beispiel: Gegeben ist ein Hypothesentest mit:
-
-- $n=200$
-- $H_0$: $p=0{,}4$
-- $H_1$: $p>0{,}4$
-- $A=\\{0,1,2,...,90\\}$ und $\overline{A}=\\{91,92,...,200\\}$
-- Stichprobenergebnis: $k=88$
-
-Anwendung der Entscheidungsregel: Da $88\in A$ wird die Nullhypothese angenommen und die Gegenhypothese abgelehnt.
-
-Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art
-
-$$
-\begin{align*}
-P(X\geq 91) &= Bcd(91;200;200;0{,}4) \\
-            &= 0{,}0655
-\end{align*}
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer="2" %}
 
 
 <!-- ## Exkurs: p-Hacking-->
