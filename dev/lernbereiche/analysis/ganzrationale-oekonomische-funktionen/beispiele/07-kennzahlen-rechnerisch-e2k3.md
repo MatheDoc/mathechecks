@@ -80,8 +80,8 @@ $$
 
     $$
     \begin{align*}
-    3x - 12 =  0 \Rightarrow x = 4\\
-    K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
+    \text{Notwendige Bedingung: }& 3x - 12 =  0 \Rightarrow x = 4\\
+    \text{Hinreichende Bedingung: }& K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
     \end{align*}
     $$
 
@@ -93,8 +93,8 @@ $$
 
     $$
     \begin{align*}
-    -0{,}5x^3 + x^2 + 30x - 48 &=0 \Rightarrow x_1=-7{,}58,\ x_2=1{,}58,\ x_3=8\\
-    (x_1&=-7{,}58 \text{ liegt nicht im ökonomischen Definitionsbereich})
+    -0{,}5x^3 + x^2 + 30x - 48 =0 \Rightarrow x_1=-7{,}58,\ x_2=1{,}58,\ x_3=8\\
+    (x_1=-7{,}58 \text{ liegt nicht im ökonomischen Definitionsbereich})
     \end{align*}
     $$
 
@@ -108,9 +108,9 @@ $$
 
     $$
     \begin{align*}
-    -1{,}5x^2 + 2x + 30 & = 0 \Rightarrow x_1=-3{,}86,\ x_2=5{,}19\\
-    G^{\prime\prime}(5{,}19)&=-3\cdot 5{,}19+2=-13{,}57<0 \text{ (Maximum)}\\
-    (x_1&=-3{,}86\text{ liegt nicht im ökonomischen Definitionsbereich})
+    \text{Notwendige Bedingung: }& -1{,}5x^2 + 2x + 30  = 0 \Rightarrow x_1=-3{,}86,\ x_2=5{,}19\\
+    \text{Hinreichendige Bedingung: }& G^{\prime\prime}(5{,}19)=-3\cdot 5{,}19+2=-13{,}57<0 \text{ (Maximum)}\\
+    &(x_1=-3{,}86\text{ liegt nicht im ökonomischen Definitionsbereich})
     \end{align*}
     $$
 
