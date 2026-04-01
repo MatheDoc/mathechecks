@@ -1022,7 +1022,7 @@
         "Tipps": [
             "$E(x)=p(x)\\cdot x$",
             "$G(x)=E(x)-K(x)$",
-            "$p(x)=\\frac{E(x)}{x}",
+            "$p(x)=\\frac{E(x)}{x}$",
             "$E(x)=G(x)+K(x)$",
             "$K(x)=E(x)-G(x)$"
         ],
@@ -1034,20 +1034,18 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 3,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__03",
-        "Ich kann": "die mathematische Definition ökonomischer Kennzahlen angeben.",
-        "Sammlung": "kennzahlen-definition",
-        "Schlagwort": "Ökon. Kennzahlen Def.",
+        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
+        "Sammlung": "kennzahlen-graphisch-e1k3",
+        "Schlagwort": "Kennzahlen graphisch (Polypol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Nullstelle",
-            "Extremstelle",
-            "Minimum",
-            "Maximum",
-            "Wendestelle",
-            "y-Abschnitt",
-            "Schnittpunkt"
+            "Nullstellen und Extrempunkte von $G$",
+            "$y$-Abschnitt und  Wendestelle von $K$",
+            "$y$-Abschnitt von $p$ bzw. Steigung von $E$",
+            "Schnittpunkte von $E$ und $K$",
+            "Erlöse an Kapazitätsgrenze"
         ],
         "Blurting": []
     },
@@ -1057,18 +1055,19 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 4,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__04",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotspolypol).",
-        "Sammlung": "kennzahlen-graphisch-e1k3",
-        "Schlagwort": "Kennzahlen graphisch (Pol.)",
+        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
+        "Sammlung": "kennzahlen-graphisch-e2k3",
+        "Schlagwort": "Kennzahlen graphisch (Monopol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Charakteristische Punkte",
-            "Preis-Absatz-Funktion $p$",
-            "Erlösfunktion $E$",
-            "Kostenfunktion $K$",
-            "Gewinnfunktion $G$"
+            "Nullstellen und Extrempunkte von $G$",
+            "$y$-Abschnitt und  Wendestelle von $K$",
+            "$y$-Abschnitt und Nullstelle von $p$",
+            "Extrempunkt von $E$",
+            "Schnittpunkte von $E$ und $K$",
+            "Punkt auf $p$ über/unter Gewinnmaximum"
         ],
         "Blurting": []
     },
@@ -1078,18 +1077,17 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 5,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__05",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen graphisch bestimmen (Angebotsmonopol).",
-        "Sammlung": "kennzahlen-graphisch-e2k3",
-        "Schlagwort": "Kennzahlen graphisch (Mon.)",
+        "Ich kann": "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
+        "Sammlung": "kennzahlen-ansatz",
+        "Schlagwort": "Berechnungsansätze",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Charakteristische Punkte",
-            "Preis-Absatz-Funktion $p$",
-            "Erlösfunktion $E$",
-            "Kostenfunktion $K$",
-            "Gewinnfunktion $G$"
+            "y-Abschnitt: $f(0)$",
+            "Nullstellen: $f(x)=0$",
+            "Extremstellen: Notw Bed: $f^{\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
+            "Wendestellen: Notw Bed: $f^{\\prime\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime\\prime}(x) > 0$ (min Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (max Steigung)"
         ],
         "Blurting": []
     },
@@ -1099,18 +1097,16 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 6,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__06",
-        "Ich kann": "den Ansatz zur Berechnung ökonomischer Kennzahlen angeben.",
-        "Sammlung": "kennzahlen-ansatz",
-        "Schlagwort": "Berechnungsansätze",
+        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
+        "Sammlung": "kennzahlen-rechnerisch-e1k3",
+        "Schlagwort": "Kennzahlen berechnen (Polypol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Mathematische Definition von ök. Kennzahlen",
-            "Bedingung Nullstellen",
-            "Bedingung Schnittstellen",
-            "Bedinungen Extremstellen",
-            "Bedingungen Wendestellen"
+            "Definition der Kennzahl",
+            "Formulierung Ansatz",
+            "Wert berechnen oder nach $x$ auflösen"
         ],
         "Blurting": []
     },
@@ -1120,35 +1116,16 @@
         "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
         "Nummer": 7,
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__07",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
-        "Sammlung": "kennzahlen-rechnerisch-e1k3",
-        "Schlagwort": "Kennzahlen berechnen (Pol.)",
+        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
+        "Sammlung": "kennzahlen-rechnerisch-e2k3",
+        "Schlagwort": "Kennzahlen berechnen (Monopol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Charakteristische Punkte berechnen",
-            "notw. / hinr. Bedingung",
-            "ök. Definitionsbereich beachten"
-        ],
-        "Blurting": []
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "ganzrationale-oekonomische-funktionen",
-        "LernbereichAnzeigename": "Ganzrationale ökonomische Funktionen",
-        "Nummer": 8,
-        "check_id": "analysis__ganzrationale-oekonomische-funktionen__08",
-        "Ich kann": "Kennzahlen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
-        "Sammlung": "kennzahlen-rechnerisch-e2k3",
-        "Schlagwort": "Kennzahlen berechnen (Mon.)",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-08",
-        "questionOrder": "shuffle",
-        "Tipps": [
-            "Charakteristische Punkte berechnen",
-            "notw. / hinr. Bedingung",
-            "ök. Definitionsbereich beachten"
+            "Definition der Kennzahl",
+            "Formulierung Ansatz",
+            "Wert berechnen oder nach $x$ auflösen"
         ],
         "Blurting": []
     },
