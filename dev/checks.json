@@ -1175,30 +1175,11 @@
         "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
         "Nummer": 3,
         "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__03",
-        "Ich kann": "die mathematische Definition von Kostenkennzahlen angeben.",
-        "Sammlung": "kennzahlen-definition",
-        "Schlagwort": "Kostenkennzahlen Def.",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
-        "questionOrder": "shuffle",
-        "Tipps": [
-            "Extremstelle",
-            "Minimum",
-            "Wendestelle"
-        ],
-        "Blurting": []
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
-        "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-        "Nummer": 4,
-        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__04",
         "Ich kann": "Kennzahlen ertragsgesetzlicher Kostenfunktionen graphisch bestimmen.",
         "Sammlung": "kennzahlen-graphisch-k3",
         "Schlagwort": "Kostenkennzahlen graphisch",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
+        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
             "Charakteristische Punkte",
@@ -1212,18 +1193,17 @@
         "Gebiet": "analysis",
         "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
         "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-        "Nummer": 5,
-        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__05",
+        "Nummer": 4,
+        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__04",
         "Ich kann": "den Ansatz zur Berechnung von Kostenkennzahlen angeben.",
         "Sammlung": "kennzahlen-ansatz",
         "Schlagwort": "Kostenansätze",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
+        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Mathematische Definition von Kostenkennzahlen",
-            "Bedinungen Extremstellen",
-            "Bedingungen Wendestellen"
+            "Extremstellen: Notw Bed: $f^{\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
+            "Wendestellen: Notw Bed: $f^{\\prime\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime\\prime}(x) > 0$ (min Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (max Steigung)"
         ],
         "Blurting": []
     },
@@ -1231,16 +1211,18 @@
         "Gebiet": "analysis",
         "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
         "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-        "Nummer": 6,
-        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__06",
+        "Nummer": 5,
+        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__05",
         "Ich kann": "Kennzahlen ertragsgesetzlicher Kostenfunktionen berechnen.",
         "Sammlung": "kennzahlen-rechnerisch-k3",
         "Schlagwort": "Kostenkennzahlen berechnen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
+        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Extrem- und Wendestellen berechnen",
+            "Definition der Kennzahl",
+            "Formulierung Ansatz",
+            "Wert berechnen oder nach $x$ auflösen",
             "$f(x)=\\frac{1}{x} \\Rightarrow f'(x)=-\\frac{1}{x^2}$",
             "$f(x)=\\frac{1}{x^2} \\Rightarrow f'(x)=-\\frac{2}{x^3}$"
         ],
@@ -1250,13 +1232,13 @@
         "Gebiet": "analysis",
         "Lernbereich": "ertragsgesetzliche-kostenfunktionen",
         "LernbereichAnzeigename": "Ertragsgesetzliche Kostenfunktionen",
-        "Nummer": 7,
-        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__07",
+        "Nummer": 6,
+        "check_id": "analysis__ertragsgesetzliche-kostenfunktionen__06",
         "Ich kann": "Gleichungen ertragsgesetzlicher Kostenfunktionen aufstellen.",
         "Sammlung": "steckbrief-kennzahlen-k3",
         "Schlagwort": "Kostenfunktion aufstellen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-07",
+        "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
             "Allgemeine Form",
@@ -1272,17 +1254,16 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
         "Nummer": 1,
         "check_id": "analysis__marktgleichgewicht-grundlagen__01",
-        "Ich kann": "die mathematische Definition der Kennzahlen zum Marktgleichgewicht angeben.",
-        "Sammlung": "kennzahlen-definition",
-        "Schlagwort": "Marktgleichgewicht Def.",
+        "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
+        "Sammlung": "kennzahlen-graphisch-linear",
+        "Schlagwort": "MGG graphisch (linear)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Marktgleichgewicht - Grundlagen",
-            "mathematische",
-            "definition",
-            "kennzahlen"
+            "Nullstelle von $p_N$",
+            "$y$-Abschnitt von $p_N$ und $p_A$",
+            "Schnittpunkt von $p_N$ und $p_A$"
         ],
         "Blurting": []
     },
@@ -1292,17 +1273,16 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
         "Nummer": 2,
         "check_id": "analysis__marktgleichgewicht-grundlagen__02",
-        "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen graphisch bestimmen.",
-        "Sammlung": "kennzahlen-graphisch-linear",
-        "Schlagwort": "MGG graphisch (linear)",
+        "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
+        "Sammlung": "kennzahlen-rechnerisch-linear",
+        "Schlagwort": "MGG berechnen (linear)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Marktgleichgewicht - Grundlagen",
-            "kennzahlen",
-            "marktgleichgewichts",
-            "linearer"
+            "Definition der Kennzahl",
+            "Formulierung Ansatz",
+            "Wert berechnen oder nach $x$ auflösen"
         ],
         "Blurting": []
     },
@@ -1312,37 +1292,16 @@
         "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
         "Nummer": 3,
         "check_id": "analysis__marktgleichgewicht-grundlagen__03",
-        "Ich kann": "Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.",
-        "Sammlung": "kennzahlen-rechnerisch-linear",
-        "Schlagwort": "MGG berechnen (linear)",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-03",
-        "questionOrder": "shuffle",
-        "Tipps": [
-            "Marktgleichgewicht - Grundlagen",
-            "kennzahlen",
-            "marktgleichgewichts",
-            "linearer"
-        ],
-        "Blurting": []
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "marktgleichgewicht-grundlagen",
-        "LernbereichAnzeigename": "Marktgleichgewicht - Grundlagen",
-        "Nummer": 4,
-        "check_id": "analysis__marktgleichgewicht-grundlagen__04",
         "Ich kann": "feststellen, ob ein Nachfrage- oder Angebotsüberschuss vorliegt und diesen Überschuss berechnen.",
         "Sammlung": "marktungleichgewicht-bestimmung",
         "Schlagwort": "Angebots-/Nachfrageübersch.",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-04",
-        "questionOrder": "shuffle",
+        "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-03",
+        "questionOrder": "fixed",
         "Tipps": [
-            "Marktgleichgewicht - Grundlagen",
-            "feststellen",
-            "nachfrage-",
-            "angebotsüberschuss"
+            "Nachgefragte Menge",
+            "Angebotene Menge",
+            "Nachfrage- oder Angebotsüberschusses"
         ],
         "Blurting": []
     },
@@ -1359,10 +1318,9 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Marktgleichgewicht - Vertiefung",
-            "kennzahlen",
-            "marktgleichgewichts",
-            "beliebigen"
+            "Nullstelle von $p_N$",
+            "$y$-Abschnitt von $p_N$ und $p_A$",
+            "Schnittpunkt von $p_N$ und $p_A$"
         ],
         "Blurting": []
     },
@@ -1379,10 +1337,9 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Marktgleichgewicht - Vertiefung",
-            "kennzahlen",
-            "marktgleichgewichts",
-            "beliebigen"
+            "Definition der Kennzahl",
+            "Formulierung Ansatz",
+            "Wert berechnen oder nach $x$ auflösen"
         ],
         "Blurting": []
     },
@@ -1399,10 +1356,8 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Marktgleichgewicht - Vertiefung",
-            "produzenten-",
-            "konsumentenrente",
-            "berechnen"
+            "$KR=\\int_0^{x_G}p_N(x)dx - x_G\\cdot p_G$",
+            "$PR=x_G\\cdot p_G - \\int_0^{x_G}p_A(x)dx$"
         ],
         "Blurting": []
     },

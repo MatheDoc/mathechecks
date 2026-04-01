@@ -101,13 +101,12 @@ $$
 p_N(19{,}5903)=12{,}5715
 $$
 
-(Oder gleichwertig:
+Oder gleichwertig:
 
 $$
 p_A(19{,}5903)=12{,}5715
 $$
 
-)
 
 Der Gleichgewichtspreis beträgt 12,57 GE.
 

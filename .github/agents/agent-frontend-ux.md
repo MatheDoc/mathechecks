@@ -58,4 +58,3 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 
 - Kurze Liste der Änderungen
 - Betroffene Dateien
-- Kurzer Check-Hinweis für Desktop und Mobil

@@ -2777,24 +2777,6 @@ body.page-module-designs .shell {
   margin-bottom: 22px;
 }
 
-.bl-timer-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.bl-timer-ring {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  flex-shrink: 0;
-}
-
-.bl-timer-ring svg {
-  transform: rotate(-90deg);
-}
-
 .bl-reveal-btn {
   border: 1px solid rgba(61, 214, 200, .3);
   background: var(--teal-soft);
@@ -3099,14 +3081,32 @@ body.page-module-designs .shell {
   line-height: 1.5;
   letter-spacing: -.02em;
   color: var(--text);
+  margin: 0 0 6px;
 }
 
-.fy-prompt-hint {
-  font-size: .8rem;
-  color: var(--text-dim);
+.fy-prompt-list {
+  margin: 0 0 8px;
+  padding: 0;
+  list-style: none;
   line-height: 1.5;
-  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: .92rem;
+  color: var(--mt-feynman);
 }
+
+.fy-prompt-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.fy-prompt-list-icon {
+  flex-shrink: 0;
+}
+
+
+
+
 
 .fy-card {
   background: var(--surface);
@@ -3125,74 +3125,60 @@ body.page-module-designs .shell {
   border-color: rgba(245, 166, 35, .25);
 }
 
-.fy-write {
-  width: 100%;
-  min-height: 150px;
-  background: rgba(255, 255, 255, .03);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
-  font-family: "Inter", sans-serif;
-  font-size: .9rem;
-  line-height: 1.7;
-  color: var(--text);
-  resize: vertical;
-  outline: none;
-  transition: border-color 200ms;
-  -webkit-text-fill-color: var(--text);
-}
-
-.fy-write:focus {
-  border-color: rgba(var(--mt-feynman-rgb, 167, 139, 250), .4);
-}
-
-.fy-write::placeholder {
-  color: var(--text-muted);
-}
-
-.fy-timer-row {
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm-row {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
   flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 14px 0 20px;
 }
 
-.fy-ring {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  flex-shrink: 0;
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm {
+  display: block;
+  flex: 1 1 420px;
+  min-width: 0;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  height: auto;
 }
 
-.fy-ring svg {
-  transform: rotate(-90deg);
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm .js-plotly-plot,
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm .plotly,
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm .plot-container,
+.dev-check-card--feynman [data-fy-stage="evaluate"] .diagramm .svg-container {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
-.fy-arc {
-  fill: none;
-  stroke: var(--mt-feynman, #a78bfa);
-  stroke-width: 3;
-  stroke-linecap: round;
-  transition: stroke-dashoffset 1s linear;
+.js-plotly-plot .modebar,
+.js-plotly-plot .modebar-group,
+.js-plotly-plot .modebar-btn {
+  background: transparent !important;
 }
 
-.fy-track {
-  fill: none;
-  stroke: var(--border);
-  stroke-width: 3;
+.js-plotly-plot .modebar-btn {
+  color: var(--text-body) !important;
+  opacity: .5;
 }
 
-.fy-ring-num {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .68rem;
-  font-weight: 700;
-  color: var(--text);
+.js-plotly-plot .modebar-btn:hover,
+.js-plotly-plot .modebar-btn:focus-visible {
+  opacity: 1;
 }
+
+.js-plotly-plot .modebar-btn svg path {
+  fill: currentColor !important;
+}
+
+.js-plotly-plot .modebar-btn svg line,
+.js-plotly-plot .modebar-btn svg polyline,
+.js-plotly-plot .modebar-btn svg polygon,
+.js-plotly-plot .modebar-btn svg rect,
+.js-plotly-plot .modebar-btn svg circle {
+  stroke: currentColor !important;
+}
+
 
 /* MODULE: SKRIPT */
 .sk-layout {
