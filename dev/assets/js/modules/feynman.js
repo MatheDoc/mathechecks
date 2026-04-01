@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { initSkriptVisuals } from "./skript-visuals.js";
 
 const FY_TOTAL_SECONDS = 300;
 const FY_BEISPIEL_CACHE = new Map();
@@ -66,6 +67,24 @@ async function renderMath(targetNode, retries = 4) {
   if (retries <= 0) return;
   await new Promise((resolve) => setTimeout(resolve, 120));
   await renderMath(targetNode, retries - 1);
+}
+
+function resizePlotlyInNode(targetNode, retries = 4) {
+  if (!targetNode || !window.Plotly?.Plots?.resize) return;
+
+  const plots = Array.from(targetNode.querySelectorAll(".js-plotly-plot"));
+  plots.forEach((plotNode) => {
+    try {
+      window.Plotly.Plots.resize(plotNode);
+    } catch {
+      // Retry while layout settles after stage visibility changes.
+    }
+  });
+
+  if (retries <= 0) return;
+  window.setTimeout(() => {
+    resizePlotlyInNode(targetNode, retries - 1);
+  }, 120);
 }
 
 function getCheckId(check) {
@@ -158,6 +177,7 @@ async function hydrateBeispielSlots(root, checks) {
     if (html) {
       slot.innerHTML = html;
       slot.classList.remove("fy-beispiel-loading");
+      initSkriptVisuals(slot);
       await renderMath(slot);
     } else {
       slot.innerHTML = `<p style="margin:0;color:var(--text-dim);line-height:1.55;">Kein Auswertungsbeispiel fuer diesen Check hinterlegt.</p>`;
@@ -199,40 +219,49 @@ function cleanIchKannStatement(rawText) {
     .trim();
 }
 
-function splitTrailingParenthesis(text) {
-  const trimmed = String(text || "").trim();
-  if (!trimmed) return { core: "", trailing: "" };
+const FEYNMAN_PROMPT_PREFIX = "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels, wie man";
+const FEYNMAN_PROMPT_STEPS = [
+  "in einfachen Worten",
+  "Schritt für Schritt",
+  "anhand eines Beispiels",
+];
 
-  const match = trimmed.match(/\s*(\([^()]*\))\s*$/);
-  if (!match) {
-    return { core: trimmed, trailing: "" };
+function buildFeynmanPrompt(actionText) {
+  const action = String(actionText || "").trim().replace(/[.!?]+\s*$/g, "");
+  if (!action) {
+    return `${FEYNMAN_PROMPT_PREFIX} diesen Inhalt erklären kann.`;
   }
-
-  const trailing = match[1].trim();
-  const core = trimmed.slice(0, match.index).trim();
-  return { core, trailing };
+  return `${FEYNMAN_PROMPT_PREFIX} ${action}.`;
 }
 
-function buildFeynmanPromptFromIchKann(check) {
+function buildFeynmanPromptMarkup(actionText) {
+  const action = String(actionText || "").trim().replace(/[.!?]+\s*$/g, "");
+  const safeAction = action || "diesen Inhalt erklären kann";
+  const intro = "Erkläre einem Lernpartner,";
+  const outro = `wie man ${safeAction}.`;
+  const stepsMarkup = FEYNMAN_PROMPT_STEPS
+    .map((step) => `<li class="fy-prompt-list-item"><span class="fy-prompt-list-icon" aria-hidden="true">✔️</span><span>${escapeHtml(step)}</span></li>`)
+    .join("");
+  return `
+    <p class="fy-prompt-text">${escapeHtml(intro)}</p>
+    <ul class="fy-prompt-list">
+      ${stepsMarkup}
+    </ul>
+    <p class="fy-prompt-text">${escapeHtml(outro)}</p>
+  `;
+}
+
+function buildFeynmanActionFromIchKann(check) {
   const ichKannRaw = check?.["Ich kann"];
   const cleaned = cleanIchKannStatement(ichKannRaw);
   if (!cleaned) {
-    const legacyPrompt = String(check?.feynman?.prompt || "").trim();
-    return legacyPrompt || `Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man diesen Inhalt erklären kann.`;
+    return "diesen Inhalt erklären kann";
   }
+  return `${cleaned} kann`;
+}
 
-  const { core, trailing } = splitTrailingParenthesis(cleaned);
-  let action = core;
-
-  if (!/\bkann\b/i.test(core)) {
-    action = `${core} kann`;
-  }
-
-  if (trailing) {
-    return `Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man ${action} ${trailing}.`;
-  }
-
-  return `Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels wie man ${action}.`;
+function buildFeynmanPromptFromIchKann(check) {
+  return buildFeynmanPrompt(buildFeynmanActionFromIchKann(check));
 }
 
 function convertJsonLatexToMarkdown(text) {
@@ -241,10 +270,67 @@ function convertJsonLatexToMarkdown(text) {
     .replace(/\\\[(.+?)\\\]/gs, (_, m) => `$$${m}$$`);
 }
 
+function extractGraphDescriptions(container) {
+  const graphs = container.querySelectorAll(".graph-auto");
+  if (graphs.length === 0) return "";
+
+  const parts = [];
+  graphs.forEach((g) => {
+    const lines = [];
+    const titel = g.dataset.titel;
+    if (titel) lines.push(`Diagramm: ${titel}`);
+
+    const xachse = g.dataset.xachse;
+    const yachse = g.dataset.yachse;
+    if (xachse) lines.push(`x-Achse: ${xachse}`);
+    if (yachse) lines.push(`y-Achse: ${yachse}`);
+
+    try {
+      const fns = JSON.parse(g.dataset.funktionen || "[]");
+      if (fns.length > 0) {
+        lines.push("Funktionen:");
+        for (const f of fns) {
+          const name = f.name || "";
+          const term = f.term || "";
+          const desc = f.beschreibung || "";
+          lines.push(`  ${name ? name + ": " : ""}${term}${desc ? " (" + desc + ")" : ""}`);
+        }
+      }
+    } catch { /* ignore */ }
+
+    try {
+      const pts = JSON.parse(g.dataset.punkte || "[]");
+      if (pts.length > 0) {
+        lines.push("Markierte Punkte:");
+        for (const p of pts) {
+          lines.push(`  (${p.x}, ${p.y})${p.text ? " – " + p.text : ""}`);
+        }
+      }
+    } catch { /* ignore */ }
+
+    try {
+      const fl = JSON.parse(g.dataset.flaechen || "[]");
+      if (fl.length > 0) {
+        lines.push("Flächen:");
+        for (const f of fl) {
+          const desc = f.beschreibung || f.name || "";
+          lines.push(`  ${desc}${f.von != null ? " von x=" + f.von : ""}${f.bis != null ? " bis x=" + f.bis : ""}`);
+        }
+      }
+    } catch { /* ignore */ }
+
+    if (lines.length > 0) parts.push(lines.join("\n"));
+  });
+
+  return parts.join("\n\n");
+}
+
 function htmlToPlainText(html) {
   const tmp = document.createElement("div");
   tmp.innerHTML = html;
-  return tmp.textContent || "";
+  const graphText = extractGraphDescriptions(tmp);
+  const plainText = tmp.textContent || "";
+  return [plainText.trim(), graphText].filter(Boolean).join("\n\n");
 }
 
 function buildKiAgentPrompt(check, beispielHtml) {
@@ -254,68 +340,64 @@ function buildKiAgentPrompt(check, beispielHtml) {
   const cleaned = cleanIchKannStatement(ichKann);
 
   const tipps = Array.isArray(check.Tipps) ? check.Tipps : [];
-  const blurting = Array.isArray(check.Blurting) ? check.Blurting : [];
 
   const tippsBlock = tipps.length > 0
-    ? `Folgende Stichpunkte sollte eine vollständige Erklärung abdecken:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
-    : "";
-
-  const blurtingBlock = blurting.length > 0
-    ? `\nWichtige Fachbegriffe, die vorkommen sollten:\n${blurting.map(b => `- ${convertJsonLatexToMarkdown(b)}`).join("\n")}`
+    ? `\nWichtige Aspekte, die in einer guten Erklärung vorkommen sollten:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
     : "";
 
   const beispielText = beispielHtml
     ? htmlToPlainText(beispielHtml).trim()
     : "";
   const beispielBlock = beispielText
-    ? `\n# Referenzbeispiel (nur intern – NICHT dem Lernenden zeigen)\n${beispielText}`
+    ? `\n# Referenzbeispiel\nOrientiere dich intern an diesem Beispiel, um passende Rückfragen\nzu stellen und Antworten einzuordnen. Zeige es NICHT direkt.\n\n${beispielText}`
     : "";
 
   return `# Rolle
-Du bist ein freundlicher, neugieriger Mitschüler. Du verstehst das Thema
-noch NICHT und möchtest es anhand eines konkreten Beispiels erklärt
-bekommen. Du sprichst Deutsch und duzt dein Gegenüber.
+Du bist ein KI-Lernpartner für die Feynman-Methode. Der Lernende soll
+dir ein Mathe-Thema erklären, und du hilfst ihm dabei, seine eigene
+Erklärung zu schärfen. Du sprichst Deutsch und duzt dein Gegenüber.
 
 # Thema
 Check: ${schlagwort}
 Lernbereich: ${lernbereich}
-Lernziel: Ich kann ${convertJsonLatexToMarkdown(ichKann)}
+Kompetenz: Ich kann ${convertJsonLatexToMarkdown(ichKann)}
 
-# Dein Wissen (nur intern – NICHT dem Lernenden zeigen)
-${tippsBlock}${blurtingBlock}${beispielBlock}
+# Dein Hintergrundwissen (nicht wörtlich wiedergeben)
+${tippsBlock}${beispielBlock}
 
-# Regeln
-1. Erkläre NICHTS selbst. Du bist der Zuhörer, nicht der Lehrer.
-2. Bitte den Lernenden, sich ein eigenes Beispiel auszudenken oder eines
-   aus dem Unterricht zu nehmen und dir Schritt für Schritt zu erklären.
-3. Stelle nach jedem Erklärungsschritt genau EINE Rückfrage – z. B. zu
-   einem Rechenschritt, einer Begriffsverwendung oder einer Begründung.
-4. Variiere deine Reaktionen: kurze Bestätigungen, Nachfassen,
-   Verständnisfragen. Wiederhole dich nicht.
-5. Gib KEINE Hinweise, die die Antwort verraten.
-6. Bleib natürlich und neugierig, aber nicht übertrieben lobend.
-7. Antworte immer auf Deutsch.
+# Stil
+- Reagiere natürlich und abwechslungsreich – mal kurz bestätigend,
+  mal interessiert nachfragend, mal zusammenfassend.
+- Lobe ruhig, wenn etwas gut erklärt ist – kurz und ehrlich.
+- Du darfst leichte Denkanstöße geben, die in die richtige Richtung
+  weisen, ohne die Antwort komplett zu verraten.
+- Wenn der Lernende einen Fehler macht, korrigiere nicht sofort,
+  sondern hake gezielt nach, damit er den Fehler selbst findet.
+- Halte dich kurz. Keine langen Monologe.
+- Antworte immer auf Deutsch.
 
 # Ablauf
-## Phase 1 – Start
-Begrüße den Lernenden und bitte ihn, dir anhand eines selbst gewählten
-Beispiels zu erklären, wie man ${cleaned || "diesen Inhalt anwendet"}.
+## Phase 1 – Einstieg
+Begrüße den Lernenden kurz und steig direkt ins Thema ein.
+Nimm Bezug auf die Kompetenz und frage konkret, wie man
+${cleaned || "diesen Inhalt anwendet"}.
+Zum Beispiel: „Okay, es geht um ${schlagwort} – wie geht man da vor?"
 
-## Phase 2 – Gemeinsam durch das Beispiel (3–5 Runden)
-- Lass den Lernenden das Beispiel Schritt für Schritt durchgehen.
-- Frage bei jedem Schritt nach dem Warum oder bitte um eine
-  Veranschaulichung, wenn etwas unklar ist.
-- Orientiere dich an den internen Stichpunkten. Wenn ein Aspekt im
-  Beispiel noch nicht aufgetaucht ist, lenke mit einer natürlichen
-  Frage dorthin, OHNE die Antwort zu verraten.
+## Phase 2 – Erklärung begleiten (3–6 Runden)
+- Lass den Lernenden erklären und begleite ihn Schritt für Schritt.
+- Stelle nach jedem Erklärungsschritt eine gezielte Rückfrage –
+  zum Rechenschritt, zur Begründung oder zu einem Begriff.
+- Nutze dein Hintergrundwissen: Wenn ein wichtiger Aspekt fehlt,
+  lenke mit einer Frage oder einem kleinen Hinweis dorthin.
+- Wenn etwas richtig ist, bestätige es und geh zum nächsten Punkt.
 
 ## Phase 3 – Zusammenfassung
-Wenn das Beispiel durchgearbeitet ist ODER nach 5 Runden:
-1. Fasse in 2–3 Sätzen zusammen, was du jetzt verstanden hast.
-2. Benenne offen, welche Punkte noch unklar geblieben sind.
-3. Gib eine ehrliche Einschätzung:
+Wenn die wesentlichen Aspekte abgedeckt sind ODER nach 6 Runden:
+1. Fasse zusammen, was gut erklärt wurde.
+2. Benenne, was noch fehlt oder unklar war.
+3. Gib eine kurze, ehrliche Einschätzung:
    ✅ Gut erklärt: [Punkte]
-   ❓ Noch unklar / fehlend: [Punkte]
+   ❓ Noch offen: [Punkte]
 `;
 }
 
@@ -329,7 +411,8 @@ async function copyToClipboard(text) {
 }
 
 function renderCard(check) {
-  const prompt = buildFeynmanPromptFromIchKann(check);
+  const promptAction = buildFeynmanActionFromIchKann(check);
+  const promptMarkup = buildFeynmanPromptMarkup(promptAction);
   const titel = check.Schlagwort || `Check ${check.Nummer}`;
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
@@ -361,32 +444,15 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-        <p class="fy-prompt-text" style="margin-bottom:6px;">${escapeHtml(prompt)}</p>
-        <p class="fy-prompt-hint">Schreib zuerst deine Erklärung. Nach Ablauf der Zeit bekommst du ein Auswertungsbeispiel.</p>
+        <div>🤖</div>
+        ${promptMarkup}
+
 
         <div data-fy-stage="write">
-          <div class="fy-timer-row">
-            <div class="fy-ring">
-              <svg width="50" height="50" viewBox="0 0 50 50">
-                <circle class="fy-track" cx="25" cy="25" r="20" />
-                <circle class="fy-arc" data-fy-arc cx="25" cy="25" r="20" stroke-dasharray="${FY_RING_CIRCUMFERENCE.toFixed(
-    2
-  )}" stroke-dashoffset="0" />
-              </svg>
-              <span class="fy-ring-num" data-fy-num>${formatTimer(FY_TOTAL_SECONDS)}</span>
-            </div>
-            <div>
-              <div style="font-size:.82rem;font-weight:600;color:var(--text);margin-bottom:2px;">Erklärungszeit</div>
-              <div style="font-size:.72rem;color:var(--text-muted);">Schreib in eigenen Worten, danach folgt der Abgleich.</div>
-            </div>
+
             <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
             <button class="bl-reveal-btn fy-ki-btn" type="button" data-fy-ki-copy title="KI-Lernpartner in die Zwischenablage kopieren – füge den Text in eine KI deiner Wahl ein">✨ KI-Lernpartner</button>
-          </div>
 
-          <textarea
-            class="fy-write"
-            data-fy-input
-            placeholder="Erkläre den Lösungsweg so, dass ein Mitschüler ihn versteht."></textarea>
         </div>
 
         <div data-fy-stage="evaluate" hidden>
@@ -569,6 +635,9 @@ function initInteractiveFeynmanCards(root, checks) {
     function revealEvaluation() {
       clearTimer();
       setStage("evaluate");
+      window.requestAnimationFrame(() => {
+        resizePlotlyInNode(stages.evaluate);
+      });
     }
 
     function setResult(canExplain) {

@@ -3980,20 +3980,9 @@ html.light .mod-tab-nav {
   letter-spacing: .06em;
 }
 
-.fy-prompt-text {
-  font-size: 1.05rem;
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: -.02em;
-  color: var(--text);
-}
 
-.fy-prompt-hint {
-  font-size: .8rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-  margin-top: 8px;
-}
+
+
 
 .fy-card {
   background: var(--surface);
@@ -4012,30 +4001,6 @@ html.light .mod-tab-nav {
   border-color: rgba(245, 166, 35, .25);
 }
 
-.fy-write {
-  width: 100%;
-  min-height: 150px;
-  background: rgba(255, 255, 255, .03);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 16px 18px;
-  font-family: "Inter", sans-serif;
-  font-size: .9rem;
-  line-height: 1.7;
-  color: var(--text);
-  resize: vertical;
-  outline: none;
-  transition: border-color 200ms;
-  -webkit-text-fill-color: var(--text);
-}
-
-.fy-write:focus {
-  border-color: rgba(167, 139, 250, .4);
-}
-
-.fy-write::placeholder {
-  color: var(--text-muted);
-}
 
 .fy-timer-row {
   display: flex;

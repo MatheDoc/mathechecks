@@ -26,146 +26,27 @@ Die Angebotsfunktion $p_A(x)$ gibt an, wie hoch der Preis in Geldeinheiten (GE) 
 
 ## Kennzahlen
 
-- **Gleichgewichtsmenge:** Menge, bei der nachgefragter und angebotener Preis gleich sind.
-- **Gleichgewichtspreis:** Preis, bei der nachgefragte und angebotene Menge gleich sind.
-- **Höchstpreis:** Maximaler Preis, den ein Konsument zu zahlen bereit ist.
-- **Sättigungsmenge:** Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht.
-- **Mindestangebotspreis:** Preis, ab dem Produzenten bereits, das Produkt anzubieten.
-- **Umsatz im Marktgleichgewicht:** Gesamtumsatz, wenn auf dem Markt die Gleichgewichtsmenge zum Gleichgewichtspreis gehandelt wird.
+Das Zusammenspiel von Nachfrage- und Angebotsfunktion wird mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-{% include info.html
-index="1"
-frage="Mathematische Definition der Kennzahlen zum Marktgleichgewicht"
-antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstelle, Schnittpunkt)"
-%}
+|Kennzahl| Symbol | Beschreibung|Mathematische Definition|
+|---|---|---|---|
+|Gleichgewichtsmenge| $x_G$| Menge, bei der nachgefragter und angebotener Preis gleich sind| Schnittstelle von $p_N$ und $p_A$|
+|Gleichgewichtspreis| $p_G$| Preis, bei der nachgefragte und angebotene Menge gleich sind| y-Wert des Schnittpunkts von $p_N$ und $p_A$|
+|Höchstpreis| $p_H$| Maximaler Preis, den ein Konsument zu zahlen bereit ist| y-Achsenabschnitt von $p_N$|
+|Sättigungsmenge| $x_S$| Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht| Nullstelle von $p_N$|
+|Mindestangebotspreis| $p_M$| Preis, ab dem Produzenten bereits, das Produkt anzubieten| y-Achsenabschnitt von $p_A$|
+|Umsatz im Marktgleichgewicht| $U_G$| Gesamtumsatz, wenn auf dem Markt die Gleichgewichtsmenge zum Gleichgewichtspreis gehandelt wird| Produkt aus $x_G$ und $p_G$|
+
 
 
 ## Graphische Darstellungen
 
-Das folgende Diagramm veranschaulicht die Kennzahlen zum Marktgleichgewicht.
-
-{% include dev/graph.html
-   funktionen='[
-    {"name":"p<sub>N</sub>(x)", "term":"-2*x+42", "beschreibung":"Nachfragefunktion"},
-    {"name":"p<sub>A</sub>(x)", "term":"1.5x+14", "beschreibung":"Angebotsfunktion"}
-   ]'
-    punkte='[
-     {"x":0,"y":42,"text":"Höchstpreis"},
-     {"x":0,"y":14,"text":"Mindesangebotspreis"},
-     {"x":8,"y":26,"text":"Marktgleichgewicht: Gleichgewichtsmenge und Gleichgewichtspreis"},
-     {"x":21,"y":0,"text":"Sättigungsmenge"}
-   ]'
-   titel="Marktgleichgewicht"
-   xachse="Menge x in ME"
-   yachse="Betrag y in GE"
-   xmin=-0.2
-   xmax=22
-   ymin=-1
-   ymax=50
-%}
-
-{% include info.html
-index="2"
-frage="Graphische Bestimmung der Kennzahlen zum Marktgleichgewicht"
-antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Schnittpunkte)"
-%}
+{% include dev/check-anker.html nummer="1" %}
 
 
 ## Berechnungen
 
-{% include info.html
-index="3"
-frage="Berechnung der Kennzahlen zum Marktgleichgewicht. Den Beispielen liegen folgende Funktionen zugrunde:
-
-$$
-\begin{align*}
-p_N(x)&=-2x+42\\
-p_A(x)&=1{,}5x+14\\
-\end{align*}
-$$
-
-"
-
-antwort="
-
-### Höchstpreis
-
-Der y-Achsenabschnitt von $p_N(x) = -2x + 42$:
-
-$$
-p_N(0) = 42
-$$
-
-Der Höchstpreis beträgt 42 GE.
-
-### Sättigungsmenge
-
-Nullstelle von $p_N(x)$:
-
-$$
-\begin{align*}
--2x + 42 &= 0 \quad|-42\\
--2x  &= -42 \quad|:(-2)\\
-x &= 21
-\end{align*}
-$$
-
-Die Sättigungsmenge beträgt 21 ME.
-
-### Mindestangebotspreis
-
-Der y-Achsenabschnitt von $p_A(x) = 1{,}5x + 14$:
-
-$$
-p_A(0) = 14
-$$
-
-Der Mindestangebotspreis beträgt 14 GE.
-
-### Gleichgewichtsmenge
-
-Schnittstelle von $p_N$ und $p_A$:
-
-$$
-\begin{align*}
--2x + 42 &= 1{,}5x+14 \quad|+2x-14\\
-28  &= 3{,}5x \quad|:(-3{,}5)\\
-x &= 8
-\end{align*}
-$$
-
-Die Gleichgewichtsmenge beträgt 8 ME.
-
-### Gleichgewichtspreis
-
-y-Wert des Schnittpunkts von $p_N$ und $p_A$:
-
-$$
-p_N(8)=-2\cdot 8 +42=26
-$$
-
-(Oder gleichwertig:
-
-$$
-p_A(8)=1{,}5\cdot 8 + 14=26
-$$
-
-)
-
-Der Gleichgewichtspreis beträgt 26 GE.
-
-### Umsatz im Marktgleichgewicht
-
-Produkt der Gleichgewichtsmenge und des Gleichgewichtspreis:
-
-$$
-8\cdot 26 = 208
-$$
-
-Der Umsatz im Marktgleichgewicht beträgt 208 GE.
-
-"
-%}
+{% include dev/check-anker.html nummer="2" %}
 
 
 ## Marktsituationen
@@ -286,14 +167,5 @@ $$
 3{,}5 \cdot 35 = 122{,}5 \text{ GE}.
 $$
 
-{% include info.html
-index="4"
-frage="Bestimmung des Nachfrage- und Angebotsüberschusses bei festgelegtem Preis"
-antwort="
-
-- Bestimmung der nachgefragten Menge
-- Bestimmung der angebotenen Menge
-- Je nachdem welche Menge größer ist: Nachfrage- und Angebotsüberschusses
-"
-%}
+{% include dev/check-anker.html nummer="3" %}
 

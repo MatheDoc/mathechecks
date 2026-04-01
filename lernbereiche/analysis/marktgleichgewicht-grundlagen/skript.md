@@ -138,13 +138,11 @@ $$
 p_N(8)=-2\cdot 8 +42=26
 $$
 
-(Oder gleichwertig:
+Oder gleichwertig:
 
 $$
 p_A(8)=1{,}5\cdot 8 + 14=26
 $$
-
-)
 
 Der Gleichgewichtspreis beträgt 26 GE.
 

@@ -177,40 +177,18 @@ Für die Kostenfunktion $K(x)=0{,}5x^3 - 6x^2 + 30x + 48$ erhalten wir für die
 
 Diese Kostenfunktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-- **Übergang vom degressiven zum progressiven Kostenwachstum:** Menge, bis zu der die Kosten unterproportional steigen, danach überproportional.
-- **Betriebsminimum:** Menge, bei die geringsten variablen Stückkosten auftreten.
-- **Kurzfristige Preisuntergrenze:** Stückkosten, wenn im Betriebsminimum produziert wird - entspricht bei dem Preis, bei dem die variablen Stückkosten gedeckt sind.
-- **Betriebsoptimum:** Menge, bei die geringsten Stückkosten auftreten.
-- **Langfristige Preisuntergrenze:** Stückkosten, wenn im Betriebsoptimum produziert wird - entspricht bei dem Preis, bei dem die Stückkosten gedeckt sind.
-
-{% include dev/check-anker.html nummer="3" %}
+|Kennzahl| Symbol | Beschreibung|Mathematische Definition|
+|---|---|---|---|
+|Übergang degressives/progressives Kostenwachstum| $x_w$|Menge, bis zu der die Kosten unterproportional steigen, danach überproportional|  Extremstelle (Minimum) von $K'$|
+|Betriebsminimum| $x_{BM}$ | Menge, bei der die geringsten variablen Stückkosten auftreten| Extremstelle (Minimum) von $k_v$|
+|Kurzfristige Preisuntergrenze| $KPU$ | Stückkosten, wenn im Betriebsminimum produziert wird - entspricht dem kleinsten Preis, bei dem die variablen Stückkosten gedeckt sind| $k_v(x_{BM})$ |
+|Betriebsoptimum| $x_{BO}$ | Menge, bei der die geringsten Stückkosten auftreten| Extremstelle (Minimum) von $k$|
+|Langfristige Preisuntergrenze| $LPU$ | Stückkosten, wenn im Betriebsoptimum produziert wird - entspricht bei dem kleinsten Preis, bei dem die Stückkosten gedeckt sind| $k(x_{BO})$ |
 
 
 ## Graphische Darstellungen
 
-Die Kostenkennzahlen lassen wie folgt graphisch veranschaulichen.
-
-{% include dev/graph.html
-   funktionen='[
-    {"name":"K\u2032(x)", "term":"1.5*x^2-12*x+30", "beschreibung":"Grenzkostenfunktion"},
-    {"name":"k(x)", "term":"0.5*x^2-6*x+30+48/x", "beschreibung":"Stückkostenfunktion"},
-    {"name":"k<sub>v</sub>(x)", "term":"0.5*x^2-6*x+30", "beschreibung":"variable Stückkostenfunktion"}
-   ]'
-   punkte='[
-     {"x":4,"y":6,"text":"Übergang von einem degressiven zu einem progressiven Kostenwachstum"},
-     {"x":6,"y":12,"text":"BM und LPU"},
-     {"x":6.98,"y":19.36,"text":"BO und KPU"}
-   ]'
-   titel="Kostenfunktionen"
-   xachse="Menge x in ME"
-   yachse="Betrag y in GE"
-   xmin=0
-   xmax=12.5
-   ymin=0
-   ymax=80
-%}
-
-{% include dev/check-anker.html nummer="4" %}
+{% include dev/check-anker.html nummer="3" %}
 
 
 
@@ -219,11 +197,11 @@ Die Kostenkennzahlen lassen wie folgt graphisch veranschaulichen.
 
 Um Kostenkennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
 
-{% include dev/check-anker.html nummer="5" %}
+{% include dev/check-anker.html nummer="4" %}
 
 Jetzt sind wir in der Lage, die Kostenkennzahlen mit Hilfe der Differentialrechnung zu berechnen.
 
-{% include dev/check-anker.html nummer="6" %}
+{% include dev/check-anker.html nummer="5" %}
 
 
 
@@ -382,6 +360,6 @@ Wir können den Plan zum Aufstellen von Funktionsgleichungen wie folgt zusammenf
 3. Aufstellen eines linearen Gleichungssystems.
 4. Lösen des Gleichungssystems und Angabe der gesuchten Funktion.
 
-{% include dev/check-anker.html nummer="7" %}
+{% include dev/check-anker.html nummer="6" %}
 
 

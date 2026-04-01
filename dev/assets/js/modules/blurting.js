@@ -1,8 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 
-const BL_TOTAL_SECONDS = 300;
-const BL_RING_CIRCUMFERENCE = 2 * Math.PI * 20;
 const BL_STATE_PREFIX = "dev-blurting-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
 const blurtingJumpNavScrollCleanup = new WeakMap();
@@ -103,13 +101,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function formatTimer(secondsLeft) {
-  const safe = Math.max(0, Number(secondsLeft) || 0);
-  const minutes = Math.floor(safe / 60);
-  const seconds = safe % 60;
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
-}
-
 function applyInitialReveal(root) {
   if (!root) return;
   root.classList.add("dev-module-root--pending");
@@ -184,20 +175,7 @@ function renderCard(check) {
         <p class="bl-prompt">Schreib alles auf, was dir zu diesem Begriff einfällt. Nach Ablauf der Zeit folgt der Selbstcheck.</p>
 
         <div data-bl-stage="write">
-          <div class="bl-timer-row">
-            <div class="bl-timer-ring">
-              <svg width="50" height="50" viewBox="0 0 50 50">
-                <circle class="bl-track" cx="25" cy="25" r="20" />
-                <circle class="bl-arc" data-bl-arc cx="25" cy="25" r="20" stroke-dasharray="${BL_RING_CIRCUMFERENCE.toFixed(
-    2
-  )}" stroke-dashoffset="0" />
-              </svg>
-              <span class="bl-timer-num" data-bl-num>${formatTimer(BL_TOTAL_SECONDS)}</span>
-            </div>
-            <div class="bl-timer-info">
-              <div class="bl-ti-t">Brainstorm-Zeit</div>
-              <div class="bl-ti-s">Erst schreiben, dann vergleichen.</div>
-            </div>
+          <div class="bl-action-row">
             <button class="bl-reveal-btn" type="button" data-bl-reveal>Jetzt auswerten</button>
           </div>
 
@@ -357,12 +335,7 @@ function initInteractiveBlurtingCards(root) {
       resultNo: card.querySelector('[data-bl-stage="result-no"]'),
     };
 
-    const timerLabel = card.querySelector("[data-bl-num]");
-    const timerArc = card.querySelector("[data-bl-arc]");
     const revealButton = card.querySelector("[data-bl-reveal]");
-
-    let secondsLeft = BL_TOTAL_SECONDS;
-    let timerId = null;
 
     function setStage(nextStage) {
       stages.write.hidden = nextStage !== "write";
@@ -371,45 +344,17 @@ function initInteractiveBlurtingCards(root) {
       stages.resultNo.hidden = nextStage !== "result-no";
     }
 
-    function updateTimerView() {
-      if (!timerLabel || !timerArc) return;
-      timerLabel.textContent = formatTimer(secondsLeft);
-      const fraction = Math.max(0, Math.min(1, secondsLeft / BL_TOTAL_SECONDS));
-      timerArc.style.strokeDashoffset = String(BL_RING_CIRCUMFERENCE * (1 - fraction));
-    }
-
-    function clearTimer() {
-      if (timerId) {
-        window.clearInterval(timerId);
-        timerId = null;
-      }
-    }
-
     function revealEvaluation() {
-      clearTimer();
       setStage("evaluate");
     }
 
     function setResult(canRecall) {
-      clearTimer();
       setStage(canRecall ? "result-yes" : "result-no");
     }
 
     revealButton?.addEventListener("click", revealEvaluation);
     card.querySelector('[data-bl-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-bl-answer="no"]')?.addEventListener("click", () => setResult(false));
-
-    updateTimerView();
-    timerId = window.setInterval(() => {
-      secondsLeft -= 1;
-      if (secondsLeft <= 0) {
-        secondsLeft = 0;
-        updateTimerView();
-        revealEvaluation();
-        return;
-      }
-      updateTimerView();
-    }, 1000);
   });
 }
 

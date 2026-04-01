@@ -6,8 +6,10 @@
     {% include mathjax.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    {% if page.module_key == 'skript' %}
+    {% if page.module_key == 'skript' or page.module_key == 'feynman' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    {% endif %}
+    {% if page.module_key == 'skript' %}
     <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>

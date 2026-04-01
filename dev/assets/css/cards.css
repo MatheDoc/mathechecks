@@ -234,23 +234,7 @@
     letter-spacing: 0;
 }
 
-.dev-check-card .fy-prompt-hint {
-    font-size: .82rem;
-    color: var(--text-muted);
-    line-height: 1.5;
-    margin-top: 0;
-    margin-bottom: 16px;
-}
 
-.dev-check-card .bl-timer-row,
-.dev-check-card .fy-timer-row {
-    margin-bottom: 14px;
-}
-
-.dev-check-card .bl-textarea,
-.dev-check-card .fy-write {
-    min-height: 132px;
-}
 
 .dev-check-card__body {
     color: var(--text-body);
@@ -320,9 +304,11 @@
 .check-viewport-item--scroll-card .dev-check-card__body {
     flex: 1 1 auto;
     min-height: 0;
+    box-sizing: border-box;
+    padding-inline-end: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-gutter: auto;
+    scrollbar-gutter: stable;
 }
 
 .check-viewport-item--scroll-card .dev-check-card__runtime-task {

@@ -29,107 +29,12 @@ Wir verwenden folgende Kennzahlen zur Beschreibung von Nachfrage und Angebot:
 
 ### Graphische Bestimmungen
 
-{% include info.html
-index="1"
-frage="Graphische Bestimmung der Kennzahlen zum Marktgleichgewicht"
-antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Schnittpunkte)"
-%}
+{% include dev/check-anker.html nummer="1" %}
 
 
 ### Berechnungen
 
-{% include info.html
-index="2"
-frage="Berechnung der Kennzahlen zum Marktgleichgewicht. Den Beispielen liegen folgende Funktionen zugrunde:
-
-$$
-\begin{align*}
-p_N(x)&=45{,}75\cdot e^{-0{,}044x}-6{,}75\\
-p_A(x)&=0{,}016x^2+0{,}022x+6\\
-\end{align*}
-$$
-
-"
-
-antwort="
-
-### Höchstpreis
-
-Der y-Achsenabschnitt von $p_N(x)$:
-
-$$
-45{,}75\cdot e^{-0{,}044\cdot 0}-6{,}75 = 39
-$$
-
-Der Höchstpreis beträgt 39 GE.
-
-### Sättigungsmenge
-
-Nullstelle von $p_N(x)$:
-
-$$
-\begin{align*}
-45{,}75\cdot e^{-0{,}044x}-6{,}75 &= 0 \quad|\text{ TR}\\
-x &= 43{,}4921
-\end{align*}
-$$
-
-Die Sättigungsmenge beträgt 43,49 ME.
-
-### Mindestangebotspreis
-
-Der y-Achsenabschnitt von $p_A(x)$:
-
-$$
-0{,}016\cdot 0^2+0{,}022\cdot 0+6 = 6
-$$
-
-Der Mindestangebotspreis beträgt 6 GE.
-
-### Gleichgewichtsmenge
-
-Schnittstelle von $p_N$ und $p_A$:
-
-$$
-\begin{align*}
-45{,}75\cdot e^{-0{,}044x}-6{,}75 &= 0{,}016x^2+0{,}022x+6 \quad|\text{ TR}\\
-x &= 19{,}5903
-\end{align*}
-$$
-
-Die Gleichgewichtsmenge beträgt 19,59 ME.
-
-### Gleichgewichtspreis
-
-y-Wert des Schnittpunkts von $p_N$ und $p_A$:
-
-$$
-p_N(19{,}5903)=12{,}5715
-$$
-
-(Oder gleichwertig:
-
-$$
-p_A(19{,}5903)=12{,}5715
-$$
-
-)
-
-Der Gleichgewichtspreis beträgt 12,57 GE.
-
-### Umsatz im Marktgleichgewicht
-
-Produkt der Gleichgewichtsmenge und des Gleichgewichtspreis:
-
-$$
-19{,}5903\cdot 12{,}5715 = 246{,}2795
-$$
-
-Der Umsatz im Marktgleichgewicht beträgt 246,28 GE.
-
-"
-%}
-
+{% include dev/check-anker.html nummer="2" %}
 
 ## Konsumenten- und Produzentenrente
 
@@ -245,28 +150,10 @@ Die Konsumentenrente beschreibt mit Hilfe der Differenz aus der Zahlungsbereitsc
 
 Die Produzentenrente beschreibt mit Hilfe der Differenz aus dem Umsatz im Marktlgeichgewicht und der Angebotsbereitschaft, wie Produzenten vom Marktgleichgewicht profitieren. Graphisch entspricht die Produzentenrente der Fläche zwischen dem Marktpreis und dem Graphen der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge.
 
-<img src="KRPR.png">
+<img src="KRPR.png" class="diagramm" alt="Diagramm zur Konsumenten- und Produzentenrente">
 
-{% include info.html
-index="3"
-frage="Berechnung der Konsumenten- und Produzentenrente"
-antwort="
 
-- Nachfrageunktion $p_N$
-- Angebotsfunktion $p_A$
-- Gleichgewichtsmenge $x_G$
-- Gleichgewichtspreis $p_G$
-
-$$
-KR=\int_0^{x_G}p_N(x)dx - x_G\cdot p_G
-$$
-
-$$
-PR=x_G\cdot p_G - \int_0^{x_G}p_A(x)dx
-$$
-
-"
-%}
+{% include dev/check-anker.html nummer="3" %}
 
 
 ## Abschöpfung der Konsumentenrente
@@ -279,19 +166,13 @@ Die Abschöpfung der Konsumentenrente bezeichnet eine Preissetzungsstrategie, be
 - unterschiedliche Preise für verschiedene Kundengruppen (zweite oder dritte Preisdifferenzierung),
 - zeitlich gestaffelte Preise (z. B. bei technischen Geräten oder Software).
 
-{% include info.html
-index="4"
-frage="Abschöpfung der Konsumentenrente"
-antwort="
+Bei einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt wird. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis. Auf dem zweiten Teilmarkt wird ein neuer Preis $p_2$ festgelegt. Die Konsumentenrente ergibt sich dann aus der Summe der Konsumentenrente des ersten Teilmarkts KR1 und der Konsumentenrente des zweiten Teilmarkts KR2. Der Sachverhalt ist in folgendem Diagramm dargestellt:
 
-Das folgende Diagramm erläutert den Sachverhalt:
+<img src='Analysis_Wirtschaft_Marktgleichgewicht_Preisdifferenzierung.png' class='diagramm' alt='Diagramm zur Abschöpfung der Konsumentenrente'>
 
-<img src='Analysis_Wirtschaft_Marktgleichgewicht_Preisdifferenzierung.png'>
+{% include dev/check-anker.html nummer="4" %}
 
-Abgebildet ist das Marktgleichgewicht mit Gleichgewichtsmenge $x_G$ und Gleichgewichtspreis $p_G$. Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt. Die Konsumentenrente ergibt sich dann aus der Summe der Konsumentenrente des ersten Teilmarkts KR1 und der Konsumentenrente des zweiten Teilmarkts KR2. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis. Auf dem zweiten Teilmarkt soll ein Preis $p_2$
-so festgelegt werden, dass die Konsumentenrente maximal abgeschöpft wird. Wie muss $p_2$ gewählt werden?
-
-Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
+Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird (siehe schematische Darstellung).
 
 Der Flächeninhalt des weißen Rechtecks in Abhängigkeit von $x_2$ lautet:
 
@@ -304,6 +185,5 @@ $$
 
 Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des weißen Rechtecks maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
 
-"
-%}
 
+{% include dev/check-anker.html nummer="5" %}
