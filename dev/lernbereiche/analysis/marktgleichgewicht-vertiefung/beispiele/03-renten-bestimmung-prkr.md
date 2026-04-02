@@ -1,17 +1,18 @@
 ---
 layout: null
 ---
-Gegeben sind die Angebotsfunktion
-
-$$
-p_A(x)=x^2+2
-$$ 
-
-und die Nachfragefunktion
+Gegeben sind die Nachfragefunktion
 
 $$
 p_N(x)=-3e^{-0{,}1x}+10
 $$
+
+und die Angebotsfunktion
+
+$$
+p_A(x)=x^2+2
+$$ 
+ 
 
 Um das Marktgleichgewicht zu bestimmen, setzen wir die Angebotsfunktion gleich der Nachfragefunktion und erhalten $x_G=1{,}8439$ und $p_G=5{,}3998$. Dann beträgt die Konsumentenrente
 

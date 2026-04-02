@@ -172,7 +172,7 @@ Bei einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt wir
 
 {% include dev/check-anker.html nummer="4" %}
 
-Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Die Konsumentenrente wird minimal, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird (siehe schematische Darstellung).
+Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Dies ist genau dann der Fall, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird (siehe schematische Darstellung).
 
 Der Flächeninhalt des weißen Rechtecks in Abhängigkeit von $x_2$ lautet:
 
