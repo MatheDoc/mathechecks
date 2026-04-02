@@ -37,19 +37,19 @@ def _signed_term(value: float, variable: str) -> str:
 
 def _poly3_latex(label: str, a3: float, a2: float, a1: float, a0: float) -> str:
     return (
-        f"\\( {label}(x)={_format_number(a3)}x^3"
+        f"$ {label}(x)={_format_number(a3)}x^3"
         f"{_signed_term(a2, 'x^2')}"
         f"{_signed_term(a1, 'x')}"
-        f"{_signed_term(a0, '')} \\)"
+        f"{_signed_term(a0, '')} $"
     )
 
 
 def _erlös_latex(price: float) -> str:
-    return f"\\( E(x)={_format_number(price)}x \\)"
+    return f"$ E(x)={_format_number(price)}x $"
 
 
 def _preis_latex(price: float) -> str:
-    return f"\\( p(x)={_format_number(price)} \\)"
+    return f"$ p(x)={_format_number(price)} $"
 
 
 def _build_intro(given_expressions: list[str]) -> str:
@@ -98,53 +98,53 @@ def _sample_cost_coefficients(rng: random.Random) -> tuple[float, float, float, 
 
 def _answers_for_k(a3: float, a2: float, a1: float, a0: float) -> str:
     return (
-        "\\( K(x)= \\)"
+        "$ K(x)= $"
         f"{_num(a3)}"
-        "\\( x^3 \\)+"
+        "$ x^3 $+"
         f"{_num(a2)}"
-        "\\( x^2 \\)+"
+        "$ x^2 $+"
         f"{_num(a1)}"
-        "\\( x \\)+"
+        "$ x $+"
         f"{_num(a0)}"
     )
 
 
 def _answers_for_g(g3: float, g2: float, g1: float, g0: float) -> str:
     return (
-        "\\( G(x)= \\)"
+        "$ G(x)= $"
         f"{_num(g3)}"
-        "\\( x^3 \\)+"
+        "$ x^3 $+"
         f"{_num(g2)}"
-        "\\( x^2 \\)+"
+        "$ x^2 $+"
         f"{_num(g1)}"
-        "\\( x \\)+"
+        "$ x $+"
         f"{_num(g0)}"
     )
 
 
 def _answers_for_e(price: float) -> str:
-    return "\\( E(x)= \\)" + f"{_num(price)}" + "\\( x \\)"
+    return "$ E(x)= $" + f"{_num(price)}" + "$ x $"
 
 
 def _answers_for_p(price: float) -> str:
-    return "\\( p(x)= \\)" + f"{_num(price)}"
+    return "$ p(x)= $" + f"{_num(price)}"
 
 
 def _answers_for_e_quadratic(a2: float, a1: float) -> str:
     return (
-        "\\( E(x)= \\)"
+        "$ E(x)= $"
         f"{_num(a2)}"
-        "\\( x^2 \\)+"
+        "$ x^2 $+"
         f"{_num(a1)}"
-        "\\( x \\)"
+        "$ x $"
     )
 
 
 def _answers_for_p_linear(a2: float, a1: float) -> str:
     return (
-        "\\( p(x)= \\)"
+        "$ p(x)= $"
         f"{_num(a2)}"
-        "\\( x \\)+"
+        "$ x $+"
         f"{_num(a1)}"
     )
 
@@ -336,11 +336,11 @@ def _kennzahlen_items(
 
 
 def _erlös_quadratic_latex(a2: float, a1: float) -> str:
-    return f"\\( E(x)={_format_number(a2)}x^2{_signed_term(a1, 'x')} \\)"
+    return f"$ E(x)={_format_number(a2)}x^2{_signed_term(a1, 'x')} $"
 
 
 def _preis_linear_latex(a2: float, a1: float) -> str:
-    return f"\\( p(x)={_format_number(a2)}x{_signed_term(a1, '')} \\)"
+    return f"$ p(x)={_format_number(a2)}x{_signed_term(a1, '')} $"
 
 
 def _e2k3_kennzahlen_items(
@@ -591,11 +591,11 @@ def _has_max_sig_digits(value: float, max_digits: int = 2, max_decimals: int = 1
 
 
 def _make_zuordnung_table(points: list[tuple[float, float]], label: str) -> str:
-    header = "    <tr><td>Menge \\(x\\)</td>" + "".join(
-        f"<td>\\( {_format_number(x)} \\)</td>" for x, _ in points
+    header = "    <tr><td>Menge $x$</td>" + "".join(
+        f"<td>$ {_format_number(x)} $</td>" for x, _ in points
     ) + "</tr>"
-    row = f"    <tr><td>\\({label}(x)\\)</td>" + "".join(
-        f"<td>\\( {_format_number(y)} \\)</td>" for _, y in points
+    row = f"    <tr><td>${label}(x)$</td>" + "".join(
+        f"<td>$ {_format_number(y)} $</td>" for _, y in points
     ) + "</tr>"
     return f"<table class=\"TabelleEinleitung\">\n{header}\n{row}\n</table>"
 

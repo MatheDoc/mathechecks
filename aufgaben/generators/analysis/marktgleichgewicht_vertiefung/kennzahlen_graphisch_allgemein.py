@@ -1,6 +1,6 @@
 import random
 
-from aufgaben.core.tolerances import graph_read_tolerance_from_span
+from aufgaben.core.tolerances import graph_read_tolerance_from_span, nice_axis_max
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
@@ -39,11 +39,14 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
                 key = market_key
                 if key in used_params:
                     continue
+                # Gleichgewichtspreis soll bei mind. 20% der Y-Achse liegen
+                if eq_p < max_price * 0.2:
+                    continue
                 used_params.add(key)
                 break
 
-            max_x = max(12.0, sat_quantity * 1.1)
-            max_y = round(max(max_price, eq_p) * 1.12, 3)
+            max_x = nice_axis_max(sat_quantity * 1.08)
+            max_y = nice_axis_max(max_price * 1.08)
             tolerance_x = graph_read_tolerance_from_span(max_x)
             tolerance_y = graph_read_tolerance_from_span(max_y)
 
@@ -77,8 +80,8 @@ class MarketEquilibriumKennzahlenGraphischAllgemeinGenerator(TaskGenerator):
                             },
                             "layout": {
                                 "title": "Angebots- und Nachfragefunktion",
-                                "xaxis": {"title": "Menge x"},
-                                "yaxis": {"title": "Preis p"},
+                                "xaxis": {"title": "Menge x", "range": [0, round(max_x, 3)]},
+                                "yaxis": {"title": "Preis p", "range": [0, max_y]},
                             },
                             "width": 900,
                             "height": 520,

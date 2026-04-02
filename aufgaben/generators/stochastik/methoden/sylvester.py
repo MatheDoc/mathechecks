@@ -49,13 +49,13 @@ def _percent_text(value: float) -> str:
 def _given_text(key: str, value: float, scenario, rng: random.Random) -> str:
     if rng.random() < 0.4:
         return f"die Wahrscheinlichkeit, dass {scenario.prob_texts[key]}, {_percent_text(value)} betraegt"
-    return f"\\( {_LATEX[key]} \\)\\( = \\)\\( {_latex_decimal(value)} \\)"
+    return f"$ {_LATEX[key]} $$ = $$ {_latex_decimal(value)} $"
 
 
 def _question_text(key: str, scenario, rng: random.Random) -> str:
     if rng.random() < 0.5:
         return f"die Wahrscheinlichkeit, dass {scenario.prob_texts[key]}."
-    return f"\\( {_LATEX[key]} \\)."
+    return f"$ {_LATEX[key]} $."
 
 
 class SylvesterGenerator(TaskGenerator):

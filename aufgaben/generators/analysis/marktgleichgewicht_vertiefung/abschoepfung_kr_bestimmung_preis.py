@@ -1,5 +1,6 @@
 import random
 
+from aufgaben.core.tolerances import nice_axis_max
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
@@ -41,12 +42,12 @@ class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
                 used_params.add(key)
                 break
 
-            max_x = round(max(10.0, eq_x * 1.28), 3)
-            max_y = round(max(max_price, p2) * 1.12, 3)
+            max_x = nice_axis_max(eq_x * 1.25)
+            max_y = nice_axis_max(max(max_price, p2) * 1.1)
 
             fragen_antworten = [
-                ("die zum Preis \\( p_2 \\) nachgefragte Menge \\( x_2 \\).", _num_tol(x2, tolerance=0.1)),
-                ("den Preis \\( p_2 \\).", _num_tol(p2, tolerance=0.1)),
+                ("die zum Preis $ p_2 $ nachgefragte Menge $ x_2 $.", _num_tol(x2, tolerance=0.1)),
+                ("den Preis $ p_2 $.", _num_tol(p2, tolerance=0.1)),
             ]
             fragen = [f for f, _ in fragen_antworten]
             antworten = [a for _, a in fragen_antworten]
@@ -61,8 +62,8 @@ class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
                         ".</p> "
                         "<p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte "
                         "aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. "
-                        "Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis \\(p_G\\). "
-                        "Auf dem zweiten Teilmarkt wird ein Preis \\(p_2\\) so festgelegt, "
+                        "Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $p_G$. "
+                        "Auf dem zweiten Teilmarkt wird ein Preis $p_2$ so festgelegt, "
                         "dass die Konsumentenrente maximal abgeschöpft wird.</p> "
                         "<p>Bestimmen Sie (auf 2 NKS gerundet)"
                     ),

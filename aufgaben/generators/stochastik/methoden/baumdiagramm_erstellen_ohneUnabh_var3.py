@@ -76,8 +76,8 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
 
             intro = (
                 f"<p>{scenario.intro}</p>"
-                f"<p>\\(A\\): {scenario.event_a}<br>"
-                f"\\(B\\): {scenario.event_b}</p>"
+                f"<p>$A$: {scenario.event_a}<br>"
+                f"$B$: {scenario.event_b}</p>"
                 "<p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>"
             )
 

@@ -34,15 +34,15 @@ class BinomialKennzahlenMuSigmaGegebenGenerator(TaskGenerator):
             intro_variants = [
                 (
                     f"{scenario.intro_prefix} Im Durchschnitt sind {_de(mu, 2)} {scenario.success_plural} zu erwarten. "
-                    f"Die Standardabweichung beträgt \\(\\sigma = {_de(sigma, 4)}\\)."
+                    f"Die Standardabweichung beträgt $\\sigma = {_de(sigma, 4)}$."
                 ),
                 (
                     f"{scenario.intro_prefix} Für die betrachtete Binomialverteilung gelten "
-                    f"\\(\\mu = {_de(mu, 2)}\\) und \\(\\sigma = {_de(sigma, 4)}\\)."
+                    f"$\\mu = {_de(mu, 2)}$ und $\\sigma = {_de(sigma, 4)}$."
                 ),
                 (
-                    f"{scenario.intro_prefix} Der Erwartungswert liegt bei \\(\\mu = {_de(mu, 2)}\\), "
-                    f"die Standardabweichung bei \\(\\sigma = {_de(sigma, 4)}\\)."
+                    f"{scenario.intro_prefix} Der Erwartungswert liegt bei $\\mu = {_de(mu, 2)}$, "
+                    f"die Standardabweichung bei $\\sigma = {_de(sigma, 4)}$."
                 ),
             ]
 

@@ -41,7 +41,7 @@ class MarketEquilibriumKennzahlenRechnerischLinearGenerator(TaskGenerator):
                 f"{_latex_supply(supply_slope, min_price)}"
                 "<br/></p> und die Nachfragefunktion <br/></p>"
                 f"{_latex_demand(demand_slope, max_price)}"
-                ".</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
             )
 
             items = _kennzahlen_items(

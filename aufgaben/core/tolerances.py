@@ -31,6 +31,12 @@ def axis_tick_step(span: float) -> float:
     return base * power
 
 
+def nice_axis_max(value: float) -> float:
+    """Round *value* up to the next ``axis_tick_step`` boundary."""
+    step = axis_tick_step(value)
+    return step * math.ceil(value / step)
+
+
 def graph_read_tolerance_from_step(step: float, fraction: float = GRAPH_READ_FRACTION) -> float:
     return max(0.0, step) * fraction
 

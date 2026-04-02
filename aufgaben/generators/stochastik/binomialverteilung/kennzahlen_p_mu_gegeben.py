@@ -37,11 +37,11 @@ class BinomialKennzahlenPMuGegebenGenerator(TaskGenerator):
                 ),
                 (
                     f"{scenario.intro_prefix} Es gilt p = {_percent_text(p)} und die durchschnittlich erwartete "
-                    f"Anzahl liegt bei \\(\\mu = {_de(mu, 2)}\\)."
+                    f"Anzahl liegt bei $\\mu = {_de(mu, 2)}$."
                 ),
                 (
                     f"{scenario.intro_prefix} Mit Wahrscheinlichkeit {_percent_text(p)} tritt "
-                    f"{scenario.success_event_accusative} auf. Der Erwartungswert beträgt \\(\\mu = {_de(mu, 2)}\\)."
+                    f"{scenario.success_event_accusative} auf. Der Erwartungswert beträgt $\\mu = {_de(mu, 2)}$."
                 ),
             ]
 
@@ -54,8 +54,8 @@ class BinomialKennzahlenPMuGegebenGenerator(TaskGenerator):
                             "(als ganze Zahl)."
                         ),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
-                            "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung $\\sigma$ der Zufallsgröße (auf 2 NKS gerundet).",
+                            "Berechnen Sie $\\sigma$ (auf 2 NKS gerundet).",
                         ]),
                     ],
                     antworten=[

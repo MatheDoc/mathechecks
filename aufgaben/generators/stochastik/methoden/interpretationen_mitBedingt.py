@@ -95,8 +95,8 @@ def _option_text(key: str, scenario) -> str:
 def _frage(key: str, rng: random.Random) -> str:
     if key in _SPEZIAL_LABELS:
         latex = rng.choice(_SPEZIAL_LABELS[key])
-        return f"\\({latex}\\) ist die Wahrscheinlichkeit, dass"
-    return f"\\({_LATEX[key]}\\) ist die Wahrscheinlichkeit, dass"
+        return f"${latex}$ ist die Wahrscheinlichkeit, dass"
+    return f"${_LATEX[key]}$ ist die Wahrscheinlichkeit, dass"
 
 
 def _build_mc_answer(question_key: str, scenario) -> str:
@@ -130,8 +130,8 @@ class MethodenInterpretationenMitBedingtGenerator(TaskGenerator):
             einleitung = (
                 f"<p>{scenario.intro}</p>"
                 "<p>In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p>"
-                f"<p>\\(A\\): {scenario.event_a}<br>"
-                f"\\(B\\): {scenario.event_b}</p>"
+                f"<p>$A$: {scenario.event_a}<br>"
+                f"$B$: {scenario.event_b}</p>"
                 "<p>Interpretieren Sie die folgenden Wahrscheinlichkeiten im Sachzusammenhang.</p>"
             )
 

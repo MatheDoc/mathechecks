@@ -41,7 +41,7 @@ def _wkt_visual(x_disp: list[int | None], p_disp: list[float | None]) -> dict:
     }
 
 
-_EINLEITUNG = "Die Tabelle zeigt die Wahrscheinlichkeitsverteilung einer Zufallsgröße \\( X \\)."
+_EINLEITUNG = "Die Tabelle zeigt die Wahrscheinlichkeitsverteilung einer Zufallsgröße $ X $."
 
 
 def _gen_data(rng: random.Random) -> tuple[list[int], list[float], float, float]:
@@ -87,11 +87,11 @@ class KennzahlenTabelleFehlWskGenerator(TaskGenerator):
             p_disp: list[float | None] = [round(pi, 2) if i != idx_p else None for i, pi in enumerate(p)]
             frage = (
                 "Bestimmen Sie den fehlenden Wert der Zufallsgröße und die fehlende Wahrscheinlichkeit."
-                f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
+                f" Es ist bekannt, dass $ E(X) = {_fmt(ex, 4)} $."
             )
             antwort = (
-                f"\\( x_i= \\) {numerical(float(x[idx_x]), tolerance=0.5, decimals=0)}"
-                f" und \\( P(X={x[idx_p]})= \\) {numerical_stochastik_calc(p[idx_p])}"
+                f"$ x_i= $ {numerical(float(x[idx_x]), tolerance=0.5, decimals=0)}"
+                f" und $ P(X={x[idx_p]})= $ {numerical_stochastik_calc(p[idx_p])}"
             )
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
@@ -116,7 +116,7 @@ class KennzahlenTabelleEWGenerator(TaskGenerator):
             x, p, ex, _sx = _gen_data(rng)
             p_disp: list[float | None] = [round(pi, 2) for pi in p]
             frage = "Bestimmen Sie den Erwartungswert."
-            antwort = "\\( E(X)= \\) " + numerical_stochastik_calc(ex)
+            antwort = "$ E(X)= $ " + numerical_stochastik_calc(ex)
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
                 fragen=[frage],
@@ -141,9 +141,9 @@ class KennzahlenTabelleSigmaGenerator(TaskGenerator):
             p_disp: list[float | None] = [round(pi, 2) for pi in p]
             frage = (
                 "Bestimmen Sie die Standardabweichung (auf 4 Dezimalstellen gerundet)."
-                f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
+                f" Es ist bekannt, dass $ E(X) = {_fmt(ex, 4)} $."
             )
-            antwort = "\\( \\sigma(X)= \\) " + numerical_stochastik_calc(sx)
+            antwort = "$ \\sigma(X)= $ " + numerical_stochastik_calc(sx)
             tasks.append(Task(
                 einleitung=_EINLEITUNG,
                 fragen=[frage],
@@ -171,13 +171,13 @@ class KennzahlenTabelleFehlWsk2Generator(TaskGenerator):
             p_disp: list[float | None] = [round(pi, 2) if i not in hidden else None for i, pi in enumerate(p)]
             frage = (
                 "Bestimmen Sie die fehlenden Wahrscheinlichkeiten."
-                f" Es ist bekannt, dass \\( E(X) = {_fmt(ex, 4)} \\)."
+                f" Es ist bekannt, dass $ E(X) = {_fmt(ex, 4)} $."
             )
             num1 = numerical_stochastik_calc(p[idx1])
             num2 = numerical_stochastik_calc(p[idx2])
             antwort = (
-                f"\\( P(X={x[idx1]})= \\) {num1}"
-                f" und \\( P(X={x[idx2]})= \\) {num2}"
+                f"$ P(X={x[idx1]})= $ {num1}"
+                f" und $ P(X={x[idx2]})= $ {num2}"
             )
             tasks.append(Task(
                 einleitung=_EINLEITUNG,

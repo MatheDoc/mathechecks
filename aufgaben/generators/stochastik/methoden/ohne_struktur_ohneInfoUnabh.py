@@ -106,17 +106,17 @@ def _format_given(key: str, value: float, scenario, rng: random.Random) -> str:
     prob_text = scenario.prob_texts.get(key, "")
     if prob_text and rng.random() < 0.5:
         return f"die Wahrscheinlichkeit, dass {prob_text}, {_pct_str(value)} beträgt"
-    return f"\\( {_LATEX[key]} \\)\\( = \\)\\( {_dec_str(value)} \\)"
+    return f"$ {_LATEX[key]} $$ = $$ {_dec_str(value)} $"
 
 
 def _frage_text(key: str, scenario, rng: random.Random) -> str:
     """Fragetext: Spezial-Wkt immer LaTeX; alle anderen 50/50 Text/LaTeX."""
     if key in _SPEZIAL_LABELS:
-        return f"\\({rng.choice(_SPEZIAL_LABELS[key])}\\)."
+        return f"${rng.choice(_SPEZIAL_LABELS[key])}$."
     prob_text = scenario.prob_texts.get(key, "")
     if prob_text and rng.random() < 0.5:
         return f"die Wahrscheinlichkeit, dass {prob_text}"
-    return f"\\({_LATEX[key]}\\)."
+    return f"${_LATEX[key]}$."
 
 
 # ---------------------------------------------------------------------------
@@ -162,13 +162,13 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
             if claim_is_independence:
                 claim_text = (
                     scenario.independence_claim
-                    or "\\(A\\) und \\(B\\) sind stochastisch unabhängig."
+                    or "$A$ und $B$ sind stochastisch unabhängig."
                 )
                 mc_correct_is_richtig = is_independent
             else:
                 claim_text = (
                     scenario.dependence_claim
-                    or "\\(A\\) und \\(B\\) sind stochastisch abhängig."
+                    or "$A$ und $B$ sind stochastisch abhängig."
                 )
                 mc_correct_is_richtig = not is_independent
 
@@ -177,8 +177,8 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
 
             einleitung = (
                 f"<p>{scenario.intro}</p>"
-                f"<p>\\(A\\): {scenario.event_a}<br>"
-                f"\\(B\\): {scenario.event_b}</p>"
+                f"<p>$A$: {scenario.event_a}<br>"
+                f"$B$: {scenario.event_b}</p>"
                 f"<p>Es ist bekannt, dass {given_text}.</p>"
                 "<p>Berechnen Sie (auf 4 NKS gerundet)</p>"
             )

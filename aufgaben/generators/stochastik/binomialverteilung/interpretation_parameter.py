@@ -184,11 +184,11 @@ class BinomialInterpretationParameterGenerator(TaskGenerator):
             )
 
             formula = (
-                "\\[ "
+                "$$ "
                 f"\\binom{{{n}}}{{{event_count}}}\\cdot {_latex_decimal(event_probability, 2)}^{{{event_count}}}"
                 f"\\cdot {_latex_decimal(anti_event_probability, 2)}^{{{anti_event_count}}}"
                 f"={_latex_decimal(formula_result, 4)} "
-                "\\]"
+                "$$"
             )
 
             intro = (
@@ -216,12 +216,12 @@ class BinomialInterpretationParameterGenerator(TaskGenerator):
             ]
 
             fragen = [
-                f"Was bedeutet die Zahl \\({n}\\) im Sachzusammenhang?",
-                f"Was bedeutet die Zahl \\({event_count}\\) im Sachzusammenhang?",
-                f"Was bedeutet die Zahl \\({_latex_decimal(event_probability, 2)}\\) im Sachzusammenhang?",
-                f"Was bedeutet die Zahl \\({_latex_decimal(anti_event_probability, 2)}\\) im Sachzusammenhang?",
-                f"Was bedeutet die Zahl \\({anti_event_count}\\) im Sachzusammenhang?",
-                f"Was bedeutet die Zahl \\({_latex_decimal(formula_result, 4)}\\) im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${n}$ im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${event_count}$ im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${_latex_decimal(event_probability, 2)}$ im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${_latex_decimal(anti_event_probability, 2)}$ im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${anti_event_count}$ im Sachzusammenhang?",
+                f"Was bedeutet die Zahl ${_latex_decimal(formula_result, 4)}$ im Sachzusammenhang?",
             ]
 
             antworten = [

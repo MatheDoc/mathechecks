@@ -124,13 +124,13 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
     # Für Spezialgruppe immer LaTeX
     if key in _SPEZIAL_LABELS:
         label = rng.choice(_SPEZIAL_LABELS[key])
-        return f"\\({label}\\)."
+        return f"${label}$."
 
     # Für Gruppen 1-3: zufällig LaTeX oder prob_text
     prob_text = scenario.prob_texts.get(key, "")
     if prob_text and rng.random() < 0.5:
         return f"die Wahrscheinlichkeit, dass {prob_text}"
-    return f"\\({_LATEX[key]}\\)."
+    return f"${_LATEX[key]}$."
 
 
 class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
@@ -155,8 +155,8 @@ class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
 
             intro = (
                 f"<p>{scenario.intro}</p>"
-                f"<p>\\(A\\): {scenario.event_a}<br>"
-                f"\\(B\\): {scenario.event_b}</p>"
+                f"<p>$A$: {scenario.event_a}<br>"
+                f"$B$: {scenario.event_b}</p>"
                 "<p>Bestimmen Sie anhand des Baumdiagramms "
                 "auf 4 NKS gerundet</p>"
             )
