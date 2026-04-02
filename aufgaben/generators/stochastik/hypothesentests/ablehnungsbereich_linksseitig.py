@@ -100,21 +100,21 @@ class AblehnungsbereichLinksseitigGenerator(TaskGenerator):
             mc_ab_up  = mc(["k", str(n)], correct_index=0)
 
             a1 = (
-                f"\\( H_0: p = \\) {num_p0} <br>"
+                f"$ H_0: p = $ {num_p0} <br>"
                 f"Annahmebereich: [ {mc_an_low}, &nbsp;&#8230;&nbsp; , {mc_an_up} ]"
             )
             a2 = (
-                f"\\( H_1: p \\) {mc(['<', '>'], correct_index=0)}{num_p0}<br>"
+                f"$ H_1: p $ {mc(['<', '>'], correct_index=0)}{num_p0}<br>"
                 f"Ablehnungsbereich: [ {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} ]"
             )
             a3 = (
-                f"Gesucht ist das {mc(['größte', 'kleinste'], correct_index=0)} \\( k \\), "
-                f"so dass \\( P(X \\) {mc_leq} \\( k) \\) &leq; {num_alpha} ist."
+                f"Gesucht ist das {mc(['größte', 'kleinste'], correct_index=0)} $ k $, "
+                f"so dass $ P(X $ {mc_leq} $ k) $ &leq; {num_alpha} ist."
             )
             a4 = (
-                f"\\( P(X \\) {mc_leq}{k} \\() = \\) {numerical_stochastik_calc(p_at_k)}<br>"
-                f"\\( P(X \\) {mc_leq}{k + 1} \\( ) = \\){numerical_stochastik_calc(p_at_k1)}<br>"
-                f"Der Ablehnungsbereich lautet daher \\( [ \\) {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} \\( ] \\)."
+                f"$ P(X $ {mc_leq}{k} $) = $ {numerical_stochastik_calc(p_at_k)}<br>"
+                f"$ P(X $ {mc_leq}{k + 1} $ ) = ${numerical_stochastik_calc(p_at_k1)}<br>"
+                f"Der Ablehnungsbereich lautet daher $ [ $ {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} $ ] $."
             )
 
             tasks.append(Task(

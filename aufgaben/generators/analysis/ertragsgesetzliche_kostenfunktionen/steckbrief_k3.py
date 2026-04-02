@@ -192,13 +192,13 @@ class ErtragsgesetzlicheKostenSteckbriefK3Generator(TaskGenerator):
                 )
 
                 answer = (
-                    "\\( K(x)= \\)"
+                    "$ K(x)= $"
                     f"{_num(k3)}"
-                    "\\( x^3 \\)+"
+                    "$ x^3 $+"
                     f"{_num(k2)}"
-                    "\\( x^2 \\)+"
+                    "$ x^2 $+"
                     f"{_num(k1)}"
-                    "\\( x \\)+"
+                    "$ x $+"
                     f"{_num(k0)}"
                 )
 

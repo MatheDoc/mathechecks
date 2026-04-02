@@ -37,7 +37,7 @@ Vor jeder Arbeit diese Referenzdokumente lesen:
 - Bei inhaltlichen Textausgaben didaktische Qualitätskriterien berücksichtigen.
 - Bei erheblicher Unklarheit kurz nachfragen, bevor umfangreiche Änderungen durchgeführt werden.
 - Zusammenhang mit `project_config.json` und `checks.json` beachten.
-- Nach Änderung in den Generatoren Batch-Run durchführen.
+- Nach Änderung in den Generatoren Batch-Run für die betroffenen Dateien durchführen.
 
 ## Übergabeformat
 

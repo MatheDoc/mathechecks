@@ -2,7 +2,7 @@ import math
 import random
 from collections.abc import Callable
 
-from aufgaben.core.tolerances import axis_tick_step
+from aufgaben.core.tolerances import axis_tick_step, nice_axis_max
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
     _fmt_number,
     _num_tol,
@@ -19,47 +19,47 @@ def _axis_tick_step(span: float) -> float:
 
 
 def _latex_supply_linear(slope: float, intercept: float) -> str:
-    return f"\\( p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)} \\)"
+    return f"$ p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)} $"
 
 
 def _latex_demand_quadratic(a2: float, a1: float, a0: float) -> str:
     a2_text = _fmt_number(abs(a2), max_decimals=3)
     a1_text = _fmt_number(abs(a1), max_decimals=3)
     return (
-        "\\( p_N(x)="
+        "$ p_N(x)="
         f"-{a2_text}x^2"
         f"-{a1_text}x"
-        f"+{_fmt_number(a0, max_decimals=2)} \\)"
+        f"+{_fmt_number(a0, max_decimals=2)} $"
     )
 
 
 def _latex_supply_quadratic(a2: float, a1: float, a0: float) -> str:
     return (
-        "\\( p_A(x)="
+        "$ p_A(x)="
         f"{_fmt_number(a2, max_decimals=3)}x^2"
         f"+{_fmt_number(a1, max_decimals=3)}x"
-        f"+{_fmt_number(a0, max_decimals=2)} \\)"
+        f"+{_fmt_number(a0, max_decimals=2)} $"
     )
 
 
 def _latex_supply_exp(amplitude: float, rate: float, ceiling: float) -> str:
     return (
-        "\\( p_A(x)="
+        "$ p_A(x)="
         f"-{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
-        f"+{_fmt_number(ceiling, max_decimals=2)} \\)"
+        f"+{_fmt_number(ceiling, max_decimals=2)} $"
     )
 
 
 def _latex_demand_linear(slope_abs: float, intercept: float) -> str:
-    return f"\\( p_N(x)=-{_fmt_number(slope_abs, max_decimals=3)}x+{_fmt_number(intercept, max_decimals=2)} \\)"
+    return f"$ p_N(x)=-{_fmt_number(slope_abs, max_decimals=3)}x+{_fmt_number(intercept, max_decimals=2)} $"
 
 
 def _latex_demand_exp(amplitude: float, rate: float, floor: float) -> str:
     floor_sign = _signed(floor, max_decimals=2)
     return (
-        "\\( p_N(x)="
+        "$ p_N(x)="
         f"{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
-        f"{floor_sign} \\)"
+        f"{floor_sign} $"
     )
 
 
@@ -119,8 +119,8 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
     kind = rng.choice(["linear", "quadratic", "exp"])
 
     if kind == "linear":
-        slope = uniform_sig(rng, 0.22, 2.3)
-        intercept = uniform_sig(rng, 1.2, 9.8)
+        slope = uniform_sig(rng, 0.12, 4.5)
+        intercept = uniform_sig(rng, 1.0, 45.0)
         return (
             lambda x: slope * x + intercept,
             _latex_supply_linear(slope, intercept),
@@ -130,9 +130,9 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
         )
 
     if kind == "quadratic":
-        a2 = uniform_sig(rng, 0.004, 0.065)
-        a1 = uniform_sig(rng, 0.05, 0.34)
-        a0 = uniform_sig(rng, 1.0, 9.2)
+        a2 = uniform_sig(rng, 0.003, 0.12)
+        a1 = uniform_sig(rng, 0.05, 0.8)
+        a0 = uniform_sig(rng, 1.0, 45.0)
         return (
             lambda x: a2 * (x ** 2) + a1 * x + a0,
             _latex_supply_quadratic(a2, a1, a0),
@@ -141,9 +141,9 @@ def _build_supply_function(rng: random.Random) -> tuple[PriceFunction, str, tupl
             {"type": "quadratic", "a": a2, "b": a1, "c": a0},
         )
 
-    amplitude = uniform_sig(rng, 4.2, 22.0)
-    rate = uniform_sig(rng, 0.04, 0.32)
-    min_price = uniform_sig(rng, 1.0, 9.0)
+    amplitude = uniform_sig(rng, 3.0, 80.0)
+    rate = uniform_sig(rng, 0.02, 0.25)
+    min_price = uniform_sig(rng, 1.0, 40.0)
     ceiling = round_sig(min_price + amplitude)
     return (
         lambda x: -amplitude * math.exp(-rate * x) + ceiling,
@@ -162,8 +162,8 @@ def _build_demand_function(
     kind = rng.choice(["linear", "quadratic", "exp"])
 
     if kind == "linear":
-        slope_abs = uniform_sig(rng, 0.2, 2.5)
-        intercept = uniform_sig(rng, min_price + 4.0, min_price + 34.0)
+        slope_abs = uniform_sig(rng, 0.15, 5.0)
+        intercept = uniform_sig(rng, min_price + 4.0, min_price + 250.0)
         return (
             lambda x: -slope_abs * x + intercept,
             lambda _x: -slope_abs,
@@ -174,9 +174,9 @@ def _build_demand_function(
         )
 
     if kind == "quadratic":
-        a2 = uniform_sig(rng, 0.015, 0.14)
-        a1 = uniform_sig(rng, 0.01, 0.28)
-        a0 = uniform_sig(rng, min_price + 4.0, min_price + 36.0)
+        a2 = uniform_sig(rng, 0.005, 0.2)
+        a1 = uniform_sig(rng, 0.01, 0.5)
+        a0 = uniform_sig(rng, min_price + 4.0, min_price + 250.0)
         return (
             lambda x: -(a2 * (x ** 2)) - a1 * x + a0,
             lambda x: -2.0 * a2 * x - a1,
@@ -186,9 +186,9 @@ def _build_demand_function(
             {"type": "quadratic", "a": -a2, "b": -a1, "c": a0},
         )
 
-    amplitude = uniform_sig(rng, 6.0, 42.0)
-    rate = uniform_sig(rng, 0.03, 0.24)
-    floor = uniform_sig(rng, -9.0, -0.3)
+    amplitude = uniform_sig(rng, 4.0, 120.0)
+    rate = uniform_sig(rng, 0.02, 0.22)
+    floor = uniform_sig(rng, -15.0, -0.3)
     max_price = round_sig(amplitude + floor)
     if max_price <= min_price + 4.0:
         floor = round_sig(min_price + 4.5 - amplitude)
@@ -228,21 +228,21 @@ def _sample_market_params(
             min_price=min_price,
         )
 
-        if max_price <= min_price + 0.9:
+        if max_price <= min_price + 2.0 or max_price > 950.0:
             continue
 
-        sat_quantity = _find_root_in_interval(demand_fn, start=0.0, end=120.0)
-        if sat_quantity is None or not (3.5 <= sat_quantity <= 70.0):
+        sat_quantity = _find_root_in_interval(demand_fn, start=0.0, end=2000.0)
+        if sat_quantity is None or not (3.0 <= sat_quantity <= 950.0):
             continue
 
         diff_fn = lambda x: supply_fn(x) - demand_fn(x)
-        eq_upper = min(120.0, max(18.0, sat_quantity * 1.05))
+        eq_upper = min(2000.0, max(15.0, sat_quantity * 1.05))
         eq_x = _find_root_in_interval(diff_fn, start=0.0, end=eq_upper)
-        if eq_x is None or not (0.9 <= eq_x <= sat_quantity * 0.95):
+        if eq_x is None or not (1.5 <= eq_x <= sat_quantity * 0.85):
             continue
 
         eq_p = supply_fn(eq_x)
-        if not (min_price + 0.1 <= eq_p <= max_price - 0.1):
+        if not (min_price + 0.5 <= eq_p <= max_price - 0.5):
             continue
 
         if demand_derivative_fn(0.0) >= -0.01 or demand_derivative_fn(eq_x) >= -0.01:
@@ -250,11 +250,19 @@ def _sample_market_params(
 
         x2_fn = lambda x: demand_fn(x) + x * demand_derivative_fn(x) - eq_p
         x2 = _find_root_in_interval(x2_fn, start=0.0001, end=max(0.0002, eq_x - 0.0001))
-        if x2 is None or not (0.3 <= x2 <= eq_x - 0.2):
+        if x2 is None or not (0.5 <= x2 <= eq_x - 0.3):
             continue
 
         p2 = demand_fn(x2)
-        if p2 <= eq_p + 0.2:
+        if p2 <= eq_p + 0.5 or p2 > max_price - 0.3:
+            continue
+
+        # KR1/KR2 duerfen nicht zu klein sein – p2 muss deutlich
+        # zwischen eq_p und max_price liegen (jeweils mind. 15% Abstand).
+        price_range = max_price - eq_p
+        if price_range <= 0 or (p2 - eq_p) < price_range * 0.15:
+            continue
+        if (max_price - p2) < price_range * 0.15:
             continue
 
         return (
@@ -274,16 +282,6 @@ def _sample_market_params(
             supply_params,
             demand_params,
         )
-
-    disc = b * b - 4 * a * c
-    if disc < 0:
-        return None
-    sqrt_disc = math.sqrt(disc)
-    roots = [(-b + sqrt_disc) / (2 * a), (-b - sqrt_disc) / (2 * a)]
-    positive_roots = [root for root in roots if root > 0]
-    if not positive_roots:
-        return None
-    return min(positive_roots)
 
 
 def _market_x_values(max_x: float, points: int = 280) -> list[float]:

@@ -1,6 +1,6 @@
 [
   {
-    "einleitung": "<p>Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Computer ohne ausreichenden Virenschutz anzutreffen, 60 % beträgt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 113 Computer stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 10 % betragen.</p>",
+    "einleitung": "<p>Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Computer ohne ausreichenden Virenschutz anzutreffen, 60 % beträgt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 113 Computer stichprobenartig betrachtet. Das Signifikanzniveau soll 10 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -8,14 +8,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,60:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=113} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,60:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~113} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}60 \\() = \\) {1:NUMERICAL:=0,0812:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}61 \\( ) = \\){1:NUMERICAL:=0,1137:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~113} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,60:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=113} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,60:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~113} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}60 $) = $ {1:NUMERICAL:=0,0812:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}61 $ ) = ${1:NUMERICAL:=0,1137:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~113} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Bisher nahm man an, dass die Wahrscheinlichkeit, eine Seite mit Rechtschreibfehler anzutreffen, 0,51 beträgt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. 93 gedruckte Seiten werden dafür zufällig untersucht. Der Test soll ein Signifikanzniveau von höchstens 5 % einhalten.</p>",
+    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Bisher nahm man an, dass die Wahrscheinlichkeit, eine Seite mit Rechtschreibfehler anzutreffen, 0,51 beträgt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. 93 gedruckte Seiten werden dafür zufällig untersucht. Der Test soll ein Signifikanzniveau von 5 % einhalten.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -23,14 +23,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,51:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=93} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,51:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~93} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}39 \\() = \\) {1:NUMERICAL:=0,0499:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}40 \\( ) = \\){1:NUMERICAL:=0,0752:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~93} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,51:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=93} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,51:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~93} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}39 $) = $ {1:NUMERICAL:=0,0499:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}40 $ ) = ${1:NUMERICAL:=0,0752:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~93} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,15 tritt eine Seite mit Rechtschreibfehler auf. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Zur Überprüfung werden 119 gedruckte Seiten zufällig ausgewählt. Das Signifikanzniveau soll höchstens 10 % betragen.</p>",
+    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,15 tritt eine Seite mit Rechtschreibfehler auf. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Zur Überprüfung werden 119 gedruckte Seiten zufällig ausgewählt. Das Signifikanzniveau soll 10 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -38,14 +38,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,15:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=119} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,15:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}12 \\() = \\) {1:NUMERICAL:=0,0798:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}13 \\( ) = \\){1:NUMERICAL:=0,1300:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,15:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=119} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,15:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}12 $) = $ {1:NUMERICAL:=0,0798:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}13 $ ) = ${1:NUMERICAL:=0,1300:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Schule dokumentiert Anwesenheiten im Mathekurs. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,57 tritt eine Anwesenheit auf. Man vermutet, dass die aktuelle Rate darunter liegt. Daher werden 95 Teilnahmen stichprobenartig betrachtet. Der Test soll ein Signifikanzniveau von höchstens 5 % einhalten.</p>",
+    "einleitung": "<p>Eine Schule dokumentiert Anwesenheiten im Mathekurs. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,57 tritt eine Anwesenheit auf. Man vermutet, dass die aktuelle Rate darunter liegt. Daher werden 95 Teilnahmen stichprobenartig betrachtet. Der Test soll ein Signifikanzniveau von 5 % einhalten.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -53,14 +53,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,57:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=95} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,57:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~95} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}45 \\() = \\) {1:NUMERICAL:=0,0371:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}46 \\( ) = \\){1:NUMERICAL:=0,0570:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~95} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,57:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=95} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,57:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~95} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}45 $) = $ {1:NUMERICAL:=0,0371:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}46 $ ) = ${1:NUMERICAL:=0,0570:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~95} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Ärztin bewertet Eignungstests von Bewerbern. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,43 einen erfolgreichen Bewerber auftritt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Daher werden 100 Bewerber stichprobenartig betrachtet. Als maximales Signifikanzniveau werden 10 % festgelegt.</p>",
+    "einleitung": "<p>Eine Ärztin bewertet Eignungstests von Bewerbern. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,43 einen erfolgreichen Bewerber auftritt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Daher werden 100 Bewerber stichprobenartig betrachtet. Als Signifikanzniveau werden 10 % festgelegt.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -68,14 +68,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,43:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=100} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,43:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}36 \\() = \\) {1:NUMERICAL:=0,0939:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}37 \\( ) = \\){1:NUMERICAL:=0,1330:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,43:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=100} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,43:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}36 $) = $ {1:NUMERICAL:=0,0939:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}37 $ ) = ${1:NUMERICAL:=0,1330:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine zufriedene Person zu beobachten, bei 0,27. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu überprüfen, betrachtet man 54 befragte Mitarbeitende. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine zufriedene Person zu beobachten, bei 0,27. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu überprüfen, betrachtet man 54 befragte Mitarbeitende. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -83,14 +83,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,27:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=54} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,27:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}8 \\() = \\) {1:NUMERICAL:=0,0261:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}9 \\( ) = \\){1:NUMERICAL:=0,0548:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,27:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=54} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,27:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}8 $) = $ {1:NUMERICAL:=0,0261:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}9 $ ) = ${1:NUMERICAL:=0,0548:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,40 eine Seite mit Rechtschreibfehler auftritt. Man vermutet, dass die aktuelle Rate darunter liegt. Daher werden 78 gedruckte Seiten stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,40 eine Seite mit Rechtschreibfehler auftritt. Man vermutet, dass die aktuelle Rate darunter liegt. Daher werden 78 gedruckte Seiten stichprobenartig betrachtet. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -98,14 +98,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,40:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=78} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,40:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}23 \\() = \\) {1:NUMERICAL:=0,0358:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}24 \\( ) = \\){1:NUMERICAL:=0,0591:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,40:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=78} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,40:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}23 $) = $ {1:NUMERICAL:=0,0358:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}24 $ ) = ${1:NUMERICAL:=0,0591:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Trainerin protokolliert Treffer bei Freiwürfen. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,32 dafür, einen Treffer zu beobachten. Es wird angenommen, dass der wahre Anteil heute kleiner ist. 100 Freiwürfe werden dafür zufällig untersucht. Als maximales Signifikanzniveau werden 10 % festgelegt.</p>",
+    "einleitung": "<p>Eine Trainerin protokolliert Treffer bei Freiwürfen. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,32 dafür, einen Treffer zu beobachten. Es wird angenommen, dass der wahre Anteil heute kleiner ist. 100 Freiwürfe werden dafür zufällig untersucht. Als Signifikanzniveau werden 10 % festgelegt.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -113,14 +113,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,32:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=100} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,32:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}25 \\() = \\) {1:NUMERICAL:=0,0796:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}26 \\( ) = \\){1:NUMERICAL:=0,1180:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,32:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=100} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,32:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}25 $) = $ {1:NUMERICAL:=0,0796:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}26 $ ) = ${1:NUMERICAL:=0,1180:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~100} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,15 tritt eine zu trockene Pflanze auf. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Zur Überprüfung werden 119 Pflanzen zufällig ausgewählt. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit 0,15 tritt eine zu trockene Pflanze auf. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Zur Überprüfung werden 119 Pflanzen zufällig ausgewählt. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -128,14 +128,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,15:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=119} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,15:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}11 \\() = \\) {1:NUMERICAL:=0,0453:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}12 \\( ) = \\){1:NUMERICAL:=0,0798:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,15:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=119} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,15:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}11 $) = $ {1:NUMERICAL:=0,0453:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}12 $ ) = ${1:NUMERICAL:=0,0798:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~119} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 60 % eine zufriedene Person auftritt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. 54 befragte Mitarbeitende werden dafür zufällig untersucht. Als maximales Signifikanzniveau werden 10 % festgelegt.</p>",
+    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 60 % eine zufriedene Person auftritt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. 54 befragte Mitarbeitende werden dafür zufällig untersucht. Als Signifikanzniveau werden 10 % festgelegt.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -143,14 +143,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,60:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=54} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,60:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}27 \\() = \\) {1:NUMERICAL:=0,0877:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}28 \\( ) = \\){1:NUMERICAL:=0,1396:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,60:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=54} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,60:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}27 $) = $ {1:NUMERICAL:=0,0877:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}28 $ ) = ${1:NUMERICAL:=0,1396:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~54} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Fußballspielerin dokumentiert Torschüsse im Training. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 58 % einen Fehlschuss auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 63 Torschüsse stichprobenartig betrachtet. Der Test soll ein Signifikanzniveau von höchstens 10 % einhalten.</p>",
+    "einleitung": "<p>Eine Fußballspielerin dokumentiert Torschüsse im Training. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 58 % einen Fehlschuss auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 63 Torschüsse stichprobenartig betrachtet. Der Test soll ein Signifikanzniveau von 10 % einhalten.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -158,14 +158,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,58:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=63} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,58:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~63} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}31 \\() = \\) {1:NUMERICAL:=0,0997:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}32 \\( ) = \\){1:NUMERICAL:=0,1513:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~63} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,58:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=63} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,58:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~63} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}31 $) = $ {1:NUMERICAL:=0,0997:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}32 $ ) = ${1:NUMERICAL:=0,1513:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~63} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,33 dafür, einen Computer ohne ausreichenden Virenschutz zu beobachten. Man vermutet, dass die aktuelle Rate darunter liegt. Um dies zu überprüfen, betrachtet man 69 Computer. Als maximales Signifikanzniveau werden 10 % festgelegt.</p>",
+    "einleitung": "<p>Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,33 dafür, einen Computer ohne ausreichenden Virenschutz zu beobachten. Man vermutet, dass die aktuelle Rate darunter liegt. Um dies zu überprüfen, betrachtet man 69 Computer. Als Signifikanzniveau werden 10 % festgelegt.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -173,14 +173,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,33:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=69} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,33:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}17 \\() = \\) {1:NUMERICAL:=0,0863:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}18 \\( ) = \\){1:NUMERICAL:=0,1364:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,33:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=69} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,33:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}17 $) = $ {1:NUMERICAL:=0,0863:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}18 $ ) = ${1:NUMERICAL:=0,1364:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Bisherige Daten belegen eine Wahrscheinlichkeit von 46 % dafür, eine im Erstkontakt gelöste Anfrage zu beobachten. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Daher werden 78 Serviceanfragen stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden. Bisherige Daten belegen eine Wahrscheinlichkeit von 46 % dafür, eine im Erstkontakt gelöste Anfrage zu beobachten. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Daher werden 78 Serviceanfragen stichprobenartig betrachtet. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -188,14 +188,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,46:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=78} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,46:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}28 \\() = \\) {1:NUMERICAL:=0,0459:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}29 \\( ) = \\){1:NUMERICAL:=0,0729:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,46:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=78} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,46:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}28 $) = $ {1:NUMERICAL:=0,0459:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}29 $ ) = ${1:NUMERICAL:=0,0729:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~78} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine zufriedene Person zu beobachten, bei 58 %. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Daher werden 69 befragte Mitarbeitende stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine zufriedene Person zu beobachten, bei 58 %. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Daher werden 69 befragte Mitarbeitende stichprobenartig betrachtet. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -203,14 +203,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,58:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=69} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,58:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}32 \\() = \\) {1:NUMERICAL:=0,0341:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}33 \\( ) = \\){1:NUMERICAL:=0,0567:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,58:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=69} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,58:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}32 $) = $ {1:NUMERICAL:=0,0341:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}33 $ ) = ${1:NUMERICAL:=0,0567:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~69} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,40 eine zufriedene Person auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 80 befragte Mitarbeitende stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 0,40 eine zufriedene Person auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 80 befragte Mitarbeitende stichprobenartig betrachtet. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -218,14 +218,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,40:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=80} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,40:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~80} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}24 \\() = \\) {1:NUMERICAL:=0,0417:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}25 \\( ) = \\){1:NUMERICAL:=0,0675:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~80} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,40:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=80} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,40:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~80} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}24 $) = $ {1:NUMERICAL:=0,0417:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}25 $ ) = ${1:NUMERICAL:=0,0675:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~80} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. Bisher nahm man an, dass die Wahrscheinlichkeit, ein Paket mit Gutschein anzutreffen, 64 % beträgt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Zur Überprüfung werden 81 Pakete zufällig ausgewählt. Der Test soll ein Signifikanzniveau von höchstens 5 % einhalten.</p>",
+    "einleitung": "<p>Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. Bisher nahm man an, dass die Wahrscheinlichkeit, ein Paket mit Gutschein anzutreffen, 64 % beträgt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Zur Überprüfung werden 81 Pakete zufällig ausgewählt. Der Test soll ein Signifikanzniveau von 5 % einhalten.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -233,14 +233,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,64:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=81} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,64:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~81} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}44 \\() = \\) {1:NUMERICAL:=0,0462:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}45 \\( ) = \\){1:NUMERICAL:=0,0725:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~81} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,64:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=81} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,64:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~81} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}44 $) = $ {1:NUMERICAL:=0,0462:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}45 $ ) = ${1:NUMERICAL:=0,0725:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~81} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 32 % eine Seite mit Rechtschreibfehler auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 84 gedruckte Seiten stichprobenartig betrachtet. Das Signifikanzniveau soll höchstens 5 % betragen.</p>",
+    "einleitung": "<p>Ein Verlag prüft Drucke auf Rechtschreibfehler. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 32 % eine Seite mit Rechtschreibfehler auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Daher werden 84 gedruckte Seiten stichprobenartig betrachtet. Das Signifikanzniveau soll 5 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -248,14 +248,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,32:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=84} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,32:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~84} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}19 \\() = \\) {1:NUMERICAL:=0,0392:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}20 \\( ) = \\){1:NUMERICAL:=0,0651:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~84} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,32:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=84} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,32:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~84} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}19 $) = $ {1:NUMERICAL:=0,0392:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}20 $ ) = ${1:NUMERICAL:=0,0651:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~84} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 18 % eine zu trockene Pflanze auftritt. Man vermutet, dass die aktuelle Rate darunter liegt. 105 Pflanzen werden dafür zufällig untersucht. Das Signifikanzniveau soll höchstens 10 % betragen.</p>",
+    "einleitung": "<p>Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit 18 % eine zu trockene Pflanze auftritt. Man vermutet, dass die aktuelle Rate darunter liegt. 105 Pflanzen werden dafür zufällig untersucht. Das Signifikanzniveau soll 10 % betragen.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -263,14 +263,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,18:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=105} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,18:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~105} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}13 \\() = \\) {1:NUMERICAL:=0,0806:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}14 \\( ) = \\){1:NUMERICAL:=0,1300:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~105} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,18:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=105} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,18:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~105} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}13 $) = $ {1:NUMERICAL:=0,0806:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}14 $ ) = ${1:NUMERICAL:=0,1300:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~105} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, ein Werkzeug mit Akku zu beobachten, bei 22 %. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Zur Überprüfung werden 124 Werkzeuge zufällig ausgewählt. Als maximales Signifikanzniveau werden 10 % festgelegt.</p>",
+    "einleitung": "<p>Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. Erfahrungsgemäß liegt die Wahrscheinlichkeit, ein Werkzeug mit Akku zu beobachten, bei 22 %. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Zur Überprüfung werden 124 Werkzeuge zufällig ausgewählt. Als Signifikanzniveau werden 10 % festgelegt.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -278,14 +278,14 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,22:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=124} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,22:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~124} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,10:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}20 \\() = \\) {1:NUMERICAL:=0,0671:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}21 \\( ) = \\){1:NUMERICAL:=0,1026:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~124} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,22:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=124} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,22:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~124} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,10:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}20 $) = $ {1:NUMERICAL:=0,0671:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}21 $ ) = ${1:NUMERICAL:=0,1026:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~124} $ ] $."
     ]
   },
   {
-    "einleitung": "<p>Eine Schule dokumentiert Anwesenheiten im Mathekurs. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine Anwesenheit zu beobachten, bei 0,33. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. 103 Teilnahmen werden dafür zufällig untersucht. Der Test soll ein Signifikanzniveau von höchstens 5 % einhalten.</p>",
+    "einleitung": "<p>Eine Schule dokumentiert Anwesenheiten im Mathekurs. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine Anwesenheit zu beobachten, bei 0,33. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. 103 Teilnahmen werden dafür zufällig untersucht. Der Test soll ein Signifikanzniveau von 5 % einhalten.</p>",
     "fragen": [
       "Nullhypothese:",
       "Gegenhypothese:",
@@ -293,10 +293,10 @@
       "Berechnungen:"
     ],
     "antworten": [
-      "\\( H_0: p = \\) {1:NUMERICAL:=0,33:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=103} ]",
-      "\\( H_1: p \\) {1:MC:~=<~>}{1:NUMERICAL:=0,33:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~103} ]",
-      "Gesucht ist das {1:MC:~=größte~kleinste} \\( k \\), so dass \\( P(X \\) {1:MC:~=≤~≥} \\( k) \\) &leq; {1:NUMERICAL:=0,05:0,00} ist.",
-      "\\( P(X \\) {1:MC:~=≤~≥}25 \\() = \\) {1:NUMERICAL:=0,0351:0,0001}<br>\\( P(X \\) {1:MC:~=≤~≥}26 \\( ) = \\){1:NUMERICAL:=0,0559:0,0001}<br>Der Ablehnungsbereich lautet daher \\( [ \\) {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~103} \\( ] \\)."
+      "$ H_0: p = $ {1:NUMERICAL:=0,33:0,00} <br>Annahmebereich: [ {1:MC:~0~=k+1}, &nbsp;&#8230;&nbsp; , {1:MC:~k-1~=103} ]",
+      "$ H_1: p $ {1:MC:~=<~>}{1:NUMERICAL:=0,33:0,00}<br>Ablehnungsbereich: [ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~103} ]",
+      "Gesucht ist das {1:MC:~=größte~kleinste} $ k $, so dass $ P(X $ {1:MC:~=≤~≥} $ k) $ &leq; {1:NUMERICAL:=0,05:0,00} ist.",
+      "$ P(X $ {1:MC:~=≤~≥}25 $) = $ {1:NUMERICAL:=0,0351:0,0001}<br>$ P(X $ {1:MC:~=≤~≥}26 $ ) = ${1:NUMERICAL:=0,0559:0,0001}<br>Der Ablehnungsbereich lautet daher $ [ $ {1:MC:~=0~k}, &nbsp;&#8230;&nbsp; , {1:MC:~=k~103} $ ] $."
     ]
   }
 ]

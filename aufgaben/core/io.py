@@ -7,8 +7,8 @@ from aufgaben.core.models import Task
 
 _CLOZE_PLACEHOLDER_PATTERN = re.compile(r"\{\d+:[^{}]*\}")
 _DECIMAL_COMMA_PATTERN = re.compile(r"(?<=\d),(?=\d)")
-_LATEX_INLINE_PATTERN = re.compile(r"\\\\\((.*?)\\\\\)", re.DOTALL)
-_LATEX_DISPLAY_PATTERN = re.compile(r"\\\\\[(.*?)\\\\\]", re.DOTALL)
+_LATEX_DISPLAY_PATTERN = re.compile(r"\$\$(.*?)\$\$", re.DOTALL)
+_LATEX_INLINE_PATTERN = re.compile(r"(?<!\$)\$((?!\$).*?)\$(?!\$)", re.DOTALL)
 
 
 def _normalize_latex_segment(pattern: re.Pattern[str], text: str) -> str:
@@ -30,8 +30,8 @@ def _normalize_decimal_commas(text: str) -> str:
         return f"__CLOZE_PLACEHOLDER_{len(placeholders) - 1}__"
 
     masked = _CLOZE_PLACEHOLDER_PATTERN.sub(_mask, text)
-    normalized = _normalize_latex_segment(_LATEX_INLINE_PATTERN, masked)
-    normalized = _normalize_latex_segment(_LATEX_DISPLAY_PATTERN, normalized)
+    normalized = _normalize_latex_segment(_LATEX_DISPLAY_PATTERN, masked)
+    normalized = _normalize_latex_segment(_LATEX_INLINE_PATTERN, normalized)
 
     for index, original in enumerate(placeholders):
         normalized = normalized.replace(f"__CLOZE_PLACEHOLDER_{index}__", original)

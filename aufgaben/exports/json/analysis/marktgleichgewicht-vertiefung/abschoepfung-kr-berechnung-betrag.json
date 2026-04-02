@@ -1,182 +1,928 @@
 [
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,82x+6,2 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,068x^2-0,07x+36 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 3 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=3{,}4x+12 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}062x^2-0{,}32x+91. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 86 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=99,4302:0,1}"
-    ]
+      "{1:NUMERICAL:=118,1098:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 3.4,
+            "b": 12.0
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.062,
+            "b": -0.32,
+            "c": 91.0
+          },
+          "eqX": 16.6282,
+          "eqP": 68.536,
+          "x2": 6.7631,
+          "p2": 86.0,
+          "maxX": 25.0,
+          "maxY": 120.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-7,7\\cdot e^{-0,08x}+13 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,05x^2-0,083x+40 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 24 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}023x^2+0{,}076x+3{,}2 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}0085x^2-0{,}042x+14. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 12 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=208,832:0,1}"
-    ]
+      "{1:NUMERICAL:=14,1682:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.023,
+            "b": 0.076,
+            "c": 3.2
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.0085,
+            "b": -0.042,
+            "c": 14.0
+          },
+          "eqX": 16.7379,
+          "eqP": 10.9157,
+          "x2": 13.0664,
+          "p2": 12.0,
+          "maxX": 25.0,
+          "maxY": 17.5
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,0055x^2+0,3x+3,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=30\\cdot e^{-0,071x}-1,7 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 24 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}048x^2+0{,}25x+9{,}1 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}072x^2-0{,}081x+87. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 7 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=33,2031:0,1}"
-    ]
+      "{1:NUMERICAL:=398,5108:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.048,
+            "b": 0.25,
+            "c": 9.1
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.072,
+            "b": -0.081,
+            "c": 87.0
+          },
+          "eqX": 24.1369,
+          "eqP": 43.0985,
+          "x2": 14.8137,
+          "p2": 70.0,
+          "maxX": 35.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,0056x^2+0,064x+7,2 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,6x+14 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 1 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}024x^2+0{,}065x+5{,}2 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=72\\cdot e^{-0{,}061x}-1{,}7. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 56 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=11,2638:0,1}"
-    ]
+      "{1:NUMERICAL:=139,0354:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.024,
+            "b": 0.065,
+            "c": 5.2
+          },
+          "demand": {
+            "type": "exp",
+            "A": 72.0,
+            "rate": 0.061,
+            "c": -1.7
+          },
+          "eqX": 21.5028,
+          "eqP": 17.6946,
+          "x2": 3.6297,
+          "p2": 56.0,
+          "maxX": 30.0,
+          "maxY": 80.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,043x^2+0,05x+5,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,87x+9,3 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 8 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}0046x^2+0{,}078x+36 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}96x+44. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 4 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,0839:0,1}"
-    ]
+      "{1:NUMERICAL:=13,1752:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.0046,
+            "b": 0.078,
+            "c": 36.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.96,
+            "b": 44.0
+          },
+          "eqX": 7.4605,
+          "eqP": 36.8379,
+          "x2": 4.1667,
+          "p2": 40.0,
+          "maxX": 10.0,
+          "maxY": 50.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,81x+6 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,068x^2-0,02x+20 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 19 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}032x^2+0{,}55x+9{,}2 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-1x+60. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 43 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=19,6096:0,1}"
-    ]
+      "{1:NUMERICAL:=91,9349:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.032,
+            "b": 0.55,
+            "c": 9.2
+          },
+          "demand": {
+            "type": "linear",
+            "a": -1.0,
+            "b": 60.0
+          },
+          "eqX": 22.4079,
+          "eqP": 37.5921,
+          "x2": 17.0,
+          "p2": 43.0,
+          "maxX": 30.0,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-5,7\\cdot e^{-0,21x}+8,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,92x+8,2 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 7 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}43x+4{,}4 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}46x+74. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 66 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,0933:0,1}"
-    ]
+      "{1:NUMERICAL:=486,4875:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.43,
+            "b": 4.4
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.46,
+            "b": 74.0
+          },
+          "eqX": 78.2022,
+          "eqP": 38.027,
+          "x2": 17.3913,
+          "p2": 66.0,
+          "maxX": 100.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-7,4\\cdot e^{-0,2x}+13 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,069x^2-0,053x+12 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 11 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}07x^2+0{,}31x+20 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}0058x^2-0{,}06x+65. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 62 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,8851:0,1}"
-    ]
+      "{1:NUMERICAL:=20,7269:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.07,
+            "b": 0.31,
+            "c": 20.0
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.0058,
+            "b": -0.06,
+            "c": 65.0
+          },
+          "eqX": 22.0466,
+          "eqP": 60.8581,
+          "x2": 18.1513,
+          "p2": 62.0,
+          "maxX": 30.0,
+          "maxY": 80.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-4,9\\cdot e^{-0,077x}+7,9 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=37\\cdot e^{-0,22x}-0,71 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 9 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=3{,}2x+7{,}7 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}15x+80. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 78 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=22,4658:0,1}"
-    ]
+      "{1:NUMERICAL:=16,4975:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 3.2,
+            "b": 7.7
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.15,
+            "b": 80.0
+          },
+          "eqX": 21.5821,
+          "eqP": 76.7627,
+          "x2": 13.3333,
+          "p2": 78.0,
+          "maxX": 30.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,065x^2+0,081x+8,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,81x+33 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 29 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}099x^2+0{,}091x+3{,}7 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}076x^2-0{,}073x+19. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 17 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=35,7823:0,1}"
-    ]
+      "{1:NUMERICAL:=21,7736:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.099,
+            "b": 0.091,
+            "c": 3.7
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.076,
+            "b": -0.073,
+            "c": 19.0
+          },
+          "eqX": 8.8935,
+          "eqP": 12.3396,
+          "x2": 4.6721,
+          "p2": 17.0,
+          "maxX": 12.0,
+          "maxY": 25.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,0046x^2+0,2x+8 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,087x^2-0,078x+21 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 15 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}051x^2+0{,}44x+1{,}6 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=69\\cdot e^{-0{,}092x}-7. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 29 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=34,5835:0,1}"
-    ]
+      "{1:NUMERICAL:=99,2335:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.051,
+            "b": 0.44,
+            "c": 1.6
+          },
+          "demand": {
+            "type": "exp",
+            "A": 69.0,
+            "rate": 0.092,
+            "c": -7.0
+          },
+          "eqX": 12.4408,
+          "eqP": 14.9673,
+          "x2": 7.0716,
+          "p2": 29.0,
+          "maxX": 17.5,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,055x^2+0,071x+4,3 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,14x^2-0,051x+9,5 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 7 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}0094x^2+0{,}27x+7 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=72\\cdot e^{-0{,}09x}-0{,}65. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 43 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,2721:0,1}"
-    ]
+      "{1:NUMERICAL:=158,4979:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.0094,
+            "b": 0.27,
+            "c": 7.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 72.0,
+            "rate": 0.09,
+            "c": -0.65
+          },
+          "eqX": 17.3209,
+          "eqP": 14.4968,
+          "x2": 5.5607,
+          "p2": 43.0,
+          "maxX": 25.0,
+          "maxY": 80.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,025x^2+0,1x+7,2 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,95x+23 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 21 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}044x^2+0{,}093x+7{,}7 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}038x^2-0{,}058x+180. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 151 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=19,3028:0,1}"
-    ]
+      "{1:NUMERICAL:=1351,9197:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.044,
+            "b": 0.093,
+            "c": 7.7
+          },
+          "demand": {
+            "type": "quadratic",
+            "a": -0.038,
+            "b": -0.058,
+            "c": 180.0
+          },
+          "eqX": 44.9276,
+          "eqP": 100.6917,
+          "x2": 26.8727,
+          "p2": 151.0,
+          "maxX": 60.0,
+          "maxY": 200.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,033x^2+0,3x+4,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=35\\cdot e^{-0,083x}-0,92 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 32 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=-70\\cdot e^{-0{,}18x}+79 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}36x+61. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 6 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=14,594:0,1}"
-    ]
+      "{1:NUMERICAL:=4,0557:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -70.0,
+            "rate": 0.18,
+            "c": 79.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.36,
+            "b": 61.0
+          },
+          "eqX": 6.8335,
+          "eqP": 58.54,
+          "x2": 2.7778,
+          "p2": 60.0,
+          "maxX": 10.0,
+          "maxY": 70.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-6,9\\cdot e^{-0,047x}+7,9 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,053x^2-0,23x+10 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 8 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=-9{,}2\\cdot e^{-0{,}12x}+27 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-4x+49. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 42 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=19,9064:0,1}"
-    ]
+      "{1:NUMERICAL:=33,5877:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "exp",
+            "A": -9.2,
+            "rate": 0.12,
+            "c": 27.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -4.0,
+            "b": 49.0
+          },
+          "eqX": 6.5482,
+          "eqP": 22.807,
+          "x2": 1.75,
+          "p2": 42.0,
+          "maxX": 10.0,
+          "maxY": 60.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,0051x^2+0,075x+7,1 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,12x^2-0,076x+36 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 13 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}95x+8{,}6 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=94\\cdot e^{-0{,}07x}-7. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 39 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=50,2847:0,1}"
-    ]
+      "{1:NUMERICAL:=155,5877:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.95,
+            "b": 8.6
+          },
+          "demand": {
+            "type": "exp",
+            "A": 94.0,
+            "rate": 0.07,
+            "c": -7.0
+          },
+          "eqX": 15.9582,
+          "eqP": 23.7603,
+          "x2": 10.2093,
+          "p2": 39.0,
+          "maxX": 20.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=1,7x+3,4 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,7x+21 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 17 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=3{,}7x+16 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=77\\cdot e^{-0{,}09x}-2{,}9. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 5 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,4762:0,1}"
-    ]
+      "{1:NUMERICAL:=41,6106:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 3.7,
+            "b": 16.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 77.0,
+            "rate": 0.09,
+            "c": -2.9
+          },
+          "eqX": 6.493,
+          "eqP": 40.0241,
+          "x2": 4.1711,
+          "p2": 50.0,
+          "maxX": 10.0,
+          "maxY": 100.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=0,056x^2+0,1x+2 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,04x^2-0,033x+6,4 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 6 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}56x+1 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=30\\cdot e^{-0{,}036x}-6. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 21 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,5993:0,1}"
-    ]
+      "{1:NUMERICAL:=31,0315:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "linear",
+            "a": 0.56,
+            "b": 1.0
+          },
+          "demand": {
+            "type": "exp",
+            "A": 30.0,
+            "rate": 0.036,
+            "c": -6.0
+          },
+          "eqX": 16.7804,
+          "eqP": 10.397,
+          "x2": 2.9267,
+          "p2": 21.0,
+          "maxX": 25.0,
+          "maxY": 30.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-21\\cdot e^{-0,042x}+28 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,039x^2-0,05x+13 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 12 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}03x^2+0{,}23x+6{,}1 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}23x+48. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 43 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=2,4214:0,1}"
-    ]
+      "{1:NUMERICAL:=43,7225:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.03,
+            "b": 0.23,
+            "c": 6.1
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.23,
+            "b": 48.0
+          },
+          "eqX": 30.4836,
+          "eqP": 40.9888,
+          "x2": 21.7391,
+          "p2": 43.0,
+          "maxX": 40.0,
+          "maxY": 60.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   },
   {
-    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>\\( p_A(x)=-6,4\\cdot e^{-0,053x}+9,9 \\)<br/></p> und die Nachfragefunktion <br/></p>\\( p_N(x)=-0,015x^2-0,099x+34 \\).</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 27 GE festgelegt.</p>",
+    "einleitung": "Gegeben sind die Angebotsfunktion <br/></p>$$ p_A(x)=0{,}038x^2+0{,}099x+2 $$<br/></p> und die Nachfragefunktion <br/></p>$$ p_N(x)=-0{,}93x+120. $$.</p> <p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. Dazu wird auf dem Teilmarkt ein Preis von 93 GE festgelegt.</p>",
     "fragen": [
       "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente."
     ],
     "antworten": [
-      "{1:NUMERICAL:=333,4139:0,1}"
-    ]
+      "{1:NUMERICAL:=398,9092:0,1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-abschoepfung",
+        "params": {
+          "supply": {
+            "type": "quadratic",
+            "a": 0.038,
+            "b": 0.099,
+            "c": 2.0
+          },
+          "demand": {
+            "type": "linear",
+            "a": -0.93,
+            "b": 120.0
+          },
+          "eqX": 43.8067,
+          "eqP": 79.2598,
+          "x2": 29.0323,
+          "p2": 93.0,
+          "maxX": 60.0,
+          "maxY": 140.0
+        },
+        "layout": {
+          "title": "Preisdifferenzierung",
+          "xaxis": {
+            "title": "Menge x"
+          },
+          "yaxis": {
+            "title": "Preis p"
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
   }
 ]

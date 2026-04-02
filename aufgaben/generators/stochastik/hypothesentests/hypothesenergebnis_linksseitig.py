@@ -76,14 +76,14 @@ class HypothesenergebnisLinksseitigGenerator(TaskGenerator):
             questions = [
                 "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
                 (
-                    f"In der Stichprobe werden \\({case.observed_x}\\) {sc.success_plural} festgestellt. "
+                    f"In der Stichprobe werden ${case.observed_x}$ {sc.success_plural} festgestellt. "
                     "Ist von der Null- oder der Gegenhypothese auszugehen?"
                 ),
             ]
 
             decision_options = [
-                "Von der Gegenhypothese \\(H_1\\) ausgehen (\\(H_0\\) verwerfen)",
-                "Von der Nullhypothese \\(H_0\\) ausgehen",
+                "Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)",
+                "Von der Nullhypothese $H_0$ ausgehen",
             ]
             decision_correct = 0 if case.reject_h0 else 1
 

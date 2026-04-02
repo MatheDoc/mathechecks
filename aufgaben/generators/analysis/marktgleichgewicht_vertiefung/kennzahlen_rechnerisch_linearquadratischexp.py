@@ -1,135 +1,12 @@
-import math
 import random
-from collections.abc import Callable
 
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _num_tol
-from aufgaben.generators.analysis.shared_numbers import round_sig, uniform_sig
-
-
-PriceFunction = Callable[[float], float]
-
-
-def _find_first_positive_root(
-    fn: PriceFunction,
-    *,
-    start: float = 0.0,
-    end: float = 120.0,
-    steps: int = 1200,
-    epsilon: float = 1e-7,
-) -> float | None:
-    previous_x = start
-    previous_y = fn(previous_x)
-    if abs(previous_y) < epsilon and previous_x > 0:
-        return previous_x
-
-    for idx in range(1, steps + 1):
-        current_x = start + (end - start) * idx / steps
-        current_y = fn(current_x)
-
-        if abs(current_y) < epsilon and current_x > 0:
-            return current_x
-
-        if previous_y == 0:
-            return previous_x if previous_x > 0 else None
-
-        if previous_y * current_y < 0:
-            left_x, right_x = previous_x, current_x
-            left_y, right_y = previous_y, current_y
-            for _ in range(60):
-                mid_x = 0.5 * (left_x + right_x)
-                mid_y = fn(mid_x)
-                if abs(mid_y) < epsilon:
-                    return mid_x
-                if left_y * mid_y <= 0:
-                    right_x, right_y = mid_x, mid_y
-                else:
-                    left_x, left_y = mid_x, mid_y
-            return 0.5 * (left_x + right_x)
-
-        previous_x, previous_y = current_x, current_y
-
-    return None
-
-
-def _fmt(value: float, decimals: int = 3) -> str:
-    text = f"{round(value, decimals):.{decimals}f}".rstrip("0").rstrip(".")
-    if text in {"-0", ""}:
-        return "0"
-    return text.replace(".", ",")
-
-
-def _build_supply(rng: random.Random) -> tuple[PriceFunction, str, tuple[str, float, float, float]]:
-    model = rng.choice(["linear", "quadratic", "exp"])
-
-    if model == "linear":
-        slope = uniform_sig(rng, 0.18, 2.1)
-        intercept = uniform_sig(rng, 1.2, 9.5)
-        return (
-            lambda x: slope * x + intercept,
-            f"\\( p_A(x)={_fmt(slope)}x+{_fmt(intercept, 2)} \\)",
-            ("linear", slope, intercept, 0.0),
-        )
-
-    if model == "quadratic":
-        a2 = uniform_sig(rng, 0.01, 0.08)
-        a1 = uniform_sig(rng, 0.01, 0.2)
-        a0 = uniform_sig(rng, 1.2, 8.5)
-        return (
-            lambda x: a2 * (x ** 2) + a1 * x + a0,
-            f"\\( p_A(x)={_fmt(a2)}x^2+{_fmt(a1)}x+{_fmt(a0, 2)} \\)",
-            ("quadratic", a2, a1, a0),
-        )
-
-    amplitude = uniform_sig(rng, 5.0, 32.0)
-    rate = uniform_sig(rng, 0.04, 0.35)
-    shift = uniform_sig(rng, 1.0, 12.0)
-    ceiling = round_sig(amplitude + shift)
-    return (
-        lambda x: -amplitude * math.exp(-rate * x) + ceiling,
-        f"\\( p_A(x)=-{_fmt(amplitude, 2)}\\cdot e^{{-{_fmt(rate)}x}}+{_fmt(ceiling, 2)} \\)",
-        ("exp", amplitude, rate, ceiling),
-    )
-
-
-def _build_demand(rng: random.Random, min_price: float) -> tuple[PriceFunction, str, tuple[str, float, float, float]]:
-    model = rng.choice(["linear", "quadratic", "exp"])
-
-    if model == "linear":
-        slope = uniform_sig(rng, 0.2, 2.4)
-        intercept = uniform_sig(rng, min_price + 4.0, min_price + 32.0)
-        return (
-            lambda x: -slope * x + intercept,
-            f"\\( p_N(x)=-{_fmt(slope)}x+{_fmt(intercept, 2)} \\)",
-            ("linear", slope, intercept, 0.0),
-        )
-
-    if model == "quadratic":
-        a2 = uniform_sig(rng, 0.015, 0.14)
-        a1 = uniform_sig(rng, 0.0, 0.26)
-        a0 = uniform_sig(rng, min_price + 4.0, min_price + 36.0)
-        return (
-            lambda x: -(a2 * (x ** 2)) - a1 * x + a0,
-            f"\\( p_N(x)=-{_fmt(a2)}x^2-{_fmt(a1)}x+{_fmt(a0, 2)} \\)",
-            ("quadratic", a2, a1, a0),
-        )
-
-    amplitude = uniform_sig(rng, 6.0, 48.0)
-    rate = uniform_sig(rng, 0.03, 0.25)
-    floor = uniform_sig(rng, -8.0, 2.0)
-    if amplitude + floor <= min_price + 4.0:
-        floor = round_sig(min_price + 5.0 - amplitude)
-    return (
-        lambda x: amplitude * math.exp(-rate * x) + floor,
-        f"\\( p_N(x)={_fmt(amplitude, 2)}\\cdot e^{{-{_fmt(rate)}x}}{_sign_term(floor)} \\)",
-        ("exp", amplitude, rate, floor),
-    )
-
-
-def _sign_term(value: float) -> str:
-    sign = "+" if value >= 0 else "-"
-    return f"{sign}{_fmt(abs(value), 2)}"
+from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _kennzahlen_items_allgemein,
+    _sample_market_params,
+)
 
 
 class MarketEquilibriumKennzahlenRechnerischLQEGenerator(TaskGenerator):
@@ -140,41 +17,39 @@ class MarketEquilibriumKennzahlenRechnerischLQEGenerator(TaskGenerator):
         tasks: list[Task] = []
         used_keys: set[tuple] = set()
 
-        while len(tasks) < count:
-            supply_fn, supply_latex, supply_key = _build_supply(rng)
-            min_price = supply_fn(0.0)
-            if min_price <= 0:
-                continue
+        for _ in range(count):
+            while True:
+                (
+                    _supply_fn,
+                    _demand_fn,
+                    _demand_derivative_fn,
+                    supply_latex,
+                    demand_latex,
+                    market_key,
+                    min_price,
+                    max_price,
+                    sat_quantity,
+                    eq_x,
+                    eq_p,
+                    _x2,
+                    _p2,
+                    _supply_params,
+                    _demand_params,
+                ) = _sample_market_params(rng)
+                if market_key in used_keys:
+                    continue
+                used_keys.add(market_key)
+                break
 
-            demand_fn, demand_latex, demand_key = _build_demand(rng, min_price)
-            max_price = demand_fn(0.0)
-            if max_price <= min_price + 1.0:
-                continue
-
-            sat_quantity = _find_first_positive_root(demand_fn, end=140.0)
-            if sat_quantity is None or not (4.0 <= sat_quantity <= 70.0):
-                continue
-
-            eq_quantity = _find_first_positive_root(
-                lambda x: supply_fn(x) - demand_fn(x),
-                end=min(140.0, max(20.0, sat_quantity * 1.15)),
+            items = _kennzahlen_items_allgemein(
+                min_price=min_price,
+                max_price=max_price,
+                sat_quantity=sat_quantity,
+                eq_quantity=eq_x,
+                eq_price=eq_p,
+                x_tolerance=0.1,
+                y_tolerance=0.1,
             )
-            if eq_quantity is None or not (0.8 <= eq_quantity <= sat_quantity * 0.97):
-                continue
-
-            eq_price = supply_fn(eq_quantity)
-            if not (min_price + 0.15 <= eq_price <= max_price - 0.15):
-                continue
-
-            uniqueness_key = (
-                supply_key,
-                demand_key,
-                round(sat_quantity, 4),
-                round(eq_quantity, 4),
-            )
-            if uniqueness_key in used_keys:
-                continue
-            used_keys.add(uniqueness_key)
 
             tasks.append(
                 Task(
@@ -185,20 +60,8 @@ class MarketEquilibriumKennzahlenRechnerischLQEGenerator(TaskGenerator):
                         f"{demand_latex}"
                         ".</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
-                    fragen=[
-                        "den Mindestangebotspreis.",
-                        "den Höchstpreis.",
-                        "die Sättigungsmenge.",
-                        "die Gleichgewichtsmenge.",
-                        "den Gleichgewichtspreis.",
-                    ],
-                    antworten=[
-                        _num_tol(min_price, tolerance=0.1),
-                        _num_tol(max_price, tolerance=0.1),
-                        _num_tol(sat_quantity, tolerance=0.1),
-                        _num_tol(eq_quantity, tolerance=0.1),
-                        _num_tol(eq_price, tolerance=0.1),
-                    ],
+                    fragen=[question for question, _ in items],
+                    antworten=[answer for _, answer in items],
                 )
             )
 

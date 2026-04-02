@@ -22,7 +22,7 @@ from aufgaben.generators.base import TaskGenerator
 # ── Formatierungshelfer ───────────────────────────────────────────────────
 
 def _fmt(value: float, dec: int) -> str:
-    """Zahl → LaTeX-String mit deutschem Dezimalkomma (für \\( ... \\))."""
+    """Zahl → LaTeX-String mit deutschem Dezimalkomma (für $ ... $)."""
     if dec == 0:
         return str(int(round(value)))
     return f"{value:.{dec}f}".replace(".", "{,}")
@@ -74,7 +74,7 @@ _Q34_OPTION_SETS: tuple[tuple[str, str, str], ...] = (
     ),
     (
         "Keine deutliche Abweichung – der Wert liegt im Bereich"
-        " \\( \\mu \\pm \\sigma \\).",
+        " $ \\mu \\pm \\sigma $.",
         "Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen"
         " außerhalb des Erwartungswerts.",
         "Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei"
@@ -88,21 +88,21 @@ _Q34_OPTION_SETS: tuple[tuple[str, str, str], ...] = (
 
 _INTRO_TPLS: tuple[str, ...] = (
     (
-        "Zufallsgröße \\( {sym} \\): {var_name} in {unit}. "
-        "{ea}: \\( E({sym}_A) = {ma} \\), \\( \\sigma({sym}_A) = {sa} \\); "
-        "{eb}: \\( E({sym}_B) = {mb} \\), \\( \\sigma({sym}_B) = {sb} \\)."
+        "Zufallsgröße $ {sym} $: {var_name} in {unit}. "
+        "{ea}: $ E({sym}_A) = {ma} $, $ \\sigma({sym}_A) = {sa} $; "
+        "{eb}: $ E({sym}_B) = {mb} $, $ \\sigma({sym}_B) = {sb} $."
     ),
     (
         "{var_name} in {unit} wird für {ea} und {eb} als Zufallsgröße"
-        " \\( {sym} \\) modelliert. "
-        "Für {ea}: \\( E({sym}_A) = {ma} \\), \\( \\sigma({sym}_A) = {sa} \\). "
-        "Für {eb}: \\( E({sym}_B) = {mb} \\), \\( \\sigma({sym}_B) = {sb} \\)."
+        " $ {sym} $ modelliert. "
+        "Für {ea}: $ E({sym}_A) = {ma} $, $ \\sigma({sym}_A) = {sa} $. "
+        "Für {eb}: $ E({sym}_B) = {mb} $, $ \\sigma({sym}_B) = {sb} $."
     ),
     (
         "Für den Vergleich von {ea} und {eb} liegen folgende Kennzahlen der"
-        " Zufallsgröße \\( {sym} \\) ({var_name}, in {unit}) vor: "
-        "\\( E({sym}_A) = {ma} \\), \\( \\sigma({sym}_A) = {sa} \\), "
-        "\\( E({sym}_B) = {mb} \\), \\( \\sigma({sym}_B) = {sb} \\)."
+        " Zufallsgröße $ {sym} $ ({var_name}, in {unit}) vor: "
+        "$ E({sym}_A) = {ma} $, $ \\sigma({sym}_A) = {sa} $, "
+        "$ E({sym}_B) = {mb} $, $ \\sigma({sym}_B) = {sb} $."
     ),
 )
 

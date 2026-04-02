@@ -65,8 +65,8 @@ class MethodenVierfelderErstellenOhneUnabhGenerator(TaskGenerator):
 
             intro = (
                 f"<p>{scenario.intro}</p>"
-                f"<p>\\(A\\): {scenario.event_a}<br>"
-                f"\\(B\\): {scenario.event_b}</p>"
+                f"<p>$A$: {scenario.event_a}<br>"
+                f"$B$: {scenario.event_b}</p>"
                 "<p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>"
             )
 

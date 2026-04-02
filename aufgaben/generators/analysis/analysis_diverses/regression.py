@@ -90,34 +90,34 @@ def _numerical_placeholder(value: float, tolerance: float, decimals: int) -> str
 def _antwort_regression(coeffs: list[float], art: str) -> str:
     if art == "linear":
         return (
-            f"\\( y = \\){_numerical_placeholder(coeffs[0], 0.01, 2)}"
-            f"\\( x + \\){_numerical_placeholder(coeffs[1], 0.01, 2)}"
+            f"$ y = ${_numerical_placeholder(coeffs[0], 0.01, 2)}"
+            f"$ x + ${_numerical_placeholder(coeffs[1], 0.01, 2)}"
         )
     if art == "quadratisch":
         return (
-            f"\\( y = \\){_numerical_placeholder(coeffs[0], 0.01, 2)}"
-            f"\\( x^2 + \\){_numerical_placeholder(coeffs[1], 0.01, 2)}"
-            f"\\( x + \\){_numerical_placeholder(coeffs[2], 0.01, 2)}"
+            f"$ y = ${_numerical_placeholder(coeffs[0], 0.01, 2)}"
+            f"$ x^2 + ${_numerical_placeholder(coeffs[1], 0.01, 2)}"
+            f"$ x + ${_numerical_placeholder(coeffs[2], 0.01, 2)}"
         )
     if art == "kubisch":
         return (
-            f"\\( y = \\){_numerical_placeholder(coeffs[0], 0.01, 2)}"
-            f"\\( x^3 + \\){_numerical_placeholder(coeffs[1], 0.01, 2)}"
-            f"\\( x^2 + \\){_numerical_placeholder(coeffs[2], 0.01, 2)}"
-            f"\\( x + \\){_numerical_placeholder(coeffs[3], 0.01, 2)}"
+            f"$ y = ${_numerical_placeholder(coeffs[0], 0.01, 2)}"
+            f"$ x^3 + ${_numerical_placeholder(coeffs[1], 0.01, 2)}"
+            f"$ x^2 + ${_numerical_placeholder(coeffs[2], 0.01, 2)}"
+            f"$ x + ${_numerical_placeholder(coeffs[3], 0.01, 2)}"
         )
     return (
-        f"\\( y = \\){_numerical_placeholder(coeffs[0], 0.01, 2)}"
-        f"\\( \\cdot exp( \\){_numerical_placeholder(coeffs[1], 0.01, 2)}\\( x) \\)"
+        f"$ y = ${_numerical_placeholder(coeffs[0], 0.01, 2)}"
+        f"$ \\cdot exp( ${_numerical_placeholder(coeffs[1], 0.01, 2)}$ x) $"
     )
 
 
 def _make_table(x_values: list[float], y_values: list[float]) -> str:
-    header = "    <tr><td>\\( x \\)</td>" + "".join(
-        f"<td>\\( {_fmt_number(x, 2)} \\)</td>" for x in x_values
+    header = "    <tr><td>$ x $</td>" + "".join(
+        f"<td>$ {_fmt_number(x, 2)} $</td>" for x in x_values
     ) + "</tr>"
-    row = "    <tr><td>\\( y \\)</td>" + "".join(
-        f"<td>\\( {_fmt_number(y, 2)} \\)</td>" for y in y_values
+    row = "    <tr><td>$ y $</td>" + "".join(
+        f"<td>$ {_fmt_number(y, 2)} $</td>" for y in y_values
     ) + "</tr>"
     return f"<table class=\"TabelleEinleitung\">\n{header}\n{row}\n</table>"
 
@@ -193,11 +193,11 @@ class LinearRegressionGenerator(TaskGenerator):
                         einleitung=f"Gegeben sind die folgenden Wertepaare:{table}",
                         fragen=[
                             frage_funktion,
-                            "Bestimmen Sie das Bestimmtheitsmaß \\( R^2 \\).",
+                            "Bestimmen Sie das Bestimmtheitsmaß $ R^2 $.",
                         ],
                         antworten=[
                             antwort_funktion,
-                            f"\\( R^2 = \\){_numerical_placeholder(r2, 0.001, 3)}",
+                            f"$ R^2 = ${_numerical_placeholder(r2, 0.001, 3)}",
                         ],
                     )
                 )

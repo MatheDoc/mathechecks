@@ -1,6 +1,6 @@
 import random
 
-from aufgaben.core.tolerances import axis_tick_step
+from aufgaben.core.tolerances import axis_tick_step, nice_axis_max
 from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
@@ -28,36 +28,47 @@ def _axis_tick_step(span: float) -> float:
 
 
 def _latex_supply(slope: float, intercept: float) -> str:
-    return f"\\( p_A(x)={_fmt_number(slope, max_decimals=2)}x{_signed(intercept, max_decimals=1)} \\)"
+    return f"$$ p_A(x)={_fmt_number(slope, max_decimals=2)}x{_signed(intercept, max_decimals=1)} $$"
 
 
 def _latex_demand(slope_abs: float, intercept: float) -> str:
-    return f"\\( p_N(x)=-{_fmt_number(slope_abs, max_decimals=2)}x{_signed(intercept, max_decimals=1)} \\)"
+    return f"$$ p_N(x)=-{_fmt_number(slope_abs, max_decimals=2)}x{_signed(intercept, max_decimals=1)}. $$"
 
 
 def _sample_linear_market_parameters(
     rng: random.Random,
 ) -> tuple[float, float, float, float, float, float, float]:
     while True:
-        supply_slope = uniform_sig(rng, 0.1, 4.5)
-        demand_slope = uniform_sig(rng, 0.2, 5.8)
-        min_price = uniform_sig(rng, 1.0, 15.0)
-        max_price = uniform_sig(rng, min_price + 4.0, 45.0)
+        supply_slope = uniform_sig(rng, 0.1, 4.0)
+        demand_slope = uniform_sig(rng, 0.1, 4.0)
+        min_price = uniform_sig(rng, 1.0, 80.0)
+        max_price = uniform_sig(rng, min_price + 5.0, min_price + 300.0)
 
         sat_quantity = max_price / demand_slope
         eq_quantity = (max_price - min_price) / (supply_slope + demand_slope)
         eq_price = supply_slope * eq_quantity + min_price
 
-        if 1.0 <= eq_quantity <= 35.0 and 4.0 <= sat_quantity <= 60.0 and eq_price > 0:
-            return (
-                supply_slope,
-                demand_slope,
-                min_price,
-                max_price,
-                sat_quantity,
-                eq_quantity,
-                eq_price,
-            )
+        if eq_quantity <= 1.5 or sat_quantity <= 3.0:
+            continue
+        if eq_price <= 0 or max_price > 950.0:
+            continue
+        if sat_quantity > 950.0:
+            continue
+        # Gleichgewicht im sichtbaren Bereich (20-80 % der Achsen)
+        if eq_quantity > sat_quantity * 0.8:
+            continue
+        if eq_price > max_price * 0.85:
+            continue
+
+        return (
+            supply_slope,
+            demand_slope,
+            min_price,
+            max_price,
+            sat_quantity,
+            eq_quantity,
+            eq_price,
+        )
 
 
 def _kennzahlen_items(
@@ -100,8 +111,8 @@ def _build_market_visual(
     eq_quantity: float,
     eq_price: float,
 ) -> dict:
-    max_x = max(10.0, sat_quantity * 1.12, eq_quantity * 1.35)
-    max_y = max(max_price, eq_price) * 1.15
+    max_x = nice_axis_max(sat_quantity * 1.08)
+    max_y = nice_axis_max(max_price * 1.1)
 
     return {
         "type": "plot",

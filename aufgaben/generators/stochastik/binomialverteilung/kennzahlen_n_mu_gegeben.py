@@ -42,7 +42,7 @@ class BinomialKennzahlenNMuGegebenGenerator(TaskGenerator):
                 ),
                 (
                     f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt. "
-                    f"Der Erwartungswert liegt bei \\(\\mu = {_de(mu, 2)}\\)."
+                    f"Der Erwartungswert liegt bei $\\mu = {_de(mu, 2)}$."
                 ),
             ]
 
@@ -55,8 +55,8 @@ class BinomialKennzahlenNMuGegebenGenerator(TaskGenerator):
                             "anzutreffen (in\u00a0% auf eine ganze Zahl gerundet)."
                         ),
                         rng.choice([
-                            "Bestimmen Sie die Standardabweichung \\(\\sigma\\) der Zufallsgröße (auf 2 NKS gerundet).",
-                            "Berechnen Sie \\(\\sigma\\) (auf 2 NKS gerundet).",
+                            "Bestimmen Sie die Standardabweichung $\\sigma$ der Zufallsgröße (auf 2 NKS gerundet).",
+                            "Berechnen Sie $\\sigma$ (auf 2 NKS gerundet).",
                         ]),
                     ],
                     antworten=[

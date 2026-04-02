@@ -46,8 +46,8 @@ class MarketEquilibriumKennzahlenGraphischLinearGenerator(TaskGenerator):
                 eq_price=eq_price,
             )
 
-            axis_max_x = max(10.0, sat_quantity * 1.12, eq_quantity * 1.35)
-            axis_max_y = max(max_price, eq_price) * 1.15
+            axis_max_x = visual["spec"]["layout"]["xaxis"]["range"][1]
+            axis_max_y = visual["spec"]["layout"]["yaxis"]["range"][1]
             tolerance_x = graph_read_tolerance_from_span(axis_max_x)
             tolerance_y = graph_read_tolerance_from_span(axis_max_y)
 

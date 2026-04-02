@@ -29,11 +29,11 @@ def _to_cdf_difference(a: int, b: int) -> tuple[int, int]:
 def _cdf_answer_from_interval(a: int, b: int) -> str:
     upper_k, lower_k = _to_cdf_difference(a=a, b=b)
     return (
-        "\\( P(X\\leq \\)"
+        "$ P(X\\leq $"
         f"{numerical(upper_k, tolerance=0, decimals=0)}"
-        "\\( ) - P(X\\leq \\)"
+        "$ ) - P(X\\leq $"
         f"{numerical(lower_k, tolerance=0, decimals=0)}"
-        "\\( ) \\)"
+        "$ ) $"
     )
 
 
@@ -95,8 +95,8 @@ class BinomialBereichsparameterKumuliertGenerator(TaskGenerator):
 
             intro = (
                 f"{rng.choice(intro_variants)}</p> <p>Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese "
-                "ausschließlich mithilfe von Ausdrücken der Form \\( P(X \\leq k) \\) dargestellt wird. "
-                "Tritt ein angezeigter Term in der Lösung nicht auf, setzen Sie \\( k=-1 \\)."
+                "ausschließlich mithilfe von Ausdrücken der Form $ P(X \\leq k) $ dargestellt wird. "
+                "Tritt ein angezeigter Term in der Lösung nicht auf, setzen Sie $ k=-1 $."
             )
 
             questions = [

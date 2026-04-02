@@ -360,8 +360,8 @@ def _u_latex(case: _PLCCase) -> str:
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
     poly = _poly_latex(case.coeffs, variable="t")
     if abs(case.offset) < 1e-12:
-        return f"\\( u(t)=({poly}){exp_part} \\)"
-    return f"\\( u(t)=({poly}){exp_part}{_signed(case.offset, 2)} \\)"
+        return f"$ u(t)=({poly}){exp_part} $"
+    return f"$ u(t)=({poly}){exp_part}{_signed(case.offset, 2)} $"
 
 
 def _du_latex(case: _PLCCase, order: int) -> str:
@@ -375,7 +375,7 @@ def _du_latex(case: _PLCCase, order: int) -> str:
         name = "u''(t)"
     else:
         name = "u'''(t)"
-    return f"\\( {name}=({poly}){exp_part} \\)"
+    return f"$ {name}=({poly}){exp_part} $"
 
 
 def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> float:
@@ -596,8 +596,8 @@ def _ekg_latex(case: _EKGCase) -> tuple[str, str]:
     e_poly = f"{_fmt(e_factor * case.a3, 3)}t^3{_signed(e_factor * case.b2, 3)}t^2"
     k_poly = f"{_fmt(case.scale_k * case.a3, 3)}t^3{_signed(case.scale_k * case.b2, 3)}t^2"
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
-    e_ltx = f"\\( E(t)=({e_poly}){exp_part} \\)"
-    k_ltx = f"\\( K(t)=({k_poly}){exp_part}{_signed(case.fix_cost, 2)} \\)"
+    e_ltx = f"$ E(t)=({e_poly}){exp_part} $"
+    k_ltx = f"$ K(t)=({k_poly}){exp_part}{_signed(case.fix_cost, 2)} $"
     return e_ltx, k_ltx
 
 

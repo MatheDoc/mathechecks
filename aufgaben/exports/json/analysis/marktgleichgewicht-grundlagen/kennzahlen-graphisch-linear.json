@@ -9,11 +9,11 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,3:1,25}",
-      "{1:NUMERICAL:=24:1,25}",
-      "{1:NUMERICAL:=5,7143:0,5}",
-      "{1:NUMERICAL:=3,4774:0,5}",
-      "{1:NUMERICAL:=9,3949:1,25}"
+      "{1:NUMERICAL:=17:5}",
+      "{1:NUMERICAL:=110:5}",
+      "{1:NUMERICAL:=35,4839:2,5}",
+      "{1:NUMERICAL:=23,3083:2,5}",
+      "{1:NUMERICAL:=37,7444:5}"
     ],
     "visual": {
       "type": "plot",
@@ -21,10 +21,10 @@
         "type": "market-curves",
         "params": {
           "supplySlope": 0.89,
-          "demandSlope": 4.2,
-          "minPrice": 6.300000000000001,
-          "maxPrice": 24.0,
-          "maxX": 10.0
+          "demandSlope": 3.1,
+          "minPrice": 17.0,
+          "maxPrice": 110.0,
+          "maxX": 40.0
         },
         "points": 220,
         "layout": {
@@ -33,14 +33,14 @@
             "title": "Menge x",
             "range": [
               0,
-              10.0
+              40.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              27.599999999999998
+              140.0
             ]
           }
         },
@@ -60,22 +60,22 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,9:1,25}",
-      "{1:NUMERICAL:=16:1,25}",
-      "{1:NUMERICAL:=5,1613:0,5}",
-      "{1:NUMERICAL:=3,3134:0,5}",
-      "{1:NUMERICAL:=5,7284:1,25}"
+      "{1:NUMERICAL:=20:5}",
+      "{1:NUMERICAL:=64:5}",
+      "{1:NUMERICAL:=256:12,5}",
+      "{1:NUMERICAL:=48,8889:12,5}",
+      "{1:NUMERICAL:=51,7778:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "market-curves",
         "params": {
-          "supplySlope": 0.25,
-          "demandSlope": 3.1,
-          "minPrice": 4.9,
-          "maxPrice": 16.0,
-          "maxX": 10.0
+          "supplySlope": 0.65,
+          "demandSlope": 0.25,
+          "minPrice": 20.0,
+          "maxPrice": 64.0,
+          "maxX": 300.0
         },
         "points": 220,
         "layout": {
@@ -84,14 +84,14 @@
             "title": "Menge x",
             "range": [
               0,
-              10.0
+              300.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              18.4
+              80.0
             ]
           }
         },
@@ -111,11 +111,62 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,6:2,5}",
-      "{1:NUMERICAL:=42:2,5}",
-      "{1:NUMERICAL:=12,3529:0,5}",
-      "{1:NUMERICAL:=9,0537:0,5}",
-      "{1:NUMERICAL:=11,2174:2,5}"
+      "{1:NUMERICAL:=1,2:1,25}",
+      "{1:NUMERICAL:=30:1,25}",
+      "{1:NUMERICAL:=150:6,25}",
+      "{1:NUMERICAL:=27,9612:6,25}",
+      "{1:NUMERICAL:=24,4078:1,25}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.8300000000000001,
+          "demandSlope": 0.2,
+          "minPrice": 1.2000000000000002,
+          "maxPrice": 30.0,
+          "maxX": 175.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              175.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              35.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=23:5}",
+      "{1:NUMERICAL:=90:5}",
+      "{1:NUMERICAL:=39,1304:2,5}",
+      "{1:NUMERICAL:=23,8434:2,5}",
+      "{1:NUMERICAL:=35,1601:5}"
     ],
     "visual": {
       "type": "plot",
@@ -123,10 +174,10 @@
         "type": "market-curves",
         "params": {
           "supplySlope": 0.51,
-          "demandSlope": 3.4000000000000004,
-          "minPrice": 6.6000000000000005,
-          "maxPrice": 42.0,
-          "maxX": 13.83529411764706
+          "demandSlope": 2.3000000000000003,
+          "minPrice": 23.0,
+          "maxPrice": 90.0,
+          "maxX": 50.0
         },
         "points": 220,
         "layout": {
@@ -135,14 +186,14 @@
             "title": "Menge x",
             "range": [
               0,
-              13.83529411764706
+              50.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              48.3
+              100.0
             ]
           }
         },
@@ -162,124 +213,22 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,9:1,25}",
-      "{1:NUMERICAL:=17:1,25}",
-      "{1:NUMERICAL:=34:2,5}",
-      "{1:NUMERICAL:=12,6042:2,5}",
-      "{1:NUMERICAL:=10,6979:1,25}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.46,
-          "demandSlope": 0.5,
-          "minPrice": 4.9,
-          "maxPrice": 17.0,
-          "maxX": 38.080000000000005
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              38.080000000000005
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              19.549999999999997
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=3:0,5}",
-      "{1:NUMERICAL:=9,7:0,5}",
-      "{1:NUMERICAL:=16,1667:1,25}",
-      "{1:NUMERICAL:=7,6136:1,25}",
-      "{1:NUMERICAL:=5,1318:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.28,
-          "demandSlope": 0.6,
-          "minPrice": 3.0,
-          "maxPrice": 9.700000000000001,
-          "maxX": 18.10666666666667
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              18.10666666666667
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              11.155000000000001
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=2,7:2,5}",
       "{1:NUMERICAL:=33:2,5}",
-      "{1:NUMERICAL:=5,8929:0,5}",
-      "{1:NUMERICAL:=4,4559:0,5}",
-      "{1:NUMERICAL:=8,0471:2,5}"
+      "{1:NUMERICAL:=56:2,5}",
+      "{1:NUMERICAL:=18,6667:1,25}",
+      "{1:NUMERICAL:=6,4426:1,25}",
+      "{1:NUMERICAL:=36,6723:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "market-curves",
         "params": {
-          "supplySlope": 1.2000000000000002,
-          "demandSlope": 5.6000000000000005,
-          "minPrice": 2.7,
-          "maxPrice": 33.0,
-          "maxX": 10.0
+          "supplySlope": 0.5700000000000001,
+          "demandSlope": 3.0,
+          "minPrice": 33.0,
+          "maxPrice": 56.0,
+          "maxX": 25.0
         },
         "points": 220,
         "layout": {
@@ -288,14 +237,14 @@
             "title": "Menge x",
             "range": [
               0,
-              10.0
+              25.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              37.949999999999996
+              70.0
             ]
           }
         },
@@ -315,22 +264,22 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,3:1,25}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=11,7647:0,5}",
-      "{1:NUMERICAL:=9,397:0,5}",
-      "{1:NUMERICAL:=4,0251:1,25}"
+      "{1:NUMERICAL:=8,6:1,25}",
+      "{1:NUMERICAL:=23:1,25}",
+      "{1:NUMERICAL:=25,8427:1,25}",
+      "{1:NUMERICAL:=11,1628:1,25}",
+      "{1:NUMERICAL:=13,0651:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "market-curves",
         "params": {
-          "supplySlope": 0.29,
-          "demandSlope": 1.7000000000000002,
-          "minPrice": 1.3,
-          "maxPrice": 20.0,
-          "maxX": 13.176470588235293
+          "supplySlope": 0.4,
+          "demandSlope": 0.89,
+          "minPrice": 8.6,
+          "maxPrice": 23.0,
+          "maxX": 30.0
         },
         "points": 220,
         "layout": {
@@ -339,320 +288,14 @@
             "title": "Menge x",
             "range": [
               0,
-              13.176470588235293
+              30.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              23.0
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=5,4:1,25}",
-      "{1:NUMERICAL:=25:1,25}",
-      "{1:NUMERICAL:=26,3158:1,25}",
-      "{1:NUMERICAL:=18,4906:1,25}",
-      "{1:NUMERICAL:=7,434:1,25}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.11,
-          "demandSlope": 0.9500000000000001,
-          "minPrice": 5.4,
-          "maxPrice": 25.0,
-          "maxX": 29.473684210526315
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              29.473684210526315
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              28.749999999999996
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=1,7:0,5}",
-      "{1:NUMERICAL:=8:0,5}",
-      "{1:NUMERICAL:=4,4444:0,5}",
-      "{1:NUMERICAL:=2,8:0,5}",
-      "{1:NUMERICAL:=2,96:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.45,
-          "demandSlope": 1.8,
-          "minPrice": 1.7000000000000002,
-          "maxPrice": 8.0,
-          "maxX": 10.0
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              10.0
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              9.2
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=5,5:2,5}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=41,2371:2,5}",
-      "{1:NUMERICAL:=24,2958:2,5}",
-      "{1:NUMERICAL:=16,4331:2,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.45,
-          "demandSlope": 0.97,
-          "minPrice": 5.5,
-          "maxPrice": 40.0,
-          "maxX": 46.185567010309285
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              46.185567010309285
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              46.0
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=1,8:0,62}",
-      "{1:NUMERICAL:=15:0,62}",
-      "{1:NUMERICAL:=55,5556:2,5}",
-      "{1:NUMERICAL:=15,9036:2,5}",
-      "{1:NUMERICAL:=10,706:0,62}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.56,
-          "demandSlope": 0.27,
-          "minPrice": 1.8,
-          "maxPrice": 15.0,
-          "maxX": 62.22222222222222
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              62.22222222222222
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              17.25
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=1:0,5}",
-      "{1:NUMERICAL:=7,2:0,5}",
-      "{1:NUMERICAL:=8,3721:0,5}",
-      "{1:NUMERICAL:=4,6617:0,5}",
-      "{1:NUMERICAL:=3,191:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.47000000000000003,
-          "demandSlope": 0.86,
-          "minPrice": 1.0,
-          "maxPrice": 7.2,
-          "maxX": 10.0
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              10.0
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              8.28
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=1,5:0,5}",
-      "{1:NUMERICAL:=9:0,5}",
-      "{1:NUMERICAL:=16,6667:1,25}",
-      "{1:NUMERICAL:=1,6892:1,25}",
-      "{1:NUMERICAL:=8,0878:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 3.9000000000000004,
-          "demandSlope": 0.54,
-          "minPrice": 1.5,
-          "maxPrice": 9.0,
-          "maxX": 18.666666666666664
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              18.666666666666664
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              10.35
+              30.0
             ]
           }
         },
@@ -673,21 +316,21 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=7,2727:0,5}",
-      "{1:NUMERICAL:=3,5714:0,5}",
-      "{1:NUMERICAL:=20,3571:2,5}"
+      "{1:NUMERICAL:=50:2,5}",
+      "{1:NUMERICAL:=100:5}",
+      "{1:NUMERICAL:=40:5}",
+      "{1:NUMERICAL:=30:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "market-curves",
         "params": {
-          "supplySlope": 2.9000000000000004,
-          "demandSlope": 5.5,
+          "supplySlope": 0.5,
+          "demandSlope": 0.5,
           "minPrice": 10.0,
-          "maxPrice": 40.0,
-          "maxX": 10.0
+          "maxPrice": 50.0,
+          "maxX": 120.0
         },
         "points": 220,
         "layout": {
@@ -696,14 +339,14 @@
             "title": "Menge x",
             "range": [
               0,
-              10.0
+              120.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              46.0
+              60.0
             ]
           }
         },
@@ -723,11 +366,62 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=9,4:1,25}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=45,4545:2,5}",
-      "{1:NUMERICAL:=14,3243:2,5}",
-      "{1:NUMERICAL:=13,6973:1,25}"
+      "{1:NUMERICAL:=1:12,5}",
+      "{1:NUMERICAL:=170:12,5}",
+      "{1:NUMERICAL:=278,6885:12,5}",
+      "{1:NUMERICAL:=134,127:12,5}",
+      "{1:NUMERICAL:=88,1825:12,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.65,
+          "demandSlope": 0.61,
+          "minPrice": 1.0,
+          "maxPrice": 170.0,
+          "maxX": 350.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              350.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              200.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=22:2,5}",
+      "{1:NUMERICAL:=44:2,5}",
+      "{1:NUMERICAL:=157,1429:6,25}",
+      "{1:NUMERICAL:=37,931:6,25}",
+      "{1:NUMERICAL:=33,3793:2,5}"
     ],
     "visual": {
       "type": "plot",
@@ -735,10 +429,10 @@
         "type": "market-curves",
         "params": {
           "supplySlope": 0.3,
-          "demandSlope": 0.44,
-          "minPrice": 9.4,
-          "maxPrice": 20.0,
-          "maxX": 50.909090909090914
+          "demandSlope": 0.28,
+          "minPrice": 22.0,
+          "maxPrice": 44.0,
+          "maxX": 175.0
         },
         "points": 220,
         "layout": {
@@ -747,14 +441,14 @@
             "title": "Menge x",
             "range": [
               0,
-              50.909090909090914
+              175.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              23.0
+              50.0
             ]
           }
         },
@@ -774,11 +468,470 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=9,5:1,25}",
-      "{1:NUMERICAL:=21:1,25}",
-      "{1:NUMERICAL:=21,2121:1,25}",
-      "{1:NUMERICAL:=10:1,25}",
-      "{1:NUMERICAL:=11,1:1,25}"
+      "{1:NUMERICAL:=45:5}",
+      "{1:NUMERICAL:=67:5}",
+      "{1:NUMERICAL:=55,8333:2,5}",
+      "{1:NUMERICAL:=12,7168:2,5}",
+      "{1:NUMERICAL:=51,7399:5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.53,
+          "demandSlope": 1.2000000000000002,
+          "minPrice": 45.0,
+          "maxPrice": 67.0,
+          "maxX": 70.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              70.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              80.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=6:0,62}",
+      "{1:NUMERICAL:=14:0,62}",
+      "{1:NUMERICAL:=48,2759:2,5}",
+      "{1:NUMERICAL:=7,5472:2,5}",
+      "{1:NUMERICAL:=11,8113:0,62}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.77,
+          "demandSlope": 0.29,
+          "minPrice": 6.0,
+          "maxPrice": 14.0,
+          "maxX": 60.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              60.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              17.5
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=7:1,25}",
+      "{1:NUMERICAL:=19:1,25}",
+      "{1:NUMERICAL:=42,2222:2,5}",
+      "{1:NUMERICAL:=8,5714:2,5}",
+      "{1:NUMERICAL:=15,1429:1,25}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.9500000000000001,
+          "demandSlope": 0.45,
+          "minPrice": 7.0,
+          "maxPrice": 19.0,
+          "maxX": 50.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              50.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              25.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8,7:2,5}",
+      "{1:NUMERICAL:=59:2,5}",
+      "{1:NUMERICAL:=131,1111:6,25}",
+      "{1:NUMERICAL:=49,802:6,25}",
+      "{1:NUMERICAL:=36,5891:2,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.56,
+          "demandSlope": 0.45,
+          "minPrice": 8.700000000000001,
+          "maxPrice": 59.0,
+          "maxX": 150.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              150.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              70.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=2,6:5}",
+      "{1:NUMERICAL:=87:5}",
+      "{1:NUMERICAL:=511,7647:25}",
+      "{1:NUMERICAL:=115,6164:25}",
+      "{1:NUMERICAL:=67,3452:5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.56,
+          "demandSlope": 0.17,
+          "minPrice": 2.6,
+          "maxPrice": 87.0,
+          "maxX": 600.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              600.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              100.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5,4:5}",
+      "{1:NUMERICAL:=89:5}",
+      "{1:NUMERICAL:=117,1053:5}",
+      "{1:NUMERICAL:=67,9675:5}",
+      "{1:NUMERICAL:=37,3447:5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.47000000000000003,
+          "demandSlope": 0.76,
+          "minPrice": 5.4,
+          "maxPrice": 89.0,
+          "maxX": 140.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              140.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              100.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=10:5}",
+      "{1:NUMERICAL:=96:5}",
+      "{1:NUMERICAL:=24:1,25}",
+      "{1:NUMERICAL:=17,2691:1,25}",
+      "{1:NUMERICAL:=26,9237:5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.98,
+          "demandSlope": 4.0,
+          "minPrice": 10.0,
+          "maxPrice": 96.0,
+          "maxX": 30.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              30.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              120.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=44:5}",
+      "{1:NUMERICAL:=70:5}",
+      "{1:NUMERICAL:=24,1379:1,25}",
+      "{1:NUMERICAL:=8,6667:1,25}",
+      "{1:NUMERICAL:=44,8667:5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.1,
+          "demandSlope": 2.9000000000000004,
+          "minPrice": 44.0,
+          "maxPrice": 70.0,
+          "maxX": 30.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              30.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              80.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=79:12,5}",
+      "{1:NUMERICAL:=250:12,5}",
+      "{1:NUMERICAL:=735,2941:50}",
+      "{1:NUMERICAL:=267,1875:50}",
+      "{1:NUMERICAL:=159,1562:12,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "market-curves",
+        "params": {
+          "supplySlope": 0.3,
+          "demandSlope": 0.34,
+          "minPrice": 79.0,
+          "maxPrice": 250.0,
+          "maxX": 800.0
+        },
+        "points": 220,
+        "layout": {
+          "title": "Angebots- und Nachfragefunktion",
+          "xaxis": {
+            "title": "Menge x",
+            "range": [
+              0,
+              800.0
+            ]
+          },
+          "yaxis": {
+            "title": "Preis p",
+            "range": [
+              0,
+              300.0
+            ]
+          }
+        },
+        "width": 900,
+        "height": 520,
+        "scale": 1
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
+    "fragen": [
+      "den Mindestangebotspreis.",
+      "den Höchstpreis.",
+      "die Sättigungsmenge.",
+      "die Gleichgewichtsmenge.",
+      "den Gleichgewichtspreis."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=10:5}",
+      "{1:NUMERICAL:=80:5}",
+      "{1:NUMERICAL:=89,8876:5}",
+      "{1:NUMERICAL:=66,6667:5}",
+      "{1:NUMERICAL:=20,6667:5}"
     ],
     "visual": {
       "type": "plot",
@@ -786,10 +939,10 @@
         "type": "market-curves",
         "params": {
           "supplySlope": 0.16,
-          "demandSlope": 0.99,
-          "minPrice": 9.5,
-          "maxPrice": 21.0,
-          "maxX": 23.757575757575758
+          "demandSlope": 0.89,
+          "minPrice": 10.0,
+          "maxPrice": 80.0,
+          "maxX": 100.0
         },
         "points": 220,
         "layout": {
@@ -798,14 +951,14 @@
             "title": "Menge x",
             "range": [
               0,
-              23.757575757575758
+              100.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              24.15
+              100.0
             ]
           }
         },
@@ -825,22 +978,22 @@
       "den Gleichgewichtspreis."
     ],
     "antworten": [
-      "{1:NUMERICAL:=8:1,25}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=43,4783:2,5}",
-      "{1:NUMERICAL:=10,9091:2,5}",
-      "{1:NUMERICAL:=14,9818:1,25}"
+      "{1:NUMERICAL:=50:5}",
+      "{1:NUMERICAL:=68:5}",
+      "{1:NUMERICAL:=106,25:5}",
+      "{1:NUMERICAL:=17,6471:5}",
+      "{1:NUMERICAL:=56,7059:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "market-curves",
         "params": {
-          "supplySlope": 0.64,
-          "demandSlope": 0.46,
-          "minPrice": 8.0,
-          "maxPrice": 20.0,
-          "maxX": 48.69565217391305
+          "supplySlope": 0.38,
+          "demandSlope": 0.64,
+          "minPrice": 50.0,
+          "maxPrice": 68.0,
+          "maxX": 120.0
         },
         "points": 220,
         "layout": {
@@ -849,167 +1002,14 @@
             "title": "Menge x",
             "range": [
               0,
-              48.69565217391305
+              120.0
             ]
           },
           "yaxis": {
             "title": "Preis p",
             "range": [
               0,
-              23.0
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=13:2,5}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=54,7945:2,5}",
-      "{1:NUMERICAL:=5,9603:2,5}",
-      "{1:NUMERICAL:=35,649:2,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 3.8000000000000003,
-          "demandSlope": 0.73,
-          "minPrice": 13.0,
-          "maxPrice": 40.0,
-          "maxX": 61.369863013698634
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              61.369863013698634
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              46.0
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=9,8:2,5}",
-      "{1:NUMERICAL:=32:2,5}",
-      "{1:NUMERICAL:=5,9259:0,5}",
-      "{1:NUMERICAL:=3,9643:0,5}",
-      "{1:NUMERICAL:=10,5929:2,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.2,
-          "demandSlope": 5.4,
-          "minPrice": 9.8,
-          "maxPrice": 32.0,
-          "maxX": 10.0
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              10.0
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              36.8
-            ]
-          }
-        },
-        "width": 900,
-        "height": 520,
-        "scale": 1
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt die Graphen der Angebots- und Nachfragefunktion. Bestimmen Sie",
-    "fragen": [
-      "den Mindestangebotspreis.",
-      "den Höchstpreis.",
-      "die Sättigungsmenge.",
-      "die Gleichgewichtsmenge.",
-      "den Gleichgewichtspreis."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=1:0,5}",
-      "{1:NUMERICAL:=8,7:0,5}",
-      "{1:NUMERICAL:=19,7727:1,25}",
-      "{1:NUMERICAL:=7,4038:1,25}",
-      "{1:NUMERICAL:=5,4423:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "market-curves",
-        "params": {
-          "supplySlope": 0.6000000000000001,
-          "demandSlope": 0.44,
-          "minPrice": 1.0,
-          "maxPrice": 8.700000000000001,
-          "maxX": 22.145454545454548
-        },
-        "points": 220,
-        "layout": {
-          "title": "Angebots- und Nachfragefunktion",
-          "xaxis": {
-            "title": "Menge x",
-            "range": [
-              0,
-              22.145454545454548
-            ]
-          },
-          "yaxis": {
-            "title": "Preis p",
-            "range": [
-              0,
-              10.005
+              80.0
             ]
           }
         },
