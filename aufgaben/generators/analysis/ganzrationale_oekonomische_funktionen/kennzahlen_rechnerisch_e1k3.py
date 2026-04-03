@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _align_equations,
     _erlös_latex,
     _kennzahlen_items,
     _poly3_latex,
@@ -43,12 +44,13 @@ class EconomicPolynomialKennzahlenGenerator(TaskGenerator):
 
             intro = (
                 "Es liegen folgende Informationen vor:"
-                f"</p> <p>{_erlös_latex(price)}"
-                f"</p> <p>{_poly3_latex('K', k3, k2, k1, k0)}"
-                f"</p> <p>{_poly3_latex('G', -k3, -k2, price - k1, -k0)}"
-                f"</p> <p>{_preis_latex(price)}"
-                f"</p> <p>Die Kapazitätsgrenze beträgt {capacity} Mengeneinheiten."
-                "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                f"{_align_equations([
+                    _erlös_latex(price),
+                    _poly3_latex('K', k3, k2, k1, k0),
+                    _poly3_latex('G', -k3, -k2, price - k1, -k0),
+                    _preis_latex(price),
+                ])}"
+                f"Die Kapazitätsgrenze beträgt {capacity} Mengeneinheiten. Bestimmen Sie (auf 2 NKS gerundet)"
             )
 
             items = _kennzahlen_items(

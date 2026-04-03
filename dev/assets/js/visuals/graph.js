@@ -97,9 +97,6 @@ export function buildGraphFigure({
         hovermode: "closest",
         legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.25 },
         margin: { t: 40, r: 50, b: 40, l: 60 },
-        dragmode: false,
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
     };
 
     return { data, layout };

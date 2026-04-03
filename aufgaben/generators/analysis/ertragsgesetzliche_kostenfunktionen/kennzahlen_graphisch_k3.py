@@ -68,7 +68,7 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
             y_low_raw = min(y_values)
             y_high_raw = max(y_values)
             span = max(5.0, y_high_raw - y_low_raw)
-            y_min = round(max(0.0, y_low_raw - 0.12 * span), 1)
+            y_min = 0.0
             y_max = round(y_high_raw + 0.15 * span, 1)
             x_tolerance = graph_read_tolerance_from_span(max_x)
             y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
@@ -105,26 +105,6 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                         "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
                         "xaxis": {"title": "Menge x", "range": [0, max_x]},
                         "yaxis": {"title": "Kosten", "range": [y_min, y_max]},
-                        "shapes": [
-                            {
-                                "type": "line",
-                                "x0": x_wende,
-                                "x1": x_wende,
-                                "y0": y_min,
-                                "y1": y_max,
-                                "line": {"color": "#374151", "dash": "dot", "width": 1},
-                            }
-                        ],
-                        "annotations": [
-                            {
-                                "x": x_wende,
-                                "y": y_min,
-                                "yref": "y",
-                                "text": "x_W",
-                                "showarrow": False,
-                                "yshift": -14,
-                            }
-                        ],
                     },
                     "width": 900,
                     "height": 520,

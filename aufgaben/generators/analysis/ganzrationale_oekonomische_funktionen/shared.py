@@ -1,7 +1,6 @@
 import math
 import random
 
-from aufgaben.core.tolerances import axis_tick_step
 from aufgaben.generators.analysis.shared_numbers import randint_sig, uniform_sig
 
 
@@ -35,29 +34,50 @@ def _signed_term(value: float, variable: str) -> str:
     return f"{sign}{_format_number(magnitude)}{variable}"
 
 
+def _display_equation(expression: str) -> str:
+    return f"$$ {expression} $$"
+
+
+def _align_equations(expressions: list[str]) -> str:
+    lines: list[str] = []
+    for expression in expressions:
+        cleaned = expression.strip()
+        if "=" in cleaned:
+            left, right = cleaned.split("=", 1)
+            lines.append(f"{left}&={right}")
+        else:
+            lines.append(cleaned)
+    joined = r" \\ ".join(lines)
+    return f"$$ \\begin{{align*}} {joined} \\end{{align*}} $$"
+
+
 def _poly3_latex(label: str, a3: float, a2: float, a1: float, a0: float) -> str:
     return (
-        f"$ {label}(x)={_format_number(a3)}x^3"
+        f"{label}(x)={_format_number(a3)}x^3"
         f"{_signed_term(a2, 'x^2')}"
         f"{_signed_term(a1, 'x')}"
-        f"{_signed_term(a0, '')} $"
+        f"{_signed_term(a0, '')}"
     )
 
 
 def _erlös_latex(price: float) -> str:
-    return f"$ E(x)={_format_number(price)}x $"
+    return f"E(x)={_format_number(price)}x"
 
 
 def _preis_latex(price: float) -> str:
-    return f"$ p(x)={_format_number(price)} $"
+    return f"p(x)={_format_number(price)}"
 
 
 def _build_intro(given_expressions: list[str]) -> str:
-    parts = ["Gegeben:"]
-    for expression in given_expressions:
-        parts.append(f"</p> <p>{expression}")
-    parts.append("</p> <p>Bestimmen Sie die Koeffizienten der angegebenen Funktionen.")
-    return "".join(parts)
+    if len(given_expressions) == 1:
+        equations = _display_equation(given_expressions[0])
+    else:
+        equations = _align_equations(given_expressions)
+    return (
+        "Gegeben:"
+        f"{equations}"
+        "Bestimmen Sie die Koeffizienten der angegebenen Funktionen."
+    )
 
 
 def _is_ertragsgesetzliche_k(k3: float, k2: float, k1: float, k0: float) -> bool:
@@ -155,10 +175,6 @@ def _num_tol(value: float, tolerance: float = 0.1, decimals: int = 4) -> str:
     # Keep quarter-step tolerances like 1.25 exact in exported NUMERICAL answers.
     tolerance_text = _format_number(round(tolerance, 3))
     return f"{{1:NUMERICAL:={value_text}:{tolerance_text}}}"
-
-
-def _axis_tick_step(span: float) -> float:
-    return axis_tick_step(span)
 
 
 def _g_value(x: float, k3: float, k2: float, k1: float, k0: float, price: float) -> float:
@@ -339,11 +355,11 @@ def _kennzahlen_items(
 
 
 def _erlös_quadratic_latex(a2: float, a1: float) -> str:
-    return f"$ E(x)={_format_number(a2)}x^2{_signed_term(a1, 'x')} $"
+    return f"E(x)={_format_number(a2)}x^2{_signed_term(a1, 'x')}"
 
 
 def _preis_linear_latex(a2: float, a1: float) -> str:
-    return f"$ p(x)={_format_number(a2)}x{_signed_term(a1, '')} $"
+    return f"p(x)={_format_number(a2)}x{_signed_term(a1, '')}"
 
 
 def _e2k3_kennzahlen_items(

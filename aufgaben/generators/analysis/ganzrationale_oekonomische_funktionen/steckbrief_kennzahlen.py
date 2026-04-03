@@ -76,8 +76,11 @@ class EconomicPolynomialSteckbriefKennzahlenGenerator(TaskGenerator):
                 used_keys.add(key)
                 break
 
-            intro = "Es liegen folgende Informationen vor:" + "".join(
-                f"</p> <p>{part}" for part in info_parts
+            intro = (
+                "Es liegen folgende Informationen vor:"
+                "<ul>"
+                + "".join(f"<li>{part}</li>" for part in info_parts)
+                + "</ul>"
             )
 
             answer = (

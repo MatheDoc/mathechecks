@@ -5,10 +5,14 @@ from aufgaben.core.placeholders import numerical_analysis_calc
 from aufgaben.generators.base import TaskGenerator
 
 
+def _display_equation(expression: str) -> str:
+    return f"$$ {expression} $$"
+
+
 def _linear_function_latex(a: int, b: int) -> str:
     if b < 0:
-        return f"$ f(x)={a}x{b} $"
-    return f"$ f(x)={a}x+{b} $"
+        return f"f(x)={a}x{b}"
+    return f"f(x)={a}x+{b}"
 
 
 def _signed_term(value: int, variable: str) -> str:
@@ -29,7 +33,7 @@ def _quadratic_function_latex(a: int, b: int, c: int) -> str:
         c_term = str(c)
     else:
         c_term = ""
-    return f"$ f(x)={a}x^2{b_term}{c_term} $"
+    return f"f(x)={a}x^2{b_term}{c_term}"
 
 
 class LinearNullstelleGenerator(TaskGenerator):
@@ -54,7 +58,10 @@ class LinearNullstelleGenerator(TaskGenerator):
 
             tasks.append(
                 Task(
-                    einleitung=f"Gegeben: {_linear_function_latex(a, b)}",
+                    einleitung=(
+                        "Gegeben:"
+                        f"{_display_equation(_linear_function_latex(a, b))}"
+                    ),
                     fragen=["Bestimmen Sie die Nullstelle der Funktion $ f $."],
                     antworten=[f"$x=${numerical_analysis_calc(x0)}"],
                 )
@@ -91,7 +98,10 @@ class QuadraticNullstelleGenerator(TaskGenerator):
 
             tasks.append(
                 Task(
-                    einleitung=f"Gegeben: {_quadratic_function_latex(a, b, c)}",
+                    einleitung=(
+                        "Gegeben:"
+                        f"{_display_equation(_quadratic_function_latex(a, b, c))}"
+                    ),
                     fragen=[
                         "Bestimmen Sie die Nullstellen der Funktion $ f $ und geben Sie sie in aufsteigender Reihenfolge an."
                     ],

@@ -356,12 +356,29 @@ def _sample_plc_case(rng: random.Random, *, mode: str, forced_form: str | None =
     raise ValueError("Konnte keine geeigneten Produktlebenszyklus-Parameter erzeugen.")
 
 
+def _display_equation(expression: str) -> str:
+    return f"$$ {expression} $$"
+
+
+def _align_equations(expressions: list[str]) -> str:
+    lines: list[str] = []
+    for expression in expressions:
+        cleaned = expression.strip().rstrip(".")
+        if "=" in cleaned:
+            left, right = cleaned.split("=", 1)
+            lines.append(f"{left}&={right}")
+        else:
+            lines.append(cleaned)
+    joined = r" \\ ".join(lines)
+    return f"$$ \\begin{{align*}} {joined} \\end{{align*}} $$"
+
+
 def _u_latex(case: _PLCCase) -> str:
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
     poly = _poly_latex(case.coeffs, variable="t")
     if abs(case.offset) < 1e-12:
-        return f"$ u(t)=({poly}){exp_part} $"
-    return f"$ u(t)=({poly}){exp_part}{_signed(case.offset, 2)} $"
+        return f"u(t)=({poly}){exp_part}"
+    return f"u(t)=({poly}){exp_part}{_signed(case.offset, 2)}"
 
 
 def _du_latex(case: _PLCCase, order: int) -> str:
@@ -375,7 +392,7 @@ def _du_latex(case: _PLCCase, order: int) -> str:
         name = "u''(t)"
     else:
         name = "u'''(t)"
-    return f"$ {name}=({poly}){exp_part} $"
+    return f"{name}=({poly}){exp_part}"
 
 
 def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> float:
@@ -518,10 +535,10 @@ class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Die Funktion</p> <p>"
-                        f"{_u_latex(case)}"
-                        "</p> <p>gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.</p> <p>"
-                        f"{lifecycle_text}</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                        "Die Funktion"
+                        f"{_display_equation(_u_latex(case))}"
+                        "gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an."
+                        f"{lifecycle_text}" "Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[q for q, _ in items],
                     antworten=[a_ for _, a_ in items],
@@ -596,8 +613,8 @@ def _ekg_latex(case: _EKGCase) -> tuple[str, str]:
     e_poly = f"{_fmt(e_factor * case.a3, 3)}t^3{_signed(e_factor * case.b2, 3)}t^2"
     k_poly = f"{_fmt(case.scale_k * case.a3, 3)}t^3{_signed(case.scale_k * case.b2, 3)}t^2"
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
-    e_ltx = f"$ E(t)=({e_poly}){exp_part} $"
-    k_ltx = f"$ K(t)=({k_poly}){exp_part}{_signed(case.fix_cost, 2)} $"
+    e_ltx = f"E(t)=({e_poly}){exp_part}"
+    k_ltx = f"K(t)=({k_poly}){exp_part}{_signed(case.fix_cost, 2)}"
     return e_ltx, k_ltx
 
 
@@ -680,14 +697,11 @@ class ProduktlebenszyklusEKGZyklusGemischtGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Die Funktionen </p> <p>"
-                        f"{e_ltx}"
-                        "</p> <p></p> <p>und</p> <p>"
-                        f"{k_ltx}"
-                        "</p> <p>geben den jährlichen Erlös und die jährlichen Kosten seit der Einführung "
+                        "Die Funktionen"
+                        f"{_align_equations([e_ltx, k_ltx])}"
+                        "geben den jährlichen Erlös und die jährlichen Kosten seit der Einführung "
                         "eines Produkts an. "
-                        f"Der Lebenszyklus des Produkts endet nach {_fmt(case.t_end, 2)} Jahren. "
-                        "Bestimmen Sie (auf 2 NKS gerundet)"
+                        f"Der Lebenszyklus des Produkts endet nach {_fmt(case.t_end, 2)} Jahren. Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[q for q, _ in items],
                     antworten=[a_ for _, a_ in items],
@@ -920,16 +934,9 @@ class ProduktlebenszyklusKennzahlenRechnerischGesamtGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Die Funktion</p> <p>"
-                        f"{_u_latex(case)}"
-                        "</p> <p>gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an. "
-                        "Weitere Informationen:</p> <p>"
-                        f"{_du_latex(case, 1)}"
-                        "</p> <p>"
-                        f"{_du_latex(case, 2)}"
-                        "</p> <p>"
-                        f"{_du_latex(case, 3)}"
-                        "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                        "Die Funktion $u(t)$ gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an. Gegeben sind:"
+                        f"{_align_equations([_u_latex(case), _du_latex(case, 1), _du_latex(case, 2), _du_latex(case, 3)])}"
+                        "Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[q for q, _ in items],
                     antworten=[a_ for _, a_ in items],

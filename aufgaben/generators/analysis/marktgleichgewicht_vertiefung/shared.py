@@ -2,7 +2,7 @@ import math
 import random
 from collections.abc import Callable
 
-from aufgaben.core.tolerances import axis_tick_step, nice_axis_max
+from aufgaben.core.tolerances import nice_axis_max
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
     _fmt_number,
     _num_tol,
@@ -14,52 +14,61 @@ from aufgaben.generators.analysis.shared_numbers import round_sig, uniform_sig
 PriceFunction = Callable[[float], float]
 
 
-def _axis_tick_step(span: float) -> float:
-    return axis_tick_step(span)
+def _align_equations(expressions: list[str]) -> str:
+    lines: list[str] = []
+    for expression in expressions:
+        cleaned = expression.strip().rstrip(".")
+        if "=" in cleaned:
+            left, right = cleaned.split("=", 1)
+            lines.append(f"{left}&={right}")
+        else:
+            lines.append(cleaned)
+    joined = r" \\ ".join(lines)
+    return f"$$ \\begin{{align*}} {joined} \\end{{align*}} $$"
 
 
 def _latex_supply_linear(slope: float, intercept: float) -> str:
-    return f"$ p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)} $"
+    return f"p_A(x)={_fmt_number(slope, max_decimals=3)}x{_signed(intercept, max_decimals=2)}"
 
 
 def _latex_demand_quadratic(a2: float, a1: float, a0: float) -> str:
     a2_text = _fmt_number(abs(a2), max_decimals=3)
     a1_text = _fmt_number(abs(a1), max_decimals=3)
     return (
-        "$ p_N(x)="
+        "p_N(x)="
         f"-{a2_text}x^2"
         f"-{a1_text}x"
-        f"+{_fmt_number(a0, max_decimals=2)} $"
+        f"+{_fmt_number(a0, max_decimals=2)}"
     )
 
 
 def _latex_supply_quadratic(a2: float, a1: float, a0: float) -> str:
     return (
-        "$ p_A(x)="
+        "p_A(x)="
         f"{_fmt_number(a2, max_decimals=3)}x^2"
         f"+{_fmt_number(a1, max_decimals=3)}x"
-        f"+{_fmt_number(a0, max_decimals=2)} $"
+        f"+{_fmt_number(a0, max_decimals=2)}"
     )
 
 
 def _latex_supply_exp(amplitude: float, rate: float, ceiling: float) -> str:
     return (
-        "$ p_A(x)="
+        "p_A(x)="
         f"-{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
-        f"+{_fmt_number(ceiling, max_decimals=2)} $"
+        f"+{_fmt_number(ceiling, max_decimals=2)}"
     )
 
 
 def _latex_demand_linear(slope_abs: float, intercept: float) -> str:
-    return f"$ p_N(x)=-{_fmt_number(slope_abs, max_decimals=3)}x+{_fmt_number(intercept, max_decimals=2)} $"
+    return f"p_N(x)=-{_fmt_number(slope_abs, max_decimals=3)}x+{_fmt_number(intercept, max_decimals=2)}"
 
 
 def _latex_demand_exp(amplitude: float, rate: float, floor: float) -> str:
     floor_sign = _signed(floor, max_decimals=2)
     return (
-        "$ p_N(x)="
+        "p_N(x)="
         f"{_fmt_number(amplitude, max_decimals=2)}\\cdot e^{{-{_fmt_number(rate, max_decimals=3)}x}}"
-        f"{floor_sign} $"
+        f"{floor_sign}"
     )
 
 
@@ -286,14 +295,6 @@ def _sample_market_params(
 
 def _market_x_values(max_x: float, points: int = 280) -> list[float]:
     return [round(max_x * idx / (points - 1), 3) for idx in range(points)]
-
-
-def _demand_value(demand_fn: PriceFunction, x: float) -> float:
-    return demand_fn(x)
-
-
-def _supply_value(supply_fn: PriceFunction, x: float) -> float:
-    return supply_fn(x)
 
 
 def _consumer_surplus(demand_fn: PriceFunction, eq_x: float, eq_p: float) -> float:

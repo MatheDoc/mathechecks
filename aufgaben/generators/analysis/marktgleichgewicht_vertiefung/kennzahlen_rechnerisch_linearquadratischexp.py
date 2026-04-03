@@ -4,6 +4,7 @@ from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _num_tol
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _align_equations,
     _kennzahlen_items_allgemein,
     _sample_market_params,
 )
@@ -54,11 +55,9 @@ class MarketEquilibriumKennzahlenRechnerischLQEGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebotsfunktion <br/></p>"
-                        f"{supply_latex}"
-                        "<br/></p> und die Nachfragefunktion <br/></p>"
-                        f"{demand_latex}"
-                        ".</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        f"{_align_equations([supply_latex, demand_latex])}"
+                        "Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[question for question, _ in items],
                     antworten=[answer for _, answer in items],

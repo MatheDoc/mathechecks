@@ -4,6 +4,7 @@ from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _fmt_number
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _align_equations,
     _consumer_surplus,
     _num_tol,
     _producer_surplus,
@@ -51,14 +52,10 @@ class MarketEquilibriumRentenBestimmungPRKRGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebotsfunktion <br/></p>"
-                        f"{supply_latex}"
-                        "<br/></p> und die Nachfragefunktion <br/></p>"
-                        f"{demand_latex}"
-                        ".</p> "
-                        f"<p> Die Gleichgewichtsmenge beträgt {_fmt_number(eq_x)} ME "
-                        f"und der Gleichgewichtspreis {_fmt_number(eq_p)} GE.</p> "
-                        "<p>Bestimmen Sie (auf 2 NKS gerundet)"
+                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        f"{_align_equations([supply_latex, demand_latex])}"
+                        f"Die Gleichgewichtsmenge beträgt {_fmt_number(eq_x)} ME "
+                        f"und der Gleichgewichtspreis {_fmt_number(eq_p)} GE. Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[
                         "die Konsumentenrente.",
