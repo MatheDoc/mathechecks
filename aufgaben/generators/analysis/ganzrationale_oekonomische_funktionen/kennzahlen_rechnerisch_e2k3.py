@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _align_equations,
     _e2k3_kennzahlen_items,
     _erlös_quadratic_latex,
     _poly3_latex,
@@ -43,11 +44,13 @@ class EconomicPolynomialKennzahlenRechnerischE2K3Generator(TaskGenerator):
 
             intro = (
                 "Es liegen folgende Informationen vor:"
-                f"</p> <p>{_erlös_quadratic_latex(a2, a1)}"
-                f"</p> <p>{_poly3_latex('K', k3, k2, k1, k0)}"
-                f"</p> <p>{_poly3_latex('G', -k3, a2 - k2, a1 - k1, -k0)}"
-                f"</p> <p>{_preis_linear_latex(a2, a1)}"
-                "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                f"{_align_equations([
+                    _erlös_quadratic_latex(a2, a1),
+                    _poly3_latex('K', k3, k2, k1, k0),
+                    _poly3_latex('G', -k3, a2 - k2, a1 - k1, -k0),
+                    _preis_linear_latex(a2, a1),
+                ])}"
+                "Bestimmen Sie (auf 2 NKS gerundet)"
             )
 
             items = _e2k3_kennzahlen_items(

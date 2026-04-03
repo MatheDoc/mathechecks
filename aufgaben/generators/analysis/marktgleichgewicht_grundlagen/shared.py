@@ -1,6 +1,6 @@
 import random
 
-from aufgaben.core.tolerances import axis_tick_step, nice_axis_max
+from aufgaben.core.tolerances import nice_axis_max
 from aufgaben.generators.analysis.shared_numbers import uniform_sig
 
 
@@ -23,16 +23,25 @@ def _num_tol(value: float, tolerance: float, decimals: int = 4) -> str:
     return f"{{1:NUMERICAL:={value_text}:{tol_text}}}"
 
 
-def _axis_tick_step(span: float) -> float:
-    return axis_tick_step(span)
+def _align_equations(expressions: list[str]) -> str:
+    lines: list[str] = []
+    for expression in expressions:
+        cleaned = expression.strip().rstrip(".")
+        if "=" in cleaned:
+            left, right = cleaned.split("=", 1)
+            lines.append(f"{left}&={right}")
+        else:
+            lines.append(cleaned)
+    joined = r" \\ ".join(lines)
+    return f"$$ \\begin{{align*}} {joined} \\end{{align*}} $$"
 
 
 def _latex_supply(slope: float, intercept: float) -> str:
-    return f"$$ p_A(x)={_fmt_number(slope, max_decimals=2)}x{_signed(intercept, max_decimals=1)} $$"
+    return f"p_A(x)={_fmt_number(slope, max_decimals=2)}x{_signed(intercept, max_decimals=1)}"
 
 
 def _latex_demand(slope_abs: float, intercept: float) -> str:
-    return f"$$ p_N(x)=-{_fmt_number(slope_abs, max_decimals=2)}x{_signed(intercept, max_decimals=1)}. $$"
+    return f"p_N(x)=-{_fmt_number(slope_abs, max_decimals=2)}x{_signed(intercept, max_decimals=1)}"
 
 
 def _sample_linear_market_parameters(

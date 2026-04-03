@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
+    _align_equations,
     _fmt_number,
     _latex_demand,
     _latex_supply,
@@ -71,12 +72,9 @@ class MarketEquilibriumUngleichgewichtBestimmungGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebotsfunktion <br/></p>"
-                        f"{_latex_supply(supply_slope, min_price)}"
-                        "<br/></p> und die Nachfragefunktion <br/></p>"
-                        f"{_latex_demand(demand_slope, max_price)}"
-                        ".</p> "
-                        f"<p>Auf dem Markt wird ein Preis von {_fmt_number(market_price, max_decimals=0)} GE festgelegt."
+                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        f"{_align_equations([_latex_supply(supply_slope, min_price), _latex_demand(demand_slope, max_price)])}"
+                        f"Auf dem Markt wird ein Preis von {_fmt_number(market_price, max_decimals=0)} GE festgelegt."
                     ),
                     fragen=[
                         "Geben Sie die Marktsituation an.",

@@ -179,8 +179,6 @@ export function buildBaumdiagrammFigure(opts = {}) {
         annotations: [...edgeAnnotations, ...leafAnnotations],
         margin: { l: 20, r: 20, t: titel ? 100 : 20, b: 20 },
         dragmode: false,
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
     };
     if (titel) {
         layout.title = { text: titel, y: 0.85 };

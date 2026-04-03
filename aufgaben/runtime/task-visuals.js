@@ -1,5 +1,6 @@
 import { buildBaumdiagrammFigure } from "../../dev/assets/js/visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../dev/assets/js/visuals/histogramm.js";
+import { plotlyRender } from "../../dev/assets/js/visuals/plotly-defaults.js";
 
 function toNumber(value, fallback) {
     const numeric = Number(value);
@@ -95,7 +96,7 @@ function buildPlotlyFigure(spec) {
         }
 
         figure.data.push(
-            { x, y: gk, mode: "lines", name: "GK(x)", line: { color: "#1f77b4" } },
+            { x, y: gk, mode: "lines", name: "K(x)", line: { color: "#1f77b4" } },
             { x, y: k, mode: "lines", name: "k(x)", line: { color: "#d62728" } },
             { x, y: kv, mode: "lines", name: "kv(x)", line: { color: "#2ca02c" } }
         );
@@ -128,8 +129,8 @@ function buildPlotlyFigure(spec) {
         const eqY = supplySlope * eqX + minPrice;
 
         figure.data.push(
-            { x, y: supply, mode: "lines", name: "Angebot p_A(x)", line: { color: "#d62728" } },
-            { x, y: demand, mode: "lines", name: "Nachfrage p_N(x)", line: { color: "#1f77b4" } }
+            { x, y: supply, mode: "lines", name: "pA(x)", line: { color: "#d62728" } },
+            { x, y: demand, mode: "lines", name: "pN(x)", line: { color: "#1f77b4" } }
         );
 
         figure.layout = {
@@ -475,13 +476,11 @@ export function renderVisual(task, wrapper) {
         return;
     }
 
-    window.Plotly.newPlot(
+    plotlyRender(
         plotContainer,
         figure.data,
         {
             ...figure.layout,
-            dragmode: false,
-            template: "plotly_white",
             legend: {
                 orientation: "h",
                 x: 0.5,
@@ -491,13 +490,5 @@ export function renderVisual(task, wrapper) {
             },
             margin: { l: 40, r: 20, t: 35, b: 90 },
         },
-        {
-            responsive: true,
-            displaylogo: false,
-            scrollZoom: false,
-            staticPlot: false,
-            doubleClick: false,
-            displayModeBar: false,
-        }
     );
 }

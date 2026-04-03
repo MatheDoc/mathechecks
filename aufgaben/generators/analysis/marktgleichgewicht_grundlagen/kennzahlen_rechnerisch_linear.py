@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import (
+    _align_equations,
     _kennzahlen_items,
     _latex_demand,
     _latex_supply,
@@ -37,11 +38,9 @@ class MarketEquilibriumKennzahlenRechnerischLinearGenerator(TaskGenerator):
                 break
 
             intro = (
-                "Gegeben sind die Angebotsfunktion <br/></p>"
-                f"{_latex_supply(supply_slope, min_price)}"
-                "<br/></p> und die Nachfragefunktion <br/></p>"
-                f"{_latex_demand(demand_slope, max_price)}"
-                "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                "Gegeben sind die Angebots- und Nachfragefunktion:"
+                f"{_align_equations([_latex_supply(supply_slope, min_price), _latex_demand(demand_slope, max_price)])}"
+                "Bestimmen Sie (auf 2 NKS gerundet)"
             )
 
             items = _kennzahlen_items(

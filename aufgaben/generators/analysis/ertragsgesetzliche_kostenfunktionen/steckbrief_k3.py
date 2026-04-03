@@ -187,8 +187,11 @@ class ErtragsgesetzlicheKostenSteckbriefK3Generator(TaskGenerator):
 
                 used.add(coeff_key)
 
-                intro = "Es liegen folgende Informationen vor:" + "".join(
-                    f"</p> <p>{part}" for part in intro_parts
+                intro = (
+                    "Es liegen folgende Informationen vor:"
+                    "<ul>"
+                    + "".join(f"<li>{part}</li>" for part in intro_parts)
+                    + "</ul>"
                 )
 
                 answer = (

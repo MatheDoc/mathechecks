@@ -78,8 +78,6 @@ export function buildHistogrammEinzelnFigure({
         yaxis: { title: "P(X = k)", range: autoY ? undefined : [0, 1] },
         bargap: 0,
         dragmode: false,
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
     };
 
     return { data, layout };
@@ -147,8 +145,6 @@ export function buildHistogrammKumuliertFigure({
         bargap: 0,
         dragmode: false,
         shapes: shapes.length > 0 ? shapes : undefined,
-        paper_bgcolor: "rgba(0,0,0,0)",
-        plot_bgcolor: "rgba(0,0,0,0)",
     };
 
     return { data, layout };

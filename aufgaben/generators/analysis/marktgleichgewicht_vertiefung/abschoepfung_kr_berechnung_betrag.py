@@ -6,6 +6,7 @@ from aufgaben.core.tolerances import nice_axis_max
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _fmt_number
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _align_equations,
     _find_root_in_interval,
     _num_tol,
     _sample_market_params,
@@ -45,19 +46,19 @@ def _build_supply_from_params(params: dict) -> tuple[callable, str]:
     spec_type = params["type"]
     if spec_type == "linear":
         a, b = float(params["a"]), float(params["b"])
-        return lambda x: a * x + b, f"$$ p_A(x)={_fmt_sig(a)}x{_signed_sig(b)} $$"
+        return lambda x: a * x + b, f"p_A(x)={_fmt_sig(a)}x{_signed_sig(b)}"
 
     if spec_type == "quadratic":
         a, b, c = float(params["a"]), float(params["b"]), float(params["c"])
         return (
             lambda x: a * (x ** 2) + b * x + c,
-            f"$$ p_A(x)={_fmt_sig(a)}x^2+{_fmt_sig(b)}x+{_fmt_sig(c)} $$",
+            f"p_A(x)={_fmt_sig(a)}x^2+{_fmt_sig(b)}x+{_fmt_sig(c)}",
         )
 
     a, rate, c = float(params["A"]), float(params["rate"]), float(params["c"])
     return (
         lambda x: a * math.exp(-rate * x) + c,
-        f"$$ p_A(x)={_fmt_sig(a)}\\cdot e^{{-{_fmt_sig(rate)}x}}+{_fmt_sig(c)} $$",
+        f"p_A(x)={_fmt_sig(a)}\\cdot e^{{-{_fmt_sig(rate)}x}}+{_fmt_sig(c)}",
     )
 
 
@@ -66,14 +67,14 @@ def _build_demand_from_params(params: dict) -> tuple[callable, str, float]:
     if spec_type == "linear":
         a, b = float(params["a"]), float(params["b"])
         demand_fn = lambda x: a * x + b
-        return demand_fn, f"$$ p_N(x)={_fmt_sig(a)}x{_signed_sig(b)}. $$", b
+        return demand_fn, f"p_N(x)={_fmt_sig(a)}x{_signed_sig(b)}", b
 
     if spec_type == "quadratic":
         a, b, c = float(params["a"]), float(params["b"]), float(params["c"])
         demand_fn = lambda x: a * (x ** 2) + b * x + c
         return (
             demand_fn,
-            f"$$ p_N(x)={_fmt_sig(a)}x^2{_signed_sig(b)}x{_signed_sig(c)}. $$",
+            f"p_N(x)={_fmt_sig(a)}x^2{_signed_sig(b)}x{_signed_sig(c)}",
             c,
         )
 
@@ -81,7 +82,7 @@ def _build_demand_from_params(params: dict) -> tuple[callable, str, float]:
     demand_fn = lambda x: a * math.exp(-rate * x) + c
     return (
         demand_fn,
-        f"$$ p_N(x)={_fmt_sig(a)}\\cdot e^{{-{_fmt_sig(rate)}x}}{_signed_sig(c)}. $$",
+        f"p_N(x)={_fmt_sig(a)}\\cdot e^{{-{_fmt_sig(rate)}x}}{_signed_sig(c)}",
         a + c,
     )
 
@@ -172,13 +173,10 @@ class MarketEquilibriumAbschoepfungKRBerechnungBetragGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebotsfunktion <br/></p>"
-                        f"{supply_latex}"
-                        "<br/></p> und die Nachfragefunktion <br/></p>"
-                        f"{demand_latex}"
-                        ".</p> "
-                        "<p>Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. "
-                        f"Dazu wird auf dem Teilmarkt ein Preis von {_fmt_number(betrag, max_decimals=0)} GE festgelegt.</p>"
+                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        f"{_align_equations([supply_latex, demand_latex])}"
+                        "Durch einen Teilmarkt soll ein Teil der Konsumentenrente abgeschöpft werden. "
+                        f"Dazu wird auf dem Teilmarkt ein Preis von {_fmt_number(betrag, max_decimals=0)} GE festgelegt."
                     ),
                     fragen=[
                         "Bestimmen Sie (auf 2 NKS gerundet) den abgeschöpften Teil der Konsumentenrente.",

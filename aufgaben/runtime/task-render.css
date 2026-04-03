@@ -39,6 +39,36 @@
     max-width: 100% !important;
 }
 
+/* Hint browser to allow vertical scroll through Plotly charts.
+   Actual scroll-unblocking is done in plotly-defaults.js (JS capture). */
+.js-plotly-plot {
+    touch-action: pan-y !important;
+}
+
+.task .intro ul,
+.dev-check-card__runtime-task .intro ul,
+.page-skript-md .mod-content .dev-check-card__runtime-task .intro ul {
+    list-style: disc;
+    margin: 0.45em 0 0.6em;
+    padding-left: 1.4em;
+    list-style-position: outside;
+}
+
+.task .intro ol,
+.dev-check-card__runtime-task .intro ol,
+.page-skript-md .mod-content .dev-check-card__runtime-task .intro ol {
+    list-style: decimal;
+    margin: 0.45em 0 0.6em;
+    padding-left: 1.5em;
+    list-style-position: outside;
+}
+
+.task .intro li,
+.dev-check-card__runtime-task .intro li,
+.page-skript-md .mod-content .dev-check-card__runtime-task .intro li {
+    margin: 0.2em 0;
+}
+
 .task .qa-list {
     margin: 0;
     padding-left: 0;

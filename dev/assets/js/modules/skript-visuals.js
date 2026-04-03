@@ -1,14 +1,7 @@
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildGraphFigure } from "../visuals/graph.js";
-
-const PLOTLY_CONFIG = {
-    scrollZoom: false,
-    staticPlot: false,
-    displayModeBar: false,
-    doubleClick: false,
-    responsive: true,
-};
+import { plotlyRender } from "../visuals/plotly-defaults.js";
 
 function parseNum(raw) {
     if (raw == null || raw === "") return null;
@@ -105,7 +98,7 @@ export function initSkriptVisuals(root) {
         };
 
         const figure = buildBaumdiagrammFigure(opts);
-        window.Plotly.newPlot(div, figure.data, figure.layout, PLOTLY_CONFIG);
+        plotlyRender(div, figure.data, figure.layout);
     });
 
     /* ---- Graphen (symbolische Funktionen) ---- */
@@ -129,8 +122,7 @@ export function initSkriptVisuals(root) {
             yMax: div.dataset.ymax !== "" ? Number(div.dataset.ymax) : null,
         });
 
-        const graphConfig = { ...PLOTLY_CONFIG, displayModeBar: true, displaylogo: false };
-        window.Plotly.newPlot(div, figure.data, figure.layout, graphConfig);
+        plotlyRender(div, figure.data, figure.layout);
     });
 
     /* ---- Histogramme (Einzelwahrscheinlichkeiten) ---- */
@@ -143,7 +135,7 @@ export function initSkriptVisuals(root) {
         const titel = div.dataset.titel || "";
 
         const figure = buildHistogrammEinzelnFigure({ n, p, a, b, titel });
-        window.Plotly.newPlot(div, figure.data, figure.layout, PLOTLY_CONFIG);
+        plotlyRender(div, figure.data, figure.layout);
     });
 
     /* ---- Histogramme (Kumuliert) ---- */
@@ -156,7 +148,7 @@ export function initSkriptVisuals(root) {
         const titel = div.dataset.titel || "";
 
         const figure = buildHistogrammKumuliertFigure({ n, p, a, b, titel });
-        window.Plotly.newPlot(div, figure.data, figure.layout, PLOTLY_CONFIG);
+        plotlyRender(div, figure.data, figure.layout);
     });
 
     /* ---- Interaktive Histogramm-Widgets ---- */
@@ -220,12 +212,12 @@ export function initSkriptVisuals(root) {
                 if (window.MathJax?.typesetPromise) MathJax.typesetPromise([intervallEl]);
             }
 
-            window.Plotly.newPlot(plotEinzeln, figE.data, figE.layout, PLOTLY_CONFIG);
+            plotlyRender(plotEinzeln, figE.data, figE.layout);
 
             const figK = buildHistogrammKumuliertFigure({
                 n, p, a, b, titel: "Kumulierte Wahrscheinlichkeiten",
             });
-            window.Plotly.newPlot(plotKumuliert, figK.data, figK.layout, PLOTLY_CONFIG);
+            plotlyRender(plotKumuliert, figK.data, figK.layout);
         }
 
         // n

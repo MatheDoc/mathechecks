@@ -3,6 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.ganzrationale_oekonomische_funktionen.shared import (
+    _display_equation,
     _num_tol,
     _poly3_latex,
     _sample_k3_cost_coefficients_from_exact_kennzahlen,
@@ -41,8 +42,8 @@ class ErtragsgesetzlicheKostenKennzahlenRechnerischK3Generator(TaskGenerator):
 
             intro = (
                 "Die Kostenfunktion eines Unternehmens lautet"
-                f"</p> <p>{_poly3_latex('K', k3, k2, k1, k0)}."
-                "</p> <p>Bestimmen Sie (auf 2 NKS gerundet)"
+                f"{_display_equation(_poly3_latex('K', k3, k2, k1, k0))}"
+                "Bestimmen Sie (auf 2 NKS gerundet)"
             )
 
             items = [

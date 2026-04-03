@@ -4,6 +4,7 @@ from aufgaben.core.tolerances import nice_axis_max
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
+    _align_equations,
     _num_tol,
     _sample_market_params,
 )
@@ -55,17 +56,13 @@ class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
             tasks.append(
                 Task(
                     einleitung=(
-                        "Gegeben sind die Angebotsfunktion <br/></p>"
-                        f"{supply_latex}"
-                        "<br/></p> und die Nachfragefunktion <br/></p>"
-                        f"{demand_latex}"
-                        ".</p> "
-                        "<p>Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte "
+                        "Gegeben sind die Angebots- und Nachfragefunktion:"
+                        f"{_align_equations([supply_latex, demand_latex])}"
+                        "Mit Hilfe einer Preisdifferenzierung wird der Markt in zwei Teilmärkte "
                         "aufgeteilt. Die Konsumentenrente ergibt sich als Summe aus KR1 und KR2. "
                         "Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis $p_G$. "
                         "Auf dem zweiten Teilmarkt wird ein Preis $p_2$ so festgelegt, "
-                        "dass die Konsumentenrente maximal abgeschöpft wird.</p> "
-                        "<p>Bestimmen Sie (auf 2 NKS gerundet)"
+                        "dass die Konsumentenrente maximal abgeschöpft wird. Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=fragen,
                     antworten=antworten,
