@@ -150,3 +150,12 @@ def extended_probs(case: ABCase) -> dict[str, float]:
         "panb_c": _r(case.p_a_and_not_b / p_nb) if p_nb > 0 else 0.0,
         "pnanb_c": _r(case.p_not_a_and_not_b / p_nb) if p_nb > 0 else 0.0,
     }
+
+
+def ab_intro(scenario: ABScenarioTemplate) -> str:
+    """Gemeinsamer Einleitungsblock: Szenariotext + Ereignisse A und B als Liste."""
+    return (
+        f"{scenario.intro} Wir betrachten die Ereignisse:"
+        f"<ul><li>$A$: {scenario.event_a}</li>"
+        f"<li>$B$: {scenario.event_b}</li></ul>"
+    )

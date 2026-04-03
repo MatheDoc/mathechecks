@@ -157,7 +157,7 @@ class BinomialBereichswahrscheinlichkeitenBerechnungGenerator(TaskGenerator):
             ]
 
             intro = (
-                f"{rng.choice(intro_variants)}</p> <p>Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse "
+                f"{rng.choice(intro_variants)}Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse "
                 "(auf 4 NKS gerundet)."
             )
 

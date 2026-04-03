@@ -19,6 +19,7 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
+    ab_intro,
     extended_probs,
     sample_ab_case_independent,
 )
@@ -154,12 +155,10 @@ class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
             ]
 
             einleitung = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                f"<p>Es ist bekannt, dass {given_text}. "
-                "Außerdem sind $A$ und $B$ stochastisch unabhängig.</p>"
-                "<p>Berechnen Sie (auf 4 NKS gerundet)</p>"
+                ab_intro(scenario)
+                + f"Es ist bekannt, dass {given_text}. "
+                "Außerdem sind $A$ und $B$ stochastisch unabhängig. "
+                "Berechnen Sie (auf 4 NKS gerundet)"
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]

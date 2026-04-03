@@ -66,11 +66,11 @@ class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
             )
 
             intro = (
-                f"<p>{sc.intro_prefix} "
+                f"{sc.intro_prefix} "
                 f"{hist} "
                 f"{vermutung} "
                 f"{stichprobe} "
-                f"{entscheidung}</p>"
+                f"{entscheidung}"
             )
 
             questions = [

@@ -3,7 +3,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
+from aufgaben.generators.stochastik.methoden.shared import ABCase, ab_intro, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
@@ -56,10 +56,8 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
             }
 
             intro = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                "<p>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).</p>"
+                ab_intro(scenario)
+                + "Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet)."
             )
 
             fragen = ["" for _ in range(10)]

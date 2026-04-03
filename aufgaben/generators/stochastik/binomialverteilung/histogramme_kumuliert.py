@@ -83,9 +83,9 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
                 f"{scenario.intro_prefix} In einer Stichprobe befinden sich {n} {scenario.sample_object_plural}.",
             ]
             intro = (
-                f"{rng.choice(intro_base_variants)}</p> "
-                f"<p>Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße X, die die Anzahl der "
-                f"{scenario.success_plural} angibt.</p> <p>Bestimmen Sie die Wahrscheinlichkeiten "
+                f"{rng.choice(intro_base_variants)}"
+                f"Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße $X$, die die Anzahl der "
+                f"{scenario.success_plural} angibt. Bestimmen Sie die Wahrscheinlichkeiten "
                 f"der folgenden Ereignisse (auf 2 NKS gerundet)."
             )
 

@@ -8,7 +8,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.methoden.shared import extended_probs, sample_ab_case
+from aufgaben.generators.stochastik.methoden.shared import ab_intro, extended_probs, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
@@ -78,10 +78,9 @@ class SylvesterGenerator(TaskGenerator):
             q1, q2 = rng.choice(_QUESTION_PAIRS)
 
             einleitung = (
-                f"{scenario.intro}</p> "
-                f"<p>A: {scenario.event_a}<br>B: {scenario.event_b}</p> "
-                f"<p>Es ist bekannt, dass {g0}, dass {g1} und dass {g2}.</p> "
-                "<p>Berechnen Sie (auf 4 NKS gerundet)"
+                ab_intro(scenario)
+                + f"Es ist bekannt, dass {g0}, dass {g1} und dass {g2}. "
+                "Berechnen Sie (auf 4 NKS gerundet)"
             )
 
             fragen = [

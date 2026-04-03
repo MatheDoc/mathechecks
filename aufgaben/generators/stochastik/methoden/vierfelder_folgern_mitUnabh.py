@@ -19,6 +19,7 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
+    ab_intro,
     extended_probs,
     sample_ab_case,
     sample_ab_case_independent,
@@ -139,10 +140,8 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
 
             slots = vft_slots(case)
             intro = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                "<p>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet</p>"
+                ab_intro(scenario)
+                + "Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet"
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]

@@ -21,7 +21,7 @@ from decimal import Decimal, ROUND_HALF_UP
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.methoden.shared import ABCase, sample_ab_case
+from aufgaben.generators.stochastik.methoden.shared import ABCase, ab_intro, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
@@ -154,11 +154,9 @@ class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
             ]
 
             intro = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                "<p>Bestimmen Sie anhand des Baumdiagramms "
-                "auf 4 NKS gerundet</p>"
+                ab_intro(scenario)
+                + "Bestimmen Sie anhand des Baumdiagramms "
+                "auf 4 NKS gerundet"
             )
 
             fragen: list[str] = []
