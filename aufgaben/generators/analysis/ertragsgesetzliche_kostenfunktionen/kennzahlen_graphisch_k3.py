@@ -39,17 +39,39 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                 used.add(key)
                 break
 
-            max_x = round(max(14.0, x_betriebsoptimum * 1.35, x_wende * 2.25), 1)
+            # Fokus auf lesbare Wendestelle und die relevanten Kennzahlenbereiche.
+            max_x = round(max(12.0, x_betriebsoptimum * 1.18, x_wende * 1.9), 1)
 
-            # y-Achse: Bereich auf Basis der drei Tiefpunkte berechnen
-            gk_at_wende = 3.0 * k3 * x_wende ** 2 + 2.0 * k2 * x_wende + k1
-            min_y_values = [gk_at_wende, kurzfristige_preisuntergrenze, langfristige_preisuntergrenze]
-            highest = max(min_y_values)
-            lowest = min(min_y_values)
-            span = max(highest - lowest, 5.0)
-            y_max = round(highest + 2.5 * span, 1)
+            def _k_value(x: float) -> float:
+                return k3 * x ** 2 + k2 * x + k1 + (k0 / x)
+
+            delta = min(max(0.8, 0.08 * max_x), x_wende * 0.35, (max_x - x_wende) * 0.35)
+            if delta > 0.35:
+                m_tan = 3.0 * k3 * x_wende ** 2 + 2.0 * k2 * x_wende + k1
+                m_sec = (_k_value(x_wende + delta) - _k_value(x_wende - delta)) / (2.0 * delta)
+                slope_gap = abs(m_tan - m_sec)
+                slope_target = max(0.02, 0.025 * abs(m_tan))
+                if slope_gap < slope_target:
+                    max_x = round(max(10.0, x_wende * 1.55, x_betriebsoptimum * 1.10), 1)
+
+            x_focus_min = max(1.0, x_wende * 0.45)
+
+            points = 280
+            y_values: list[float] = []
+            for index in range(points):
+                x_value = x_focus_min + ((max_x - x_focus_min) * index) / (points - 1)
+                gk_value = 3.0 * k3 * x_value ** 2 + 2.0 * k2 * x_value + k1
+                k_value = _k_value(x_value)
+                kv_value = k3 * x_value ** 2 + k2 * x_value + k1
+                y_values.extend((gk_value, k_value, kv_value))
+
+            y_low_raw = min(y_values)
+            y_high_raw = max(y_values)
+            span = max(5.0, y_high_raw - y_low_raw)
+            y_min = round(max(0.0, y_low_raw - 0.12 * span), 1)
+            y_max = round(y_high_raw + 0.15 * span, 1)
             x_tolerance = graph_read_tolerance_from_span(max_x)
-            y_tolerance = graph_read_tolerance_from_span(y_max)
+            y_tolerance = graph_read_tolerance_from_span(max(1.0, y_max - y_min))
 
             items = [
                 ("die kurzfristige Preisuntergrenze.", _num_tol(kurzfristige_preisuntergrenze, y_tolerance)),
@@ -82,7 +104,27 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                     "layout": {
                         "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
                         "xaxis": {"title": "Menge x", "range": [0, max_x]},
-                        "yaxis": {"title": "Kosten", "range": [0, y_max]},
+                        "yaxis": {"title": "Kosten", "range": [y_min, y_max]},
+                        "shapes": [
+                            {
+                                "type": "line",
+                                "x0": x_wende,
+                                "x1": x_wende,
+                                "y0": y_min,
+                                "y1": y_max,
+                                "line": {"color": "#374151", "dash": "dot", "width": 1},
+                            }
+                        ],
+                        "annotations": [
+                            {
+                                "x": x_wende,
+                                "y": y_min,
+                                "yref": "y",
+                                "text": "x_W",
+                                "showarrow": False,
+                                "yshift": -14,
+                            }
+                        ],
                     },
                     "width": 900,
                     "height": 520,

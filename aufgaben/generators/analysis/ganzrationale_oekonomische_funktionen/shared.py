@@ -207,14 +207,15 @@ def _sample_kennzahlen_parameters(
         k2 = round(k2_raw, 10)
         if k2 >= 0:
             continue
-        if not _has_max_sig_digits(k2, max_digits=2):
+        # Sig-digit rule is soft: rechnerisch prefers <=3, graphisch has no hard limit.
+        if not for_graph and not _has_max_sig_digits(k2, max_digits=3):
             continue
 
         g2_root, g1_raw, k0_raw = _gain_coeff_terms_from_roots(k3, r1, r2, s)
         k0 = round(k0_raw, 10)
         if k0 <= 0:
             continue
-        if not _has_max_sig_digits(k0, max_digits=2):
+        if not for_graph and not _has_max_sig_digits(k0, max_digits=3):
             continue
 
         k1_min = (k2 ** 2) / (3.0 * k3) + 0.2
@@ -222,12 +223,12 @@ def _sample_kennzahlen_parameters(
         price = round(k1 + g1_raw, 10)
         if price <= 0:
             continue
-        if not _has_max_sig_digits(price, max_digits=2):
+        if not for_graph and not _has_max_sig_digits(price, max_digits=3):
             continue
         g1 = round(price - k1, 10)
         if abs(g1) < 1e-9:
             continue
-        if not _has_max_sig_digits(g1, max_digits=2):
+        if not for_graph and not _has_max_sig_digits(g1, max_digits=3):
             continue
 
         # Konsistenzbedingungen ertragsgesetzlich.
@@ -256,9 +257,6 @@ def _sample_kennzahlen_parameters(
         if price >= g_max:
             continue
 
-        if for_graph and g_max < max(8.0, 0.15 * k0):
-            continue
-
         try:
             x_break_even_low = _bisection_root(g, 0.0, x_crit_2)
         except ValueError:
@@ -281,6 +279,11 @@ def _sample_kennzahlen_parameters(
         capacity = int(max(8, round(x_break_even_high + uniform_sig(rng, 2.0, 12.0))))
         if capacity <= x_break_even_high:
             capacity = int(x_break_even_high) + 2
+
+        if for_graph:
+            e_max = price * capacity
+            if g_max < max(8.0, 0.15 * k0, 0.10 * e_max):
+                continue
 
         x_wende = -k2 / (3.0 * k3)
         return (
@@ -726,7 +729,8 @@ def _sample_e2k3_parameters(
         g0 = -k0
 
         all_coeffs = [a2, a1, k3, k2, k1, k0, g3, g2, g1, g0]
-        if not all(_has_max_sig_digits(coeff, max_digits=2) for coeff in all_coeffs):
+        # Sig-digit rule is soft: rechnerisch prefers <=3, graphisch has no hard limit.
+        if not for_graph and not all(_has_max_sig_digits(coeff, max_digits=3) for coeff in all_coeffs):
             continue
         if not all(0.001 <= abs(coeff) <= 9999 for coeff in all_coeffs):
             continue
@@ -791,9 +795,6 @@ def _sample_e2k3_parameters(
         if e_max <= 0.0:
             continue
 
-        if for_graph and g_max < max(8.0, 0.12 * k0):
-            continue
-
         k_end_x = x_sättigung * 1.05
         k_end = k3 * (k_end_x ** 3) + k2 * (k_end_x ** 2) + k1 * k_end_x + k0
         if k_end > e_max * 2.25:
@@ -806,6 +807,9 @@ def _sample_e2k3_parameters(
 
         p_gain_max = a2 * x_gain_max + a1
         if p_gain_max <= 0.0:
+            continue
+
+        if for_graph and g_max < max(8.0, 0.12 * k0, 0.10 * e_max):
             continue
 
         return (
