@@ -158,6 +158,627 @@ function buildScriptInfoHref(check) {
   return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
 }
 
+function convertJsonLatexToMarkdown(text) {
+  return String(text || "")
+    .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
+    .replace(/\\\[(.+?)\\\]/gs, (_, m) => `$$${m}$$`);
+}
+
+function extractGraphDescriptions(container) {
+  if (!container) return "";
+  const graphs = container.querySelectorAll(".graph-auto");
+  if (graphs.length === 0) return "";
+
+  const parts = [];
+  graphs.forEach((graphNode) => {
+    const lines = [];
+    const titel = graphNode.dataset.titel;
+    if (titel) lines.push(`Diagramm: ${titel}`);
+
+    const xachse = graphNode.dataset.xachse;
+    const yachse = graphNode.dataset.yachse;
+    if (xachse) lines.push(`x-Achse: ${xachse}`);
+    if (yachse) lines.push(`y-Achse: ${yachse}`);
+
+    try {
+      const funktionen = JSON.parse(graphNode.dataset.funktionen || "[]");
+      if (funktionen.length > 0) {
+        lines.push("Funktionen:");
+        funktionen.forEach((funktion) => {
+          const name = funktion.name || "";
+          const term = funktion.term || "";
+          const beschreibung = funktion.beschreibung || "";
+          lines.push(`  ${name ? `${name}: ` : ""}${term}${beschreibung ? ` (${beschreibung})` : ""}`);
+        });
+      }
+    } catch {
+      // Ignore malformed graph metadata.
+    }
+
+    try {
+      const punkte = JSON.parse(graphNode.dataset.punkte || "[]");
+      if (punkte.length > 0) {
+        lines.push("Markierte Punkte:");
+        punkte.forEach((punkt) => {
+          lines.push(`  (${punkt.x}, ${punkt.y})${punkt.text ? ` - ${punkt.text}` : ""}`);
+        });
+      }
+    } catch {
+      // Ignore malformed graph metadata.
+    }
+
+    try {
+      const flaechen = JSON.parse(graphNode.dataset.flaechen || "[]");
+      if (flaechen.length > 0) {
+        lines.push("Flaechen:");
+        flaechen.forEach((flaeche) => {
+          const beschreibung = flaeche.beschreibung || flaeche.name || "";
+          lines.push(
+            `  ${beschreibung}${flaeche.von != null ? ` von x=${flaeche.von}` : ""}${flaeche.bis != null ? ` bis x=${flaeche.bis}` : ""
+            }`
+          );
+        });
+      }
+    } catch {
+      // Ignore malformed graph metadata.
+    }
+
+    if (lines.length > 0) {
+      parts.push(lines.join("\n"));
+    }
+  });
+
+  return parts.join("\n\n");
+}
+
+function htmlToPlainText(html) {
+  const tmp = document.createElement("div");
+  tmp.innerHTML = String(html || "");
+  const graphText = extractGraphDescriptions(tmp);
+  const plainText = (tmp.textContent || "").trim();
+  return [plainText, graphText].filter(Boolean).join("\n\n");
+}
+
+function unescapeMoodleText(value) {
+  return String(value)
+    .replaceAll("\\~", "~")
+    .replaceAll("\\=", "=")
+    .replaceAll("\\#", "#")
+    .replaceAll("\\:", ":")
+    .trim();
+}
+
+function parseAnswerTargets(answerRaw) {
+  const source = String(answerRaw || "");
+  const regex = /\{\d+:(NUMERICAL|MC):([\s\S]*?)\}/g;
+  const targets = [];
+  let match = null;
+
+  while ((match = regex.exec(source)) !== null) {
+    const kind = match[1];
+    const payload = match[2];
+
+    if (kind === "NUMERICAL") {
+      const numericalMatch = String(payload).match(/=([^:}#]+):([^:}#]+)/);
+      if (numericalMatch) {
+        targets.push({ kind, value: numericalMatch[1].trim(), tolerance: numericalMatch[2].trim() });
+      } else {
+        targets.push({ kind, raw: payload.trim() });
+      }
+      continue;
+    }
+
+    const options = String(payload)
+      .split(/(?<!\\)~/)
+      .map((part) => part.trim())
+      .filter(Boolean);
+    const correct = options.find((option) => option.startsWith("="));
+    if (correct) {
+      targets.push({ kind, correct: unescapeMoodleText(correct.slice(1).trim()) });
+    } else {
+      targets.push({ kind, raw: payload.trim() });
+    }
+  }
+
+  return targets;
+}
+
+function buildAnswerTargetText(answerRaw) {
+  const targets = parseAnswerTargets(answerRaw);
+  if (targets.length === 0) {
+    return String(answerRaw || "").trim() || "(kein Antwortschluessel gefunden)";
+  }
+
+  return targets
+    .map((target, index) => {
+      const part = `Teil ${index + 1}`;
+      if (target.kind === "NUMERICAL") {
+        if (target.value != null && target.tolerance != null) {
+          return `${part}: Zielwert ${target.value} (Toleranz ±${target.tolerance})`;
+        }
+        return `${part}: Numerische Antwort (${target.raw || "unbekannt"})`;
+      }
+
+      if (target.correct != null) {
+        return `${part}: Richtige Option "${convertJsonLatexToMarkdown(target.correct)}"`;
+      }
+      return `${part}: MC-Antwort (${target.raw || "unbekannt"})`;
+    })
+    .join("\n");
+}
+
+function toFiniteNumber(value, fallback = 0) {
+  const numeric = Number(value);
+  return Number.isFinite(numeric) ? numeric : fallback;
+}
+
+function formatFormulaNumber(value, digits = 6) {
+  const safe = Math.abs(toFiniteNumber(value, 0)) < 1e-12 ? 0 : toFiniteNumber(value, 0);
+  const text = safe.toFixed(digits).replace(/\.0+$/, "").replace(/(\.\d*?)0+$/, "$1");
+  return text === "-0" ? "0" : text;
+}
+
+function formatPolynomialExpression(coefficients) {
+  const coeffs = Array.isArray(coefficients) ? coefficients : [];
+  const terms = [];
+
+  for (let power = coeffs.length - 1; power >= 0; power -= 1) {
+    const coefficient = toFiniteNumber(coeffs[power], 0);
+    if (Math.abs(coefficient) < 1e-10) continue;
+
+    const absCoeff = Math.abs(coefficient);
+    let termCore = "";
+
+    if (power === 0) {
+      termCore = formatFormulaNumber(absCoeff);
+    } else {
+      const coeffText = Math.abs(absCoeff - 1) < 1e-10 ? "" : `${formatFormulaNumber(absCoeff)}*`;
+      termCore = power === 1 ? `${coeffText}x` : `${coeffText}x^${power}`;
+    }
+
+    terms.push({ sign: coefficient < 0 ? "-" : "+", termCore });
+  }
+
+  if (terms.length === 0) return "0";
+
+  return terms
+    .map((term, index) => {
+      if (index === 0) {
+        return term.sign === "-" ? `-${term.termCore}` : term.termCore;
+      }
+      return `${term.sign}${term.termCore}`;
+    })
+    .join("");
+}
+
+function appendSignedConstant(baseExpression, constantValue) {
+  const c = toFiniteNumber(constantValue, 0);
+  if (Math.abs(c) < 1e-10) return baseExpression;
+  return `${baseExpression}${c >= 0 ? "+" : ""}${formatFormulaNumber(c)}`;
+}
+
+function describeFunctionName(nameRaw) {
+  const key = String(nameRaw || "").trim();
+  const map = {
+    "p(x)": "Preisfunktion",
+    "E(x)": "Erloesfunktion",
+    "K(x)": "Kostenfunktion",
+    "G(x)": "Gewinnfunktion",
+    "GK(x)": "Grenzkostenfunktion",
+    "k(x)": "Stueckkostenfunktion",
+    "kv(x)": "Variable Stueckkostenfunktion",
+    "Angebot p_A(x)": "Angebotsfunktion",
+    "Nachfrage p_N(x)": "Nachfragefunktion",
+    "p_A(x)": "Angebotsfunktion",
+    "p_N(x)": "Nachfragefunktion",
+  };
+  return map[key] || "";
+}
+
+function formatFunctionLine(name, expression, description = "") {
+  const suffix = description ? ` (${description})` : "";
+  return `  ${name}: ${expression}${suffix}`;
+}
+
+function solveLinearSystem(matrix, vector) {
+  const size = Array.isArray(matrix) ? matrix.length : 0;
+  if (size === 0 || !Array.isArray(vector) || vector.length !== size) return null;
+
+  const augmented = matrix.map((row, rowIndex) => {
+    const safeRow = Array.isArray(row) ? row.slice(0, size) : [];
+    while (safeRow.length < size) safeRow.push(0);
+    safeRow.push(vector[rowIndex]);
+    return safeRow;
+  });
+
+  for (let pivot = 0; pivot < size; pivot += 1) {
+    let maxRow = pivot;
+    let maxAbs = Math.abs(augmented[pivot][pivot]);
+
+    for (let row = pivot + 1; row < size; row += 1) {
+      const absVal = Math.abs(augmented[row][pivot]);
+      if (absVal > maxAbs) {
+        maxAbs = absVal;
+        maxRow = row;
+      }
+    }
+
+    if (maxAbs < 1e-14) return null;
+    if (maxRow !== pivot) {
+      const temp = augmented[pivot];
+      augmented[pivot] = augmented[maxRow];
+      augmented[maxRow] = temp;
+    }
+
+    const pivotValue = augmented[pivot][pivot];
+    for (let col = pivot; col <= size; col += 1) {
+      augmented[pivot][col] /= pivotValue;
+    }
+
+    for (let row = 0; row < size; row += 1) {
+      if (row === pivot) continue;
+      const factor = augmented[row][pivot];
+      if (Math.abs(factor) < 1e-14) continue;
+      for (let col = pivot; col <= size; col += 1) {
+        augmented[row][col] -= factor * augmented[pivot][col];
+      }
+    }
+  }
+
+  return augmented.map((row) => row[size]);
+}
+
+function evaluatePolynomial(coefficients, x) {
+  let result = 0;
+  for (let power = coefficients.length - 1; power >= 0; power -= 1) {
+    result = result * x + toFiniteNumber(coefficients[power], 0);
+  }
+  return result;
+}
+
+function fitPolynomialCoefficients(xValues, yValues, degree) {
+  const n = Math.min(xValues.length, yValues.length);
+  const d = Math.max(0, Math.min(3, Math.floor(degree)));
+  if (n < d + 1) return null;
+
+  const maxAbsX = xValues.reduce((maxVal, x) => Math.max(maxVal, Math.abs(toFiniteNumber(x, 0))), 0);
+  const scale = Math.max(1, maxAbsX);
+  const scaledX = xValues.map((x) => toFiniteNumber(x, 0) / scale);
+  const y = yValues.map((val) => toFiniteNumber(val, 0));
+
+  const size = d + 1;
+  const normalMatrix = Array.from({ length: size }, () => Array.from({ length: size }, () => 0));
+  const rhs = Array.from({ length: size }, () => 0);
+
+  for (let row = 0; row < size; row += 1) {
+    for (let col = 0; col < size; col += 1) {
+      let sum = 0;
+      for (let i = 0; i < n; i += 1) {
+        sum += scaledX[i] ** (row + col);
+      }
+      normalMatrix[row][col] = sum;
+    }
+
+    let rhsSum = 0;
+    for (let i = 0; i < n; i += 1) {
+      rhsSum += y[i] * scaledX[i] ** row;
+    }
+    rhs[row] = rhsSum;
+  }
+
+  const coeffScaled = solveLinearSystem(normalMatrix, rhs);
+  if (!coeffScaled) return null;
+
+  return coeffScaled.map((value, power) => value / scale ** power);
+}
+
+function computeNormalizedRmse(coefficients, xValues, yValues) {
+  const n = Math.min(xValues.length, yValues.length);
+  if (n === 0) return Number.POSITIVE_INFINITY;
+
+  let sumSquared = 0;
+  let yMin = Number.POSITIVE_INFINITY;
+  let yMax = Number.NEGATIVE_INFINITY;
+
+  for (let i = 0; i < n; i += 1) {
+    const x = toFiniteNumber(xValues[i], 0);
+    const y = toFiniteNumber(yValues[i], 0);
+    const estimated = evaluatePolynomial(coefficients, x);
+    const error = estimated - y;
+    sumSquared += error * error;
+    yMin = Math.min(yMin, y);
+    yMax = Math.max(yMax, y);
+  }
+
+  const rmse = Math.sqrt(sumSquared / n);
+  const range = yMax - yMin;
+  const normalizer = range > 1e-9 ? range : Math.max(1, Math.abs(yMax), Math.abs(yMin));
+  return rmse / normalizer;
+}
+
+function inferTracePolynomialExpression(trace) {
+  const xRaw = Array.isArray(trace?.x) ? trace.x : [];
+  const yRaw = Array.isArray(trace?.y) ? trace.y : [];
+  const n = Math.min(xRaw.length, yRaw.length);
+  if (n < 2) return "";
+
+  const xValues = [];
+  const yValues = [];
+  for (let i = 0; i < n; i += 1) {
+    const x = Number(xRaw[i]);
+    const y = Number(yRaw[i]);
+    if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
+    xValues.push(x);
+    yValues.push(y);
+  }
+
+  if (xValues.length < 2) return "";
+
+  let best = null;
+  for (let degree = 0; degree <= 3; degree += 1) {
+    const coefficients = fitPolynomialCoefficients(xValues, yValues, degree);
+    if (!coefficients) continue;
+    const nrmse = computeNormalizedRmse(coefficients, xValues, yValues);
+    if (!best || nrmse < best.nrmse) {
+      best = { coefficients, nrmse };
+    }
+  }
+
+  if (!best) return "";
+  const expression = formatPolynomialExpression(best.coefficients);
+  if (best.nrmse <= 5e-5) return expression;
+  if (best.nrmse <= 0.015) return `~${expression}`;
+  return "";
+}
+
+function functionExpressionFromCurveParams(curveDef) {
+  if (!curveDef || typeof curveDef !== "object") return "";
+  const type = String(curveDef.type || "").toLowerCase();
+
+  if (type === "linear") {
+    return formatPolynomialExpression([toFiniteNumber(curveDef.b, 0), toFiniteNumber(curveDef.a, 0)]);
+  }
+  if (type === "quadratic") {
+    return formatPolynomialExpression([
+      toFiniteNumber(curveDef.c, 0),
+      toFiniteNumber(curveDef.b, 0),
+      toFiniteNumber(curveDef.a, 0),
+    ]);
+  }
+  if (type === "exp") {
+    const amplitude = formatFormulaNumber(toFiniteNumber(curveDef.A, 1));
+    const rate = formatFormulaNumber(toFiniteNumber(curveDef.rate, 0.1));
+    return appendSignedConstant(`${amplitude}*exp(-${rate}*x)`, toFiniteNumber(curveDef.c, 0));
+  }
+
+  return "";
+}
+
+function buildFunctionLinesFromSpec(spec) {
+  if (!spec || typeof spec !== "object") return [];
+
+  const specType = String(spec.type || "").toLowerCase();
+  const params = spec.params && typeof spec.params === "object" ? spec.params : null;
+  const lines = [];
+
+  if (specType === "economic-curves" && params) {
+    const hasMonopolyRevenue = Number.isFinite(Number(params.a2)) && Number.isFinite(Number(params.a1));
+    const k3 = toFiniteNumber(params.k3, 0);
+    const k2 = toFiniteNumber(params.k2, 0);
+    const k1 = toFiniteNumber(params.k1, 0);
+    const k0 = toFiniteNumber(params.k0, 0);
+    const price = toFiniteNumber(params.price, 0);
+
+    let eExpr = formatPolynomialExpression([0, price]);
+    let gExpr = formatPolynomialExpression([-k0, price - k1, -k2, -k3]);
+    let pExpr = formatPolynomialExpression([price]);
+
+    if (hasMonopolyRevenue) {
+      const a2 = toFiniteNumber(params.a2, 0);
+      const a1 = toFiniteNumber(params.a1, 0);
+      eExpr = formatPolynomialExpression([0, a1, a2]);
+      gExpr = formatPolynomialExpression([-k0, a1 - k1, a2 - k2, -k3]);
+      pExpr = formatPolynomialExpression([a1, a2]);
+    }
+
+    const kExpr = formatPolynomialExpression([k0, k1, k2, k3]);
+
+    lines.push(formatFunctionLine("E(x)", eExpr, "Erloesfunktion"));
+    lines.push(formatFunctionLine("K(x)", kExpr, "Kostenfunktion"));
+    lines.push(formatFunctionLine("G(x)", gExpr, "Gewinnfunktion"));
+    lines.push(formatFunctionLine("p(x)", pExpr, "Preisfunktion"));
+    return lines;
+  }
+
+  if (specType === "cost-curves" && params) {
+    const k3 = toFiniteNumber(params.k3, 0);
+    const k2 = toFiniteNumber(params.k2, 0);
+    const k1 = toFiniteNumber(params.k1, 0);
+    const k0 = toFiniteNumber(params.k0, 0);
+
+    const gkExpr = formatPolynomialExpression([k1, 2 * k2, 3 * k3]);
+    const kvExpr = formatPolynomialExpression([k1, k2, k3]);
+    const kExpr = `${formatPolynomialExpression([k1, k2, k3])}${k0 >= 0 ? "+" : ""}${formatFormulaNumber(k0)}*x^-1`;
+
+    lines.push(formatFunctionLine("GK(x)", gkExpr, "Grenzkostenfunktion"));
+    lines.push(formatFunctionLine("k(x)", kExpr, "Stueckkostenfunktion"));
+    lines.push(formatFunctionLine("kv(x)", kvExpr, "Variable Stueckkostenfunktion"));
+    return lines;
+  }
+
+  if (specType === "market-curves" && params) {
+    const supplyExpr = formatPolynomialExpression([
+      toFiniteNumber(params.minPrice, 0),
+      toFiniteNumber(params.supplySlope, 1),
+    ]);
+    const demandExpr = formatPolynomialExpression([
+      toFiniteNumber(params.maxPrice, 0),
+      -toFiniteNumber(params.demandSlope, 1),
+    ]);
+
+    lines.push(formatFunctionLine("p_A(x)", supplyExpr, "Angebotsfunktion"));
+    lines.push(formatFunctionLine("p_N(x)", demandExpr, "Nachfragefunktion"));
+    return lines;
+  }
+
+  if ((specType === "market-equilibrium" || specType === "market-abschoepfung") && params) {
+    const supplyExpr = functionExpressionFromCurveParams(params.supply);
+    const demandExpr = functionExpressionFromCurveParams(params.demand);
+
+    if (supplyExpr) lines.push(formatFunctionLine("p_A(x)", supplyExpr, "Angebotsfunktion"));
+    if (demandExpr) lines.push(formatFunctionLine("p_N(x)", demandExpr, "Nachfragefunktion"));
+    if (lines.length > 0) return lines;
+  }
+
+  const traces = Array.isArray(spec.traces) ? spec.traces : [];
+  traces.forEach((trace, index) => {
+    const name = String(trace?.name || "").trim() || `f_${index + 1}(x)`;
+    const expression = inferTracePolynomialExpression(trace);
+    if (!expression) return;
+    const description = describeFunctionName(name);
+    lines.push(formatFunctionLine(name, expression, description));
+  });
+
+  return lines;
+}
+
+function buildVisualContext(task, runtimeTaskNode = null) {
+  const visual = task?.visual;
+  const spec = visual?.spec;
+  const lines = [];
+  const graphFromDom = extractGraphDescriptions(runtimeTaskNode);
+  if (graphFromDom) {
+    lines.push("Diagramm-Details aus data-Attributen:");
+    lines.push(graphFromDom);
+  }
+
+  if (!visual || !spec) {
+    return lines.join("\n");
+  }
+
+  const layout = spec.layout || {};
+  const diagrammTitel = layout?.title || "";
+  if (diagrammTitel) {
+    lines.push(`Diagramm: ${diagrammTitel}`);
+  } else if (spec.type) {
+    lines.push(`Diagrammtyp: ${spec.type}`);
+  }
+
+  const xTitle = layout?.xaxis?.title;
+  const yTitle = layout?.yaxis?.title;
+  if (xTitle) lines.push(`x-Achse: ${xTitle}`);
+  if (yTitle) lines.push(`y-Achse: ${yTitle}`);
+
+  const functionLines = buildFunctionLinesFromSpec(spec);
+  if (functionLines.length > 0) {
+    lines.push("Funktionen:");
+    lines.push(...functionLines);
+  }
+
+  const params = spec.params && typeof spec.params === "object" ? spec.params : null;
+  if (params && functionLines.length === 0) {
+    lines.push("Parameter:");
+    Object.entries(params).forEach(([key, value]) => {
+      lines.push(`- ${key}: ${value}`);
+    });
+  }
+
+  return lines.join("\n");
+}
+
+function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtimeTaskNode = null }) {
+  const schlagwort = check?.Schlagwort || check?.["Ich kann"] || `Check ${check?.Nummer ?? ""}`;
+  const lernbereich = check?.LernbereichAnzeigename || check?.Lernbereich || "";
+  const kompetenz = check?.["Ich kann"] || "";
+  const einleitung = convertJsonLatexToMarkdown(htmlToPlainText(task?.einleitung || ""));
+  const fragen = Array.isArray(task?.fragen) ? task.fragen : [];
+  const antworten = Array.isArray(task?.antworten) ? task.antworten : [];
+  const visualContext = buildVisualContext(task, runtimeTaskNode);
+
+  const fragenBlock = fragen
+    .map((frage, index) => `- Teilfrage ${index + 1}: ${convertJsonLatexToMarkdown(String(frage || "").trim())}`)
+    .join("\n");
+
+  const loesungsBlock = antworten
+    .map((antwort, index) => `- Teilfrage ${index + 1}:\n${buildAnswerTargetText(antwort || "")}`)
+    .join("\n\n");
+
+  const tips = Array.isArray(check?.Tipps) ? check.Tipps : [];
+  const tippsBlock = tips.length > 0
+    ? `\nWichtige Aspekte, die in einer guten Erklaerung vorkommen sollten:\n${tips.map((t) => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    : "";
+
+  const taskNumberText = Number.isInteger(taskIndex) && taskIndex >= 0 ? String(taskIndex + 1) : "?";
+  const totalTasksText = Number.isInteger(totalTasks) && totalTasks > 0 ? String(totalTasks) : "?";
+  const visualBlock = visualContext
+    ? `\n## Diagramm-/Visual-Kontext\nOrientiere dich intern an den folgenden Darstellungsinformationen.\n\n${visualContext}`
+    : "";
+
+  return `# Rolle
+Du bist ein KI-Lernpartner für das Trainingsmodul. Der Lernende arbeitet
+an einer konkreten Mathe-Aufgabe, und du bist der Erklärer: Du hilfst,
+Verstaendnislücken zu schliessen und Lösungswege nachvollziehbar zu machen.
+Du sprichst Deutsch und duzt den Lernenden.
+
+# Thema
+Check: ${schlagwort}
+Lernbereich: ${lernbereich}
+Kompetenz: Ich kann ${convertJsonLatexToMarkdown(kompetenz)}
+Aufgabe in Sammlung: ${taskNumberText} von ${totalTasksText}
+
+# Dein Hintergrundwissen (nicht wörtlich wiedergeben)
+## Aufgabenstellung
+${einleitung || "(keine Einleitung vorhanden)"}
+
+## Fragen
+${fragenBlock || "(keine Teilfragen vorhanden)"}
+
+## Hinterlegte Zielantworten (intern)
+${loesungsBlock || "(keine Zielantworten vorhanden)"}
+${tippsBlock}
+${visualBlock}
+
+# Stil
+- Reagiere natürlich und abwechslungsreich.
+- Lobe kurz und ehrlich, wenn ein Teilschritt gut ist.
+- Erkläre mit kurzen, klaren Schritten und aufgabennaher Sprache.
+- Du darfst leichte Denkanstöße geben, ohne sofort die komplette Endlösung vorzusetzen.
+- Wenn der Lernende einen Fehler macht, korrigiere freundlich und begründe kurz warum.
+- Halte dich kurz. Keine langen Monologe.
+- Antworte immer auf Deutsch.
+
+# Ablauf
+## Phase 1 - Einstieg
+Begrüße den Lernenden kurz und starte direkt mit einer Frage zur Aufgabe:
+Zum Beispiel: "Okay, was hast du bei dieser Aufgabe nicht verstanden?"
+Wenn die Frage zu allgemein ist, bitte um eine konkrete Teilfrage.
+
+## Phase 2 - Erklären und begleiten (3-6 Runden)
+- Wenn der Lernende eine konkrete Teilfrage nennt, erkläre diese zuerst, falls es didaktisch sinnvoll ist. Wenn man zunächst eine andere Teilfrage behandeln sollte, arbeite damit weiter.
+- Wenn der Lernende "alles" sagt, gehe Teilfrage für Teilfrage in der Reihenfolge durch.
+- Nutze den internen Referenzrahmen, um Erklärungen fachlich korrekt zu halten.
+- Nutze Diagramm-/Visual-Kontext, wenn er für den Schritt relevant ist.
+- Stelle nach jedem Kernschritt eine kurze Rückfrage, damit der Lernende mitdenkt.
+
+## Phase 3 – Zusammenfassung
+Wenn die wesentlichen Aspekte abgedeckt sind ODER nach 6 Runden:
+1. Fasse zusammen, was gut erklärt wurde.
+2. Benenne, was noch fehlt oder unklar war.
+3. Gib eine kurze, ehrliche Einschätzung:
+   ✅ Gut erklärt: [Punkte]
+   ❓ Noch offen: [Punkte]
+`;
+}
+
+async function copyToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 function createTaskCardNode(
   check,
   aufgabe,
@@ -165,7 +786,9 @@ function createTaskCardNode(
   scriptInfoHref = "",
   taskUiStateKey = "",
   readPersistedState = true,
-  shuffleSeed = ""
+  shuffleSeed = "",
+  taskIndex = 0,
+  totalTasks = 0
 ) {
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
@@ -235,7 +858,50 @@ function createTaskCardNode(
     ? shuffleQuestionsInTask(aufgabe, shuffleSeed || taskUiStateKey)
     : aufgabe;
 
-  const runtimeTaskNode = renderRuntimeTask(effectiveAufgabe, {
+  let runtimeTaskNode = null;
+
+  const aiAgentBtn = createHeaderActionProxyButton({
+    iconClass: "fa-wand-magic-sparkles",
+    title: "KI-Erklaeragent kopieren",
+    onClick: async () => {
+      aiAgentBtn.disabled = true;
+      const prevTitle = aiAgentBtn.title;
+      const prevAria = aiAgentBtn.getAttribute("aria-label") || prevTitle;
+      const prevHtml = aiAgentBtn.innerHTML;
+      aiAgentBtn.innerHTML = '<i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>';
+
+      try {
+        const prompt = buildTrainingKiAgentPrompt({
+          check,
+          task: effectiveAufgabe,
+          taskIndex,
+          totalTasks,
+          runtimeTaskNode,
+        });
+        const ok = await copyToClipboard(prompt);
+        if (ok) {
+          aiAgentBtn.title = "KI-Erklaeragent in Zwischenablage kopiert";
+          aiAgentBtn.setAttribute("aria-label", "KI-Erklaeragent in Zwischenablage kopiert");
+          aiAgentBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+        } else {
+          aiAgentBtn.title = "Kopieren fehlgeschlagen";
+          aiAgentBtn.setAttribute("aria-label", "Kopieren fehlgeschlagen");
+          aiAgentBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>';
+        }
+
+        window.setTimeout(() => {
+          aiAgentBtn.title = prevTitle;
+          aiAgentBtn.setAttribute("aria-label", prevAria);
+          aiAgentBtn.innerHTML = prevHtml;
+        }, 1700);
+      } finally {
+        aiAgentBtn.disabled = false;
+      }
+    },
+  });
+  headerRight.insertBefore(aiAgentBtn, statsBtn);
+
+  runtimeTaskNode = renderRuntimeTask(effectiveAufgabe, {
     index: 0,
     showSolution: false,
     showTaskHeading: false,
@@ -356,7 +1022,9 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       scriptInfoHref,
       stateKey,
       shouldReadPersistedState,
-      `${stateKey}::${shuffleNonce}`
+      `${stateKey}::${shuffleNonce}`,
+      taskIndex,
+      sammlung.length
     );
   };
 

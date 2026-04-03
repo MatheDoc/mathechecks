@@ -1,6 +1,6 @@
 [
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 49 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 405 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -12,26 +12,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=70:250}",
-      "{1:NUMERICAL:=16:2,5}",
-      "{1:NUMERICAL:=640:250}",
-      "{1:NUMERICAL:=350,8421:250}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=12:2,5}",
-      "{1:NUMERICAL:=3430:250}",
-      "{1:NUMERICAL:=29,4356:2,5}"
+      "{1:NUMERICAL:=1,4192:50}",
+      "{1:NUMERICAL:=123,2753:25}",
+      "{1:NUMERICAL:=75,5887:50}",
+      "{1:NUMERICAL:=77,2939:50}",
+      "{1:NUMERICAL:=332,7929:25}",
+      "{1:NUMERICAL:=124,1061:25}",
+      "{1:NUMERICAL:=574,7922:50}",
+      "{1:NUMERICAL:=244,3523:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.05,
-          "k2": -1.8,
-          "k1": 46.0,
-          "k0": 640.0,
-          "price": 70.0,
-          "capacity": 49
+          "k3": 2.2e-05,
+          "k2": -0.008191,
+          "k1": 1.481488,
+          "k0": 75.588721,
+          "price": 1.41924,
+          "capacity": 405
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -39,11 +39,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              53.900000000000006
+              437.05551372673506
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -80.249479509676,
+              620.775576
+            ]
           }
         },
         "width": 900,
@@ -53,7 +57,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 46 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 101 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -65,26 +69,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=62:250}",
-      "{1:NUMERICAL:=15:2,5}",
-      "{1:NUMERICAL:=240:250}",
-      "{1:NUMERICAL:=510,2581:250}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=17:2,5}",
-      "{1:NUMERICAL:=2852:250}",
-      "{1:NUMERICAL:=29,741:2,5}"
+      "{1:NUMERICAL:=4,101:25}",
+      "{1:NUMERICAL:=39,9653:5}",
+      "{1:NUMERICAL:=87,2577:25}",
+      "{1:NUMERICAL:=56,4195:25}",
+      "{1:NUMERICAL:=83,5856:5}",
+      "{1:NUMERICAL:=35,2322:5}",
+      "{1:NUMERICAL:=414,198:25}",
+      "{1:NUMERICAL:=64,6108:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.1,
-          "k2": -5.1,
-          "k1": 100.0,
-          "k0": 240.0,
-          "price": 62.0,
-          "capacity": 46
+          "k3": 0.001463,
+          "k2": -0.154634,
+          "k1": 5.760887,
+          "k0": 87.257746,
+          "price": 4.10097,
+          "capacity": 101
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -92,11 +96,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              50.6
+              111.09300785855265
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -97.48340405803336,
+              447.3338076
+            ]
           }
         },
         "width": 900,
@@ -106,7 +114,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 37 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 150 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -118,26 +126,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=63:250}",
-      "{1:NUMERICAL:=20:2,5}",
-      "{1:NUMERICAL:=720:250}",
-      "{1:NUMERICAL:=130,7604:250}",
-      "{1:NUMERICAL:=30:2,5}",
-      "{1:NUMERICAL:=14,1667:2,5}",
-      "{1:NUMERICAL:=2331:250}",
-      "{1:NUMERICAL:=25,378:2,5}"
+      "{1:NUMERICAL:=2,6518:25}",
+      "{1:NUMERICAL:=36,9535:6,25}",
+      "{1:NUMERICAL:=48,8243:25}",
+      "{1:NUMERICAL:=83,0046:25}",
+      "{1:NUMERICAL:=123,1334:6,25}",
+      "{1:NUMERICAL:=44,5091:6,25}",
+      "{1:NUMERICAL:=397,7715:25}",
+      "{1:NUMERICAL:=87,8865:6,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.16,
-          "k2": -6.8,
-          "k1": 99.0,
-          "k0": 720.0,
-          "price": 63.0,
-          "capacity": 37
+          "k3": 0.000404,
+          "k2": -0.053945,
+          "k1": 2.772347,
+          "k0": 48.824259,
+          "price": 2.65181,
+          "capacity": 150
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -145,11 +153,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              40.7
+              163.13867380534413
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -51.89178665722684,
+              429.5932199999999
+            ]
           }
         },
         "width": 900,
@@ -159,7 +171,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 26 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 338 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -171,26 +183,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=47:125}",
-      "{1:NUMERICAL:=7:1,25}",
-      "{1:NUMERICAL:=140:125}",
-      "{1:NUMERICAL:=101,1195:125}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=5,6667:1,25}",
-      "{1:NUMERICAL:=1222:125}",
-      "{1:NUMERICAL:=14,3525:1,25}"
+      "{1:NUMERICAL:=0,7678:12,5}",
+      "{1:NUMERICAL:=78,9332:25}",
+      "{1:NUMERICAL:=29,9286:12,5}",
+      "{1:NUMERICAL:=47,3589:12,5}",
+      "{1:NUMERICAL:=260,7409:25}",
+      "{1:NUMERICAL:=93,0278:25}",
+      "{1:NUMERICAL:=259,5289:12,5}",
+      "{1:NUMERICAL:=186,0556:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.1,
-          "k2": -1.7,
-          "k1": 34.0,
-          "k0": 140.0,
-          "price": 47.0,
-          "capacity": 26
+          "k3": 2.4e-05,
+          "k2": -0.006698,
+          "k1": 0.767837,
+          "k0": 29.928588,
+          "price": 0.767837,
+          "capacity": 338
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -198,11 +210,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              28.6
+              368.3204387831924
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -32.928588000000005,
+              280.29121848
+            ]
           }
         },
         "width": 900,
@@ -212,7 +228,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 56 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 187 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -224,26 +240,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=59:250}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=350:250}",
-      "{1:NUMERICAL:=531,7796:250}",
-      "{1:NUMERICAL:=50:2,5}",
-      "{1:NUMERICAL:=8,3333:2,5}",
-      "{1:NUMERICAL:=3304:250}",
-      "{1:NUMERICAL:=32,8849:2,5}"
+      "{1:NUMERICAL:=1,8054:25}",
+      "{1:NUMERICAL:=38,1648:12,5}",
+      "{1:NUMERICAL:=39,3841:25}",
+      "{1:NUMERICAL:=82,5569:25}",
+      "{1:NUMERICAL:=155,0539:12,5}",
+      "{1:NUMERICAL:=51,4327:12,5}",
+      "{1:NUMERICAL:=337,6141:25}",
+      "{1:NUMERICAL:=107,8199:12,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.02,
-          "k2": -0.5,
-          "k1": 27.0,
-          "k0": 350.0,
-          "price": 59.0,
-          "capacity": 56
+          "k3": 0.000171,
+          "k2": -0.026385,
+          "k1": 1.531385,
+          "k0": 39.384069,
+          "price": 1.805423,
+          "capacity": 187
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -251,11 +267,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              61.60000000000001
+              195.87851468499525
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -42.384069,
+              364.62322908
+            ]
           }
         },
         "width": 900,
@@ -265,7 +285,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 48 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 276 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -277,26 +297,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=59:250}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=560:250}",
-      "{1:NUMERICAL:=607,7502:250}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=7,3333:2,5}",
-      "{1:NUMERICAL:=2832:250}",
-      "{1:NUMERICAL:=27,0085:2,5}"
+      "{1:NUMERICAL:=2,2736:50}",
+      "{1:NUMERICAL:=74,6016:12,5}",
+      "{1:NUMERICAL:=83,7454:50}",
+      "{1:NUMERICAL:=86,9396:50}",
+      "{1:NUMERICAL:=215,3193:12,5}",
+      "{1:NUMERICAL:=75,4472:12,5}",
+      "{1:NUMERICAL:=627,5186:50}",
+      "{1:NUMERICAL:=155,9594:12,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.05,
-          "k2": -1.1,
-          "k1": 9.0,
-          "k0": 560.0,
-          "price": 59.0,
-          "capacity": 48
+          "k3": 8.2e-05,
+          "k2": -0.01856,
+          "k1": 2.079292,
+          "k0": 83.745379,
+          "price": 2.273618,
+          "capacity": 276
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -304,11 +324,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              52.800000000000004
+              287.37017526459437
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -88.77010174,
+              677.7200534399999
+            ]
           }
         },
         "width": 900,
@@ -318,7 +342,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 57 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 116 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -330,26 +354,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=96:500}",
-      "{1:NUMERICAL:=9:2,5}",
-      "{1:NUMERICAL:=450:500}",
-      "{1:NUMERICAL:=1760,0075:500}",
-      "{1:NUMERICAL:=50:2,5}",
-      "{1:NUMERICAL:=16,3333:2,5}",
-      "{1:NUMERICAL:=5472:500}",
-      "{1:NUMERICAL:=34,0377:2,5}"
+      "{1:NUMERICAL:=0,3521:2,5}",
+      "{1:NUMERICAL:=35,234:5}",
+      "{1:NUMERICAL:=6,864:2,5}",
+      "{1:NUMERICAL:=6,5663:2,5}",
+      "{1:NUMERICAL:=96,2101:5}",
+      "{1:NUMERICAL:=34,6937:5}",
+      "{1:NUMERICAL:=40,8379:2,5}",
+      "{1:NUMERICAL:=70,3672:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.1,
-          "k2": -4.9,
-          "k1": 82.0,
-          "k0": 450.0,
-          "price": 96.0,
-          "capacity": 57
+          "k3": 7.4e-05,
+          "k2": -0.007702,
+          "k1": 0.336745,
+          "k0": 6.864011,
+          "price": 0.352051,
+          "capacity": 116
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -357,11 +381,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              62.7
+              128.88229663387872
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -9.864011,
+              44.837916
+            ]
           }
         },
         "width": 900,
@@ -371,7 +399,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 76 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 631 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -383,26 +411,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=49:250}",
-      "{1:NUMERICAL:=30:5}",
-      "{1:NUMERICAL:=630:250}",
-      "{1:NUMERICAL:=324,8538:250}",
-      "{1:NUMERICAL:=70:5}",
-      "{1:NUMERICAL:=23,3333:5}",
-      "{1:NUMERICAL:=3724:250}",
-      "{1:NUMERICAL:=52,3927:5}"
+      "{1:NUMERICAL:=1,1364:50}",
+      "{1:NUMERICAL:=143,5518:25}",
+      "{1:NUMERICAL:=86,5278:50}",
+      "{1:NUMERICAL:=149,6524:50}",
+      "{1:NUMERICAL:=492,8943:25}",
+      "{1:NUMERICAL:=175,0909:25}",
+      "{1:NUMERICAL:=717,0804:50}",
+      "{1:NUMERICAL:=350,1818:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.01,
-          "k2": -0.7,
-          "k1": 40.0,
-          "k0": 630.0,
-          "price": 49.0,
-          "capacity": 76
+          "k3": 1.1e-05,
+          "k2": -0.005778,
+          "k1": 1.136419,
+          "k0": 86.527833,
+          "price": 1.136419,
+          "capacity": 631
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -410,11 +438,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              83.60000000000001
+              697.0741881403467
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -91.71950298,
+              774.4468201200001
+            ]
           }
         },
         "width": 900,
@@ -424,7 +456,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 48 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 395 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -436,26 +468,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=95:500}",
-      "{1:NUMERICAL:=20:2,5}",
-      "{1:NUMERICAL:=1600:500}",
-      "{1:NUMERICAL:=504,9042:500}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=13,3333:2,5}",
-      "{1:NUMERICAL:=4560:500}",
-      "{1:NUMERICAL:=30,9717:2,5}"
+      "{1:NUMERICAL:=0,8266:25}",
+      "{1:NUMERICAL:=116,2952:25}",
+      "{1:NUMERICAL:=59,2583:25}",
+      "{1:NUMERICAL:=45,0757:25}",
+      "{1:NUMERICAL:=316,1471:25}",
+      "{1:NUMERICAL:=102,8205:25}",
+      "{1:NUMERICAL:=326,5256:25}",
+      "{1:NUMERICAL:=230,053:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.1,
-          "k2": -4.0,
-          "k1": 55.0,
-          "k0": 1600.0,
-          "price": 95.0,
-          "capacity": 48
+          "k3": 1.3e-05,
+          "k2": -0.00401,
+          "k1": 0.607621,
+          "k0": 59.25826,
+          "price": 0.826647,
+          "capacity": 395
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -463,11 +495,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              52.800000000000004
+              435.61656630067273
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -62.8137556,
+              352.64761020000003
+            ]
           }
         },
         "width": 900,
@@ -477,7 +513,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 23 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 96 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -489,26 +525,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,6:6,25}",
-      "{1:NUMERICAL:=10:1,25}",
-      "{1:NUMERICAL:=30:6,25}",
-      "{1:NUMERICAL:=13,306:6,25}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=8:1,25}",
-      "{1:NUMERICAL:=105,8:6,25}",
-      "{1:NUMERICAL:=15,5719:1,25}"
+      "{1:NUMERICAL:=4,4478:25}",
+      "{1:NUMERICAL:=19,0421:5}",
+      "{1:NUMERICAL:=49,9884:25}",
+      "{1:NUMERICAL:=115,2383:25}",
+      "{1:NUMERICAL:=78,3351:5}",
+      "{1:NUMERICAL:=26,5393:5}",
+      "{1:NUMERICAL:=426,9864:25}",
+      "{1:NUMERICAL:=54,5315:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.025,
-          "k2": -0.6,
-          "k1": 5.1000000000000005,
-          "k0": 30.0,
-          "price": 4.6,
-          "capacity": 23
+          "k3": 0.001887,
+          "k2": -0.150239,
+          "k1": 3.99926,
+          "k0": 49.988392,
+          "price": 4.447775,
+          "capacity": 96
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -516,11 +552,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              25.3
+              100.42931960486787
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -52.988392,
+              461.145312
+            ]
           }
         },
         "width": 900,
@@ -530,7 +570,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 37 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 532 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -542,26 +582,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=27:125}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=75:125}",
-      "{1:NUMERICAL:=47,2395:125}",
-      "{1:NUMERICAL:=25:2,5}",
-      "{1:NUMERICAL:=8,3333:2,5}",
-      "{1:NUMERICAL:=999:125}",
-      "{1:NUMERICAL:=18,4713:2,5}"
+      "{1:NUMERICAL:=0,7494:25}",
+      "{1:NUMERICAL:=143,0544:25}",
+      "{1:NUMERICAL:=59,5422:25}",
+      "{1:NUMERICAL:=84,5772:25}",
+      "{1:NUMERICAL:=425,4318:25}",
+      "{1:NUMERICAL:=159,8485:25}",
+      "{1:NUMERICAL:=398,6792:25}",
+      "{1:NUMERICAL:=308,5723:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.03,
-          "k2": -0.75,
-          "k1": 24.0,
-          "k0": 75.0,
-          "price": 27.0,
-          "capacity": 37
+          "k3": 1.1e-05,
+          "k2": -0.005275,
+          "k1": 0.862678,
+          "k0": 59.542243,
+          "price": 0.749397,
+          "capacity": 532
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -569,11 +609,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              40.7
+              552.6277034874815
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -63.774265925929285,
+              430.57354031999995
+            ]
           }
         },
         "width": 900,
@@ -583,7 +627,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 28 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 344 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -595,26 +639,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,7:12,5}",
-      "{1:NUMERICAL:=10:1,25}",
-      "{1:NUMERICAL:=25:12,5}",
-      "{1:NUMERICAL:=25,9808:12,5}",
-      "{1:NUMERICAL:=25:1,25}",
-      "{1:NUMERICAL:=10:1,25}",
-      "{1:NUMERICAL:=131,6:12,5}",
-      "{1:NUMERICAL:=18,6603:1,25}"
+      "{1:NUMERICAL:=1,0675:25}",
+      "{1:NUMERICAL:=106,1586:25}",
+      "{1:NUMERICAL:=53,778:25}",
+      "{1:NUMERICAL:=55,878:25}",
+      "{1:NUMERICAL:=284,2979:25}",
+      "{1:NUMERICAL:=107,3077:25}",
+      "{1:NUMERICAL:=367,2049:25}",
+      "{1:NUMERICAL:=209,1629:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.02,
-          "k2": -0.6,
-          "k1": 6.2,
-          "k0": 25.0,
-          "price": 4.7,
-          "capacity": 28
+          "k3": 2.6e-05,
+          "k2": -0.00837,
+          "k1": 1.156411,
+          "k0": 53.778018,
+          "price": 1.067456,
+          "capacity": 344
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -622,11 +666,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              30.800000000000004
+              380.3715831026899
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -57.25661219536484,
+              396.58125312
+            ]
           }
         },
         "width": 900,
@@ -636,7 +684,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 61 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 149 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -648,26 +696,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=41:125}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=220:125}",
-      "{1:NUMERICAL:=554,0954:125}",
-      "{1:NUMERICAL:=55:2,5}",
-      "{1:NUMERICAL:=15:2,5}",
-      "{1:NUMERICAL:=2501:125}",
-      "{1:NUMERICAL:=36,7945:2,5}"
+      "{1:NUMERICAL:=4,0303:50}",
+      "{1:NUMERICAL:=46,1274:6,25}",
+      "{1:NUMERICAL:=91,7214:50}",
+      "{1:NUMERICAL:=102,535:50}",
+      "{1:NUMERICAL:=123,7563:6,25}",
+      "{1:NUMERICAL:=47,5503:6,25}",
+      "{1:NUMERICAL:=600,5174:50}",
+      "{1:NUMERICAL:=91,1429:6,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.02,
-          "k2": -0.9,
-          "k1": 26.0,
-          "k0": 220.0,
-          "price": 41.0,
-          "capacity": 61
+          "k3": 0.00059,
+          "k2": -0.084164,
+          "k1": 4.668784,
+          "k0": 91.721356,
+          "price": 4.030318,
+          "capacity": 149
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -675,11 +723,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              67.10000000000001
+              160.8199197309423
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -98.53938080102844,
+              648.55877256
+            ]
           }
         },
         "width": 900,
@@ -689,7 +741,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 33 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 646 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -701,26 +753,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=8,4:50}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=60:50}",
-      "{1:NUMERICAL:=43,9251:50}",
-      "{1:NUMERICAL:=25:2,5}",
-      "{1:NUMERICAL:=9:2,5}",
-      "{1:NUMERICAL:=277,2:50}",
-      "{1:NUMERICAL:=18,5394:2,5}"
+      "{1:NUMERICAL:=0,3378:12,5}",
+      "{1:NUMERICAL:=161,0771:50}",
+      "{1:NUMERICAL:=33,353:12,5}",
+      "{1:NUMERICAL:=52,647:12,5}",
+      "{1:NUMERICAL:=537,6348:50}",
+      "{1:NUMERICAL:=190,1111:50}",
+      "{1:NUMERICAL:=218,2117:12,5}",
+      "{1:NUMERICAL:=382,9199:50}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.03,
-          "k2": -0.81,
-          "k1": 7.5,
-          "k0": 60.0,
-          "price": 8.4,
-          "capacity": 33
+          "k3": 3e-06,
+          "k2": -0.001711,
+          "k1": 0.328492,
+          "k0": 33.353002,
+          "price": 0.337789,
+          "capacity": 646
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -728,11 +780,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              36.300000000000004
+              720.3014084224917
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -36.353002,
+              235.66862952
+            ]
           }
         },
         "width": 900,
@@ -742,7 +798,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 49 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 110 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -754,26 +810,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=74:500}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=360:500}",
-      "{1:NUMERICAL:=738,7939:500}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=13,3333:2,5}",
-      "{1:NUMERICAL:=3626:500}",
-      "{1:NUMERICAL:=27,863:2,5}"
+      "{1:NUMERICAL:=0,6316:5}",
+      "{1:NUMERICAL:=25,0874:5}",
+      "{1:NUMERICAL:=8,7688:5}",
+      "{1:NUMERICAL:=14,6148:5}",
+      "{1:NUMERICAL:=85,6241:5}",
+      "{1:NUMERICAL:=30,2337:5}",
+      "{1:NUMERICAL:=69,477:5}",
+      "{1:NUMERICAL:=60,8361:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.09,
-          "k2": -3.6,
-          "k1": 65.0,
-          "k0": 360.0,
-          "price": 74.0,
-          "capacity": 49
+          "k3": 0.000204,
+          "k2": -0.018503,
+          "k1": 0.617878,
+          "k0": 8.768828,
+          "price": 0.631609,
+          "capacity": 110
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -781,11 +837,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              53.900000000000006
+              121.46466201282561
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -11.768828,
+              75.0351492
+            ]
           }
         },
         "width": 900,
@@ -795,7 +855,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 56 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 47 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -807,26 +867,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=37:125}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=150:125}",
-      "{1:NUMERICAL:=376,3256:125}",
-      "{1:NUMERICAL:=50:2,5}",
-      "{1:NUMERICAL:=15:2,5}",
-      "{1:NUMERICAL:=2072:125}",
-      "{1:NUMERICAL:=33,9297:2,5}"
+      "{1:NUMERICAL:=10,3352:25}",
+      "{1:NUMERICAL:=13,8853:2,5}",
+      "{1:NUMERICAL:=80,2398:25}",
+      "{1:NUMERICAL:=92,8053:25}",
+      "{1:NUMERICAL:=38,1059:2,5}",
+      "{1:NUMERICAL:=14,4937:2,5}",
+      "{1:NUMERICAL:=485,7566:25}",
+      "{1:NUMERICAL:=27,954:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.02,
-          "k2": -0.9,
-          "k1": 29.0,
-          "k0": 150.0,
-          "price": 37.0,
-          "capacity": 56
+          "k3": 0.01782,
+          "k2": -0.774834,
+          "k1": 11.879593,
+          "k0": 80.239751,
+          "price": 10.335246,
+          "capacity": 47
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -834,11 +894,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              61.60000000000001
+              52.58249140294542
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -85.88665214508835,
+              524.6170869599999
+            ]
           }
         },
         "width": 900,
@@ -848,7 +912,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 34 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 413 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -860,26 +924,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=80:250}",
-      "{1:NUMERICAL:=10:2,5}",
-      "{1:NUMERICAL:=540:250}",
-      "{1:NUMERICAL:=386,3672:250}",
-      "{1:NUMERICAL:=30:2,5}",
-      "{1:NUMERICAL:=7,3333:2,5}",
-      "{1:NUMERICAL:=2720:250}",
-      "{1:NUMERICAL:=21,2537:2,5}"
+      "{1:NUMERICAL:=0,6516:12,5}",
+      "{1:NUMERICAL:=123,6334:25}",
+      "{1:NUMERICAL:=48,3597:12,5}",
+      "{1:NUMERICAL:=44,3341:12,5}",
+      "{1:NUMERICAL:=333,8401:25}",
+      "{1:NUMERICAL:=119,9444:25}",
+      "{1:NUMERICAL:=269,1269:12,5}",
+      "{1:NUMERICAL:=244,5157:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.1,
-          "k2": -2.2,
-          "k1": 38.0,
-          "k0": 540.0,
-          "price": 80.0,
-          "capacity": 34
+          "k3": 1.2e-05,
+          "k2": -0.004318,
+          "k1": 0.610911,
+          "k0": 48.359742,
+          "price": 0.651639,
+          "capacity": 413
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -887,11 +951,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              37.400000000000006
+              429.26088769999626
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -51.359742,
+              290.65705955999994
+            ]
           }
         },
         "width": 900,
@@ -901,7 +969,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 67 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 18 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -913,26 +981,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=70:250}",
-      "{1:NUMERICAL:=28:5}",
-      "{1:NUMERICAL:=840:250}",
-      "{1:NUMERICAL:=705,7627:250}",
-      "{1:NUMERICAL:=60:5}",
-      "{1:NUMERICAL:=26:5}",
-      "{1:NUMERICAL:=4690:250}",
-      "{1:NUMERICAL:=46,232:5}"
+      "{1:NUMERICAL:=24,3696:25}",
+      "{1:NUMERICAL:=3,9448:1,25}",
+      "{1:NUMERICAL:=54,6615:25}",
+      "{1:NUMERICAL:=92,4258:25}",
+      "{1:NUMERICAL:=13,894:1,25}",
+      "{1:NUMERICAL:=4,8065:1,25}",
+      "{1:NUMERICAL:=438,6523:25}",
+      "{1:NUMERICAL:=9,823:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.05,
-          "k2": -3.9,
-          "k1": 110.0,
-          "k0": 840.0,
-          "price": 70.0,
-          "capacity": 67
+          "k3": 0.29166,
+          "k2": -4.205566,
+          "k1": 22.564418,
+          "k0": 54.661505,
+          "price": 24.369571,
+          "capacity": 18
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -940,11 +1008,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              73.7
+              19.35466244338037
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -57.9411953,
+              473.74446024
+            ]
           }
         },
         "width": 900,
@@ -954,7 +1026,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 42 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 491 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -966,26 +1038,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=73:250}",
-      "{1:NUMERICAL:=5:2,5}",
-      "{1:NUMERICAL:=280:250}",
-      "{1:NUMERICAL:=720:250}",
-      "{1:NUMERICAL:=40:2,5}",
-      "{1:NUMERICAL:=3,3333:2,5}",
-      "{1:NUMERICAL:=3066:250}",
-      "{1:NUMERICAL:=25:2,5}"
+      "{1:NUMERICAL:=0,3211:12,5}",
+      "{1:NUMERICAL:=134,7217:25}",
+      "{1:NUMERICAL:=24,463:12,5}",
+      "{1:NUMERICAL:=27,618:12,5}",
+      "{1:NUMERICAL:=400,2081:25}",
+      "{1:NUMERICAL:=140,5:25}",
+      "{1:NUMERICAL:=157,6621:12,5}",
+      "{1:NUMERICAL:=288,8026:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.04,
-          "k2": -0.4,
-          "k1": 18.0,
-          "k0": 280.0,
-          "price": 73.0,
-          "capacity": 42
+          "k3": 4e-06,
+          "k2": -0.001686,
+          "k1": 0.294063,
+          "k0": 24.463031,
+          "price": 0.321104,
+          "capacity": 491
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -993,11 +1065,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              46.2
+              537.8864673383284
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -27.463031,
+              170.27502912
+            ]
           }
         },
         "width": 900,
@@ -1007,7 +1083,7 @@
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 22 Mengeneinheiten. Bestimmen Sie",
+    "einleitung": "Das Diagramm zeigt die Erlös-, Kosten- und Gewinnfunktion eines Unternehmens. Die Kapazitätsgrenze beträgt 545 Mengeneinheiten. Bestimmen Sie",
     "fragen": [
       "den Verkaufspreis.",
       "die Gewinnschwelle.",
@@ -1019,26 +1095,26 @@
       "die gewinnmaximale Menge."
     ],
     "antworten": [
-      "{1:NUMERICAL:=5,5:6,25}",
-      "{1:NUMERICAL:=6:1,25}",
-      "{1:NUMERICAL:=24:6,25}",
-      "{1:NUMERICAL:=26,4042:6,25}",
-      "{1:NUMERICAL:=20:1,25}",
-      "{1:NUMERICAL:=6:1,25}",
-      "{1:NUMERICAL:=121:6,25}",
-      "{1:NUMERICAL:=14,0829:1,25}"
+      "{1:NUMERICAL:=0,8833:25}",
+      "{1:NUMERICAL:=150,4375:25}",
+      "{1:NUMERICAL:=67,4594:25}",
+      "{1:NUMERICAL:=73,2166:25}",
+      "{1:NUMERICAL:=420,0235:25}",
+      "{1:NUMERICAL:=154,5667:25}",
+      "{1:NUMERICAL:=481,3811:25}",
+      "{1:NUMERICAL:=306,6503:25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "economic-curves",
         "params": {
-          "k3": 0.025,
-          "k2": -0.45,
-          "k1": 3.3000000000000003,
-          "k0": 24.0,
-          "price": 5.5,
-          "capacity": 22
+          "k3": 1e-05,
+          "k2": -0.004637,
+          "k1": 0.906111,
+          "k0": 67.459379,
+          "price": 0.883268,
+          "capacity": 545
         },
         "layout": {
           "title": "Erlös-, Kosten- und Gewinnfunktion",
@@ -1046,11 +1122,15 @@
             "title": "Menge x",
             "range": [
               0.0,
-              24.200000000000003
+              562.9975934443365
             ]
           },
           "yaxis": {
-            "title": "Wert"
+            "title": "Wert",
+            "range": [
+              -71.53456294572244,
+              519.8915448
+            ]
           }
         },
         "width": 900,

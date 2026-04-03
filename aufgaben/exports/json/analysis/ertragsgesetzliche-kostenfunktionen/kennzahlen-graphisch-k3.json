@@ -9,9 +9,9 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=51,8:6,25}",
+      "{1:NUMERICAL:=51,8:5}",
       "{1:NUMERICAL:=21:1,25}",
-      "{1:NUMERICAL:=60,8:6,25}",
+      "{1:NUMERICAL:=60,8:5}",
       "{1:NUMERICAL:=22:1,25}",
       "{1:NUMERICAL:=14:1,25}"
     ],
@@ -24,8 +24,8 @@
           "k2": -8.4,
           "k1": 140.0,
           "k0": 193.6,
-          "maxX": 31.5,
-          "yMax": 156.8
+          "maxX": 26.6,
+          "yMax": 141.3
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -33,16 +33,40 @@
             "title": "Menge x",
             "range": [
               0,
-              31.5
+              26.6
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              156.8
+              10.0,
+              141.3
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 10.0,
+              "y1": 141.3,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 10.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -61,10 +85,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=13,95:2,5}",
-      "{1:NUMERICAL:=9:1,25}",
+      "{1:NUMERICAL:=9:0,625}",
       "{1:NUMERICAL:=22,2:2,5}",
-      "{1:NUMERICAL:=14:1,25}",
-      "{1:NUMERICAL:=6:1,25}"
+      "{1:NUMERICAL:=14:0,625}",
+      "{1:NUMERICAL:=6:0,625}"
     ],
     "visual": {
       "type": "plot",
@@ -75,8 +99,8 @@
           "k2": -0.9,
           "k1": 18.0,
           "k0": 98.0,
-          "maxX": 18.9,
-          "yMax": 46.2
+          "maxX": 16.5,
+          "yMax": 58.2
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -84,16 +108,40 @@
             "title": "Menge x",
             "range": [
               0,
-              18.9
+              16.5
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              46.2
+              7.8,
+              58.2
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 6.0,
+              "x1": 6.0,
+              "y0": 7.8,
+              "y1": 58.2,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 6.0,
+              "y": 7.8,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -112,10 +160,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=35,28:5}",
-      "{1:NUMERICAL:=9:1,25}",
+      "{1:NUMERICAL:=9:0,625}",
       "{1:NUMERICAL:=55,08:5}",
-      "{1:NUMERICAL:=14:1,25}",
-      "{1:NUMERICAL:=6:1,25}"
+      "{1:NUMERICAL:=14:0,625}",
+      "{1:NUMERICAL:=6:0,625}"
     ],
     "visual": {
       "type": "plot",
@@ -126,8 +174,8 @@
           "k2": -2.16,
           "k1": 45.0,
           "k0": 235.2,
-          "maxX": 18.9,
-          "yMax": 112.7
+          "maxX": 16.5,
+          "yMax": 141.4
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -135,16 +183,40 @@
             "title": "Menge x",
             "range": [
               0,
-              18.9
+              16.5
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              112.7
+              20.6,
+              141.4
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 6.0,
+              "x1": 6.0,
+              "y0": 20.6,
+              "y1": 141.4,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 6.0,
+              "y": 20.6,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -163,10 +235,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=57,7:25}",
-      "{1:NUMERICAL:=21:2,5}",
+      "{1:NUMERICAL:=21:1,25}",
       "{1:NUMERICAL:=143,2:25}",
-      "{1:NUMERICAL:=26:2,5}",
-      "{1:NUMERICAL:=14:2,5}"
+      "{1:NUMERICAL:=26:1,25}",
+      "{1:NUMERICAL:=14:1,25}"
     ],
     "visual": {
       "type": "plot",
@@ -177,8 +249,8 @@
           "k2": -12.6,
           "k1": 190.0,
           "k0": 2028.0,
-          "maxX": 35.1,
-          "yMax": 467.2
+          "maxX": 30.7,
+          "yMax": 509.1
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -186,16 +258,40 @@
             "title": "Menge x",
             "range": [
               0,
-              35.1
+              30.7
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              467.2
+              0.0,
+              509.1
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 0.0,
+              "y1": 509.1,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -214,10 +310,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=7,95:2,5}",
-      "{1:NUMERICAL:=9:1,25}",
+      "{1:NUMERICAL:=9:0,625}",
       "{1:NUMERICAL:=16,2:2,5}",
-      "{1:NUMERICAL:=14:1,25}",
-      "{1:NUMERICAL:=6:1,25}"
+      "{1:NUMERICAL:=14:0,625}",
+      "{1:NUMERICAL:=6:0,625}"
     ],
     "visual": {
       "type": "plot",
@@ -228,8 +324,8 @@
           "k2": -0.9,
           "k1": 12.0,
           "k0": 98.0,
-          "maxX": 18.9,
-          "yMax": 40.2
+          "maxX": 16.5,
+          "yMax": 52.2
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -237,16 +333,40 @@
             "title": "Menge x",
             "range": [
               0,
-              18.9
+              16.5
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              40.2
+              1.8,
+              52.2
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 6.0,
+              "x1": 6.0,
+              "y0": 1.8,
+              "y1": 52.2,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 6.0,
+              "y": 1.8,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -264,11 +384,11 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=71,8:12,5}",
-      "{1:NUMERICAL:=21:2,5}",
-      "{1:NUMERICAL:=128,8:12,5}",
-      "{1:NUMERICAL:=26:2,5}",
-      "{1:NUMERICAL:=14:2,5}"
+      "{1:NUMERICAL:=71,8:25}",
+      "{1:NUMERICAL:=21:1,25}",
+      "{1:NUMERICAL:=128,8:25}",
+      "{1:NUMERICAL:=26:1,25}",
+      "{1:NUMERICAL:=14:1,25}"
     ],
     "visual": {
       "type": "plot",
@@ -279,8 +399,8 @@
           "k2": -8.4,
           "k1": 160.0,
           "k0": 1352.0,
-          "maxX": 35.1,
-          "yMax": 344.8
+          "maxX": 30.7,
+          "yMax": 372.7
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -288,16 +408,40 @@
             "title": "Menge x",
             "range": [
               0,
-              35.1
+              30.7
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              344.8
+              7.9,
+              372.7
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 7.9,
+              "y1": 372.7,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 7.9,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -330,8 +474,8 @@
           "k2": -3.6,
           "k1": 75.0,
           "k0": 529.0,
-          "maxX": 31.1,
-          "yMax": 158.8
+          "maxX": 27.1,
+          "yMax": 175.1
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -339,16 +483,40 @@
             "title": "Menge x",
             "range": [
               0,
-              31.1
+              27.1
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              158.8
+              16.8,
+              175.1
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 12.0,
+              "x1": 12.0,
+              "y0": 16.8,
+              "y1": 175.1,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 12.0,
+              "y": 16.8,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -381,8 +549,8 @@
           "k2": -7.2,
           "k1": 90.0,
           "k0": 320.0,
-          "maxX": 27.0,
-          "yMax": 138.0
+          "maxX": 23.6,
+          "yMax": 133.1
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -390,16 +558,40 @@
             "title": "Menge x",
             "range": [
               0,
-              27.0
+              23.6
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              138.0
+              0.0,
+              133.1
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 12.0,
+              "x1": 12.0,
+              "y0": 0.0,
+              "y1": 133.1,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 12.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -432,8 +624,8 @@
           "k2": -3.36,
           "k1": 55.0,
           "k0": 1296.0,
-          "maxX": 40.5,
-          "yMax": 223.0
+          "maxX": 35.4,
+          "yMax": 277.9
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -441,16 +633,40 @@
             "title": "Menge x",
             "range": [
               0,
-              40.5
+              35.4
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              223.0
+              0.0,
+              277.9
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 0.0,
+              "y1": 277.9,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -468,9 +684,9 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=23:5}",
+      "{1:NUMERICAL:=23:2,5}",
       "{1:NUMERICAL:=15:1,25}",
-      "{1:NUMERICAL:=32,36:5}",
+      "{1:NUMERICAL:=32,36:2,5}",
       "{1:NUMERICAL:=18:1,25}",
       "{1:NUMERICAL:=10:1,25}"
     ],
@@ -483,8 +699,8 @@
           "k2": -2.4,
           "k1": 41.0,
           "k0": 155.52,
-          "maxX": 24.3,
-          "yMax": 70.8
+          "maxX": 21.2,
+          "yMax": 73.8
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -492,16 +708,40 @@
             "title": "Menge x",
             "range": [
               0,
-              24.3
+              21.2
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              70.8
+              11.1,
+              73.8
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 10.0,
+              "x1": 10.0,
+              "y0": 11.1,
+              "y1": 73.8,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 10.0,
+              "y": 11.1,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -520,10 +760,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=13,2:2,5}",
-      "{1:NUMERICAL:=12:1,25}",
+      "{1:NUMERICAL:=12:0,625}",
       "{1:NUMERICAL:=18,6:2,5}",
-      "{1:NUMERICAL:=13:1,25}",
-      "{1:NUMERICAL:=8:1,25}"
+      "{1:NUMERICAL:=13:0,625}",
+      "{1:NUMERICAL:=8:0,625}"
     ],
     "visual": {
       "type": "plot",
@@ -534,8 +774,8 @@
           "k2": -4.8,
           "k1": 42.0,
           "k0": 67.6,
-          "maxX": 18.0,
-          "yMax": 56.1
+          "maxX": 15.3,
+          "yMax": 52.5
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -543,16 +783,40 @@
             "title": "Menge x",
             "range": [
               0,
-              18.0
+              15.3
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              56.1
+              0.0,
+              52.5
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8.0,
+              "x1": 8.0,
+              "y0": 0.0,
+              "y1": 52.5,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 8.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -585,8 +849,8 @@
           "k2": -4.5,
           "k1": 88.0,
           "k0": 793.8,
-          "maxX": 28.4,
-          "yMax": 233.6
+          "maxX": 24.8,
+          "yMax": 277.8
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -594,16 +858,40 @@
             "title": "Menge x",
             "range": [
               0,
-              28.4
+              24.8
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              233.6
+              18.5,
+              277.8
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 10.0,
+              "x1": 10.0,
+              "y0": 18.5,
+              "y1": 277.8,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 10.0,
+              "y": 18.5,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -621,9 +909,9 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=7,2:1,25}",
+      "{1:NUMERICAL:=7,2:2,5}",
       "{1:NUMERICAL:=6:0,5}",
-      "{1:NUMERICAL:=11,7:1,25}",
+      "{1:NUMERICAL:=11,7:2,5}",
       "{1:NUMERICAL:=7:0,5}",
       "{1:NUMERICAL:=4:0,5}"
     ],
@@ -636,8 +924,8 @@
           "k2": -3.6,
           "k1": 18.0,
           "k0": 29.4,
-          "maxX": 14.0,
-          "yMax": 32.0
+          "maxX": 12.0,
+          "yMax": 69.8
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -645,16 +933,40 @@
             "title": "Menge x",
             "range": [
               0,
-              14.0
+              12.0
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              32.0
+              0.0,
+              69.8
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 4.0,
+              "x1": 4.0,
+              "y0": 0.0,
+              "y1": 69.8,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 4.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -673,10 +985,10 @@
     ],
     "antworten": [
       "{1:NUMERICAL:=24,72:12,5}",
-      "{1:NUMERICAL:=21:2,5}",
+      "{1:NUMERICAL:=21:1,25}",
       "{1:NUMERICAL:=66,96:12,5}",
-      "{1:NUMERICAL:=29:2,5}",
-      "{1:NUMERICAL:=14:2,5}"
+      "{1:NUMERICAL:=29:1,25}",
+      "{1:NUMERICAL:=14:1,25}"
     ],
     "visual": {
       "type": "plot",
@@ -687,8 +999,8 @@
           "k2": -3.36,
           "k1": 60.0,
           "k0": 1076.48,
-          "maxX": 39.2,
-          "yMax": 202.0
+          "maxX": 34.2,
+          "yMax": 242.9
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -696,16 +1008,40 @@
             "title": "Menge x",
             "range": [
               0,
-              39.2
+              34.2
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              202.0
+              0.0,
+              242.9
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 0.0,
+              "y1": 242.9,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -738,8 +1074,8 @@
           "k2": -2.88,
           "k1": 62.0,
           "k0": 162.0,
-          "maxX": 20.2,
-          "yMax": 100.7
+          "maxX": 17.7,
+          "yMax": 107.1
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -747,16 +1083,40 @@
             "title": "Menge x",
             "range": [
               0,
-              20.2
+              17.7
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              100.7
+              31.9,
+              107.1
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8.0,
+              "x1": 8.0,
+              "y0": 31.9,
+              "y1": 107.1,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 8.0,
+              "y": 31.9,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -774,9 +1134,9 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=19:6,25}",
+      "{1:NUMERICAL:=19:12,5}",
       "{1:NUMERICAL:=12:1,25}",
-      "{1:NUMERICAL:=55:6,25}",
+      "{1:NUMERICAL:=55:12,5}",
       "{1:NUMERICAL:=16:1,25}",
       "{1:NUMERICAL:=8:1,25}"
     ],
@@ -789,8 +1149,8 @@
           "k2": -6.0,
           "k1": 55.0,
           "k0": 512.0,
-          "maxX": 21.6,
-          "yMax": 175.0
+          "maxX": 18.9,
+          "yMax": 204.6
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -798,16 +1158,40 @@
             "title": "Menge x",
             "range": [
               0,
-              21.6
+              18.9
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              175.0
+              0.0,
+              204.6
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8.0,
+              "x1": 8.0,
+              "y0": 0.0,
+              "y1": 204.6,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 8.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -840,8 +1224,8 @@
           "k2": -8.4,
           "k1": 160.0,
           "k0": 423.2,
-          "maxX": 31.5,
-          "yMax": 212.5
+          "maxX": 27.1,
+          "yMax": 203.2
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -849,16 +1233,40 @@
             "title": "Menge x",
             "range": [
               0,
-              31.5
+              27.1
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              212.5
+              25.6,
+              203.2
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 25.6,
+              "y1": 203.2,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 25.6,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -891,8 +1299,8 @@
           "k2": -2.88,
           "k1": 51.0,
           "k0": 162.0,
-          "maxX": 20.2,
-          "yMax": 89.7
+          "maxX": 17.7,
+          "yMax": 96.1
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -900,16 +1308,40 @@
             "title": "Menge x",
             "range": [
               0,
-              20.2
+              17.7
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              89.7
+              20.9,
+              96.1
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 8.0,
+              "x1": 8.0,
+              "y0": 20.9,
+              "y1": 96.1,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 8.0,
+              "y": 20.9,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -942,8 +1374,8 @@
           "k2": -3.36,
           "k1": 48.0,
           "k0": 77.44,
-          "maxX": 31.5,
-          "yMax": 54.7
+          "maxX": 26.6,
+          "yMax": 48.5
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -951,16 +1383,40 @@
             "title": "Menge x",
             "range": [
               0,
-              31.5
+              26.6
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              54.7
+              0.0,
+              48.5
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 14.0,
+              "x1": 14.0,
+              "y0": 0.0,
+              "y1": 48.5,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 14.0,
+              "y": 0.0,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,
@@ -978,11 +1434,11 @@
       "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum."
     ],
     "antworten": [
-      "{1:NUMERICAL:=16,9:2,5}",
-      "{1:NUMERICAL:=9:1,25}",
-      "{1:NUMERICAL:=28,9:2,5}",
-      "{1:NUMERICAL:=13:1,25}",
-      "{1:NUMERICAL:=6:1,25}"
+      "{1:NUMERICAL:=16,9:5}",
+      "{1:NUMERICAL:=9:0,625}",
+      "{1:NUMERICAL:=28,9:5}",
+      "{1:NUMERICAL:=13:0,625}",
+      "{1:NUMERICAL:=6:0,625}"
     ],
     "visual": {
       "type": "plot",
@@ -993,8 +1449,8 @@
           "k2": -1.8,
           "k1": 25.0,
           "k0": 135.2,
-          "maxX": 17.6,
-          "yMax": 65.7
+          "maxX": 15.3,
+          "yMax": 79.5
         },
         "layout": {
           "title": "Grenzkosten-, Stückkosten- und variable Stückkostenfunktion",
@@ -1002,16 +1458,40 @@
             "title": "Menge x",
             "range": [
               0,
-              17.6
+              15.3
             ]
           },
           "yaxis": {
             "title": "Kosten",
             "range": [
-              0,
-              65.7
+              7.4,
+              79.5
             ]
-          }
+          },
+          "shapes": [
+            {
+              "type": "line",
+              "x0": 6.0,
+              "x1": 6.0,
+              "y0": 7.4,
+              "y1": 79.5,
+              "line": {
+                "color": "#374151",
+                "dash": "dot",
+                "width": 1
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "x": 6.0,
+              "y": 7.4,
+              "yref": "y",
+              "text": "x_W",
+              "showarrow": false,
+              "yshift": -14
+            }
+          ]
         },
         "width": 900,
         "height": 520,

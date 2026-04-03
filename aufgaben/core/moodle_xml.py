@@ -27,19 +27,34 @@ def _build_figure_economic_curves(spec: dict[str, Any]):
     fig = go.Figure()
 
     params = spec.get("params", {}) if isinstance(spec.get("params"), dict) else {}
+    has_monopoly_revenue = "a2" in params and "a1" in params
+    a2 = _to_float(params.get("a2"), -0.15)
+    a1 = _to_float(params.get("a1"), 2.0)
     k3 = _to_float(params.get("k3"), 0.05)
     k2 = _to_float(params.get("k2"), -1.0)
     k1 = _to_float(params.get("k1"), 10.0)
     k0 = _to_float(params.get("k0"), 80.0)
     price = _to_float(params.get("price"), 20.0)
     capacity = max(1.0, _to_float(params.get("capacity"), 40.0))
+    x_max = max(1.0, _to_float(params.get("xMax"), capacity))
+    show_capacity_line = bool(params.get("showCapacityLine", True))
 
     points = max(40, int(_to_float(spec.get("points"), 300)))
-    x_values = [capacity * i / (points - 1) for i in range(points)]
+    x_values = [x_max * i / (points - 1) for i in range(points)]
 
-    e_values = [price * x for x in x_values]
+    p_values = [(a2 * x + a1) if has_monopoly_revenue else price for x in x_values]
+    e_values = [((a2 * (x ** 2) + a1 * x) if has_monopoly_revenue else (price * x)) for x in x_values]
     k_values = [k3 * (x ** 3) + k2 * (x ** 2) + k1 * x + k0 for x in x_values]
     g_values = [e - k for e, k in zip(e_values, k_values)]
+
+    if has_monopoly_revenue:
+        fig.add_scatter(
+            x=x_values,
+            y=p_values,
+            mode="lines",
+            name="p(x)",
+            line={"color": "#ff7f0e"},
+        )
 
     fig.add_scatter(
         x=x_values,
@@ -62,7 +77,8 @@ def _build_figure_economic_curves(spec: dict[str, Any]):
         name="G(x)",
         line={"color": "#1f77b4"},
     )
-    fig.add_vline(x=capacity, line_dash="dot")
+    if show_capacity_line:
+        fig.add_vline(x=capacity, line_dash="dot")
     return fig
 
 

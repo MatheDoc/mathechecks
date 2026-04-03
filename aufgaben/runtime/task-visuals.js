@@ -12,49 +12,65 @@ function buildPlotlyFigure(spec) {
 
     if (specType === "economic-curves") {
         const params = typeof spec?.params === "object" && spec.params ? spec.params : {};
+        const hasMonopolyRevenue = Number.isFinite(Number(params.a2)) && Number.isFinite(Number(params.a1));
+        const a2 = toNumber(params.a2, -0.15);
+        const a1 = toNumber(params.a1, 2.0);
         const k3 = toNumber(params.k3, 0.05);
         const k2 = toNumber(params.k2, -1.0);
         const k1 = toNumber(params.k1, 10.0);
         const k0 = toNumber(params.k0, 80.0);
         const price = toNumber(params.price, 20.0);
         const capacity = Math.max(1, toNumber(params.capacity, 40.0));
+        const xMax = Math.max(1, toNumber(params.xMax, capacity));
+        const showCapacityLine = params.showCapacityLine !== false;
         const points = Math.max(40, Math.trunc(toNumber(spec?.points, 300)));
 
         const x = [];
+        const p = [];
         const e = [];
         const k = [];
         const g = [];
         for (let i = 0; i < points; i += 1) {
-            const xi = (capacity * i) / (points - 1);
-            const ei = price * xi;
+            const xi = (xMax * i) / (points - 1);
+            const pi = hasMonopolyRevenue ? (a2 * xi + a1) : price;
+            const ei = hasMonopolyRevenue ? (pi * xi) : (price * xi);
             const ki = k3 * xi ** 3 + k2 * xi ** 2 + k1 * xi + k0;
             x.push(xi);
+            p.push(pi);
             e.push(ei);
             k.push(ki);
             g.push(ei - ki);
         }
 
+        if (hasMonopolyRevenue) {
+            figure.data.push({ x, y: p, mode: "lines", name: "p(x)", line: { color: "#ff7f0e" } });
+        }
         figure.data.push(
             { x, y: e, mode: "lines", name: "E(x)", line: { color: "#2ca02c" } },
             { x, y: k, mode: "lines", name: "K(x)", line: { color: "#d62728" } },
             { x, y: g, mode: "lines", name: "G(x)", line: { color: "#1f77b4" } }
         );
 
+        const shapes = [];
+        if (showCapacityLine) {
+            shapes.push({
+                type: "line",
+                x0: capacity,
+                x1: capacity,
+                yref: "paper",
+                y0: 0,
+                y1: 1,
+                line: { dash: "dot", width: 1 },
+            });
+        }
+
         figure.layout = {
-            title: "Erlös-, Kosten- und Gewinnfunktion",
+            title: hasMonopolyRevenue
+                ? "Preis-Absatz-, Erlös-, Kosten- und Gewinnfunktion"
+                : "Erlös-, Kosten- und Gewinnfunktion",
             xaxis: { title: "Menge x" },
             yaxis: { title: "Wert" },
-            shapes: [
-                {
-                    type: "line",
-                    x0: capacity,
-                    x1: capacity,
-                    yref: "paper",
-                    y0: 0,
-                    y1: 1,
-                    line: { dash: "dot", width: 1 },
-                },
-            ],
+            shapes,
         };
     } else if (specType === "cost-curves") {
         const params = typeof spec?.params === "object" && spec.params ? spec.params : {};
