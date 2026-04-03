@@ -21,7 +21,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.methoden.shared import sample_ab_case_independent, vft_slots
+from aufgaben.generators.stochastik.methoden.shared import ab_intro, sample_ab_case_independent, vft_slots
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
@@ -50,11 +50,9 @@ class MethodenVierfelderErstellenInfoUnabhGenerator(TaskGenerator):
             given_set = set(given_slots)
 
             intro = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                f"<p>Die Ereignisse $A$ und $B$ sind stochastisch unabhängig.</p>"
-                "<p>Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel.</p>"
+                ab_intro(scenario)
+                + "Die Ereignisse $A$ und $B$ sind stochastisch unabhängig. "
+                "Vervollständigen Sie (auf 4 NKS gerundet) die Vier-Felder-Tafel."
             )
 
             fragen = ["" for _ in range(8)]

@@ -16,6 +16,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import mc
 from aufgaben.generators.base import TaskGenerator
+from aufgaben.generators.stochastik.methoden.shared import ab_intro
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
@@ -128,11 +129,8 @@ class MethodenInterpretationenMitBedingtGenerator(TaskGenerator):
             ]
 
             einleitung = (
-                f"<p>{scenario.intro}</p>"
-                "<p>In diesem Zusammenhang werden die folgenden Ereignisse betrachtet.</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                "<p>Interpretieren Sie die folgenden Wahrscheinlichkeiten im Sachzusammenhang.</p>"
+                ab_intro(scenario)
+                + "Interpretieren Sie die folgenden Wahrscheinlichkeiten im Sachzusammenhang."
             )
 
             fragen   = [_frage(k, rng) for k in chosen_keys]

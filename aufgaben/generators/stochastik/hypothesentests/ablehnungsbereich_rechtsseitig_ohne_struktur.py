@@ -74,11 +74,11 @@ class AblehnungsbereichRechtsseitigOhneStrukturGenerator(TaskGenerator):
             alpha_satz = rng.choice(_ALPHA_SATZ).format(a=alpha_pct)
 
             intro = (
-                f"<p>{sc.intro_prefix} "
+                f"{sc.intro_prefix} "
                 f"{hist} "
                 f"{vermutung} "
                 f"{stichprobe} "
-                f"{alpha_satz}</p>"
+                f"{alpha_satz}"
             )
 
             answer = (

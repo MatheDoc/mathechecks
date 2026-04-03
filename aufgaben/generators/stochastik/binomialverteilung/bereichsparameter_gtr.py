@@ -94,7 +94,7 @@ class BinomialBereichsparameterGTRGenerator(TaskGenerator):
             ]
 
             intro = (
-                f"{rng.choice(intro_variants)}</p> <p>Geben Sie zu den folgenden Ereignissen die Bernoulli-Parameter "
+                f"{rng.choice(intro_variants)}Geben Sie zu den folgenden Ereignissen die Bernoulli-Parameter "
                 "entsprechend der Eingabe im GTR an."
             )
 

@@ -21,6 +21,7 @@ from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
     ABCase,
+    ab_intro,
     sample_ab_case,
     sample_ab_case_independent,
 )
@@ -201,11 +202,9 @@ class MethodenBaumdiagrammFolgernMitUnabhGenerator(TaskGenerator):
             mc_answer = mc(["Richtig", "Falsch"], correct_index=mc_correct_index)
 
             intro = (
-                f"<p>{scenario.intro}</p>"
-                f"<p>$A$: {scenario.event_a}<br>"
-                f"$B$: {scenario.event_b}</p>"
-                "<p>Bestimmen Sie anhand des Baumdiagramms "
-                "auf 4 NKS gerundet</p>"
+                ab_intro(scenario)
+                + "Bestimmen Sie anhand des Baumdiagramms "
+                "auf 4 NKS gerundet"
             )
 
             fragen: list[str] = [_frage_text(k, scenario, rng) for k in chosen_keys]
