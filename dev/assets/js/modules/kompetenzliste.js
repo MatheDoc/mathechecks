@@ -67,9 +67,13 @@ function buildFeynmanHref(check) {
     return `${targetPath}#${getFeynmanCheckAnchorId(check)}`;
 }
 
-function renderModuleActionLink(href, tone, title, iconClass) {
+function renderModuleActionLink(href, tone, title, iconToken) {
     if (!href) return "";
-    return `<a class="dev-check-card__action-btn dev-check-card__action-btn--${tone}" href="${escapeHtml(href)}" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}"><i class="fa-solid ${escapeHtml(iconClass)}" aria-hidden="true"></i></a>`;
+
+    const icon = String(iconToken || "").trim();
+    const iconMarkup = `<span aria-hidden="true">${escapeHtml(icon)}</span>`;
+
+    return `<a class="dev-check-card__action-btn dev-check-card__action-btn--${tone}" href="${escapeHtml(href)}" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}">${iconMarkup}</a>`;
 }
 
 function renderRow(check) {
@@ -81,9 +85,9 @@ function renderRow(check) {
     const blurtingHref = buildBlurtingHref(check);
     const feynmanHref = buildFeynmanHref(check);
 
-    const trainingLink = renderModuleActionLink(trainingHref, "training", "Zum Training", "fa-dumbbell");
-    const blurtingLink = renderModuleActionLink(blurtingHref, "blurting", "Zum Blurting", "fa-brain");
-    const feynmanLink = renderModuleActionLink(feynmanHref, "feynman", "Zum Feynman", "fa-lightbulb");
+    const trainingLink = renderModuleActionLink(trainingHref, "training", "Zum Training", "🏋️");
+    const blurtingLink = renderModuleActionLink(blurtingHref, "blurting", "Zum Blurting", "💭");
+    const feynmanLink = renderModuleActionLink(feynmanHref, "feynman", "Zum Feynman", "🎓");
 
     return `
         <article class="dev-check-card dev-check-card--kompetenzliste kl-row" data-check-id="${escapeHtml(getCheckId(check))}">
