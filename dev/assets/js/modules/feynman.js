@@ -342,14 +342,14 @@ function buildKiAgentPrompt(check, beispielHtml) {
   const tipps = Array.isArray(check.Tipps) ? check.Tipps : [];
 
   const tippsBlock = tipps.length > 0
-    ? `\nWichtige Aspekte, die in einer guten Erklärung vorkommen sollten:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    ? `\nWichtige Aspekte, die in einer guten Erklärung vorkommen könnten:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
     : "";
 
   const beispielText = beispielHtml
     ? htmlToPlainText(beispielHtml).trim()
     : "";
   const beispielBlock = beispielText
-    ? `\n# Referenzbeispiel\nOrientiere dich intern an diesem Beispiel, um passende Rückfragen\nzu stellen und Antworten einzuordnen. Zeige es NICHT direkt.\n\n${beispielText}`
+    ? `\n# Referenzbeispiel\nOrientiere dich intern an diesem Beispiel, um passende Rückfragen zu stellen und Antworten einzuordnen. Zeige es NICHT direkt.\n\n${beispielText}`
     : "";
 
   return `# Rolle

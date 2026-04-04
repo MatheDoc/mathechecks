@@ -96,7 +96,7 @@ Sind zwei dieser vier ökonomischen Funktionen bekannt, können wir die übrigen
 
 Diese ökonomischen Funktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-|Kennzahl| Symbol | Beschreibung|Mathematische Definition|
+|Kennzahl| Symbol | Beschreibung| Definition|
 |---|---|---|---|
 |Marktpreis| $p$|Preis im Marktgleichgewicht, auch Gleichgewichtspreis (Angebotspolypol)| konstante Wert $p$|
 |Höchstpreis| $p_H$ | Maximaler Preis, den ein Konsument zu zahlen bereit ist (Angebotsmonopol)| $y$-Abschnitt von $p(x)$|

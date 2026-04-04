@@ -19,6 +19,7 @@ export function buildGraphFigure({
     yMax = null,
 }) {
     const step = 0.1;
+    const eps = 1e-9;
     const xWerte = [];
     for (let x = xMin; x <= xMax; x += step) xWerte.push(x);
 
@@ -28,9 +29,10 @@ export function buildGraphFigure({
         const compiled = m.parse(f.term).compile();
         const yWerte = xWerte.map((x) => {
             try {
-                if (f.xmin !== undefined && x < f.xmin) return null;
-                if (f.xmax !== undefined && x > f.xmax) return null;
-                return compiled.evaluate({ x });
+                if (f.xmin !== undefined && x < Number(f.xmin) - eps) return null;
+                if (f.xmax !== undefined && x > Number(f.xmax) + eps) return null;
+                const xEval = Math.abs(x) < eps ? 0 : x;
+                return compiled.evaluate({ x: xEval });
             } catch { return null; }
         });
 
@@ -77,9 +79,10 @@ export function buildGraphFigure({
             y: punkte.map((p) => p.y),
             mode: "markers", showlegend: false, type: "scatter",
             name: "Punkte",
-            marker: { color: "black", size: 8, symbol: "circle" },
+            marker: { color: "black", size: 8, symbol: "circle", line: { color: "white", width: 1 } },
             text: punkte.map((p) => p.text),
             hoverinfo: "text+x+y",
+            cliponaxis: false,
         });
     }
 
@@ -87,12 +90,14 @@ export function buildGraphFigure({
         xaxis: {
             ...(xAchse ? { title: { text: xAchse, y: 0.5 } } : {}),
             range: [xMin, xMax],
+            layer: "below traces",
         },
         yaxis: {
             ...(yAchse ? { title: { text: yAchse, y: 0.5 } } : {}),
             ...(yMin != null || yMax != null
                 ? { range: [yMin ?? null, yMax ?? null] }
                 : {}),
+            layer: "below traces",
         },
         hovermode: "closest",
         legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.25 },

@@ -13,6 +13,13 @@
             {{ content }}
         </main>
     </div>
+    {% include calculator.html %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
+    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator-helpers.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
     {% include dev/theme-script.html %}
     {{ page.after_scripts }}
 </body>

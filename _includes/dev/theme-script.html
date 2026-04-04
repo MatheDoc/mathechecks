@@ -57,6 +57,79 @@
     })();
 
     (function () {
+        const CALCULATOR_OVERLAY_STATE_KEY = 'calculator-overlay-open-v1';
+        const toggleButtons = Array.from(document.querySelectorAll('.calculator-toggle, #calculatorToggleMenu'));
+
+        function loadCalculatorOverlayState() {
+            try {
+                return localStorage.getItem(CALCULATOR_OVERLAY_STATE_KEY) === '1';
+            } catch {
+                return false;
+            }
+        }
+
+        function saveCalculatorOverlayState(isOpen) {
+            try {
+                localStorage.setItem(CALCULATOR_OVERLAY_STATE_KEY, isOpen ? '1' : '0');
+            } catch {
+                // ignore storage issues
+            }
+        }
+
+        function updateCalculatorToggleButtons(isOpen) {
+            toggleButtons.forEach((button) => {
+                button.classList.toggle('is-active', isOpen);
+                button.classList.toggle('active', isOpen);
+                button.setAttribute('aria-pressed', isOpen ? 'true' : 'false');
+            });
+        }
+
+        function toggleCalculatorOverlay(forceOpen) {
+            const overlay = document.getElementById('calculator-overlay');
+            if (!overlay) return;
+
+            const hasOpenOverride = typeof forceOpen === 'boolean';
+            const isOpen = overlay.classList.contains('open');
+            const shouldOpen = hasOpenOverride ? forceOpen : !isOpen;
+
+            overlay.classList.toggle('open', shouldOpen);
+            overlay.setAttribute('aria-hidden', shouldOpen ? 'false' : 'true');
+            saveCalculatorOverlayState(shouldOpen);
+            updateCalculatorToggleButtons(shouldOpen);
+
+            if (!shouldOpen && typeof window.clearStoredCalculatorPopupState === 'function') {
+                window.clearStoredCalculatorPopupState();
+            }
+
+            if (shouldOpen) {
+                if (typeof window.restoreCalculatorPopupState === 'function') {
+                    window.restoreCalculatorPopupState();
+                }
+
+                window.setTimeout(() => {
+                    const mainInput = document.getElementById('mainInput');
+                    if (mainInput) mainInput.focus();
+                }, 100);
+            }
+        }
+
+        window.toggleCalculatorOverlay = toggleCalculatorOverlay;
+
+        const calculatorMenuButton = document.getElementById('calculatorToggleMenu');
+        if (calculatorMenuButton && calculatorMenuButton.dataset.boundCalculator !== 'true') {
+            calculatorMenuButton.dataset.boundCalculator = 'true';
+            calculatorMenuButton.addEventListener('click', () => {
+                toggleCalculatorOverlay();
+            });
+        }
+
+        updateCalculatorToggleButtons(false);
+        if (loadCalculatorOverlayState()) {
+            toggleCalculatorOverlay(true);
+        }
+    })();
+
+    (function () {
         const SIDEBAR_COOKIE_NAME = 'mathechecks-feed-sidebar';
         const SIDEBAR_COOKIE_COLLAPSED = 'collapsed';
         const SIDEBAR_COOKIE_EXPIRY_SECONDS = 60 * 60 * 24 * 365;

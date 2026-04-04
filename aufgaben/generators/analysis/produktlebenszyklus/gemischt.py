@@ -115,12 +115,17 @@ def _first_derivative_coeffs(
 
 _PLC_POLY_FORMS = [
     "ax+b",
-    "ax^2+bx",
     "ax^2+b",
+    "ax^2+bx",
     "ax^3+bx^2",
-    "ax^3+bx",
-    "ax^3+b",
 ]
+
+
+def _requested_start_mode(task_index: int, poly_form: str) -> str:
+    mode = "zero" if task_index % 2 == 0 else "positive"
+    if mode == "zero" and poly_form in {"ax+b", "ax^2+b"}:
+        return "positive"
+    return mode
 
 
 def _poly_from_form(form: str, a: float, b: float) -> tuple[float, float, float, float]:
@@ -140,62 +145,95 @@ def _poly_from_form(form: str, a: float, b: float) -> tuple[float, float, float,
 
 
 def _sample_exit_coeffs(rng: random.Random, form: str, t_end: float) -> tuple[float, float, float, float]:
-    if form in {"ax+b", "ax^2+bx", "ax^3+bx^2"}:
-        power = 1
-    elif form in {"ax^2+b", "ax^3+bx"}:
-        power = 2
-    else:
-        power = 3
-
-    denom = t_end**power
-    a_abs_min = max(0.001, 8.0 / denom)
-    a_abs_max = max(a_abs_min + 0.001, 26.0 / denom)
-
-    if a_abs_max < 0.05:
-        step = 0.001
-    elif a_abs_max < 0.5:
-        step = 0.01
-    else:
-        step = 0.1
-
-    a_abs = _rand_step(rng, a_abs_min, a_abs_max, step)
-    a = -a_abs
-    b = -a * denom
-    return _poly_from_form(form, a, b)
+    if form == "ax+b":
+        b = _rand_step(rng, 4.0, 18.0, 1.0)
+        a = -b / t_end
+        return _poly_from_form(form, a, b)
+    if form == "ax^2+b":
+        b = _rand_step(rng, 8.0, 28.0, 1.0)
+        a = -b / (t_end**2)
+        return _poly_from_form(form, a, b)
+    if form == "ax^2+bx":
+        a = -_rand_step(rng, 0.4, 2.4, 0.1)
+        b = -a * t_end
+        return _poly_from_form(form, a, b)
+    if form == "ax^3+bx^2":
+        a = -_rand_step(rng, 0.04, 0.28, 0.01)
+        b = -a * t_end
+        return _poly_from_form(form, a, b)
+    raise ValueError(f"Unbekannte Polynomform: {form}")
 
 
 def _sample_non_exit_coeffs(rng: random.Random, form: str) -> tuple[float, float, float, float]:
     if form == "ax+b":
-        a = _rand_step(rng, 0.2, 2.0, 0.1)
-        b = _rand_step(rng, 2.0, 12.0, 0.2)
-    elif form == "ax^2+bx":
         a = _rand_step(rng, 0.2, 1.8, 0.1)
-        b = _rand_step(rng, 1.0, 10.0, 0.2)
+        b = _rand_step(rng, 0.0, 10.0, 1.0)
     elif form == "ax^2+b":
-        a = _rand_step(rng, 0.3, 2.2, 0.1)
-        b = _rand_step(rng, 2.0, 14.0, 0.2)
+        a = _rand_step(rng, 0.2, 1.6, 0.1)
+        b = _rand_step(rng, 0.0, 12.0, 1.0)
+    elif form == "ax^2+bx":
+        a = _rand_step(rng, 0.1, 1.2, 0.1)
+        b = _rand_step(rng, 1.0, 8.0, 0.5)
     elif form == "ax^3+bx^2":
-        a = _rand_step(rng, 0.02, 0.22, 0.01)
-        b = _rand_step(rng, 0.4, 3.2, 0.1)
-    elif form == "ax^3+bx":
-        a = _rand_step(rng, 0.01, 0.18, 0.01)
-        b = _rand_step(rng, 1.2, 12.0, 0.2)
+        a = _rand_step(rng, 0.02, 0.18, 0.01)
+        b = _rand_step(rng, 0.4, 3.0, 0.1)
     else:
-        a = _rand_step(rng, 0.005, 0.08, 0.001)
-        b = _rand_step(rng, 2.0, 14.0, 0.2)
+        raise ValueError(f"Unbekannte Polynomform: {form}")
 
     return _poly_from_form(form, a, b)
 
 
-def _integrate_trapezoid(fn, a: float, b: float, steps: int = 5000) -> float:
+def _integral_t_pow_exp(t: float, power: int, exp_rate: float) -> float:
+    exp_part = math.exp(-exp_rate * t)
+    current = -exp_part / exp_rate
+    if power == 0:
+        return current
+
+    for degree in range(1, power + 1):
+        current = -(t**degree) * exp_part / exp_rate + (degree / exp_rate) * current
+    return current
+
+
+def _integrate_poly_times_exp(
+    coeffs: tuple[float, float, float, float],
+    exp_rate: float,
+    a: float,
+    b: float,
+) -> float:
     if b <= a:
         return 0.0
-    n = max(400, int(steps))
-    h = (b - a) / n
-    total = 0.5 * (fn(a) + fn(b))
-    for idx in range(1, n):
-        total += fn(a + idx * h)
-    return total * h
+
+    a3, a2, a1, a0 = coeffs
+    total = 0.0
+    for coefficient, degree in [(a0, 0), (a1, 1), (a2, 2), (a3, 3)]:
+        if abs(coefficient) <= 1e-14:
+            continue
+        total += coefficient * (
+            _integral_t_pow_exp(b, degree, exp_rate) - _integral_t_pow_exp(a, degree, exp_rate)
+        )
+    return total
+
+
+def _integrate_case_u_exact(case: "_PLCCase", a: float, b: float) -> float:
+    if b <= a:
+        return 0.0
+    return _integrate_poly_times_exp(case.coeffs, case.exp_rate, a, b) + case.offset * (b - a)
+
+
+def _integrate_ekg_exact(case: "_EKGCase", kind: str, a: float, b: float) -> float:
+    if b <= a:
+        return 0.0
+
+    raw_integral = _integrate_poly_times_exp((case.a3, case.b2, 0.0, 0.0), case.exp_rate, a, b)
+    if kind == "raw":
+        return raw_integral
+    if kind == "e":
+        return (1.0 + case.scale_k) * raw_integral
+    if kind == "k":
+        return case.scale_k * raw_integral + case.fix_cost * (b - a)
+    if kind == "g":
+        return raw_integral - case.fix_cost * (b - a)
+    raise ValueError(f"Unbekannter Integraltyp: {kind}")
 
 
 def _roots_by_scan(fn, lo: float, hi: float, steps: int = 2800) -> list[float]:
@@ -296,22 +334,40 @@ def _max_u_time_by_sign_change(case: _PLCCase) -> float | None:
     return None
 
 
-def _sample_plc_case(rng: random.Random, *, mode: str, forced_form: str | None = None) -> _PLCCase:
-    for _ in range(2600):
-        is_exit = rng.random() < 0.55
+def _first_local_min_time(case: _PLCCase) -> float | None:
+    for root in _roots_by_scan(case.du, 0.0, case.t_end):
+        left = max(0.0, root - 1e-3)
+        right = min(case.t_end, root + 1e-3)
+        if case.du(left) < 0 and case.du(right) > 0:
+            return root
+    return None
+
+
+def _sample_plc_case(
+    rng: random.Random,
+    *,
+    mode: str,
+    forced_form: str | None = None,
+    start_mode: str = "any",
+) -> _PLCCase:
+    for _ in range(3200):
+        is_exit = rng.random() < 0.5
         edge_mode = rng.choice(["any", "edge", "inner"])
         poly_form = forced_form if forced_form is not None else rng.choice(_PLC_POLY_FORMS)
 
         if is_exit:
-            exp_rate = _rand_step(rng, 0.10, 0.45, 0.05)
+            exp_rate = _rand_step(rng, 0.1, 0.9, 0.1)
             t_end = _rand_step(rng, 8.0, 24.0, 1.0)
             coeffs = _sample_exit_coeffs(rng, poly_form, t_end)
             offset = 0.0
         else:
-            exp_rate = _rand_step(rng, 0.10, 0.35, 0.05)
+            exp_rate = _rand_step(rng, 0.1, 0.9, 0.1)
             t_end = _rand_step(rng, 10.0, 22.0, 1.0)
             coeffs = _sample_non_exit_coeffs(rng, poly_form)
-            offset = _rand_step(rng, 1.0, 6.0, 0.5)
+            if start_mode == "zero":
+                offset = 0.0
+            else:
+                offset = _rand_step(rng, 1.5, 7.0, 0.5)
 
         case = _PLCCase(
             coeffs=coeffs,
@@ -321,9 +377,22 @@ def _sample_plc_case(rng: random.Random, *, mode: str, forced_form: str | None =
             has_market_exit=is_exit,
         )
 
+        u0 = case.u(0.0)
+        if start_mode == "zero" and abs(u0) > 1e-8:
+            continue
+        if start_mode == "positive" and u0 < 0.8:
+            continue
+
         t_peak = _max_u_time_by_sign_change(case)
         if t_peak is None:
             continue
+
+        if case.du(0.0) < -1e-8:
+            t_local_min = _first_local_min_time(case)
+            if t_local_min is None:
+                continue
+            if t_local_min < 0.1 * case.t_end:
+                continue
 
         t_inc, t_dec = _max_min_of_du(case)
         if abs(t_inc - t_dec) < 0.2:
@@ -347,6 +416,11 @@ def _sample_plc_case(rng: random.Random, *, mode: str, forced_form: str | None =
             continue
 
         if mode == "graph_u":
+            if not case.has_market_exit:
+                if case.offset < 1.0:
+                    continue
+                if case.offset < 0.1 * y_max:
+                    continue
             t_eval = min(case.t_end * 0.85, max(1.0, case.t_end * 0.35))
             if case.u(t_eval) <= 0.0:
                 continue
@@ -397,13 +471,13 @@ def _du_latex(case: _PLCCase, order: int) -> str:
 
 def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> float:
     if case.has_market_exit:
-        return min(case.t_end * 1.1, case.t_end + 2.0)
+        return case.t_end
 
-    amplitude = max(0.5, y_peak - case.offset)
-    threshold = max(0.15, 0.02 * amplitude)
-    slope_threshold = max(0.02, 0.01 * amplitude)
-    t = max(t_peak + 1.0, case.t_end * 0.8)
-    upper = min(60.0, max(case.t_end * 2.2, t_peak + 14.0))
+    amplitude = max(0.8, y_peak - case.offset)
+    threshold = max(0.2, 0.04 * amplitude)
+    slope_threshold = max(0.03, 0.015 * amplitude)
+    t = max(t_peak + 1.0, case.t_end)
+    upper = min(75.0, max(case.t_end * 2.8, t_peak + 18.0))
     stable_hits = 0
     prev_val = case.u(t)
 
@@ -413,31 +487,21 @@ def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> flo
         if abs(current_val - case.offset) <= threshold and slope_estimate <= slope_threshold:
             stable_hits += 1
             # Require a sustained near-horizontal tail so the asymptote is visually clear.
-            if stable_hits >= 6:
-                return min(upper, t + 1.5)
+            if stable_hits >= 8:
+                return min(upper, max(case.t_end * 1.35, t + 2.0))
         else:
             stable_hits = 0
 
         prev_val = current_val
         t += 0.25
 
-    return upper
+    return max(case.t_end * 1.35, upper)
 
 
 def _effective_du_plot_limit(case: _PLCCase, t_peak: float) -> float:
-    amp = max(abs(case.du(0.0)), abs(case.du(case.t_end)))
-    for x in [case.t_end * i / 24.0 for i in range(1, 25)]:
-        amp = max(amp, abs(case.du(x)))
-    amp = max(amp, 1e-6)
-
-    start = max(2.0, t_peak)
-    upper = min(42.0, case.t_end * 1.7)
-    t = start
-    while t < upper:
-        if case.d3u(t) < 0 and abs(case.du(t)) < 0.08 * amp:
-            return min(upper, t + 1.0)
-        t += 0.25
-    return min(upper, case.t_end * 1.1)
+    d2_roots = [root for root in _roots_by_scan(case.d2u, 0.0, case.t_end) if 0.0 <= root <= case.t_end]
+    right_ref = max(d2_roots) if d2_roots else t_peak
+    return min(55.0, max(16.0, case.t_end * 1.4, right_ref + 0.4 * case.t_end, t_peak + 6.0))
 
 
 def _plot_visual(
@@ -493,7 +557,13 @@ class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
 
         while len(tasks) < count:
             requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            case = _sample_plc_case(rng, mode="integrals", forced_form=requested_form)
+            requested_start = _requested_start_mode(len(tasks), requested_form)
+            case = _sample_plc_case(
+                rng,
+                mode="integrals",
+                forced_form=requested_form,
+                start_mode=requested_start,
+            )
 
             if case.has_market_exit:
                 t_lifecycle = case.t_end
@@ -507,9 +577,9 @@ class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
             n = float(rng.randint(2, max(3, int(t_lifecycle * 0.8))))
             t_eval = float(rng.randint(1, max(1, int(t_lifecycle))))
 
-            total = _integrate_trapezoid(case.u, 0.0, t_lifecycle)
-            interval_value = _integrate_trapezoid(case.u, a, b)
-            avg_value = _integrate_trapezoid(case.u, 0.0, n) / n
+            total = _integrate_case_u_exact(case, 0.0, t_lifecycle)
+            interval_value = _integrate_case_u_exact(case, a, b)
+            avg_value = _integrate_case_u_exact(case, 0.0, n) / n
             point_value = case.u(t_eval)
 
             items = [
@@ -572,7 +642,7 @@ class _EKGCase:
 
 def _sample_ekg_case(rng: random.Random) -> _EKGCase:
     for _ in range(3000):
-        exp_rate = _rand_step(rng, 0.10, 0.45, 0.05)
+        exp_rate = _rand_step(rng, 0.1, 0.9, 0.1)
         t_end = _rand_step(rng, 8.0, 24.0, 1.0)
         k_shape = _rand_step(rng, 0.5, 2.0, 0.1)
         a3 = -k_shape
@@ -630,9 +700,9 @@ class ProduktlebenszyklusEKGZyklusGemischtGenerator(TaskGenerator):
             roots = [r for r in _roots_by_scan(case.g, 0.0, case.t_end) if 1e-3 < r < case.t_end - 1e-3]
             t1, t2 = roots[0], roots[1]
 
-            total_profit = _integrate_trapezoid(case.g, 0.0, case.t_end)
-            v_t1 = -_integrate_trapezoid(case.g, 0.0, t1)
-            v_t = -_integrate_trapezoid(case.g, 0.0, case.t_end)
+            total_profit = _integrate_ekg_exact(case, "g", 0.0, case.t_end)
+            v_t1 = -_integrate_ekg_exact(case, "g", 0.0, t1)
+            v_t = -_integrate_ekg_exact(case, "g", 0.0, case.t_end)
             t_max_loss = t1 if v_t1 >= v_t else case.t_end
 
             a = float(rng.randint(1, max(2, int(case.t_end * 0.4))))
@@ -643,17 +713,17 @@ class ProduktlebenszyklusEKGZyklusGemischtGenerator(TaskGenerator):
             if integral_kind == "e":
                 mixed_q = (
                     f"die Erlöse, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres erzielt werden.",
-                    _num_tol(_integrate_trapezoid(case.e, a, b), tolerance=0.1),
+                    _num_tol(_integrate_ekg_exact(case, "e", a, b), tolerance=0.1),
                 )
             elif integral_kind == "k":
                 mixed_q = (
                     f"die Kosten, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres anfallen.",
-                    _num_tol(_integrate_trapezoid(case.k, a, b), tolerance=0.1),
+                    _num_tol(_integrate_ekg_exact(case, "k", a, b), tolerance=0.1),
                 )
             else:
                 mixed_q = (
                     f"die Gewinne, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres erzielt werden.",
-                    _num_tol(_integrate_trapezoid(case.g, a, b), tolerance=0.1),
+                    _num_tol(_integrate_ekg_exact(case, "g", a, b), tolerance=0.1),
                 )
 
             point_kind = rng.choice(["e", "k", "g"])
@@ -720,12 +790,22 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
 
         while len(tasks) < count:
             requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            case = _sample_plc_case(rng, mode="graph_u", forced_form=requested_form)
+            requested_start = _requested_start_mode(len(tasks), requested_form)
+            case = _sample_plc_case(
+                rng,
+                mode="graph_u",
+                forced_form=requested_form,
+                start_mode=requested_start,
+            )
             t_peak, y_peak = _max_of_u(case)
+            t_inc, t_dec = _max_min_of_du(case)
 
             t_limit = _effective_u_plot_limit(case, t_peak, y_peak)
             x_values = [round(t_limit * idx / 260.0, 4) for idx in range(261)]
-            y_values = [round(case.u(x), 6) for x in x_values]
+            if case.has_market_exit:
+                y_values = [round(max(0.0, case.u(x)), 6) for x in x_values]
+            else:
+                y_values = [round(case.u(x), 6) for x in x_values]
 
             t_eval = uniform_sig(rng, 1.0, min(case.t_end * 0.85, t_limit * 0.9))
 
@@ -750,6 +830,14 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
                 (
                     f"den jährlichen Umsatz nach {_fmt(t_eval, 2)} Jahren.",
                     _num_tol(case.u(t_eval), tolerance=tol_y),
+                ),
+                (
+                    "den Zeitpunkt des stärksten Umsatzanstiegs.",
+                    _num_tol(t_inc, tolerance=tol_x),
+                ),
+                (
+                    "den Zeitpunkt des stärksten Umsatzrückgangs.",
+                    _num_tol(t_dec, tolerance=tol_x),
                 ),
             ]
 
@@ -802,7 +890,13 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
 
         while len(tasks) < count:
             requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            case = _sample_plc_case(rng, mode="graph_du", forced_form=requested_form)
+            requested_start = _requested_start_mode(len(tasks), requested_form)
+            case = _sample_plc_case(
+                rng,
+                mode="graph_du",
+                forced_form=requested_form,
+                start_mode=requested_start,
+            )
             t_peak = _max_u_time_by_sign_change(case)
             if t_peak is None:
                 continue
@@ -878,7 +972,13 @@ class ProduktlebenszyklusKennzahlenRechnerischGesamtGenerator(TaskGenerator):
 
         while len(tasks) < count:
             requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            case = _sample_plc_case(rng, mode="calc", forced_form=requested_form)
+            requested_start = _requested_start_mode(len(tasks), requested_form)
+            case = _sample_plc_case(
+                rng,
+                mode="calc",
+                forced_form=requested_form,
+                start_mode=requested_start,
+            )
             t_peak = _max_u_time_by_sign_change(case)
             if t_peak is None:
                 continue

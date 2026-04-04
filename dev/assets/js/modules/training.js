@@ -11,6 +11,8 @@ import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
+const TR_BEISPIEL_CACHE = new Map();
+
 async function renderMath(targetNode, retries = 4) {
   if (!targetNode) return;
 
@@ -131,6 +133,25 @@ function getScriptPageHref() {
   return path.replace(/training\.html$/, "skript.html");
 }
 
+function getTrainingBaseOrigin() {
+  const origin = String(window.location?.origin || "").trim();
+  if (/^https?:\/\//i.test(origin) && !/localhost|127\.0\.0\.1/i.test(origin)) {
+    return origin;
+  }
+  return "https://www.mathechecks.de";
+}
+
+function buildTrainingCheckUrl(check) {
+  const gebiet = String(check?.Gebiet || "").trim();
+  const lernbereich = String(check?.Lernbereich || "").trim();
+  const anchor = getTrainingCheckAnchorId(check);
+
+  if (!gebiet || !lernbereich || !anchor) return "";
+
+  const origin = getTrainingBaseOrigin();
+  return `${origin}/dev/lernbereiche/${encodeURIComponent(gebiet)}/${encodeURIComponent(lernbereich)}/training.html#${encodeURIComponent(anchor)}`;
+}
+
 function buildScriptInfoHref(check) {
   const scriptPageHref = getScriptPageHref();
   if (!scriptPageHref) return "";
@@ -156,6 +177,35 @@ function buildScriptInfoHref(check) {
   const slug = toSlug(key);
   if (!slug) return "";
   return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
+}
+
+function buildBeispielUrl(check) {
+  const nummer = String(Number(check?.Nummer) || 0).padStart(2, "0");
+  const sammlung = String(check?.Sammlung || "").trim();
+  const gebiet = String(check?.Gebiet || "").trim();
+  const lernbereich = String(check?.Lernbereich || "").trim();
+  if (!sammlung || !gebiet || !lernbereich) return "";
+  return `/dev/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
+}
+
+async function fetchBeispielHtml(check) {
+  const url = buildBeispielUrl(check);
+  if (!url) return "";
+  if (TR_BEISPIEL_CACHE.has(url)) return TR_BEISPIEL_CACHE.get(url);
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      TR_BEISPIEL_CACHE.set(url, "");
+      return "";
+    }
+    const html = (await response.text()).trim();
+    TR_BEISPIEL_CACHE.set(url, html);
+    return html;
+  } catch {
+    TR_BEISPIEL_CACHE.set(url, "");
+    return "";
+  }
 }
 
 function convertJsonLatexToMarkdown(text) {
@@ -364,11 +414,9 @@ function describeFunctionName(nameRaw) {
     "E(x)": "Erloesfunktion",
     "K(x)": "Kostenfunktion",
     "G(x)": "Gewinnfunktion",
-    "GK(x)": "Grenzkostenfunktion",
+    "K'(x)": "Grenzkostenfunktion",
     "k(x)": "Stueckkostenfunktion",
     "kv(x)": "Variable Stueckkostenfunktion",
-    "Angebot p_A(x)": "Angebotsfunktion",
-    "Nachfrage p_N(x)": "Nachfragefunktion",
     "p_A(x)": "Angebotsfunktion",
     "p_N(x)": "Nachfragefunktion",
   };
@@ -686,7 +734,7 @@ function buildVisualContext(task, runtimeTaskNode = null) {
   return lines.join("\n");
 }
 
-function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtimeTaskNode = null }) {
+function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtimeTaskNode = null, beispielHtml = "" }) {
   const schlagwort = check?.Schlagwort || check?.["Ich kann"] || `Check ${check?.Nummer ?? ""}`;
   const lernbereich = check?.LernbereichAnzeigename || check?.Lernbereich || "";
   const kompetenz = check?.["Ich kann"] || "";
@@ -705,11 +753,19 @@ function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtim
 
   const tips = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const tippsBlock = tips.length > 0
-    ? `\nWichtige Aspekte, die in einer guten Erklaerung vorkommen sollten:\n${tips.map((t) => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    ? `Hinweise:\n${tips.map((t) => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
     : "";
+
+  const beispielText = beispielHtml ? htmlToPlainText(beispielHtml).trim() : "";
+  const beispielBlock = beispielText
+    ? `## Musterbeispiel mit anderen Zufallszahlen\nOrientiere dich intern an diesem Beispiel, um passende Erklärungen zu geben. Zeige es NICHT direkt.\n\n${beispielText}`
+    : "";
+
+  const hintergrundBlock = [tippsBlock, beispielBlock].filter(Boolean).join("\n\n");
 
   const taskNumberText = Number.isInteger(taskIndex) && taskIndex >= 0 ? String(taskIndex + 1) : "?";
   const totalTasksText = Number.isInteger(totalTasks) && totalTasks > 0 ? String(totalTasks) : "?";
+  const nextTaskUrl = buildTrainingCheckUrl(check) || "https://www.mathechecks.de/dev/lernbereiche/.../training.html";
   const visualBlock = visualContext
     ? `\n## Diagramm-/Visual-Kontext\nOrientiere dich intern an den folgenden Darstellungsinformationen.\n\n${visualContext}`
     : "";
@@ -717,7 +773,7 @@ function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtim
   return `# Rolle
 Du bist ein KI-Lernpartner für das Trainingsmodul. Der Lernende arbeitet
 an einer konkreten Mathe-Aufgabe, und du bist der Erklärer: Du hilfst,
-Verstaendnislücken zu schliessen und Lösungswege nachvollziehbar zu machen.
+Verständnislücken zu schliessen und Lösungswege nachvollziehbar zu machen.
 Du sprichst Deutsch und duzt den Lernenden.
 
 # Thema
@@ -735,14 +791,15 @@ ${fragenBlock || "(keine Teilfragen vorhanden)"}
 
 ## Hinterlegte Zielantworten (intern)
 ${loesungsBlock || "(keine Zielantworten vorhanden)"}
-${tippsBlock}
 ${visualBlock}
+
+## Weiteres Hintergrundwissen
+${hintergrundBlock || "(keine weiteren Hintergrundhinweise hinterlegt)"}
 
 # Stil
 - Reagiere natürlich und abwechslungsreich.
 - Lobe kurz und ehrlich, wenn ein Teilschritt gut ist.
 - Erkläre mit kurzen, klaren Schritten und aufgabennaher Sprache.
-- Du darfst leichte Denkanstöße geben, ohne sofort die komplette Endlösung vorzusetzen.
 - Wenn der Lernende einen Fehler macht, korrigiere freundlich und begründe kurz warum.
 - Halte dich kurz. Keine langen Monologe.
 - Antworte immer auf Deutsch.
@@ -756,17 +813,14 @@ Wenn die Frage zu allgemein ist, bitte um eine konkrete Teilfrage.
 ## Phase 2 - Erklären und begleiten (3-6 Runden)
 - Wenn der Lernende eine konkrete Teilfrage nennt, erkläre diese zuerst, falls es didaktisch sinnvoll ist. Wenn man zunächst eine andere Teilfrage behandeln sollte, arbeite damit weiter.
 - Wenn der Lernende "alles" sagt, gehe Teilfrage für Teilfrage in der Reihenfolge durch.
-- Nutze den internen Referenzrahmen, um Erklärungen fachlich korrekt zu halten.
+- Nutze dein Hintergrundwissen, um Erklärungen fachlich korrekt zu halten.
 - Nutze Diagramm-/Visual-Kontext, wenn er für den Schritt relevant ist.
-- Stelle nach jedem Kernschritt eine kurze Rückfrage, damit der Lernende mitdenkt.
+- Frage nach jeder abgeschlossenen Erklärung, ob es noch weitere Unklarheiten gibt.
 
 ## Phase 3 – Zusammenfassung
-Wenn die wesentlichen Aspekte abgedeckt sind ODER nach 6 Runden:
-1. Fasse zusammen, was gut erklärt wurde.
-2. Benenne, was noch fehlt oder unklar war.
-3. Gib eine kurze, ehrliche Einschätzung:
-   ✅ Gut erklärt: [Punkte]
-   ❓ Noch offen: [Punkte]
+Wenn keine Fragen mehr gestellt werden:
+1. Fasse die Lösung noch einmal zusammen.
+2. Motiviere, eine weitere Trainingsaufgabe dieser Art zu bearbeiten, gib dabei den Link zur Aufgabe: ${nextTaskUrl}
 `;
 }
 
@@ -871,12 +925,14 @@ function createTaskCardNode(
       aiAgentBtn.innerHTML = '<i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>';
 
       try {
+        const beispielHtml = await fetchBeispielHtml(check);
         const prompt = buildTrainingKiAgentPrompt({
           check,
           task: effectiveAufgabe,
           taskIndex,
           totalTasks,
           runtimeTaskNode,
+          beispielHtml,
         });
         const ok = await copyToClipboard(prompt);
         if (ok) {
