@@ -1,3 +1,18 @@
+.calculator-overlay {
+    --hauptfarbe: var(--accent);
+    --hauptfarbe-hover: color-mix(in srgb, var(--accent) 82%, #ffffff 18%);
+    --hintergrundfarbe: var(--panel-solid);
+    --hintergrund-hell: var(--surface);
+    --hintergrund-hell-hover: var(--surface-hi);
+    --borderfarbe: var(--border);
+    --textfarbe: var(--text);
+    --textfarbe-schwach: var(--text-dim);
+    --ok-farbe: var(--green);
+    --ok-farbe-hover: color-mix(in srgb, var(--green) 82%, #000000 18%);
+    --warn-farbe: var(--rose);
+    --warn-farbe-hover: color-mix(in srgb, var(--rose) 82%, #000000 18%);
+}
+
 .calculator-container .graph-params-row {
     display: flex;
     align-items: center;

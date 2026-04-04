@@ -5,15 +5,13 @@
     {% include dev/head.html %}
     {% include mathjax.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    {% if page.module_key == 'skript' or page.module_key == 'feynman' %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
-    {% endif %}
+    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     {% if page.module_key == 'skript' %}
     <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
     {% endif %}
 </head>
 
@@ -39,8 +37,13 @@
             </div>
         </div>
     </div>
+    {% include calculator.html %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ '/assets/js/calculator-helpers.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
+    <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
     <script type="module" src="{{ '/dev/assets/js/app.js' | relative_url }}"></script>
     {% include dev/theme-script.html %}
     {{ page.after_scripts }}

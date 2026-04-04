@@ -28,7 +28,7 @@ Die Angebotsfunktion $p_A(x)$ gibt an, wie hoch der Preis in Geldeinheiten (GE) 
 
 Das Zusammenspiel von Nachfrage- und Angebotsfunktion wird mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-|Kennzahl| Symbol | Beschreibung|Mathematische Definition|
+|Kennzahl| Symbol | Beschreibung| Definition|
 |---|---|---|---|
 |Gleichgewichtsmenge| $x_G$| Menge, bei der nachgefragter und angebotener Preis gleich sind| Schnittstelle von $p_N$ und $p_A$|
 |Gleichgewichtspreis| $p_G$| Preis, bei der nachgefragte und angebotene Menge gleich sind| y-Wert des Schnittpunkts von $p_N$ und $p_A$|

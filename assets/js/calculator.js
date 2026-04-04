@@ -253,6 +253,33 @@ function showCopyFeedback() {
     }, 1200);
 }
 
+function closeCalculatorOverlayFromPanel() {
+    if (typeof window.toggleCalculatorOverlay === 'function') {
+        window.toggleCalculatorOverlay(false);
+        return;
+    }
+
+    const overlay = document.getElementById('calculator-overlay');
+    if (!overlay) return;
+
+    if (typeof closePopup === 'function') {
+        ['lgsPopup', 'binPopup', 'constPopup', 'triPopup', 'graphPopup'].forEach((popupId) => {
+            const popupEl = document.getElementById(popupId);
+            if (popupEl?.classList.contains('open')) {
+                closePopup(popupId);
+            }
+        });
+    }
+
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    if (typeof window.clearStoredCalculatorPopupState === 'function') {
+        window.clearStoredCalculatorPopupState();
+    }
+}
+
+window.closeCalculatorOverlayFromPanel = closeCalculatorOverlayFromPanel;
+
 function applyTouchInputLock() {
     const inputs = document.querySelectorAll('#mainInput, #binomA, #binomB, #binomN, #binomP, #lgsMatrix input, #graphFunction, #graphXMin, #graphXMax, #graphYMin, #graphYMax');
     inputs.forEach((input) => {

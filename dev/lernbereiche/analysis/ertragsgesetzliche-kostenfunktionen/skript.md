@@ -177,7 +177,7 @@ Für die Kostenfunktion $K(x)=0{,}5x^3 - 6x^2 + 30x + 48$ erhalten wir für die
 
 Diese Kostenfunktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-|Kennzahl| Symbol | Beschreibung|Mathematische Definition|
+|Kennzahl| Symbol | Beschreibung| Definition|
 |---|---|---|---|
 |Übergang degressives/progressives Kostenwachstum| $x_w$|Menge, bis zu der die Kosten unterproportional steigen, danach überproportional|  Extremstelle (Minimum) von $K'$|
 |Betriebsminimum| $x_{BM}$ | Menge, bei der die geringsten variablen Stückkosten auftreten| Extremstelle (Minimum) von $k_v$|
