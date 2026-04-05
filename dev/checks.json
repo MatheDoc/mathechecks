@@ -1432,10 +1432,9 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "eindeutig",
-            "lösbare",
-            "lineare"
+            "Gleichsetzungsverfahren",
+            "Einsetzungsverfahren",
+            "Additionsverfahren"
         ],
         "Blurting": []
     },
@@ -1452,10 +1451,9 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "eindeutig",
-            "lösbare",
-            "lineare"
+            "Gauß-Algorithmus",
+            "elementare Zeilenumformungen",
+            "obere Dreiecksform"
         ],
         "Blurting": []
     },
@@ -1472,10 +1470,29 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "eindeutig",
-            "lösbare",
-            "lineare"
+            "Gauß-Algorithmus",
+            "elementare Zeilenumformungen",
+            "obere Dreiecksform"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "lineare-algebra",
+        "Lernbereich": "lineare-gleichungssysteme",
+        "LernbereichAnzeigename": "Lineare Gleichungssysteme",
+        "Nummer": 4,
+        "check_id": "lineare-algebra__lineare-gleichungssysteme__04",
+        "Ich kann": "mit Hilfe des Rang-Kriteriums die Anzahl der Lösungen eines linearen Gleichungssystems bestimmen.",
+        "Sammlung": "lgs-rangkriterium",
+        "Schlagwort": "Rangkriterium",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-04",
+        "questionOrder": "fixed",
+        "Tipps": [
+            "vergleiche $rg(A)$ mit $rg(A|y)$",
+            "keine Lösung",
+            "eine Lösung",
+            "unendlich viele Lösungen"
         ],
         "Blurting": []
     },
@@ -1483,19 +1500,17 @@
         "Gebiet": "lineare-algebra",
         "Lernbereich": "matrizenrechnung",
         "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-        "Nummer": 4,
-        "check_id": "lineare-algebra__matrizenrechnung__04",
+        "Nummer": 1,
+        "check_id": "lineare-algebra__matrizenrechnung__01",
         "Ich kann": "das Inverse einer 2x2-Matrix berechnen.",
         "Sammlung": "inverse-2x2",
         "Schlagwort": "Inverse 2x2",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-lineare-algebra-matrizenrechnung-04",
+        "skript_anchor": "check-lineare-algebra-matrizenrechnung-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "inverse",
-            "2x2-matrix",
-            "berechnen"
+            "Gauß-Jordan-Algorithmus",
+            "$(A|E)\\sim(E|A^{-1})$"
         ],
         "Blurting": []
     },
@@ -1503,19 +1518,17 @@
         "Gebiet": "lineare-algebra",
         "Lernbereich": "matrizenrechnung",
         "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-        "Nummer": 5,
-        "check_id": "lineare-algebra__matrizenrechnung__05",
+        "Nummer": 2,
+        "check_id": "lineare-algebra__matrizenrechnung__02",
         "Ich kann": "das Inverse einer 3x3-Matrix berechnen.",
         "Sammlung": "inverse-3x3",
         "Schlagwort": "Inverse 3x3",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-lineare-algebra-matrizenrechnung-05",
+        "skript_anchor": "check-lineare-algebra-matrizenrechnung-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "inverse",
-            "3x3-matrix",
-            "berechnen"
+            "Gauß-Jordan-Algorithmus",
+            "$(A|E)\\sim(E|A^{-1})$"
         ],
         "Blurting": []
     },
@@ -1523,19 +1536,17 @@
         "Gebiet": "lineare-algebra",
         "Lernbereich": "matrizenrechnung",
         "LernbereichAnzeigename": "Lineare Gleichungssysteme",
-        "Nummer": 6,
-        "check_id": "lineare-algebra__matrizenrechnung__06",
+        "Nummer": 3,
+        "check_id": "lineare-algebra__matrizenrechnung__03",
         "Ich kann": "das Inverse einer 4x4-Matrix berechnen.",
         "Sammlung": "inverse-4x4",
         "Schlagwort": "Inverse 4x4",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-lineare-algebra-matrizenrechnung-06",
+        "skript_anchor": "check-lineare-algebra-matrizenrechnung-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Lineare Gleichungssysteme",
-            "inverse",
-            "4x4-matrix",
-            "berechnen"
+            "Gauß-Jordan-Algorithmus",
+            "$(A|E)\\sim(E|A^{-1})$"
         ],
         "Blurting": []
     },
