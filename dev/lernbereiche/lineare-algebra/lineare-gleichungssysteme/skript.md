@@ -540,7 +540,7 @@ $$
 \end{pmatrix}.
 $$ 
 
-In diesen Beispielen ist {% include ttt.html text="$rg(A)=2$" tt="da die letzte Zeile von $A$ nur aus Nullen besteht" %} und {% include ttt.html text="$rg(A\mid y)=3$" tt="da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben" %}.
+In diesen Beispielen ist $rg(A)=2$, da die letzte Zeile von $A$ nur aus Nullen besteht, und "$rg(A\mid y)=3$, da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben.
 
 ### Satz
 

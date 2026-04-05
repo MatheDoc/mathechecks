@@ -3,8 +3,7 @@ layout: null
 ---
 Hier sehen wir ein Histogramm der Einzelwahrscheinlichkeiten. 
 
-{% include dev/histogramm-binomial-einzel.html 
-n="10" p="0.4" a="2" b="1"%} 
+{% include dev/histogramm-binomial-einzel.html n="10" p="0.4" a="2" b="1" %} 
 
 Die Höhe jeder Säule gibt die entsprechende "genau $k$-Treffer"-Wahrscheinlichkeit an. Daher ist z.B:
 
