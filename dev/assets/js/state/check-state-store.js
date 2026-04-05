@@ -62,6 +62,9 @@ export function loadTaskIndexForCheck(lernbereich, checkId, fallback = 0) {
 
   try {
     const raw = localStorage.getItem(getCheckTaskIndexKey(lernbereich, checkId));
+    if (raw == null) {
+      return Number.isInteger(fallback) && fallback >= 0 ? fallback : 0;
+    }
     const parsed = Number(raw);
     if (Number.isInteger(parsed) && parsed >= 0) {
       return parsed;
