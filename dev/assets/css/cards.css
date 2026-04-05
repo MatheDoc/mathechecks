@@ -311,6 +311,11 @@
     scrollbar-gutter: stable;
 }
 
+.check-viewport-item--scroll-card .dev-check-card__body.dev-fc-body {
+    overflow-y: hidden;
+    scrollbar-gutter: auto;
+}
+
 .check-viewport-item--scroll-card .dev-check-card__runtime-task {
     min-height: auto;
     max-height: none;

@@ -357,16 +357,6 @@ function syncCardViewportHeight() {
     const backNode = state.root?.querySelector("#dev-fc-back");
     if (!bodyNode || !cardNode || !innerNode || !ratingNode) return;
 
-    const measureFaceHeight = (faceNode) => {
-        if (!faceNode) return 0;
-        const style = window.getComputedStyle(faceNode);
-        const paddingTop = Number.parseFloat(style.paddingTop || "0") || 0;
-        const paddingBottom = Number.parseFloat(style.paddingBottom || "0") || 0;
-        const scrollNode = faceNode.querySelector(".dev-fc-scroll");
-        const contentHeight = scrollNode ? scrollNode.scrollHeight : faceNode.scrollHeight;
-        return Math.ceil(contentHeight + paddingTop + paddingBottom);
-    };
-
     const bodyRect = bodyNode.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
     const viewportNode = state.root?.closest(".check-viewport-item");
@@ -380,19 +370,7 @@ function syncCardViewportHeight() {
     const verticalGap = 30;
     const maxCardHeight = Math.max(220, available - ratingHeight - verticalGap);
 
-    const isFlipped = cardNode.classList.contains("is-flipped");
-    const frontSafetyBuffer = 8;
-    const backSafetyBuffer = 4;
-
-    const contentNeeded = Math.max(
-        measureFaceHeight(frontNode) + frontSafetyBuffer,
-        measureFaceHeight(backNode) + backSafetyBuffer,
-        260
-    );
-
-    // On the front side we keep a tiny extra buffer to prevent 1-2px phantom scrollbars.
-    const activeFaceBuffer = isFlipped ? backSafetyBuffer : frontSafetyBuffer;
-    const cardHeight = Math.min(contentNeeded + activeFaceBuffer, maxCardHeight);
+    const cardHeight = maxCardHeight;
 
     cardNode.style.height = `${cardHeight}px`;
     cardNode.style.maxHeight = `${maxCardHeight}px`;

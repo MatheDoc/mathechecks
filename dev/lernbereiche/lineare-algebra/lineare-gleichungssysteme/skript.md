@@ -19,8 +19,8 @@ $x$ und $y$:
 
 $$
 \begin{align}
-3x + y &= 23 \\
--2x - y &= -16
+x + 2y &= 21 \\
+4x - 2y &= -6
 \end{align}
 $$
 
@@ -43,140 +43,45 @@ Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden kö
 
 ### Gleichsetzungsverfahren
 
-<iframe  src="https://www.youtube.com/embed/6BuVmbuxZco?si=bQ8gQxBzqQTycXh_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/6BuVmbuxZco?si=VKFmyJK_vTDFGmQH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Einsetzungsverfahren
 
-<iframe  src="https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Additionsverfahren
 
-<iframe  src="https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-{%include info.html
-index="1"
-frage="Lösen LGS mit 2 Gleichungen und 2 Unbekannten"
-antwort="
-
-- Gleichsetzungsverfahren: Beide Gleichungen nach der gleichen Unbekannten auflösen und gleichsetzen
-- Einsetzungsverfahren: Eine Gleichung nach einer Unbekannten auflösen und diese Lösung in die andere Gleichung einsetzen
-- Additionsverfahren: Durch geschicktes Addieren der beiden Gleichungen eine Unbekannte eliminieren
-  "
-  %}
-
+{% include dev/check-anker.html nummer="1" %}
 
 ### Gauß-Algorithmus
 
-Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen.
+Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen. DAs Video zeigt die Anwendung des Gauß-Algorithmus auf ein LGS mit drei Gleichungen und drei Unbekannten (ohne Verwendung von Matrizen).
 
-<iframe  src='https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar.
-
-Wir betrachten dazu das folgende LGS:
+Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar. Diese Matrixform erhalten wir, indem wir die Unbekannten und Rechenoperationen auslassen, die Koeffizienten müssen dabei konsequent untereinander geschrieben werden. Aus dem LGS
 
 $$
 \begin{align*}
-x_1 + x_2 + x_3 &= 3 \\
-4x_1 + 2x_2 + x_3 &= 14 \\
-16x_1 - 4x_2 + x_3 &= 8
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 &= b_1 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 &= b_2 \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 &= b_3
 \end{align*}
 $$
 
-Die Matrixform erhalten wir, indem die Unbekannten und Rechenoperationen ausgelassen werden, die Koeffizienten müssen dabei konsequent untereinander geschrieben werden.
-
-{% include flip-card.html
-frage="Darstellung in Matrixform"
-antwort="
+wird so beispielsweise
 
 $$
 \begin{pmatrix}
-1 & 1   & 1 & | & 3\\
-4 & 2   & 1 & | & 14\\
-16 & -4 & 1 & | & 8
+a_{11} & a_{12} & a_{13} & | & b_1\\
+a_{21} & a_{22} & a_{23} & | & b_3\\
+a_{31} & a_{32} & a_{33} & | & b_3
 \end{pmatrix}
 $$
 
-" %}
-
-Diese Matrix wird mit Hilfe des Additionsverfahrens in eine obere Dreiecksform überführt, das heißt in eine Matrix, bei der alle Elemente unterhalb der Diagonalen gleich null sind.
-
-{% include flip-card.html
-frage="Umformen in obere Dreiecksform"
-antwort="
-
-$$
-\begin{pmatrix}
-1 & 1 & 1 & | & 3\\
-4 & 2 & 1 & | & 14\\
-16 & -4 & 1 &| & 8
-\end{pmatrix}
-\quad
-\begin{matrix}
-\\
-II-4\cdot I\\
-III-16\cdot I
-\end{matrix}
-$$
-
-$$
-\begin{pmatrix}
-1 & 1 & 1 & | & 3\\
-0 & -2 & -3 & | & 2\\
-0 & -20 & -15 &| & -40
-\end{pmatrix}
-\quad
-\begin{matrix}
-\\
-\\
-III-10\cdot II
-\end{matrix}
-$$
-
-$$
-\begin{pmatrix}
-1 & 1 & 1 & | & 3\\
-0 & -2 & -3 & | & 2\\
-0 & 0 & 15 &| & -60
-\end{pmatrix}
-\quad
-\begin{matrix}
-\\
-\\
-\quad\quad\quad\quad\quad
-\end{matrix}
-$$
-
-" %}
-
-Nun verwenden wir wieder die ausführliche Schreibweise, um angefangen von der letzten Gleichung alle Unbekannten nacheinander zu bestimmen.
-
-{% include flip-card.html
-frage="Sukzessives Auflösen nach den Unbekannten"
-antwort="Ausgeschrieben lautet das System:
-
-$$
-\begin{alignat*}{3}
-I:\quad   & x_1+x_2+x_3 & =3\\
-II:\quad  & -2x_2-3x_3  & =2\\
-III:\quad & 15x_3       & =-60\\
-\end{alignat*}
-$$
-
-Auflösen nach den Unbekannten:
-
-$$
-\begin{alignat*}{2}
-III:\quad & 15x_3=-60 \Rightarrow x_3=-4\quad ✅\\
-II:\quad  & -2x_2-3\cdot (-4)=2 \Rightarrow -2x_2=-10 \Rightarrow x_2=5\quad ✅\\
-I:\quad   & x_1+5-4=3 \Rightarrow x_1=2\quad ✅\\
-\end{alignat*}
-$$
-
-"
-%}
-
-Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere Dreiecksmatrix erhalten. Dabei verwenden wir die sogenannten elementaren Zeilenumformungen:
+Im Anschluss wird diese Matrix mit Hilfe der sogenannten elementaren Zeilenumformungen in eine obere Dreiecksform überführt, das heißt in eine Matrix, bei der alle Elemente unterhalb der Diagonalen gleich null sind. Diese elementaren Zeilenumformungen sind:
 
 - Vertauschen zweier Zeilen
 - Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
@@ -184,32 +89,11 @@ Der Gauß-Algorithmus bezeichnet konkret das Verfahren, mit dem wir eine obere D
 
 Das folgende Video zeigt ein Beispiel, in dem ein Zeilentausch notwendig ist, um in der linken oberen Ecke eine Zahl ungleich Null zu erhalten.
 
-<iframe src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-{%include info.html
-index="2"
-frage="Lösen LGS mit 3 Gleichungen und 3 Unbekannten"
-antwort="
+{% include dev/check-anker.html nummer="2" %}
 
-1. Darstellung in Matrixform
-2. Umformen in obere Dreiecksform
-3. Sukzessives Auflösen nach den Unbekannten
-
-"
-%}
-
-
-{%include info.html
-index="3"
-frage="Lösen LGS mit 4 Gleichungen und 4 Unbekannten"
-antwort="
-
-1. Darstellung in Matrixform
-2. Umformen in obere Dreiecksform
-3. Sukzessives Auflösen nach den Unbekannten
-
-"
-%}
+{% include dev/check-anker.html nummer="3" %}
 
 
 ## Lösungsarten
@@ -540,7 +424,7 @@ $$
 \end{pmatrix}.
 $$ 
 
-In diesen Beispielen ist $rg(A)=2$, da die letzte Zeile von $A$ nur aus Nullen besteht, und "$rg(A\mid y)=3$, da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben.
+In diesen Beispielen ist $rg(A)=2$, da die letzte Zeile von $A$ nur aus Nullen besteht, und $rg(A\mid y)=3$, da alle drei Zeilen von $(A\mid y)$ von 0 verschiedene Elemente haben.
 
 ### Satz
 
@@ -550,6 +434,6 @@ Wir betrachten das LGS $(A\mid y)$. Die Anzahl der Spalten von $A$, d.h. die Anz
 * $rg(A)=rg(A\mid y)<n$: unendlich viele Lösungen
 * $rg(A)<rg(A\mid y)$: keine Lösung
 
-
+{% include dev/check-anker.html nummer="4" %}
 
 
