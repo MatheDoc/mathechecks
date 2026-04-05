@@ -3,8 +3,7 @@ layout: null
 ---
 Hier sehen wir ein Histogramm der kumulierten Wahrscheinlichkeiten. 
 
-{% include dev/histogramm-binomial-kumuliert.html 
-n="10" p="0.4" a="5" b="5"%}
+{% include dev/histogramm-binomial-kumuliert.html n="10" p="0.4" a="5" b="5" %}
 
 Die Höhe jeder Säule gibt die entsprechende "höchstens $k$-Treffer"-Wahrscheinlichkeit an. Daher ist z.B:
 

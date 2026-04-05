@@ -2,8 +2,13 @@
 layout: null
 ---
 
-Es sei $X=\{X1;X2;Y1;Y2\}$ eine Menge mit Teilmengen $A=\{Y1;Y2\}$ $B:$ "Im Elementnamen gibt es eine '1'". Dann gilt z.B.:
+Es sei $X=\lbrace X1;X2;Y1;Y2\rbrace$ eine Menge mit Teilmengen
 
-- $\overline{B}=\{X2;Y2\}$.
-- $A\cap\overline{B}=\{Y2\}$.
-- \overline{A}\cup B = \{X1;X2;Y1\}$. 
+- $A=\lbrace Y1;Y2\rbrace$
+- $B:$ "Im Elementnamen gibt es eine '1'".
+
+Dann gilt z.B.:
+
+- $\overline{B}=\lbrace X2;Y2\rbrace$.
+- $A\cap\overline{B}=\lbrace Y2\rbrace$.
+- $\overline{A}\cup B = \lbrace X1;X2;Y1\rbrace$. 

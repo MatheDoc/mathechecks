@@ -1267,7 +1267,11 @@ export async function initTrainingModule({
                 ? loadTaskIndexForCheck(lernbereich, checkId, state.taskIndexByCheckId[checkId])
                 : state.taskIndexByCheckId[checkId]
               : usePersistedState
-                ? loadTaskIndexForCheck(lernbereich, checkId, 0)
+                ? loadTaskIndexForCheck(
+                  lernbereich,
+                  checkId,
+                  pickRandomTaskIndex(-1, Array.isArray(sammlung) ? sammlung.length : 0)
+                )
                 : 0,
             readPersistedState: usePersistedState,
             onTaskIndexChange: (taskIndex) => {
