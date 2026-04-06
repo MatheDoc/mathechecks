@@ -6,7 +6,7 @@ Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er läuft immer i
 
 | Modul | Kernauslöser (Kurz) |
 |---|---|
-| `einstiegsquiz` | Lernbereich erstmals aktiviert |
+| `warmup` | Lernbereich erstmals aktiviert |
 | `training` | In der Kette mehrfach pro Check; zusätzlich über `Laufende Checks` |
 | `blurting` | `x` Tage nach `training` |
 | `feynman` | `x` Tage nach `training` (nach `blurting`) |
@@ -29,14 +29,14 @@ Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er läuft immer i
 - **Session-Bearbeitung (verbindliche Regeln):**
   - **Lernbereich entfernen:** Alle zugehörigen Aktionen und Fortschritte werden aus der aktiven Session entfernt (mit Warnhinweis vor dem Speichern).
   - **Check entfernen:** Alle zugehörigen Aktionen und Fortschritte werden aus der aktiven Session entfernt (mit Warnhinweis vor dem Speichern). Wenn dadurch alle Checks als abgeschlossen gelten, können `flashcards` und `klausur` fällig werden.
-  - **Lernbereich hinzufügen:** Das zugehörige `einstiegsquiz` wird sofort fällig und im Feed an erster Stelle angezeigt.
+  - **Lernbereich hinzufügen:** Das zugehörige `warmup` wird sofort fällig und im Feed an erster Stelle angezeigt.
   - **Check in bestehendem Lernbereich hinzufügen:** Das erste `training` der Kette wird sofort fällig. Falls dadurch nicht mehr alle Checks abgeschlossen sind, entfallen ggf. fällige `flashcards`/`klausur` bis zum erneuten Erreichen der Abschlussbedingung.
 
 ---
 
 ## Module im Detail
 
-### `einstiegsquiz`
+### `warmup`
 - **Zweck:** Vorwissen aktivieren, Einstieg in den Lernbereich motivieren, vorausschauend zeigen „wo die Reise hingeht"
 - **Aufbau:** Einfache, motivierende Fragen (keine Zufallsgeneratoren nötig); vorausschauende Erklärungen eingebettet; interaktiv oder nicht — offen
 - **Auslöser:** Lernbereich erstmals aktiviert
@@ -44,7 +44,7 @@ Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er läuft immer i
 - **Nächste Aktion:** Erster Training-Check
 - **Implementierung:** Muss pro Lernbereich manuell erstellt werden
 
-Nach dem Einstiegsquiz gibt es je Check die Kette der Module `training` -> `blurting` -> `training` -> `feynman` -> `training` -> `kompetenzliste`. Auslöser von `blurting`, `feynman` und `kompetenzliste` ist stets `x` Tage nach Erfüllung der Abschlussbedingung des vorherigen Moduls. Bei `kann nicht` in `blurting` oder `feynman` erfolgt kein Modulwechsel: Es wird ein Skript-Link angeboten und dasselbe Modul kann nach `y`  Minuten erneut bearbeitet werden. Der jeweilige Eintrag bleibt bis zur Auswahl `kann` als oberster offener Feed-Eintrag für den Check stehen. Die Feeds für die verschiedenen Checks können sich dabei überlappen.
+Nach dem Warm-Up gibt es je Check die Kette der Module `training` -> `blurting` -> `training` -> `feynman` -> `training` -> `kompetenzliste`. Auslöser von `blurting`, `feynman` und `kompetenzliste` ist stets `x` Tage nach Erfüllung der Abschlussbedingung des vorherigen Moduls. Bei `kann nicht` in `blurting` oder `feynman` erfolgt kein Modulwechsel: Es wird ein Skript-Link angeboten und dasselbe Modul kann nach `y`  Minuten erneut bearbeitet werden. Der jeweilige Eintrag bleibt bis zur Auswahl `kann` als oberster offener Feed-Eintrag für den Check stehen. Die Feeds für die verschiedenen Checks können sich dabei überlappen.
 
 Der Kompetenzlisten-Eintrag wird im Feed immer als **gesamte Kompetenzliste des Lernbereichs** angezeigt (nicht als einzelner Check).
 
@@ -64,7 +64,7 @@ Setze zunächst `x = 1`.
    - nur automatisierte Abschlüsse zählen für die Kompetenzlisten-Freigabe (3 fehlerfreie Trainingsabschlüsse)
    - solange weniger als 3 automatisierte Trainingsabschlüsse vorliegen, gilt das entsprechende `training` weiterhin als ausgelöst
 - **Auslöser:**
-   - erstes `training`: direkt nach Einstiegsquiz
+   - erstes `training`: direkt nach Warm-Up
    - zweites `training`: `x` Tage nach erfolgreichem `blurting`
    - drittes `training`: `x` Tage nach erfolgreichem `feynman`
 - **Implementierung:** Aufgaben kommen aus generierten JSONs
@@ -135,7 +135,7 @@ Hinweis: Bei Rücknahme der Abschlussmarkierung wechselt der Check von Zustand 5
 2. Bei mehreren fälligen Aktionen gilt: je kleiner der Zustand (1 bis 5), desto höher im Feed.
 3. Innerhalb von Zustand 2 ordnen die Teilzustände `a` bis `e`.
 4. Bei Konflikten zwischen Lernbereichen gilt die fest hinterlegte Lernbereichs-Reihenfolge.
-5. Session-Bearbeitung mit Regel "Lernbereich hinzufügen" übersteuert diese Sortierung einmalig (neues `einstiegsquiz` an erster Stelle).
+5. Session-Bearbeitung mit Regel "Lernbereich hinzufügen" übersteuert diese Sortierung einmalig (neues `warmup` an erster Stelle).
 6. Bei verbleibender Gleichheit (inkl. Teilzustandsgleichheit) entscheidet der frühere Auslöse-Zeitstempel.
 7. Zustand 5 wird nicht mehr im Feed angezeigt.
 
@@ -148,7 +148,7 @@ Hinweis: Bei Rücknahme der Abschlussmarkierung wechselt der Check von Zustand 5
 Der Kompetenzfortschritt wird im Dashboard pro Lernbereich und pro Check ausgewiesen.
 
 - Kompetenzfortschritt für gesamten Lernbereich: Aufteilen der 100 % in `n+1` Teile, wobei `n` die Anzahl der Checks ist
-   - `1/(n+1)` nach Einstiegsquiz
+   - `1/(n+1)` nach Warm-Up
    - danach jeweils `1/(n+1)` pro abgeschlossenem Check; zusätzlich wird der Kompetenzfortschritt pro Check berücksichtigt
 - Kompetenzfortschritt pro Check
    - 50 % nach erfolgreichem Abschluss des ersten Trainings; Fragen anteilig berücksichtigen (hat der Check 4 Fragen, dann 12,5 % nach erster richtiger Frage, 25 % nach zweiter, 37,5 % nach dritter, 50 % nach vierter)

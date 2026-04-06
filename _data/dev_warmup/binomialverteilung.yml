@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "In der Qualitätskontrolle wird die Binomialverteilung genutzt, um zu entscheiden, ob eine ganze Lieferung angenommen wird."
+    detail: "Statt alle Teile zu prüfen, wird eine Stichprobe genommen – die Binomialverteilung sagt, wie wahrscheinlich bestimmte Fehleranzahlen sind."
+  - typ: schaetzfrage
+    frage: "Du rätst bei $10$ Multiple-Choice-Fragen (je $4$ Antworten). Wie viele triffst du im Schnitt richtig?"
+    optionen:
+      - "$2$–$3$"
+      - "$1$–$2$"
+      - "$4$–$5$"
+    korrekt: 0
+    erklaerung: "Im Schnitt $2{,}5$ – also $2$ bis $3$. Das ist der Erwartungswert: $n \\cdot p = 10 \\cdot 0{,}25$."
+  - typ: vorwissen
+    frage: "Ein Bernoulli-Experiment hat …"
+    optionen:
+      - "genau zwei mögliche Ergebnisse"
+      - "beliebig viele Ergebnisse"
+      - "immer gleiche Wahrscheinlichkeit für alle Ergebnisse"
+    korrekt: 0
+    feedback_richtig: "Genau! Treffer oder Niete – darauf baut die Binomialverteilung auf."
+    feedback_falsch: "Kein Stress – Bernoulli-Experimente sind der Baustein der Binomialverteilung, und wir starten von Grund auf."
+  - typ: alltag
+    text: "Wie wahrscheinlich ist es, dass dein Zug bei den nächsten $10$ Fahrten mindestens $8$-mal pünktlich kommt?"
+    detail: "Genau solche Fragen – wie oft tritt ein Ereignis bei wiederholten Versuchen ein – beantwortet die Binomialverteilung."
+abschluss: "Wie oft trifft man bei wiederholten Versuchen? Genau das beantwortet die Binomialverteilung."

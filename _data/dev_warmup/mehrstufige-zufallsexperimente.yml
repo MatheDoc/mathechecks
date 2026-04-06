@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Die Chance, im Lotto $6$ Richtige zu tippen, liegt bei etwa $1:14\\,000\\,000$."
+    detail: "Um das zu berechnen, multipliziert man die Wahrscheinlichkeiten mehrerer Stufen – genau das lernst du hier."
+  - typ: schaetzfrage
+    frage: "Du wirfst eine Münze dreimal. Wie viele verschiedene Ergebnisse sind möglich?"
+    optionen:
+      - "$8$"
+      - "$6$"
+      - "$9$"
+    korrekt: 0
+    erklaerung: "$2 \\cdot 2 \\cdot 2 = 8$ Möglichkeiten. Bei mehrstufigen Experimenten multipliziert man die Anzahlen pro Stufe."
+  - typ: vorwissen
+    frage: "In einem Baumdiagramm wird die Wahrscheinlichkeit eines Pfades berechnet durch …"
+    optionen:
+      - "Addition entlang des Pfades"
+      - "Die letzte Wahrscheinlichkeit am Pfad"
+      - "Multiplikation entlang des Pfades"
+    korrekt: 2
+    feedback_richtig: "Genau! Die Pfadmultiplikationsregel ist das zentrale Werkzeug."
+    feedback_falsch: "Das klären wir hier – die Pfadregeln sind das Herzstück mehrstufiger Experimente."
+  - typ: alltag
+    text: "Bei Qualitätskontrollen wird ein Produkt mehrfach getestet – jeder Test ist eine Stufe im Zufallsexperiment."
+    detail: "Ob ein Airbag im Auto zuverlässig auslöst, wird mit mehrstufigen Zufallsexperimenten überprüft."
+abschluss: "Schritt für Schritt durch den Zufall – mit Baumdiagramm wird's übersichtlich."

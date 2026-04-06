@@ -7,7 +7,7 @@
 
         {% for karte in einstieg.karten %}
         {% assign current_idx = forloop.index0 %}
-        <article class="ei-card dev-check-card dev-check-card--einstiegsquiz" data-typ="{{ karte.typ }}"
+        <article class="ei-card dev-check-card dev-check-card--warmup" data-typ="{{ karte.typ }}"
             data-index="{{ forloop.index0 }}" {% unless forloop.first %} hidden{% endunless %}>
 
             <div class="ei-card-progress" aria-label="Fortschritt">
@@ -75,7 +75,7 @@
         {% endfor %}
 
         <!-- Abschlusskarte -->
-        <article class="ei-card ei-card--final dev-check-card dev-check-card--einstiegsquiz"
+        <article class="ei-card ei-card--final dev-check-card dev-check-card--warmup"
             data-index="{{ einstieg.karten | size }}" hidden>
             <div class="ei-card-progress" aria-label="Fortschritt">
                 <div class="ei-card-progress-dots" aria-hidden="true">

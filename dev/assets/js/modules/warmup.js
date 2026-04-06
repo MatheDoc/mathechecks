@@ -1,7 +1,7 @@
 /**
- * Einstieg module – interactive curiosity cards.
+ * Warm-Up module – interactive curiosity cards.
  */
-export async function initEinstiegsquizModule({ lernbereich } = {}) {
+export async function initWarmupModule({ lernbereich } = {}) {
     const wrap = document.querySelector(".ei-wrap");
     if (!wrap) return;
 

@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Bevor ein neues Medikament zugelassen wird, muss es einen Hypothesentest bestehen – mit strengen statistischen Kriterien."
+    detail: "Forscher testen: Wirkt das Medikament besser als ein Placebo? Hypothesentests liefern die mathematische Antwort."
+  - typ: schaetzfrage
+    frage: "Eine Münze wird $100$-mal geworfen und zeigt $60$-mal Kopf. Ist die Münze fair?"
+    optionen:
+      - "Ja, das ist normal"
+      - "Wahrscheinlich nicht"
+      - "Unmöglich zu sagen"
+    korrekt: 1
+    erklaerung: "$60$ von $100$ weicht deutlich von den erwarteten $50$ ab. Ein Hypothesentest prüft, ob das noch Zufall sein kann."
+  - typ: vorwissen
+    frage: "Die Nullhypothese ist …"
+    optionen:
+      - "das gewünschte Ergebnis"
+      - "immer falsch"
+      - "die Annahme, die man überprüfen möchte"
+    korrekt: 2
+    feedback_richtig: "Genau! Die Nullhypothese ist der Ausgangspunkt jedes Tests."
+    feedback_falsch: "Das ist die Basis – wir klären hier, was Null- und Alternativhypothese bedeuten."
+  - typ: alltag
+    text: "A/B-Tests in Apps: Welche Button-Farbe bringt mehr Klicks? Hypothesentests liefern die Entscheidung."
+    detail: "Unternehmen wie Netflix oder Amazon nutzen tausende Hypothesentests pro Woche, um ihre Produkte zu verbessern."
+abschluss: "Mut zur Entscheidung – Hypothesentests geben dir die Werkzeuge dafür."

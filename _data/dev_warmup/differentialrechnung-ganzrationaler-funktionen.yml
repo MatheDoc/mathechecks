@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Dein Tachometer zeigt eine Ableitung an: Er misst, wie schnell sich dein Ort ändert – die momentane Änderungsrate."
+    detail: "Die Geschwindigkeit $v(t)$ ist die Ableitung des Weges $s(t)$. Das ist die Kernidee der Differentialrechnung."
+  - typ: schaetzfrage
+    frage: "Ein Auto beschleunigt gleichmäßig. Nach $5$ Sekunden fährt es $50\\,\\mathrm{km/h}$. Die Beschleunigung ist …"
+    optionen:
+      - "$5\\,\\mathrm{km/h\\,pro\\,s}$"
+      - "$10\\,\\mathrm{km/h\\,pro\\,s}$"
+      - "$25\\,\\mathrm{km/h\\,pro\\,s}$"
+    korrekt: 1
+    erklaerung: "$50\\,\\mathrm{km/h} \\div 5\\,\\mathrm{s} = 10\\,\\mathrm{km/h\\,pro\\,s}$. Die Ableitung beschreibt genau diese Änderungsrate."
+  - typ: vorwissen
+    frage: "Wenn die Ableitung an einer Stelle positiv ist, dann ist die Funktion dort …"
+    optionen:
+      - "fallend"
+      - "steigend"
+      - "konstant"
+    korrekt: 1
+    feedback_richtig: "Perfekt! Diese Verbindung ist zentral für alles, was kommt."
+    feedback_falsch: "Kein Problem – die Verbindung zwischen Vorzeichen der Ableitung und Monotonie erkunden wir gemeinsam."
+  - typ: alltag
+    text: "Wetterdienste beobachten, wie schnell die Temperatur steigt oder fällt."
+    detail: "Die Änderungsrate der Temperatur über die Zeit ist eine Ableitung – und hilft, Unwetterwarnungen auszulösen."
+abschluss: "Änderungsraten begegnen dir täglich. Jetzt lernst du, sie mathematisch zu greifen."

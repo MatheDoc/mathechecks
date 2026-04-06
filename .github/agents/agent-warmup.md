@@ -12,9 +12,9 @@ Du erstellst und überarbeitest die Warm-Up-Karten für alle Lernbereiche von Ma
 
 ## Zuständigkeit
 
-- `_data/dev_einstieg.yml` – zentrale Inhaltsdatei (4 Karten pro Lernbereich)
-- `_includes/dev/moduletypen/einstiegsquiz-content.html` – Liquid-Template
-- `dev/assets/js/modules/einstiegsquiz.js` – Interaktionslogik
+- `_data/dev_warmup/<lernbereich-slug>.yml` – eine Inhaltsdatei pro Lernbereich (4 Karten + Abschluss)
+- `_includes/dev/moduletypen/warmup-content.html` – Liquid-Template
+- `dev/assets/js/modules/warmup.js` – Interaktionslogik
 - `dev/assets/css/einstieg.css` – Modulspezifisches Styling
 - Eintrag `warmup` in `_data/dev_moduletypen.yml`
 
@@ -71,9 +71,7 @@ lernbereich-slug:
 2. **Alltagsnah und überraschend.** Fakten und Beispiele, die Schüler der Sekundarstufe II ansprechen.
 3. **Fachlich korrekt.** Mathematische Aussagen müssen stimmen. Im Zweifel: `agent-content-didaktik` konsultieren.
 4. **Kurz und prägnant.** Max. 2 Sätze pro Text/Frage. Details dürfen etwas länger sein.
-5. **LaTeX bei mathematischen Inhalten.** Zahlen, Rechnungen, Terme, Gleichungen, Funktionen, Wahrscheinlichkeiten und mathematische Symbole in `$...$` (oder `$$...$$` bei Blockdarstellung) schreiben, z. B. `$f(x)=mx+b$`, `$3{,}50 + 2\cdot 8$`, `$P(A\mid B)$`.
-6. **Deutsche Sprache mit Umlauten.** Texte in echtem Deutsch (ö, ü, ä, ß). YAML-Keys bleiben ASCII (`schaetzfrage`, `erklaerung`).
-7. **Konsistenter Ton.** Du-Anrede, freundlich, motivierend, nie belehrend.
+(`schaetzfrage`, `erklaerung`).
 
 ## Delegation
 
@@ -82,7 +80,6 @@ lernbereich-slug:
 
 ## Arbeitsweise
 
-- Vor inhaltlichen Änderungen: `_data/dev_einstieg.yml` lesen.
 - Neue Lernbereiche: Vollständigen Eintrag mit allen 4 Karten + Abschluss anlegen.
 - Überarbeitungen: Nur betroffene Felder ändern, Rest beibehalten.
 - Nach Änderungen: YAML-Validität prüfen (17 Lernbereiche × 4 Karten).

@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "In einem Auto stecken etwa $10\\,000$ Einzelteile, die in mehrstufigen Produktionsprozessen zusammengefügt werden."
+    detail: "Matrizen helfen, den Materialbedarf über alle Stufen hinweg effizient zu berechnen."
+  - typ: schaetzfrage
+    frage: "Für einen Tisch brauchst du $4$ Beine und $1$ Platte. Für $50$ Tische brauchst du …"
+    optionen:
+      - "$200$ Beine und $50$ Platten"
+      - "$54$ Beine und $51$ Platten"
+      - "$100$ Beine und $25$ Platten"
+    korrekt: 0
+    erklaerung: "$50 \\cdot 4 = 200$ Beine und $50 \\cdot 1 = 50$ Platten. Genau solche Berechnungen macht man mit Matrizen."
+  - typ: vorwissen
+    frage: "Bei einem zweistufigen Produktionsprozess werden …"
+    optionen:
+      - "alle Teile auf einmal zusammengesetzt"
+      - "Zwischenprodukte zu Endprodukten weiterverarbeitet"
+      - "immer genau zwei Produkte hergestellt"
+    korrekt: 1
+    feedback_richtig: "Genau! Diese Stufenstruktur modellieren wir hier mit Matrizen."
+    feedback_falsch: "Das ist der Kern – und wir zeigen dir, wie Matrizen die Stufenstruktur abbilden."
+  - typ: alltag
+    text: "Ein Smartphone besteht aus Display, Akku und Chip – jedes Teil hat eigene Rohstoffe."
+    detail: "Wie viel Silizium, Lithium und Glas brauchst du für $1000$ Smartphones? Matrizen rechnen das in Sekunden."
+abschluss: "Von Rohstoffen bis zum fertigen Produkt – Matrizen machen die Rechnung."
