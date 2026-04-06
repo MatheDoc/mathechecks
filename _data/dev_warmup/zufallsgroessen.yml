@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Versicherungen berechnen ihre Beiträge mit dem Erwartungswert: Sie wissen nicht, wer einen Schaden hat – aber im Schnitt passt die Rechnung."
+    detail: "Der Erwartungswert einer Zufallsgröße gibt an, welchen Wert man 'im Mittel' langfristig erwarten kann."
+  - typ: schaetzfrage
+    frage: "Ein Glücksrad hat die Gewinne $0\\,€$, $1\\,€$, $5\\,€$ und $20\\,€$ (alle gleich wahrscheinlich). Was gewinnst du im Schnitt pro Dreh?"
+    optionen:
+      - "$5{,}00\\,€$"
+      - "$6{,}50\\,€$"
+      - "$8{,}00\\,€$"
+    korrekt: 1
+    erklaerung: "$\\frac{0 + 1 + 5 + 20}{4} = 6{,}50\\,€$. Das ist der Erwartungswert – dein 'mittlerer' Gewinn pro Dreh."
+  - typ: vorwissen
+    frage: "Eine Zufallsgröße ordnet jedem Ergebnis eines Zufallsexperiments …"
+    optionen:
+      - "eine Zahl zu"
+      - "eine Farbe zu"
+      - "einen Namen zu"
+    korrekt: 0
+    feedback_richtig: "Genau! Zufallsgrößen machen Zufallsexperimente berechenbar."
+    feedback_falsch: "Kein Problem – Zufallsgrößen übersetzen Ergebnisse in Zahlen, und das klären wir hier."
+  - typ: alltag
+    text: "Beim Brettspiel zählt: Wie viele Felder rückst du im Schnitt pro Wurf vor?"
+    detail: "Der Erwartungswert eines Würfels ist $3{,}5$ – darum sind Spielbretter so designt, wie sie sind."
+abschluss: "Was passiert im Durchschnitt? Zufallsgrößen machen den Zufall berechenbar."

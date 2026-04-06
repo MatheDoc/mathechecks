@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "GPS-Navigation löst ein riesiges lineares Gleichungssystem, um deinen Standort auf wenige Meter genau zu bestimmen."
+    detail: "Mindestens $4$ Satellitensignale werden zu einem LGS verknüpft. Die Lösung ist dein Standort."
+  - typ: schaetzfrage
+    frage: "Drei Freunde kaufen zusammen Snacks. Wie viele Gleichungen brauchst du, um die Einzelpreise zu berechnen?"
+    optionen:
+      - "$3$ Gleichungen"
+      - "$1$ Gleichung reicht"
+      - "Unendlich viele"
+    korrekt: 0
+    erklaerung: "Für $3$ Unbekannte brauchst du mindestens $3$ Gleichungen – eine Grundregel linearer Gleichungssysteme."
+  - typ: vorwissen
+    frage: "Ein lineares Gleichungssystem mit $2$ Unbekannten hat …"
+    optionen:
+      - "immer genau eine Lösung"
+      - "immer zwei Lösungen"
+      - "genau eine, keine oder unendlich viele Lösungen"
+    korrekt: 2
+    feedback_richtig: "Perfekt! Diese drei Fälle sind die Basis für alles Weitere."
+    feedback_falsch: "Das ist eine spannende Frage – drei verschiedene Fälle sind möglich, und wir klären sie hier."
+  - typ: alltag
+    text: "Speditionen planen optimale Routen: Welcher LKW fährt wohin, damit alles pünktlich ankommt?"
+    detail: "Solche Logistikprobleme führen auf lineare Gleichungssysteme – und du lernst, sie systematisch zu lösen."
+abschluss: "Gleichungen lösen mit System – das Handwerkszeug wartet auf dich."

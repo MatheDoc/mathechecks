@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Ein medizinischer Test ist zu $99\\,\\%$ genau – trotzdem kann bei seltenen Krankheiten die Hälfte der positiven Ergebnisse falsch sein."
+    detail: "Das sogenannte Bayes-Paradoxon zeigt: Ohne bedingte Wahrscheinlichkeiten kann man Testergebnisse leicht falsch einschätzen."
+  - typ: schaetzfrage
+    frage: "Ein Krankheitstest ist zu $99\\,\\%$ zuverlässig, die Krankheit betrifft $1\\,\\%$ aller Menschen. Wie viel Prozent der positiv Getesteten sind wirklich krank?"
+    optionen:
+      - "Über $90\\,\\%$"
+      - "Etwa $50\\,\\%$"
+      - "Unter $10\\,\\%$"
+    korrekt: 1
+    erklaerung: "Überraschend: Nur etwa die Hälfte! Die wenigen Kranken werden von den vielen falsch-positiven Gesunden überlagert."
+  - typ: vorwissen
+    frage: "$P(A\\mid B)$ bedeutet …"
+    optionen:
+      - "Wahrscheinlichkeit von A und B zusammen"
+      - "Wahrscheinlichkeit von A, wenn B eingetreten ist"
+      - "Wahrscheinlichkeit von A oder B"
+    korrekt: 1
+    feedback_richtig: "Perfekt! Dieses Konzept ist der Schlüssel zum Lernbereich."
+    feedback_falsch: "Das ist die zentrale Notation – und wir erarbeiten sie hier Schritt für Schritt."
+  - typ: alltag
+    text: "Spam-Filter entscheiden: Ist diese E-Mail Spam, gegeben dass bestimmte Wörter vorkommen?"
+    detail: "Das ist bedingte Wahrscheinlichkeit in Aktion: $P(\\text{Spam}\\mid\\text{enthält 'Gewinn'})$. So funktionieren auch Empfehlungsalgorithmen."
+abschluss: "Wahrscheinlichkeiten mit Vorbedingung – überraschend und faszinierend."

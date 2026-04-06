@@ -7,7 +7,7 @@ import { initCheckAnker } from "./modules/check-anker.js";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
 import { initSkriptVisuals } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js";
-import { initEinstiegsquizModule } from "./modules/einstiegsquiz.js";
+import { initWarmupModule } from "./modules/warmup.js";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js";
 import { getChecksByLernbereich } from "./data/checks-repo.js";
 
@@ -514,8 +514,8 @@ async function bootstrap() {
     return;
   }
 
-  if (context.moduleKey === "einstiegsquiz") {
-    await initEinstiegsquizModule({
+  if (context.moduleKey === "warmup") {
+    await initWarmupModule({
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
     });

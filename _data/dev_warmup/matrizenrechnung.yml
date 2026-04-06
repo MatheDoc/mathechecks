@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Jedes Bild auf deinem Bildschirm wird durch eine Matrix aus Pixelwerten dargestellt."
+    detail: "Ein Full-HD-Bild ist eine Matrix mit $1920 \\cdot 1080 = 2\\,073\\,600$ Einträgen – pro Farbkanal."
+  - typ: schaetzfrage
+    frage: "Du drehst ein Bild um $90^\\circ$. Wie viele Rechenoperationen braucht der Computer ungefähr?"
+    optionen:
+      - "Wenige Dutzend"
+      - "Tausende"
+      - "Millionen"
+    korrekt: 2
+    erklaerung: "Jeder Pixel muss umgerechnet werden – bei Millionen Pixeln sind es Millionen Matrizenoperationen."
+  - typ: vorwissen
+    frage: "Eine Matrix ist …"
+    optionen:
+      - "eine rechteckige Anordnung von Zahlen"
+      - "eine besondere Gleichung"
+      - "ein Koordinatensystem"
+    korrekt: 0
+    feedback_richtig: "Genau! Mit dieser einfachen Idee lässt sich erstaunlich viel berechnen."
+    feedback_falsch: "Kein Problem – eine Matrix ist im Grunde eine Zahlentabelle, und wir zeigen dir, was man damit alles machen kann."
+  - typ: alltag
+    text: "Social-Media-Filter verändern dein Selfie – mathematisch wird eine Bildmatrix mit einer Filtermatrix multipliziert."
+    detail: "Helligkeit, Kontrast, Weichzeichner – alles Matrizenoperationen, die in Echtzeit ablaufen."
+abschluss: "Zahlen in Zeilen und Spalten – klingt einfach, kann aber erstaunlich viel."

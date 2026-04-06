@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Jeder Handytarif mit Grundgebühr und Minutenpreis ist eine lineare Funktion: $f(x)=mx+b$."
+    detail: "Die Grundgebühr ist der y-Achsenabschnitt $b$, der Minutenpreis die Steigung $m$ – das Prinzip steckt überall."
+  - typ: schaetzfrage
+    frage: "Eine Taxifahrt kostet $3{,}50\\,€$ Grundgebühr plus $2{,}00\\,€$ pro km. Was zahlst du für $8$ km?"
+    optionen:
+      - "$15{,}50\\,€$"
+      - "$19{,}50\\,€$"
+      - "$22{,}00\\,€$"
+    korrekt: 1
+    erklaerung: "$3{,}50 + 2{,}00 \\cdot 8 = 19{,}50\\,€$. Lineare Funktionen machen solche Berechnungen einfach."
+  - typ: vorwissen
+    frage: "Der Graph einer linearen Funktion ist immer …"
+    optionen:
+      - "eine Gerade"
+      - "eine Parabel"
+      - "ein Kreis"
+    korrekt: 0
+    feedback_richtig: "Genau! Darauf baut alles Weitere auf."
+    feedback_falsch: "Das klären wir gleich – lineare Funktionen erzeugen immer gerade Graphen."
+  - typ: alltag
+    text: "Du jobbst für $12{,}50\\,€$ pro Stunde."
+    detail: "Dein Verdienst ist eine lineare Funktion: $f(x)=12{,}50x$. Nach $4$ Stunden hast du $50\\,€$ – ganz ohne Taschenrechner."
+abschluss: "Gut aufgewärmt! Lineare Funktionen begleiten dich überall – lass uns loslegen."
