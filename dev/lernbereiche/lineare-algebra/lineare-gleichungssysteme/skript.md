@@ -269,6 +269,8 @@ Das LGS hat also die unendlich vielen Lösungen $x_1=t-5$, $x_2=4-t$ und $x_3=t$
 
 Statt $x_3$ hätten wir hier auch $x_1$ oder $x_2$ gleich $t$ setzen können. Die Gestalt der Lösung sähe dann anders aus, die Menge der Lösungen ist aber stets gleich.
 
+{% include dev/check-anker.html nummer="4" %}
+
 ### Zusammenfassung
 
 LGS können die drei folgenden Arten von Lösungen haben:
@@ -434,6 +436,6 @@ Wir betrachten das LGS $(A\mid y)$. Die Anzahl der Spalten von $A$, d.h. die Anz
 * $rg(A)=rg(A\mid y)<n$: unendlich viele Lösungen
 * $rg(A)<rg(A\mid y)$: keine Lösung
 
-{% include dev/check-anker.html nummer="4" %}
+{% include dev/check-anker.html nummer="5" %}
 
 

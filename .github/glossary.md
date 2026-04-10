@@ -1,15 +1,10 @@
 # Konventionen und Glossar
 
 ## LaTeX/MathJax-Konvention
-- Zielsyntax nach Dateityp:
-	- Markdown-Dateien: Inline `$...$`, Display `$$...$$`, Komma mit geschweiften Klammern `{,}`, z.B. `$0{,}5$`
-	- JSON-Dateien: Inline `$...$`, Display `$$...$$`, Komma mit geschweiften Klammern `{,}`, z.B. `"$ 0{,}5 $"`
-- JSON-Dateien:
-	- In JSON-Strings Dollarzeichen direkt verwenden, also `$` und `$$`.
-	- Beispiel inline in JSON-String: `"Die Formel ist $ p=\\frac{k}{n} $"`
-	- bei Replacement-Strings keine geschweiften Klammern für Kommas verwenden, richtig ist zB. `"{1:NUMERICAL:=0,1461:0,0001}"`
-- Reines HTML:
-	- Ebenfalls `$...$` und `$$...$$` im Text/Markup verwenden.
+- Syntax:
+	- Allgemein: Inline `$...$`, Display `$$...$$`, Komma mit geschweiften Klammern `{,}`, z.B. `$0{,}5$`
+	- JSON-Dateien: Escapen, zum Beispiel inline in JSON-String: `"Die Formel ist $ p=\\frac{k}{n} $"`
+	- bei Replacement-Strings keine geschweiften Klammern für Kommas verwenden, keine $-Zeichen, richtig ist zB. `"{1:NUMERICAL:=0,1461:0,0001}"`
 - Reiner Text:
 	keine geschweiften Klammern für Kommas verwenden, z.B. `0,5` statt `0{,}5`.
 

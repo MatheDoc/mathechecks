@@ -245,6 +245,7 @@
 }
 
 .select2-dropdown.mc-select2-dropdown {
+    min-width: fit-content;
     max-width: min(92vw, 36rem);
     background: var(--card-surface-2, #f8f9fc);
     border-color: var(--border, #cfd6e4);
@@ -257,6 +258,10 @@
     word-break: break-word;
     line-height: 1.3;
     color: var(--text, #253043);
+}
+
+.select2-dropdown.mc-select2-dropdown .select2-results__option mjx-container {
+    white-space: nowrap;
 }
 
 .select2-dropdown.mc-select2-dropdown .select2-results__option--highlighted {

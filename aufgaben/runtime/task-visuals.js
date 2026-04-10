@@ -1,6 +1,7 @@
 import { buildBaumdiagrammFigure } from "../../dev/assets/js/visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../dev/assets/js/visuals/histogramm.js";
 import { plotlyRender } from "../../dev/assets/js/visuals/plotly-defaults.js";
+import { buildVerflechtungsdiagrammFigure } from "../../dev/assets/js/visuals/verflechtungsdiagramm.js";
 
 function toNumber(value, fallback) {
     const numeric = Number(value);
@@ -470,6 +471,16 @@ export function renderVisual(task, wrapper) {
     const plotContainer = document.createElement("div");
     plotContainer.className = "intro";
     wrapper.appendChild(plotContainer);
+
+    if (specType === "verflechtungsdiagramm") {
+        const vdFigure = buildVerflechtungsdiagrammFigure(spec);
+        if (!Array.isArray(vdFigure.data) || vdFigure.data.length === 0) return;
+        plotlyRender(plotContainer, vdFigure.data, {
+            ...vdFigure.layout,
+            margin: { l: 10, r: 10, t: 10, b: 10 },
+        });
+        return;
+    }
 
     const figure = buildPlotlyFigure(spec);
     if (!Array.isArray(figure.data) || figure.data.length === 0) {
