@@ -1714,7 +1714,6 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
             "Verflechtungsdiagramm",
             "Produktionsmatrizen",
             "Zeile = Input, Spalte = Output"
@@ -1734,10 +1733,8 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "elemente",
-            "produktionsmatrizen",
-            "interpretieren"
+            "benötiger Input für 1 ME Output",
+            "Zeile = Input, Spalte = Output"
         ],
         "Blurting": []
     },
@@ -1754,10 +1751,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "2-stufigen",
-            "zwei",
-            "produktionsmatrizen"
+            "$RZ\\cdot ZE = RE$",
+            "$RZ = RE\\cdot ZE^{-1}$",
+            "$ZE = RZ^{-1}\\cdot RE$"
         ],
         "Blurting": []
     },
@@ -1774,10 +1770,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-04",
         "questionOrder": "fixed",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "ausgehend",
-            "herzustellenden",
-            "zwischen-"
+            "$RE\\cdot \\vec{m} = \\vec{r}$",
+            "$RZ\\cdot \\vec{z} = \\vec{r}$",
+            "$ZE\\cdot \\vec{m} = \\vec{z}$"
         ],
         "Blurting": []
     },
@@ -1794,10 +1789,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "ausgehend",
-            "verfügbaren",
-            "rohstoffen"
+            "$\\vec{m} = RE^{-1}\\cdot \\vec{r}$",
+            "$\\vec{z} = RZ^{-1}\\cdot \\vec{r}$",
+            "$\\vec{m} = ZE^{-1}\\cdot \\vec{z}$"
         ],
         "Blurting": []
     },
@@ -1815,9 +1809,13 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Mehrstufige Produktionsprozesse",
-            "kennzahlen",
-            "mehrstufiger",
-            "produktionsprozesse"
+            "$\\vec{k}_v = \\vec{k}_R \\cdot RE + \\vec{k}_Z \\cdot ZE + \\vec{k}_E$",
+            "$K_v = \\vec{k}_v \\cdot \\vec{m}$",
+            "$E = \\vec{p} \\cdot \\vec{m}$",
+            "$\\vec{db} = \\vec{p} - \\vec{k}_v$",
+            "$DB = \\vec{db} \\cdot \\vec{m} = E - K_v$",
+            "$G = E - K$",
+            "$G = DB - K_f$"
         ],
         "Blurting": []
     },
@@ -1827,18 +1825,15 @@
         "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
         "Nummer": 7,
         "check_id": "lineare-algebra__mehrstufige-produktionsprozesse__07",
-        "Ich kann": "bei mehrdeutiger Lagerräumung Größen wie Mengen, Kosten, Erlöse oder Deckungsbeiträge minimieren bzw. maximieren.",
+        "Ich kann": "bei mehrdeutigen Produktionsvektoren verschiedene Kennzahlen minimieren bzw. maximieren.",
         "Sammlung": "lagerraeumung-optimierung",
         "Schlagwort": "Lagerräumung optimieren",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-07",
         "questionOrder": "fixed",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "mehrdeutig",
-            "lagerräumung",
-            "minimieren",
-            "maximieren"
+            "Kennzahl in Abh von $t$ ausdrücken",
+            "Rand des Def-Bereich von $t$ beachten"
         ],
         "Blurting": []
     },
@@ -1848,17 +1843,16 @@
         "LernbereichAnzeigename": "Mehrstufige Produktionsprozesse",
         "Nummer": 8,
         "check_id": "lineare-algebra__mehrstufige-produktionsprozesse__08",
-        "Ich kann": "bei mehrdeutiger Lagerräumung den Parameter t so bestimmen, dass eine vorgegebene Bedingung erfüllt ist.",
+        "Ich kann": "bei mehrdeutigen Produktionsvektoren und gegebenen Bedingungen konkrete Produktionsvektoren  bestimmen.",
         "Sammlung": "lagerraeumung-parameter",
         "Schlagwort": "Lagerräumung: Parameter",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-08",
         "questionOrder": "fixed",
         "Tipps": [
-            "Mehrstufige Produktionsprozesse",
-            "mehrdeutig",
-            "parameter",
-            "bestimmen"
+            "Ansatz formulieren",
+            "nach $t$ auflösen",
+            "Def-Bereich beachten"
         ],
         "Blurting": []
     },

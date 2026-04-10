@@ -55,7 +55,32 @@ Lernmethoden  (didaktische Prinzipien – anwendbar auf alle Ebenen)
 
 ## Skripte
 
-- Verwende nur h2 (##) und h3 (###) tags
+- Verwende nur h2 (##) und h3 (###) tags.
+
+### Aufbau und Inhalt
+
+Der Skript-Text erklärt Begriffe, Zusammenhänge und Formeln in **verständlicher, aber allgemeiner** Form. Er enthält keine ausführlich durchgerechneten Zahlenbeispiele — dafür sind die Beispieldateien zuständig.
+
+Konkret bedeutet das für den Skript-Text:
+
+- **Begriffe einführen** und in einfachen Worten erklären, was sie bedeuten.
+- **Formeln mit Worten begleiten**: Nicht nur die Formel hinschreiben, sondern erklären, was jeder Term beiträgt und was das Ergebnis aussagt.
+- **Typische Sonderfälle und Fallen** benennen (z. B. „Inverse kann negative Einträge haben", „Ganzzahligkeit prüfen").
+- **Keine konkreten Zahlenwerte** durchrechnen — das leistet das Beispiel im Check-Anker.
+
+### Check-Anker-Kaskade
+
+An jedem Check-Anker im Skript wird automatisch eine dreistufige Kaskade nach dem Prinzip *Worked Examples + Fading* eingeblendet:
+
+| Stufe | Quelle | Funktion |
+|---|---|---|
+| **Tipps** | `checks.json` → `Tipps` | Kompakte Formelreferenz als Erinnerungsstütze (darf LaTeX enthalten) |
+| **Beispiel** | `beispiele/<NN>-<sammlung>.md` | Vollständig durchgerechnetes Zahlenbeispiel |
+| **Aufgabe** | `aufgaben/exports/json/` | Eigenständiges Üben ohne sichtbare Lösung |
+
+### Verhältnis zum didaktischen Prinzip „Vom Konkreten zum Abstrakten"
+
+Das Prinzip gilt auf der **Makro-Ebene** des Lernbereichs (Warm-Up → Skript → Training). Innerhalb des Skripts geht der Text vom Anschaulichen zum Formalen (Motivation → Erklärung → Formel), verzichtet aber auf das Durchrechnen, weil die Check-Anker-Kaskade diese Funktion übernimmt.
 
 ## Arbeitsmodus
 
