@@ -3,6 +3,14 @@ layout: null
 ---
 In einem zweistufigen Produktionsprozess werden aus den Rohstoffen R1 (Silizium), R2 (Lithium) und R3 (Glas) die Zwischenprodukte Z1 (Chip), Z2 (Akku) und Z3 (Display) hergestellt, aus denen die Endprodukte E1 (Alpha) und E2 (Beta) zusammengesetzt werden.
 
+<div class="verflechtungsdiagramm-auto"
+  data-rohstoffe='["R1","R2","R3"]'
+  data-zwischenprodukte='["Z1","Z2","Z3"]'
+  data-endprodukte='["E1","E2"]'
+  data-stufe1='[[0,0,"5"],[0,1,"①"],[0,2,"1"],[1,1,"4"],[2,0,"②"],[2,2,"6"]]'
+  data-stufe2='[[0,0,"2"],[0,1,"③"],[1,0,"1"],[1,1,"2"],[2,0,"1"],[2,1,"2"]]'>
+</div>
+
 Im Verflechtungsdiagramm sind einige Pfeile mit Zahlenwerten beschriftet, andere mit eingekreisten Nummern markiert. In den Produktionsmatrizen sind die zugehörigen Stellen jeweils vertauscht:
 
 $$

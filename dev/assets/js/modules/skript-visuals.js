@@ -1,6 +1,7 @@
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildGraphFigure } from "../visuals/graph.js";
+import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
 import { plotlyRender } from "../visuals/plotly-defaults.js";
 
 function parseNum(raw) {
@@ -148,6 +149,23 @@ export function initSkriptVisuals(root) {
         const titel = div.dataset.titel || "";
 
         const figure = buildHistogrammKumuliertFigure({ n, p, a, b, titel });
+        plotlyRender(div, figure.data, figure.layout);
+    });
+
+    /* ---- Verflechtungsdiagramme ---- */
+    root.querySelectorAll(".verflechtungsdiagramm-auto").forEach((div) => {
+        let rohstoffe, zwischenprodukte, endprodukte, stufe1, stufe2;
+        try {
+            rohstoffe = JSON.parse(div.dataset.rohstoffe);
+            zwischenprodukte = JSON.parse(div.dataset.zwischenprodukte);
+            endprodukte = JSON.parse(div.dataset.endprodukte);
+            stufe1 = JSON.parse(div.dataset.stufe1);
+            stufe2 = JSON.parse(div.dataset.stufe2);
+        } catch { return; }
+
+        const figure = buildVerflechtungsdiagrammFigure({
+            rohstoffe, zwischenprodukte, endprodukte, stufe1, stufe2,
+        });
         plotlyRender(div, figure.data, figure.layout);
     });
 
