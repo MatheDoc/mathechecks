@@ -194,6 +194,12 @@ function computeSelect2DesiredWidthPx(selectNode) {
     return Math.max(100, Math.min(contentWidth, availableWidth));
 }
 
+function measureRenderedDropdownWidthPx() {
+    const dropdownNode = document.querySelector(".select2-container--open .select2-dropdown.mc-select2-dropdown");
+    if (!dropdownNode) return 0;
+    return dropdownNode.scrollWidth || 0;
+}
+
 function applySelect2WidthPx(selectNode, widthPx) {
     const fieldGroup = selectNode?.closest?.(".answer-field-group");
     if (!fieldGroup) return;
@@ -260,7 +266,15 @@ function initializeSelect2ForDropdowns(rootNode) {
             if (selectionNode) nodes.push(selectionNode);
             if (nodes.length === 0) return;
 
-            mathJax.typesetPromise(nodes).catch(() => {
+            mathJax.typesetPromise(nodes).then(() => {
+                const dropdownWidth = measureRenderedDropdownWidthPx();
+                if (dropdownWidth > 0) {
+                    const currentWidth = computeSelect2DesiredWidthPx(selectNode);
+                    if (dropdownWidth > currentWidth) {
+                        applySelect2WidthPx(selectNode, dropdownWidth);
+                    }
+                }
+            }).catch(() => {
                 // Ignore rendering errors in single options.
             });
         });

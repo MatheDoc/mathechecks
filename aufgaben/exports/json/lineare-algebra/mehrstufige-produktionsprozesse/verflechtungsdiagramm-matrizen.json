@@ -1,0 +1,1803 @@
+[
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 4 & 8 & \\text{②} \\\\ 5 & 2 & 0 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 4 & 2 \\\\ \\text{①} & \\text{③} \\\\ 3 & 0 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=8:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "4"
+          ],
+          [
+            0,
+            1,
+            "⑤"
+          ],
+          [
+            0,
+            2,
+            "6"
+          ],
+          [
+            1,
+            0,
+            "5"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "4"
+          ],
+          [
+            0,
+            1,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "5"
+          ],
+          [
+            1,
+            1,
+            "3"
+          ],
+          [
+            2,
+            0,
+            "④"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 7 & 3 \\\\ 3 & 0 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 6 & \\text{①} & 0 \\\\ 1 & 0 & 5 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=5:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "7"
+          ],
+          [
+            0,
+            1,
+            "④"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "③"
+          ],
+          [
+            0,
+            1,
+            "5"
+          ],
+          [
+            1,
+            0,
+            "②"
+          ],
+          [
+            1,
+            2,
+            "⑤"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 0 & 2 \\\\ 7 & 8 \\\\ 7 & 4 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 3 & 1 & 0 \\\\ \\text{①} & 0 & \\text{③} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=7:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            1,
+            "②"
+          ],
+          [
+            1,
+            0,
+            "⑤"
+          ],
+          [
+            1,
+            1,
+            "8"
+          ],
+          [
+            2,
+            0,
+            "7"
+          ],
+          [
+            2,
+            1,
+            "4"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "3"
+          ],
+          [
+            0,
+            1,
+            "④"
+          ],
+          [
+            1,
+            0,
+            "4"
+          ],
+          [
+            1,
+            2,
+            "1"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 8 & 0 \\\\ \\text{③} & 6 \\\\ 0 & 5 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{②} & \\text{⑤} \\\\ 2 & 6 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=7:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=1:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "8"
+          ],
+          [
+            1,
+            0,
+            "7"
+          ],
+          [
+            1,
+            1,
+            "6"
+          ],
+          [
+            2,
+            1,
+            "①"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "3"
+          ],
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            1,
+            0,
+            "④"
+          ],
+          [
+            1,
+            1,
+            "6"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} \\text{⑤} & 5 \\\\ 5 & 6 \\\\ 8 & 4 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 4 & 3 \\\\ 0 & \\text{②} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=7:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "7"
+          ],
+          [
+            0,
+            1,
+            "5"
+          ],
+          [
+            1,
+            0,
+            "5"
+          ],
+          [
+            1,
+            1,
+            "6"
+          ],
+          [
+            2,
+            0,
+            "③"
+          ],
+          [
+            2,
+            1,
+            "④"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "4"
+          ],
+          [
+            0,
+            1,
+            "①"
+          ],
+          [
+            1,
+            1,
+            "3"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} \\text{②} & 0 & 5 \\\\ 3 & 8 & \\text{①} \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 1 & 1 & 1 \\\\ 4 & 5 & 4 \\\\ 6 & 0 & 6 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=4:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            2,
+            "5"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ],
+          [
+            1,
+            1,
+            "8"
+          ],
+          [
+            1,
+            2,
+            "8"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            0,
+            2,
+            "1"
+          ],
+          [
+            1,
+            0,
+            "⑤"
+          ],
+          [
+            1,
+            1,
+            "5"
+          ],
+          [
+            1,
+            2,
+            "④"
+          ],
+          [
+            2,
+            0,
+            "③"
+          ],
+          [
+            2,
+            2,
+            "6"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 0 & 6 \\\\ 8 & 3 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 2 & \\text{⑤} \\\\ 5 & 2 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=4:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            1,
+            "③"
+          ],
+          [
+            1,
+            0,
+            "④"
+          ],
+          [
+            1,
+            1,
+            "②"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "2"
+          ],
+          [
+            0,
+            1,
+            "4"
+          ],
+          [
+            1,
+            0,
+            "①"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 5 & 0 & 2 \\\\ \\text{①} & 8 & 5 \\\\ \\text{④} & 0 & 1 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 3 & 2 \\\\ \\text{②} & 2 \\\\ \\text{⑤} & 1 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=4:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "5"
+          ],
+          [
+            0,
+            2,
+            "③"
+          ],
+          [
+            1,
+            0,
+            "1"
+          ],
+          [
+            1,
+            1,
+            "8"
+          ],
+          [
+            1,
+            2,
+            "5"
+          ],
+          [
+            2,
+            0,
+            "1"
+          ],
+          [
+            2,
+            2,
+            "1"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "3"
+          ],
+          [
+            0,
+            1,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "5"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ],
+          [
+            2,
+            0,
+            "4"
+          ],
+          [
+            2,
+            1,
+            "1"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 1 & 4 \\\\ 2 & 1 \\\\ 8 & \\text{①} \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{④} & \\text{②} & 2 \\\\ \\text{③} & 1 & 1 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=8:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            1,
+            "4"
+          ],
+          [
+            1,
+            0,
+            "2"
+          ],
+          [
+            1,
+            1,
+            "1"
+          ],
+          [
+            2,
+            0,
+            "⑤"
+          ],
+          [
+            2,
+            1,
+            "8"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "5"
+          ],
+          [
+            0,
+            1,
+            "4"
+          ],
+          [
+            0,
+            2,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "6"
+          ],
+          [
+            1,
+            1,
+            "1"
+          ],
+          [
+            1,
+            2,
+            "1"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 2 & 2 & 0 \\\\ 6 & 3 & 3 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{②} & 1 & 5 \\\\ \\text{③} & 0 & 1 \\\\ \\text{⑤} & 2 & 2 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=2:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "2"
+          ],
+          [
+            0,
+            1,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "6"
+          ],
+          [
+            1,
+            1,
+            "①"
+          ],
+          [
+            1,
+            2,
+            "④"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "6"
+          ],
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            0,
+            2,
+            "5"
+          ],
+          [
+            1,
+            0,
+            "6"
+          ],
+          [
+            1,
+            2,
+            "1"
+          ],
+          [
+            2,
+            0,
+            "2"
+          ],
+          [
+            2,
+            1,
+            "2"
+          ],
+          [
+            2,
+            2,
+            "2"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 4 & 3 \\\\ 0 & 7 \\\\ 0 & 4 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{②} & \\text{④} & \\text{①} \\\\ 2 & 1 & 4 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=3:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "4"
+          ],
+          [
+            0,
+            1,
+            "⑤"
+          ],
+          [
+            1,
+            1,
+            "7"
+          ],
+          [
+            2,
+            1,
+            "4"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            0,
+            2,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "2"
+          ],
+          [
+            1,
+            1,
+            "1"
+          ],
+          [
+            1,
+            2,
+            "③"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 0 & 0 & \\text{①} \\\\ 4 & 4 & 6 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 0 & 5 & 2 \\\\ 5 & 2 & 3 \\\\ 2 & 0 & 3 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=2:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            2,
+            "8"
+          ],
+          [
+            1,
+            0,
+            "②"
+          ],
+          [
+            1,
+            1,
+            "4"
+          ],
+          [
+            1,
+            2,
+            "④"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            1,
+            "5"
+          ],
+          [
+            0,
+            2,
+            "2"
+          ],
+          [
+            1,
+            0,
+            "③"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ],
+          [
+            1,
+            2,
+            "3"
+          ],
+          [
+            2,
+            0,
+            "⑤"
+          ],
+          [
+            2,
+            2,
+            "3"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 7 & 6 \\\\ 6 & \\text{②} \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 3 & 2 \\\\ \\text{④} & \\text{⑤} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=6:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "7"
+          ],
+          [
+            0,
+            1,
+            "③"
+          ],
+          [
+            1,
+            0,
+            "6"
+          ],
+          [
+            1,
+            1,
+            "5"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "3"
+          ],
+          [
+            0,
+            1,
+            "①"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ],
+          [
+            1,
+            1,
+            "6"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 6 & 1 \\\\ 0 & 4 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 1 & 2 \\\\ 3 & \\text{③} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=1:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "②"
+          ],
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            1,
+            1,
+            "④"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "⑤"
+          ],
+          [
+            0,
+            1,
+            "①"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} \\text{③} & 2 & 8 \\\\ 0 & 0 & 8 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 1 & 4 \\\\ 3 & 2 \\\\ 4 & 2 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=2:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "3"
+          ],
+          [
+            0,
+            1,
+            "①"
+          ],
+          [
+            0,
+            2,
+            "②"
+          ],
+          [
+            1,
+            2,
+            "8"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "④"
+          ],
+          [
+            0,
+            1,
+            "4"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ],
+          [
+            1,
+            1,
+            "2"
+          ],
+          [
+            2,
+            0,
+            "4"
+          ],
+          [
+            2,
+            1,
+            "⑤"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1, R2 und R3 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1 und E2 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 4 & 7 \\\\ 5 & 4 \\\\ 2 & 7 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{⑤} & 2 \\\\ 1 & 2 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=1:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=7:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=1:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "4"
+          ],
+          [
+            0,
+            1,
+            "③"
+          ],
+          [
+            1,
+            0,
+            "5"
+          ],
+          [
+            1,
+            1,
+            "4"
+          ],
+          [
+            2,
+            0,
+            "2"
+          ],
+          [
+            2,
+            1,
+            "7"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            1,
+            "④"
+          ],
+          [
+            1,
+            0,
+            "①"
+          ],
+          [
+            1,
+            1,
+            "②"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 2 & \\text{②} \\\\ 6 & 8 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} \\text{④} & 0 & 4 \\\\ 0 & 6 & \\text{③} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=7:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=2:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "⑤"
+          ],
+          [
+            0,
+            1,
+            "7"
+          ],
+          [
+            1,
+            0,
+            "①"
+          ],
+          [
+            1,
+            1,
+            "8"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "6"
+          ],
+          [
+            0,
+            2,
+            "4"
+          ],
+          [
+            1,
+            1,
+            "6"
+          ],
+          [
+            1,
+            2,
+            "6"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1 und Z2 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} \\text{③} & 7 \\\\ 2 & 0 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 0 & \\text{⑤} & 5 \\\\ \\text{④} & 4 & \\text{②} \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=7:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=3:0}",
+      "{1:NUMERICAL:=1:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "8"
+          ],
+          [
+            0,
+            1,
+            "①"
+          ],
+          [
+            1,
+            0,
+            "2"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            1,
+            "1"
+          ],
+          [
+            0,
+            2,
+            "5"
+          ],
+          [
+            1,
+            0,
+            "3"
+          ],
+          [
+            1,
+            1,
+            "4"
+          ],
+          [
+            1,
+            2,
+            "4"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} 1 & 6 & \\text{①} \\\\ 0 & \\text{⑤} & 4 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 5 & \\text{④} & 5 \\\\ 6 & 0 & \\text{③} \\\\ 2 & 4 & 0 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=4:0}",
+      "{1:NUMERICAL:=4:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "1"
+          ],
+          [
+            0,
+            1,
+            "6"
+          ],
+          [
+            0,
+            2,
+            "8"
+          ],
+          [
+            1,
+            1,
+            "4"
+          ],
+          [
+            1,
+            2,
+            "4"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "5"
+          ],
+          [
+            0,
+            1,
+            "4"
+          ],
+          [
+            0,
+            2,
+            "②"
+          ],
+          [
+            1,
+            0,
+            "6"
+          ],
+          [
+            1,
+            2,
+            "5"
+          ],
+          [
+            2,
+            0,
+            "2"
+          ],
+          [
+            2,
+            1,
+            "4"
+          ]
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem zweistufigen Produktionsprozess werden die Rohstoffe R1 und R2 zu den Zwischenprodukten Z1, Z2 und Z3 verarbeitet, aus denen die Endprodukte E1, E2 und E3 hergestellt werden.\n\nDas Verflechtungsdiagramm und die Produktionsmatrizen enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n$$\nRZ = \\begin{pmatrix} \\text{①} & 3 & 8 \\\\ 7 & \\text{③} & 1 \\end{pmatrix}, \\quad ZE = \\begin{pmatrix} 2 & 6 & 4 \\\\ \\text{⑤} & 4 & 0 \\\\ 6 & 2 & 2 \\end{pmatrix}\n$$",
+    "fragen": [
+      "①",
+      "②",
+      "③",
+      "④",
+      "⑤"
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=2:0}",
+      "{1:NUMERICAL:=5:0}",
+      "{1:NUMERICAL:=6:0}",
+      "{1:NUMERICAL:=2:0}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "verflechtungsdiagramm",
+        "rohstoffe": [
+          "R1",
+          "R2"
+        ],
+        "zwischenprodukte": [
+          "Z1",
+          "Z2",
+          "Z3"
+        ],
+        "endprodukte": [
+          "E1",
+          "E2",
+          "E3"
+        ],
+        "stufe1": [
+          [
+            0,
+            0,
+            "5"
+          ],
+          [
+            0,
+            1,
+            "3"
+          ],
+          [
+            0,
+            2,
+            "8"
+          ],
+          [
+            1,
+            0,
+            "7"
+          ],
+          [
+            1,
+            1,
+            "5"
+          ],
+          [
+            1,
+            2,
+            "1"
+          ]
+        ],
+        "stufe2": [
+          [
+            0,
+            0,
+            "2"
+          ],
+          [
+            0,
+            1,
+            "6"
+          ],
+          [
+            0,
+            2,
+            "4"
+          ],
+          [
+            1,
+            0,
+            "2"
+          ],
+          [
+            1,
+            1,
+            "4"
+          ],
+          [
+            2,
+            0,
+            "④"
+          ],
+          [
+            2,
+            1,
+            "2"
+          ],
+          [
+            2,
+            2,
+            "②"
+          ]
+        ]
+      }
+    }
+  }
+]
