@@ -487,6 +487,13 @@ export function renderVisual(task, wrapper) {
         return;
     }
 
+    // Types without multi-trace legends use the builder's own layout as-is.
+    const noLegendTypes = ["ab-tree", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"];
+    if (noLegendTypes.includes(specType)) {
+        plotlyRender(plotContainer, figure.data, figure.layout);
+        return;
+    }
+
     plotlyRender(
         plotContainer,
         figure.data,
