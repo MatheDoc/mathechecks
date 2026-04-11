@@ -271,11 +271,10 @@ function convertJsonLatexToMarkdown(text) {
 }
 
 function extractGraphDescriptions(container) {
-  const graphs = container.querySelectorAll(".graph-auto");
-  if (graphs.length === 0) return "";
-
   const parts = [];
-  graphs.forEach((g) => {
+
+  // ── .graph-auto (Analysis function graphs) ──
+  container.querySelectorAll(".graph-auto").forEach((g) => {
     const lines = [];
     const titel = g.dataset.titel;
     if (titel) lines.push(`Diagramm: ${titel}`);
@@ -320,6 +319,49 @@ function extractGraphDescriptions(container) {
     } catch { /* ignore */ }
 
     if (lines.length > 0) parts.push(lines.join("\n"));
+  });
+
+  // ── .baumdiagramm-auto (Baumdiagramme) ──
+  container.querySelectorAll(".baumdiagramm-auto").forEach((node) => {
+    const lines = [];
+    const titel = node.dataset.titel;
+    if (titel) lines.push(`Baumdiagramm: ${titel}`);
+    else lines.push("Baumdiagramm");
+    const pa = node.dataset.pa;
+    const pba = node.dataset.pba;
+    const pbna = node.dataset.pbna;
+    if (pa) lines.push(`  P(A) = ${pa}`);
+    if (pba) lines.push(`  P_A(B) = ${pba}`);
+    if (pbna) lines.push(`  P_A̅(B) = ${pbna}`);
+    parts.push(lines.join("\n"));
+  });
+
+  // ── .verflechtungsdiagramm-auto ──
+  container.querySelectorAll(".verflechtungsdiagramm-auto").forEach((node) => {
+    const lines = ["Verflechtungsdiagramm"];
+    try {
+      const r = JSON.parse(node.dataset.rohstoffe || "[]");
+      const z = JSON.parse(node.dataset.zwischenprodukte || "[]");
+      const e = JSON.parse(node.dataset.endprodukte || "[]");
+      if (r.length > 0) lines.push(`  Rohstoffe: ${r.join(", ")}`);
+      if (z.length > 0) lines.push(`  Zwischenprodukte: ${z.join(", ")}`);
+      if (e.length > 0) lines.push(`  Endprodukte: ${e.join(", ")}`);
+    } catch { /* ignore */ }
+    parts.push(lines.join("\n"));
+  });
+
+  // ── .histogramm-einzel-auto / .histogramm-kumuliert-auto ──
+  container.querySelectorAll(".histogramm-einzel-auto, .histogramm-kumuliert-auto").forEach((node) => {
+    const lines = [];
+    const isKumuliert = node.classList.contains("histogramm-kumuliert-auto");
+    const titel = node.dataset.titel;
+    if (titel) lines.push(`Histogramm: ${titel}`);
+    else lines.push(isKumuliert ? "Kumuliertes Histogramm" : "Histogramm (Einzelwahrscheinlichkeiten)");
+    const n = node.dataset.n;
+    const p = node.dataset.p;
+    if (n) lines.push(`  n = ${n}`);
+    if (p) lines.push(`  p = ${p}`);
+    parts.push(lines.join("\n"));
   });
 
   return parts.join("\n\n");

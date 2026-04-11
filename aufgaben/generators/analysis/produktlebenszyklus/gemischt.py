@@ -62,6 +62,58 @@ def _poly_eval(coeffs: tuple[float, float, float, float], t: float) -> float:
     return a3 * (t**3) + a2 * (t**2) + a1 * t + a0
 
 
+def _fmt_dot(value: float, decimals: int = 4) -> str:
+    """Format a number with dot decimal separator (for plain-text/AI context)."""
+    rounded = round(float(value), decimals)
+    text = f"{rounded:.{decimals}f}".rstrip("0").rstrip(".")
+    if text in {"", "-0"}:
+        text = "0"
+    return text
+
+
+def _u_term_plain(case: "_PLCCase") -> str:
+    """Build a plain-text function term for u(t), e.g. '(0.5*t^2+3*t)*exp(-0.2*t)+5'."""
+    poly = _poly_plain(case.coeffs)
+    exp_part = f"exp(-{_fmt_dot(case.exp_rate, 2)}*t)"
+    base = f"({poly})*{exp_part}"
+    if abs(case.offset) < 1e-12:
+        return base
+    sign = "+" if case.offset >= 0 else ""
+    return f"{base}{sign}{_fmt_dot(case.offset, 2)}"
+
+
+def _du_term_plain(case: "_PLCCase", order: int = 1) -> str:
+    """Build a plain-text function term for u'(t) or u''(t)."""
+    coeff_map = {1: case.d1_coeffs, 2: case.d2_coeffs, 3: case.d3_coeffs}
+    coeffs = coeff_map[order]
+    poly = _poly_plain(coeffs)
+    exp_part = f"exp(-{_fmt_dot(case.exp_rate, 2)}*t)"
+    return f"({poly})*{exp_part}"
+
+
+def _poly_plain(coeffs: tuple[float, float, float, float]) -> str:
+    """Format polynomial with dot-decimal for plain-text context."""
+    a3, a2, a1, a0 = coeffs
+    parts: list[str] = []
+
+    for coeff, power in [(a3, 3), (a2, 2), (a1, 1), (a0, 0)]:
+        if abs(coeff) < 1e-12:
+            continue
+        abs_c = abs(coeff)
+        if power == 0:
+            term = _fmt_dot(abs_c)
+        elif abs(abs_c - 1.0) < 1e-12:
+            term = f"t^{power}" if power > 1 else "t"
+        else:
+            term = f"{_fmt_dot(abs_c)}*t^{power}" if power > 1 else f"{_fmt_dot(abs_c)}*t"
+        if parts:
+            parts.append(("+" if coeff >= 0 else "-") + term)
+        else:
+            parts.append(term if coeff >= 0 else f"-{term}")
+
+    return "".join(parts) if parts else "0"
+
+
 def _poly_latex(coeffs: tuple[float, float, float, float], variable: str = "t") -> str:
     a3, a2, a1, a0 = coeffs
     parts: list[str] = []
@@ -516,36 +568,37 @@ def _plot_visual(
     y_tick: float,
     x_range: tuple[float, float],
     y_range: tuple[float, float],
+    funktionen: list[dict] | None = None,
 ) -> dict:
-    return {
-        "type": "plot",
-        "spec": {
-            "type": "plotly",
-            "traces": [
-                {
-                    "kind": "scatter",
-                    "mode": "lines",
-                    "name": trace_name,
-                    "x": x_values,
-                    "y": y_values,
-                    "line": {"color": "#1f77b4", "width": 2},
-                }
-            ],
-            "layout": {
-                "title": title,
-                "xaxis": {
-                    "title": x_axis,
-                    "range": [round(x_range[0], 4), round(x_range[1], 4)],
-                    "dtick": round(x_tick, 4),
-                },
-                "yaxis": {
-                    "title": y_axis,
-                    "range": [round(y_range[0], 4), round(y_range[1], 4)],
-                    "dtick": round(y_tick, 4),
-                },
+    spec: dict = {
+        "type": "plotly",
+        "traces": [
+            {
+                "kind": "scatter",
+                "mode": "lines",
+                "name": trace_name,
+                "x": x_values,
+                "y": y_values,
+                "line": {"color": "#1f77b4", "width": 2},
+            }
+        ],
+        "layout": {
+            "title": title,
+            "xaxis": {
+                "title": x_axis,
+                "range": [round(x_range[0], 4), round(x_range[1], 4)],
+                "dtick": round(x_tick, 4),
+            },
+            "yaxis": {
+                "title": y_axis,
+                "range": [round(y_range[0], 4), round(y_range[1], 4)],
+                "dtick": round(y_tick, 4),
             },
         },
     }
+    if funktionen:
+        spec["funktionen"] = funktionen
+    return {"type": "plot", "spec": spec}
 
 
 class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
@@ -874,6 +927,11 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
                         y_range=(y_min, y_max),
+                        funktionen=[{
+                            "name": "u(t)",
+                            "term": _u_term_plain(case),
+                            "beschreibung": "Umsatzfunktion",
+                        }],
                     ),
                 )
             )
@@ -956,6 +1014,11 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
                         y_range=(y_min, y_max),
+                        funktionen=[{
+                            "name": "u'(t)",
+                            "term": _du_term_plain(case, order=1),
+                            "beschreibung": "Ableitungsfunktion (Umsatzaenderung)",
+                        }],
                     ),
                 )
             )

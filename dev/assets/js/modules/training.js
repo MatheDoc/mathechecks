@@ -216,11 +216,10 @@ function convertJsonLatexToMarkdown(text) {
 
 function extractGraphDescriptions(container) {
   if (!container) return "";
-  const graphs = container.querySelectorAll(".graph-auto");
-  if (graphs.length === 0) return "";
-
   const parts = [];
-  graphs.forEach((graphNode) => {
+
+  // ── .graph-auto (Analysis function graphs) ──
+  container.querySelectorAll(".graph-auto").forEach((graphNode) => {
     const lines = [];
     const titel = graphNode.dataset.titel;
     if (titel) lines.push(`Diagramm: ${titel}`);
@@ -250,7 +249,7 @@ function extractGraphDescriptions(container) {
       if (punkte.length > 0) {
         lines.push("Markierte Punkte:");
         punkte.forEach((punkt) => {
-          lines.push(`  (${punkt.x}, ${punkt.y})${punkt.text ? ` - ${punkt.text}` : ""}`);
+          lines.push(`  (${punkt.x}, ${punkt.y})${punkt.text ? ` \u2013 ${punkt.text}` : ""}`);
         });
       }
     } catch {
@@ -260,7 +259,7 @@ function extractGraphDescriptions(container) {
     try {
       const flaechen = JSON.parse(graphNode.dataset.flaechen || "[]");
       if (flaechen.length > 0) {
-        lines.push("Flaechen:");
+        lines.push("Flächen:");
         flaechen.forEach((flaeche) => {
           const beschreibung = flaeche.beschreibung || flaeche.name || "";
           lines.push(
@@ -276,6 +275,51 @@ function extractGraphDescriptions(container) {
     if (lines.length > 0) {
       parts.push(lines.join("\n"));
     }
+  });
+
+  // ── .baumdiagramm-auto (Baumdiagramme) ──
+  container.querySelectorAll(".baumdiagramm-auto").forEach((node) => {
+    const lines = [];
+    const titel = node.dataset.titel;
+    if (titel) lines.push(`Baumdiagramm: ${titel}`);
+    else lines.push("Baumdiagramm");
+    const pa = node.dataset.pa;
+    const pba = node.dataset.pba;
+    const pbna = node.dataset.pbna;
+    if (pa) lines.push(`  P(A) = ${pa}`);
+    if (pba) lines.push(`  P_A(B) = ${pba}`);
+    if (pbna) lines.push(`  P_A̅(B) = ${pbna}`);
+    parts.push(lines.join("\n"));
+  });
+
+  // ── .verflechtungsdiagramm-auto ──
+  container.querySelectorAll(".verflechtungsdiagramm-auto").forEach((node) => {
+    const lines = ["Verflechtungsdiagramm"];
+    try {
+      const r = JSON.parse(node.dataset.rohstoffe || "[]");
+      const z = JSON.parse(node.dataset.zwischenprodukte || "[]");
+      const e = JSON.parse(node.dataset.endprodukte || "[]");
+      if (r.length > 0) lines.push(`  Rohstoffe: ${r.join(", ")}`);
+      if (z.length > 0) lines.push(`  Zwischenprodukte: ${z.join(", ")}`);
+      if (e.length > 0) lines.push(`  Endprodukte: ${e.join(", ")}`);
+    } catch {
+      // Ignore malformed metadata.
+    }
+    parts.push(lines.join("\n"));
+  });
+
+  // ── .histogramm-einzel-auto / .histogramm-kumuliert-auto ──
+  container.querySelectorAll(".histogramm-einzel-auto, .histogramm-kumuliert-auto").forEach((node) => {
+    const lines = [];
+    const isKumuliert = node.classList.contains("histogramm-kumuliert-auto");
+    const titel = node.dataset.titel;
+    if (titel) lines.push(`Histogramm: ${titel}`);
+    else lines.push(isKumuliert ? "Kumuliertes Histogramm" : "Histogramm (Einzelwahrscheinlichkeiten)");
+    const n = node.dataset.n;
+    const p = node.dataset.p;
+    if (n) lines.push(`  n = ${n}`);
+    if (p) lines.push(`  p = ${p}`);
+    parts.push(lines.join("\n"));
   });
 
   return parts.join("\n\n");
@@ -696,7 +740,6 @@ function buildVisualContext(task, runtimeTaskNode = null) {
   const lines = [];
   const graphFromDom = extractGraphDescriptions(runtimeTaskNode);
   if (graphFromDom) {
-    lines.push("Diagramm-Details aus data-Attributen:");
     lines.push(graphFromDom);
   }
 
@@ -704,12 +747,15 @@ function buildVisualContext(task, runtimeTaskNode = null) {
     return lines.join("\n");
   }
 
+  const specType = String(spec.type || "").toLowerCase();
+
+  // Layout-based title/axes (for Plotly-rendered charts)
   const layout = spec.layout || {};
   const diagrammTitel = layout?.title || "";
   if (diagrammTitel) {
     lines.push(`Diagramm: ${diagrammTitel}`);
-  } else if (spec.type) {
-    lines.push(`Diagrammtyp: ${spec.type}`);
+  } else if (specType && !["vft", "wkt-tabelle"].includes(specType)) {
+    lines.push(`Diagrammtyp: ${specType}`);
   }
 
   const xTitle = layout?.xaxis?.title;
@@ -717,14 +763,86 @@ function buildVisualContext(task, runtimeTaskNode = null) {
   if (xTitle) lines.push(`x-Achse: ${xTitle}`);
   if (yTitle) lines.push(`y-Achse: ${yTitle}`);
 
+  // Function lines from parametric spec types
   const functionLines = buildFunctionLinesFromSpec(spec);
   if (functionLines.length > 0) {
     lines.push("Funktionen:");
     lines.push(...functionLines);
   }
 
+  // Explicit funktionen array from generator (e.g. Produktlebenszyklus)
+  const explicitFns = Array.isArray(spec.funktionen) ? spec.funktionen : [];
+  if (explicitFns.length > 0 && functionLines.length === 0) {
+    lines.push("Funktionen:");
+    explicitFns.forEach((fn) => {
+      const name = fn.name || "";
+      const term = fn.term || "";
+      const desc = fn.beschreibung || "";
+      lines.push(`  ${name ? `${name}: ` : ""}${term}${desc ? ` (${desc})` : ""}`);
+    });
+  }
+
+  // ── ab-tree (Baumdiagramm) ──
+  if (specType === "ab-tree") {
+    const pa = spec.pa;
+    const pba = spec.pba;
+    const pbna = spec.pbna;
+    if (pa != null) lines.push(`  P(A) = ${pa}`);
+    if (pba != null) lines.push(`  P_A(B) = ${pba}`);
+    if (pbna != null) lines.push(`  P_A̅(B) = ${pbna}`);
+    const given = Array.isArray(spec.givenSlots) ? spec.givenSlots : [];
+    if (given.length > 0) lines.push(`  Gegebene Felder: ${given.join(", ")}`);
+  }
+
+  // ── vft (Vierfeldertafel) ──
+  if (specType === "vft") {
+    if (!diagrammTitel) lines.push("Vierfeldertafel");
+    const slots = typeof spec.slots === "object" && spec.slots ? spec.slots : {};
+    const givenSlots = new Set(Array.isArray(spec.givenSlots) ? spec.givenSlots : []);
+    const slotLabels = {
+      1: "P(A∩B)", 2: "P(A∩B̅)", 3: "P(A̅∩B)", 4: "P(A̅∩B̅)",
+      5: "P(A)", 6: "P(A̅)", 7: "P(B)", 8: "P(B̅)",
+    };
+    const givenParts = [];
+    for (const idx of givenSlots) {
+      const label = slotLabels[idx] || `Feld ${idx}`;
+      const val = slots[String(idx)];
+      if (val != null) givenParts.push(`${label} = ${val}`);
+    }
+    if (givenParts.length > 0) lines.push(`Gegeben: ${givenParts.join(", ")}`);
+  }
+
+  // ── wkt-tabelle (Wahrscheinlichkeitstabelle) ──
+  if (specType === "wkt-tabelle") {
+    if (!diagrammTitel) lines.push("Wahrscheinlichkeitstabelle");
+    const xVals = Array.isArray(spec.x) ? spec.x : [];
+    const pVals = Array.isArray(spec.p) ? spec.p : [];
+    if (xVals.length > 0) lines.push(`x-Werte: ${xVals.join(", ")}`);
+    if (pVals.length > 0) lines.push(`P(X=x_i): ${pVals.join(", ")}`);
+  }
+
+  // ── verflechtungsdiagramm ──
+  if (specType === "verflechtungsdiagramm") {
+    if (!diagrammTitel) lines.push("Verflechtungsdiagramm");
+    const r = Array.isArray(spec.rohstoffe) ? spec.rohstoffe : [];
+    const z = Array.isArray(spec.zwischenprodukte) ? spec.zwischenprodukte : [];
+    const e = Array.isArray(spec.endprodukte) ? spec.endprodukte : [];
+    if (r.length > 0) lines.push(`  Rohstoffe: ${r.join(", ")}`);
+    if (z.length > 0) lines.push(`  Zwischenprodukte: ${z.join(", ")}`);
+    if (e.length > 0) lines.push(`  Endprodukte: ${e.join(", ")}`);
+  }
+
+  // ── binomial-histogramm ──
+  if (specType === "binomial-histogramm-einzeln" || specType === "binomial-histogramm-kumuliert") {
+    const n = spec.n;
+    const p = spec.p;
+    if (n != null) lines.push(`  n = ${n}`);
+    if (p != null) lines.push(`  p = ${p}`);
+  }
+
+  // Fallback: raw params if no function lines and no specific handler matched
   const params = spec.params && typeof spec.params === "object" ? spec.params : null;
-  if (params && functionLines.length === 0) {
+  if (params && functionLines.length === 0 && !["ab-tree", "vft", "wkt-tabelle", "verflechtungsdiagramm", "binomial-histogramm-einzeln", "binomial-histogramm-kumuliert"].includes(specType)) {
     lines.push("Parameter:");
     Object.entries(params).forEach(([key, value]) => {
       lines.push(`- ${key}: ${value}`);
@@ -758,42 +876,38 @@ function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtim
 
   const beispielText = beispielHtml ? htmlToPlainText(beispielHtml).trim() : "";
   const beispielBlock = beispielText
-    ? `## Musterbeispiel mit anderen Zufallszahlen\nOrientiere dich intern an diesem Beispiel, um passende Erklärungen zu geben. Zeige es NICHT direkt.\n\n${beispielText}`
+    ? `## Musterbeispiel mit anderen Zufallszahlen\nOrientiere dich intern an diesem Beispiel, um passende Erklärungen zu geben. Zeige es nicht direkt.\n\n${beispielText}`
     : "";
 
   const hintergrundBlock = [tippsBlock, beispielBlock].filter(Boolean).join("\n\n");
 
-  const taskNumberText = Number.isInteger(taskIndex) && taskIndex >= 0 ? String(taskIndex + 1) : "?";
-  const totalTasksText = Number.isInteger(totalTasks) && totalTasks > 0 ? String(totalTasks) : "?";
   const nextTaskUrl = buildTrainingCheckUrl(check) || "https://www.mathechecks.de/dev/lernbereiche/.../training.html";
-  const visualBlock = visualContext
-    ? `\n## Diagramm-/Visual-Kontext\nOrientiere dich intern an den folgenden Darstellungsinformationen.\n\n${visualContext}`
-    : "";
+
+  const einleitungParts = [einleitung || "(keine Einleitung vorhanden)"];
+  if (visualContext) {
+    einleitungParts.push(visualContext);
+  }
+  const aufgabenstellungBlock = einleitungParts.join("\n\n");
 
   return `# Rolle
-Du bist ein KI-Lernpartner für das Trainingsmodul. Der Lernende arbeitet
-an einer konkreten Mathe-Aufgabe, und du bist der Erklärer: Du hilfst,
-Verständnislücken zu schliessen und Lösungswege nachvollziehbar zu machen.
-Du sprichst Deutsch und duzt den Lernenden.
+Du bist ein KI-Lernpartner für das Trainingsmodul. Der Lernende arbeitet an einer konkreten Mathe-Aufgabe, und du bist der Erklärer: Du hilfst, Verständnislücken zu schließen und Lösungswege nachvollziehbar zu machen. Du sprichst Deutsch und duzt den Lernenden.
 
 # Thema
 Check: ${schlagwort}
 Lernbereich: ${lernbereich}
 Kompetenz: Ich kann ${convertJsonLatexToMarkdown(kompetenz)}
-Aufgabe in Sammlung: ${taskNumberText} von ${totalTasksText}
 
-# Dein Hintergrundwissen (nicht wörtlich wiedergeben)
+# Konkrete Mathe-Aufgabe
 ## Aufgabenstellung
-${einleitung || "(keine Einleitung vorhanden)"}
+${aufgabenstellungBlock}
 
 ## Fragen
 ${fragenBlock || "(keine Teilfragen vorhanden)"}
 
 ## Hinterlegte Zielantworten (intern)
 ${loesungsBlock || "(keine Zielantworten vorhanden)"}
-${visualBlock}
 
-## Weiteres Hintergrundwissen
+# Weiteres Hintergrundwissen
 ${hintergrundBlock || "(keine weiteren Hintergrundhinweise hinterlegt)"}
 
 # Stil
@@ -814,11 +928,11 @@ Wenn die Frage zu allgemein ist, bitte um eine konkrete Teilfrage.
 - Wenn der Lernende eine konkrete Teilfrage nennt, erkläre diese zuerst, falls es didaktisch sinnvoll ist. Wenn man zunächst eine andere Teilfrage behandeln sollte, arbeite damit weiter.
 - Wenn der Lernende "alles" sagt, gehe Teilfrage für Teilfrage in der Reihenfolge durch.
 - Nutze dein Hintergrundwissen, um Erklärungen fachlich korrekt zu halten.
-- Nutze Diagramm-/Visual-Kontext, wenn er für den Schritt relevant ist.
+- Nutze die Diagramminformationen aus der Aufgabenstellung, wenn sie fuer den Schritt relevant sind.
 - Frage nach jeder abgeschlossenen Erklärung, ob es noch weitere Unklarheiten gibt.
 
 ## Phase 3 – Zusammenfassung
-Wenn keine Fragen mehr gestellt werden:
+Wenn keine Fragen mehr gestellt werden oder du denkst, dass der Lernende dazu bereit ist:
 1. Fasse die Lösung noch einmal zusammen.
 2. Motiviere, eine weitere Trainingsaufgabe dieser Art zu bearbeiten, gib dabei den Link zur Aufgabe: ${nextTaskUrl}
 `;
