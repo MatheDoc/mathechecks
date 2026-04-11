@@ -3207,6 +3207,10 @@ body.page-module-designs .shell {
   scroll-margin-top: calc(var(--module-sticky-top) + 112px);
 }
 
+.page-skript-md .mod-content .check-anker[id] {
+  scroll-margin-top: calc(var(--module-sticky-top) + 112px);
+}
+
 .check-jump-nav-wrap--skript-h2 {
   margin-bottom: 16px;
 }
@@ -4455,11 +4459,7 @@ html.light .dev-bar {
 
 /* Gebietsfaerbung wird zentral aus _data/dev_gebiete.yml in den Includes erzeugt. */
 
-html.light .lb-switch,
-html.light .mat-lb-dropdown,
-html.light .filter-select {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92), 0 5px 14px rgba(0, 0, 0, 0.10);
-}
+
 
 html.light .lb-switch option,
 html.light .mat-lb-dropdown option,
