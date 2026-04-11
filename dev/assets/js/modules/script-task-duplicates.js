@@ -9,6 +9,12 @@ import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
+import {
+    buildSkriptTippsHref,
+    buildTrainingKiAgentPrompt,
+    copyTrainingPromptToClipboard,
+    fetchTrainingBeispielHtml,
+} from "./training.js";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;
@@ -143,6 +149,17 @@ function createEmptyTaskCard(check) {
     const headerRight = document.createElement("div");
     headerRight.className = "dev-check-card__header-actions";
 
+    const skriptTippsHref = buildSkriptTippsHref(check);
+    if (skriptTippsHref) {
+        const helpLink = document.createElement("a");
+        helpLink.className = "dev-check-card__action-btn";
+        helpLink.href = skriptTippsHref;
+        helpLink.title = "Hilfe";
+        helpLink.setAttribute("aria-label", "Hilfe");
+        helpLink.innerHTML = '<i class="fa-solid fa-circle-question" aria-hidden="true"></i>';
+        headerRight.appendChild(helpLink);
+    }
+
     const statsBtn = document.createElement("button");
     statsBtn.type = "button";
     statsBtn.className = "dev-check-card__action-btn dev-check-card__stats-btn";
@@ -163,7 +180,14 @@ function createEmptyTaskCard(check) {
     return card;
 }
 
-function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = true) {
+function createTaskCard(
+    check,
+    aufgabe,
+    taskUiStateKey,
+    readPersistedState = true,
+    taskIndex = 0,
+    totalTasks = 0
+) {
     if (!aufgabe) return createEmptyTaskCard(check);
 
     const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
@@ -186,6 +210,17 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
 
     const headerRight = document.createElement("div");
     headerRight.className = "dev-check-card__header-actions";
+
+    const skriptTippsHref = buildSkriptTippsHref(check);
+    if (skriptTippsHref) {
+        const helpLink = document.createElement("a");
+        helpLink.className = "dev-check-card__action-btn";
+        helpLink.href = skriptTippsHref;
+        helpLink.title = "Hilfe";
+        helpLink.setAttribute("aria-label", "Hilfe");
+        helpLink.innerHTML = '<i class="fa-solid fa-circle-question" aria-hidden="true"></i>';
+        headerRight.appendChild(helpLink);
+    }
 
     const createHeaderActionProxyButton = ({ iconClass, title, onClick }) => {
         const button = document.createElement("button");
@@ -214,8 +249,56 @@ function createTaskCard(check, aufgabe, taskUiStateKey, readPersistedState = tru
     body.className = "dev-check-card__body";
     card.appendChild(body);
 
-    const runtimeTaskNode = renderRuntimeTask(
-        check?.questionOrder === "shuffle" ? shuffleQuestionsInTask(aufgabe, taskUiStateKey) : aufgabe,
+    const effectiveAufgabe =
+        check?.questionOrder === "shuffle" ? shuffleQuestionsInTask(aufgabe, taskUiStateKey) : aufgabe;
+
+    let runtimeTaskNode = null;
+
+    const aiAgentBtn = createHeaderActionProxyButton({
+        iconClass: "fa-wand-magic-sparkles",
+        title: "KI-Erkläragent kopieren",
+        onClick: async () => {
+            aiAgentBtn.disabled = true;
+            const prevTitle = aiAgentBtn.title;
+            const prevAria = aiAgentBtn.getAttribute("aria-label") || prevTitle;
+            const prevHtml = aiAgentBtn.innerHTML;
+            aiAgentBtn.innerHTML = '<i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>';
+
+            try {
+                const beispielHtml = await fetchTrainingBeispielHtml(check);
+                const prompt = buildTrainingKiAgentPrompt({
+                    check,
+                    task: effectiveAufgabe,
+                    taskIndex,
+                    totalTasks,
+                    runtimeTaskNode,
+                    beispielHtml,
+                });
+                const ok = await copyTrainingPromptToClipboard(prompt);
+                if (ok) {
+                    aiAgentBtn.title = "KI-Erkläragent in Zwischenablage kopiert";
+                    aiAgentBtn.setAttribute("aria-label", "KI-Erkläragent in Zwischenablage kopiert");
+                    aiAgentBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
+                } else {
+                    aiAgentBtn.title = "Kopieren fehlgeschlagen";
+                    aiAgentBtn.setAttribute("aria-label", "Kopieren fehlgeschlagen");
+                    aiAgentBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>';
+                }
+
+                window.setTimeout(() => {
+                    aiAgentBtn.title = prevTitle;
+                    aiAgentBtn.setAttribute("aria-label", prevAria);
+                    aiAgentBtn.innerHTML = prevHtml;
+                }, 1700);
+            } finally {
+                aiAgentBtn.disabled = false;
+            }
+        },
+    });
+    headerRight.insertBefore(aiAgentBtn, statsBtn);
+
+    runtimeTaskNode = renderRuntimeTask(
+        effectiveAufgabe,
         {
             index: 0,
             showSolution: false,
@@ -330,7 +413,14 @@ async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedSta
             });
 
             host.innerHTML = "";
-            const card = createTaskCard(check, aufgabe, taskUiStateKey, usePersistedState);
+            const card = createTaskCard(
+                check,
+                aufgabe,
+                taskUiStateKey,
+                usePersistedState,
+                normalizedTaskIndex,
+                Array.isArray(sammlung) ? sammlung.length : 0
+            );
             host.appendChild(card);
 
             const runtimeRoot = host.querySelector(".dev-check-card__runtime-task");
@@ -389,22 +479,26 @@ export async function initScriptTaskDuplicatesModule({
 
     const opts = { lernbereich, usePersistedState, taskIndexByCheckId };
 
-    for (const noteNode of noteNodes) {
-        const check = findCheckForNote(noteNode, checksByLookupKey);
-        if (!check) continue;
+    await Promise.all(
+        noteNodes.map(async (noteNode) => {
+            const check = findCheckForNote(noteNode, checksByLookupKey);
+            if (!check) return;
 
-        const host = upsertTaskHostAfter(noteNode);
-        await renderCheckTaskInHost(host, check, opts);
-    }
+            const host = upsertTaskHostAfter(noteNode);
+            await renderCheckTaskInHost(host, check, opts);
+        })
+    );
 
-    for (const ankerNode of ankerNodes) {
-        const nummer = normalizeLookupKey(ankerNode.dataset.nummer);
-        const check = checksByLookupKey.get(nummer);
-        if (!check) continue;
+    await Promise.all(
+        ankerNodes.map(async (ankerNode) => {
+            const nummer = normalizeLookupKey(ankerNode.dataset.nummer);
+            const check = checksByLookupKey.get(nummer);
+            if (!check) return;
 
-        const host = ankerNode.querySelector(".check-anker__aufgabe");
-        if (!host) continue;
+            const host = ankerNode.querySelector(".check-anker__aufgabe");
+            if (!host) return;
 
-        await renderCheckTaskInHost(host, check, opts);
-    }
+            await renderCheckTaskInHost(host, check, opts);
+        })
+    );
 }

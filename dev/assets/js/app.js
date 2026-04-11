@@ -418,6 +418,62 @@ function scrollToTargetId(targetId, retries = 8) {
   setTimeout(() => scrollToTargetId(targetId, retries - 1), 120);
 }
 
+function scrollToSkriptTargetId(targetId, retries = 8, behavior = "auto") {
+  if (!targetId) return;
+
+  const target = document.getElementById(targetId);
+  if (target) {
+    openNoteCardIfPresent(target);
+    requestAnimationFrame(() => {
+      suppressScrollSaveFor(900);
+
+      const scrollContainer = document.querySelector(".mod-main");
+      const navWrap = document
+        .querySelector("#dev-skript-h2-jump-nav")
+        ?.closest(".check-jump-nav-wrap");
+      const modTabNav = document.querySelector(".mod-tab-nav");
+      const navWrapH = navWrap ? navWrap.offsetHeight : 0;
+      const tabNavH = modTabNav ? modTabNav.offsetHeight : 0;
+      const offset = tabNavH + navWrapH + 12;
+
+      if (scrollContainer) {
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const targetRect = target.getBoundingClientRect();
+        const y = scrollContainer.scrollTop + (targetRect.top - containerRect.top) - offset;
+        scrollContainer.scrollTo({ top: y, behavior });
+      } else {
+        const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top: y, behavior });
+      }
+
+      if (window.location.hash !== `#${targetId}`) {
+        window.history.replaceState(null, "", `#${targetId}`);
+      }
+    });
+    return;
+  }
+
+  if (retries <= 0) return;
+  setTimeout(() => scrollToSkriptTargetId(targetId, retries - 1, behavior), 120);
+}
+
+function scheduleSkriptTargetAlignment(targetId) {
+  if (!targetId) return;
+
+  const passesMs = [160, 420, 860, 1300];
+  passesMs.forEach((delay) => {
+    window.setTimeout(() => {
+      if (userScrolledSinceBootstrap) return;
+      scrollToSkriptTargetId(targetId, 0, "auto");
+    }, delay);
+  });
+
+  window.addEventListener("load", () => {
+    if (userScrolledSinceBootstrap) return;
+    scrollToSkriptTargetId(targetId, 0, "auto");
+  }, { once: true });
+}
+
 function setManualScrollRestoration() {
   try {
     if ("scrollRestoration" in window.history) {
@@ -474,6 +530,7 @@ async function bootstrap() {
   const explicitTargetId = resolveScrollTargetId(context);
   const contentRoot = document.querySelector(".mod-content") || document.body;
   const allowStoredHydration = shouldHydrateLocalState(context);
+  let handledSkriptTargetEarly = false;
 
   bindScrollPersistence(pageKey);
 
@@ -590,25 +647,38 @@ async function bootstrap() {
 
   // Static pages such as skript rely on markdown content already in the DOM.
   if (context.moduleKey === "skript") {
-    initSkriptHeadingNav({
+    await initSkriptHeadingNav({
       root: contentRoot,
+      lernbereich: context.lernbereich,
     });
     const scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
+
+    if (explicitTargetId) {
+      scrollToSkriptTargetId(explicitTargetId, 2, "auto");
+      scheduleSkriptTargetAlignment(explicitTargetId);
+      handledSkriptTargetEarly = true;
+    }
+
     initSkriptVisuals(scriptContentRoot);
-    await initSkriptInfoCards(scriptContentRoot, context.lernbereich);
-    await initCheckAnker({ root: scriptContentRoot, lernbereich: context.lernbereich });
-    await initScriptTaskDuplicatesModule({
-      root: scriptContentRoot,
-      lernbereich: context.lernbereich,
-      usePersistedState: true,
-    });
+    await Promise.all([
+      initSkriptInfoCards(scriptContentRoot, context.lernbereich),
+      initCheckAnker({ root: scriptContentRoot, lernbereich: context.lernbereich }),
+      initScriptTaskDuplicatesModule({
+        root: scriptContentRoot,
+        lernbereich: context.lernbereich,
+        usePersistedState: true,
+      }),
+    ]);
   }
 
   await typesetMath(contentRoot);
 
   if (explicitTargetId) {
     if (context.moduleKey === "skript") {
-      openNoteCardIfPresent(document.getElementById(explicitTargetId));
+      if (!handledSkriptTargetEarly) {
+        scrollToSkriptTargetId(explicitTargetId, 10, "auto");
+        scheduleSkriptTargetAlignment(explicitTargetId);
+      }
     } else {
       scrollToTargetId(explicitTargetId);
     }

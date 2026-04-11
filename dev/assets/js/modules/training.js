@@ -118,15 +118,6 @@ function pickRandomTaskIndex(currentIndex, totalCount) {
   return nextIndex;
 }
 
-function toSlug(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
 function getScriptPageHref() {
   const path = window.location?.pathname || "";
   if (!path.endsWith("training.html")) return "";
@@ -152,31 +143,30 @@ function buildTrainingCheckUrl(check) {
   return `${origin}/dev/lernbereiche/${encodeURIComponent(gebiet)}/${encodeURIComponent(lernbereich)}/training.html#${encodeURIComponent(anchor)}`;
 }
 
-function buildScriptInfoHref(check) {
-  const scriptPageHref = getScriptPageHref();
-  if (!scriptPageHref) return "";
+function getSkriptCheckAnchorId(check) {
+  const nummer = Number(check?.Nummer);
+  if (!Number.isFinite(nummer) || nummer <= 0) return "";
+  return `check-${nummer}`;
+}
 
-  const explicitAnchor =
-    check?.skript_anchor ??
-    check?.SkriptAnchor ??
-    check?.skriptAnchor ??
-    "";
-  if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
-    const anchor = explicitAnchor.trim();
-    return `${scriptPageHref}#${encodeURIComponent(anchor)}`;
+function buildSkriptTippsHref(check) {
+  const anchorId = getSkriptCheckAnchorId(check);
+  if (!anchorId) return "";
+
+  const path = window.location?.pathname || "";
+  if (path.endsWith("skript.html")) {
+    return `#${encodeURIComponent(anchorId)}`;
   }
 
-  const infoKeyRaw =
-    check?.info_key ??
-    check?.InfoKey ??
-    check?.infoKey ??
-    (Number.isFinite(Number(check?.Nummer)) ? String(Number(check.Nummer)) : "") ??
-    getCheckId(check);
+  const scriptPageHref = getScriptPageHref();
+  if (scriptPageHref) {
+    return `${scriptPageHref}#${encodeURIComponent(anchorId)}`;
+  }
 
-  const key = String(infoKeyRaw || "");
-  const slug = toSlug(key);
-  if (!slug) return "";
-  return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
+  const gebiet = String(check?.Gebiet || "").trim();
+  const lernbereich = String(check?.Lernbereich || "").trim();
+  if (!gebiet || !lernbereich) return "";
+  return `/dev/lernbereiche/${gebiet}/${lernbereich}/skript.html#${encodeURIComponent(anchorId)}`;
 }
 
 function buildBeispielUrl(check) {
@@ -947,11 +937,17 @@ async function copyToClipboard(text) {
   }
 }
 
+export {
+  buildTrainingKiAgentPrompt,
+  buildSkriptTippsHref,
+  copyToClipboard as copyTrainingPromptToClipboard,
+  fetchBeispielHtml as fetchTrainingBeispielHtml,
+};
+
 function createTaskCardNode(
   check,
   aufgabe,
   onReloadTask = null,
-  scriptInfoHref = "",
   taskUiStateKey = "",
   readPersistedState = true,
   shuffleSeed = "",
@@ -980,14 +976,15 @@ function createTaskCardNode(
   const headerRight = document.createElement("div");
   headerRight.className = "dev-check-card__header-actions";
 
-  if (scriptInfoHref) {
-    const skriptLink = document.createElement("a");
-    skriptLink.className = "dev-check-card__action-btn";
-    skriptLink.href = scriptInfoHref;
-    skriptLink.title = "Im Skript nachschlagen";
-    skriptLink.setAttribute("aria-label", "Im Skript nachschlagen");
-    skriptLink.innerHTML = '<i class="fa-solid fa-book-open" aria-hidden="true"></i>';
-    headerRight.appendChild(skriptLink);
+  const skriptTippsHref = buildSkriptTippsHref(check);
+  if (skriptTippsHref) {
+    const helpLink = document.createElement("a");
+    helpLink.className = "dev-check-card__action-btn";
+    helpLink.href = skriptTippsHref;
+    helpLink.title = "Hilfe";
+    helpLink.setAttribute("aria-label", "Hilfe");
+    helpLink.innerHTML = '<i class="fa-solid fa-circle-question" aria-hidden="true"></i>';
+    headerRight.appendChild(helpLink);
   }
 
   const createHeaderActionProxyButton = ({ iconClass, title, onClick }) => {
@@ -1030,7 +1027,7 @@ function createTaskCardNode(
 
   const aiAgentBtn = createHeaderActionProxyButton({
     iconClass: "fa-wand-magic-sparkles",
-    title: "KI-Erklaeragent kopieren",
+    title: "KI-Erkläragent kopieren",
     onClick: async () => {
       aiAgentBtn.disabled = true;
       const prevTitle = aiAgentBtn.title;
@@ -1050,8 +1047,8 @@ function createTaskCardNode(
         });
         const ok = await copyToClipboard(prompt);
         if (ok) {
-          aiAgentBtn.title = "KI-Erklaeragent in Zwischenablage kopiert";
-          aiAgentBtn.setAttribute("aria-label", "KI-Erklaeragent in Zwischenablage kopiert");
+          aiAgentBtn.title = "KI-Erkläragent in Zwischenablage kopiert";
+          aiAgentBtn.setAttribute("aria-label", "KI-Erkläragent in Zwischenablage kopiert");
           aiAgentBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
         } else {
           aiAgentBtn.title = "Kopieren fehlgeschlagen";
@@ -1081,7 +1078,6 @@ function createTaskCardNode(
       enableReload: true,
       enableSolutionToggle: true,
       enableScriptInfoLink: false,
-      scriptInfoHref,
       statePersistenceKey: taskUiStateKey,
       readPersistedState,
       onReload: onReloadTask,
@@ -1153,7 +1149,6 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   }
 
   let cardNode = null;
-  const scriptInfoHref = buildScriptInfoHref(check);
   const checkId = getCheckId(check);
   const anchorId = getTrainingCheckAnchorId(check);
   const viewportNode = document.createElement("section");
@@ -1166,7 +1161,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   }
 
   if (!hasTasks) {
-    cardNode = createTaskCardNode(check, null, null, scriptInfoHref);
+    cardNode = createTaskCardNode(check, null, null);
     viewportNode.appendChild(cardNode);
     return viewportNode;
   }
@@ -1189,7 +1184,6 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
         cardNode = nextCard;
         finalizeTaskRender(viewportNode);
       },
-      scriptInfoHref,
       stateKey,
       shouldReadPersistedState,
       `${stateKey}::${shuffleNonce}`,

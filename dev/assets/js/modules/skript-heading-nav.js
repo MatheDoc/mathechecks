@@ -1,3 +1,5 @@
+import { getChecksByLernbereich } from "../data/checks-repo.js";
+
 const skriptHeadingNavCleanup = new WeakMap();
 
 function ensureSkriptContentContainer(root) {
@@ -19,50 +21,12 @@ function ensureSkriptContentContainer(root) {
     return container;
 }
 
-function slugifyHeading(text) {
-    return String(text || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/[^a-z0-9\s-]/g, "")
-        .trim()
-        .replace(/\s+/g, "-")
-        .replace(/-+/g, "-");
-}
-
-function ensureHeadingIds(headings) {
-    const usedIds = new Set(
-        Array.from(document.querySelectorAll("[id]"))
-            .map((node) => String(node.id || "").trim())
-            .filter(Boolean)
-    );
-
-    headings.forEach((heading, index) => {
-        const existing = String(heading.id || "").trim();
-        if (existing) {
-            usedIds.add(existing);
-            return;
-        }
-
-        const base = slugifyHeading(heading.textContent) || `skript-h2-${index + 1}`;
-        let candidate = base;
-        let suffix = 2;
-        while (usedIds.has(candidate)) {
-            candidate = `${base}-${suffix}`;
-            suffix += 1;
-        }
-
-        heading.id = candidate;
-        usedIds.add(candidate);
-    });
-}
-
-function setActiveTab(navNode, headingId) {
+function setActiveTab(navNode, targetId) {
     const tabs = Array.from(navNode.querySelectorAll(".check-jump-tab"));
     let matched = false;
 
     tabs.forEach((tab) => {
-        const isActive = tab.dataset.targetId === headingId;
+        const isActive = tab.dataset.targetId === targetId;
         tab.classList.toggle("active", isActive);
         if (isActive) matched = true;
     });
@@ -72,11 +36,15 @@ function setActiveTab(navNode, headingId) {
     }
 }
 
-function renderHeadingTabs(navNode, headings) {
-    navNode.innerHTML = headings
-        .map((heading, index) => {
-            const id = heading.id;
-            const label = String(heading.textContent || "").trim() || `Abschnitt ${index + 1}`;
+function renderCheckTabs(navNode, checkAnkers, checkMap) {
+    navNode.innerHTML = checkAnkers
+        .map((anker) => {
+            const nummer = anker.dataset.nummer;
+            const check = checkMap.get(nummer);
+            const label = check
+                ? `${check.Nummer}. ${check.Schlagwort || "Check"}`
+                : `${nummer}. Check`;
+            const id = anker.id;
             return `<a class="check-jump-tab" href="#${id}" data-target-id="${id}">${label}</a>`;
         })
         .join("");
@@ -87,43 +55,63 @@ function renderHeadingTabs(navNode, headings) {
     navNode.addEventListener("click", (event) => {
         const tab = event.target.closest(".check-jump-tab");
         if (!tab) return;
-        setActiveTab(navNode, tab.dataset.targetId || "");
+        event.preventDefault();
+        const targetId = tab.dataset.targetId || "";
+        setActiveTab(navNode, targetId);
+        const target = document.getElementById(targetId);
+        if (target) {
+            const scrollContainer = document.querySelector(".mod-main");
+            const navWrap = navNode.closest(".check-jump-nav-wrap");
+            const modTabNav = document.querySelector(".mod-tab-nav");
+            const navWrapH = navWrap ? navWrap.offsetHeight : 0;
+            const tabNavH = modTabNav ? modTabNav.offsetHeight : 0;
+            const offset = tabNavH + navWrapH + 12;
+            if (scrollContainer) {
+                const containerRect = scrollContainer.getBoundingClientRect();
+                const targetRect = target.getBoundingClientRect();
+                const y = scrollContainer.scrollTop + (targetRect.top - containerRect.top) - offset;
+                scrollContainer.scrollTo({ top: y, behavior: "smooth" });
+            } else {
+                const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+            }
+        }
     });
 }
 
-function bindHeadingScrollSync(navNode, headings) {
+function bindScrollSync(navNode, anchorNodes) {
     const existingCleanup = skriptHeadingNavCleanup.get(navNode);
     if (typeof existingCleanup === "function") {
         existingCleanup();
         skriptHeadingNavCleanup.delete(navNode);
     }
 
-    const headingNodes = Array.from(headings || []).filter((node) => node?.id);
-    if (headingNodes.length === 0) return;
+    const nodes = Array.from(anchorNodes || []).filter((node) => node?.id);
+    if (nodes.length === 0) return;
 
     const updateActiveFromScroll = () => {
         const offsetTop = 230;
-        let passedHeading = null;
-        let upcomingHeading = null;
+        let passedNode = null;
+        let upcomingNode = null;
         let upcomingDistance = Number.POSITIVE_INFINITY;
 
-        headingNodes.forEach((heading) => {
-            const top = heading.getBoundingClientRect().top;
+        nodes.forEach((node) => {
+            const top = node.getBoundingClientRect().top;
             const distance = top - offsetTop;
 
             if (distance <= 0) {
-                passedHeading = heading;
+                passedNode = node;
                 return;
             }
 
             if (distance < upcomingDistance) {
                 upcomingDistance = distance;
-                upcomingHeading = heading;
+                upcomingNode = node;
             }
         });
 
-        const activeHeading = passedHeading || upcomingHeading || headingNodes[0];
-        setActiveTab(navNode, activeHeading?.id || "");
+        const activeNode = passedNode || upcomingNode || nodes[0];
+        setActiveTab(navNode, activeNode?.id || "");
     };
 
     let ticking = false;
@@ -148,18 +136,24 @@ function bindHeadingScrollSync(navNode, headings) {
     });
 }
 
-export function initSkriptHeadingNav({ root }) {
+export async function initSkriptHeadingNav({ root, lernbereich }) {
     if (!root) return;
 
     const existingWrap = root.querySelector("#dev-skript-h2-jump-nav")?.closest(".check-jump-nav-wrap");
     if (existingWrap) existingWrap.remove();
 
     const contentContainer = ensureSkriptContentContainer(root);
-    const headings = Array.from(contentContainer.querySelectorAll("h2"));
+    const checkAnkers = Array.from(contentContainer.querySelectorAll(".check-anker[data-nummer]"));
 
-    if (headings.length < 2) return;
+    if (checkAnkers.length < 2) return;
 
-    ensureHeadingIds(headings);
+    const checkMap = new Map();
+    if (lernbereich) {
+        const checks = await getChecksByLernbereich(lernbereich);
+        for (const check of checks) {
+            checkMap.set(String(Number(check.Nummer)), check);
+        }
+    }
 
     const wrap = document.createElement("div");
     wrap.className = "check-jump-nav-wrap check-jump-nav-wrap--skript-h2";
@@ -167,23 +161,23 @@ export function initSkriptHeadingNav({ root }) {
     const nav = document.createElement("nav");
     nav.id = "dev-skript-h2-jump-nav";
     nav.className = "check-jump-nav check-jump-nav--skript-h2";
-    nav.setAttribute("aria-label", "Kapitel-Navigation");
+    nav.setAttribute("aria-label", "Check-Navigation");
 
     wrap.appendChild(nav);
     root.insertAdjacentElement("afterbegin", wrap);
 
-    renderHeadingTabs(nav, headings);
-    bindHeadingScrollSync(nav, headings);
+    renderCheckTabs(nav, checkAnkers, checkMap);
+    bindScrollSync(nav, checkAnkers);
 
     const hash = window.location.hash;
     if (hash.startsWith("#")) {
         const targetId = decodeURIComponent(hash.slice(1));
-        const hashTarget = headings.find((heading) => heading.id === targetId);
+        const hashTarget = checkAnkers.find((a) => a.id === targetId);
         if (hashTarget) {
             setActiveTab(nav, hashTarget.id);
             return;
         }
     }
 
-    setActiveTab(nav, headings[0].id);
+    setActiveTab(nav, checkAnkers[0].id);
 }
