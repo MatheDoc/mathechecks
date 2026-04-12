@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Polynomial curve with tangent -->
+  <path d="M35 120 Q60 130 80 100 Q100 60 130 40 Q155 25 180 50 Q200 70 215 30" stroke="#7c6aff" stroke-width="2.5" fill="none" opacity=".8"/>
+  <!-- Tangent line at inflection area -->
+  <line x1="80" y1="120" x2="180" y2="20" stroke="#3dd6c8" stroke-width="1.5" opacity=".6"/>
+  <!-- Tangent point -->
+  <circle cx="130" cy="70" r="4" fill="#3dd6c8" opacity=".8"/>
+  <!-- f'(x) label -->
+  <text x="185" y="18" font-family="system-ui" font-size="10" fill="#3dd6c8" opacity=".6">f'(x₀)</text>
+  <!-- Point label -->
+  <text x="138" y="66" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".5">x₀</text>
+</svg>

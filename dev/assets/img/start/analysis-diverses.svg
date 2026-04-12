@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Three function curves -->
+  <!-- Linear (rising) -->
+  <line x1="35" y1="120" x2="210" y2="60" stroke="#7c6aff" stroke-width="2" opacity=".6"/>
+  <!-- Saturation (logarithmic) -->
+  <path d="M35 120 Q80 55 130 40 Q170 33 210 30" stroke="#3dd6c8" stroke-width="2" fill="none" opacity=".6"/>
+  <!-- Decline (exponential decay) -->
+  <path d="M35 40 Q60 50 90 70 Q130 100 170 118 Q195 125 210 128" stroke="#f5a623" stroke-width="2" fill="none" opacity=".6"/>
+  <!-- Labels -->
+  <text x="214" y="58" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".6">linear</text>
+  <text x="214" y="28" font-family="system-ui" font-size="9" fill="#3dd6c8" opacity=".6">Sättigung</text>
+  <text x="214" y="126" font-family="system-ui" font-size="9" fill="#f5a623" opacity=".6">Rückgang</text>
+</svg>

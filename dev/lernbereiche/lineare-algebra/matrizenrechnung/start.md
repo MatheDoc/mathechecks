@@ -11,9 +11,3 @@ lernbereich: matrizenrechnung
 gebiet: lineare-algebra
 permalink: /dev/lernbereiche/lineare-algebra/matrizenrechnung/start.html
 ---
-
-## Um was geht es hier
-
-## Darauf kommmt es an
-
-## Vorkenntnisse

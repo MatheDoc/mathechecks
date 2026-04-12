@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Revenue curve (parabola opening down) -->
+  <path d="M40 130 Q80 80 120 30 Q160 80 200 130" stroke="#3dd6c8" stroke-width="2" fill="none" opacity=".7"/>
+  <!-- Cost line -->
+  <line x1="35" y1="110" x2="210" y2="40" stroke="#7c6aff" stroke-width="2" opacity=".6"/>
+  <!-- Break-even points -->
+  <circle cx="62" cy="97" r="4" fill="#f5a623" opacity=".7"/>
+  <circle cx="178" cy="97" r="4" fill="#f5a623" opacity=".7"/>
+  <!-- Profit area hint -->
+  <path d="M62 97 Q90 60 120 40 Q150 60 178 97" stroke="none" fill="#4ade80" opacity=".08"/>
+  <!-- Labels -->
+  <text x="125" y="25" font-family="system-ui" font-size="10" fill="#3dd6c8" opacity=".6">E(x)</text>
+  <text x="212" y="38" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".6">K(x)</text>
+  <!-- x axis label -->
+  <text x="120" y="150" text-anchor="middle" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".4">x</text>
+</svg>

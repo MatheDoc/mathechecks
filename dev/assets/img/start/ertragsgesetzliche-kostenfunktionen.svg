@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="140" x2="220" y2="140" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="140" x2="30" y2="10" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- S-shaped cost curve (cubic) -->
+  <path d="M35 130 C50 128 65 125 80 115 C100 100 110 70 130 45 C145 28 170 20 200 15" stroke="#7c6aff" stroke-width="2.5" fill="none" opacity=".8"/>
+  <!-- Average cost curve (U-shape) -->
+  <path d="M55 30 Q80 90 120 95 Q160 90 195 50" stroke="#3dd6c8" stroke-width="1.5" stroke-dasharray="6 3" fill="none" opacity=".6"/>
+  <!-- Inflection point -->
+  <circle cx="108" cy="80" r="4" fill="#f5a623" opacity=".7"/>
+  <!-- Betriebsoptimum -->
+  <circle cx="130" cy="94" r="4" fill="#3dd6c8" opacity=".7"/>
+  <!-- Labels -->
+  <text x="205" y="14" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".6">K(x)</text>
+  <text x="200" y="48" font-family="system-ui" font-size="9" fill="#3dd6c8" opacity=".5">k(x)</text>
+</svg>
