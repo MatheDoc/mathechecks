@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Supply curve (upward) -->
+  <line x1="40" y1="125" x2="200" y2="30" stroke="#7c6aff" stroke-width="2" opacity=".7"/>
+  <!-- Demand curve (downward) -->
+  <line x1="40" y1="30" x2="200" y2="125" stroke="#3dd6c8" stroke-width="2" opacity=".7"/>
+  <!-- Equilibrium point -->
+  <circle cx="120" cy="78" r="5" fill="#f5a623" opacity=".8"/>
+  <!-- Dashed lines to axes -->
+  <line x1="120" y1="78" x2="120" y2="135" stroke="#f5a623" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>
+  <line x1="120" y1="78" x2="30" y2="78" stroke="#f5a623" stroke-width="1" stroke-dasharray="4 3" opacity=".4"/>
+  <!-- Labels -->
+  <text x="204" y="28" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".6">A(x)</text>
+  <text x="204" y="122" font-family="system-ui" font-size="10" fill="#3dd6c8" opacity=".6">N(x)</text>
+  <!-- Axis labels -->
+  <text x="18" y="76" font-family="system-ui" font-size="9" fill="#f5a623" opacity=".5">p*</text>
+  <text x="118" y="148" font-family="system-ui" font-size="9" fill="#f5a623" opacity=".5">x*</text>
+</svg>

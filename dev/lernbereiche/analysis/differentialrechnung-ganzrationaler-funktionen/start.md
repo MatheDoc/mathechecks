@@ -11,9 +11,3 @@ lernbereich: differentialrechnung-ganzrationaler-funktionen
 gebiet: analysis
 permalink: /dev/lernbereiche/analysis/differentialrechnung-ganzrationaler-funktionen/start.html
 ---
-
-## Um was geht es hier
-
-## Darauf kommmt es an
-
-## Vorkenntnisse

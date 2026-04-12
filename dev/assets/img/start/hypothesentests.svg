@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Normal distribution curve -->
+  <path d="M20 130 Q50 125 70 110 Q90 80 105 45 Q115 25 120 20 Q125 25 135 45 Q150 80 170 110 Q190 125 220 130" stroke="#7c6aff" stroke-width="2.5" fill="none"/>
+  <!-- Shaded rejection region (right tail) -->
+  <path d="M175 118 Q190 125 220 130 L220 132 L175 132 Z" fill="#f76c6c" opacity=".3"/>
+  <!-- Critical value line -->
+  <line x1="175" y1="118" x2="175" y2="135" stroke="#f76c6c" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <!-- Baseline -->
+  <line x1="15" y1="132" x2="225" y2="132" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- k label -->
+  <text x="175" y="148" text-anchor="middle" font-family="system-ui" font-size="11" fill="#f76c6c" opacity=".8">k</text>
+  <!-- H₀ arrow -->
+  <path d="M120 20 L120 10" stroke="#3dd6c8" stroke-width="1" opacity=".5"/>
+  <text x="120" y="8" text-anchor="middle" font-family="system-ui" font-size="9" fill="#3dd6c8" opacity=".6">H₀</text>
+</svg>

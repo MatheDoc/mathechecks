@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Stage 1: Rohstoffe -->
+  <rect x="15" y="35" width="44" height="20" rx="6" fill="#7c6aff" fill-opacity=".15" stroke="#7c6aff" stroke-width="1" stroke-opacity=".4"/>
+  <rect x="15" y="70" width="44" height="20" rx="6" fill="#7c6aff" fill-opacity=".15" stroke="#7c6aff" stroke-width="1" stroke-opacity=".4"/>
+  <rect x="15" y="105" width="44" height="20" rx="6" fill="#7c6aff" fill-opacity=".15" stroke="#7c6aff" stroke-width="1" stroke-opacity=".4"/>
+  <text x="37" y="49" text-anchor="middle" font-family="system-ui" font-size="8" fill="#7c6aff" opacity=".6">R₁</text>
+  <text x="37" y="84" text-anchor="middle" font-family="system-ui" font-size="8" fill="#7c6aff" opacity=".6">R₂</text>
+  <text x="37" y="119" text-anchor="middle" font-family="system-ui" font-size="8" fill="#7c6aff" opacity=".6">R₃</text>
+  <!-- Arrows stage 1→2 -->
+  <line x1="62" y1="45" x2="88" y2="55" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="62" y1="80" x2="88" y2="65" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="62" y1="80" x2="88" y2="100" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="62" y1="115" x2="88" y2="105" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Stage 2: Zwischenprodukte -->
+  <rect x="90" y="45" width="44" height="20" rx="6" fill="#3dd6c8" fill-opacity=".15" stroke="#3dd6c8" stroke-width="1" stroke-opacity=".4"/>
+  <rect x="90" y="90" width="44" height="20" rx="6" fill="#3dd6c8" fill-opacity=".15" stroke="#3dd6c8" stroke-width="1" stroke-opacity=".4"/>
+  <text x="112" y="59" text-anchor="middle" font-family="system-ui" font-size="8" fill="#3dd6c8" opacity=".6">Z₁</text>
+  <text x="112" y="104" text-anchor="middle" font-family="system-ui" font-size="8" fill="#3dd6c8" opacity=".6">Z₂</text>
+  <!-- Arrows stage 2→3 -->
+  <line x1="137" y1="55" x2="163" y2="75" stroke="#3dd6c8" stroke-width="1" opacity=".3"/>
+  <line x1="137" y1="100" x2="163" y2="85" stroke="#3dd6c8" stroke-width="1" opacity=".3"/>
+  <!-- Stage 3: Endprodukt -->
+  <rect x="165" y="70" width="50" height="20" rx="6" fill="#f5a623" fill-opacity=".15" stroke="#f5a623" stroke-width="1" stroke-opacity=".4"/>
+  <text x="190" y="84" text-anchor="middle" font-family="system-ui" font-size="8" fill="#f5a623" opacity=".6">EP</text>
+  <!-- Stage labels -->
+  <text x="37" y="20" text-anchor="middle" font-family="system-ui" font-size="8" fill="#7c6aff" opacity=".4">Stufe 1</text>
+  <text x="112" y="38" text-anchor="middle" font-family="system-ui" font-size="8" fill="#3dd6c8" opacity=".4">Stufe 2</text>
+  <text x="190" y="63" text-anchor="middle" font-family="system-ui" font-size="8" fill="#f5a623" opacity=".4">Stufe 3</text>
+  <!-- Matrix hint -->
+  <text x="75" y="145" text-anchor="middle" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".35">M₁</text>
+  <text x="120" y="145" text-anchor="middle" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".25">×</text>
+  <text x="150" y="145" text-anchor="middle" font-family="system-ui" font-size="9" fill="#3dd6c8" opacity=".35">M₂</text>
+</svg>

@@ -11,9 +11,3 @@ lernbereich: lineare-funktionen
 gebiet: analysis
 permalink: /dev/lernbereiche/analysis/lineare-funktionen/start.html
 ---
-
-## Um was geht es hier
-
-## Darauf kommmt es an
-
-## Vorkenntnisse

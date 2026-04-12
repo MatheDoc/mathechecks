@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="25" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <line x1="25" y1="135" x2="25" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
+  <!-- Product lifecycle bell curve (asymmetric) -->
+  <path d="M30 130 Q50 125 70 100 Q90 60 110 35 Q125 22 140 30 Q165 50 190 90 Q210 120 225 130" stroke="#7c6aff" stroke-width="2.5" fill="none" opacity=".8"/>
+  <!-- Area under curve -->
+  <path d="M30 130 Q50 125 70 100 Q90 60 110 35 Q125 22 140 30 Q165 50 190 90 Q210 120 225 130 L225 135 L30 135 Z" fill="#7c6aff" opacity=".06"/>
+  <!-- Phase markers -->
+  <line x1="70" y1="100" x2="70" y2="140" stroke="#3dd6c8" stroke-width="1" stroke-dasharray="3 3" opacity=".3"/>
+  <line x1="125" y1="22" x2="125" y2="140" stroke="#f5a623" stroke-width="1" stroke-dasharray="3 3" opacity=".4"/>
+  <line x1="190" y1="90" x2="190" y2="140" stroke="#3dd6c8" stroke-width="1" stroke-dasharray="3 3" opacity=".3"/>
+  <!-- Maximum point -->
+  <circle cx="125" cy="24" r="4" fill="#f5a623" opacity=".7"/>
+  <!-- t axis -->
+  <text x="215" y="148" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".4">t</text>
+  <!-- u(t) label -->
+  <text x="15" y="18" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".5">u(t)</text>
+</svg>

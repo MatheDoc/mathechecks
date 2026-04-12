@@ -27,9 +27,7 @@
                 {% include dev/moduletypen/nav.html %}
                 <main class="mod-content mod-content-stage">
                     {% if page.module_key == 'start' %}
-                    <div class="mod-start-content">
-                        {{ content }}
-                    </div>
+                    {% include dev/moduletypen/start-content.html %}
                     {% else %}
                     {{ content }}
                     {% endif %}

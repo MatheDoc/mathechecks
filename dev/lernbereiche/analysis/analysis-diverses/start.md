@@ -11,13 +11,3 @@ lernbereich: analysis-diverses
 gebiet: analysis
 permalink: /dev/lernbereiche/analysis/analysis-diverses/start.html
 ---
-
-## Um was geht es hier
-
-In diesem Lernbereich werden diverse Themen zur Analysis behandelt.
-
-1. Regression
-
-## Darauf kommmt es an
-
-## Vorkenntnisse
