@@ -1,89 +1,26 @@
-<section class="greeting">
-  <h2>Material durchst&ouml;bern</h2>
-  <p>Alle Lernmaterialien nach Typ und Lernbereich filtern.</p>
-</section>
-
 {% assign page_urls_joined = site.pages | map: 'url' | join: '|' %}
 {% assign page_urls_index = '|' | append: page_urls_joined | append: '|' %}
 
-<div class="card" style="padding:16px 20px; margin-bottom:8px;">
-  <div class="filter-bar">
-    <label for="filterLB">Lernbereich:</label>
-    <select class="filter-select lb-gebiet-filter" id="filterLB">
-      <option value="all" data-gebiet="all">Alle Lernbereiche</option>
-      <optgroup label="Gebiete">
-        {% for g in site.data.dev_gebiete %}
-        <option value="{{ g.key }}" data-gebiet="{{ g.key }}">{{ g.name }} (alle)</option>
-        {% endfor %}
-      </optgroup>
-      <optgroup label="Lernbereiche">
-        {% for lb in site.data.dev_lernbereiche %}
-        {% assign start_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append:
-        '/start.html' %}
-        {% assign start_key = '|' | append: start_url | append: '|' %}
-        {% if page_urls_index contains start_key %}
-        <option value="{{ lb.slug }}" data-gebiet="{{ lb.gebiet }}">{{ lb.name }}</option>
-        {% endif %}
-        {% endfor %}
-      </optgroup>
-    </select>
-
-    <label for="filterType">Typ:</label>
-    <select class="filter-select" id="filterType">
-      <option value="all">Alle Typen</option>
-      {% for mt in site.data.dev_moduletypen %}
-      <option value="{{ mt.key }}">{{ mt.name }}</option>
-      {% endfor %}
-    </select>
-  </div>
-</div>
-
-{% for mt in site.data.dev_moduletypen %}
-{% assign available_count = 0 %}
-{% for lb in site.data.dev_lernbereiche %}
-{% assign module_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append: '/' | append:
-mt.key | append: '.html' %}
-{% assign module_key = '|' | append: module_url | append: '|' %}
-{% if page_urls_index contains module_key %}
-{% assign available_count = available_count | plus: 1 %}
-{% endif %}
-{% endfor %}
-
-{% if available_count > 0 %}
-<div class="section-head" data-type="{{ mt.key }}">
-  <div class="section-icon module-icon-{{ mt.key }}">{{ mt.icon }}</div>
-  <h3>{{ mt.name }}</h3>
-  <span class="section-count">{{ available_count }} verf&uuml;gbar</span>
-</div>
-<div class="material-grid" data-type="{{ mt.key }}">
+<div class="material-grid material-grid--compact">
   {% for lb in site.data.dev_lernbereiche %}
-  {% assign module_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append: '/' |
-  append: mt.key | append: '.html' %}
-  {% assign module_key = '|' | append: module_url | append: '|' %}
-  {% if page_urls_index contains module_key %}
+  {% assign start_url = '/dev/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append: '/start.html'
+  %}
+  {% assign start_key = '|' | append: start_url | append: '|' %}
+  {% if page_urls_index contains start_key %}
   {% assign gebiet_label = lb.gebiet %}
   {% for g in site.data.dev_gebiete %}
   {% if g.key == lb.gebiet %}
   {% assign gebiet_label = g.name %}
   {% endif %}
   {% endfor %}
-  <a class="mat-card" href="{{ module_url | relative_url }}" data-lb="{{ lb.slug }}" data-gebiet="{{ lb.gebiet }}"
-    data-type="{{ mt.key }}">
-    <div class="mat-card-head">
-      <div class="mat-card-icon module-icon-{{ mt.key }}">{{ mt.icon }}</div>
-      <div>
-        <div class="mat-card-title">{{ lb.name }}</div>
-        <div class="mat-card-sub">{{ mt.subtitle }}</div>
-      </div>
-    </div>
-    <div class="mat-card-desc">{{ mt.description }}</div>
-    <div class="mat-card-badges">
-      <span class="mat-badge gebiet-badge" data-gebiet="{{ lb.gebiet }}">{{ gebiet_label }}</span>
-      <span class="mat-badge type-badge">{{ mt.name }}</span>
-    </div>
+  <a class="mat-card mat-card--compact" href="{{ start_url | relative_url }}" data-gebiet="{{ lb.gebiet }}">
+    {% if lb.szenario_bild %}
+    <img class="mat-card-img" src="{{ '/dev/assets/img/start/' | append: lb.szenario_bild | relative_url }}" alt=""
+      loading="lazy">
+    {% endif %}
+    <div class="mat-card-title">{{ lb.name }}</div>
+    <span class="mat-badge gebiet-badge" data-gebiet="{{ lb.gebiet }}">{{ gebiet_label }}</span>
   </a>
   {% endif %}
   {% endfor %}
 </div>
-{% endif %}
-{% endfor %}

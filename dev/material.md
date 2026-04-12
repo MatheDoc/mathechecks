@@ -9,5 +9,3 @@ permalink: /dev/material.html
 ---
 
 {% include dev/material/content.html %}
-
-{% include dev/material/filter-script.html %}

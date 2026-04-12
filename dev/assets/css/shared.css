@@ -1625,44 +1625,7 @@ body.page-module-designs .mod-content {
 /* ═══════════════ Material Context Styles ═══════════════ */
 /* Material-spezifische Ergaenzungen */
 
-/* Filter-Bar */
-.filter-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.filter-bar label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-}
-
-.filter-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background: var(--card);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 8px 34px 8px 14px;
-  font-size: 0.82rem;
-  font-family: 'Inter', sans-serif;
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  transition: border-color .2s;
-}
-
-.filter-select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-/* Erweiterte Material-Kacheln */
+/* Material-Kacheln */
 .material-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1688,44 +1651,10 @@ body.page-module-designs .mod-content {
   box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
 }
 
-.mat-card-head {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.mat-card-icon {
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  font-size: 1.1rem;
-  flex-shrink: 0;
-}
-
 .mat-card-title {
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.2;
-}
-
-.mat-card-sub {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-
-.mat-card-desc {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-.mat-card-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: auto;
 }
 
 .mat-badge {
@@ -1737,79 +1666,44 @@ body.page-module-designs .mod-content {
   font-weight: 600;
 }
 
-.mat-badge.type-badge {
-  background: var(--surface-hi);
-  color: var(--text-dim);
+/* Compact material grid (Lernbereich overview) */
+.material-grid--compact {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
 }
 
-/* Section Headers */
-.section-head {
-  margin-top: 26px;
-  margin-bottom: 14px;
-  display: flex;
+.mat-card--compact {
+  padding: 14px;
+  gap: 8px;
   align-items: center;
-  gap: 12px;
+  text-align: center;
 }
 
-.section-head h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
+.mat-card--compact .mat-card-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
-.section-head .section-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  font-size: 1rem;
+.mat-card--compact .mat-card-title {
+  font-size: 0.85rem;
 }
 
-.module-icon-start {
-  background: var(--mt-start-soft, var(--accent-soft));
-  color: var(--mt-start, var(--accent));
-}
+@media (max-width: 500px) {
+  .material-grid--compact {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+  }
 
-.module-icon-warmup {
-  background: var(--mt-warmup-soft, var(--amber-soft));
-  color: var(--mt-warmup, var(--amber));
-}
+  .mat-card--compact {
+    padding: 10px;
+  }
 
-.module-icon-kompetenzliste {
-  background: var(--mt-kompetenzliste-soft, var(--blue-soft));
-  color: var(--mt-kompetenzliste, var(--blue));
-}
-
-.module-icon-training {
-  background: var(--mt-training-soft, var(--accent-soft));
-  color: var(--mt-training, var(--accent));
-}
-
-.module-icon-blurting {
-  background: var(--mt-blurting-soft, var(--teal-soft));
-  color: var(--mt-blurting, var(--teal));
-}
-
-.module-icon-feynman {
-  background: var(--mt-feynman-soft, var(--lavender-soft));
-  color: var(--mt-feynman, var(--lavender));
-}
-
-.module-icon-skript {
-  background: var(--mt-skript-soft, var(--green-soft));
-  color: var(--mt-skript, var(--green));
-}
-
-.module-icon-flashcards {
-  background: var(--mt-flashcards-soft, var(--pink-soft));
-  color: var(--mt-flashcards, var(--pink));
-}
-
-.section-count {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-left: auto;
+  .mat-card--compact .mat-card-img {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 
