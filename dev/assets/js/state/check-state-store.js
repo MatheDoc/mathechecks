@@ -1,5 +1,6 @@
 const STATE_PREFIX = "dev-training-state-v1";
 const CHECK_TASK_INDEX_PREFIX = "dev-training-task-index-v1";
+const SHUFFLE_NONCE_PREFIX = "dev-training-shuffle-nonce-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
 
 function getTabScopeId() {
@@ -22,6 +23,10 @@ function getStorageKey(lernbereich) {
 
 function getCheckTaskIndexKey(lernbereich, checkId) {
   return `${CHECK_TASK_INDEX_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}`;
+}
+
+function getShuffleNonceKey(lernbereich, checkId) {
+  return `${SHUFFLE_NONCE_PREFIX}::${getTabScopeId()}::${lernbereich || "unknown"}::${checkId || "unknown"}`;
 }
 
 function getEmptyState() {
@@ -82,6 +87,28 @@ export function saveTaskIndexForCheck(lernbereich, checkId, taskIndex) {
   const normalized = Number.isInteger(taskIndex) && taskIndex >= 0 ? taskIndex : 0;
   try {
     localStorage.setItem(getCheckTaskIndexKey(lernbereich, checkId), String(normalized));
+  } catch {
+    // Ignore quota/storage errors.
+  }
+}
+
+export function loadShuffleNonce(lernbereich, checkId) {
+  if (!checkId || typeof checkId !== "string") return null;
+
+  try {
+    const raw = localStorage.getItem(getShuffleNonceKey(lernbereich, checkId));
+    if (raw != null && raw !== "") return raw;
+  } catch {
+    // Fall through.
+  }
+  return null;
+}
+
+export function saveShuffleNonce(lernbereich, checkId, nonce) {
+  if (!checkId || typeof checkId !== "string") return;
+
+  try {
+    localStorage.setItem(getShuffleNonceKey(lernbereich, checkId), String(nonce));
   } catch {
     // Ignore quota/storage errors.
   }

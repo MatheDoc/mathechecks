@@ -5,6 +5,8 @@ import {
   saveTrainingState,
   loadTaskIndexForCheck,
   saveTaskIndexForCheck,
+  loadShuffleNonce,
+  saveShuffleNonce,
 } from "../state/check-state-store.js";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
@@ -1166,7 +1168,8 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     return viewportNode;
   }
 
-  let shuffleNonce = Date.now();
+  let shuffleNonce = loadShuffleNonce(check.Lernbereich, checkId) || String(Date.now());
+  saveShuffleNonce(check.Lernbereich, checkId, shuffleNonce);
 
   const renderCurrentCard = (shouldReadPersistedState = readPersistedState) => {
     const stateKey = buildTaskUiStateKey({ lernbereich: check.Lernbereich, checkId, taskIndex });
@@ -1175,7 +1178,8 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       sammlung[taskIndex] || null,
       () => {
         taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
-        shuffleNonce = Date.now();
+        shuffleNonce = String(Date.now());
+        saveShuffleNonce(check.Lernbereich, checkId, shuffleNonce);
         if (typeof onTaskIndexChange === "function") {
           onTaskIndexChange(taskIndex);
         }
