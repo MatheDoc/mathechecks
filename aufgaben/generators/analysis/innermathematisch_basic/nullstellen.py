@@ -9,12 +9,6 @@ def _display_equation(expression: str) -> str:
     return f"$$ {expression} $$"
 
 
-def _linear_function_latex(a: int, b: int) -> str:
-    if b < 0:
-        return f"f(x)={a}x{b}"
-    return f"f(x)={a}x+{b}"
-
-
 def _signed_term(value: int, variable: str) -> str:
     if value == 0:
         return ""
@@ -34,40 +28,6 @@ def _quadratic_function_latex(a: int, b: int, c: int) -> str:
     else:
         c_term = ""
     return f"f(x)={a}x^2{b_term}{c_term}"
-
-
-class LinearNullstelleGenerator(TaskGenerator):
-    """Erzeugt Aufgaben zur Nullstellenberechnung linearer Funktionen."""
-    generator_key = "analysis.nullstellen.linear"
-
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
-        used_params: set[tuple[int, int]] = set()
-
-        while len(tasks) < count:
-            x0 = rng.randint(-12, 12)
-            if x0 == 0:
-                continue
-            a = rng.choice([-1, 1]) * rng.randint(1, 8)
-            b = -a * x0
-            params = (a, b)
-            if params in used_params:
-                continue
-            used_params.add(params)
-
-            tasks.append(
-                Task(
-                    einleitung=(
-                        "Gegeben:"
-                        f"{_display_equation(_linear_function_latex(a, b))}"
-                    ),
-                    fragen=["Bestimmen Sie die Nullstelle der Funktion $ f $."],
-                    antworten=[f"$x=${numerical_analysis_calc(x0)}"],
-                )
-            )
-
-        return tasks
 
 
 class QuadraticNullstelleGenerator(TaskGenerator):

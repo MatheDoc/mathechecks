@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "Gebiet": "stochastik",
         "Lernbereich": "binomialverteilung",
@@ -1952,6 +1952,200 @@
             "jährlicher EKG-Wert: Funktionswert",
             "Gesamter EKG-Wert: Integral",
             "Zeitpunkt max Verlust: Integralvergleich"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 1,
+        "check_id": "analysis__lineare-funktionen__01",
+        "Ich kann": "Steigung und y-Achsenabschnitt einer linearen Funktion aus dem Graphen ablesen und die Funktionsgleichung angeben.",
+        "Sammlung": "graph-zu-gleichung",
+        "Schlagwort": "Graph → Gleichung",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-01",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Steigung $m$: Steigungsdreieck ablesen",
+            "$y$-Achsenabschnitt $b$: Schnittpunkt mit $y$-Achse",
+            "$f(x) = mx + b$"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 2,
+        "check_id": "analysis__lineare-funktionen__02",
+        "Ich kann": "zu einer linearen Funktionsgleichung eine Wertetabelle erstellen.",
+        "Sammlung": "gleichung-zu-tabelle",
+        "Schlagwort": "Gleichung → Tabelle",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-02",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$x$-Werte einsetzen → $y$-Werte berechnen",
+            "$f(x) = mx + b$",
+            "Gleichmäßige Differenzen in der Tabelle prüfen"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 3,
+        "check_id": "analysis__lineare-funktionen__03",
+        "Ich kann": "Graphen linearer Funktionen den zugehörigen Funktionsgleichungen zuordnen.",
+        "Sammlung": "zuordnung-graphen",
+        "Schlagwort": "Zuordnung Graphen",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-03",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$y$-Achsenabschnitt $b$: Wo schneidet der Graph die $y$-Achse?",
+            "Steigung $m > 0$: Graph steigt; $m < 0$: Graph fällt",
+            "Steigungsdreieck zum Vergleich nutzen"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 4,
+        "check_id": "analysis__lineare-funktionen__04",
+        "Ich kann": "aus zwei gegebenen Punkten die Gleichung einer linearen Funktion bestimmen.",
+        "Sammlung": "gleichung-aus-punkten",
+        "Schlagwort": "Punkte → Gleichung",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-lineare-funktionen-04",
+        "questionOrder": "fixed",
+        "Tipps": [
+            "$m = \\frac{y_2 - y_1}{x_2 - x_1}$",
+            "$b = y_1 - m \\cdot x_1$",
+            "$f(x) = mx + b$"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 5,
+        "check_id": "analysis__lineare-funktionen__05",
+        "Ich kann": "prüfen, ob ein Punkt auf dem Graphen einer linearen Funktion liegt, und bestimmen, ob er ober- oder unterhalb des Graphen liegt.",
+        "Sammlung": "punktprobe",
+        "Schlagwort": "Punktprobe + Lage",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-05",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$x$-Wert einsetzen und $f(x_0)$ berechnen",
+            "$f(x_0) = y_0$: Punkt liegt auf dem Graphen",
+            "$y_0 > f(x_0)$: Punkt liegt oberhalb",
+            "$y_0 < f(x_0)$: Punkt liegt unterhalb"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 6,
+        "check_id": "analysis__lineare-funktionen__06",
+        "Ich kann": "Funktionswerte und Umkehrwerte linearer Funktionen berechnen.",
+        "Sammlung": "funktionswerte-umkehrwerte",
+        "Schlagwort": "Funktions-/Umkehrwerte",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-06",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Funktionswert: $x_0$ einsetzen → $f(x_0) = m \\cdot x_0 + b$",
+            "Umkehrwert: $f(x) = y_0$ setzen → nach $x$ auflösen",
+            "$x = \\frac{y_0 - b}{m}$"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 7,
+        "check_id": "analysis__lineare-funktionen__07",
+        "Ich kann": "Nullstellen linearer Funktionen berechnen und angeben, in welchen Bereichen der Graph ober- bzw. unterhalb der x-Achse verläuft.",
+        "Sammlung": "nullstellen-vorzeichen",
+        "Schlagwort": "Nullstellen + Vorzeichen",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-07",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Nullstelle: $f(x) = 0$ → $x = -\\frac{b}{m}$",
+            "$m > 0$: links negativ, rechts positiv",
+            "$m < 0$: links positiv, rechts negativ"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 8,
+        "check_id": "analysis__lineare-funktionen__08",
+        "Ich kann": "Schnittpunkte zweier linearer Funktionen berechnen und angeben, in welchen Bereichen der Graph der einen Funktion ober- bzw. unterhalb des Graphen der anderen verläuft.",
+        "Sammlung": "schnittpunkte-vergleich",
+        "Schlagwort": "Schnittpunkte + Vergleich",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-lineare-funktionen-08",
+        "questionOrder": "fixed",
+        "Tipps": [
+            "Gleichsetzen: $m_1 x + b_1 = m_2 x + b_2$",
+            "Nach $x$ auflösen",
+            "$y$-Wert durch Einsetzen",
+            "Vergleich: Vorzeichen von $f(x) - g(x)$ links/rechts vom Schnittpunkt"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 9,
+        "check_id": "analysis__lineare-funktionen__09",
+        "Ich kann": "eine Sachsituation durch eine lineare Funktion modellieren und auswerten.",
+        "Sammlung": "sachsituation-eine-funktion",
+        "Schlagwort": "Sachsituation modellieren",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-lineare-funktionen-09",
+        "questionOrder": "fixed",
+        "Tipps": [
+            "Startwert = $y$-Achsenabschnitt $b$",
+            "Änderungsrate = Steigung $m$",
+            "$f(x) = mx + b$ aufstellen",
+            "Funktionswerte, Umkehrwerte, Nullstelle berechnen und interpretieren"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 10,
+        "check_id": "analysis__lineare-funktionen__10",
+        "Ich kann": "zwei lineare Zusammenhänge vergleichen und den Break-Even-Punkt bestimmen.",
+        "Sammlung": "sachsituation-vergleich",
+        "Schlagwort": "Modellvergleich + Break-Even",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-lineare-funktionen-10",
+        "questionOrder": "fixed",
+        "Tipps": [
+            "Zwei Funktionen aufstellen",
+            "Gleichsetzen → Schnittpunkt",
+            "Bereiche vergleichen: Welches Modell liegt wann günstiger/höher?",
+            "Ergebnis im Sachzusammenhang interpretieren"
         ],
         "Blurting": []
     }

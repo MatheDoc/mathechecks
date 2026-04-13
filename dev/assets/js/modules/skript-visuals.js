@@ -269,4 +269,114 @@ export function initSkriptVisuals(root) {
         updateSliderRanges();
         update();
     });
+
+    /* ---- Lineare Funktionen Explorer ---- */
+    root.querySelectorAll(".diagramm-row").forEach((row) => {
+        const mSlider = row.querySelector(".lf-mSlider");
+        if (!mSlider) return;
+        if (!window.math) return;
+        const bSlider = row.querySelector(".lf-bSlider");
+        const mWert = row.querySelector(".lf-mWert");
+        const bWert = row.querySelector(".lf-bWert");
+        const eqDisplay = row.querySelector(".lf-eqDisplay");
+        const descM = row.querySelector(".lf-descM");
+        const plotDiv = row.querySelector(".lf-plotGraph");
+        const tableBody = row.querySelector(".lf-tableBody");
+
+        function fmt(n) {
+            const r = Math.round(n * 10) / 10;
+            return r % 1 === 0 ? String(r) : r.toFixed(1);
+        }
+
+        function fmtDe(n) {
+            return fmt(n).replace(".", ",");
+        }
+
+        function update() {
+            const m = parseFloat(mSlider.value);
+            const b = parseFloat(bSlider.value);
+
+            mWert.textContent = fmtDe(m);
+            bWert.textContent = fmtDe(b);
+
+            // Equation (LaTeX)
+            const bAbs = Math.abs(b);
+            const sign = b >= 0 ? "+" : "-";
+            eqDisplay.innerHTML = "$ f(x) = " + fmtDe(m) + " \\cdot x " + sign + " " + fmtDe(bAbs) + " $";
+            if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay]);
+
+            // Description
+            if (descM) {
+                if (m === 0) {
+                    descM.innerHTML = "Waagerechte Gerade (keine Steigung)";
+                } else {
+                    descM.innerHTML = "Pro $ +1 $ in $ x $ ändert sich $ y $ um $ " + (m > 0 ? "+" : "") + fmtDe(m) + " $";
+                }
+                if (window.MathJax?.typesetPromise) MathJax.typesetPromise([descM]);
+            }
+
+            // Graph via buildGraphFigure (identical rendering to dev/graph.html)
+            const xMin = -6, xMax = 6, yMin = -8, yMax = 8;
+            const term = "(" + m + ")*x+(" + b + ")";
+            const figure = buildGraphFigure({
+                funktionen: [{ name: "f", term: term }],
+                punkte: [{ x: 0, y: b, text: "y-Achsenabschnitt (0 | " + fmtDe(b) + ")" }],
+                xMin, xMax, yMin, yMax,
+            });
+
+            // Fixed axis scaling with integer ticks
+            figure.layout.xaxis.dtick = 1;
+            figure.layout.yaxis.dtick = 1;
+
+            // Steigungsdreieck (slope triangle) at x = 1
+            const x0 = 1, y0 = m * x0 + b, y1 = m * (x0 + 1) + b;
+            figure.layout.shapes = [];
+            if (m !== 0 && y0 >= yMin && y0 <= yMax && y1 >= yMin && y1 <= yMax) {
+                // horizontal leg: (x0, y0) → (x0+1, y0)
+                figure.layout.shapes.push({
+                    type: "line", x0: x0, y0: y0, x1: x0 + 1, y1: y0,
+                    line: { color: "rgba(0,0,0,0.4)", width: 1.5, dash: "dot" },
+                });
+                // vertical leg: (x0+1, y0) → (x0+1, y1)
+                figure.layout.shapes.push({
+                    type: "line", x0: x0 + 1, y0: y0, x1: x0 + 1, y1: y1,
+                    line: { color: "rgba(0,0,0,0.4)", width: 1.5, dash: "dot" },
+                });
+                // annotations: "1" on horizontal, "m" on vertical
+                figure.layout.annotations = [
+                    {
+                        x: x0 + 0.5, y: y0, yshift: m > 0 ? -14 : 14,
+                        text: "1", showarrow: false,
+                        font: { size: 12, color: "rgba(0,0,0,0.5)" },
+                    },
+                    {
+                        x: x0 + 1, xshift: 14, y: (y0 + y1) / 2,
+                        text: fmtDe(m), showarrow: false,
+                        font: { size: 12, color: "rgba(0,0,0,0.5)" },
+                    },
+                ];
+            } else {
+                figure.layout.annotations = [];
+            }
+
+            plotlyRender(plotDiv, figure.data, figure.layout);
+
+            // Value table
+            const xs = [-3, -2, -1, 0, 1, 2, 3];
+            let html = "";
+            for (const x of xs) {
+                const y = m * x + b;
+                if (x === 0) {
+                    html += "<tr><td><strong>" + fmtDe(x) + "</strong></td><td><strong>" + fmtDe(y) + "</strong></td></tr>";
+                } else {
+                    html += "<tr><td>" + fmtDe(x) + "</td><td>" + fmtDe(y) + "</td></tr>";
+                }
+            }
+            tableBody.innerHTML = html;
+        }
+
+        mSlider.addEventListener("input", update);
+        bSlider.addEventListener("input", update);
+        update();
+    });
 }

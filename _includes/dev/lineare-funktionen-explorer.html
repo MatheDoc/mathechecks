@@ -1,0 +1,39 @@
+<div class="diagramm-row">
+
+    <div class="eingabe-box">
+
+        <div class="eingabe-zeile" style="justify-content:center">
+            <span class="lf-eqDisplay">$ f(x) = 1 \cdot x + 0 $</span>
+        </div>
+
+        <div class="eingabe-zeile">
+            <label>Steigung $ m $ = <span class="lf-mWert">1</span></label>
+            <input type="range" class="lf-mSlider" min="-5" max="5" step="0.5" value="1">
+        </div>
+
+        <div class="eingabe-zeile">
+            <label>$ y $-Achsenabschnitt $ b $ = <span class="lf-bWert">0</span></label>
+            <input type="range" class="lf-bSlider" min="-5" max="5" step="0.5" value="0">
+        </div>
+
+        <div class="eingabe-zeile" style="justify-content:center">
+            <span class="lf-descM">Pro $ +1 $ in $ x $ ändert sich $ y $ um $ +1 $</span>
+        </div>
+
+    </div>
+
+    <div class="lf-tableWrap">
+        <table class="lf-table">
+            <thead>
+                <tr>
+                    <th>$ x $</th>
+                    <th>$ f(x) $</th>
+                </tr>
+            </thead>
+            <tbody class="lf-tableBody"></tbody>
+        </table>
+    </div>
+
+    <div class="lf-plotGraph diagramm"></div>
+
+</div>
