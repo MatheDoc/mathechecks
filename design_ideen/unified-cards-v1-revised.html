@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatheChecks – Unified Cards v1 Revised</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════════
+           0. ROOT TOKENS
+           ══════════════════════════════════════════════ */
+        :root {
+            --bg: #f5efe2;
+            --bg-deep: #eadfc7;
+            --ink: #1e2b2f;
+            --ink-soft: #59686c;
+            --ink-muted: #8a979b;
+            --line: #d8c8a8;
+            --surface: rgba(255, 251, 242, 0.82);
+            --card-bg: #fffbf2;
+
+            --radius-card: 20px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+
+            --shadow-card: 0 8px 32px rgba(39, 39, 27, 0.10);
+            --shadow-popup: 0 8px 24px rgba(30, 43, 47, 0.18);
+
+            /* ── Module Colors ── */
+            --c-training: #1f8d52;
+            --c-training-dark: #166c3f;
+            --c-training-soft: rgba(31, 141, 82, 0.12);
+            --c-training-head: rgba(31, 141, 82, 0.14);
+
+            --c-blurting: #0b8f6d;
+            --c-blurting-dark: #09775b;
+            --c-blurting-soft: rgba(11, 143, 109, 0.12);
+            --c-blurting-head: rgba(11, 143, 109, 0.14);
+
+            --c-feynman: #3768b2;
+            --c-feynman-dark: #2a4f8d;
+            --c-feynman-soft: rgba(55, 104, 178, 0.12);
+            --c-feynman-head: rgba(55, 104, 178, 0.14);
+
+            --c-kompetenz: #7b4ca8;
+            --c-kompetenz-dark: #603788;
+            --c-kompetenz-soft: rgba(123, 76, 168, 0.12);
+            --c-kompetenz-head: rgba(123, 76, 168, 0.14);
+
+            --c-skript: #a3562e;
+            --c-skript-dark: #7f441f;
+            --c-skript-soft: rgba(163, 86, 46, 0.12);
+            --c-skript-head: rgba(163, 86, 46, 0.15);
+
+            --c-warmup: #c96f29;
+            --c-warmup-dark: #ab5c22;
+            --c-warmup-soft: rgba(201, 111, 41, 0.12);
+            --c-warmup-head: rgba(201, 111, 41, 0.15);
+
+            --c-flashcards: #1d8798;
+            --c-flashcards-dark: #166d7b;
+            --c-flashcards-soft: rgba(29, 135, 152, 0.12);
+            --c-flashcards-head: rgba(29, 135, 152, 0.14);
+        }
+
+        /* ══════════════════════════════════════════════
+           1. RESETS & BASE
+           ══════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Source Sans 3", system-ui, sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(850px 350px at -10% -8%, rgba(15, 127, 122, 0.15), transparent 70%),
+                radial-gradient(700px 300px at 110% 8%, rgba(201, 111, 41, 0.12), transparent 72%),
+                linear-gradient(170deg, var(--bg), var(--bg-deep));
+            min-height: 100vh;
+        }
+
+        .page-shell {
+            width: min(1300px, 95vw);
+            margin: 0 auto;
+            padding: 28px 0 60px;
+        }
+
+        /* ══════════════════════════════════════════════
+           2. SECTION / INTRO
+           ══════════════════════════════════════════════ */
+        .section-title {
+            font-family: "Sora", sans-serif;
+            font-size: clamp(1.1rem, 1.6vw, 1.5rem);
+            letter-spacing: -0.02em;
+            margin: 42px 0 18px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .section-subtitle {
+            color: var(--ink-soft);
+            font-size: 0.92rem;
+            margin: -12px 0 20px;
+        }
+
+        .intro-box {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            padding: 22px 24px;
+            background: var(--surface);
+            backdrop-filter: blur(8px);
+            margin-bottom: 28px;
+        }
+
+        .intro-box h1 {
+            font-family: "Sora", sans-serif;
+            font-size: clamp(1.3rem, 2vw, 1.8rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .intro-box p {
+            color: var(--ink-soft);
+            line-height: 1.5;
+            max-width: 72ch;
+        }
+
+        .intro-box ul {
+            margin: 10px 0 0;
+            padding-left: 20px;
+            color: var(--ink-soft);
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        /* ══════════════════════════════════════════════
+           3. CARD BASE — .mc-card
+           ══════════════════════════════════════════════ */
+        .mc-card {
+            --card-color: var(--ink-soft);
+            --card-color-dark: var(--ink);
+            --card-color-soft: rgba(0, 0, 0, 0.04);
+            --card-color-head: rgba(0, 0, 0, 0.06);
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: box-shadow 220ms, transform 160ms;
+        }
+
+        .mc-card--wide {
+            width: 100%;
+        }
+
+        .mc-card--narrow {
+            width: min(660px, 100%);
+            margin-inline: auto;
+        }
+
+        .mc-card--viewport {
+            max-height: calc(100dvh - 80px);
+        }
+
+        /* ──────────────────────────────────────────────
+           3a. HEADER – soft background, colored text
+               (inspiriert von modultypen-design.html)
+           ────────────────────────────────────────────── */
+        .mc-card__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--card-color-head);
+            color: var(--card-color-dark);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            border-bottom: 1px solid color-mix(in srgb, var(--card-color) 18%, var(--line));
+        }
+
+        .mc-card__header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .mc-card__check-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--card-color) 18%, transparent);
+            flex-shrink: 0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: var(--card-color-dark);
+        }
+
+        .mc-card__check-badge svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .mc-card__title {
+            font-family: "Sora", sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--card-color-dark);
+        }
+
+        .mc-card__module-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.68;
+            flex-shrink: 0;
+            color: var(--card-color);
+        }
+
+        .mc-card__header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* ──────────────────────────────────────────────
+           3b. THREE-DOT MENU
+           ────────────────────────────────────────────── */
+        .mc-menu-wrap {
+            position: relative;
+        }
+
+        .mc-menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border: none;
+            border-radius: 50%;
+            background: color-mix(in srgb, var(--card-color) 12%, transparent);
+            color: var(--card-color-dark);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 150ms;
+        }
+
+        .mc-menu-btn:hover {
+            background: color-mix(in srgb, var(--card-color) 22%, transparent);
+        }
+
+        .mc-menu-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .mc-menu-popup {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            min-width: 220px;
+            background: var(--card-bg);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-popup);
+            z-index: 20;
+            padding: 6px 0;
+            animation: menu-in 150ms ease;
+        }
+
+        .mc-menu-popup.is-open {
+            display: block;
+        }
+
+        @keyframes menu-in {
+            from {
+                opacity: 0;
+                transform: translateY(-6px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .mc-menu-popup__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            font-size: 0.85rem;
+            color: var(--ink);
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 100ms;
+        }
+
+        .mc-menu-popup__item:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .mc-menu-popup__item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .mc-menu-popup__item .label {
+            flex: 1;
+        }
+
+        .mc-menu-popup__item .shortcut {
+            font-size: 0.72rem;
+            color: var(--ink-muted);
+        }
+
+        .mc-menu-popup__item .menu-icon {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-muted);
+        }
+
+        .mc-menu-popup__item .menu-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+        }
+
+        .mc-menu-popup__divider {
+            height: 1px;
+            background: var(--line);
+            margin: 4px 0;
+        }
+
+        /* ──────────────────────────────────────────────
+           3c. BODY – scrollable
+           ────────────────────────────────────────────── */
+        .mc-card__body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 18px 20px;
+            color: var(--ink);
+            font-size: 0.93rem;
+            line-height: 1.65;
+            scrollbar-gutter: stable;
+        }
+
+        .mc-card__body::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .mc-card__body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .mc-card__body::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.12);
+            border-radius: 3px;
+        }
+
+        .mc-card__body::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.22);
+        }
+
+        /* ──────────────────────────────────────────────
+           3d. ACTION BAR (Loesung, Neue Aufgabe, KI)
+               Replaces the old sticky footer.
+           ────────────────────────────────────────────── */
+        .mc-action-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line);
+        }
+
+        .mc-action-bar__spacer {
+            flex: 1;
+        }
+
+        .mc-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xs);
+            background: rgba(255, 255, 255, 0.7);
+            color: var(--ink-soft);
+            font-family: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 130ms;
+        }
+
+        .mc-action-btn:hover {
+            border-color: var(--card-color);
+            color: var(--card-color-dark);
+            background: var(--card-color-soft);
+        }
+
+        .mc-action-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+        }
+
+        .mc-action-btn--ki {
+            border-style: dashed;
+            border-color: color-mix(in srgb, var(--card-color) 30%, var(--line));
+            color: var(--card-color);
+        }
+
+        .mc-action-btn--ki:hover {
+            border-style: solid;
+            background: var(--card-color-soft);
+        }
+
+        /* ──────────────────────────────────────────────
+           3e. CTA BUTTON – last element in body
+               (wie modultypen-design .cta)
+           ────────────────────────────────────────────── */
+        .mc-cta {
+            display: block;
+            width: 100%;
+            margin-top: 16px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--card-color-dark), var(--card-color));
+            color: #fff;
+            font-family: "Sora", sans-serif;
+            font-size: 0.86rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: filter 150ms, transform 100ms;
+            opacity: 0.95;
+        }
+
+        .mc-cta:hover {
+            filter: brightness(1.08);
+            opacity: 1;
+        }
+
+        .mc-cta:active {
+            transform: scale(0.98);
+        }
+
+        /* ══════════════════════════════════════════════
+           4. MODULE COLOR VARIANTS
+           ══════════════════════════════════════════════ */
+        .mc-card--training {
+            --card-color: var(--c-training);
+            --card-color-dark: var(--c-training-dark);
+            --card-color-soft: var(--c-training-soft);
+            --card-color-head: var(--c-training-head);
+        }
+
+        .mc-card--blurting {
+            --card-color: var(--c-blurting);
+            --card-color-dark: var(--c-blurting-dark);
+            --card-color-soft: var(--c-blurting-soft);
+            --card-color-head: var(--c-blurting-head);
+        }
+
+        .mc-card--feynman {
+            --card-color: var(--c-feynman);
+            --card-color-dark: var(--c-feynman-dark);
+            --card-color-soft: var(--c-feynman-soft);
+            --card-color-head: var(--c-feynman-head);
+        }
+
+        .mc-card--kompetenzliste {
+            --card-color: var(--c-kompetenz);
+            --card-color-dark: var(--c-kompetenz-dark);
+            --card-color-soft: var(--c-kompetenz-soft);
+            --card-color-head: var(--c-kompetenz-head);
+        }
+
+        .mc-card--skript-tipps {
+            --card-color: var(--c-blurting);
+            --card-color-dark: var(--c-blurting-dark);
+            --card-color-soft: var(--c-blurting-soft);
+            --card-color-head: var(--c-blurting-head);
+        }
+
+        .mc-card--skript-beispiel {
+            --card-color: var(--c-feynman);
+            --card-color-dark: var(--c-feynman-dark);
+            --card-color-soft: var(--c-feynman-soft);
+            --card-color-head: var(--c-feynman-head);
+        }
+
+        .mc-card--skript-aufgabe {
+            --card-color: var(--c-training);
+            --card-color-dark: var(--c-training-dark);
+            --card-color-soft: var(--c-training-soft);
+            --card-color-head: var(--c-training-head);
+        }
+
+        .mc-card--warmup {
+            --card-color: var(--c-warmup);
+            --card-color-dark: var(--c-warmup-dark);
+            --card-color-soft: var(--c-warmup-soft);
+            --card-color-head: var(--c-warmup-head);
+        }
+
+        .mc-card--flashcards {
+            --card-color: var(--c-flashcards);
+            --card-color-dark: var(--c-flashcards-dark);
+            --card-color-soft: var(--c-flashcards-soft);
+            --card-color-head: var(--c-flashcards-head);
+        }
+
+        /* ══════════════════════════════════════════════
+           5. DEMO CONTENT HELPERS
+           ══════════════════════════════════════════════ */
+        .demo-task-block {
+            background: rgba(0, 0, 0, 0.025);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .demo-task-block h4 {
+            font-family: "Sora", sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .demo-task-block p {
+            margin-bottom: 6px;
+        }
+
+        .demo-input-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .demo-input {
+            flex: 1;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xs);
+            font-family: inherit;
+            font-size: 0.9rem;
+            background: #fff;
+        }
+
+        .demo-graphic {
+            width: 100%;
+            height: 160px;
+            background: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 0, 0, 0.02) 8px, rgba(0, 0, 0, 0.02) 16px), var(--card-color-soft);
+            border: 1px dashed color-mix(in srgb, var(--card-color) 30%, var(--line));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-muted);
+            font-size: 0.82rem;
+            margin: 10px 0;
+        }
+
+        .demo-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            background: var(--card-color-soft);
+            color: var(--card-color);
+            margin-bottom: 8px;
+        }
+
+        .demo-kl-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .demo-kl-row:last-child {
+            border-bottom: none;
+        }
+
+        .demo-kl-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--card-color);
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .demo-kl-check.checked {
+            background: var(--card-color);
+        }
+
+        .demo-kl-text {
+            flex: 1;
+            font-size: 0.88rem;
+        }
+
+        .demo-kl-status {
+            font-size: 0.72rem;
+            color: var(--ink-muted);
+            white-space: nowrap;
+        }
+
+        .demo-blurting-prompt {
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 28px 16px;
+        }
+
+        .demo-blurting-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            padding: 0 16px 12px;
+        }
+
+        .demo-blurting-kw {
+            padding: 5px 10px;
+            background: var(--card-color-soft);
+            border: 1px solid color-mix(in srgb, var(--card-color) 20%, var(--line));
+            border-radius: 999px;
+            font-size: 0.78rem;
+            color: var(--card-color-dark);
+        }
+
+        .demo-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 12px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            background: #fff;
+        }
+
+        .demo-fc-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            padding: 24px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* ══════════════════════════════════════════════
+           6. LAYOUT
+           ══════════════════════════════════════════════ */
+        .cards-showcase {
+            display: grid;
+            gap: 20px;
+        }
+
+        .cards-showcase--narrow {
+            max-width: 660px;
+            margin-inline: auto;
+        }
+
+        /* ══════════════════════════════════════════════
+           7. RESPONSIVE
+           ══════════════════════════════════════════════ */
+        @media (max-width: 720px) {
+            .mc-card--narrow {
+                width: 100%;
+            }
+
+            .mc-card__header {
+                padding: 10px 12px;
+            }
+
+            .mc-card__body {
+                padding: 14px 14px;
+            }
+
+            .mc-card__title {
+                font-size: 0.82rem;
+            }
+
+            .mc-action-bar {
+                gap: 6px;
+            }
+
+            .mc-action-btn {
+                padding: 6px 10px;
+                font-size: 0.76rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page-shell">
+
+        <!-- ════════════════════════════════════════════
+         INTRO
+         ════════════════════════════════════════════ -->
+        <div class="intro-box">
+            <h1>Variante A – Soft-Header, CTA im Body</h1>
+            <p>
+                Header mit blassem Farbhintergrund und farbiger Schrift (wie modultypen-design.html).
+                Kein separater Footer – der Aktions-Button ist das letzte Element im Body.
+                KI-Agent einheitlich im 3-Punkt-Menue, bei Training/Feynman/Blurting zusaetzlich als sichtbarer Button
+                in der Action-Bar.
+            </p>
+            <ul>
+                <li><strong>Header:</strong> Soft-Hintergrund (rgba der Modulfarbe), Schrift in Modulfarbe</li>
+                <li><strong>Action-Bar:</strong> Loesung anzeigen · Neue Aufgabe · KI-Agent (bei
+                    Training/Skript-Aufgabe)</li>
+                <li><strong>CTA:</strong> Voller Gradient-Button als letztes Body-Element</li>
+                <li><strong>3-Punkt-Menue:</strong> Modul-Navigation + KI-Agent kopieren</li>
+            </ul>
+        </div>
+
+
+        <!-- ════════════════════════════════════════════
+         WIDE CARDS
+         ════════════════════════════════════════════ -->
+        <h2 class="section-title">Breite Karten</h2>
+
+        <div class="cards-showcase" style="margin-bottom: 36px;">
+
+            <!-- ── TRAINING ── -->
+            <article class="mc-card mc-card--wide mc-card--viewport mc-card--training">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </span>
+                        <span class="mc-card__title">Ableitungsregeln anwenden</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Training</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span><span class="shortcut">aktiv</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#">
+                                    <span class="menu-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Erklaer-Agent kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="mc-card__body">
+                    <div class="demo-tag">Aufgabe 3 von 5</div>
+                    <div class="demo-task-block">
+                        <h4>a) Bestimme die Ableitung von f(x) = 3x⁴ − 2x² + 5x − 1</h4>
+                        <p>Wende die Summen- und Potenzregel an.</p>
+                        <div class="demo-input-group">
+                            <span>f'(x) =</span>
+                            <input class="demo-input" type="text" placeholder="Ableitung eingeben ...">
+                        </div>
+                    </div>
+                    <div class="demo-task-block">
+                        <h4>b) Berechne f'(2)</h4>
+                        <div class="demo-graphic">[ Koordinatensystem / Grafik-Platzhalter ]</div>
+                        <div class="demo-input-group">
+                            <span>f'(2) =</span>
+                            <input class="demo-input" type="text" placeholder="Ergebnis">
+                        </div>
+                    </div>
+                    <div class="demo-task-block">
+                        <h4>c) Bestimme die Steigung der Tangente im Punkt P(2 | f(2))</h4>
+                        <p>Gib die Tangentengleichung an.</p>
+                        <div class="demo-input-group">
+                            <span>t(x) =</span>
+                            <input class="demo-input" type="text" placeholder="Tangentengleichung">
+                        </div>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div class="mc-action-bar">
+                        <button class="mc-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            Loesung anzeigen
+                        </button>
+                        <button class="mc-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 4v6h-6" />
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                            </svg>
+                            Neue Aufgabe
+                        </button>
+                        <button class="mc-action-btn mc-action-btn--ki">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            KI-Erklaer-Agent
+                        </button>
+                        <span class="mc-action-bar__spacer"></span>
+                    </div>
+
+                    <!-- CTA -->
+                    <button class="mc-cta">Aufgabe pruefen →</button>
+                </div>
+            </article>
+
+
+            <!-- ── KOMPETENZLISTE ── -->
+            <article class="mc-card mc-card--wide mc-card--kompetenzliste">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">☑</span>
+                        <span class="mc-card__title">Kompetenzliste – Kurvendiskussion</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Kompetenzliste</span>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <div class="demo-kl-row">
+                        <div class="demo-kl-check checked"></div><span class="demo-kl-text"><strong>A1</strong> –
+                            Ableitungsregeln anwenden</span><span class="demo-kl-status">3/3 ✓</span>
+                    </div>
+                    <div class="demo-kl-row">
+                        <div class="demo-kl-check checked"></div><span class="demo-kl-text"><strong>A2</strong> –
+                            Extremstellen berechnen</span><span class="demo-kl-status">3/3 ✓</span>
+                    </div>
+                    <div class="demo-kl-row">
+                        <div class="demo-kl-check"></div><span class="demo-kl-text"><strong>A3</strong> – Wendepunkte
+                            bestimmen</span><span class="demo-kl-status">1/3</span>
+                    </div>
+                    <div class="demo-kl-row">
+                        <div class="demo-kl-check"></div><span class="demo-kl-text"><strong>A4</strong> – Monotonie und
+                            Kruemmung</span><span class="demo-kl-status">0/3</span>
+                    </div>
+                    <div class="demo-kl-row">
+                        <div class="demo-kl-check"></div><span class="demo-kl-text"><strong>A5</strong> – Gesamte
+                            Kurvendiskussion</span><span class="demo-kl-status">0/3</span>
+                    </div>
+                    <button class="mc-cta">Fortschritt speichern</button>
+                </div>
+            </article>
+
+
+            <!-- ── SKRIPT: TIPPS (Blurting-Farbe) ── -->
+            <article class="mc-card mc-card--wide mc-card--skript-tipps">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2a7 7 0 0 1 4 12.7V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.3A7 7 0 0 1 12 2z"
+                                    fill="none" stroke="currentColor" stroke-width="2" />
+                                <line x1="9" y1="21" x2="15" y2="21" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </span>
+                        <span class="mc-card__title">Tipps – Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Skript · Tipps</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <p><strong>Strategie:</strong> Um Wendepunkte zu bestimmen, gehst du so vor:</p>
+                    <ol style="padding-left: 20px; margin: 10px 0;">
+                        <li>Bilde die zweite Ableitung f''(x)</li>
+                        <li>Setze f''(x) = 0 und loese nach x</li>
+                        <li>Pruefe das Vorzeichen-Wechsel-Kriterium</li>
+                        <li>Berechne den zugehoerigen y-Wert: W(x₀ | f(x₀))</li>
+                    </ol>
+                    <p style="margin-top: 12px; color: var(--ink-soft);">
+                        <strong>Typischer Fehler:</strong> f''(x₀) = 0 allein reicht nicht – Vorzeichenwechsel pruefen!
+                    </p>
+                    <button class="mc-cta">Verstanden ✓</button>
+                </div>
+            </article>
+
+
+            <!-- ── SKRIPT: BEISPIEL (Feynman-Farbe) ── -->
+            <article class="mc-card mc-card--wide mc-card--skript-beispiel">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">📝</span>
+                        <span class="mc-card__title">Beispiel – Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Skript · Beispiel</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <p><strong>Gegeben:</strong> f(x) = x³ − 6x² + 9x + 1</p>
+                    <p style="margin-top:12px"><strong>Schritt 1:</strong> f'(x) = 3x² − 12x + 9 → f''(x) = 6x − 12</p>
+                    <p style="margin-top:12px"><strong>Schritt 2:</strong> 6x − 12 = 0 ⟹ x = 2</p>
+                    <p style="margin-top:12px"><strong>Schritt 3:</strong> f''(1) = −6 &lt; 0, f''(3) = 6 &gt; 0 → VZW ✓
+                    </p>
+                    <p style="margin-top:12px"><strong>Ergebnis:</strong> Wendepunkt W(2 | 7)</p>
+                    <button class="mc-cta">Naechster Schritt →</button>
+                </div>
+            </article>
+
+
+            <!-- ── SKRIPT: AUFGABE (Training-Farbe) ── -->
+            <article class="mc-card mc-card--wide mc-card--viewport mc-card--skript-aufgabe">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </span>
+                        <span class="mc-card__title">Aufgabe – Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Skript · Aufgabe</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#">
+                                    <span class="menu-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Erklaer-Agent kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <div class="demo-task-block">
+                        <h4>Bestimme die Wendepunkte von g(x) = 2x³ + 3x² − 12x + 4</h4>
+                        <div class="demo-graphic">[ Graph von g ]</div>
+                        <div class="demo-input-group"><span>g''(x) =</span><input class="demo-input"
+                                placeholder="Zweite Ableitung"></div>
+                        <div class="demo-input-group"><span>x₀ =</span><input class="demo-input"
+                                placeholder="Wendestelle"></div>
+                        <div class="demo-input-group"><span>Wendepunkt:</span><input class="demo-input"
+                                placeholder="W( _ | _ )"></div>
+                    </div>
+                    <div class="mc-action-bar">
+                        <button class="mc-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            Loesung anzeigen
+                        </button>
+                        <button class="mc-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 4v6h-6" />
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                            </svg>
+                            Neue Aufgabe
+                        </button>
+                        <button class="mc-action-btn mc-action-btn--ki">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            KI-Erklaer-Agent
+                        </button>
+                    </div>
+                    <button class="mc-cta">Aufgabe pruefen →</button>
+                </div>
+            </article>
+
+        </div>
+
+
+        <!-- ════════════════════════════════════════════
+         NARROW CARDS
+         ════════════════════════════════════════════ -->
+        <h2 class="section-title">Schmale Karten</h2>
+
+        <div class="cards-showcase cards-showcase--narrow">
+
+            <!-- ── BLURTING ── -->
+            <article class="mc-card mc-card--narrow mc-card--viewport mc-card--blurting">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </span>
+                        <span class="mc-card__title">Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Blurting</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#">
+                                    <span class="menu-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Erklaer-Agent kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <div class="demo-blurting-prompt">
+                        Erklaere in eigenen Worten, wie man Wendepunkte bestimmt.
+                    </div>
+                    <textarea class="demo-textarea" placeholder="Schreibe alles auf, was dir einfaellt ..."></textarea>
+                    <div style="margin-top: 16px;">
+                        <p style="font-size: 0.82rem; color: var(--ink-muted); margin-bottom: 8px;">Stichwoerter zum
+                            Abgleich:</p>
+                        <div class="demo-blurting-keywords">
+                            <span class="demo-blurting-kw">zweite Ableitung</span>
+                            <span class="demo-blurting-kw">Nullstelle</span>
+                            <span class="demo-blurting-kw">Vorzeichenwechsel</span>
+                            <span class="demo-blurting-kw">f''(x) = 0</span>
+                            <span class="demo-blurting-kw">y-Wert</span>
+                        </div>
+                    </div>
+                    <button class="mc-cta">Selbstcheck abschliessen ✓</button>
+                </div>
+            </article>
+
+
+            <!-- ── FEYNMAN ── -->
+            <article class="mc-card mc-card--narrow mc-card--viewport mc-card--feynman">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </span>
+                        <span class="mc-card__title">Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Feynman</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#">
+                                    <span class="menu-icon"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Lernpartner kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <p style="font-weight: 600; font-size: 1rem; margin-bottom: 12px;">
+                        Stell dir vor, du erklaerst einem Mitschueler, was Wendepunkte sind.
+                    </p>
+                    <div class="demo-task-block">
+                        <h4>1. Die Grundidee</h4><textarea class="demo-textarea" style="min-height:60px"
+                            placeholder="Was ist ein Wendepunkt?"></textarea>
+                    </div>
+                    <div class="demo-task-block">
+                        <h4>2. Die Schritte</h4><textarea class="demo-textarea" style="min-height:60px"
+                            placeholder="Wie geht man vor?"></textarea>
+                    </div>
+                    <div class="demo-task-block">
+                        <h4>3. Typischer Stolperstein</h4><textarea class="demo-textarea" style="min-height:60px"
+                            placeholder="Was wird oft falsch gemacht?"></textarea>
+                    </div>
+                    <div class="demo-task-block">
+                        <h4>4. Mini-Beispiel</h4><textarea class="demo-textarea" style="min-height:60px"
+                            placeholder="f(x) = ... → W( _ | _ )"></textarea>
+                    </div>
+
+                    <div class="mc-action-bar">
+                        <button class="mc-action-btn mc-action-btn--ki">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            KI-Lernpartner kopieren
+                        </button>
+                    </div>
+                    <button class="mc-cta">Erklaerung abschliessen ✓</button>
+                </div>
+            </article>
+
+
+            <!-- ── FLASHCARDS ── -->
+            <article class="mc-card mc-card--narrow mc-card--viewport mc-card--flashcards">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">5</span>
+                        <span class="mc-card__title">Karte 3 von 12</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Flashcards</span>
+                        <div class="mc-menu-wrap">
+                            <button class="mc-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="mc-menu-popup">
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="mc-menu-popup__divider"></div>
+                                <a class="mc-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <div class="demo-fc-front">
+                        Was ist die notwendige Bedingung fuer einen Wendepunkt?
+                    </div>
+                    <button class="mc-cta">Karte drehen ↻</button>
+                </div>
+            </article>
+
+
+            <!-- ── WARM-UP ── -->
+            <article class="mc-card mc-card--narrow mc-card--warmup">
+                <header class="mc-card__header">
+                    <div class="mc-card__header-left">
+                        <span class="mc-card__check-badge">🔥</span>
+                        <span class="mc-card__title">Warm-Up – Kurvendiskussion</span>
+                    </div>
+                    <div class="mc-card__header-right">
+                        <span class="mc-card__module-label">Warm-Up</span>
+                    </div>
+                </header>
+                <div class="mc-card__body">
+                    <div style="text-align: center; padding: 20px 0;">
+                        <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 16px;">Wusstest du?</p>
+                        <p style="max-width: 48ch; margin: 0 auto; line-height: 1.6;">
+                            Die erste dokumentierte Kurvendiskussion wurde von Pierre de Fermat
+                            um 1638 durchgefuehrt – fast 50 Jahre vor Newton und Leibniz.
+                        </p>
+                    </div>
+                    <div class="demo-graphic" style="height: 100px;">[ Illustration ]</div>
+                    <button class="mc-cta">Weiter →</button>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <script>
+        function toggleMenu(btn) {
+            const popup = btn.nextElementSibling;
+            const wasOpen = popup.classList.contains('is-open');
+            document.querySelectorAll('.mc-menu-popup.is-open').forEach(p => p.classList.remove('is-open'));
+            if (!wasOpen) popup.classList.add('is-open');
+        }
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.mc-menu-wrap'))
+                document.querySelectorAll('.mc-menu-popup.is-open').forEach(p => p.classList.remove('is-open'));
+        });
+    </script>
+</body>
+
+</html>

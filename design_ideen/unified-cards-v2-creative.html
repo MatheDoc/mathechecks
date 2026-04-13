@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatheChecks – Variante B: Modern Dark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ══════════════════════════════════════════════
+           0. TOKENS – Deep slate + vivid accents
+           ══════════════════════════════════════════════ */
+        :root {
+            --bg-0: #0c0f14;
+            --bg-1: #13161d;
+            --bg-2: #1a1e28;
+            --bg-3: #232836;
+            --surface: rgba(30, 35, 50, 0.72);
+            --surface-hi: rgba(40, 46, 64, 0.65);
+            --glass: rgba(22, 27, 40, 0.55);
+            --glass-line: rgba(255, 255, 255, 0.06);
+
+            --text: #e8eaf0;
+            --text-dim: #8b92a8;
+            --text-muted: #555d76;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-strong: rgba(255, 255, 255, 0.12);
+
+            --radius-card: 18px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+
+            --shadow-card: 0 16px 48px rgba(0, 0, 0, 0.35), 0 2px 12px rgba(0, 0, 0, 0.25);
+            --shadow-popup: 0 12px 40px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 40px;
+
+            /* ── Module Colors: saturated, vibrant ── */
+            --c-training: #34d399;
+            --c-training-deep: #059669;
+            --c-training-glow: rgba(52, 211, 153, 0.18);
+            --c-training-grad: linear-gradient(135deg, #059669, #34d399);
+
+            --c-blurting: #2dd4bf;
+            --c-blurting-deep: #0d9488;
+            --c-blurting-glow: rgba(45, 212, 191, 0.18);
+            --c-blurting-grad: linear-gradient(135deg, #0d9488, #2dd4bf);
+
+            --c-feynman: #818cf8;
+            --c-feynman-deep: #6366f1;
+            --c-feynman-glow: rgba(129, 140, 248, 0.18);
+            --c-feynman-grad: linear-gradient(135deg, #6366f1, #a78bfa);
+
+            --c-kompetenz: #c084fc;
+            --c-kompetenz-deep: #9333ea;
+            --c-kompetenz-glow: rgba(192, 132, 252, 0.18);
+            --c-kompetenz-grad: linear-gradient(135deg, #9333ea, #c084fc);
+
+            --c-warmup: #fbbf24;
+            --c-warmup-deep: #d97706;
+            --c-warmup-glow: rgba(251, 191, 36, 0.15);
+            --c-warmup-grad: linear-gradient(135deg, #d97706, #fbbf24);
+
+            --c-flashcards: #38bdf8;
+            --c-flashcards-deep: #0284c7;
+            --c-flashcards-glow: rgba(56, 189, 248, 0.18);
+            --c-flashcards-grad: linear-gradient(135deg, #0284c7, #38bdf8);
+
+            --c-skript: #fb923c;
+            --c-skript-deep: #ea580c;
+            --c-skript-glow: rgba(251, 146, 60, 0.15);
+            --c-skript-grad: linear-gradient(135deg, #ea580c, #fb923c);
+        }
+
+        /* ══════════════════════════════════════════════
+           1. RESETS & BASE
+           ══════════════════════════════════════════════ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            color: var(--text);
+            background: var(--bg-0);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Aurora mesh background ── */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse 900px 500px at 15% 10%, rgba(99, 102, 241, 0.12), transparent 70%),
+                radial-gradient(ellipse 700px 400px at 85% 20%, rgba(52, 211, 153, 0.08), transparent 65%),
+                radial-gradient(ellipse 500px 600px at 50% 80%, rgba(192, 132, 252, 0.06), transparent 60%),
+                radial-gradient(ellipse 400px 300px at 80% 70%, rgba(56, 189, 248, 0.05), transparent 55%);
+        }
+
+        /* Subtle noise texture */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            width: min(1300px, 95vw);
+            margin: 0 auto;
+            padding: 32px 0 80px;
+        }
+
+        /* ══════════════════════════════════════════════
+           2. SECTION / INTRO
+           ══════════════════════════════════════════════ */
+        .section-title {
+            font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin: 48px 0 16px;
+            color: var(--text);
+        }
+
+        .section-subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin: -8px 0 22px;
+        }
+
+        .s-hero {
+            position: relative;
+            border-radius: 22px;
+            padding: 36px 32px;
+            margin-bottom: 36px;
+            overflow: hidden;
+            border: 1px solid var(--glass-line);
+            background:
+                radial-gradient(ellipse 120% 80% at 20% 30%, rgba(99, 102, 241, 0.20), transparent 60%),
+                radial-gradient(ellipse 100% 60% at 80% 70%, rgba(52, 211, 153, 0.14), transparent 55%),
+                linear-gradient(160deg, var(--bg-2), var(--bg-1));
+            backdrop-filter: blur(20px);
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.3);
+        }
+
+        .s-hero h1 {
+            font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #e8eaf0, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .s-hero p {
+            color: var(--text-dim);
+            line-height: 1.55;
+            max-width: 68ch;
+        }
+
+        .s-hero ul {
+            margin: 14px 0 0;
+            padding-left: 18px;
+            color: var(--text-dim);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .s-hero ul strong {
+            color: var(--text);
+        }
+
+        /* ══════════════════════════════════════════════
+           3. CARD BASE — .v2
+           ══════════════════════════════════════════════ */
+        .v2 {
+            --card-color: var(--text-dim);
+            --card-color-deep: var(--text);
+            --card-glow: transparent;
+            --card-grad: linear-gradient(135deg, var(--bg-3), var(--bg-2));
+            background: var(--surface);
+            border: 1px solid var(--glass-line);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: box-shadow 300ms, transform 200ms, border-color 300ms;
+        }
+
+        .v2:hover {
+            border-color: color-mix(in srgb, var(--card-color) 28%, transparent);
+            box-shadow: var(--shadow-card), var(--shadow-glow) var(--card-glow);
+        }
+
+        .v2--wide {
+            width: 100%;
+        }
+
+        .v2--narrow {
+            width: min(660px, 100%);
+            margin-inline: auto;
+        }
+
+        .v2--viewport {
+            max-height: calc(100dvh - 80px);
+        }
+
+        /* ──────────────────────────────────────────────
+           3a. HEADER – gradient stripe + glassmorphism
+           ────────────────────────────────────────────── */
+        .v2__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 18px;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            background:
+                linear-gradient(to right, color-mix(in srgb, var(--card-color) 10%, var(--bg-2)), var(--bg-2));
+            border-bottom: 1px solid var(--line);
+        }
+
+        /* Accent stripe at top */
+        .v2__header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-grad);
+            opacity: 0.9;
+        }
+
+        .v2__header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            flex: 1;
+        }
+
+        .v2__badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            background: color-mix(in srgb, var(--card-color) 14%, transparent);
+            flex-shrink: 0;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--card-color);
+        }
+
+        .v2__badge svg {
+            width: 15px;
+            height: 15px;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            fill: none;
+        }
+
+        .v2__title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text);
+        }
+
+        .v2__module-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--card-color);
+            background: color-mix(in srgb, var(--card-color) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--card-color) 18%, transparent);
+            flex-shrink: 0;
+        }
+
+        .v2__header-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        /* ──────────────────────────────────────────────
+           3b. THREE-DOT MENU
+           ────────────────────────────────────────────── */
+        .v2-menu-wrap {
+            position: relative;
+        }
+
+        .v2-menu-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 150ms;
+        }
+
+        .v2-menu-btn:hover {
+            background: var(--surface-hi);
+            color: var(--card-color);
+            border-color: color-mix(in srgb, var(--card-color) 24%, transparent);
+        }
+
+        .v2-menu-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .v2-menu-popup {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            min-width: 230px;
+            background: var(--bg-2);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-popup);
+            z-index: 20;
+            padding: 6px 0;
+            backdrop-filter: blur(20px);
+            animation: v2-menu-in 180ms ease;
+        }
+
+        .v2-menu-popup.is-open {
+            display: block;
+        }
+
+        @keyframes v2-menu-in {
+            from {
+                opacity: 0;
+                transform: translateY(-8px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .v2-menu-popup__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            font-size: 0.84rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 100ms;
+        }
+
+        .v2-menu-popup__item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+        }
+
+        .v2-menu-popup__item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .v2-menu-popup__item .label {
+            flex: 1;
+        }
+
+        .v2-menu-popup__item .shortcut {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        .v2-menu-popup__item .mi {
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .v2-menu-popup__item .mi svg {
+            width: 14px;
+            height: 14px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+        }
+
+        .v2-menu-popup__divider {
+            height: 1px;
+            background: var(--line);
+            margin: 4px 12px;
+        }
+
+        /* ──────────────────────────────────────────────
+           3c. BODY
+           ────────────────────────────────────────────── */
+        .v2__body {
+            flex: 1 1 auto;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 20px 22px;
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--text);
+            scrollbar-gutter: stable;
+        }
+
+        .v2__body::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .v2__body::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .v2__body::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+        }
+
+        .v2__body::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        /* ──────────────────────────────────────────────
+           3d. ACTION BAR & CTA
+           ────────────────────────────────────────────── */
+        .v2-action-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+        }
+
+        .v2-action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 13px;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-xs);
+            background: transparent;
+            color: var(--text-dim);
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 130ms;
+        }
+
+        .v2-action-btn:hover {
+            border-color: var(--card-color);
+            color: var(--card-color);
+            background: color-mix(in srgb, var(--card-color) 8%, transparent);
+        }
+
+        .v2-action-btn svg {
+            width: 14px;
+            height: 14px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.8;
+        }
+
+        .v2-action-btn--ki {
+            border-style: dashed;
+            border-color: color-mix(in srgb, var(--card-color) 24%, var(--line));
+            color: var(--card-color);
+        }
+
+        .v2-action-btn--ki:hover {
+            border-style: solid;
+            background: color-mix(in srgb, var(--card-color) 10%, transparent);
+        }
+
+        .v2-cta {
+            display: block;
+            width: 100%;
+            margin-top: 18px;
+            padding: 13px 20px;
+            border: 0;
+            border-radius: 12px;
+            background: var(--card-grad);
+            color: #fff;
+            font-family: "Inter", sans-serif;
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: filter 180ms, transform 120ms;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .v2-cta::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 50%);
+            pointer-events: none;
+        }
+
+        .v2-cta:hover {
+            filter: brightness(1.12);
+        }
+
+        .v2-cta:active {
+            transform: scale(0.98);
+        }
+
+        /* ══════════════════════════════════════════════
+           4. MODULE VARIANTS
+           ══════════════════════════════════════════════ */
+        .v2--training {
+            --card-color: var(--c-training);
+            --card-color-deep: var(--c-training-deep);
+            --card-glow: var(--c-training-glow);
+            --card-grad: var(--c-training-grad);
+        }
+
+        .v2--blurting {
+            --card-color: var(--c-blurting);
+            --card-color-deep: var(--c-blurting-deep);
+            --card-glow: var(--c-blurting-glow);
+            --card-grad: var(--c-blurting-grad);
+        }
+
+        .v2--feynman {
+            --card-color: var(--c-feynman);
+            --card-color-deep: var(--c-feynman-deep);
+            --card-glow: var(--c-feynman-glow);
+            --card-grad: var(--c-feynman-grad);
+        }
+
+        .v2--kompetenzliste {
+            --card-color: var(--c-kompetenz);
+            --card-color-deep: var(--c-kompetenz-deep);
+            --card-glow: var(--c-kompetenz-glow);
+            --card-grad: var(--c-kompetenz-grad);
+        }
+
+        .v2--skript-tipps {
+            --card-color: var(--c-blurting);
+            --card-color-deep: var(--c-blurting-deep);
+            --card-glow: var(--c-blurting-glow);
+            --card-grad: var(--c-blurting-grad);
+        }
+
+        .v2--skript-beispiel {
+            --card-color: var(--c-feynman);
+            --card-color-deep: var(--c-feynman-deep);
+            --card-glow: var(--c-feynman-glow);
+            --card-grad: var(--c-feynman-grad);
+        }
+
+        .v2--skript-aufgabe {
+            --card-color: var(--c-training);
+            --card-color-deep: var(--c-training-deep);
+            --card-glow: var(--c-training-glow);
+            --card-grad: var(--c-training-grad);
+        }
+
+        .v2--warmup {
+            --card-color: var(--c-warmup);
+            --card-color-deep: var(--c-warmup-deep);
+            --card-glow: var(--c-warmup-glow);
+            --card-grad: var(--c-warmup-grad);
+        }
+
+        .v2--flashcards {
+            --card-color: var(--c-flashcards);
+            --card-color-deep: var(--c-flashcards-deep);
+            --card-glow: var(--c-flashcards-glow);
+            --card-grad: var(--c-flashcards-grad);
+        }
+
+        /* ══════════════════════════════════════════════
+           5. DEMO HELPERS (dark theme)
+           ══════════════════════════════════════════════ */
+        .d-task-block {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+        .d-task-block h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .d-task-block p {
+            margin-bottom: 6px;
+            color: var(--text-dim);
+        }
+
+        .d-input-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .d-input {
+            flex: 1;
+            padding: 9px 13px;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-xs);
+            background: var(--bg-1);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: border-color 150ms;
+        }
+
+        .d-input:focus {
+            outline: none;
+            border-color: var(--card-color);
+        }
+
+        .d-graphic {
+            width: 100%;
+            height: 160px;
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(255, 255, 255, 0.015) 8px, rgba(255, 255, 255, 0.015) 16px),
+                color-mix(in srgb, var(--card-color) 6%, var(--bg-1));
+            border: 1px dashed color-mix(in srgb, var(--card-color) 20%, var(--line));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            margin: 10px 0;
+        }
+
+        .d-tag {
+            display: inline-block;
+            padding: 3px 9px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: color-mix(in srgb, var(--card-color) 12%, transparent);
+            color: var(--card-color);
+            margin-bottom: 10px;
+        }
+
+        .d-kl-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .d-kl-row:last-child {
+            border-bottom: none;
+        }
+
+        .d-kl-check {
+            width: 20px;
+            height: 20px;
+            border: 2px solid color-mix(in srgb, var(--card-color) 50%, var(--line));
+            border-radius: 5px;
+            flex-shrink: 0;
+            transition: all 150ms;
+        }
+
+        .d-kl-check.checked {
+            background: var(--card-color);
+            border-color: var(--card-color);
+        }
+
+        .d-kl-text {
+            flex: 1;
+            font-size: 0.88rem;
+        }
+
+        .d-kl-status {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .d-blurting-prompt {
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-align: center;
+            padding: 32px 16px;
+            background: linear-gradient(to bottom, var(--text), var(--text-dim));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .d-blurting-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            padding: 0 16px 12px;
+        }
+
+        .d-blurting-kw {
+            padding: 5px 10px;
+            background: color-mix(in srgb, var(--card-color) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--card-color) 16%, transparent);
+            border-radius: 999px;
+            font-size: 0.76rem;
+            color: var(--card-color);
+        }
+
+        .d-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 13px;
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-sm);
+            background: var(--bg-1);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+            transition: border-color 150ms;
+        }
+
+        .d-textarea:focus {
+            outline: none;
+            border-color: var(--card-color);
+        }
+
+        .d-fc-front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 220px;
+            padding: 28px;
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ══════════════════════════════════════════════
+           6. LAYOUT
+           ══════════════════════════════════════════════ */
+        .cards-showcase {
+            display: grid;
+            gap: 22px;
+        }
+
+        .cards-showcase--narrow {
+            max-width: 660px;
+            margin-inline: auto;
+        }
+
+        /* ══════════════════════════════════════════════
+           7. RESPONSIVE
+           ══════════════════════════════════════════════ */
+        @media (max-width: 720px) {
+            .v2--narrow {
+                width: 100%;
+            }
+
+            .v2__header {
+                padding: 12px 14px;
+            }
+
+            .v2__body {
+                padding: 16px 16px;
+            }
+
+            .v2__title {
+                font-size: 0.82rem;
+            }
+
+            .s-hero {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page-shell">
+
+        <!-- ════════════════════════════════════════════
+         HERO INTRO
+         ════════════════════════════════════════════ -->
+        <section class="s-hero">
+            <h1>Variante B – Modern Dark</h1>
+            <p>
+                Glasmorphismus-Karten auf dunklem Slate. Farbiger Akzent-Stripe am Header-Oberkante,
+                leuchtende Hover-Glows, satte Gradient-CTAs. Gleiche Kartenstruktur, voellig anderer Auftritt.
+            </p>
+            <ul>
+                <li><strong>Background:</strong> Deep Slate mit Aurora-Mesh-Gradienten</li>
+                <li><strong>Cards:</strong> Frosted Glass, dezente Borders, Glow-on-Hover</li>
+                <li><strong>Header:</strong> 3px Gradient-Stripe oben, Pill-Tag fuer Modultyp</li>
+                <li><strong>CTA:</strong> Voller Gradient-Button mit innerer Lichtreflexion</li>
+                <li><strong>Farben:</strong> Lebendig, gesaettigt bei hohem Kontrast</li>
+            </ul>
+        </section>
+
+
+        <!-- ════════════════════════════════════════════
+         WIDE CARDS
+         ════════════════════════════════════════════ -->
+        <h2 class="section-title">Breite Karten</h2>
+
+        <div class="cards-showcase" style="margin-bottom: 40px;">
+
+            <!-- ── TRAINING ── -->
+            <article class="v2 v2--wide v2--viewport v2--training">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </span>
+                        <span class="v2__title">Ableitungsregeln anwenden</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Training</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span><span class="shortcut">aktiv</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#">
+                                    <span class="mi"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Erklaer-Agent kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <div class="v2__body">
+                    <span class="d-tag">Aufgabe 3 von 5</span>
+                    <div class="d-task-block">
+                        <h4>a) Bestimme die Ableitung von f(x) = 3x⁴ − 2x² + 5x − 1</h4>
+                        <p>Wende die Summen- und Potenzregel an.</p>
+                        <div class="d-input-group"><span>f'(x) =</span><input class="d-input"
+                                placeholder="Ableitung eingeben ..."></div>
+                    </div>
+                    <div class="d-task-block">
+                        <h4>b) Berechne f'(2)</h4>
+                        <div class="d-graphic">[ Koordinatensystem / Grafik-Platzhalter ]</div>
+                        <div class="d-input-group"><span>f'(2) =</span><input class="d-input" placeholder="Ergebnis">
+                        </div>
+                    </div>
+                    <div class="d-task-block">
+                        <h4>c) Bestimme die Steigung der Tangente im Punkt P(2 | f(2))</h4>
+                        <p>Gib die Tangentengleichung an.</p>
+                        <div class="d-input-group"><span>t(x) =</span><input class="d-input"
+                                placeholder="Tangentengleichung"></div>
+                    </div>
+
+                    <div class="v2-action-bar">
+                        <button class="v2-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            Loesung
+                        </button>
+                        <button class="v2-action-btn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23 4v6h-6" />
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                            </svg>
+                            Neue Aufgabe
+                        </button>
+                        <button class="v2-action-btn v2-action-btn--ki">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            KI-Erklaer-Agent
+                        </button>
+                    </div>
+                    <button class="v2-cta">Aufgabe pruefen →</button>
+                </div>
+            </article>
+
+
+            <!-- ── KOMPETENZLISTE ── -->
+            <article class="v2 v2--wide v2--kompetenzliste">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">☑</span>
+                        <span class="v2__title">Kompetenzliste – Kurvendiskussion</span>
+                    </div>
+                    <div class="v2__header-right"><span class="v2__module-tag">Kompetenzliste</span></div>
+                </header>
+                <div class="v2__body">
+                    <div class="d-kl-row">
+                        <div class="d-kl-check checked"></div><span class="d-kl-text"><strong>A1</strong> –
+                            Ableitungsregeln anwenden</span><span class="d-kl-status">3/3 ✓</span>
+                    </div>
+                    <div class="d-kl-row">
+                        <div class="d-kl-check checked"></div><span class="d-kl-text"><strong>A2</strong> –
+                            Extremstellen berechnen</span><span class="d-kl-status">3/3 ✓</span>
+                    </div>
+                    <div class="d-kl-row">
+                        <div class="d-kl-check"></div><span class="d-kl-text"><strong>A3</strong> – Wendepunkte
+                            bestimmen</span><span class="d-kl-status">1/3</span>
+                    </div>
+                    <div class="d-kl-row">
+                        <div class="d-kl-check"></div><span class="d-kl-text"><strong>A4</strong> – Monotonie und
+                            Kruemmung</span><span class="d-kl-status">0/3</span>
+                    </div>
+                    <div class="d-kl-row">
+                        <div class="d-kl-check"></div><span class="d-kl-text"><strong>A5</strong> – Gesamte
+                            Kurvendiskussion</span><span class="d-kl-status">0/3</span>
+                    </div>
+                    <button class="v2-cta">Fortschritt speichern</button>
+                </div>
+            </article>
+
+
+            <!-- ── SKRIPT: TIPPS (Blurting-Farbe) ── -->
+            <article class="v2 v2--wide v2--skript-tipps">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2a7 7 0 0 1 4 12.7V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.3A7 7 0 0 1 12 2z"
+                                    fill="none" stroke="currentColor" stroke-width="2" />
+                                <line x1="9" y1="21" x2="15" y2="21" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                        </span>
+                        <span class="v2__title">Tipps – Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Skript · Tipps</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="v2__body">
+                    <p><strong>Strategie:</strong> Wendepunkte bestimmen:</p>
+                    <ol style="padding-left: 20px; margin: 10px 0; color: var(--text-dim);">
+                        <li>Bilde f''(x)</li>
+                        <li>Setze f''(x) = 0</li>
+                        <li>Pruefe Vorzeichenwechsel</li>
+                        <li>Berechne W(x₀ | f(x₀))</li>
+                    </ol>
+                    <p style="margin-top: 12px; color: var(--text-muted);">
+                        <strong style="color: var(--text-dim);">Typischer Fehler:</strong> f''(x₀) = 0 allein reicht
+                        nicht!
+                    </p>
+                    <button class="v2-cta">Verstanden ✓</button>
+                </div>
+            </article>
+
+
+            <!-- ── SKRIPT: BEISPIEL (Feynman-Farbe) ── -->
+            <article class="v2 v2--wide v2--skript-beispiel">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">📝</span>
+                        <span class="v2__title">Beispiel – Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Skript · Beispiel</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="v2__body">
+                    <p><strong>Gegeben:</strong> f(x) = x³ − 6x² + 9x + 1</p>
+                    <p style="margin-top:12px"><strong>Schritt 1:</strong> <span style="color:var(--text-dim)">f''(x) =
+                            6x − 12</span></p>
+                    <p style="margin-top:12px"><strong>Schritt 2:</strong> <span style="color:var(--text-dim)">6x − 12 =
+                            0 ⟹ x = 2</span></p>
+                    <p style="margin-top:12px"><strong>Schritt 3:</strong> <span style="color:var(--text-dim)">f''(1) =
+                            −6 &lt; 0, f''(3) = 6 &gt; 0 → VZW ✓</span></p>
+                    <p style="margin-top:12px"><strong>Ergebnis:</strong> <span
+                            style="color: var(--card-color); font-weight: 600;">W(2 | 7)</span></p>
+                    <button class="v2-cta">Naechster Schritt →</button>
+                </div>
+            </article>
+
+        </div>
+
+
+        <!-- ════════════════════════════════════════════
+         NARROW CARDS
+         ════════════════════════════════════════════ -->
+        <h2 class="section-title">Schmale Karten</h2>
+
+        <div class="cards-showcase cards-showcase--narrow">
+
+            <!-- ── BLURTING ── -->
+            <article class="v2 v2--narrow v2--viewport v2--blurting">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge"><svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg></span>
+                        <span class="v2__title">Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Blurting</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#">
+                                    <span class="mi"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Erklaer-Agent kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="v2__body">
+                    <div class="d-blurting-prompt">Erklaere in eigenen Worten, wie man Wendepunkte bestimmt.</div>
+                    <textarea class="d-textarea" placeholder="Schreibe alles auf, was dir einfaellt ..."></textarea>
+                    <div style="margin-top: 16px;">
+                        <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 8px;">Stichwoerter:</p>
+                        <div class="d-blurting-keywords">
+                            <span class="d-blurting-kw">zweite Ableitung</span>
+                            <span class="d-blurting-kw">Nullstelle</span>
+                            <span class="d-blurting-kw">Vorzeichenwechsel</span>
+                            <span class="d-blurting-kw">f''(x) = 0</span>
+                            <span class="d-blurting-kw">y-Wert</span>
+                        </div>
+                    </div>
+                    <button class="v2-cta">Selbstcheck abschliessen ✓</button>
+                </div>
+            </article>
+
+            <!-- ── FEYNMAN ── -->
+            <article class="v2 v2--narrow v2--viewport v2--feynman">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge"><svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg></span>
+                        <span class="v2__title">Wendepunkte bestimmen</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Feynman</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#">
+                                    <span class="mi"><svg viewBox="0 0 24 24">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                        </svg></span>
+                                    <span class="label">KI-Lernpartner kopieren</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="v2__body">
+                    <p style="font-weight: 700; font-size: 1rem; margin-bottom: 12px;">
+                        Stell dir vor, du erklaerst einem Mitschueler, was Wendepunkte sind.
+                    </p>
+                    <div class="d-task-block">
+                        <h4>1. Die Grundidee</h4><textarea class="d-textarea" style="min-height:60px"
+                            placeholder="Was ist ein Wendepunkt?"></textarea>
+                    </div>
+                    <div class="d-task-block">
+                        <h4>2. Die Schritte</h4><textarea class="d-textarea" style="min-height:60px"
+                            placeholder="Wie geht man vor?"></textarea>
+                    </div>
+                    <div class="d-task-block">
+                        <h4>3. Typischer Stolperstein</h4><textarea class="d-textarea" style="min-height:60px"
+                            placeholder="Was wird oft falsch gemacht?"></textarea>
+                    </div>
+                    <div class="d-task-block">
+                        <h4>4. Mini-Beispiel</h4><textarea class="d-textarea" style="min-height:60px"
+                            placeholder="f(x) = ... → W( _ | _ )"></textarea>
+                    </div>
+
+                    <div class="v2-action-bar">
+                        <button class="v2-action-btn v2-action-btn--ki">
+                            <svg viewBox="0 0 24 24">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                            </svg>
+                            KI-Lernpartner kopieren
+                        </button>
+                    </div>
+                    <button class="v2-cta">Erklaerung abschliessen ✓</button>
+                </div>
+            </article>
+
+            <!-- ── FLASHCARDS ── -->
+            <article class="v2 v2--narrow v2--viewport v2--flashcards">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">5</span>
+                        <span class="v2__title">Karte 3 von 12</span>
+                    </div>
+                    <div class="v2__header-right">
+                        <span class="v2__module-tag">Flashcards</span>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                                <div class="v2-menu-popup__divider"></div>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-skript)"></span><span class="label">Im Skript
+                                        anzeigen</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="v2__body">
+                    <div class="d-fc-front">
+                        Was ist die notwendige Bedingung fuer einen Wendepunkt?
+                    </div>
+                    <button class="v2-cta">Karte drehen ↻</button>
+                </div>
+            </article>
+
+            <!-- ── WARM-UP ── -->
+            <article class="v2 v2--narrow v2--warmup">
+                <header class="v2__header">
+                    <div class="v2__header-left">
+                        <span class="v2__badge">🔥</span>
+                        <span class="v2__title">Warm-Up – Kurvendiskussion</span>
+                    </div>
+                    <div class="v2__header-right"><span class="v2__module-tag">Warm-Up</span></div>
+                </header>
+                <div class="v2__body">
+                    <div style="text-align: center; padding: 24px 0;">
+                        <p style="font-size: 1.1rem; font-weight: 700; margin-bottom: 16px;">Wusstest du?</p>
+                        <p style="max-width: 48ch; margin: 0 auto; line-height: 1.6; color: var(--text-dim);">
+                            Die erste dokumentierte Kurvendiskussion wurde von Pierre de Fermat
+                            um 1638 durchgefuehrt – fast 50 Jahre vor Newton und Leibniz.
+                        </p>
+                    </div>
+                    <div class="d-graphic" style="height: 100px;">[ Illustration ]</div>
+                    <button class="v2-cta">Weiter →</button>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <script>
+        function toggleMenu(btn) {
+            const popup = btn.nextElementSibling;
+            const wasOpen = popup.classList.contains('is-open');
+            document.querySelectorAll('.v2-menu-popup.is-open').forEach(p => p.classList.remove('is-open'));
+            if (!wasOpen) popup.classList.add('is-open');
+        }
+        document.addEventListener('click', e => {
+            if (!e.target.closest('.v2-menu-wrap'))
+                document.querySelectorAll('.v2-menu-popup.is-open').forEach(p => p.classList.remove('is-open'));
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+[
+  {
+    "einleitung": "Ein Wasserreservoir in einem Dorf fasst zu Beginn der Messung 150 Liter. Durch einen gleichmäßigen Abfluss verliert das Reservoir pro Stunde genau 15 Liter Wasser. Die Gemeinde möchte wissen, wann das Reservoir leer sein wird.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser enthält das Reservoir nach 3 Stunden?",
+      "Nach wie vielen Stunden enthält das Reservoir noch 135 Liter?",
+      "Nach wie vielen Stunden ist das Reservoir leer?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=-15,00:0,01}$ \\cdot t + ${1:NUMERICAL:=150,00:0,01}",
+      "$ V(3) = ${1:NUMERICAL:=105,00:0,01}",
+      "$ t = ${1:NUMERICAL:=1,00:0,01}",
+      "$ t = ${1:NUMERICAL:=10,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Schwimmbad wird für die Wintersaison geleert. Zu Beginn enthält das Becken 100 m³ Wasser. Über eine Pumpe werden pro Stunde gleichmäßig 8 m³ abgepumpt.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser ist nach 20 Stunden noch im Becken?",
+      "Nach wie vielen Stunden enthält das Becken noch 36 m³?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ W(20) = ${1:NUMERICAL:=-60,00:0,01}",
+      "$ t = ${1:NUMERICAL:=8,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Taxiunternehmen in der Innenstadt berechnet für jede Fahrt einen festen Grundpreis von 4 € sowie einen Kilometerpreis von 1,8 € pro gefahrenem Kilometer. Eine Kundin möchte vorab die Kosten für verschiedene Fahrstrecken berechnen.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Kosten für eine Fahrt von 3 km?",
+      "Für welche Fahrstrecke betragen die Kosten genau 22 €?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=1,80:0,01}$ \\cdot x + ${1:NUMERICAL:=4,00:0,01}",
+      "$ K(3) = ${1:NUMERICAL:=9,40:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Wasserreservoir in einem Dorf fasst zu Beginn der Messung 120 Liter. Durch einen gleichmäßigen Abfluss verliert das Reservoir pro Stunde genau 5 Liter Wasser. Die Gemeinde möchte wissen, wann das Reservoir leer sein wird.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser enthält das Reservoir nach 15 Stunden?",
+      "Nach wie vielen Stunden enthält das Reservoir noch 85 Liter?",
+      "Nach wie vielen Stunden ist das Reservoir leer?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=-5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=120,00:0,01}",
+      "$ V(15) = ${1:NUMERICAL:=45,00:0,01}",
+      "$ t = ${1:NUMERICAL:=7,00:0,01}",
+      "$ t = ${1:NUMERICAL:=24,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein voll geladener Laptop-Akku zeigt zu Beginn einen Ladestand von 80 % an. Bei normaler Nutzung sinkt der Ladestand pro Stunde gleichmäßig um 12 Prozentpunkte. Die Nutzerin möchte planen, wann sie das Ladegerät anschließen muss.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch ist der Ladestand nach 20 Stunden?",
+      "Nach wie vielen Stunden beträgt der Ladestand noch 44 %?"
+    ],
+    "antworten": [
+      "$ L(t) = ${1:NUMERICAL:=-12,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ L(20) = ${1:NUMERICAL:=-160,00:0,01}",
+      "$ t = ${1:NUMERICAL:=3,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine kleine Manufaktur stellt handgefertigte Vasen her. Die monatlichen Fixkosten (Miete, Versicherung, Strom) betragen 100 €, und für jede produzierte Vase fallen zusätzlich Materialkosten von 2 € an.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Gesamtkosten bei 20 produzierten Vasen?",
+      "Wie viele Vasen können mit einem Budget von 104 € produziert werden?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=100,00:0,01}",
+      "$ K(20) = ${1:NUMERICAL:=140,00:0,01}",
+      "$ x = ${1:NUMERICAL:=2,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Taxiunternehmen in der Innenstadt berechnet für jede Fahrt einen festen Grundpreis von 5 € sowie einen Kilometerpreis von 2,5 € pro gefahrenem Kilometer. Eine Kundin möchte vorab die Kosten für verschiedene Fahrstrecken berechnen.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Kosten für eine Fahrt von 5 km?",
+      "Für welche Fahrstrecke betragen die Kosten genau 15 €?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=5,00:0,01}",
+      "$ K(5) = ${1:NUMERICAL:=17,50:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Schwimmbad wird für die Wintersaison geleert. Zu Beginn enthält das Becken 120 m³ Wasser. Über eine Pumpe werden pro Stunde gleichmäßig 8 m³ abgepumpt.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser ist nach 20 Stunden noch im Becken?",
+      "Nach wie vielen Stunden enthält das Becken noch 80 m³?",
+      "Nach wie vielen Stunden ist das Becken vollständig entleert?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=120,00:0,01}",
+      "$ W(20) = ${1:NUMERICAL:=-40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=5,00:0,01}",
+      "$ t = ${1:NUMERICAL:=15,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Wasserreservoir in einem Dorf fasst zu Beginn der Messung 80 Liter. Durch einen gleichmäßigen Abfluss verliert das Reservoir pro Stunde genau 15 Liter Wasser. Die Gemeinde möchte wissen, wann das Reservoir leer sein wird.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser enthält das Reservoir nach 10 Stunden?",
+      "Nach wie vielen Stunden enthält das Reservoir noch 35 Liter?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=-15,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ V(10) = ${1:NUMERICAL:=-70,00:0,01}",
+      "$ t = ${1:NUMERICAL:=3,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Forstwissenschaftler beobachtet eine junge Eiche, die zu Beginn der Studie eine Höhe von 30 cm hat. Pro Jahr wächst der Baum gleichmäßig um 12 cm. Der Forstwissenschaftler möchte die Entwicklung über die nächsten Jahre vorhersagen.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Welche Höhe hat die Eiche nach 5 Jahren?",
+      "Nach wie vielen Jahren erreicht die Eiche eine Höhe von 66 cm?"
+    ],
+    "antworten": [
+      "$ h(t) = ${1:NUMERICAL:=12,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
+      "$ h(5) = ${1:NUMERICAL:=90,00:0,01}",
+      "$ t = ${1:NUMERICAL:=3,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein voll geladener Laptop-Akku zeigt zu Beginn einen Ladestand von 80 % an. Bei normaler Nutzung sinkt der Ladestand pro Stunde gleichmäßig um 8 Prozentpunkte. Die Nutzerin möchte planen, wann sie das Ladegerät anschließen muss.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch ist der Ladestand nach 5 Stunden?",
+      "Nach wie vielen Stunden beträgt der Ladestand noch 64 %?",
+      "Nach wie vielen Stunden ist der Akku leer?"
+    ],
+    "antworten": [
+      "$ L(t) = ${1:NUMERICAL:=-8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ L(5) = ${1:NUMERICAL:=40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=2,00:0,01}",
+      "$ t = ${1:NUMERICAL:=10,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine kleine Manufaktur stellt handgefertigte Vasen her. Die monatlichen Fixkosten (Miete, Versicherung, Strom) betragen 150 €, und für jede produzierte Vase fallen zusätzlich Materialkosten von 2 € an.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Gesamtkosten bei 5 produzierten Vasen?",
+      "Wie viele Vasen können mit einem Budget von 194 € produziert werden?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=150,00:0,01}",
+      "$ K(5) = ${1:NUMERICAL:=160,00:0,01}",
+      "$ x = ${1:NUMERICAL:=22,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Taxiunternehmen in der Innenstadt berechnet für jede Fahrt einen festen Grundpreis von 3,5 € sowie einen Kilometerpreis von 1,2 € pro gefahrenem Kilometer. Eine Kundin möchte vorab die Kosten für verschiedene Fahrstrecken berechnen.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Kosten für eine Fahrt von 20 km?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=1,20:0,01}$ \\cdot x + ${1:NUMERICAL:=3,50:0,01}",
+      "$ K(20) = ${1:NUMERICAL:=27,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Wasserreservoir in einem Dorf fasst zu Beginn der Messung 120 Liter. Durch einen gleichmäßigen Abfluss verliert das Reservoir pro Stunde genau 20 Liter Wasser. Die Gemeinde möchte wissen, wann das Reservoir leer sein wird.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser enthält das Reservoir nach 8 Stunden?",
+      "Nach wie vielen Stunden enthält das Reservoir noch 60 Liter?",
+      "Nach wie vielen Stunden ist das Reservoir leer?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=-20,00:0,01}$ \\cdot t + ${1:NUMERICAL:=120,00:0,01}",
+      "$ V(8) = ${1:NUMERICAL:=-40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=3,00:0,01}",
+      "$ t = ${1:NUMERICAL:=6,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine kleine Manufaktur stellt handgefertigte Vasen her. Die monatlichen Fixkosten (Miete, Versicherung, Strom) betragen 100 €, und für jede produzierte Vase fallen zusätzlich Materialkosten von 3 € an.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie hoch sind die Gesamtkosten bei 5 produzierten Vasen?",
+      "Wie viele Vasen können mit einem Budget von 145 € produziert werden?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=100,00:0,01}",
+      "$ K(5) = ${1:NUMERICAL:=115,00:0,01}",
+      "$ x = ${1:NUMERICAL:=15,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Schwimmbad wird für die Wintersaison geleert. Zu Beginn enthält das Becken 60 m³ Wasser. Über eine Pumpe werden pro Stunde gleichmäßig 8 m³ abgepumpt.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser ist nach 8 Stunden noch im Becken?",
+      "Nach wie vielen Stunden enthält das Becken noch 36 m³?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=60,00:0,01}",
+      "$ W(8) = ${1:NUMERICAL:=-4,00:0,01}",
+      "$ t = ${1:NUMERICAL:=3,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Forstwissenschaftler beobachtet eine junge Eiche, die zu Beginn der Studie eine Höhe von 80 cm hat. Pro Jahr wächst der Baum gleichmäßig um 10 cm. Der Forstwissenschaftler möchte die Entwicklung über die nächsten Jahre vorhersagen.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Welche Höhe hat die Eiche nach 5 Jahren?",
+      "Nach wie vielen Jahren erreicht die Eiche eine Höhe von 250 cm?"
+    ],
+    "antworten": [
+      "$ h(t) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ h(5) = ${1:NUMERICAL:=130,00:0,01}",
+      "$ t = ${1:NUMERICAL:=17,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Schwimmbad wird für die Wintersaison geleert. Zu Beginn enthält das Becken 80 m³ Wasser. Über eine Pumpe werden pro Stunde gleichmäßig 10 m³ abgepumpt.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser ist nach 20 Stunden noch im Becken?",
+      "Nach wie vielen Stunden enthält das Becken noch 40 m³?",
+      "Nach wie vielen Stunden ist das Becken vollständig entleert?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-10,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ W(20) = ${1:NUMERICAL:=-120,00:0,01}",
+      "$ t = ${1:NUMERICAL:=4,00:0,01}",
+      "$ t = ${1:NUMERICAL:=8,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Wasserreservoir in einem Dorf fasst zu Beginn der Messung 100 Liter. Durch einen gleichmäßigen Abfluss verliert das Reservoir pro Stunde genau 5 Liter Wasser. Die Gemeinde möchte wissen, wann das Reservoir leer sein wird.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser enthält das Reservoir nach 12 Stunden?",
+      "Nach wie vielen Stunden enthält das Reservoir noch 45 Liter?",
+      "Nach wie vielen Stunden ist das Reservoir leer?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=-5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ V(12) = ${1:NUMERICAL:=40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=11,00:0,01}",
+      "$ t = ${1:NUMERICAL:=20,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Schwimmbad wird für die Wintersaison geleert. Zu Beginn enthält das Becken 80 m³ Wasser. Über eine Pumpe werden pro Stunde gleichmäßig 6 m³ abgepumpt.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung.",
+      "Wie viel Wasser ist nach 3 Stunden noch im Becken?",
+      "Nach wie vielen Stunden enthält das Becken noch 44 m³?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ W(3) = ${1:NUMERICAL:=62,00:0,01}",
+      "$ t = ${1:NUMERICAL:=6,00:0,01}"
+    ]
+  }
+]

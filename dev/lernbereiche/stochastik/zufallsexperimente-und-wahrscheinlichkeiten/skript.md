@@ -246,8 +246,6 @@ Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrschein
 - Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am liebsten Pizza essen, 30&nbsp;% Pommes und 20&nbsp;% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;%.
 - In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
 
-{% include info.html nummer="3" %}
-
 Das **Gesetz der großen Zahlen** beschreibt den Zusammnehang zwischen Laplace-Wahrscheinlochkeiten und relativen Häufigkeiten genauer.
 
 ## Exkurs: Axiome von Kolmogorov

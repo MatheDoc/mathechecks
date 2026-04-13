@@ -5,13 +5,112 @@
     },
     "jobs": [
         {
-            "generator": "analysis.nullstellen.linear",
-            "seed": 123,
+            "generator": "analysis.lineare_funktionen.graph_zu_gleichung",
+            "seed": 2001,
             "targets": [
                 {
                     "gebiet": "analysis",
                     "lernbereich": "lineare-funktionen",
-                    "sammlung": "nullstellen"
+                    "sammlung": "graph-zu-gleichung"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.gleichung_zu_tabelle",
+            "seed": 2002,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "gleichung-zu-tabelle"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.zuordnung_graphen",
+            "seed": 2010,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "zuordnung-graphen"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.gleichung_aus_punkten",
+            "seed": 2003,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "gleichung-aus-punkten"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.punktprobe",
+            "seed": 2004,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "punktprobe"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.funktionswerte_umkehrwerte",
+            "seed": 2005,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "funktionswerte-umkehrwerte"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.nullstellen_vorzeichen",
+            "seed": 2006,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "nullstellen-vorzeichen"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.schnittpunkte_vergleich",
+            "seed": 2007,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "schnittpunkte-vergleich"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.sachsituation_eine_funktion",
+            "seed": 2008,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "sachsituation-eine-funktion"
+                }
+            ]
+        },
+        {
+            "generator": "analysis.lineare_funktionen.sachsituation_vergleich",
+            "seed": 2009,
+            "targets": [
+                {
+                    "gebiet": "analysis",
+                    "lernbereich": "lineare-funktionen",
+                    "sammlung": "sachsituation-vergleich"
                 }
             ]
         },

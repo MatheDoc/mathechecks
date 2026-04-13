@@ -1,0 +1,342 @@
+[
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 100 € und laufende Betriebskosten von 2 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 5 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 95 Betriebsstunden ist günstiger:",
+      "Bei mehr als 95 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=5,00:0,01}",
+      "$ t = ${1:NUMERICAL:=95,00:0,01}",
+      "{1:MC:~A~=B}",
+      "{1:MC:~=A~B}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 50 € und 8 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 5 € und 10 € pro Kursbesuch.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für FitActive",
+      "Gleichung für SportPlus",
+      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
+      "Bei weniger als 22,5 Kursbesuchen ist günstiger:",
+      "Bei mehr als 22,5 Kursbesuchen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_F(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot x + ${1:NUMERICAL:=5,00:0,01}",
+      "$ x = ${1:NUMERICAL:=22,50:0,01}",
+      "{1:MC:~FitActive~=SportPlus}",
+      "{1:MC:~=FitActive~SportPlus}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 0 € und 1,5 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 15 € und 1 Cent pro verbrauchter kWh.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für GrünStrom",
+      "Gleichung für StadtEnergie",
+      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
+      "Bei einem Verbrauch unter 30 kWh ist günstiger:",
+      "Bei einem Verbrauch über 30 kWh ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_G(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=0,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=1,00:0,01}$ \\cdot x + ${1:NUMERICAL:=15,00:0,01}",
+      "$ x = ${1:NUMERICAL:=30,00:0,01}",
+      "{1:MC:~=GrünStrom~StadtEnergie}",
+      "{1:MC:~GrünStrom~=StadtEnergie}"
+    ]
+  },
+  {
+    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 20 € und 8 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 80 € und 6 € pro heruntergeladenem Film.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für Basis",
+      "Gleichung für Premium",
+      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
+      "Bei weniger als 30 Filmen ist günstiger:",
+      "Bei mehr als 30 Filmen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_B(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
+      "$ x = ${1:NUMERICAL:=30,00:0,01}",
+      "{1:MC:~=Basis~Premium}",
+      "{1:MC:~Basis~=Premium}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 40 € und 4 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 50 € und 3 € pro Kursbesuch.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für FitActive",
+      "Gleichung für SportPlus",
+      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
+      "Bei weniger als 10 Kursbesuchen ist günstiger:",
+      "Bei mehr als 10 Kursbesuchen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_F(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:MC:~=FitActive~SportPlus}",
+      "{1:MC:~FitActive~=SportPlus}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 10 € und 5 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 80 € und 2,5 € pro 100 Flyer.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für DruckExpress",
+      "Gleichung für PrintProfi",
+      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
+      "Bei weniger als 28 Bestelleinheiten ist günstiger:",
+      "Bei mehr als 28 Bestelleinheiten ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_D(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
+      "$ x = ${1:NUMERICAL:=28,00:0,01}",
+      "{1:MC:~=DruckExpress~PrintProfi}",
+      "{1:MC:~DruckExpress~=PrintProfi}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 0 € und 10 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 30 € und 5 € pro 100 Flyer.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für DruckExpress",
+      "Gleichung für PrintProfi",
+      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
+      "Bei weniger als 6 Bestelleinheiten ist günstiger:",
+      "Bei mehr als 6 Bestelleinheiten ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_D(x) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot x + ${1:NUMERICAL:=0,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=30,00:0,01}",
+      "$ x = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:MC:~=DruckExpress~PrintProfi}",
+      "{1:MC:~DruckExpress~=PrintProfi}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 50 € und 2,5 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 80 € und 1 Cent pro verbrauchter kWh.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für GrünStrom",
+      "Gleichung für StadtEnergie",
+      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
+      "Bei einem Verbrauch unter 20 kWh ist günstiger:",
+      "Bei einem Verbrauch über 20 kWh ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_G(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=1,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
+      "$ x = ${1:NUMERICAL:=20,00:0,01}",
+      "{1:MC:~=GrünStrom~StadtEnergie}",
+      "{1:MC:~GrünStrom~=StadtEnergie}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 50 € und 2 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 30 € und 4 € pro 100 Flyer.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für DruckExpress",
+      "Gleichung für PrintProfi",
+      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
+      "Bei weniger als 10 Bestelleinheiten ist günstiger:",
+      "Bei mehr als 10 Bestelleinheiten ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_D(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=30,00:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:MC:~DruckExpress~=PrintProfi}",
+      "{1:MC:~=DruckExpress~PrintProfi}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 50 € und 4 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 10 € und 5 Cent pro verbrauchter kWh.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für GrünStrom",
+      "Gleichung für StadtEnergie",
+      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
+      "Bei einem Verbrauch unter 40 kWh ist günstiger:",
+      "Bei einem Verbrauch über 40 kWh ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_G(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
+      "$ x = ${1:NUMERICAL:=40,00:0,01}",
+      "{1:MC:~GrünStrom~=StadtEnergie}",
+      "{1:MC:~=GrünStrom~StadtEnergie}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 80 € und 2 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 40 € und 3 Cent pro verbrauchter kWh.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für GrünStrom",
+      "Gleichung für StadtEnergie",
+      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
+      "Bei einem Verbrauch unter 40 kWh ist günstiger:",
+      "Bei einem Verbrauch über 40 kWh ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_G(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
+      "$ x = ${1:NUMERICAL:=40,00:0,01}",
+      "{1:MC:~GrünStrom~=StadtEnergie}",
+      "{1:MC:~=GrünStrom~StadtEnergie}"
+    ]
+  },
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 30 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 100 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 35 Betriebsstunden ist günstiger:",
+      "Bei mehr als 35 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ t = ${1:NUMERICAL:=35,00:0,01}",
+      "{1:MC:~=A~B}",
+      "{1:MC:~A~=B}"
+    ]
+  },
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 100 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 10 € und laufende Betriebskosten von 4 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 90 Betriebsstunden ist günstiger:",
+      "Bei mehr als 90 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
+      "$ t = ${1:NUMERICAL:=90,00:0,01}",
+      "{1:MC:~A~=B}",
+      "{1:MC:~=A~B}"
+    ]
+  },
+  {
+    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 20 € und 2,5 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 40 € und 2 € pro heruntergeladenem Film.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für Basis",
+      "Gleichung für Premium",
+      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
+      "Bei weniger als 40 Filmen ist günstiger:",
+      "Bei mehr als 40 Filmen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_B(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
+      "$ x = ${1:NUMERICAL:=40,00:0,01}",
+      "{1:MC:~=Basis~Premium}",
+      "{1:MC:~Basis~=Premium}"
+    ]
+  },
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 40 € und laufende Betriebskosten von 2 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 10 € und laufende Betriebskosten von 6 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 7,5 Betriebsstunden ist günstiger:",
+      "Bei mehr als 7,5 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot t + ${1:NUMERICAL:=40,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
+      "$ t = ${1:NUMERICAL:=7,50:0,01}",
+      "{1:MC:~A~=B}",
+      "{1:MC:~=A~B}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 5 € und 4 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 10 € und 2 € pro Kursbesuch.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für FitActive",
+      "Gleichung für SportPlus",
+      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
+      "Bei weniger als 2,5 Kursbesuchen ist günstiger:",
+      "Bei mehr als 2,5 Kursbesuchen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_F(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=5,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
+      "$ x = ${1:NUMERICAL:=2,50:0,01}",
+      "{1:MC:~=FitActive~SportPlus}",
+      "{1:MC:~FitActive~=SportPlus}"
+    ]
+  },
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 30 € und laufende Betriebskosten von 6 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 40 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 10 Betriebsstunden ist günstiger:",
+      "Bei mehr als 10 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:MC:~=A~B}",
+      "{1:MC:~A~=B}"
+    ]
+  },
+  {
+    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 40 € und 8 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 50 € und 4 € pro heruntergeladenem Film.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für Basis",
+      "Gleichung für Premium",
+      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
+      "Bei weniger als 2,5 Filmen ist günstiger:",
+      "Bei mehr als 2,5 Filmen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_B(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ x = ${1:NUMERICAL:=2,50:0,01}",
+      "{1:MC:~=Basis~Premium}",
+      "{1:MC:~Basis~=Premium}"
+    ]
+  },
+  {
+    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 80 € und laufende Betriebskosten von 10 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 100 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für A",
+      "Gleichung für B",
+      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
+      "Bei weniger als 4 Betriebsstunden ist günstiger:",
+      "Bei mehr als 4 Betriebsstunden ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_A(t) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ t = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:MC:~=A~B}",
+      "{1:MC:~A~=B}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 15 € und 2,5 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 50 € und 1,5 € pro Kursbesuch.</li>\n</ul>",
+    "fragen": [
+      "Gleichung für FitActive",
+      "Gleichung für SportPlus",
+      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
+      "Bei weniger als 35 Kursbesuchen ist günstiger:",
+      "Bei mehr als 35 Kursbesuchen ist günstiger:"
+    ],
+    "antworten": [
+      "$ K_F(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=15,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ x = ${1:NUMERICAL:=35,00:0,01}",
+      "{1:MC:~=FitActive~SportPlus}",
+      "{1:MC:~FitActive~=SportPlus}"
+    ]
+  }
+]
