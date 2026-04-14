@@ -5,6 +5,7 @@ from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
     _align_equations,
+    _demand_slope_abs_from_params,
     _num_tol,
     _sample_market_params,
 )
@@ -12,6 +13,8 @@ from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
 
 class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
     generator_key = "analysis.marktgleichgewicht_vertiefung.abschoepfung_kr_bestimmung_preis"
+    _min_demand_slope_abs = 0.45
+    _max_eq_quantity_for_plot = 65.0
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -37,6 +40,15 @@ class MarketEquilibriumAbschoepfungKRBestimmungPreisGenerator(TaskGenerator):
                     supply_params,
                     demand_params,
                 ) = _sample_market_params(rng)
+
+                if eq_x > self._max_eq_quantity_for_plot:
+                    continue
+
+                slope_eq = _demand_slope_abs_from_params(demand_params, eq_x)
+                slope_x2 = _demand_slope_abs_from_params(demand_params, x2)
+                if min(slope_eq, slope_x2) < self._min_demand_slope_abs:
+                    continue
+
                 key = market_key
                 if key in used_params:
                     continue

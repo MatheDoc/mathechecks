@@ -72,6 +72,20 @@ def _latex_demand_exp(amplitude: float, rate: float, floor: float) -> str:
     )
 
 
+def _demand_slope_abs_from_params(params: dict, x: float) -> float:
+    spec_type = params.get("type")
+    if spec_type == "linear":
+        return abs(float(params["a"]))
+    if spec_type == "quadratic":
+        a = float(params["a"])
+        b = float(params["b"])
+        return abs(2.0 * a * x + b)
+
+    amplitude = float(params["A"])
+    rate = float(params["rate"])
+    return abs(amplitude * rate * math.exp(-rate * x))
+
+
 def _integrate_trapezoid(fn: PriceFunction, a: float, b: float, steps: int = 900) -> float:
     if b <= a:
         return 0.0
