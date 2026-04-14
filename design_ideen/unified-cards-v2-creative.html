@@ -74,6 +74,157 @@
         }
 
         /* ══════════════════════════════════════════════
+           0b. LIGHT MODE TOKENS
+           ══════════════════════════════════════════════ */
+        html.light {
+            --bg-0: #f4f6fa;
+            --bg-1: #eaecf3;
+            --bg-2: #e0e4ed;
+            --bg-3: #d4d9e5;
+            --surface: rgba(255, 255, 255, 0.82);
+            --surface-hi: rgba(240, 243, 248, 0.78);
+            --glass: rgba(255, 255, 255, 0.6);
+            --glass-line: rgba(0, 0, 0, 0.08);
+
+            --text: #1a1e2e;
+            --text-dim: #4a5068;
+            --text-muted: #8890a6;
+            --line: rgba(0, 0, 0, 0.08);
+            --line-strong: rgba(0, 0, 0, 0.14);
+
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.07), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-popup: 0 8px 28px rgba(0, 0, 0, 0.12);
+            --shadow-glow: 0 0 30px;
+
+            --c-training: #059669;
+            --c-training-deep: #047857;
+            --c-training-glow: rgba(5, 150, 105, 0.12);
+            --c-training-grad: linear-gradient(135deg, #059669, #34d399);
+
+            --c-blurting: #0d9488;
+            --c-blurting-deep: #0f766e;
+            --c-blurting-glow: rgba(13, 148, 136, 0.12);
+            --c-blurting-grad: linear-gradient(135deg, #0d9488, #2dd4bf);
+
+            --c-feynman: #6366f1;
+            --c-feynman-deep: #4f46e5;
+            --c-feynman-glow: rgba(99, 102, 241, 0.12);
+            --c-feynman-grad: linear-gradient(135deg, #6366f1, #818cf8);
+
+            --c-kompetenz: #9333ea;
+            --c-kompetenz-deep: #7c3aed;
+            --c-kompetenz-glow: rgba(147, 51, 234, 0.12);
+            --c-kompetenz-grad: linear-gradient(135deg, #9333ea, #a855f7);
+
+            --c-warmup: #d97706;
+            --c-warmup-deep: #b45309;
+            --c-warmup-glow: rgba(217, 119, 6, 0.10);
+            --c-warmup-grad: linear-gradient(135deg, #d97706, #f59e0b);
+
+            --c-flashcards: #0284c7;
+            --c-flashcards-deep: #0369a1;
+            --c-flashcards-glow: rgba(2, 132, 199, 0.12);
+            --c-flashcards-grad: linear-gradient(135deg, #0284c7, #38bdf8);
+
+            --c-skript: #ea580c;
+            --c-skript-deep: #c2410c;
+            --c-skript-glow: rgba(234, 88, 12, 0.10);
+            --c-skript-grad: linear-gradient(135deg, #ea580c, #fb923c);
+        }
+
+        /* ── Light mode element overrides ── */
+        html.light body::before {
+            opacity: 0.5;
+        }
+
+        html.light body::after {
+            opacity: 0.015;
+        }
+
+        html.light .s-hero h1 {
+            background: linear-gradient(135deg, #1a1e2e, #6366f1);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        html.light .s-hero {
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.08);
+        }
+
+        html.light .v2-menu-popup__item:hover {
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        html.light .v2__body::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.10);
+        }
+
+        html.light .v2__body::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        html.light .d-task-block {
+            background: rgba(0, 0, 0, 0.025);
+        }
+
+        html.light .d-graphic {
+            background:
+                repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0, 0, 0, 0.015) 8px, rgba(0, 0, 0, 0.015) 16px),
+                color-mix(in srgb, var(--card-color) 6%, var(--bg-1));
+            border-color: color-mix(in srgb, var(--card-color) 20%, var(--line));
+        }
+
+        html.light .d-blurting-prompt {
+            background: linear-gradient(to bottom, var(--text), var(--text-dim));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* ── Theme toggle button ── */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid var(--line-strong);
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            color: var(--text-dim);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 200ms;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: var(--text-dim);
+            transform: scale(1.08);
+        }
+
+        .theme-toggle svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .theme-toggle .icon-moon,
+        html.light .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        html.light .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        /* ══════════════════════════════════════════════
            1. RESETS & BASE
            ══════════════════════════════════════════════ */
         *,
@@ -196,8 +347,11 @@
             --card-color-deep: var(--text);
             --card-glow: transparent;
             --card-grad: linear-gradient(135deg, var(--bg-3), var(--bg-2));
-            background: var(--surface);
-            border: 1px solid var(--glass-line);
+            background:
+                radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--card-color) 14%, transparent), transparent 55%),
+                radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--card-color-deep) 10%, transparent), transparent 50%),
+                var(--surface);
+            border: 1px solid color-mix(in srgb, var(--card-color) 12%, var(--glass-line));
             border-radius: var(--radius-card);
             overflow: hidden;
             box-shadow: var(--shadow-card);
@@ -212,6 +366,20 @@
         .v2:hover {
             border-color: color-mix(in srgb, var(--card-color) 28%, transparent);
             box-shadow: var(--shadow-card), var(--shadow-glow) var(--card-glow);
+        }
+
+        /* Top accent stripe */
+        .v2::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-grad);
+            opacity: 0.9;
+            z-index: 6;
+            pointer-events: none;
         }
 
         .v2--wide {
@@ -234,56 +402,38 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
-            padding: 14px 18px;
+            gap: 10px;
+            padding: 12px 16px 12px 18px;
             position: sticky;
             top: 0;
             z-index: 5;
-            background:
-                linear-gradient(to right, color-mix(in srgb, var(--card-color) 10%, var(--bg-2)), var(--bg-2));
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--line);
-        }
-
-        /* Accent stripe at top */
-        .v2__header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--card-grad);
-            opacity: 0.9;
         }
 
         .v2__header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0;
             min-width: 0;
             flex: 1;
         }
 
-        .v2__badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            background: color-mix(in srgb, var(--card-color) 14%, transparent);
+        .v2__check-label {
             flex-shrink: 0;
-            font-size: 0.72rem;
+            font-size: 0.78rem;
             font-weight: 700;
             color: var(--card-color);
+            white-space: nowrap;
         }
 
-        .v2__badge svg {
-            width: 15px;
-            height: 15px;
-            stroke: currentColor;
-            stroke-width: 2.5;
-            fill: none;
+        .v2__separator {
+            width: 1px;
+            align-self: stretch;
+            margin: -2px 10px;
+            background: color-mix(in srgb, var(--card-color) 30%, transparent);
         }
 
         .v2__title {
@@ -293,23 +443,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: var(--text);
-        }
-
-        .v2__module-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
             color: var(--card-color);
-            background: color-mix(in srgb, var(--card-color) 10%, transparent);
-            border: 1px solid color-mix(in srgb, var(--card-color) 18%, transparent);
-            flex-shrink: 0;
         }
 
         .v2__header-right {
@@ -317,6 +451,39 @@
             align-items: center;
             gap: 8px;
             flex-shrink: 0;
+        }
+
+        .v2-check-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--card-color);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--card-color);
+            cursor: pointer;
+            transition: all 180ms;
+        }
+
+        .v2-check-btn svg {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .v2-check-btn:hover {
+            background: var(--card-color);
+            color: #fff;
+        }
+
+        html.light .v2-check-btn:hover {
+            color: var(--bg-card);
         }
 
         /* ──────────────────────────────────────────────
@@ -448,7 +615,7 @@
             min-height: 0;
             overflow-y: auto;
             overflow-x: hidden;
-            padding: 20px 22px;
+            padding: 20px 18px;
             font-size: 0.92rem;
             line-height: 1.7;
             color: var(--text);
@@ -524,41 +691,6 @@
         .v2-action-btn--ki:hover {
             border-style: solid;
             background: color-mix(in srgb, var(--card-color) 10%, transparent);
-        }
-
-        .v2-cta {
-            display: block;
-            width: 100%;
-            margin-top: 18px;
-            padding: 13px 20px;
-            border: 0;
-            border-radius: 12px;
-            background: var(--card-grad);
-            color: #fff;
-            font-family: "Inter", sans-serif;
-            font-size: 0.84rem;
-            font-weight: 700;
-            text-align: left;
-            cursor: pointer;
-            transition: filter 180ms, transform 120ms;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .v2-cta::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 50%);
-            pointer-events: none;
-        }
-
-        .v2-cta:hover {
-            filter: brightness(1.12);
-        }
-
-        .v2-cta:active {
-            transform: scale(0.98);
         }
 
         /* ══════════════════════════════════════════════
@@ -809,6 +941,8 @@
             margin-inline: auto;
         }
 
+
+
         /* ══════════════════════════════════════════════
            7. RESPONSIVE
            ══════════════════════════════════════════════ */
@@ -818,7 +952,7 @@
             }
 
             .v2__header {
-                padding: 12px 14px;
+                padding: 10px 12px 10px 18px;
             }
 
             .v2__body {
@@ -829,6 +963,10 @@
                 font-size: 0.82rem;
             }
 
+            .v2__check-label {
+                font-size: 0.7rem;
+            }
+
             .s-hero {
                 padding: 24px 18px;
             }
@@ -837,6 +975,24 @@
 </head>
 
 <body>
+    <!-- Theme toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Theme wechseln">
+        <svg class="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+    </button>
+
     <main class="page-shell">
 
         <!-- ════════════════════════════════════════════
@@ -845,15 +1001,17 @@
         <section class="s-hero">
             <h1>Variante B – Modern Dark</h1>
             <p>
-                Glasmorphismus-Karten auf dunklem Slate. Farbiger Akzent-Stripe am Header-Oberkante,
+                Glasmorphismus-Karten auf dunklem Slate mit Light-Mode-Toggle.
+                Farbiger Akzent-Stripe am linken Header-Rand,
                 leuchtende Hover-Glows, satte Gradient-CTAs. Gleiche Kartenstruktur, voellig anderer Auftritt.
             </p>
             <ul>
-                <li><strong>Background:</strong> Deep Slate mit Aurora-Mesh-Gradienten</li>
+                <li><strong>Background:</strong> Deep Slate mit Aurora-Mesh-Gradienten (Light: helles Grau)</li>
                 <li><strong>Cards:</strong> Frosted Glass, dezente Borders, Glow-on-Hover</li>
-                <li><strong>Header:</strong> 3px Gradient-Stripe oben, Pill-Tag fuer Modultyp</li>
+                <li><strong>Header:</strong> 3px Gradient-Stripe links, Pill-Tag fuer Modultyp</li>
                 <li><strong>CTA:</strong> Voller Gradient-Button mit innerer Lichtreflexion</li>
                 <li><strong>Farben:</strong> Lebendig, gesaettigt bei hohem Kontrast</li>
+                <li><strong>Theme:</strong> Dark/Light Toggle oben rechts</li>
             </ul>
         </section>
 
@@ -869,15 +1027,16 @@
             <article class="v2 v2--wide v2--viewport v2--training">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">
-                            <svg viewBox="0 0 24 24">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg>
-                        </span>
+                        <span class="v2__check-label">Check 1</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Ableitungsregeln anwenden</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Training</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -960,7 +1119,6 @@
                             KI-Erklaer-Agent
                         </button>
                     </div>
-                    <button class="v2-cta">Aufgabe pruefen →</button>
                 </div>
             </article>
 
@@ -969,10 +1127,40 @@
             <article class="v2 v2--wide v2--kompetenzliste">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">☑</span>
+                        <span class="v2__check-label">Check 2</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Kompetenzliste – Kurvendiskussion</span>
                     </div>
-                    <div class="v2__header-right"><span class="v2__module-tag">Kompetenzliste</span></div>
+                    <div class="v2__header-right">
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span><span class="shortcut">aktiv</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
                 </header>
                 <div class="v2__body">
                     <div class="d-kl-row">
@@ -995,7 +1183,6 @@
                         <div class="d-kl-check"></div><span class="d-kl-text"><strong>A5</strong> – Gesamte
                             Kurvendiskussion</span><span class="d-kl-status">0/3</span>
                     </div>
-                    <button class="v2-cta">Fortschritt speichern</button>
                 </div>
             </article>
 
@@ -1004,17 +1191,16 @@
             <article class="v2 v2--wide v2--skript-tipps">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2a7 7 0 0 1 4 12.7V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.3A7 7 0 0 1 12 2z"
-                                    fill="none" stroke="currentColor" stroke-width="2" />
-                                <line x1="9" y1="21" x2="15" y2="21" stroke="currentColor" stroke-width="2" />
-                            </svg>
-                        </span>
+                        <span class="v2__check-label">Check 3</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Tipps – Wendepunkte bestimmen</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Skript · Tipps</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -1049,7 +1235,6 @@
                         <strong style="color: var(--text-dim);">Typischer Fehler:</strong> f''(x₀) = 0 allein reicht
                         nicht!
                     </p>
-                    <button class="v2-cta">Verstanden ✓</button>
                 </div>
             </article>
 
@@ -1058,11 +1243,16 @@
             <article class="v2 v2--wide v2--skript-beispiel">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">📝</span>
+                        <span class="v2__check-label">Check 3</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Beispiel – Wendepunkte bestimmen</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Skript · Beispiel</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -1095,7 +1285,6 @@
                             −6 &lt; 0, f''(3) = 6 &gt; 0 → VZW ✓</span></p>
                     <p style="margin-top:12px"><strong>Ergebnis:</strong> <span
                             style="color: var(--card-color); font-weight: 600;">W(2 | 7)</span></p>
-                    <button class="v2-cta">Naechster Schritt →</button>
                 </div>
             </article>
 
@@ -1113,13 +1302,16 @@
             <article class="v2 v2--narrow v2--viewport v2--blurting">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge"><svg viewBox="0 0 24 24">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg></span>
+                        <span class="v2__check-label">Check 4</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Wendepunkte bestimmen</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Blurting</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -1167,7 +1359,6 @@
                             <span class="d-blurting-kw">y-Wert</span>
                         </div>
                     </div>
-                    <button class="v2-cta">Selbstcheck abschliessen ✓</button>
                 </div>
             </article>
 
@@ -1175,13 +1366,16 @@
             <article class="v2 v2--narrow v2--viewport v2--feynman">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge"><svg viewBox="0 0 24 24">
-                                <polyline points="20 6 9 17 4 12" />
-                            </svg></span>
+                        <span class="v2__check-label">Check 4</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Wendepunkte bestimmen</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Feynman</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -1246,7 +1440,6 @@
                             KI-Lernpartner kopieren
                         </button>
                     </div>
-                    <button class="v2-cta">Erklaerung abschliessen ✓</button>
                 </div>
             </article>
 
@@ -1254,11 +1447,16 @@
             <article class="v2 v2--narrow v2--viewport v2--flashcards">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">5</span>
+                        <span class="v2__check-label">Check 5</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Karte 3 von 12</span>
                     </div>
                     <div class="v2__header-right">
-                        <span class="v2__module-tag">Flashcards</span>
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
                         <div class="v2-menu-wrap">
                             <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
                                 <svg viewBox="0 0 20 20">
@@ -1289,7 +1487,6 @@
                     <div class="d-fc-front">
                         Was ist die notwendige Bedingung fuer einen Wendepunkt?
                     </div>
-                    <button class="v2-cta">Karte drehen ↻</button>
                 </div>
             </article>
 
@@ -1297,10 +1494,40 @@
             <article class="v2 v2--narrow v2--warmup">
                 <header class="v2__header">
                     <div class="v2__header-left">
-                        <span class="v2__badge">🔥</span>
+                        <span class="v2__check-label">Check 6</span>
+                        <span class="v2__separator"></span>
                         <span class="v2__title">Warm-Up – Kurvendiskussion</span>
                     </div>
-                    <div class="v2__header-right"><span class="v2__module-tag">Warm-Up</span></div>
+                    <div class="v2__header-right">
+                        <button class="v2-check-btn" aria-label="Check abschliessen">
+                            <svg viewBox="0 0 24 24">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                        </button>
+                        <div class="v2-menu-wrap">
+                            <button class="v2-menu-btn" onclick="toggleMenu(this)" aria-label="Menue">
+                                <svg viewBox="0 0 20 20">
+                                    <circle cx="10" cy="4" r="1.6" />
+                                    <circle cx="10" cy="10" r="1.6" />
+                                    <circle cx="10" cy="16" r="1.6" />
+                                </svg>
+                            </button>
+                            <div class="v2-menu-popup">
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-kompetenz)"></span><span
+                                        class="label">Kompetenzliste</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-training)"></span><span
+                                        class="label">Training</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-blurting)"></span><span
+                                        class="label">Blurting</span></a>
+                                <a class="v2-menu-popup__item" href="#"><span class="dot"
+                                        style="background:var(--c-feynman)"></span><span
+                                        class="label">Feynman</span></a>
+                            </div>
+                        </div>
+                    </div>
                 </header>
                 <div class="v2__body">
                     <div style="text-align: center; padding: 24px 0;">
@@ -1311,7 +1538,6 @@
                         </p>
                     </div>
                     <div class="d-graphic" style="height: 100px;">[ Illustration ]</div>
-                    <button class="v2-cta">Weiter →</button>
                 </div>
             </article>
 
@@ -1330,6 +1556,10 @@
             if (!e.target.closest('.v2-menu-wrap'))
                 document.querySelectorAll('.v2-menu-popup.is-open').forEach(p => p.classList.remove('is-open'));
         });
+
+        function toggleTheme() {
+            document.documentElement.classList.toggle('light');
+        }
     </script>
 </body>
 

@@ -7,6 +7,7 @@ from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.marktgleichgewicht_grundlagen.shared import _fmt_number
 from aufgaben.generators.analysis.marktgleichgewicht_vertiefung.shared import (
     _align_equations,
+    _demand_slope_abs_from_params,
     _find_root_in_interval,
     _num_tol,
     _sample_market_params,
@@ -89,6 +90,8 @@ def _build_demand_from_params(params: dict) -> tuple[callable, str, float]:
 
 class MarketEquilibriumAbschoepfungKRBerechnungBetragGenerator(TaskGenerator):
     generator_key = "analysis.marktgleichgewicht_vertiefung.abschoepfung_kr_berechnung_betrag"
+    _min_demand_slope_abs = 0.45
+    _max_eq_quantity_for_plot = 65.0
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -139,6 +142,9 @@ class MarketEquilibriumAbschoepfungKRBerechnungBetragGenerator(TaskGenerator):
                 if not (0.2 < eq_p < max_price - 0.2):
                     continue
 
+                if eq_x > self._max_eq_quantity_for_plot:
+                    continue
+
                 # betrag muss deutlich ueber eq_p UND deutlich unter max_price liegen
                 preis_spanne = max_price - eq_p
                 min_abstand = max(1.0, preis_spanne * 0.2)
@@ -158,6 +164,11 @@ class MarketEquilibriumAbschoepfungKRBerechnungBetragGenerator(TaskGenerator):
                     end=min(2000.0, max(18.0, sat_quantity * 1.05)),
                 )
                 if nachfragemenge is None or not (0.2 <= nachfragemenge < eq_x - 0.05):
+                    continue
+
+                slope_eq = _demand_slope_abs_from_params(demand_params, eq_x)
+                slope_x2 = _demand_slope_abs_from_params(demand_params, nachfragemenge)
+                if min(slope_eq, slope_x2) < self._min_demand_slope_abs:
                     continue
 
                 abschoepfung = (betrag - eq_p) * nachfragemenge
