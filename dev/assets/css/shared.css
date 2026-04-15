@@ -2194,9 +2194,9 @@ body.page-module-designs .shell {
 }
 
 .phase-badge.violet {
-  background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .1);
-  border-color: rgba(var(--mt-feynman-rgb, 167, 139, 250), .2);
-  color: var(--mt-feynman, #a78bfa);
+  background: var(--lavender-soft);
+  border-color: rgba(167, 139, 250, .2);
+  color: var(--lavender);
 }
 
 .phase-badge.rose {
@@ -2572,7 +2572,7 @@ body.page-module-designs .shell {
 }
 
 .kl-check-name {
-  color: var(--mt-kompetenzliste, var(--blue));
+  color: var(--mt-kompetenzliste, var(--lavender));
 }
 
 .kl-body {
@@ -2599,9 +2599,9 @@ body.page-module-designs .shell {
 }
 
 .bl-reveal-btn {
-  border: 1px solid rgba(61, 214, 200, .3);
-  background: var(--teal-soft);
-  color: var(--teal);
+  border: 1px solid rgba(var(--mt-blurting-rgb, 245, 166, 35), .3);
+  background: var(--mt-blurting-soft, var(--amber-soft));
+  color: var(--mt-blurting, var(--amber));
   font-family: inherit;
   font-size: .78rem;
   font-weight: 600;
@@ -2613,17 +2613,17 @@ body.page-module-designs .shell {
 }
 
 .bl-reveal-btn:hover {
-  background: rgba(61, 214, 200, .2);
+  background: rgba(var(--mt-blurting-rgb, 245, 166, 35), .2);
 }
 
 .fy-reveal-btn {
-  border-color: rgba(var(--mt-feynman-rgb, 167, 139, 250), .32);
-  background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .14);
-  color: var(--mt-feynman, #a78bfa);
+  border-color: rgba(var(--mt-feynman-rgb, 61, 214, 200), .32);
+  background: rgba(var(--mt-feynman-rgb, 61, 214, 200), .14);
+  color: var(--mt-feynman, var(--teal));
 }
 
 .fy-reveal-btn:hover {
-  background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .22);
+  background: rgba(var(--mt-feynman-rgb, 61, 214, 200), .22);
 }
 
 .fy-ki-btn {
@@ -2658,7 +2658,7 @@ body.page-module-designs .shell {
 }
 
 .bl-textarea:focus {
-  border-color: rgba(61, 214, 200, .35);
+  border-color: rgba(var(--mt-blurting-rgb, 245, 166, 35), .35);
 }
 
 .bl-textarea::placeholder {
@@ -2822,8 +2822,8 @@ body.page-module-designs .shell {
 }
 
 .oc-icon.violet {
-  background: rgba(var(--mt-feynman-rgb, 167, 139, 250), .12);
-  border: 2px solid rgba(var(--mt-feynman-rgb, 167, 139, 250), .3);
+  background: var(--lavender-soft);
+  border: 2px solid rgba(167, 139, 250, .3);
 }
 
 .oc-title {
@@ -2842,7 +2842,7 @@ body.page-module-designs .shell {
 }
 
 .oc-title.violet {
-  color: var(--mt-feynman, #a78bfa);
+  color: var(--lavender);
 }
 
 .oc-sub {
@@ -3112,10 +3112,6 @@ body.page-module-designs .shell {
 
 .page-skript-md .mod-content .check-anker__tipps {
   margin: 16px 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--amber);
-  background: var(--amber-soft);
-  border-radius: 12px;
 }
 
 .page-skript-md .mod-content .check-anker__tipps ul {
@@ -3125,10 +3121,6 @@ body.page-module-designs .shell {
 
 .page-skript-md .mod-content .check-anker__beispiel {
   margin: 16px 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--teal);
-  background: var(--teal-soft);
-  border-radius: 12px;
 }
 
 .page-skript-md .mod-content .check-anker__beispiel ul {

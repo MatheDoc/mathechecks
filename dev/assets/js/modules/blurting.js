@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 
 const BL_STATE_PREFIX = "dev-blurting-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
@@ -148,9 +149,10 @@ function renderCard(check) {
     .map((ref) => `<span class="bl-kw"><span class="bl-kwdot"></span>${escapeHtml(ref)}</span>`)
     .join("");
 
-  const skriptIcon = scriptHref
-    ? `<a class="dev-check-card__action-btn" href="${escapeHtml(scriptHref)}" title="Im Skript nachschlagen" aria-label="Im Skript nachschlagen"><i class="fa-solid fa-book-open" aria-hidden="true"></i></a>`
+  const skriptMenuItem = scriptHref
+    ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Im Skript nachschlagen", href: scriptHref })
     : "";
+  const actionsMenu = skriptMenuItem ? renderCardActionsMenuMarkup(skriptMenuItem) : "";
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-bl-check-viewport data-check-id="${escapeHtml(
@@ -167,8 +169,7 @@ function renderCard(check) {
     titleTag: "span",
   })}
           <div class="dev-check-card__header-actions">
-            ${skriptIcon}
-            <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
+            ${actionsMenu}
           </div>
         </div>
         <div class="dev-check-card__body">
@@ -400,6 +401,7 @@ export async function initBlurtingModule({ root, lernbereich, preferredCheckId =
 
   renderJumpNav(navNode, checks, selectedCheckId);
   root.innerHTML = checks.map((check) => renderCard(check)).join("");
+  initCardMenuDismiss(root);
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-bl-check-viewport][data-check-id]"));
   applyInitialReveal(root);
   initInteractiveBlurtingCards(root);

@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
+import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
 /* ------------------------------------------------------------------ */
 /*  MathJax helper                                                     */
@@ -18,6 +19,36 @@ async function typesetNode(node, retries = 4) {
 }
 
 /* ------------------------------------------------------------------ */
+/*  Card-Wrapper (shared by Tipps & Beispiel)                          */
+/* ------------------------------------------------------------------ */
+
+function createAnkerCard(check, label, moduleTone) {
+    const card = document.createElement("article");
+    card.className = `dev-check-card dev-check-card--${moduleTone}`;
+
+    const header = document.createElement("div");
+    header.className = "dev-check-card__header";
+
+    const headerLeft = createCheckMetaRowNode({
+        numberText: formatCheckNumber(check?.Nummer),
+        titleText: check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`,
+        prefix: label,
+        tone: moduleTone,
+        rowClass: "dev-check-card__header-left",
+        titleTag: "span",
+    });
+
+    header.appendChild(headerLeft);
+    card.appendChild(header);
+
+    const body = document.createElement("div");
+    body.className = "dev-check-card__body";
+    card.appendChild(body);
+
+    return { card, body };
+}
+
+/* ------------------------------------------------------------------ */
 /*  Tipps rendern                                                      */
 /* ------------------------------------------------------------------ */
 
@@ -27,6 +58,9 @@ function renderTipps(container, check) {
         container.hidden = true;
         return;
     }
+
+    const { card, body } = createAnkerCard(check, "Tipps", "blurting");
+
     const ul = document.createElement("ul");
     ul.className = "check-anker__tipps-list";
     for (const tipp of tipps) {
@@ -34,7 +68,8 @@ function renderTipps(container, check) {
         li.textContent = tipp;
         ul.appendChild(li);
     }
-    container.appendChild(ul);
+    body.appendChild(ul);
+    container.appendChild(card);
 }
 
 /* ------------------------------------------------------------------ */
@@ -60,9 +95,12 @@ async function renderBeispiel(container, check) {
         const html = await resp.text();
         if (!html.trim()) { container.hidden = true; return; }
 
-        container.innerHTML = html;
-        initSkriptVisuals(container);
-        await typesetNode(container);
+        const { card, body } = createAnkerCard(check, "Beispiel", "feynman");
+        body.innerHTML = html;
+        container.appendChild(card);
+
+        initSkriptVisuals(body);
+        await typesetNode(body);
     } catch {
         container.hidden = true;
     }

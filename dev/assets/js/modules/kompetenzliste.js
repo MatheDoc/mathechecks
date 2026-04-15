@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 
 function escapeHtml(value) {
     return String(value)
@@ -67,15 +68,6 @@ function buildFeynmanHref(check) {
     return `${targetPath}#${getFeynmanCheckAnchorId(check)}`;
 }
 
-function renderModuleActionLink(href, tone, title, iconToken) {
-    if (!href) return "";
-
-    const icon = String(iconToken || "").trim();
-    const iconMarkup = `<span aria-hidden="true">${escapeHtml(icon)}</span>`;
-
-    return `<a class="dev-check-card__action-btn dev-check-card__action-btn--${tone}" href="${escapeHtml(href)}" title="${escapeHtml(title)}" aria-label="${escapeHtml(title)}">${iconMarkup}</a>`;
-}
-
 function renderRow(check) {
     const nummerRaw = Number(check?.Nummer);
     const nummer = Number.isFinite(nummerRaw) ? String(nummerRaw) : "-";
@@ -85,9 +77,11 @@ function renderRow(check) {
     const blurtingHref = buildBlurtingHref(check);
     const feynmanHref = buildFeynmanHref(check);
 
-    const trainingLink = renderModuleActionLink(trainingHref, "training", "Zum Training", "🏋️");
-    const blurtingLink = renderModuleActionLink(blurtingHref, "blurting", "Zum Blurting", "💭");
-    const feynmanLink = renderModuleActionLink(feynmanHref, "feynman", "Zum Feynman", "🎓");
+    const trainingItem = trainingHref ? renderCardMenuLinkMarkup({ emoji: "🏋️", label: "Zum Training", href: trainingHref, tone: "training" }) : "";
+    const blurtingItem = blurtingHref ? renderCardMenuLinkMarkup({ emoji: "💭", label: "Zum Blurting", href: blurtingHref, tone: "blurting" }) : "";
+    const feynmanItem = feynmanHref ? renderCardMenuLinkMarkup({ emoji: "🎓", label: "Zum Feynman", href: feynmanHref, tone: "feynman" }) : "";
+    const menuItems = trainingItem + blurtingItem + feynmanItem;
+    const actionsMenu = menuItems ? renderCardActionsMenuMarkup(menuItems) : "";
 
     return `
         <article class="dev-check-card dev-check-card--kompetenzliste kl-row" data-check-id="${escapeHtml(getCheckId(check))}">
@@ -102,9 +96,7 @@ function renderRow(check) {
         titleTag: "span",
     })}
                 <div class="dev-check-card__header-actions kl-actions">
-                    ${trainingLink}
-                    ${blurtingLink}
-                    ${feynmanLink}
+                    ${actionsMenu}
                 </div>
             </div>
             <div class="kl-body">
@@ -133,6 +125,7 @@ export async function initKompetenzlisteModule({ lernbereich } = {}) {
 
     const checks = await getChecksByLernbereich(lernbereich);
     root.innerHTML = renderList(checks);
+    initCardMenuDismiss(root);
 
     // Reveal after rendering.
     root.classList.add("dev-module-root--ready");
