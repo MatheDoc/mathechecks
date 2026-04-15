@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 
 const FY_TOTAL_SECONDS = 300;
@@ -462,9 +463,11 @@ function renderCard(check) {
   const scriptHref = buildScriptInfoHref(check);
   const evaluationExampleMarkup = getEvaluationExamplePlaceholder();
 
-  const skriptIcon = scriptHref
-    ? `<a class="dev-check-card__action-btn" href="${escapeHtml(scriptHref)}" title="Im Skript nachschlagen" aria-label="Im Skript nachschlagen"><i class="fa-solid fa-book-open" aria-hidden="true"></i></a>`
+  const skriptMenuItem = scriptHref
+    ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Im Skript nachschlagen", href: scriptHref })
     : "";
+  const kiMenuItem = `<button type="button" class="dev-check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="dev-check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner</span></button>`;
+  const actionsMenu = renderCardActionsMenuMarkup(skriptMenuItem + kiMenuItem);
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-fy-check-viewport data-check-id="${escapeHtml(
@@ -481,8 +484,7 @@ function renderCard(check) {
     titleTag: "span",
   })}
           <div class="dev-check-card__header-actions">
-            ${skriptIcon}
-            <button type="button" class="dev-check-card__action-btn dev-check-card__stats-btn" title="Noch keine Statistik vorhanden" aria-label="Statistik"><i class="fa-solid fa-chart-simple" aria-hidden="true"></i></button>
+            ${actionsMenu}
           </div>
         </div>
         <div class="dev-check-card__body">
@@ -493,7 +495,6 @@ function renderCard(check) {
         <div data-fy-stage="write">
 
             <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
-            <button class="bl-reveal-btn fy-ki-btn" type="button" data-fy-ki-copy title="KI-Lernpartner in die Zwischenablage kopieren – füge den Text in eine KI deiner Wahl ein">✨ KI-Lernpartner</button>
 
         </div>
 
@@ -691,17 +692,18 @@ function initInteractiveFeynmanCards(root, checks) {
     card.querySelector('[data-fy-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-fy-answer="no"]')?.addEventListener("click", () => setResult(false));
 
-    const kiButton = card.querySelector("[data-fy-ki-copy]");
+    const kiButton = card.querySelector("[data-fy-ki-menu]");
     if (kiButton && check) {
       kiButton.addEventListener("click", async () => {
         kiButton.disabled = true;
-        kiButton.textContent = "⏳ Wird erstellt…";
+        const labelSpan = kiButton.querySelector("span:last-child");
+        if (labelSpan) labelSpan.textContent = "Wird erstellt…";
         try {
           const beispielHtml = await fetchBeispielHtml(check);
           const agentPrompt = buildKiAgentPrompt(check, beispielHtml);
           const ok = await copyToClipboard(agentPrompt);
-          kiButton.textContent = ok ? "✅ Kopiert!" : "❌ Fehler";
-          setTimeout(() => { kiButton.textContent = "✨ KI-Lernpartner"; }, 2000);
+          if (labelSpan) labelSpan.textContent = ok ? "Kopiert!" : "Fehler";
+          setTimeout(() => { if (labelSpan) labelSpan.textContent = "KI-Lernpartner"; }, 2000);
         } finally {
           kiButton.disabled = false;
         }
@@ -764,6 +766,7 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
 
   renderJumpNav(navNode, checks, selectedCheckId);
   root.innerHTML = checks.map((check) => renderCard(check)).join("");
+  initCardMenuDismiss(root);
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-fy-check-viewport][data-check-id]"));
   applyInitialReveal(root);
   initInteractiveFeynmanCards(root, checks);

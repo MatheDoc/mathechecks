@@ -79,15 +79,15 @@
 }
 
 .dev-check-card__badge--blurting {
-    color: var(--mt-blurting, var(--teal));
+    color: var(--mt-blurting, var(--amber));
 }
 
 .dev-check-card__badge--feynman {
-    color: var(--mt-feynman, #a78bfa);
+    color: var(--mt-feynman, var(--teal));
 }
 
 .dev-check-card__badge--kompetenzliste {
-    color: var(--mt-kompetenzliste, var(--blue));
+    color: var(--mt-kompetenzliste, var(--lavender));
 }
 
 .dev-check-card__badge--flashcards {
@@ -132,11 +132,11 @@
 }
 
 .dev-check-card__action-btn--blurting {
-    color: var(--mt-blurting, var(--teal));
+    color: var(--mt-blurting, var(--amber));
 }
 
 .dev-check-card__action-btn--feynman {
-    color: var(--mt-feynman, #a78bfa);
+    color: var(--mt-feynman, var(--teal));
 }
 
 .dev-check-card__action-btn i {
@@ -145,8 +145,97 @@
     pointer-events: none;
 }
 
-.dev-check-card__stats-btn {
+/* ── Card three-dot actions menu ── */
+
+.dev-check-card__actions-menu {
+    display: block;
     position: relative;
+}
+
+.dev-check-card__actions-trigger {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.15s, background 0.15s;
+}
+
+.dev-check-card__actions-trigger:hover {
+    color: var(--dcc-accent, var(--text));
+    background: var(--surface-hi);
+}
+
+.dev-check-card__actions-trigger::-webkit-details-marker {
+    display: none;
+}
+
+.dev-check-card__actions-menu[open] .dev-check-card__actions-trigger {
+    color: var(--dcc-accent, var(--text));
+}
+
+.dev-check-card__actions-dots {
+    display: inline-grid;
+    grid-auto-flow: row;
+    gap: 2.5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.dev-check-card__actions-dots .dot {
+    width: 3.5px;
+    height: 3.5px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.dev-check-card__actions-popover {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 200px;
+    background: var(--panel-solid);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 6px;
+    z-index: 80;
+    display: grid;
+    gap: 2px;
+}
+
+.dev-check-card__actions-item {
+    width: 100%;
+    border: 0;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    min-height: 34px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.dev-check-card__actions-item:hover {
+    background: var(--surface-hi);
+    color: var(--text);
+}
+
+.dev-check-card__actions-icon {
+    flex-shrink: 0;
+    font-size: 0.92rem;
+    line-height: 1;
 }
 
 .dev-check-card__title {
@@ -165,21 +254,21 @@
 }
 
 .dev-check-card--blurting {
-    --dcc-accent: var(--mt-blurting, var(--teal));
-    --dcc-accent-soft: var(--mt-blurting-soft, var(--teal-soft));
-    --dcc-border: var(--mt-blurting-border, rgba(61, 214, 200, .3));
+    --dcc-accent: var(--mt-blurting, var(--amber));
+    --dcc-accent-soft: var(--mt-blurting-soft, var(--amber-soft));
+    --dcc-border: var(--mt-blurting-border, rgba(245, 166, 35, .3));
 }
 
 .dev-check-card--feynman {
-    --dcc-accent: var(--mt-feynman, #a78bfa);
-    --dcc-accent-soft: var(--mt-feynman-soft, rgba(167, 139, 250, 0.12));
-    --dcc-border: var(--mt-feynman-border, rgba(167, 139, 250, .3));
+    --dcc-accent: var(--mt-feynman, var(--teal));
+    --dcc-accent-soft: var(--mt-feynman-soft, var(--teal-soft));
+    --dcc-border: var(--mt-feynman-border, rgba(61, 214, 200, .3));
 }
 
 .dev-check-card--kompetenzliste {
-    --dcc-accent: var(--mt-kompetenzliste, var(--blue));
-    --dcc-accent-soft: var(--mt-kompetenzliste-soft, var(--blue-soft));
-    --dcc-border: var(--mt-kompetenzliste-border, rgba(76, 154, 255, .3));
+    --dcc-accent: var(--mt-kompetenzliste, var(--lavender));
+    --dcc-accent-soft: var(--mt-kompetenzliste-soft, var(--lavender-soft));
+    --dcc-border: var(--mt-kompetenzliste-border, rgba(167, 139, 250, .3));
 }
 
 .dev-check-card--flashcards {
@@ -205,15 +294,15 @@
 }
 
 .dev-check-card__title--blurting {
-    color: var(--mt-blurting, var(--teal));
+    color: var(--mt-blurting, var(--amber));
 }
 
 .dev-check-card__title--feynman {
-    color: var(--mt-feynman, #a78bfa);
+    color: var(--mt-feynman, var(--teal));
 }
 
 .dev-check-card__title--kompetenzliste {
-    color: var(--mt-kompetenzliste, var(--blue));
+    color: var(--mt-kompetenzliste, var(--lavender));
 }
 
 .dev-check-card__title--flashcards {

@@ -12,6 +12,7 @@ import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
+import { createCardActionsMenu, createCardMenuItem, createCardMenuLink } from "./ui/card-actions-menu.js";
 
 const TR_BEISPIEL_CACHE = new Map();
 
@@ -978,35 +979,13 @@ function createTaskCardNode(
   const headerRight = document.createElement("div");
   headerRight.className = "dev-check-card__header-actions";
 
+  const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
+  headerRight.appendChild(actionsMenu);
+
   const skriptTippsHref = buildSkriptTippsHref(check);
   if (skriptTippsHref) {
-    const helpLink = document.createElement("a");
-    helpLink.className = "dev-check-card__action-btn";
-    helpLink.href = skriptTippsHref;
-    helpLink.title = "Hilfe";
-    helpLink.setAttribute("aria-label", "Hilfe");
-    helpLink.innerHTML = '<i class="fa-solid fa-circle-question" aria-hidden="true"></i>';
-    headerRight.appendChild(helpLink);
+    actionsPopover.appendChild(createCardMenuLink({ emoji: "❓", label: "Hilfe", href: skriptTippsHref }));
   }
-
-  const createHeaderActionProxyButton = ({ iconClass, title, onClick }) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "dev-check-card__action-btn";
-    button.title = title;
-    button.setAttribute("aria-label", title);
-    button.innerHTML = `<i class="fa-solid ${iconClass}" aria-hidden="true"></i>`;
-    button.addEventListener("click", onClick);
-    return button;
-  };
-
-  const statsBtn = document.createElement("button");
-  statsBtn.type = "button";
-  statsBtn.className = "dev-check-card__action-btn dev-check-card__stats-btn";
-  statsBtn.title = "Noch keine Statistik vorhanden";
-  statsBtn.setAttribute("aria-label", "Statistik");
-  statsBtn.innerHTML = '<i class="fa-solid fa-chart-simple" aria-hidden="true"></i>';
-  headerRight.appendChild(statsBtn);
 
   header.appendChild(headerLeft);
   header.appendChild(headerRight);
@@ -1027,16 +1006,11 @@ function createTaskCardNode(
 
   let runtimeTaskNode = null;
 
-  const aiAgentBtn = createHeaderActionProxyButton({
-    iconClass: "fa-wand-magic-sparkles",
-    title: "KI-Erkläragent kopieren",
+  const aiAgentItem = createCardMenuItem({
+    emoji: "✨",
+    label: "KI-Erkläragent",
     onClick: async () => {
-      aiAgentBtn.disabled = true;
-      const prevTitle = aiAgentBtn.title;
-      const prevAria = aiAgentBtn.getAttribute("aria-label") || prevTitle;
-      const prevHtml = aiAgentBtn.innerHTML;
-      aiAgentBtn.innerHTML = '<i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>';
-
+      aiAgentItem.disabled = true;
       try {
         const beispielHtml = await fetchBeispielHtml(check);
         const prompt = buildTrainingKiAgentPrompt({
@@ -1047,28 +1021,13 @@ function createTaskCardNode(
           runtimeTaskNode,
           beispielHtml,
         });
-        const ok = await copyToClipboard(prompt);
-        if (ok) {
-          aiAgentBtn.title = "KI-Erkläragent in Zwischenablage kopiert";
-          aiAgentBtn.setAttribute("aria-label", "KI-Erkläragent in Zwischenablage kopiert");
-          aiAgentBtn.innerHTML = '<i class="fa-solid fa-check" aria-hidden="true"></i>';
-        } else {
-          aiAgentBtn.title = "Kopieren fehlgeschlagen";
-          aiAgentBtn.setAttribute("aria-label", "Kopieren fehlgeschlagen");
-          aiAgentBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>';
-        }
-
-        window.setTimeout(() => {
-          aiAgentBtn.title = prevTitle;
-          aiAgentBtn.setAttribute("aria-label", prevAria);
-          aiAgentBtn.innerHTML = prevHtml;
-        }, 1700);
+        await copyToClipboard(prompt);
       } finally {
-        aiAgentBtn.disabled = false;
+        aiAgentItem.disabled = false;
       }
     },
   });
-  headerRight.insertBefore(aiAgentBtn, statsBtn);
+  actionsPopover.appendChild(aiAgentItem);
 
   runtimeTaskNode = renderRuntimeTask(effectiveAufgabe, {
     index: 0,
@@ -1099,35 +1058,29 @@ function createTaskCardNode(
   });
 
   if (runtimeSolutionBtn) {
-    const syncSolutionButton = (button) => {
-      const label = runtimeSolutionBtn.getAttribute("aria-label") || runtimeSolutionBtn.title || "Loesungen anzeigen";
-      const showHideState = label.toLowerCase().includes("ausblenden");
-      button.title = label;
-      button.setAttribute("aria-label", label);
-      button.innerHTML = showHideState
-        ? '<i class="fa-solid fa-eye-slash" aria-hidden="true"></i>'
-        : '<i class="fa-solid fa-eye" aria-hidden="true"></i>';
+    const isHidden = () => {
+      const label = (runtimeSolutionBtn.getAttribute("aria-label") || runtimeSolutionBtn.title || "").toLowerCase();
+      return label.includes("ausblenden");
     };
 
-    const solutionProxy = createHeaderActionProxyButton({
-      iconClass: "fa-eye",
-      title: "Loesungen anzeigen",
+    const solutionItem = createCardMenuItem({
+      emoji: "👁️",
+      label: isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen",
       onClick: () => {
         runtimeSolutionBtn.click();
-        syncSolutionButton(solutionProxy);
+        const labelSpan = solutionItem.querySelector("span:last-child");
+        if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen";
       },
     });
-    syncSolutionButton(solutionProxy);
-    headerRight.appendChild(solutionProxy);
+    actionsPopover.appendChild(solutionItem);
   }
 
   if (runtimeReloadBtn) {
-    const reloadProxy = createHeaderActionProxyButton({
-      iconClass: "fa-rotate-right",
-      title: runtimeReloadBtn.getAttribute("aria-label") || runtimeReloadBtn.title || "Neue Aufgabe",
+    actionsPopover.appendChild(createCardMenuItem({
+      emoji: "🔄",
+      label: "Neue Aufgabe",
       onClick: () => runtimeReloadBtn.click(),
-    });
-    headerRight.appendChild(reloadProxy);
+    }));
   }
 
   if (runtimeToolbar) {
