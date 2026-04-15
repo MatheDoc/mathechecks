@@ -478,7 +478,7 @@ function renderCard(check) {
           ${renderCheckMetaRowMarkup({
     numberText: checkNummer,
     titleText: titel,
-    prefix: "Check",
+    prefix: "Feynman",
     tone: "feynman",
     rowClass: "dev-check-card__header-left",
     titleTag: "span",

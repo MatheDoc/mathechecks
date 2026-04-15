@@ -10,14 +10,15 @@
 
 <div class="mod-start-content">
     <!-- Hero -->
-    <div class="s-hero">
-        <div class="s-hero-body">
-            <div class="s-hero-eyebrow">{{ gebiet_info.name | default: page.gebiet }}</div>
-            <h1>{{ lb_info.name | default: page.title }}</h1>
-        </div>
+    <div class="s-hero" data-gebiet="{{ page.gebiet }}">
         <img class="s-hero-img"
             src="{{ '/dev/assets/img/start/' | append: page.lernbereich | append: '.svg' | relative_url }}"
             alt="{{ lb_info.name | default: page.lernbereich }}" loading="lazy">
+        <div class="s-hero-body">
+            <span class="mat-badge gebiet-badge" data-gebiet="{{ page.gebiet }}">{{ gebiet_info.name | default:
+                page.gebiet }}</span>
+            <h1>{{ lb_info.name | default: page.title }}</h1>
+        </div>
     </div>
 
     <!-- Worum geht es? -->

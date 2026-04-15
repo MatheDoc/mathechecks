@@ -163,7 +163,7 @@ function renderCard(check) {
           ${renderCheckMetaRowMarkup({
     numberText: checkNummer,
     titleText: begriff,
-    prefix: "Check",
+    prefix: "Blurting",
     tone: "blurting",
     rowClass: "dev-check-card__header-left",
     titleTag: "span",
