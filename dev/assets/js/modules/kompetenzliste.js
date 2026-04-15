@@ -89,7 +89,7 @@ function renderRow(check) {
                 ${renderCheckMetaRowMarkup({
         numberText: nummer,
         titleText: schlagwort,
-        prefix: "Check",
+        prefix: "Kompetenz",
         tone: "kompetenzliste",
         rowClass: "kl-check-meta-row",
         titleClass: "kl-check-name",

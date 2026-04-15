@@ -969,7 +969,7 @@ function createTaskCardNode(
     {
       numberText: formatCheckNumber(check?.Nummer),
       titleText: titel,
-      prefix: "Check",
+      prefix: "Aufgabe",
       tone: "training",
       rowClass: "dev-check-card__header-left",
       titleTag: "span",

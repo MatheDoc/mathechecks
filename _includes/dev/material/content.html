@@ -18,8 +18,9 @@
     <img class="mat-card-img" src="{{ '/dev/assets/img/start/' | append: lb.szenario_bild | relative_url }}" alt=""
       loading="lazy">
     {% endif %}
-    <div class="mat-card-title">{{ lb.name }}</div>
     <span class="mat-badge gebiet-badge" data-gebiet="{{ lb.gebiet }}">{{ gebiet_label }}</span>
+    <div class="mat-card-title">{{ lb.name }}</div>
+
   </a>
   {% endif %}
   {% endfor %}

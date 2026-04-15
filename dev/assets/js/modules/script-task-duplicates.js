@@ -140,7 +140,7 @@ function createEmptyTaskCard(check) {
         {
             numberText: formatCheckNumber(check?.Nummer),
             titleText: check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`,
-            prefix: "Check",
+            prefix: "Aufgabe",
             tone: "training",
             rowClass: "dev-check-card__header-left",
             titleTag: "span",
@@ -191,7 +191,7 @@ function createTaskCard(
         {
             numberText: formatCheckNumber(check?.Nummer),
             titleText: titel,
-            prefix: "Check",
+            prefix: "Aufgabe",
             tone: "training",
             rowClass: "dev-check-card__header-left",
             titleTag: "span",
