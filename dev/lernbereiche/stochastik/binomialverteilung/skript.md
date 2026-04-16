@@ -26,7 +26,7 @@ Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt
 
 Wir betrachten eine Bernoulli-Kette der Länge $n$ mit Trefferwahrscheinlichkeit $p$ und fragen nach der Wahrscheinlichkeit für genau $k$ Treffer. Das zugehörige Baumdiagramm hat folgende Gestalt:
 
-{% include baumdiagramm-binomial.html %}
+{% include dev/widgets/widget-baumdiagramm-binomial.html %}
 
 Um die Wahrscheinlichkeit für genau $k$ Treffer zu berechnen, benötigen wir die erstens Anzahl der Pfade mit genau $k$ Treffern und zweitens die Endwahrscheinlichkeit eines solchen Pfades.
 
@@ -155,7 +155,7 @@ Wie jede Zufallsgröße können binomialverteilte Zufallsgrößen in Histogramme
 
 Die folgende Übersicht zeigt die Histogramme und zugehörigen Intervallwahrscheinlichkeiten.
 
-{%include dev/histogramm-binomial.html %}
+{% include dev/widgets/widget-histogramm-binomial.html %}
 
 Damit können wir auch mit Hilfe von Histogrammen Intervallwahrscheinlichkeiten bestimmen.  
 

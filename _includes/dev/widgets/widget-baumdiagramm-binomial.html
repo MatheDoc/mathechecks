@@ -1,0 +1,32 @@
+<div class="skript-widget skript-widget--aside bb-widget">
+    <div class="widget-controls">
+        <div class="widget-row">
+            <label>n = <span class="bb-nWert">3</span></label>
+            <input type="range" class="bb-nSlider" min="1" max="10" value="4">
+        </div>
+        <div class="widget-row">
+            <label>p = <span class="bb-pWert">0,70</span></label>
+            <input type="range" class="bb-pSlider" min="0" max="1" value="0.7" step="0.01">
+        </div>
+        <div class="widget-row">
+            <label>k = <span class="bb-kWert">2</span></label>
+            <input type="range" class="bb-kSlider" min="0" max="10" value="2">
+        </div>
+        <div class="widget-row widget-row--label">Anzahl der Pfade mit k Treffern:</div>
+        <div class="widget-row widget-row--center">
+            <span class="bb-anzahlPfade"></span>
+        </div>
+        <div class="widget-row widget-row--label">Pfadendwahrscheinlichkeit:</div>
+        <div class="widget-row widget-row--center">
+            <span class="bb-pfadwkeit"></span>
+        </div>
+        <div class="widget-row widget-row--label">Wahrscheinlichkeit für genau k Treffer:</div>
+        <div class="widget-row widget-row--center">
+            <span class="bb-bernoulli"></span>
+        </div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="bb-plotBaum diagramm"></div>
+    </div>
+</div>

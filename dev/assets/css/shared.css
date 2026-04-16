@@ -3033,14 +3033,97 @@ body.page-module-designs .shell {
   padding-left: 24px;
 }
 
-.page-skript-md .mod-content .diagramm-row {
+/* ── Skript-Widget System ─────────────────────────────────── */
+
+/* Outer container: stacked by default */
+.skript-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+/* --aside modifier: side-by-side on wide screens */
+@media (min-width: 900px) {
+  .skript-widget--aside {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .skript-widget--aside .widget-controls {
+    flex: 0 0 340px;
+  }
+
+  .skript-widget--aside .widget-outputs {
+    flex: 1 1 0%;
+    min-width: 0;
+  }
+}
+
+/* Controls panel */
+.widget-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--r, 12px);
+  padding: 18px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  color: var(--text);
+}
+
+/* Single control row */
+.widget-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.widget-row--center {
+  justify-content: center;
+}
+
+.widget-row--label {
+  font-size: 0.92em;
+  color: var(--text-dim);
+}
+
+.widget-row label {
+  min-width: 140px;
+}
+
+.widget-row input[type="range"] {
+  flex: 1;
+  margin-left: 10px;
+  cursor: ew-resize;
+}
+
+/* Info line (e.g. stochastic independence) */
+.widget-info {
+  margin-top: 10px;
+  font-size: 0.92em;
+  color: var(--text-body);
+}
+
+.widget-info .bvt-unabhaengigkeit {
+  font-weight: 600;
+}
+
+/* Outputs area */
+.widget-outputs {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  justify-content: center;
   align-items: flex-start;
-  margin: 14px 0 20px;
 }
 
+/* Plotly diagram blocks */
+.skript-widget .diagramm,
 .page-skript-md .mod-content .diagramm {
   display: block;
   flex: 1 1 420px;
@@ -3055,12 +3138,91 @@ body.page-module-designs .shell {
   padding: 0;
 }
 
+.skript-widget .diagramm .js-plotly-plot,
+.skript-widget .diagramm .plotly,
+.skript-widget .diagramm .plot-container,
+.skript-widget .diagramm .svg-container,
 .page-skript-md .mod-content .diagramm .js-plotly-plot,
 .page-skript-md .mod-content .diagramm .plotly,
 .page-skript-md .mod-content .diagramm .plot-container,
 .page-skript-md .mod-content .diagramm .svg-container {
   width: 100% !important;
   max-width: 100% !important;
+}
+
+/* ── Widget-specific: Baumdiagramm binomial (wider plot) ── */
+.bb-widget .diagramm {
+  max-width: 800px;
+}
+
+/* ── Widget-specific: Vierfeldertafel ── */
+.bvt-vierfeldertafel {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bvt-vierfeldertafel__titel {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.bvt-vierfeldertafel table {
+  border-collapse: collapse;
+  color: var(--text);
+}
+
+.bvt-vierfeldertafel th,
+.bvt-vierfeldertafel td {
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+}
+
+.bvt-vierfeldertafel thead th {
+  background: var(--surface-hi);
+  font-weight: 600;
+}
+
+.bvt-vierfeldertafel tbody td:first-child {
+  background: var(--surface-hi);
+  font-weight: 600;
+}
+
+/* ── Widget-specific: LF table ── */
+.lf-tableWrap {
+  flex: 0 0 auto;
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.lf-table {
+  border-collapse: collapse;
+  color: var(--text);
+  margin: 0 auto;
+}
+
+.lf-table th,
+.lf-table td {
+  padding: 4px 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.lf-table thead th {
+  background: var(--surface-hi);
+  font-weight: 600;
+}
+
+/* ── Legacy compat: keep .diagramm-row working for non-widget usage ── */
+.page-skript-md .mod-content .diagramm-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-start;
+  margin: 14px 0 20px;
 }
 
 .page-skript-md .mod-content li {

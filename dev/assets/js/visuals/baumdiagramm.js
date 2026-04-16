@@ -7,6 +7,8 @@
  *   "slots"   – circled digits for unknowns; givenSlots entries show values.
  */
 
+import { themeTextColor } from "./plotly-defaults.js";
+
 export function buildBaumdiagrammFigure(opts = {}) {
     const {
         pa = 0.5,

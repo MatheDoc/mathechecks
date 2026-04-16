@@ -20,15 +20,15 @@ Eine **Zufallsgröße** $X$ ordnet jedem Ergebnis eines Zufallsexperiment eine r
 
 ### Biathlet A
 
-Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X$:
+Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X_A$:
 
 |  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
-| $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
+| $P(X_A = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
 
-Beispielsweise bedeutet $P(X=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 57&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
+Beispielsweise bedeutet $P(X_A=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 57&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
 
-{% include histogramm-allgemein.html
+{% include dev/histogramm-allgemein.html
     x="[0, 1, 2, 3, 4, 5]"
     y="[0.03, 0.33, 0.57, 0.03, 0.04, 0]"
     titel="Biathlet A"
@@ -40,12 +40,12 @@ Die Wahrscheinlichkeitsverteilung sowie das Histogramm eines weiteren Biathleten
 
 |  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| $P(X = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
+| $P(X_B = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
 
-{% include histogramm-allgemein.html
+{% include dev/histogramm-allgemein.html
     x="[0, 1, 2, 3, 4, 5]"
     y="[0.37, 0.16, 0.18, 0.08, 0.09, 0.12]"
-    titel="Biathlet A"
+    titel="Biathlet B"
 %}
 
 ## Kenzahlen
@@ -69,7 +69,7 @@ In der Statistik, in der Wahrscheinlichkeiten häufig als relative Häufigkeiten
 
 $$
 \begin{align*}
-E(X) &= 0 \cdot 0{,}03 + 1 \cdot 0{,}33 + 2 \cdot 0{,}57 + 3 \cdot 0{,}03 + 4 \cdot 0{,}04 + 5 \cdot 0 \\
+E(X_A) &= 0 \cdot 0{,}03 + 1 \cdot 0{,}33 + 2 \cdot 0{,}57 + 3 \cdot 0{,}03 + 4 \cdot 0{,}04 + 5 \cdot 0 \\
 &= 0 + 0{,}33 + 1{,}14 + 0{,}09 + 0{,}16 + 0 \\
 &= 1{,}72
 \end{align*}
@@ -81,7 +81,7 @@ Der Erwartungswert beträgt also $1{,}72$. Das bedeutet: Biathlet A verfehlt im 
 
 $$
 \begin{align*}
-E(X) &= 0 \cdot 0{,}37 + 1 \cdot 0{,}16 + 2 \cdot 0{,}18 + 3 \cdot 0{,}08 + 4 \cdot 0{,}09 + 5 \cdot 0{,}12 \\
+E(X_B) &= 0 \cdot 0{,}37 + 1 \cdot 0{,}16 + 2 \cdot 0{,}18 + 3 \cdot 0{,}08 + 4 \cdot 0{,}09 + 5 \cdot 0{,}12 \\
 &= 0 + 0{,}16 + 0{,}36 + 0{,}24 + 0{,}36 + 0{,}60 \\
 &= 1{,}72
 \end{align*}
@@ -111,11 +111,11 @@ Auch der Ausdruck unter der Wurzel eignet sich, die Schwankungen zu messen. Er w
 
 ### Die Standardabweichung von Biathlet A
 
-Der Erwartungswert ist bekanntlich $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
+Der Erwartungswert ist bekanntlich $E(X_A) = 1{,}72$. Wir berechnen zunächst die Varianz:
 
 $$
 \begin{align*}
-\sigma^2(X) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
+\sigma^2(X_A) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
 &= (2{,}9584) \cdot 0{,}03 + (0{,}5184) \cdot 0{,}33 + (0{,}0784) \cdot 0{,}57 + (1{,}6384) \cdot 0{,}03 + (5{,}1984) \cdot 0{,}04 + (10{,}7584) \cdot 0 \\
 &= 0{,}0888 + 0{,}1700 + 0{,}0447 + 0{,}0492 + 0{,}2079 + 0 \\
 &= 0{,}5606
@@ -127,14 +127,14 @@ Die Varianz beträgt also $0{,}5606$.
 Nun ziehen wir die Wurzel, um die Standardabweichung zu erhalten:
 
 $$
-\sigma(X) = \sqrt{0{,}5606} \approx 0{,}75
+\sigma(X_A) = \sqrt{0{,}5606} \approx 0{,}75
 $$
 
 Die Standardabweichung von Biathlet A beträgt also ungefähr $0{,}75$.
 
 ### Die Standardabweichung von Biathlet B
 
-Auch hier beträgt der Erwartungswert $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
+Auch hier beträgt der Erwartungswert $E(X_B) = 1{,}72$. Wir berechnen zunächst die Varianz:
 
 $$
 \begin{align*}
@@ -148,7 +148,7 @@ $$
 Nun ziehen wir die Wurzel, um die Standardabweichung zu berechnen:
 
 $$
-\sigma(X) = \sqrt{3{,}0825} \approx 1{,}75
+\sigma(X_B) = \sqrt{3{,}0825} \approx 1{,}75
 $$
 
 Die Standardabweichung von Biathlet B beträgt also ungefähr $1{,}75$. Die Anzahl der Fehlschüsse schwankt hier also stärker um den Erwartungswert als bei Biathlet A.

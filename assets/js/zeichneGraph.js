@@ -121,11 +121,13 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
     },
     margin: { t: 40, r: 50, b: 40, l: 60 },
     dragmode: false,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
   };
 
   const config = {
     modeBarButtonsToRemove: [],
-    displayModeBar: true,
+    displayModeBar: false,
     displaylogo: false,
     scrollZoom: false,
     staticPlot: false,

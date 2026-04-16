@@ -46,6 +46,8 @@ function zeichneHistogrammAllgemein(
     showlegend: false,
     margin: { t: 100, r: 20, b: 40, l: 50 },
     dragmode: false,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
   };
 
   const config = {

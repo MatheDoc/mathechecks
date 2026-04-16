@@ -27,8 +27,8 @@
         toggles.forEach((toggle) => {
             toggle.addEventListener('click', () => {
                 const isLight = !document.documentElement.classList.contains('light');
-                applyThemeState(isLight);
                 localStorage.setItem(THEME_KEY, isLight ? 'light' : 'dark');
+                location.reload();
             });
         });
     })();

@@ -14,6 +14,12 @@ export const PLOTLY_LAYOUT_DEFAULTS = {
     dragmode: false,
 };
 
+/** Returns the current CSS --text color (adapts to dark/light theme). */
+export function themeTextColor() {
+    return getComputedStyle(document.documentElement)
+        .getPropertyValue("--text").trim() || "#1a1a2e";
+}
+
 /** Config object passed as the fourth argument to Plotly.newPlot(). */
 export const PLOTLY_CONFIG = {
     responsive: true,
@@ -59,12 +65,36 @@ function enableTouchScroll(plotEl) {
 }
 
 export function plotlyRender(container, data, layout = {}, config = {}) {
+    const textColor = themeTextColor();
+    const dimColor = textColor + "33";   // ~20 % for gridlines
+
+    const axisDefaults = {
+        tickfont: { color: textColor },
+        titlefont: { color: textColor },
+        gridcolor: dimColor,
+        zerolinecolor: textColor + "55",
+    };
+
     const mergedLayout = {
         ...PLOTLY_LAYOUT_DEFAULTS,
         ...layout,
-        xaxis: { hoverformat: ".2f", ...layout.xaxis },
-        yaxis: { hoverformat: ".2f", ...layout.yaxis },
+        font: { color: textColor, ...(layout.font || {}) },
+        xaxis: { ...axisDefaults, hoverformat: ".2f", ...layout.xaxis },
+        yaxis: { ...axisDefaults, hoverformat: ".2f", ...layout.yaxis },
     };
+
+    // Ensure title font inherits theme color
+    if (mergedLayout.title && typeof mergedLayout.title === "object") {
+        mergedLayout.title.font = { color: textColor, ...(mergedLayout.title.font || {}) };
+    }
+
+    // Ensure annotation fonts inherit theme color
+    if (Array.isArray(mergedLayout.annotations)) {
+        mergedLayout.annotations = mergedLayout.annotations.map((a) => ({
+            ...a,
+            font: { color: textColor, ...(a.font || {}) },
+        }));
+    }
 
     const mergedConfig = { ...PLOTLY_CONFIG, ...config };
 
