@@ -75,6 +75,9 @@ Aufgabengenerator
 Feed-System  
 → `dev/feed/README.md`
 
+Skript-Widgets  
+→ `.github/widgets.md`
+
 Glossar  
 → `.github/glossary.md`
 
