@@ -8,6 +8,8 @@
  * When omitted all bars use a neutral colour (task mode).
  */
 
+import { themeTextColor } from "./plotly-defaults.js";
+
 /* ------------------------------------------------------------------ */
 /*  Helpers                                                            */
 /* ------------------------------------------------------------------ */
@@ -68,13 +70,13 @@ export function buildHistogrammEinzelnFigure({
         x,
         y: pmf,
         type: "bar",
-        marker: { color: farben, line: { color: "rgba(0, 0, 0, 0.5)", width: 1 } },
+        marker: { color: farben, line: { color: themeTextColor() + "80", width: 1 } },
         name: "P(X = k)",
     }];
 
     const layout = {
         title: titel ? { text: titel, y: 0.85 } : undefined,
-        xaxis: { title: "k", tickmode: "linear" },
+        xaxis: { title: "k", tickmode: "linear", showgrid: false },
         yaxis: { title: "P(X = k)", range: autoY ? undefined : [0, 1] },
         bargap: 0,
         dragmode: false,
@@ -95,19 +97,17 @@ export function buildHistogrammKumuliertFigure({
     const x = Array.from({ length: n + 1 }, (_, i) => i);
 
     const hasRange = a != null && b != null;
-    const farben = x.map((k) => {
-        if (hasRange) {
-            if (k === b) return "rgba(255, 160, 160, 0.6)";
-            if (k === a - 1) return "rgba(255, 160, 160, 0.6)";
-        }
-        return "rgba(100, 100, 100, 0.2)";
-    });
+    const farben = x.map((k) =>
+        hasRange && (k === b || k === a - 1)
+            ? "rgba(166, 5, 40, 0.6)"
+            : "rgba(235, 100, 120, 0.4)"
+    );
 
     const data = [{
         x,
         y: cdf,
         type: "bar",
-        marker: { color: farben, line: { color: "rgba(50, 50, 50, 0.5)", width: 1 } },
+        marker: { color: farben, line: { color: themeTextColor() + "80", width: 1 } },
         name: "P(X ≤ k)",
     }];
 
@@ -116,31 +116,32 @@ export function buildHistogrammKumuliertFigure({
         const xPfeil = a - 1;
         const yUnten = cdf[a - 1];
         const yOben = cdf[b];
+        const tc = themeTextColor();
         shapes.push(
             {
                 type: "line", x0: xPfeil, x1: xPfeil, y0: yUnten, y1: yOben,
-                line: { color: "black", width: 2, dash: "solid" }
+                line: { color: tc, width: 2, dash: "solid" }
             },
             {
                 type: "path",
                 path: `M ${xPfeil - 0.05} ${yOben - 0.02} L ${xPfeil} ${yOben} L ${xPfeil + 0.05} ${yOben - 0.02} Z`,
-                fillcolor: "black", line: { color: "black" }
+                fillcolor: tc, line: { color: tc }
             },
             {
                 type: "path",
                 path: `M ${xPfeil - 0.05} ${yUnten + 0.02} L ${xPfeil} ${yUnten} L ${xPfeil + 0.05} ${yUnten + 0.02} Z`,
-                fillcolor: "black", line: { color: "black" }
+                fillcolor: tc, line: { color: tc }
             },
             {
                 type: "line", x0: xPfeil, x1: b, y0: yOben, y1: yOben,
-                line: { color: "black", width: 2, dash: "dash" }
+                line: { color: tc, width: 2, dash: "dash" }
             },
         );
     }
 
     const layout = {
         title: titel ? { text: titel, y: 0.85 } : undefined,
-        xaxis: { title: "k", tickmode: "linear" },
+        xaxis: { title: "k", tickmode: "linear", showgrid: false },
         yaxis: { title: "P(X ≤ k)", range: [0, 1.05] },
         bargap: 0,
         dragmode: false,

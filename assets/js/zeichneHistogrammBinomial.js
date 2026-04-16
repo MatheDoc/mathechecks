@@ -76,6 +76,8 @@ function zeichneHistogrammEinzeln(
     yaxis: { title: "P(X = k)", range: autoY ? undefined : [0, 1] },
     bargap: 0,
     dragmode: false,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
   };
 
   const config = {
@@ -134,6 +136,8 @@ function zeichneHistogrammKumuliert(n, p, a, b, divID, titel = "") {
     yaxis: { title: "P(X ≤ k)", range: [0, 1.05] },
     bargap: 0,
     dragmode: false,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
     shapes: [
       // Vertikale durchgezogene Linie
       {

@@ -14,6 +14,8 @@
  *   stufe2:           [zIdx, eIdx, label][]  – edges Z→E
  */
 
+import { themeTextColor } from "./plotly-defaults.js";
+
 export function buildVerflechtungsdiagrammFigure(spec = {}) {
     const R = Array.isArray(spec.rohstoffe) ? spec.rohstoffe : [];
     const Z = Array.isArray(spec.zwischenprodukte) ? spec.zwischenprodukte : [];
@@ -99,13 +101,15 @@ export function buildVerflechtungsdiagrammFigure(spec = {}) {
         }
 
         const offset = 0.05;
+        const panelColor = getComputedStyle(document.documentElement)
+            .getPropertyValue("--panel-solid").trim() || "#ffffff";
         annotations.push({
             x: mx + nx * offset,
             y: my + ny * offset,
             text: String(label),
             showarrow: false,
             font: { size: 14 },
-            bgcolor: "rgba(255,255,255,0.85)",
+            bgcolor: panelColor + "d9",
         });
     }
 

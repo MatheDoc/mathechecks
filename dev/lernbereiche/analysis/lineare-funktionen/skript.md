@@ -70,7 +70,7 @@ Diese drei Darstellungsformen lassen sich ineinander überführen:
 
 Im interaktiven Diagramm können Sie beobachten, wie Änderungen an $m$ und $b$ gleichzeitig die Gleichung, den Graphen und die Wertetabelle verändern.
 
-{% include dev/lineare-funktionen-explorer.html %}
+{% include dev/widgets/widget-lineare-funktionen.html %}
 
 {% include dev/check-anker.html nummer="1" %}
 

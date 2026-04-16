@@ -170,6 +170,8 @@ function zeichneBaumdiagramm(
     annotations: [...edgeLabels, ...leafLabels],
     margin: { l: 20, r: 20, t: 100, b: 20 },
     dragmode: false,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
   };
 
   const config = {

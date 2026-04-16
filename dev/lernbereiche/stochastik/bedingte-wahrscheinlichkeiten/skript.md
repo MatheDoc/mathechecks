@@ -427,7 +427,7 @@ Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, so können
 
 Baumdiagramme und Vierfeldertafeln stellen Wahrscheinlichkeiten, die beim Betrachten von zwei Ereignissen auftreten, auf unterschiedliche Weise dar. In Baumdiagrammen lassen sich die einzelnen Stufen eines Zufallsexperiments gut nachvollziehen: Zunächst tritt das Ereignis $A$ ein, anschließend das Ereignis $B$. Dabei können bedingte Wahrscheinlichkeiten wie $P_A(B)$ direkt abgelesen werden. Vierfeldertafeln hingegen behandeln die Ereignisse $A$ und $B$ symmetrisch. Sowohl $P(A)$ als $P(B)$ sind direkt aus den Tabellenwerten ersichtlich.
 
-{% include baumdiagramme-und-vierfeldertafeln.html %}
+{% include dev/widgets/widget-baumdiagramme-vierfeldertafel.html %}
 
 ## Weitere Aufgaben
 

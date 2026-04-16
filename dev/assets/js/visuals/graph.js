@@ -6,6 +6,8 @@
  * optional points and optional shaded areas.
  */
 
+import { themeTextColor } from "./plotly-defaults.js";
+
 export function buildGraphFigure({
     funktionen,
     punkte = null,
@@ -79,7 +81,7 @@ export function buildGraphFigure({
             y: punkte.map((p) => p.y),
             mode: "markers", showlegend: false, type: "scatter",
             name: "Punkte",
-            marker: { color: "black", size: 8, symbol: "circle", line: { color: "white", width: 1 } },
+            marker: { color: themeTextColor(), size: 8, symbol: "circle", line: { color: "white", width: 1 } },
             text: punkte.map((p) => p.text),
             hoverinfo: "text+x+y",
             cliponaxis: false,
