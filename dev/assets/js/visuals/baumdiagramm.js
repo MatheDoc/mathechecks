@@ -162,7 +162,7 @@ export function buildBaumdiagrammFigure(opts = {}) {
         mode: "markers+text",
         type: "scatter",
         textposition: "middle center",
-        textfont: { size: 20 },
+        textfont: { size: 20, color: "#1a1a2e" },
         marker: {
             size: nodes.map((_, i) => (i === 0 ? 0 : 40)),
             color: "#b3e0ff",

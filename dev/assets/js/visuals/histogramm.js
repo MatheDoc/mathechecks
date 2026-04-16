@@ -70,6 +70,7 @@ export function buildHistogrammEinzelnFigure({
         x,
         y: pmf,
         type: "bar",
+        offset: 0,
         marker: { color: farben, line: { color: themeTextColor() + "80", width: 1 } },
         name: "P(X = k)",
     }];
@@ -107,13 +108,14 @@ export function buildHistogrammKumuliertFigure({
         x,
         y: cdf,
         type: "bar",
+        offset: 0,
         marker: { color: farben, line: { color: themeTextColor() + "80", width: 1 } },
         name: "P(X ≤ k)",
     }];
 
     const shapes = [];
     if (hasRange && a > 0) {
-        const xPfeil = a - 1;
+        const xPfeil = a - 1 + 0.5;   // bar center (offset: 0 shifts bars right)
         const yUnten = cdf[a - 1];
         const yOben = cdf[b];
         const tc = themeTextColor();
@@ -133,7 +135,7 @@ export function buildHistogrammKumuliertFigure({
                 fillcolor: tc, line: { color: tc }
             },
             {
-                type: "line", x0: xPfeil, x1: b, y0: yOben, y1: yOben,
+                type: "line", x0: xPfeil, x1: b + 0.5, y0: yOben, y1: yOben,
                 line: { color: tc, width: 2, dash: "dash" }
             },
         );

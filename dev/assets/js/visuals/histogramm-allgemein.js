@@ -17,6 +17,7 @@ export function buildHistogrammAllgemeinFigure({
         x,
         y,
         type: "bar",
+        offset: 0,
         name: "P(X = x)",
         marker: {
             color: "rgba(54, 162, 235, 0.3)",

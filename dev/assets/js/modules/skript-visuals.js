@@ -256,7 +256,6 @@ export function initSkriptVisuals(root) {
         const mWert = row.querySelector(".lf-mWert");
         const bWert = row.querySelector(".lf-bWert");
         const eqDisplay = row.querySelector(".lf-eqDisplay");
-        const descM = row.querySelector(".lf-descM");
         const plotDiv = row.querySelector(".lf-plotGraph");
         const tableBody = row.querySelector(".lf-tableBody");
 
@@ -281,16 +280,6 @@ export function initSkriptVisuals(root) {
             const sign = b >= 0 ? "+" : "-";
             eqDisplay.innerHTML = "$ f(x) = " + fmtDe(m) + " \\cdot x " + sign + " " + fmtDe(bAbs) + " $";
             if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay]);
-
-            // Description
-            if (descM) {
-                if (m === 0) {
-                    descM.innerHTML = "Waagerechte Gerade (keine Steigung)";
-                } else {
-                    descM.innerHTML = "Pro $ +1 $ in $ x $ ändert sich $ y $ um $ " + (m > 0 ? "+" : "") + fmtDe(m) + " $";
-                }
-                if (window.MathJax?.typesetPromise) MathJax.typesetPromise([descM]);
-            }
 
             // Graph via buildGraphFigure (identical rendering to dev/graph.html)
             const xMin = -6, xMax = 6, yMin = -8, yMax = 8;
