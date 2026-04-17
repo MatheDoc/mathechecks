@@ -1,16 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
-  <!-- Axes -->
-  <line x1="30" y1="140" x2="220" y2="140" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
-  <line x1="30" y1="140" x2="30" y2="10" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
-  <!-- S-shaped cost curve (cubic) -->
-  <path d="M35 130 C50 128 65 125 80 115 C100 100 110 70 130 45 C145 28 170 20 200 15" stroke="#7c6aff" stroke-width="2.5" fill="none" opacity=".8"/>
-  <!-- Average cost curve (U-shape) -->
-  <path d="M55 30 Q80 90 120 95 Q160 90 195 50" stroke="#3dd6c8" stroke-width="1.5" stroke-dasharray="6 3" fill="none" opacity=".6"/>
-  <!-- Inflection point -->
-  <circle cx="108" cy="80" r="4" fill="#f5a623" opacity=".7"/>
-  <!-- Betriebsoptimum -->
-  <circle cx="130" cy="94" r="4" fill="#3dd6c8" opacity=".7"/>
-  <!-- Labels -->
-  <text x="205" y="14" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".6">K(x)</text>
-  <text x="200" y="48" font-family="system-ui" font-size="9" fill="#3dd6c8" opacity=".5">k(x)</text>
+  <g stroke="#7c6aff" stroke-opacity=".14" stroke-width=".9">
+    <line x1="24" y1="30" x2="220" y2="30"/>
+    <line x1="24" y1="55" x2="220" y2="55"/>
+    <line x1="24" y1="80" x2="220" y2="80"/>
+    <line x1="24" y1="105" x2="220" y2="105"/>
+    <line x1="24" y1="130" x2="220" y2="130"/>
+
+    <line x1="24" y1="20" x2="24" y2="130"/>
+    <line x1="54" y1="20" x2="54" y2="130"/>
+    <line x1="84" y1="20" x2="84" y2="130"/>
+    <line x1="114" y1="20" x2="114" y2="130"/>
+    <line x1="144" y1="20" x2="144" y2="130"/>
+    <line x1="174" y1="20" x2="174" y2="130"/>
+    <line x1="204" y1="20" x2="204" y2="130"/>
+  </g>
+
+  <line x1="24" y1="130" x2="220" y2="130" stroke="#7c6aff" stroke-opacity=".3"/>
+  <line x1="24" y1="20" x2="24" y2="130" stroke="#7c6aff" stroke-opacity=".3"/>
+
+  <path d="M24 50 C54 86 82 120 92 120 C112 120 126 112 142 92 C160 68 184 40 205 12" stroke="#0a84ff" stroke-width="2.2" opacity=".72" fill="none"/>
+  <path d="M40 20 C50 58 74 90 106 102 C132 112 166 98 220 66" stroke="#ff9f0a" stroke-width="2.2" opacity=".72" fill="none"/>
+  <path d="M24 50 C58 72 90 86 122 92 C150 95 184 82 220 58" stroke="#34c759" stroke-width="2.2" opacity=".72" fill="none"/>
+
+  <circle cx="92" cy="120" r="3.8" fill="#f5a623" fill-opacity=".68"/>
+  <circle cx="122" cy="92" r="3.8" fill="#f5a623" fill-opacity=".68"/>
+  <circle cx="140" cy="84" r="3.8" fill="#f5a623" fill-opacity=".68"/>
 </svg>
