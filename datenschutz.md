@@ -1,7 +1,7 @@
 ---
 layout: zusatzmaterial
 title: ""
-description: "Entdecke allen Themen der Mathematik: interaktiv und kostenlos."
+description: "Entdecke alle Themen der Mathematik: interaktiv und kostenlos."
 ---
 
 ## Datenschutzerklärung

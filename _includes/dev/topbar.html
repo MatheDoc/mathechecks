@@ -120,7 +120,7 @@
             if (!g || !g.key) return;
             rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
             rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
-            rules.push(`.s-hero[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
+            rules.push(`.s-hero[data-gebiet="${g.key}"], .mat-card--compact[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
             rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
             rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
         });

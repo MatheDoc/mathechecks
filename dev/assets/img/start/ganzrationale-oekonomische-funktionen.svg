@@ -1,19 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
-  <!-- Axes -->
-  <line x1="30" y1="135" x2="220" y2="135" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
-  <line x1="30" y1="135" x2="30" y2="15" stroke="#7c6aff" stroke-width="1" opacity=".3"/>
-  <!-- Revenue curve (parabola opening down) -->
-  <path d="M40 130 Q80 80 120 30 Q160 80 200 130" stroke="#3dd6c8" stroke-width="2" fill="none" opacity=".7"/>
-  <!-- Cost line -->
-  <line x1="35" y1="110" x2="210" y2="40" stroke="#7c6aff" stroke-width="2" opacity=".6"/>
-  <!-- Break-even points -->
-  <circle cx="62" cy="97" r="4" fill="#f5a623" opacity=".7"/>
-  <circle cx="178" cy="97" r="4" fill="#f5a623" opacity=".7"/>
-  <!-- Profit area hint -->
-  <path d="M62 97 Q90 60 120 40 Q150 60 178 97" stroke="none" fill="#4ade80" opacity=".08"/>
-  <!-- Labels -->
-  <text x="125" y="25" font-family="system-ui" font-size="10" fill="#3dd6c8" opacity=".6">E(x)</text>
-  <text x="212" y="38" font-family="system-ui" font-size="10" fill="#7c6aff" opacity=".6">K(x)</text>
-  <!-- x axis label -->
-  <text x="120" y="150" text-anchor="middle" font-family="system-ui" font-size="9" fill="#7c6aff" opacity=".4">x</text>
+  <g stroke="#7c6aff" stroke-opacity=".14" stroke-width=".9">
+    <line x1="20" y1="30" x2="220" y2="30"/>
+    <line x1="20" y1="55" x2="220" y2="55"/>
+    <line x1="20" y1="80" x2="220" y2="80"/>
+    <line x1="20" y1="105" x2="220" y2="105"/>
+    <line x1="20" y1="130" x2="220" y2="130"/>
+
+    <line x1="20" y1="20" x2="20" y2="140"/>
+    <line x1="65" y1="20" x2="65" y2="140"/>
+    <line x1="110" y1="20" x2="110" y2="140"/>
+    <line x1="155" y1="20" x2="155" y2="140"/>
+    <line x1="200" y1="20" x2="200" y2="140"/>
+  </g>
+
+  <line x1="20" y1="130" x2="220" y2="130" stroke="#7c6aff" stroke-opacity=".3"/>
+  <line x1="20" y1="20" x2="20" y2="140" stroke="#7c6aff" stroke-opacity=".3"/>
+
+  <path d="M20 78 C66 60 112 63 146 56 C176 47 199 29 218 8" stroke="#ff3b30" stroke-width="2.2" opacity=".72" fill="none"/>
+  <path d="M20 126 C70 44 150 18 220 122" stroke="#34c759" stroke-width="2.2" opacity=".72" fill="none"/>
+  <path d="M20 130 C66 95 102 44 134 56 C164 70 186 118 200 150" stroke="#0a84ff" stroke-width="2.2" opacity=".72" fill="none"/>
+  <path d="M20 114 C92 116 154 119 220 123" stroke="#ff9f0a" stroke-width="2.1" opacity=".72" fill="none"/>
+
 </svg>

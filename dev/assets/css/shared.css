@@ -1659,6 +1659,11 @@ body.page-module-designs .mod-content {
 }
 
 .mat-card--compact {
+  --hero-accent: var(--accent);
+  background:
+    radial-gradient(ellipse 100% 120% at 50% 90%, color-mix(in srgb, var(--hero-accent) 12%, transparent), transparent 70%),
+    var(--surface);
+  border-color: color-mix(in srgb, var(--hero-accent) 18%, transparent);
   padding: 14px;
   gap: 8px;
   align-items: center;
