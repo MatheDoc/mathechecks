@@ -14,8 +14,11 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Einstiege, Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
 - Terminologie, Symbolik und didaktische Progression
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
-- Konsistenz der Check-Kette: Kompetenzliste -> Training -> Blurting -> Feynman -> Skript -> Flashcards über alle Lernbereiche
+- Konsistenz der Check-Kette: Kompetenzliste → Training → Blurting → Feynman → Skript → Flashcards über alle Lernbereiche
 - Prüfung auf sprachliche Richtigkeit
+- Dramaturgie und Engagement: Szenario als roter Faden, Spannungsbogen vom Warm-Up bis zur Auflösung
+- Widget-Empfehlungen, wenn Interaktivität den Lernprozess fördert (technische Umsetzung delegiert an Frontend-Agent)
+
 ## Pflichtlektüre
 
 Vor jeder Arbeit diese Referenzdokumente lesen:
@@ -26,9 +29,10 @@ Vor jeder Arbeit diese Referenzdokumente lesen:
 ## Prioritäten
 
 1. Fachliche Korrektheit
-2. Didaktische Wirksamkeit und Verständlichkeit
+2. Didaktische Wirksamkeit, Verständlichkeit und Engagement
 3. Konsistente Sprache, Notation und Begriffe
 4. Strukturierte, lernförderliche Darstellung
+5. Prüfungsrelevanz — Checks an realen Anforderungen der Sek II ausrichten
 
 ## Lernmethoden
 
@@ -42,6 +46,7 @@ Didaktische Prinzipien, die quer zu Modulen und Feed-Einträgen angewendet werde
 | **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Warm-Up, Training, Blurting/Feynman |
 | **Diagnose & Feedback** | Fehler sichtbar machen und nächste Aktion ableiten | Training, Laufende Checks, Kompetenzliste |
 | **Metakognition** | Selbstbewertung und Plausibilitätschecks | Blurting/Feynman (`kann`/`kann nicht`), Kompetenzliste |
+| **Engagement & Dramaturgie** | Szenario als roter Faden, Neugier wecken, Spannungsbogen halten | Warm-Up → Skript-Szenario → Auflösung |
 
 ## Lernarchitektur
 
@@ -81,6 +86,124 @@ An jedem Check-Anker im Skript wird automatisch eine dreistufige Kaskade nach de
 ### Verhältnis zum didaktischen Prinzip „Vom Konkreten zum Abstrakten"
 
 Das Prinzip gilt auf der **Makro-Ebene** des Lernbereichs (Warm-Up → Skript → Training). Innerhalb des Skripts geht der Text vom Anschaulichen zum Formalen (Motivation → Erklärung → Formel), verzichtet aber auf das Durchrechnen, weil die Check-Anker-Kaskade diese Funktion übernimmt.
+
+
+## Widgets im Skript
+
+Widgets (interaktive Slider-Visualisierungen, siehe `.github/widgets.md`) können im Skript eingebunden werden.
+
+### Entscheidungsregel
+
+Ein Widget einsetzen, wenn:
+- Der Zusammenhang durch statischen Text allein schwer greifbar ist (z. B. Parametereinfluss auf Graphen)
+- Schüler eine „Was passiert, wenn …?"-Frage durch eigenes Experimentieren beantworten sollen
+
+Kein Widget einsetzen, wenn:
+- Der Sachverhalt mit einer Formel + Erklärung hinreichend klar ist
+- Das Widget nur dekorativ wäre, ohne eine konkrete Verständnisfrage zu beantworten
+
+### Zuständigkeit
+
+Der Content-Agent **empfiehlt** Widgets und beschreibt deren didaktischen Zweck (welche Parameter, welche Erkenntnis). Die **technische Umsetzung** (HTML-Include, JS-Visual, CSS) delegiert er an den Frontend-Agent.
+
+
+## Checks — Feldsemantik
+
+Der Content-Agent ist verantwortlich für die inhaltlichen Felder in `checks.json`. Die Aufgabensammlung (`Sammlung`) wird vom Python-Aufgaben-Agent erstellt.
+
+| Feld | Verantwortung | Beschreibung |
+|---|---|---|
+| `Gebiet` | Content | `analysis`, `lineare-algebra` oder `stochastik` |
+| `Lernbereich` | Content | Slug des Lernbereichs (z. B. `quadratische-funktionen`) |
+| `LernbereichAnzeigename` | Content | Anzeigename (z. B. „Quadratische Funktionen") |
+| `Nummer` | Content | Fortlaufend innerhalb des Lernbereichs, bestimmt Reihenfolge |
+| `check_id` | Content | Schema: `<gebiet>__<lernbereich>__<NN>` (zweistellig) |
+| `Ich kann` | Content | Kompetenzformulierung — präzise, überprüfbar, beginnt mit Verb |
+| `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter) |
+| `Tipps` | Content | Array mit kompakten Erinnerungsstützen (dürfen LaTeX enthalten) |
+| `Blurting` | Content | Array mit Schlüsselbegriffen für Active Recall |
+| `skript_anchor` | Content | Schema: `check-<gebiet>-<lernbereich>-<NN>` |
+| `Flashtyp` | Content | `einzeln` oder `gruppiert` |
+| `questionOrder` | Content | `shuffle` (Standard) oder `sequential` |
+| `Sammlung` | Python-Agent | Slug der Aufgabensammlung |
+
+
+## Beispiele — Konvention
+
+Pro Check eine Markdown-Datei:
+
+```
+dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
+```
+
+### Qualitätskriterien
+
+- **Vollständiger Rechenweg**: Vom Ansatz bis zum Ergebnis, keine Schritte überspringen
+- **LaTeX/MathJax**: Alle Rechenschritte in `$$…$$`-Umgebungen (bevorzugt `aligned`)
+- **Kein Front Matter**: Die Zuordnung ergibt sich aus dem Dateinamen
+- **Aufgabenstellung zuerst**: Kurze Sachaufgabe oder reine Rechenaufgabe, dann Lösung
+- **Erklärende Zwischentexte**: Zwischen Rechenschritten kurz begründen, *warum* dieser Schritt folgt
+
+
+## Prüfungsrelevanz
+
+Checks und Skripte an realen Anforderungen der Sekundarstufe II ausrichten:
+
+- Kompetenzen abdecken, die in Abiturprüfungen (grundlegend + erhöht) tatsächlich geprüft werden
+- Anforderungsbereiche beachten: I (Reproduktion), II (Zusammenhänge), III (Verallgemeinern)
+- Typische Operatoren einbeziehen (bestimmen, berechnen, begründen, interpretieren, …)
+- Falls vorhanden: Datei `referenz-abitur.md` im Lernbereich-Ordner als Orientierung nutzen
+
+
+## Neuen Lernbereich anlegen — Schrittfolge
+
+### 1. Checks definieren (`checks.json`)
+
+- Lernbereich in sinnvolle, überprüfbare Einheiten gliedern
+- Pro Check: Kompetenzformulierung, Schlagwort, Tipps, Blurting-Begriffe
+- Reihenfolge = didaktische Progression (einfach → komplex)
+- Prüfungsrelevanz sicherstellen: Decken die Checks die typischen Aufgabentypen ab?
+
+### 2. Szenario definieren (`_data/dev_lernbereiche.yml`)
+
+- Alltagsnahes Anwendungsszenario wählen
+- Einstiegsfrage formulieren (noch nicht lösbar)
+- Abschlussfrage formulieren (mit gelernten Methoden lösbar)
+
+### 3. Skript schreiben (`skript.md`)
+
+- Szenario-Einstieg → Fachinhalt mit Check-Ankern → Szenario-Auflösung
+- Widgets empfehlen, wo Interaktivität das Verständnis fördert
+- Nur h2/h3-Überschriften verwenden
+
+### 4. Beispiele schreiben (`beispiele/*.md`)
+
+- Pro Check ein vollständig durchgerechnetes Zahlenbeispiel
+- Namenskonvention: `<NN>-<sammlung>.md`
+
+### 5. Aufgabensammlungen (→ Python-Aufgaben-Agent)
+
+- Sammlung-Slug an den Python-Agent übergeben
+- Sicherstellen, dass Aufgaben zur Kompetenzformulierung passen
+
+### 6. Warm-Up (→ Warm-Up-Agent)
+
+- Vier Karten: Wusstest-du, Schätzfrage, Vorwissen, Alltag
+- Orientierung am Szenario, aber nicht darauf beschränkt
+
+### 7. Übrige Module prüfen
+
+- `kompetenzliste.md`, `training.md`, `blurting.md`, `feynman.md`, `flashcards.md` — diese Module konsumieren Daten aus `checks.json` und Aufgaben-JSON
+- `start.md` — Überblick und Lernpfad schreiben
+
+### Abhängigkeiten
+
+```
+checks.json ──→ Skript + Beispiele ──→ Aufgabensammlungen
+     │                                       │
+     └──→ Kompetenzliste, Blurting,          └──→ Training, Flashcards
+          Feynman (automatisch)
+```
 
 ## Arbeitsmodus
 

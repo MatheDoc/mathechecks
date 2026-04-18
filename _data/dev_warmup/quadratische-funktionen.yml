@@ -1,0 +1,25 @@
+karten:
+  - typ: wusstest-du
+    text: "Parabolspiegel bündeln Licht in einem einzigen Punkt – dem Brennpunkt. Satellitenschüsseln und Autoscheinwerfer nutzen genau diese Eigenschaft."
+    detail: "Die Parabelform sorgt dafür, dass alle parallel einfallenden Strahlen im Brennpunkt zusammentreffen. Ohne quadratische Funktionen gäbe es kein Satellitenfernsehen."
+  - typ: schaetzfrage
+    frage: "Ein parabelförmiger Brückenbogen überspannt $40\\,\\text{m}$ und ist in der Mitte $12\\,\\text{m}$ hoch. Wie hoch ist der Bogen $10\\,\\text{m}$ vom Rand entfernt?"
+    optionen:
+      - "$6\\,\\text{m}$"
+      - "$9\\,\\text{m}$"
+      - "$12\\,\\text{m}$"
+    korrekt: 1
+    erklaerung: "Mit dem Scheitel bei $(20\\mid12)$ und Nullstellen bei $0$ und $40$ ergibt sich $f(10)=12-12\\cdot\\frac{(10-20)^2}{20^2}=9\\,\\text{m}$. Parabeln sind eben nicht gleichmäßig steil."
+  - typ: vorwissen
+    frage: "Der Graph einer quadratischen Funktion heißt …"
+    optionen:
+      - "Parabel"
+      - "Gerade"
+      - "Hyperbel"
+    korrekt: 0
+    feedback_richtig: "Genau! Parabeln begegnen dir in diesem Lernbereich überall."
+    feedback_falsch: "Kein Problem – das klären wir hier: Quadratische Funktionen erzeugen immer eine Parabel."
+  - typ: alltag
+    text: "Wenn du einen Basketball wirfst, beschreibt der Ball eine Parabel – egal ob Freiwurf oder Dreierwurf."
+    detail: "Die Flugbahn lässt sich durch eine quadratische Funktion beschreiben. Wurfwinkel und Geschwindigkeit bestimmen, wie hoch und wie weit der Ball fliegt."
+abschluss: "Gut aufgewärmt! Von Brückenbögen bis Basketballwürfe – quadratische Funktionen stecken überall. Lass uns loslegen."

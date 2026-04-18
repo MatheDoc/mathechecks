@@ -4,7 +4,11 @@ from __future__ import annotations
 
 import random
 
+from aufgaben.core.latex import coeff_latex, const_latex, fmt, display_eq, inline
 from aufgaben.core.tolerances import nice_axis_max, graph_read_tolerance_from_span
+
+# Rückwärtskompatibel: einige Module importieren ``fmt_number``
+fmt_number = fmt
 
 
 # ---------------------------------------------------------------------------
@@ -13,77 +17,41 @@ from aufgaben.core.tolerances import nice_axis_max, graph_read_tolerance_from_sp
 
 def linear_latex(m: float, b: float, var: str = "x", name: str = "f") -> str:
     """Erzeugt z. B. ``f(x)=2x+3`` oder ``g(x)=-0,5x-1``."""
-    m_str = _coeff_str(m, is_leading=True, with_var=True, var=var)
-    b_str = _const_str(b)
+    m_str = coeff_latex(m, var, leading=True)
+    b_str = const_latex(b)
     return f"{name}({var})={m_str}{b_str}"
-
-
-def display_eq(expression: str) -> str:
-    return f"$$ {expression} $$"
-
-
-def inline(expression: str) -> str:
-    return f"$ {expression} $"
-
-
-def fmt_number(value: float, max_decimals: int = 4) -> str:
-    """Zahl mit deutschem Komma, ohne trailing zeros."""
-    rounded = round(float(value), max_decimals)
-    text = f"{rounded:.{max_decimals}f}".rstrip("0").rstrip(".")
-    if text in {"-0", ""}:
-        text = "0"
-    return text.replace(".", ",")
 
 
 def fmt_int_or_frac(value: float) -> str:
     """Gibt eine Zahl als Ganzzahl oder als Bruch zurück (wenn halbe/drittel etc.)."""
     if value == int(value):
         return str(int(value))
-    return fmt_number(value, 2)
-
-
-# ---------------------------------------------------------------------------
-# Interne LaTeX-Helfer
-# ---------------------------------------------------------------------------
-
-def _coeff_str(c: float, *, is_leading: bool, with_var: bool, var: str = "x") -> str:
-    """Koeffizient vor einer Variablen formatieren."""
-    if c == 0:
-        return "0" if is_leading and not with_var else ""
-    sign = "" if (is_leading and c > 0) else ("+" if c > 0 else "-")
-    abs_c = abs(c)
-    if with_var:
-        if abs_c == 1:
-            num = ""
-        else:
-            num = fmt_number(abs_c)
-        return f"{sign}{num}{var}"
-    return f"{sign}{fmt_number(abs_c)}"
-
-
-def _const_str(b: float) -> str:
-    """Konstanten-Term (z. B. ``+3`` oder ``-1``)."""
-    if b == 0:
-        return ""
-    sign = "+" if b > 0 else "-"
-    return f"{sign}{fmt_number(abs(b))}"
+    return fmt(value, 2)
 
 
 # ---------------------------------------------------------------------------
 # Zufallsparameter
 # ---------------------------------------------------------------------------
 
-# Steigungen: ganzzahlig oder halbe Werte, kein 0
-SLOPES = [v / 2 for v in range(-12, 13) if v != 0]
+# Steigungen: ganzzahlig oder halbe Werte, kein 0, gemäßigt für [-8,8]-Bereich
+SLOPES = [v / 2 for v in range(-8, 9) if v != 0]
 # y-Achsenabschnitte: ganzzahlig
-INTERCEPTS = list(range(-8, 9))
+INTERCEPTS = list(range(-6, 7))
 
 
 def sample_linear(rng: random.Random) -> tuple[float, float]:
-    """Zufällige Steigung und y-Achsenabschnitt."""
-    m = rng.choice(SLOPES)
-    b = rng.choice(INTERCEPTS)
-    return m, b
+    """Zufällige Steigung und y-Achsenabschnitt.
+
+    Stellt sicher, dass Nullstelle und y-Abschnitt im Bereich [-8, 8] liegen.
+    """
+    while True:
+        m = rng.choice(SLOPES)
+        b = rng.choice(INTERCEPTS)
+        # Nullstelle x0 = -b/m muss im Sichtbereich liegen
+        x0 = -b / m
+        if abs(x0) > 8:
+            continue
+        return m, b
 
 
 def sample_linear_nice_null(rng: random.Random) -> tuple[float, float]:
@@ -179,12 +147,14 @@ def build_linear_visual(
                 "title": title,
                 "xaxis": {
                     "title": "x",
-                    "range": [-axis_max_x, axis_max_x],
+                    "range": [-8, 8],
+                    "dtick": 1,
                     "zeroline": True,
                 },
                 "yaxis": {
                     "title": "y",
-                    "range": [-axis_max_y, axis_max_y],
+                    "range": [-8, 8],
+                    "dtick": 1,
                     "zeroline": True,
                 },
             },

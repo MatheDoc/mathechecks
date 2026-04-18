@@ -4,6 +4,8 @@ import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialI
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
+import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
+import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js";
 
 function parseNum(raw) {
@@ -472,6 +474,140 @@ export function initSkriptVisuals(root) {
         nSlider.addEventListener("input", update);
         pSlider.addEventListener("input", update);
         kSlider.addEventListener("input", update);
+        update();
+    });
+
+    /* ---- Quadratische Funktionen (Normalform) ---- */
+    root.querySelectorAll(".qf-widget").forEach((row) => {
+        const aSlider = row.querySelector(".qf-aSlider");
+        if (!aSlider) return;
+        const bSlider = row.querySelector(".qf-bSlider");
+        const cSlider = row.querySelector(".qf-cSlider");
+        const aWert = row.querySelector(".qf-aWert");
+        const bWert = row.querySelector(".qf-bWert");
+        const cWert = row.querySelector(".qf-cWert");
+        const eqDisplay = row.querySelector(".qf-eqDisplay");
+        const plotDiv = row.querySelector(".qf-plotGraph");
+        const tableBody = row.querySelector(".qf-tableBody");
+
+        function fmt(n) {
+            const r = Math.round(n * 100) / 100;
+            return r % 1 === 0 ? String(r) : r.toFixed(2).replace(/0+$/, "");
+        }
+        function fmtDe(n) { return fmt(n).replace(".", ","); }
+
+        function buildEquation(a, b, c) {
+            let parts = [];
+            // a·x²
+            if (a === 1) parts.push("x^2");
+            else if (a === -1) parts.push("-x^2");
+            else parts.push(fmtDe(a) + "x^2");
+            // b·x
+            if (b !== 0) {
+                const sign = b > 0 ? "+" : "-";
+                const bAbs = Math.abs(b);
+                parts.push(sign + " " + (bAbs === 1 ? "x" : fmtDe(bAbs) + "x"));
+            }
+            // c
+            if (c !== 0) {
+                const sign = c > 0 ? "+" : "-";
+                parts.push(sign + " " + fmtDe(Math.abs(c)));
+            }
+            return "$ f(x) = " + parts.join(" ") + " $";
+        }
+
+        function update() {
+            const a = parseFloat(aSlider.value);
+            const b = parseFloat(bSlider.value);
+            const c = parseFloat(cSlider.value);
+
+            aWert.textContent = fmtDe(a);
+            bWert.textContent = fmtDe(b);
+            cWert.textContent = fmtDe(c);
+
+            eqDisplay.innerHTML = buildEquation(a, b, c);
+            if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay]);
+
+            // Graph
+            const figure = buildQuadratischeFunktionenFigure({ a, b, c });
+            plotlyRender(plotDiv, figure.data, figure.layout);
+
+            // Wertetabelle
+            const xs = [-3, -2, -1, 0, 1, 2, 3];
+            let html = "";
+            for (const x of xs) {
+                const y = a * x * x + b * x + c;
+                html += "<tr><td>" + fmtDe(x) + "</td><td>" + fmtDe(y) + "</td></tr>";
+            }
+            tableBody.innerHTML = html;
+        }
+
+        aSlider.addEventListener("input", update);
+        bSlider.addEventListener("input", update);
+        cSlider.addEventListener("input", update);
+        update();
+    });
+
+    /* ---- Quadratische Funktionen Parameter (Scheitelpunktform) ---- */
+    root.querySelectorAll(".qfp-widget").forEach((row) => {
+        const aSlider = row.querySelector(".qfp-aSlider");
+        if (!aSlider) return;
+        const dSlider = row.querySelector(".qfp-dSlider");
+        const eSlider = row.querySelector(".qfp-eSlider");
+        const aWert = row.querySelector(".qfp-aWert");
+        const dWert = row.querySelector(".qfp-dWert");
+        const eWert = row.querySelector(".qfp-eWert");
+        const eqDisplay = row.querySelector(".qfp-eqDisplay");
+        const scheitelX = row.querySelector(".qfp-scheitelX");
+        const scheitelY = row.querySelector(".qfp-scheitelY");
+        const plotDiv = row.querySelector(".qfp-plotGraph");
+
+        function fmt(n) {
+            const r = Math.round(n * 100) / 100;
+            return r % 1 === 0 ? String(r) : r.toFixed(2).replace(/0+$/, "");
+        }
+        function fmtDe(n) { return fmt(n).replace(".", ","); }
+
+        function buildEquation(a, d, e) {
+            let term = "";
+            // a-Faktor
+            if (a === 1) term = "";
+            else if (a === -1) term = "-";
+            else term = fmtDe(a);
+            // (x - d)²
+            if (d === 0) term += "(x)^2";
+            else if (d > 0) term += "(x - " + fmtDe(d) + ")^2";
+            else term += "(x + " + fmtDe(Math.abs(d)) + ")^2";
+            // + e
+            if (e !== 0) {
+                const sign = e > 0 ? "+" : "-";
+                term += " " + sign + " " + fmtDe(Math.abs(e));
+            }
+            return "$ f(x) = " + term + " $";
+        }
+
+        function update() {
+            const a = parseFloat(aSlider.value);
+            const d = parseFloat(dSlider.value);
+            const e = parseFloat(eSlider.value);
+
+            aWert.textContent = fmtDe(a);
+            dWert.textContent = fmtDe(d);
+            eWert.textContent = fmtDe(e);
+
+            eqDisplay.innerHTML = buildEquation(a, d, e);
+            scheitelX.textContent = fmtDe(d);
+            scheitelY.textContent = fmtDe(e);
+            if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay, eqDisplay.closest(".widget-controls")]);
+
+            // Graph
+            const figure = buildQuadratischeParameterFigure({ a, d, e });
+            plotlyRender(plotDiv, figure.data, figure.layout);
+        }
+
+        aSlider.addEventListener("input", update);
+        dSlider.addEventListener("input", update);
+        eSlider.addEventListener("input", update);
         update();
     });
 }
