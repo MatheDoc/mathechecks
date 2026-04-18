@@ -90,6 +90,26 @@ function evaluateNumerical(raw, userValue) {
     };
 }
 
+function evaluateNumericalOpt(raw, userValue, noneChecked) {
+    const rawTrimmed = String(raw).trim();
+    const isNoneExpected = rawTrimmed.toUpperCase() === "=NONE" || rawTrimmed.toUpperCase() === "NONE";
+
+    if (isNoneExpected) {
+        return {
+            isCorrect: Boolean(noneChecked),
+            isComplete: Boolean(noneChecked) || String(userValue ?? "").trim().length > 0,
+            expected: null,
+            expectedNone: true,
+        };
+    }
+
+    if (noneChecked) {
+        return { isCorrect: false, isComplete: true, expected: null, expectedNone: false };
+    }
+
+    return evaluateNumerical(raw, userValue);
+}
+
 function evaluateMc(raw, userValue) {
     const selected = String(userValue ?? "").trim();
     if (!selected) {
@@ -123,7 +143,7 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
         result.push(source.slice(index, start));
 
         const maybePlaceholder = source.slice(start);
-        const match = maybePlaceholder.match(/^\{(\d+):(NUMERICAL|MC):/);
+        const match = maybePlaceholder.match(/^\{(\d+):(NUMERICAL_OPT|NUMERICAL|MC):/);
         if (!match) {
             result.push("{");
             index = start + 1;
@@ -158,6 +178,10 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
 
 export function answerToPreview(answerText) {
     return replaceAnswerPlaceholders(answerText, (kind, raw, meta) => {
+        if (kind === "NUMERICAL_OPT") {
+            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="NUMERICAL_OPT" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
+        }
+
         if (kind === "NUMERICAL") {
             return `<input class="answer-input" data-answer-part="${meta.placeholderIndex}" type="text" placeholder="Antwort" />`;
         }
@@ -176,6 +200,20 @@ export function answerToPreview(answerText) {
 
 export function answerToSolution(answerText) {
     return replaceAnswerPlaceholders(answerText, (kind, raw) => {
+        if (kind === "NUMERICAL_OPT") {
+            const rawUpper = String(raw).trim().toUpperCase();
+            if (rawUpper === "=NONE" || rawUpper === "NONE") {
+                return '<span class="solution-badge">existiert nicht</span>';
+            }
+            const numericalMatch = String(raw).match(/=([^:}]+):([^:}]+)/);
+            if (!numericalMatch) {
+                return '<span class="solution-badge">NUMERICAL_OPT</span>';
+            }
+            const value = escapeHtml(numericalMatch[1]);
+            const tolerance = escapeHtml(numericalMatch[2]);
+            return `<span class="solution-badge">${value} (±${tolerance})</span>`;
+        }
+
         if (kind === "NUMERICAL") {
             const numericalMatch = String(raw).match(/=([^:}]+):([^:}]+)/);
             if (!numericalMatch) {
@@ -202,6 +240,21 @@ export function evaluateAnswerFields(answerText, answerPreviewNode) {
 
     const parts = specs.map((spec, index) => {
         const control = controls[index] || null;
+
+        if (spec.kind === "NUMERICAL_OPT") {
+            const inputField = control?.querySelector?.(".answer-numopt-input");
+            const noneCheckbox = control?.querySelector?.(".answer-numopt-none");
+            const value = inputField ? inputField.value : "";
+            const noneChecked = noneCheckbox ? noneCheckbox.checked : false;
+            const result = evaluateNumericalOpt(spec.raw, value, noneChecked);
+            return {
+                kind: spec.kind,
+                control,
+                isCorrect: result.isCorrect,
+                isComplete: result.isComplete,
+            };
+        }
+
         const value = control ? control.value : "";
 
         if (spec.kind === "NUMERICAL") {

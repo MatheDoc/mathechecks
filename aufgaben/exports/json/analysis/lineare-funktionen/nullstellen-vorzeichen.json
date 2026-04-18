@@ -1,13 +1,39 @@
 [
   {
-    "einleitung": "Gegeben:$$ f(x)=3x-9 $$",
+    "einleitung": "Gegeben:$$ f(x)=-3x-9 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",
       "$ f(x) $ ist rechts der Nullstelle …"
     ],
     "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=3,00:0,01}",
+      "$ x_0 = ${1:NUMERICAL:=-3,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-x+5 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=5,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=x+4 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-4,00:0,01}",
       "{1:MC:~positiv~=negativ}",
       "{1:MC:~=positiv~negativ}"
     ]
@@ -26,33 +52,7 @@
     ]
   },
   {
-    "einleitung": "Gegeben:$$ f(x)=-3x+15 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=5,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=-1{,}5x-6 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-4,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=1{,}5x+6 $$",
+    "einleitung": "Gegeben:$$ f(x)=3{,}5x+14 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",
@@ -65,7 +65,33 @@
     ]
   },
   {
-    "einleitung": "Gegeben:$$ f(x)=-3x+9 $$",
+    "einleitung": "Gegeben:$$ f(x)=-3x-12 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-4,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=2x+2 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-1,00:0,01}",
+      "{1:MC:~positiv~=negativ}",
+      "{1:MC:~=positiv~negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=x-3 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",
@@ -73,6 +99,97 @@
     ],
     "antworten": [
       "$ x_0 = ${1:NUMERICAL:=3,00:0,01}",
+      "{1:MC:~positiv~=negativ}",
+      "{1:MC:~=positiv~negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-2x-10 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-5,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=3x-12 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:MC:~positiv~=negativ}",
+      "{1:MC:~=positiv~negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-x-7 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-7,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-2{,}5x+15 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-1{,}5x+12 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-x+7 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-3x+15 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=5,00:0,01}",
       "{1:MC:~=positiv~negativ}",
       "{1:MC:~positiv~=negativ}"
     ]
@@ -91,137 +208,7 @@
     ]
   },
   {
-    "einleitung": "Gegeben:$$ f(x)=2x+10 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-5,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=1{,}5x-15 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=10,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=-1{,}5x+6 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=4,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=1{,}5x-12 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=8,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=-2x+14 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=7,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=-0{,}5x+3 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=6,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=0{,}5x+5 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-10,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=5x+5 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-1,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=3{,}5x+7 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-2,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=-x-9 $$",
-    "fragen": [
-      "Nullstelle $ x_0 = $",
-      "$ f(x) $ ist links der Nullstelle …",
-      "$ f(x) $ ist rechts der Nullstelle …"
-    ],
-    "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=-9,00:0,01}",
-      "{1:MC:~=positiv~negativ}",
-      "{1:MC:~positiv~=negativ}"
-    ]
-  },
-  {
-    "einleitung": "Gegeben:$$ f(x)=x+6 $$",
+    "einleitung": "Gegeben:$$ f(x)=-x-6 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",
@@ -229,25 +216,38 @@
     ],
     "antworten": [
       "$ x_0 = ${1:NUMERICAL:=-6,00:0,01}",
-      "{1:MC:~positiv~=negativ}",
-      "{1:MC:~=positiv~negativ}"
+      "{1:MC:~=positiv~negativ}",
+      "{1:MC:~positiv~=negativ}"
     ]
   },
   {
-    "einleitung": "Gegeben:$$ f(x)=-3x+12 $$",
+    "einleitung": "Gegeben:$$ f(x)=2x-2 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",
       "$ f(x) $ ist rechts der Nullstelle …"
     ],
     "antworten": [
-      "$ x_0 = ${1:NUMERICAL:=4,00:0,01}",
+      "$ x_0 = ${1:NUMERICAL:=1,00:0,01}",
+      "{1:MC:~positiv~=negativ}",
+      "{1:MC:~=positiv~negativ}"
+    ]
+  },
+  {
+    "einleitung": "Gegeben:$$ f(x)=-x-8 $$",
+    "fragen": [
+      "Nullstelle $ x_0 = $",
+      "$ f(x) $ ist links der Nullstelle …",
+      "$ f(x) $ ist rechts der Nullstelle …"
+    ],
+    "antworten": [
+      "$ x_0 = ${1:NUMERICAL:=-8,00:0,01}",
       "{1:MC:~=positiv~negativ}",
       "{1:MC:~positiv~=negativ}"
     ]
   },
   {
-    "einleitung": "Gegeben:$$ f(x)=0{,}5x-3 $$",
+    "einleitung": "Gegeben:$$ f(x)=2x-12 $$",
     "fragen": [
       "Nullstelle $ x_0 = $",
       "$ f(x) $ ist links der Nullstelle …",

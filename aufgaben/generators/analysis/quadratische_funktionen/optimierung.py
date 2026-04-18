@@ -122,8 +122,8 @@ class OptimierungQuadGenerator(TaskGenerator):
 
         fragen = [
             f"Hat $ {fn} $ ein Maximum oder Minimum?",
-            sz["frage_x"] + f" $ {var} = $",
-            sz["frage_y"] + f" $ {fn}({var}) = $",
+            sz["frage_x"],
+            sz["frage_y"],
         ]
         antworten = [
             mc(art_options, correct_idx),

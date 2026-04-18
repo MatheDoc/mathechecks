@@ -61,11 +61,13 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
                 f"{display_eq(eq)}"
                 f"$ f(x) = a(x-d)^2+e $"
             ),
-            fragen=["$ a = $", "$ d = $", "$ e = $"],
+            fragen=["Scheitelpunktform"],
             antworten=[
-                numerical_analysis_calc(a2),
-                numerical_analysis_calc(d),
-                numerical_analysis_calc(e),
+                (
+                    f"$ f(x) = ${numerical_analysis_calc(a2)}"
+                    f"$ (x - ${numerical_analysis_calc(d)}"
+                    f"$)^2 + ${numerical_analysis_calc(e)}"
+                ),
             ],
         )
 
@@ -78,11 +80,13 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
                 f"{display_eq(eq)}"
                 f"$ f(x) = a(x-x_1)(x-x_2) $ mit $ x_1 \\leq x_2 $"
             ),
-            fragen=["$ a = $", "$ x_1 = $", "$ x_2 = $"],
+            fragen=["Faktorisierte Form"],
             antworten=[
-                numerical_analysis_calc(a),
-                numerical_analysis_calc(x1),
-                numerical_analysis_calc(x2),
+                (
+                    f"$ f(x) = ${numerical_analysis_calc(a)}"
+                    f"$ (x - ${numerical_analysis_calc(x1)}"
+                    f"$)(x - ${numerical_analysis_calc(x2)}$)$"
+                ),
             ],
         )
 
@@ -98,11 +102,9 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
                 f"{display_eq(eq)}"
                 f"$ f(x) = ax^2+bx+c $"
             ),
-            fragen=["$ a = $", "$ b = $", "$ c = $"],
+            fragen=["Normalform"],
             antworten=[
-                numerical_analysis_calc(a2),
-                numerical_analysis_calc(b),
-                numerical_analysis_calc(c),
+                f"$ f(x)= ${numerical_analysis_calc(a2)}$ x^2+ ${numerical_analysis_calc(b)}$ x+ ${numerical_analysis_calc(c)}",
             ],
         )
 
@@ -120,10 +122,8 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
                 f"{display_eq(eq)}"
                 f"$ f(x) = ax^2+bx+c $"
             ),
-            fragen=["$ a = $", "$ b = $", "$ c = $"],
+            fragen=["Normalform"],
             antworten=[
-                numerical_analysis_calc(a2),
-                numerical_analysis_calc(b),
-                numerical_analysis_calc(c),
+                f"$ f(x)= ${numerical_analysis_calc(a2)}$ x^2+ ${numerical_analysis_calc(b)}$ x+ ${numerical_analysis_calc(c)}",
             ],
         )
