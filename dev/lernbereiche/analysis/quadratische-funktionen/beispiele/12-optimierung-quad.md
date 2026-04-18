@@ -8,19 +8,22 @@ Ein Händler verkauft T-Shirts. Bei einem Preis von $x$ Euro pro Stück beträgt
 
     Die Gewinnfunktion ist eine nach unten geöffnete Parabel ($a = -2 < 0$). Das Maximum liegt im Scheitel.
 
-    $$d = -\frac{b}{2a} = -\frac{40}{2 \cdot (-2)} = -\frac{40}{-4} = 10$$
+    Wegen der Symmetrie der Parabel liegt die Scheitelstelle genau in der Mitte zwischen den Nullstellen (falls diese existieren).
 
-    $$e = G(10) = -2 \cdot 100 + 40 \cdot 10 - 150 = -200 + 400 - 150 = 50$$
+    Wir berechnen die Nullstellen:
+    $$\begin{aligned}
+    -2x^2 + 40x - 150 &= 0 \\
+    x^2 - 20x + 75 &= 0 \\
+    x_{1,2}&=\frac{20}{2} \pm \sqrt{\left(\frac{20}{2}\right)^2 - 75} \\
+    x_1&=5,\quad x_2=15
+    \end{aligned}$$
+
+    Der Scheitel liegt nun bei $x = \frac{5 + 15}{2} = 10$.
+    
+    $$G(10) = -2 \cdot 100 + 40 \cdot 10 - 150 = -200 + 400 - 150 = 50$$
 
 - Ergebnis
 
     Der maximale Gewinn beträgt $50$ € bei einem Stückpreis von $10$ €.
 
-- Kontrolle mit Scheitelpunktform
 
-    $$\begin{aligned}
-    G(x) &= -2(x^2 - 20x) - 150 \\
-    &= -2(x^2 - 20x + 100 - 100) - 150 \\
-    &= -2(x - 10)^2 + 200 - 150 \\
-    &= -2(x - 10)^2 + 50 \;\checkmark
-    \end{aligned}$$

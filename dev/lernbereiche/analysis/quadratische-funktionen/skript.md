@@ -12,11 +12,11 @@ gebiet: analysis
 permalink: /dev/lernbereiche/analysis/quadratische-funktionen/skript.html
 ---
 
-## Ein Brückenbogen als Parabel
+<!--## Ein Brückenbogen als Parabel
 
 Ein Architekt plant einen parabelförmigen Brückenbogen über einen 40 m breiten Fluss. Der Bogen soll in der Mitte 12 m hoch sein. Wie lautet die Gleichung des Bogens — und passt ein 10 m hohes Schiff noch durch, wenn es 8 m vom Ufer entfernt fährt?
 
-Um diese Frage zu beantworten, brauchen wir die Werkzeuge der quadratischen Funktionen: Darstellungsformen, Nullstellen, Scheitelpunkte und die Fähigkeit, Sachsituationen in Gleichungen zu übersetzen.
+Um diese Frage zu beantworten, brauchen wir die Werkzeuge der quadratischen Funktionen: Darstellungsformen, Nullstellen, Scheitelpunkte und die Fähigkeit, Sachsituationen in Gleichungen zu übersetzen.-->
 
 ## Darstellungsformen
 
@@ -224,7 +224,7 @@ In der Geometrie und Physik beschreiben Parabeln die Form von Brückenbögen, Wu
 
 ### Optimierung
 
-Wenn eine Zielgröße durch eine quadratische Funktion beschrieben wird (z. B. Gewinn, Fläche, Höhe), liefert der **Scheitel** direkt das Maximum oder Minimum. Das ist einfacher als die Ableitung — der Scheitelpunkt genügt.
+Wenn eine Zielgröße durch eine quadratische Funktion beschrieben wird (z. B. Gewinn, Fläche, Höhe), liefert der **Scheitel** direkt das Maximum oder Minimum.
 
 Typisches Vorgehen:
 
@@ -254,7 +254,7 @@ Im interaktiven Diagramm können Sie die Wirkung jedes Parameters einzeln beobac
 
 {% include dev/check-anker.html nummer="13" %}
 
-## Zurück zum Brückenbogen
+<!--## Zurück zum Brückenbogen
 
 Jetzt können wir die Eingangsfrage beantworten. Der Brückenbogen spannt sich über 40 m, der Scheitel liegt in der Mitte bei 12 m Höhe.
 
@@ -275,3 +275,4 @@ Also: $f(x) = -0{,}03(x - 20)^2 + 12$.
 $$f(8) = -0{,}03(8 - 20)^2 + 12 = -0{,}03 \cdot 144 + 12 = -4{,}32 + 12 = 7{,}68$$
 
 Die Durchfahrtshöhe beträgt $7{,}68$ m — das 10 m hohe Schiff passt leider **nicht** durch.
+-->

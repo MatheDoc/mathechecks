@@ -81,27 +81,27 @@ class GraphZuGleichungQuadGenerator(TaskGenerator):
             visual["spec"]["layout"]["xaxis"] = {"range": [x_lo, x_hi], "dtick": 1}
             visual["spec"]["layout"]["yaxis"] = {"range": [y_lo, y_hi], "dtick": 1}
 
-            # SPF-Parameter und FF-Nullstellen abfragen
+            # SPF und FF als je eine Gleichung abfragen
             tasks.append(Task(
                 einleitung=(
                     "Bestimmen Sie die Gleichung der quadratischen Funktion "
-                    "$ f $ in der Scheitelpunktform "
-                    "$ f(x) = a(x-d)^2+e $ und in der faktorisierten Form "
-                    "$ f(x) = a(x-x_1)(x-x_2) $."
+                    "$ f $ in der Scheitelpunktform und in der faktorisierten Form."
                 ),
                 fragen=[
-                    "Scheitelpunktform: $ a = $",
-                    "Scheitelpunktform: $ d = $",
-                    "Scheitelpunktform: $ e = $",
-                    "Faktorisierte Form: $ x_1 = $",
-                    "Faktorisierte Form: $ x_2 = $",
+                    "Scheitelpunktform",
+                    "Faktorisierte Form",
                 ],
                 antworten=[
-                    numerical_analysis_calc(a),
-                    numerical_analysis_calc(d),
-                    numerical_analysis_calc(e),
-                    numerical_analysis_calc(x1),
-                    numerical_analysis_calc(x2),
+                    (
+                        f"$ f(x) = ${numerical_analysis_calc(a)}"
+                        f"$ (x - ${numerical_analysis_calc(d)}"
+                        f"$)^2 + ${numerical_analysis_calc(e)}"
+                    ),
+                    (
+                        f"$ f(x) = ${numerical_analysis_calc(a)}"
+                        f"$ (x - ${numerical_analysis_calc(x1)}"
+                        f"$)(x - ${numerical_analysis_calc(x2)}$)$"
+                    ),
                 ],
                 visual=visual,
             ))

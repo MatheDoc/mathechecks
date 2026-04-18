@@ -337,13 +337,27 @@ function unescapeMoodleText(value) {
 
 function parseAnswerTargets(answerRaw) {
   const source = String(answerRaw || "");
-  const regex = /\{\d+:(NUMERICAL|MC):([\s\S]*?)\}/g;
+  const regex = /\{\d+:(NUMERICAL_OPT|NUMERICAL|MC):([\s\S]*?)\}/g;
   const targets = [];
   let match = null;
 
   while ((match = regex.exec(source)) !== null) {
     const kind = match[1];
     const payload = match[2];
+
+    if (kind === "NUMERICAL_OPT") {
+      if (String(payload).trim().toUpperCase() === "NONE") {
+        targets.push({ kind, expectedNone: true });
+      } else {
+        const numericalMatch = String(payload).match(/=([^:}#]+):([^:}#]+)/);
+        if (numericalMatch) {
+          targets.push({ kind, value: numericalMatch[1].trim(), tolerance: numericalMatch[2].trim(), expectedNone: false });
+        } else {
+          targets.push({ kind, raw: payload.trim() });
+        }
+      }
+      continue;
+    }
 
     if (kind === "NUMERICAL") {
       const numericalMatch = String(payload).match(/=([^:}#]+):([^:}#]+)/);
@@ -379,6 +393,15 @@ function buildAnswerTargetText(answerRaw) {
   return targets
     .map((target, index) => {
       const part = `Teil ${index + 1}`;
+      if (target.kind === "NUMERICAL_OPT") {
+        if (target.expectedNone) {
+          return `${part}: existiert nicht`;
+        }
+        if (target.value != null && target.tolerance != null) {
+          return `${part}: Zielwert ${target.value} (Toleranz \u00b1${target.tolerance}), oder "existiert nicht"`;
+        }
+        return `${part}: Numerische Antwort oder "existiert nicht" (${target.raw || "unbekannt"})`;
+      }
       if (target.kind === "NUMERICAL") {
         if (target.value != null && target.tolerance != null) {
           return `${part}: Zielwert ${target.value} (Toleranz ±${target.tolerance})`;

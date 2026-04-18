@@ -29,6 +29,10 @@ _SZENARIEN: list[dict] = [
         "einheit_x": "m",
         "einheit_y": "m",
         "func_name": "h",
+        "frage_hoehe": "Welche maximale Höhe erreicht der Ball?",
+        "frage_pos": "In welcher Entfernung erreicht der Ball die maximale Höhe?",
+        "frage_weite": "Wie weit fliegt der Ball insgesamt?",
+        "frage_eval": "Welche Höhe hat der Ball bei einer Entfernung von $ {x_eval} $ m?",
     },
     {
         "kontext": (
@@ -41,6 +45,10 @@ _SZENARIEN: list[dict] = [
         "einheit_x": "m",
         "einheit_y": "m",
         "func_name": "h",
+        "frage_hoehe": "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
+        "frage_pos": "An welcher Stelle erreicht der Bogen die größte Höhe?",
+        "frage_weite": "Wie breit ist der Brückenbogen?",
+        "frage_eval": "Wie hoch ist der Bogen an der Stelle $ x = {x_eval} $?",
     },
     {
         "kontext": (
@@ -52,6 +60,10 @@ _SZENARIEN: list[dict] = [
         "einheit_x": "m",
         "einheit_y": "m",
         "func_name": "h",
+        "frage_hoehe": "Welche maximale Höhe erreicht der Wasserstrahl?",
+        "frage_pos": "In welcher Entfernung erreicht der Strahl die maximale Höhe?",
+        "frage_weite": "In welcher Entfernung trifft der Strahl wieder auf dem Boden auf?",
+        "frage_eval": "Welche Höhe hat der Strahl bei einer Entfernung von $ {x_eval} $ m?",
     },
     {
         "kontext": (
@@ -64,6 +76,10 @@ _SZENARIEN: list[dict] = [
         "einheit_x": "m",
         "einheit_y": "m",
         "func_name": "h",
+        "frage_hoehe": "Welche maximale Höhe erreicht der Speer?",
+        "frage_pos": "In welcher Entfernung erreicht der Speer die maximale Höhe?",
+        "frage_weite": "Wie weit fliegt der Speer insgesamt?",
+        "frage_eval": "Welche Höhe hat der Speer bei einer Entfernung von $ {x_eval} $ m?",
     },
 ]
 
@@ -131,10 +147,10 @@ class GeometrischesSzenarioQuadGenerator(TaskGenerator):
         y_eval = a * x_eval**2 + b * x_eval + c
 
         fragen = [
-            f"Maximale Höhe (Scheitelpunkt): $ {fn}(x_S) = $",
-            f"Position des Scheitelpunkts: $ x_S = $",
-            f"Weite (positive Nullstelle): $ x = $",
-            f"Höhe bei $ x = {x_eval} $: $ {fn}({x_eval}) = $",
+            sz["frage_hoehe"],
+            sz["frage_pos"],
+            sz["frage_weite"],
+            sz["frage_eval"].format(x_eval=x_eval),
         ]
         antworten = [
             numerical_analysis_calc(y_s),

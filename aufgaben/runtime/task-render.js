@@ -47,6 +47,16 @@ function saveTaskUiState(stateKey, state) {
 function readFieldUiState(field) {
     if (!field) return null;
 
+    if (field.classList?.contains("answer-numopt-group")) {
+        const input = field.querySelector(".answer-numopt-input");
+        const checkbox = field.querySelector(".answer-numopt-none");
+        return {
+            tag: "numopt",
+            value: input?.value ?? "",
+            noneChecked: Boolean(checkbox?.checked),
+        };
+    }
+
     if (field instanceof HTMLSelectElement) {
         return { tag: "select", value: field.value };
     }
@@ -63,6 +73,17 @@ function readFieldUiState(field) {
 
 function applyFieldUiState(field, state) {
     if (!field || !state || typeof state !== "object") return;
+
+    if (state.tag === "numopt" && field.classList?.contains("answer-numopt-group")) {
+        const input = field.querySelector(".answer-numopt-input");
+        const checkbox = field.querySelector(".answer-numopt-none");
+        if (input && typeof state.value === "string") input.value = state.value;
+        if (checkbox && typeof state.noneChecked === "boolean") {
+            checkbox.checked = state.noneChecked;
+            if (input) input.disabled = state.noneChecked;
+        }
+        return;
+    }
 
     if (field instanceof HTMLSelectElement) {
         if (typeof state.value === "string") field.value = state.value;
@@ -387,10 +408,42 @@ export function renderTask(task, options = {}) {
         questionEvaluators[i] = buildQuestionEvaluation;
 
         if (interactiveMode && interactionConfig.enablePerQuestionCheck) {
-            const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select"));
+            const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
             fields.forEach((field) => answerFields.push(field));
 
             fields.forEach((field) => {
+                // NUMERICAL_OPT groups are already wrapped; wire up checkbox toggle
+                if (field.classList.contains("answer-numopt-group")) {
+                    const numoptInput = field.querySelector(".answer-numopt-input");
+                    const numoptNone = field.querySelector(".answer-numopt-none");
+                    if (numoptNone && numoptInput) {
+                        numoptNone.addEventListener("change", () => {
+                            numoptInput.disabled = numoptNone.checked;
+                            if (numoptNone.checked) numoptInput.value = "";
+                        });
+                    }
+
+                    const outerGroup = document.createElement("span");
+                    outerGroup.className = "answer-field-group answer-field-group--numopt";
+                    field.replaceWith(outerGroup);
+                    outerGroup.appendChild(field);
+
+                    const checkBtn = document.createElement("button");
+                    checkBtn.type = "button";
+                    checkBtn.className = "answer-check-btn";
+                    checkBtn.setAttribute("aria-label", "Prüfen");
+                    checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+                    checkBtn.addEventListener("click", () => {
+                        buildQuestionEvaluation();
+                        if (persistenceKey) {
+                            checkedQuestionIndexes.add(i);
+                            persistCurrentUiState();
+                        }
+                    });
+                    outerGroup.appendChild(checkBtn);
+                    return;
+                }
+
                 const group = document.createElement("span");
                 group.className = "answer-field-group";
                 if (field.classList.contains("answer-input")) {

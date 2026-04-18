@@ -16,7 +16,7 @@ import math
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical_analysis_calc, mc
+from aufgaben.core.placeholders import numerical_opt_analysis, numerical_opt_none, mc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.quadratische_funktionen.shared import (
     A_VALUES,
@@ -30,17 +30,13 @@ from aufgaben.generators.analysis.quadratische_funktionen.shared import (
 
 
 # ---------------------------------------------------------------------------
-# Gemeinsamer Hinweistext
+# Gemeinsame Frage + Hinweis
 # ---------------------------------------------------------------------------
 
-_HINT = (
-    "Zwei Nullstellen: in aufsteigender Reihenfolge eingeben. "
-    "Doppelte Nullstelle: gleichen Wert in beide Felder eintragen. "
-    "Keine reelle Nullstelle: jeweils 0 eintragen und als Antwort "
-    "keine Nullstelle angeben."
+_FRAGE = (
+    "Geben Sie die $ x $-Werte in aufsteigender Reihenfolge an. "
+    "Bei nur einer Lösung: beide Felder füllen."
 )
-
-_FRAGEN = ["$ x_1 = $", "$ x_2 = $"]
 
 
 def _build_task(eq_latex: str, case: str,
@@ -49,18 +45,20 @@ def _build_task(eq_latex: str, case: str,
     einleitung = (
         f"Bestimmen Sie die Nullstellen der Funktion"
         f"{display_eq(eq_latex)}"
-        f"{_HINT}"
     )
 
     if case == "neg":
-        antworten = ["---", "---"]
+        antwort = (
+            f"$ x_1 = ${numerical_opt_none()} "
+            f"\\quad $ x_2 = ${numerical_opt_none()}"
+        )
     else:
-        antworten = [
-            numerical_analysis_calc(x_lo),
-            numerical_analysis_calc(x_hi),
-        ]
+        antwort = (
+            f"$ x_1 = ${numerical_opt_analysis(x_lo)} "
+            f"\\quad $ x_2 = ${numerical_opt_analysis(x_hi)}"
+        )
 
-    return Task(einleitung=einleitung, fragen=list(_FRAGEN), antworten=antworten)
+    return Task(einleitung=einleitung, fragen=[_FRAGE], antworten=[antwort])
 
 
 # ===================================================================
