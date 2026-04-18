@@ -34,15 +34,15 @@ def spf_latex(a: float, d: float, e: float, name: str = "f") -> str:
     a_str = fmt(a) if a != 1 else ""
     if a == -1:
         a_str = "-"
-    # (x - d)
+    # (x - d)²
     if d == 0:
-        inner = "x"
+        core = "x^2"
     elif d > 0:
-        inner = f"x-{fmt(d)}"
+        core = f"(x-{fmt(d)})^2"
     else:
-        inner = f"x+{fmt(abs(d))}"
+        core = f"(x+{fmt(abs(d))})^2"
     e_str = _const(e)
-    return f"{name}(x)={a_str}({inner})^2{e_str}"
+    return f"{name}(x)={a_str}{core}{e_str}"
 
 
 def ff_latex(a: float, x1: float, x2: float, name: str = "f") -> str:

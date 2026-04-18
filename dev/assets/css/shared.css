@@ -2880,23 +2880,29 @@ body.page-module-designs .shell {
 }
 
 .fy-prompt-list {
-  margin: 0 0 8px;
+  margin: 0 auto 8px;
   padding: 0;
   list-style: none;
+  display: grid;
+  justify-items: start;
+  width: fit-content;
+  max-width: 100%;
   line-height: 1.5;
-  color: var(--text-dim);
+  color: var(--mt-feynman, var(--teal));
   font-size: .92rem;
-  color: var(--mt-feynman);
 }
 
 .fy-prompt-list-item {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   gap: 8px;
 }
 
 .fy-prompt-list-icon {
   flex-shrink: 0;
+  color: var(--mt-feynman, var(--teal));
+  font-size: 1.08em;
+  line-height: 1.2;
 }
 
 
@@ -2999,6 +3005,10 @@ body.page-module-designs .shell {
   scroll-margin-top: calc(var(--module-sticky-top) + 112px);
 }
 
+.check-anker {
+  margin-bottom: 16px;
+}
+
 .page-skript-md .mod-content .check-anker[id] {
   scroll-margin-top: calc(var(--module-sticky-top) + 112px);
 }
@@ -3034,8 +3044,7 @@ body.page-module-designs .shell {
 
 .page-skript-md .mod-content ol {
   list-style: decimal;
-  margin: 0 0 16px;
-  padding-left: 24px;
+  padding-left: 0px;
 }
 
 /* ── Skript-Widget System ─────────────────────────────────── */

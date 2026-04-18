@@ -50,12 +50,12 @@ def _build_task(eq_latex: str, case: str,
     if case == "neg":
         antwort = (
             f"$ x_1 = ${numerical_opt_none()} "
-            f"\\quad $ x_2 = ${numerical_opt_none()}"
+            f"$\\quad $ x_2 = ${numerical_opt_none()}"
         )
     else:
         antwort = (
             f"$ x_1 = ${numerical_opt_analysis(x_lo)} "
-            f"\\quad $ x_2 = ${numerical_opt_analysis(x_hi)}"
+            f"$\\quad $ x_2 = ${numerical_opt_analysis(x_hi)}"
         )
 
     return Task(einleitung=einleitung, fragen=[_FRAGE], antworten=[antwort])

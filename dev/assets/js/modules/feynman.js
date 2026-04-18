@@ -238,10 +238,10 @@ function buildFeynmanPrompt(actionText) {
 function buildFeynmanPromptMarkup(actionText) {
   const action = String(actionText || "").trim().replace(/[.!?]+\s*$/g, "");
   const safeAction = action || "diesen Inhalt erklären kann";
-  const intro = "Erkläre einem Lernpartner,";
+  const intro = "Erkläre einem Lernpartner";
   const outro = `wie man ${safeAction}.`;
   const stepsMarkup = FEYNMAN_PROMPT_STEPS
-    .map((step) => `<li class="fy-prompt-list-item"><span class="fy-prompt-list-icon" aria-hidden="true">✔️</span><span>${escapeHtml(step)}</span></li>`)
+    .map((step) => `<li class="fy-prompt-list-item"><span class="fy-prompt-list-icon" aria-hidden="true">•</span><span>${escapeHtml(step)}</span></li>`)
     .join("");
   return `
     <p class="fy-prompt-text">${escapeHtml(intro)}</p>
@@ -488,7 +488,7 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-        <div>🤖</div>
+        <div style="font-size: 72px; text-align: center;">🤖</div>
         ${promptMarkup}
 
 
