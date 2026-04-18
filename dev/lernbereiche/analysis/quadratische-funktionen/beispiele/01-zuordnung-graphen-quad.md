@@ -2,16 +2,21 @@
 layout: null
 ---
 
-Im Diagramm sind vier Graphen quadratischer Funktionen (a–d) dargestellt. Gefragt ist nach dem Graphen der Funktion $f(x) = -(x - 2)(x + 4)$.
+Im Diagramm sind vier Graphen quadratischer Funktionen (a–d) dargestellt. Gefragt ist nach dem Graphen der Funktion $f(x) = x^2 - 2x - 3$.
 
-- Nullstellen bestimmen
+{% include dev/graph.html
+   funktionen='[{"name":"a", "term":"-(x-1)*(x-3)", "color":"#e6194b"},{"name":"b", "term":"(x+1)*(x-3)", "color":"#3cb44b"},{"name":"c", "term":"x*(x+2)", "color":"#4363d8"},{"name":"d", "term":"-(x+1)*(x-3)", "color":"#f58231"}]'
+   xmin=-4 xmax=6 ymin=-5 ymax=5
+%}
 
-    Aus der faktorisierten Form liest man die Nullstellen direkt ab: $x_1 = 2$ und $x_2 = -4$. Der gesuchte Graph schneidet die $x$-Achse bei $x = -4$ und $x = 2$.
+- Öffnungsrichtung bestimmen
 
-- Öffnungsrichtung prüfen
+    Der Koeffizient vor $x^2$ ist $a = 1 > 0$. Die Parabel öffnet nach **oben**. Damit scheiden die nach unten geöffneten Graphen **a** und **d** aus.
 
-    Der Faktor vor den Klammern ist $a = -1 < 0$. Die Parabel öffnet nach **unten**.
+- $y$-Achsenabschnitt bestimmen
+
+    Einsetzen von $x = 0$: $f(0) = 0 - 0 - 3 = -3$. Der gesuchte Graph schneidet die $y$-Achse bei $-3$. Von den beiden nach oben geöffneten Graphen (**b** und **c**) verläuft nur **b** durch den Punkt $(0 \mid -3)$.
 
 - Zuordnung
 
-    Der Graph, der die $x$-Achse bei $-4$ und $2$ schneidet und nach unten geöffnet ist, ist **Graph b**.
+    Der nach oben geöffnete Graph mit $y$-Achsenabschnitt $-3$ ist **Graph b**.
