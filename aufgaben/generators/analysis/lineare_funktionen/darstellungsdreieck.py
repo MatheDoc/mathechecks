@@ -8,6 +8,7 @@
 
 from __future__ import annotations
 
+import math
 import random
 
 from aufgaben.core.models import Task
@@ -55,7 +56,27 @@ class GraphZuGleichungGenerator(TaskGenerator):
                 continue
             used.add((m, b))
 
-            visual = build_linear_visual(m, b, title="Graph von f")
+            # Sichtbereich um Nullstelle und y-Abschnitt zentrieren
+            x0 = -b / m  # Nullstelle
+            all_x = [0, x0]
+            all_y = [b, 0]
+            x_lo = min(all_x) - 2
+            x_hi = max(all_x) + 2
+            y_lo = min(all_y) - 2
+            y_hi = max(all_y) + 2
+            x_span = max(x_hi - x_lo, 8)
+            y_span = max(y_hi - y_lo, 8)
+            x_center = (x_lo + x_hi) / 2
+            y_center = (y_lo + y_hi) / 2
+            x_lo = math.floor(x_center - x_span / 2)
+            x_hi = math.ceil(x_center + x_span / 2)
+            y_lo = math.floor(y_center - y_span / 2)
+            y_hi = math.ceil(y_center + y_span / 2)
+
+            visual = build_linear_visual(m, b, title="Graph von f",
+                                         x_range=(x_lo, x_hi))
+            visual["spec"]["layout"]["xaxis"] = {"range": [x_lo, x_hi], "dtick": 1, "zeroline": True}
+            visual["spec"]["layout"]["yaxis"] = {"range": [y_lo, y_hi], "dtick": 1, "zeroline": True}
 
             tasks.append(Task(
                 einleitung=(
@@ -167,7 +188,12 @@ class ZuordnungGraphenGenerator(TaskGenerator):
             while len(funcs) < n_graphs and attempts < 200:
                 attempts += 1
                 m, b = sample_linear(rng)
-                # Keine zu ähnlichen Steigungen
+                # y-Achsenabschnitt und Nullstelle im sichtbaren Bereich
+                if abs(b) > 7:
+                    continue
+                if m != 0 and abs(-b / m) > 8:
+                    continue
+                # Keine zu ähnlichen Steigungen/Achsenabschnitte
                 if any(abs(m - fm) < 0.3 and abs(b - fb) < 1.5 for fm, fb in funcs):
                     continue
                 funcs.append((m, b))
@@ -175,8 +201,8 @@ class ZuordnungGraphenGenerator(TaskGenerator):
             if len(funcs) < n_graphs:
                 continue
 
-            # Plotly-Traces bauen
-            x_min, x_max = -6, 6
+            # Plotly-Traces bauen – sichtbarer Bereich [-8, 8] × [-8, 8]
+            x_min, x_max = -8, 8
             xs = [x_min + i * (x_max - x_min) / 200 for i in range(201)]
             traces = []
             for gi, (fm, fb) in enumerate(funcs):
@@ -189,11 +215,6 @@ class ZuordnungGraphenGenerator(TaskGenerator):
                     "line": {"color": _GRAPH_COLORS[gi], "width": 2.5},
                 })
 
-            from aufgaben.core.tolerances import nice_axis_max
-            all_y = [fm * x + fb for fm, fb in funcs for x in [x_min, x_max]]
-            axis_y = nice_axis_max(max(abs(y) for y in all_y) * 1.15)
-            axis_x = nice_axis_max(max(abs(x_min), abs(x_max)))
-
             visual = {
                 "type": "plot",
                 "spec": {
@@ -201,8 +222,8 @@ class ZuordnungGraphenGenerator(TaskGenerator):
                     "traces": traces,
                     "layout": {
                         "title": "",
-                        "xaxis": {"title": "x", "range": [-axis_x, axis_x], "zeroline": True},
-                        "yaxis": {"title": "y", "range": [-axis_y, axis_y], "zeroline": True},
+                        "xaxis": {"title": "x", "range": [-8, 8], "dtick": 1, "zeroline": True},
+                        "yaxis": {"title": "y", "range": [-8, 8], "dtick": 1, "zeroline": True},
                         "showlegend": True,
                     },
                     "width": 700,

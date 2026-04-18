@@ -1961,11 +1961,30 @@
         "LernbereichAnzeigename": "Lineare Funktionen",
         "Nummer": 1,
         "check_id": "analysis__lineare-funktionen__01",
+        "Ich kann": "Graphen linearer Funktionen den zugehörigen Funktionsgleichungen zuordnen.",
+        "Sammlung": "zuordnung-graphen",
+        "Schlagwort": "Zuordnung Graphen",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-lineare-funktionen-01",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$y$-Achsenabschnitt $b$: Wo schneidet der Graph die $y$-Achse?",
+            "Steigung $m > 0$: Graph steigt; $m < 0$: Graph fällt",
+            "Steigungsdreieck zum Vergleich nutzen"
+        ],
+        "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "lineare-funktionen",
+        "LernbereichAnzeigename": "Lineare Funktionen",
+        "Nummer": 2,
+        "check_id": "analysis__lineare-funktionen__02",
         "Ich kann": "Steigung und y-Achsenabschnitt einer linearen Funktion aus dem Graphen ablesen und die Funktionsgleichung angeben.",
         "Sammlung": "graph-zu-gleichung",
         "Schlagwort": "Graph → Gleichung",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-lineare-funktionen-01",
+        "skript_anchor": "check-analysis-lineare-funktionen-02",
         "questionOrder": "shuffle",
         "Tipps": [
             "Steigung $m$: Steigungsdreieck ablesen",
@@ -1978,37 +1997,18 @@
         "Gebiet": "analysis",
         "Lernbereich": "lineare-funktionen",
         "LernbereichAnzeigename": "Lineare Funktionen",
-        "Nummer": 2,
-        "check_id": "analysis__lineare-funktionen__02",
+        "Nummer": 3,
+        "check_id": "analysis__lineare-funktionen__03",
         "Ich kann": "zu einer linearen Funktionsgleichung eine Wertetabelle erstellen.",
         "Sammlung": "gleichung-zu-tabelle",
         "Schlagwort": "Gleichung → Tabelle",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-lineare-funktionen-02",
+        "skript_anchor": "check-analysis-lineare-funktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
             "$x$-Werte einsetzen → $y$-Werte berechnen",
             "$f(x) = mx + b$",
             "Gleichmäßige Differenzen in der Tabelle prüfen"
-        ],
-        "Blurting": []
-    },
-    {
-        "Gebiet": "analysis",
-        "Lernbereich": "lineare-funktionen",
-        "LernbereichAnzeigename": "Lineare Funktionen",
-        "Nummer": 3,
-        "check_id": "analysis__lineare-funktionen__03",
-        "Ich kann": "Graphen linearer Funktionen den zugehörigen Funktionsgleichungen zuordnen.",
-        "Sammlung": "zuordnung-graphen",
-        "Schlagwort": "Zuordnung Graphen",
-        "Flashtyp": "einzeln",
-        "skript_anchor": "check-analysis-lineare-funktionen-03",
-        "questionOrder": "shuffle",
-        "Tipps": [
-            "$y$-Achsenabschnitt $b$: Wo schneidet der Graph die $y$-Achse?",
-            "Steigung $m > 0$: Graph steigt; $m < 0$: Graph fällt",
-            "Steigungsdreieck zum Vergleich nutzen"
         ],
         "Blurting": []
     },
@@ -2148,5 +2148,329 @@
             "Ergebnis im Sachzusammenhang interpretieren"
         ],
         "Blurting": []
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 1,
+        "check_id": "analysis__quadratische-funktionen__01",
+        "Ich kann": "Graphen quadratischer Funktionen den zugehörigen Funktionsgleichungen zuordnen.",
+        "Sammlung": "zuordnung-graphen-quad",
+        "Schlagwort": "Zuordnung Graphen",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-01",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Öffnung: $a > 0$ nach oben, $a < 0$ nach unten",
+            "Scheitel ablesen → Scheitelpunktform prüfen",
+            "Nullstellen ablesen → faktorisierte Form prüfen"
+        ],
+        "Blurting": [
+            "Normalform",
+            "Scheitelpunktform",
+            "faktorisierte Form",
+            "Öffnung nach oben/unten",
+            "Scheitel",
+            "Nullstellen",
+            "Streckung/Stauchung"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 2,
+        "check_id": "analysis__quadratische-funktionen__02",
+        "Ich kann": "aus dem Graphen einer quadratischen Funktion die Gleichung in Scheitelpunkt- oder faktorisierter Form bestimmen.",
+        "Sammlung": "graph-zu-gleichung-quad",
+        "Schlagwort": "Graph → Gleichung",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-02",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Scheitel $(d, e)$ ablesen → $f(x) = a(x - d)^2 + e$",
+            "Nullstellen $x_1, x_2$ ablesen → $f(x) = a(x - x_1)(x - x_2)$",
+            "Öffnungsfaktor $a$ über einen weiteren Punkt bestimmen"
+        ],
+        "Blurting": [
+            "Scheitel ablesen",
+            "Nullstellen ablesen",
+            "Öffnungsfaktor bestimmen",
+            "Scheitelpunktform",
+            "faktorisierte Form"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 3,
+        "check_id": "analysis__quadratische-funktionen__03",
+        "Ich kann": "zu einer quadratischen Funktionsgleichung eine Wertetabelle erstellen.",
+        "Sammlung": "gleichung-zu-tabelle-quad",
+        "Schlagwort": "Gleichung → Wertetabelle",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-03",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$x$-Werte einsetzen → $y$-Werte berechnen",
+            "Symmetrie der Wertetabelle zum Scheitel prüfen"
+        ],
+        "Blurting": [
+            "Einsetzen",
+            "Funktionswerte berechnen",
+            "Symmetrie zur Symmetrieachse"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 4,
+        "check_id": "analysis__quadratische-funktionen__04",
+        "Ich kann": "die Nullstellen einer quadratischen Funktion in Normalform mit der $p$-$q$-Formel berechnen.",
+        "Sammlung": "nullstellen-pq-formel",
+        "Schlagwort": "Nullstellen ($p$-$q$-Formel)",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-04",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Normalform: $x^2 + px + q = 0$",
+            "$x_{1{,}2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}$",
+            "Diskriminante $D = \\left(\\frac{p}{2}\\right)^2 - q$ prüfen"
+        ],
+        "Blurting": [
+            "p-q-Formel",
+            "Normalform",
+            "Diskriminante",
+            "zwei Nullstellen",
+            "eine Nullstelle",
+            "keine Nullstelle"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 5,
+        "check_id": "analysis__quadratische-funktionen__05",
+        "Ich kann": "die Nullstellen einer quadratischen Funktion in faktorisierter Form bestimmen.",
+        "Sammlung": "nullstellen-faktorisiert",
+        "Schlagwort": "Nullstellen (faktorisierte Form)",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-05",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$f(x) = a(x - x_1)(x - x_2)$",
+            "Nullstellen direkt ablesen: $x_1$ und $x_2$",
+            "Satz vom Nullprodukt"
+        ],
+        "Blurting": [
+            "faktorisierte Form",
+            "Satz vom Nullprodukt",
+            "Nullstellen ablesen"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 6,
+        "check_id": "analysis__quadratische-funktionen__06",
+        "Ich kann": "die Nullstellen einer quadratischen Funktion aus der Scheitelpunktform berechnen.",
+        "Sammlung": "nullstellen-scheitelpunktform",
+        "Schlagwort": "Nullstellen (Scheitelpunktform)",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-06",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$a(x - d)^2 + e = 0$",
+            "$(x - d)^2 = -\\frac{e}{a}$",
+            "Nullstellen existieren nur, wenn $-\\frac{e}{a} \\geq 0$"
+        ],
+        "Blurting": [
+            "Scheitelpunktform",
+            "Umstellen nach x",
+            "Wurzel ziehen",
+            "Existenzbedingung"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 7,
+        "check_id": "analysis__quadratische-funktionen__07",
+        "Ich kann": "Funktionswerte und Umkehrwerte quadratischer Funktionen berechnen.",
+        "Sammlung": "funktionswerte-umkehrwerte-quad",
+        "Schlagwort": "Funktions-/Umkehrwerte",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-07",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Funktionswert: $x_0$ einsetzen → $f(x_0) = a x_0^2 + b x_0 + c$",
+            "Umkehrwert: $f(x) = y_0$ setzen → $a x^2 + b x + (c - y_0) = 0$",
+            "Quadratische Gleichung mit $p$-$q$-Formel lösen → bis zu zwei Lösungen"
+        ],
+        "Blurting": [
+            "Funktionswert",
+            "Umkehrwert",
+            "Einsetzen",
+            "p-q-Formel",
+            "zwei Lösungen"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 8,
+        "check_id": "analysis__quadratische-funktionen__08",
+        "Ich kann": "die Schnittpunkte einer Parabel mit einer Geraden oder einer weiteren Parabel berechnen.",
+        "Sammlung": "schnittpunkte-quad",
+        "Schlagwort": "Schnittpunkte",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-08",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Gleichsetzen → quadratische Gleichung lösen",
+            "$y$-Koordinaten durch Einsetzen bestimmen",
+            "Parabel–Gerade: eine quadratische Gleichung; Parabel–Parabel: Differenz bilden"
+        ],
+        "Blurting": [
+            "Gleichsetzen",
+            "quadratische Gleichung lösen",
+            "y-Koordinate einsetzen",
+            "Parabel–Gerade",
+            "Parabel–Parabel"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 9,
+        "check_id": "analysis__quadratische-funktionen__09",
+        "Ich kann": "zwischen Normal-, Scheitelpunkt- und faktorisierter Form einer quadratischen Funktion umwandeln.",
+        "Sammlung": "darstellungsformen-umwandeln",
+        "Schlagwort": "Darstellungsformen umwandeln",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-09",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "NF → FF: Nullstellen mit $p$-$q$-Formel berechnen",
+            "NF → SPF: quadratische Ergänzung",
+            "SPF/FF → NF: Ausmultiplizieren"
+        ],
+        "Blurting": [
+            "quadratische Ergänzung",
+            "Ausmultiplizieren",
+            "p-q-Formel",
+            "Normalform",
+            "Scheitelpunktform",
+            "faktorisierte Form"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 10,
+        "check_id": "analysis__quadratische-funktionen__10",
+        "Ich kann": "aus gegebenen Informationen (Punkte, Nullstellen, Scheitel) die Gleichung einer quadratischen Funktion bestimmen.",
+        "Sammlung": "gleichung-aufstellen-quad",
+        "Schlagwort": "Gleichung aufstellen",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-10",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "Nullstellen gegeben → faktorisierte Form ansetzen",
+            "Scheitel gegeben → Scheitelpunktform ansetzen",
+            "Drei Punkte gegeben → Normalform mit LGS oder passende Form wählen"
+        ],
+        "Blurting": [
+            "Ansatz wählen",
+            "Punkt einsetzen",
+            "LGS",
+            "Scheitel + Punkt",
+            "Nullstellen + Punkt",
+            "drei Punkte"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 11,
+        "check_id": "analysis__quadratische-funktionen__11",
+        "Ich kann": "eine geometrische Sachsituation (z. B. Brückenbogen, Wurfparabel, Parabolspiegel) durch eine quadratische Funktion modellieren und auswerten.",
+        "Sammlung": "geometrisches-szenario-quad",
+        "Schlagwort": "Geometrisches Szenario",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-quadratische-funktionen-11",
+        "questionOrder": "sequential",
+        "Tipps": [
+            "Koordinatensystem sinnvoll festlegen",
+            "Gegebene Punkte ablesen → Gleichung aufstellen",
+            "Funktionswerte oder Nullstellen im Sachkontext interpretieren"
+        ],
+        "Blurting": [
+            "Koordinatensystem festlegen",
+            "Punkte ablesen",
+            "Gleichung aufstellen",
+            "Modellieren",
+            "Interpretieren"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 12,
+        "check_id": "analysis__quadratische-funktionen__12",
+        "Ich kann": "mithilfe des Scheitelpunkts ein Maximum oder Minimum im Sachkontext bestimmen.",
+        "Sammlung": "optimierung-quad",
+        "Schlagwort": "Optimierung",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-quadratische-funktionen-12",
+        "questionOrder": "sequential",
+        "Tipps": [
+            "Zielfunktion aufstellen (quadratisch)",
+            "Scheitel bestimmen → Maximum oder Minimum",
+            "Ergebnis im Sachzusammenhang interpretieren"
+        ],
+        "Blurting": [
+            "Zielfunktion",
+            "Scheitel bestimmen",
+            "Maximum",
+            "Minimum",
+            "Definitionsbereich"
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "quadratische-funktionen",
+        "LernbereichAnzeigename": "Quadratische Funktionen",
+        "Nummer": 13,
+        "check_id": "analysis__quadratische-funktionen__13",
+        "Ich kann": "den Einfluss der Parameter auf den Graphen einer quadratischen Funktion beschreiben.",
+        "Sammlung": "parametereinfluss-quad",
+        "Schlagwort": "Parametereinfluss",
+        "Flashtyp": "einzeln",
+        "skript_anchor": "check-analysis-quadratische-funktionen-13",
+        "questionOrder": "shuffle",
+        "Tipps": [
+            "$a$: Öffnung und Streckung/Stauchung",
+            "$d$: horizontale Verschiebung des Scheitels",
+            "$e$: vertikale Verschiebung des Scheitels"
+        ],
+        "Blurting": [
+            "Streckfaktor a",
+            "Verschiebung d",
+            "Verschiebung e",
+            "Normalparabel",
+            "Scheitel"
+        ]
     }
 ]

@@ -3221,6 +3221,31 @@ body.page-module-designs .shell {
   font-weight: 600;
 }
 
+/* ── Widget-specific: QF table ── */
+.qf-tableWrap {
+  flex: 0 0 auto;
+  max-width: 160px;
+  margin: 0 auto;
+}
+
+.qf-table {
+  border-collapse: collapse;
+  color: var(--text);
+  margin: 0 auto;
+}
+
+.qf-table th,
+.qf-table td {
+  padding: 4px 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.qf-table thead th {
+  background: var(--surface-hi);
+  font-weight: 600;
+}
+
 /* ── Legacy compat: keep .diagramm-row working for non-widget usage ── */
 .page-skript-md .mod-content .diagramm-row {
   display: flex;

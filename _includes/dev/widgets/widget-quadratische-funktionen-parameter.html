@@ -1,0 +1,27 @@
+<!-- Widget: Parametereinfluss in Scheitelpunktform f(x) = a(x - d)² + e -->
+<div class="skript-widget skript-widget--aside qfp-widget">
+    <div class="widget-controls">
+        <div class="widget-row">
+            <label>Streckfaktor $ a $ = <span class="qfp-aWert">1</span></label>
+            <input type="range" class="qfp-aSlider" min="-3" max="3" step="0.25" value="1">
+        </div>
+        <div class="widget-row">
+            <label>Verschiebung $ d $ = <span class="qfp-dWert">0</span></label>
+            <input type="range" class="qfp-dSlider" min="-5" max="5" step="0.5" value="0">
+        </div>
+        <div class="widget-row">
+            <label>Verschiebung $ e $ = <span class="qfp-eWert">0</span></label>
+            <input type="range" class="qfp-eSlider" min="-5" max="5" step="0.5" value="0">
+        </div>
+        <div class="widget-row widget-row--center">
+            <span class="qfp-eqDisplay">$ f(x) = (x)^2 $</span>
+        </div>
+        <div class="widget-info">
+            Scheitel: $ S(\, $<span class="qfp-scheitelX">0</span>$ \mid $<span class="qfp-scheitelY">0</span>$ \,) $
+        </div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="qfp-plotGraph diagramm"></div>
+    </div>
+</div>
