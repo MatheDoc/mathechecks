@@ -2742,30 +2742,6 @@ body.page-module-designs .shell {
   cursor: wait;
 }
 
-.bl-textarea {
-  width: 100%;
-  min-height: 120px;
-  background: rgba(255, 255, 255, .03);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 15px 17px;
-  font-family: "Inter", sans-serif;
-  font-size: .9rem;
-  color: var(--text);
-  resize: vertical;
-  outline: none;
-  transition: border-color 200ms;
-  -webkit-text-fill-color: var(--text);
-}
-
-.bl-textarea:focus {
-  border-color: rgba(var(--mt-blurting-rgb, 245, 166, 35), .35);
-}
-
-.bl-textarea::placeholder {
-  color: var(--text-muted);
-}
-
 .bl-divider {
   display: flex;
   align-items: center;
