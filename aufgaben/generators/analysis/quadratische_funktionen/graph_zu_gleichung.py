@@ -13,7 +13,6 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical_analysis_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.quadratische_funktionen.shared import (
-    A_VALUES,
     build_quadratic_visual,
     fmt,
     nf_to_ff,
@@ -29,24 +28,28 @@ class GraphZuGleichungQuadGenerator(TaskGenerator):
         tasks: list[Task] = []
         used: set[tuple[float, int, int]] = set()
 
+        a_pool = [-2, -1, -0.5, -0.25, 0.25, 0.5, 1, 2]
+
         while len(tasks) < count:
-            a = rng.choice(A_VALUES)
-            # Ganzzahlige Nullstellen wählen
+            a = rng.choice(a_pool)
+            # Ganzzahlige Nullstellen mit gleicher Parität → d ganzzahlig
             x1 = rng.randint(-6, 5)
             x2 = rng.randint(x1 + 1, 7)  # x2 > x1
             if abs(x1) > 7 or abs(x2) > 7:
                 continue
+            if (x1 + x2) % 2 != 0:
+                continue  # d wäre nicht ganzzahlig
 
             # Scheitel berechnen
-            d_raw = (x1 + x2) / 2
-            e_raw = -a * ((x2 - x1) / 2) ** 2
-            # Scheitel muss im sichtbaren Bereich liegen
-            if abs(d_raw) > 7 or abs(e_raw) > 7:
+            d = (x1 + x2) // 2
+            e_raw = -a * ((x2 - x1) // 2) ** 2
+            # e muss ganzzahlig sein (vom Graphen ablesbar)
+            if e_raw != int(e_raw):
                 continue
-
-            # d und e auf halbe Ganzzahlen runden (für schöne Werte)
-            d = d_raw
-            e = e_raw
+            e = int(e_raw)
+            # Scheitel muss im sichtbaren Bereich liegen
+            if abs(d) > 7 or abs(e) > 7:
+                continue
 
             key = (a, x1, x2)
             if key in used:
