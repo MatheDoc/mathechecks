@@ -1,0 +1,97 @@
+/* ═══════════════════════════════════════════════════════════════
+   Speech-Input – Mic button for voice entry on text inputs
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Wrapper for standalone inputs (blurting etc.) ──────────── */
+.speech-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.speech-input-wrap>input {
+    flex: 1;
+    min-width: 0;
+    padding-right: 34px;
+}
+
+/* ── Mic button (shared by both wrapper & field-group) ──────── */
+.speech-mic {
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    color: var(--text-muted);
+    transition: color 150ms, background 150ms;
+    position: relative;
+}
+
+.speech-mic:hover {
+    color: var(--text-dim);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.speech-mic svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* ── Active state (recording) ───────────────────────────────── */
+.speech-mic--active {
+    color: var(--rose, #f76c6c);
+}
+
+.speech-mic--active:hover {
+    color: var(--rose, #f76c6c);
+}
+
+.speech-mic--active::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1.5px solid var(--rose, #f76c6c);
+    animation: speech-mic-ripple 1.2s ease-out infinite;
+    pointer-events: none;
+}
+
+@keyframes speech-mic-ripple {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* ── Standalone wrapper: mic positioned inside the input ────── */
+.speech-input-wrap .speech-mic {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ── Inside answer-field-group (training): wrapper is inline-sized ─ */
+.answer-field-group .speech-input-wrap {
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+}
+
+/* ── Light-mode adjustments ─────────────────────────────────── */
+html.light .speech-mic:hover {
+    background: rgba(0, 0, 0, 0.06);
+}

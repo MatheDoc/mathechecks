@@ -13,6 +13,7 @@ import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink } from "./ui/card-actions-menu.js";
+import { enhanceSpeechInputs } from "./ui/speech-input.js";
 
 const TR_BEISPIEL_CACHE = new Map();
 
@@ -55,6 +56,7 @@ function resizePlotlyInNode(targetNode, retries = 4) {
 function finalizeTaskRender(targetNode) {
   void renderMath(targetNode);
   requestAnimationFrame(() => resizePlotlyInNode(targetNode));
+  enhanceSpeechInputs(targetNode);
 }
 
 function getCheckId(check) {

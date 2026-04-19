@@ -10,6 +10,7 @@ import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink } from "./ui/card-actions-menu.js";
+import { enhanceSpeechInputs } from "./ui/speech-input.js";
 import {
     buildSkriptTippsHref,
     buildTrainingKiAgentPrompt,
@@ -56,6 +57,7 @@ async function finalizeTaskRender(targetNode) {
     await renderMath(targetNode);
     await new Promise((resolve) => requestAnimationFrame(resolve));
     await resizePlotlyInNode(targetNode);
+    enhanceSpeechInputs(targetNode);
 }
 
 function getCheckId(check) {
