@@ -34,7 +34,7 @@ Skript (Fachinhalt) (direkt in MD)
 Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
 Skript (Abschluss)  szenario_abschluss
 Training                                                          Aufgaben
-Blurting                              Blurting
+Blurting                              Tipps, Ich kann
 Feynman                               Tipps        Beispiel
 Flashcards                                                        Aufgaben
 ```
