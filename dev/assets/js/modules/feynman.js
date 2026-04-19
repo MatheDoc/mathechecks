@@ -488,7 +488,7 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-        <div style="font-size: 72px; text-align: center;">🤖</div>
+        <div style="font-size: 72px; text-align: center;">🎓</div>
         ${promptMarkup}
 
 
