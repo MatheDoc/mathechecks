@@ -134,7 +134,7 @@ function buildScriptInfoHref(check) {
   return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
 }
 
-const BL_RECALL_DELAY_MS = 6000;
+const BL_RECALL_DELAY_MS = 30000;
 
 function renderCard(check) {
   const begriff = check?.blurting?.begriff || check.Schlagwort || `Check ${check.Nummer}`;
@@ -143,11 +143,7 @@ function renderCard(check) {
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
   const scriptHref = buildScriptInfoHref(check);
-  const refs = Array.isArray(check?.Blurting) && check.Blurting.length
-    ? check.Blurting
-    : Array.isArray(check?.Tipps)
-      ? check.Tipps
-      : [];
+  const refs = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const refsListMarkup = refs
     .map((ref) => `<div class="bl-list-item"><span class="bl-list-dot"></span><span class="bl-list-text">${escapeHtml(ref)}</span></div>`)
     .join("");
@@ -180,17 +176,16 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-
+<div style="font-size: 72px; text-align: center;">💭</div>
         <div data-bl-stage="recall">
           <div data-bl-recall-idle>
-            <p class="bl-prompt">Überlege, was du zu dieser Kompetenz weißt.</p>
+            <p class="bl-prompt">Was fällt dir zu folgender Kompetenz ein?</p>
             <div class="bl-action-row">
               <button class="bl-reveal-btn" type="button" data-bl-start>Start</button>
             </div>
           </div>
           <div data-bl-recall-active hidden>
-            <p class="bl-kompetenz">${escapeHtml(ichKann)}</p>
-            <p class="bl-prompt">Was fällt dir dazu ein?</p>
+            <p class="bl-kompetenz">${escapeHtml(ichKann.replace(/\.$/, ''))}</p>
             <div class="bl-timer-bar" data-bl-timer-bar="recall">
               <div class="bl-timer-bar__fill" data-bl-timer-fill="recall"></div>
             </div>

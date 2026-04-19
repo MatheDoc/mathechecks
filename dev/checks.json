@@ -12,11 +12,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "feste Versuchsanzahl",
-            "zwei mögliche Ausgänge",
-            "gleichbleibende Treffer-Wkt"
-        ],
-        "Blurting": []
+            "Feste Versuchsanzahl \\(n\\)",
+            "Zwei mögliche Ausgänge pro Versuch",
+            "Gleichbleibende Trefferwahrscheinlichkeit \\(p\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -31,13 +30,12 @@
         "skript_anchor": "check-stochastik-binomialverteilung-02",
         "questionOrder": "shuffle",
         "Tipps": [
+            "Bernoulli-Formel: \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)",
             "Trefferanzahl \\(k\\)",
             "Versuchsanzahl \\(n\\)",
-            "Treffer-Wkt \\(p\\)",
-            "Nieten-Wkt \\(1-p\\)",
-            "Wkt für genau \\(k\\) Treffer \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)"
-        ],
-        "Blurting": []
+            "Trefferwahrscheinlichkeit \\(p\\)",
+            "Nietenwahrscheinlichkeit \\(1-p\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -52,11 +50,11 @@
         "skript_anchor": "check-stochastik-binomialverteilung-03",
         "questionOrder": "shuffle",
         "Tipps": [
+            "Kumulierte Wahrscheinlichkeit: \\(P(X\\leq k)\\)",
             "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)",
             "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)",
             "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -74,8 +72,7 @@
             "Identifikation von \\(n\\) und \\(p\\)",
             "ganzzahlige Intervallgrenzen bestimmen",
             "\\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -94,8 +91,7 @@
             "\\(n\\) und \\(p\\) im Sachzusammenhang",
             "Treffer und Niete",
             "gerundete Intervallgrenzen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -110,11 +106,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(x\\)-Achse Trefferanzahlen",
-            "\\(y\\)-Achse Einzel-Wkt \\(P(X=k)\\)",
-            "Intervall-Wkt durch Addition der Einzel-Wkt"
-        ],
-        "Blurting": []
+            "\\(x\\)-Achse: Trefferanzahlen",
+            "\\(y\\)-Achse: Einzelwahrscheinlichkeiten \\(P(X=k)\\)",
+            "Intervallwahrscheinlichkeit = Summe der Einzelwahrscheinlichkeiten"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -129,11 +124,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(x\\)-Achse Trefferanzahlen",
-            "\\(y\\)-Achse Kumul-Wkt \\(P(X\\leq k)\\)",
-            "Einzel-Wkt als Stufenhöhen"
-        ],
-        "Blurting": []
+            "\\(x\\)-Achse: Trefferanzahlen",
+            "\\(y\\)-Achse: kumulierte Wahrscheinlichkeiten \\(P(X\\leq k)\\)",
+            "Einzelwahrscheinlichkeiten als Stufenhöhen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -151,8 +145,7 @@
             "\\(a, b, p\\) identifizieren",
             "Ansatz formulieren",
             "\\(n\\) mit Tabelle bestimmen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -170,8 +163,7 @@
             "\\(a, b, n\\) identifizieren",
             "Ansatz formulieren",
             "\\(p\\) mit Tabelle bestimmen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -189,8 +181,7 @@
             "\\(a\\text{ oder }b, p, n\\) identifizieren",
             "Ansatz formulieren",
             "\\(k\\) mit Tabelle bestimmen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -208,8 +199,7 @@
             "\\(n\\) und \\(p\\) identifizieren",
             "\\(\\mu=n\\cdot p\\)",
             "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -227,8 +217,7 @@
             "\\(n\\) und \\(\\mu\\) identifizieren",
             "\\(\\mu=n\\cdot p\\) nach \\(p\\) umstellen",
             "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -246,8 +235,7 @@
             "\\(p\\) und \\(\\mu\\) identifizieren",
             "\\(\\mu=n\\cdot p\\) nach \\(n\\) umstellen",
             "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -266,8 +254,7 @@
             "\\(\\mu=n\\cdot p\\)",
             "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)",
             "Formeln kombinieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -286,8 +273,7 @@
             "\\(\\mu=n\\cdot p\\)",
             "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)",
             "Formeln kombinieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -304,9 +290,8 @@
         "Tipps": [
             "\\(\\mu\\pm\\) absoluter Wert",
             "innerhalb oder außerhalb?",
-            "Intervall-Wkt berechnen"
-        ],
-        "Blurting": []
+            "Intervallwahrscheinlichkeit berechnen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -323,9 +308,8 @@
         "Tipps": [
             "\\(\\mu\\pm\\) relativer Wert",
             "innerhalb oder außerhalb?",
-            "Intervall-Wkt berechnen"
-        ],
-        "Blurting": []
+            "Intervallwahrscheinlichkeit berechnen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -342,9 +326,8 @@
         "Tipps": [
             "\\(\\mu\\pm\\) Vielfaches von \\(\\sigma\\)",
             "innerhalb oder außerhalb?",
-            "Intervall-Wkt berechnen"
-        ],
-        "Blurting": []
+            "Intervallwahrscheinlichkeit berechnen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -360,10 +343,9 @@
         "questionOrder": "fixed",
         "Tipps": [
             "Baumdiagramm",
-            "Summe Pfad-Wkt eines Knotens = 1",
-            "1. Pfad-Wkt mal 2. Pfad-Wkt = End-Wkt"
-        ],
-        "Blurting": []
+            "Summe der Pfadwahrscheinlichkeiten eines Knotens = 1",
+            "Erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -379,10 +361,9 @@
         "questionOrder": "fixed",
         "Tipps": [
             "Baumdiagramm",
-            "1. Pfad-Wkt mal 2. Pfad-Wkt = End-Wkt",
-            "nach Pfad-Wkt umformen"
-        ],
-        "Blurting": []
+            "Erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
+            "Nach fehlender Pfadwahrscheinlichkeit umformen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -398,10 +379,9 @@
         "questionOrder": "fixed",
         "Tipps": [
             "Baumdiagramm",
-            "Ereignis-Wkt = Summe der Pfad-Wkt",
+            "Ereigniswahrscheinlichkeit = Summe der Pfadwahrscheinlichkeiten",
             "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -416,13 +396,12 @@
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "A-Wkt \\(P(A)\\): 1. Pfad-Wkt",
-            "B-Wkt \\(P(B)\\): Summe zweier Pfadend-Wkt",
-            "Und-Wkt \\(P(A\\cap B)\\): eine Pfadend-Wkt",
-            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier Pfadend-Wkt",
-            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier Pfadend-Wkt"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
+            "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cap B)\\): eine Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier Pfadendwahrscheinlichkeiten"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -439,10 +418,9 @@
         "Tipps": [
             "Pfadmultiplikationsregel",
             "Pfadadditionsregel",
-            "Gegen-Wkt",
-            "rel Häufigkeiten als Wkt"
-        ],
-        "Blurting": []
+            "Gegenwahrscheinlichkeit",
+            "Relative Häufigkeiten als Wahrscheinlichkeiten"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -459,10 +437,9 @@
         "Tipps": [
             "Pfadmultiplikationsregel",
             "Pfadadditionsregel",
-            "Gegen-Wkt",
-            "rel Häufigkeiten als Wkt"
-        ],
-        "Blurting": []
+            "Gegenwahrscheinlichkeit",
+            "Relative Häufigkeiten als Wahrscheinlichkeiten"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -477,15 +454,14 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(P(A)\\): Wkt von \\( A \\)",
-            "\\(P(B)\\): Wkt von \\( B \\)",
-            "\\(P(A\\cap B)\\): Wkt von \\( A \\) und \\( B \\)",
-            "\\(P(A\\cup B)\\): Wkt von \\( A \\) oder \\( B \\)",
-            "\\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wkt von entweder \\( A \\) oder \\( B \\) (aber nicht beide)",
-            "\\( P_A(B) \\): Wkt von \\( B \\) unter Bed \\( A \\)",
-            "\\( P_B(A) \\): Wkt von \\( A \\) unter Bed \\( B \\)"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): Wahrscheinlichkeit von \\(A\\)",
+            "\\(P(B)\\): Wahrscheinlichkeit von \\(B\\)",
+            "\\(P(A\\cap B)\\): Wahrscheinlichkeit von \\(A\\) und \\(B\\)",
+            "\\(P(A\\cup B)\\): Wahrscheinlichkeit von \\(A\\) oder \\(B\\)",
+            "\\(P(A\\cup B) - P(A\\cap B)\\): Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\)",
+            "\\(P_A(B)\\): Wahrscheinlichkeit von \\(B\\) unter Bedingung \\(A\\)",
+            "\\(P_B(A)\\): Wahrscheinlichkeit von \\(A\\) unter Bedingung \\(B\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -502,10 +478,9 @@
         "Tipps": [
             "Pfadadditionsregel",
             "Pfadmultiplikationsregel",
-            "Unabh: Gleiche Wkt für \\( B \\) und \\( \\overline{B} \\) auf zweiten Pfad",
-            "Unabh: \\( P_A(B)=P_{\\overline{A}}(B) \\)"
-        ],
-        "Blurting": []
+            "Unabhängigkeit: Gleiche Wahrscheinlichkeit für \\( B \\) und \\( \\overline{B} \\) auf zweiten Pfad",
+            "Unabhängigkeit: \\( P_A(B)=P_{\\overline{A}}(B) \\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -520,15 +495,14 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "A-Wkt \\(P(A)\\): 1. Pfad-Wkt",
-            "B-Wkt \\(P(B)\\): Summe zweier Pfadend-Wkt",
-            "Und-Wkt \\(P(A\\cap B)\\): eine Pfadend-Wkt",
-            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier Pfadend-Wkt",
-            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier Pfadend-Wkt",
-            "Wkt unter A-Bed \\( P_A(B) \\): 2. Pfad-Wkt",
-            "Wkt unter B-Bed \\( P_B(A) \\): \\( \\frac{A\\cap B}{B} \\)"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
+            "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cap B)\\): eine Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P_A(B)\\): zweite Pfadwahrscheinlichkeit",
+            "\\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -543,10 +517,9 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-04",
         "questionOrder": "fixed",
         "Tipps": [
-            "Innere Wkt = Und-Wkt",
-            "Summe innere Wkt = äußere Wkt"
-        ],
-        "Blurting": []
+            "Innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            "Summe der inneren Wahrscheinlichkeiten = äußere Wahrscheinlichkeit"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -561,13 +534,12 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "A-Wkt \\(P(A)\\): letzte Zeile/Spalte",
-            "B-Wkt \\(P(B)\\): letzte Zeile/Spalte",
-            "Und-Wkt \\(P(A\\cap B)\\): eine innere Wkt",
-            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier inneneren Wkt",
-            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier ineren Wkt"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): letzte Zeile/Spalte",
+            "\\(P(B)\\): letzte Zeile/Spalte",
+            "\\(P(A\\cap B)\\): eine innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier innerer Wahrscheinlichkeiten"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -582,12 +554,11 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-06",
         "questionOrder": "fixed",
         "Tipps": [
-            "Innere Wkt = Und-Wkt",
-            "Summe innere Wkt = äußere Wkt",
-            "Unabh: 4VT ist multiplikativ",
-            "Unabh: \\( P(A) \\cdot P(B) = P(A\\cap B) \\)"
-        ],
-        "Blurting": []
+            "Innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            "Summe der inneren Wahrscheinlichkeiten = äußere Wahrscheinlichkeit",
+            "Unabhängigkeit: Vier-Felder-Tafel ist multiplikativ",
+            "Unabhängigkeit: \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -602,15 +573,14 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "A-Wkt \\(P(A)\\): letzte Zeile/Spalte",
-            "B-Wkt \\(P(B)\\): letzte Zeile/Spalte",
-            "Und-Wkt \\P(A\\cap B)\\): eine innere Wkt",
-            "Oder-Wkt \\(P(A\\cup B)\\): Summe dreier inneneren Wkt",
-            "Entweder-oder-Wkt \\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Summe zweier ineren Wkt",
-            "Wkt unter A-Bed \\( P_A(B) \\): innere Wkt geteilt durch äußere Wkt der Zeile/Spalte",
-            "Wkt unter B-Bed \\( P_B(A) \\): innere Wkt geteilt durch äußere Wkt der Zeile/Spalte"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): letzte Zeile/Spalte",
+            "\\(P(B)\\): letzte Zeile/Spalte",
+            "\\(P(A\\cap B)\\): eine innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier innerer Wahrscheinlichkeiten",
+            "\\(P_A(B)\\): innere Wahrscheinlichkeit geteilt durch äußere Wahrscheinlichkeit",
+            "\\(P_B(A)\\): innere Wahrscheinlichkeit geteilt durch äußere Wahrscheinlichkeit"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -625,12 +595,11 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-08",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Satz von der Gegen-Wkt",
-            "Satz von der totalen Wkt",
+            "Satz von der Gegenwahrscheinlichkeit",
+            "Satz von der totalen Wahrscheinlichkeit",
             "Satz von Sylvester",
-            "Satz von der bed Wkt"
-        ],
-        "Blurting": []
+            "Satz von der bedingten Wahrscheinlichkeit"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -645,14 +614,13 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-09",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Satz von der Gegen-Wkt",
-            "Satz von der totalen Wkt",
+            "Satz von der Gegenwahrscheinlichkeit",
+            "Satz von der totalen Wahrscheinlichkeit",
             "Satz von Sylvester",
-            "Satz von der bed Wkt",
-            "Unabhängigkeit: \\( P_A(B) = P_{\\overline{A}}(B) \\)",
-            "Unabhängigkeit: \\( P(A) \\cdot P(B) = P(A\\cap B) \\)"
-        ],
-        "Blurting": []
+            "Satz von der bedingten Wahrscheinlichkeit",
+            "Unabhängigkeit: \\(P_A(B) = P_{\\overline{A}}(B)\\)",
+            "Unabhängigkeit: \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -670,8 +638,7 @@
             "Flächen = Ereignisse",
             "Flächeninhalte = Wahrscheinlichkeiten",
             "Bedingung = hell- und dunkelblau eingefärbte Fläche"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -689,8 +656,7 @@
             "$\\overline{A}$: Komplement von $A$",
             "$A\\cup B$: $A$ oder $B$",
             "$A\\cap B$: $A$ und $B$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -705,13 +671,12 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(P(A)\\): Wkt von \\( A \\)",
-            "\\(P(B)\\): Wkt von \\( B \\)",
-            "\\(P(A\\cap B)\\): Wkt von \\( A \\) und \\( B \\)",
-            "\\(P(A\\cup B)\\): Wkt von \\( A \\) oder \\( B \\)",
-            "\\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wkt von entweder \\( A \\) oder \\( B \\) (aber nicht beide)"
-        ],
-        "Blurting": []
+            "\\(P(A)\\): Wahrscheinlichkeit von \\( A \\)",
+            "\\(P(B)\\): Wahrscheinlichkeit von \\( B \\)",
+            "\\(P(A\\cap B)\\): Wahrscheinlichkeit von \\( A \\) und \\( B \\)",
+            "\\(P(A\\cup B)\\): Wahrscheinlichkeit von \\( A \\) oder \\( B \\)",
+            "\\(P(A\\cup B) - P(A\\cap B)=P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wahrscheinlichkeit von entweder \\( A \\) oder \\( B \\) (aber nicht beide)"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -727,10 +692,9 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Gesamtanzahl berechnen",
-            "Rel Häufigkeit = Anzahl / Gesamtanzahl",
+            "Relative Häufigkeit = Anzahl / Gesamtanzahl",
             "Zwischen 0 und 1"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -747,8 +711,7 @@
         "Tipps": [
             "$P(A) = 1 - P(\\overline{A})$",
             "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -765,9 +728,8 @@
         "Tipps": [
             "Flächen = Ereignisse",
             "Flächeninhalte = Wahrscheinlichkeiten",
-            "Dunkles Blau: betroffnendes Ereignis"
-        ],
-        "Blurting": []
+            "Dunkles Blau: betroffenes Ereignis"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -785,8 +747,7 @@
             "\\( E(X) = \\sum x_i \\cdot P(X=x_i) \\)",
             "Zeile x Zeile",
             "Durchschnittswert"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -804,8 +765,7 @@
             "Schwankungsmaß",
             "\\( \\sigma(X) = \\sqrt{E((X-E(X))^2)} \\) = \\( \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)",
             "Wurzel aus durchschnittlicher quadratischer Abweichung"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -822,8 +782,7 @@
         "Tipps": [
             "Erwartungswert: \\(E(X)\\): Durchschnittswert",
             "Standardabweichung \\(\\sigma(X)\\): Schwankungsmaß"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -838,11 +797,10 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "Summe aller Wkt = 1",
-            "Ansatz: Formel-Erwartungswert",
-            "nach fehlendem Wert umformen"
-        ],
-        "Blurting": []
+            "Summe aller Wahrscheinlichkeiten = 1",
+            "Ansatz: Erwartungswert-Formel",
+            "Nach fehlendem Wert umformen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -857,12 +815,11 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-06",
         "questionOrder": "fixed",
         "Tipps": [
-            "Summe aller Wkt = 1",
-            "Ansatz: Formel-Erwartungswert",
-            "2 Gleichungen mit 2 Unbekannten",
-            "Lösen des Gleichungssystems"
-        ],
-        "Blurting": []
+            "Summe aller Wahrscheinlichkeiten = 1",
+            "Ansatz: Erwartungswert-Formel",
+            "Zwei Gleichungen mit zwei Unbekannten",
+            "Gleichungssystem lösen"
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -880,8 +837,7 @@
             "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
             "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
             "\\( P(X\\leq k) \\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -899,8 +855,7 @@
             "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
             "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
             "\\( P(X\\geq k) \\)"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -920,8 +875,7 @@
             "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
             "Ansatz mit Signifikanzniveau",
             "Bestimmung von \\( k \\) mit TR oder TW"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -941,8 +895,7 @@
             "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
             "Ansatz mit Signifikanzniveau",
             "Bestimmung von \\( k \\) mit TR oder TW"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -962,8 +915,7 @@
             "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
             "Ansatz mit Signifikanzniveau",
             "Bestimmung von \\( k \\) mit TR oder TW"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "stochastik",
@@ -983,8 +935,7 @@
             "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
             "Ansatz mit Signifikanzniveau",
             "Bestimmung von \\( k \\) mit TR oder TW"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1004,8 +955,7 @@
             "$p=\\frac{E(x)}{x}$",
             "$E(x)=G(x)+K(x)$",
             "$K(x)=E(x)-G(x)$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1025,8 +975,7 @@
             "$p(x)=\\frac{E(x)}{x}$",
             "$E(x)=G(x)+K(x)$",
             "$K(x)=E(x)-G(x)$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1042,12 +991,11 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Nullstellen und Extrempunkte von $G$",
-            "$y$-Abschnitt und  Wendestelle von $K$",
+            "$y$-Abschnitt und Wendestelle von $K$",
             "$y$-Abschnitt von $p$ bzw. Steigung von $E$",
             "Schnittpunkte von $E$ und $K$",
             "Erlöse an Kapazitätsgrenze"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1063,13 +1011,12 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Nullstellen und Extrempunkte von $G$",
-            "$y$-Abschnitt und  Wendestelle von $K$",
+            "$y$-Abschnitt und Wendestelle von $K$",
             "$y$-Abschnitt und Nullstelle von $p$",
             "Extrempunkt von $E$",
             "Schnittpunkte von $E$ und $K$",
             "Punkt auf $p$ über/unter Gewinnmaximum"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1086,10 +1033,9 @@
         "Tipps": [
             "y-Abschnitt: $f(0)$",
             "Nullstellen: $f(x)=0$",
-            "Extremstellen: Notw Bed: $f^{\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
-            "Wendestellen: Notw Bed: $f^{\\prime\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime\\prime}(x) > 0$ (min Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (max Steigung)"
-        ],
-        "Blurting": []
+            "Extremstellen: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
+            "Wendestellen: Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) > 0$ (minimale Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (maximale Steigung)"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1107,8 +1053,7 @@
             "Definition der Kennzahl",
             "Formulierung Ansatz",
             "Wert berechnen oder nach $x$ auflösen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1126,8 +1071,7 @@
             "Definition der Kennzahl",
             "Formulierung Ansatz",
             "Wert berechnen oder nach $x$ auflösen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1143,11 +1087,10 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Grad 3",
-            "pos y-Abschnitt",
+            "Positiver $y$-Achsenabschnitt",
             "monoton wachsend",
-            "pos Wendestelle"
-        ],
-        "Blurting": []
+            "Positive Wendestelle"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1163,11 +1106,10 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Grad 3",
-            "pos y-Abschnitt",
+            "Positiver $y$-Achsenabschnitt",
             "monoton wachsend",
-            "pos Wendestelle"
-        ],
-        "Blurting": []
+            "Positive Wendestelle"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1184,10 +1126,9 @@
         "Tipps": [
             "Charakteristische Punkte",
             "Grenzkosten $K'$",
-            "var Stückosten $k_v$",
+            "Variable Stückkosten $k_v$",
             "Stückkosten $k$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1202,10 +1143,9 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Extremstellen: Notw Bed: $f^{\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
-            "Wendestellen: Notw Bed: $f^{\\prime\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime\\prime}(x) > 0$ (min Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (max Steigung)"
-        ],
-        "Blurting": []
+            "Extremstellen: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
+            "Wendestellen: Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) > 0$ (minimale Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (maximale Steigung)"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1225,8 +1165,7 @@
             "Wert berechnen oder nach $x$ auflösen",
             "$f(x)=\\frac{1}{x} \\Rightarrow f'(x)=-\\frac{1}{x^2}$",
             "$f(x)=\\frac{1}{x^2} \\Rightarrow f'(x)=-\\frac{2}{x^3}$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1245,8 +1184,7 @@
             "Informationen -> Gleichung",
             "LGS aufstellen",
             "LGS lösen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1261,11 +1199,11 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Nullstelle von $p_N$",
-            "$y$-Abschnitt von $p_N$ und $p_A$",
-            "Schnittpunkt von $p_N$ und $p_A$"
-        ],
-        "Blurting": []
+            "Nullstelle von $p_N$: Sättigungsmenge",
+            "$y$-Abschnitt von $p_N$: Prohibitivpreis",
+            "$y$-Abschnitt von $p_A$: Mindestangebotspreis",
+            "Schnittpunkt von $p_N$ und $p_A$: Gleichgewichtspunkt $(x_G | p_G)$"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1283,8 +1221,7 @@
             "Definition der Kennzahl",
             "Formulierung Ansatz",
             "Wert berechnen oder nach $x$ auflösen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1299,11 +1236,11 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Nachgefragte Menge",
-            "Angebotene Menge",
-            "Nachfrage- oder Angebotsüberschusses"
-        ],
-        "Blurting": []
+            "Nachgefragte Menge bei gegebenem Preis bestimmen",
+            "Angebotene Menge bei gegebenem Preis bestimmen",
+            "Nachfrageüberschuss: Nachfrage > Angebot",
+            "Angebotsüberschuss: Angebot > Nachfrage"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1318,11 +1255,11 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Nullstelle von $p_N$",
-            "$y$-Abschnitt von $p_N$ und $p_A$",
-            "Schnittpunkt von $p_N$ und $p_A$"
-        ],
-        "Blurting": []
+            "Nullstelle von $p_N$: Sättigungsmenge",
+            "$y$-Abschnitt von $p_N$: Prohibitivpreis",
+            "$y$-Abschnitt von $p_A$: Mindestangebotspreis",
+            "Schnittpunkt von $p_N$ und $p_A$: Gleichgewichtspunkt $(x_G | p_G)$"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1340,8 +1277,7 @@
             "Definition der Kennzahl",
             "Formulierung Ansatz",
             "Wert berechnen oder nach $x$ auflösen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1358,8 +1294,7 @@
         "Tipps": [
             "$KR=\\int_0^{x_G}p_N(x)dx - x_G\\cdot p_G$",
             "$PR=x_G\\cdot p_G - \\int_0^{x_G}p_A(x)dx$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1377,8 +1312,7 @@
             "Bestimme Marktgleichgewicht",
             "abgeschöpfte KR = geeigneter Flächeninhalt",
             "geeigneter Flächeninhalt = $x_2\\cdot p_2-p_G$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1396,9 +1330,8 @@
             "Bestimme Marktgleichgewicht",
             "abgeschöpfte KR = geeigneter Flächeninhalt $A(x_2)$",
             "maximiere $A(x_2)$",
-            "Verkaufspries = $p_N(x_2)$"
-        ],
-        "Blurting": []
+            "Verkaufspreis = $p_N(x_2)$"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1416,8 +1349,7 @@
             "Regression im TR",
             "Wahl Regressionsfunktion",
             "Bestimmheitsmaß nahe 1?"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1435,8 +1367,7 @@
             "Gleichsetzungsverfahren",
             "Einsetzungsverfahren",
             "Additionsverfahren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1454,8 +1385,7 @@
             "Gauß-Algorithmus",
             "elementare Zeilenumformungen",
             "obere Dreiecksform"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1473,8 +1403,7 @@
             "Gauß-Algorithmus",
             "elementare Zeilenumformungen",
             "obere Dreiecksform"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1492,8 +1421,7 @@
             "Gauß-Algorithmus anwenden",
             "letzte Variable als Parameter $t$ setzen",
             "rückwärts einsetzen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1512,8 +1440,7 @@
             "keine Lösung",
             "eine Lösung",
             "unendlich viele Lösungen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1531,8 +1458,7 @@
             "Elementweise addieren/subtrahieren",
             "Gleiche Dimension",
             "Skalar mit jedem Eintrag multiplizieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1550,8 +1476,7 @@
             "nicht elementweise multiplizieren",
             "Zeile mal Spalte",
             "Spaltenanzahl $A$ = Zeilenanzahl $B$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1568,8 +1493,7 @@
         "Tipps": [
             "Gauß-Jordan-Algorithmus",
             "$(A|E)\\sim(E|A^{-1})$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1586,8 +1510,7 @@
         "Tipps": [
             "Gauß-Jordan-Algorithmus",
             "$(A|E)\\sim(E|A^{-1})$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1604,8 +1527,7 @@
         "Tipps": [
             "Gauß-Jordan-Algorithmus",
             "$(A|E)\\sim(E|A^{-1})$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1623,8 +1545,7 @@
             "Nach $X$ umstellen",
             "Inverse nutzen",
             "Reihenfolge der Multiplikation beachten"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1642,8 +1563,7 @@
             "Zeilen und Spalten vertauschen",
             "$(A^T)^T = A$",
             "Dimension tauscht sich"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1660,8 +1580,7 @@
         "Tipps": [
             "$\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=ad-bc$",
             "Hauptdiagonale minus Nebendiagonale"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1679,8 +1598,7 @@
             "Regel von Sarrus",
             "Erste zwei Spalten rechts anfügen",
             "3 Produkte addieren, 3 Produkte subtrahieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1698,8 +1616,7 @@
             "Laplace-Entwicklung",
             "Zeile oder Spalte mit vielen Nullen wählen",
             "Vorzeichen: $(-1)^{i+j}$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1717,8 +1634,7 @@
             "Verflechtungsdiagramm",
             "Produktionsmatrizen",
             "Zeile = Input, Spalte = Output"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1733,10 +1649,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "benötiger Input für 1 ME Output",
+            "benötigter Input für 1 ME Output",
             "Zeile = Input, Spalte = Output"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1754,8 +1669,7 @@
             "$RZ\\cdot ZE = RE$",
             "$RZ = RE\\cdot ZE^{-1}$",
             "$ZE = RZ^{-1}\\cdot RE$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1773,8 +1687,7 @@
             "$RE\\cdot \\vec{m} = \\vec{r}$",
             "$RZ\\cdot \\vec{z} = \\vec{r}$",
             "$ZE\\cdot \\vec{m} = \\vec{z}$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1792,8 +1705,7 @@
             "$\\vec{m} = RE^{-1}\\cdot \\vec{r}$",
             "$\\vec{z} = RZ^{-1}\\cdot \\vec{r}$",
             "$\\vec{m} = ZE^{-1}\\cdot \\vec{z}$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1815,8 +1727,7 @@
             "$DB = \\vec{db} \\cdot \\vec{m} = E - K_v$",
             "$G = E - K$",
             "$G = DB - K_f$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1831,10 +1742,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Kennzahl in Abh von $t$ ausdrücken",
-            "Rand des Def-Bereich von $t$ beachten"
-        ],
-        "Blurting": []
+            "Kennzahl in Abhängigkeit von $t$ ausdrücken",
+            "Rand des Definitionsbereichs von $t$ beachten"
+        ]
     },
     {
         "Gebiet": "lineare-algebra",
@@ -1851,9 +1761,8 @@
         "Tipps": [
             "Ansatz formulieren",
             "nach $t$ auflösen",
-            "Def-Bereich beachten"
-        ],
-        "Blurting": []
+            "Definitionsbereich beachten"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1868,14 +1777,13 @@
         "skript_anchor": "check-analysis-produktlebenszyklus-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "$y$-Abschnitt",
-            "Nullstellen",
-            "Extrempunkte",
-            "Wendepunkte",
-            "Beachte Randextrema",
-            "Asymptoten"
-        ],
-        "Blurting": []
+            "$y$-Abschnitt: Umsatz zur Produkteinführung",
+            "Positive Nullstelle: Marktaustritt",
+            "Extrempunkte: höchster bzw. niedrigster Umsatz",
+            "Wendepunkte: Änderung des Umsatzverlaufs",
+            "Beachte mögliche Randextrema",
+            "Asymptoten: langfristiger Umsatz"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1891,11 +1799,10 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "$y$-Achse: Veränderung des Umsatzes",
-            "Extremstellen $u$ => Nullstellen $u'$",
-            "Extremstellen $u'$ => Wendestellen $u$",
-            "Beachte Randextrema"
-        ],
-        "Blurting": []
+            "Extremstellen von $u$ entsprechen Nullstellen von $u'$",
+            "Extremstellen von $u'$ entsprechen Wendestellen von $u$",
+            "Beachte mögliche Randextrema"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1910,13 +1817,12 @@
         "skript_anchor": "check-analysis-produktlebenszyklus-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "y-Abschnitt: $f(0)$",
-            "Nullstellen: $f(x)=0$",
-            "Extremstellen: Notw Bed: $f^{\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
-            "Wendestellen: Notw Bed: $f^{\\prime\\prime}(x) = 0$, hinr Bed: $f^{\\prime\\prime\\prime}(x) > 0$ (min Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (max Steigung)",
-            "Beachte Randextrema"
-        ],
-        "Blurting": []
+            "Umsatz bei Produkteinführung: $u(0)$",
+            "Marktaustritt: $u(t)=0$",
+            "Höchster/niedrigster Umsatz: $u'(t)=0$ und Vorzeichenwechsel prüfen",
+            "Änderung des Umsatzverlaufs: $u''(t)=0$",
+            "Beachte mögliche Randextrema"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1931,10 +1837,10 @@
         "skript_anchor": "check-analysis-produktlebenszyklus-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Jährlicher Umsatz: Funktionswert",
-            "Gesamtumsatz: Integral"
-        ],
-        "Blurting": []
+            "Jährlicher Umsatz: Funktionswert $u(t)$",
+            "Gesamtumsatz in einem Zeitraum: $\\int_a^b u(t)\\,dt$",
+            "Durchschnittlicher Jahresumsatz: $\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1949,11 +1855,10 @@
         "skript_anchor": "check-analysis-produktlebenszyklus-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "jährlicher EKG-Wert: Funktionswert",
+            "Jährlicher EKG-Wert: Funktionswert",
             "Gesamter EKG-Wert: Integral",
-            "Zeitpunkt max Verlust: Integralvergleich"
-        ],
-        "Blurting": []
+            "Zeitpunkt maximaler Verlust: Integralvergleich"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1971,8 +1876,7 @@
             "$y$-Achsenabschnitt $b$: Wo schneidet der Graph die $y$-Achse?",
             "Steigung $m > 0$: Graph steigt; $m < 0$: Graph fällt",
             "Steigungsdreieck zum Vergleich nutzen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -1990,8 +1894,7 @@
             "Steigung $m$: Steigungsdreieck ablesen",
             "$y$-Achsenabschnitt $b$: Schnittpunkt mit $y$-Achse",
             "$f(x) = mx + b$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2009,8 +1912,7 @@
             "$x$-Werte einsetzen → $y$-Werte berechnen",
             "$f(x) = mx + b$",
             "Gleichmäßige Differenzen in der Tabelle prüfen"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2028,8 +1930,7 @@
             "$m = \\frac{y_2 - y_1}{x_2 - x_1}$",
             "$b = y_1 - m \\cdot x_1$",
             "$f(x) = mx + b$"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2048,8 +1949,7 @@
             "$f(x_0) = y_0$: Punkt liegt auf dem Graphen",
             "$y_0 > f(x_0)$: Punkt liegt oberhalb",
             "$y_0 < f(x_0)$: Punkt liegt unterhalb"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2064,11 +1964,9 @@
         "skript_anchor": "check-analysis-lineare-funktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Funktionswert: $x_0$ einsetzen → $f(x_0) = m \\cdot x_0 + b$",
-            "Umkehrwert: $f(x) = y_0$ setzen → nach $x$ auflösen",
-            "$x = \\frac{y_0 - b}{m}$"
-        ],
-        "Blurting": []
+            "Funktionswert: $x_0$ in $f(x) = mx + b$ einsetzen",
+            "Umkehrwert: $f(x) = y_0$ setzen und nach $x$ auflösen"
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2083,11 +1981,10 @@
         "skript_anchor": "check-analysis-lineare-funktionen-07",
         "questionOrder": "fixed",
         "Tipps": [
-            "Nullstelle: $f(x) = 0$ → $x = -\\frac{b}{m}$",
+            "Nullstelle: $f(x) = 0$ setzen und nach $x$ auflösen",
             "$m > 0$: links negativ, rechts positiv",
             "$m < 0$: links positiv, rechts negativ"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2106,8 +2003,7 @@
             "Nach $x$ auflösen",
             "$y$-Wert durch Einsetzen",
             "Vergleich: Vorzeichen von $f(x) - g(x)$ links/rechts vom Schnittpunkt"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2126,8 +2022,7 @@
             "Änderungsrate = Steigung $m$",
             "$f(x) = mx + b$ aufstellen",
             "Funktionswerte, Umkehrwerte, Nullstelle berechnen und interpretieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2146,8 +2041,7 @@
             "Gleichsetzen → Schnittpunkt",
             "Bereiche vergleichen: Welches Modell liegt wann günstiger/höher?",
             "Ergebnis im Sachzusammenhang interpretieren"
-        ],
-        "Blurting": []
+        ]
     },
     {
         "Gebiet": "analysis",
@@ -2165,15 +2059,6 @@
             "Öffnung: $a > 0$ nach oben, $a < 0$ nach unten",
             "Scheitel ablesen → Scheitelpunktform prüfen",
             "Nullstellen ablesen → faktorisierte Form prüfen"
-        ],
-        "Blurting": [
-            "Normalform",
-            "Scheitelpunktform",
-            "faktorisierte Form",
-            "Öffnung nach oben/unten",
-            "Scheitel",
-            "Nullstellen",
-            "Streckung/Stauchung"
         ]
     },
     {
@@ -2192,13 +2077,6 @@
             "Scheitel $(d, e)$ ablesen → $f(x) = a(x - d)^2 + e$",
             "Nullstellen $x_1, x_2$ ablesen → $f(x) = a(x - x_1)(x - x_2)$",
             "Öffnungsfaktor $a$ über einen weiteren Punkt bestimmen"
-        ],
-        "Blurting": [
-            "Scheitel ablesen",
-            "Nullstellen ablesen",
-            "Öffnungsfaktor bestimmen",
-            "Scheitelpunktform",
-            "faktorisierte Form"
         ]
     },
     {
@@ -2216,11 +2094,6 @@
         "Tipps": [
             "$x$-Werte einsetzen → $y$-Werte berechnen",
             "Symmetrie der Wertetabelle zum Scheitel prüfen"
-        ],
-        "Blurting": [
-            "Einsetzen",
-            "Funktionswerte berechnen",
-            "Symmetrie zur Symmetrieachse"
         ]
     },
     {
@@ -2239,14 +2112,6 @@
             "Normalform: $x^2 + px + q = 0$",
             "$x_{1{,}2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}$",
             "Diskriminante $D = \\left(\\frac{p}{2}\\right)^2 - q$ prüfen"
-        ],
-        "Blurting": [
-            "p-q-Formel",
-            "Normalform",
-            "Diskriminante",
-            "zwei Nullstellen",
-            "eine Nullstelle",
-            "keine Nullstelle"
         ]
     },
     {
@@ -2265,11 +2130,6 @@
             "$f(x) = a(x - x_1)(x - x_2)$",
             "Nullstellen direkt ablesen: $x_1$ und $x_2$",
             "Satz vom Nullprodukt"
-        ],
-        "Blurting": [
-            "faktorisierte Form",
-            "Satz vom Nullprodukt",
-            "Nullstellen ablesen"
         ]
     },
     {
@@ -2288,12 +2148,6 @@
             "$a(x - d)^2 + e = 0$",
             "$(x - d)^2 = -\\frac{e}{a}$",
             "Nullstellen existieren nur, wenn $-\\frac{e}{a} \\geq 0$"
-        ],
-        "Blurting": [
-            "Scheitelpunktform",
-            "Umstellen nach x",
-            "Wurzel ziehen",
-            "Existenzbedingung"
         ]
     },
     {
@@ -2309,16 +2163,9 @@
         "skript_anchor": "check-analysis-quadratische-funktionen-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Funktionswert: $x_0$ einsetzen → $f(x_0) = a x_0^2 + b x_0 + c$",
-            "Umkehrwert: $f(x) = y_0$ setzen → $a x^2 + b x + (c - y_0) = 0$",
-            "Quadratische Gleichung mit $p$-$q$-Formel lösen → bis zu zwei Lösungen"
-        ],
-        "Blurting": [
-            "Funktionswert",
-            "Umkehrwert",
-            "Einsetzen",
-            "p-q-Formel",
-            "zwei Lösungen"
+            "Funktionswert: $x_0$ einsetzen und berechnen",
+            "Umkehrwert: $f(x) = y_0$ setzen und nach $x$ auflösen",
+            "Quadratische Gleichung mit $p$-$q$-Formel lösen"
         ]
     },
     {
@@ -2337,13 +2184,6 @@
             "Gleichsetzen → quadratische Gleichung lösen",
             "$y$-Koordinaten durch Einsetzen bestimmen",
             "Parabel–Gerade: eine quadratische Gleichung; Parabel–Parabel: Differenz bilden"
-        ],
-        "Blurting": [
-            "Gleichsetzen",
-            "quadratische Gleichung lösen",
-            "y-Koordinate einsetzen",
-            "Parabel–Gerade",
-            "Parabel–Parabel"
         ]
     },
     {
@@ -2362,14 +2202,6 @@
             "NF → FF: Nullstellen mit pq-Formel berechnen",
             "NF → SPF: quadratische Ergänzung",
             "SPF/FF → NF: Ausmultiplizieren"
-        ],
-        "Blurting": [
-            "quadratische Ergänzung",
-            "Ausmultiplizieren",
-            "p-q-Formel",
-            "Normalform",
-            "Scheitelpunktform",
-            "faktorisierte Form"
         ]
     },
     {
@@ -2388,14 +2220,6 @@
             "Nullstellen gegeben → faktorisierte Form ansetzen",
             "Scheitel gegeben → Scheitelpunktform ansetzen",
             "Drei Punkte gegeben → Normalform mit LGS oder passende Form wählen"
-        ],
-        "Blurting": [
-            "Ansatz wählen",
-            "Punkt einsetzen",
-            "LGS",
-            "Scheitel + Punkt",
-            "Nullstellen + Punkt",
-            "drei Punkte"
         ]
     },
     {
@@ -2414,13 +2238,6 @@
             "Koordinatensystem sinnvoll festlegen",
             "Gegebene Punkte ablesen → Gleichung aufstellen",
             "Funktionswerte oder Nullstellen im Sachkontext interpretieren"
-        ],
-        "Blurting": [
-            "Koordinatensystem festlegen",
-            "Punkte ablesen",
-            "Gleichung aufstellen",
-            "Modellieren",
-            "Interpretieren"
         ]
     },
     {
@@ -2439,13 +2256,6 @@
             "Zielfunktion aufstellen (quadratisch)",
             "Scheitel bestimmen → Maximum oder Minimum",
             "Ergebnis im Sachzusammenhang interpretieren"
-        ],
-        "Blurting": [
-            "Zielfunktion",
-            "Scheitel bestimmen",
-            "Maximum",
-            "Minimum",
-            "Definitionsbereich"
         ]
     }
 ]

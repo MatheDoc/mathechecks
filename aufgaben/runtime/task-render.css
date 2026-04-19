@@ -544,6 +544,18 @@
     background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--mt-training-soft, var(--accent-soft)) 10%);
     color: var(--text);
     box-sizing: border-box;
+    outline: none;
+    transition: border-color 200ms, box-shadow 200ms;
+}
+
+.dev-check-card__runtime-task .answer-input:focus {
+    border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 60%, var(--border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, var(--accent)) 14%, transparent);
+}
+
+.dev-check-card__runtime-task .answer-input::placeholder {
+    color: var(--text-muted);
+    opacity: .55;
 }
 
 .dev-check-card__runtime-task .answer-select {
