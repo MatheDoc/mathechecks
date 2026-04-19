@@ -57,9 +57,8 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
         a2, d, e = nf_to_spf(a, b, c)
         return Task(
             einleitung=(
-                f"Wandeln Sie in die Scheitelpunktform um:"
+                f"Wandeln Sie in die Scheitelpunktform $ f(x) = a(x-d)^2+e $ um:"
                 f"{display_eq(eq)}"
-                f"$ f(x) = a(x-d)^2+e $"
             ),
             fragen=["Scheitelpunktform"],
             antworten=[
@@ -76,9 +75,8 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
         eq = nf_latex(a, b, c)
         return Task(
             einleitung=(
-                f"Wandeln Sie in die faktorisierte Form um:"
+                f"Wandeln Sie in die faktorisierte Form $ f(x) = a(x-x_1)(x-x_2) $ mit $ x_1 \\leq x_2 $ um:"
                 f"{display_eq(eq)}"
-                f"$ f(x) = a(x-x_1)(x-x_2) $ mit $ x_1 \\leq x_2 $"
             ),
             fragen=["Faktorisierte Form"],
             antworten=[
@@ -98,9 +96,8 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
         a2, b, c = spf_to_nf(float(a), float(d), float(e))
         return Task(
             einleitung=(
-                f"Wandeln Sie in die Normalform um:"
+                f"Wandeln Sie in die Normalform $ f(x) = ax^2+bx+c $ um:"
                 f"{display_eq(eq)}"
-                f"$ f(x) = ax^2+bx+c $"
             ),
             fragen=["Normalform"],
             antworten=[
@@ -118,9 +115,8 @@ class DarstellungsformenUmwandelnGenerator(TaskGenerator):
         a2, b, c = ff_to_nf(float(a), float(x1), float(x2))
         return Task(
             einleitung=(
-                f"Wandeln Sie in die Normalform um:"
+                f"Wandeln Sie in die Normalform $ f(x) = ax^2+bx+c $ um:"
                 f"{display_eq(eq)}"
-                f"$ f(x) = ax^2+bx+c $"
             ),
             fragen=["Normalform"],
             antworten=[

@@ -234,26 +234,6 @@ Typisches Vorgehen:
 
 {% include dev/check-anker.html nummer="12" %}
 
-## Parametereinfluss
-
-Wie verändern sich Form und Lage einer Parabel, wenn man die Parameter in der Scheitelpunktform $f(x) = a(x - d)^2 + e$ variiert?
-
-| Parameter | Wirkung |
-|---|---|
-| $a > 1$ | Parabel wird schmaler (gestaucht) |
-| $0 < a < 1$ | Parabel wird breiter (gestreckt) |
-| $a < 0$ | Parabel öffnet nach unten |
-| $d$ | Verschiebung des Scheitels in $x$-Richtung (nach rechts für $d > 0$) |
-| $e$ | Verschiebung des Scheitels in $y$-Richtung (nach oben für $e > 0$) |
-
-Typische Falle: In der Scheitelpunktform steht $f(x) = a(x - d)^2 + e$. Bei $f(x) = a(x + 3)^2$ ist $d = -3$, nicht $d = 3$.
-
-Im interaktiven Diagramm können Sie die Wirkung jedes Parameters einzeln beobachten.
-
-{% include dev/widgets/widget-quadratische-funktionen-parameter.html %}
-
-{% include dev/check-anker.html nummer="13" %}
-
 <!--## Zurück zum Brückenbogen
 
 Jetzt können wir die Eingangsfrage beantworten. Der Brückenbogen spannt sich über 40 m, der Scheitel liegt in der Mitte bei 12 m Höhe.

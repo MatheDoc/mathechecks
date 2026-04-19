@@ -134,8 +134,11 @@ function buildScriptInfoHref(check) {
   return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
 }
 
+const BL_RECALL_DELAY_MS = 6000;
+
 function renderCard(check) {
   const begriff = check?.blurting?.begriff || check.Schlagwort || `Check ${check.Nummer}`;
+  const ichKann = check?.["Ich kann"] || "";
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
@@ -145,9 +148,13 @@ function renderCard(check) {
     : Array.isArray(check?.Tipps)
       ? check.Tipps
       : [];
-  const refsMarkup = refs
+  const refsListMarkup = refs
+    .map((ref) => `<div class="bl-list-item"><span class="bl-list-dot"></span><span class="bl-list-text">${escapeHtml(ref)}</span></div>`)
+    .join("");
+  const refsKwMarkup = refs
     .map((ref) => `<span class="bl-kw"><span class="bl-kwdot"></span>${escapeHtml(ref)}</span>`)
     .join("");
+  const noRefsNote = `<p class="bl-no-refs">Keine Kernpunkte hinterlegt.</p>`;
 
   const skriptMenuItem = scriptHref
     ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Im Skript nachschlagen", href: scriptHref })
@@ -157,7 +164,7 @@ function renderCard(check) {
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-bl-check-viewport data-check-id="${escapeHtml(
     checkId
-  )}">
+  )}" data-bl-ref-count="${refs.length}">
       <article class="dev-check-card dev-check-card--blurting" data-bl-card>
         <div class="dev-check-card__header">
           ${renderCheckMetaRowMarkup({
@@ -173,25 +180,57 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-        <p class="bl-prompt">Schreib alles auf, was dir zu diesem Begriff einfällt. Nach Ablauf der Zeit folgt der Selbstcheck.</p>
 
-        <div data-bl-stage="write">
-          <div class="bl-action-row">
-            <button class="bl-reveal-btn" type="button" data-bl-reveal>Jetzt auswerten</button>
+        <div data-bl-stage="recall">
+          <div data-bl-recall-idle>
+            <p class="bl-prompt">Überlege, was du zu dieser Kompetenz weißt.</p>
+            <div class="bl-action-row">
+              <button class="bl-reveal-btn" type="button" data-bl-start>Start</button>
+            </div>
           </div>
-
-          <textarea
-            class="bl-textarea"
-            data-bl-input
-            placeholder="Notiere hier Begriffe, Formeln und Lösungswege."></textarea>
+          <div data-bl-recall-active hidden>
+            <p class="bl-kompetenz">${escapeHtml(ichKann)}</p>
+            <p class="bl-prompt">Was fällt dir dazu ein?</p>
+            <div class="bl-timer-bar" data-bl-timer-bar="recall">
+              <div class="bl-timer-bar__fill" data-bl-timer-fill="recall"></div>
+            </div>
+            <div class="bl-action-row">
+              <button class="bl-reveal-btn bl-reveal-btn--locked" type="button" data-bl-to-memorize disabled>Weiter</button>
+            </div>
+          </div>
         </div>
 
-        <div data-bl-stage="evaluate" hidden>
-          <div class="bl-divider">
-            <hr><span>Referenz-Begriffe</span><hr>
+        <div data-bl-stage="memorize" hidden>
+          <p class="bl-prompt">Präge dir die folgenden Kernpunkte ein.</p>
+          <div class="bl-timer-bar" data-bl-timer-bar="memorize">
+            <div class="bl-timer-bar__fill" data-bl-timer-fill="memorize"></div>
           </div>
-          ${refs.length ? `<div class="bl-kws" style="margin-bottom:18px;">${refsMarkup}</div>` : "<p style=\"font-size:.82rem;color:var(--text-muted);margin-bottom:18px;\">Keine Referenz-Begriffe hinterlegt.</p>"}
-          <p class="bl-selbst-lbl">Wie sicher bist du bei diesem Begriff?</p>
+          ${refs.length ? `<div class="bl-list-items">${refsListMarkup}</div>` : noRefsNote}
+          <div class="bl-action-row">
+            <button class="bl-reveal-btn bl-reveal-btn--locked" type="button" data-bl-to-retrieve disabled>Weiter</button>
+          </div>
+        </div>
+
+        <div data-bl-stage="retrieve" hidden>
+          <p class="bl-prompt">Schreibe die wichtigsten Punkte aus dem Gedächtnis auf.</p>
+          <div class="bl-input-slots" data-bl-input-slots>
+            ${(refs.length ? refs : [""]).map((_, i) => `<input class="bl-input-slot" type="text" data-bl-slot="${i}" placeholder="Punkt ${i + 1}">`).join("")}
+          </div>
+          <div class="bl-action-row">
+            <button class="bl-reveal-btn" type="button" data-bl-to-compare>Jetzt vergleichen</button>
+          </div>
+        </div>
+
+        <div data-bl-stage="compare" hidden>
+          <div class="bl-divider">
+            <hr><span>Deine Notizen</span><hr>
+          </div>
+          <div class="bl-user-notes" data-bl-user-notes></div>
+          <div class="bl-divider">
+            <hr><span>Kernpunkte</span><hr>
+          </div>
+          ${refs.length ? `<div class="bl-kws">${refsKwMarkup}</div>` : noRefsNote}
+          <p class="bl-selbst-lbl">Wie vollständig war dein Abruf?</p>
           <div class="bl-selbst-btns">
             <button class="bl-sb yes" type="button" data-bl-answer="yes">
               <span class="bl-sb-icon">✓</span>
@@ -201,7 +240,7 @@ function renderCard(check) {
             <button class="bl-sb no" type="button" data-bl-answer="no">
               <span class="bl-sb-icon">↺</span>
               <span class="bl-sb-title">Noch nicht</span>
-              <span class="bl-sb-sub">Ich wiederhole erst im Skript.</span>
+              <span class="bl-sb-sub">Ich präge mir die Kernpunkte nochmal ein.</span>
             </button>
           </div>
         </div>
@@ -210,17 +249,10 @@ function renderCard(check) {
           <div class="outcome">
             <div class="oc-icon green">✓</div>
             <h3 class="oc-title green">Sehr gut</h3>
-            <p class="oc-sub">Du konntest den Begriff aktiv abrufen.</p>
+            <p class="oc-sub">Du konntest die Kernpunkte aktiv abrufen.</p>
           </div>
         </div>
 
-        <div data-bl-stage="result-no" hidden>
-          <div class="outcome">
-            <div class="oc-icon amber">📖</div>
-            <h3 class="oc-title amber">Gute Einschätzung</h3>
-            <p class="oc-sub">Wiederhole den Abschnitt im Skript und versuche es danach erneut.</p>
-          </div>
-        </div>
         </div>
       </article>
     </section>
@@ -329,33 +361,103 @@ function initInteractiveBlurtingCards(root) {
   const cards = root.querySelectorAll("[data-bl-card]");
 
   cards.forEach((card) => {
-    const stages = {
-      write: card.querySelector('[data-bl-stage="write"]'),
-      evaluate: card.querySelector('[data-bl-stage="evaluate"]'),
+    const section = card.closest("[data-bl-check-viewport]");
+    const refCount = Number(section?.dataset?.blRefCount) || 3;
+
+    const stageEls = {
+      recall: card.querySelector('[data-bl-stage="recall"]'),
+      memorize: card.querySelector('[data-bl-stage="memorize"]'),
+      retrieve: card.querySelector('[data-bl-stage="retrieve"]'),
+      compare: card.querySelector('[data-bl-stage="compare"]'),
       resultYes: card.querySelector('[data-bl-stage="result-yes"]'),
-      resultNo: card.querySelector('[data-bl-stage="result-no"]'),
     };
 
-    const revealButton = card.querySelector("[data-bl-reveal]");
+    const recallIdle = card.querySelector("[data-bl-recall-idle]");
+    const recallActive = card.querySelector("[data-bl-recall-active]");
+    const startBtn = card.querySelector("[data-bl-start]");
+    const toMemorizeBtn = card.querySelector("[data-bl-to-memorize]");
+    const toRetrieveBtn = card.querySelector("[data-bl-to-retrieve]");
+    const toCompareBtn = card.querySelector("[data-bl-to-compare]");
+    const inputSlots = card.querySelector("[data-bl-input-slots]");
+    const userNotesEl = card.querySelector("[data-bl-user-notes]");
 
-    function setStage(nextStage) {
-      stages.write.hidden = nextStage !== "write";
-      stages.evaluate.hidden = nextStage !== "evaluate";
-      stages.resultYes.hidden = nextStage !== "result-yes";
-      stages.resultNo.hidden = nextStage !== "result-no";
+    function setStage(name) {
+      for (const [key, el] of Object.entries(stageEls)) {
+        if (el) el.hidden = key !== name;
+      }
     }
 
-    function revealEvaluation() {
-      setStage("evaluate");
+    function startTimerBar(scope, durationMs, btn) {
+      const fill = card.querySelector(`[data-bl-timer-fill="${scope}"]`);
+      if (fill) {
+        fill.style.transition = "none";
+        fill.style.width = "100%";
+        void fill.offsetWidth;
+        fill.style.transition = `width ${durationMs}ms linear`;
+        fill.style.width = "0%";
+      }
+      if (btn) {
+        btn.disabled = true;
+        btn.classList.add("bl-reveal-btn--locked");
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.classList.remove("bl-reveal-btn--locked");
+        }, durationMs);
+      }
     }
 
-    function setResult(canRecall) {
-      setStage(canRecall ? "result-yes" : "result-no");
-    }
+    // Start button → reveal Kompetenz + timer
+    startBtn?.addEventListener("click", () => {
+      if (recallIdle) recallIdle.hidden = true;
+      if (recallActive) recallActive.hidden = false;
+      void renderMath(recallActive);
+      startTimerBar("recall", BL_RECALL_DELAY_MS, toMemorizeBtn);
+    });
 
-    revealButton?.addEventListener("click", revealEvaluation);
-    card.querySelector('[data-bl-answer="yes"]')?.addEventListener("click", () => setResult(true));
-    card.querySelector('[data-bl-answer="no"]')?.addEventListener("click", () => setResult(false));
+    // Phase 1 → 2
+    toMemorizeBtn?.addEventListener("click", () => {
+      setStage("memorize");
+      const memDuration = Math.min(Math.max(refCount * 5000, 10000), 45000);
+      startTimerBar("memorize", memDuration, toRetrieveBtn);
+      void renderMath(stageEls.memorize);
+    });
+
+    // Phase 2 → 3
+    toRetrieveBtn?.addEventListener("click", () => {
+      if (inputSlots) {
+        inputSlots.querySelectorAll(".bl-input-slot").forEach((el) => { el.value = ""; });
+      }
+      setStage("retrieve");
+      const first = inputSlots?.querySelector(".bl-input-slot");
+      first?.focus();
+    });
+
+    // Phase 3 → 4 (compare + self-assess)
+    toCompareBtn?.addEventListener("click", () => {
+      if (userNotesEl && inputSlots) {
+        const entries = Array.from(inputSlots.querySelectorAll(".bl-input-slot"))
+          .map((el) => el.value.trim())
+          .filter(Boolean);
+        userNotesEl.innerHTML = entries.length
+          ? `<div class="bl-user-entries">${entries.map((e) => `<span class="bl-kw bl-kw--user"><span class="bl-kwdot"></span>${escapeHtml(e)}</span>`).join("")}</div>`
+          : `<p class="bl-no-refs">Keine Notizen eingegeben.</p>`;
+      }
+      setStage("compare");
+      void renderMath(stageEls.compare);
+    });
+
+    // "Kann ich" → result
+    card.querySelector('[data-bl-answer="yes"]')?.addEventListener("click", () => {
+      setStage("resultYes");
+    });
+
+    // "Noch nicht" → back to memorize
+    card.querySelector('[data-bl-answer="no"]')?.addEventListener("click", () => {
+      setStage("memorize");
+      const memDuration = Math.min(Math.max(refCount * 5000, 10000), 45000);
+      startTimerBar("memorize", memDuration, toRetrieveBtn);
+      void renderMath(stageEls.memorize);
+    });
   });
 }
 
