@@ -128,6 +128,60 @@ Der Content-Agent ist verantwortlich für die inhaltlichen Felder in `checks.jso
 | `Sammlung` | Python-Agent | Slug der Aufgabensammlung |
 
 
+## Aufgabenformulierung — Fragen und Antworten
+
+Die Felder `fragen` und `antworten` in den generierten JSON-Aufgaben bestimmen, wie die Aufgabe im Training und in Flashcards dargestellt wird. Die folgenden Regeln gelten für Generator-Code und Beispiele gleichermaßen.
+
+### Zusammengehörige Felder in eine Frage bündeln
+
+Wenn mehrere Eingabefelder inhaltlich zusammengehören (z. B. $x_1$ und $x_2$, oder $a$, $b$, $c$ einer Funktionsgleichung), gehören sie in **eine einzige Frage** mit einer Antwortzeile, die alle Felder inline enthält.
+
+**Richtig** (eine Frage, eine Antwortzeile):
+```python
+fragen=["Normalform"]
+antworten=["$ f(x)= $[a]$ x^2+ $[b]$ x+ $[c]"]
+```
+
+**Falsch** (drei separate Fragen):
+```python
+fragen=["$ a = $", "$ b = $", "$ c = $"]
+antworten=["[a]", "[b]", "[c]"]
+```
+
+### Antwortformat spiegelt die mathematische Struktur
+
+Wenn eine bestimmte Darstellungsform gefragt ist, soll die Antwortzeile die Struktur dieser Form abbilden:
+
+| Zielform | Antwortformat |
+|---|---|
+| Normalform | `$ f(x)= $[a]$ x^2+ $[b]$ x+ $[c]` |
+| Scheitelpunktform | `$ f(x) = $[a]$ (x - $[d]$)^2 + $[e]` |
+| Faktorisierte Form | `$ f(x) = $[a]$ (x - $[x₁]$)(x - $[x₂]$)$` |
+
+Nicht: `$ a= $[input]$ \quad d= $[input]$ \quad e= $[input]`
+
+### Natürliche Fragesätze statt technischer Labels
+
+Fragen sollen als **vollständige, natürliche Sätze** formuliert sein — besonders bei Sachaufgaben. Keine formalen Variablen vor dem Eingabefeld.
+
+**Richtig**: `"Welche maximale Höhe erreicht der Speer?"`  
+**Falsch**: `"Maximale Höhe (Scheitelpunkt): $ h(x_S) = $"`
+
+**Richtig**: `"Bei welchem Preis wird der Gewinn maximal?"`  
+**Falsch**: `"Bei welchem Preis wird der Gewinn maximal? $ p = $"`
+
+### Hinweise bei Mehrdeutigkeit
+
+Wenn die Antwort eine Sortierung oder Fallunterscheidung erfordert, den Hinweis in die Frage integrieren:
+
+```python
+_FRAGE = (
+    "Geben Sie die $ x $-Werte in aufsteigender Reihenfolge an. "
+    "Bei nur einer Lösung: beide Felder füllen."
+)
+```
+
+
 ## Beispiele — Konvention
 
 Pro Check eine Markdown-Datei:
@@ -143,6 +197,8 @@ dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 - **Kein Front Matter**: Die Zuordnung ergibt sich aus dem Dateinamen
 - **Aufgabenstellung zuerst**: Kurze Sachaufgabe oder reine Rechenaufgabe, dann Lösung
 - **Erklärende Zwischentexte**: Zwischen Rechenschritten kurz begründen, *warum* dieser Schritt folgt
+- **Graphen einbinden**: Wenn die Aufgabe sich auf Graphen bezieht (Zuordnung, Ablesen), muss das Beispiel `{% include dev/graph.html ... %}` verwenden — kein Verweis auf „im Diagramm" ohne Diagramm
+- **Nur bereits eingeführtes Wissen nutzen**: Der Lösungsweg darf ausschließlich Methoden verwenden, die bis zu diesem Check im Skript behandelt wurden (didaktische Progression beachten)
 
 
 ## Prüfungsrelevanz
@@ -211,6 +267,7 @@ checks.json ──→ Skript + Beispiele ──→ Aufgabensammlungen
 - Lernziele und typische Fehlvorstellungen explizit machen.
 - Mathematische Notation konsequent in LaTeX/MathJax-Syntax schreiben.
 - Die Lernbereichsstruktur Checkliste/Training/Skript als Pflichtmodell behandeln.
+- **LaTeX-Randfälle prüfen**: Shared-Helfer (`shared.py`) bei Grenzwerten testen (z. B. $d=0$ in SPF → `x^2` nicht `(x)^2`; Koeffizient 1 oder $-1$ → weglassen bzw. nur Minus).
 
 
 ## Übergabeformat
