@@ -1,6 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { enhanceSpeechInputs } from "./ui/speech-input.js";
 
 const BL_STATE_PREFIX = "dev-blurting-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
@@ -502,6 +503,7 @@ export async function initBlurtingModule({ root, lernbereich, preferredCheckId =
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-bl-check-viewport][data-check-id]"));
   applyInitialReveal(root);
   initInteractiveBlurtingCards(root);
+  enhanceSpeechInputs(root, ".bl-input-slot");
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
 }
