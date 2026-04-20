@@ -15,8 +15,8 @@ Wir bestimmen zunächst:
 
     $$
     \begin{align*}
-    3x - 12 =  0 \Rightarrow x = 4\\
-    K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
+    3x - 12 &=  0 \Rightarrow x = 4\\
+    K^{\prime\prime\prime}(4)&=3 > 0 \text{ (minimale Steigung)}
     \end{align*}
     $$
 
