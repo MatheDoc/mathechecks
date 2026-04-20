@@ -945,7 +945,7 @@
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__01",
         "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotspolypol).",
         "Sammlung": "funktionsterme-e1k3",
-        "Schlagwort": "Kubische Fkt (Polypol)",
+        "Schlagwort": "Gleichungen berechnen (Polypol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-01",
         "questionOrder": "shuffle",
@@ -965,7 +965,7 @@
         "check_id": "analysis__ganzrationale-oekonomische-funktionen__02",
         "Ich kann": "Gleichungen kubischer, ökonomischer Funktionen berechnen (Angebotsmonopol).",
         "Sammlung": "funktionsterme-e2k3",
-        "Schlagwort": "Kubische Fkt (Monopol)",
+        "Schlagwort": "Gleichungen berechnen (Monopol)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-02",
         "questionOrder": "shuffle",
@@ -990,11 +990,13 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Nullstellen und Extrempunkte von $G$",
-            "$y$-Abschnitt und Wendestelle von $K$",
-            "$y$-Abschnitt von $p$ bzw. Steigung von $E$",
-            "Schnittpunkte von $E$ und $K$",
-            "Erlöse an Kapazitätsgrenze"
+            "Verkaufspreis ist Steigung von $E$ bzw. konstanter Wert von $p$",
+            "$x_{Emax}$ ist Kapazitätsgrenze",
+            "$E_{max}$ ist Erlös an Kapazitätsgrenze",
+            "$K_f$ ist $y$-Abschnitt von $K$",
+            "Übergang degressiv/progressiv ist eine Wendestelle von $K'$",
+            "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
+            "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$"
         ]
     },
     {
@@ -1010,12 +1012,14 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Nullstellen und Extrempunkte von $G$",
-            "$y$-Abschnitt und Wendestelle von $K$",
-            "$y$-Abschnitt und Nullstelle von $p$",
-            "Extrempunkt von $E$",
-            "Schnittpunkte von $E$ und $K$",
-            "Punkt auf $p$ über/unter Gewinnmaximum"
+            "$p_H$ ist $y$-Abschnit von $p$",
+            "$s_m$ ist Nullstelle von $p$",
+            "$(x_{Emax}|E_{max})$ ist Hochpunkt von $E$",
+            "$K_f$ ist $y$-Abschnitt von $K$",
+            "Übergang degressiv/progressiv ist eine Wendestelle von $K'$",
+            "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
+            "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$",
+            "$p_{max}$ ist Wert von $p$ an $x_{Gmax}$"
         ]
     },
     {
@@ -1031,10 +1035,13 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "y-Abschnitt: $f(0)$",
-            "Nullstellen: $f(x)=0$",
-            "Extremstellen: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
-            "Wendestellen: Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) > 0$ (minimale Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (maximale Steigung)"
+            "$s_m$, $x_{GS}$ und $x_{GG}$ sind Nullstellen → Gleichung $f(x)=0$ nach $x$ auflösen",
+            "$p_H$ und $K_f$ sind $y$-Abschnitte → $f(0)$ berechnen",
+            "$x_{Gmax}$ ist Extremstelle → notwendige Bedingung: $f'(x)=0$, hinreichende Bedingung: $f''(x)<0$  ",
+            "$x_{Emax}$ ist Kapazitätsgrenze (Polppol) oder Extremstelle (Monopol)",
+            "$E_{max}$ und $G_{max}$ sind $y$-Werte der Extremstellen → Einsetzen und Ausrechnen",
+            "Übergang degressiv/progressiv ist eine Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \neq 0$",
+            "$p_{max}$ ist $y$-Wert von $p$ an $x_{Gmax}$ → $p(x_{Gmax})$ berechnen"
         ]
     },
     {
@@ -1050,8 +1057,8 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl",
-            "Formulierung Ansatz",
+            "Definition der Kennzahl vergegenwärtigen",
+            "Ansatz fomulieren",
             "Wert berechnen oder nach $x$ auflösen"
         ]
     },
@@ -1068,8 +1075,8 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl",
-            "Formulierung Ansatz",
+            "Definition der Kennzahl vergegenwärtigen",
+            "Ansatz fomulieren",
             "Wert berechnen oder nach $x$ auflösen"
         ]
     },
@@ -1124,10 +1131,11 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Charakteristische Punkte",
-            "Grenzkosten $K'$",
-            "Variable Stückkosten $k_v$",
-            "Stückkosten $k$"
+            "$(BM|KPU)$ ist Tiefpunkt von $k_v$",
+            "$BM$ ist Schnittstelle von $K'$ und $k_v$",
+            "$(BO|LPU)$ ist Tiefpunkt von $k$",
+            "$BO$ ist Schnittstelle von $K'$ und $k$",
+            "Übergang degressiv/progressiv ist Extremstelle von $K''$"
         ]
     },
     {
@@ -1143,8 +1151,10 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Extremstellen: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) > 0$ (Minimum), $f^{\\prime\\prime}(x) < 0$ (Maximum)",
-            "Wendestellen: Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) > 0$ (minimale Steigung), $f^{\\prime\\prime\\prime}(x)<0$ (maximale Steigung)"
+            "$BM$ und $BO$ sind Extremstellen → Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) \neq 0$",
+            "$BM$ bzw. $BO$ sind Schnittstellen von $K'$ und $k$ bzw. von $K'$ und $k_v$ → Ansatz: $K'(x)=k(x)$ bzw. $K'(x)=k_v(x)$",
+            "$KPU$ und $LPU$ sind $y$-Werte der Extremstellen → Einsetzen und Ausrechnen",
+            "Übergang degressiv/progressiv ist eine Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \neq 0$"
         ]
     },
     {
@@ -1160,9 +1170,9 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl",
-            "Formulierung Ansatz",
-            "Wert berechnen oder nach $x$ auflösen",
+            "Kennzahlen: $BM$, $BO$, $KPU$, $LPU$, Übergang degressiv/progressiv",
+            "$K', k_v$ und $k$ berechnen",
+            "Extremwertbestimmung: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) \neq 0$",
             "$f(x)=\\frac{1}{x} \\Rightarrow f'(x)=-\\frac{1}{x^2}$",
             "$f(x)=\\frac{1}{x^2} \\Rightarrow f'(x)=-\\frac{2}{x^3}$"
         ]
@@ -1180,8 +1190,8 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Allgemeine Form",
-            "Informationen -> Gleichung",
+            "Allgemeine Form $K(x)=ax^3+bx^2+cx+d$, evtl. weitere",
+            "Informationen in Gleichung überführen",
             "LGS aufstellen",
             "LGS lösen"
         ]
@@ -1772,7 +1782,7 @@
         "check_id": "analysis__produktlebenszyklus__01",
         "Ich kann": "den Graphen der Produktlebenszyklusfunktion interpretieren.",
         "Sammlung": "kennzahlen-graphisch-umsatz",
-        "Schlagwort": "PLZ-Graph interpretieren",
+        "Schlagwort": "Graph interpretieren",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-01",
         "questionOrder": "shuffle",
@@ -1793,7 +1803,7 @@
         "check_id": "analysis__produktlebenszyklus__02",
         "Ich kann": "den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren.",
         "Sammlung": "kennzahlen-graphisch-ableitung",
-        "Schlagwort": "PLZ-Ableitung interpretieren",
+        "Schlagwort": "Ableitungsgraph interpretieren",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-02",
         "questionOrder": "shuffle",
@@ -1812,15 +1822,15 @@
         "check_id": "analysis__produktlebenszyklus__03",
         "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (ohne Integration).",
         "Sammlung": "kennzahlen-rechnerisch-gesamt",
-        "Schlagwort": "PLZ-Kennzahlen (ohne Integral)",
+        "Schlagwort": "Kennzahlen (ohne Integral)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-03",
         "questionOrder": "shuffle",
         "Tipps": [
             "Umsatz bei Produkteinführung: $u(0)$",
             "Marktaustritt: $u(t)=0$",
-            "Höchster/niedrigster Umsatz: $u'(t)=0$ und $u''(t)\neq 0$",
-            "Änderung des Umsatzverlaufs: $u''(t)=0$ und $u'''(t)\neq 0",
+            "Höchster/niedrigster Umsatz: $u'(t)=0$ und $u''(t)\\neq 0$",
+            "Änderung des Umsatzverlaufs: $u''(t)=0$ und $u'''(t)\\neq 0$",
             "Beachte mögliche Randextrema"
         ]
     },
@@ -1832,7 +1842,7 @@
         "check_id": "analysis__produktlebenszyklus__04",
         "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (mit Integration).",
         "Sammlung": "integrale-gemischt",
-        "Schlagwort": "PLZ-Kennzahlen (mit Integral)",
+        "Schlagwort": "Kennzahlen (mit Integral)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-04",
         "questionOrder": "shuffle",
