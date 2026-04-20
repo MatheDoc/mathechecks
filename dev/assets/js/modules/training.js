@@ -473,12 +473,12 @@ function describeFunctionName(nameRaw) {
   const key = String(nameRaw || "").trim();
   const map = {
     "p(x)": "Preisfunktion",
-    "E(x)": "Erloesfunktion",
+    "E(x)": "Erlösfunktion",
     "K(x)": "Kostenfunktion",
     "G(x)": "Gewinnfunktion",
     "K'(x)": "Grenzkostenfunktion",
-    "k(x)": "Stueckkostenfunktion",
-    "kv(x)": "Variable Stueckkostenfunktion",
+    "k(x)": "Stückkostenfunktion",
+    "kv(x)": "Variable Stückkostenfunktion",
     "p_A(x)": "Angebotsfunktion",
     "p_N(x)": "Nachfragefunktion",
   };
@@ -710,7 +710,7 @@ function buildFunctionLinesFromSpec(spec) {
     const kvExpr = formatPolynomialExpression([k1, k2, k3]);
     const kExpr = `${formatPolynomialExpression([k1, k2, k3])}${k0 >= 0 ? "+" : ""}${formatFormulaNumber(k0)}*x^-1`;
 
-    lines.push(formatFunctionLine("GK(x)", gkExpr, "Grenzkostenfunktion"));
+    lines.push(formatFunctionLine("K'(x)", gkExpr, "Grenzkostenfunktion"));
     lines.push(formatFunctionLine("k(x)", kExpr, "Stueckkostenfunktion"));
     lines.push(formatFunctionLine("kv(x)", kvExpr, "Variable Stueckkostenfunktion"));
     return lines;

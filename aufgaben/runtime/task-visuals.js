@@ -97,9 +97,9 @@ function buildPlotlyFigure(spec) {
         }
 
         figure.data.push(
-            { x, y: gk, mode: "lines", name: "K(x)", line: { color: "#1f77b4" } },
+            { x, y: gk, mode: "lines", name: "K\u2032(x)", line: { color: "#1f77b4" } },
             { x, y: k, mode: "lines", name: "k(x)", line: { color: "#d62728" } },
-            { x, y: kv, mode: "lines", name: "kv(x)", line: { color: "#2ca02c" } }
+            { x, y: kv, mode: "lines", name: "k<sub>v</sub>(x)", line: { color: "#2ca02c" } }
         );
 
         figure.layout = {
