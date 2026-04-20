@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import random
 
 from aufgaben.core.latex import coeff_latex, const_latex, fmt, display_eq, inline
@@ -107,13 +108,17 @@ def build_linear_visual(
     y_hi = m * x_max + b if m > 0 else m * x_min + b
     axis_max_y = nice_axis_max(max(abs(y_lo), abs(y_hi)) * 1.15)
 
-    xs = [x_min + i * (x_max - x_min) / 200 for i in range(201)]
+    step = (x_max - x_min) / 200
+    xs_set = {round(x_min + i * step, 10) for i in range(201)}
+    for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
+        xs_set.add(float(ix))
+    xs = sorted(xs_set)
     ys = [m * x + b for x in xs]
 
     traces = [
         {
-            "x": xs,
-            "y": ys,
+            "x": [round(v, 4) for v in xs],
+            "y": [round(v, 4) for v in ys],
             "mode": "lines",
             "name": f"{name}(x)",
             "line": {"color": color, "width": 2.5},
@@ -174,12 +179,16 @@ def build_two_linear_visual(
 ) -> dict:
     """Visual mit zwei linearen Funktionen."""
     x_min, x_max = x_range
-    xs = [x_min + i * (x_max - x_min) / 200 for i in range(201)]
+    step = (x_max - x_min) / 200
+    xs_set = {round(x_min + i * step, 10) for i in range(201)}
+    for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
+        xs_set.add(float(ix))
+    xs = sorted(xs_set)
     ys2 = [m2 * x + b2 for x in xs]
 
     extra_trace = {
-        "x": xs,
-        "y": ys2,
+        "x": [round(v, 4) for v in xs],
+        "y": [round(v, 4) for v in ys2],
         "mode": "lines",
         "name": f"{name2}(x)",
         "line": {"color": "#d62728", "width": 2.5},
