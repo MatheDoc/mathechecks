@@ -203,13 +203,17 @@ class ZuordnungGraphenGenerator(TaskGenerator):
 
             # Plotly-Traces bauen – sichtbarer Bereich [-8, 8] × [-8, 8]
             x_min, x_max = -8, 8
-            xs = [x_min + i * (x_max - x_min) / 200 for i in range(201)]
+            step = (x_max - x_min) / 200
+            xs_set = {round(x_min + i * step, 10) for i in range(201)}
+            for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
+                xs_set.add(float(ix))
+            xs = sorted(xs_set)
             traces = []
             for gi, (fm, fb) in enumerate(funcs):
                 ys = [fm * x + fb for x in xs]
                 traces.append({
-                    "x": xs,
-                    "y": ys,
+                    "x": [round(v, 4) for v in xs],
+                    "y": [round(v, 4) for v in ys],
                     "mode": "lines",
                     "name": _GRAPH_LABELS[gi],
                     "line": {"color": _GRAPH_COLORS[gi], "width": 2.5},
