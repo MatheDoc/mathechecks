@@ -40,7 +40,7 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                 break
 
             # Fokus auf lesbare Wendestelle und die relevanten Kennzahlenbereiche.
-            max_x = round(max(12.0, x_betriebsoptimum * 1.18, x_wende * 1.9), 1)
+            max_x = round(max(12.0, x_betriebsoptimum * 1.35, x_wende * 1.9), 1)
 
             def _k_value(x: float) -> float:
                 return k3 * x ** 2 + k2 * x + k1 + (k0 / x)
@@ -52,7 +52,7 @@ class ErtragsgesetzlicheKostenKennzahlenGraphischK3Generator(TaskGenerator):
                 slope_gap = abs(m_tan - m_sec)
                 slope_target = max(0.02, 0.025 * abs(m_tan))
                 if slope_gap < slope_target:
-                    max_x = round(max(10.0, x_wende * 1.55, x_betriebsoptimum * 1.10), 1)
+                    max_x = round(max(10.0, x_wende * 1.55, x_betriebsoptimum * 1.25), 1)
 
             x_focus_min = max(1.0, x_wende * 0.45)
 
