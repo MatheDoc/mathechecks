@@ -18,6 +18,28 @@ const ENHANCED_ATTR = "data-speech-enhanced";
 let activeRecognition = null;
 let activeBtn = null;
 
+/* ── German number-word → digit conversion (Chrome workaround) ── */
+const DE_WORDS = new Map([
+    ["null", "0"], ["eins", "1"], ["zwei", "2"], ["drei", "3"],
+    ["vier", "4"], ["fünf", "5"], ["sechs", "6"], ["sieben", "7"],
+    ["acht", "8"], ["neun", "9"], ["zehn", "10"], ["elf", "11"],
+    ["zwölf", "12"], ["dreizehn", "13"], ["vierzehn", "14"],
+    ["fünfzehn", "15"], ["sechzehn", "16"], ["siebzehn", "17"],
+    ["achtzehn", "18"], ["neunzehn", "19"], ["zwanzig", "20"],
+    ["dreißig", "30"], ["vierzig", "40"], ["fünfzig", "50"],
+    ["sechzig", "60"], ["siebzig", "70"], ["achtzig", "80"],
+    ["neunzig", "90"], ["hundert", "100"], ["tausend", "1000"],
+    ["million", "1000000"], ["millionen", "1000000"],
+    ["minus", "-"], ["komma", ","],
+]);
+
+function replaceNumberWords(text) {
+    return text.replace(/\b[a-zäöüß]+\b/gi, (word) => {
+        const digit = DE_WORDS.get(word.toLowerCase());
+        return digit !== undefined ? digit : word;
+    });
+}
+
 function stopActiveRecognition() {
     if (activeRecognition) {
         try { activeRecognition.stop(); } catch { /* ignore */ }
@@ -87,7 +109,7 @@ function bindMic(btn, input) {
             }
             if (!transcript) return;
 
-            const cleaned = transcript.trim().replace(/\.+$/, "");
+            const cleaned = replaceNumberWords(transcript.trim()).replace(/\.+$/, "");
 
             const current = input.value;
             if (current && !current.endsWith(" ")) {
