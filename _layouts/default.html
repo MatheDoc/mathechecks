@@ -3,7 +3,7 @@
 
 <head>
   {% assign is_module_page = false %}
-  {% if page.name == 'blurting.md' or page.name == 'feynman.md' %}
+  {% if page.name == 'recall.md' or page.name == 'feynman.md' %}
   {% assign is_module_page = true %}
   {% endif %}
 
@@ -30,8 +30,8 @@
   </header>
 
   <main>
-    {% if page.name == 'blurting.md' %}
-    {% include dev/moduletypen/blurting-content.html %}
+    {% if page.name == 'recall.md' %}
+    {% include dev/moduletypen/recall-content.html %}
     {% elsif page.name == 'feynman.md' %}
     {% include dev/moduletypen/feynman-content.html %}
     {% endif %}

@@ -8,8 +8,8 @@ Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er läuft immer i
 |---|---|
 | `warmup` | Lernbereich erstmals aktiviert |
 | `training` | In der Kette mehrfach pro Check; zusätzlich über `Laufende Checks` |
-| `blurting` | `x` Tage nach `training` |
-| `feynman` | `x` Tage nach `training` (nach `blurting`) |
+| `recall` | `x` Tage nach `training` |
+| `feynman` | `x` Tage nach `training` (nach `recall`) |
 | `kompetenzliste` | `x` Tage nach drittem `training` (als gesamte Lernbereichs-Kompetenzliste) |
 | `flashcards` | Alle Checks einmal bearbeitet |
 | `klausur` | `x` Tage nachdem alle Checks der Kompetenzliste abgeschlossen sind |
@@ -44,7 +44,7 @@ Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er läuft immer i
 - **Nächste Aktion:** Erster Training-Check
 - **Implementierung:** Muss pro Lernbereich manuell erstellt werden
 
-Nach dem Warm-Up gibt es je Check die Kette der Module `training` -> `blurting` -> `training` -> `feynman` -> `training` -> `kompetenzliste`. Auslöser von `blurting`, `feynman` und `kompetenzliste` ist stets `x` Tage nach Erfüllung der Abschlussbedingung des vorherigen Moduls. Bei `kann nicht` in `blurting` oder `feynman` erfolgt kein Modulwechsel: Es wird ein Skript-Link angeboten und dasselbe Modul kann nach `y`  Minuten erneut bearbeitet werden. Der jeweilige Eintrag bleibt bis zur Auswahl `kann` als oberster offener Feed-Eintrag für den Check stehen. Die Feeds für die verschiedenen Checks können sich dabei überlappen.
+Nach dem Warm-Up gibt es je Check die Kette der Module `training` -> `recall` -> `training` -> `feynman` -> `training` -> `kompetenzliste`. Auslöser von `recall`, `feynman` und `kompetenzliste` ist stets `x` Tage nach Erfüllung der Abschlussbedingung des vorherigen Moduls. Bei `kann nicht` in `recall` oder `feynman` erfolgt kein Modulwechsel: Es wird ein Skript-Link angeboten und dasselbe Modul kann nach `y` Minuten erneut bearbeitet werden. Der jeweilige Eintrag bleibt bis zur Auswahl `kann` als oberster offener Feed-Eintrag für den Check stehen. Die Feeds für die verschiedenen Checks können sich dabei überlappen.
 
 Der Kompetenzlisten-Eintrag wird im Feed immer als **gesamte Kompetenzliste des Lernbereichs** angezeigt (nicht als einzelner Check).
 
@@ -54,7 +54,7 @@ Setze zunächst `x = 1`.
 - **Zweck:** Zentrale Übungseinheit mit formativem Feedback
 - **Aufbau:** Interaktive Aufgaben mit automatischer Bewertung
 - **Aufrufwege:**
-   - innerhalb der Kette (`training` vor `blurting`, `training` vor `feynman`, `training` vor `kompetenzliste`)
+   - innerhalb der Kette (`training` vor `recall`, `training` vor `feynman`, `training` vor `kompetenzliste`)
    - jederzeit über `5) Laufende Checks`
 - **Abschlussarten:**
    - **Automatisierter Abschluss:** Alle Fragen eines Checks richtig beantworten. Ein Check kann beliebig oft wiederholt werden; es müssen nicht in einem Durchgang alle Fragen richtig sein (z. B. bei 3 Fragen: im 1. Durchgang nur Frage 2 richtig, im 2. Durchgang Fragen 1 und 3 richtig -> Abschluss erfüllt). Eine Frage zählt nur dann als richtig, wenn vorher keine Lösung angezeigt wurde.
@@ -65,18 +65,18 @@ Setze zunächst `x = 1`.
    - solange weniger als 3 automatisierte Trainingsabschlüsse vorliegen, gilt das entsprechende `training` weiterhin als ausgelöst
 - **Auslöser:**
    - erstes `training`: direkt nach Warm-Up
-   - zweites `training`: `x` Tage nach erfolgreichem `blurting`
+   - zweites `training`: `x` Tage nach erfolgreichem `recall`
    - drittes `training`: `x` Tage nach erfolgreichem `feynman`
 - **Implementierung:** Aufgaben kommen aus generierten JSONs
 
-### `blurting`
-- **Zweck:** Active Recall auf Begriffsebene (primär: Begriffe nennen, nicht ausformuliert erklären)
-- **Aufbau:** Dem/der Schüler:in wird ein Schlüsselbegriff präsentiert und zum Brainstormen aufgefordert; danach (Timer) Selbstüberprüfung mit eingeblendeten Referenz-Begriffen und Selbsteinschätzung (`kann` / `kann nicht`)
+### `recall`
+- **Zweck:** Geführter Active Recall zu einem einzelnen Check
+- **Aufbau:** Kompetenz dauerhaft sichtbar; kurze Denkphase; Kernpunkte aus `Tipps` einprägen; Kernpunkte abrufen, mit Referenz-Kernpunkten abgleichen und Selbsteinschätzung (`kann` / `kann nicht`)
 - **Abschlussbedingung:** Selbsteinschätzung `kann`
-- **Bei `kann nicht`:** Skript-Link zum passenden Abschnitt einblenden; nach 10 Minuten kann `blurting` erneut durchgeführt werden
-- **Feed-Priorität:** `blurting` bleibt für den betroffenen Check an erster Stelle im Feed, bis `kann` ausgewählt wird
+- **Bei `kann nicht`:** Skript-Link zum passenden Abschnitt einblenden; nach 10 Minuten kann `recall` erneut durchgeführt werden
+- **Feed-Priorität:** `recall` bleibt für den betroffenen Check an erster Stelle im Feed, bis `kann` ausgewählt wird
 - **Auslöser:** `x` Tage nach Abschluss des vorherigen Moduls (`training`)
-- **Implementierung:** Schlüsselbegriffe pro Check in `checks.json`, Feld `Blurting`; UI braucht Begriff, Referenz-Begriffe und 2-stufige Selbsteinschätzung, zeitgesteuert (z. B. 5 min)
+- **Implementierung:** `Ich kann` und `Tipps` aus `checks.json`; optional `recall.begriff`; UI mit drei Phasen plus Selbsteinschätzung
 
 ### `feynman`
 - **Zweck:** Tieferes Verständnis durch Erklären einer Methode/Technik
@@ -84,8 +84,8 @@ Setze zunächst `x = 1`.
 - **Abschlussbedingung:** Selbsteinschätzung (evtl. erst nach Ablauf eines Timers möglich)
 - **Bei `kann nicht`:** Skript-Link zum passenden Abschnitt einblenden; nach 10 Minuten kann `feynman` erneut durchgeführt werden
 - **Feed-Priorität:** `feynman` bleibt für den betroffenen Check an erster Stelle im Feed, bis `kann` ausgewählt wird
-- **Auslöser:** `x` Tage nach Abschluss des vorherigen Moduls (`training` nach `blurting`)
-- **Implementierung:** Ähnlich wie Blurting; Technik-Prompts müssen pro Lernbereich definiert und mit den relevanten Checks verknüpft werden, UI braucht Prompt (in `checks.json`, Feld `feynman`), evtl. Avatar zur Erklärungsatmosphäre, zeitgesteuert (z. B. 5 min)
+- **Auslöser:** `x` Tage nach Abschluss des vorherigen Moduls (`training` nach `recall`)
+- **Implementierung:** Ähnlich wie Recall; Technik-Prompts müssen pro Lernbereich definiert und mit den relevanten Checks verknüpft werden, UI braucht Prompt (in `checks.json`, Feld `feynman`), evtl. Avatar zur Erklärungsatmosphäre, zeitgesteuert (z. B. 5 min)
 
 
 ### `kompetenzliste`
@@ -119,7 +119,7 @@ Neben dem Feed gibt es im Dashboard eine Übersicht der laufenden Checks, also d
 1. **Zustand 1:** Check noch nie getriggert
 2. **Zustand 2:** Check in der Kette
    - **a)** `training` (1)
-   - **b)** `blurting`
+   - **b)** `recall`
    - **c)** `training` (2)
    - **d)** `feynman`
    - **e)** `training` (3)
@@ -152,7 +152,7 @@ Der Kompetenzfortschritt wird im Dashboard pro Lernbereich und pro Check ausgewi
    - danach jeweils `1/(n+1)` pro abgeschlossenem Check; zusätzlich wird der Kompetenzfortschritt pro Check berücksichtigt
 - Kompetenzfortschritt pro Check
    - 50 % nach erfolgreichem Abschluss des ersten Trainings; Fragen anteilig berücksichtigen (hat der Check 4 Fragen, dann 12,5 % nach erster richtiger Frage, 25 % nach zweiter, 37,5 % nach dritter, 50 % nach vierter)
-   - 60 % nach erfolgreichem Abschluss `blurting`
+   - 60 % nach erfolgreichem Abschluss `recall`
    - 65 % nach erfolgreichem Abschluss des zweiten Trainings
    - 70 % nach erfolgreichem Abschluss `feynman`
    - 80 % nach erfolgreichem Abschluss des dritten Trainings

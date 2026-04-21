@@ -14,7 +14,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Einstiege, Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
 - Terminologie, Symbolik und didaktische Progression
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
-- Konsistenz der Check-Kette: Kompetenzliste → Training → Blurting → Feynman → Skript → Flashcards über alle Lernbereiche
+- Konsistenz der Check-Kette: Kompetenzliste → Training → Recall → Feynman → Skript → Flashcards über alle Lernbereiche
 - Prüfung auf sprachliche Richtigkeit
 - Dramaturgie und Engagement: Szenario als roter Faden, Spannungsbogen vom Warm-Up bis zur Auflösung
 - Widget-Empfehlungen, wenn Interaktivität den Lernprozess fördert (technische Umsetzung delegiert an Frontend-Agent)
@@ -40,12 +40,12 @@ Didaktische Prinzipien, die quer zu Modulen und Feed-Einträgen angewendet werde
 
 | Methode | Kurzbeschreibung | Typische Module |
 |---|---|---|
-| **Retrieval Practice** | Aktives Abrufen statt passives Wiederlesen | Training, Blurting, Feynman, Flashcards |
+| **Retrieval Practice** | Aktives Abrufen statt passives Wiederlesen | Training, Recall, Feynman, Flashcards |
 | **Spaced Repetition** | Wiederholungen in zeitlichen Abständen | Training-Intervalle, Flashcards |
 | **Worked Examples + Fading** | Vormachen, dann schrittweise mehr Eigenleistung | Skript, Training |
-| **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Warm-Up, Training, Blurting/Feynman |
+| **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Warm-Up, Training, Recall/Feynman |
 | **Diagnose & Feedback** | Fehler sichtbar machen und nächste Aktion ableiten | Training, Laufende Checks, Kompetenzliste |
-| **Metakognition** | Selbstbewertung und Plausibilitätschecks | Blurting/Feynman (`kann`/`kann nicht`), Kompetenzliste |
+| **Metakognition** | Selbstbewertung und Plausibilitätschecks | Recall/Feynman (`kann`/`kann nicht`), Kompetenzliste |
 | **Engagement & Dramaturgie** | Szenario als roter Faden, Neugier wecken, Spannungsbogen halten | Warm-Up → Skript-Szenario → Auflösung |
 
 ## Lernarchitektur
@@ -121,7 +121,7 @@ Der Content-Agent ist verantwortlich für die inhaltlichen Felder in `checks.jso
 | `Ich kann` | Content | Kompetenzformulierung — präzise, überprüfbar, beginnt mit Verb |
 | `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter) |
 | `Tipps` | Content | Array mit kompakten Erinnerungsstützen (dürfen LaTeX enthalten) |
-| `Blurting` | Content | Array mit Schlüsselbegriffen für Active Recall |
+| `Recall` | Content | Optionale Recall-Metadaten pro Check, z. B. eine Kurzbezeichnung |
 | `skript_anchor` | Content | Schema: `check-<gebiet>-<lernbereich>-<NN>` |
 | `Flashtyp` | Content | `einzeln` oder `gruppiert` |
 | `questionOrder` | Content | `shuffle` (Standard) oder `sequential` |
@@ -216,7 +216,7 @@ Checks und Skripte an realen Anforderungen der Sekundarstufe II ausrichten:
 ### 1. Checks definieren (`checks.json`)
 
 - Lernbereich in sinnvolle, überprüfbare Einheiten gliedern
-- Pro Check: Kompetenzformulierung, Schlagwort, Tipps, Blurting-Begriffe
+- Pro Check: Kompetenzformulierung, Schlagwort, Tipps und ggf. Recall-Metadaten
 - Reihenfolge = didaktische Progression (einfach → komplex)
 - Prüfungsrelevanz sicherstellen: Decken die Checks die typischen Aufgabentypen ab?
 
@@ -249,7 +249,7 @@ Checks und Skripte an realen Anforderungen der Sekundarstufe II ausrichten:
 
 ### 7. Übrige Module prüfen
 
-- `kompetenzliste.md`, `training.md`, `blurting.md`, `feynman.md`, `flashcards.md` — diese Module konsumieren Daten aus `checks.json` und Aufgaben-JSON
+- `kompetenzliste.md`, `training.md`, `recall.md`, `feynman.md`, `flashcards.md` — diese Module konsumieren Daten aus `checks.json` und Aufgaben-JSON
 - `start.md` — Überblick und Lernpfad schreiben
 
 ### Abhängigkeiten
@@ -257,7 +257,7 @@ Checks und Skripte an realen Anforderungen der Sekundarstufe II ausrichten:
 ```
 checks.json ──→ Skript + Beispiele ──→ Aufgabensammlungen
      │                                       │
-     └──→ Kompetenzliste, Blurting,          └──→ Training, Flashcards
+    └──→ Kompetenzliste, Recall,            └──→ Training, Flashcards
           Feynman (automatisch)
 ```
 
