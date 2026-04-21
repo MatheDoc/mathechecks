@@ -59,7 +59,7 @@ function renderTipps(container, check) {
         return;
     }
 
-    const { card, body } = createAnkerCard(check, "Tipps", "blurting");
+    const { card, body } = createAnkerCard(check, "Tipps", "recall");
 
     const ul = document.createElement("ul");
     ul.className = "check-anker__tipps-list";

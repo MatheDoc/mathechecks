@@ -6,7 +6,10 @@
     {% include mathjax.html %}
 </head>
 
-<body class="page-dev-default {{ page.body_class | default: 'page-dashboard' }}">
+<body class="page-dev-default {{ page.body_class | default: 'page-dashboard' }}"
+    data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
+    data-module-key="{{ page.module_key | default: '' | escape }}"
+    data-prototype-key="{{ page.prototype_key | default: '' | escape }}">
     <div class="shell">
         {% include dev/topbar.html %}
         <main class="dev-default-main">
@@ -20,6 +23,9 @@
     <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
+    {% if page.module_script %}
+    <script type="module" src="{{ page.module_script | relative_url }}"></script>
+    {% endif %}
     {% include dev/theme-script.html %}
     {{ page.after_scripts }}
 </body>

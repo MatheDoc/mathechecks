@@ -78,8 +78,8 @@
     color: var(--mt-training, var(--accent));
 }
 
-.dev-check-card__badge--blurting {
-    color: var(--mt-blurting, var(--amber));
+.dev-check-card__badge--recall {
+    color: var(--mt-recall, var(--amber));
 }
 
 .dev-check-card__badge--feynman {
@@ -131,8 +131,8 @@
     color: var(--mt-training, var(--accent));
 }
 
-.dev-check-card__action-btn--blurting {
-    color: var(--mt-blurting, var(--amber));
+.dev-check-card__action-btn--recall {
+    color: var(--mt-recall, var(--amber));
 }
 
 .dev-check-card__action-btn--feynman {
@@ -253,10 +253,10 @@
     --dcc-border: var(--mt-training-border, rgba(124, 106, 255, .3));
 }
 
-.dev-check-card--blurting {
-    --dcc-accent: var(--mt-blurting, var(--amber));
-    --dcc-accent-soft: var(--mt-blurting-soft, var(--amber-soft));
-    --dcc-border: var(--mt-blurting-border, rgba(245, 166, 35, .3));
+.dev-check-card--recall {
+    --dcc-accent: var(--mt-recall, var(--amber));
+    --dcc-accent-soft: var(--mt-recall-soft, var(--amber-soft));
+    --dcc-border: var(--mt-recall-border, rgba(245, 166, 35, .3));
 }
 
 .dev-check-card--feynman {
@@ -293,8 +293,8 @@
     color: var(--mt-training, var(--accent));
 }
 
-.dev-check-card__title--blurting {
-    color: var(--mt-blurting, var(--amber));
+.dev-check-card__title--recall {
+    color: var(--mt-recall, var(--amber));
 }
 
 .dev-check-card__title--feynman {

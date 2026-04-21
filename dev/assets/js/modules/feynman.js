@@ -494,24 +494,24 @@ function renderCard(check) {
 
         <div data-fy-stage="write">
 
-            <button class="bl-reveal-btn fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
+            <button class="module-action-button fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
 
         </div>
 
         <div data-fy-stage="evaluate" hidden>
           <p style="font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:14px;">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
           <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
-          <p class="bl-selbst-lbl">Konntest du es schlüssig erklären?</p>
-          <div class="bl-selbst-btns">
-            <button class="bl-sb yes" type="button" data-fy-answer="yes">
-              <span class="bl-sb-icon">✓</span>
-              <span class="bl-sb-title">Kann ich</span>
-              <span class="bl-sb-sub">Ich habe die Kerngedanken getroffen.</span>
+          <p class="self-check-label">Konntest du es schlüssig erklären?</p>
+          <div class="self-check-actions">
+            <button class="self-check-button yes" type="button" data-fy-answer="yes">
+              <span class="self-check-button__icon">✓</span>
+              <span class="self-check-button__title">Kann ich</span>
+              <span class="self-check-button__sub">Ich habe die Kerngedanken getroffen.</span>
             </button>
-            <button class="bl-sb no" type="button" data-fy-answer="no">
-              <span class="bl-sb-icon">↺</span>
-              <span class="bl-sb-title">Noch nicht</span>
-              <span class="bl-sb-sub">Ich brauche noch Wiederholung.</span>
+            <button class="self-check-button no" type="button" data-fy-answer="no">
+              <span class="self-check-button__icon">↺</span>
+              <span class="self-check-button__title">Noch nicht</span>
+              <span class="self-check-button__sub">Ich brauche noch Wiederholung.</span>
             </button>
           </div>
         </div>

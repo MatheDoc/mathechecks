@@ -1,5 +1,5 @@
 import { initTrainingModule } from "./modules/training.js";
-import { initBlurtingModule } from "./modules/blurting.js";
+import { initRecallModule } from "./modules/recall.js";
 import { initFeynmanModule } from "./modules/feynman.js";
 import { initFlashcardsModule } from "./modules/flashcards.js";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
@@ -591,10 +591,10 @@ async function bootstrap() {
     return;
   }
 
-  if (context.moduleKey === "blurting") {
-    const root = document.getElementById("dev-blurting-root");
+  if (context.moduleKey === "recall") {
+    const root = document.getElementById("dev-recall-root");
     if (!root) return;
-    await initBlurtingModule({
+    await initRecallModule({
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,

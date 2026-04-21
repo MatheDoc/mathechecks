@@ -12,7 +12,7 @@ mit den Ableitungen:
 $$
 \begin{align*}
 u^{\prime}(t) &= (0{,}4t^2-8{,}8t+24)\cdot e^{-0{,}2t}\\
-u^{\prime\prime}(t) &= (-0{,}08t^2+2{,}56t-13{,}6)\cdot e^{-0{,}2t}
+u^{\prime\prime}(t) &= (-0{,}08t^2+2{,}56t-13{,}6)\cdot e^{-0{,}2t}\\
 u^{\prime\prime\prime}(t) &= (0{,}016t^2-0{,}64t+2{,}56)\cdot e^{-0{,}2t}
 \end{align*}
 $$

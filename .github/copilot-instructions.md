@@ -35,7 +35,7 @@ Jeder Lernbereich enthält mindestens folgende Dateien:
 `warmup.md`  
 `kompetenzliste.md`  
 `training.md`  
-`blurting.md`  
+`recall.md`  
 `feynman.md`  
 `skript.md`  
 `flashcards.md`
@@ -47,7 +47,7 @@ Jeder Check ist über `checks.json` verknüpft mit:
 
 - genau einem Kompetenzlisteneintrag
 - einer Aufgabensammlung im Training
-- einem Blurting-Eintrag
+- einem Recall-Bezug
 - einem Feynman-Eintrag
 - einem Bezug im Skript
 

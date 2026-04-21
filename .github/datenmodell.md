@@ -12,7 +12,7 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
 | Datenentität | Datei/Ordner | Granularität | Inhalt |
 |---|---|---|---|
 | **Lernbereich-Metadaten** | `_data/dev_lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Szenario (Kontext, Einstiegsfrage, Abschluss, Bild) |
-| **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, Blurting-Begriffe, Skript-Anker |
+| **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `dev/lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
 | **Warm-Up** | `_data/dev_warmup.yml` | pro Lernbereich | 4 Karten (Wusstest-du, Schätzfrage, Vorwissen, Alltag) + Abschlusstext |
@@ -34,7 +34,7 @@ Skript (Fachinhalt) (direkt in MD)
 Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
 Skript (Abschluss)  szenario_abschluss
 Training                                                          Aufgaben
-Blurting                              Tipps, Ich kann
+Recall                               Tipps, Ich kann
 Feynman                               Tipps        Beispiel
 Flashcards                                                        Aufgaben
 ```
@@ -99,7 +99,7 @@ dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Warm-Up | `warmup.md` | `dev_warmup.yml` | 4 Karten + Abschluss, via Liquid-Template |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
-| Blurting | `blurting.md` | `checks.json` (Blurting-Begriffe) | Active Recall, via JS |
+| Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `dev_lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Spaced Repetition, via JS |

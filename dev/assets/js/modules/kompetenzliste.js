@@ -36,8 +36,8 @@ function toDomIdFragment(value) {
         .replaceAll(/^-+|-+$/g, "");
 }
 
-function getBlurtingCheckAnchorId(check) {
-    return `bl-check-${toDomIdFragment(getCheckId(check)) || "item"}`;
+function getRecallCheckAnchorId(check) {
+    return `recall-check-${toDomIdFragment(getCheckId(check)) || "item"}`;
 }
 
 function getFeynmanCheckAnchorId(check) {
@@ -52,12 +52,12 @@ function buildTrainingHref(check) {
     return `${targetPath}#${getTrainingCheckAnchorId(check)}`;
 }
 
-function buildBlurtingHref(check) {
+function buildRecallHref(check) {
     const path = window.location?.pathname || "";
     if (!path.endsWith("kompetenzliste.html")) return "";
 
-    const targetPath = path.replace(/kompetenzliste\.html$/, "blurting.html");
-    return `${targetPath}#${getBlurtingCheckAnchorId(check)}`;
+    const targetPath = path.replace(/kompetenzliste\.html$/, "recall.html");
+    return `${targetPath}#${getRecallCheckAnchorId(check)}`;
 }
 
 function buildFeynmanHref(check) {
@@ -74,13 +74,13 @@ function renderRow(check) {
     const kompetenz = check["Ich kann"] || "";
     const schlagwort = check.Schlagwort || "";
     const trainingHref = buildTrainingHref(check);
-    const blurtingHref = buildBlurtingHref(check);
+    const recallHref = buildRecallHref(check);
     const feynmanHref = buildFeynmanHref(check);
 
     const trainingItem = trainingHref ? renderCardMenuLinkMarkup({ emoji: "🏋️", label: "Zum Training", href: trainingHref, tone: "training" }) : "";
-    const blurtingItem = blurtingHref ? renderCardMenuLinkMarkup({ emoji: "💭", label: "Zum Blurting", href: blurtingHref, tone: "blurting" }) : "";
+    const recallItem = recallHref ? renderCardMenuLinkMarkup({ emoji: "🧠", label: "Zum Recall", href: recallHref, tone: "recall" }) : "";
     const feynmanItem = feynmanHref ? renderCardMenuLinkMarkup({ emoji: "🎓", label: "Zum Feynman", href: feynmanHref, tone: "feynman" }) : "";
-    const menuItems = trainingItem + blurtingItem + feynmanItem;
+    const menuItems = trainingItem + recallItem + feynmanItem;
     const actionsMenu = menuItems ? renderCardActionsMenuMarkup(menuItems) : "";
 
     return `
