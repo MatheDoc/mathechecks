@@ -10,6 +10,21 @@ function binomial(n, k, p) {
   return komb * Math.pow(p, k) * Math.pow(1 - p, n - k);
 }
 
+function getPlotlyAxisDefaults() {
+  const textColor =
+    getComputedStyle(document.documentElement).getPropertyValue("--text").trim() ||
+    "#1a1a2e";
+
+  return {
+    tickfont: { color: textColor },
+    titlefont: { color: textColor },
+    gridcolor: `${textColor}22`,
+    zeroline: true,
+    zerolinecolor: `${textColor}aa`,
+    zerolinewidth: 3,
+  };
+}
+
 function zeichneHistogrammEinzeln(
   n,
   p,
@@ -72,8 +87,8 @@ function zeichneHistogrammEinzeln(
       text: titel,
       y: 0.85,
     },
-    xaxis: { title: "k", tickmode: "linear" },
-    yaxis: { title: "P(X = k)", range: autoY ? undefined : [0, 1] },
+    xaxis: { ...getPlotlyAxisDefaults(), title: "k", tickmode: "linear" },
+    yaxis: { ...getPlotlyAxisDefaults(), title: "P(X = k)", range: autoY ? undefined : [0, 1] },
     bargap: 0,
     dragmode: false,
     paper_bgcolor: "rgba(0,0,0,0)",
@@ -132,8 +147,8 @@ function zeichneHistogrammKumuliert(n, p, a, b, divID, titel = "") {
       text: titel,
       y: 0.85,
     },
-    xaxis: { title: "k", tickmode: "linear" },
-    yaxis: { title: "P(X ≤ k)", range: [0, 1.05] },
+    xaxis: { ...getPlotlyAxisDefaults(), title: "k", tickmode: "linear" },
+    yaxis: { ...getPlotlyAxisDefaults(), title: "P(X ≤ k)", range: [0, 1.05] },
     bargap: 0,
     dragmode: false,
     paper_bgcolor: "rgba(0,0,0,0)",

@@ -15,21 +15,47 @@
     --dcc-accent: var(--text);
     --dcc-accent-soft: var(--surface-hi);
     --dcc-border: var(--border);
+    --dcc-radius: 24px;
+    --dcc-inner-border: color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
+    --dcc-inner-surface:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 10%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 8%, transparent), transparent 50%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 90%, var(--dcc-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 95%, var(--surface)));
+    --dcc-inner-surface-strong:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 11%, transparent), transparent 50%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 86%, var(--dcc-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 93%, var(--surface)));
+    --dcc-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 8px 20px rgba(0, 0, 0, .08);
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid var(--border);
-    border-radius: 24px;
+    border: 1px solid color-mix(in srgb, var(--dcc-border) 78%, var(--glass-line, var(--border)));
+    border-radius: var(--dcc-radius);
     padding: 18px 20px;
     position: relative;
+    isolation: isolate;
     overflow: visible;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background: linear-gradient(145deg,
-            color-mix(in srgb, var(--card-surface-1) 86%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 90%, var(--dcc-accent-soft)));
-    border-color: var(--dcc-border);
-    box-shadow: none;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background:
+        linear-gradient(135deg,
+            color-mix(in srgb, var(--dcc-accent) 82%, white),
+            color-mix(in srgb, var(--dcc-accent) 92%, var(--dcc-accent-soft))) top / 100% 3px no-repeat,
+        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 55%),
+        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-accent) 10%, transparent), transparent 50%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 92%, var(--surface)),
+            color-mix(in srgb, var(--card-surface-2) 96%, var(--surface)));
+    box-shadow: var(--shadow-card, none);
     transition: border-color 220ms, box-shadow 220ms, transform 220ms;
+}
+
+.dev-check-card:hover {
+    border-color: color-mix(in srgb, var(--dcc-accent) 22%, var(--dcc-border));
+    box-shadow: var(--shadow-card, none), 0 0 34px color-mix(in srgb, var(--dcc-accent) 12%, transparent);
 }
 
 .dev-check-card:has(.dev-check-card__actions-menu[open]) {
@@ -37,28 +63,29 @@
 }
 
 .dev-check-card__header {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    justify-content: space-between;
     font-size: 0.82rem;
-    gap: 12px;
+    column-gap: 12px;
     margin-bottom: 10px;
     padding: 0 2px 8px;
     border-bottom: 1px solid color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
 }
 
 .dev-check-card__header-left {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    gap: 10px;
+    column-gap: 10px;
     min-width: 0;
-    flex: 1;
 }
 
 .dev-check-card__badge {
     display: inline-flex;
     align-items: center;
     position: relative;
+    gap: 0.35rem;
     font-weight: 750;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -67,6 +94,16 @@
     white-space: nowrap;
     flex-shrink: 0;
     color: var(--dcc-accent);
+}
+
+.dev-check-card__badge-prefix,
+.dev-check-card__badge-number {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.dev-check-card__badge-number {
+    font-variant-numeric: tabular-nums;
 }
 
 .dev-check-card__badge::after {
@@ -107,6 +144,7 @@
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    justify-self: end;
 }
 
 .dev-check-card__action-btn {
@@ -161,18 +199,28 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 38px;
+    min-height: 34px;
     border: 0;
     background: transparent;
-    color: var(--text-muted);
+    color: var(--dcc-accent, var(--text));
     cursor: pointer;
-    padding: 4px;
-    border-radius: 6px;
-    transition: color 0.15s, background 0.15s;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .dev-check-card__actions-trigger:hover {
     color: var(--dcc-accent, var(--text));
-    background: var(--surface-hi);
+    background: color-mix(in srgb, var(--dcc-accent, var(--text)) 12%, var(--surface-hi));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--dcc-accent, var(--text)) 10%, transparent);
+}
+
+.dev-check-card__actions-trigger:focus-visible {
+    outline: none;
+    color: var(--dcc-accent, var(--text));
+    background: color-mix(in srgb, var(--dcc-accent, var(--text)) 12%, var(--surface-hi));
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--dcc-accent, var(--text)) 18%, transparent);
 }
 
 .dev-check-card__actions-trigger::-webkit-details-marker {
@@ -181,6 +229,7 @@
 
 .dev-check-card__actions-menu[open] .dev-check-card__actions-trigger {
     color: var(--dcc-accent, var(--text));
+    background: color-mix(in srgb, var(--dcc-accent, var(--text)) 12%, var(--surface-hi));
 }
 
 .dev-check-card__actions-dots {
@@ -243,12 +292,47 @@
 }
 
 .dev-check-card__title {
+    display: block;
     font-size: inherit;
     font-weight: 680;
     line-height: 1.25;
     margin-bottom: 0;
     letter-spacing: -0.01em;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     color: var(--dcc-accent);
+}
+
+@media (max-width: 480px) {
+    .dev-check-card__header {
+        column-gap: 8px;
+    }
+
+    .dev-check-card__header-left {
+        column-gap: 8px;
+    }
+
+    .dev-check-card__badge {
+        gap: 0;
+    }
+
+    .dev-check-card__badge-prefix {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
+
+    .dev-check-card__badge::after {
+        margin: 0 8px;
+    }
 }
 
 .dev-check-card--training {
@@ -376,7 +460,7 @@
 }
 
 .check-viewport-item--scroll-card {
-    overflow: hidden;
+    overflow: visible;
 }
 
 .check-viewport-item--narrow {
@@ -395,13 +479,18 @@
 }
 
 .check-viewport-item--scroll-card .dev-check-card__body {
+    --dcc-body-shadow-bleed-x: 12px;
+    --dcc-body-shadow-bleed-y: 10px;
     flex: 1 1 auto;
     min-height: 0;
     box-sizing: border-box;
-    padding-inline-end: 10px;
+    padding:
+        var(--dcc-body-shadow-bleed-y) var(--dcc-body-shadow-bleed-x) calc(var(--dcc-body-shadow-bleed-y) + 4px) var(--dcc-body-shadow-bleed-x);
+    margin:
+        calc(-1 * var(--dcc-body-shadow-bleed-y)) calc(-1 * var(--dcc-body-shadow-bleed-x)) calc(-1 * (var(--dcc-body-shadow-bleed-y) + 4px)) calc(-1 * var(--dcc-body-shadow-bleed-x));
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: stable both-edges;
 }
 
 .check-viewport-item--scroll-card .dev-check-card__body.dev-fc-body {

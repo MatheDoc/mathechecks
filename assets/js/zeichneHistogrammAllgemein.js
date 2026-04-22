@@ -1,3 +1,18 @@
+function getPlotlyAxisDefaults() {
+  const textColor =
+    getComputedStyle(document.documentElement).getPropertyValue("--text").trim() ||
+    "#1a1a2e";
+
+  return {
+    tickfont: { color: textColor },
+    titlefont: { color: textColor },
+    gridcolor: `${textColor}22`,
+    zeroline: true,
+    zerolinecolor: `${textColor}aa`,
+    zerolinewidth: 3,
+  };
+}
+
 function zeichneHistogrammAllgemein(
   div,
   xWerte,
@@ -32,15 +47,16 @@ function zeichneHistogrammAllgemein(
       y: 0.85,
     },
     xaxis: {
+      ...getPlotlyAxisDefaults(),
       title: "x",
       tickmode: "array",
       tickvals: xWerte,
       type: "linear",
     },
     yaxis: {
+      ...getPlotlyAxisDefaults(),
       title: "P(X = x)",
       range: [0, Math.max(...yWerte) * 1.1],
-      gridcolor: "rgba(0, 0, 0, 0.2)",
     },
     bargap: 0, // Abstand nur, wenn keine width gesetzt ist
     showlegend: false,

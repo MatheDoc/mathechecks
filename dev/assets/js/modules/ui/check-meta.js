@@ -36,6 +36,14 @@ export function buildCheckBadgeText(numberText, prefix = "Check") {
   return `${pre} ${nummer}`;
 }
 
+function renderCheckBadgeMarkup({ badgeClassName, badgeText, prefix, numberText }) {
+  const pre = String(prefix || "").trim();
+  const nummer = String(numberText || "").trim();
+
+  return `<span class="${escapeHtml(badgeClassName)}" aria-label="${escapeHtml(badgeText)}">${pre ? `<span class="dev-check-card__badge-prefix">${escapeHtml(pre)}</span>` : ""
+    }${nummer ? `<span class="dev-check-card__badge-number">${escapeHtml(nummer)}</span>` : ""}</span>`;
+}
+
 export function renderCheckMetaRowMarkup({
   numberText,
   titleText,
@@ -53,10 +61,9 @@ export function renderCheckMetaRowMarkup({
   const badgeClassName = normalizeClassName(["dev-check-card__badge", toneBadgeClass, badgeClass]);
   const titleClassName = normalizeClassName(["dev-check-card__title", toneTitleClass, titleClass]);
   const badgeText = buildCheckBadgeText(numberText, prefix);
+  const badgeMarkup = renderCheckBadgeMarkup({ badgeClassName, badgeText, prefix, numberText });
 
-  return `<div class="${escapeHtml(rowClassName)}"><span class="${escapeHtml(
-    badgeClassName
-  )}">${escapeHtml(badgeText)}</span><${tagName} class="${escapeHtml(titleClassName)}">${escapeHtml(
+  return `<div class="${escapeHtml(rowClassName)}">${badgeMarkup}<${tagName} class="${escapeHtml(titleClassName)}">${escapeHtml(
     titleText || ""
   )}</${tagName}></div>`;
 }
