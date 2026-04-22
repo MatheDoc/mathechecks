@@ -45,6 +45,152 @@
     touch-action: pan-y !important;
 }
 
+.task table,
+.dev-check-card__runtime-task table {
+    --task-table-bg: #fff;
+    --task-table-bg-muted: rgba(55, 68, 82, 0.08);
+    --task-table-vft-bg-muted: rgba(55, 68, 82, 0.12);
+    --task-table-border: #dfe5f1;
+    --task-table-border-strong: #1f2430;
+    --task-table-text: #3d4452;
+    --task-table-heading: #1f2430;
+    --task-table-cell-padding: 10px 12px;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: var(--task-table-bg);
+    border: 1px solid var(--task-table-border);
+    border-radius: 14px;
+    color: var(--task-table-text);
+    margin: 16px 0 20px;
+    overflow: hidden;
+}
+
+.dev-check-card__runtime-task table {
+    --task-table-bg: color-mix(in srgb, var(--card-surface-2, #181824) 96%, white 4%);
+    --task-table-bg-muted: color-mix(in srgb, white 10%, transparent);
+    --task-table-vft-bg-muted: color-mix(in srgb, white 15%, transparent);
+    --task-table-border: color-mix(in srgb, white 10%, var(--border));
+    --task-table-border-strong: rgba(58, 62, 70, 0.96);
+    --task-table-text: var(--text-body);
+    --task-table-heading: var(--text);
+}
+
+.dev-check-card__runtime-task .vft-table {
+    --task-table-bg: var(--surface, rgba(255, 255, 255, 0.04));
+    --task-table-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, rgba(255, 255, 255, 0.04)));
+    --task-table-vft-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, rgba(255, 255, 255, 0.04)));
+    --task-table-border: var(--border, #dfe5f1);
+    --task-table-border-strong: rgba(58, 62, 70, 0.96);
+    --task-table-text: var(--text-body, #3d4452);
+    --task-table-heading: var(--text, #1a1a2e);
+}
+
+.task .table-scroll>table.vft-table,
+.dev-check-card__runtime-task .table-scroll>table.vft-table {
+    --task-table-col-width: 6.5rem;
+    width: max-content;
+    min-width: 0;
+}
+
+.task .table-scroll>table.vft-table>colgroup>col,
+.dev-check-card__runtime-task .table-scroll>table.vft-table>colgroup>col {
+    width: var(--task-table-col-width, 6.5rem);
+}
+
+.task .table-scroll,
+.dev-check-card__runtime-task .table-scroll {
+    display: block;
+    margin: 16px 0 20px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
+.task .table-scroll>table,
+.dev-check-card__runtime-task .table-scroll>table {
+    --task-table-col-width: 7rem;
+    width: max-content;
+    min-width: 100%;
+    table-layout: fixed;
+    margin: 0 auto;
+}
+
+.task .table-scroll>table>colgroup>col,
+.dev-check-card__runtime-task .table-scroll>table>colgroup>col {
+    width: var(--task-table-col-width, 7rem);
+}
+
+.task .table-scroll th,
+.task .table-scroll td,
+.dev-check-card__runtime-task .table-scroll th,
+.dev-check-card__runtime-task .table-scroll td {
+    white-space: nowrap;
+}
+
+.task th,
+.task td,
+.dev-check-card__runtime-task th,
+.dev-check-card__runtime-task td {
+    padding: var(--task-table-cell-padding);
+    border-right: 1px solid var(--task-table-border);
+    border-bottom: 1px solid var(--task-table-border);
+    text-align: center;
+    vertical-align: middle;
+    color: var(--task-table-text);
+    background: var(--task-table-bg);
+}
+
+.task th mjx-container,
+.task td mjx-container,
+.dev-check-card__runtime-task th mjx-container,
+.dev-check-card__runtime-task td mjx-container {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+.task tr> :last-child,
+.dev-check-card__runtime-task tr> :last-child {
+    border-right: 0;
+}
+
+.task thead th,
+.task tbody th,
+.dev-check-card__runtime-task thead th,
+.dev-check-card__runtime-task tbody th {
+    font-weight: 700;
+    color: var(--task-table-heading);
+    background: var(--task-table-bg-muted);
+}
+
+.task tbody tr:last-child>*,
+.dev-check-card__runtime-task tbody tr:last-child>* {
+    border-bottom: 0;
+}
+
+.task .vft-table thead th,
+.task .vft-table tbody>tr> :first-child,
+.dev-check-card__runtime-task .vft-table thead th,
+.dev-check-card__runtime-task .vft-table tbody>tr> :first-child {
+    background: var(--task-table-vft-bg-muted);
+    color: var(--task-table-heading);
+    font-weight: 700;
+}
+
+.task .vft-table tbody>tr:last-child>*,
+.dev-check-card__runtime-task .vft-table tbody>tr:last-child>* {
+    border-top: 1.5px solid var(--task-table-border-strong);
+}
+
+.task .vft-table tr> :last-child,
+.dev-check-card__runtime-task .vft-table tr> :last-child {
+    border-left: 1.5px solid var(--task-table-border-strong);
+}
+
 .task .intro ul,
 .dev-check-card__runtime-task .intro ul,
 .page-skript-md .mod-content .dev-check-card__runtime-task .intro ul {

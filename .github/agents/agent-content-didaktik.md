@@ -244,8 +244,9 @@ Checks und Skripte an realen Anforderungen der Sekundarstufe II ausrichten:
 
 ### 6. Warm-Up (→ Warm-Up-Agent)
 
-- Vier Karten: Wusstest-du, Schätzfrage, Vorwissen, Alltag
-- Orientierung am Szenario, aber nicht darauf beschränkt
+- In der Regel 3 Karten, optional 4 bei echtem didaktischem Mehrwert
+- Eine leitende Thematik mit starkem Hook auf Karte 1
+- Orientierung am Szenario ist möglich, aber nicht erforderlich
 
 ### 7. Übrige Module prüfen
 

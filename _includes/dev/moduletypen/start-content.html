@@ -1,6 +1,11 @@
 {% assign sd = site.data.dev_start[page.lernbereich] %}
 {% assign lb_info = nil %}
 {% assign gebiet_info = nil %}
+{% assign mod_kompetenzliste = site.data.dev_moduletypen | where: "key", "kompetenzliste" | first %}
+{% assign mod_training = site.data.dev_moduletypen | where: "key", "training" | first %}
+{% assign mod_skript = site.data.dev_moduletypen | where: "key", "skript" | first %}
+{% assign lernbereich_basis = '/dev/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich |
+append: '/' %}
 {% for lb in site.data.dev_lernbereiche %}
 {% if lb.slug == page.lernbereich %}{% assign lb_info = lb %}{% endif %}
 {% endfor %}
@@ -20,6 +25,40 @@
             <h1>{{ lb_info.name | default: page.title }}</h1>
         </div>
     </div>
+
+    <section class="s-section" aria-labelledby="start-einstieg">
+        <h2 id="start-einstieg">Wähle deinen Einstieg</h2>
+        <p class="s-quickstart-intro">Es gibt nicht den einen richtigen Start. Wähle den Zugang, mit dem du am
+            besten ins Thema findest.</p>
+        <div class="s-quickstart-grid">
+            <article class="s-quickstart-card">
+                <p>Wenn du zuerst sehen willst, worauf es in diesem Lernbereich ankommt, starte mit der
+                    Kompetenzliste.</p>
+                <a class="s-quickstart-link"
+                    href="{{ lernbereich_basis | append: 'kompetenzliste.html' | relative_url }}">
+                    <span class="s-quickstart-link-icon module-icon-kompetenzliste" aria-hidden="true">{{
+                        mod_kompetenzliste.icon | default: '☑️' }}</span>
+                    <span>{{ mod_kompetenzliste.name | default: 'Kompetenzliste' }} öffnen</span>
+                </a>
+            </article>
+            <article class="s-quickstart-card">
+                <p>Wenn du lieber sofort ins Anwenden einsteigen willst, beginne im Training mit der ersten Aufgabe.</p>
+                <a class="s-quickstart-link" href="{{ lernbereich_basis | append: 'training.html' | relative_url }}">
+                    <span class="s-quickstart-link-icon module-icon-training" aria-hidden="true">{{
+                        mod_training.icon | default: '🏋️' }}</span>
+                    <span>{{ mod_training.name | default: 'Training' }} öffnen</span>
+                </a>
+            </article>
+            <article class="s-quickstart-card">
+                <p>Wenn du das Thema erst in Ruhe verstehen willst, lies zuerst im Skript.</p>
+                <a class="s-quickstart-link" href="{{ lernbereich_basis | append: 'skript.html' | relative_url }}">
+                    <span class="s-quickstart-link-icon module-icon-skript" aria-hidden="true">{{
+                        mod_skript.icon | default: '📖' }}</span>
+                    <span>{{ mod_skript.name | default: 'Skript' }} öffnen</span>
+                </a>
+            </article>
+        </div>
+    </section>
 
     <!-- Worum geht es? -->
     {% if sd.worum_geht_es and sd.worum_geht_es != "" %}

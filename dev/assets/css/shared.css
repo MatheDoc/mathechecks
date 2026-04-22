@@ -234,14 +234,24 @@ body {
 
 /* ─────────────────────── Tables (Global Dev Default) ─────────────────────── */
 table {
+  --table-bg: var(--surface, #fff);
+  --table-bg-strong: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, #fff));
+  --table-vft-bg-strong: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, #fff));
+  --table-border-color: var(--border, #dfe5f1);
+  --table-border-strong: rgba(58, 62, 70, 0.96);
+  --table-text-color: var(--text-body, #3d4452);
+  --table-heading-color: var(--text, #1a1a2e);
+  --table-cell-padding: 10px 12px;
+  --table-margin: 16px 0 20px;
   width: 100%;
   table-layout: fixed;
-  border-collapse: collapse;
-  background: var(--surface, #fff);
-  border: 1px solid var(--border, #dfe5f1);
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--table-bg);
+  border: 1px solid var(--table-border-color);
   border-radius: 14px;
-  overflow: hidden;
-  margin: 16px 0 20px;
+  margin: var(--table-margin);
+  color: var(--table-text-color);
 }
 
 .table-scroll {
@@ -261,6 +271,10 @@ table {
   margin: 0 auto;
 }
 
+.table-scroll>table.vft-table {
+  --table-col-width: 6.5rem;
+}
+
 .table-scroll>table>colgroup>col {
   width: var(--table-col-width, 7rem);
 }
@@ -274,13 +288,14 @@ table {
 
 th,
 td {
-  border-bottom: 1px solid var(--border, #dfe5f1);
-  border-right: 1px solid var(--border, #dfe5f1);
-  padding: 10px 12px;
+  border-bottom: 1px solid var(--table-border-color);
+  border-right: 1px solid var(--table-border-color);
+  padding: var(--table-cell-padding);
   text-align: center;
   font-size: .83rem;
-  color: var(--text-body, #3d4452);
+  color: var(--table-text-color);
   vertical-align: middle;
+  background: var(--table-bg);
 }
 
 th mjx-container,
@@ -290,29 +305,35 @@ td mjx-container {
   vertical-align: middle;
 }
 
-th:last-child,
-td:last-child {
+tr > :last-child {
   border-right: 0;
 }
 
-thead th {
+thead th,
+tbody th {
   font-weight: 700;
-  color: var(--text, #1a1a2e);
-  background: var(--surface-hi, rgba(0, 0, 0, 0.06));
+  color: var(--table-heading-color);
+  background: var(--table-bg-strong);
 }
 
-tr:last-child td {
+tbody tr:last-child > * {
   border-bottom: 0;
 }
 
-/* Sonderlinien fuer Vierfeldertafeln */
-.vft-table .vft-sum-row th,
-.vft-table .vft-sum-row td {
-  border-top: 2px solid var(--text, #1a1a2e);
+/* Vierfeldertafeln: Kopfzeile + erste Spalte dunkler, Summenabtrennung staerker */
+.vft-table thead th,
+.vft-table tbody > tr > :first-child {
+  background: var(--table-vft-bg-strong);
+  color: var(--table-heading-color);
+  font-weight: 700;
 }
 
-.vft-table .vft-sum {
-  border-left: 2px solid var(--text, #1a1a2e);
+.vft-table tbody > tr:last-child > * {
+  border-top: 1.5px solid var(--table-border-strong);
+}
+
+.vft-table tr > :last-child {
+  border-left: 1.5px solid var(--table-border-strong);
 }
 
 /* Ambient background blobs */
@@ -2306,6 +2327,75 @@ body.page-module-designs .shell {
   margin-bottom: 28px;
 }
 
+.s-quickstart-intro {
+  margin-bottom: 16px;
+}
+
+.s-quickstart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.s-quickstart-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-elevated) 55%, var(--surface) 45%);
+}
+
+.s-quickstart-card p {
+  margin: 0;
+  max-width: none;
+}
+
+.s-quickstart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin-top: auto;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: .86rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.s-quickstart-link:hover {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+  background: color-mix(in srgb, var(--accent-soft) 28%, var(--surface));
+}
+
+.s-quickstart-link-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+
+.s-quickstart-link .s-quickstart-link-icon {
+  background: transparent;
+}
+
+@media (max-width: 600px) {
+  .s-quickstart-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .s-section h2 {
   font-size: 1.1rem;
   font-weight: 700;
@@ -3676,31 +3766,34 @@ body.page-module-designs .shell {
   align-items: center;
 }
 
+.bvt-widget .widget-outputs {
+  align-items: center;
+}
+
+.bvt-widget .bvt-vierfeldertafel.diagramm,
+.page-skript-md .mod-content .bvt-vierfeldertafel.diagramm {
+  display: flex;
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: none;
+  align-self: center;
+}
+
 .bvt-vierfeldertafel__titel {
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 12px;
   color: var(--text);
 }
 
-.bvt-vierfeldertafel table {
-  border-collapse: collapse;
-  color: var(--text);
+.bvt-vierfeldertafel .vft-table {
+  --table-vft-col-width: 6.5rem;
+  --table-margin: 0;
+  width: max-content;
+  min-width: 0;
 }
 
-.bvt-vierfeldertafel th,
-.bvt-vierfeldertafel td {
-  padding: 6px 12px;
-  border: 1px solid var(--border);
-}
-
-.bvt-vierfeldertafel thead th {
-  background: var(--surface-hi);
-  font-weight: 600;
-}
-
-.bvt-vierfeldertafel tbody td:first-child {
-  background: var(--surface-hi);
-  font-weight: 600;
+.bvt-vierfeldertafel .vft-table>colgroup>col {
+  width: var(--table-vft-col-width, 6.5rem);
 }
 
 /* ── Widget-specific: LF table ── */
@@ -3711,21 +3804,9 @@ body.page-module-designs .shell {
 }
 
 .lf-table {
-  border-collapse: collapse;
-  color: var(--text);
+  --table-cell-padding: 6px 12px;
+  --table-margin: 0;
   margin: 0 auto;
-}
-
-.lf-table th,
-.lf-table td {
-  padding: 4px 14px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.lf-table thead th {
-  background: var(--surface-hi);
-  font-weight: 600;
 }
 
 /* ── Widget-specific: QF table ── */
@@ -3736,21 +3817,9 @@ body.page-module-designs .shell {
 }
 
 .qf-table {
-  border-collapse: collapse;
-  color: var(--text);
+  --table-cell-padding: 6px 12px;
+  --table-margin: 0;
   margin: 0 auto;
-}
-
-.qf-table th,
-.qf-table td {
-  padding: 4px 14px;
-  text-align: center;
-  border: 1px solid var(--border);
-}
-
-.qf-table thead th {
-  background: var(--surface-hi);
-  font-weight: 600;
 }
 
 /* ── Legacy compat: keep .diagramm-row working for non-widget usage ── */

@@ -1,6 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
 
 const RECALL_STATE_PREFIX = "dev-recall-state-v1";
@@ -112,29 +111,6 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-function toSlug(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-function buildScriptInfoHref(check) {
-  const path = window.location?.pathname || "";
-  if (!/recall\.html$/.test(path)) return "";
-  const scriptPageHref = path.replace(/recall\.html$/, "skript.html");
-  const explicitAnchor = check?.skript_anchor ?? check?.SkriptAnchor ?? check?.skriptAnchor ?? "";
-  if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
-    return `${scriptPageHref}#${encodeURIComponent(explicitAnchor.trim())}`;
-  }
-  const key = String(check?.info_key ?? check?.InfoKey ?? (Number.isFinite(Number(check?.Nummer)) ? String(Number(check.Nummer)) : "") ?? "");
-  const slug = toSlug(key);
-  if (!slug) return "";
-  return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
-}
-
 const RECALL_DELAY_MS = 30000;
 
 function renderCard(check) {
@@ -143,7 +119,6 @@ function renderCard(check) {
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
-  const scriptHref = buildScriptInfoHref(check);
   const refs = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const refsListMarkup = refs
     .map((ref) => `<div class="recall-list-item"><span class="recall-list-dot"></span><span class="recall-list-text">${escapeHtml(ref)}</span></div>`)
@@ -152,11 +127,6 @@ function renderCard(check) {
     .map((ref) => `<span class="recall-keyword"><span class="recall-keyword-dot"></span>${escapeHtml(ref)}</span>`)
     .join("");
   const noRefsNote = `<p class="recall-no-refs">Keine Kernpunkte hinterlegt.</p>`;
-
-  const skriptMenuItem = scriptHref
-    ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Im Skript nachschlagen", href: scriptHref })
-    : "";
-  const actionsMenu = skriptMenuItem ? renderCardActionsMenuMarkup(skriptMenuItem) : "";
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-recall-check-viewport data-check-id="${escapeHtml(
@@ -172,9 +142,6 @@ function renderCard(check) {
     rowClass: "dev-check-card__header-left",
     titleTag: "span",
   })}
-          <div class="dev-check-card__header-actions">
-            ${actionsMenu}
-          </div>
         </div>
         <div class="dev-check-card__body">
         <div class="recall-focus">
@@ -504,7 +471,6 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
 
   renderJumpNav(navNode, checks, selectedCheckId);
   root.innerHTML = checks.map((check) => renderCard(check)).join("");
-  initCardMenuDismiss(root);
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-recall-check-viewport][data-check-id]"));
   applyInitialReveal(root);
   initInteractiveRecallCards(root);

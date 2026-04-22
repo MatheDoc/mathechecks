@@ -8,12 +8,11 @@ import {
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js";
-import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
-import { createCardActionsMenu, createCardMenuItem, createCardMenuLink } from "./ui/card-actions-menu.js";
+import { createCardMenuItem } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
 import {
-    buildSkriptTippsHref,
     buildTrainingKiAgentPrompt,
+    createTrainingCardHeader,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
 } from "./training.js";
@@ -135,33 +134,7 @@ function createEmptyTaskCard(check) {
     const card = document.createElement("article");
     card.className = "dev-check-card dev-check-card--training";
 
-    const header = document.createElement("div");
-    header.className = "dev-check-card__header";
-
-    const headerLeft = createCheckMetaRowNode(
-        {
-            numberText: formatCheckNumber(check?.Nummer),
-            titleText: check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`,
-            prefix: "Aufgabe",
-            tone: "training",
-            rowClass: "dev-check-card__header-left",
-            titleTag: "span",
-        }
-    );
-
-    const headerRight = document.createElement("div");
-    headerRight.className = "dev-check-card__header-actions";
-
-    const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
-    headerRight.appendChild(actionsMenu);
-
-    const skriptTippsHref = buildSkriptTippsHref(check);
-    if (skriptTippsHref) {
-        actionsPopover.appendChild(createCardMenuLink({ emoji: "❓", label: "Hilfe", href: skriptTippsHref }));
-    }
-
-    header.appendChild(headerLeft);
-    header.appendChild(headerRight);
+    const { header } = createTrainingCardHeader(check);
     card.appendChild(header);
 
     const body = document.createElement("div");
@@ -186,33 +159,7 @@ function createTaskCard(
     const card = document.createElement("article");
     card.className = "dev-check-card dev-check-card--training";
 
-    const header = document.createElement("div");
-    header.className = "dev-check-card__header";
-
-    const headerLeft = createCheckMetaRowNode(
-        {
-            numberText: formatCheckNumber(check?.Nummer),
-            titleText: titel,
-            prefix: "Aufgabe",
-            tone: "training",
-            rowClass: "dev-check-card__header-left",
-            titleTag: "span",
-        }
-    );
-
-    const headerRight = document.createElement("div");
-    headerRight.className = "dev-check-card__header-actions";
-
-    const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
-    headerRight.appendChild(actionsMenu);
-
-    const skriptTippsHref = buildSkriptTippsHref(check);
-    if (skriptTippsHref) {
-        actionsPopover.appendChild(createCardMenuLink({ emoji: "❓", label: "Hilfe", href: skriptTippsHref }));
-    }
-
-    header.appendChild(headerLeft);
-    header.appendChild(headerRight);
+    const { header, actionsPopover } = createTrainingCardHeader(check, titel);
     card.appendChild(header);
 
     const body = document.createElement("div");
@@ -226,7 +173,7 @@ function createTaskCard(
 
     const aiAgentItem = createCardMenuItem({
         emoji: "✨",
-        label: "KI-Erkläragent",
+        label: "KI-Erkläragent kopieren",
         onClick: async () => {
             aiAgentItem.disabled = true;
             try {

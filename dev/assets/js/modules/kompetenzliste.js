@@ -68,6 +68,24 @@ function buildFeynmanHref(check) {
     return `${targetPath}#${getFeynmanCheckAnchorId(check)}`;
 }
 
+function buildSkriptHref(check) {
+    const path = window.location?.pathname || "";
+    if (!path.endsWith("kompetenzliste.html")) return "";
+
+    const targetPath = path.replace(/kompetenzliste\.html$/, "skript.html");
+    const explicitAnchor = check?.skript_anchor ?? check?.SkriptAnchor ?? check?.skriptAnchor ?? "";
+    if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
+        return `${targetPath}#${encodeURIComponent(explicitAnchor.trim())}`;
+    }
+
+    const nummer = Number(check?.Nummer);
+    if (Number.isFinite(nummer) && nummer > 0) {
+        return `${targetPath}#${encodeURIComponent(`check-${nummer}`)}`;
+    }
+
+    return "";
+}
+
 function renderRow(check) {
     const nummerRaw = Number(check?.Nummer);
     const nummer = Number.isFinite(nummerRaw) ? String(nummerRaw) : "-";
@@ -76,11 +94,13 @@ function renderRow(check) {
     const trainingHref = buildTrainingHref(check);
     const recallHref = buildRecallHref(check);
     const feynmanHref = buildFeynmanHref(check);
+    const skriptHref = buildSkriptHref(check);
 
-    const trainingItem = trainingHref ? renderCardMenuLinkMarkup({ emoji: "🏋️", label: "Zum Training", href: trainingHref, tone: "training" }) : "";
-    const recallItem = recallHref ? renderCardMenuLinkMarkup({ emoji: "🧠", label: "Zum Recall", href: recallHref, tone: "recall" }) : "";
-    const feynmanItem = feynmanHref ? renderCardMenuLinkMarkup({ emoji: "🎓", label: "Zum Feynman", href: feynmanHref, tone: "feynman" }) : "";
-    const menuItems = trainingItem + recallItem + feynmanItem;
+    const trainingItem = trainingHref ? renderCardMenuLinkMarkup({ emoji: "🏋️", label: "Training", href: trainingHref, tone: "training" }) : "";
+    const recallItem = recallHref ? renderCardMenuLinkMarkup({ emoji: "🧠", label: "Recall", href: recallHref, tone: "recall" }) : "";
+    const feynmanItem = feynmanHref ? renderCardMenuLinkMarkup({ emoji: "🎓", label: "Feynman", href: feynmanHref, tone: "feynman" }) : "";
+    const skriptItem = skriptHref ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Skript", href: skriptHref, tone: "skript" }) : "";
+    const menuItems = trainingItem + recallItem + feynmanItem + skriptItem;
     const actionsMenu = menuItems ? renderCardActionsMenuMarkup(menuItems) : "";
 
     return `

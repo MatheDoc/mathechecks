@@ -32,6 +32,10 @@
     transition: border-color 220ms, box-shadow 220ms, transform 220ms;
 }
 
+.dev-check-card:has(.dev-check-card__actions-menu[open]) {
+    z-index: 90;
+}
+
 .dev-check-card__header {
     display: flex;
     align-items: center;
