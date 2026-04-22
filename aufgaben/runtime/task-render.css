@@ -219,7 +219,7 @@
     margin: 0;
     padding-left: 0;
     display: grid;
-    gap: 10px;
+    gap: 14px;
     list-style: none;
     counter-reset: qa-counter;
 }
@@ -242,6 +242,10 @@
     color: #3d4452;
 }
 
+.task .qa-item li+li {
+    margin-top: 12px;
+}
+
 .task .qa-item::before {
     content: counter(qa-counter);
     position: absolute;
@@ -262,9 +266,11 @@
 }
 
 .task .qa-item:hover {
-    background: #eaf1fb;
-    border-color: #b8c7dc;
-    box-shadow: 0 0 0 1px #c7d6ea;
+    background:
+        radial-gradient(circle at 16% 18%, rgba(76, 154, 255, 0.16), rgba(76, 154, 255, 0) 46%),
+        linear-gradient(180deg, #f3f8ff 0%, #d8e5fb 100%);
+    border-color: #aebfd8;
+    box-shadow: 0 0 0 3px rgba(199, 214, 234, 0.95);
 }
 
 .task .frage {
@@ -621,13 +627,19 @@
     max-width: 100% !important;
 }
 
-.dev-check-card__runtime-task .qa-list {
+.dev-check-card__runtime-task ol.qa-list,
+.dev-check-card__runtime-task ul.qa-list {
     margin: 0;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding: 0 !important;
+    padding-inline: 0 !important;
+    padding-block: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-inline-start: 0 !important;
+    padding-inline-end: 0 !important;
     display: grid;
-    gap: 10px;
+    gap: 14px;
     list-style: none;
     counter-reset: qa-counter;
 }
@@ -653,6 +665,10 @@
     color: var(--text-body);
 }
 
+.dev-check-card__runtime-task .qa-item li+li {
+    margin-top: 12px;
+}
+
 .dev-check-card__runtime-task .qa-item::before {
     content: counter(qa-counter);
     position: absolute;
@@ -673,13 +689,24 @@
 }
 
 .dev-check-card__runtime-task .qa-item:hover {
-    background: var(--dcc-inner-surface-strong,
-            linear-gradient(160deg,
-                color-mix(in srgb, var(--card-surface-1, #1e1e2b) 82%, var(--mt-training-soft, var(--accent-soft))),
-                color-mix(in srgb, var(--card-surface-2, #181824) 92%, transparent)));
-    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 38%, var(--border));
-    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05)), 0 0 0 2px color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 14%, transparent);
+    background:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 15%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 11%, transparent), transparent 50%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1, #1e1e2b) 76%, var(--mt-training-soft, var(--accent-soft))),
+            color-mix(in srgb, var(--card-surface-2, #181824) 82%, var(--mt-training-soft, var(--accent-soft))));
+    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 46%, var(--border));
+    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05)), 0 0 0 4px color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 24%, transparent);
     transform: none;
+}
+
+html.light .dev-check-card__runtime-task .qa-item:hover {
+    background:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 14%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 10%, transparent), transparent 50%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1, #ffffff) 84%, var(--dcc-accent, var(--mt-training, #4c9aff))),
+            color-mix(in srgb, var(--card-surface-2, #f8f9fd) 88%, var(--dcc-accent, var(--mt-training, #4c9aff))));
 }
 
 .dev-check-card__runtime-task .frage {
@@ -933,7 +960,7 @@
     .task {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        column-gap: 16px;
+        column-gap: 22px;
         row-gap: 10px;
         align-items: start;
     }
@@ -960,7 +987,7 @@
     .dev-check-card__runtime-task {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        column-gap: 16px;
+        column-gap: 22px;
         row-gap: 10px;
         align-items: start;
     }

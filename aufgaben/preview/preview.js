@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js";
+import { renderTask } from "../runtime/task-render.js?v=20260423-market-legends-a";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

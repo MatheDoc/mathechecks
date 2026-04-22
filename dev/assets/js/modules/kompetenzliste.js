@@ -73,14 +73,14 @@ function buildSkriptHref(check) {
     if (!path.endsWith("kompetenzliste.html")) return "";
 
     const targetPath = path.replace(/kompetenzliste\.html$/, "skript.html");
-    const explicitAnchor = check?.skript_anchor ?? check?.SkriptAnchor ?? check?.skriptAnchor ?? "";
-    if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
-        return `${targetPath}#${encodeURIComponent(explicitAnchor.trim())}`;
-    }
-
     const nummer = Number(check?.Nummer);
     if (Number.isFinite(nummer) && nummer > 0) {
-        return `${targetPath}#${encodeURIComponent(`check-${nummer}`)}`;
+        return `${targetPath}#check-${nummer}`;
+    }
+
+    const explicitAnchor = check?.skript_anchor ?? check?.SkriptAnchor ?? check?.skriptAnchor ?? "";
+    if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
+        return `${targetPath}#${explicitAnchor.trim()}`;
     }
 
     return "";
@@ -104,22 +104,20 @@ function renderRow(check) {
     const actionsMenu = menuItems ? renderCardActionsMenuMarkup(menuItems) : "";
 
     return `
-        <article class="dev-check-card dev-check-card--kompetenzliste kl-row" data-check-id="${escapeHtml(getCheckId(check))}">
+        <article class="dev-check-card dev-check-card--kompetenzliste" data-check-id="${escapeHtml(getCheckId(check))}">
             <div class="dev-check-card__header">
                 ${renderCheckMetaRowMarkup({
         numberText: nummer,
         titleText: schlagwort,
         prefix: "Kompetenz",
         tone: "kompetenzliste",
-        rowClass: "kl-check-meta-row",
-        titleClass: "kl-check-name",
         titleTag: "span",
     })}
-                <div class="dev-check-card__header-actions kl-actions">
+                <div class="dev-check-card__header-actions">
                     ${actionsMenu}
                 </div>
             </div>
-            <div class="kl-body">
+            <div class="dev-check-card__body">
                 <p class="kl-kompetenz">Ich kann ${escapeHtml(kompetenz)}</p>
             </div>
         </article>`;

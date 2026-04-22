@@ -1,5 +1,5 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js";
-import { renderVisual } from "./task-visuals.js";
+import { renderVisual } from "./task-visuals.js?v=20260423-market-legends-a";
 
 const TASK_UI_STATE_PREFIX = "dev-task-ui-state-v1::";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
@@ -364,6 +364,10 @@ export function renderTask(task, options = {}) {
 
     const qaList = document.createElement("ol");
     qaList.className = "qa-list";
+    qaList.style.margin = "0";
+    qaList.style.padding = "0";
+    qaList.style.paddingInline = "0";
+    qaList.style.paddingBlock = "0";
 
     const solutionNodes = [];
     const answerFields = [];

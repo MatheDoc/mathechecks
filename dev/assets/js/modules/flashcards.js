@@ -1,6 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
+import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
 
 const msPerDay = 24 * 60 * 60 * 1000;
 const PROGRESS_PREFIX = "dev-flashcards-progress-v1";
@@ -383,7 +384,7 @@ function syncCardViewportHeight() {
         const scrollNode = faceNode?.querySelector(".dev-fc-scroll");
         if (!scrollNode) return;
         const overflowDelta = scrollNode.scrollHeight - scrollNode.clientHeight;
-        const hasRealOverflow = overflowDelta > 3;
+        const hasRealOverflow = overflowDelta > 6;
         scrollNode.classList.toggle("is-no-scroll", !hasRealOverflow);
     };
 
@@ -567,7 +568,7 @@ function buildCards(checks) {
 
 function bindEvents() {
     const cardNode = state.root.querySelector("#dev-fc-card");
-    const resetBtn = state.root.querySelector("#dev-fc-reset");
+    const resetBtn = state.root.querySelector("[data-fc-reset-menu]");
 
     cardNode?.addEventListener("click", (event) => {
         if (shouldIgnoreFlipTarget(event.target)) return;
@@ -641,6 +642,7 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
     loadProgress();
     loadViewState();
     bindEvents();
+    initCardMenuDismiss(root);
 
     if (!state.hasResizeBinding) {
         const onResize = () => syncCardViewportHeight();

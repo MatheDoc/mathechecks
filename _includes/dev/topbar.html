@@ -10,7 +10,7 @@
         {% assign show_lb_switch = false %}
         {% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
         {% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
-        <span class="page-context">{% if page.module_key %}Lernbereich{% else %}{{ page.page_context | default: "Dev"
+        <span class="page-context">{% if page.module_key %}{% else %}{{ page.page_context | default: "Dev"
             }}{% endif %}</span>
         {% if show_lb_switch %}
         <div class="lb-row">
@@ -121,6 +121,7 @@
             rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
             rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
             rules.push(`.s-hero[data-gebiet="${g.key}"], .mat-card--compact[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
+            rules.push(`.mod-start-content[data-gebiet="${g.key}"] { --start-accent: ${g.chip_color}; }`);
             rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
             rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
         });

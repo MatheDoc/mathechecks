@@ -8,6 +8,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
     <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        .dev-check-card__runtime-task ol.qa-list,
+        .dev-check-card__runtime-task ul.qa-list {
+            padding: 0 !important;
+            padding-inline: 0 !important;
+            padding-block: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            padding-bottom: 0 !important;
+            padding-inline-start: 0 !important;
+            padding-inline-end: 0 !important;
+        }
+    </style>
     {% if page.module_key == 'skript' %}
     <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
@@ -42,7 +55,7 @@
     <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
     <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
-    <script type="module" src="{{ '/dev/assets/js/app.js' | relative_url }}"></script>
+    <script type="module" src="{{ '/dev/assets/js/app.js?v=20260423-card-layout-i' | relative_url }}"></script>
     {% include dev/theme-script.html %}
     {{ page.after_scripts }}
 </body>

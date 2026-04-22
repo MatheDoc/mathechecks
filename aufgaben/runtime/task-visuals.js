@@ -130,8 +130,8 @@ function buildPlotlyFigure(spec) {
         const eqY = supplySlope * eqX + minPrice;
 
         figure.data.push(
-            { x, y: supply, mode: "lines", name: "pA(x)", line: { color: "#d62728" } },
-            { x, y: demand, mode: "lines", name: "pN(x)", line: { color: "#1f77b4" } }
+            { x, y: supply, mode: "lines", name: "p<sub>A</sub>(x)", line: { color: "#d62728" } },
+            { x, y: demand, mode: "lines", name: "p<sub>N</sub>(x)", line: { color: "#1f77b4" } }
         );
 
         figure.layout = {
@@ -207,12 +207,12 @@ function buildPlotlyFigure(spec) {
                     fill: "toself",
                     fillcolor: "rgba(16, 185, 129, 0.25)",
                 },
-                { x, y: supply, mode: "lines", name: "Angebot p_A(x)", line: { color: "#d62728" } },
+                { x, y: supply, mode: "lines", name: "Angebot p<sub>A</sub>(x)", line: { color: "#d62728" } },
                 {
                     x,
                     y: demand,
                     mode: "lines",
-                    name: "Nachfrage p_N(x)",
+                    name: "Nachfrage p<sub>N</sub>(x)",
                     line: { color: "#1f77b4" },
                 }
             );
@@ -258,12 +258,12 @@ function buildPlotlyFigure(spec) {
             };
         } else {
             figure.data.push(
-                { x, y: supply, mode: "lines", name: "Angebot p_A(x)", line: { color: "#d62728" } },
+                { x, y: supply, mode: "lines", name: "Angebot p<sub>A</sub>(x)", line: { color: "#d62728" } },
                 {
                     x: xDemand,
                     y: demand,
                     mode: "lines",
-                    name: "Nachfrage p_N(x)",
+                    name: "Nachfrage p<sub>N</sub>(x)",
                     line: { color: "#1f77b4" },
                 }
             );

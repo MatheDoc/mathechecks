@@ -13,7 +13,7 @@ append: '/' %}
 {% if g.key == page.gebiet %}{% assign gebiet_info = g %}{% endif %}
 {% endfor %}
 
-<div class="mod-start-content">
+<div class="mod-start-content" data-gebiet="{{ page.gebiet }}">
     <!-- Hero -->
     <div class="s-hero" data-gebiet="{{ page.gebiet }}">
         <img class="s-hero-img"
@@ -28,30 +28,30 @@ append: '/' %}
 
     <section class="s-section" aria-labelledby="start-einstieg">
         <h2 id="start-einstieg">Wähle deinen Einstieg</h2>
-        <p class="s-quickstart-intro">Es gibt nicht den einen richtigen Start. Wähle den Zugang, mit dem du am
-            besten ins Thema findest.</p>
         <div class="s-quickstart-grid">
-            <article class="s-quickstart-card">
+            <article class="s-quickstart-card dev-check-card dev-check-card--start">
                 <p>Wenn du zuerst sehen willst, worauf es in diesem Lernbereich ankommt, starte mit der
                     Kompetenzliste.</p>
-                <a class="s-quickstart-link"
+                <a class="s-quickstart-link module-action-button module-action-button--start"
                     href="{{ lernbereich_basis | append: 'kompetenzliste.html' | relative_url }}">
                     <span class="s-quickstart-link-icon module-icon-kompetenzliste" aria-hidden="true">{{
                         mod_kompetenzliste.icon | default: '☑️' }}</span>
                     <span>{{ mod_kompetenzliste.name | default: 'Kompetenzliste' }} öffnen</span>
                 </a>
             </article>
-            <article class="s-quickstart-card">
+            <article class="s-quickstart-card dev-check-card dev-check-card--start">
                 <p>Wenn du lieber sofort ins Anwenden einsteigen willst, beginne im Training mit der ersten Aufgabe.</p>
-                <a class="s-quickstart-link" href="{{ lernbereich_basis | append: 'training.html' | relative_url }}">
+                <a class="s-quickstart-link module-action-button module-action-button--start"
+                    href="{{ lernbereich_basis | append: 'training.html' | relative_url }}">
                     <span class="s-quickstart-link-icon module-icon-training" aria-hidden="true">{{
                         mod_training.icon | default: '🏋️' }}</span>
                     <span>{{ mod_training.name | default: 'Training' }} öffnen</span>
                 </a>
             </article>
-            <article class="s-quickstart-card">
+            <article class="s-quickstart-card dev-check-card dev-check-card--start">
                 <p>Wenn du das Thema erst in Ruhe verstehen willst, lies zuerst im Skript.</p>
-                <a class="s-quickstart-link" href="{{ lernbereich_basis | append: 'skript.html' | relative_url }}">
+                <a class="s-quickstart-link module-action-button module-action-button--start"
+                    href="{{ lernbereich_basis | append: 'skript.html' | relative_url }}">
                     <span class="s-quickstart-link-icon module-icon-skript" aria-hidden="true">{{
                         mod_skript.icon | default: '📖' }}</span>
                     <span>{{ mod_skript.name | default: 'Skript' }} öffnen</span>
@@ -65,14 +65,6 @@ append: '/' %}
     <section class="s-section">
         <h2>Worum geht es?</h2>
         {{ sd.worum_geht_es | markdownify }}
-    </section>
-    {% endif %}
-
-    <!-- Darauf kommt es an -->
-    {% if sd.darauf_kommt_es_an and sd.darauf_kommt_es_an != "" %}
-    <section class="s-section">
-        <h2>Darauf kommt es an</h2>
-        {{ sd.darauf_kommt_es_an | markdownify }}
     </section>
     {% endif %}
 
@@ -92,7 +84,7 @@ append: '/' %}
             {% endfor %}
             {% if vk_gebiet %}
             <a href="{{ '/dev/lernbereiche/' | append: vk_gebiet | append: '/' | append: vk.slug | append: '/start.html' | relative_url }}"
-                class="s-vk-link">{{ vk.name }}</a>
+                class="s-vk-link module-action-button module-action-button--start">{{ vk.name }}</a>
             {% else %}
             <span class="s-vk-extern">{{ vk.name }}</span>
             {% endif %}
