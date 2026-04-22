@@ -7,10 +7,17 @@
 
         {% for karte in einstieg.karten %}
         {% assign current_idx = forloop.index0 %}
-        <article class="ei-card dev-check-card dev-check-card--warmup" data-typ="{{ karte.typ }}"
+        {% case forloop.index %}
+        {% when 1 %}{% assign stage_label = "Zum Einstieg" %}
+        {% when 2 %}{% assign stage_label = "Deine Vermutung" %}
+        {% when 3 %}{% assign stage_label = "Worum es geht" %}
+        {% else %}{% assign stage_label = "Noch ein Gedanke" %}
+        {% endcase %}
+        <article class="ei-card dev-check-card dev-check-card--warmup{% if forloop.first %} is-ready{% endif %}" data-typ="{{ karte.typ }}"
             data-index="{{ forloop.index0 }}" {% unless forloop.first %} hidden{% endunless %}>
 
             <div class="ei-card-progress" aria-label="Fortschritt">
+                <span class="ei-progress-label">Impuls {{ forloop.index }} von {{ einstieg.karten | size }}</span>
                 <div class="ei-card-progress-dots" aria-hidden="true">
                     {% for step in einstieg.karten %}
                     {% assign step_idx = forloop.index0 %}
@@ -20,25 +27,18 @@
                 </div>
             </div>
 
-            {% case karte.typ %}
-            {% when 'wusstest-du' %}{% assign karten_label = "Wusstest du?" %}
-            {% when 'schaetzfrage' %}{% assign karten_label = "Was schaetzt du?" %}
-            {% when 'vorwissen' %}{% assign karten_label = "Kurz nachgedacht" %}
-            {% when 'alltag' %}{% assign karten_label = "Mathe im Alltag" %}
-            {% endcase %}
-
-            <span class="ei-badge ei-badge--{{ karte.typ }}">{{ karten_label }}</span>
+            <div class="ei-card-topline">
+                <span class="ei-stage-chip">{{ stage_label }}</span>
+                <span class="ei-badge">Nimm einfach deinen ersten Gedanken ernst.</span>
+            </div>
 
             {% if karte.typ == 'wusstest-du' or karte.typ == 'alltag' %}
             <p class="ei-text">{{ karte.text }}</p>
             <div class="ei-detail" hidden>
+                <span class="ei-panel-label">Mehr dazu</span>
                 <p>{{ karte.detail }}</p>
             </div>
-            {% if karte.typ == 'alltag' %}
-            <button class="ei-reveal-btn" type="button">Mehr erfahren</button>
-            {% else %}
-            <button class="ei-reveal-btn" type="button">Aufdecken</button>
-            {% endif %}
+            <button class="ei-reveal-btn" type="button">Mehr dazu</button>
             {% endif %}
 
             {% if karte.typ == 'schaetzfrage' %}
@@ -49,6 +49,7 @@
                 {% endfor %}
             </div>
             <div class="ei-feedback" hidden>
+                <span class="ei-panel-label">Einordnung</span>
                 <p>{{ karte.erklaerung }}</p>
             </div>
             {% endif %}
@@ -61,15 +62,17 @@
                 {% endfor %}
             </div>
             <div class="ei-feedback ei-fb--richtig" hidden>
+                <span class="ei-panel-label">Einordnung</span>
                 <p>{{ karte.feedback_richtig }}</p>
             </div>
             <div class="ei-feedback ei-fb--falsch" hidden>
+                <span class="ei-panel-label">Einordnung</span>
                 <p>{{ karte.feedback_falsch }}</p>
             </div>
             {% endif %}
 
             <div class="ei-nav">
-                <button class="ei-btn-next" type="button" disabled>Weiter →</button>
+                <button class="ei-btn-next" type="button" {% unless forloop.first %}disabled{% endunless %}>{% if forloop.last %}Zum Abschluss{% else %}Nächster Impuls{% endif %}</button>
             </div>
         </article>
         {% endfor %}
@@ -78,6 +81,7 @@
         <article class="ei-card ei-card--final dev-check-card dev-check-card--warmup"
             data-index="{{ einstieg.karten | size }}" hidden>
             <div class="ei-card-progress" aria-label="Fortschritt">
+                <span class="ei-progress-label">Bereit zum Start</span>
                 <div class="ei-card-progress-dots" aria-hidden="true">
                     {% for step in einstieg.karten %}
                     <span class="ei-step-dot is-done"></span>
@@ -85,9 +89,8 @@
                 </div>
             </div>
             <div class="ei-final-icon">🚀</div>
-            <p class="ei-final-text">{{ einstieg.abschluss | default: "Super – du hast einen ersten Einblick bekommen.
-                Jetzt
-                kann es richtig losgehen!" }}</p>
+            <p class="ei-final-kicker">Du bist im Thema drin.</p>
+            <p class="ei-final-text">{{ einstieg.abschluss | default: "Super – du hast einen ersten Einblick bekommen. Jetzt kann es richtig losgehen!" }}</p>
         </article>
 
     </div>

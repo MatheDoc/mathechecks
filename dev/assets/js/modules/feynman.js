@@ -1,11 +1,9 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { renderCardActionsMenuMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 
-const FY_TOTAL_SECONDS = 300;
 const FY_BEISPIEL_CACHE = new Map();
-const FY_RING_CIRCUMFERENCE = 2 * Math.PI * 20;
 const FY_STATE_PREFIX = "dev-feynman-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
 const feynmanJumpNavScrollCleanup = new WeakMap();
@@ -124,13 +122,6 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
-function formatTimer(secondsLeft) {
-  const safe = Math.max(0, Number(secondsLeft) || 0);
-  const minutes = Math.floor(safe / 60);
-  const seconds = safe % 60;
-  return `${minutes}:${String(seconds).padStart(2, "0")}`;
-}
-
 function applyInitialReveal(root) {
   if (!root) return;
   root.classList.add("dev-module-root--pending");
@@ -186,29 +177,6 @@ async function hydrateBeispielSlots(root, checks) {
     }
   });
   await Promise.all(tasks);
-}
-
-function toSlug(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-function buildScriptInfoHref(check) {
-  const path = window.location?.pathname || "";
-  if (!path.endsWith("feynman.html")) return "";
-  const scriptPageHref = path.replace(/feynman\.html$/, "skript.html");
-  const explicitAnchor = check?.skript_anchor ?? check?.SkriptAnchor ?? check?.skriptAnchor ?? "";
-  if (typeof explicitAnchor === "string" && explicitAnchor.trim()) {
-    return `${scriptPageHref}#${encodeURIComponent(explicitAnchor.trim())}`;
-  }
-  const key = String(check?.info_key ?? check?.InfoKey ?? (Number.isFinite(Number(check?.Nummer)) ? String(Number(check.Nummer)) : "") ?? "");
-  const slug = toSlug(key);
-  if (!slug) return "";
-  return `${scriptPageHref}#${encodeURIComponent(`check-${slug}`)}`;
 }
 
 function cleanIchKannStatement(rawText) {
@@ -460,14 +428,10 @@ function renderCard(check) {
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
-  const scriptHref = buildScriptInfoHref(check);
   const evaluationExampleMarkup = getEvaluationExamplePlaceholder();
 
-  const skriptMenuItem = scriptHref
-    ? renderCardMenuLinkMarkup({ emoji: "📖", label: "Im Skript nachschlagen", href: scriptHref })
-    : "";
-  const kiMenuItem = `<button type="button" class="dev-check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="dev-check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner</span></button>`;
-  const actionsMenu = renderCardActionsMenuMarkup(skriptMenuItem + kiMenuItem);
+  const kiMenuItem = `<button type="button" class="dev-check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="dev-check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner kopieren</span></button>`;
+  const actionsMenu = renderCardActionsMenuMarkup(kiMenuItem);
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-fy-check-viewport data-check-id="${escapeHtml(
@@ -647,12 +611,7 @@ function initInteractiveFeynmanCards(root, checks) {
       resultNo: card.querySelector('[data-fy-stage="result-no"]'),
     };
 
-    const timerLabel = card.querySelector("[data-fy-num]");
-    const timerArc = card.querySelector("[data-fy-arc]");
     const revealButton = card.querySelector("[data-fy-reveal]");
-
-    let secondsLeft = FY_TOTAL_SECONDS;
-    let timerId = null;
 
     function setStage(nextStage) {
       stages.write.hidden = nextStage !== "write";
@@ -661,22 +620,7 @@ function initInteractiveFeynmanCards(root, checks) {
       stages.resultNo.hidden = nextStage !== "result-no";
     }
 
-    function updateTimerView() {
-      if (!timerLabel || !timerArc) return;
-      timerLabel.textContent = formatTimer(secondsLeft);
-      const fraction = Math.max(0, Math.min(1, secondsLeft / FY_TOTAL_SECONDS));
-      timerArc.style.strokeDashoffset = String(FY_RING_CIRCUMFERENCE * (1 - fraction));
-    }
-
-    function clearTimer() {
-      if (timerId) {
-        window.clearInterval(timerId);
-        timerId = null;
-      }
-    }
-
     function revealEvaluation() {
-      clearTimer();
       setStage("evaluate");
       window.requestAnimationFrame(() => {
         resizePlotlyInNode(stages.evaluate);
@@ -684,7 +628,6 @@ function initInteractiveFeynmanCards(root, checks) {
     }
 
     function setResult(canExplain) {
-      clearTimer();
       setStage(canExplain ? "result-yes" : "result-no");
     }
 
@@ -694,33 +637,39 @@ function initInteractiveFeynmanCards(root, checks) {
 
     const kiButton = card.querySelector("[data-fy-ki-menu]");
     if (kiButton && check) {
-      kiButton.addEventListener("click", async () => {
+      const defaultLabel = "KI-Lernpartner kopieren";
+      let feedbackResetId = null;
+
+      kiButton.addEventListener("click", async (event) => {
+        event.stopPropagation();
+        if (feedbackResetId) {
+          window.clearTimeout(feedbackResetId);
+          feedbackResetId = null;
+        }
+
         kiButton.disabled = true;
         const labelSpan = kiButton.querySelector("span:last-child");
         if (labelSpan) labelSpan.textContent = "Wird erstellt…";
+
+        let nextLabel = "Fehler";
         try {
           const beispielHtml = await fetchBeispielHtml(check);
           const agentPrompt = buildKiAgentPrompt(check, beispielHtml);
           const ok = await copyToClipboard(agentPrompt);
-          if (labelSpan) labelSpan.textContent = ok ? "Kopiert!" : "Fehler";
-          setTimeout(() => { if (labelSpan) labelSpan.textContent = "KI-Lernpartner"; }, 2000);
-        } finally {
-          kiButton.disabled = false;
+          nextLabel = ok ? "Kopiert!" : "Fehler";
+        } catch {
+          nextLabel = "Fehler";
         }
+
+        if (labelSpan) labelSpan.textContent = nextLabel;
+        feedbackResetId = window.setTimeout(() => {
+          if (labelSpan) labelSpan.textContent = defaultLabel;
+          kiButton.disabled = false;
+          kiButton.closest(".dev-check-card__actions-menu")?.removeAttribute("open");
+          feedbackResetId = null;
+        }, 2000);
       });
     }
-
-    updateTimerView();
-    timerId = window.setInterval(() => {
-      secondsLeft -= 1;
-      if (secondsLeft <= 0) {
-        secondsLeft = 0;
-        updateTimerView();
-        revealEvaluation();
-        return;
-      }
-      updateTimerView();
-    }, 1000);
   });
 }
 

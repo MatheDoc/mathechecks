@@ -15,7 +15,7 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
 | **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `dev/lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
-| **Warm-Up** | `_data/dev_warmup.yml` | pro Lernbereich | 4 Karten (Wusstest-du, Schätzfrage, Vorwissen, Alltag) + Abschlusstext |
+| **Warm-Up** | `_data/dev_warmup/<slug>.yml` | pro Lernbereich | meist 3 Karten, optional 4, plus Abschlusstext |
 | **Modultypen** | `_data/dev_moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/dev_gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik |
 
@@ -27,7 +27,7 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
                     (pro LB)          (pro Check)  (pro Check)    (pro Check)    (pro LB)
                     ────────────────  ───────────  ─────────────  ─────────────  ──────────
 Start               Name, Gebiet
-Warm-Up                                                                          4 Karten
+Warm-Up                                                                          meist 3 Karten
 Kompetenzliste                        Kompetenztext
 Skript (Szenario)   szenario_einstieg
 Skript (Fachinhalt) (direkt in MD)
@@ -64,7 +64,7 @@ Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/dev_l
 ### Designentscheidung
 
 - **Übungsaufgaben** (Training, Flashcards) sind bewusst **nicht** an das Szenario gebunden, um kontextunabhängigen Transfer zu sichern.
-- **Warm-Up-Karten** orientieren sich am Szenario, müssen aber nicht exklusiv darauf beschränkt sein.
+- **Warm-Up-Karten** dürfen sich am Szenario orientieren, funktionieren aber auch als eigenständiger, motivierender Auftakt ohne direkte Skript-Vorbereitung.
 - Das Szenario dient als **roter Faden**, nicht als Korsett.
 
 
@@ -96,7 +96,7 @@ dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | direkt in MD | Überblick, Lernpfad |
-| Warm-Up | `warmup.md` | `dev_warmup.yml` | 4 Karten + Abschluss, via Liquid-Template |
+| Warm-Up | `warmup.md` | `_data/dev_warmup/<slug>.yml` | meist 3 Karten + Abschluss, optional 4, via Liquid-Template |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |

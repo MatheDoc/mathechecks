@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
-import { initSkriptVisuals } from "./skript-visuals.js";
+import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 
 /* ------------------------------------------------------------------ */
@@ -101,6 +101,7 @@ async function renderBeispiel(container, check) {
 
         initSkriptVisuals(body);
         await typesetNode(body);
+        refreshSkriptTables(body);
     } catch {
         container.hidden = true;
     }

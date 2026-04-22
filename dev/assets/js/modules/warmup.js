@@ -13,6 +13,7 @@ export async function initWarmupModule({ lernbereich } = {}) {
         btn.addEventListener("click", () => {
             const card = btn.closest(".ei-card");
             card.querySelector(".ei-detail").hidden = false;
+            card.classList.add("is-open");
             btn.hidden = true;
             enableNext(card);
         });
@@ -33,9 +34,10 @@ export async function initWarmupModule({ lernbereich } = {}) {
                 const card = group.closest(".ei-card");
                 const typ = card.dataset.typ;
 
+                opt.classList.add("ei-opt--selected");
                 opts[korrekt].classList.add("ei-opt--correct");
-                if (idx !== korrekt) opt.classList.add("ei-opt--selected");
                 for (const o of opts) o.disabled = true;
+                card.classList.add("is-answered");
 
                 if (typ === "vorwissen") {
                     const key = idx === korrekt ? ".ei-fb--richtig" : ".ei-fb--falsch";
@@ -55,6 +57,7 @@ export async function initWarmupModule({ lernbereich } = {}) {
     }
 
     function enableNext(card) {
+        card.classList.add("is-ready");
         const btn = card.querySelector(".ei-btn-next");
         if (btn) btn.disabled = false;
     }

@@ -965,9 +965,41 @@ async function copyToClipboard(text) {
   }
 }
 
+function createTrainingCardHeader(check, titleText = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`) {
+  const header = document.createElement("div");
+  header.className = "dev-check-card__header";
+
+  const headerLeft = createCheckMetaRowNode(
+    {
+      numberText: formatCheckNumber(check?.Nummer),
+      titleText,
+      prefix: "Aufgabe",
+      tone: "training",
+      rowClass: "dev-check-card__header-left",
+      titleTag: "span",
+    }
+  );
+
+  const headerRight = document.createElement("div");
+  headerRight.className = "dev-check-card__header-actions";
+
+  const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
+  headerRight.appendChild(actionsMenu);
+
+  const skriptTippsHref = buildSkriptTippsHref(check);
+  if (skriptTippsHref) {
+    actionsPopover.appendChild(createCardMenuLink({ emoji: "💡", label: "Tipps", href: skriptTippsHref }));
+  }
+
+  header.appendChild(headerLeft);
+  header.appendChild(headerRight);
+  return { header, actionsPopover };
+}
+
 export {
   buildTrainingKiAgentPrompt,
   buildSkriptTippsHref,
+  createTrainingCardHeader,
   copyToClipboard as copyTrainingPromptToClipboard,
   fetchBeispielHtml as fetchTrainingBeispielHtml,
 };
@@ -986,34 +1018,7 @@ function createTaskCardNode(
   const card = document.createElement("article");
   card.className = "dev-check-card dev-check-card--training";
 
-  // ── Unified card header row ──
-  const header = document.createElement("div");
-  header.className = "dev-check-card__header";
-
-  const headerLeft = createCheckMetaRowNode(
-    {
-      numberText: formatCheckNumber(check?.Nummer),
-      titleText: titel,
-      prefix: "Aufgabe",
-      tone: "training",
-      rowClass: "dev-check-card__header-left",
-      titleTag: "span",
-    }
-  );
-
-  const headerRight = document.createElement("div");
-  headerRight.className = "dev-check-card__header-actions";
-
-  const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
-  headerRight.appendChild(actionsMenu);
-
-  const skriptTippsHref = buildSkriptTippsHref(check);
-  if (skriptTippsHref) {
-    actionsPopover.appendChild(createCardMenuLink({ emoji: "❓", label: "Hilfe", href: skriptTippsHref }));
-  }
-
-  header.appendChild(headerLeft);
-  header.appendChild(headerRight);
+  const { header, actionsPopover } = createTrainingCardHeader(check, titel);
   card.appendChild(header);
 
   const body = document.createElement("div");
@@ -1033,7 +1038,7 @@ function createTaskCardNode(
 
   const aiAgentItem = createCardMenuItem({
     emoji: "✨",
-    label: "KI-Erkläragent",
+    label: "KI-Erkläragent kopieren",
     onClick: async () => {
       aiAgentItem.disabled = true;
       try {

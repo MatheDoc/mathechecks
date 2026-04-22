@@ -15,7 +15,7 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
 4. `agent-infra-architektur.md`
    - Systemgrenzen, Firebase/Functions, Regeln, Deploy-/Risikoaspekte
 5. `agent-warmup.md`
-   - Warm-Up-Karten: Neugier wecken, Vorwissensaktivierung, 4 Karten pro Lernbereich
+   - Warm-Up-Karten: motivierender Auftakt, Relevanz, Gesprächsimpulse, meist 3 Karten pro Lernbereich
 
 ## 3-Schichten-Modell
 

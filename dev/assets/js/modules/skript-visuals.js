@@ -63,10 +63,50 @@ function ensureEqualColumns(table) {
     table.insertBefore(cg, table.firstChild);
 }
 
+function normalizeTableCellText(value) {
+    return String(value ?? "")
+        .replace(/\s+/g, "")
+        .replaceAll("$", "")
+        .replaceAll("&nbsp;", "")
+        .normalize("NFKD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toUpperCase();
+}
+
+function isVierfeldertafel(table) {
+    if (!table || table.classList.contains("vft-table")) return false;
+
+    const rows = Array.from(table.rows);
+    if (rows.length !== 4) return false;
+
+    const grid = rows.map((row) => Array.from(row.cells));
+    if (grid.some((row) => row.length !== 4)) return false;
+
+    const values = grid.map((row) => row.map((cell) => normalizeTableCellText(cell.textContent)));
+    const header = values[0];
+    const firstCol = values.slice(1).map((row) => row[0] ?? "");
+    const flatText = values.flat().join("|");
+    const hasSigma = (text) => text.includes("Σ") || text.includes("SIGMA");
+
+    return Boolean(
+        header[1]?.includes("B")
+        && header[2]?.includes("B")
+        && hasSigma(header[3] ?? "")
+        && firstCol[0]?.includes("A")
+        && firstCol[1]?.includes("A")
+        && hasSigma(firstCol[2] ?? "")
+        && (flatText.includes("P(") || flatText.includes("0,") || flatText.includes("0.") || flatText.includes("|1|"))
+    );
+}
+
 function wrapTablesForHorizontalScroll(root) {
     if (!root) return;
 
     root.querySelectorAll("table").forEach((table) => {
+        if (isVierfeldertafel(table)) {
+            table.classList.add("vft-table");
+        }
+
         ensureEqualColumns(table);
 
         if (table.parentElement.classList.contains("table-scroll")) return;
@@ -79,11 +119,15 @@ function wrapTablesForHorizontalScroll(root) {
     });
 }
 
+export function refreshSkriptTables(root) {
+    wrapTablesForHorizontalScroll(root);
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
     // Keep table semantics intact and move horizontal scrolling to the wrapper.
-    wrapTablesForHorizontalScroll(root);
+    refreshSkriptTables(root);
 
     if (!window.Plotly) return;
 

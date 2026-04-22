@@ -21,7 +21,6 @@ export function createCardActionsMenu() {
     const trigger = document.createElement("summary");
     trigger.className = "dev-check-card__actions-trigger";
     trigger.setAttribute("aria-label", "Aktionen");
-    trigger.title = "Aktionen";
     trigger.innerHTML = DOTS_HTML;
 
     const popover = document.createElement("div");
@@ -68,14 +67,14 @@ export function createCardMenuLink({ emoji, label, href }) {
 /* ── Markup (template-literal) API ────────────────────── */
 
 export function renderCardActionsMenuMarkup(itemsHtml) {
-    return `<details class="dev-check-card__actions-menu"><summary class="dev-check-card__actions-trigger" aria-label="Aktionen" title="Aktionen">${DOTS_HTML}</summary><div class="dev-check-card__actions-popover" role="menu">${itemsHtml}</div></details>`;
+    return `<details class="dev-check-card__actions-menu"><summary class="dev-check-card__actions-trigger" aria-label="Aktionen">${DOTS_HTML}</summary><div class="dev-check-card__actions-popover" role="menu">${itemsHtml}</div></details>`;
 }
 
 export function renderCardMenuLinkMarkup({ emoji, label, href, tone = "" }) {
     const cls = tone
         ? `dev-check-card__actions-item dev-check-card__actions-item--${tone}`
         : "dev-check-card__actions-item";
-    return `<a class="${cls}" role="menuitem" href="${escapeAttr(href)}" title="${escapeAttr(label)}"><span class="dev-check-card__actions-icon" aria-hidden="true">${emoji}</span><span>${escapeAttr(label)}</span></a>`;
+    return `<a class="${cls}" role="menuitem" href="${escapeAttr(href)}"><span class="dev-check-card__actions-icon" aria-hidden="true">${emoji}</span><span>${escapeAttr(label)}</span></a>`;
 }
 
 /* ── Light-dismiss for template-rendered menus ────────── */

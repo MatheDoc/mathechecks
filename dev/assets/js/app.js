@@ -5,7 +5,7 @@ import { initFlashcardsModule } from "./modules/flashcards.js";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
 import { initCheckAnker } from "./modules/check-anker.js";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
-import { initSkriptVisuals } from "./modules/skript-visuals.js";
+import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js";
 import { initWarmupModule } from "./modules/warmup.js";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js";
@@ -531,6 +531,7 @@ async function bootstrap() {
   const contentRoot = document.querySelector(".mod-content") || document.body;
   const allowStoredHydration = shouldHydrateLocalState(context);
   let handledSkriptTargetEarly = false;
+  let scriptContentRoot = null;
 
   bindScrollPersistence(pageKey);
 
@@ -651,7 +652,7 @@ async function bootstrap() {
       root: contentRoot,
       lernbereich: context.lernbereich,
     });
-    const scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
+    scriptContentRoot = contentRoot.querySelector(":scope > .mod-script-content") || contentRoot;
 
     if (explicitTargetId) {
       scrollToSkriptTargetId(explicitTargetId, 2, "auto");
@@ -672,6 +673,10 @@ async function bootstrap() {
   }
 
   await typesetMath(contentRoot);
+
+  if (context.moduleKey === "skript" && scriptContentRoot) {
+    refreshSkriptTables(scriptContentRoot);
+  }
 
   if (explicitTargetId) {
     if (context.moduleKey === "skript") {
