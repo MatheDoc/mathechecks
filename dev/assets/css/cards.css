@@ -16,6 +16,9 @@
     --dcc-accent-soft: var(--surface-hi);
     --dcc-border: var(--border);
     --dcc-radius: 24px;
+    --dcc-shell-pad-x: 18px;
+    --dcc-shell-pad-top: 18px;
+    --dcc-shell-pad-bottom: 18px;
     --dcc-inner-border: color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
     --dcc-inner-surface:
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 10%, transparent), transparent 56%),
@@ -34,7 +37,10 @@
     box-sizing: border-box;
     border: 1px solid color-mix(in srgb, var(--dcc-border) 78%, var(--glass-line, var(--border)));
     border-radius: var(--dcc-radius);
-    padding: 18px 20px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
     position: relative;
     isolation: isolate;
     overflow: visible;
@@ -58,6 +64,35 @@
     box-shadow: var(--shadow-card, none), 0 0 34px color-mix(in srgb, var(--dcc-accent) 12%, transparent);
 }
 
+html.light .dev-check-card {
+    --dcc-inner-border: color-mix(in srgb, var(--dcc-accent) 18%, rgba(0, 0, 0, .08));
+    --dcc-inner-surface:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 12%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 9%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 96%, transparent), transparent 68%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 84%, var(--dcc-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 87%, var(--dcc-accent-soft)));
+    --dcc-inner-surface-strong:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 16%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 12%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 100%, transparent), transparent 68%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 80%, var(--dcc-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 83%, var(--dcc-accent-soft)));
+    border-color: color-mix(in srgb, var(--dcc-accent) 20%, var(--border));
+    background:
+        linear-gradient(135deg,
+            color-mix(in srgb, var(--dcc-accent) 80%, white),
+            color-mix(in srgb, var(--dcc-accent) 88%, var(--dcc-accent-soft))) top / 100% 3px no-repeat,
+        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-accent) 18%, transparent), transparent 55%),
+        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-accent) 13%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 100%, transparent), transparent 68%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 84%, var(--dcc-accent-soft)),
+            color-mix(in srgb, var(--card-surface-2) 87%, var(--dcc-accent-soft)));
+}
+
 .dev-check-card:has(.dev-check-card__actions-menu[open]) {
     z-index: 90;
 }
@@ -68,9 +103,10 @@
     align-items: center;
     font-size: 0.82rem;
     column-gap: 12px;
-    margin-bottom: 10px;
-    padding: 0 2px 8px;
+    margin-bottom: 0;
+    padding: var(--dcc-shell-pad-top) var(--dcc-shell-pad-x) 10px;
     border-bottom: 1px solid color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
+    flex: 0 0 auto;
 }
 
 .dev-check-card__header-left {
@@ -145,6 +181,7 @@
     gap: 10px;
     flex-shrink: 0;
     justify-self: end;
+    margin-inline-end: calc(6px - var(--dcc-shell-pad-x));
 }
 
 .dev-check-card__action-btn {
@@ -199,14 +236,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 38px;
-    min-height: 34px;
+    min-width: 40px;
+    min-height: 36px;
     border: 0;
     background: transparent;
     color: var(--dcc-accent, var(--text));
     cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
     transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
@@ -377,6 +414,12 @@
     --dcc-border: color-mix(in srgb, var(--mt-warmup, var(--amber)) 18%, var(--border));
 }
 
+.dev-check-card--start {
+    --dcc-accent: var(--start-accent, var(--mt-start, var(--accent)));
+    --dcc-accent-soft: var(--start-accent-soft, var(--mt-start-soft, var(--accent-soft)));
+    --dcc-border: var(--start-accent-border, color-mix(in srgb, var(--start-accent, var(--mt-start, var(--accent))) 24%, var(--border)));
+}
+
 .dev-check-card__title--training {
     color: var(--mt-training, var(--accent));
 }
@@ -420,6 +463,10 @@
     display: grid;
     gap: 8px;
     width: 100%;
+    min-width: 0;
+    padding: 14px var(--dcc-shell-pad-x) var(--dcc-shell-pad-bottom);
+    box-sizing: border-box;
+    align-content: start;
 }
 
 .dev-module-root--pending {
@@ -479,27 +526,24 @@
 }
 
 .check-viewport-item--scroll-card .dev-check-card__body {
-    --dcc-body-shadow-bleed-x: 12px;
-    --dcc-body-shadow-bleed-y: 10px;
     flex: 1 1 auto;
     min-height: 0;
-    box-sizing: border-box;
-    padding:
-        var(--dcc-body-shadow-bleed-y) var(--dcc-body-shadow-bleed-x) calc(var(--dcc-body-shadow-bleed-y) + 4px) var(--dcc-body-shadow-bleed-x);
-    margin:
-        calc(-1 * var(--dcc-body-shadow-bleed-y)) calc(-1 * var(--dcc-body-shadow-bleed-x)) calc(-1 * (var(--dcc-body-shadow-bleed-y) + 4px)) calc(-1 * var(--dcc-body-shadow-bleed-x));
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-gutter: stable both-edges;
+    scrollbar-gutter: auto;
+    overscroll-behavior: auto;
 }
 
 .check-viewport-item--scroll-card .dev-check-card__body.dev-fc-body {
     overflow-y: hidden;
     scrollbar-gutter: auto;
+    overscroll-behavior: auto;
 }
 
-.check-viewport-item--scroll-card .dev-check-card__runtime-task {
-    min-height: auto;
-    max-height: none;
-    overflow: visible;
+@media (max-width: 480px) {
+    .dev-check-card {
+        --dcc-shell-pad-x: 16px;
+        --dcc-shell-pad-top: 16px;
+        --dcc-shell-pad-bottom: 16px;
+    }
 }

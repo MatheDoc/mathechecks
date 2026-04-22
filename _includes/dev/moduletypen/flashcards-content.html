@@ -10,10 +10,20 @@
                     </div>
                 </div>
                 <div class="dev-check-card__header-actions">
-                    <button class="dev-check-card__action-btn" id="dev-fc-reset" type="button"
-                        title="Fortschritt loeschen" aria-label="Fortschritt loeschen">
-                        <i class="fa-solid fa-trash-can" aria-hidden="true"></i>
-                    </button>
+                    <details class="dev-check-card__actions-menu">
+                        <summary class="dev-check-card__actions-trigger" aria-label="Aktionen">
+                            <span class="dev-check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="dev-check-card__actions-popover" role="menu">
+                            <button type="button" class="dev-check-card__actions-item" role="menuitem"
+                                data-fc-reset-menu>
+                                <span class="dev-check-card__actions-icon" aria-hidden="true">🗑️</span>
+                                <span>Fortschritt löschen</span>
+                            </button>
+                        </div>
+                    </details>
                 </div>
             </div>
             <div class="dev-fc-message" id="dev-fc-message"></div>
