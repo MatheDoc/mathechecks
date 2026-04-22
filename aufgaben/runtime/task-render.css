@@ -237,6 +237,11 @@
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
 }
 
+.task .qa-item li,
+.task .qa-item li::marker {
+    color: #3d4452;
+}
+
 .task .qa-item::before {
     content: counter(qa-counter);
     position: absolute;
@@ -632,12 +637,20 @@
     position: relative;
     color: var(--text-body);
     line-height: 1.55;
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training, var(--accent-soft)) 10%);
-    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border));
+    background: var(--dcc-inner-surface,
+            linear-gradient(160deg,
+                color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training-soft, var(--accent-soft))),
+                color-mix(in srgb, var(--card-surface-2, #181824) 95%, transparent)));
+    border: 1px solid var(--dcc-inner-border, color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border)));
     border-radius: 12px;
     padding: 10px 10px 10px 42px;
-    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05));
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
+}
+
+.dev-check-card__runtime-task .qa-item li,
+.dev-check-card__runtime-task .qa-item li::marker {
+    color: var(--text-body);
 }
 
 .dev-check-card__runtime-task .qa-item::before {
@@ -660,9 +673,12 @@
 }
 
 .dev-check-card__runtime-task .qa-item:hover {
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 80%, var(--mt-training, #4c9aff) 20%);
-    border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 58%, var(--border));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, #4c9aff) 42%, var(--border));
+    background: var(--dcc-inner-surface-strong,
+            linear-gradient(160deg,
+                color-mix(in srgb, var(--card-surface-1, #1e1e2b) 82%, var(--mt-training-soft, var(--accent-soft))),
+                color-mix(in srgb, var(--card-surface-2, #181824) 92%, transparent)));
+    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 38%, var(--border));
+    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05)), 0 0 0 2px color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 14%, transparent);
     transform: none;
 }
 

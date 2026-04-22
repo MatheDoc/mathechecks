@@ -66,13 +66,16 @@ function enableTouchScroll(plotEl) {
 
 export function plotlyRender(container, data, layout = {}, config = {}) {
     const textColor = themeTextColor();
-    const dimColor = textColor + "33";   // ~20 % for gridlines
+    const gridColor = textColor + "22";
+    const zeroLineColor = textColor + "aa";
 
     const axisDefaults = {
         tickfont: { color: textColor },
         titlefont: { color: textColor },
-        gridcolor: dimColor,
-        zerolinecolor: textColor + "55",
+        gridcolor: gridColor,
+        zeroline: true,
+        zerolinecolor: zeroLineColor,
+        zerolinewidth: 3,
     };
 
     const mergedLayout = {

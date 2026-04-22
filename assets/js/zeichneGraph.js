@@ -1,3 +1,18 @@
+function getPlotlyAxisDefaults() {
+  const textColor =
+    getComputedStyle(document.documentElement).getPropertyValue("--text").trim() ||
+    "#1a1a2e";
+
+  return {
+    tickfont: { color: textColor },
+    titlefont: { color: textColor },
+    gridcolor: `${textColor}22`,
+    zeroline: true,
+    zerolinecolor: `${textColor}aa`,
+    zerolinewidth: 3,
+  };
+}
+
 function zeichneGraph(containerId, funktionen, optionen = {}) {
   // X-Achsenbereich: entweder übergeben oder Standardwerte verwenden
   const min = typeof optionen.xMin === "number" ? optionen.xMin : -5;
@@ -94,6 +109,7 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
 
   const layout = {
     xaxis: {
+      ...getPlotlyAxisDefaults(),
       ...(optionen.xAchse ? { title: { text: optionen.xAchse, y: 0.5 } } : {}),
       range:
         optionen.xMin !== undefined && optionen.xMax !== undefined
@@ -101,6 +117,7 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
           : undefined,
     },
     yaxis: {
+      ...getPlotlyAxisDefaults(),
       ...(optionen.yAchse ? { title: { text: optionen.yAchse, y: 0.5 } } : {}),
       // Allow setting yMin or yMax independently - use null for auto
       ...(optionen.yMin !== undefined || optionen.yMax !== undefined
