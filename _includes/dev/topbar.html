@@ -97,7 +97,7 @@
             rootVars.push(`--mt-${mt.key}-soft: ${mt.system_soft || `rgba(${mt.system_rgb}, 0.12)`};`);
             rootVars.push(`--mt-${mt.key}-border: rgba(${mt.system_rgb}, 0.30);`);
 
-            iconRules.push(`.module-icon-${mt.key} { background: rgba(${mt.system_rgb}, 0.12); color: ${mt.system_color}; }`);
+            iconRules.push(`.module-icon-${mt.key} { color: ${mt.system_color}; }`);
         });
 
         if (!rootVars.length && !iconRules.length) return;
@@ -121,7 +121,6 @@
             rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
             rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
             rules.push(`.s-hero[data-gebiet="${g.key}"], .mat-card--compact[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
-            rules.push(`.mod-start-content[data-gebiet="${g.key}"] { --start-accent: ${g.chip_color}; }`);
             rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
             rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
         });
