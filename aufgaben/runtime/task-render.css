@@ -219,7 +219,7 @@
     margin: 0;
     padding-left: 0;
     display: grid;
-    gap: 14px;
+    gap: 10px;
     list-style: none;
     counter-reset: qa-counter;
 }
@@ -235,15 +235,6 @@
     padding: 10px 10px 10px 42px;
     box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
-}
-
-.task .qa-item li,
-.task .qa-item li::marker {
-    color: #3d4452;
-}
-
-.task .qa-item li+li {
-    margin-top: 12px;
 }
 
 .task .qa-item::before {
@@ -266,11 +257,9 @@
 }
 
 .task .qa-item:hover {
-    background:
-        radial-gradient(circle at 16% 18%, rgba(76, 154, 255, 0.16), rgba(76, 154, 255, 0) 46%),
-        linear-gradient(180deg, #f3f8ff 0%, #d8e5fb 100%);
-    border-color: #aebfd8;
-    box-shadow: 0 0 0 3px rgba(199, 214, 234, 0.95);
+    background: #eaf1fb;
+    border-color: #b8c7dc;
+    box-shadow: 0 0 0 1px #c7d6ea;
 }
 
 .task .frage {
@@ -627,19 +616,13 @@
     max-width: 100% !important;
 }
 
-.dev-check-card__runtime-task ol.qa-list,
-.dev-check-card__runtime-task ul.qa-list {
+.dev-check-card__runtime-task .qa-list {
     margin: 0;
-    padding: 0 !important;
-    padding-inline: 0 !important;
-    padding-block: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 0 !important;
-    padding-inline-start: 0 !important;
-    padding-inline-end: 0 !important;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
     display: grid;
-    gap: 14px;
+    gap: 10px;
     list-style: none;
     counter-reset: qa-counter;
 }
@@ -649,24 +632,12 @@
     position: relative;
     color: var(--text-body);
     line-height: 1.55;
-    background: var(--dcc-inner-surface,
-            linear-gradient(160deg,
-                color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training-soft, var(--accent-soft))),
-                color-mix(in srgb, var(--card-surface-2, #181824) 95%, transparent)));
-    border: 1px solid var(--dcc-inner-border, color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border)));
+    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training, var(--accent-soft)) 10%);
+    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border));
     border-radius: 12px;
     padding: 10px 10px 10px 42px;
-    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05));
+    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
-}
-
-.dev-check-card__runtime-task .qa-item li,
-.dev-check-card__runtime-task .qa-item li::marker {
-    color: var(--text-body);
-}
-
-.dev-check-card__runtime-task .qa-item li+li {
-    margin-top: 12px;
 }
 
 .dev-check-card__runtime-task .qa-item::before {
@@ -689,24 +660,10 @@
 }
 
 .dev-check-card__runtime-task .qa-item:hover {
-    background:
-        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 15%, transparent), transparent 56%),
-        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 11%, transparent), transparent 50%),
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1, #1e1e2b) 76%, var(--mt-training-soft, var(--accent-soft))),
-            color-mix(in srgb, var(--card-surface-2, #181824) 82%, var(--mt-training-soft, var(--accent-soft))));
-    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 46%, var(--border));
-    box-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05)), 0 0 0 4px color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 24%, transparent);
+    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 80%, var(--mt-training, #4c9aff) 20%);
+    border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 58%, var(--border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, #4c9aff) 42%, var(--border));
     transform: none;
-}
-
-html.light .dev-check-card__runtime-task .qa-item:hover {
-    background:
-        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 14%, transparent), transparent 56%),
-        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent, var(--mt-training, #4c9aff)) 10%, transparent), transparent 50%),
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1, #ffffff) 84%, var(--dcc-accent, var(--mt-training, #4c9aff))),
-            color-mix(in srgb, var(--card-surface-2, #f8f9fd) 88%, var(--dcc-accent, var(--mt-training, #4c9aff))));
 }
 
 .dev-check-card__runtime-task .frage {
@@ -956,11 +913,11 @@ html.light .dev-check-card__runtime-task .qa-item:hover {
     border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1080px) {
     .task {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        column-gap: 22px;
+        column-gap: 16px;
         row-gap: 10px;
         align-items: start;
     }
@@ -987,7 +944,7 @@ html.light .dev-check-card__runtime-task .qa-item:hover {
     .dev-check-card__runtime-task {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        column-gap: 22px;
+        column-gap: 16px;
         row-gap: 10px;
         align-items: start;
     }
