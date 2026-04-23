@@ -131,6 +131,8 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
+const FEYNMAN_DELAY_MS = 30000;
+
 function buildBeispielUrl(check) {
   const nummer = String(Number(check.Nummer) || 0).padStart(2, "0");
   const sammlung = String(check.Sammlung || "").trim();
@@ -188,35 +190,21 @@ function cleanIchKannStatement(rawText) {
     .trim();
 }
 
-const FEYNMAN_PROMPT_PREFIX = "Erkläre in einfachen Worten, Schritt für Schritt und anhand eines Beispiels, wie man";
 const FEYNMAN_PROMPT_STEPS = [
   "in einfachen Worten",
   "Schritt für Schritt",
-  "anhand eines Beispiels",
+  "anhand eines Beispiels.",
 ];
+const FEYNMAN_EXPLAIN_PROMPT = "Erkläre jemandem die Kompetenz";
 
-function buildFeynmanPrompt(actionText) {
-  const action = String(actionText || "").trim().replace(/[.!?]+\s*$/g, "");
-  if (!action) {
-    return `${FEYNMAN_PROMPT_PREFIX} diesen Inhalt erklären kann.`;
-  }
-  return `${FEYNMAN_PROMPT_PREFIX} ${action}.`;
-}
-
-function buildFeynmanPromptMarkup(actionText) {
-  const action = String(actionText || "").trim().replace(/[.!?]+\s*$/g, "");
-  const safeAction = action || "diesen Inhalt erklären kann";
-  const intro = "Erkläre einem Lernpartner";
-  const outro = `wie man ${safeAction}.`;
+function buildFeynmanPromptListMarkup() {
   const stepsMarkup = FEYNMAN_PROMPT_STEPS
     .map((step) => `<li class="fy-prompt-list-item"><span class="fy-prompt-list-icon" aria-hidden="true">•</span><span>${escapeHtml(step)}</span></li>`)
     .join("");
   return `
-    <p class="fy-prompt-text">${escapeHtml(intro)}</p>
     <ul class="fy-prompt-list">
       ${stepsMarkup}
     </ul>
-    <p class="fy-prompt-text">${escapeHtml(outro)}</p>
   `;
 }
 
@@ -227,10 +215,6 @@ function buildFeynmanActionFromIchKann(check) {
     return "diesen Inhalt erklären kann";
   }
   return `${cleaned} kann`;
-}
-
-function buildFeynmanPromptFromIchKann(check) {
-  return buildFeynmanPrompt(buildFeynmanActionFromIchKann(check));
 }
 
 function convertJsonLatexToMarkdown(text) {
@@ -422,9 +406,10 @@ async function copyToClipboard(text) {
 }
 
 function renderCard(check) {
-  const promptAction = buildFeynmanActionFromIchKann(check);
-  const promptMarkup = buildFeynmanPromptMarkup(promptAction);
   const titel = check.Schlagwort || `Check ${check.Nummer}`;
+  const ichKann = check?.["Ich kann"] || "";
+  const competenceText = String(ichKann || titel).replace(/\.$/, "");
+  const promptListMarkup = buildFeynmanPromptListMarkup();
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
@@ -452,18 +437,30 @@ function renderCard(check) {
           </div>
         </div>
         <div class="dev-check-card__body">
-        <div style="font-size: 72px; text-align: center;">🎓</div>
-        ${promptMarkup}
+        <div class="module-flow-focus">
+          <p class="module-flow-competence">${escapeHtml(competenceText)}</p>
+        </div>
 
-
-        <div data-fy-stage="write">
-
-            <button class="module-action-button fy-reveal-btn" type="button" data-fy-reveal>Jetzt auswerten</button>
-
+        <div data-fy-stage="explain">
+          <div data-fy-idle>
+            <div class="module-flow-action-row">
+              <button class="module-action-button" type="button" data-fy-start>Start</button>
+            </div>
+          </div>
+          <div data-fy-active hidden>
+            <p class="module-flow-prompt">${escapeHtml(FEYNMAN_EXPLAIN_PROMPT)}</p>
+            ${promptListMarkup}
+            <div class="module-flow-timer-bar" data-fy-timer-bar="explain">
+              <div class="module-flow-timer-bar__fill" data-fy-timer-fill="explain"></div>
+            </div>
+            <div class="module-flow-action-row">
+              <button class="module-action-button module-action-button--locked" type="button" data-fy-to-evaluate disabled>Selbstcheck starten</button>
+            </div>
+          </div>
         </div>
 
         <div data-fy-stage="evaluate" hidden>
-          <p style="font-size:.88rem;color:var(--text-dim);line-height:1.6;margin-bottom:14px;">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
+          <p class="module-flow-prompt">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
           <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
           <p class="self-check-label">Konntest du es schlüssig erklären?</p>
           <div class="self-check-actions">
@@ -605,23 +602,46 @@ function initInteractiveFeynmanCards(root, checks) {
   cards.forEach((card, index) => {
     const check = checks[index];
     const stages = {
-      write: card.querySelector('[data-fy-stage="write"]'),
+      explain: card.querySelector('[data-fy-stage="explain"]'),
       evaluate: card.querySelector('[data-fy-stage="evaluate"]'),
       resultYes: card.querySelector('[data-fy-stage="result-yes"]'),
       resultNo: card.querySelector('[data-fy-stage="result-no"]'),
     };
 
-    const revealButton = card.querySelector("[data-fy-reveal]");
+    const explainIdle = card.querySelector("[data-fy-idle]");
+    const explainActive = card.querySelector("[data-fy-active]");
+    const startButton = card.querySelector("[data-fy-start]");
+    const toEvaluateButton = card.querySelector("[data-fy-to-evaluate]");
 
     function setStage(nextStage) {
-      stages.write.hidden = nextStage !== "write";
+      stages.explain.hidden = nextStage !== "explain";
       stages.evaluate.hidden = nextStage !== "evaluate";
       stages.resultYes.hidden = nextStage !== "result-yes";
       stages.resultNo.hidden = nextStage !== "result-no";
     }
 
+    function startTimerBar(scope, durationMs, btn) {
+      const fill = card.querySelector(`[data-fy-timer-fill="${scope}"]`);
+      if (fill) {
+        fill.style.transition = "none";
+        fill.style.width = "100%";
+        void fill.offsetWidth;
+        fill.style.transition = `width ${durationMs}ms linear`;
+        fill.style.width = "0%";
+      }
+      if (btn) {
+        btn.disabled = true;
+        btn.classList.add("module-action-button--locked");
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.classList.remove("module-action-button--locked");
+        }, durationMs);
+      }
+    }
+
     function revealEvaluation() {
       setStage("evaluate");
+      void renderMath(stages.evaluate);
       window.requestAnimationFrame(() => {
         resizePlotlyInNode(stages.evaluate);
       });
@@ -631,7 +651,14 @@ function initInteractiveFeynmanCards(root, checks) {
       setStage(canExplain ? "result-yes" : "result-no");
     }
 
-    revealButton?.addEventListener("click", revealEvaluation);
+    startButton?.addEventListener("click", () => {
+      if (explainIdle) explainIdle.hidden = true;
+      if (explainActive) explainActive.hidden = false;
+      void renderMath(explainActive);
+      startTimerBar("explain", FEYNMAN_DELAY_MS, toEvaluateButton);
+    });
+
+    toEvaluateButton?.addEventListener("click", revealEvaluation);
     card.querySelector('[data-fy-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-fy-answer="no"]')?.addEventListener("click", () => setResult(false));
 
