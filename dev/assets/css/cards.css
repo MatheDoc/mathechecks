@@ -17,7 +17,7 @@
     --dcc-border: var(--border);
     --dcc-radius: 24px;
     --dcc-header-pad-x: 14px;
-    --dcc-header-pad-top: 8px;
+    --dcc-header-pad-top: 0px;
     --dcc-header-pad-bottom: 8px;
     --dcc-header-action-size: 36px;
     --dcc-header-min-block-size: calc(var(--dcc-header-action-size) + var(--dcc-header-pad-top) + var(--dcc-header-pad-bottom));
@@ -42,7 +42,7 @@
     box-sizing: border-box;
     border: 1px solid color-mix(in srgb, var(--dcc-border) 78%, var(--glass-line, var(--border)));
     border-radius: 24px;
-    padding: 20px;
+    padding: 18px;
     display: flex;
     flex-direction: column;
     min-width: 0;
