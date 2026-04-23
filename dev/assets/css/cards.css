@@ -391,9 +391,9 @@ html.light .dev-check-card {
 }
 
 .dev-check-card--start {
-    --dcc-accent: var(--start-accent, var(--mt-start, var(--accent)));
-    --dcc-accent-soft: var(--start-accent-soft, var(--mt-start-soft, var(--accent-soft)));
-    --dcc-border: var(--start-accent-border, color-mix(in srgb, var(--start-accent, var(--mt-start, var(--accent))) 24%, var(--border)));
+    --dcc-accent: var(--mt-start, var(--accent));
+    --dcc-accent-soft: var(--mt-start-soft, var(--accent-soft));
+    --dcc-border: var(--mt-start-border, color-mix(in srgb, var(--mt-start, var(--accent)) 24%, var(--border)));
 }
 
 .dev-check-card__title--training {

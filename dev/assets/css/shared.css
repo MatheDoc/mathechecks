@@ -2340,40 +2340,23 @@ body.page-module-designs .shell {
 .s-quickstart-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
   min-height: 100%;
-  padding: 18px;
-  border-radius: 18px;
-  border: 1px solid var(--border);
-  background: color-mix(in srgb, var(--surface-elevated) 55%, var(--surface) 45%);
 }
 
 .s-quickstart-card p {
   margin: 0;
   max-width: none;
+  color: var(--text-body);
+  line-height: 1.65;
 }
 
 .s-quickstart-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   width: fit-content;
   margin-top: auto;
-  padding: 10px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  font-size: .86rem;
-  font-weight: 700;
   text-decoration: none;
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-}
-
-.s-quickstart-link:hover {
-  transform: translateY(-1px);
-  border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
-  background: color-mix(in srgb, var(--accent-soft) 28%, var(--surface));
 }
 
 .s-quickstart-link-icon {
@@ -2388,6 +2371,7 @@ body.page-module-designs .shell {
 
 .s-quickstart-link .s-quickstart-link-icon {
   background: transparent;
+  box-shadow: none;
 }
 
 @media (max-width: 600px) {
@@ -2415,26 +2399,11 @@ body.page-module-designs .shell {
 .s-vorkenntnisse {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 12px;
 }
 
 .s-vk-link {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--accent);
-  background: var(--accent-soft);
-  border: 1px solid rgba(124, 106, 255, .15);
   text-decoration: none;
-  transition: background 200ms, border-color 200ms;
-}
-
-.s-vk-link:hover {
-  background: rgba(124, 106, 255, .22);
-  border-color: rgba(124, 106, 255, .3);
 }
 
 .s-vk-extern {
@@ -2665,27 +2634,62 @@ body.page-module-designs .shell {
 }
 
 .module-action-button {
-  border: 1px solid rgba(var(--mt-recall-rgb, 245, 166, 35), .3);
-  background: var(--mt-recall-soft, var(--amber-soft));
-  color: var(--mt-recall, var(--amber));
+  --module-action-accent: var(--mt-recall, var(--amber));
+  --module-action-accent-rgb: var(--mt-recall-rgb, 245, 166, 35);
+  --module-action-soft: var(--mt-recall-soft, var(--amber-soft));
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(var(--module-action-accent-rgb), .3);
+  background: var(--module-action-soft);
+  color: var(--module-action-accent);
   font-family: inherit;
   font-size: .78rem;
   font-weight: 600;
+  line-height: 1.2;
   padding: 8px 14px;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 180ms;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, color 180ms ease;
   white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
 }
 
 .module-action-button:hover {
-  background: rgba(var(--mt-recall-rgb, 245, 166, 35), .2);
+  background: rgba(var(--module-action-accent-rgb), .2);
+}
+
+.module-action-button:focus-visible {
+  outline: none;
+  border-color: rgba(var(--module-action-accent-rgb), .5);
+  box-shadow: 0 0 0 3px rgba(var(--module-action-accent-rgb), .14), inset 0 1px 0 rgba(255, 255, 255, .04);
 }
 
 .module-action-button--locked {
   opacity: .4;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.module-action-button--start {
+  --module-action-accent: var(--mt-start, var(--text-dim));
+  --module-action-accent-rgb: var(--mt-start-rgb, 100, 116, 139);
+  --module-action-soft: rgba(var(--module-action-accent-rgb), .12);
+  border-color: rgba(var(--module-action-accent-rgb), .28);
+  background: rgba(var(--module-action-accent-rgb), .14);
+  color: var(--module-action-accent);
+  box-shadow: 0 10px 24px rgba(var(--module-action-accent-rgb), .10), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+.module-action-button--start:hover {
+  background: rgba(var(--module-action-accent-rgb), .22);
+  box-shadow: 0 12px 28px rgba(var(--module-action-accent-rgb), .12), inset 0 1px 0 rgba(255, 255, 255, .05);
+}
+
+.module-action-button--start:focus-visible {
+  border-color: rgba(var(--module-action-accent-rgb), .42);
+  box-shadow: 0 0 0 3px rgba(var(--module-action-accent-rgb), .16), 0 10px 24px rgba(var(--module-action-accent-rgb), .10), inset 0 1px 0 rgba(255, 255, 255, .04);
 }
 
 .recall-action-row,
