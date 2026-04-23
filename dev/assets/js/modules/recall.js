@@ -155,7 +155,6 @@ function renderCard(check) {
           </div>
           <div data-recall-active hidden>
             <p class="recall-prompt">Überlege jetzt, was dir alles zu dieser Kompetenz einfällt.</p>
-            <p class="recall-stage-note">Denke erst selbst nach, bevor du zu den Kernpunkten gehst.</p>
             <div class="recall-timer-bar" data-recall-timer-bar="recall">
               <div class="recall-timer-bar__fill" data-recall-timer-fill="recall"></div>
             </div>
@@ -167,7 +166,6 @@ function renderCard(check) {
 
         <div data-recall-stage="memorize" hidden>
           <p class="recall-prompt">Merke dir jetzt die wichtigsten Kernpunkte.</p>
-          <p class="recall-stage-note">Präge dir die Liste ein, bevor du in die Abfrage gehst.</p>
           <div class="recall-timer-bar" data-recall-timer-bar="memorize">
             <div class="recall-timer-bar__fill" data-recall-timer-fill="memorize"></div>
           </div>
@@ -184,7 +182,7 @@ function renderCard(check) {
             ${(refs.length ? refs : [""]).map((_, i) => `<input class="recall-input-slot" type="text" data-recall-slot="${i}" placeholder="Punkt ${i + 1}">`).join("")}
           </div>
           <div class="recall-action-row">
-            <button class="module-action-button" type="button" data-recall-to-compare>Kernpunkte vergleichen</button>
+            <button class="module-action-button" type="button" data-recall-to-compare>Selbstcheck starten</button>
           </div>
           <div class="recall-compare-panel" data-recall-compare-panel hidden>
           <div class="recall-divider">

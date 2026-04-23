@@ -16,6 +16,11 @@
     --dcc-accent-soft: var(--surface-hi);
     --dcc-border: var(--border);
     --dcc-radius: 24px;
+    --dcc-header-pad-x: 14px;
+    --dcc-header-pad-top: 8px;
+    --dcc-header-pad-bottom: 8px;
+    --dcc-header-action-size: 36px;
+    --dcc-header-min-block-size: calc(var(--dcc-header-action-size) + var(--dcc-header-pad-top) + var(--dcc-header-pad-bottom));
     --dcc-shell-pad-x: 18px;
     --dcc-shell-pad-top: 18px;
     --dcc-shell-pad-bottom: 18px;
@@ -36,8 +41,8 @@
     width: 100%;
     box-sizing: border-box;
     border: 1px solid color-mix(in srgb, var(--dcc-border) 78%, var(--glass-line, var(--border)));
-    border-radius: var(--dcc-radius);
-    padding: 0;
+    border-radius: 24px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -101,12 +106,23 @@ html.light .dev-check-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
-    font-size: 0.82rem;
+    min-block-size: var(--dcc-header-min-block-size);
+    position: relative;
+    font-size: 1rem;
     column-gap: 12px;
     margin-bottom: 0;
-    padding: var(--dcc-shell-pad-top) var(--dcc-shell-pad-x) 10px;
-    border-bottom: 1px solid color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
+    padding: var(--dcc-header-pad-top) var(--dcc-header-pad-x) var(--dcc-header-pad-bottom);
     flex: 0 0 auto;
+}
+
+.dev-check-card__header::after {
+    content: "";
+    position: absolute;
+    inset-inline: var(--dcc-header-pad-x);
+    bottom: 0;
+    height: 1px;
+    background: color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
+    pointer-events: none;
 }
 
 .dev-check-card__header-left {
@@ -184,46 +200,6 @@ html.light .dev-check-card {
     margin-inline-end: calc(6px - var(--dcc-shell-pad-x));
 }
 
-.dev-check-card__action-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    height: auto;
-    border-radius: 0;
-    border: 0;
-    background: transparent;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 0;
-    font-size: inherit;
-    text-decoration: none;
-    transition: color 0.15s, transform 0.15s;
-}
-
-.dev-check-card__action-btn:hover {
-    color: var(--dcc-accent);
-    transform: translateY(-1px);
-}
-
-.dev-check-card__action-btn--training {
-    color: var(--mt-training, var(--accent));
-}
-
-.dev-check-card__action-btn--recall {
-    color: var(--mt-recall, var(--amber));
-}
-
-.dev-check-card__action-btn--feynman {
-    color: var(--mt-feynman, var(--teal));
-}
-
-.dev-check-card__action-btn i {
-    font-size: inherit;
-    line-height: 1;
-    pointer-events: none;
-}
-
 /* ── Card three-dot actions menu ── */
 
 .dev-check-card__actions-menu {
@@ -237,12 +213,12 @@ html.light .dev-check-card {
     align-items: center;
     justify-content: center;
     min-width: 40px;
-    min-height: 36px;
+    min-height: var(--dcc-header-action-size);
     border: 0;
     background: transparent;
     color: var(--dcc-accent, var(--text));
     cursor: pointer;
-    padding: 10px 12px;
+    padding: 0px 12px;
     border-radius: 12px;
     transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
@@ -342,7 +318,7 @@ html.light .dev-check-card {
     color: var(--dcc-accent);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .dev-check-card__header {
         column-gap: 8px;
     }
@@ -464,9 +440,13 @@ html.light .dev-check-card {
     gap: 8px;
     width: 100%;
     min-width: 0;
-    padding: 14px var(--dcc-shell-pad-x) var(--dcc-shell-pad-bottom);
+    padding: 14px;
     box-sizing: border-box;
     align-content: start;
+}
+
+.dev-check-card__body>* {
+    min-width: 0;
 }
 
 .dev-module-root--pending {
@@ -538,12 +518,4 @@ html.light .dev-check-card {
     overflow-y: hidden;
     scrollbar-gutter: auto;
     overscroll-behavior: auto;
-}
-
-@media (max-width: 480px) {
-    .dev-check-card {
-        --dcc-shell-pad-x: 16px;
-        --dcc-shell-pad-top: 16px;
-        --dcc-shell-pad-bottom: 16px;
-    }
 }
