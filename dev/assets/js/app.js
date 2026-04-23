@@ -1,14 +1,14 @@
-import { initTrainingModule } from "./modules/training.js?v=20260423-market-legends-a";
+import { initTrainingModule } from "./modules/training.js";
 import { initRecallModule } from "./modules/recall.js";
 import { initFeynmanModule } from "./modules/feynman.js";
 import { initFlashcardsModule } from "./modules/flashcards.js";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260423-market-legends-a";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
 import { initCheckAnker } from "./modules/check-anker.js";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260423-skript-anchor-b";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js";
 import { getChecksByLernbereich } from "./data/checks-repo.js";
 
 const SCROLL_STORAGE_PREFIX = "mathechecks.dev.scrollPositions.v2";
@@ -16,7 +16,6 @@ const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
 const SESSION_NAV_STATE_KEY = "mathechecks.dev.lastModuleContext.v1";
 let suppressScrollSaveUntil = 0;
 let userScrolledSinceBootstrap = false;
-let userScrollIntentBound = false;
 
 function getTabScopeId() {
   try {
@@ -356,6 +355,7 @@ function bindScrollPersistence(pageKey) {
 
     // Ignore programmatic scroll updates (restore/smooth scroll) to avoid drift.
     if (event && event.isTrusted === false) return;
+    userScrolledSinceBootstrap = true;
     hasUserScrolled = true;
 
     if (scheduled) return;
@@ -377,28 +377,6 @@ function bindScrollPersistence(pageKey) {
   window.addEventListener("beforeunload", () => {
     if (hasUserScrolled && !shouldSuppressScrollSave()) saveScrollPosition(pageKey);
   });
-}
-
-function bindUserScrollIntent() {
-  if (userScrollIntentBound) return;
-  userScrollIntentBound = true;
-
-  const markUserScrollIntent = (event) => {
-    if (!event) return;
-
-    if (event.type === "keydown") {
-      const key = String(event.key || "");
-      if (!["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " ", "Spacebar"].includes(key)) {
-        return;
-      }
-    }
-
-    userScrolledSinceBootstrap = true;
-  };
-
-  window.addEventListener("wheel", markUserScrollIntent, { passive: true });
-  window.addEventListener("touchmove", markUserScrollIntent, { passive: true });
-  window.addEventListener("keydown", markUserScrollIntent);
 }
 
 function scheduleStabilizedRestore(pageKey, explicitTargetId) {
@@ -462,7 +440,7 @@ function scrollToSkriptTargetId(targetId, retries = 8, behavior = "auto") {
         const containerRect = scrollContainer.getBoundingClientRect();
         const targetRect = target.getBoundingClientRect();
         const y = scrollContainer.scrollTop + (targetRect.top - containerRect.top) - offset;
-        scrollContainer.scrollTop = y;
+        scrollContainer.scrollTo({ top: y, behavior });
       } else {
         const y = target.getBoundingClientRect().top + window.pageYOffset - offset;
         window.scrollTo({ top: y, behavior });
@@ -482,7 +460,7 @@ function scrollToSkriptTargetId(targetId, retries = 8, behavior = "auto") {
 function scheduleSkriptTargetAlignment(targetId) {
   if (!targetId) return;
 
-  const passesMs = [160, 420, 860, 1300, 2200, 3400];
+  const passesMs = [160, 420, 860, 1300];
   passesMs.forEach((delay) => {
     window.setTimeout(() => {
       if (userScrolledSinceBootstrap) return;
@@ -545,7 +523,6 @@ async function bootstrap() {
   setManualScrollRestoration();
   bindLernbereichSwitchTheme();
   bindLernbereichSwitchNavigation();
-  bindUserScrollIntent();
   userScrolledSinceBootstrap = false;
 
   const context = getPageContext();
