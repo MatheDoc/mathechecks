@@ -15,6 +15,9 @@
     --dcc-accent: var(--text);
     --dcc-accent-soft: var(--surface-hi);
     --dcc-border: var(--border);
+    --dcc-surface-tint: var(--dcc-accent-soft);
+    --dcc-surface-tint-strong: color-mix(in srgb, var(--dcc-accent) 18%, var(--dcc-accent-soft));
+    --dcc-surface-shell: var(--surface);
     --dcc-radius: 24px;
     --dcc-header-pad-x: 14px;
     --dcc-header-pad-top: 0px;
@@ -29,14 +32,14 @@
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 10%, transparent), transparent 56%),
         radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 8%, transparent), transparent 50%),
         linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 90%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 95%, var(--surface)));
+            color-mix(in srgb, var(--card-surface-1) 90%, var(--dcc-surface-tint)),
+            color-mix(in srgb, var(--card-surface-2) 95%, var(--dcc-surface-shell)));
     --dcc-inner-surface-strong:
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 56%),
         radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 11%, transparent), transparent 50%),
         linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 86%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 93%, var(--surface)));
+            color-mix(in srgb, var(--card-surface-1) 86%, var(--dcc-surface-tint-strong)),
+            color-mix(in srgb, var(--card-surface-2) 93%, var(--dcc-surface-shell)));
     --dcc-inner-shadow: inset 0 1px 0 rgba(255, 255, 255, .04), 0 8px 20px rgba(0, 0, 0, .08);
     width: 100%;
     box-sizing: border-box;
@@ -54,12 +57,12 @@
     background:
         linear-gradient(135deg,
             color-mix(in srgb, var(--dcc-accent) 82%, white),
-            color-mix(in srgb, var(--dcc-accent) 92%, var(--dcc-accent-soft))) top / 100% 3px no-repeat,
+            color-mix(in srgb, var(--dcc-accent) 92%, var(--dcc-surface-tint))) top / 100% 3px no-repeat,
         radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 55%),
         radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-accent) 10%, transparent), transparent 50%),
         linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 92%, var(--surface)),
-            color-mix(in srgb, var(--card-surface-2) 96%, var(--surface)));
+            color-mix(in srgb, var(--card-surface-1) 92%, var(--dcc-surface-tint)),
+            color-mix(in srgb, var(--card-surface-2) 96%, var(--dcc-surface-shell)));
     box-shadow: var(--shadow-card, none);
     transition: border-color 220ms, box-shadow 220ms, transform 220ms;
 }
@@ -70,32 +73,35 @@
 }
 
 html.light .dev-check-card {
+    --dcc-surface-tint: color-mix(in srgb, var(--dcc-accent) 12%, white);
+    --dcc-surface-tint-strong: color-mix(in srgb, var(--dcc-accent) 18%, white);
+    --dcc-surface-shell: color-mix(in srgb, var(--dcc-accent) 8%, white);
     --dcc-inner-border: color-mix(in srgb, var(--dcc-accent) 18%, rgba(0, 0, 0, .08));
     --dcc-inner-surface:
-        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 12%, transparent), transparent 56%),
-        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 9%, transparent), transparent 50%),
-        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 96%, transparent), transparent 68%),
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 84%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 87%, var(--dcc-accent-soft)));
-    --dcc-inner-surface-strong:
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 16%, transparent), transparent 56%),
-        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 12%, transparent), transparent 50%),
-        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 100%, transparent), transparent 68%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 11%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-surface-tint-strong) 100%, transparent), transparent 68%),
         linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 80%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 83%, var(--dcc-accent-soft)));
+            color-mix(in srgb, var(--card-surface-1) 82%, var(--dcc-surface-tint)),
+            color-mix(in srgb, var(--card-surface-2) 85%, var(--dcc-surface-shell)));
+    --dcc-inner-surface-strong:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--dcc-accent) 20%, transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-surface-tint-strong) 100%, transparent), transparent 68%),
+        linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1) 78%, var(--dcc-surface-tint-strong)),
+            color-mix(in srgb, var(--card-surface-2) 82%, var(--dcc-surface-tint)));
     border-color: color-mix(in srgb, var(--dcc-accent) 20%, var(--border));
     background:
         linear-gradient(135deg,
             color-mix(in srgb, var(--dcc-accent) 80%, white),
-            color-mix(in srgb, var(--dcc-accent) 88%, var(--dcc-accent-soft))) top / 100% 3px no-repeat,
-        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-accent) 18%, transparent), transparent 55%),
-        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-accent) 13%, transparent), transparent 50%),
-        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-accent-soft) 100%, transparent), transparent 68%),
+            color-mix(in srgb, var(--dcc-accent) 74%, var(--dcc-surface-tint-strong))) top / 100% 3px no-repeat,
+        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-accent) 20%, transparent), transparent 55%),
+        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-accent) 14%, transparent), transparent 50%),
+        radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--dcc-surface-tint-strong) 100%, transparent), transparent 68%),
         linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 84%, var(--dcc-accent-soft)),
-            color-mix(in srgb, var(--card-surface-2) 87%, var(--dcc-accent-soft)));
+            color-mix(in srgb, var(--card-surface-1) 80%, var(--dcc-surface-tint-strong)),
+            color-mix(in srgb, var(--card-surface-2) 84%, var(--dcc-surface-tint)));
 }
 
 .dev-check-card:has(.dev-check-card__actions-menu[open]) {
