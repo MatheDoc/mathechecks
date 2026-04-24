@@ -2,6 +2,22 @@
 
 /* Preview scope */
 .task {
+    --qa-item-accent: #4c9aff;
+    --qa-item-text: #3d4452;
+    --qa-item-bg:
+        radial-gradient(circle at 16% 18%, color-mix(in srgb, var(--qa-item-accent) 8%, transparent), transparent 46%),
+        linear-gradient(180deg, #f7faff 0%, #e8f0fb 100%);
+    --qa-item-border: #d3ddea;
+    --qa-item-counter-border: #cdd7e8;
+    --qa-item-counter-bg: linear-gradient(180deg, #ffffff 0%, #f1f6fd 100%);
+    --qa-item-counter-text: #2f3a4c;
+    --qa-item-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    --qa-item-hover-surface: linear-gradient(180deg, #eef6ff 0%, #cedffa 100%);
+    --qa-item-hover-glow-1: 20%;
+    --qa-item-hover-glow-2: 11%;
+    --qa-item-hover-border: #a5b8d6;
+    --qa-item-hover-ring: rgba(199, 214, 234, 0.95);
+    --qa-item-hover-ring-size: 4px;
     background: #fff;
     border: 1px solid #dfe5f1;
     border-radius: 12px;
@@ -227,14 +243,23 @@
 .task .qa-item {
     counter-increment: qa-counter;
     position: relative;
-    color: #3d4452;
+    color: var(--qa-item-text);
     line-height: 1.55;
-    background: #f7f9fd;
-    border: 1px solid #d9e0ec;
+    background: var(--qa-item-bg);
+    border: 1px solid var(--qa-item-border);
     border-radius: 12px;
     padding: 10px 10px 10px 42px;
-    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    box-shadow: var(--qa-item-shadow);
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease;
+}
+
+.task .qa-item li,
+.task .qa-item li::marker {
+    color: var(--qa-item-text);
+}
+
+.task .qa-item li+li {
+    margin-top: 12px;
 }
 
 .task .qa-item::before {
@@ -245,9 +270,9 @@
     width: 22px;
     height: 22px;
     border-radius: 999px;
-    border: 1px solid #cdd7e8;
-    background: #fff;
-    color: #2f3a4c;
+    border: 1px solid var(--qa-item-counter-border);
+    background: var(--qa-item-counter-bg);
+    color: var(--qa-item-counter-text);
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
@@ -257,9 +282,12 @@
 }
 
 .task .qa-item:hover {
-    background: #eaf1fb;
-    border-color: #b8c7dc;
-    box-shadow: 0 0 0 1px #c7d6ea;
+    background:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-1), transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-2), transparent), transparent 50%),
+        var(--qa-item-hover-surface);
+    border-color: var(--qa-item-hover-border);
+    box-shadow: var(--qa-item-shadow), 0 0 0 var(--qa-item-hover-ring-size) var(--qa-item-hover-ring);
 }
 
 .task .frage {
@@ -587,10 +615,42 @@
 
 /* Dev training runtime scope */
 .dev-check-card__runtime-task {
+    --qa-item-accent: var(--dcc-accent, var(--mt-training, #4c9aff));
+    --qa-item-text: var(--text-body);
+    --qa-item-bg: var(--dcc-inner-surface,
+            linear-gradient(160deg,
+                color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training-soft, var(--accent-soft))),
+                color-mix(in srgb, var(--card-surface-2, #181824) 95%, transparent)));
+    --qa-item-border: var(--dcc-inner-border, color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border)));
+    --qa-item-counter-border: color-mix(in srgb, var(--mt-training, #4c9aff) 32%, var(--border));
+    --qa-item-counter-bg: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-training-soft, var(--accent-soft)));
+    --qa-item-counter-text: var(--text-body);
+    --qa-item-shadow: var(--dcc-inner-shadow, 0 1px 2px rgba(20, 25, 40, 0.05));
+    --qa-item-hover-surface: linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1, #1e1e2b) 76%, var(--mt-training-soft, var(--accent-soft))),
+            color-mix(in srgb, var(--card-surface-2, #181824) 82%, var(--mt-training-soft, var(--accent-soft))));
+    --qa-item-hover-glow-1: 18%;
+    --qa-item-hover-glow-2: 13%;
+    --qa-item-hover-border: color-mix(in srgb, var(--qa-item-accent) 46%, var(--border));
+    --qa-item-hover-ring: color-mix(in srgb, var(--qa-item-accent) 28%, transparent);
+    --qa-item-hover-ring-size: 4px;
     display: grid;
     gap: 10px;
     width: 100%;
     box-sizing: border-box;
+}
+
+html.light .dev-check-card__runtime-task {
+    --qa-item-bg: var(--dcc-inner-surface,
+            linear-gradient(160deg,
+                color-mix(in srgb, var(--card-surface-1, #ffffff) 84%, var(--mt-training-soft, var(--accent-soft))),
+                color-mix(in srgb, var(--card-surface-2, #f8f9fd) 87%, var(--mt-training-soft, var(--accent-soft)))));
+    --qa-item-hover-surface: linear-gradient(160deg,
+            color-mix(in srgb, var(--card-surface-1, #ffffff) 82%, var(--qa-item-accent)),
+            color-mix(in srgb, var(--card-surface-2, #f8f9fd) 86%, var(--qa-item-accent)));
+    --qa-item-hover-glow-1: 17%;
+    --qa-item-hover-glow-2: 12%;
+    --qa-item-hover-ring: color-mix(in srgb, var(--qa-item-accent) 24%, rgba(199, 214, 234, 0.96));
 }
 
 .dev-check-card__runtime-task .intro {
@@ -630,14 +690,23 @@
 .dev-check-card__runtime-task .qa-item {
     counter-increment: qa-counter;
     position: relative;
-    color: var(--text-body);
+    color: var(--qa-item-text);
     line-height: 1.55;
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 90%, var(--mt-training, var(--accent-soft)) 10%);
-    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border));
+    background: var(--qa-item-bg);
+    border: 1px solid var(--qa-item-border);
     border-radius: 12px;
     padding: 10px 10px 10px 42px;
-    box-shadow: 0 1px 2px rgba(20, 25, 40, 0.05);
+    box-shadow: var(--qa-item-shadow);
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
+}
+
+.dev-check-card__runtime-task .qa-item li,
+.dev-check-card__runtime-task .qa-item li::marker {
+    color: var(--qa-item-text);
+}
+
+.dev-check-card__runtime-task .qa-item li+li {
+    margin-top: 12px;
 }
 
 .dev-check-card__runtime-task .qa-item::before {
@@ -648,9 +717,9 @@
     width: 22px;
     height: 22px;
     border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 32%, var(--border));
-    background: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-training-soft, var(--accent-soft)));
-    color: var(--text-body);
+    border: 1px solid var(--qa-item-counter-border);
+    background: var(--qa-item-counter-bg);
+    color: var(--qa-item-counter-text);
     font-size: 12px;
     font-weight: 700;
     line-height: 1;
@@ -660,9 +729,12 @@
 }
 
 .dev-check-card__runtime-task .qa-item:hover {
-    background: color-mix(in srgb, var(--card-surface-1, #1e1e2b) 80%, var(--mt-training, #4c9aff) 20%);
-    border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 58%, var(--border));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, #4c9aff) 42%, var(--border));
+    background:
+        radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-1), transparent), transparent 56%),
+        radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-2), transparent), transparent 50%),
+        var(--qa-item-hover-surface);
+    border-color: var(--qa-item-hover-border);
+    box-shadow: var(--qa-item-shadow), 0 0 0 var(--qa-item-hover-ring-size) var(--qa-item-hover-ring);
     transform: none;
 }
 
