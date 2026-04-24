@@ -12,7 +12,7 @@ import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260423-market-legends-a";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
-import { createCardActionsMenu, createCardMenuItem, createCardMenuLink } from "./ui/card-actions-menu.js";
+import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
 
 const TR_BEISPIEL_CACHE = new Map();
@@ -1039,22 +1039,26 @@ function createTaskCardNode(
   const aiAgentItem = createCardMenuItem({
     emoji: "✨",
     label: "KI-Erkläragent kopieren",
+    closeOnClick: false,
     onClick: async () => {
-      aiAgentItem.disabled = true;
-      try {
-        const beispielHtml = await fetchBeispielHtml(check);
-        const prompt = buildTrainingKiAgentPrompt({
-          check,
-          task: effectiveAufgabe,
-          taskIndex,
-          totalTasks,
-          runtimeTaskNode,
-          beispielHtml,
-        });
-        await copyToClipboard(prompt);
-      } finally {
-        aiAgentItem.disabled = false;
-      }
+      await runCardMenuItemFeedbackAction(aiAgentItem, {
+        pendingLabel: "Wird erstellt…",
+        successLabel: "Kopiert!",
+        errorLabel: "Fehler",
+        pendingIcon: "✨",
+        action: async () => {
+          const beispielHtml = await fetchBeispielHtml(check);
+          const prompt = buildTrainingKiAgentPrompt({
+            check,
+            task: effectiveAufgabe,
+            taskIndex,
+            totalTasks,
+            runtimeTaskNode,
+            beispielHtml,
+          });
+          return copyToClipboard(prompt);
+        },
+      });
     },
   });
   actionsPopover.appendChild(aiAgentItem);

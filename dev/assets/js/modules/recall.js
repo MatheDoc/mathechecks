@@ -177,7 +177,6 @@ function renderCard(check) {
 
         <div data-recall-stage="retrieve" hidden>
           <p class="recall-prompt">Welche Kernpunkte kannst du jetzt abrufen?</p>
-          <p class="recall-stage-note">Schreibe nur das auf, was dir jetzt ohne Hilfe einfällt.</p>
           <div class="recall-input-slots" data-recall-input-slots>
             ${(refs.length ? refs : [""]).map((_, i) => `<input class="recall-input-slot" type="text" data-recall-slot="${i}" placeholder="Punkt ${i + 1}">`).join("")}
           </div>
@@ -321,6 +320,33 @@ function bindJumpNavScrollSync(navNode, cardNodes) {
   });
 }
 
+function revealComparePanel(comparePanel) {
+  if (!comparePanel) return;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  comparePanel.hidden = false;
+  comparePanel.classList.remove("is-revealed");
+  void comparePanel.offsetWidth;
+  comparePanel.classList.add("is-revealed");
+
+  const cardBody = comparePanel.closest(".dev-check-card")?.querySelector(".dev-check-card__body");
+  const scrollTarget = comparePanel.querySelector(".recall-divider") || comparePanel;
+  if (cardBody) {
+    const bodyRect = cardBody.getBoundingClientRect();
+    const targetRect = scrollTarget.getBoundingClientRect();
+    const top = cardBody.scrollTop + (targetRect.top - bodyRect.top) - 10;
+
+    cardBody.scrollTo({
+      top: Math.max(0, top),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  }
+
+  window.setTimeout(() => {
+    comparePanel.classList.remove("is-revealed");
+  }, 900);
+}
+
 function initInteractiveRecallCards(root) {
   const cards = root.querySelectorAll("[data-recall-card]");
 
@@ -407,7 +433,7 @@ function initInteractiveRecallCards(root) {
           ? `<div class="recall-user-entries">${entries.map((e) => `<span class="recall-keyword recall-keyword--user"><span class="recall-keyword-dot"></span>${escapeHtml(e)}</span>`).join("")}</div>`
           : `<p class="recall-no-refs">Keine Notizen eingegeben.</p>`;
       }
-      if (comparePanel) comparePanel.hidden = false;
+      revealComparePanel(comparePanel);
       void renderMath(stageEls.retrieve);
     });
 

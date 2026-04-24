@@ -83,7 +83,6 @@ Die Funktion `startTimerBar(scope, durationMs, btn)` wird für beide Phasen einh
 |---|---|
 | `recall-focus` | dauerhaft sichtbarer Fokus-Block für die Kompetenz |
 | `recall-prompt` | Anweisungstext pro Phase |
-| `recall-stage-note` | ergänzender Hinweistext unter dem Prompt |
 | `recall-action-row` | Flex-Container für Buttons |
 | `module-action-button` | Aktionsbutton; in Recall amber, in Feynman modulär überschrieben |
 | `module-action-button--locked` | Gesperrt-Zustand (Opacity + pointer-events) |

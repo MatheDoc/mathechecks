@@ -121,7 +121,6 @@ Der Content-Agent ist verantwortlich für die inhaltlichen Felder in `checks.jso
 | `Ich kann` | Content | Kompetenzformulierung — präzise, überprüfbar, beginnt mit Verb |
 | `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter) |
 | `Tipps` | Content | Array mit kompakten Erinnerungsstützen (dürfen LaTeX enthalten) |
-| `Recall` | Content | Optionale Recall-Metadaten pro Check, z. B. eine Kurzbezeichnung |
 | `skript_anchor` | Content | Schema: `check-<gebiet>-<lernbereich>-<NN>` |
 | `Flashtyp` | Content | `einzeln` oder `gruppiert` |
 | `questionOrder` | Content | `shuffle` (Standard) oder `sequential` |
