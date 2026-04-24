@@ -2674,20 +2674,30 @@ body.page-module-designs .shell {
   --module-action-accent: var(--mt-start, var(--text-dim));
   --module-action-accent-rgb: var(--mt-start-rgb, 100, 116, 139);
   --module-action-soft: rgba(var(--module-action-accent-rgb), .12);
-  border-color: rgba(var(--module-action-accent-rgb), .28);
-  background: rgba(var(--module-action-accent-rgb), .14);
-  color: var(--module-action-accent);
-  box-shadow: 0 10px 24px rgba(var(--module-action-accent-rgb), .10), inset 0 1px 0 rgba(255, 255, 255, .04);
+  border-color: rgba(var(--module-action-accent-rgb), .52);
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--module-action-accent) 88%, white 12%),
+      color-mix(in srgb, var(--module-action-accent) 82%, black 18%));
+  color: #f6fbff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .18);
+  box-shadow: 0 12px 28px rgba(var(--module-action-accent-rgb), .22), inset 0 1px 0 rgba(255, 255, 255, .16);
 }
 
 .module-action-button--start:hover {
-  background: rgba(var(--module-action-accent-rgb), .22);
-  box-shadow: 0 12px 28px rgba(var(--module-action-accent-rgb), .12), inset 0 1px 0 rgba(255, 255, 255, .05);
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--module-action-accent) 84%, white 16%),
+      color-mix(in srgb, var(--module-action-accent) 86%, black 14%));
+  box-shadow: 0 14px 30px rgba(var(--module-action-accent-rgb), .26), inset 0 1px 0 rgba(255, 255, 255, .18);
 }
 
 .module-action-button--start:focus-visible {
-  border-color: rgba(var(--module-action-accent-rgb), .42);
-  box-shadow: 0 0 0 3px rgba(var(--module-action-accent-rgb), .16), 0 10px 24px rgba(var(--module-action-accent-rgb), .10), inset 0 1px 0 rgba(255, 255, 255, .04);
+  border-color: rgba(var(--module-action-accent-rgb), .72);
+  box-shadow: 0 0 0 3px rgba(var(--module-action-accent-rgb), .22), 0 12px 28px rgba(var(--module-action-accent-rgb), .22), inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.module-action-button--start .s-quickstart-link-icon {
+  background: rgba(255, 255, 255, .18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22);
 }
 
 .recall-action-row,
