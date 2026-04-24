@@ -8,7 +8,7 @@ import {
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260423-market-legends-a";
-import { createCardMenuItem } from "./ui/card-actions-menu.js";
+import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
 import {
     buildTrainingKiAgentPrompt,
@@ -174,22 +174,26 @@ function createTaskCard(
     const aiAgentItem = createCardMenuItem({
         emoji: "✨",
         label: "KI-Erkläragent kopieren",
+        closeOnClick: false,
         onClick: async () => {
-            aiAgentItem.disabled = true;
-            try {
-                const beispielHtml = await fetchTrainingBeispielHtml(check);
-                const prompt = buildTrainingKiAgentPrompt({
-                    check,
-                    task: effectiveAufgabe,
-                    taskIndex,
-                    totalTasks,
-                    runtimeTaskNode,
-                    beispielHtml,
-                });
-                await copyTrainingPromptToClipboard(prompt);
-            } finally {
-                aiAgentItem.disabled = false;
-            }
+            await runCardMenuItemFeedbackAction(aiAgentItem, {
+                pendingLabel: "Wird erstellt…",
+                successLabel: "Kopiert!",
+                errorLabel: "Fehler",
+                pendingIcon: "✨",
+                action: async () => {
+                    const beispielHtml = await fetchTrainingBeispielHtml(check);
+                    const prompt = buildTrainingKiAgentPrompt({
+                        check,
+                        task: effectiveAufgabe,
+                        taskIndex,
+                        totalTasks,
+                        runtimeTaskNode,
+                        beispielHtml,
+                    });
+                    return copyTrainingPromptToClipboard(prompt);
+                },
+            });
         },
     });
     actionsPopover.appendChild(aiAgentItem);

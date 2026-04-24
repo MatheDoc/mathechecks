@@ -1,6 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { renderCardActionsMenuMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 
 const FY_BEISPIEL_CACHE = new Map();
@@ -596,6 +596,32 @@ function bindJumpNavScrollSync(navNode, cardNodes) {
   });
 }
 
+function revealEvaluationStage(stageEl) {
+  if (!stageEl) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const cardBody = stageEl.closest(".dev-check-card")?.querySelector(".dev-check-card__body");
+
+  stageEl.classList.remove("is-revealed");
+  void stageEl.offsetWidth;
+  stageEl.classList.add("is-revealed");
+
+  if (cardBody) {
+    const bodyRect = cardBody.getBoundingClientRect();
+    const stageRect = stageEl.getBoundingClientRect();
+    const top = cardBody.scrollTop + (stageRect.top - bodyRect.top) - 10;
+
+    cardBody.scrollTo({
+      top: Math.max(0, top),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+  }
+
+  window.setTimeout(() => {
+    stageEl.classList.remove("is-revealed");
+  }, 900);
+}
+
 function initInteractiveFeynmanCards(root, checks) {
   const cards = root.querySelectorAll("[data-fy-card]");
 
@@ -642,6 +668,7 @@ function initInteractiveFeynmanCards(root, checks) {
     function revealEvaluation() {
       setStage("evaluate");
       void renderMath(stages.evaluate);
+      revealEvaluationStage(stages.evaluate);
       window.requestAnimationFrame(() => {
         resizePlotlyInNode(stages.evaluate);
       });
@@ -664,37 +691,19 @@ function initInteractiveFeynmanCards(root, checks) {
 
     const kiButton = card.querySelector("[data-fy-ki-menu]");
     if (kiButton && check) {
-      const defaultLabel = "KI-Lernpartner kopieren";
-      let feedbackResetId = null;
-
       kiButton.addEventListener("click", async (event) => {
         event.stopPropagation();
-        if (feedbackResetId) {
-          window.clearTimeout(feedbackResetId);
-          feedbackResetId = null;
-        }
-
-        kiButton.disabled = true;
-        const labelSpan = kiButton.querySelector("span:last-child");
-        if (labelSpan) labelSpan.textContent = "Wird erstellt…";
-
-        let nextLabel = "Fehler";
-        try {
-          const beispielHtml = await fetchBeispielHtml(check);
-          const agentPrompt = buildKiAgentPrompt(check, beispielHtml);
-          const ok = await copyToClipboard(agentPrompt);
-          nextLabel = ok ? "Kopiert!" : "Fehler";
-        } catch {
-          nextLabel = "Fehler";
-        }
-
-        if (labelSpan) labelSpan.textContent = nextLabel;
-        feedbackResetId = window.setTimeout(() => {
-          if (labelSpan) labelSpan.textContent = defaultLabel;
-          kiButton.disabled = false;
-          kiButton.closest(".dev-check-card__actions-menu")?.removeAttribute("open");
-          feedbackResetId = null;
-        }, 2000);
+        await runCardMenuItemFeedbackAction(kiButton, {
+          pendingLabel: "Wird erstellt…",
+          successLabel: "Kopiert!",
+          errorLabel: "Fehler",
+          pendingIcon: "✨",
+          action: async () => {
+            const beispielHtml = await fetchBeispielHtml(check);
+            const agentPrompt = buildKiAgentPrompt(check, beispielHtml);
+            return copyToClipboard(agentPrompt);
+          },
+        });
       });
     }
   });

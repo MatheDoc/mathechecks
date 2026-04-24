@@ -16,6 +16,29 @@ const TAB_SCOPE_SESSION_KEY = "mathechecks.dev.tabScope.v1";
 const SESSION_NAV_STATE_KEY = "mathechecks.dev.lastModuleContext.v1";
 let suppressScrollSaveUntil = 0;
 let userScrolledSinceBootstrap = false;
+let userInteractedSinceBootstrap = false;
+let userInteractionTrackingBound = false;
+const USER_SCROLL_KEYS = new Set(["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "]);
+
+function bindUserInteractionTracking() {
+  if (userInteractionTrackingBound) return;
+  userInteractionTrackingBound = true;
+
+  const markUserInteraction = (event) => {
+    if (event?.type === "keydown") {
+      const key = String(event.key || "");
+      if (!USER_SCROLL_KEYS.has(key)) {
+        return;
+      }
+    }
+    userInteractedSinceBootstrap = true;
+  };
+
+  window.addEventListener("wheel", markUserInteraction, { passive: true, capture: true });
+  window.addEventListener("touchstart", markUserInteraction, { passive: true, capture: true });
+  window.addEventListener("pointerdown", markUserInteraction, { passive: true, capture: true });
+  window.addEventListener("keydown", markUserInteraction, { capture: true });
+}
 
 function getTabScopeId() {
   try {
@@ -171,6 +194,24 @@ function resolveScrollTargetId(context) {
     return decodeURIComponent(hash.slice(1));
   }
   return "";
+}
+
+function clearLocationHash() {
+  try {
+    const url = new URL(window.location.href);
+    url.hash = "";
+    window.history.replaceState(null, "", `${url.pathname}${url.search}`);
+  } catch {
+    // Ignore malformed URL edge cases and keep the page usable.
+  }
+}
+
+function resetDeferredSkriptHashScroll() {
+  const moduleScroller = document.querySelector(".mod-main");
+  if (moduleScroller) {
+    moduleScroller.scrollTop = 0;
+  }
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
 }
 
 function getScrollPageKey() {
@@ -387,13 +428,13 @@ function scheduleStabilizedRestore(pageKey, explicitTargetId) {
   passesMs.forEach((delay) => {
     window.setTimeout(() => {
       // Never fight with the user once they started scrolling manually.
-      if (userScrolledSinceBootstrap) return;
+      if (userInteractedSinceBootstrap) return;
       restoreScrollPosition(pageKey);
     }, delay);
   });
 
   window.addEventListener("load", () => {
-    if (userScrolledSinceBootstrap) return;
+    if (userInteractedSinceBootstrap) return;
     restoreScrollPosition(pageKey);
   }, { once: true });
 }
@@ -463,13 +504,13 @@ function scheduleSkriptTargetAlignment(targetId) {
   const passesMs = [160, 420, 860, 1300];
   passesMs.forEach((delay) => {
     window.setTimeout(() => {
-      if (userScrolledSinceBootstrap) return;
+      if (userInteractedSinceBootstrap) return;
       scrollToSkriptTargetId(targetId, 0, "auto");
     }, delay);
   });
 
   window.addEventListener("load", () => {
-    if (userScrolledSinceBootstrap) return;
+    if (userInteractedSinceBootstrap) return;
     scrollToSkriptTargetId(targetId, 0, "auto");
   }, { once: true });
 }
@@ -523,15 +564,24 @@ async function bootstrap() {
   setManualScrollRestoration();
   bindLernbereichSwitchTheme();
   bindLernbereichSwitchNavigation();
+  bindUserInteractionTracking();
   userScrolledSinceBootstrap = false;
+  userInteractedSinceBootstrap = false;
 
   const context = getPageContext();
   const pageKey = getScrollPageKey();
   const explicitTargetId = resolveScrollTargetId(context);
   const contentRoot = document.querySelector(".mod-content") || document.body;
   const allowStoredHydration = shouldHydrateLocalState(context);
+  const shouldDeferNativeSkriptHash = context.moduleKey === "skript" && Boolean(explicitTargetId);
   let handledSkriptTargetEarly = false;
   let scriptContentRoot = null;
+
+  if (shouldDeferNativeSkriptHash) {
+    suppressScrollSaveFor(1200);
+    clearLocationHash();
+    resetDeferredSkriptHashScroll();
+  }
 
   bindScrollPersistence(pageKey);
 

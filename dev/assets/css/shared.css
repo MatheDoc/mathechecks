@@ -1292,9 +1292,7 @@ body.page-dev-default .shell {
     gap: 12px;
   }
 
-  .page-context {
-    display: none;
-  }
+
 }
 
 /* ─────────────────────── Animations ─────────────────────────── */
@@ -1607,12 +1605,8 @@ body.page-module-designs .mod-content {
   margin-right: 2px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 680px) {
   .brand-text {
-    display: none;
-  }
-
-  .page-context {
     display: none;
   }
 
@@ -2625,10 +2619,55 @@ body.page-module-designs .shell {
 
 .recall-prompt,
 .module-flow-prompt {
-  font-size: .9rem;
-  color: var(--text-body);
-  line-height: 1.55;
+  --module-prompt-accent: var(--dcc-accent, var(--mt-recall, var(--amber)));
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 2px 0 2px 18px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  font-size: .96rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -.01em;
+  line-height: 1.45;
   margin-bottom: 18px;
+  text-wrap: pretty;
+  animation: fadeSlideIn 260ms ease both;
+}
+
+.recall-prompt::before,
+.module-flow-prompt::before {
+  content: "Dein Auftrag";
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--module-prompt-accent) 16%, transparent);
+  color: var(--module-prompt-accent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--module-prompt-accent) 18%, transparent);
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.recall-prompt::after,
+.module-flow-prompt::after {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--module-prompt-accent) 76%, white),
+      var(--module-prompt-accent));
 }
 
 .module-action-button {
@@ -2695,11 +2734,6 @@ body.page-module-designs .shell {
   box-shadow: 0 0 0 3px rgba(var(--module-action-accent-rgb), .22), 0 12px 28px rgba(var(--module-action-accent-rgb), .22), inset 0 1px 0 rgba(255, 255, 255, .16);
 }
 
-.module-action-button--start .s-quickstart-link-icon {
-  background: rgba(255, 255, 255, .18);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22);
-}
-
 .recall-action-row,
 .module-flow-action-row {
   display: flex;
@@ -2752,14 +2786,6 @@ body.page-module-designs .shell {
   padding: 0;
 }
 
-.recall-stage-note {
-  font-size: .82rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-top: -10px;
-  margin-bottom: 18px;
-}
-
 .recall-timer-bar,
 .module-flow-timer-bar {
   position: relative;
@@ -2769,6 +2795,7 @@ body.page-module-designs .shell {
   border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-recall, var(--amber))) 16%, var(--border));
   border-radius: 999px;
   overflow: hidden;
+  margin-top: 18px;
   margin-bottom: 18px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, .18);
 }
@@ -2880,6 +2907,16 @@ body.page-module-designs .shell {
 
 .recall-compare-panel {
   margin-top: 18px;
+  padding: 18px 16px 16px;
+  border: 1px solid rgba(var(--mt-recall-rgb, 245, 166, 35), .16);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(var(--mt-recall-rgb, 245, 166, 35), .08), rgba(255, 255, 255, .02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  scroll-margin-top: calc(var(--module-sticky-top) + 96px);
+}
+
+.recall-compare-panel.is-revealed {
+  animation: recallCompareReveal 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fy-reveal-btn {
@@ -2957,10 +2994,44 @@ body.page-module-designs .shell {
 }
 
 .self-check-label {
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--text-dim);
-  margin-bottom: 12px;
+  --module-prompt-accent: var(--dcc-accent, var(--mt-recall, var(--amber)));
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--module-prompt-accent) 18%, var(--border));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--module-prompt-accent) 10%, transparent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
+}
+
+.self-check-label::before {
+  content: "Selbstcheck";
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--module-prompt-accent) 14%, transparent);
+  color: var(--module-prompt-accent);
+  font-size: .66rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (max-width: 600px) {
+
+  .recall-prompt,
+  .module-flow-prompt {
+    padding: 2px 0 2px 16px;
+    font-size: .92rem;
+  }
 }
 
 .self-check-actions {
@@ -3545,6 +3616,14 @@ body.page-module-designs .shell {
   padding: 28px 28px;
   backdrop-filter: blur(14px);
   transition: border-color 300ms;
+}
+
+.dev-check-card--feynman [data-fy-stage="evaluate"] {
+  scroll-margin-top: calc(var(--module-sticky-top) + 96px);
+}
+
+.dev-check-card--feynman [data-fy-stage="evaluate"].is-revealed {
+  animation: feynmanEvaluateReveal 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fy-card.p-kann {
@@ -5054,4 +5133,28 @@ html.light .mat-lb-dropdown option,
 html.light .filter-select option {
   background: var(--dropdown-option-bg);
   color: var(--text);
+}
+
+@keyframes recallCompareReveal {
+  0% {
+    border-color: rgba(var(--mt-recall-rgb, 245, 166, 35), .55);
+    box-shadow: 0 0 0 4px rgba(var(--mt-recall-rgb, 245, 166, 35), .16), inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+
+  100% {
+    border-color: rgba(var(--mt-recall-rgb, 245, 166, 35), .16);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  }
+}
+
+@keyframes feynmanEvaluateReveal {
+  0% {
+    background: linear-gradient(180deg, rgba(var(--mt-feynman-rgb, 61, 214, 200), .14), rgba(255, 255, 255, .02));
+    box-shadow: 0 0 0 4px rgba(var(--mt-feynman-rgb, 61, 214, 200), .12);
+  }
+
+  100% {
+    background: transparent;
+    box-shadow: none;
+  }
 }
