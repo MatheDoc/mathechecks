@@ -1,7 +1,7 @@
 ﻿---
 layout: null
 ---
-Was können wit als binomialverteilte Zufallsgröße auffassen?
+Was können wir als binomialverteilte Zufallsgröße auffassen?
 
 - 10 maliges Ziehen mit Zurücklegen von Losen (Treffer/Niete)
 
