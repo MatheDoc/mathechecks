@@ -12,9 +12,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Feste Versuchsanzahl \\(n\\)",
-            "Zwei mögliche Ausgänge pro Versuch",
-            "Gleichbleibende Trefferwahrscheinlichkeit \\(p\\)"
+            "feste Versuchsanzahl \\(n\\)",
+            "pro Versuch genau zwei Ausgänge: Treffer oder Niete",
+            "Trefferwahrscheinlichkeit \\(p\\) in jedem Versuch gleich"
         ]
     },
     {
@@ -30,11 +30,12 @@
         "skript_anchor": "check-stochastik-binomialverteilung-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Bernoulli-Formel: \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\)",
-            "Trefferanzahl \\(k\\)",
-            "Versuchsanzahl \\(n\\)",
-            "Trefferwahrscheinlichkeit \\(p\\)",
-            "Nietenwahrscheinlichkeit \\(1-p\\)"
+            "\\(P(X=k)\\): Wahrscheinlichkeit für genau \\(k\\) Treffer",
+            "\\(k\\): Anzahl der Treffer",
+            "\\(n\\): Anzahl der Versuche",
+            "\\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "\\(1-p\\): Nietenwahrscheinlichkeit pro Versuch",
+            "\\(\\binom{n}{k}\\): Anzahl der Möglichkeiten für genau \\(k\\) Treffer"
         ]
     },
     {
@@ -50,7 +51,7 @@
         "skript_anchor": "check-stochastik-binomialverteilung-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Kumulierte Wahrscheinlichkeit: \\(P(X\\leq k)\\)",
+            "\\(P(X\\leq k)\\): kumulierte Wahrscheinlichkeit bis einschließlich \\(k\\)",
             "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)",
             "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)",
             "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
@@ -69,9 +70,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Identifikation von \\(n\\) und \\(p\\)",
-            "ganzzahlige Intervallgrenzen bestimmen",
-            "\\(Bcd(a;b;n;p)=P(a\\leq X\\leq b)\\)"
+            "\\(n\\): Anzahl der Versuche",
+            "\\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "\\(a\\), \\(b\\): untere und obere ganzzahlige Intervallgrenze",
+            "\\(Bcd(a;b;n;p)\\): Wahrscheinlichkeit für \\(a \\leq X \\leq b\\)"
         ]
     },
     {
@@ -87,10 +89,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-05",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Binomialverteilt oder nicht",
-            "\\(n\\) und \\(p\\) im Sachzusammenhang",
-            "Treffer und Niete",
-            "gerundete Intervallgrenzen"
+            "zuerst prüfen: binomialverteilt oder nicht",
+            "\\(n\\): Anzahl der Versuche, \\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "Treffer im Sachzusammenhang festlegen",
+            "Intervallgrenzen auf ganze Trefferzahlen runden"
         ]
     },
     {
@@ -106,9 +108,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(x\\)-Achse: Trefferanzahlen",
-            "\\(y\\)-Achse: Einzelwahrscheinlichkeiten \\(P(X=k)\\)",
-            "Intervallwahrscheinlichkeit = Summe der Einzelwahrscheinlichkeiten"
+            "\\(x\\)-Achse: Anzahl der Treffer",
+            "\\(y\\)-Achse: Einzelwahrscheinlichkeit \\(P(X=k)\\)",
+            "Intervallwahrscheinlichkeit: passende Balken im Intervall addieren"
         ]
     },
     {
@@ -124,9 +126,10 @@
         "skript_anchor": "check-stochastik-binomialverteilung-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(x\\)-Achse: Trefferanzahlen",
-            "\\(y\\)-Achse: kumulierte Wahrscheinlichkeiten \\(P(X\\leq k)\\)",
-            "Einzelwahrscheinlichkeiten als Stufenhöhen"
+            "\\(x\\)-Achse: Anzahl der Treffer",
+            "\\(y\\)-Achse: kumulierte Wahrscheinlichkeit \\(P(X\\leq k)\\)",
+            "Balkenhöhe bei \\(k\\): Wahrscheinlichkeit für höchstens \\(k\\) Treffer",
+            "Einzelwahrscheinlichkeit: passende Stufenhöhen"
         ]
     },
     {
@@ -142,9 +145,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-08",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(a, b, p\\) identifizieren",
-            "Ansatz formulieren",
-            "\\(n\\) mit Tabelle bestimmen"
+            "\\(a\\), \\(b\\) und \\(p\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "\\(n\\) durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -160,9 +163,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-09",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(a, b, n\\) identifizieren",
-            "Ansatz formulieren",
-            "\\(p\\) mit Tabelle bestimmen"
+            "\\(a\\), \\(b\\) und \\(n\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "\\(p\\) durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -178,9 +181,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-10",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(a\\text{ oder }b, p, n\\) identifizieren",
-            "Ansatz formulieren",
-            "\\(k\\) mit Tabelle bestimmen"
+            "gegebene Intervallgrenze sowie \\(n\\) und \\(p\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "fehlende Intervallgrenze durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -288,8 +291,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-16",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(\\mu\\pm\\) absoluter Wert",
-            "innerhalb oder außerhalb?",
+            "Umgebung identifizieren: \\(\\mu \\pm\\) absoluter Wert",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
             "Intervallwahrscheinlichkeit berechnen"
         ]
     },
@@ -306,8 +310,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-17",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(\\mu\\pm\\) relativer Wert",
-            "innerhalb oder außerhalb?",
+            "Umgebung identifizieren: \\(\\mu \\pm\\) relativer Wert",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
             "Intervallwahrscheinlichkeit berechnen"
         ]
     },
@@ -324,8 +329,9 @@
         "skript_anchor": "check-stochastik-binomialverteilung-18",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\(\\mu\\pm\\) Vielfaches von \\(\\sigma\\)",
-            "innerhalb oder außerhalb?",
+            "Umgebung identifizieren: \\(\\mu \\pm\\) Vielfaches von \\(\\sigma\\)",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
             "Intervallwahrscheinlichkeit berechnen"
         ]
     },
