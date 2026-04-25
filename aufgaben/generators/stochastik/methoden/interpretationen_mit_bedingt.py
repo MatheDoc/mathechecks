@@ -110,7 +110,7 @@ def _build_mc_answer(question_key: str, scenario) -> str:
 # ── Generator ─────────────────────────────────────────────────────────────
 
 class MethodenInterpretationenMitBedingtGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.interpretationen_mitBedingt"
+    generator_key = "stochastik.methoden.interpretationen_mit_bedingt"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)

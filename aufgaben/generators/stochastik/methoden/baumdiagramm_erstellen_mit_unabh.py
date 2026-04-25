@@ -91,7 +91,7 @@ del _seen, _anchor, _other
 
 
 class MethodenBaumdiagrammErstellenMitUnabhGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_erstellen_mitUnabh"
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_mit_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
