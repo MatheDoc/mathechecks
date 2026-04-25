@@ -88,7 +88,7 @@
     --task-table-bg-muted: color-mix(in srgb, white 10%, transparent);
     --task-table-vft-bg-muted: color-mix(in srgb, white 15%, transparent);
     --task-table-border: color-mix(in srgb, white 10%, var(--border));
-    --task-table-border-strong: rgba(58, 62, 70, 0.96);
+    --task-table-border-strong: color-mix(in srgb, var(--task-table-heading) 36%, var(--task-table-border));
     --task-table-text: var(--text-body);
     --task-table-heading: var(--text);
 }
@@ -98,7 +98,7 @@
     --task-table-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, rgba(255, 255, 255, 0.04)));
     --task-table-vft-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, rgba(255, 255, 255, 0.04)));
     --task-table-border: var(--border, #dfe5f1);
-    --task-table-border-strong: rgba(58, 62, 70, 0.96);
+    --task-table-border-strong: color-mix(in srgb, var(--task-table-heading) 36%, var(--task-table-border));
     --task-table-text: var(--text-body, #3d4452);
     --task-table-heading: var(--text, #1a1a2e);
 }

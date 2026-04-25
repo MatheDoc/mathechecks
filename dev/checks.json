@@ -406,7 +406,7 @@
             "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
             "\\(P(A\\cap B)\\): entsprechende Pfadendwahrscheinlichkeit",
             "\\(P(A\\cup B)\\): entsprechende Summe dreier Pfadendwahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
@@ -464,7 +464,7 @@
             "\\(P(B)\\): Wahrscheinlichkeit von \\(B\\)",
             "\\(P(A\\cap B)\\): Wahrscheinlichkeit von \\(A\\) und \\(B\\)",
             "\\(P(A\\cup B)\\): Wahrscheinlichkeit von \\(A\\) oder \\(B\\)",
-            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\), aber nicht beides",
             "\\(P_A(B)\\): Wahrscheinlichkeit von \\(B\\) unter Bedingung \\(A\\)",
             "\\(P_B(A)\\): Wahrscheinlichkeit von \\(A\\) unter Bedingung \\(B\\)"
         ]
@@ -484,7 +484,6 @@
         "Tipps": [
             "Pfadadditionsregel",
             "Pfadmultiplikationsregel",
-            "Unabhängigkeit: Gleiche Wahrscheinlichkeit für \\( B \\) und \\( \\overline{B} \\) auf zweiten Pfad",
             "Unabhängigkeit: \\( P_A(B)=P_{\\overline{A}}(B) \\)"
         ]
     },
@@ -503,9 +502,9 @@
         "Tipps": [
             "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
             "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
-            "\\(P(A\\cap B)\\): eine Pfadendwahrscheinlichkeit",
-            "\\(P(A\\cup B)\\): Summe dreier Pfadendwahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cap B)\\): entsprechende Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
             "\\(P_A(B)\\): zweite Pfadwahrscheinlichkeit",
             "\\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
         ]
@@ -523,8 +522,8 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-04",
         "questionOrder": "fixed",
         "Tipps": [
-            "Innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
-            "Summe der inneren Wahrscheinlichkeiten = äußere Wahrscheinlichkeit"
+            "innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            "äußere Wahrscheinlichkeiten = Summe der entsprechenden inneren Wahrscheinlichkeiten = "
         ]
     },
     {
@@ -542,9 +541,9 @@
         "Tipps": [
             "\\(P(A)\\): letzte Zeile/Spalte",
             "\\(P(B)\\): letzte Zeile/Spalte",
-            "\\(P(A\\cap B)\\): eine innere Wahrscheinlichkeit",
-            "\\(P(A\\cup B)\\): Summe dreier innerer Wahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier innerer Wahrscheinlichkeiten"
+            "\\(P(A\\cap B)\\): entsprechende innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) : Summe zweier innerer Wahrscheinlichkeiten"
         ]
     },
     {
@@ -671,7 +670,7 @@
         "Nummer": 2,
         "check_id": "stochastik__zufallsexperimente-und-wahrscheinlichkeiten__02",
         "Ich kann": "textuelle und symbolische Beschreibungen von Wahrscheinlichkeiten ineinander umwandeln (ohne bedingten Wahrscheinlichkeiten).",
-        "Sammlung": "interpretationen-ohneBedingt",
+        "Sammlung": "interpretationen-ohne-bedingt",
         "Schlagwort": "Wkt-Notation",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
