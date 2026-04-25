@@ -97,7 +97,7 @@ def _build_mc_answer(question_key: str, scenario) -> str:
 # ── Generator ─────────────────────────────────────────────────────────────
 
 class MethodenInterpretationenOhneBedingtGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.interpretationen_ohneBedingt"
+    generator_key = "stochastik.methoden.interpretationen_ohne_bedingt"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)

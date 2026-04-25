@@ -134,7 +134,7 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
 
 
 class MethodenBaumdiagrammFolgernOhneUnabhGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_folgern_ohneUnabh"
+    generator_key = "stochastik.methoden.baumdiagramm_folgern_ohne_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)

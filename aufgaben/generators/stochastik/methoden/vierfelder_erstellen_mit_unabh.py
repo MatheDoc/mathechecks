@@ -36,7 +36,7 @@ def _pick_given_slots(rng: random.Random) -> list[int]:
 
 
 class MethodenVierfelderErstellenInfoUnabhGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.vierfelder_erstellen_mitUnabh"
+    generator_key = "stochastik.methoden.vierfelder_erstellen_mit_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)

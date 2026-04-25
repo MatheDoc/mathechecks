@@ -1,0 +1,822 @@
+[
+  {
+    "einleitung": "Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Großkunde bestellt Halbleiter.</li><li>$B$: Halbleiter werden in Premium-Qualität bestellt.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass Halbleiter in Basis-Qualität bestellt werden",
+      "die Wahrscheinlichkeit, dass eine Bestellung von einem Kleinkunden stammt und Premium-Qualität erfordert",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cup B) - P(A \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5679:0,0001}",
+      "{1:NUMERICAL:=0,1479:0,0001}",
+      "{1:NUMERICAL:=0,7158:0,0001}",
+      "{1:NUMERICAL:=0,3537:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2842,
+          "2": 0.2058,
+          "3": 0.1479,
+          "4": 0.3621,
+          "5": 0.49,
+          "6": 0.51,
+          "7": 0.4321,
+          "8": 0.5679
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Passagier hat einen gültigen Fahrschein.</li><li>$B$: Ein Passagier trägt eine Maske.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Passagier keine Maske trägt",
+      "die Wahrscheinlichkeit, dass ein Passagier einen gültigen Fahrschein hat und eine Maske trägt",
+      "$P(A \\cup \\overline{B})$.",
+      "$P(B \\cup \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5749:0,0001}",
+      "{1:NUMERICAL:=0,2193:0,0001}",
+      "{1:NUMERICAL:=0,7942:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2193,
+          "2": 0.2907,
+          "3": 0.2058,
+          "4": 0.2842,
+          "5": 0.51,
+          "6": 0.49,
+          "7": 0.4251,
+          "8": 0.5749
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde bestellt eine Schokolade.</li><li>$B$: Ein Kunde bestellt ein heißes Getränk.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Kunde einen Kaffee bestellt",
+      "die Wahrscheinlichkeit, dass ein Kunde eine Eisschokolade bestellt",
+      "die Wahrscheinlichkeit, dass ein Kunde einen Kaffee oder ein heißes Getränk bestellt",
+      "$P(B \\cup \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4600:0,0001}",
+      "{1:NUMERICAL:=0,1836:0,0001}",
+      "{1:NUMERICAL:=0,8164:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3564,
+          "2": 0.1836,
+          "3": 0.069,
+          "4": 0.391,
+          "5": 0.54,
+          "6": 0.46,
+          "7": 0.4254,
+          "8": 0.5746
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine Sechs geworfen.</li><li>$B$: Es wird ein Zauberspruch aufgesagt.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{B})$.",
+      "die Wahrscheinlichkeit, dass keine Sechs geworfen und ein Zauberspruch aufgesagt wird",
+      "$P(A \\cup B)$.",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4470:0,0001}",
+      "{1:NUMERICAL:=0,0525:0,0001}",
+      "{1:NUMERICAL:=0,7025:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.5005,
+          "2": 0.1495,
+          "3": 0.0525,
+          "4": 0.2975,
+          "5": 0.65,
+          "6": 0.35,
+          "7": 0.553,
+          "8": 0.447
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Bewerber ist Mathematiker.</li><li>$B$: Ein Bewerber hat einen Bachelor.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Bewerber Wirtschaftswissenschaftler ist",
+      "$P(A \\cap \\overline{B})$.",
+      "$P(A \\cup B)$.",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5300:0,0001}",
+      "{1:NUMERICAL:=0,3572:0,0001}",
+      "{1:NUMERICAL:=0,8251:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1128,
+          "2": 0.3572,
+          "3": 0.3551,
+          "4": 0.1749,
+          "5": 0.47,
+          "6": 0.53,
+          "7": 0.4679,
+          "8": 0.5321
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst. Wir betrachten die Ereignisse:<ul><li>$A$: Der Prüfling besteht.</li><li>$B$: Der Prüfer ist ausgeschlafen.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{B})$.",
+      "$P(A \\cap B)$.",
+      "die Wahrscheinlichkeit, dass ein Prüfling besteht oder ein Prüfer nicht ausgeschlafen ist",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5088:0,0001}",
+      "{1:NUMERICAL:=0,3404:0,0001}",
+      "{1:NUMERICAL:=0,8492:0,0001}",
+      "{1:NUMERICAL:=0,5504:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3404,
+          "2": 0.3996,
+          "3": 0.1508,
+          "4": 0.1092,
+          "5": 0.74,
+          "6": 0.26,
+          "7": 0.4912,
+          "8": 0.5088
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Hantel ist aus Metall.</li><li>$B$: Eine Hantel hat einen drehbaren Griff.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass eine Hantel keinen drehbaren Griff hat",
+      "die Wahrscheinlichkeit, dass eine Hantel aus Kunststoff ist und einen drehbaren Griff hat",
+      "die Wahrscheinlichkeit, dass eine Hantel aus Kunststoff ist oder keinen drehbaren Griff hat",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3235:0,0001}",
+      "{1:NUMERICAL:=0,1435:0,0001}",
+      "{1:NUMERICAL:=0,4670:0,0001}",
+      "{1:NUMERICAL:=0,2605:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.533,
+          "2": 0.117,
+          "3": 0.1435,
+          "4": 0.2065,
+          "5": 0.65,
+          "6": 0.35,
+          "7": 0.6765,
+          "8": 0.3235
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden. Wir betrachten die Ereignisse:<ul><li>$A$: Sie gewinnt ein Spiel.</li><li>$B$: Sie dopt in einem Spiel.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "$P(A \\cap \\overline{B})$.",
+      "die Wahrscheinlichkeit, dass sie ein Spiel gewinnt oder nicht dopt",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3700:0,0001}",
+      "{1:NUMERICAL:=0,1221:0,0001}",
+      "{1:NUMERICAL:=0,5716:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.2479,
+          "2": 0.1221,
+          "3": 0.4284,
+          "4": 0.2016,
+          "5": 0.37,
+          "6": 0.63,
+          "7": 0.6763,
+          "8": 0.3237
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Mitarbeiter arbeitet im Home-Office.</li><li>$B$: Ein Mitarbeiter arbeitet in Vollzeit.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "$P(\\overline{A} \\cap \\overline{B})$.",
+      "die Wahrscheinlichkeit, dass ein Mitarbeiter in Präsenz oder in Teilzeit arbeitet",
+      "$P(A \\cap B) + P(\\overline{A} \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2682:0,0001}",
+      "{1:NUMERICAL:=0,1768:0,0001}",
+      "{1:NUMERICAL:=0,8150:0,0001}",
+      "{1:NUMERICAL:=0,3618:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.185,
+          "2": 0.555,
+          "3": 0.0832,
+          "4": 0.1768,
+          "5": 0.74,
+          "6": 0.26,
+          "7": 0.2682,
+          "8": 0.7318
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Restaurant hat einen Biergarten.</li><li>$B$: Ein Restaurant hat eine Spielecke.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Restaurant über keinen Biergarten verfügt",
+      "die Wahrscheinlichkeit, dass ein Restaurant über keinen Biergarten aber über eine Spielecke verfügt",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7900:0,0001}",
+      "{1:NUMERICAL:=0,6241:0,0001}",
+      "{1:NUMERICAL:=0,8761:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1239,
+          "2": 0.0861,
+          "3": 0.6241,
+          "4": 0.1659,
+          "5": 0.21,
+          "6": 0.79,
+          "7": 0.748,
+          "8": 0.252
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft nachhaltige Holzkohle.</li><li>$B$: Ein Kunde kauft ein Originalprodukt.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Kunde nachhaltige Holzkohle kauft",
+      "$P(\\overline{A} \\cap \\overline{B})$.",
+      "die Wahrscheinlichkeit, dass ein Kunde konventionelle Holzkohle oder ein Originalprodukt kauft",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,2800:0,0001}",
+      "{1:NUMERICAL:=0,8800:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.08,
+          "2": 0.12,
+          "3": 0.52,
+          "4": 0.28,
+          "5": 0.2,
+          "6": 0.8,
+          "7": 0.6,
+          "8": 0.4
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot. Wir betrachten die Ereignisse:<ul><li>$A$: Weiße Farbe ist im Sonderangebot.</li><li>$B$: Matte Farbe ist im Sonderangebot.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass weiße Farbe im Sonderangebot ist",
+      "$P(\\overline{A} \\cap \\overline{B})$.",
+      "$P(\\overline{A} \\cup B)$.",
+      "$P(B \\cup \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,1564:0,0001}",
+      "{1:NUMERICAL:=0,5842:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3542,
+          "2": 0.4158,
+          "3": 0.0736,
+          "4": 0.1564,
+          "5": 0.77,
+          "6": 0.23,
+          "7": 0.4278,
+          "8": 0.5722
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Opfer ist minderjährig.</li><li>$B$: Ein Opfer alarmiert die Polizei.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Opfer nicht die Polizei alarmiert",
+      "die Wahrscheinlichkeit, dass ein Opfer erwachsen ist und die Polizei alarmiert",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,5382:0,0001}",
+      "{1:NUMERICAL:=0,8482:0,0001}",
+      "{1:NUMERICAL:=0,6064:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1518,
+          "2": 0.0682,
+          "3": 0.5382,
+          "4": 0.2418,
+          "5": 0.22,
+          "6": 0.78,
+          "7": 0.69,
+          "8": 0.31
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Glas hat einen Riss.</li><li>$B$: Ein Glas hat einen Blaseneinschluss.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Glas keinen Blaseneinschluss hat",
+      "die Wahrscheinlichkeit, dass ein Glas beide Fehler aufweist",
+      "die Wahrscheinlichkeit, dass ein Glas zumindest einen Fehler nicht aufweist",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3980:0,0001}",
+      "{1:NUMERICAL:=0,4320:0,0001}",
+      "{1:NUMERICAL:=0,5680:0,0001}",
+      "{1:NUMERICAL:=0,5380:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.432,
+          "2": 0.368,
+          "3": 0.17,
+          "4": 0.03,
+          "5": 0.8,
+          "6": 0.2,
+          "7": 0.602,
+          "8": 0.398
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht. Wir betrachten die Ereignisse:<ul><li>$A$: Ein vorgeschlagener Partner ist attraktiv.</li><li>$B$: Ein vorgeschlagener Partner raucht.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{B})$.",
+      "die Wahrscheinlichkeit, dass ein vorgeschlagener Partner ein unattraktiver Nichtraucher ist",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7290:0,0001}",
+      "{1:NUMERICAL:=0,1222:0,0001}",
+      "{1:NUMERICAL:=0,8668:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.1332,
+          "2": 0.6068,
+          "3": 0.1378,
+          "4": 0.1222,
+          "5": 0.74,
+          "6": 0.26,
+          "7": 0.271,
+          "8": 0.729
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Smartwatch ist fehlerfrei.</li><li>$B$: Eine Smartwatch wird aussortiert.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{B})$.",
+      "$P(A \\cap B)$.",
+      "$P(A \\cup B)$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2324:0,0001}",
+      "{1:NUMERICAL:=0,3360:0,0001}",
+      "{1:NUMERICAL:=0,9116:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.336,
+          "2": 0.144,
+          "3": 0.4316,
+          "4": 0.0884,
+          "5": 0.48,
+          "6": 0.52,
+          "7": 0.7676,
+          "8": 0.2324
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine große Pommes bestellt.</li><li>$B$: Es wird eine Pommes mit Ketchup bestellt.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass eine Pommes mit Mayonnaise bestellt wird",
+      "die Wahrscheinlichkeit, dass eine große Pommes mit Ketchup bestellt wird",
+      "$P(\\overline{A} \\cup B)$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5872:0,0001}",
+      "{1:NUMERICAL:=0,3192:0,0001}",
+      "{1:NUMERICAL:=0,5592:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.3192,
+          "2": 0.4408,
+          "3": 0.0936,
+          "4": 0.1464,
+          "5": 0.76,
+          "6": 0.24,
+          "7": 0.4128,
+          "8": 0.5872
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen verkauft neue und gebrauchte Beamer. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft Neuware.</li><li>$B$: Ein Kunde reklamiert das Produkt.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "die Wahrscheinlichkeit, dass ein Kunde Gebrauchtware kauft und diese nicht reklamiert",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cup B) - P(A \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,4556:0,0001}",
+      "{1:NUMERICAL:=0,7760:0,0001}",
+      "{1:NUMERICAL:=0,3204:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.224,
+          "2": 0.096,
+          "3": 0.2244,
+          "4": 0.4556,
+          "5": 0.32,
+          "6": 0.68,
+          "7": 0.4484,
+          "8": 0.5516
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen. Wir betrachten die Ereignisse:<ul><li>$A$: Einem Follower gefällt Ambition.</li><li>$B$: Einem Follower gefällt Bonny.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass einem Follower Bonny nicht gefällt",
+      "die Wahrscheinlichkeit, dass einem Follower Bonny gefällt, Ambition aber nicht",
+      "die Wahrscheinlichkeit, dass einem Follower mindestens einer der beiden Lippenstifte gefällt",
+      "$P(B \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4015:0,0001}",
+      "{1:NUMERICAL:=0,2025:0,0001}",
+      "{1:NUMERICAL:=0,7525:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.396,
+          "2": 0.154,
+          "3": 0.2025,
+          "4": 0.2475,
+          "5": 0.55,
+          "6": 0.45,
+          "7": 0.5985,
+          "8": 0.4015
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Produkt ist biologisch.</li><li>$B$: Ein Produkt ist regional.</li></ul>Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Produkt regional ist",
+      "$P(\\overline{A} \\cap B)$.",
+      "$P(A \\cup B)$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4680:0,0001}",
+      "{1:NUMERICAL:=0,1530:0,0001}",
+      "{1:NUMERICAL:=0,8530:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "vft",
+        "slots": {
+          "1": 0.315,
+          "2": 0.385,
+          "3": 0.153,
+          "4": 0.147,
+          "5": 0.7,
+          "6": 0.3,
+          "7": 0.468,
+          "8": 0.532
+        },
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  }
+]

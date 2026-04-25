@@ -1,24 +1,14 @@
-"""Check 3 - Baumdiagramm vervollständigen (Pfadadditionsregel).
-
-Gegeben sind immer genau 3 Wahrscheinlichkeiten:
-  1. Beide Endwkt eines Astes: {7,8} oder {9,10}
-  2. Eine weitere Wkt aus dem anderen Ast:
-    wenn {7,8} -> {5, 6, 9, 10};  wenn {9,10} -> {3, 4, 7, 8}
-
-Lösungsweg: Pfadaddition -> P(A) = P(A∩B) + P(A∩¬B) bzw. P(¬A) analog,
-danach Komplementregel + ggf. umgestellte Pfadmultiplikation.
-"""
-
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
+from aufgaben.core.placeholders import numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, ab_intro, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
 def _slot_probabilities(case: ABCase) -> dict[int, float]:
+    """Kanonische Slot-Zuordnung 1..10 auf die 10 Baumwahrscheinlichkeiten."""
     return {
         1: case.p_a,
         2: case.p_not_a,
@@ -34,6 +24,7 @@ def _slot_probabilities(case: ABCase) -> dict[int, float]:
 
 
 def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
+    """Kompakter ab-tree Spec - Rendering erfolgt clientseitig in preview.js."""
     return {
         "type": "plot",
         "spec": {
@@ -46,22 +37,8 @@ def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
     }
 
 
-# ---------------------------------------------------------------------------
-# 8 Kombinationen: beide Endwkt eines Astes + 1 Wkt anderer Ast
-# ---------------------------------------------------------------------------
-_PATTERNS: list[set[int]] = []
-
-# A-Ast komplett (7,8) + eine Wkt vom ¬A-Ast
-for _other in (5, 6, 9, 10):
-    _PATTERNS.append({7, 8, _other})
-
-# ¬A-Ast komplett (9,10) + eine Wkt vom A-Ast
-for _other in (3, 4, 7, 8):
-    _PATTERNS.append({9, 10, _other})
-
-
-class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohneUnabh_var3"
+class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohne_unabh_var1"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -72,7 +49,11 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
             case = sample_ab_case(rng=rng, scenario=scenario)
             slot_probs = _slot_probabilities(case)
 
-            given_slots = rng.choice(_PATTERNS)
+            given_slots = {
+                rng.choice([1, 2]),
+                rng.choice([3, 4]),
+                rng.choice([5, 6]),
+            }
 
             intro = (
                 ab_intro(scenario)
@@ -80,6 +61,7 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
             )
 
             fragen = ["" for _ in range(10)]
+
             antworten = [
                 "---"
                 if idx in given_slots
@@ -97,5 +79,4 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
             )
 
         return tasks
-
 

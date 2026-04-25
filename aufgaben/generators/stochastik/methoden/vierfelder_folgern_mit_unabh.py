@@ -1,13 +1,16 @@
-"""Wahrscheinlichkeiten ohne Struktur berechnen - 3 gegebene Wkt, ohne Info zur stoch. Unabhängigkeit.
+"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen - mit bedingten Wkt.
 
-Szenario: Drei von {P(A), P(B), P(A∩B), P(A∩B)} sind bekannt.
-A und B können unabhängig oder abhängig sein (kein Hinweis in der Aufgabe).
-Keine VFT, kein Baumdiagramm.
+Die Vier-Felder-Tafel ist vollständig ausgefüllt (alle 8 Felder sichtbar).
+A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig (ohne Hinweis in der Aufgabe).
 
 Es werden genau 7 Teilaufgaben gestellt:
-  1-6: Je eine Wahrscheinlichkeit aus den Gruppen
-       EINZEL, SCHNITT, VEREINIGUNG, COND_A, COND_B, SPEZIAL
-  7:   MC-Frage zur stochastischen Unabhängigkeit
+  1. Einzel:      P(A), P(¬A), P(B), P(¬B)
+  2. Schnitt:     P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
+  4. Spezial:     symmetrische Differenz, Diagonalsumme, trivial 0/1
+  5. Bedingte Wkt (A/¬A-Bedingung): P(B|A), P(¬B|A), P(B|¬A), P(¬B|¬A)
+  6. Bedingte Wkt (B/¬B-Bedingung): P(A|B), P(¬A|B), P(A|¬B), P(¬A|¬B)
+  7. MC-Frage zur stochastischen Unabhängigkeit
 """
 
 import random
@@ -20,27 +23,19 @@ from aufgaben.generators.stochastik.methoden.shared import (
     extended_probs,
     sample_ab_case,
     sample_ab_case_independent,
+    vft_slots,
 )
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
 # ---------------------------------------------------------------------------
 
-_GROUP_EINZEL      = ["pa", "pna", "pb", "pnb"]
-_GROUP_SCHNITT     = ["pab", "panb", "pnab", "pnanb"]
+_GROUP_EINZEL = ["pa", "pna", "pb", "pnb"]
+_GROUP_SCHNITT = ["pab", "panb", "pnab", "pnanb"]
 _GROUP_VEREINIGUNG = ["paub", "paunb", "pnaub", "pnaunb"]
-_GROUP_SPEZIAL     = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
-_GROUP_COND_A      = ["pba", "pnba", "pbna", "pnbna"]
-_GROUP_COND_B      = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
-
-# Mögliche 3-Anker aus {pa, pb, pab, paub}.
-# Da paub = pa + pb - pab, bestimmt jede Kombination von 3 die vierte eindeutig.
-_ANCHOR3_OPTS = [
-    ("pa", "pb", "pab"),
-    ("pa", "pb", "paub"),
-    ("pa", "pab", "paub"),
-    ("pb", "pab", "paub"),
-]
+_GROUP_SPEZIAL = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
+_GROUP_COND_A = ["pba", "pnba", "pbna", "pnbna"]
+_GROUP_COND_B = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 
 
 # ---------------------------------------------------------------------------
@@ -87,29 +82,6 @@ _SPEZIAL_LABELS: dict[str, list[str]] = {
 }
 
 
-# ---------------------------------------------------------------------------
-
-def _pct_str(value: float) -> str:
-    """Wert als Prozentzahl mit deutschem Komma, z. B. 0.69 -> '69%', 0.084 -> '8,4%'."""
-    pct = value * 100
-    s = f"{pct:.4f}".rstrip("0").rstrip(".")
-    return s.replace(".", ",") + "%"
-
-
-def _dec_str(value: float) -> str:
-    """Wert als Dezimalzahl mit deutschem Komma, z. B. 0.6348 -> '0,6348'."""
-    s = f"{value:.4f}".rstrip("0").rstrip(".")
-    return s.replace(".", ",")
-
-
-def _format_given(key: str, value: float, scenario, rng: random.Random) -> str:
-    """Gibt die Formulierung für einen bekannten Wert zurück: textlich oder symbolisch."""
-    prob_text = scenario.prob_texts.get(key, "")
-    if prob_text and rng.random() < 0.5:
-        return f"die Wahrscheinlichkeit, dass {prob_text}, {_pct_str(value)} beträgt"
-    return f"$ {_LATEX[key]} $$ = $$ {_dec_str(value)} $"
-
-
 def _frage_text(key: str, scenario, rng: random.Random) -> str:
     """Fragetext: Spezial-Wkt immer LaTeX; alle anderen 50/50 Text/LaTeX."""
     if key in _SPEZIAL_LABELS:
@@ -120,10 +92,8 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
     return f"${_LATEX[key]}$."
 
 
-# ---------------------------------------------------------------------------
-
-class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.ohneStruktur_ohneInfoUnabh"
+class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
+    generator_key = "stochastik.methoden.vierfelder_folgern_mit_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -141,24 +111,16 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
 
             probs = extended_probs(case)
 
-            # 3 gegebene Wahrscheinlichkeiten aus {pa, pb, pab, paub}
-            anchor_keys = rng.choice(_ANCHOR3_OPTS)
-            g0 = _format_given(anchor_keys[0], probs[anchor_keys[0]], scenario, rng)
-            g1 = _format_given(anchor_keys[1], probs[anchor_keys[1]], scenario, rng)
-            g2 = _format_given(anchor_keys[2], probs[anchor_keys[2]], scenario, rng)
-            given_text = f"{g0}, dass {g1} und dass {g2}"
-
-            # 6 Wahrscheinlichkeitsfragen
             chosen_keys: list[str] = [
                 rng.choice(_GROUP_EINZEL),
                 rng.choice(_GROUP_SCHNITT),
                 rng.choice(_GROUP_VEREINIGUNG),
+                rng.choice(_GROUP_SPEZIAL),
                 rng.choice(_GROUP_COND_A),
                 rng.choice(_GROUP_COND_B),
-                rng.choice(_GROUP_SPEZIAL),
             ]
 
-            # MC-Frage zur stochastischen Unabhängigkeit
+            # MC-Frage zur Unabhängigkeit
             claim_is_independence = rng.choice([True, False])
             if claim_is_independence:
                 claim_text = (
@@ -176,10 +138,10 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
             mc_correct_index = 0 if mc_correct_is_richtig else 1
             mc_answer = mc(["Richtig", "Falsch"], correct_index=mc_correct_index)
 
-            einleitung = (
+            slots = vft_slots(case)
+            intro = (
                 ab_intro(scenario)
-                + f"Es ist bekannt, dass {given_text}. "
-                "Berechnen Sie (auf 4 NKS gerundet)"
+                + "Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet"
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
@@ -191,7 +153,21 @@ class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
             ]
             antworten.append(mc_answer)
 
-            tasks.append(Task(einleitung=einleitung, fragen=fragen, antworten=antworten))
+            tasks.append(
+                Task(
+                    einleitung=intro,
+                    fragen=fragen,
+                    antworten=antworten,
+                    visual={
+                        "type": "plot",
+                        "spec": {
+                            "type": "vft",
+                            "slots": {str(k): v for k, v in slots.items()},
+                            "givenSlots": list(range(1, 9)),
+                        },
+                    },
+                )
+            )
 
         return tasks
 

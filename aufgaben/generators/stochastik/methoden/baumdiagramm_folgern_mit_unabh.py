@@ -1,31 +1,77 @@
-"""Wahrscheinlichkeiten aus vollständiger Vier-Felder-Tafel bestimmen - mit bedingten Wkt.
+"""Check 3 (bedingte-wahrscheinlichkeiten) - Wahrscheinlichkeiten aus Baumdiagramm bestimmen.
 
-Die Vier-Felder-Tafel ist vollständig ausgefüllt (alle 8 Felder sichtbar).
-A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig (ohne Hinweis in der Aufgabe).
+Das Baumdiagramm ist vollständig ausgefüllt (alle 10 Werte sichtbar).
+A und B sind in ca. 50 % der Aufgaben stochastisch unabhängig - ohne Angabe in der Aufgabe.
 
 Es werden genau 7 Teilaufgaben gestellt:
-  1. Einzel:      P(A), P(¬A), P(B), P(¬B)
-  2. Schnitt:     P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
-  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
-  4. Spezial:     symmetrische Differenz, Diagonalsumme, trivial 0/1
-  5. Bedingte Wkt (A/¬A-Bedingung): P(B|A), P(¬B|A), P(B|¬A), P(¬B|¬A)
-  6. Bedingte Wkt (B/¬B-Bedingung): P(A|B), P(¬A|B), P(A|¬B), P(¬A|¬B)
-  7. MC-Frage zur stochastischen Unabhängigkeit
+  1. Einzel: P(A), P(¬A), P(B) oder P(¬B)
+  2. Schnitt: P(A∩B), P(A∩¬B), P(¬A∩B) oder P(¬A∩¬B)
+  3. Vereinigung: P(A∩B), P(A∩¬B), P(¬A∩B) oder P(¬A∩¬B)
+  4. Spezial: Symmetrische Differenz, Diagonalsumme oder trivial 0/1
+  5. Bedingte Wkt (A/¬A-Bedingung): P(B|A), P(¬B|A), P(B|¬A) oder P(¬B|¬A)
+  6. Bedingte Wkt (B/¬B-Bedingung): P(A|B), P(¬A|B), P(A|¬B) oder P(¬A|¬B)
+  7. MC-Frage zur stochastischen Unabhängigkeit (Behauptung prüfen)
 """
 
 import random
+from decimal import Decimal, ROUND_HALF_UP
 
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
+    ABCase,
     ab_intro,
-    extended_probs,
     sample_ab_case,
     sample_ab_case_independent,
-    vft_slots,
 )
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
+
+
+_Q4 = Decimal("0.0001")
+
+
+def _r4(v: float) -> float:
+    return float(Decimal(str(v)).quantize(_Q4, rounding=ROUND_HALF_UP))
+
+
+def _extended_probs(c: ABCase) -> dict[str, float]:
+    """Alle relevanten Wahrscheinlichkeiten inkl. bedingter Wkt."""
+    p_b = _r4(c.p_a_and_b + c.p_not_a_and_b)
+    p_nb = _r4(c.p_a_and_not_b + c.p_not_a_and_not_b)
+
+    return {
+        # Gruppe 1: Einzel
+        "pa": c.p_a,
+        "pna": c.p_not_a,
+        "pb": p_b,
+        "pnb": p_nb,
+        # Gruppe 2: Schnitt
+        "pab": c.p_a_and_b,
+        "panb": c.p_a_and_not_b,
+        "pnab": c.p_not_a_and_b,
+        "pnanb": c.p_not_a_and_not_b,
+        # Gruppe 3: Vereinigung
+        "paub": _r4(1 - c.p_not_a_and_not_b),
+        "paunb": _r4(1 - c.p_not_a_and_b),
+        "pnaub": _r4(1 - c.p_a_and_not_b),
+        "pnaunb": _r4(1 - c.p_a_and_b),
+        # Gruppe 4: Spezial
+        "symdiff": _r4(c.p_a_and_not_b + c.p_not_a_and_b),
+        "diag_sum": _r4(c.p_a_and_b + c.p_not_a_and_not_b),
+        "trivial_0": 0.0,
+        "trivial_1": 1.0,
+        # Gruppe 5: Bedingte Wkt (A/¬A-Bedingung)
+        "pba": c.p_b_given_a,
+        "pnba": c.p_not_b_given_a,
+        "pbna": c.p_b_given_not_a,
+        "pnbna": c.p_not_b_given_not_a,
+        # Gruppe 6: Bedingte Wkt (B/¬B-Bedingung)
+        "pab_c": _r4(c.p_a_and_b / p_b) if p_b > 0 else 0.0,
+        "pnab_c": _r4(c.p_not_a_and_b / p_b) if p_b > 0 else 0.0,
+        "panb_c": _r4(c.p_a_and_not_b / p_nb) if p_nb > 0 else 0.0,
+        "pnanb_c": _r4(c.p_not_a_and_not_b / p_nb) if p_nb > 0 else 0.0,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -41,22 +87,24 @@ _GROUP_COND_B = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 # ---------------------------------------------------------------------------
 
 _LATEX: dict[str, str] = {
-    "pa":      r"P(A)",
-    "pna":     r"P(\overline{A})",
-    "pb":      r"P(B)",
-    "pnb":     r"P(\overline{B})",
-    "pab":     r"P(A \cap B)",
-    "panb":    r"P(A \cap \overline{B})",
-    "pnab":    r"P(\overline{A} \cap B)",
-    "pnanb":   r"P(\overline{A} \cap \overline{B})",
-    "paub":    r"P(A \cup B)",
-    "paunb":   r"P(A \cup \overline{B})",
-    "pnaub":   r"P(\overline{A} \cup B)",
-    "pnaunb":  r"P(\overline{A} \cup \overline{B})",
-    "pba":     r"P_A(B)",
-    "pnba":    r"P_A(\overline{B})",
-    "pbna":    r"P_{\overline{A}}(B)",
-    "pnbna":   r"P_{\overline{A}}(\overline{B})",
+    "pa":    r"P(A)",
+    "pna":   r"P(\overline{A})",
+    "pb":    r"P(B)",
+    "pnb":   r"P(\overline{B})",
+    "pab":   r"P(A \cap B)",
+    "panb":  r"P(A \cap \overline{B})",
+    "pnab":  r"P(\overline{A} \cap B)",
+    "pnanb": r"P(\overline{A} \cap \overline{B})",
+    "paub":  r"P(A \cup B)",
+    "paunb": r"P(A \cup \overline{B})",
+    "pnaub": r"P(\overline{A} \cup B)",
+    "pnaunb": r"P(\overline{A} \cup \overline{B})",
+    # Bedingte Wkt (A/¬A-Bedingung)
+    "pba":   r"P_A(B)",
+    "pnba":  r"P_A(\overline{B})",
+    "pbna":  r"P_{\overline{A}}(B)",
+    "pnbna": r"P_{\overline{A}}(\overline{B})",
+    # Bedingte Wkt (B/¬B-Bedingung)
     "pab_c":   r"P_B(A)",
     "pnab_c":  r"P_B(\overline{A})",
     "panb_c":  r"P_{\overline{B}}(A)",
@@ -82,6 +130,19 @@ _SPEZIAL_LABELS: dict[str, list[str]] = {
 }
 
 
+def _build_tree_visual(case: ABCase) -> dict:
+    return {
+        "type": "plot",
+        "spec": {
+            "type": "ab-tree",
+            "pa": case.p_a,
+            "pba": case.p_b_given_a,
+            "pbna": case.p_b_given_not_a,
+            "givenSlots": list(range(1, 11)),
+        },
+    }
+
+
 def _frage_text(key: str, scenario, rng: random.Random) -> str:
     """Fragetext: Spezial-Wkt immer LaTeX; alle anderen 50/50 Text/LaTeX."""
     if key in _SPEZIAL_LABELS:
@@ -92,8 +153,8 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
     return f"${_LATEX[key]}$."
 
 
-class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.vierfelder_folgern_mitUnabh"
+class MethodenBaumdiagrammFolgernMitUnabhGenerator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_folgern_mit_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -109,8 +170,9 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
             else:
                 case = sample_ab_case(rng=rng, scenario=scenario)
 
-            probs = extended_probs(case)
+            probs = _extended_probs(case)
 
+            # Standard-Gruppen (eine Wkt je Gruppe)
             chosen_keys: list[str] = [
                 rng.choice(_GROUP_EINZEL),
                 rng.choice(_GROUP_SCHNITT),
@@ -121,6 +183,7 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
             ]
 
             # MC-Frage zur Unabhängigkeit
+            # Behauptung: zufällig Abhängigkeit oder Unabhängigkeit behaupten
             claim_is_independence = rng.choice([True, False])
             if claim_is_independence:
                 claim_text = (
@@ -138,16 +201,18 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
             mc_correct_index = 0 if mc_correct_is_richtig else 1
             mc_answer = mc(["Richtig", "Falsch"], correct_index=mc_correct_index)
 
-            slots = vft_slots(case)
             intro = (
                 ab_intro(scenario)
-                + "Bestimmen Sie anhand der Vier-Felder-Tafel auf 4 NKS gerundet"
+                + "Bestimmen Sie anhand des Baumdiagramms "
+                "auf 4 NKS gerundet"
             )
 
-            fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
-            fragen.append(f"Überprüfen Sie die folgende Behauptung: {claim_text}")
+            fragen: list[str] = [_frage_text(k, scenario, rng) for k in chosen_keys]
+            fragen.append(
+                f"Überprüfen Sie die folgende Behauptung: {claim_text}"
+            )
 
-            antworten = [
+            antworten: list[str] = [
                 numerical_stochastik_calc(probs[k])
                 for k in chosen_keys
             ]
@@ -158,14 +223,7 @@ class MethodenVierfelderFolgernMitBedingtGenerator(TaskGenerator):
                     einleitung=intro,
                     fragen=fragen,
                     antworten=antworten,
-                    visual={
-                        "type": "plot",
-                        "spec": {
-                            "type": "vft",
-                            "slots": {str(k): v for k, v in slots.items()},
-                            "givenSlots": list(range(1, 9)),
-                        },
-                    },
+                    visual=_build_tree_visual(case),
                 )
             )
 

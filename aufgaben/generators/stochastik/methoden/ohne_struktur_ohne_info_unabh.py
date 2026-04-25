@@ -1,26 +1,24 @@
-"""Wahrscheinlichkeiten ohne Struktur berechnen - 2 gegebene Wkt + stoch. Unabhängigkeit.
+"""Wahrscheinlichkeiten ohne Struktur berechnen - 3 gegebene Wkt, ohne Info zur stoch. Unabhängigkeit.
 
-Szenario: Zwei von {P(A), P(B), P(A∩B), P(A∩B)} sind bekannt;
-A und B sind stochastisch unabhängig.
+Szenario: Drei von {P(A), P(B), P(A∩B), P(A∩B)} sind bekannt.
+A und B können unabhängig oder abhängig sein (kein Hinweis in der Aufgabe).
 Keine VFT, kein Baumdiagramm.
 
-Es werden genau 6 Wahrscheinlichkeitsfragen gestellt aus je einer Gruppe:
-  1. EINZEL:      P(A), P(¬A), P(B), P(¬B)
-  2. SCHNITT:     P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
-  3. VEREINIGUNG: P(A∩B), P(A∩¬B), P(¬A∩B), P(¬A∩¬B)
-  4. COND_A:      P_A(B), P_A(¬B), P_{¬A}(B), P_{¬A}(¬B)
-  5. COND_B:      P_B(A), P_B(¬A), P_{¬B}(A), P_{¬B}(¬A)
-  6. SPEZIAL:     symdiff, diag_sum, trivial_0, trivial_1
+Es werden genau 7 Teilaufgaben gestellt:
+  1-6: Je eine Wahrscheinlichkeit aus den Gruppen
+       EINZEL, SCHNITT, VEREINIGUNG, COND_A, COND_B, SPEZIAL
+  7:   MC-Frage zur stochastischen Unabhängigkeit
 """
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
+from aufgaben.core.placeholders import mc, numerical, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import (
     ab_intro,
     extended_probs,
+    sample_ab_case,
     sample_ab_case_independent,
 )
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -35,13 +33,13 @@ _GROUP_SPEZIAL     = ["symdiff", "diag_sum", "trivial_0", "trivial_1"]
 _GROUP_COND_A      = ["pba", "pnba", "pbna", "pnbna"]
 _GROUP_COND_B      = ["pab_c", "pnab_c", "panb_c", "pnanb_c"]
 
-# Mögliche 2-Anker aus {pa, pb, pab, paub} (+ Unabhängigkeit bestimmt alles).
-_ANCHOR2_OPTS = [
-    ("pa", "pb"),
-    ("pa", "paub"),
-    ("pb", "paub"),
-    ("pa", "pab"),
-    ("pb", "pab"),
+# Mögliche 3-Anker aus {pa, pb, pab, paub}.
+# Da paub = pa + pb - pab, bestimmt jede Kombination von 3 die vierte eindeutig.
+_ANCHOR3_OPTS = [
+    ("pa", "pb", "pab"),
+    ("pa", "pb", "paub"),
+    ("pa", "pab", "paub"),
+    ("pb", "pab", "paub"),
 ]
 
 
@@ -124,8 +122,8 @@ def _frage_text(key: str, scenario, rng: random.Random) -> str:
 
 # ---------------------------------------------------------------------------
 
-class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
-    generator_key = "stochastik.methoden.ohneStruktur_mitInfoUnabh"
+class OhneStrukturOhneInfoUnabhGenerator(TaskGenerator):
+    generator_key = "stochastik.methoden.ohneStruktur_ohne_info_unabh"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -134,15 +132,21 @@ class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
         for index in range(count):
             scenario = SCENARIOS[index % len(SCENARIOS)]
 
-            # Immer stochastisch unabhängig
-            case = sample_ab_case_independent(rng=rng, scenario=scenario)
+            # 50 % unabhängig, 50 % abhängig - ohne Hinweis in der Aufgabe
+            is_independent = rng.choice([True, False])
+            if is_independent:
+                case = sample_ab_case_independent(rng=rng, scenario=scenario)
+            else:
+                case = sample_ab_case(rng=rng, scenario=scenario)
+
             probs = extended_probs(case)
 
-            # 2 gegebene Wahrscheinlichkeiten aus {pa, pb, pab, paub} + Unabhängigkeit
-            anchor_keys = rng.choice(_ANCHOR2_OPTS)
+            # 3 gegebene Wahrscheinlichkeiten aus {pa, pb, pab, paub}
+            anchor_keys = rng.choice(_ANCHOR3_OPTS)
             g0 = _format_given(anchor_keys[0], probs[anchor_keys[0]], scenario, rng)
             g1 = _format_given(anchor_keys[1], probs[anchor_keys[1]], scenario, rng)
-            given_text = f"{g0} und dass {g1}"
+            g2 = _format_given(anchor_keys[2], probs[anchor_keys[2]], scenario, rng)
+            given_text = f"{g0}, dass {g1} und dass {g2}"
 
             # 6 Wahrscheinlichkeitsfragen
             chosen_keys: list[str] = [
@@ -154,21 +158,40 @@ class OhneStrukturMitInfoUnabhGenerator(TaskGenerator):
                 rng.choice(_GROUP_SPEZIAL),
             ]
 
+            # MC-Frage zur stochastischen Unabhängigkeit
+            claim_is_independence = rng.choice([True, False])
+            if claim_is_independence:
+                claim_text = (
+                    scenario.independence_claim
+                    or "$A$ und $B$ sind stochastisch unabhängig."
+                )
+                mc_correct_is_richtig = is_independent
+            else:
+                claim_text = (
+                    scenario.dependence_claim
+                    or "$A$ und $B$ sind stochastisch abhängig."
+                )
+                mc_correct_is_richtig = not is_independent
+
+            mc_correct_index = 0 if mc_correct_is_richtig else 1
+            mc_answer = mc(["Richtig", "Falsch"], correct_index=mc_correct_index)
+
             einleitung = (
                 ab_intro(scenario)
                 + f"Es ist bekannt, dass {given_text}. "
-                "Außerdem sind $A$ und $B$ stochastisch unabhängig. "
                 "Berechnen Sie (auf 4 NKS gerundet)"
             )
 
             fragen = [_frage_text(k, scenario, rng) for k in chosen_keys]
+            fragen.append(f"Überprüfen Sie die folgende Behauptung: {claim_text}")
+
             antworten = [
                 numerical_stochastik_calc(probs[k])
                 for k in chosen_keys
             ]
+            antworten.append(mc_answer)
 
             tasks.append(Task(einleitung=einleitung, fragen=fragen, antworten=antworten))
 
         return tasks
-
 

@@ -1,3 +1,19 @@
+"""Check 2 - Baumdiagramm vervollständigen (Pfadmultiplikation umgestellt).
+
+Kernidee: Die Pfadmultiplikationsregel a·b = c kann *nicht* direkt
+angewendet werden, sondern muss mindestens einmal nach b umgestellt
+werden: b = c / a.
+
+Gegeben sind immer genau 3 Wahrscheinlichkeiten:
+  1. Eine Endwahrscheinlichkeit (Blatt): 7, 8, 9 oder 10
+  2. Eine Wkt aus demselben Ast:
+       wenn 7|8 -> {1, 3, 4};  wenn 9|10 -> {2, 5, 6}
+  3. Eine Wkt aus dem anderen Ast:
+       wenn 7|8 -> {5, 6, 9, 10};  wenn 9|10 -> {3, 4, 7, 8}
+
+Damit ist der gesamte Baum bestimmbar (7 Werte zu berechnen).
+"""
+
 import random
 
 from aufgaben.core.models import Task
@@ -8,7 +24,6 @@ from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
 
 
 def _slot_probabilities(case: ABCase) -> dict[int, float]:
-    """Kanonische Slot-Zuordnung 1..10 auf die 10 Baumwahrscheinlichkeiten."""
     return {
         1: case.p_a,
         2: case.p_not_a,
@@ -24,7 +39,6 @@ def _slot_probabilities(case: ABCase) -> dict[int, float]:
 
 
 def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
-    """Kompakter ab-tree Spec - Rendering erfolgt clientseitig in preview.js."""
     return {
         "type": "plot",
         "spec": {
@@ -37,8 +51,26 @@ def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
     }
 
 
-class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohne-unabh_var1"
+# ---------------------------------------------------------------------------
+# 48 Kombinationen: 1 Endwkt + 1 gleicher Ast + 1 anderer Ast
+# ---------------------------------------------------------------------------
+_PATTERNS: list[set[int]] = []
+
+# Endwkt aus A-Ast (7 oder 8)
+for _end in (7, 8):
+    for _same in (1, 3, 4):
+        for _other in (5, 6, 9, 10):
+            _PATTERNS.append({_end, _same, _other})
+
+# Endwkt aus ¬A-Ast (9 oder 10)
+for _end in (9, 10):
+    for _same in (2, 5, 6):
+        for _other in (3, 4, 7, 8):
+            _PATTERNS.append({_end, _same, _other})
+
+
+class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohne_unabh_var2"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -49,11 +81,7 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
             case = sample_ab_case(rng=rng, scenario=scenario)
             slot_probs = _slot_probabilities(case)
 
-            given_slots = {
-                rng.choice([1, 2]),
-                rng.choice([3, 4]),
-                rng.choice([5, 6]),
-            }
+            given_slots = rng.choice(_PATTERNS)
 
             intro = (
                 ab_intro(scenario)
@@ -61,7 +89,6 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar1Generator(TaskGenerator):
             )
 
             fragen = ["" for _ in range(10)]
-
             antworten = [
                 "---"
                 if idx in given_slots

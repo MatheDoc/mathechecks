@@ -1,23 +1,18 @@
-"""Check 2 - Baumdiagramm vervollständigen (Pfadmultiplikation umgestellt).
-
-Kernidee: Die Pfadmultiplikationsregel a·b = c kann *nicht* direkt
-angewendet werden, sondern muss mindestens einmal nach b umgestellt
-werden: b = c / a.
+"""Check 3 - Baumdiagramm vervollständigen (Pfadadditionsregel).
 
 Gegeben sind immer genau 3 Wahrscheinlichkeiten:
-  1. Eine Endwahrscheinlichkeit (Blatt): 7, 8, 9 oder 10
-  2. Eine Wkt aus demselben Ast:
-       wenn 7|8 -> {1, 3, 4};  wenn 9|10 -> {2, 5, 6}
-  3. Eine Wkt aus dem anderen Ast:
-       wenn 7|8 -> {5, 6, 9, 10};  wenn 9|10 -> {3, 4, 7, 8}
+  1. Beide Endwkt eines Astes: {7,8} oder {9,10}
+  2. Eine weitere Wkt aus dem anderen Ast:
+    wenn {7,8} -> {5, 6, 9, 10};  wenn {9,10} -> {3, 4, 7, 8}
 
-Damit ist der gesamte Baum bestimmbar (7 Werte zu berechnen).
+Lösungsweg: Pfadaddition -> P(A) = P(A∩B) + P(A∩¬B) bzw. P(¬A) analog,
+danach Komplementregel + ggf. umgestellte Pfadmultiplikation.
 """
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical_stochastik_calc
+from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.methoden.shared import ABCase, ab_intro, sample_ab_case
 from aufgaben.generators.stochastik.methoden.textbausteine import SCENARIOS
@@ -52,25 +47,21 @@ def _build_tree_visual(case: ABCase, given_slots: list[int]) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# 48 Kombinationen: 1 Endwkt + 1 gleicher Ast + 1 anderer Ast
+# 8 Kombinationen: beide Endwkt eines Astes + 1 Wkt anderer Ast
 # ---------------------------------------------------------------------------
 _PATTERNS: list[set[int]] = []
 
-# Endwkt aus A-Ast (7 oder 8)
-for _end in (7, 8):
-    for _same in (1, 3, 4):
-        for _other in (5, 6, 9, 10):
-            _PATTERNS.append({_end, _same, _other})
+# A-Ast komplett (7,8) + eine Wkt vom ¬A-Ast
+for _other in (5, 6, 9, 10):
+    _PATTERNS.append({7, 8, _other})
 
-# Endwkt aus ¬A-Ast (9 oder 10)
-for _end in (9, 10):
-    for _same in (2, 5, 6):
-        for _other in (3, 4, 7, 8):
-            _PATTERNS.append({_end, _same, _other})
+# ¬A-Ast komplett (9,10) + eine Wkt vom A-Ast
+for _other in (3, 4, 7, 8):
+    _PATTERNS.append({9, 10, _other})
 
 
-class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
-    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohneUnabh_var2"
+class MethodenBaumdiagrammErstellenOhneUnabhVar3Generator(TaskGenerator):
+    generator_key = "stochastik.methoden.baumdiagramm_erstellen_ohne_unabh_var3"
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
@@ -106,4 +97,5 @@ class MethodenBaumdiagrammErstellenOhneUnabhVar2Generator(TaskGenerator):
             )
 
         return tasks
+
 
