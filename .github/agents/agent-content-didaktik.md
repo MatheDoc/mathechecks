@@ -127,6 +127,55 @@ Der Content-Agent ist verantwortlich für die inhaltlichen Felder in `checks.jso
 | `Sammlung` | Python-Agent | Slug der Aufgabensammlung |
 
 
+## Tipps in `checks.json`
+
+`Tipps` sind eine **kompakte Abruf- und Strukturhilfe**. Sie werden nicht nur im Skript angezeigt, sondern auch in Recall und Feynman weiterverwendet. Deshalb müssen sie ohne Zusatzkontext funktionieren.
+
+### Funktion der Tipps
+
+- **Erinnern statt lösen**: Tipps stoßen den Lösungsweg an, nehmen ihn aber nicht vollständig vorweg.
+- **Struktur geben**: Gute Tipps markieren Begriffe, Standardansätze oder typische Stolperstellen.
+- **Modulübergreifend tragen**: Jeder Tipp muss auch außerhalb des Skript-Ankers als eigenständiger Kernpunkt verständlich bleiben.
+
+### Formulierungsregeln
+
+- Pro Check in der Regel **2 bis 4 Tipps**; nur bei echtem Mehrwert mehr.
+- Jeder Tipp ist **für sich verständlich** und als knappe, gut lesbare Aussage formuliert.
+- Bevorzugt werden drei Typen von Tipps:
+    - **Begriffs-/Bedeutungstipps**: z. B. was ein Ausdruck oder eine Kennzahl bedeutet.
+    - **Ansatztipps**: z. B. welcher Standardansatz oder welche Gleichung zuerst gebraucht wird.
+    - **Fallentipps**: z. B. Rundung, Reihenfolge, Definitionsbereich, Vorzeichen, Einheiten.
+- **Knappe Faustregeln sind erlaubt**, wenn sie im Check-Kontext eindeutig sind und einen echten Lösungsimpuls geben, z. B. „Zeile mal Spalte".
+- **Formeln nur mit Funktion** einsetzen: Die Formel soll nicht nur dastehen, sondern als nutzbare Erinnerung lesbar sein.
+- **Stil einheitlich halten**: Tipps sind in der Regel keine vollständigen Sätze, sondern knappe Merksätze oder Zuordnungen.
+- **Kleinschreibung am Anfang bevorzugen**, außer bei mathematischen Symbolen, Eigennamen oder wenn ein vollständiger Satz didaktisch klar besser ist.
+- **Artikel nur verwenden, wenn sie für Klarheit sorgen**; unnötige Füllwörter aus Platzgründen weglassen.
+- **Doppelpunkt-Formen gezielt einsetzen**, wenn sie eine Zuordnung klarer machen, z. B. „Nullstelle von $p_N$: Sättigungsmenge“.
+- **Prozessorientierte Tipps bevorzugen**, wenn der Check vor allem einen Arbeitszug anstoßen soll, z. B. „$n$ und $p$ identifizieren“ statt bloßer Symbol-Zuordnung.
+- **Frageformen vermeiden**: Tipps sollen keine Fragen an Lernende stellen, sondern knappe Arbeitsaufträge, Merksätze oder Strukturhilfen geben.
+- **Inline-LaTeX ist erlaubt und oft sinnvoll**; Display-LaTeX in Tipps vermeiden.
+- **Innerhalb eines Tipp-Arrays stilistisch konsistent bleiben**: nicht Satzstil, Telegrammstil und Formelstil bunt mischen, wenn kein didaktischer Grund dafür vorliegt.
+- **Keine Mini-Lösungen**: keine ausformulierten Rechenwege mit allen Zwischenschritten, keine fast vollständige Musterlösung.
+- **Keine leeren Stichwörter**: Einzelwörter oder vage Phrasen wie „Definition“, „Diagramm“, „Ansatz“ genügen allein nicht.
+- Wenn sinnvoll, mit einem **Doppelpunkt** oder einer **klaren Zuordnung** arbeiten, z. B. „Nullstelle von $p_N$: Sättigungsmenge“.
+
+### Qualitätscheck vor dem Eintragen
+
+Ein Tipp ist geeignet, wenn er diese Fragen besteht:
+
+- Hilft er beim **Abrufen** des passenden Gedankens?
+- Ist er **ohne Zusatzkontext** verständlich?
+- Ist er **kürzer als eine Lösung**, aber **konkreter als ein Schlagwort**?
+- Ergänzt er die anderen Tipps des Checks, statt sie nur umzuformulieren?
+
+### Typische Fehlformen
+
+- Zu leer: „Definition der Kennzahl"
+- Zu knapp und unklar: isolierte Kurzformeln ohne erkennbaren Bezug zum Check
+- Zu lösungsnah: vollständige Rechenkette mit allen Umformungsschritten
+- Zu isoliert formal: Formel ohne Hinweis, wofür sie in diesem Check gebraucht wird
+
+
 ## Aufgabenformulierung — Fragen und Antworten
 
 Die Felder `fragen` und `antworten` in den generierten JSON-Aufgaben bestimmen, wie die Aufgabe im Training und in Flashcards dargestellt wird. Die folgenden Regeln gelten für Generator-Code und Beispiele gleichermaßen.
