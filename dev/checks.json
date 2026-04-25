@@ -342,15 +342,14 @@
         "Nummer": 1,
         "check_id": "stochastik__mehrstufige-zufallsexperimente__01",
         "Ich kann": "Baumdiagramme vervollständigen (direkte Anwendung der Pfadmultiplikationsregel).",
-        "Sammlung": "baumdiagramm-erstellen-ohneUnabh-var1",
+        "Sammlung": "baumdiagramm-erstellen-ohne-unabh-var1",
         "Schlagwort": "Pfadmultiplikation direkt",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Baumdiagramm",
-            "Summe der Pfadwahrscheinlichkeiten eines Knotens = 1",
-            "Erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
         ]
     },
     {
@@ -366,9 +365,9 @@
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "Baumdiagramm",
-            "Erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
-            "Nach fehlender Pfadwahrscheinlichkeit umformen"
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
+            "gesuchte Pfadwahrscheinlchkeit = Endwahrscheinlichkeit geteilt durch gegebene Pfadwahrscheinlchkeit"
         ]
     },
     {
@@ -384,9 +383,10 @@
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Baumdiagramm",
-            "Ereigniswahrscheinlichkeit = Summe der Pfadwahrscheinlichkeiten",
-            "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)"
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
+            "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)",
+            "\\(P(\\overline{A})=P(\\overline{A}\\cap B)+P(\\overline{A}\\cap \\overline{B})\\)"
         ]
     },
     {
@@ -404,9 +404,9 @@
         "Tipps": [
             "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
             "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
-            "\\(P(A\\cap B)\\): eine Pfadendwahrscheinlichkeit",
-            "\\(P(A\\cup B)\\): Summe dreier Pfadendwahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier Pfadendwahrscheinlichkeiten"
+            "\\(P(A\\cap B)\\): entsprechende Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
