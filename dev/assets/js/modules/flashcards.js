@@ -370,7 +370,7 @@ function syncCardViewportHeight() {
     const bottomSafeSpace = 26;
     const available = Math.max(220, viewportBottom - bodyRect.top - bottomSafeSpace);
     const ratingHeight = ratingNode.offsetHeight || 0;
-    const verticalGap = 30;
+    const verticalGap = 50;
     const maxCardHeight = Math.max(220, available - ratingHeight - verticalGap);
 
     const cardHeight = maxCardHeight;
