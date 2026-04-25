@@ -543,7 +543,7 @@
             "\\(P(B)\\): letzte Zeile/Spalte",
             "\\(P(A\\cap B)\\): entsprechende innere Wahrscheinlichkeit",
             "\\(P(A\\cup B)\\): entsprechende Summe dreier innerer Wahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\) : Summe zweier innerer Wahrscheinlichkeiten"
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
@@ -559,10 +559,9 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-06",
         "questionOrder": "fixed",
         "Tipps": [
-            "Innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
-            "Summe der inneren Wahrscheinlichkeiten = äußere Wahrscheinlichkeit",
-            "Unabhängigkeit: Vier-Felder-Tafel ist multiplikativ",
-            "Unabhängigkeit: \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
+            "innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            " äußere Wahrscheinlichkeit = Summe der entsprechenden inneren Wahrscheinlichkeiten",
+            "Unabhängigkeit: Vier-Felder-Tafel ist multiplikativ, d.h. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
         ]
     },
     {
@@ -580,11 +579,11 @@
         "Tipps": [
             "\\(P(A)\\): letzte Zeile/Spalte",
             "\\(P(B)\\): letzte Zeile/Spalte",
-            "\\(P(A\\cap B)\\): eine innere Wahrscheinlichkeit",
-            "\\(P(A\\cup B)\\): Summe dreier innerer Wahrscheinlichkeiten",
-            "\\(P(A\\cup B) - P(A\\cap B)\\): Summe zweier innerer Wahrscheinlichkeiten",
-            "\\(P_A(B)\\): innere Wahrscheinlichkeit geteilt durch äußere Wahrscheinlichkeit",
-            "\\(P_B(A)\\): innere Wahrscheinlichkeit geteilt durch äußere Wahrscheinlichkeit"
+            "\\(P(A\\cap B)\\): entsprechende innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
+            "\\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)",
+            "\\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
         ]
     },
     {
@@ -680,7 +679,7 @@
             "\\(P(B)\\): Wahrscheinlichkeit von \\( B \\)",
             "\\(P(A\\cap B)\\): Wahrscheinlichkeit von \\( A \\) und \\( B \\)",
             "\\(P(A\\cup B)\\): Wahrscheinlichkeit von \\( A \\) oder \\( B \\)",
-            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wahrscheinlichkeit von entweder \\( A \\) oder \\( B \\) (aber nicht beide)"
+            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\), aber nicht beides"
         ]
     },
     {
@@ -697,8 +696,8 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Gesamtanzahl berechnen",
-            "Relative Häufigkeit = Anzahl / Gesamtanzahl",
-            "Zwischen 0 und 1"
+            "absolute Häufigkeit des Ereignisses berechnen",
+            "relative Häufigkeit = absolute Häufigkeit / Gesamtanzahl"
         ]
     },
     {
@@ -749,9 +748,8 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "\\( E(X) = \\sum x_i \\cdot P(X=x_i) \\)",
-            "Zeile x Zeile",
-            "Durchschnittswert"
+            "für jede Ausprägung: Wert mal Wahrscheinlichkeit berechnen",
+            "alle Produkte addieren: \\(E(X) = \\sum x_i \\cdot P(X=x_i)\\)"
         ]
     },
     {
@@ -767,9 +765,8 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Schwankungsmaß",
-            "\\( \\sigma(X) = \\sqrt{E((X-E(X))^2)} \\) = \\( \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)",
-            "Wurzel aus durchschnittlicher quadratischer Abweichung"
+            "für jede Ausprägung: Abweichung vom Erwartungswert quadrieren und mit Wahrscheinlichkeit multiplizieren",
+            "alle Produkte addieren, dann die Wurzel ziehen: \\( \\sigma(X) = \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)"
         ]
     },
     {
@@ -785,8 +782,9 @@
         "skript_anchor": "check-stochastik-zufallsgroessen-03",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Erwartungswert: \\(E(X)\\): Durchschnittswert",
-            "Standardabweichung \\(\\sigma(X)\\): Schwankungsmaß"
+            "Erwartungswert \\(E(X)\\): der langfristig erwartete Durchschnittwerts",
+            "Standardabweichung \\(\\sigma(X)\\):  Maß für die Streuung der Werte",
+            "gewöhnlich liegt $X$ zwischen \\(E(X) - \\sigma(X)\\) und \\(E(X) + \\sigma(X)\\)"
         ]
     },
     {
@@ -804,7 +802,7 @@
         "Tipps": [
             "Summe aller Wahrscheinlichkeiten = 1",
             "Ansatz: Erwartungswert-Formel",
-            "Nach fehlendem Wert umformen"
+            "nach fehlendem Wert umformen"
         ]
     },
     {
@@ -822,8 +820,7 @@
         "Tipps": [
             "Summe aller Wahrscheinlichkeiten = 1",
             "Ansatz: Erwartungswert-Formel",
-            "Zwei Gleichungen mit zwei Unbekannten",
-            "Gleichungssystem lösen"
+            "lösen des Gleichungssystems mit zwei Gleichungen und zwei Unbekannten"
         ]
     },
     {
