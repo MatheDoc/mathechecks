@@ -236,7 +236,7 @@ table {
   --table-bg-strong: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, #fff));
   --table-vft-bg-strong: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, #fff));
   --table-border-color: var(--border, #dfe5f1);
-  --table-border-strong: rgba(58, 62, 70, 0.96);
+  --table-border-strong: color-mix(in srgb, var(--table-heading-color) 36%, var(--table-border-color));
   --table-text-color: var(--text-body, #3d4452);
   --table-heading-color: var(--text, #1a1a2e);
   --table-cell-padding: 10px 12px;
