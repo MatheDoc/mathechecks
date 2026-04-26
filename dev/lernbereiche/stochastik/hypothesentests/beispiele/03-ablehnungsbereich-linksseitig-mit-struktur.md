@@ -12,7 +12,7 @@ Einer Aufgabenstellung entnehmen wir:
 Es handelt sich um einen linksseitigen Hypothesentest, da die Gegenhypothese $H_1$ die Form $p<0{,}4$ hat. Wir führen eine Unbekannte $k$ ein, um den Annahme- und Ablehungsbereich prägnant beschreiben zu können. Es gilt:
 
 |Nullhypothese | Gegenhypothese |
-| $H_0: 0{,}4$ | $H_1: p<0{,}4$ |
+| $H_0: p=0{,}4$ | $H_1: p<0{,}4$ |
 | $A=\\{k+1,k+2,...,200\\}$ | $\overline{A}=\\{0,1,2,...,k\\}$ |
 
 Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p<0{,}4$ bei kleinen Stichprobenergebnissen für $H_1$ entscheiden, und bei großen für $H_0$.

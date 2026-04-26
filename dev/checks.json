@@ -836,9 +836,9 @@
         "skript_anchor": "check-stochastik-hypothesentests-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
-            "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
-            "\\( P(X\\leq k) \\)"
+            "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt",
+            "Fehler 1. Art im Allgemeinen: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "Fehler 1. Art beim linksseitigen Test: \\( P(X\\leq k) \\)"
         ]
     },
     {
@@ -854,9 +854,9 @@
         "skript_anchor": "check-stochastik-hypothesentests-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\( k\\in A \\) oder \\( k\\in\\overline{A} \\)",
-            "Fehler 1. Art: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
-            "\\( P(X\\geq k) \\)"
+            "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt",
+            "Fehler 1. Art im Allgemeinen: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "Fehler 1. Art beim rechtsseitigen Test: \\( P(X\\geq k) \\)"
         ]
     },
     {
@@ -872,11 +872,12 @@
         "skript_anchor": "check-stochastik-hypothesentests-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\(H_0, H_1\\) formulieren",
-            "\\( A=\\{k+1,\\ldots, n\\}\\)",
-            "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
-            "Ansatz mit Signifikanzniveau",
-            "Bestimmung von \\( k \\) mit TR oder TW"
+            "\\(H_0:\\) das 'alte' $p$",
+            "\\(H_1:\\) $p$ wird kleiner (linksseitig)",
+            "\\( A=\\{k+1,\\ldots, n\\}:\\) Annahmebereich  (linksseitig)",
+            "\\( \\overline{A}=\\{0,\\ldots,k\\}: \\) Ablehnungsbereich  (linksseitig)",
+            "Ansatz mit Signifikanzniveau (linksseitig): \\( P(X\\leq k)< \\alpha \\)",
+            "Bestimmung von \\( k \\) mit TR oder TW, so dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -892,11 +893,12 @@
         "skript_anchor": "check-stochastik-hypothesentests-04",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\(H_0, H_1\\) formulieren",
-            "\\( A=\\{0,\\ldots, k-1\\}\\)",
-            "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
-            "Ansatz mit Signifikanzniveau",
-            "Bestimmung von \\( k \\) mit TR oder TW"
+            "\\(H_0:\\) das 'alte' $p$",
+            "\\(H_1:\\) $p$ wird größer (rechtsseitig)",
+            "\\( A=\\{0,\\ldots, k-1\\}:\\) Annahmebereich  (rechtsseitig)",
+            "\\( \\overline{A}=\\{k,\\ldots,n\\}: \\) Ablehnungsbereich  (rechtsseitig)",
+            "Ansatz mit Signifikanzniveau (rechtsseitig): \\( P(X\\geq k)< \\alpha \\)",
+            "Bestimmung von \\( k \\) mit TR oder TW, so dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -912,11 +914,9 @@
         "skript_anchor": "check-stochastik-hypothesentests-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\(H_0, H_1\\) formulieren",
-            "\\( A=\\{k+1,\\ldots, n\\}\\)",
-            "\\( \\overline{A}=\\{0,\\ldots,k\\} \\)",
-            "Ansatz mit Signifikanzniveau",
-            "Bestimmung von \\( k \\) mit TR oder TW"
+            "\\(H_0 \\) und \\( H_1\\) formulieren",
+            "\\( A=\\{k+1,\\ldots, n\\} \\) und \\( \\overline{A}=\\{0,\\ldots,k\\} \\) notieren",
+            "$k$ bestimmen, so dass \\( P(X\\leq k)< \\) (linksseitig) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -932,11 +932,9 @@
         "skript_anchor": "check-stochastik-hypothesentests-06",
         "questionOrder": "fixed",
         "Tipps": [
-            "\\(H_0, H_1\\) formulieren",
-            "\\( A=\\{0,\\ldots, k-1\\}\\)",
-            "\\( \\overline{A}=\\{k,\\ldots,n\\} \\)",
-            "Ansatz mit Signifikanzniveau",
-            "Bestimmung von \\( k \\) mit TR oder TW"
+            "\\(H_0 \\) und \\( H_1\\) formulieren",
+            "\\( A=\\{0,\\ldots, k-1\\} \\) und \\( \\overline{A}=\\{k,\\ldots,n\\} \\) notieren",
+            "$k$ bestimmen, so dass \\( P(X\\geq k)< \\) (rechtsseitig) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
