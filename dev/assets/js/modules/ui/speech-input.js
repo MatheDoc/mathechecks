@@ -18,8 +18,8 @@ const ENHANCED_ATTR = "data-speech-enhanced";
 let activeRecognition = null;
 let activeBtn = null;
 
-/* ── German number-word → digit conversion (Chrome workaround) ── */
-const DE_WORDS = new Map([
+/* ── German speech → numeric string normalization (Chrome workaround) ── */
+const DIRECT_NUMBER_WORDS = new Map([
     ["null", "0"], ["eins", "1"], ["zwei", "2"], ["drei", "3"],
     ["vier", "4"], ["fünf", "5"], ["sechs", "6"], ["sieben", "7"],
     ["acht", "8"], ["neun", "9"], ["zehn", "10"], ["elf", "11"],
@@ -33,11 +33,219 @@ const DE_WORDS = new Map([
     ["minus", "-"], ["komma", ","],
 ]);
 
+const DIGIT_WORDS = new Map([
+    ["null", "0"], ["eins", "1"], ["ein", "1"], ["zwei", "2"], ["drei", "3"],
+    ["vier", "4"], ["fünf", "5"], ["sechs", "6"], ["sieben", "7"],
+    ["acht", "8"], ["neun", "9"],
+]);
+
+const CARDINAL_WORDS = new Map([
+    ["null", 0], ["eins", 1], ["ein", 1], ["zwei", 2], ["drei", 3],
+    ["vier", 4], ["fünf", 5], ["sechs", 6], ["sieben", 7], ["acht", 8],
+    ["neun", 9], ["zehn", 10], ["elf", 11], ["zwölf", 12], ["dreizehn", 13],
+    ["vierzehn", 14], ["fünfzehn", 15], ["sechzehn", 16], ["siebzehn", 17],
+    ["achtzehn", 18], ["neunzehn", 19], ["zwanzig", 20], ["dreißig", 30],
+    ["vierzig", 40], ["fünfzig", 50], ["sechzig", 60], ["siebzig", 70],
+    ["achtzig", 80], ["neunzig", 90],
+]);
+
+const TENS_PATTERN = /^(.*)und(zwanzig|dreißig|vierzig|fünfzig|sechzig|siebzig|achtzig|neunzig)$/;
+
+function normalizeNumberToken(word) {
+    return String(word || "")
+        .toLowerCase()
+        .replace(/dreissig/g, "dreißig")
+        .replace(/fuenf/g, "fünf")
+        .replace(/funf/g, "fünf")
+        .replace(/zwo/g, "zwei")
+        .replace(/^eine[rmns]?$/, "ein")
+        .replace(/^eins$/, "eins")
+        .replace(/sechszehn/g, "sechzehn")
+        .replace(/siebenzehn/g, "siebzehn");
+}
+
+function parseGermanCardinalWord(word) {
+    const normalized = normalizeNumberToken(word);
+    if (!normalized) return null;
+
+    if (/^\d+$/.test(normalized)) {
+        return Number(normalized);
+    }
+
+    if (CARDINAL_WORDS.has(normalized)) {
+        return CARDINAL_WORDS.get(normalized);
+    }
+
+    const millionMatch = normalized.match(/^(.*?)(million(?:en)?)(.*)$/);
+    if (millionMatch) {
+        const left = millionMatch[1] || "ein";
+        const right = millionMatch[3];
+        const leftValue = parseGermanCardinalWord(left);
+        const rightValue = right ? parseGermanCardinalWord(right) : 0;
+        if (leftValue !== null && rightValue !== null) {
+            return leftValue * 1000000 + rightValue;
+        }
+    }
+
+    const thousandIndex = normalized.indexOf("tausend");
+    if (thousandIndex !== -1) {
+        const left = normalized.slice(0, thousandIndex) || "ein";
+        const right = normalized.slice(thousandIndex + "tausend".length);
+        const leftValue = parseGermanCardinalWord(left);
+        const rightValue = right ? parseGermanCardinalWord(right) : 0;
+        if (leftValue !== null && rightValue !== null) {
+            return leftValue * 1000 + rightValue;
+        }
+    }
+
+    const hundredIndex = normalized.indexOf("hundert");
+    if (hundredIndex !== -1) {
+        const left = normalized.slice(0, hundredIndex) || "ein";
+        const right = normalized.slice(hundredIndex + "hundert".length);
+        const leftValue = parseGermanCardinalWord(left);
+        const rightValue = right ? parseGermanCardinalWord(right) : 0;
+        if (leftValue !== null && rightValue !== null) {
+            return leftValue * 100 + rightValue;
+        }
+    }
+
+    const tensMatch = normalized.match(TENS_PATTERN);
+    if (tensMatch) {
+        const onesValue = parseGermanCardinalWord(tensMatch[1]);
+        const tensValue = CARDINAL_WORDS.get(tensMatch[2]);
+        if (onesValue !== null && onesValue < 10 && tensValue !== undefined) {
+            return tensValue + onesValue;
+        }
+    }
+
+    return null;
+}
+
+function parseDigitSequence(words) {
+    if (!words.length) return null;
+
+    let digits = "";
+    for (const rawWord of words) {
+        const word = normalizeNumberToken(rawWord);
+        if (!word) return null;
+
+        if (/^\d+$/.test(word)) {
+            digits += word;
+            continue;
+        }
+
+        const digit = DIGIT_WORDS.get(word);
+        if (digit === undefined) {
+            return null;
+        }
+        digits += digit;
+    }
+
+    return digits || null;
+}
+
+function parseGermanIntegerWords(words) {
+    if (!words.length) return null;
+
+    const digitSequence = parseDigitSequence(words);
+    if (digitSequence !== null) {
+        return digitSequence;
+    }
+
+    const joined = words.map(normalizeNumberToken).join("");
+    const parsed = parseGermanCardinalWord(joined);
+    return parsed !== null ? String(parsed) : null;
+}
+
+function parseGermanFractionWords(words) {
+    if (!words.length) return null;
+
+    const digitSequence = parseDigitSequence(words);
+    if (digitSequence !== null) {
+        return digitSequence;
+    }
+
+    const joined = words.map(normalizeNumberToken).join("");
+    const parsed = parseGermanCardinalWord(joined);
+    return parsed !== null ? String(parsed) : null;
+}
+
+function parseGermanNumberPhrase(text) {
+    const cleaned = String(text || "")
+        .trim()
+        .replace(/\.+$/, "")
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, " ");
+
+    if (!cleaned) return null;
+
+    const compactNumeric = cleaned.replace(/\s*,\s*/g, ",").replace(/\s+/g, "");
+    if (/^-?\d+(?:,\d+)?$/.test(compactNumeric)) {
+        return compactNumeric;
+    }
+
+    let sign = "";
+    let rest = cleaned;
+    if (rest.startsWith("-")) {
+        sign = "-";
+        rest = rest.slice(1).trim();
+    }
+
+    const tokens = rest
+        .replace(/,/g, " komma ")
+        .split(/\s+/)
+        .map(normalizeNumberToken)
+        .filter(Boolean);
+
+    if (!tokens.length) return null;
+
+    if (tokens[0] === "minus") {
+        sign = "-";
+        tokens.shift();
+    }
+
+    if (!tokens.length) return null;
+
+    const commaIndex = tokens.indexOf("komma");
+    if (commaIndex === -1) {
+        const integerPart = parseGermanIntegerWords(tokens);
+        return integerPart !== null ? `${sign}${integerPart}` : null;
+    }
+
+    const integerTokens = tokens.slice(0, commaIndex);
+    const fractionTokens = tokens.slice(commaIndex + 1);
+    const integerPart = integerTokens.length ? parseGermanIntegerWords(integerTokens) : "0";
+    const fractionPart = parseGermanFractionWords(fractionTokens);
+
+    if (integerPart === null || fractionPart === null) {
+        return null;
+    }
+
+    return `${sign}${integerPart},${fractionPart}`;
+}
+
 function replaceNumberWords(text) {
     return text.replace(/\b[a-zäöüß]+\b/gi, (word) => {
-        const digit = DE_WORDS.get(word.toLowerCase());
+        const digit = DIRECT_NUMBER_WORDS.get(normalizeNumberToken(word));
         return digit !== undefined ? digit : word;
     });
+}
+
+function normalizeSpeechTranscript(text) {
+    const cleaned = String(text || "").trim().replace(/\.+$/, "");
+    if (!cleaned) return "";
+
+    const numericText = parseGermanNumberPhrase(cleaned);
+    if (numericText !== null) {
+        return numericText;
+    }
+
+    const replaced = replaceNumberWords(cleaned);
+    const compact = replaced.trim();
+    if (/^[\d\s,-]+$/.test(compact)) {
+        return compact.replace(/\s*,\s*/g, ",").replace(/\s+/g, "");
+    }
+    return compact.replace(/\s*,\s*/g, ",");
 }
 
 function stopActiveRecognition() {
@@ -109,7 +317,7 @@ function bindMic(btn, input) {
             }
             if (!transcript) return;
 
-            const cleaned = replaceNumberWords(transcript.trim()).replace(/\.+$/, "");
+            const cleaned = normalizeSpeechTranscript(transcript);
 
             const current = input.value;
             if (current && !current.endsWith(" ")) {
