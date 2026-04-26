@@ -190,7 +190,7 @@ Dann ergänzt man innerhalb der Klammer zu einem vollständigen Quadrat:
 
 $$f(x) = a\!\left(x^2 + \frac{b}{a}x + \left(\frac{b}{2a}\right)^2 - \left(\frac{b}{2a}\right)^2\right) + c = a\!\left(x + \frac{b}{2a}\right)^2 + c - \frac{b^2}{4a}$$
 
-Der Scheitel liegt bei $S\!\left(-\frac{b}{2a} \mid c - \frac{b^2}{4a}\right)$.
+Der Scheitel liegt bei $S\left(-\frac{b}{2a} \mid c - \frac{b^2}{4a}\right)$.
 
 {% include dev/check-anker.html nummer="9" %}
 
