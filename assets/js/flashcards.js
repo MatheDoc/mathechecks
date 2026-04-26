@@ -1,6 +1,7 @@
 "use strict";
 
 const msPerDay = 24 * 60 * 60 * 1000;
+const FLASHCARDS_PROGRESS_STORAGE_PREFIX = "flashcards-progress-v1";
 const FLASHCARDS_VIEW_STATE_PREFIX = "flashcards-view-v1";
 const FLASHCARDS_VIEW_STATE_VERSION = 1;
 
@@ -8,9 +9,6 @@ const state = {
     cards: [],
     progress: {},
     currentCard: null,
-    auth: null,
-    db: null,
-    user: null,
     isSaving: false,
     hasPendingSave: false,
     view: {
@@ -21,6 +19,10 @@ const state = {
 
 function getFlashcardsViewStorageKey() {
     return `${FLASHCARDS_VIEW_STATE_PREFIX}:${window.lernbereich || "default"}`;
+}
+
+function getFlashcardsProgressStorageKey() {
+    return `${FLASHCARDS_PROGRESS_STORAGE_PREFIX}:${window.lernbereich || "default"}`;
 }
 
 function createDefaultViewState() {
@@ -91,58 +93,58 @@ function chooseCardForDisplay(cards) {
     return findStoredCard(cards) || fallback;
 }
 
-function getProgressDocRef() {
-    if (!state.db || !state.user || !window.lernbereich) return null;
-    return state.db
-        .collection("users")
-        .doc(state.user.uid)
-        .collection("flashcards")
-        .doc(window.lernbereich);
+function normalizeProgress(raw) {
+    if (!raw || typeof raw !== "object") return {};
+
+    const progress =
+        raw.progress && typeof raw.progress === "object" && !Array.isArray(raw.progress)
+            ? raw.progress
+            : raw;
+
+    return progress && typeof progress === "object" && !Array.isArray(progress) ? progress : {};
+}
+
+function readStoredProgress() {
+    const raw = localStorage.getItem(getFlashcardsProgressStorageKey());
+    if (!raw) return {};
+
+    const parsed = JSON.parse(raw);
+    return normalizeProgress(parsed);
+}
+
+function writeStoredProgress(progress) {
+    localStorage.setItem(
+        getFlashcardsProgressStorageKey(),
+        JSON.stringify({
+            lernbereich: window.lernbereich || "default",
+            progress,
+            updatedAt: Date.now(),
+            lastSeenAt: Date.now(),
+        })
+    );
 }
 
 async function ensureProgressDoc() {
-    const docRef = getProgressDocRef();
-    if (!docRef) return;
+    if (!window.lernbereich) return;
 
     try {
-        await docRef.set(
-            {
-                lernbereich: window.lernbereich,
-                lastSeenAt:
-                    typeof firebase !== "undefined" && firebase.firestore
-                        ? firebase.firestore.FieldValue.serverTimestamp()
-                        : Date.now(),
-            },
-            { merge: true }
-        );
+        writeStoredProgress(readStoredProgress());
     } catch (err) {
-        console.warn("Flashcards: Cloud-Handshake fehlgeschlagen", err);
+        console.warn("Flashcards: lokaler Fortschritt konnte nicht initialisiert werden", err);
     }
 }
 
 async function loadProgress() {
-    const docRef = getProgressDocRef();
-    if (!docRef) {
-        state.progress = {};
-        return;
-    }
-
     try {
-        const snapshot = await docRef.get();
-        const data = snapshot.exists ? snapshot.data() : null;
-        state.progress = data?.progress && typeof data.progress === "object" ? data.progress : {};
+        state.progress = readStoredProgress();
     } catch (err) {
-        console.warn("Flashcards: cloud progress konnte nicht geladen werden", err);
+        console.warn("Flashcards: lokaler Fortschritt konnte nicht geladen werden", err);
         state.progress = {};
-        const details = err?.code ? ` (${err.code})` : "";
-        updateCounts(0, state.cards.length || 0, `Fortschritt konnte nicht geladen werden${details}.`);
+        updateCounts(0, state.cards.length || 0, "Lokaler Fortschritt konnte nicht geladen werden.");
     }
 }
 
 async function saveProgress() {
-    const docRef = getProgressDocRef();
-    if (!docRef) return;
-
     if (state.isSaving) {
         state.hasPendingSave = true;
         return;
@@ -150,20 +152,10 @@ async function saveProgress() {
 
     state.isSaving = true;
     try {
-        await docRef.set(
-            {
-                progress: state.progress,
-                updatedAt:
-                    typeof firebase !== "undefined" && firebase.firestore
-                        ? firebase.firestore.FieldValue.serverTimestamp()
-                        : Date.now(),
-            },
-            { merge: true }
-        );
+        writeStoredProgress(state.progress);
     } catch (err) {
-        console.warn("Flashcards: cloud progress konnte nicht gespeichert werden", err);
-        const details = err?.code ? ` (${err.code})` : "";
-        updateCounts(0, state.cards.length || 0, `Speichern fehlgeschlagen${details}.`);
+        console.warn("Flashcards: lokaler Fortschritt konnte nicht gespeichert werden", err);
+        updateCounts(0, state.cards.length || 0, "Lokaler Fortschritt konnte nicht gespeichert werden.");
     } finally {
         state.isSaving = false;
         if (state.hasPendingSave) {
@@ -528,21 +520,7 @@ function rateCurrentCard(grade) {
 function resetProgress() {
     if (!window.confirm("Fortschritt wirklich löschen?")) return;
     state.progress = {};
-    const docRef = getProgressDocRef();
-    if (docRef) {
-        docRef
-            .set(
-                {
-                    progress: {},
-                    updatedAt:
-                        typeof firebase !== "undefined" && firebase.firestore
-                            ? firebase.firestore.FieldValue.serverTimestamp()
-                            : Date.now(),
-                },
-                { merge: true }
-            )
-            .catch((err) => console.warn("Flashcards: Reset konnte nicht gespeichert werden", err));
-    }
+    saveProgress().catch((err) => console.warn("Flashcards: Reset konnte nicht gespeichert werden", err));
     const next = selectNextCard(state.cards);
     if (next) {
         renderCard(next);
@@ -635,34 +613,7 @@ async function loadData() {
 }
 
 async function initAuthBridge() {
-    if (!window.MATHECHECKS_AUTH_READY) {
-        return;
-    }
-
-    const ready = await window.MATHECHECKS_AUTH_READY;
-    state.auth = ready?.auth || null;
-    state.db = ready?.db || null;
-    state.user = state.auth?.currentUser || null;
-
-    if (state.auth) {
-        await new Promise((resolve) => {
-            const unsubscribe = state.auth.onAuthStateChanged((user) => {
-                state.user = user || null;
-                unsubscribe();
-                resolve();
-            });
-        });
-    }
-
-    window.addEventListener("mathechecks-auth-changed", async (event) => {
-        state.user = event.detail?.user || null;
-        await ensureProgressDoc();
-        await loadProgress();
-        const next = chooseCardForDisplay(state.cards);
-        if (next) {
-            renderCard(next);
-        }
-    });
+    return;
 }
 
 function setupEvents() {

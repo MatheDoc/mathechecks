@@ -26,7 +26,6 @@
 }
 
 .hamburger,
-.auth-toggle,
 .calculator-toggle,
 .beta-toggle {
   background: none;
@@ -38,7 +37,6 @@
 }
 
 .hamburger:hover,
-.auth-toggle:hover,
 .calculator-toggle:hover,
 .beta-toggle:hover {
   background: #cfcfcf6a;
@@ -78,69 +76,11 @@
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 
-.auth-toggle {
+.beta-toggle {
   position: absolute;
   right: 4.2rem;
   font-size: 1.2rem;
   padding: 0.25rem 0.45rem;
-}
-
-.beta-toggle {
-  position: absolute;
-  right: 8.4rem;
-  font-size: 1.2rem;
-  padding: 0.25rem 0.45rem;
-
-}
-
-#account-status-indicator {
-  position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  border: 1.5px solid white;
-  background-color: #9ca3af;
-}
-
-.auth-toggle.is-logged-in #account-status-indicator {
-  background-color: #2ecc71;
-}
-
-.auth-toggle.is-logged-out #account-status-indicator {
-  background-color: #ef4444;
-}
-
-#account-status-indicator {
-  position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid white;
-  /* optischer Rand */
-  background-color: gray;
-  /* Standard (neutral) */
-}
-
-#account.logged-in #account-status-indicator {
-  background-color: #2ecc71;
-  /* Grün für eingeloggt */
-}
-
-#account.logged-out #account-status-indicator {
-  background-color: #e74c3c;
-  /* Rot für ausgeloggt */
-}
-
-#firebaseui-auth-container button {
-
-  color: white;
-  background: var(--hauptfarbe);
-
-  border-radius: 5px;
 
 }
 
@@ -328,14 +268,8 @@
     padding: 0.15rem 0.35rem;
   }
 
-  .auth-toggle {
-    right: 3.15rem;
-    font-size: 1.15rem;
-    padding: 0.15rem 0.35rem;
-  }
-
   .beta-toggle {
-    right: 6.3rem;
+    right: 3.15rem;
     font-size: 1.15rem;
     padding: 0.15rem 0.35rem;
   }

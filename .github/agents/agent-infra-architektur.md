@@ -11,7 +11,7 @@ Du verantwortest technische Architekturfragen und Infrastrukturänderungen mit F
 
 ## Zuständigkeit
 
-- `functions/`, `dataconnect/`, Firestore-Regeln/Indizes
+- Backend-Dienste, Datenmodelle und Deploy-/Migrationspfade
 - Datenflüsse, Schnittstellen, Abhängigkeiten, Deploy-Auswirkungen
 - Betriebs- und Sicherheitsrisiken
 
