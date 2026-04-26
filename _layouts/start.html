@@ -2,7 +2,7 @@
 <html lang="de">
 
 <head>
-  {% include firebase-config.html %} {% include head-main.html %} {% include
+  {% include head-main.html %} {% include
   mathjax.html %}
   <!-- Plotly -->
   <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
@@ -29,13 +29,12 @@
       download class="link-button">Anki-Paket</a>
   </main>
 
-  {% include footer.html %} {% include firebase-auth.html %}
+  {% include footer.html %}
   <script src="{{ '/assets/js/nav.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/calculator-helpers.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/calculator-popup.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/calculator-graph.js' | relative_url }}"></script>
   <script src="{{ '/assets/js/calculator.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/firebase.js' | relative_url }}"></script>
   <!--<script src="{{ '/assets/js/start.js' | relative_url }}"></script>-->
   <script src="/assets/js/cookie-consent.js"></script>
 </body>

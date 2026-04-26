@@ -162,6 +162,6 @@ Der Kompetenzfortschritt wird im Dashboard pro Lernbereich und pro Check ausgewi
 ### Offene Fragen / Zu klärende Punkte
 
 
-- **Technische Trigger:** Wie werden Auslöser in Firestore abgebildet?
-- **Firestore-Datenmodell:** Wie werden `state`, `substate`, Zeitstempel, `automated_training_count` und Feed-Historie pro `check_id` gespeichert (Collection-/Dokumentstruktur)?
+- **Technische Trigger:** Wie werden Auslöser im künftigen Backend abgebildet?
+- **Backend-Datenmodell:** Wie werden `state`, `substate`, Zeitstempel, `automated_training_count` und Feed-Historie pro `check_id` gespeichert (Collection-/Dokumentstruktur)?
 - **Bewertung:** Das Zustandsmodell 1-5 mit Teilzustand 2a-2e ist didaktisch klar und technisch gut abbildbar; zusätzliche Komplexität entsteht vor allem im Übergang Zustand 3 -> 4.

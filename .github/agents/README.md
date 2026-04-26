@@ -13,7 +13,7 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
 3. `agent-frontend-ux.md`
    - Lernoberfläche, Includes, Layouts, Barrierearmut und Bedienbarkeit
 4. `agent-infra-architektur.md`
-   - Systemgrenzen, Firebase/Functions, Regeln, Deploy-/Risikoaspekte
+   - Systemgrenzen, Backend-Services, Deploy-/Risikoaspekte
 5. `agent-warmup.md`
    - Warm-Up-Karten: motivierender Auftakt, Relevanz, Gesprächsimpulse, meist 3 Karten pro Lernbereich
 
