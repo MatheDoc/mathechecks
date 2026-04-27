@@ -599,10 +599,10 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-08",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Satz von der Gegenwahrscheinlichkeit",
-            "Satz von der totalen Wahrscheinlichkeit",
-            "Satz von Sylvester",
-            "Satz von der bedingten Wahrscheinlichkeit"
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von der totalen Wahrscheinlichkeit: \\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)",
+            "Satz von der bedingten Wahrscheinlichkeit: \\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)"
         ]
     },
     {
@@ -618,12 +618,11 @@
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-09",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Satz von der Gegenwahrscheinlichkeit",
-            "Satz von der totalen Wahrscheinlichkeit",
-            "Satz von Sylvester",
-            "Satz von der bedingten Wahrscheinlichkeit",
-            "Unabhängigkeit: \\(P_A(B) = P_{\\overline{A}}(B)\\)",
-            "Unabhängigkeit: \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von der totalen Wahrscheinlichkeit: \\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)",
+            "Satz von der bedingten Wahrscheinlichkeit: \\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)",
+            "Unabhängigkeit: \\(P_A(B) = P_{\\overline{A}}(B) oder \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
         ]
     },
     {
@@ -713,8 +712,8 @@
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "$P(A) = 1 - P(\\overline{A})$",
-            "$P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$"
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)"
         ]
     },
     {
@@ -994,7 +993,7 @@
             "$x_{Emax}$ ist Kapazitätsgrenze",
             "$E_{max}$ ist Erlös an Kapazitätsgrenze",
             "$K_f$ ist $y$-Abschnitt von $K$",
-            "Übergang degressiv/progressiv ist eine Wendestelle von $K'$",
+            "Übergang degressiv/progressiv ist Wendestelle von $K'$",
             "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
             "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$"
         ]
@@ -1016,7 +1015,7 @@
             "$s_m$ ist Nullstelle von $p$",
             "$(x_{Emax}|E_{max})$ ist Hochpunkt von $E$",
             "$K_f$ ist $y$-Abschnitt von $K$",
-            "Übergang degressiv/progressiv ist eine Wendestelle von $K'$",
+            "Übergang degressiv/progressiv ist Wendestelle von $K'$",
             "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
             "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$",
             "$p_{max}$ ist Wert von $p$ an $x_{Gmax}$"
@@ -1040,7 +1039,7 @@
             "$x_{Gmax}$ ist Extremstelle → notwendige Bedingung: $f'(x)=0$, hinreichende Bedingung: $f''(x)<0$  ",
             "$x_{Emax}$ ist Kapazitätsgrenze (Polppol) oder Extremstelle (Monopol)",
             "$E_{max}$ und $G_{max}$ sind $y$-Werte der Extremstellen → Einsetzen und Ausrechnen",
-            "Übergang degressiv/progressiv ist eine Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$",
+            "Übergang degressiv/progressiv ist Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$",
             "$p_{max}$ ist $y$-Wert von $p$ an $x_{Gmax}$ → $p(x_{Gmax})$ berechnen"
         ]
     },
@@ -1057,9 +1056,9 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl vergegenwärtigen",
-            "Ansatz fomulieren",
-            "Wert berechnen oder nach $x$ auflösen"
+            "gesuchte Kennzahl zuordnen: Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert",
+            "passenden Ansatz fomulieren",
+            "gesuchten $x$ oder $y$-Wert berechnen"
         ]
     },
     {
@@ -1075,9 +1074,9 @@
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-07",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl vergegenwärtigen",
-            "Ansatz fomulieren",
-            "Wert berechnen oder nach $x$ auflösen"
+            "gesuchte Kennzahl zuordnen: Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert",
+            "passenden Ansatz fomulieren",
+            "gesuchten $x$ oder $y$-Wert berechnen"
         ]
     },
     {
@@ -1093,7 +1092,7 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Grad 3",
+            "Funktion 3. Grades",
             "positiver $y$-Achsenabschnitt",
             "monoton wachsend",
             "positive Wendestelle"
@@ -1112,7 +1111,7 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Grad 3",
+            "Funktion 3. Grades",
             "positiver $y$-Achsenabschnitt",
             "monoton wachsend",
             "positive Wendestelle"
@@ -1190,7 +1189,7 @@
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Allgemeine Form $K(x)=ax^3+bx^2+cx+d$, evtl. weitere",
+            "Allgemeine Form $K(x)=ax^3+bx^2+cx+d$ aufstellen, evtl. weitere",
             "Informationen in Gleichung überführen",
             "LGS aufstellen",
             "LGS lösen"
@@ -1228,9 +1227,11 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl",
-            "Formulierung Ansatz",
-            "Wert berechnen oder nach $x$ auflösen"
+            "Höchstpreis: $p_N(0)$ berechnen",
+            "Sättigungsmenge: $p_N(x)=0$ setzen und nach $x$ auflösen",
+            "Mindestangebotspreis: $p_A(0)$ berechnen",
+            "Gleichgewichtsmenge: $p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen",
+            "Gleichgewichtspreis: $x_G$ in $p_N$ oder $p_A$ einsetzen"
         ]
     },
     {
@@ -1284,9 +1285,11 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Definition der Kennzahl",
-            "Formulierung Ansatz",
-            "Wert berechnen oder nach $x$ auflösen"
+            "Höchstpreis: $p_N(0)$ berechnen",
+            "Sättigungsmenge: $p_N(x)=0$ setzen und nach $x$ auflösen",
+            "Mindestangebotspreis: $p_A(0)$ berechnen",
+            "Gleichgewichtsmenge: $p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen",
+            "Gleichgewichtspreis: $x_G$ in $p_N$ oder $p_A$ einsetzen"
         ]
     },
     {
@@ -1319,9 +1322,9 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-04",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Bestimme Marktgleichgewicht",
-            "abgeschöpfte KR = geeigneter Flächeninhalt",
-            "geeigneter Flächeninhalt = $x_2\\cdot p_2-p_G$"
+            "Gleichgewichtsmenge $x_G$ bestimmen",
+            "nachgefragte Menge $x_2$ bei Teilmarktpreis bestimmen",
+            "Abschöpfung durch Teilmarktpreis $p_2$: $x_2\\cdot (p_2-p_G)$"
         ]
     },
     {
@@ -1337,9 +1340,10 @@
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "Bestimme Marktgleichgewicht",
-            "abgeschöpfte KR = geeigneter Flächeninhalt $A(x_2)$",
-            "maximiere $A(x_2)$",
+            "Gleichgewichtsmenge $x_G$ bestimmen",
+            "$x_2$ als Variable für Teilmarktmenge anlegen",
+            "Abschöpfung $A$ in Abhängigkeit von $x_2$ formulieren: $A(x_2)=x_2\\cdot (p_N(x_2)-p_G)$",
+            "$A(x_2)$ maximieren",
             "Verkaufspreis = $p_N(x_2)$"
         ]
     },
@@ -1356,9 +1360,10 @@
         "skript_anchor": "check-analysis-analysis-diverses-01",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Regression im TR",
-            "Wahl Regressionsfunktion",
-            "Bestimmheitsmaß nahe 1?"
+            "Daten eingeben und passende Regression im TR wählen",
+            "Modellform am Verlauf der Daten orientieren: linear, quadratisch, kubisch oder exponentiell",
+            "Bestimmheitsmaß $R^2$: je näher an 1, desto besser passt das Modell",
+            "bei mehreren Modellen: das mit dem größeren $R^2$ bevorzugen"
         ]
     },
     {
@@ -1374,9 +1379,9 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gleichsetzungsverfahren",
-            "Einsetzungsverfahren",
-            "Additionsverfahren"
+            "Gleichsetzungsverfahren: beide Gleichungen nach derselben Variable umformen, dann gleichsetzen",
+            "Einsetzungsverfahren: eine Variable isolieren und in die andere Gleichung einsetzen",
+            "Additionsverfahren: Gleichungen so umformen, sodass eine Variable durch Addition wegfällt"
         ]
     },
     {
@@ -1392,9 +1397,9 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gauß-Algorithmus",
-            "elementare Zeilenumformungen",
-            "obere Dreiecksform"
+            "Gauß-Algorithmus: schrittweise auf obere Dreiecksform umformen",
+            "elementare Zeilenumformungen: Zeilenvielfache addieren, evtl. Zeilen tauschen",
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -1410,9 +1415,9 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gauß-Algorithmus",
-            "elementare Zeilenumformungen",
-            "obere Dreiecksform"
+            "Gauß-Algorithmus: schrittweise auf obere Dreiecksform umformen",
+            "elementare Zeilenumformungen: Zeilenvielfache addieren, evtl. Zeilen tauschen",
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -1430,7 +1435,7 @@
         "Tipps": [
             "Gauß-Algorithmus anwenden",
             "letzte Variable als Parameter $t$ setzen",
-            "rückwärts einsetzen"
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -1446,10 +1451,10 @@
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "vergleiche $rg(A)$ mit $rg(A|y)$",
-            "keine Lösung",
-            "eine Lösung",
-            "unendlich viele Lösungen"
+            "$rg(A)$, $rg(A|y)$ und Variablenanzahl $n$ bestimmen",
+            "keine Lösung: $rg(A) \\neq rg(A|y)$",
+            "eindeutig lösbar: $rg(A) = rg(A|y) = n$",
+            "unendlich viele Lösungen: $rg(A) = rg(A|y) < n$"
         ]
     },
     {
@@ -1465,9 +1470,8 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-01",
         "questionOrder": "fixed",
         "Tipps": [
-            "Elementweise addieren/subtrahieren",
-            "Gleiche Dimension",
-            "Skalar mit jedem Eintrag multiplizieren"
+            "Elementweise addieren bzw. subtrahieren — gleiche Dimension erforderlich",
+            "Skalarmultiplikation: jeden Eintrag mit dem Skalar multiplizieren"
         ]
     },
     {
@@ -1483,9 +1487,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-02",
         "questionOrder": "fixed",
         "Tipps": [
-            "nicht elementweise multiplizieren",
-            "Zeile mal Spalte",
-            "Spaltenanzahl $A$ = Zeilenanzahl $B$"
+            "Zeile mal Spalte: Summe der Produkte der $i$-ten Zeile und $j$-ten Spalte",
+            "Voraussetzung: Spaltenanzahl von $A$ = Zeilenanzahl von $B$",
+            "Matrizenmultiplikation ist nicht kommutativ: $AB \neq BA$"
         ]
     },
     {
@@ -1501,8 +1505,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-03",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gauß-Jordan-Algorithmus",
-            "$(A|E)\\sim(E|A^{-1})$"
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -1518,8 +1523,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-04",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gauß-Jordan-Algorithmus",
-            "$(A|E)\\sim(E|A^{-1})$"
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -1535,8 +1541,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-05",
         "questionOrder": "fixed",
         "Tipps": [
-            "Gauß-Jordan-Algorithmus",
-            "$(A|E)\\sim(E|A^{-1})$"
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -1552,8 +1559,8 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-06",
         "questionOrder": "fixed",
         "Tipps": [
-            "Nach $X$ umstellen",
-            "Inverse nutzen",
+            "mit Matrizenoperationen nach $X$ umstellen",
+            "Reihenfolge Klammer, Punkt, Strich beachten",
             "Reihenfolge der Multiplikation beachten"
         ]
     },
@@ -1605,9 +1612,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-09",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Regel von Sarrus",
-            "Erste zwei Spalten rechts anfügen",
-            "3 Produkte addieren, 3 Produkte subtrahieren"
+            "Regel von Sarrus: erste zwei Spalten rechts anfügen",
+            "Diagonalen von links oben → Produkte addieren",
+            "Diagonalen von rechts oben → Produkte subtrahieren"
         ]
     },
     {
@@ -1623,9 +1630,9 @@
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-10",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Laplace-Entwicklung",
-            "Zeile oder Spalte mit vielen Nullen wählen",
-            "Vorzeichen: $(-1)^{i+j}$"
+            "Laplace-Entwicklung nach einer Zeile oder Spalte mit vielen Nullen",
+            "Vorzeichen des $(i,j)$-Eintrags: $(-1)^{i+j}$",
+            "$\\det(A) = \\sum_j (-1)^{i+j} \\cdot a_{ij} \\cdot M_{ij}$"
         ]
     },
     {

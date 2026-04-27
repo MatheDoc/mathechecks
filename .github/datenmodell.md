@@ -103,3 +103,23 @@ dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `dev_lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Spaced Repetition, via JS |
+
+
+## checks.json — Feldsemantik
+
+Verantwortung: inhaltliche Felder → Content-Agent; `Sammlung` → Python-Agent.
+
+| Feld | Verantwortung | Beschreibung |
+|---|---|---|
+| `Gebiet` | Content | `analysis`, `lineare-algebra` oder `stochastik` |
+| `Lernbereich` | Content | Slug des Lernbereichs (z. B. `quadratische-funktionen`) |
+| `LernbereichAnzeigename` | Content | Anzeigename (z. B. „Quadratische Funktionen") |
+| `Nummer` | Content | Fortlaufend innerhalb des Lernbereichs, bestimmt Reihenfolge |
+| `check_id` | Content | Schema: `<gebiet>__<lernbereich>__<NN>` (zweistellig) |
+| `Ich kann` | Content | Kompetenzformulierung — präzise, überprüfbar, endet mit Verb |
+| `Schlagwort` | Content | Treffendes Kürzel für den Check (2–4 Wörter) |
+| `Tipps` | Content | Array mit kompakten Erinnerungsstützen (dürfen LaTeX enthalten) |
+| `skript_anchor` | Content | Schema: `check-<gebiet>-<lernbereich>-<NN>` |
+| `Flashtyp` | Content | `einzeln` oder `gruppiert` |
+| `questionOrder` | Content | `shuffle` (Standard) oder `fixed` |
+| `Sammlung` | Python-Agent | Slug der Aufgabensammlung |
