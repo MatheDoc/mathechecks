@@ -259,3 +259,26 @@ Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kenn
   - Werte so wählen, dass Graphen ihr typisches Erscheinungsbild im Sachzusammenhang haben.
   - Gesuchte Werte müssen gut abgelesen werden können.
   - Standardtoleranz für Ableseaufgaben: ein Viertel der Schrittweite der jeweiligen Achse.
+
+### Natürliche Fragesätze statt technischer Labels
+
+Fragen sollen als **vollständige, natürliche Sätze** formuliert sein — besonders bei Sachaufgaben. Keine formalen Variablen vor dem Eingabefeld.
+
+**Richtig**: `"Welche maximale Höhe erreicht der Speer?"`  
+**Falsch**: `"Maximale Höhe (Scheitelpunkt): $ h(x_S) = $"`
+
+**Richtig**: `"Bei welchem Preis wird der Gewinn maximal?"`  
+**Falsch**: `"Bei welchem Preis wird der Gewinn maximal? $ p = $"`
+
+## Formulierungen
+
+### Hinweise bei Mehrdeutigkeit
+
+Wenn die Antwort eine Sortierung oder Fallunterscheidung erfordert, den Hinweis in die Frage integrieren:
+
+```python
+_FRAGE = (
+    "Geben Sie die $ x $-Werte in aufsteigender Reihenfolge an. "
+    "Bei nur einer Lösung: beide Felder füllen."
+)
+```
