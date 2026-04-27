@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MatheChecks</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            background: #f4f4f8;
+            color: #2f3042;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mathbg {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mathbg-inner {
+            font-size: 96px;
+            line-height: 1.55;
+            color: rgba(0, 0, 0, 0.038);
+            text-align: center;
+            letter-spacing: 0.08em;
+            font-weight: 300;
+            max-width: 1100px;
+            padding: 0 2rem;
+            user-select: none;
+        }
+
+        header {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 2.5rem;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .site-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #111;
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        .header-nav a {
+            font-size: 0.82rem;
+            color: #888;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .header-nav a:hover {
+            color: #111;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 560px;
+        }
+
+        h1 {
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.08;
+            margin-bottom: 1.1rem;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 0.65rem;
+            font-weight: 400;
+        }
+
+        .flow {
+            font-size: 0.78rem;
+            color: #2f3042;
+            letter-spacing: 0.06em;
+            margin-bottom: 2.8rem;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 0.65rem 1.5rem;
+            border-radius: 5px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.15s;
+            display: inline-block;
+            letter-spacing: 0.005em;
+        }
+
+        .btn-primary {
+            background: #2f3042;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        .btn-secondary {
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            border-color: #999;
+            color: #111;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid #ebebeb;
+            padding: 1.1rem 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .footer-methods {
+            font-size: 0.75rem;
+            color: #bbb;
+            letter-spacing: 0.03em;
+        }
+
+        .footer-topics {
+            font-size: 0.75rem;
+            color: #ccc;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 1.1rem 1.25rem;
+            }
+
+            footer {
+                padding: 1rem 1.25rem;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-topics {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mathbg" aria-hidden="true">
+        <div class="mathbg-inner">
+            ∫ &nbsp; Σ &nbsp; f(x) &nbsp; lim &nbsp; ∂<br>
+            P(X≤k) &nbsp; e<sup>x</sup> &nbsp; f′(x) &nbsp; √x<br>
+            log &nbsp; det(A) &nbsp; σ² &nbsp; ∞ &nbsp; ∇
+        </div>
+    </div>
+
+    <header>
+        <a href="/" class="site-name">MatheChecks</a>
+        <nav class="header-nav">
+            <a href="/methoden/">Methoden</a>
+            <a href="/dashboard/">Anmelden</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Mathe<br>checken.</h1>
+            <p class="flow">Analysis &nbsp;·&nbsp; Stochastik &nbsp;·&nbsp; Lineare Algebra</p>
+            <div class="actions">
+                <a href="/lernbereiche/" class="btn btn-primary">Lernbereiche öffnen</a>
+                <a href="/dashboard/" class="btn btn-secondary">Dashboard</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <span class="footer-methods">Kompetenzlisten &nbsp;·&nbsp; Interaktive Aufgaben &nbsp;·&nbsp; Active Recall
+            &nbsp;·&nbsp; Feynman &nbsp;·&nbsp; Spaced Repetition &nbsp;·&nbsp; Flashcards &nbsp;·&nbsp;
+            KI-Agenten</span>
+    </footer>
+
+</body>
+
+</html>
