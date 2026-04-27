@@ -1649,7 +1649,7 @@
         "questionOrder": "fixed",
         "Tipps": [
             "Verflechtungsdiagramm: Zahl an Pfeil ist benötigte Inputmenge für 1 ME Output",
-            "Produktionsmatrizen: Eintrag $a_{ij}$ = benötigte Menge von Produkt $i$ für 1 ME von Produkt $j$",
+            "Produktionsmatrizen: Matrixelement $a_{ij}$ ist benötigte Menge von Input-Produkt $i$ für 1 ME von Output-Produkt $j$",
             "Zeile = Input, Spalte = Output"
         ]
     },
@@ -1666,7 +1666,7 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Eintrag $a_{ij}$ = benötigte Menge von Inputprodukt $i$ für 1 ME von Produkt $j$",
+            "Matrixelement $a_{ij}$ ist benötigte Menge von Input-Produkt $i$ für 1 ME von Output-Produkt $j$",
             "Zeile = Input, Spalte = Output"
         ]
     },
@@ -1760,7 +1760,8 @@
         "questionOrder": "shuffle",
         "Tipps": [
             "Kennzahl in Abhängigkeit von $t$ ausdrücken",
-            "Rand des Definitionsbereichs von $t$ beachten"
+            "Definitionsbereich von $t$ beachten",
+            "Minimum oder Maximum durch Vergleich der Kennzahl auf dem Definitionsbereich bestimmen"
         ]
     },
     {
@@ -1776,9 +1777,9 @@
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-08",
         "questionOrder": "shuffle",
         "Tipps": [
-            "Ansatz formulieren",
-            "nach $t$ auflösen",
-            "Definitionsbereich beachten"
+            "gegebene Bedingung als Gleichung in Abhängigkeit von $t$ formulieren",
+            "nach $t$ auflösen und mit Definitionsbereich abgleichen",
+            "passenden Produktionsvektor durch Einsetzen von $t$ bestimmen"
         ]
     },
     {
@@ -1927,8 +1928,7 @@
         "questionOrder": "fixed",
         "Tipps": [
             "$x$-Werte einsetzen → $y$-Werte berechnen",
-            "$f(x) = mx + b$",
-            "Gleichmäßige Differenzen in der Tabelle prüfen"
+            "$f(x) = mx + b$"
         ]
     },
     {
@@ -2017,9 +2017,8 @@
         "questionOrder": "fixed",
         "Tipps": [
             "Gleichsetzen: $m_1 x + b_1 = m_2 x + b_2$",
-            "Nach $x$ auflösen",
-            "$y$-Wert durch Einsetzen",
-            "Vergleich: Vorzeichen von $f(x) - g(x)$ links/rechts vom Schnittpunkt"
+            "Gleichung nach $x$ auflösen",
+            "$y$-Wert durch Einsetzen in eine Funktionsgleichung bestimmen"
         ]
     },
     {
