@@ -270,7 +270,7 @@ Wir prüfen diese Bedingungen nun für die allgemeine Funktionen $K(x)=ax^3+bx^2
 
    Nun gilt $K'(x)\geq 0$, falls der Term unter der Wurzel nicht-negativ ist: $\left(\frac{-b}{3a}\right)^2-\frac{c}{3a}\geq 0$, d.h. $b^2\leq 3ac$.
 
-3. $x_w>0$: Wir berechnen allgemein die Wendestelle. Die Wendestelle ist die Nullstelle von $K^{\prime\prime\prime}(x)=6ax+2b$
+3. $x_w>0$: Wir berechnen allgemein die Wendestelle. Die Wendestelle ist die Nullstelle von $K^{\prime\prime}(x)=6ax+2b$
 
    $$
    \begin{align*}
