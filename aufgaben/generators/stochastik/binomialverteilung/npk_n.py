@@ -40,12 +40,19 @@ def _random_percent_phrase(p: float) -> str:
     return f"{pct}%"
 
 
-def _build_intro(rng: random.Random, intro_prefix: str, success_event_accusative: str, p: float) -> str:
+def _build_intro(
+    rng: random.Random,
+    intro_prefix: str,
+    success_event_accusative: str,
+    success_plural: str,
+    group_dative_plural: str,
+    p: float,
+) -> str:
     p_text = _random_percent_phrase(p)
     variants = [
         f"{intro_prefix} Die Wahrscheinlichkeit für {success_event_accusative} beträgt {p_text}.",
         f"{intro_prefix} Die Wahrscheinlichkeit, {success_event_accusative} anzutreffen, liegt bei {p_text}.",
-        f"{intro_prefix} Mit einer Wahrscheinlichkeit von {p_text} tritt {success_event_accusative} auf.",
+        f"{intro_prefix} Unter den {group_dative_plural} liegt die Wahrscheinlichkeit, {success_event_accusative} anzutreffen, bei {p_text}.",
     ]
     return rng.choice(variants)
 
@@ -53,18 +60,23 @@ def _build_intro(rng: random.Random, intro_prefix: str, success_event_accusative
 def _build_question(
     rng: random.Random,
     sample_object_plural: str,
-    amount_text: str,
-    event_text: str,
+    objective: str,
+    event_phrase: str,
     comp_text: str,
 ) -> str:
+    if objective == "min":
+        quantity_text = "mindestens untersucht werden müssen"
+    else:
+        quantity_text = "höchstens untersucht werden dürfen"
+
     variants = [
         (
-            f"Bestimmen Sie die Anzahl der {sample_object_plural}, die {amount_text}, damit die "
-            f"Wahrscheinlichkeit für {event_text} {comp_text} beträgt."
+            f"Bestimmen Sie, wie viele {sample_object_plural} {quantity_text}, damit die Wahrscheinlichkeit, "
+            f"{event_phrase}, {comp_text} beträgt."
         ),
         (
-            f"Wie groß muss/darf die Anzahl der {sample_object_plural} sein ({amount_text}), damit das Ereignis "
-            f"\"{event_text}\" mit einer Wahrscheinlichkeit von {comp_text} auftritt?"
+            f"Bestimmen Sie, wie viele {sample_object_plural} {quantity_text}, sodass die Wahrscheinlichkeit, "
+            f"{event_phrase}, {comp_text} beträgt."
         ),
     ]
     return rng.choice(variants)
@@ -121,32 +133,29 @@ class BinomialNpkNGenerator(TaskGenerator):
                     continue
 
                 if kind == "at_least":
-                    event_text = f"mindestens {k} {scenario.success_plural}"
+                    event_phrase = f"in der Stichprobe mindestens {k} {scenario.success_plural} zu beobachten"
                 else:
-                    event_text = f"höchstens {k} {scenario.success_plural}"
+                    event_phrase = f"in der Stichprobe höchstens {k} {scenario.success_plural} zu beobachten"
 
                 if comparator == "ge":
                     comp_text = f"mindestens {alpha_percent}%"
                 else:
                     comp_text = f"höchstens {alpha_percent}%"
 
-                if objective == "min":
-                    amount_text = f"mindestens untersucht werden müssen"
-                else:
-                    amount_text = f"höchstens untersucht werden dürfen"
-
                 intro = _build_intro(
                     rng=rng,
                     intro_prefix=scenario.intro_prefix,
                     success_event_accusative=scenario.success_event_accusative,
+                    success_plural=scenario.success_plural,
+                    group_dative_plural=scenario.group_dative_plural,
                     p=p,
                 )
 
                 question = _build_question(
                     rng=rng,
                     sample_object_plural=scenario.sample_object_plural,
-                    amount_text=amount_text,
-                    event_text=event_text,
+                    objective=objective,
+                    event_phrase=event_phrase,
                     comp_text=comp_text,
                 )
 

@@ -4,7 +4,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS, sample_probability_intro_variants
 
 
 def _percent_text(value: float) -> str:
@@ -27,29 +27,20 @@ class BinomialKennzahlenNPGegebenGenerator(TaskGenerator):
             sigma = math.sqrt(n * p * (1 - p))
 
             p_text = _percent_text(p)
-            intro_variants = [
-                (
-                    f"{scenario.intro_prefix} Es werden insgesamt {n} {scenario.sample_object_plural} betrachtet. "
-                    f"Die Wahrscheinlichkeit für {scenario.success_event_accusative} beträgt {p_text}."
-                ),
-                (
-                    f"{scenario.intro_prefix} In einer Stichprobe von {n} {scenario.sample_object_plural} "
-                    f"liegt die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, bei {p_text}."
-                ),
-                (
-                    f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt. "
-                    f"Mit einer Wahrscheinlichkeit von {p_text} tritt dabei {scenario.success_event_accusative} auf."
-                ),
-            ]
-
             tasks.append(
                 Task(
-                    einleitung=rng.choice(intro_variants),
+                    einleitung=rng.choice(
+                        sample_probability_intro_variants(
+                            scenario=scenario,
+                            n=n,
+                            p_text=p_text,
+                        )
+                    ),
                     fragen=[
                         rng.choice([
                             f"Bestimmen Sie, wie viele {scenario.success_plural} im Durchschnitt zu erwarten sind.",
                             "Bestimmen Sie den Erwartungswert $\\mu$ der Zufallsgröße.",
-                            f"Wie viele {scenario.success_plural} sind im Mittel zu erwarten?",
+                            f"Bestimmen Sie, wie viele {scenario.success_plural} im Mittel zu erwarten sind.",
                         ]),
                         rng.choice([
                             "Bestimmen Sie die Standardabweichung $\\sigma$ der Zufallsgröße (auf 2 NKS gerundet).",

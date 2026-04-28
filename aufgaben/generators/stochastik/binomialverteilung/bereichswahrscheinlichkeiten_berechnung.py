@@ -15,7 +15,11 @@ from aufgaben.generators.stochastik.binomialverteilung.shared import (
     prob_less_than,
     violates_probability_rounding_policy,
 )
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import (
+    SCENARIOS,
+    join_sentences,
+    sample_probability_intro_variants,
+)
 
 def _round_rate_to_percent(p: float) -> int:
     return int(round(p * 100))
@@ -141,24 +145,15 @@ class BinomialBereichswahrscheinlichkeitenBerechnungGenerator(TaskGenerator):
             else:
                 raise ValueError("Konnte keine plausiblen Wahrscheinlichkeiten erzeugen (0/1-Rundungsregel).")
 
-            intro_variants = [
-                (
-                    f"{scenario.intro_prefix} Es werden {n} {scenario.sample_object_plural} betrachtet. "
-                    f"Die Wahrscheinlichkeit f\u00fcr {scenario.success_event_accusative} betr\u00e4gt {p_pct}%."
+            intro = join_sentences(
+                rng.choice(
+                    sample_probability_intro_variants(
+                        scenario=scenario,
+                        n=n,
+                        p_text=f"{p_pct}%",
+                    )
                 ),
-                (
-                    f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zuf\u00e4llig ausgew\u00e4hlt. "
-                    f"Die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, liegt bei {p_pct}%."
-                ),
-                (
-                    f"{scenario.intro_prefix} In einer Stichprobe von {n} {scenario.sample_object_plural} "
-                    f"tritt {scenario.success_event_accusative} mit einer Wahrscheinlichkeit von {p_pct}% auf."
-                ),
-            ]
-
-            intro = (
-                f"{rng.choice(intro_variants)}Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse "
-                "(auf 4 NKS gerundet)."
+                "Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 4 NKS gerundet).",
             )
 
             questions = [

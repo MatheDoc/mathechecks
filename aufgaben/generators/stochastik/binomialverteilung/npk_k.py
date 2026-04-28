@@ -27,12 +27,12 @@ def _build_intro(
             f"Die Wahrscheinlichkeit für {success_event_accusative} beträgt {p_percent}%."
         ),
         (
-            f"{intro_prefix} In einer Stichprobe von {n} {sample_object_plural} "
-            f"liegt die Wahrscheinlichkeit, {success_event_accusative} anzutreffen, bei {p_percent}%."
+            f"{intro_prefix} Die Stichprobe umfasst {n} {sample_object_plural}. "
+            f"Dabei liegt die Wahrscheinlichkeit, {success_event_accusative} anzutreffen, bei {p_percent}%."
         ),
         (
             f"{intro_prefix} {n} {sample_object_plural} werden zufällig ausgewählt. "
-            f"Mit einer Wahrscheinlichkeit von {p_percent}% tritt {success_event_accusative} auf."
+            f"Für jedes einzelne Element der Stichprobe beträgt die Wahrscheinlichkeit für {success_event_accusative} {p_percent}%."
         ),
     ]
     return rng.choice(variants)
@@ -40,21 +40,20 @@ def _build_intro(
 
 def _build_question(
     rng: random.Random,
-    amount_text: str,
-    event_text: str,
-    success_plural: str,
+    event_phrase: str,
+    objective: str,
     comp_text: str,
     alpha_percent: int,
 ) -> str:
-    modal = "muss" if amount_text == "mindestens" else "darf"
+    threshold_text = "kleinsten" if objective == "min" else "größten"
     variants = [
         (
-            f"Bestimmen Sie den Schwellenwert k, der {amount_text} in der Stichprobe sein {modal}, damit die "
-            f"Wahrscheinlichkeit für {event_text} {success_plural} {comp_text} {alpha_percent}% beträgt."
+            f"Bestimmen Sie den {threshold_text} Wert von k, für den die Wahrscheinlichkeit, {event_phrase}, "
+            f"{comp_text} {alpha_percent}% beträgt."
         ),
         (
-            f"Geben Sie k so an, dass das Ereignis \"{event_text} {success_plural}\" mit einer Wahrscheinlichkeit von "
-            f"{comp_text} {alpha_percent}% eintritt und k dabei {amount_text} ist."
+            f"Bestimmen Sie den {threshold_text} Schwellenwert k, sodass die Wahrscheinlichkeit, {event_phrase}, "
+            f"{comp_text} {alpha_percent}% beträgt."
         ),
     ]
     return rng.choice(variants)
@@ -100,16 +99,12 @@ class BinomialNpkKGenerator(TaskGenerator):
 
                 if kind == "at_least" and comparator == "ge":
                     objective = "max"
-                    amount_text = "höchstens"
                 elif kind == "at_least" and comparator == "le":
                     objective = "min"
-                    amount_text = "mindestens"
                 elif kind == "at_most" and comparator == "ge":
                     objective = "min"
-                    amount_text = "mindestens"
                 else:
                     objective = "max"
-                    amount_text = "höchstens"
 
                 value_here = _prob_event(kind=kind, n=n, p=p, k=target_k)
                 alpha_percent = int(round(value_here * 100))
@@ -139,15 +134,14 @@ class BinomialNpkKGenerator(TaskGenerator):
 
                 comp_text = "mindestens" if comparator == "ge" else "höchstens"
                 if kind == "at_least":
-                    event_text = "mindestens diese Anzahl"
+                    event_phrase = f"in der Stichprobe mindestens k {scenario.success_plural} zu beobachten"
                 else:
-                    event_text = "höchstens diese Anzahl"
+                    event_phrase = f"in der Stichprobe höchstens k {scenario.success_plural} zu beobachten"
 
                 question = _build_question(
                     rng=rng,
-                    amount_text=amount_text,
-                    event_text=event_text,
-                    success_plural=scenario.success_plural,
+                    event_phrase=event_phrase,
+                    objective=objective,
                     comp_text=comp_text,
                     alpha_percent=alpha_percent,
                 )

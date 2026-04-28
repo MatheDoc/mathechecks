@@ -51,8 +51,8 @@ class BinomialKennzahlenMuSigmaGegebenGenerator(TaskGenerator):
                     einleitung=rng.choice(intro_variants),
                     fragen=[
                         (
-                            f"Bestimmen Sie die Anzahl der insgesamt betrachteten {scenario.sample_object_plural} "
-                            "(als ganze Zahl)."
+                            f"Bestimmen Sie, wie viele {scenario.sample_object_plural} insgesamt betrachtet "
+                            "werden (als ganze Zahl)."
                         ),
                         (
                             f"Bestimmen Sie die Wahrscheinlichkeit, {scenario.success_event_accusative} "

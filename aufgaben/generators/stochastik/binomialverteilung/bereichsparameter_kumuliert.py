@@ -7,7 +7,11 @@ from aufgaben.generators.stochastik.binomialverteilung.shared import (
     max_successes_for_at_most,
     min_successes_for_at_least,
 )
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import (
+    SCENARIOS,
+    join_sentences,
+    sample_probability_intro_variants,
+)
 
 
 def _bounded_int(rng: random.Random, lower: int, upper: int) -> int:
@@ -78,24 +82,16 @@ class BinomialBereichsparameterKumuliertGenerator(TaskGenerator):
                 percent_a = 0
                 percent_b = max_successes_for_at_most(n * percent_value / 100)
 
-            intro_variants = [
-                (
-                    f"{scenario.intro_prefix} Es werden {n} {scenario.sample_object_plural} betrachtet. "
-                    f"Die Wahrscheinlichkeit für {scenario.success_event_accusative} beträgt {p_percent}%."
+            intro = join_sentences(
+                rng.choice(
+                    sample_probability_intro_variants(
+                        scenario=scenario,
+                        n=n,
+                        p_text=f"{p_percent}%",
+                    )
                 ),
-                (
-                    f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt. "
-                    f"Die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, liegt bei {p_percent}%."
-                ),
-                (
-                    f"{scenario.intro_prefix} In einer Stichprobe von {n} {scenario.sample_object_plural} "
-                    f"tritt {scenario.success_event_accusative} mit einer Wahrscheinlichkeit von {p_percent}% auf."
-                ),
-            ]
-
-            intro = (
-                f"{rng.choice(intro_variants)}Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form $ P(X \\leq k) $ dargestellt wird. "
-                "Tritt ein angezeigter Term in der Lösung nicht auf, setzen Sie $ k=-1 $."
+                "Formulieren Sie die gesuchte Wahrscheinlichkeit so, dass diese ausschließlich mithilfe von Ausdrücken der Form $ P(X \\leq k) $ dargestellt wird.",
+                "Falls ein angezeigter Term in der Lösung nicht vorkommt, setzen Sie $ k=-1 $.",
             )
 
             questions = [
