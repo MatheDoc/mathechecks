@@ -9,4 +9,4 @@ Die Wahrscheinlichkeit, dass sie
 - höchstens 3 Treffer erzielt, ist $P(X\leq 3)=Bcd(0;3;20;0{,}1)$.
 - mindestens 3 Treffer erzielt, ist $P(X\geq 3) = Bcd(3;20;20;0{,}1)$.
 - zwischen 3 und 5 Treffer erzielt, ist $P(3\leq X \leq 5) = Bcd(3;5;20;0{,}1)$.
-- höchstens 33% der Würfe trifft, ist - berechne $0{,}33\cdot 20=6{,}6$ - $P(X\leq 6{,}6)=Bcd(0;6;20;0{,}1)$.
+- höchstens 33% der Würfe trifft, ist (berechne $0{,}33\cdot 20=6{,}6$) $P(X\leq 6{,}6)=Bcd(0;6;20;0{,}1)$.
