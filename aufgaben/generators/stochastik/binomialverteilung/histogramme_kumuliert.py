@@ -11,7 +11,7 @@ from aufgaben.generators.stochastik.binomialverteilung.shared import (
     prob_less_than,
     violates_probability_rounding_policy,
 )
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS, join_sentences
 
 
 def _sample_parameters(rng: random.Random) -> tuple[int, float]:
@@ -82,11 +82,11 @@ class BinomialHistogrammeKumuliertGenerator(TaskGenerator):
                 f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt.",
                 f"{scenario.intro_prefix} In einer Stichprobe befinden sich {n} {scenario.sample_object_plural}.",
             ]
-            intro = (
-                f"{rng.choice(intro_base_variants)}"
-                f"Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße $X$, die die Anzahl der "
-                f"{scenario.success_plural} angibt. Bestimmen Sie die Wahrscheinlichkeiten "
-                f"der folgenden Ereignisse (auf 2 NKS gerundet)."
+            intro = join_sentences(
+                rng.choice(intro_base_variants),
+                "Das Histogramm zeigt die kumulierte Verteilung der Zufallsgröße $X$.",
+                f"Dabei gibt $X$ an, wie viele {scenario.success_plural} beobachtet werden.",
+                "Bestimmen Sie die Wahrscheinlichkeiten der folgenden Ereignisse (auf 2 NKS gerundet).",
             )
 
             questions = [

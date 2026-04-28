@@ -22,9 +22,9 @@ def _alpha_pct(alpha_req: float) -> str:
 _HISTORISCH = [
     "Bisher nahm man an, dass die Wahrscheinlichkeit, {acc} anzutreffen, {p0} beträgt.",
     "Erfahrungsgemäß liegt die Wahrscheinlichkeit, {acc} zu beobachten, bei {p0}.",
-    "Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit {p0} {acc} auftritt.",
+    "Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von {p0} {acc} auftritt.",
     "Bisherige Daten belegen eine Wahrscheinlichkeit von {p0} dafür, {acc} zu beobachten.",
-    "Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit {p0} tritt {acc} auf.",
+    "Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von {p0} tritt {acc} auf.",
 ]
 
 _VERMUTUNG = [

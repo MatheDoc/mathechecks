@@ -20,15 +20,23 @@ def _build_intro(rng: random.Random, intro_prefix: str, n: int, sample_object_pl
     return rng.choice(variants)
 
 
-def _build_question(rng: random.Random, amount_text: str, event_text: str, comp_text: str, alpha_percent: int, success_event_accusative: str) -> str:
+def _build_question(
+    rng: random.Random,
+    objective: str,
+    event_phrase: str,
+    comp_text: str,
+    alpha_percent: int,
+    success_event_accusative: str,
+) -> str:
+    threshold_text = "kleinsten" if objective == "min" else "größten"
     variants = [
         (
-            f"Bestimmen Sie die Wahrscheinlichkeit p für {success_event_accusative}, die {amount_text}, damit die "
-            f"Wahrscheinlichkeit für {event_text} {comp_text} {alpha_percent}% beträgt (auf 2 NKS gerundet)."
+            f"Bestimmen Sie den {threshold_text} Wert von p für {success_event_accusative}, für den die "
+            f"Wahrscheinlichkeit, {event_phrase}, {comp_text} {alpha_percent}% beträgt (auf 2 NKS gerundet)."
         ),
         (
-            f"Geben Sie p so an (auf 2 NKS), dass das Ereignis \"{event_text}\" mit einer Wahrscheinlichkeit von "
-            f"{comp_text} {alpha_percent}% eintritt und p dabei {amount_text}."
+            f"Bestimmen Sie den {threshold_text} Wert von p für {success_event_accusative} so, dass die "
+            f"Wahrscheinlichkeit, {event_phrase}, {comp_text} {alpha_percent}% beträgt (auf 2 NKS gerundet)."
         ),
     ]
     return rng.choice(variants)
@@ -86,16 +94,12 @@ class BinomialNpkPGenerator(TaskGenerator):
 
                 if kind == "at_least" and comparator == "ge":
                     objective = "min"
-                    amount_text = "mindestens sein muss"
                 elif kind == "at_least" and comparator == "le":
                     objective = "max"
-                    amount_text = "höchstens sein darf"
                 elif kind == "at_most" and comparator == "le":
                     objective = "min"
-                    amount_text = "mindestens sein muss"
                 else:
                     objective = "max"
-                    amount_text = "höchstens sein darf"
 
                 value_here = _prob_event(kind=kind, n=n, p=target_p, k=k)
                 alpha_percent = int(round(value_here * 100))
@@ -121,15 +125,15 @@ class BinomialNpkPGenerator(TaskGenerator):
                 )
 
                 if kind == "at_least":
-                    event_text = f"mindestens {k} {scenario.success_plural}"
+                    event_phrase = f"in der Stichprobe mindestens {k} {scenario.success_plural} zu beobachten"
                 else:
-                    event_text = f"höchstens {k} {scenario.success_plural}"
+                    event_phrase = f"in der Stichprobe höchstens {k} {scenario.success_plural} zu beobachten"
 
                 comp_text = "mindestens" if comparator == "ge" else "höchstens"
                 question = _build_question(
                     rng=rng,
-                    amount_text=amount_text,
-                    event_text=event_text,
+                    objective=objective,
+                    event_phrase=event_phrase,
                     comp_text=comp_text,
                     alpha_percent=alpha_percent,
                     success_event_accusative=scenario.success_event_accusative,

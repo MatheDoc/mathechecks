@@ -16,9 +16,9 @@ def _p_fmt(p: float, rng: random.Random) -> str:
 _HISTORISCH = [
     "Bisher nahm man an, dass die Wahrscheinlichkeit, {success_event_acc} anzutreffen, {p0} beträgt.",
     "Erfahrungsgemäß liegt die Wahrscheinlichkeit, {success_event_acc} zu beobachten, bei {p0}.",
-    "Aus früheren Erhebungen ist bekannt, dass mit Wahrscheinlichkeit {p0} {success_event_acc} auftritt.",
+    "Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von {p0} {success_event_acc} auftritt.",
     "Bisherige Daten belegen eine Wahrscheinlichkeit von {p0} dafür, {success_event_acc} zu beobachten.",
-    "Der bisherige Erfahrungswert sagt: Mit Wahrscheinlichkeit {p0} tritt {success_event_acc} auf.",
+    "Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von {p0} tritt {success_event_acc} auf.",
 ]
 
 _VERMUTUNG_RECHTS = [

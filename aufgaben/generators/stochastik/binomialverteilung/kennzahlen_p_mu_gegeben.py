@@ -4,7 +4,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS, probability_intro_variants
 
 
 def _percent_text(value: float) -> str:
@@ -29,19 +29,18 @@ class BinomialKennzahlenPMuGegebenGenerator(TaskGenerator):
             p = rng.choice([x / 100 for x in range(20, 81)])
             mu = n * p
             sigma = math.sqrt(n * p * (1 - p))
+            probability_intros = probability_intro_variants(scenario=scenario, p_text=_percent_text(p))
 
             intro_variants = [
                 (
-                    f"{scenario.intro_prefix} Die Wahrscheinlichkeit für {scenario.success_event_accusative} "
-                    f"beträgt {_percent_text(p)}. Im Durchschnitt sind {_de(mu, 2)} {scenario.success_plural} zu erwarten."
+                    f"{probability_intros[0]} Im Durchschnitt sind {_de(mu, 2)} {scenario.success_plural} zu erwarten."
                 ),
                 (
                     f"{scenario.intro_prefix} Es gilt p = {_percent_text(p)} und die durchschnittlich erwartete "
                     f"Anzahl liegt bei $\\mu = {_de(mu, 2)}$."
                 ),
                 (
-                    f"{scenario.intro_prefix} Mit Wahrscheinlichkeit {_percent_text(p)} tritt "
-                    f"{scenario.success_event_accusative} auf. Der Erwartungswert beträgt $\\mu = {_de(mu, 2)}$."
+                    f"{probability_intros[2]} Der Erwartungswert beträgt $\\mu = {_de(mu, 2)}$."
                 ),
             ]
 
@@ -50,8 +49,8 @@ class BinomialKennzahlenPMuGegebenGenerator(TaskGenerator):
                     einleitung=rng.choice(intro_variants),
                     fragen=[
                         (
-                            f"Bestimmen Sie die Anzahl der insgesamt betrachteten {scenario.sample_object_plural} "
-                            "(als ganze Zahl)."
+                            f"Bestimmen Sie, wie viele {scenario.sample_object_plural} insgesamt betrachtet "
+                            "werden (als ganze Zahl)."
                         ),
                         rng.choice([
                             "Bestimmen Sie die Standardabweichung $\\sigma$ der Zufallsgröße (auf 2 NKS gerundet).",

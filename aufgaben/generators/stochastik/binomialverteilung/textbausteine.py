@@ -11,6 +11,42 @@ class ScenarioTemplate:
     success_event_accusative: str
 
 
+def sample_probability_intro_variants(
+    scenario: ScenarioTemplate,
+    n: int,
+    p_text: str,
+) -> list[str]:
+    return [
+        (
+            f"{scenario.intro_prefix} Es werden {n} {scenario.sample_object_plural} betrachtet. "
+            f"Die Wahrscheinlichkeit für {scenario.success_event_accusative} beträgt {p_text}."
+        ),
+        (
+            f"{scenario.intro_prefix} Die Stichprobe umfasst {n} {scenario.sample_object_plural}. "
+            f"Dabei liegt die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, bei {p_text}."
+        ),
+        (
+            f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt. "
+            f"Für jedes Element der Stichprobe beträgt die Wahrscheinlichkeit für {scenario.success_event_accusative} {p_text}."
+        ),
+    ]
+
+
+def probability_intro_variants(
+    scenario: ScenarioTemplate,
+    p_text: str,
+) -> list[str]:
+    return [
+        f"{scenario.intro_prefix} Die Wahrscheinlichkeit für {scenario.success_event_accusative} beträgt {p_text}.",
+        f"{scenario.intro_prefix} Die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, liegt bei {p_text}.",
+        f"{scenario.intro_prefix} Im betrachteten Modell beträgt die Wahrscheinlichkeit für {scenario.success_event_accusative} {p_text}.",
+    ]
+
+
+def join_sentences(*parts: str) -> str:
+    return " ".join(part.strip() for part in parts if part and part.strip())
+
+
 SCENARIOS: list[ScenarioTemplate] = [
     ScenarioTemplate(
         intro_prefix="Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern.",

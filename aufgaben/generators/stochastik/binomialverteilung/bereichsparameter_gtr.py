@@ -9,7 +9,11 @@ from aufgaben.generators.stochastik.binomialverteilung.shared import (
     min_successes_for_at_least,
     min_successes_for_more_than,
 )
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import (
+    SCENARIOS,
+    join_sentences,
+    sample_probability_intro_variants,
+)
 
 
 def _bounded_int(rng: random.Random, lower: int, upper: int) -> int:
@@ -78,24 +82,15 @@ class BinomialBereichsparameterGTRGenerator(TaskGenerator):
                 percent_a = 0
                 percent_b = max_successes_for_at_most(n * percent_value / 100)
 
-            intro_variants = [
-                (
-                    f"{scenario.intro_prefix} Es werden {n} {scenario.sample_object_plural} betrachtet. "
-                    f"Die Wahrscheinlichkeit für {scenario.success_event_accusative} beträgt {p_percent}%."
+            intro = join_sentences(
+                rng.choice(
+                    sample_probability_intro_variants(
+                        scenario=scenario,
+                        n=n,
+                        p_text=f"{p_percent}%",
+                    )
                 ),
-                (
-                    f"{scenario.intro_prefix} {n} {scenario.sample_object_plural} werden zufällig ausgewählt. "
-                    f"Die Wahrscheinlichkeit, {scenario.success_event_accusative} anzutreffen, liegt bei {p_percent}%."
-                ),
-                (
-                    f"{scenario.intro_prefix} In einer Stichprobe von {n} {scenario.sample_object_plural} "
-                    f"tritt {scenario.success_event_accusative} mit einer Wahrscheinlichkeit von {p_percent}% auf."
-                ),
-            ]
-
-            intro = (
-                f"{rng.choice(intro_variants)}Geben Sie zu den folgenden Ereignissen die Bernoulli-Parameter "
-                "entsprechend der Eingabe im GTR an."
+                "Bestimmen Sie zu den folgenden Ereignissen die Bernoulli-Parameter entsprechend der Eingabe im GTR.",
             )
 
             questions = [
