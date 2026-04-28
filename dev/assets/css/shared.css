@@ -2492,11 +2492,11 @@ html.light .s-section {
 }
 
 .qz-step.done {
-  background: var(--amber);
+  background: var(--mt-warmup);
 }
 
 .qz-step.active {
-  background: linear-gradient(90deg, var(--amber), rgba(245, 166, 35, .4));
+  background: linear-gradient(90deg, var(--mt-warmup), rgba(var(--mt-warmup-rgb), .4));
 }
 
 .qz-card {
@@ -2510,7 +2510,7 @@ html.light .s-section {
 .qz-num {
   font-size: .7rem;
   font-weight: 700;
-  color: var(--amber);
+  color: var(--mt-warmup);
   text-transform: uppercase;
   letter-spacing: .06em;
   margin-bottom: 12px;
@@ -2565,9 +2565,9 @@ html.light .s-section {
 }
 
 .qz-opt.selected {
-  background: var(--amber-soft);
-  border-color: rgba(245, 166, 35, .3);
-  color: var(--amber);
+  background: var(--mt-warmup-soft);
+  border-color: rgba(var(--mt-warmup-rgb), .3);
+  color: var(--mt-warmup);
 }
 
 .qz-mark {
@@ -2597,14 +2597,14 @@ html.light .s-section {
 }
 
 .qz-opt.selected .qz-mark {
-  border-color: var(--amber);
-  background: var(--amber-soft);
-  color: var(--amber);
+  border-color: var(--mt-warmup);
+  background: var(--mt-warmup-soft);
+  color: var(--mt-warmup);
 }
 
 .qz-exp {
-  background: linear-gradient(135deg, rgba(245, 166, 35, .08), rgba(245, 166, 35, .04));
-  border: 1px solid rgba(245, 166, 35, .2);
+  background: linear-gradient(135deg, rgba(var(--mt-warmup-rgb), .08), rgba(var(--mt-warmup-rgb), .04));
+  border: 1px solid rgba(var(--mt-warmup-rgb), .2);
   border-radius: 16px;
   padding: 18px;
   margin-bottom: 22px;
@@ -2617,7 +2617,7 @@ html.light .s-section {
   gap: 7px;
   font-size: .7rem;
   font-weight: 700;
-  color: var(--amber);
+  color: var(--mt-warmup);
   text-transform: uppercase;
   letter-spacing: .05em;
   margin-bottom: 9px;
@@ -4041,7 +4041,6 @@ html.light .s-section {
   margin-bottom: 0;
 }
 
-
 .page-skript-md .mod-content .check-anker__beispiel {
   margin: 16px 0;
 }
@@ -4473,7 +4472,6 @@ html.light .s-section {
 .fc-face {
   position: absolute;
   inset: 0;
-  border-radius: 24px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   display: flex;
