@@ -116,7 +116,7 @@ Damit wir die Bernoulli-Formel geeignet anwenden können, müssen wir gut auf di
 | ---------------------- | ----------------------- |
 | Wkt für genau 3 Treffer | $P(X=3)$ |
 | Wkt für höchstens 4 Treffer | $P(X\leq 4)=P(X=0)+P(X=1)+\ldots+P(X=4$) |
-| Wkt für mindestens 5 Treffer | $P(X\geq 12)=P(X=12)+P(X=13)+\ldots+P(X=20)$ |
+| Wkt für mindestens 12 Treffer | $P(X\geq 12)=P(X=12)+P(X=13)+\ldots+P(X=20)$ |
 | Wkt für weniger als 10 Treffer | $P(X< 10)=P(X=0)+P(X=1)+\ldots+P(X=9)$ |
 | Wkt für mehr als 7 Treffer | $P(X> 7)=P(X=8)+P(X=9)+\ldots+P(X= 20)$ |
 | Wkt für mehr als 11 und höchstens 18 Treffer | $P(11< X\leq 18)=P(X=12)+P(X=13)+\ldots+P(X= 18)$ |
