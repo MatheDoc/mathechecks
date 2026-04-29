@@ -351,6 +351,20 @@ async function renderMath(targetNode, retries = 4) {
     await renderMath(targetNode, retries - 1);
 }
 
+function wrapTablesForHorizontalScroll(root) {
+    if (!root) return;
+
+    root.querySelectorAll("table").forEach((table) => {
+        const parent = table.parentElement;
+        if (!parent || parent.classList.contains("table-scroll")) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("table-scroll");
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+    });
+}
+
 function syncCardViewportHeight() {
     const bodyNode = state.root?.querySelector(".dev-fc-body");
     const cardNode = state.root?.querySelector("#dev-fc-card");
@@ -449,6 +463,8 @@ async function renderCurrentCard(card, options = {}) {
 
     insertVisualIntoFace(frontNode, task);
     insertVisualIntoFace(backNode, task);
+    wrapTablesForHorizontalScroll(frontNode);
+    wrapTablesForHorizontalScroll(backNode);
 
     await renderMath(innerNode);
     requestAnimationFrame(() => {

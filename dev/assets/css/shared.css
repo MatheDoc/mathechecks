@@ -4724,15 +4724,27 @@ html.light .s-section {
   min-height: 0;
   max-height: 100%;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: auto;
   display: grid;
   gap: 10px;
   padding-right: 4px;
   overflow-anchor: none;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .dev-fc-scroll.is-no-scroll {
   overflow-y: hidden;
+}
+
+.dev-fc-scroll>* {
+  min-width: 0;
+}
+
+.dev-fc-scroll .table-scroll {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .dev-fc-scroll::-webkit-scrollbar {
@@ -4746,6 +4758,15 @@ html.light .s-section {
 
 .dev-fc-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+.dev-fc-scroll mjx-container[display="true"] {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }
 
 .dev-fc-intro {

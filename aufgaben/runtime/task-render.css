@@ -55,6 +55,20 @@
     max-width: 100% !important;
 }
 
+.task .intro mjx-container[display="true"],
+.task .frage mjx-container[display="true"],
+.task .answer-preview mjx-container[display="true"],
+.dev-check-card__runtime-task .intro mjx-container[display="true"],
+.dev-check-card__runtime-task .frage mjx-container[display="true"],
+.dev-check-card__runtime-task .answer-preview mjx-container[display="true"] {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+}
+
 /* Hint browser to allow vertical scroll through Plotly charts.
    Actual scroll-unblocking is done in plotly-defaults.js (JS capture). */
 .js-plotly-plot {
