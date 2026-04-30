@@ -2343,39 +2343,6 @@ html.light .s-hero {
   }
 }
 
-/* Start page sections */
-.s-section {
-  margin-bottom: 28px;
-  padding: 22px clamp(18px, 2.8vw, 26px) 24px;
-  border: 1px solid color-mix(in srgb, var(--s-start-accent) 18%, var(--border));
-  border-radius: 24px;
-  background:
-    linear-gradient(135deg,
-      color-mix(in srgb, var(--s-start-accent) 80%, white),
-      color-mix(in srgb, var(--s-start-accent) 76%, var(--s-start-surface-tint-strong))) top / 100% 3px no-repeat,
-    radial-gradient(ellipse 108% 68% at 14% 24%, color-mix(in srgb, var(--s-start-accent) 16%, transparent), transparent 56%),
-    radial-gradient(ellipse 92% 54% at 86% 78%, color-mix(in srgb, var(--s-start-accent) 11%, transparent), transparent 52%),
-    linear-gradient(160deg,
-      color-mix(in srgb, var(--card-surface-1) 84%, var(--s-start-surface-tint-strong)),
-      color-mix(in srgb, var(--card-surface-2) 88%, var(--s-start-surface-shell)));
-  box-shadow: var(--shadow-card, none);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-html.light .s-section {
-  background:
-    linear-gradient(135deg,
-      color-mix(in srgb, var(--s-start-accent) 80%, white),
-      color-mix(in srgb, var(--s-start-accent) 76%, var(--s-start-surface-tint-strong))) top / 100% 3px no-repeat,
-    radial-gradient(ellipse 108% 68% at 14% 24%, color-mix(in srgb, var(--s-start-accent) 22%, transparent), transparent 56%),
-    radial-gradient(ellipse 92% 54% at 86% 78%, color-mix(in srgb, var(--s-start-accent) 16%, transparent), transparent 52%),
-    radial-gradient(ellipse 138% 96% at 8% 100%, color-mix(in srgb, var(--s-start-surface-tint-strong) 100%, transparent), transparent 68%),
-    linear-gradient(160deg,
-      color-mix(in srgb, var(--card-surface-1) 74%, var(--s-start-surface-tint-strong)),
-      color-mix(in srgb, var(--card-surface-2) 78%, var(--s-start-surface-tint)));
-}
-
 .s-quickstart-intro {
   margin-bottom: 16px;
 }
@@ -2384,6 +2351,7 @@ html.light .s-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 14px;
+  margin-bottom: 20px;
 }
 
 .s-quickstart-card {
