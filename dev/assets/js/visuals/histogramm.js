@@ -39,6 +39,18 @@ function computeCdf(pmf) {
     return cdf;
 }
 
+function buildDiscreteXAxis(x, title, barWidth = 1) {
+    return {
+        title,
+        tickmode: "array",
+        tickvals: x.map((value) => value + barWidth / 2),
+        ticktext: x.map(String),
+        range: [x[0], x[x.length - 1] + barWidth],
+        type: "linear",
+        showgrid: false,
+    };
+}
+
 /**
  * Return the interval probability P(a ≤ X ≤ b) for B(n,p).
  */
@@ -77,7 +89,7 @@ export function buildHistogrammEinzelnFigure({
 
     const layout = {
         title: titel ? { text: titel, y: 0.85 } : undefined,
-        xaxis: { title: "k", tickmode: "linear", showgrid: false },
+        xaxis: buildDiscreteXAxis(x, "k"),
         yaxis: { title: "P(X = k)", range: autoY ? undefined : [0, 1] },
         bargap: 0,
         dragmode: false,
@@ -115,7 +127,7 @@ export function buildHistogrammKumuliertFigure({
 
     const shapes = [];
     if (hasRange && a > 0) {
-        const xPfeil = a - 1 + 0.5;   // bar center (offset: 0 shifts bars right)
+        const xPfeil = a - 0.5;
         const yUnten = cdf[a - 1];
         const yOben = cdf[b];
         const tc = themeTextColor();
@@ -143,7 +155,7 @@ export function buildHistogrammKumuliertFigure({
 
     const layout = {
         title: titel ? { text: titel, y: 0.85 } : undefined,
-        xaxis: { title: "k", tickmode: "linear", showgrid: false },
+        xaxis: buildDiscreteXAxis(x, "k"),
         yaxis: { title: "P(X ≤ k)", range: [0, 1.05] },
         bargap: 0,
         dragmode: false,
