@@ -7,17 +7,37 @@
 
 import { themeTextColor } from "./plotly-defaults.js";
 
+function inferBarWidth(x, explicitWidth) {
+    if (explicitWidth != null) return Number(explicitWidth);
+    if (x.length < 2) return 1;
+
+    const numericX = x.map(Number).sort((left, right) => left - right);
+    let minDistance = Infinity;
+
+    for (let i = 1; i < numericX.length; i++) {
+        const distance = numericX[i] - numericX[i - 1];
+        if (distance > 0 && distance < minDistance) {
+            minDistance = distance;
+        }
+    }
+
+    return Number.isFinite(minDistance) ? minDistance : 1;
+}
+
 export function buildHistogrammAllgemeinFigure({
     x,
     y,
     titel = "",
     balkenbreite = null,
 }) {
+    const numericX = x.map(Number);
+    const barWidth = inferBarWidth(x, balkenbreite);
     const trace = {
         x,
         y,
         type: "bar",
         offset: 0,
+        width: barWidth,
         name: "P(X = x)",
         marker: {
             color: "rgba(54, 162, 235, 0.3)",
@@ -28,10 +48,6 @@ export function buildHistogrammAllgemeinFigure({
         },
     };
 
-    if (balkenbreite != null) {
-        trace.width = Number(balkenbreite);
-    }
-
     const data = [trace];
 
     const layout = {
@@ -39,8 +55,10 @@ export function buildHistogrammAllgemeinFigure({
         xaxis: {
             title: "x",
             tickmode: "array",
-            tickvals: x,
+            tickvals: numericX.map((value) => value + barWidth / 2),
+            ticktext: x.map(String),
             type: "linear",
+            range: [Math.min(...numericX), Math.max(...numericX) + barWidth],
             showgrid: false,
         },
         yaxis: {
