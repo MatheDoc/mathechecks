@@ -102,6 +102,15 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function renderRecallListMarkup(items, { user = false } = {}) {
+  const listClassName = user ? "recall-list recall-list--user" : "recall-list";
+  return `
+    <ul class="${listClassName}">
+      ${items.map((item) => `<li class="recall-list__item">${escapeHtml(item)}</li>`).join("")}
+    </ul>
+  `;
+}
+
 function applyInitialReveal(root) {
   if (!root) return;
   root.classList.add("dev-module-root--pending");
@@ -120,12 +129,7 @@ function renderCard(check) {
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
   const refs = Array.isArray(check?.Tipps) ? check.Tipps : [];
-  const refsListMarkup = refs
-    .map((ref) => `<div class="recall-list-item"><span class="recall-list-dot"></span><span class="recall-list-text">${escapeHtml(ref)}</span></div>`)
-    .join("");
-  const refsKwMarkup = refs
-    .map((ref) => `<span class="recall-keyword"><span class="recall-keyword-dot"></span>${escapeHtml(ref)}</span>`)
-    .join("");
+  const refsListMarkup = refs.length ? renderRecallListMarkup(refs) : "";
   const noRefsNote = `<p class="recall-no-refs">Keine Kernpunkte hinterlegt.</p>`;
 
   return `
@@ -169,7 +173,7 @@ function renderCard(check) {
           <div class="recall-timer-bar" data-recall-timer-bar="memorize">
             <div class="recall-timer-bar__fill" data-recall-timer-fill="memorize"></div>
           </div>
-          ${refs.length ? `<div class="recall-list-items">${refsListMarkup}</div>` : noRefsNote}
+          ${refs.length ? refsListMarkup : noRefsNote}
           <div class="recall-action-row">
             <button class="module-action-button module-action-button--locked" type="button" data-recall-to-retrieve disabled>Jetzt abfragen</button>
           </div>
@@ -183,24 +187,24 @@ function renderCard(check) {
           <div class="recall-action-row">
             <button class="module-action-button" type="button" data-recall-to-compare>Selbstcheck starten</button>
           </div>
-          <div class="recall-compare-panel" data-recall-compare-panel hidden>
+          <div data-recall-compare-panel hidden>
           <div class="recall-divider">
             <hr><span>Dein Abruf</span><hr>
           </div>
-          <div class="recall-user-notes" data-recall-user-notes></div>
+          <div data-recall-user-notes></div>
           <div class="recall-divider">
             <hr><span>Kernpunkte</span><hr>
           </div>
-          ${refs.length ? `<div class="recall-keywords">${refsKwMarkup}</div>` : noRefsNote}
-          <p class="self-check-label">Wie sicher fühlst du dich bei dieser Kompetenz?</p>
+          ${refs.length ? refsListMarkup : noRefsNote}
+          <p class="recall-prompt recall-prompt--self-check">Wie sicher fühlst du dich bei dieser Kompetenz?</p>
           <div class="self-check-actions">
             <button class="self-check-button yes" type="button" data-recall-answer="yes">
-              <span class="self-check-button__icon">✓</span>
+              <span class="self-check-button__icon">✅</span>
               <span class="self-check-button__title">Kann ich</span>
               <span class="self-check-button__sub">Die wichtigsten Kernpunkte waren da.</span>
             </button>
             <button class="self-check-button no" type="button" data-recall-answer="no">
-              <span class="self-check-button__icon">↺</span>
+              <span class="self-check-button__icon">🔄</span>
               <span class="self-check-button__title">Noch nicht</span>
               <span class="self-check-button__sub">Ich gehe die Kernpunkte noch einmal durch.</span>
             </button>
@@ -325,9 +329,6 @@ function revealComparePanel(comparePanel) {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   comparePanel.hidden = false;
-  comparePanel.classList.remove("is-revealed");
-  void comparePanel.offsetWidth;
-  comparePanel.classList.add("is-revealed");
 
   const cardBody = comparePanel.closest(".dev-check-card")?.querySelector(".dev-check-card__body");
   const scrollTarget = comparePanel.querySelector(".recall-divider") || comparePanel;
@@ -341,10 +342,6 @@ function revealComparePanel(comparePanel) {
       behavior: prefersReducedMotion ? "auto" : "smooth",
     });
   }
-
-  window.setTimeout(() => {
-    comparePanel.classList.remove("is-revealed");
-  }, 900);
 }
 
 function initInteractiveRecallCards(root) {
@@ -429,9 +426,10 @@ function initInteractiveRecallCards(root) {
         const entries = Array.from(inputSlots.querySelectorAll(".recall-input-slot"))
           .map((el) => el.value.trim())
           .filter(Boolean);
+        const noUserNotesNote = `<p class="recall-no-refs">Keine Notizen eingegeben.</p>`;
         userNotesEl.innerHTML = entries.length
-          ? `<div class="recall-user-entries">${entries.map((e) => `<span class="recall-keyword recall-keyword--user"><span class="recall-keyword-dot"></span>${escapeHtml(e)}</span>`).join("")}</div>`
-          : `<p class="recall-no-refs">Keine Notizen eingegeben.</p>`;
+          ? renderRecallListMarkup(entries, { user: true })
+          : noUserNotesNote;
       }
       revealComparePanel(comparePanel);
       void renderMath(stageEls.retrieve);
