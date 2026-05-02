@@ -195,7 +195,7 @@ const FEYNMAN_PROMPT_STEPS = [
   "Schritt für Schritt",
   "anhand eines Beispiels.",
 ];
-const FEYNMAN_EXPLAIN_PROMPT = "Erkläre jemandem die Kompetenz";
+const FEYNMAN_EXPLAIN_PROMPT = "Erkläre jemandem diese Kompetenz";
 
 function buildFeynmanPromptListMarkup() {
   const stepsMarkup = FEYNMAN_PROMPT_STEPS
@@ -348,9 +348,7 @@ function buildKiAgentPrompt(check, beispielHtml) {
     : "";
 
   return `# Rolle
-Du bist ein KI-Lernpartner für die Feynman-Methode. Der Lernende soll
-dir ein Mathe-Thema erklären, und du hilfst ihm dabei, seine eigene
-Erklärung zu schärfen. Du sprichst Deutsch und duzt dein Gegenüber.
+Du bist ein KI-Lernpartner für die Feynman-Methode. Der Lernende soll dir ein Mathe-Thema erklären, und du hilfst ihm dabei, seine eigene Erklärung zu schärfen. Du sprichst Deutsch und duzt dein Gegenüber.
 
 # Thema
 Check: ${schlagwort}
@@ -364,12 +362,10 @@ ${tippsBlock}${beispielBlock}
 - Reagiere natürlich und abwechslungsreich – mal kurz bestätigend,
   mal interessiert nachfragend, mal zusammenfassend.
 - Lobe ruhig, wenn etwas gut erklärt ist – kurz und ehrlich.
-- Du darfst leichte Denkanstöße geben, die in die richtige Richtung
-  weisen, ohne die Antwort komplett zu verraten.
+- Du darfst leichte Denkanstöße geben, die in die richtige Richtung weisen, ohne die Antwort komplett zu verraten.
 - Wenn der Lernende einen Fehler macht, korrigiere nicht sofort,
   sondern hake gezielt nach, damit er den Fehler selbst findet.
 - Halte dich kurz. Keine langen Monologe.
-- Antworte immer auf Deutsch.
 
 # Ablauf
 ## Phase 1 – Einstieg
@@ -462,15 +458,15 @@ function renderCard(check) {
         <div data-fy-stage="evaluate" hidden>
           <p class="module-flow-prompt">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
           <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
-          <p class="self-check-label">Konntest du es schlüssig erklären?</p>
+          <p class="module-flow-prompt module-flow-prompt--self-check">Konntest du es schlüssig erklären?</p>
           <div class="self-check-actions">
             <button class="self-check-button yes" type="button" data-fy-answer="yes">
-              <span class="self-check-button__icon">✓</span>
+              <span class="self-check-button__icon">✅</span>
               <span class="self-check-button__title">Kann ich</span>
               <span class="self-check-button__sub">Ich habe die Kerngedanken getroffen.</span>
             </button>
             <button class="self-check-button no" type="button" data-fy-answer="no">
-              <span class="self-check-button__icon">↺</span>
+              <span class="self-check-button__icon">🔄</span>
               <span class="self-check-button__title">Noch nicht</span>
               <span class="self-check-button__sub">Ich brauche noch Wiederholung.</span>
             </button>

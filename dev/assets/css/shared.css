@@ -592,7 +592,7 @@ body.page-dev-default .shell {
   width: 100%;
   border: 0;
   background: transparent;
-  color: var(--text-dim);
+  color: var(--text-body);
   font-family: inherit;
   font-size: 0.84rem;
   font-weight: 600;
@@ -2391,30 +2391,10 @@ html.light .s-hero {
   box-shadow: none;
 }
 
-@media (max-width: 600px) {
-  .s-quickstart-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .s-section {
-    padding: 18px 16px 20px;
-  }
-}
 
-.s-section h2 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
 
-.s-section p {
-  font-size: .9rem;
-  color: var(--text-body);
-  line-height: 1.65;
-  max-width: 680px;
-}
+
 
 /* Vorkenntnisse links */
 .s-vorkenntnisse {
@@ -2856,38 +2836,46 @@ html.light .s-hero {
   margin-bottom: 18px;
 }
 
-.recall-list-items {
+.recall-list {
   display: grid;
   gap: 8px;
-  margin-bottom: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
 }
 
-.recall-list-item {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
+.recall-list__item {
+  position: relative;
   width: 100%;
   background: rgba(255, 255, 255, .03);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 10px 14px;
+  padding: 10px 14px 10px 28px;
   font-size: .88rem;
   color: var(--text);
   line-height: 1.45;
+  animation: kwIn 200ms ease both;
 }
 
-.recall-list-dot {
-  width: 5px;
-  height: 5px;
+.recall-list__item::before {
+  content: "";
+  position: absolute;
+  top: 1.02rem;
+  left: 14px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--mt-recall, var(--amber));
-  flex-shrink: 0;
-  margin-top: 6px;
 }
 
-.recall-list-text {
-  flex: 1;
-  min-width: 0;
+.recall-list--user .recall-list__item {
+  border-color: color-mix(in srgb, var(--mt-recall, var(--amber)) 24%, var(--border));
+  background: color-mix(in srgb, var(--surface-hi) 78%, var(--mt-recall, var(--amber)) 22%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+html.light .recall-list--user .recall-list__item {
+  background: color-mix(in srgb, white 88%, var(--mt-recall, var(--amber)) 12%);
 }
 
 .recall-input-slots {
@@ -2919,36 +2907,6 @@ html.light .s-hero {
   color: var(--text-muted);
   font-weight: 400;
   opacity: .55;
-}
-
-.recall-user-entries {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 12px;
-}
-
-.recall-keyword--user {
-  border-color: rgba(var(--mt-recall-rgb, 245, 166, 35), .25);
-  background: var(--mt-recall-soft, var(--amber-soft));
-}
-
-.recall-user-notes {
-  margin-bottom: 8px;
-}
-
-.recall-compare-panel {
-  margin-top: 18px;
-  padding: 18px 16px 16px;
-  border: 1px solid rgba(var(--mt-recall-rgb, 245, 166, 35), .16);
-  border-radius: 18px;
-  background: linear-gradient(180deg, rgba(var(--mt-recall-rgb, 245, 166, 35), .08), rgba(255, 255, 255, .02));
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
-  scroll-margin-top: calc(var(--module-sticky-top) + 96px);
-}
-
-.recall-compare-panel.is-revealed {
-  animation: recallCompareReveal 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .fy-reveal-btn {
@@ -2996,65 +2954,14 @@ html.light .s-hero {
   white-space: nowrap;
 }
 
-.recall-keywords {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-  margin-bottom: 22px;
-}
-
-.recall-keyword {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface-hi);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 12px;
-  font-size: .82rem;
-  font-weight: 500;
-  color: var(--text);
-  animation: kwIn 200ms ease both;
-}
-
-.recall-keyword-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--border);
-  flex-shrink: 0;
-}
-
-.self-check-label {
-  --module-prompt-accent: var(--dcc-accent, var(--mt-recall, var(--amber)));
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border: 1px solid color-mix(in srgb, var(--module-prompt-accent) 18%, var(--border));
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--module-prompt-accent) 10%, transparent);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
-  font-size: .84rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: -.01em;
+.recall-prompt--self-check,
+.module-flow-prompt--self-check {
   margin-bottom: 14px;
 }
 
-.self-check-label::before {
+.recall-prompt--self-check::before,
+.module-flow-prompt--self-check::before {
   content: "Selbstcheck";
-  display: inline-flex;
-  align-items: center;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--module-prompt-accent) 14%, transparent);
-  color: var(--module-prompt-accent);
-  font-size: .66rem;
-  font-weight: 800;
-  letter-spacing: .08em;
-  line-height: 1;
-  text-transform: uppercase;
 }
 
 @media (max-width: 600px) {
@@ -3083,7 +2990,8 @@ html.light .s-hero {
   background: var(--surface);
   cursor: pointer;
   font-family: inherit;
-  transition: all 200ms;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  transition: transform 200ms, background-color 200ms, border-color 200ms, box-shadow 200ms;
 }
 
 .self-check-button:hover {
@@ -3091,27 +2999,30 @@ html.light .s-hero {
 }
 
 .self-check-button.yes {
-  background: var(--green-soft);
-  border-color: rgba(74, 222, 128, .3);
+  background: color-mix(in srgb, var(--green) 18%, var(--surface-hi));
+  border-color: color-mix(in srgb, var(--green) 34%, var(--border));
 }
 
 .self-check-button.yes:hover {
-  background: rgba(74, 222, 128, .18);
-  border-color: rgba(74, 222, 128, .5);
+  background: color-mix(in srgb, var(--green) 24%, var(--surface-hi));
+  border-color: color-mix(in srgb, var(--green) 48%, var(--border));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--green) 10%, transparent), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
 
 .self-check-button.no {
-  background: var(--amber-soft);
-  border-color: rgba(245, 166, 35, .25);
+  background: color-mix(in srgb, var(--amber) 18%, var(--surface-hi));
+  border-color: color-mix(in srgb, var(--amber) 34%, var(--border));
 }
 
 .self-check-button.no:hover {
-  background: rgba(245, 166, 35, .18);
-  border-color: rgba(245, 166, 35, .45);
+  background: color-mix(in srgb, var(--amber) 24%, var(--surface-hi));
+  border-color: color-mix(in srgb, var(--amber) 48%, var(--border));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--amber) 10%, transparent), inset 0 1px 0 rgba(255, 255, 255, .05);
 }
 
 .self-check-button__icon {
-  font-size: 1.4rem;
+  font-size: 1.45rem;
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
   line-height: 1;
 }
 
@@ -3131,7 +3042,7 @@ html.light .s-hero {
 
 .self-check-button__sub {
   font-size: .72rem;
-  color: var(--text-muted);
+  color: var(--text-body);
   text-align: center;
   line-height: 1.35;
 }
@@ -5184,18 +5095,6 @@ html.light .mat-lb-dropdown option,
 html.light .filter-select option {
   background: var(--dropdown-option-bg);
   color: var(--text);
-}
-
-@keyframes recallCompareReveal {
-  0% {
-    border-color: rgba(var(--mt-recall-rgb, 245, 166, 35), .55);
-    box-shadow: 0 0 0 4px rgba(var(--mt-recall-rgb, 245, 166, 35), .16), inset 0 1px 0 rgba(255, 255, 255, .04);
-  }
-
-  100% {
-    border-color: rgba(var(--mt-recall-rgb, 245, 166, 35), .16);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
-  }
 }
 
 @keyframes feynmanEvaluateReveal {
