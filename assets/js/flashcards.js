@@ -238,6 +238,9 @@ function cleanupAnswer(text) {
     let cleaned = text;
     cleaned = cleaned.replace(/\{TIKTOK:id=[A-Za-z0-9_-]+}/g, "");
     cleaned = cleaned.replace(/\{YOUTUBE:id=[A-Za-z0-9_-]+}/g, "");
+    cleaned = cleaned.replace(/\{\d+:INTERVAL_BOUND:=NEG_INF}/g, "-∞");
+    cleaned = cleaned.replace(/\{\d+:INTERVAL_BOUND:=POS_INF}/g, "∞");
+    cleaned = cleaned.replace(/\{\d+:INTERVAL_BOUND:=(-?[0-9.,]+):[0-9.,]+}/g, "$1");
     cleaned = cleaned.replace(/\{\d+:NUMERICAL:=(-?[0-9.,]+):[0-9.,]+}/g, "$1");
     cleaned = extractMultipleChoice(cleaned);
     return cleaned;

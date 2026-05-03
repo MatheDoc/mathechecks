@@ -24,8 +24,8 @@ class MittlereAenderungsrateGenerator(TaskGenerator):
         used: set[tuple[tuple[float, ...], int, int]] = set()
 
         while len(tasks) < count:
-            case, _center, _distance = sample_centered_quadratic(rng)
-            interval = _sample_interval(rng, case)
+            case, center, _distance = sample_centered_quadratic(rng)
+            interval = _sample_interval(rng, case, center)
             if interval is None:
                 continue
 
@@ -57,9 +57,13 @@ class MittlereAenderungsrateGenerator(TaskGenerator):
         return tasks
 
 
-def _sample_interval(rng: random.Random, case) -> tuple[int, int, float] | None:
+def _sample_interval(rng: random.Random, case, center: float) -> tuple[int, int, float] | None:
+    domain = list(range(max(-9, int(center) - 4), min(9, int(center) + 4) + 1))
+    if len(domain) < 2:
+        return None
+
     for _ in range(60):
-        left, right = sorted(rng.sample(range(-3, 4), 2))
+        left, right = sorted(rng.sample(domain, 2))
         avg_rate = (case.evaluate(right) - case.evaluate(left)) / (right - left)
         if abs(avg_rate) < 0.5 or abs(avg_rate) > 12.0:
             continue

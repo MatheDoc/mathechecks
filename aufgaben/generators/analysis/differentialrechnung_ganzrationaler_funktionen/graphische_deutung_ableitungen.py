@@ -19,20 +19,25 @@ from aufgaben.generators.analysis.differentialrechnung_ganzrationaler_funktionen
 
 
 _ROOT_VALUES = (-2.5, -1.5, -0.5, 0.5, 1.5, 2.5)
-_LEADING_MAGNITUDES = (0.45, 0.6, 0.75)
-_UPPER_SHIFTS = (3.5, 4.5, 5.5, 6.5)
-_LOWER_SHIFTS = (-6.5, -5.5, -4.5, -3.5)
+_FUNCTION_DEGREES = (1, 2, 3)
+_CONSTANT_LEVELS = (1.0, 1.5, 2.0, 2.5)
+_LINEAR_LEADING_MAGNITUDES = (0.7, 0.9, 1.1)
+_QUADRATIC_LEADING_MAGNITUDES = (0.45, 0.6, 0.75)
+_UPPER_SHIFTS = (1.0, 2.0, 3.0)
+_LOWER_SHIFTS = (-3.0, -2.0, -1.0)
 _ANCHOR_X_VALUES = (-2.0, -1.0, 0.0, 1.0, 2.0)
+_Y_FOCUS_X_VALUES = (-3.0, -2.5, -2.0, -1.5, -1.0, -0.5, 0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0)
 _X_RANGE = (-3.5, 3.5)
-_MAX_GRAPH_ABS = 20.0
-_MIN_FUNCTION_SPAN = 3.0
+_MAX_GRAPH_ABS = 24.0
+_MIN_FUNCTION_SPAN = 2.6
 _MIN_DERIVATIVE_SPAN = 1.5
+_MIN_CONSTANT_LEVEL = 0.9
 _MIN_ANCHOR_GAP = 0.8
-_MAX_TOTAL_SPAN = 22.0
+_MAX_TOTAL_SPAN = 18.0
 _MIN_PAIRWISE_AVG_DISTANCE = 1.7
-_MIN_FUNCTION_MEAN_GAP = 4.5
-_MIN_DERIVATIVE_MEAN_GAP = 1.2
-_MIN_RELATIVE_TRACE_SPAN = 0.18
+_MIN_FUNCTION_MEAN_GAP = 2.4
+_MIN_DERIVATIVE_MEAN_GAP = 0.8
+_MIN_RELATIVE_TRACE_SPAN = 0.14
 _MIN_DECOY_AVG_DISTANCE = 2.0
 _MIN_DECOY_CLEAR_POINT_GAP = 0.8
 _MIN_DECOY_CLEAR_POINT_COUNT = 11
@@ -71,10 +76,9 @@ def _sample_function_pair_task(
 ) -> tuple[PolynomialCase, PolynomialCase, PolynomialCase, PolynomialCase, PolynomialCase, tuple[str, float, float]]:
     for _ in range(900):
         shared_root = rng.choice(_ROOT_VALUES)
-        variant = rng.choice(("shared-distinct", "shared-double"))
         sign = rng.choice((-1.0, 1.0))
-        leading_f = sign * rng.choice(_LEADING_MAGNITUDES)
-        leading_g = -sign * rng.choice(_LEADING_MAGNITUDES)
+        degree_f = rng.choice(_FUNCTION_DEGREES)
+        degree_g = rng.choice(_FUNCTION_DEGREES)
 
         if rng.choice((True, False)):
             y_shift_f = rng.choice(_UPPER_SHIFTS)
@@ -83,22 +87,8 @@ def _sample_function_pair_task(
             y_shift_f = rng.choice(_LOWER_SHIFTS)
             y_shift_g = rng.choice(_UPPER_SHIFTS)
 
-        other_candidates = [value for value in _ROOT_VALUES if value != shared_root and abs(value - shared_root) >= 1.0]
-        if len(other_candidates) < 2:
-            continue
-
-        if variant == "shared-distinct":
-            other_f, other_g = rng.sample(other_candidates, 2)
-            f_prime = _quadratic_from_roots(leading_f, shared_root, other_f)
-            g_prime = _quadratic_from_roots(leading_g, shared_root, other_g)
-        else:
-            other_root = rng.choice(other_candidates)
-            if rng.choice((True, False)):
-                f_prime = _quadratic_from_roots(leading_f, shared_root, shared_root)
-                g_prime = _quadratic_from_roots(leading_g, shared_root, other_root)
-            else:
-                f_prime = _quadratic_from_roots(leading_f, shared_root, other_root)
-                g_prime = _quadratic_from_roots(leading_g, shared_root, shared_root)
+        f_prime = _sample_derivative_case(rng, degree_f, shared_root, sign)
+        g_prime = _sample_derivative_case(rng, degree_g, shared_root, -sign)
 
         f_case = integrate_polynomial(f_prime, constant=y_shift_f)
         g_case = integrate_polynomial(g_prime, constant=y_shift_g)
@@ -128,24 +118,61 @@ def _quadratic_from_roots(leading: float, root_a: float, root_b: float) -> Polyn
     )
 
 
+def _linear_from_root(leading: float, root: float) -> PolynomialCase:
+    return PolynomialCase((leading, -leading * root))
+
+
+def _sample_derivative_case(
+    rng: random.Random,
+    function_degree: int,
+    shared_root: float,
+    preferred_sign: float,
+) -> PolynomialCase:
+    return _sample_polynomial_case(rng, function_degree - 1, shared_root, preferred_sign)
+
+
+def _sample_polynomial_case(
+    rng: random.Random,
+    degree: int,
+    shared_root: float,
+    preferred_sign: float,
+) -> PolynomialCase:
+    sign = -1.0 if preferred_sign < 0 else 1.0
+
+    if degree == 0:
+        return PolynomialCase((sign * rng.choice(_CONSTANT_LEVELS),))
+
+    if degree == 1:
+        root = shared_root if rng.choice((True, False)) else rng.choice(_ROOT_VALUES)
+        leading = sign * rng.choice(_LINEAR_LEADING_MAGNITUDES)
+        return _linear_from_root(leading, root)
+
+    if degree == 2:
+        other_candidates = [value for value in _ROOT_VALUES if value != shared_root and abs(value - shared_root) >= 1.0]
+        if not other_candidates:
+            raise ValueError("Konnte keine Nullstellen für quadratische Ableitung wählen.")
+        leading = sign * rng.choice(_QUADRATIC_LEADING_MAGNITUDES)
+        if rng.choice((True, False)):
+            return _quadratic_from_roots(leading, shared_root, shared_root)
+        return _quadratic_from_roots(leading, shared_root, rng.choice(other_candidates))
+
+    raise ValueError(f"Nicht unterstützter Grad: {degree}")
+
+
 def _sample_decoy_case(
     rng: random.Random,
     shared_root: float,
     f_prime: PolynomialCase,
     g_prime: PolynomialCase,
 ) -> PolynomialCase | None:
-    other_candidates = [value for value in _ROOT_VALUES if value != shared_root and abs(value - shared_root) >= 1.0]
-
     for _ in range(180):
-        leading = rng.choice((-1.0, 1.0)) * rng.choice(_LEADING_MAGNITUDES)
-        if rng.choice((True, False)):
-            decoy_case = _quadratic_from_roots(leading, shared_root, shared_root)
-        else:
-            decoy_case = _quadratic_from_roots(leading, shared_root, rng.choice(other_candidates))
+        degree = rng.choice((0, 1, 2))
+        preferred_sign = rng.choice((-1.0, 1.0))
+        decoy_case = _sample_polynomial_case(rng, degree, shared_root, preferred_sign)
 
         if decoy_case.signature() in {f_prime.signature(), g_prime.signature()}:
             continue
-        if _case_span(decoy_case) < _MIN_DERIVATIVE_SPAN:
+        if not _derivative_case_is_clear(decoy_case):
             continue
         return decoy_case
 
@@ -159,18 +186,18 @@ def _pair_is_usable(
     g_prime: PolynomialCase,
     decoy_case: PolynomialCase,
 ) -> bool:
-    sample_x = (-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0)
+    sample_x = _Y_FOCUS_X_VALUES
     all_cases = (f_case, f_prime, g_case, g_prime, decoy_case)
 
     max_abs = max(abs(case.evaluate(x_value)) for case in all_cases for x_value in sample_x)
     if max_abs > _MAX_GRAPH_ABS:
         return False
 
-    if _case_span(f_case) < _MIN_FUNCTION_SPAN or _case_span(g_case) < _MIN_FUNCTION_SPAN:
+    if _case_span(f_case, _Y_FOCUS_X_VALUES) < _MIN_FUNCTION_SPAN or _case_span(g_case, _Y_FOCUS_X_VALUES) < _MIN_FUNCTION_SPAN:
         return False
-    if _case_span(f_prime) < _MIN_DERIVATIVE_SPAN or _case_span(g_prime) < _MIN_DERIVATIVE_SPAN:
+    if not _derivative_case_is_clear(f_prime) or not _derivative_case_is_clear(g_prime):
         return False
-    if _case_span(decoy_case) < _MIN_DERIVATIVE_SPAN:
+    if not _derivative_case_is_clear(decoy_case):
         return False
 
     if f_case.signature() == g_case.signature() or f_prime.signature() == g_prime.signature():
@@ -184,9 +211,17 @@ def _pair_is_usable(
     return True
 
 
-def _case_span(case: PolynomialCase) -> float:
-    y_values = [case.evaluate(x_value) for x_value in _ANCHOR_X_VALUES]
+def _case_span(case: PolynomialCase, x_values: tuple[float, ...] = _ANCHOR_X_VALUES) -> float:
+    y_values = [case.evaluate(x_value) for x_value in x_values]
     return max(y_values) - min(y_values)
+
+
+def _derivative_case_is_clear(case: PolynomialCase) -> bool:
+    y_values = [case.evaluate(x_value) for x_value in _Y_FOCUS_X_VALUES]
+    span = max(y_values) - min(y_values)
+    if span >= _MIN_DERIVATIVE_SPAN:
+        return True
+    return abs(_mean_level(y_values)) >= _MIN_CONSTANT_LEVEL
 
 
 def _distribution_is_clear(
@@ -196,10 +231,7 @@ def _distribution_is_clear(
     g_prime: PolynomialCase,
     decoy_case: PolynomialCase,
 ) -> bool:
-    sample_x = [
-        _X_RANGE[0] + (_X_RANGE[1] - _X_RANGE[0]) * index / 14.0
-        for index in range(15)
-    ]
+    sample_x = list(_Y_FOCUS_X_VALUES)
     curves = {
         "f": [f_case.evaluate(x_value) for x_value in sample_x],
         "f'": [f_prime.evaluate(x_value) for x_value in sample_x],
@@ -209,13 +241,12 @@ def _distribution_is_clear(
     }
 
     all_values = [value for values in curves.values() for value in values]
-    total_span = max(all_values) - min(all_values)
-    if total_span > _MAX_TOTAL_SPAN:
+    y_low, y_high = _display_y_range_from_values(all_values)
+    rendered_axis_span = y_high - y_low
+    if rendered_axis_span > _MAX_TOTAL_SPAN:
         return False
 
-    trace_spans = [max(values) - min(values) for values in curves.values()]
-    rendered_axis_span = _rendered_axis_span(all_values)
-    if min(trace_spans) / rendered_axis_span < _MIN_RELATIVE_TRACE_SPAN:
+    if any(not _curve_is_visually_clear(values, rendered_axis_span) for values in curves.values()):
         return False
 
     if abs(_mean_level(curves["f"]) - _mean_level(curves["g"])) < _MIN_FUNCTION_MEAN_GAP:
@@ -257,7 +288,14 @@ def _mean_level(values: list[float]) -> float:
     return sum(values) / len(values)
 
 
-def _rendered_axis_span(values: list[float]) -> float:
+def _curve_is_visually_clear(values: list[float], rendered_axis_span: float) -> bool:
+    span = max(values) - min(values)
+    if span >= 1e-9:
+        return span / rendered_axis_span >= _MIN_RELATIVE_TRACE_SPAN
+    return abs(_mean_level(values)) >= _MIN_CONSTANT_LEVEL
+
+
+def _display_y_range_from_values(values: list[float]) -> tuple[float, float]:
     y_min = min(values)
     y_max = max(values)
     span = max(1.0, y_max - y_min)
@@ -265,7 +303,17 @@ def _rendered_axis_span(values: list[float]) -> float:
     y_step = axis_tick_step(span + 2.0 * y_pad)
     y_low = y_step * math.floor((y_min - y_pad) / y_step)
     y_high = y_step * math.ceil((y_max + y_pad) / y_step)
+    return y_low, y_high
+
+
+def _rendered_axis_span(values: list[float]) -> float:
+    y_low, y_high = _display_y_range_from_values(values)
     return y_high - y_low
+
+
+def _display_y_range_for_cases(cases: list[PolynomialCase]) -> tuple[float, float]:
+    focus_values = [case.evaluate(x_value) for case in cases for x_value in _Y_FOCUS_X_VALUES]
+    return _display_y_range_from_values(focus_values)
 
 
 def _choose_anchor(
@@ -316,12 +364,16 @@ def _build_task(
     rng.shuffle(permutation)
 
     ordered_cases = [cases[index] for index in permutation]
+    y_range = _display_y_range_for_cases(cases)
     label_for_index = {original_index: _PLOT_LABELS[position] for position, original_index in enumerate(permutation)}
     visual = build_plotly_visual_from_cases(
         ordered_cases,
         names=list(_PLOT_LABELS),
         x_range=_X_RANGE,
-        title="Fünf Graphen",
+        y_range=y_range,
+        title="",
+        x_axis="",
+        y_axis="",
         showlegend=True,
     )
 
@@ -345,7 +397,7 @@ def _build_task(
             "sowie einen weiteren Graphen "
             "in unbekannter Reihenfolge. "
             f"Zusätzlich gilt ${anchor_name}({_latex_number(anchor_x)})={_latex_number(anchor_value)}$. "
-            "Bestimmen Sie."
+            "Bestimmen Sie"
         ),
         fragen=questions,
         antworten=answers,

@@ -1467,17 +1467,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 6,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__06",
-        "Ich kann": "Extremstellen ganzrationaler Funktionen berechnen und die Art des Extremums angeben.",
+        "Ich kann": "einfache Extrempunkte ganzrationaler Funktionen 2. und 3. Grades über notwendige und hinreichende Bedingung bestimmen.",
         "Sammlung": "extremstellen-bestimmen",
-        "Schlagwort": "Extremstellen",
+        "Schlagwort": "Einfache Extrempunkte",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-06",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
-            "Kandidaten: Nullstellen von $f'$",
-            "Funktionswert einsetzen: $E(x_0|f(x_0))$",
-            "$f''(x_0)>0$: Tiefpunkt",
-            "$f''(x_0)<0$: Hochpunkt"
+            "notwendige Bedingung für Extrempunkte: $f'(x_0)=0$",
+            "hinreichende Bedingung in diesem Check: $f''(x_0)>0$ Tiefpunkt, $f''(x_0)<0$ Hochpunkt",
+            "zum Extrempunkt gehört auch der y-Wert: $y_0=f(x_0)$",
+            "in diesem Check treten keine Spezialfälle mit $f''(x_0)=0$ auf"
         ]
     },
     {
@@ -1486,17 +1486,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 7,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__07",
-        "Ich kann": "Monotonieintervalle ganzrationaler Funktionen mithilfe der ersten Ableitung bestimmen.",
+        "Ich kann": "Monotonieintervalle einfacher ganzrationaler Funktionen 2. und 3. Grades mithilfe der ersten Ableitung bestimmen.",
         "Sammlung": "monotonieintervalle",
-        "Schlagwort": "Monotonie",
+        "Schlagwort": "Einfache Monotonie",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-07",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
-            "Kandidaten: Nullstellen von $f'$",
-            "Vorzeichen von $f'$ links und rechts der Kandidaten prüfen",
-            "positiv: monoton steigend",
-            "negativ: monoton fallend"
+            "Nullstellen von $f'$ zerlegen die Zahlengerade in Intervalle",
+            "Vorzeichen von $f'$ in jedem Intervall prüfen",
+            "$f'(x)>0$: streng monoton wachsend",
+            "$f'(x)<0$: streng monoton fallend"
         ]
     },
     {
@@ -1505,17 +1505,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 8,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__08",
-        "Ich kann": "schwierige Fälle bei Extremstellen und Monotonie mithilfe einer Vorzeichenbetrachtung der ersten Ableitung entscheiden.",
+        "Ich kann": "schwierige Fälle bei Extremstellen, Sattelstellen und Monotonie ganzrationaler Funktionen 3. und 4. Grades mithilfe der ersten Ableitung entscheiden.",
         "Sammlung": "extremstellen-monotonie-spezialfaelle",
-        "Schlagwort": "Extremfälle prüfen",
+        "Schlagwort": "Komplizierte Extremfälle",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-08",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
             "bei $f'(x_0)=0$ und $f''(x_0)=0$: zweite Ableitung nicht entscheidend",
-            "Vorzeichen von $f'$ links und rechts von $x_0$ prüfen",
-            "mit Vorzeichenwechsel: Hoch- oder Tiefpunkt",
-            "ohne Vorzeichenwechsel: kein Extremum"
+            "entscheidend ist der Vorzeichenwechsel von $f'$ links und rechts von $x_0$",
+            "mit Vorzeichenwechsel: Extremstelle",
+            "ohne Vorzeichenwechsel: kein Extrempunkt; in diesem Check können dabei Sattelstellen auftreten"
         ]
     },
     {
@@ -1524,17 +1524,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 9,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__09",
-        "Ich kann": "Wendestellen ganzrationaler Funktionen berechnen und begründen.",
+        "Ich kann": "einfache Wendestellen ganzrationaler Funktionen 3. und 4. Grades über notwendige und hinreichende Bedingung bestimmen.",
         "Sammlung": "wendestellen-bestimmen",
-        "Schlagwort": "Wendestellen",
+        "Schlagwort": "Einfache Wendestellen",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-09",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
-            "Kandidaten: Nullstellen von $f''$",
-            "Funktionswert einsetzen: $W(x_0|f(x_0))$",
-            "Vorzeichenwechsel von $f''$: Wendestelle",
-            "$f'''(x_0)>0$: Steigung minimal, $f'''(x_0)<0$: Steigung maximal"
+            "notwendige Bedingung für Wendestellen: $f''(x_0)=0$",
+            "hinreichende Bedingung in diesem Check: $f'''(x_0)\neq 0$",
+            "alternativ sichtbar: an einer Wendestelle wechselt das Vorzeichen von $f''$",
+            "gefragt sind hier die x-Werte der Wendestellen"
         ]
     },
     {
@@ -1543,17 +1543,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 10,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__10",
-        "Ich kann": "Krümmungsintervalle ganzrationaler Funktionen mithilfe der zweiten Ableitung bestimmen.",
+        "Ich kann": "Krümmungsintervalle einfacher ganzrationaler Funktionen 3. und 4. Grades mithilfe der zweiten Ableitung bestimmen.",
         "Sammlung": "kruemmungsintervalle",
-        "Schlagwort": "Krümmung",
+        "Schlagwort": "Einfache Krümmung",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-10",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
-            "Kandidaten: Nullstellen von $f''$",
-            "Vorzeichen von $f''$ links und rechts der Kandidaten prüfen",
-            "positiv: linksgekrümmt / konvex",
-            "negativ: rechtsgekrümmt / konkav"
+            "Nullstellen von $f''$ zerlegen die Zahlengerade in Intervalle",
+            "Vorzeichen von $f''$ in jedem Intervall prüfen",
+            "$f''(x)>0$: linksgekrümmt / konvex",
+            "$f''(x)<0$: rechtsgekrümmt / konkav"
         ]
     },
     {
@@ -1562,17 +1562,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 11,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__11",
-        "Ich kann": "schwierige Fälle bei Wendestellen und Krümmungsverhalten mithilfe einer Vorzeichenbetrachtung der zweiten Ableitung entscheiden.",
+        "Ich kann": "schwierige Fälle bei Wendestellen und Krümmungsintervallen ganzrationaler Funktionen 4. und 5. Grades mithilfe der zweiten Ableitung entscheiden.",
         "Sammlung": "wendestellen-kruemmung-spezialfaelle",
-        "Schlagwort": "Wendefälle prüfen",
+        "Schlagwort": "Komplizierte Wendefälle",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-11",
-        "questionOrder": "shuffle",
+        "questionOrder": "fixed",
         "Tipps": [
             "bei $f''(x_0)=0$ und $f'''(x_0)=0$: dritte Ableitung nicht entscheidend",
-            "Vorzeichen von $f''$ links und rechts von $x_0$ prüfen",
+            "entscheidend ist der Vorzeichenwechsel von $f''$ links und rechts von $x_0$",
             "mit Vorzeichenwechsel: Wendestelle",
-            "ohne Vorzeichenwechsel: keine Wendestelle"
+            "Krümmungsintervalle folgen ebenfalls aus dem Vorzeichen von $f''$"
         ]
     },
     {

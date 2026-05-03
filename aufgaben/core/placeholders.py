@@ -96,3 +96,41 @@ def numerical_opt_analysis(
         decimals=ANALYSIS_CALC_DECIMALS,
         decimal_comma=decimal_comma,
     )
+
+
+def interval_bound(
+    value: float,
+    tolerance: float = 0.01,
+    points: int = 1,
+    decimals: int = 2,
+    decimal_comma: bool = True,
+) -> str:
+    """Intervallgrenze mit numerischer Toleranz."""
+    value_str = _format_number(value, decimals=decimals, decimal_comma=decimal_comma)
+    tolerance_str = _format_number(tolerance, decimals=decimals, decimal_comma=decimal_comma)
+    return f"{{{points}:INTERVAL_BOUND:={value_str}:{tolerance_str}}}"
+
+
+def interval_bound_neg_inf(points: int = 1) -> str:
+    """Intervallgrenze -unendlich."""
+    return f"{{{points}:INTERVAL_BOUND:=NEG_INF}}"
+
+
+def interval_bound_pos_inf(points: int = 1) -> str:
+    """Intervallgrenze +unendlich."""
+    return f"{{{points}:INTERVAL_BOUND:=POS_INF}}"
+
+
+def interval_bound_analysis(
+    value: float,
+    points: int = 1,
+    decimal_comma: bool = True,
+) -> str:
+    """INTERVAL_BOUND mit Analysis-Standardtoleranz."""
+    return interval_bound(
+        value=value,
+        tolerance=ANALYSIS_CALC_TOLERANCE,
+        points=points,
+        decimals=ANALYSIS_CALC_DECIMALS,
+        decimal_comma=decimal_comma,
+    )

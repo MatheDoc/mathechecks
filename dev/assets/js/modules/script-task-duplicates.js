@@ -7,7 +7,7 @@ import {
 } from "../state/check-state-store.js";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260423-market-legends-a";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260504-interval-none-a";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
 import {
