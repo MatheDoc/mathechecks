@@ -52,6 +52,52 @@ function parseNumber(raw) {
     return Number.parseFloat(normalized);
 }
 
+function normalizeInfinityInput(raw) {
+    const normalized = String(raw ?? "")
+        .trim()
+        .replace(/[−–—]/g, "-")
+        .replace(/\s+/g, "")
+        .toLowerCase();
+
+    if (!normalized) {
+        return null;
+    }
+
+    if (["∞", "+∞", "inf", "+inf", "infty", "+infty", "infinity", "+infinity", "oo", "+oo", "\\infty", "+\\infty"].includes(normalized)) {
+        return "POS_INF";
+    }
+
+    if (["-∞", "-inf", "-infty", "-infinity", "-oo", "-\\infty"].includes(normalized)) {
+        return "NEG_INF";
+    }
+
+    return null;
+}
+
+function parseIntervalBoundRaw(raw) {
+    const trimmed = String(raw ?? "").trim();
+    const upper = trimmed.toUpperCase();
+
+    if (upper === "=NONE" || upper === "NONE") {
+        return { expectedNone: true };
+    }
+
+    if (upper === "=NEG_INF" || upper === "NEG_INF") {
+        return { expectedInfinity: "NEG_INF" };
+    }
+
+    if (upper === "=POS_INF" || upper === "POS_INF") {
+        return { expectedInfinity: "POS_INF" };
+    }
+
+    const numericalMatch = trimmed.match(/=([^:}#]+):([^:}#]+)/);
+    if (numericalMatch) {
+        return { value: numericalMatch[1].trim(), tolerance: numericalMatch[2].trim() };
+    }
+
+    return { raw: trimmed };
+}
+
 function getPlaceholderSpecs(answerText) {
     const specs = [];
     replaceAnswerPlaceholders(answerText, (kind, raw) => {
@@ -84,7 +130,7 @@ function evaluateNumerical(raw, userValue) {
     }
 
     return {
-        isCorrect: Math.abs(entered - expected) <= tolerance,
+        isCorrect: Math.abs(entered - expected) <= tolerance + 1e-12,
         isComplete: true,
         expected,
     };
@@ -108,6 +154,36 @@ function evaluateNumericalOpt(raw, userValue, noneChecked) {
     }
 
     return evaluateNumerical(raw, userValue);
+}
+
+function evaluateIntervalBound(raw, userValue, noneChecked) {
+    const spec = parseIntervalBoundRaw(raw);
+
+    if (spec.expectedNone) {
+        return {
+            isCorrect: Boolean(noneChecked),
+            isComplete: Boolean(noneChecked) || String(userValue ?? "").trim().length > 0,
+            expectedNone: true,
+        };
+    }
+
+    if (noneChecked) {
+        return { isCorrect: false, isComplete: true, expected: null, expectedNone: false };
+    }
+
+    if (spec.expectedInfinity) {
+        return {
+            isCorrect: normalizeInfinityInput(userValue) === spec.expectedInfinity,
+            isComplete: String(userValue ?? "").trim().length > 0,
+            expectedInfinity: spec.expectedInfinity,
+        };
+    }
+
+    if (spec.value != null && spec.tolerance != null) {
+        return evaluateNumerical(raw, userValue);
+    }
+
+    return { isCorrect: false, isComplete: false, expected: null };
 }
 
 function evaluateMc(raw, userValue) {
@@ -143,7 +219,7 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
         result.push(source.slice(index, start));
 
         const maybePlaceholder = source.slice(start);
-        const match = maybePlaceholder.match(/^\{(\d+):(NUMERICAL_OPT|NUMERICAL|MC):/);
+        const match = maybePlaceholder.match(/^\{(\d+):(INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):/);
         if (!match) {
             result.push("{");
             index = start + 1;
@@ -182,6 +258,10 @@ export function answerToPreview(answerText) {
             return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="NUMERICAL_OPT" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
         }
 
+        if (kind === "INTERVAL_BOUND") {
+            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="INTERVAL_BOUND" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
+        }
+
         if (kind === "NUMERICAL") {
             return `<input class="answer-input" data-answer-part="${meta.placeholderIndex}" type="text" placeholder="Antwort" />`;
         }
@@ -212,6 +292,25 @@ export function answerToSolution(answerText) {
             const value = escapeHtml(numericalMatch[1]);
             const tolerance = escapeHtml(numericalMatch[2]);
             return `<span class="solution-badge">${value} (±${tolerance})</span>`;
+        }
+
+        if (kind === "INTERVAL_BOUND") {
+            const spec = parseIntervalBoundRaw(raw);
+            if (spec.expectedNone) {
+                return '<span class="solution-badge">existiert nicht</span>';
+            }
+            if (spec.expectedInfinity === "NEG_INF") {
+                return '<span class="solution-badge">-∞</span>';
+            }
+            if (spec.expectedInfinity === "POS_INF") {
+                return '<span class="solution-badge">∞</span>';
+            }
+            if (spec.value != null && spec.tolerance != null) {
+                const value = escapeHtml(spec.value);
+                const tolerance = escapeHtml(spec.tolerance);
+                return `<span class="solution-badge">${value} (±${tolerance})</span>`;
+            }
+            return '<span class="solution-badge">INTERVAL_BOUND</span>';
         }
 
         if (kind === "NUMERICAL") {
@@ -247,6 +346,20 @@ export function evaluateAnswerFields(answerText, answerPreviewNode) {
             const value = inputField ? inputField.value : "";
             const noneChecked = noneCheckbox ? noneCheckbox.checked : false;
             const result = evaluateNumericalOpt(spec.raw, value, noneChecked);
+            return {
+                kind: spec.kind,
+                control,
+                isCorrect: result.isCorrect,
+                isComplete: result.isComplete,
+            };
+        }
+
+        if (spec.kind === "INTERVAL_BOUND") {
+            const inputField = control?.querySelector?.(".answer-numopt-input");
+            const noneCheckbox = control?.querySelector?.(".answer-numopt-none");
+            const value = inputField ? inputField.value : "";
+            const noneChecked = noneCheckbox ? noneCheckbox.checked : false;
+            const result = evaluateIntervalBound(spec.raw, value, noneChecked);
             return {
                 kind: spec.kind,
                 control,

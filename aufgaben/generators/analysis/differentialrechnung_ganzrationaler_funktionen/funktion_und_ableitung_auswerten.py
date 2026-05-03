@@ -70,7 +70,7 @@ def _build_quadratic_task(rng: random.Random) -> tuple[Task, tuple[str, tuple[fl
         einleitung=(
             "Gegeben ist die Funktion $ f $ mit\n\n"
             f"{align_equations([polynomial_latex(case), derivative_latex])}\n\n"
-            "Berechnen Sie."
+            "Berechnen Sie"
         ),
         fragen=[
             f"den Funktionswert von $ f $ an der Stelle $ x={fmt(x_fun)} $.",
@@ -125,7 +125,7 @@ def _build_cubic_task(
         einleitung=(
             "Gegeben ist die Funktion $ f $ mit\n\n"
             f"{align_equations([polynomial_latex(case), derivative_latex])}\n\n"
-            "Berechnen Sie."
+            "Berechnen Sie"
         ),
         fragen=[
             f"den Funktionswert von $ f $ an der Stelle $ x={fmt(x_fun)} $.",
@@ -179,8 +179,8 @@ def _sample_cubic_question_data(
     derivative,
     center: int,
 ) -> tuple[int, float, tuple[int, ...], int, tuple[int, int], int, tuple[int, int]] | None:
-    domain = tuple(range(-3, 4))
-    available_offsets = [offset for offset in (1, 2, 3) if -3 <= center - offset and center + offset <= 3]
+    domain = tuple(range(max(-9, center - 3), min(9, center + 3) + 1))
+    available_offsets = [offset for offset in (1, 2, 3) if (center - offset) in domain and (center + offset) in domain]
     if len(available_offsets) < 2:
         return None
 

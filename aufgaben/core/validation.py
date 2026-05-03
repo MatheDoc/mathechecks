@@ -4,7 +4,7 @@ from aufgaben.core.models import Task
 
 
 REQUIRED_KEYS = {"einleitung", "fragen", "antworten"}
-PLACEHOLDER_PATTERN = re.compile(r"\{\d+:(NUMERICAL_OPT|NUMERICAL|MC):")
+PLACEHOLDER_PATTERN = re.compile(r"\{\d+:(INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):")
 
 
 def validate_task(task: Task) -> None:

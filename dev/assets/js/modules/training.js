@@ -10,7 +10,7 @@ import {
 } from "../state/check-state-store.js";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260423-market-legends-a";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260504-interval-none-a";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
@@ -337,15 +337,40 @@ function unescapeMoodleText(value) {
     .trim();
 }
 
+function parseIntervalBoundPayload(payload) {
+  const trimmed = String(payload || "").trim();
+  const upper = trimmed.toUpperCase();
+
+  if (upper === "=NEG_INF" || upper === "NEG_INF") {
+    return { expectedInfinity: "NEG_INF" };
+  }
+
+  if (upper === "=POS_INF" || upper === "POS_INF") {
+    return { expectedInfinity: "POS_INF" };
+  }
+
+  const numericalMatch = trimmed.match(/=([^:}#]+):([^:}#]+)/);
+  if (numericalMatch) {
+    return { value: numericalMatch[1].trim(), tolerance: numericalMatch[2].trim() };
+  }
+
+  return { raw: trimmed };
+}
+
 function parseAnswerTargets(answerRaw) {
   const source = String(answerRaw || "");
-  const regex = /\{\d+:(NUMERICAL_OPT|NUMERICAL|MC):([\s\S]*?)\}/g;
+  const regex = /\{\d+:(INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):([\s\S]*?)\}/g;
   const targets = [];
   let match = null;
 
   while ((match = regex.exec(source)) !== null) {
     const kind = match[1];
     const payload = match[2];
+
+    if (kind === "INTERVAL_BOUND") {
+      targets.push({ kind, ...parseIntervalBoundPayload(payload) });
+      continue;
+    }
 
     if (kind === "NUMERICAL_OPT") {
       if (String(payload).trim().toUpperCase() === "NONE") {
@@ -395,6 +420,18 @@ function buildAnswerTargetText(answerRaw) {
   return targets
     .map((target, index) => {
       const part = `Teil ${index + 1}`;
+      if (target.kind === "INTERVAL_BOUND") {
+        if (target.expectedInfinity === "NEG_INF") {
+          return `${part}: Grenze -∞`;
+        }
+        if (target.expectedInfinity === "POS_INF") {
+          return `${part}: Grenze +∞`;
+        }
+        if (target.value != null && target.tolerance != null) {
+          return `${part}: Zielwert ${target.value} (Toleranz ±${target.tolerance})`;
+        }
+        return `${part}: Intervallgrenze (${target.raw || "unbekannt"})`;
+      }
       if (target.kind === "NUMERICAL_OPT") {
         if (target.expectedNone) {
           return `${part}: existiert nicht`;

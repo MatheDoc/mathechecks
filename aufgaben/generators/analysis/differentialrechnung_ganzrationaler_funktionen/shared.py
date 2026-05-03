@@ -16,6 +16,10 @@ NONZERO_SMALL_VALUES = (-4.0, -3.0, -2.0, -1.5, -1.0, -0.5, 0.5, 1.0, 1.5, 2.0, 
 CONTROLLED_CUBIC_LEADING_VALUES = (-1.0, -0.5, 0.5, 1.0)
 GRAPH_COLORS = ("#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", "#8c564b")
 GRAPH_LABELS = ("a", "b", "c", "d")
+_WIDE_CENTER_VALUES = tuple(range(-6, 7))
+_CONTROLLED_CUBIC_CENTER_VALUES = tuple(range(-5, 6))
+_WIDE_DOMAIN_MIN = -9
+_WIDE_DOMAIN_MAX = 9
 
 
 @dataclass(frozen=True)
@@ -171,6 +175,7 @@ def build_plotly_visual_from_cases(
     *,
     names: list[str] | tuple[str, ...],
     x_range: tuple[float, float] = (-3.0, 3.0),
+    y_range: tuple[float, float] | None = None,
     title: str = "",
     x_axis: str = "x",
     y_axis: str = "y",
@@ -202,11 +207,15 @@ def build_plotly_visual_from_cases(
             }
         )
 
-    span = max(1.0, y_max - y_min)
-    y_pad = max(0.75, 0.12 * span)
-    y_step = axis_tick_step(span + 2.0 * y_pad)
-    y_low = y_step * math.floor((y_min - y_pad) / y_step)
-    y_high = y_step * math.ceil((y_max + y_pad) / y_step)
+    if y_range is None:
+        span = max(1.0, y_max - y_min)
+        y_pad = max(0.75, 0.12 * span)
+        y_step = axis_tick_step(span + 2.0 * y_pad)
+        y_low = y_step * math.floor((y_min - y_pad) / y_step)
+        y_high = y_step * math.ceil((y_max + y_pad) / y_step)
+    else:
+        y_low, y_high = y_range
+        y_step = axis_tick_step(max(1.0, y_high - y_low))
     x_step = 1.0 if (x_max - x_min) <= 8.0 else axis_tick_step(x_max - x_min)
 
     return {
@@ -257,12 +266,12 @@ def sample_normal_polynomial(rng: random.Random, degree: int, *, value_bound: fl
 def sample_centered_quadratic(rng: random.Random) -> tuple[PolynomialCase, float, float]:
     for _ in range(300):
         a_value = rng.choice(LEADING_VALUES)
-        center = float(rng.randint(-3, 3))
-        distance = float(rng.randint(1, 3))
+        center = float(rng.choice(_WIDE_CENTER_VALUES))
+        distance = float(rng.choice((1, 2, 3, 4)))
         b_value = -2.0 * a_value * center
         c_value = a_value * (center * center - distance * distance)
         case = PolynomialCase((a_value, b_value, c_value))
-        if max(abs(case.evaluate(center + offset)) for offset in range(-3, 4)) <= 18.0:
+        if max(abs(case.evaluate(center + offset)) for offset in range(-4, 5)) <= 24.0:
             return case, center, distance
     raise ValueError("Konnte keine geeignete zentrierte quadratische Funktion erzeugen.")
 
@@ -320,7 +329,7 @@ def sample_monotone_cubic(rng: random.Random) -> tuple[PolynomialCase, float, fl
     for _ in range(500):
         sign = rng.choice((-1.0, 1.0))
         a_value = sign * rng.choice((1.0, 2.0))
-        h_value = float(rng.randint(-2, 2))
+        h_value = float(rng.choice(_WIDE_CENTER_VALUES))
         min_slope = sign * rng.choice((1.0, 2.0, 3.0, 4.0))
         y_shift = float(rng.randint(-4, 4))
 
@@ -330,7 +339,8 @@ def sample_monotone_cubic(rng: random.Random) -> tuple[PolynomialCase, float, fl
         a0 = y_shift - a_value * (h_value ** 3) - min_slope * h_value
         case = PolynomialCase((a3, a2, a1, a0))
 
-        if max(abs(case.evaluate(x_value)) for x_value in range(-3, 4)) <= 45.0:
+        local_window = _integer_window(h_value, radius=3)
+        if max(abs(case.evaluate(x_value)) for x_value in local_window) <= 45.0:
             return case, h_value, min_slope
     raise ValueError("Konnte keine geeignete monotone kubische Funktion erzeugen.")
 
@@ -352,10 +362,10 @@ def sample_controlled_cubic(
     for _ in range(700):
         a3 = rng.choice(a3_candidates)
         q_scale = 3.0 * a3
-        center = rng.choice((-1, 1))
-        root_distance = 2 if abs(a3) >= 1.0 else rng.choice((1, 2))
+        center = rng.choice(_CONTROLLED_CUBIC_CENTER_VALUES)
+        root_distance = rng.choice((1, 2, 3))
         slope_shift = rng.choice((-4, -3, -2, -1, 1, 2, 3, 4))
-        y_shift = float(rng.randint(-3, 3))
+        y_shift = float(rng.randint(-5, 5))
 
         a2 = -q_scale * center
         a1 = q_scale * (center * center - root_distance * root_distance) + slope_shift
@@ -363,7 +373,7 @@ def sample_controlled_cubic(
 
         if abs(a2) < 1e-12:
             continue
-        if max(abs(case.evaluate(x_value)) for x_value in range(-3, 4)) > 35.0:
+        if max(abs(case.evaluate(x_value)) for x_value in _integer_window(center, radius=3)) > 38.0:
             continue
 
         return case, int(center), int(root_distance), int(slope_shift)
@@ -381,6 +391,12 @@ def multiply_polynomials(*factors: tuple[float, ...]) -> tuple[float, ...]:
                 new_result[index_result + index_factor] += coeff_result * coeff_factor
         result = new_result
     return tuple(0.0 if abs(value) < 1e-12 else float(value) for value in result)
+
+
+def _integer_window(center: float, *, radius: int) -> tuple[int, ...]:
+    left = max(_WIDE_DOMAIN_MIN, int(math.floor(center)) - radius)
+    right = min(_WIDE_DOMAIN_MAX, int(math.ceil(center)) + radius)
+    return tuple(range(left, right + 1))
 
 
 def scale_polynomial(coeffs: tuple[float, ...], scale: float) -> tuple[float, ...]:

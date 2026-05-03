@@ -23,12 +23,19 @@ _ROOT_VALUES = (-3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0)
 _CENTER_VALUES = (-2.0, -1.0, 0.0, 1.0, 2.0)
 _OFFSET_VALUES = (1.0, 2.0)
 _SCALE_MAGNITUDES = (0.1, 0.12, 0.15, 0.18, 0.2, 0.25, 0.3, 0.35, 0.4, 0.5, 0.75, 1.0)
-_ROOT_MARGIN = 1.25
-_NO_ROOT_MARGIN = 2.25
-_MIN_X_WIDTH = 5.5
+_SINGLE_EVENT_MARGIN = 0.7
+_DOUBLE_EVENT_MARGIN = 0.85
+_TRIPLE_EVENT_MARGIN = 0.75
+_MULTI_EVENT_MARGIN = 1.0
+_NO_ROOT_SINGLE_MARGIN = 1.2
+_NO_ROOT_MULTI_MARGIN = 1.4
+_SINGLE_EVENT_MIN_X_WIDTH = 4.25
+_DOUBLE_EVENT_MIN_X_WIDTH = 4.75
+_TRIPLE_EVENT_MIN_X_WIDTH = 4.75
+_MULTI_EVENT_MIN_X_WIDTH = 5.25
 _SEARCH_MARGIN = 3.5
 _MIN_Y_SPAN = 3.5
-_MAX_Y_ABS = 18.0
+_MAX_Y_ABS = 14.0
 _MIN_INFLECTION_PROMINENCE_ABS = 0.2
 _MIN_INFLECTION_PROMINENCE_REL = 0.02
 
@@ -309,7 +316,9 @@ def _build_task(case: _DerivativeGraphCase) -> Task:
         [case.derivative_case],
         names=["f'"],
         x_range=case.x_range,
-        title="Graph von f'",
+        title="",
+        x_axis="",
+        y_axis="",
         showlegend=False,
     )
 
@@ -317,7 +326,7 @@ def _build_task(case: _DerivativeGraphCase) -> Task:
         einleitung=(
             "Das Diagramm zeigt den Graphen der ersten Ableitungsfunktion $f'$ einer ganzrationalen "
             "Funktion $f$. Geben Sie die x-Werte jeweils in aufsteigender Reihenfolge an. "
-            "Nicht benötigte Felder setzen Sie auf 'keine Lösung'."
+            "Nicht benötigte Felder setzen Sie auf 'keine Lösung'. Bestimmen Sie"
         ),
         fragen=[
             "die x-Werte aller Hochpunkte von $f$.",
@@ -489,10 +498,45 @@ def _final_x_range(
 ) -> tuple[float, float]:
     if real_roots:
         points = tuple(sorted(real_roots + inflections)) if inflections else real_roots
-        return _range_from_points(points, margin=_ROOT_MARGIN, min_width=_MIN_X_WIDTH)
+        margin, min_width = _display_window_parameters(points, has_real_roots=True)
+        return _range_from_points(points, margin=margin, min_width=min_width)
 
     points = inflections if inflections else support_points
-    return _range_from_points(points, margin=_NO_ROOT_MARGIN, min_width=_MIN_X_WIDTH)
+    margin, min_width = _display_window_parameters(points, has_real_roots=False)
+    return _range_from_points(points, margin=margin, min_width=min_width)
+
+
+def _display_window_parameters(
+    points: tuple[float, ...],
+    *,
+    has_real_roots: bool,
+) -> tuple[float, float]:
+    point_count = len(points)
+    point_span = 0.0 if point_count < 2 else max(points) - min(points)
+
+    if has_real_roots:
+        if point_count <= 1:
+            margin = _SINGLE_EVENT_MARGIN
+            min_width = _SINGLE_EVENT_MIN_X_WIDTH
+        elif point_count == 2:
+            margin = _DOUBLE_EVENT_MARGIN
+            min_width = _DOUBLE_EVENT_MIN_X_WIDTH
+        elif point_count == 3:
+            margin = _TRIPLE_EVENT_MARGIN
+            min_width = _TRIPLE_EVENT_MIN_X_WIDTH
+        else:
+            margin = _MULTI_EVENT_MARGIN
+            min_width = _MULTI_EVENT_MIN_X_WIDTH
+    else:
+        if point_count <= 1:
+            margin = _NO_ROOT_SINGLE_MARGIN
+            min_width = _DOUBLE_EVENT_MIN_X_WIDTH
+        else:
+            margin = _NO_ROOT_MULTI_MARGIN
+            min_width = _MULTI_EVENT_MIN_X_WIDTH
+
+    margin += min(0.15, 0.08 * point_span)
+    return margin, min_width
 
 
 def _range_from_points(
