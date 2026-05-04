@@ -10,7 +10,7 @@ import {
 } from "../state/check-state-store.js";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260504-interval-none-a";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260504-global-extrema-a";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js";
@@ -359,7 +359,7 @@ function parseIntervalBoundPayload(payload) {
 
 function parseAnswerTargets(answerRaw) {
   const source = String(answerRaw || "");
-  const regex = /\{\d+:(INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):([\s\S]*?)\}/g;
+  const regex = /\{\d+:(ANALYSIS_BOUND|INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):([\s\S]*?)\}/g;
   const targets = [];
   let match = null;
 
@@ -367,7 +367,7 @@ function parseAnswerTargets(answerRaw) {
     const kind = match[1];
     const payload = match[2];
 
-    if (kind === "INTERVAL_BOUND") {
+    if (kind === "ANALYSIS_BOUND" || kind === "INTERVAL_BOUND") {
       targets.push({ kind, ...parseIntervalBoundPayload(payload) });
       continue;
     }
@@ -420,6 +420,18 @@ function buildAnswerTargetText(answerRaw) {
   return targets
     .map((target, index) => {
       const part = `Teil ${index + 1}`;
+      if (target.kind === "ANALYSIS_BOUND") {
+        if (target.expectedInfinity === "NEG_INF") {
+          return `${part}: Zielwert -∞`;
+        }
+        if (target.expectedInfinity === "POS_INF") {
+          return `${part}: Zielwert +∞`;
+        }
+        if (target.value != null && target.tolerance != null) {
+          return `${part}: Zielwert ${target.value} (Toleranz ±${target.tolerance})`;
+        }
+        return `${part}: Wert (${target.raw || "unbekannt"})`;
+      }
       if (target.kind === "INTERVAL_BOUND") {
         if (target.expectedInfinity === "NEG_INF") {
           return `${part}: Grenze -∞`;

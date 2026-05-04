@@ -13,8 +13,10 @@ from aufgaben.core.placeholders import (
 )
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.differentialrechnung_ganzrationaler_funktionen.extrem_monotonie_shared import (
+    build_interval_input_note,
     SimpleInflectionCurvatureCase,
     build_inflection_function_intro,
+    interval_delimiters,
     sample_simple_inflection_curvature_case,
 )
 
@@ -47,7 +49,7 @@ def _balanced_degrees(count: int) -> list[int]:
 
 def _build_task(case: SimpleInflectionCurvatureCase) -> Task:
     return Task(
-        einleitung=build_inflection_function_intro(case) + " Bestimmen Sie",
+        einleitung=build_inflection_function_intro(case) + " " + build_interval_input_note() + " Bestimmen Sie",
         fragen=[
             "die Intervalle, in denen $f$ linksgekrümmt bzw. konvex ist.",
             "die Intervalle, in denen $f$ rechtsgekrümmt bzw. konkav ist.",
@@ -83,6 +85,7 @@ def _single_interval_answer(
         )
 
     left, right = interval_bounds
+    left_bracket, right_bracket = interval_delimiters(left, right)
 
     if left is None and right is None:
         return (
@@ -99,12 +102,12 @@ def _single_interval_answer(
             f"{interval_bound_neg_inf()}"
             f"$; $"
             f"{interval_bound_analysis(right)}"
-            f"$)$"
+            f"${right_bracket}$"
         )
 
     if right is None:
         return (
-            f"$I_{label}=($"
+            f"$I_{label}={left_bracket}$"
             f"{interval_bound_analysis(left)}"
             f"$; $"
             f"{interval_bound_pos_inf()}"
@@ -112,9 +115,9 @@ def _single_interval_answer(
         )
 
     return (
-        f"$I_{label}=($"
+        f"$I_{label}={left_bracket}$"
         f"{interval_bound_analysis(left)}"
         f"$; $"
         f"{interval_bound_analysis(right)}"
-        f"$)$"
+        f"${right_bracket}$"
     )
