@@ -476,9 +476,7 @@ export function initSkriptVisuals(root) {
         const x0Wert = row.querySelector(".qhm-x0Wert");
         const hWert = row.querySelector(".qhm-hWert");
         const punktDisplay = row.querySelector(".qhm-punktDisplay");
-        const diffDisplay = row.querySelector(".qhm-diffDisplay");
-        const numericDisplay = row.querySelector(".qhm-numericDisplay");
-        const limitDisplay = row.querySelector(".qhm-limitDisplay");
+        const formulaDisplay = row.querySelector(".qhm-formulaDisplay");
         const info = row.querySelector(".qhm-info");
         const plotDiv = row.querySelector(".qhm-plotGraph");
         const controls = row.querySelector(".widget-controls");
@@ -493,6 +491,10 @@ export function initSkriptVisuals(root) {
             return fmt(n).replace(".", ",");
         }
 
+        function fmtTex(n) {
+            return fmtDe(n).replaceAll("-", "-");
+        }
+
         function update() {
             const x0 = parseFloat(x0Slider.value);
             const h = parseFloat(hSlider.value);
@@ -505,22 +507,26 @@ export function initSkriptVisuals(root) {
             hWert.textContent = fmtDe(h);
 
             punktDisplay.innerHTML = Math.abs(h) > eps
-                ? `$P(${fmtDe(x0)}\mid ${fmtDe(y0)}), \quad Q(${fmtDe(x1)}\mid ${fmtDe(y1)})$`
-                : `$P(${fmtDe(x0)}\mid ${fmtDe(y0)})$`;
-
-            diffDisplay.innerHTML = "$m_h = \\frac{f(x_0+h)-f(x_0)}{h} = \\frac{(x_0+h)^2-x_0^2}{h} = 2x_0+h$";
+                ? `$P(${fmtTex(x0)}\\mid ${fmtTex(y0)}), \\quad Q(${fmtTex(x1)}\\mid ${fmtTex(y1)})$`
+                : `$P(${fmtTex(x0)}\\mid ${fmtTex(y0)})$`;
 
             if (Math.abs(h) > eps) {
                 const sekantenSteigung = 2 * x0 + h;
                 const sign = h >= 0 ? "+" : "-";
-                numericDisplay.innerHTML = `$m_h = 2\\cdot ${fmtDe(x0)} ${sign} ${fmtDe(Math.abs(h))} = ${fmtDe(sekantenSteigung)}$`;
+                formulaDisplay.innerHTML = `$$\\begin{aligned}
+m_h & = \\frac{f(x_0+h)-f(x_0)}{h} = \\frac{(x_0+h)^2-x_0^2}{h} = 2x_0+h \\\\
+m_h & = 2\\cdot ${fmtTex(x0)} ${sign} ${fmtTex(Math.abs(h))} = ${fmtTex(sekantenSteigung)} \\\\
+f'(x_0) & = \\lim_{h \\to 0} m_h = 2x_0 = ${fmtTex(tangentSteigung)}
+\\end{aligned}$$`;
                 info.innerHTML = "Je näher $h$ an $0$ liegt, desto näher rückt die Sekante an die Tangente.";
             } else {
-                numericDisplay.innerHTML = "$h=0$: Der Differenzenquotient ist nicht definiert.";
+                formulaDisplay.innerHTML = `$$\\begin{aligned}
+m_h & = \\frac{f(x_0+h)-f(x_0)}{h} = \\frac{(x_0+h)^2-x_0^2}{h} = 2x_0+h \\\\
+m_h & \\text{ ist für } h=0 \\text{ nicht definiert} \\\\
+f'(x_0) & = \\lim_{h \\to 0} m_h = 2x_0 = ${fmtTex(tangentSteigung)}
+\\end{aligned}$$`;
                 info.innerHTML = "Für die Ableitung braucht man nicht $h=0$, sondern den Grenzwert für $h \\to 0$.";
             }
-
-            limitDisplay.innerHTML = `$f'(x_0) = \\lim_{h \\to 0} m_h = 2x_0 = ${fmtDe(tangentSteigung)}$`;
 
             if (window.MathJax?.typesetPromise) {
                 window.MathJax.typesetPromise([controls]);
