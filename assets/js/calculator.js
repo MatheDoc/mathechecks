@@ -800,8 +800,7 @@ function isLinearExpression(expr, varNames) {
 // Evaluate expression with given variable assignments, others set to 0
 function evaluateWithAssignments(expr, varNames, assignments) {
     try {
-        let normalized = normalizeNumberString(expr || '');
-        normalized = normalizeExpression(normalized);
+        let normalized = normalizeExpression(expr || '');
         varNames.forEach((v) => {
             const re = new RegExp(`(^|[^a-zA-Z0-9_.])${v}([^a-zA-Z0-9_]|$)`, 'g');
             const val = Object.prototype.hasOwnProperty.call(assignments, v) ? String(assignments[v]) : '0';
@@ -991,6 +990,12 @@ function normalizeNumberString(value) {
     return value.replace(/\./g, '').replace(/,/g, '.');
 }
 
+const LGS_VARIABLE_NAMES = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+function getLGSVariableName(index) {
+    return LGS_VARIABLE_NAMES[index] || `x${index + 1}`;
+}
+
 function openLGSPopup() {
     openPopup('lgsPopup');
     renderLGS();
@@ -1002,8 +1007,15 @@ function closeLGSPopup() {
     returnFocusToMain();
 }
 
+function formatLGSPanelNumber(rawValue) {
+    const parsed = parseFloat(normalizeNumberString(rawValue || '0'));
+    if (!Number.isFinite(parsed)) {
+        return '0';
+    }
+    return toGermanNumber(String(parsed));
+}
+
 function confirmLGS() {
-    const varNames = ['x', 'y', 'z', 'u', 'v', 'w'];
     const equations = [];
 
     for (let i = 0; i < lgsEquations; i++) {
@@ -1011,32 +1023,35 @@ function confirmLGS() {
         for (let j = 0; j < lgsVariables; j++) {
             const coeffRaw = document.getElementById(`a${i}${j}`).value || '0';
             const coeff = parseFloat(normalizeNumberString(coeffRaw));
+            const coeffText = formatLGSPanelNumber(coeffRaw);
+            const varName = getLGSVariableName(j);
             if (coeff !== 0) {
                 if (terms.length === 0) {
                     // First term
                     if (coeff === 1) {
-                        terms.push(varNames[j]);
+                        terms.push(varName);
                     } else if (coeff === -1) {
-                        terms.push(`-${varNames[j]}`);
+                        terms.push(`-${varName}`);
                     } else {
-                        terms.push(`${coeff}${varNames[j]}`);
+                        terms.push(`${coeffText}${varName}`);
                     }
                 } else {
                     // Subsequent terms
                     if (coeff === 1) {
-                        terms.push(`+${varNames[j]}`);
+                        terms.push(`+${varName}`);
                     } else if (coeff === -1) {
-                        terms.push(`-${varNames[j]}`);
+                        terms.push(`-${varName}`);
                     } else if (coeff > 0) {
-                        terms.push(`+${coeff}${varNames[j]}`);
+                        terms.push(`+${coeffText}${varName}`);
                     } else {
-                        terms.push(`${coeff}${varNames[j]}`);
+                        terms.push(`${coeffText}${varName}`);
                     }
                 }
             }
         }
-        const result = document.getElementById(`b${i}`).value || '0';
-        equations.push((terms.length > 0 ? terms.join('') : '0') + '=' + result);
+        const resultRaw = document.getElementById(`b${i}`).value || '0';
+        const resultText = formatLGSPanelNumber(resultRaw);
+        equations.push((terms.length > 0 ? terms.join('') : '0') + '=' + resultText);
     }
 
     const compactForm = 'lgs(' + equations.join(';') + ')';
@@ -1090,8 +1105,6 @@ function renderLGS() {
     });
     container.innerHTML = '';
 
-    const varNames = ['x', 'y', 'z', 'u', 'v', 'w'];
-
     for (let i = 0; i < lgsEquations; i++) {
         const row = document.createElement('div');
         row.className = 'input-row';
@@ -1118,7 +1131,7 @@ function renderLGS() {
             row.appendChild(input);
 
             const varLabel = document.createElement('span');
-            varLabel.textContent = varNames[j] || `x${j + 1}`;
+            varLabel.textContent = getLGSVariableName(j);
             varLabel.className = 'lgs-var-label';
             row.appendChild(varLabel);
         }
@@ -1199,12 +1212,12 @@ function solveLGS() {
         } else if (solution.status === 'infinite') {
             currentInput = 'LGS: Unendlich viele Lösungen';
             result = solution.parametric
-                .map((expr) => expr.replace(/^x(\d+)/, (_, num) => `x${toSubscript(num)}`))
+                .map((expr) => expr.replace(/^x(\d+)/, (_, num) => getLGSVariableName(parseInt(num, 10) - 1)))
                 .join(', ');
         } else {
             currentInput = 'LGS gelöst';
             result = solution.values
-                .map((x, i) => `x${toSubscript(i + 1)}=${formatNumber(x)}`)
+                .map((x, i) => `${getLGSVariableName(i)}=${formatNumber(x)}`)
                 .join(', ');
         }
 
