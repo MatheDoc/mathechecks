@@ -3,6 +3,7 @@ import { buildBaumdiagrammBinomialFigure } from "../visuals/baumdiagramm-binomia
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
 import { buildGraphFigure } from "../visuals/graph.js";
+import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
@@ -464,6 +465,73 @@ export function initSkriptVisuals(root) {
         paSlider.addEventListener("input", update);
         pbaSlider.addEventListener("input", update);
         pbnaSlider.addEventListener("input", update);
+        update();
+    });
+
+    /* ---- h-Methode der Ableitung ---- */
+    root.querySelectorAll(".qhm-widget").forEach((row) => {
+        const x0Slider = row.querySelector(".qhm-x0Slider");
+        if (!x0Slider) return;
+        const hSlider = row.querySelector(".qhm-hSlider");
+        const x0Wert = row.querySelector(".qhm-x0Wert");
+        const hWert = row.querySelector(".qhm-hWert");
+        const punktDisplay = row.querySelector(".qhm-punktDisplay");
+        const diffDisplay = row.querySelector(".qhm-diffDisplay");
+        const numericDisplay = row.querySelector(".qhm-numericDisplay");
+        const limitDisplay = row.querySelector(".qhm-limitDisplay");
+        const info = row.querySelector(".qhm-info");
+        const plotDiv = row.querySelector(".qhm-plotGraph");
+        const controls = row.querySelector(".widget-controls");
+        const eps = 1e-9;
+
+        function fmt(n) {
+            const r = Math.round(n * 100) / 100;
+            return r % 1 === 0 ? String(r) : r.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+        }
+
+        function fmtDe(n) {
+            return fmt(n).replace(".", ",");
+        }
+
+        function update() {
+            const x0 = parseFloat(x0Slider.value);
+            const h = parseFloat(hSlider.value);
+            const y0 = x0 * x0;
+            const x1 = x0 + h;
+            const y1 = x1 * x1;
+            const tangentSteigung = 2 * x0;
+
+            x0Wert.textContent = fmtDe(x0);
+            hWert.textContent = fmtDe(h);
+
+            punktDisplay.innerHTML = Math.abs(h) > eps
+                ? `$P(${fmtDe(x0)}\mid ${fmtDe(y0)}), \quad Q(${fmtDe(x1)}\mid ${fmtDe(y1)})$`
+                : `$P(${fmtDe(x0)}\mid ${fmtDe(y0)})$`;
+
+            diffDisplay.innerHTML = "$m_h = \\frac{f(x_0+h)-f(x_0)}{h} = \\frac{(x_0+h)^2-x_0^2}{h} = 2x_0+h$";
+
+            if (Math.abs(h) > eps) {
+                const sekantenSteigung = 2 * x0 + h;
+                const sign = h >= 0 ? "+" : "-";
+                numericDisplay.innerHTML = `$m_h = 2\\cdot ${fmtDe(x0)} ${sign} ${fmtDe(Math.abs(h))} = ${fmtDe(sekantenSteigung)}$`;
+                info.innerHTML = "Je näher $h$ an $0$ liegt, desto näher rückt die Sekante an die Tangente.";
+            } else {
+                numericDisplay.innerHTML = "$h=0$: Der Differenzenquotient ist nicht definiert.";
+                info.innerHTML = "Für die Ableitung braucht man nicht $h=0$, sondern den Grenzwert für $h \\to 0$.";
+            }
+
+            limitDisplay.innerHTML = `$f'(x_0) = \\lim_{h \\to 0} m_h = 2x_0 = ${fmtDe(tangentSteigung)}$`;
+
+            if (window.MathJax?.typesetPromise) {
+                window.MathJax.typesetPromise([controls]);
+            }
+
+            const figure = buildHMethodeAbleitungFigure({ x0, h });
+            plotlyRender(plotDiv, figure.data, figure.layout);
+        }
+
+        x0Slider.addEventListener("input", update);
+        hSlider.addEventListener("input", update);
         update();
     });
 

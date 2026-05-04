@@ -89,6 +89,16 @@ export function buildGraphFigure({
     }
 
     const layout = {
+        ...(titel
+            ? {
+                title: {
+                    text: titel,
+                    x: 0.5,
+                    xanchor: "center",
+                    font: { color: themeTextColor(), size: 16 },
+                },
+            }
+            : {}),
         xaxis: {
             ...(xAchse ? { title: { text: xAchse, y: 0.5 } } : {}),
             range: [xMin, xMax],
@@ -103,7 +113,7 @@ export function buildGraphFigure({
         },
         hovermode: "closest",
         legend: { orientation: "h", x: 0.5, xanchor: "center", y: -0.25 },
-        margin: { t: 40, r: 50, b: 40, l: 60 },
+        margin: { t: titel ? 60 : 40, r: 50, b: 40, l: 60 },
     };
 
     return { data, layout };

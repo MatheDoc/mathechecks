@@ -3885,6 +3885,28 @@ html.light .recall-list--user .recall-list__item {
   margin: 0 auto;
 }
 
+/* ── Widget-specific: h-Methode der Ableitung ── */
+.qhm-widget .widget-controls {
+  max-width: 460px;
+}
+
+.qhm-widget .widget-row--center {
+  text-align: center;
+}
+
+.qhm-widget .widget-row--center span {
+  display: block;
+  width: 100%;
+}
+
+.qhm-widget .widget-info {
+  text-align: center;
+}
+
+.qhm-widget .diagramm {
+  max-width: 720px;
+}
+
 /* ── Legacy compat: keep .diagramm-row working for non-widget usage ── */
 .page-skript-md .mod-content .diagramm-row {
   display: flex;
