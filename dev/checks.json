@@ -1372,7 +1372,7 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 1,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__01",
-        "Ich kann": "die mittlere Änderungsrate ganzrationaler Funktionen auf einem Intervall berechnen und deuten.",
+        "Ich kann": "die mittlere Änderungsrate ganzrationaler Funktionen auf einem Intervall berechnen.",
         "Sammlung": "mittlere-aenderungsrate",
         "Schlagwort": "Mittlere Änderungsrate",
         "Flashtyp": "einzeln",
@@ -1391,7 +1391,7 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 2,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__02",
-        "Ich kann": "erste und höhere Ableitungen ganzrationaler Funktionen bestimmen.",
+        "Ich kann": "erste Ableitungen ganzrationaler Funktionen bestimmen.",
         "Sammlung": "ableitungen-bestimmen",
         "Schlagwort": "Polynome ableiten",
         "Flashtyp": "gruppiert",
@@ -1401,7 +1401,7 @@
             "Polynomform herstellen: zuerst ausmultiplizieren",
             "Potenzregel: $(x^n)' = n\\cdot x^{n-1}$",
             "Summenregel: termweise ableiten",
-            "höhere Ableitungen: erneut ableiten"
+            "Ergebnis in Normalform angeben"
         ]
     },
     {
@@ -1448,7 +1448,7 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 5,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__05",
-        "Ich kann": "aus dem Graphen einer Ableitungsfunktion Extrem- und Wendepunkte der Ausgangsfunktion bestimmen.",
+        "Ich kann": "aus dem Graphen einer Ableitungsfunktion Extrem- und Wendestellen der Ausgangsfunktion bestimmen.",
         "Sammlung": "ableitungsgraph-folgern",
         "Schlagwort": "Aus f' folgern",
         "Flashtyp": "einzeln",
@@ -1582,7 +1582,7 @@
         "Nummer": 12,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__12",
         "Ich kann": "globale Extremwerte ganzrationaler Funktionen auf Intervallen bestimmen.",
-        "Sammlung": "globale-extremwerte-intervalle",
+        "Sammlung": "globale-extrema",
         "Schlagwort": "Globale Extrema",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-12",
@@ -1600,17 +1600,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 13,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__13",
-        "Ich kann": "eine vollständige Kurvendiskussion bei ganzrationalen Funktionen durchführen.",
-        "Sammlung": "kurvendiskussion",
-        "Schlagwort": "Kurvendiskussion",
-        "Flashtyp": "gruppiert",
+        "Ich kann": "globale Extremwerte der Steigung ganzrationaler Funktionen auf Intervallen bestimmen.",
+        "Sammlung": "globale-steigungsextrema",
+        "Schlagwort": "Globale Steigungsextrema",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-13",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "Tipps": [
-            "Bausteine: Nullstellen, Symmetrie, Verhalten im Unendlichen",
-            "erste Ableitung: Extremstellen und Monotonie",
-            "zweite Ableitung: Wendestellen und Krümmung",
-            "Ergebnisse in der Skizze zusammenführen"
+            "Kandidaten im Inneren: echte Wendestellen mit maximaler bzw. minimaler Steigung",
+            "Randpunkte des Intervalls mitprüfen",
+            "globale Steigungsextrema: größte bzw. kleinste Werte von $f'(x)$ vergleichen",
+            "bei unbeschränkten Intervallen: Verhalten von $f'(x)$ für $x\\to\\pm\\infty$ beachten"
         ]
     },
     {
@@ -1619,17 +1619,17 @@
         "LernbereichAnzeigename": "Differentialrechnung ganzrationaler Funktionen",
         "Nummer": 14,
         "check_id": "analysis__differentialrechnung-ganzrationaler-funktionen__14",
-        "Ich kann": "ganzrationale Funktionen aus Bedingungen aufstellen.",
+        "Ich kann": "kubische Funktionen aus Bedingungen an einem Extrempunkt und einem Wendepunkt aufstellen.",
         "Sammlung": "steckbrief-ganzrationale-funktionen",
-        "Schlagwort": "Steckbriefaufgaben",
-        "Flashtyp": "gruppiert",
+        "Schlagwort": "Steckbriefaufgaben kubisch",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-14",
         "questionOrder": "fixed",
         "Tipps": [
-            "allgemeine Form passend zum Grad ansetzen",
-            "Punktbedingung: $f(x_0)=y_0$",
-            "Extrembedingung: $f'(x_0)=0$, Wendebedingung: $f''(x_0)=0$",
-            "Gleichungssystem aufstellen und lösen"
+            "allgemeine Form: $f(x)=ax^3+bx^2+cx+d$",
+            "Extrempunkt $E(x_E\\mid y_E)$: $f(x_E)=y_E$ und $f'(x_E)=0$",
+            "Wendepunkt $W(x_W\\mid y_W)$: $f(x_W)=y_W$ und $f''(x_W)=0$",
+            "die vier Bedingungen zu einem linearen Gleichungssystem zusammenfassen"
         ]
     },
     {

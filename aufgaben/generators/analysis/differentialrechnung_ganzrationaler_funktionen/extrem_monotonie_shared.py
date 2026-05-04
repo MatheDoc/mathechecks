@@ -143,12 +143,25 @@ def interval_label(interval_bounds: tuple[float | None, float | None]) -> str:
     left, right = interval_bounds
     left_text = r"-\infty" if left is None else fmt(left)
     right_text = r"\infty" if right is None else fmt(right)
-    return f"$({left_text}; {right_text})$"
+    left_bracket, right_bracket = interval_delimiters(left, right)
+    return f"${left_bracket}{left_text}; {right_text}{right_bracket}$"
+
+
+def interval_delimiters(left: float | None, right: float | None) -> tuple[str, str]:
+    return ("(" if left is None else "[", ")" if right is None else "]")
+
+
+def build_interval_input_note() -> str:
+    return (
+        "Bei endlichen Grenzen verwenden wir eckige Klammern, bei $\\pm\\infty$ runde Klammern. "
+        "Für unbeschränkte Intervallgrenzen tragen Sie $-\\infty$ bzw. $+\\infty$ ein, "
+        "zum Beispiel als '-inf' bzw. '+inf'."
+    )
 
 
 def build_simple_function_intro(case: SimpleExtremMonotonicityCase) -> str:
     return (
-        f"Gegeben ist die Funktion ${case.polynomial_text(name='f')}$. "
+        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')} $$. "
         "Mehrere Antworten geben Sie in aufsteigender bzw. von links nach rechts an. "
         "Nicht benötigte Felder setzen Sie auf 'keine Lösung'."
     )
@@ -156,7 +169,7 @@ def build_simple_function_intro(case: SimpleExtremMonotonicityCase) -> str:
 
 def build_inflection_function_intro(case: SimpleInflectionCurvatureCase) -> str:
     return (
-        f"Gegeben ist die Funktion ${case.polynomial_text(name='f')}$. "
+        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')} $$. "
         "Mehrere Antworten geben Sie in aufsteigender bzw. von links nach rechts an. "
         "Nicht benötigte Felder setzen Sie auf 'keine Lösung'."
     )

@@ -186,6 +186,28 @@ function evaluateIntervalBound(raw, userValue, noneChecked) {
     return { isCorrect: false, isComplete: false, expected: null };
 }
 
+function evaluateAnalysisBound(raw, userValue) {
+    const spec = parseIntervalBoundRaw(raw);
+
+    if (spec.expectedInfinity) {
+        return {
+            isCorrect: normalizeInfinityInput(userValue) === spec.expectedInfinity,
+            isComplete: String(userValue ?? "").trim().length > 0,
+            expectedInfinity: spec.expectedInfinity,
+        };
+    }
+
+    if (spec.value != null && spec.tolerance != null) {
+        return evaluateNumerical(raw, userValue);
+    }
+
+    return {
+        isCorrect: false,
+        isComplete: String(userValue ?? "").trim().length > 0,
+        expected: null,
+    };
+}
+
 function evaluateMc(raw, userValue) {
     const selected = String(userValue ?? "").trim();
     if (!selected) {
@@ -219,7 +241,7 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
         result.push(source.slice(index, start));
 
         const maybePlaceholder = source.slice(start);
-        const match = maybePlaceholder.match(/^\{(\d+):(INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):/);
+        const match = maybePlaceholder.match(/^\{(\d+):(ANALYSIS_BOUND|INTERVAL_BOUND|NUMERICAL_OPT|NUMERICAL|MC):/);
         if (!match) {
             result.push("{");
             index = start + 1;
@@ -254,6 +276,10 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
 
 export function answerToPreview(answerText) {
     return replaceAnswerPlaceholders(answerText, (kind, raw, meta) => {
+        if (kind === "ANALYSIS_BOUND") {
+            return `<input class="answer-input" data-answer-part="${meta.placeholderIndex}" type="text" placeholder="Antwort" />`;
+        }
+
         if (kind === "NUMERICAL_OPT") {
             return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="NUMERICAL_OPT" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
         }
@@ -280,6 +306,22 @@ export function answerToPreview(answerText) {
 
 export function answerToSolution(answerText) {
     return replaceAnswerPlaceholders(answerText, (kind, raw) => {
+        if (kind === "ANALYSIS_BOUND") {
+            const spec = parseIntervalBoundRaw(raw);
+            if (spec.expectedInfinity === "NEG_INF") {
+                return '<span class="solution-badge">-∞</span>';
+            }
+            if (spec.expectedInfinity === "POS_INF") {
+                return '<span class="solution-badge">∞</span>';
+            }
+            if (spec.value != null && spec.tolerance != null) {
+                const value = escapeHtml(spec.value);
+                const tolerance = escapeHtml(spec.tolerance);
+                return `<span class="solution-badge">${value} (±${tolerance})</span>`;
+            }
+            return '<span class="solution-badge">ANALYSIS_BOUND</span>';
+        }
+
         if (kind === "NUMERICAL_OPT") {
             const rawUpper = String(raw).trim().toUpperCase();
             if (rawUpper === "=NONE" || rawUpper === "NONE") {
@@ -369,6 +411,16 @@ export function evaluateAnswerFields(answerText, answerPreviewNode) {
         }
 
         const value = control ? control.value : "";
+
+        if (spec.kind === "ANALYSIS_BOUND") {
+            const result = evaluateAnalysisBound(spec.raw, value);
+            return {
+                kind: spec.kind,
+                control,
+                isCorrect: result.isCorrect,
+                isComplete: result.isComplete,
+            };
+        }
 
         if (spec.kind === "NUMERICAL") {
             const result = evaluateNumerical(spec.raw, value);

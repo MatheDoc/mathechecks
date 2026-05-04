@@ -14,7 +14,9 @@ from aufgaben.core.placeholders import (
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.differentialrechnung_ganzrationaler_funktionen.extrem_monotonie_shared import (
     SimpleExtremMonotonicityCase,
+    build_interval_input_note,
     build_simple_function_intro,
+    interval_delimiters,
     sample_simple_extrem_monotonicity_case,
 )
 
@@ -47,7 +49,7 @@ def _balanced_degrees(count: int) -> list[int]:
 
 def _build_task(case: SimpleExtremMonotonicityCase) -> Task:
     return Task(
-        einleitung=build_simple_function_intro(case) + " Bestimmen Sie",
+        einleitung=build_simple_function_intro(case) + " " + build_interval_input_note() + " Bestimmen Sie",
         fragen=[
             "die Intervalle, in denen $f$ streng monoton fallend ist.",
             "die Intervalle, in denen $f$ streng monoton wachsend ist.",
@@ -86,6 +88,7 @@ def _single_interval_answer(
         )
 
     left, right = interval_bounds
+    left_bracket, right_bracket = interval_delimiters(left, right)
 
     if left is None and right is None:
         return (
@@ -102,12 +105,12 @@ def _single_interval_answer(
             f"{interval_bound_neg_inf()}"
             f"$; $"
             f"{interval_bound_analysis(right)}"
-            f"$)$"
+            f"${right_bracket}$"
         )
 
     if right is None:
         return (
-            f"$I_{label}=($"
+            f"$I_{label}={left_bracket}$"
             f"{interval_bound_analysis(left)}"
             f"$; $"
             f"{interval_bound_pos_inf()}"
@@ -115,9 +118,9 @@ def _single_interval_answer(
         )
 
     return (
-        f"$I_{label}=($"
+        f"$I_{label}={left_bracket}$"
         f"{interval_bound_analysis(left)}"
         f"$; $"
         f"{interval_bound_analysis(right)}"
-        f"$)$"
+        f"${right_bracket}$"
     )

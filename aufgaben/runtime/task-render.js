@@ -1,4 +1,4 @@
-import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js";
+import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260504-global-extrema-a";
 import { renderVisual } from "./task-visuals.js?v=20260423-market-legends-a";
 
 const TASK_UI_STATE_PREFIX = "dev-task-ui-state-v1::";

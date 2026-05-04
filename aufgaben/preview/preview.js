@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260504-interval-none-a";
+import { renderTask } from "../runtime/task-render.js?v=20260504-global-extrema-a";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

@@ -15,7 +15,9 @@ from aufgaben.core.placeholders import (
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.analysis.differentialrechnung_ganzrationaler_funktionen.extrem_monotonie_shared import (
     SimpleExtremMonotonicityCase,
+    build_interval_input_note,
     build_simple_function_intro,
+    interval_delimiters,
     sample_special_extrem_monotonicity_case,
 )
 
@@ -52,7 +54,7 @@ def _balanced_families(count: int) -> list[str]:
 
 def _build_task(case: SimpleExtremMonotonicityCase) -> Task:
     return Task(
-        einleitung=build_simple_function_intro(case) + " Bestimmen Sie",
+        einleitung=build_simple_function_intro(case) + " " + build_interval_input_note() + " Bestimmen Sie",
         fragen=[
             "die x-Werte aller Hochpunkte.",
             "die x-Werte aller Tiefpunkte.",
@@ -93,6 +95,7 @@ def _render_interval(interval_bounds: tuple[float | None, float | None] | None) 
         )
 
     left, right = interval_bounds
+    left_bracket, right_bracket = interval_delimiters(left, right)
 
     if left is None and right is None:
         return (
@@ -109,12 +112,12 @@ def _render_interval(interval_bounds: tuple[float | None, float | None] | None) 
             f"{interval_bound_neg_inf()}"
             f"$; $"
             f"{interval_bound_analysis(right)}"
-            f"$)$"
+            f"${right_bracket}$"
         )
 
     if right is None:
         return (
-            f"$I=($"
+            f"$I={left_bracket}$"
             f"{interval_bound_analysis(left)}"
             f"$; $"
             f"{interval_bound_pos_inf()}"
@@ -122,9 +125,9 @@ def _render_interval(interval_bounds: tuple[float | None, float | None] | None) 
         )
 
     return (
-        f"$I=($"
+        f"$I={left_bracket}$"
         f"{interval_bound_analysis(left)}"
         f"$; $"
         f"{interval_bound_analysis(right)}"
-        f"$)$"
+        f"${right_bracket}$"
     )
