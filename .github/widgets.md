@@ -23,6 +23,7 @@ Widgets werden per `{% include dev/widgets/widget-*.html %}` eingebunden und üb
 | Baumdiagramm binomial | `widget-baumdiagramm-binomial.html` | `.bb-widget` | Baumdiagramm + Bernoulli-Formel |
 | Baumdiagramme & Vierfeldertafel | `widget-baumdiagramme-vierfeldertafel.html` | `.bvt-widget` | 2 Baumdiagramme + Vierfeldertafel |
 | Lineare Funktionen | `widget-lineare-funktionen.html` | `.lf-widget` | Graph + Wertetabelle |
+| h-Methode der Ableitung | `widget-h-methode-ableitung.html` | `.qhm-widget` | Graph von $f(x)=x^2$ + Sekante/Tangente + Differenzenquotient |
 | Quadratische Funktionen | `widget-quadratische-funktionen.html` | `.qf-widget` | Graph + Wertetabelle + Formel |
 | Quadratische Funktionen Parameter | `widget-quadratische-funktionen-parameter.html` | `.qfp-widget` | Graph + Scheitel + Formel |
 
