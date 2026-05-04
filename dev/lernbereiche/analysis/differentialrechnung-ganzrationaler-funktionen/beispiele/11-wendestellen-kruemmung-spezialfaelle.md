@@ -2,38 +2,38 @@
 layout: null
 ---
 
-Untersuche die Funktion $f(x)=3x^5+5x^4-10x^3-30x^2$ auf Wendestellen und Krümmung.
+Untersuche die Funktion $f(x)=\frac{3}{4}x^5-\frac{15}{2}x^3-15x^2$ auf Wendestellen und Krümmung.
 
 **Zweite und dritte Ableitung berechnen**
 
 $$\begin{aligned}
-f''(x) &= 60x^3+60x^2-60x-60 = 60(x+1)^2(x-1) \\
-f'''(x) &= 180x^2+120x-60
+f''(x) &= 15x^3-45x-30 = 15(x+1)^2(x-2) \\
+f'''(x) &= 45x^2-45
 \end{aligned}$$
 
 **Kandidatenstellen über $f''(x)=0$ finden**
 
-$$60(x+1)^2(x-1)=0 \quad\Rightarrow\quad x=-1 \text{ oder } x=1$$
+$$15(x+1)^2(x-2)=0 \quad\Rightarrow\quad x=-1 \text{ oder } x=2$$
 
-Dabei ist $x=-1$ eine doppelte Nullstelle von $f''$ und $x=1$ eine einfache Nullstelle.
+Dabei ist $x=-1$ eine doppelte Nullstelle von $f''$ und $x=2$ eine einfache Nullstelle.
 
 **Üblichen Test prüfen**
 
 $$\begin{aligned}
-f'''(-1) &= 180\cdot(-1)^2+120\cdot(-1)-60 = 0 \\
-f'''(1) &= 180+120-60 = 240 \neq 0
+f'''(-1) &= 45\cdot(-1)^2-45 = 0 \\
+f'''(2) &= 45\cdot 2^2-45 = 180-45 = 135 \neq 0
 \end{aligned}$$
 
-Also ist $x=1$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test nicht; dort braucht man zusätzlich das Vorzeichen von $f''$.
+Also ist $x=2$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test nicht; dort braucht man zusätzlich das Vorzeichen von $f''$.
 
 **Graph von $f''$ und Vorzeichentabelle**
 
 <div class="diagramm-row">
     <div style="flex: 1 1 420px; min-width: 0;">
         {% include dev/graph.html
-             funktionen='[{"name":"f\u2032\u2032", "term":"60*(x+1)^2*(x-1)", "color":"#4363d8"}]'
+                         funktionen='[{"name":"f\u2032\u2032", "term":"15*(x+1)^2*(x-2)", "color":"#4363d8"}]'
              titel="Graph der zweiten Ableitung f″"
-               xmin=-1.5 xmax=1.3 ymin=-60 ymax=20
+                             xmin=-2 xmax=3 ymin=-80 ymax=40
         %}
     </div>
     <div style="flex: 1 1 320px; min-width: 0;">
@@ -43,9 +43,9 @@ Also ist $x=1$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test
                     <th>Bereich</th>
                     <th>$(-\infty;-1)$</th>
                     <th>$x=-1$</th>
-                    <th>$(-1;1)$</th>
-                    <th>$x=1$</th>
-                    <th>$(1;\infty)$</th>
+                    <th>$(-1;2)$</th>
+                    <th>$x=2$</th>
+                    <th>$(2;\infty)$</th>
                 </tr>
             </thead>
             <tbody>
@@ -72,14 +72,14 @@ Also ist $x=1$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test
 
 Bei $x=-1$ gibt es **keinen Vorzeichenwechsel** von $f''$. Also ist $x=-1$ trotz $f''(-1)=0$ **keine** Wendestelle.
 
-Bei $x=1$ wechselt das Vorzeichen von $f''$ von $-$ nach $+$. Also liegt dort eine Wendestelle vor.
+Bei $x=2$ wechselt das Vorzeichen von $f''$ von $-$ nach $+$. Also liegt dort eine Wendestelle vor.
 
 **Punkt und Krümmungsintervalle angeben**
 
-$$f(1)=3+5-10-30=-32$$
+$$f(2)=\frac{3}{4}\cdot 2^5-\frac{15}{2}\cdot 2^3-15\cdot 2^2=24-60-60=-96$$
 
 Damit gilt
 
-$$W(1\mid -32).$$
+$$W(2\mid -96).$$
 
-Außerdem ist $f$ auf $(-\infty;1]$ rechtsgekrümmt bzw. konkav und auf $[1;\infty)$ linksgekrümmt bzw. konvex.
+Außerdem ist $f$ auf $(-\infty;2]$ rechtsgekrümmt bzw. konkav und auf $[2;\infty)$ linksgekrümmt bzw. konvex.
