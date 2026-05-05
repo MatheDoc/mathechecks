@@ -20,6 +20,18 @@ export function themeTextColor() {
         .getPropertyValue("--text").trim() || "#1a1a2e";
 }
 
+/** Returns the current CSS --surface color for themed overlays and tooltips. */
+export function themeSurfaceColor() {
+    return getComputedStyle(document.documentElement)
+        .getPropertyValue("--surface").trim() || "#ffffff";
+}
+
+/** Returns the current CSS --border color for themed overlays and tooltips. */
+export function themeBorderColor() {
+    return getComputedStyle(document.documentElement)
+        .getPropertyValue("--border").trim() || "rgba(26, 26, 46, 0.18)";
+}
+
 /** Config object passed as the fourth argument to Plotly.newPlot(). */
 export const PLOTLY_CONFIG = {
     responsive: true,
@@ -66,6 +78,8 @@ function enableTouchScroll(plotEl) {
 
 export function plotlyRender(container, data, layout = {}, config = {}) {
     const textColor = themeTextColor();
+    const surfaceColor = themeSurfaceColor();
+    const borderColor = themeBorderColor();
     const gridColor = textColor + "22";
     const zeroLineColor = textColor + "aa";
 
@@ -78,10 +92,36 @@ export function plotlyRender(container, data, layout = {}, config = {}) {
         zerolinewidth: 3,
     };
 
+    const hoverLabelDefaults = {
+        bgcolor: surfaceColor,
+        bordercolor: borderColor,
+        font: { color: textColor },
+    };
+
+    const legendDefaults = {
+        font: { color: textColor },
+    };
+
     const mergedLayout = {
         ...PLOTLY_LAYOUT_DEFAULTS,
         ...layout,
         font: { color: textColor, ...(layout.font || {}) },
+        hoverlabel: {
+            ...hoverLabelDefaults,
+            ...(layout.hoverlabel || {}),
+            font: {
+                ...hoverLabelDefaults.font,
+                ...((layout.hoverlabel && layout.hoverlabel.font) || {}),
+            },
+        },
+        legend: {
+            ...legendDefaults,
+            ...(layout.legend || {}),
+            font: {
+                ...legendDefaults.font,
+                ...((layout.legend && layout.legend.font) || {}),
+            },
+        },
         xaxis: { ...axisDefaults, hoverformat: ".2f", ...layout.xaxis },
         yaxis: { ...axisDefaults, hoverformat: ".2f", ...layout.yaxis },
     };

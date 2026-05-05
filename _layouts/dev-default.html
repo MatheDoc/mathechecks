@@ -19,10 +19,11 @@
     {% include dev/calculator.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
-    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
-    <script src="{{ '/dev/assets/js/calculator/utils.js' | relative_url }}"></script>
-    <script src="{{ '/dev/assets/js/calculator/commands.js' | relative_url }}"></script>
-    <script src="{{ '/dev/assets/js/calculator/app.js' | relative_url }}"></script>
+    <script type="module"
+        src="{{ '/dev/assets/js/visuals/calculator-graph-bridge.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/utils.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/commands.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/app.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
     {% if page.module_script %}
     <script type="module" src="{{ page.module_script | relative_url }}"></script>
     {% endif %}

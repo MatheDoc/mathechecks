@@ -1,7 +1,18 @@
+function getPlotlyThemeTokens() {
+  const styles = getComputedStyle(document.documentElement);
+  const textColor = styles.getPropertyValue("--text").trim() || "#1a1a2e";
+  const surfaceColor = styles.getPropertyValue("--surface").trim() || "#ffffff";
+  const borderColor = styles.getPropertyValue("--border").trim() || "rgba(26, 26, 46, 0.18)";
+
+  return {
+    textColor,
+    surfaceColor,
+    borderColor,
+  };
+}
+
 function getPlotlyAxisDefaults() {
-  const textColor =
-    getComputedStyle(document.documentElement).getPropertyValue("--text").trim() ||
-    "#1a1a2e";
+  const { textColor } = getPlotlyThemeTokens();
 
   return {
     tickfont: { color: textColor },
@@ -14,6 +25,7 @@ function getPlotlyAxisDefaults() {
 }
 
 function zeichneGraph(containerId, funktionen, optionen = {}) {
+  const { textColor, surfaceColor, borderColor } = getPlotlyThemeTokens();
   // X-Achsenbereich: entweder übergeben oder Standardwerte verwenden
   const min = typeof optionen.xMin === "number" ? optionen.xMin : -5;
   const max = typeof optionen.xMax === "number" ? optionen.xMax : 20;
@@ -59,9 +71,10 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       type: "scatter",
       name: "Punkte",
       marker: {
-        color: "black",
+        color: textColor,
         size: 8,
         symbol: "circle",
+        line: { color: borderColor, width: 1 },
       },
       text: optionen.punkte.map((p) => p.text),
       hoverinfo: "text+x+y",
@@ -108,6 +121,7 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
   }
 
   const layout = {
+    font: { color: textColor },
     xaxis: {
       ...getPlotlyAxisDefaults(),
       ...(optionen.xAchse ? { title: { text: optionen.xAchse, y: 0.5 } } : {}),
@@ -135,11 +149,17 @@ function zeichneGraph(containerId, funktionen, optionen = {}) {
       x: 0.5,
       xanchor: "center",
       y: -0.25,
+      font: { color: textColor },
+    },
+    hoverlabel: {
+      bgcolor: surfaceColor,
+      bordercolor: borderColor,
+      font: { color: textColor },
     },
     margin: { t: 40, r: 50, b: 40, l: 60 },
     dragmode: false,
-    paper_bgcolor: "rgba(0,0,0,0)",
-    plot_bgcolor: "rgba(0,0,0,0)",
+    paper_bgcolor: surfaceColor,
+    plot_bgcolor: surfaceColor,
   };
 
   const config = {

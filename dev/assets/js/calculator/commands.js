@@ -5,16 +5,6 @@ const DevCalculatorCommands = (() => {
         return LGS_VARIABLE_NAMES[index] || `x${index + 1}`;
     }
 
-    function binomialCoefficient(n, k) {
-        if (k < 0 || k > n) return 0;
-        if (k === 0 || k === n) return 1;
-        let result = 1;
-        for (let i = 1; i <= k; i++) {
-            result = (result * (n - (k - i))) / i;
-        }
-        return Math.round(result);
-    }
-
     function parsePValue(pString) {
         const normalized = DevCalculatorUtils.normalizeNumberString(String(pString ?? ''));
         if (normalized.includes('/')) {
@@ -26,14 +16,6 @@ const DevCalculatorCommands = (() => {
         return parseFloat(normalized);
     }
 
-    function computeBinomProbability(a, b, n, p) {
-        let probability = 0;
-        for (let k = a; k <= b; k++) {
-            probability += binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
-        }
-        return probability;
-    }
-
     function buildBinomCommand(fields) {
         return `binom(${fields.a || '0'};${fields.b || '0'};${fields.n || '0'};${fields.p || '0'})`;
     }
@@ -43,8 +25,9 @@ const DevCalculatorCommands = (() => {
         const b = Math.floor(parseFloat(DevCalculatorUtils.normalizeNumberString(fields.b || '0')));
         const n = parseInt(DevCalculatorUtils.normalizeNumberString(fields.n || '0'), 10);
         const p = parsePValue(fields.p || '0');
-        if (![a, b, n, p].every(Number.isFinite)) return '-';
-        return DevCalculatorUtils.formatGeneralResult(computeBinomProbability(a, b, n, p));
+        const probability = DevCalculatorUtils.computeBinomProbability(a, b, n, p);
+        if (!Number.isFinite(probability)) return '-';
+        return DevCalculatorUtils.formatGeneralResult(probability);
     }
 
     function getLGSPanelExpression(rawValue, fallback = '0') {
@@ -423,56 +406,77 @@ const DevCalculatorCommands = (() => {
         return `(${String(fields.base ?? '').trim()})^(${String(fields.exponent ?? '').trim()})`;
     }
 
-    function analyzeGraph(rawExpr, xMin, xMax) {
-        const tolerance = 1e-6;
-        const rangeMin = -1000;
-        const rangeMax = 1000;
-        const steps = 20000;
+    const GRAPH_ANALYSIS_CONFIG = Object.freeze({
+        zerosTolerance: 1e-6,
+        zerosRangeMin: -1000,
+        zerosRangeMax: 1000,
+        zerosSteps: 20000,
+        zerosRoundFactor: 1e6,
+        zerosDeduplicateTolerance: 1e-5,
+        gridMinSteps: 300,
+        gridMaxSteps: 3000,
+        gridStepsPerUnit: 200,
+        cleanValueEpsilon: 1e-9,
+        defaultSignTolerance: 1e-8,
+        defaultRefineIterations: 40,
+        extremaSignTolerance: 1e-7,
+        extremaRefineIterations: 45,
+        inflectionSignTolerance: 1e-8,
+        inflectionRefineIterations: 45,
+        deduplicateXFactor: 2,
+    });
+
+    function evaluateGraphFunctionJS(rawExpr, x) {
+        try {
+            let expr = `(${rawExpr})`;
+            expr = expr.replace(/(\d),(\d)/g, '$1.$2');
+            expr = DevCalculatorUtils.addImplicitMultiplication(
+                DevCalculatorUtils.normalizeUnaryMinusExponent(
+                    DevCalculatorUtils.convertWurzelSyntax(
+                        DevCalculatorUtils.convertLogBaseSyntax(
+                            DevCalculatorUtils.convertCustomENotation(expr)
+                        )
+                    )
+                )
+            );
+            expr = DevCalculatorUtils.normalizeConstants(expr)
+                .replace(/\^/g, '**')
+                .replace(/e\*\*/g, 'Math.E**')
+                .replace(/sqrt/g, 'Math.sqrt')
+                .replace(/exp/g, 'Math.exp')
+                .replace(/\bln\b/g, 'Math.log')
+                .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
+                .replace(/sin/g, 'Math.sin')
+                .replace(/cos/g, 'Math.cos')
+                .replace(/tan/g, 'Math.tan')
+                .replace(/x/g, `(${x})`);
+            return eval(expr);
+        } catch {
+            return NaN;
+        }
+    }
+
+    function findGraphRoots(rawExpr, xMin, xMax) {
+        const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
+        const rangeMin = GRAPH_ANALYSIS_CONFIG.zerosRangeMin;
+        const rangeMax = GRAPH_ANALYSIS_CONFIG.zerosRangeMax;
+        const steps = GRAPH_ANALYSIS_CONFIG.zerosSteps;
         const step = (rangeMax - rangeMin) / steps;
         const roots = [];
 
-        function evaluateFunctionJS(x) {
-            try {
-                let expr = `(${rawExpr})`;
-                expr = expr.replace(/(\d),(\d)/g, '$1.$2');
-                expr = DevCalculatorUtils.addImplicitMultiplication(
-                    DevCalculatorUtils.normalizeUnaryMinusExponent(
-                        DevCalculatorUtils.convertWurzelSyntax(
-                            DevCalculatorUtils.convertLogBaseSyntax(
-                                DevCalculatorUtils.convertCustomENotation(expr)
-                            )
-                        )
-                    )
-                );
-                expr = DevCalculatorUtils.normalizeConstants(expr)
-                    .replace(/\^/g, '**')
-                    .replace(/e\*\*/g, 'Math.E**')
-                    .replace(/sqrt/g, 'Math.sqrt')
-                    .replace(/exp/g, 'Math.exp')
-                    .replace(/\bln\b/g, 'Math.log')
-                    .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-                    .replace(/sin/g, 'Math.sin')
-                    .replace(/cos/g, 'Math.cos')
-                    .replace(/tan/g, 'Math.tan')
-                    .replace(/x/g, `(${x})`);
-                return eval(expr);
-            } catch {
-                return NaN;
-            }
-        }
-
         function refineRoot(a, b) {
-            let fa = evaluateFunctionJS(a);
-            let fb = evaluateFunctionJS(b);
+            let fa = evaluateGraphFunctionJS(rawExpr, a);
+            let fb = evaluateGraphFunctionJS(rawExpr, b);
             if (Number.isNaN(fa) || Number.isNaN(fb)) return null;
             if (Math.abs(fa) < tolerance) return a;
             if (Math.abs(fb) < tolerance) return b;
             if (fa * fb > 0) return null;
+
             let left = a;
             let right = b;
             for (let i = 0; i < 100; i++) {
                 const mid = (left + right) / 2;
-                const fm = evaluateFunctionJS(mid);
+                const fm = evaluateGraphFunctionJS(rawExpr, mid);
                 if (Number.isNaN(fm)) return null;
                 if (Math.abs(fm) < tolerance) return mid;
                 if (fa * fm <= 0) {
@@ -489,8 +493,8 @@ const DevCalculatorCommands = (() => {
         for (let i = 0; i < steps; i++) {
             const x1 = rangeMin + i * step;
             const x2 = x1 + step;
-            const f1 = evaluateFunctionJS(x1);
-            const f2 = evaluateFunctionJS(x2);
+            const f1 = evaluateGraphFunctionJS(rawExpr, x1);
+            const f2 = evaluateGraphFunctionJS(rawExpr, x2);
             if (Number.isNaN(f1) || Number.isNaN(f2)) continue;
             if (Math.abs(f1) < tolerance) {
                 roots.push(x1);
@@ -503,10 +507,193 @@ const DevCalculatorCommands = (() => {
         }
 
         return roots
-            .map((value) => Math.round(value * 1e6) / 1e6)
+            .map((value) => Math.round(value * GRAPH_ANALYSIS_CONFIG.zerosRoundFactor) / GRAPH_ANALYSIS_CONFIG.zerosRoundFactor)
             .sort((left, right) => left - right)
-            .filter((value, index, all) => index === 0 || Math.abs(value - all[index - 1]) > 1e-5)
+            .filter((value, index, all) => index === 0 || Math.abs(value - all[index - 1]) > GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance)
             .filter((value) => value >= xMin && value <= xMax);
+    }
+
+    function getGraphAnalysisGrid(xMin, xMax) {
+        const range = xMax - xMin;
+        if (!Number.isFinite(range) || range <= 0) return null;
+        const steps = Math.min(
+            GRAPH_ANALYSIS_CONFIG.gridMaxSteps,
+            Math.max(GRAPH_ANALYSIS_CONFIG.gridMinSteps, Math.floor(range * GRAPH_ANALYSIS_CONFIG.gridStepsPerUnit))
+        );
+        return { h: range / steps };
+    }
+
+    function signWithTolerance(value, tolerance = GRAPH_ANALYSIS_CONFIG.defaultSignTolerance) {
+        if (!Number.isFinite(value)) return 0;
+        if (Math.abs(value) <= tolerance) return 0;
+        return value > 0 ? 1 : -1;
+    }
+
+    function findSignChangeRoots(sampleFn, xMin, xMax, h, options = {}) {
+        const signTolerance = options.signTolerance ?? GRAPH_ANALYSIS_CONFIG.defaultSignTolerance;
+        const refineIterations = options.refineIterations ?? GRAPH_ANALYSIS_CONFIG.defaultRefineIterations;
+        const roots = [];
+        const steps = Math.max(1, Math.floor((xMax - xMin) / h));
+
+        function refineRoot(a, b) {
+            let left = a;
+            let right = b;
+            const fa = sampleFn(left);
+            const fb = sampleFn(right);
+            if (!Number.isFinite(fa) || !Number.isFinite(fb)) return null;
+
+            let signA = signWithTolerance(fa, signTolerance);
+            let signB = signWithTolerance(fb, signTolerance);
+            if (signA === 0) return left;
+            if (signB === 0) return right;
+            if (signA === signB) return null;
+
+            for (let i = 0; i < refineIterations; i++) {
+                const mid = (left + right) / 2;
+                const fm = sampleFn(mid);
+                if (!Number.isFinite(fm)) return null;
+                const signM = signWithTolerance(fm, signTolerance);
+                if (signM === 0) return mid;
+
+                if (signA !== signM) {
+                    right = mid;
+                    signB = signM;
+                } else {
+                    left = mid;
+                    signA = signM;
+                }
+            }
+            return (left + right) / 2;
+        }
+
+        for (let i = 0; i < steps; i++) {
+            const x1 = xMin + i * h;
+            const x2 = i === steps - 1 ? xMax : x1 + h;
+            const v1 = sampleFn(x1);
+            const v2 = sampleFn(x2);
+            if (!Number.isFinite(v1) || !Number.isFinite(v2)) continue;
+
+            const s1 = signWithTolerance(v1, signTolerance);
+            const s2 = signWithTolerance(v2, signTolerance);
+            if (s1 === 0 && s2 === 0) continue;
+            if (s1 !== 0 && s2 !== 0 && s1 === s2) continue;
+
+            const root = refineRoot(x1, x2);
+            if (root !== null && Number.isFinite(root)) roots.push(root);
+        }
+
+        return roots;
+    }
+
+    function deduplicatePointsByX(points, tolerance) {
+        const unique = [];
+        for (const point of points) {
+            if (!unique.some((existing) => Math.abs(existing.x - point.x) < tolerance)) {
+                unique.push(point);
+            }
+        }
+        return unique;
+    }
+
+    function findGraphExtrema(rawExpr, xMin, xMax) {
+        const grid = getGraphAnalysisGrid(xMin, xMax);
+        if (!grid) return [];
+
+        const { h } = grid;
+        const cache = new Map();
+
+        function f(x) {
+            if (cache.has(x)) return cache.get(x);
+            const value = evaluateGraphFunctionJS(rawExpr, x);
+            cache.set(x, value);
+            return value;
+        }
+
+        function firstDiff(x) {
+            return (f(x + h) - f(x - h)) / (2 * h);
+        }
+
+        const roots = findSignChangeRoots(firstDiff, xMin, xMax, h, {
+            signTolerance: GRAPH_ANALYSIS_CONFIG.extremaSignTolerance,
+            refineIterations: GRAPH_ANALYSIS_CONFIG.extremaRefineIterations,
+        });
+        const extrema = [];
+
+        for (const xr of roots) {
+            const leftSlope = firstDiff(xr - h);
+            const rightSlope = firstDiff(xr + h);
+            if (!Number.isFinite(leftSlope) || !Number.isFinite(rightSlope)) continue;
+
+            const leftSign = signWithTolerance(leftSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
+            const rightSign = signWithTolerance(rightSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
+            if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
+
+            const y = f(xr);
+            if (!Number.isFinite(y)) continue;
+
+            extrema.push({
+                x: Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr,
+                y: Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y,
+                type: leftSign > rightSign ? 'Max' : 'Min',
+            });
+        }
+
+        return deduplicatePointsByX(extrema, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor)
+            .sort((left, right) => left.x - right.x);
+    }
+
+    function findGraphInflectionPoints(rawExpr, xMin, xMax) {
+        const grid = getGraphAnalysisGrid(xMin, xMax);
+        if (!grid) return [];
+
+        const { h } = grid;
+        const cache = new Map();
+
+        function f(x) {
+            if (cache.has(x)) return cache.get(x);
+            const value = evaluateGraphFunctionJS(rawExpr, x);
+            cache.set(x, value);
+            return value;
+        }
+
+        function secondDiff(x) {
+            return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
+        }
+
+        const roots = findSignChangeRoots(secondDiff, xMin, xMax, h, {
+            signTolerance: GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance,
+            refineIterations: GRAPH_ANALYSIS_CONFIG.inflectionRefineIterations,
+        });
+        const points = [];
+
+        for (const xr of roots) {
+            const leftCurvature = secondDiff(xr - h);
+            const rightCurvature = secondDiff(xr + h);
+            if (!Number.isFinite(leftCurvature) || !Number.isFinite(rightCurvature)) continue;
+
+            const leftSign = signWithTolerance(leftCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
+            const rightSign = signWithTolerance(rightCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
+            if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
+
+            const y = f(xr);
+            if (!Number.isFinite(y)) continue;
+
+            points.push({
+                x: Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr,
+                y: Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y,
+            });
+        }
+
+        return deduplicatePointsByX(points, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor)
+            .sort((left, right) => left.x - right.x);
+    }
+
+    function analyzeGraph(rawExpr, xMin, xMax) {
+        return {
+            roots: findGraphRoots(rawExpr, xMin, xMax),
+            extrema: findGraphExtrema(rawExpr, xMin, xMax),
+            inflectionPoints: findGraphInflectionPoints(rawExpr, xMin, xMax),
+        };
     }
 
     function formatPointValue(value) {
@@ -517,6 +704,40 @@ const DevCalculatorCommands = (() => {
             return value.toExponential(2).replace('.', ',');
         }
         return value.toFixed(5).replace(/\.?0+$/, '').replace('.', ',');
+    }
+
+    function formatGraphAnalysisHtml(analysis) {
+        const sections = [];
+
+        if (analysis.roots.length) {
+            sections.push(
+                `<div class="point-category"><strong>Nullstellen:</strong></div>${analysis.roots
+                    .map((value) => `<div class="point-item">x = ${formatPointValue(value)}</div>`)
+                    .join('')}`
+            );
+        }
+
+        if (analysis.extrema.length) {
+            sections.push(
+                `<div class="point-category"><strong>Extrempunkte:</strong></div>${analysis.extrema
+                    .map((point) => `<div class="point-item">${point.type}(${formatPointValue(point.x)} | ${formatPointValue(point.y)})</div>`)
+                    .join('')}`
+            );
+        }
+
+        if (analysis.inflectionPoints.length) {
+            sections.push(
+                `<div class="point-category"><strong>Wendepunkte:</strong></div>${analysis.inflectionPoints
+                    .map((point) => `<div class="point-item">W(${formatPointValue(point.x)} | ${formatPointValue(point.y)})</div>`)
+                    .join('')}`
+            );
+        }
+
+        if (!sections.length) {
+            return '<div class="point-item">Keine besonderen Punkte im Bereich gefunden</div>';
+        }
+
+        return `<div class="graph-points-list">${sections.join('')}</div>`;
     }
 
     function execute(command, outputApi) {
@@ -567,27 +788,29 @@ const DevCalculatorCommands = (() => {
             };
             if (Number.isFinite(yMin)) graphOptions.yMin = yMin;
             if (Number.isFinite(yMax)) graphOptions.yMax = yMax;
-            const points = analyzeGraph(func, xMin, xMax);
+            const analysis = analyzeGraph(func, xMin, xMax);
             outputApi.setGraph({
-                targetId: 'graphPreview',
+                targetId: 'graphPanelPreview',
                 funktionen: [{ term: prepared, name: 'f(x)', beschreibung: prepared }],
                 optionen: graphOptions,
-                pointsHtml: points.length
-                    ? `<div class="graph-points-list"><div class="point-category"><strong>Nullstellen:</strong></div>${points.map((value) => `<div class="point-item">x = ${formatPointValue(value)}</div>`).join('')}</div>`
-                    : '<div class="point-item">Keine besonderen Punkte im Bereich gefunden</div>',
+                panelFields: {
+                    function: func,
+                    xmin: options.xmin || '',
+                    xmax: options.xmax || '',
+                    ymin: options.ymin || '',
+                    ymax: options.ymax || '',
+                },
+                pointsHtml: formatGraphAnalysisHtml(analysis),
+                resultText: 'siehe Graph-Panel',
             });
             return;
         }
 
-        if (/^binom\s*\(/i.test(input)) {
-            const match = input.match(/^binom\s*\((.*)\)\s*$/i);
-            if (!match) {
-                outputApi.setText('Ungültiger BINOM-Befehl', { headline: 'Fehler' });
-                return;
-            }
-            const values = match[1].split(';').map((part) => part.trim());
+        const binomMatch = input.match(/^binom\s*\((.*)\)\s*$/i);
+        if (binomMatch) {
+            const values = binomMatch[1].split(';').map((part) => part.trim());
             const live = getLiveBinomResult({ a: values[0], b: values[1], n: values[2], p: values[3] });
-            outputApi.setText(`P(a ≤ X ≤ b) = ${live}`, { headline: 'Binom' });
+            outputApi.setText(live, { headline: 'Binom' });
             return;
         }
 

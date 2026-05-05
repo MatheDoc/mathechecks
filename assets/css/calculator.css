@@ -168,7 +168,7 @@
     cursor: pointer;
     padding: 0;
     position: relative;
-    transition: color 0.15s;
+    transition: background-color 0.15s, color 0.15s, transform 0.15s;
 }
 
 .calculator .copy-result svg {
@@ -178,7 +178,14 @@
 }
 
 .calculator .copy-result:hover {
+    background: rgba(255, 255, 255, 0.14);
     color: #ffffff;
+    transform: none;
+}
+
+.calculator .copy-result:active {
+    background: rgba(255, 255, 255, 0.22);
+    transform: none;
 }
 
 .calculator .close-calculator {
@@ -201,10 +208,12 @@
 .calculator .close-calculator:hover {
     color: #ffffff;
     background: rgba(255, 255, 255, 0.14);
+    transform: none;
 }
 
 .calculator .close-calculator:active {
     background: rgba(255, 255, 255, 0.22);
+    transform: none;
 }
 
 .calculator .copy-check {
@@ -434,6 +443,7 @@
 
 .calculator-container .binom-step:hover {
     background: var(--hintergrund-hell-hover);
+    transform: none;
 }
 
 .calculator-container .panel-label {

@@ -3,6 +3,42 @@ const DevCalculatorUtils = (() => {
         return String(value ?? '').replace(/\./g, '').replace(/,/g, '.');
     }
 
+    function binomialCoefficient(n, k) {
+        if (k < 0 || k > n) return 0;
+        if (k === 0 || k === n) return 1;
+        let result = 1;
+        for (let i = 1; i <= k; i++) {
+            result = (result * (n - (k - i))) / i;
+        }
+        return Math.round(result);
+    }
+
+    function computeBinomProbability(a, b, n, p) {
+        if (!Number.isFinite(a) || !Number.isFinite(b) || !Number.isFinite(n) || !Number.isFinite(p)) {
+            return NaN;
+        }
+        if (n < 0 || p < 0 || p > 1) {
+            return NaN;
+        }
+        if (b < a) {
+            return 0;
+        }
+        let probability = 0;
+        for (let k = a; k <= b; k++) {
+            probability += binomialCoefficient(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k);
+        }
+        return probability;
+    }
+
+    function __binom(a, b, n, p) {
+        return computeBinomProbability(
+            Math.ceil(Number(a)),
+            Math.floor(Number(b)),
+            Math.trunc(Number(n)),
+            Number(p)
+        );
+    }
+
     function toGermanNumber(text) {
         if (typeof text !== 'string') text = String(text ?? '');
         if (!text) return '';
@@ -197,6 +233,7 @@ const DevCalculatorUtils = (() => {
             .replace(/sqrt\(/g, 'Math.sqrt(')
             .replace(/exp\(/g, 'Math.exp(')
             .replace(/ln\(/g, 'Math.log(')
+            .replace(/\bbinom\s*\(/g, '__binom(')
             .replace(/sin\(/g, 'Math.sin(')
             .replace(/cos\(/g, 'Math.cos(')
             .replace(/tan\(/g, 'Math.tan(');
@@ -262,6 +299,7 @@ const DevCalculatorUtils = (() => {
         evaluateExpression,
         evaluateWithAssignments,
         formatGeneralResult,
+        computeBinomProbability,
         addImplicitMultiplication,
         normalizeUnaryMinusExponent,
         normalizeConstants,
