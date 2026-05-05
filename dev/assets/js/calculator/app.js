@@ -6,6 +6,7 @@
         activeMode: 'basic',
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
+        lastExecutedMainInput: '',
     };
 
     function byId(id) {
@@ -20,12 +21,43 @@
         return byId('mainInput');
     }
 
+    function getMainInputText() {
+        return String(getMainInput()?.value || '').trim();
+    }
+
+    function setResultStaleState(isStale) {
+        const output = document.querySelector('.calculator-output');
+        if (!output) return;
+        output.classList.toggle('is-stale', Boolean(isStale));
+        output.style.opacity = isStale ? '0.68' : '1';
+    }
+
+    function syncResultStaleState() {
+        setResultStaleState(getMainInputText() !== state.lastExecutedMainInput);
+    }
+
+    function markResultFresh(mainInputValue = getMainInputText()) {
+        state.lastExecutedMainInput = String(mainInputValue || '').trim();
+        setResultStaleState(false);
+    }
+
     function isDesktopDragEnabled() {
         return window.innerWidth >= 520;
     }
 
     function clamp(value, min, max) {
         return Math.min(Math.max(value, min), max);
+    }
+
+    function getCalculatorDragBounds({ width, handleHeight }) {
+        const visibleHandleHeight = Math.min(handleHeight || 0, 18);
+        const visibleWidth = Math.min(width || 0, 56);
+        return {
+            minLeft: visibleWidth - width,
+            maxLeft: window.innerWidth - visibleWidth,
+            minTop: visibleHandleHeight - handleHeight,
+            maxTop: window.innerHeight - visibleHandleHeight,
+        };
     }
 
     function clearDraggedCalculatorPosition() {
@@ -42,10 +74,21 @@
 
     function normalizeDraggedCalculatorPosition() {
         const calculator = getCalculator();
+        const dragHandle = byId('calculatorDragHandle');
         if (!calculator || calculator.style.position !== 'fixed') return;
         if (!isDesktopDragEnabled()) {
             clearDraggedCalculatorPosition();
+            return;
         }
+        if (!dragHandle) return;
+        const rect = calculator.getBoundingClientRect();
+        const handleRect = dragHandle.getBoundingClientRect();
+        const bounds = getCalculatorDragBounds({
+            width: rect.width,
+            handleHeight: handleRect.height,
+        });
+        calculator.style.left = `${clamp(rect.left, bounds.minLeft, bounds.maxLeft)}px`;
+        calculator.style.top = `${clamp(rect.top, bounds.minTop, bounds.maxTop)}px`;
     }
 
     function setActiveInput(input) {
@@ -60,6 +103,39 @@
             return focused;
         }
         return byId(state.activeInputId) || getMainInput();
+    }
+
+    function getModeDefinitions() {
+        return {
+            basic: { icon: '∑', label: 'Standard' },
+            lgs: { icon: '▦', label: 'Gleichungssystem' },
+            binom: { icon: '◎', label: 'Binomialverteilung' },
+            graph: { icon: '↗', label: 'Graph' },
+        };
+    }
+
+    function getModeDefinition(mode = state.activeMode) {
+        return getModeDefinitions()[mode] || getModeDefinitions().basic;
+    }
+
+    function updateModePicker(mode = state.activeMode) {
+        const { icon, label } = getModeDefinition(mode);
+        const picker = byId('calculatorModePicker');
+        const iconNode = byId('calculatorModeIcon');
+        const modeSelect = byId('calculatorModeSelect');
+        const currentLabel = `Eingabehilfe: ${label}`;
+        if (picker) {
+            picker.dataset.mode = mode;
+            picker.title = currentLabel;
+            picker.setAttribute('aria-label', currentLabel);
+        }
+        if (iconNode) {
+            iconNode.textContent = icon;
+        }
+        if (modeSelect) {
+            modeSelect.title = `${currentLabel} wechseln`;
+            modeSelect.setAttribute('aria-label', `Eingabehilfe wählen, aktuell ${label}`);
+        }
     }
 
     function focusInput(input, placeCursorAtEnd = true) {
@@ -112,6 +188,7 @@
         const mainInput = getMainInput();
         if (!mainInput) return;
         mainInput.value = value;
+        syncResultStaleState();
         if (focusMainInput) {
             focusInput(mainInput);
         }
@@ -125,6 +202,7 @@
         emitInputEvent(target);
         if (target === getMainInput()) {
             outputApi.setText('0', { headline: 'Bereit' });
+            markResultFresh('');
         }
     }
 
@@ -145,25 +223,25 @@
     }
 
     function setMode(mode) {
-        state.activeMode = mode;
+        state.activeMode = getModeDefinitions()[mode] ? mode : 'basic';
         const calculator = getCalculator();
         if (calculator) {
-            calculator.dataset.activeMode = mode;
+            calculator.dataset.activeMode = state.activeMode;
         }
-        document.querySelectorAll('.calculator-mode-tab').forEach((button) => {
-            const isActive = button.dataset.mode === mode;
-            button.classList.toggle('is-active', isActive);
-            button.setAttribute('aria-selected', isActive ? 'true' : 'false');
-        });
+        const modeSelect = byId('calculatorModeSelect');
+        if (modeSelect && modeSelect.value !== state.activeMode) {
+            modeSelect.value = state.activeMode;
+        }
+        updateModePicker(state.activeMode);
         document.querySelectorAll('.calculator-panel').forEach((panel) => {
-            panel.classList.toggle('is-active', panel.dataset.panel === mode);
+            panel.classList.toggle('is-active', panel.dataset.panel === state.activeMode);
         });
         queueMicrotask(() => {
-            if (mode === 'basic') {
+            if (state.activeMode === 'basic') {
                 focusInput(getMainInput());
                 return;
             }
-            const firstInput = document.querySelector(`.calculator-panel[data-panel="${mode}"] input`);
+            const firstInput = document.querySelector(`.calculator-panel[data-panel="${state.activeMode}"] input`);
             if (firstInput) {
                 focusInput(firstInput, false);
             }
@@ -238,90 +316,149 @@
         };
     }
 
+    function setGraphFields(fields = {}) {
+        const nextFields = {
+            graphFunction: fields.function ?? '',
+            graphXMin: fields.xmin ?? '',
+            graphXMax: fields.xmax ?? '',
+            graphYMin: fields.ymin ?? '',
+            graphYMax: fields.ymax ?? '',
+        };
+        Object.entries(nextFields).forEach(([id, value]) => {
+            const input = byId(id);
+            if (input) {
+                input.value = value;
+            }
+        });
+    }
+
+    function clearGraphPanelPreview() {
+        const graphPanelPreview = byId('graphPanelPreview');
+        const graphPanelInfo = byId('graphPanelInfo');
+        if (graphPanelPreview) {
+            graphPanelPreview.innerHTML = '';
+            graphPanelPreview.hidden = true;
+        }
+        if (graphPanelInfo) {
+            graphPanelInfo.innerHTML = '';
+            graphPanelInfo.hidden = true;
+        }
+    }
+
+    function showGraphPanelMessage(message) {
+        const graphPanelInfo = byId('graphPanelInfo');
+        if (!graphPanelInfo) return;
+        graphPanelInfo.innerHTML = '';
+        const item = document.createElement('div');
+        item.className = 'point-item';
+        item.textContent = message;
+        graphPanelInfo.appendChild(item);
+        graphPanelInfo.hidden = false;
+    }
+
+    function renderGraphPanelPreview({ funktionen, optionen, pointsHtml }) {
+        const graphPanelPreview = byId('graphPanelPreview');
+        const graphPanelInfo = byId('graphPanelInfo');
+        if (!graphPanelPreview) return false;
+
+        graphPanelPreview.innerHTML = '';
+        graphPanelPreview.hidden = false;
+
+        if (graphPanelInfo) {
+            graphPanelInfo.innerHTML = pointsHtml || '';
+            graphPanelInfo.hidden = !Boolean(pointsHtml);
+        }
+
+        try {
+            if (typeof window.renderDevCalculatorGraph !== 'function' || typeof window.Plotly === 'undefined') {
+                throw new Error('graph-renderer-unavailable');
+            }
+            window.renderDevCalculatorGraph('graphPanelPreview', funktionen, optionen);
+            return true;
+        } catch {
+            graphPanelPreview.innerHTML = '';
+            graphPanelPreview.hidden = true;
+            showGraphPanelMessage('Graph konnte nicht dargestellt werden.');
+            return false;
+        }
+    }
+
+    const liveGraphOutputApi = {
+        setText(text) {
+            clearGraphPanelPreview();
+            showGraphPanelMessage(String(text || 'Ungültiger Graph-Term').trim());
+        },
+        setGraph({ funktionen, optionen, pointsHtml }) {
+            renderGraphPanelPreview({ funktionen, optionen, pointsHtml });
+        },
+    };
+
+    function syncGraphLivePreview() {
+        const fields = getGraphFields();
+        if (!String(fields.function || '').trim()) {
+            clearGraphPanelPreview();
+            return;
+        }
+        DevCalculatorCommands.execute(DevCalculatorCommands.buildGraphCommand(fields), liveGraphOutputApi);
+    }
+
+    function getGraphCommandFromPanel() {
+        const fields = getGraphFields();
+        if (!String(fields.function || '').trim()) return '';
+        return DevCalculatorCommands.buildGraphCommand(fields);
+    }
+
     const outputApi = {
         setText(text, options = {}) {
             const outputRoot = document.querySelector('.calculator-output');
             const textOutput = byId('calculatorTextOutput');
-            const graphOutput = byId('graphPreview');
-            const graphPointsInfo = byId('graphPointsInfo');
-            const graphPanelInfo = byId('graphPanelInfo');
             const resultDisplay = byId('resultDisplay');
             const detailText = String(options.detail || '').trim();
             if (textOutput) {
                 textOutput.textContent = detailText;
                 textOutput.classList.toggle('is-active', Boolean(detailText));
             }
-            if (graphOutput) {
-                graphOutput.classList.remove('is-active');
-                graphOutput.innerHTML = '';
-            }
-            if (graphPointsInfo) {
-                graphPointsInfo.innerHTML = '';
-                graphPointsInfo.classList.remove('is-active');
-            }
-            if (graphPanelInfo) {
-                graphPanelInfo.innerHTML = '';
-                graphPanelInfo.hidden = true;
-            }
+            clearGraphPanelPreview();
             outputRoot?.classList.remove('has-graph-output');
             outputRoot?.classList.toggle('has-secondary-content', Boolean(detailText));
             if (resultDisplay) resultDisplay.textContent = text;
             state.ans = text;
         },
 
-        setGraph({ targetId, funktionen, optionen, pointsHtml, headlineText = 'Graph', resultText = 'Graph' }) {
+        setGraph({ targetId, funktionen, optionen, pointsHtml, panelFields, resultText = 'Graph' }) {
             const outputRoot = document.querySelector('.calculator-output');
             const textOutput = byId('calculatorTextOutput');
-            const graphOutput = byId(targetId);
-            const graphPointsInfo = byId('graphPointsInfo');
-            const graphPanelInfo = byId('graphPanelInfo');
             const resultDisplay = byId('resultDisplay');
             if (textOutput) {
                 textOutput.textContent = '';
                 textOutput.classList.remove('is-active');
             }
-            if (graphOutput) {
-                graphOutput.innerHTML = '';
-                graphOutput.classList.add('is-active');
-            }
-            if (graphPointsInfo) {
-                graphPointsInfo.innerHTML = pointsHtml || '';
-                graphPointsInfo.classList.remove('is-active');
-            }
-            if (graphPanelInfo) {
-                graphPanelInfo.innerHTML = pointsHtml || '';
-                graphPanelInfo.hidden = !Boolean(pointsHtml);
-            }
-            outputRoot?.classList.add('has-secondary-content');
-            outputRoot?.classList.add('has-graph-output');
-            if (resultDisplay) resultDisplay.textContent = '';
+            outputRoot?.classList.remove('has-secondary-content');
+            outputRoot?.classList.remove('has-graph-output');
+            if (resultDisplay) resultDisplay.textContent = resultText;
             setMode('graph');
-            if (graphOutput) {
-                try {
-                    if (typeof zeichneGraph !== 'function' || typeof window.Plotly === 'undefined') {
-                        throw new Error('graph-renderer-unavailable');
-                    }
-                    zeichneGraph(targetId, funktionen, optionen);
-                } catch {
-                    graphOutput.classList.remove('is-active');
-                    graphOutput.innerHTML = '';
-                    if (textOutput) {
-                        textOutput.textContent = 'Graph konnte nicht dargestellt werden.';
-                        textOutput.classList.add('is-active');
-                    }
-                }
+            setGraphFields(panelFields);
+            if (targetId === 'graphPanelPreview' && !renderGraphPanelPreview({ funktionen, optionen, pointsHtml })) {
+                if (resultDisplay) resultDisplay.textContent = 'Graphfehler';
             }
             state.ans = '';
         },
     };
 
     function syncBinomPreview() {
-        const target = byId('binomLiveResult');
-        if (!target) return;
-        target.textContent = DevCalculatorCommands.getLiveBinomResult(getBinomFields());
+        const fields = getBinomFields();
+        const commandTarget = byId('binomCommandPreview');
+        const resultTarget = byId('binomLiveResult');
+        const previewParts = [fields.a, fields.b, fields.n, fields.p].map((value) => String(value || '').trim() || '...');
+        if (commandTarget) {
+            commandTarget.textContent = `binom(${previewParts.join(';')})`;
+        }
+        if (!resultTarget) return;
+        resultTarget.textContent = DevCalculatorCommands.getLiveBinomResult(fields);
     }
 
     function syncLGSCommandPreview(options = {}) {
+        if (!options.commitToMainInput) return;
         setMainInputValue(
             DevCalculatorCommands.buildLGSCommand({
                 variables: state.lgsVariables,
@@ -336,11 +473,6 @@
         syncBinomPreview();
         if (!options.commitToMainInput) return;
         setMainInputValue(DevCalculatorCommands.buildBinomCommand(getBinomFields()), options);
-    }
-
-    function syncGraphCommandPreview(options = {}) {
-        if (!options.commitToMainInput) return;
-        setMainInputValue(DevCalculatorCommands.buildGraphCommand(getGraphFields()), options);
     }
 
     function requireFilledFields(ids) {
@@ -460,15 +592,10 @@
 
     function setStandardTool(tool, { focus = true } = {}) {
         state.activeStandardTool = getStandardToolDefinitions()[tool] ? tool : 'sin';
-        document.querySelectorAll('.standard-tool-item').forEach((item) => {
-            const isActive = item.dataset.standardTool === state.activeStandardTool;
-            item.classList.toggle('is-active', isActive);
-            item.setAttribute('aria-selected', isActive ? 'true' : 'false');
-            item.tabIndex = isActive ? 0 : -1;
-            if (isActive) {
-                item.scrollIntoView({ block: 'nearest' });
-            }
-        });
+        const toolSelect = byId('standardToolSelect');
+        if (toolSelect && toolSelect.value !== state.activeStandardTool) {
+            toolSelect.value = state.activeStandardTool;
+        }
         document.querySelectorAll('.standard-tool-editor').forEach((panel) => {
             const isActive = panel.dataset.standardToolPanel === state.activeStandardTool;
             panel.classList.toggle('is-active', isActive);
@@ -558,6 +685,7 @@
         const mainInput = getMainInput();
         if (!mainInput) return;
         DevCalculatorCommands.execute(mainInput.value || '0', outputApi);
+        markResultFresh(mainInput.value || '');
     }
 
     function resetCalculatorView() {
@@ -601,6 +729,7 @@
                 offsetY: event.clientY - rect.top,
                 width: rect.width,
                 height: rect.height,
+                handleHeight: dragHandle.getBoundingClientRect().height,
             };
 
             calculator.classList.add('dragging');
@@ -611,8 +740,9 @@
         dragHandle.addEventListener('pointermove', (event) => {
             if (!dragState || event.pointerId !== dragState.pointerId) return;
 
-            const left = event.clientX - dragState.offsetX;
-            const top = event.clientY - dragState.offsetY;
+            const bounds = getCalculatorDragBounds(dragState);
+            const left = clamp(event.clientX - dragState.offsetX, bounds.minLeft, bounds.maxLeft);
+            const top = clamp(event.clientY - dragState.offsetY, bounds.minTop, bounds.maxTop);
 
             calculator.style.position = 'fixed';
             calculator.style.left = `${left}px`;
@@ -644,8 +774,9 @@
             : '';
         const visibleDetail = textOutput?.classList.contains('is-active') ? textOutput.textContent?.trim() : '';
         const fallback = mainInput?.value?.trim() || '';
+        const graphCommand = getGraphCommandFromPanel();
         const resultText = calculator?.dataset.activeMode === 'graph'
-            ? fallback
+            ? graphCommand
             : visibleResult || visibleDetail || fallback;
         if (!resultText) return;
         navigator.clipboard?.writeText(resultText);
@@ -664,40 +795,12 @@
             }
         });
 
-        document.querySelectorAll('.calculator-mode-tab').forEach((button) => {
-            button.addEventListener('click', () => setMode(button.dataset.mode));
+        byId('calculatorModeSelect')?.addEventListener('change', (event) => {
+            setMode(event.target.value);
         });
 
-        document.querySelector('.standard-tool-picker')?.addEventListener('click', (event) => {
-            const item = event.target.closest('.standard-tool-item');
-            if (!item) return;
-            setStandardTool(item.dataset.standardTool);
-        });
-
-        document.querySelector('.standard-tool-picker')?.addEventListener('keydown', (event) => {
-            const item = event.target.closest('.standard-tool-item');
-            if (!item) return;
-            const tools = Object.keys(getStandardToolDefinitions());
-            const currentIndex = tools.indexOf(item.dataset.standardTool);
-            if (currentIndex === -1) return;
-
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                setStandardTool(item.dataset.standardTool);
-                return;
-            }
-
-            let nextIndex = null;
-            if (event.key === 'ArrowDown') nextIndex = Math.min(currentIndex + 1, tools.length - 1);
-            if (event.key === 'ArrowUp') nextIndex = Math.max(currentIndex - 1, 0);
-            if (event.key === 'Home') nextIndex = 0;
-            if (event.key === 'End') nextIndex = tools.length - 1;
-            if (nextIndex === null) return;
-
-            event.preventDefault();
-            const nextTool = tools[nextIndex];
-            setStandardTool(nextTool, { focus: false });
-            document.querySelector(`.standard-tool-item[data-standard-tool="${nextTool}"]`)?.focus();
+        byId('standardToolSelect')?.addEventListener('change', (event) => {
+            setStandardTool(event.target.value);
         });
 
         document.querySelectorAll('[data-standard-input]').forEach((input) => {
@@ -737,6 +840,10 @@
                 return;
             }
             if (action === 'execute') {
+                if (state.activeMode === 'graph') {
+                    syncGraphLivePreview();
+                    return;
+                }
                 executeMainInput();
             }
         });
@@ -750,6 +857,10 @@
                 event.preventDefault();
                 executeMainInput();
             }
+        });
+
+        getMainInput()?.addEventListener('input', () => {
+            syncResultStaleState();
         });
 
         byId('lgsMatrix')?.addEventListener('input', () => {
@@ -770,20 +881,16 @@
 
         ['graphFunction', 'graphXMin', 'graphXMax', 'graphYMin', 'graphYMax'].forEach((id) => {
             byId(id)?.addEventListener('input', () => {
-                syncGraphCommandPreview();
+                syncGraphLivePreview();
             });
         });
 
         document.querySelector('[data-action="apply-lgs"]')?.addEventListener('click', () => {
-            syncLGSCommandPreview({ focusMainInput: true });
+            syncLGSCommandPreview({ commitToMainInput: true, focusMainInput: true });
         });
 
         document.querySelector('[data-action="apply-binom"]')?.addEventListener('click', () => {
             syncBinomCommandPreview({ commitToMainInput: true, focusMainInput: true });
-        });
-
-        document.querySelector('[data-action="apply-graph"]')?.addEventListener('click', () => {
-            syncGraphCommandPreview({ commitToMainInput: true, focusMainInput: true });
         });
 
         document.querySelector('[data-action="apply-standard-tool"]')?.addEventListener('click', () => {
@@ -831,8 +938,10 @@
         renderLGSMatrix();
         syncBinomPreview();
         outputApi.setText('0', { headline: 'Bereit' });
+        markResultFresh('');
         bindEvents();
         bindCalculatorDrag();
+        updateModePicker(state.activeMode);
         setStandardTool(state.activeStandardTool, { focus: false });
         focusInput(getMainInput());
     }

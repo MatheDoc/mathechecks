@@ -6,7 +6,8 @@
     {% include mathjax.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.min.js"></script>
-    <script src="{{ '/assets/js/zeichneGraph.js' | relative_url }}"></script>
+    <script type="module"
+        src="{{ '/dev/assets/js/visuals/calculator-graph-bridge.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
         .dev-check-card__runtime-task ol.qa-list,
@@ -21,11 +22,6 @@
             padding-inline-end: 0 !important;
         }
     </style>
-    {% if page.module_key == 'skript' %}
-    <script src="{{ '/assets/js/zeichneBaumdiagramm.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/zeichneHistogrammAllgemein.js' | relative_url }}"></script>
-    <script src="{{ '/assets/js/zeichneHistogrammBinomial.js' | relative_url }}"></script>
-    {% endif %}
 </head>
 
 <body
@@ -51,9 +47,9 @@
     {% include dev/calculator.html %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="{{ '/dev/assets/js/calculator/utils.js' | relative_url }}"></script>
-    <script src="{{ '/dev/assets/js/calculator/commands.js' | relative_url }}"></script>
-    <script src="{{ '/dev/assets/js/calculator/app.js' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/utils.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/commands.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
+    <script src="{{ '/dev/assets/js/calculator/app.js?v=20260505-dev-visual-graph' | relative_url }}"></script>
     <script type="module" src="{{ '/dev/assets/js/app.js?v=20260423-card-layout-i' | relative_url }}"></script>
     {% include dev/theme-script.html %}
     {{ page.after_scripts }}

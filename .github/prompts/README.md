@@ -12,8 +12,11 @@ Konkrete, wiederverwendbare Arbeitsaufträge.
 ## Aktuelle Prompts
 
 - `prompt-aufgaben.md` – 20 JSON-Aufgaben erzeugen (verweist auf `aufgaben/README.md`)
-- `prompt-rechnersemantik.md` – Rechnerverhalten und Eingabelogik
 - `systemprompt-template.prompt.md` – Vorlage für neue Systemprompts
+
+## Verwandte Referenzdokumente
+
+- `../rechner-architektur.md` – Rechnerrollen, UX-Leitplanken und Verhaltensregeln
 
 ## Empfehlungen
 
