@@ -1,0 +1,343 @@
+<div id="calculator-overlay" class="calculator-overlay" aria-hidden="true">
+    <div class="calculator-container calculator-container--integrated">
+        <section class="calculator calculator--integrated" aria-label="Taschenrechner">
+            <div class="calculator-shell">
+                <div class="calculator-workspace">
+                    <div class="calculator-topbar" id="calculatorDragHandle">
+                        <div class="calculator-topbar__title">
+                            <span class="calculator-topbar__grip" aria-hidden="true">⋮⋮</span>
+                            <span>Taschenrechner</span>
+                        </div>
+                        <div class="calculator-topbar__actions">
+                            <button class="calculator-topbar__button" id="resetCalculatorViewButton" type="button"
+                                aria-label="Standardansicht wiederherstellen"
+                                title="Standardansicht wiederherstellen">↺</button>
+                            <button class="calculator-topbar__button copy-result" id="copyResultButton" type="button"
+                                aria-label="Ergebnis kopieren" title="Ergebnis kopieren">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path
+                                        d="M16 1H6c-1.1 0-2 .9-2 2v12h2V3h10V1zm3 4H10c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h9c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H10V7h9v14z" />
+                                </svg>
+                                <span class="copy-check" aria-hidden="true">✓</span>
+                            </button>
+                            <button class="close-calculator" id="closeCalculatorButton" type="button"
+                                aria-label="Taschenrechner schließen" title="Taschenrechner schließen">×</button>
+                        </div>
+                    </div>
+
+                    <section class="calculator-output" aria-live="polite">
+                        <div class="result-display" id="resultDisplay">0</div>
+                        <div class="calculator-output-body">
+                            <div id="calculatorTextOutput" class="calculator-output-text"></div>
+                            <div id="graphPreview" class="calculator-output-graph"></div>
+                            <div id="graphPointsInfo" class="graph-points-info"></div>
+                        </div>
+                    </section>
+
+                    <div class="main-input">
+                        <input type="text" id="mainInput" name="calc-main-input" inputmode="decimal" autocomplete="off"
+                            autocapitalize="off" spellcheck="false"
+                            placeholder="Rechnung, Gleichung oder Kommando eingeben"
+                            aria-label="Rechnung, Gleichung oder Kommando eingeben">
+                    </div>
+
+                    <div class="calculator-menu-window">
+                        <div class="calculator-mode-tabs" role="tablist" aria-label="Eingabehilfen">
+                            <button type="button" class="calculator-mode-tab is-active" data-mode="basic"
+                                aria-selected="true">Standard</button>
+                            <button type="button" class="calculator-mode-tab" data-mode="lgs"
+                                aria-selected="false">LGS</button>
+                            <button type="button" class="calculator-mode-tab" data-mode="binom"
+                                aria-selected="false">Binom</button>
+                            <button type="button" class="calculator-mode-tab" data-mode="graph"
+                                aria-selected="false">Graph</button>
+                        </div>
+
+                        <div class="calculator-panel-window">
+                            <div class="calculator-panels">
+                                <section class="calculator-panel is-active" data-panel="basic"
+                                    aria-label="Standardrechner">
+                                    <div class="standard-tool-layout">
+                                        <div class="standard-tool-picker">
+                                            <ul class="standard-tool-list" role="listbox"
+                                                aria-label="Standardwerkzeuge">
+                                                <li id="standard-tool-item-sin" class="standard-tool-item is-active"
+                                                    data-standard-tool="sin" role="option" aria-selected="true"
+                                                    tabindex="0">sin</li>
+                                                <li id="standard-tool-item-cos" class="standard-tool-item"
+                                                    data-standard-tool="cos" role="option" aria-selected="false"
+                                                    tabindex="-1">cos</li>
+                                                <li id="standard-tool-item-tan" class="standard-tool-item"
+                                                    data-standard-tool="tan" role="option" aria-selected="false"
+                                                    tabindex="-1">tan</li>
+                                                <li id="standard-tool-item-ln" class="standard-tool-item"
+                                                    data-standard-tool="ln" role="option" aria-selected="false"
+                                                    tabindex="-1">ln</li>
+                                                <li id="standard-tool-item-log" class="standard-tool-item"
+                                                    data-standard-tool="log" role="option" aria-selected="false"
+                                                    tabindex="-1">log</li>
+                                                <li id="standard-tool-item-fraction" class="standard-tool-item"
+                                                    data-standard-tool="fraction" role="option" aria-selected="false"
+                                                    tabindex="-1">Bruch</li>
+                                                <li id="standard-tool-item-power" class="standard-tool-item"
+                                                    data-standard-tool="power" role="option" aria-selected="false"
+                                                    tabindex="-1">Potenz</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="standard-tool-workbench">
+                                            <div class="standard-tool-editors">
+                                                <article class="function-card standard-tool-editor is-active"
+                                                    data-standard-tool-panel="sin">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">sin</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcSinValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="sin" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="cos">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">cos</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcCosValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="cos" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="tan">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">tan</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcTanValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="tan" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="ln">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">ln</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcLnValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="ln" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="log">
+                                                    <div class="math-composer math-composer--log">
+                                                        <span class="math-composer__label">log</span>
+                                                        <input type="text" id="funcLogBase" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__sub"
+                                                            data-standard-input="log" placeholder="Basis">
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcLogValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="log" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="fraction">
+                                                    <div class="math-composer math-composer--fraction">
+                                                        <input type="text" id="funcFractionTop" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="fraction"
+                                                            placeholder="Zähler">
+                                                        <span class="math-composer__divider" aria-hidden="true"></span>
+                                                        <input type="text" id="funcFractionBottom" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="fraction"
+                                                            placeholder="Nenner">
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="power">
+                                                    <div class="math-composer math-composer--power">
+                                                        <input type="text" id="funcPowerBase" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="power"
+                                                            placeholder="Basis">
+                                                        <span class="math-composer__sup-wrap">
+                                                            <span class="math-composer__caret">^</span>
+                                                            <input type="text" id="funcPowerExponent"
+                                                                inputmode="decimal" autocomplete="off"
+                                                                class="math-composer__sup" data-standard-input="power"
+                                                                placeholder="Exp.">
+                                                        </span>
+                                                    </div>
+                                                </article>
+                                            </div>
+
+                                            <div class="panel-inline-result panel-inline-result--split">
+                                                <span id="standardToolPreview"
+                                                    class="panel-inline-result__primary">sin(...)</span>
+                                                <span id="standardToolLiveResult"
+                                                    class="panel-inline-result__secondary">Wert: -</span>
+                                            </div>
+
+                                            <div class="panel-actions">
+                                                <button type="button" class="btn-primary"
+                                                    data-action="apply-standard-tool">Übernehmen</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <section class="calculator-panel" data-panel="lgs" aria-label="LGS Eingabehilfe">
+                                    <div class="lgs-controls">
+                                        <button type="button" data-action="lgs-add-var">+ Var.</button>
+                                        <button type="button" class="remove" data-action="lgs-remove-var">-
+                                            Var.</button>
+                                        <button type="button" data-action="lgs-add-eq">+ Gl.</button>
+                                        <button type="button" class="remove" data-action="lgs-remove-eq">- Gl.</button>
+                                    </div>
+                                    <div id="lgsMatrix" class="lgs-matrix"></div>
+                                    <div class="panel-actions">
+                                        <button type="button" class="btn-secondary"
+                                            data-open-mode="basic">Zurück</button>
+                                        <button type="button" class="btn-primary"
+                                            data-action="apply-lgs">Übernehmen</button>
+                                    </div>
+                                </section>
+
+                                <section class="calculator-panel" data-panel="binom"
+                                    aria-label="Binomialverteilung Eingabehilfe">
+                                    <div class="binom-container">
+                                        <div class="binom-inputs-row">
+                                            <div class="binom-field">
+                                                <input type="text" id="binomA" inputmode="decimal" autocomplete="off"
+                                                    placeholder="a" aria-label="a">
+                                            </div>
+                                            <div class="binom-field">
+                                                <input type="text" id="binomB" inputmode="decimal" autocomplete="off"
+                                                    placeholder="b" aria-label="b">
+                                            </div>
+                                            <div class="binom-field">
+                                                <input type="text" id="binomN" inputmode="decimal" autocomplete="off"
+                                                    placeholder="n" aria-label="n">
+                                            </div>
+                                            <div class="binom-field">
+                                                <input type="text" id="binomP" inputmode="decimal" autocomplete="off"
+                                                    placeholder="p" aria-label="p">
+                                            </div>
+                                        </div>
+                                        <div class="binom-steppers-row">
+                                            <div class="binom-stepper-group">
+                                                <button type="button" class="binom-step" data-target="binomA"
+                                                    data-step="-1" aria-label="a verringern">◀</button>
+                                                <button type="button" class="binom-step" data-target="binomA"
+                                                    data-step="1" aria-label="a erhöhen">▶</button>
+                                            </div>
+                                            <div class="binom-stepper-group">
+                                                <button type="button" class="binom-step" data-target="binomB"
+                                                    data-step="-1" aria-label="b verringern">◀</button>
+                                                <button type="button" class="binom-step" data-target="binomB"
+                                                    data-step="1" aria-label="b erhöhen">▶</button>
+                                            </div>
+                                            <div class="binom-stepper-group">
+                                                <button type="button" class="binom-step" data-target="binomN"
+                                                    data-step="-1" aria-label="n verringern">◀</button>
+                                                <button type="button" class="binom-step" data-target="binomN"
+                                                    data-step="1" aria-label="n erhöhen">▶</button>
+                                            </div>
+                                            <div class="binom-stepper-group">
+                                                <button type="button" class="binom-step" data-target="binomP"
+                                                    data-step="-0.01" aria-label="p verringern">◀</button>
+                                                <button type="button" class="binom-step" data-target="binomP"
+                                                    data-step="0.01" aria-label="p erhöhen">▶</button>
+                                            </div>
+                                        </div>
+                                        <div class="panel-inline-result">
+                                            P(a ≤ X ≤ b) = <span id="binomLiveResult">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="panel-actions">
+                                        <button type="button" class="btn-secondary"
+                                            data-open-mode="basic">Zurück</button>
+                                        <button type="button" class="btn-primary"
+                                            data-action="apply-binom">Übernehmen</button>
+                                    </div>
+                                </section>
+
+                                <section class="calculator-panel" data-panel="graph" aria-label="Graph Eingabehilfe">
+                                    <div class="graph-controls">
+                                        <div class="graph-input">
+                                            <label class="graph-fx-label" for="graphFunction">f(x) =</label>
+                                            <input type="text" id="graphFunction" placeholder="z.B. x^2 + 4x - 1"
+                                                autocomplete="off" autocapitalize="off" spellcheck="false">
+                                        </div>
+                                        <div class="graph-params-row">
+                                            <input type="text" id="graphXMin" inputmode="decimal" autocomplete="off"
+                                                placeholder="xmin">
+                                            <input type="text" id="graphXMax" inputmode="decimal" autocomplete="off"
+                                                placeholder="xmax">
+                                            <input type="text" id="graphYMin" inputmode="decimal" autocomplete="off"
+                                                placeholder="ymin">
+                                            <input type="text" id="graphYMax" inputmode="decimal" autocomplete="off"
+                                                placeholder="ymax">
+                                        </div>
+                                    </div>
+                                    <div id="graphPanelInfo" class="panel-inline-result" hidden></div>
+                                    <div class="panel-actions">
+                                        <button type="button" class="btn-secondary"
+                                            data-open-mode="basic">Zurück</button>
+                                        <button type="button" class="btn-primary"
+                                            data-action="apply-graph">Übernehmen</button>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="calculator-keypad" aria-label="Gemeinsame Rechentastatur">
+                        <div class="buttons buttons--shared">
+                            <button type="button" data-insert="π">π</button>
+                            <button class="top-key" type="button" data-insert="x">x</button>
+                            <button class="top-key" type="button" data-insert="^">^</button>
+                            <button class="clear" type="button" data-action="clear">C</button>
+
+                            <button class="top-key" type="button" data-insert="(">(</button>
+                            <button class="top-key" type="button" data-insert=")">)</button>
+                            <button class="top-key" type="button" data-insert="=">=</button>
+                            <button class="clear" type="button" data-action="backspace">⌫</button>
+
+                            <button type="button" data-insert="7">7</button>
+                            <button type="button" data-insert="8">8</button>
+                            <button type="button" data-insert="9">9</button>
+                            <button class="operator" type="button" data-insert="/">÷</button>
+
+                            <button type="button" data-insert="4">4</button>
+                            <button type="button" data-insert="5">5</button>
+                            <button type="button" data-insert="6">6</button>
+                            <button class="operator" type="button" data-insert="*">×</button>
+
+                            <button type="button" data-insert="1">1</button>
+                            <button type="button" data-insert="2">2</button>
+                            <button type="button" data-insert="3">3</button>
+                            <button class="operator" type="button" data-insert="-">−</button>
+
+                            <button class="top-key" type="button" data-action="insert-ans">Ans</button>
+                            <button type="button" data-insert="0">0</button>
+                            <button type="button" data-insert=",">,</button>
+                            <button class="operator" type="button" data-insert="+">+</button>
+
+                            <button class="equals keypad-wide" type="button" data-action="execute">EXE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

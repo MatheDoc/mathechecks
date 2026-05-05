@@ -1007,12 +1007,14 @@ function closeLGSPopup() {
     returnFocusToMain();
 }
 
-function formatLGSPanelNumber(rawValue) {
-    const parsed = parseFloat(normalizeNumberString(rawValue || '0'));
-    if (!Number.isFinite(parsed)) {
-        return '0';
-    }
-    return toGermanNumber(String(parsed));
+function getLGSPanelExpression(rawValue, fallback = '0') {
+    const text = String(rawValue ?? '').trim();
+    return text || fallback;
+}
+
+function tryEvaluateLGSPanelExpression(rawValue) {
+    const value = evaluateWithAssignments(getLGSPanelExpression(rawValue), [], {});
+    return Number.isFinite(value) ? value : null;
 }
 
 function confirmLGS() {
@@ -1021,37 +1023,15 @@ function confirmLGS() {
     for (let i = 0; i < lgsEquations; i++) {
         const terms = [];
         for (let j = 0; j < lgsVariables; j++) {
-            const coeffRaw = document.getElementById(`a${i}${j}`).value || '0';
-            const coeff = parseFloat(normalizeNumberString(coeffRaw));
-            const coeffText = formatLGSPanelNumber(coeffRaw);
+            const coeffExpression = getLGSPanelExpression(document.getElementById(`a${i}${j}`).value);
+            const coeffValue = tryEvaluateLGSPanelExpression(coeffExpression);
             const varName = getLGSVariableName(j);
-            if (coeff !== 0) {
-                if (terms.length === 0) {
-                    // First term
-                    if (coeff === 1) {
-                        terms.push(varName);
-                    } else if (coeff === -1) {
-                        terms.push(`-${varName}`);
-                    } else {
-                        terms.push(`${coeffText}${varName}`);
-                    }
-                } else {
-                    // Subsequent terms
-                    if (coeff === 1) {
-                        terms.push(`+${varName}`);
-                    } else if (coeff === -1) {
-                        terms.push(`-${varName}`);
-                    } else if (coeff > 0) {
-                        terms.push(`+${coeffText}${varName}`);
-                    } else {
-                        terms.push(`${coeffText}${varName}`);
-                    }
-                }
+            if (coeffValue !== 0) {
+                terms.push(`(${coeffExpression})${varName}`);
             }
         }
-        const resultRaw = document.getElementById(`b${i}`).value || '0';
-        const resultText = formatLGSPanelNumber(resultRaw);
-        equations.push((terms.length > 0 ? terms.join('') : '0') + '=' + resultText);
+        const resultText = getLGSPanelExpression(document.getElementById(`b${i}`).value);
+        equations.push((terms.length > 0 ? terms.join('+') : '0') + '=' + resultText);
     }
 
     const compactForm = 'lgs(' + equations.join(';') + ')';
