@@ -23,7 +23,7 @@ Aus den Vorgaben 1 - 4 erhalten wir folgende Gleichungen:
 $$
 \begin{alignat*}{5}
 &K(2)=88      \;&\Rightarrow\;&\; a\cdot 2^3 + b\cdot 2^2 + c\cdot 2 + d           = 88     \;&\Rightarrow\;&\; 8a + 4b + 2c + 1d = 88 \\
-&k_v'(6)=0      \;&\Rightarrow\;&\; 2a\cdot 6 + b                   = 0      \;&\Rightarrow\;&\; 12a + b +0c +0d = 0 \\
+&k_v'(6)=0      \;&\Rightarrow\;&\; 2a\cdot 6 + b                   = 0      \;&\Rightarrow\;&\; 12a + 1b +0c +0d = 0 \\
 &K(0)=48      \;&\Rightarrow\;&\; a\cdot 0^3 + b\cdot 0^2 + c\cdot 0 + 1d           = 48     \;&\Rightarrow\;&\; 0a+0b+0c+1d = 48 \\
 &K'(1)=19{,}5 \;&\Rightarrow\;&\; 3a\cdot 1^2 + 2b\cdot 1 + c                      = 19{,}5 \;&\Rightarrow\;&\; 3a + 2b + 1c +0d= 19{,}5
 \end{alignat*}
