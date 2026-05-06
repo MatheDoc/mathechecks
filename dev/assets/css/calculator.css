@@ -1611,9 +1611,17 @@ html.light .calculator-mode-picker--compact:focus-within {
     gap: 6px;
 }
 
-.keypad-wide {
-    grid-column: 1 / -1;
-    min-height: 42px;
+.calculator--integrated .buttons--shared .clear,
+.calculator--integrated .buttons--shared .operator,
+.calculator--integrated .buttons--shared .equals {
+    background: var(--hintergrund-hell);
+    color: var(--textfarbe);
+}
+
+.calculator--integrated .buttons--shared .clear:hover,
+.calculator--integrated .buttons--shared .operator:hover,
+.calculator--integrated .buttons--shared .equals:hover {
+    background: var(--hintergrund-hell-hover);
 }
 
 .calculator--integrated .buttons {
@@ -1710,10 +1718,6 @@ html.light .calculator-mode-picker--compact:focus-within {
 
     .calculator button {
         height: 32px;
-    }
-
-    .keypad-wide {
-        min-height: 36px;
     }
 }
 

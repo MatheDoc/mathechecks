@@ -39,6 +39,18 @@ const DevCalculatorUtils = (() => {
         );
     }
 
+    function logBase(base, value) {
+        const normalizedBase = Number(base);
+        const normalizedValue = Number(value);
+        if (!Number.isFinite(normalizedBase) || !Number.isFinite(normalizedValue)) {
+            return NaN;
+        }
+        if (normalizedBase <= 0 || normalizedBase === 1 || normalizedValue <= 0) {
+            return NaN;
+        }
+        return Math.log(normalizedValue) / Math.log(normalizedBase);
+    }
+
     function toGermanNumber(text) {
         if (typeof text !== 'string') text = String(text ?? '');
         if (!text) return '';
@@ -233,6 +245,7 @@ const DevCalculatorUtils = (() => {
             .replace(/sqrt\(/g, 'Math.sqrt(')
             .replace(/exp\(/g, 'Math.exp(')
             .replace(/ln\(/g, 'Math.log(')
+            .replace(/\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
             .replace(/\bbinom\s*\(/g, '__binom(')
             .replace(/sin\(/g, 'Math.sin(')
             .replace(/cos\(/g, 'Math.cos(')
@@ -300,6 +313,7 @@ const DevCalculatorUtils = (() => {
         evaluateWithAssignments,
         formatGeneralResult,
         computeBinomProbability,
+        logBase,
         addImplicitMultiplication,
         normalizeUnaryMinusExponent,
         normalizeConstants,

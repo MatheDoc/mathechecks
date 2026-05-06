@@ -518,7 +518,7 @@
                 build: () => DevCalculatorCommands.buildUnaryFunctionExpression('ln', byId('funcLnValue')?.value || ''),
             },
             log: {
-                focusId: 'funcLogValue',
+                focusId: 'funcLogBase',
                 requiredIds: ['funcLogBase', 'funcLogValue'],
                 action: 'apply-func-log',
                 preview: () => {
