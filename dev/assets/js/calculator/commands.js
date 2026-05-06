@@ -67,6 +67,140 @@ const DevCalculatorCommands = (() => {
         return options;
     }
 
+    function replaceStandaloneX(expression, xValue) {
+        return String(expression || '').replace(
+            /(^|[^a-zA-Z0-9_.])x([^a-zA-Z0-9_]|$)/g,
+            `$1(${xValue})$2`
+        );
+    }
+
+    function formatSubscriptNumber(value) {
+        return String(value ?? '').replace(/\d/g, (digit) => '₀₁₂₃₄₅₆₇₈₉'[Number(digit)]);
+    }
+
+    function formatIndexedVariable(name, index) {
+        return `${String(name ?? '')}${formatSubscriptNumber(index)}`;
+    }
+
+    function normalizeDecimalCommas(expression) {
+        return String(expression || '').replace(/(\d)\s*,\s*(\d)/g, '$1.$2');
+    }
+
+    function refineBracketedRoot(evaluateFn, a, b, tolerance, maxIterations = 100) {
+        let fa = evaluateFn(a);
+        let fb = evaluateFn(b);
+        if (Number.isNaN(fa) || Number.isNaN(fb)) return null;
+        if (Math.abs(fa) < tolerance) return a;
+        if (Math.abs(fb) < tolerance) return b;
+        if (fa * fb > 0) return null;
+
+        let left = a;
+        let right = b;
+        for (let iteration = 0; iteration < maxIterations; iteration++) {
+            const mid = (left + right) / 2;
+            const fm = evaluateFn(mid);
+            if (Number.isNaN(fm)) return null;
+            if (Math.abs(fm) < tolerance) return mid;
+            if (fa * fm <= 0) {
+                right = mid;
+                fb = fm;
+            } else {
+                left = mid;
+                fa = fm;
+            }
+        }
+
+        const root = (left + right) / 2;
+        const fRoot = evaluateFn(root);
+        return !Number.isNaN(fRoot) && Math.abs(fRoot) < tolerance ? root : null;
+    }
+
+    function refineTouchingRoot(evaluateFn, a, b, tolerance, maxIterations = 60) {
+        let left = a;
+        let right = b;
+        let bestX = null;
+        let bestAbsValue = Number.POSITIVE_INFINITY;
+
+        for (let iteration = 0; iteration < maxIterations; iteration++) {
+            const third = (right - left) / 3;
+            const mid1 = left + third;
+            const mid2 = right - third;
+            const f1 = evaluateFn(mid1);
+            const f2 = evaluateFn(mid2);
+            if (Number.isNaN(f1) || Number.isNaN(f2)) return null;
+
+            const abs1 = Math.abs(f1);
+            const abs2 = Math.abs(f2);
+            if (abs1 < bestAbsValue) {
+                bestAbsValue = abs1;
+                bestX = mid1;
+            }
+            if (abs2 < bestAbsValue) {
+                bestAbsValue = abs2;
+                bestX = mid2;
+            }
+
+            if (abs1 <= abs2) {
+                right = mid2;
+            } else {
+                left = mid1;
+            }
+        }
+
+        if (bestX === null) return null;
+        const bestValue = evaluateFn(bestX);
+        return !Number.isNaN(bestValue) && Math.abs(bestValue) < tolerance ? bestX : null;
+    }
+
+    function findRootInInterval(evaluateFn, a, b, fA, fB, tolerance, touchCandidateTolerance = 1e-2) {
+        if (Number.isNaN(fA) || Number.isNaN(fB)) return null;
+
+        const absFA = Math.abs(fA);
+        const absFB = Math.abs(fB);
+        const endpointCandidate = absFA <= absFB ? a : b;
+        const endpointAbsValue = Math.min(absFA, absFB);
+
+        if (fA * fB < 0) {
+            return refineBracketedRoot(evaluateFn, a, b, tolerance) ?? (endpointAbsValue < tolerance ? endpointCandidate : null);
+        }
+
+        const mid = (a + b) / 2;
+        const fMid = evaluateFn(mid);
+        if (Number.isNaN(fMid)) return null;
+        const absFMid = Math.abs(fMid);
+
+        if (Math.min(endpointAbsValue, absFMid) > touchCandidateTolerance) {
+            return null;
+        }
+
+        return refineTouchingRoot(evaluateFn, a, b, tolerance)
+            ?? (absFMid < tolerance ? mid : null)
+            ?? (endpointAbsValue < tolerance ? endpointCandidate : null);
+    }
+
+    function deduplicateNumericRoots(values, evaluateFn, roundFactor, proximityTolerance) {
+        const sorted = values
+            .map((value) => ({
+                roundedValue: Math.round(value * roundFactor) / roundFactor,
+                residual: Math.abs(evaluateFn(value)),
+            }))
+            .sort((left, right) => left.roundedValue - right.roundedValue);
+
+        const deduplicated = [];
+        sorted.forEach((candidate) => {
+            const last = deduplicated[deduplicated.length - 1];
+            if (last && Math.abs(candidate.roundedValue - last.roundedValue) <= proximityTolerance) {
+                if (candidate.residual < last.residual) {
+                    deduplicated[deduplicated.length - 1] = candidate;
+                }
+                return;
+            }
+            deduplicated.push(candidate);
+        });
+
+        return deduplicated.map((entry) => entry.roundedValue);
+    }
+
     function evaluateScalarExpression(expr, varNames) {
         const value = DevCalculatorUtils.evaluateWithAssignments(expr, varNames, {});
         return Number.isFinite(value) ? value : 0;
@@ -270,53 +404,38 @@ const DevCalculatorCommands = (() => {
 
             function f(x) {
                 let expr = `(${leftSide}) - (${rightSide})`;
+                expr = normalizeDecimalCommas(expr);
                 expr = DevCalculatorUtils.addImplicitMultiplication(
                     DevCalculatorUtils.normalizeUnaryMinusExponent(
-                        DevCalculatorUtils.convertWurzelSyntax(
-                            DevCalculatorUtils.convertLogBaseSyntax(
-                                DevCalculatorUtils.convertCustomENotation(expr)
+                        DevCalculatorUtils.convertFactorialSyntax(
+                            DevCalculatorUtils.convertNCrSyntax(
+                                DevCalculatorUtils.convertWurzelSyntax(
+                                    DevCalculatorUtils.convertLogBaseSyntax(
+                                        DevCalculatorUtils.convertCustomENotation(expr)
+                                    )
+                                )
                             )
                         )
                     )
                 );
                 expr = DevCalculatorUtils.normalizeConstants(expr)
-                    .replace(/x/g, `(${x})`)
                     .replace(/\^/g, '**')
                     .replace(/e\*\*/g, 'Math.E**')
-                    .replace(/sqrt/g, 'Math.sqrt')
-                    .replace(/exp/g, 'Math.exp')
-                    .replace(/\bln\b/g, 'Math.log')
-                    .replace(/\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
+                    .replace(/(?<!Math\.)\babs\b/g, 'Math.abs')
+                    .replace(/(?<!Math\.)\bbetrag\b/gi, 'Math.abs')
+                    .replace(/(?<!Math\.)\bsqrt\b/g, 'Math.sqrt')
+                    .replace(/(?<!Math\.)\bexp\b/g, 'Math.exp')
+                    .replace(/(?<!Math\.)\bln\b/g, 'Math.log')
+                    .replace(/(?<!DevCalculatorUtils\.)\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
                     .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-                    .replace(/sin/g, 'Math.sin')
-                    .replace(/cos/g, 'Math.cos')
-                    .replace(/tan/g, 'Math.tan');
+                    .replace(/(?<!Math\.)\basin\b/g, 'Math.asin')
+                    .replace(/(?<!Math\.)\bacos\b/g, 'Math.acos')
+                    .replace(/(?<!Math\.)\batan\b/g, 'Math.atan')
+                    .replace(/(?<!Math\.)\bsin\b/g, 'Math.sin')
+                    .replace(/(?<!Math\.)\bcos\b/g, 'Math.cos')
+                    .replace(/(?<!Math\.)\btan\b/g, 'Math.tan');
+                expr = replaceStandaloneX(expr, x);
                 return eval(expr);
-            }
-
-            function refineRoot(a, b, tolerance) {
-                let fa = f(a);
-                let fb = f(b);
-                if (Number.isNaN(fa) || Number.isNaN(fb)) return null;
-                if (Math.abs(fa) < tolerance) return a;
-                if (Math.abs(fb) < tolerance) return b;
-                if (fa * fb > 0) return null;
-                let left = a;
-                let right = b;
-                for (let i = 0; i < 100; i++) {
-                    const mid = (left + right) / 2;
-                    const fm = f(mid);
-                    if (Number.isNaN(fm)) return null;
-                    if (Math.abs(fm) < tolerance) return mid;
-                    if (fa * fm <= 0) {
-                        right = mid;
-                        fb = fm;
-                    } else {
-                        left = mid;
-                        fa = fm;
-                    }
-                }
-                return (left + right) / 2;
             }
 
             const tolerance = 1e-6;
@@ -331,21 +450,11 @@ const DevCalculatorCommands = (() => {
                 const x2 = x1 + step;
                 const f1 = f(x1);
                 const f2 = f(x2);
-                if (Number.isNaN(f1) || Number.isNaN(f2)) continue;
-                if (Math.abs(f1) < tolerance) {
-                    roots.push(x1);
-                    continue;
-                }
-                if (f1 * f2 < 0) {
-                    const root = refineRoot(x1, x2, tolerance);
-                    if (root !== null) roots.push(root);
-                }
+                const root = findRootInInterval(f, x1, x2, f1, f2, tolerance);
+                if (root !== null) roots.push(root);
             }
 
-            const uniqueRoots = roots
-                .map((value) => Math.round(value * 1e6) / 1e6)
-                .sort((left, right) => left - right)
-                .filter((value, index, all) => index === 0 || Math.abs(value - all[index - 1]) > 1e-5);
+            const uniqueRoots = deduplicateNumericRoots(roots, f, 1e6, Math.max(1e-5, step / 20));
 
             if (!uniqueRoots.length) {
                 outputApi.setText('Keine Lösung', { headline: 'Gleichung' });
@@ -353,7 +462,9 @@ const DevCalculatorCommands = (() => {
             }
 
             outputApi.setText(
-                uniqueRoots.map((root, index) => `x${index + 1}=${DevCalculatorUtils.formatGeneralResult(root)}`).join(', '),
+                uniqueRoots
+                    .map((root, index) => `${formatIndexedVariable('x', index + 1)}=${DevCalculatorUtils.formatGeneralResult(root)}`)
+                    .join(', '),
                 { headline: 'Gleichung' }
             );
         } catch {
@@ -395,6 +506,10 @@ const DevCalculatorCommands = (() => {
         return `${String(name ?? '').trim()}(${String(value ?? '').trim()})`;
     }
 
+    function buildExpExpression(value) {
+        return `e^(${String(value ?? '').trim()})`;
+    }
+
     function buildLogExpression(fields) {
         return `log(${String(fields.base ?? '').trim()};${String(fields.value ?? '').trim()})`;
     }
@@ -405,6 +520,14 @@ const DevCalculatorCommands = (() => {
 
     function buildPowerExpression(fields) {
         return `(${String(fields.base ?? '').trim()})^(${String(fields.exponent ?? '').trim()})`;
+    }
+
+    function buildFactorialExpression(value) {
+        return `(${String(value ?? '').trim()})!`;
+    }
+
+    function buildBinomialCoefficientExpression(fields) {
+        return `nCr(${String(fields.n ?? '').trim()};${String(fields.k ?? '').trim()})`;
     }
 
     const GRAPH_ANALYSIS_CONFIG = Object.freeze({
@@ -430,12 +553,16 @@ const DevCalculatorCommands = (() => {
     function evaluateGraphFunctionJS(rawExpr, x) {
         try {
             let expr = `(${rawExpr})`;
-            expr = expr.replace(/(\d),(\d)/g, '$1.$2');
+            expr = normalizeDecimalCommas(expr);
             expr = DevCalculatorUtils.addImplicitMultiplication(
                 DevCalculatorUtils.normalizeUnaryMinusExponent(
-                    DevCalculatorUtils.convertWurzelSyntax(
-                        DevCalculatorUtils.convertLogBaseSyntax(
-                            DevCalculatorUtils.convertCustomENotation(expr)
+                    DevCalculatorUtils.convertFactorialSyntax(
+                        DevCalculatorUtils.convertNCrSyntax(
+                            DevCalculatorUtils.convertWurzelSyntax(
+                                DevCalculatorUtils.convertLogBaseSyntax(
+                                    DevCalculatorUtils.convertCustomENotation(expr)
+                                )
+                            )
                         )
                     )
                 )
@@ -443,15 +570,20 @@ const DevCalculatorCommands = (() => {
             expr = DevCalculatorUtils.normalizeConstants(expr)
                 .replace(/\^/g, '**')
                 .replace(/e\*\*/g, 'Math.E**')
-                .replace(/sqrt/g, 'Math.sqrt')
-                .replace(/exp/g, 'Math.exp')
-                .replace(/\bln\b/g, 'Math.log')
-                .replace(/\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
+                .replace(/(?<!Math\.)\babs\b/g, 'Math.abs')
+                .replace(/(?<!Math\.)\bbetrag\b/gi, 'Math.abs')
+                .replace(/(?<!Math\.)\bsqrt\b/g, 'Math.sqrt')
+                .replace(/(?<!Math\.)\bexp\b/g, 'Math.exp')
+                .replace(/(?<!Math\.)\bln\b/g, 'Math.log')
+                .replace(/(?<!DevCalculatorUtils\.)\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
                 .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-                .replace(/sin/g, 'Math.sin')
-                .replace(/cos/g, 'Math.cos')
-                .replace(/tan/g, 'Math.tan')
-                .replace(/x/g, `(${x})`);
+                .replace(/(?<!Math\.)\basin\b/g, 'Math.asin')
+                .replace(/(?<!Math\.)\bacos\b/g, 'Math.acos')
+                .replace(/(?<!Math\.)\batan\b/g, 'Math.atan')
+                .replace(/(?<!Math\.)\bsin\b/g, 'Math.sin')
+                .replace(/(?<!Math\.)\bcos\b/g, 'Math.cos')
+                .replace(/(?<!Math\.)\btan\b/g, 'Math.tan');
+            expr = replaceStandaloneX(expr, x);
             return eval(expr);
         } catch {
             return NaN;
@@ -466,52 +598,28 @@ const DevCalculatorCommands = (() => {
         const step = (rangeMax - rangeMin) / steps;
         const roots = [];
 
-        function refineRoot(a, b) {
-            let fa = evaluateGraphFunctionJS(rawExpr, a);
-            let fb = evaluateGraphFunctionJS(rawExpr, b);
-            if (Number.isNaN(fa) || Number.isNaN(fb)) return null;
-            if (Math.abs(fa) < tolerance) return a;
-            if (Math.abs(fb) < tolerance) return b;
-            if (fa * fb > 0) return null;
-
-            let left = a;
-            let right = b;
-            for (let i = 0; i < 100; i++) {
-                const mid = (left + right) / 2;
-                const fm = evaluateGraphFunctionJS(rawExpr, mid);
-                if (Number.isNaN(fm)) return null;
-                if (Math.abs(fm) < tolerance) return mid;
-                if (fa * fm <= 0) {
-                    right = mid;
-                    fb = fm;
-                } else {
-                    left = mid;
-                    fa = fm;
-                }
-            }
-            return (left + right) / 2;
-        }
-
         for (let i = 0; i < steps; i++) {
             const x1 = rangeMin + i * step;
             const x2 = x1 + step;
             const f1 = evaluateGraphFunctionJS(rawExpr, x1);
             const f2 = evaluateGraphFunctionJS(rawExpr, x2);
-            if (Number.isNaN(f1) || Number.isNaN(f2)) continue;
-            if (Math.abs(f1) < tolerance) {
-                roots.push(x1);
-                continue;
-            }
-            if (f1 * f2 < 0) {
-                const root = refineRoot(x1, x2);
-                if (root !== null) roots.push(root);
-            }
+            const root = findRootInInterval(
+                (x) => evaluateGraphFunctionJS(rawExpr, x),
+                x1,
+                x2,
+                f1,
+                f2,
+                tolerance
+            );
+            if (root !== null) roots.push(root);
         }
 
-        return roots
-            .map((value) => Math.round(value * GRAPH_ANALYSIS_CONFIG.zerosRoundFactor) / GRAPH_ANALYSIS_CONFIG.zerosRoundFactor)
-            .sort((left, right) => left - right)
-            .filter((value, index, all) => index === 0 || Math.abs(value - all[index - 1]) > GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance)
+        return deduplicateNumericRoots(
+            roots,
+            (value) => evaluateGraphFunctionJS(rawExpr, value),
+            GRAPH_ANALYSIS_CONFIG.zerosRoundFactor,
+            Math.max(GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance, step / 20)
+        )
             .filter((value) => value >= xMin && value <= xMax);
     }
 
@@ -847,9 +955,12 @@ const DevCalculatorCommands = (() => {
         buildBinomCommand,
         buildGraphCommand,
         buildUnaryFunctionExpression,
+        buildExpExpression,
         buildLogExpression,
         buildFractionExpression,
         buildPowerExpression,
+        buildFactorialExpression,
+        buildBinomialCoefficientExpression,
         getLiveBinomResult,
     };
 })();

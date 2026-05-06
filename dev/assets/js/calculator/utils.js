@@ -4,13 +4,29 @@ const DevCalculatorUtils = (() => {
     }
 
     function binomialCoefficient(n, k) {
-        if (k < 0 || k > n) return 0;
-        if (k === 0 || k === n) return 1;
+        const normalizedN = Number(n);
+        const normalizedK = Number(k);
+        if (!Number.isInteger(normalizedN) || !Number.isInteger(normalizedK)) return NaN;
+        if (normalizedN < 0 || normalizedK < 0) return NaN;
+        if (normalizedK > normalizedN) return 0;
+        if (normalizedK === 0 || normalizedK === normalizedN) return 1;
         let result = 1;
-        for (let i = 1; i <= k; i++) {
-            result = (result * (n - (k - i))) / i;
+        for (let i = 1; i <= normalizedK; i++) {
+            result = (result * (normalizedN - (normalizedK - i))) / i;
         }
         return Math.round(result);
+    }
+
+    function factorial(value) {
+        const normalizedValue = Number(value);
+        if (!Number.isInteger(normalizedValue) || normalizedValue < 0) {
+            return NaN;
+        }
+        let result = 1;
+        for (let i = 2; i <= normalizedValue; i++) {
+            result *= i;
+        }
+        return result;
     }
 
     function computeBinomProbability(a, b, n, p) {
@@ -201,6 +217,71 @@ const DevCalculatorUtils = (() => {
         return expr;
     }
 
+    function convertNCrSyntax(value) {
+        let expr = value;
+        let idx = expr.toLowerCase().indexOf('ncr(');
+        while (idx !== -1) {
+            const argsParen = extractParenthesized(expr, idx + 3);
+            if (!argsParen) break;
+            const inner = expr.slice(argsParen.start + 1, argsParen.end);
+            const sepPos = splitTopLevelSemicolon(inner);
+            if (sepPos === -1) {
+                idx = expr.toLowerCase().indexOf('ncr(', argsParen.end + 1);
+                continue;
+            }
+            const nStr = inner.slice(0, sepPos).trim();
+            const kStr = inner.slice(sepPos + 1).trim();
+            expr = `${expr.slice(0, idx)}DevCalculatorUtils.binomialCoefficient(${nStr},${kStr})${expr.slice(argsParen.end + 1)}`;
+            idx = expr.toLowerCase().indexOf('ncr(');
+        }
+        return expr;
+    }
+
+    function extractFactorialOperand(expr, endIndex) {
+        let index = endIndex;
+        while (index >= 0 && /\s/.test(expr[index])) {
+            index -= 1;
+        }
+        if (index < 0) return null;
+
+        if (expr[index] === ')') {
+            let depth = 1;
+            let start = index - 1;
+            while (start >= 0) {
+                if (expr[start] === ')') depth += 1;
+                if (expr[start] === '(') depth -= 1;
+                if (depth === 0) {
+                    return { start, end: index };
+                }
+                start -= 1;
+            }
+            return null;
+        }
+
+        let start = index;
+        while (start >= 0 && /[A-Za-z0-9_.]/.test(expr[start])) {
+            start -= 1;
+        }
+        if (start === index) return null;
+        return { start: start + 1, end: index };
+    }
+
+    function convertFactorialSyntax(value) {
+        let expr = value;
+        let idx = expr.indexOf('!');
+        while (idx !== -1) {
+            const operand = extractFactorialOperand(expr, idx - 1);
+            if (!operand) {
+                idx = expr.indexOf('!', idx + 1);
+                continue;
+            }
+            const source = expr.slice(operand.start, idx).trim();
+            expr = `${expr.slice(0, operand.start)}DevCalculatorUtils.factorial(${source})${expr.slice(idx + 1)}`;
+            idx = expr.indexOf('!');
+        }
+        return expr;
+    }
+
     function convertBinomSyntaxForMathJS(value) {
         let expr = value;
         let idx = expr.indexOf('binom(');
@@ -234,7 +315,11 @@ const DevCalculatorUtils = (() => {
         const normalized = normalizeNumberString(input);
         let expression = addImplicitMultiplication(
             normalizeUnaryMinusExponent(
-                convertBinomSyntaxForMathJS(convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized))))
+                convertFactorialSyntax(
+                    convertNCrSyntax(
+                        convertBinomSyntaxForMathJS(convertWurzelSyntax(convertLogBaseSyntax(convertCustomENotation(normalized))))
+                    )
+                )
             )
         );
         return normalizeConstants(expression)
@@ -242,14 +327,19 @@ const DevCalculatorUtils = (() => {
             .replace(/÷/g, '/')
             .replace(/−/g, '-')
             .replace(/\^/g, '**')
-            .replace(/sqrt\(/g, 'Math.sqrt(')
-            .replace(/exp\(/g, 'Math.exp(')
-            .replace(/ln\(/g, 'Math.log(')
-            .replace(/\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
+            .replace(/(?<!Math\.)\babs\s*\(/g, 'Math.abs(')
+            .replace(/(?<!Math\.)\bbetrag\s*\(/gi, 'Math.abs(')
+            .replace(/(?<!Math\.)\bsqrt\s*\(/g, 'Math.sqrt(')
+            .replace(/(?<!Math\.)\bexp\s*\(/g, 'Math.exp(')
+            .replace(/(?<!Math\.)\bln\s*\(/g, 'Math.log(')
+            .replace(/(?<!DevCalculatorUtils\.)\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
             .replace(/\bbinom\s*\(/g, '__binom(')
-            .replace(/sin\(/g, 'Math.sin(')
-            .replace(/cos\(/g, 'Math.cos(')
-            .replace(/tan\(/g, 'Math.tan(');
+            .replace(/(?<!Math\.)\basin\s*\(/g, 'Math.asin(')
+            .replace(/(?<!Math\.)\bacos\s*\(/g, 'Math.acos(')
+            .replace(/(?<!Math\.)\batan\s*\(/g, 'Math.atan(')
+            .replace(/(?<!Math\.)\bsin\s*\(/g, 'Math.sin(')
+            .replace(/(?<!Math\.)\bcos\s*\(/g, 'Math.cos(')
+            .replace(/(?<!Math\.)\btan\s*\(/g, 'Math.tan(');
     }
 
     function prepareGraphExpression(input) {
@@ -260,6 +350,7 @@ const DevCalculatorUtils = (() => {
         expr = convertBinomSyntaxForMathJS(expr);
         expr = convertLogBaseSyntaxForMathJS(expr);
         expr = convertWurzelSyntaxForMathJS(expr);
+        expr = expr.replace(/\bbetrag\s*\(/gi, 'abs(');
         expr = expr.replace(/\blog\s*\(/g, 'log10(');
         expr = expr.replace(/\bln\s*\(/g, 'log(');
         expr = expr.replace(/\blogb\s*\(/g, 'log(');
@@ -312,6 +403,8 @@ const DevCalculatorUtils = (() => {
         evaluateExpression,
         evaluateWithAssignments,
         formatGeneralResult,
+        factorial,
+        binomialCoefficient,
         computeBinomProbability,
         logBase,
         addImplicitMultiplication,
@@ -322,6 +415,8 @@ const DevCalculatorUtils = (() => {
         convertLogBaseSyntaxForMathJS,
         convertWurzelSyntax,
         convertWurzelSyntaxForMathJS,
+        convertNCrSyntax,
+        convertFactorialSyntax,
         convertBinomSyntaxForMathJS,
     };
 })();

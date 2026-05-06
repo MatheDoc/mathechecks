@@ -4,6 +4,7 @@
         lgsEquations: 2,
         ans: '',
         activeMode: 'basic',
+        standardToolView: 'overview',
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
         lastExecutedMainInput: '',
@@ -14,7 +15,7 @@
     }
 
     function getCalculator() {
-        return document.querySelector('.calculator--integrated');
+        return document.querySelector('#calculator-overlay .calculator');
     }
 
     function getMainInput() {
@@ -138,6 +139,50 @@
         }
     }
 
+    function isProbablyMobileBrowser() {
+        if (typeof navigator === 'undefined') return false;
+        if (typeof navigator.userAgentData?.mobile === 'boolean') {
+            return navigator.userAgentData.mobile;
+        }
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+            navigator.userAgent || ''
+        );
+    }
+
+    function shouldSuppressNativeKeyboard() {
+        return Boolean(
+            isProbablyMobileBrowser()
+            && window.matchMedia?.('(hover: none) and (pointer: coarse)')?.matches
+        );
+    }
+
+    function syncCalculatorInputMode(root = document) {
+        const container = root?.querySelector?.('#calculator-overlay') || byId('calculator-overlay');
+        if (!container) return;
+
+        const suppressNativeKeyboard = shouldSuppressNativeKeyboard();
+        container.querySelectorAll('input[type="text"], input[type="number"]').forEach((input) => {
+            if (!Object.prototype.hasOwnProperty.call(input.dataset, 'originalInputmode')) {
+                input.dataset.originalInputmode = input.getAttribute('inputmode') || '';
+            }
+
+            input.readOnly = suppressNativeKeyboard;
+
+            if (suppressNativeKeyboard) {
+                input.setAttribute('inputmode', 'none');
+                input.setAttribute('aria-readonly', 'true');
+                return;
+            }
+
+            if (input.dataset.originalInputmode) {
+                input.setAttribute('inputmode', input.dataset.originalInputmode);
+            } else {
+                input.removeAttribute('inputmode');
+            }
+            input.removeAttribute('aria-readonly');
+        });
+    }
+
     function focusInput(input, placeCursorAtEnd = true) {
         if (!input) return;
         setActiveInput(input);
@@ -238,6 +283,7 @@
         });
         queueMicrotask(() => {
             if (state.activeMode === 'basic') {
+                setStandardToolView('overview', { focus: false });
                 focusInput(getMainInput());
                 return;
             }
@@ -287,6 +333,8 @@
             row.appendChild(resultInput);
             container.appendChild(row);
         }
+
+        syncCalculatorInputMode(container);
     }
 
     function getLGSValues() {
@@ -487,37 +535,34 @@
         return true;
     }
 
+    function createUnaryStandardTool({ key, label = key, focusId, inputId, expressionName = key }) {
+        return {
+            label,
+            focusId,
+            requiredIds: [inputId],
+            action: `apply-func-${key}`,
+            preview: () => `${expressionName}(${String(byId(inputId)?.value || '').trim() || '...'})`,
+            build: () => DevCalculatorCommands.buildUnaryFunctionExpression(expressionName, byId(inputId)?.value || ''),
+        };
+    }
+
     function getStandardToolDefinitions() {
         return {
-            sin: {
-                focusId: 'funcSinValue',
-                requiredIds: ['funcSinValue'],
-                action: 'apply-func-sin',
-                preview: () => `sin(${String(byId('funcSinValue')?.value || '').trim() || '...'})`,
-                build: () => DevCalculatorCommands.buildUnaryFunctionExpression('sin', byId('funcSinValue')?.value || ''),
-            },
-            cos: {
-                focusId: 'funcCosValue',
-                requiredIds: ['funcCosValue'],
-                action: 'apply-func-cos',
-                preview: () => `cos(${String(byId('funcCosValue')?.value || '').trim() || '...'})`,
-                build: () => DevCalculatorCommands.buildUnaryFunctionExpression('cos', byId('funcCosValue')?.value || ''),
-            },
-            tan: {
-                focusId: 'funcTanValue',
-                requiredIds: ['funcTanValue'],
-                action: 'apply-func-tan',
-                preview: () => `tan(${String(byId('funcTanValue')?.value || '').trim() || '...'})`,
-                build: () => DevCalculatorCommands.buildUnaryFunctionExpression('tan', byId('funcTanValue')?.value || ''),
-            },
-            ln: {
-                focusId: 'funcLnValue',
-                requiredIds: ['funcLnValue'],
-                action: 'apply-func-ln',
-                preview: () => `ln(${String(byId('funcLnValue')?.value || '').trim() || '...'})`,
-                build: () => DevCalculatorCommands.buildUnaryFunctionExpression('ln', byId('funcLnValue')?.value || ''),
-            },
+            sin: createUnaryStandardTool({ key: 'sin', focusId: 'funcSinValue', inputId: 'funcSinValue' }),
+            cos: createUnaryStandardTool({ key: 'cos', focusId: 'funcCosValue', inputId: 'funcCosValue' }),
+            tan: createUnaryStandardTool({ key: 'tan', focusId: 'funcTanValue', inputId: 'funcTanValue' }),
+            ln: createUnaryStandardTool({ key: 'ln', focusId: 'funcLnValue', inputId: 'funcLnValue' }),
+            asin: createUnaryStandardTool({ key: 'asin', focusId: 'funcAsinValue', inputId: 'funcAsinValue' }),
+            acos: createUnaryStandardTool({ key: 'acos', focusId: 'funcAcosValue', inputId: 'funcAcosValue' }),
+            atan: createUnaryStandardTool({ key: 'atan', focusId: 'funcAtanValue', inputId: 'funcAtanValue' }),
+            abs: createUnaryStandardTool({
+                key: 'abs',
+                label: 'Betrag',
+                focusId: 'funcAbsValue',
+                inputId: 'funcAbsValue',
+            }),
             log: {
+                label: 'log',
                 focusId: 'funcLogBase',
                 requiredIds: ['funcLogBase', 'funcLogValue'],
                 action: 'apply-func-log',
@@ -531,7 +576,40 @@
                     value: byId('funcLogValue')?.value || '',
                 }),
             },
+            sqrt: createUnaryStandardTool({ key: 'sqrt', focusId: 'funcSqrtValue', inputId: 'funcSqrtValue' }),
+            exp: {
+                label: 'exp',
+                focusId: 'funcExpValue',
+                requiredIds: ['funcExpValue'],
+                action: 'apply-func-exp',
+                preview: () => `e^(${String(byId('funcExpValue')?.value || '').trim() || '...'})`,
+                build: () => DevCalculatorCommands.buildExpExpression(byId('funcExpValue')?.value || ''),
+            },
+            factorial: {
+                label: 'Fakultät',
+                focusId: 'funcFactorialValue',
+                requiredIds: ['funcFactorialValue'],
+                action: 'apply-func-factorial',
+                preview: () => `(${String(byId('funcFactorialValue')?.value || '').trim() || '...'})!`,
+                build: () => DevCalculatorCommands.buildFactorialExpression(byId('funcFactorialValue')?.value || ''),
+            },
+            ncr: {
+                label: 'nCr',
+                focusId: 'funcNcrN',
+                requiredIds: ['funcNcrN', 'funcNcrK'],
+                action: 'apply-func-ncr',
+                preview: () => {
+                    const nValue = String(byId('funcNcrN')?.value || '').trim() || '...';
+                    const kValue = String(byId('funcNcrK')?.value || '').trim() || '...';
+                    return `nCr(${nValue};${kValue})`;
+                },
+                build: () => DevCalculatorCommands.buildBinomialCoefficientExpression({
+                    n: byId('funcNcrN')?.value || '',
+                    k: byId('funcNcrK')?.value || '',
+                }),
+            },
             fraction: {
+                label: 'Bruch',
                 focusId: 'funcFractionTop',
                 requiredIds: ['funcFractionTop', 'funcFractionBottom'],
                 action: 'apply-func-fraction',
@@ -546,6 +624,7 @@
                 }),
             },
             power: {
+                label: 'Potenz',
                 focusId: 'funcPowerBase',
                 requiredIds: ['funcPowerBase', 'funcPowerExponent'],
                 action: 'apply-func-power',
@@ -570,7 +649,16 @@
         const definition = getStandardToolDefinition();
         const previewTarget = byId('standardToolPreview');
         const liveTarget = byId('standardToolLiveResult');
+        const detailTitle = byId('standardToolDetailTitle');
         const previewText = definition.preview();
+        if (detailTitle) {
+            detailTitle.textContent = definition.label;
+        }
+        document.querySelectorAll('[data-standard-tool-choice]').forEach((button) => {
+            const isActive = button.dataset.standardToolChoice === state.activeStandardTool;
+            button.classList.toggle('is-active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
         if (previewTarget) {
             previewTarget.textContent = previewText;
         }
@@ -592,21 +680,52 @@
 
     function setStandardTool(tool, { focus = true } = {}) {
         state.activeStandardTool = getStandardToolDefinitions()[tool] ? tool : 'sin';
-        const toolSelect = byId('standardToolSelect');
-        if (toolSelect && toolSelect.value !== state.activeStandardTool) {
-            toolSelect.value = state.activeStandardTool;
-        }
         document.querySelectorAll('.standard-tool-editor').forEach((panel) => {
             const isActive = panel.dataset.standardToolPanel === state.activeStandardTool;
             panel.classList.toggle('is-active', isActive);
             panel.hidden = !isActive;
         });
         updateStandardToolPreview();
-        if (!focus) return;
+        if (!focus || state.standardToolView !== 'detail') return;
         const focusTarget = byId(getStandardToolDefinition().focusId);
         if (focusTarget) {
             focusInput(focusTarget, false);
         }
+    }
+
+    function setStandardToolView(view, { focus = false } = {}) {
+        state.standardToolView = view === 'detail' ? 'detail' : 'overview';
+        const layout = document.querySelector('.standard-tool-layout');
+        const overview = byId('standardToolOverview');
+        const workbench = byId('standardToolWorkbench');
+
+        if (layout) {
+            layout.dataset.view = state.standardToolView;
+        }
+        if (overview) {
+            overview.hidden = state.standardToolView !== 'overview';
+        }
+        if (workbench) {
+            workbench.hidden = state.standardToolView !== 'detail';
+        }
+        if (!focus) return;
+
+        if (state.standardToolView === 'detail') {
+            const focusTarget = byId(getStandardToolDefinition().focusId);
+            if (focusTarget) {
+                focusInput(focusTarget, false);
+            }
+            return;
+        }
+
+        document
+            .querySelector(`[data-standard-tool-choice="${state.activeStandardTool}"]`)
+            ?.focus({ preventScroll: true });
+    }
+
+    function openStandardTool(tool) {
+        setStandardTool(tool, { focus: false });
+        setStandardToolView('detail', { focus: true });
     }
 
     function applySelectedStandardTool() {
@@ -619,13 +738,24 @@
             'apply-func-cos': { fieldId: 'funcCosValue', name: 'cos' },
             'apply-func-tan': { fieldId: 'funcTanValue', name: 'tan' },
             'apply-func-ln': { fieldId: 'funcLnValue', name: 'ln' },
+            'apply-func-asin': { fieldId: 'funcAsinValue', name: 'asin' },
+            'apply-func-acos': { fieldId: 'funcAcosValue', name: 'acos' },
+            'apply-func-atan': { fieldId: 'funcAtanValue', name: 'atan' },
+            'apply-func-abs': { fieldId: 'funcAbsValue', name: 'abs' },
+            'apply-func-sqrt': { fieldId: 'funcSqrtValue', name: 'sqrt' },
+            'apply-func-exp': {
+                fieldId: 'funcExpValue',
+                build: (value) => DevCalculatorCommands.buildExpExpression(value),
+            },
         };
 
         if (unaryBuilders[action]) {
-            const { fieldId, name } = unaryBuilders[action];
+            const { fieldId, name, build } = unaryBuilders[action];
             if (!requireFilledFields([fieldId])) return;
             insertIntoMainInput(
-                DevCalculatorCommands.buildUnaryFunctionExpression(name, byId(fieldId).value)
+                typeof build === 'function'
+                    ? build(byId(fieldId).value)
+                    : DevCalculatorCommands.buildUnaryFunctionExpression(name, byId(fieldId).value)
             );
             return;
         }
@@ -636,6 +766,23 @@
                 DevCalculatorCommands.buildLogExpression({
                     base: byId('funcLogBase').value,
                     value: byId('funcLogValue').value,
+                })
+            );
+            return;
+        }
+        if (action === 'apply-func-factorial') {
+            if (!requireFilledFields(['funcFactorialValue'])) return;
+            insertIntoMainInput(
+                DevCalculatorCommands.buildFactorialExpression(byId('funcFactorialValue').value)
+            );
+            return;
+        }
+        if (action === 'apply-func-ncr') {
+            if (!requireFilledFields(['funcNcrN', 'funcNcrK'])) return;
+            insertIntoMainInput(
+                DevCalculatorCommands.buildBinomialCoefficientExpression({
+                    n: byId('funcNcrN').value,
+                    k: byId('funcNcrK').value,
                 })
             );
             return;
@@ -692,6 +839,7 @@
         clearDraggedCalculatorPosition();
         setMode('basic');
         setStandardTool('sin', { focus: false });
+        setStandardToolView('overview', { focus: false });
         document.querySelector('.calculator-panels')?.scrollTo({ top: 0 });
         document.querySelector('.calculator-output-body')?.scrollTo({ top: 0 });
         focusInput(getMainInput());
@@ -799,8 +947,14 @@
             setMode(event.target.value);
         });
 
-        byId('standardToolSelect')?.addEventListener('change', (event) => {
-            setStandardTool(event.target.value);
+        document.querySelector('.standard-tool-overview')?.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-standard-tool-choice]');
+            if (!button) return;
+            openStandardTool(button.dataset.standardToolChoice);
+        });
+
+        document.querySelector('[data-action="back-standard-tools"]')?.addEventListener('click', () => {
+            setStandardToolView('overview', { focus: true });
         });
 
         document.querySelectorAll('[data-standard-input]').forEach((input) => {
@@ -897,12 +1051,6 @@
             applySelectedStandardTool();
         });
 
-        ['apply-func-sin', 'apply-func-cos', 'apply-func-tan', 'apply-func-ln', 'apply-func-log', 'apply-func-fraction', 'apply-func-power'].forEach((action) => {
-            document.querySelector(`[data-action="${action}"]`)?.addEventListener('click', () => {
-                applyFunctionBuilder(action);
-            });
-        });
-
         document.querySelector('[data-action="lgs-add-var"]')?.addEventListener('click', () => {
             if (state.lgsVariables < 6) {
                 state.lgsVariables += 1;
@@ -936,6 +1084,7 @@
     function init() {
         if (!byId('calculator-overlay')) return;
         renderLGSMatrix();
+        syncCalculatorInputMode();
         syncBinomPreview();
         outputApi.setText('0', { headline: 'Bereit' });
         markResultFresh('');
@@ -943,6 +1092,7 @@
         bindCalculatorDrag();
         updateModePicker(state.activeMode);
         setStandardTool(state.activeStandardTool, { focus: false });
+        setStandardToolView('overview', { focus: false });
         focusInput(getMainInput());
     }
 
