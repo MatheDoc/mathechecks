@@ -1,6 +1,6 @@
 <div id="calculator-overlay" class="calculator-overlay" aria-hidden="true">
-    <div class="calculator-container calculator-container--integrated">
-        <section class="calculator calculator--integrated" aria-label="Taschenrechner">
+    <div class="calculator-container">
+        <section class="calculator" aria-label="Taschenrechner">
             <div class="calculator-shell">
                 <div class="calculator-workspace">
                     <div class="calculator-topbar" id="calculatorDragHandle">
@@ -31,129 +31,264 @@
                                 <section class="calculator-panel is-active" data-panel="basic"
                                     aria-label="Standardrechner">
                                     <div class="standard-tool-layout">
-                                        <div class="standard-tool-workbench">
-                                            <div class="standard-tool-editor-row">
-                                                <div class="standard-tool-editors">
-                                                    <article class="function-card standard-tool-editor is-active"
-                                                        data-standard-tool-panel="sin">
-                                                        <div class="math-composer math-composer--simple">
-                                                            <span class="math-composer__label">sin</span>
-                                                            <span class="math-composer__paren">(</span>
-                                                            <input type="text" id="funcSinValue" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__main"
-                                                                data-standard-input="sin" placeholder="Argument">
-                                                            <span class="math-composer__paren">)</span>
-                                                        </div>
-                                                    </article>
+                                        <div class="standard-tool-overview" id="standardToolOverview">
+                                            <button type="button" class="standard-tool-grid-button is-active"
+                                                data-standard-tool-choice="sin" aria-pressed="true">sin</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="cos" aria-pressed="false">cos</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="tan" aria-pressed="false">tan</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="ln" aria-pressed="false">ln</button>
 
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="cos">
-                                                        <div class="math-composer math-composer--simple">
-                                                            <span class="math-composer__label">cos</span>
-                                                            <span class="math-composer__paren">(</span>
-                                                            <input type="text" id="funcCosValue" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__main"
-                                                                data-standard-input="cos" placeholder="Argument">
-                                                            <span class="math-composer__paren">)</span>
-                                                        </div>
-                                                    </article>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="asin" aria-pressed="false">asin</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="acos" aria-pressed="false">acos</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="atan" aria-pressed="false">atan</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="log" aria-pressed="false">log</button>
 
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="tan">
-                                                        <div class="math-composer math-composer--simple">
-                                                            <span class="math-composer__label">tan</span>
-                                                            <span class="math-composer__paren">(</span>
-                                                            <input type="text" id="funcTanValue" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__main"
-                                                                data-standard-input="tan" placeholder="Argument">
-                                                            <span class="math-composer__paren">)</span>
-                                                        </div>
-                                                    </article>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="sqrt" aria-pressed="false">sqrt</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="exp" aria-pressed="false">exp</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="abs" aria-pressed="false">abs</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="factorial" aria-pressed="false">n!</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="ncr" aria-pressed="false">nCr</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="fraction" aria-pressed="false">Bruch</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="power" aria-pressed="false">Potenz</button>
+                                        </div>
 
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="ln">
-                                                        <div class="math-composer math-composer--simple">
-                                                            <span class="math-composer__label">ln</span>
-                                                            <span class="math-composer__paren">(</span>
-                                                            <input type="text" id="funcLnValue" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__main"
-                                                                data-standard-input="ln" placeholder="Argument">
-                                                            <span class="math-composer__paren">)</span>
-                                                        </div>
-                                                    </article>
+                                        <div class="standard-tool-workbench" id="standardToolWorkbench" hidden>
+                                            <div class="standard-tool-detail-header">
+                                                <button type="button" class="standard-tool-back"
+                                                    data-action="back-standard-tools"
+                                                    aria-label="Zurück zur Funktionsübersicht"
+                                                    title="Zurück zur Funktionsübersicht">←</button>
+                                                <span class="standard-tool-detail-title"
+                                                    id="standardToolDetailTitle">sin</span>
+                                            </div>
 
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="log">
-                                                        <div class="math-composer math-composer--log">
-                                                            <span class="math-composer__label">log</span>
-                                                            <input type="text" id="funcLogBase" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__sub"
-                                                                data-standard-input="log" placeholder="Basis">
-                                                            <span class="math-composer__paren">(</span>
-                                                            <input type="text" id="funcLogValue" inputmode="decimal"
-                                                                autocomplete="off" class="math-composer__main"
-                                                                data-standard-input="log" placeholder="Argument">
-                                                            <span class="math-composer__paren">)</span>
-                                                        </div>
-                                                    </article>
+                                            <div class="standard-tool-editors">
+                                                <article class="function-card standard-tool-editor is-active"
+                                                    data-standard-tool-panel="sin">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">sin</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcSinValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="sin" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
 
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="fraction">
-                                                        <div class="math-composer math-composer--fraction">
-                                                            <input type="text" id="funcFractionTop" inputmode="decimal"
-                                                                autocomplete="off" data-standard-input="fraction"
-                                                                placeholder="Zähler">
-                                                            <span class="math-composer__divider"
-                                                                aria-hidden="true"></span>
-                                                            <input type="text" id="funcFractionBottom"
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="cos">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">cos</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcCosValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="cos" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="tan">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">tan</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcTanValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="tan" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="ln">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">ln</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcLnValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="ln" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="asin">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">asin</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcAsinValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="asin" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="acos">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">acos</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcAcosValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="acos" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="atan">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">atan</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcAtanValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="atan" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="log">
+                                                    <div class="math-composer math-composer--log">
+                                                        <span class="math-composer__label">log</span>
+                                                        <input type="text" id="funcLogBase" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__sub"
+                                                            data-standard-input="log" placeholder="Basis">
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcLogValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="log" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="sqrt">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">sqrt</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcSqrtValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="sqrt" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="exp">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">exp</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcExpValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="exp" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="abs">
+                                                    <div class="math-composer math-composer--simple">
+                                                        <span class="math-composer__label">abs</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcAbsValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="abs" placeholder="Argument">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="factorial">
+                                                    <div class="math-composer math-composer--factorial">
+                                                        <input type="text" id="funcFactorialValue" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="factorial" placeholder="n">
+                                                        <span class="math-composer__suffix">!</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="ncr">
+                                                    <div class="math-composer math-composer--pair">
+                                                        <span class="math-composer__label">nCr</span>
+                                                        <span class="math-composer__paren">(</span>
+                                                        <input type="text" id="funcNcrN" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="ncr" placeholder="n">
+                                                        <span class="math-composer__paren">;</span>
+                                                        <input type="text" id="funcNcrK" inputmode="decimal"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="ncr" placeholder="k">
+                                                        <span class="math-composer__paren">)</span>
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="fraction">
+                                                    <div class="math-composer math-composer--fraction">
+                                                        <input type="text" id="funcFractionTop" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="fraction"
+                                                            placeholder="Zähler">
+                                                        <span class="math-composer__divider" aria-hidden="true"></span>
+                                                        <input type="text" id="funcFractionBottom" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="fraction"
+                                                            placeholder="Nenner">
+                                                    </div>
+                                                </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="power">
+                                                    <div class="math-composer math-composer--power">
+                                                        <input type="text" id="funcPowerBase" inputmode="decimal"
+                                                            autocomplete="off" data-standard-input="power"
+                                                            placeholder="Basis">
+                                                        <span class="math-composer__sup-wrap">
+                                                            <span class="math-composer__caret">^</span>
+                                                            <input type="text" id="funcPowerExponent"
                                                                 inputmode="decimal" autocomplete="off"
-                                                                data-standard-input="fraction" placeholder="Nenner">
-                                                        </div>
-                                                    </article>
-
-                                                    <article class="function-card standard-tool-editor" hidden
-                                                        data-standard-tool-panel="power">
-                                                        <div class="math-composer math-composer--power">
-                                                            <input type="text" id="funcPowerBase" inputmode="decimal"
-                                                                autocomplete="off" data-standard-input="power"
-                                                                placeholder="Basis">
-                                                            <span class="math-composer__sup-wrap">
-                                                                <span class="math-composer__caret">^</span>
-                                                                <input type="text" id="funcPowerExponent"
-                                                                    inputmode="decimal" autocomplete="off"
-                                                                    class="math-composer__sup"
-                                                                    data-standard-input="power" placeholder="Exp.">
-                                                            </span>
-                                                        </div>
-                                                    </article>
-                                                </div>
-
-                                                <div class="standard-tool-picker standard-tool-picker--compact">
-                                                    <span class="standard-tool-picker__icon" aria-hidden="true">▾</span>
-                                                    <select id="standardToolSelect" class="standard-tool-select"
-                                                        aria-label="Standardwerkzeug wählen">
-                                                        <option value="sin" selected>sin</option>
-                                                        <option value="cos">cos</option>
-                                                        <option value="tan">tan</option>
-                                                        <option value="ln">ln</option>
-                                                        <option value="log">log</option>
-                                                        <option value="fraction">Bruch</option>
-                                                        <option value="power">Potenz</option>
-                                                    </select>
-                                                </div>
+                                                                class="math-composer__sup" data-standard-input="power"
+                                                                placeholder="Exp.">
+                                                        </span>
+                                                    </div>
+                                                </article>
                                             </div>
 
                                             <div class="standard-tool-summary">
-                                                <div class="panel-inline-result panel-inline-result--split">
+                                                <div class="panel-inline-result standard-tool-summary__result">
                                                     <span id="standardToolPreview"
                                                         class="panel-inline-result__primary">sin(...)</span>
-                                                    <span id="standardToolLiveResult"
-                                                        class="panel-inline-result__secondary">Wert: -</span>
+                                                    <div class="standard-tool-summary__live-row">
+                                                        <span id="standardToolLiveResult"
+                                                            class="panel-inline-result__secondary">Wert: -</span>
+                                                        <button type="button"
+                                                            class="copy-result standard-tool-summary__apply"
+                                                            data-action="apply-standard-tool" aria-label="Übernehmen"
+                                                            title="Übernehmen">
+                                                            <svg viewBox="0 0 24 24" aria-hidden="true"
+                                                                focusable="false" fill="none" stroke="currentColor"
+                                                                stroke-width="1.8" stroke-linecap="round"
+                                                                stroke-linejoin="round">
+                                                                <path d="M7 17L17 7"></path>
+                                                                <path d="M10 7H17V14"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                                <button type="button"
-                                                    class="standard-tool-action panel-apply-button panel-apply-button--compact standard-tool-action--compact"
-                                                    data-action="apply-standard-tool" aria-label="Übernehmen"
-                                                    title="Übernehmen">⤴</button>
                                             </div>
                                         </div>
                                     </div>
@@ -221,15 +356,24 @@
                                             </div>
                                         </div>
                                         <div class="standard-tool-summary binom-summary">
-                                            <div class="panel-inline-result panel-inline-result--split">
+                                            <div class="panel-inline-result binom-summary__result">
                                                 <span id="binomCommandPreview"
                                                     class="panel-inline-result__primary">binom(...;...;...;...)</span>
-                                                <span class="panel-inline-result__secondary">P(a ≤ X ≤ b) = <span
-                                                        id="binomLiveResult">-</span></span>
+                                                <div class="binom-summary__live-row">
+                                                    <span class="panel-inline-result__secondary">P(a ≤ X ≤ b) = <span
+                                                            id="binomLiveResult">-</span></span>
+                                                    <button type="button" class="copy-result binom-summary__apply"
+                                                        data-action="apply-binom" aria-label="Übernehmen"
+                                                        title="Übernehmen">
+                                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+                                                            fill="none" stroke="currentColor" stroke-width="1.8"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M7 17L17 7"></path>
+                                                            <path d="M10 7H17V14"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            <button type="button" class="panel-apply-button panel-apply-button--compact"
-                                                data-action="apply-binom" aria-label="Übernehmen"
-                                                title="Übernehmen">⤴</button>
                                         </div>
                                     </div>
                                 </section>
