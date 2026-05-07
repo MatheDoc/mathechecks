@@ -25,21 +25,21 @@
 
             <div class="buttons">
                 <!-- Reihe 1 -->
-                <button class="top-key" onclick="openGraphPopup()">GRAPH</button>
-                <button class="top-key" onclick="openLGSPopup()">LGS</button>
-                <button class="top-key" onclick="openBinPopup()">BINOM</button>
+                <button onclick="openGraphPopup()">GRAPH</button>
+                <button onclick="openLGSPopup()">LGS</button>
+                <button onclick="openBinPopup()">BINOM</button>
                 <button class="clear" onclick="clearAll()">C</button>
 
                 <!-- Reihe 2 -->
-                <button class="top-key" type="button" onclick="openTriPopup()">FUNC</button>
-                <button class="top-key" onclick="appendOperator('^')">^</button>
-                <button class="top-key" type="button" onclick="appendAutoParen()">()</button>
+                <button type="button" onclick="openTriPopup()">FUNC</button>
+                <button onclick="appendOperator('^')">^</button>
+                <button type="button" onclick="appendAutoParen()">()</button>
                 <button class="clear" onclick="backspace()">⌫</button>
 
                 <!-- Reihe 3 -->
                 <button type="button" onclick="openConstPopup()">CONST</button>
-                <button class="top-key" onclick="appendNumber('x')">x</button>
-                <button class="top-key" onclick="appendOperator('=')">=</button>
+                <button onclick="appendNumber('x')">x</button>
+                <button onclick="appendOperator('=')">=</button>
                 <button class="operator" onclick="appendOperator('/')">÷</button>
 
                 <!-- Reihe 4-7 -->
@@ -58,7 +58,7 @@
                 <button onclick="appendNumber('3')">3</button>
                 <button class="operator" onclick="appendOperator('+')">+</button>
 
-                <button class="top-key" onclick="insertAns()">Ans</button>
+                <button onclick="insertAns()">Ans</button>
                 <button onclick="appendNumber('0')">0</button>
                 <button onclick="appendNumber(',')">,</button>
                 <button class="equals" onclick="handleExecute()">EXE</button>

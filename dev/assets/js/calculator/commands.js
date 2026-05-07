@@ -522,6 +522,10 @@ const DevCalculatorCommands = (() => {
         return `(${String(fields.base ?? '').trim()})^(${String(fields.exponent ?? '').trim()})`;
     }
 
+    function buildIntegralExpression(fields) {
+        return `int(${String(fields.integrand ?? '').trim()};${String(fields.lowerBound ?? '').trim()};${String(fields.upperBound ?? '').trim()})`;
+    }
+
     function buildFactorialExpression(value) {
         return `(${String(value ?? '').trim()})!`;
     }
@@ -936,6 +940,15 @@ const DevCalculatorCommands = (() => {
         }
 
         if (equalsCount === 0 && containsVariableX(input)) {
+            try {
+                const value = DevCalculatorUtils.evaluateExpression(input);
+                if (Number.isFinite(value)) {
+                    outputApi.setText(DevCalculatorUtils.formatGeneralResult(value), { headline: 'Ergebnis' });
+                    return;
+                }
+            } catch {
+                // Fall back to symbolic expansion for open x-terms.
+            }
             expandExpression(input, outputApi);
             return;
         }
@@ -959,6 +972,7 @@ const DevCalculatorCommands = (() => {
         buildLogExpression,
         buildFractionExpression,
         buildPowerExpression,
+        buildIntegralExpression,
         buildFactorialExpression,
         buildBinomialCoefficientExpression,
         getLiveBinomResult,
