@@ -97,6 +97,20 @@
         if (input?.id) {
             state.activeInputId = input.id;
         }
+        syncActiveInputVisualState();
+    }
+
+    function syncActiveInputVisualState(root = document) {
+        const container = root?.querySelector?.('#calculator-overlay') || byId('calculator-overlay');
+        if (!container) return;
+
+        const showVirtualActiveState = shouldSuppressNativeKeyboard();
+        container.querySelectorAll('input[type="text"], input[type="number"]').forEach((input) => {
+            input.classList.toggle(
+                'is-active-input',
+                showVirtualActiveState && Boolean(state.activeInputId) && input.id === state.activeInputId
+            );
+        });
     }
 
     function storeSuppressedSelection(input, start = input?.selectionStart, end = input?.selectionEnd) {
@@ -241,6 +255,8 @@
             input.removeAttribute('virtualkeyboardpolicy');
             input.removeAttribute('data-suppress-native-keyboard');
         });
+
+        syncActiveInputVisualState(container);
     }
 
     function blurSuppressedInputAfterFocus(input) {
