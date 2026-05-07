@@ -182,11 +182,27 @@
         return shortEdge > 0 && shortEdge < 768;
     }
 
+    function hasCoarsePointer() {
+        return Boolean(
+            window.matchMedia?.('(pointer: coarse)')?.matches
+            || window.matchMedia?.('(any-pointer: coarse)')?.matches
+            || navigator.maxTouchPoints > 0
+        );
+    }
+
+    function hasFinePointer() {
+        return Boolean(
+            window.matchMedia?.('(pointer: fine)')?.matches
+            || window.matchMedia?.('(any-pointer: fine)')?.matches
+        );
+    }
+
     function shouldSuppressNativeKeyboard() {
         return Boolean(
             isProbablyMobileBrowser()
             && isPhoneSizedViewport()
-            && window.matchMedia?.('(hover: none) and (pointer: coarse)')?.matches
+            && hasCoarsePointer()
+            && !hasFinePointer()
         );
     }
 
@@ -216,7 +232,7 @@
             if (!Object.prototype.hasOwnProperty.call(input.dataset, 'originalInputmode')) {
                 input.dataset.originalInputmode = input.getAttribute('inputmode') || '';
             }
-            input.readOnly = false;
+            input.readOnly = suppressNativeKeyboard;
             input.autocapitalize = 'off';
             input.autocomplete = 'off';
             input.spellcheck = false;
@@ -224,6 +240,7 @@
             if (suppressNativeKeyboard) {
                 input.setAttribute('inputmode', 'none');
                 input.setAttribute('virtualkeyboardpolicy', 'manual');
+                input.setAttribute('aria-readonly', 'true');
                 input.setAttribute('data-suppress-native-keyboard', 'true');
                 return;
             }
@@ -234,7 +251,18 @@
                 input.removeAttribute('inputmode');
             }
             input.removeAttribute('virtualkeyboardpolicy');
+            input.removeAttribute('aria-readonly');
             input.removeAttribute('data-suppress-native-keyboard');
+        });
+    }
+
+    function blurSuppressedInputAfterFocus(input) {
+        if (!input || !shouldSuppressNativeKeyboard()) return;
+        window.requestAnimationFrame(() => {
+            if (document.activeElement === input) {
+                input.blur();
+            }
+            scheduleVirtualKeyboardHide();
         });
     }
 
@@ -1061,18 +1089,27 @@
     function bindEvents() {
         const overlay = byId('calculator-overlay');
 
-        overlay?.addEventListener('pointerdown', (event) => {
+        const interceptSuppressedInputActivation = (event) => {
             const input = getCalculatorTextInput(event.target);
             if (!input || !shouldSuppressNativeKeyboard()) return;
             event.preventDefault();
             handleSuppressedInputActivation(input);
-        }, true);
+        };
+
+        overlay?.addEventListener('pointerdown', interceptSuppressedInputActivation, true);
+        overlay?.addEventListener('mousedown', interceptSuppressedInputActivation, true);
+        overlay?.addEventListener('click', interceptSuppressedInputActivation, true);
+        overlay?.addEventListener('touchstart', interceptSuppressedInputActivation, {
+            capture: true,
+            passive: false,
+        });
 
         document.addEventListener('focusin', (event) => {
             const input = getCalculatorTextInput(event.target);
             if (!input) return;
             setActiveInput(input);
             if (shouldSuppressNativeKeyboard()) {
+                blurSuppressedInputAfterFocus(input);
                 scheduleVirtualKeyboardHide();
             }
         });
