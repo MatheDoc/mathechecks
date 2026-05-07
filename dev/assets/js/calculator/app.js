@@ -8,7 +8,6 @@
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
         lastExecutedMainInput: '',
-        suppressedKeyboardSelectionByInput: {},
     };
 
     function byId(id) {
@@ -99,29 +98,12 @@
         }
     }
 
-    function storeSuppressedSelection(input, start = input?.selectionStart, end = input?.selectionEnd) {
-        if (!input?.id) return;
-        const fallback = input.value?.length || 0;
-        state.suppressedKeyboardSelectionByInput[input.id] = {
-            start: Number.isInteger(start) ? start : fallback,
-            end: Number.isInteger(end) ? end : (Number.isInteger(start) ? start : fallback),
-        };
-    }
-
-    function getSuppressedSelection(input) {
-        if (!input?.id) return null;
-        return state.suppressedKeyboardSelectionByInput[input.id] || null;
-    }
-
     function applySelectionState(input, start, end = start) {
         if (!input?.setSelectionRange) return;
         const length = input.value?.length || 0;
         const nextStart = clamp(Number.isInteger(start) ? start : length, 0, length);
         const nextEnd = clamp(Number.isInteger(end) ? end : nextStart, nextStart, length);
         input.setSelectionRange(nextStart, nextEnd);
-        if (shouldSuppressNativeKeyboard()) {
-            storeSuppressedSelection(input, nextStart, nextEnd);
-        }
     }
 
     function getActiveInput() {
@@ -268,12 +250,6 @@
         return !shouldSuppressNativeKeyboard();
     }
 
-    function handleSuppressedInputActivation(input) {
-        if (!input) return;
-        syncCalculatorInputMode();
-        focusInput(input, false);
-    }
-
     window.focusDevCalculatorMainInput = focusMainInputForCurrentDevice;
 
     function emitInputEvent(input) {
@@ -283,9 +259,8 @@
 
     function insertAtCursor(input, value) {
         const currentValue = input.value || '';
-        const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(input) : null;
-        const start = storedSelection?.start ?? input.selectionStart ?? currentValue.length;
-        const end = storedSelection?.end ?? input.selectionEnd ?? start;
+        const start = input.selectionStart ?? currentValue.length;
+        const end = input.selectionEnd ?? start;
         input.value = currentValue.slice(0, start) + value + currentValue.slice(end);
         const nextPos = start + value.length;
         applySelectionState(input, nextPos, nextPos);
@@ -296,8 +271,7 @@
         if (!target) return;
         insertAtCursor(target, value === '()' ? '()' : value);
         if (value === '()') {
-            const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(target) : null;
-            const pos = (storedSelection?.start ?? target.selectionStart ?? target.value.length) - 1;
+            const pos = (target.selectionStart ?? target.value.length) - 1;
             applySelectionState(target, pos, pos);
         }
         focusInput(target, false);
@@ -338,9 +312,8 @@
     function backspaceActiveInput() {
         const target = getActiveInput() || getMainInput();
         if (!target) return;
-        const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(target) : null;
-        const start = storedSelection?.start ?? target.selectionStart ?? target.value.length;
-        const end = storedSelection?.end ?? target.selectionEnd ?? start;
+        const start = target.selectionStart ?? target.value.length;
+        const end = target.selectionEnd ?? start;
         if (start !== end) {
             target.value = target.value.slice(0, start) + target.value.slice(end);
             applySelectionState(target, start, start);
@@ -1023,23 +996,6 @@
     }
 
     function bindEvents() {
-        const overlay = byId('calculator-overlay');
-
-        const interceptSuppressedInputActivation = (event) => {
-            const input = getCalculatorTextInput(event.target);
-            if (!input || !shouldSuppressNativeKeyboard()) return;
-            event.preventDefault();
-            handleSuppressedInputActivation(input);
-        };
-
-        overlay?.addEventListener('pointerdown', interceptSuppressedInputActivation, true);
-        overlay?.addEventListener('mousedown', interceptSuppressedInputActivation, true);
-        overlay?.addEventListener('click', interceptSuppressedInputActivation, true);
-        overlay?.addEventListener('touchstart', interceptSuppressedInputActivation, {
-            capture: true,
-            passive: false,
-        });
-
         document.addEventListener('focusin', (event) => {
             const input = getCalculatorTextInput(event.target);
             if (!input) return;
