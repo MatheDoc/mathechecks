@@ -97,20 +97,6 @@
         if (input?.id) {
             state.activeInputId = input.id;
         }
-        syncActiveInputVisualState();
-    }
-
-    function syncActiveInputVisualState(root = document) {
-        const container = root?.querySelector?.('#calculator-overlay') || byId('calculator-overlay');
-        if (!container) return;
-
-        const showVirtualActiveState = shouldSuppressNativeKeyboard();
-        container.querySelectorAll('input[type="text"], input[type="number"]').forEach((input) => {
-            input.classList.toggle(
-                'is-active-input',
-                showVirtualActiveState && Boolean(state.activeInputId) && input.id === state.activeInputId
-            );
-        });
     }
 
     function storeSuppressedSelection(input, start = input?.selectionStart, end = input?.selectionEnd) {
@@ -256,17 +242,6 @@
             input.removeAttribute('data-suppress-native-keyboard');
         });
 
-        syncActiveInputVisualState(container);
-    }
-
-    function blurSuppressedInputAfterFocus(input) {
-        if (!input || !shouldSuppressNativeKeyboard()) return;
-        window.requestAnimationFrame(() => {
-            if (document.activeElement === input) {
-                input.blur();
-            }
-            scheduleVirtualKeyboardHide();
-        });
     }
 
     function focusInput(input, placeCursorAtEnd = true) {
@@ -275,19 +250,12 @@
             syncCalculatorInputMode();
         }
         setActiveInput(input);
-        if (input.closest?.('#calculator-overlay') && shouldSuppressNativeKeyboard()) {
-            const storedSelection = getSuppressedSelection(input);
-            if (placeCursorAtEnd) {
-                applySelectionState(input, input.value?.length || 0);
-            } else if (storedSelection) {
-                applySelectionState(input, storedSelection.start, storedSelection.end);
-            }
-            scheduleVirtualKeyboardHide();
-            return;
-        }
         input.focus({ preventScroll: true });
         if (placeCursorAtEnd) {
             applySelectionState(input, input.value?.length || 0);
+        }
+        if (input.closest?.('#calculator-overlay') && shouldSuppressNativeKeyboard()) {
+            scheduleVirtualKeyboardHide();
         }
     }
 
@@ -296,49 +264,14 @@
         if (!mainInput) return false;
 
         syncCalculatorInputMode();
-        setActiveInput(mainInput);
-
-        if (!shouldSuppressNativeKeyboard()) {
-            focusInput(mainInput);
-            return true;
-        }
-
-        const activeElement = document.activeElement;
-        if (activeElement instanceof HTMLElement && activeElement !== mainInput) {
-            activeElement.blur();
-        }
-
-        applySelectionState(mainInput, mainInput.value?.length || 0);
-
-        scheduleVirtualKeyboardHide();
-        return false;
+        focusInput(mainInput);
+        return !shouldSuppressNativeKeyboard();
     }
 
     function handleSuppressedInputActivation(input) {
         if (!input) return;
         syncCalculatorInputMode();
-
-        if (!shouldSuppressNativeKeyboard()) {
-            focusInput(input, false);
-            return;
-        }
-
-        const activeElement = document.activeElement;
-        const keepCurrentSelection = activeElement === input;
-        setActiveInput(input);
-
-        if (activeElement instanceof HTMLElement && activeElement !== input) {
-            activeElement.blur();
-        }
-
-        const fallbackPos = input.value?.length || 0;
-        const storedSelection = getSuppressedSelection(input);
-        const pos = keepCurrentSelection
-            ? (storedSelection?.start ?? input.selectionStart ?? fallbackPos)
-            : fallbackPos;
-        applySelectionState(input, pos, keepCurrentSelection ? (storedSelection?.end ?? input.selectionEnd ?? pos) : pos);
-
-        scheduleVirtualKeyboardHide();
+        focusInput(input, false);
     }
 
     window.focusDevCalculatorMainInput = focusMainInputForCurrentDevice;
@@ -1112,7 +1045,6 @@
             if (!input) return;
             setActiveInput(input);
             if (shouldSuppressNativeKeyboard()) {
-                blurSuppressedInputAfterFocus(input);
                 scheduleVirtualKeyboardHide();
             }
         });
