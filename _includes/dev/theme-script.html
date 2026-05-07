@@ -107,6 +107,11 @@
                 }
 
                 window.setTimeout(() => {
+                    if (typeof window.focusDevCalculatorMainInput === 'function') {
+                        window.focusDevCalculatorMainInput();
+                        return;
+                    }
+
                     const mainInput = document.getElementById('mainInput');
                     if (mainInput) mainInput.focus();
                 }, 100);

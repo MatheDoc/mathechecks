@@ -149,11 +149,36 @@
         );
     }
 
+    function isPhoneSizedViewport() {
+        const viewportWidth = window.visualViewport?.width || window.innerWidth || 0;
+        const viewportHeight = window.visualViewport?.height || window.innerHeight || 0;
+        const shortEdge = Math.min(viewportWidth, viewportHeight);
+        return shortEdge > 0 && shortEdge < 768;
+    }
+
     function shouldSuppressNativeKeyboard() {
         return Boolean(
             isProbablyMobileBrowser()
+            && isPhoneSizedViewport()
             && window.matchMedia?.('(hover: none) and (pointer: coarse)')?.matches
         );
+    }
+
+    function hideVirtualKeyboard() {
+        try {
+            navigator.virtualKeyboard?.hide?.();
+        } catch {
+            // Ignore unsupported virtual keyboard APIs.
+        }
+    }
+
+    function scheduleVirtualKeyboardHide() {
+        hideVirtualKeyboard();
+        window.requestAnimationFrame(() => hideVirtualKeyboard());
+    }
+
+    function getCalculatorTextInput(target) {
+        return target?.closest?.('#calculator-overlay input[type="text"], #calculator-overlay input[type="number"]') || null;
     }
 
     function syncCalculatorInputMode(root = document) {
@@ -170,6 +195,7 @@
 
             if (suppressNativeKeyboard) {
                 input.setAttribute('inputmode', 'none');
+                input.setAttribute('virtualkeyboardpolicy', 'manual');
                 input.setAttribute('aria-readonly', 'true');
                 return;
             }
@@ -179,19 +205,82 @@
             } else {
                 input.removeAttribute('inputmode');
             }
+            input.removeAttribute('virtualkeyboardpolicy');
             input.removeAttribute('aria-readonly');
         });
     }
 
     function focusInput(input, placeCursorAtEnd = true) {
         if (!input) return;
+        if (input.closest?.('#calculator-overlay')) {
+            syncCalculatorInputMode();
+        }
         setActiveInput(input);
         input.focus({ preventScroll: true });
         if (placeCursorAtEnd && input.setSelectionRange) {
             const pos = input.value?.length || 0;
             input.setSelectionRange(pos, pos);
         }
+        if (input.closest?.('#calculator-overlay') && shouldSuppressNativeKeyboard()) {
+            scheduleVirtualKeyboardHide();
+        }
     }
+
+    function focusMainInputForCurrentDevice() {
+        const mainInput = getMainInput();
+        if (!mainInput) return false;
+
+        syncCalculatorInputMode();
+        setActiveInput(mainInput);
+
+        if (!shouldSuppressNativeKeyboard()) {
+            focusInput(mainInput);
+            return true;
+        }
+
+        const activeElement = document.activeElement;
+        if (activeElement instanceof HTMLElement && activeElement !== mainInput) {
+            activeElement.blur();
+        }
+
+        if (mainInput.setSelectionRange) {
+            const pos = mainInput.value?.length || 0;
+            mainInput.setSelectionRange(pos, pos);
+        }
+
+        scheduleVirtualKeyboardHide();
+        return false;
+    }
+
+    function handleSuppressedInputActivation(input) {
+        if (!input) return;
+        syncCalculatorInputMode();
+
+        if (!shouldSuppressNativeKeyboard()) {
+            focusInput(input, false);
+            return;
+        }
+
+        const activeElement = document.activeElement;
+        const keepCurrentSelection = activeElement === input;
+        setActiveInput(input);
+
+        if (activeElement instanceof HTMLElement && activeElement !== input) {
+            activeElement.blur();
+        }
+
+        input.focus({ preventScroll: true });
+
+        if (input.setSelectionRange) {
+            const fallbackPos = input.value?.length || 0;
+            const pos = keepCurrentSelection ? (input.selectionStart ?? fallbackPos) : fallbackPos;
+            input.setSelectionRange(pos, pos);
+        }
+
+        scheduleVirtualKeyboardHide();
+    }
+
+    window.focusDevCalculatorMainInput = focusMainInputForCurrentDevice;
 
     function emitInputEvent(input) {
         if (!input) return;
@@ -235,7 +324,7 @@
         mainInput.value = value;
         syncResultStaleState();
         if (focusMainInput) {
-            focusInput(mainInput);
+            focusMainInputForCurrentDevice();
         }
     }
 
@@ -284,7 +373,7 @@
         queueMicrotask(() => {
             if (state.activeMode === 'basic') {
                 setStandardToolView('overview', { focus: false });
-                focusInput(getMainInput());
+                focusMainInputForCurrentDevice();
                 return;
             }
             const firstInput = document.querySelector(`.calculator-panel[data-panel="${state.activeMode}"] input`);
@@ -655,7 +744,8 @@
             detailTitle.textContent = definition.label;
         }
         document.querySelectorAll('[data-standard-tool-choice]').forEach((button) => {
-            const isActive = button.dataset.standardToolChoice === state.activeStandardTool;
+            const isActive = state.standardToolView === 'detail'
+                && button.dataset.standardToolChoice === state.activeStandardTool;
             button.classList.toggle('is-active', isActive);
             button.setAttribute('aria-pressed', String(isActive));
         });
@@ -842,7 +932,7 @@
         setStandardToolView('overview', { focus: false });
         document.querySelector('.calculator-panels')?.scrollTo({ top: 0 });
         document.querySelector('.calculator-output-body')?.scrollTo({ top: 0 });
-        focusInput(getMainInput());
+        focusMainInputForCurrentDevice();
     }
 
     function bindCalculatorDrag() {
@@ -937,10 +1027,26 @@
     }
 
     function bindEvents() {
+        const overlay = byId('calculator-overlay');
+
+        overlay?.addEventListener('pointerdown', (event) => {
+            const input = getCalculatorTextInput(event.target);
+            if (!input || !shouldSuppressNativeKeyboard()) return;
+            event.preventDefault();
+            handleSuppressedInputActivation(input);
+        }, true);
+
         document.addEventListener('focusin', (event) => {
-            if (event.target?.tagName === 'INPUT' && event.target.closest('#calculator-overlay')) {
-                setActiveInput(event.target);
+            const input = getCalculatorTextInput(event.target);
+            if (!input) return;
+            setActiveInput(input);
+            if (shouldSuppressNativeKeyboard()) {
+                scheduleVirtualKeyboardHide();
             }
+        });
+
+        window.addEventListener('resize', () => {
+            syncCalculatorInputMode();
         });
 
         byId('calculatorModeSelect')?.addEventListener('change', (event) => {
@@ -1093,7 +1199,7 @@
         updateModePicker(state.activeMode);
         setStandardTool(state.activeStandardTool, { focus: false });
         setStandardToolView('overview', { focus: false });
-        focusInput(getMainInput());
+        focusMainInputForCurrentDevice();
     }
 
     if (document.readyState === 'loading') {

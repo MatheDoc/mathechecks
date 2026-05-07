@@ -1,6 +1,6 @@
 import { buildBaumdiagrammFigure } from "../../dev/assets/js/visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../dev/assets/js/visuals/histogramm.js";
-import { plotlyRender } from "../../dev/assets/js/visuals/plotly-defaults.js";
+import { plotlyRender } from "../../dev/assets/js/visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 import { buildVerflechtungsdiagrammFigure } from "../../dev/assets/js/visuals/verflechtungsdiagramm.js";
 
 function toNumber(value, fallback) {

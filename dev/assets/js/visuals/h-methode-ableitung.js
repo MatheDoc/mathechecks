@@ -3,7 +3,7 @@
  * Visualizes the function f(x)=x^2 together with a secant and the tangent in x0.
  */
 
-import { themeTextColor } from "./plotly-defaults.js";
+import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 export function buildHMethodeAbleitungFigure({ x0, h, xMin = -4, xMax = 4, yMin = -2, yMax = 16 }) {
     const step = 0.05;

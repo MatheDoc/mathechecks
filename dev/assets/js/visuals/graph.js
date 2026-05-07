@@ -6,7 +6,7 @@
  * optional points and optional shaded areas.
  */
 
-import { themeTextColor } from "./plotly-defaults.js";
+import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 export function buildGraphFigure({
     funktionen,

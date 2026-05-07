@@ -7,7 +7,7 @@ import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js"
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
-import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js";
+import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
     if (raw == null || raw === "") return null;

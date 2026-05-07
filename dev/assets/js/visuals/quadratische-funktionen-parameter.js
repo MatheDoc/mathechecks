@@ -3,7 +3,7 @@
  * f(x) = a(x - d)² + e  with reference parabola x²
  */
 
-import { themeTextColor } from "./plotly-defaults.js";
+import { themeTextColor } from "./plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 export function buildQuadratischeParameterFigure({ a, d, e, xMin = -6, xMax = 6, yMin = -8, yMax = 12 }) {
     const step = 0.05;
