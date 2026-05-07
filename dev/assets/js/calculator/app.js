@@ -175,34 +175,20 @@
         );
     }
 
-    function isPhoneSizedViewport() {
-        const viewportWidth = window.visualViewport?.width || window.innerWidth || 0;
-        const viewportHeight = window.visualViewport?.height || window.innerHeight || 0;
-        const shortEdge = Math.min(viewportWidth, viewportHeight);
-        return shortEdge > 0 && shortEdge < 768;
+    function isTouchDevice() {
+        if (window.matchMedia?.('(pointer: coarse)')?.matches) return true;
+        return Boolean(navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
     }
 
-    function hasCoarsePointer() {
-        return Boolean(
-            window.matchMedia?.('(pointer: coarse)')?.matches
-            || window.matchMedia?.('(any-pointer: coarse)')?.matches
-            || navigator.maxTouchPoints > 0
-        );
-    }
-
-    function hasFinePointer() {
-        return Boolean(
-            window.matchMedia?.('(pointer: fine)')?.matches
-            || window.matchMedia?.('(any-pointer: fine)')?.matches
-        );
+    function isFinePointerDevice() {
+        return Boolean(window.matchMedia?.('(pointer: fine)')?.matches);
     }
 
     function shouldSuppressNativeKeyboard() {
         return Boolean(
             isProbablyMobileBrowser()
-            && isPhoneSizedViewport()
-            && hasCoarsePointer()
-            && !hasFinePointer()
+            && isTouchDevice()
+            && !isFinePointerDevice()
         );
     }
 
@@ -230,28 +216,29 @@
         const suppressNativeKeyboard = shouldSuppressNativeKeyboard();
         container.querySelectorAll('input[type="text"], input[type="number"]').forEach((input) => {
             if (!Object.prototype.hasOwnProperty.call(input.dataset, 'originalInputmode')) {
-                input.dataset.originalInputmode = input.getAttribute('inputmode') || '';
+                input.dataset.originalInputmode = input.getAttribute('inputmode') || input.inputMode || '';
             }
-            input.readOnly = suppressNativeKeyboard;
+            input.readOnly = false;
             input.autocapitalize = 'off';
             input.autocomplete = 'off';
             input.spellcheck = false;
 
             if (suppressNativeKeyboard) {
+                input.inputMode = 'none';
                 input.setAttribute('inputmode', 'none');
                 input.setAttribute('virtualkeyboardpolicy', 'manual');
-                input.setAttribute('aria-readonly', 'true');
                 input.setAttribute('data-suppress-native-keyboard', 'true');
                 return;
             }
 
             if (input.dataset.originalInputmode) {
+                input.inputMode = input.dataset.originalInputmode;
                 input.setAttribute('inputmode', input.dataset.originalInputmode);
             } else {
+                input.inputMode = '';
                 input.removeAttribute('inputmode');
             }
             input.removeAttribute('virtualkeyboardpolicy');
-            input.removeAttribute('aria-readonly');
             input.removeAttribute('data-suppress-native-keyboard');
         });
     }
