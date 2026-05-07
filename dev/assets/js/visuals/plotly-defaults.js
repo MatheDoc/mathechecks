@@ -26,6 +26,14 @@ export function themeSurfaceColor() {
         .getPropertyValue("--surface").trim() || "#ffffff";
 }
 
+/** Returns a solid hover background; transparent surfaces render incorrectly in Plotly SVG hovers. */
+export function themeHoverSurfaceColor() {
+    const styles = getComputedStyle(document.documentElement);
+    return styles.getPropertyValue("--bg-subtle").trim()
+        || styles.getPropertyValue("--panel-solid").trim()
+        || "#1a1a24";
+}
+
 /** Returns the current CSS --border color for themed overlays and tooltips. */
 export function themeBorderColor() {
     return getComputedStyle(document.documentElement)
@@ -79,6 +87,7 @@ function enableTouchScroll(plotEl) {
 export function plotlyRender(container, data, layout = {}, config = {}) {
     const textColor = themeTextColor();
     const surfaceColor = themeSurfaceColor();
+    const hoverSurfaceColor = themeHoverSurfaceColor();
     const borderColor = themeBorderColor();
     const gridColor = textColor + "22";
     const zeroLineColor = textColor + "aa";
@@ -93,7 +102,7 @@ export function plotlyRender(container, data, layout = {}, config = {}) {
     };
 
     const hoverLabelDefaults = {
-        bgcolor: surfaceColor,
+        bgcolor: hoverSurfaceColor,
         bordercolor: borderColor,
         font: { color: textColor },
     };

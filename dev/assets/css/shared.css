@@ -3631,6 +3631,16 @@ html.light .recall-list--user .recall-list__item {
   stroke: currentColor !important;
 }
 
+.js-plotly-plot .hoverlayer .hovertext rect {
+  fill: var(--bg-subtle) !important;
+  fill-opacity: 1 !important;
+  stroke: var(--border) !important;
+}
+
+.js-plotly-plot .hoverlayer .hovertext .name {
+  fill: var(--text) !important;
+}
+
 
 /* MODULE: SKRIPT */
 .sk-layout {
