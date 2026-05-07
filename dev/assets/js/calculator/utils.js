@@ -69,6 +69,40 @@ const DevCalculatorUtils = (() => {
         return Math.log(normalizedValue) / Math.log(normalizedBase);
     }
 
+    function definiteIntegral(integrand, lower, upper, segments = 2048) {
+        if (typeof integrand !== 'function') return NaN;
+
+        const start = Number(lower);
+        const end = Number(upper);
+        if (!Number.isFinite(start) || !Number.isFinite(end)) return NaN;
+        if (start === end) return 0;
+        if (start > end) return -definiteIntegral(integrand, end, start, segments);
+
+        const evenSegments = Math.max(2, Math.floor(Number(segments) / 2) * 2);
+        const stepSize = (end - start) / evenSegments;
+
+        const evaluatePoint = (x) => {
+            try {
+                const value = Number(integrand(x));
+                return Number.isFinite(value) ? value : NaN;
+            } catch {
+                return NaN;
+            }
+        };
+
+        let sum = evaluatePoint(start) + evaluatePoint(end);
+        if (!Number.isFinite(sum)) return NaN;
+
+        for (let index = 1; index < evenSegments; index++) {
+            const x = start + (stepSize * index);
+            const y = evaluatePoint(x);
+            if (!Number.isFinite(y)) return NaN;
+            sum += y * (index % 2 === 0 ? 2 : 4);
+        }
+
+        return (stepSize / 3) * sum;
+    }
+
     function toGermanNumber(text) {
         if (typeof text !== 'string') text = String(text ?? '');
         if (!text) return '';
@@ -114,6 +148,29 @@ const DevCalculatorUtils = (() => {
             else if (ch === ';' && depth === 0) return i;
         }
         return -1;
+    }
+
+    function splitTopLevelParts(str, separator = ';') {
+        const parts = [];
+        let current = '';
+        let depth = 0;
+
+        for (let i = 0; i < str.length; i++) {
+            const ch = str[i];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+
+            if (ch === separator && depth === 0) {
+                parts.push(current.trim());
+                current = '';
+                continue;
+            }
+
+            current += ch;
+        }
+
+        parts.push(current.trim());
+        return parts;
     }
 
     function extractParenthesized(expr, startIndex) {
@@ -313,6 +370,30 @@ const DevCalculatorUtils = (() => {
         return expr;
     }
 
+    function convertIntegralSyntax(value) {
+        let expr = value;
+        let idx = expr.toLowerCase().indexOf('int(');
+
+        while (idx !== -1) {
+            const argsParen = extractParenthesized(expr, idx + 3);
+            if (!argsParen) break;
+
+            const inner = expr.slice(argsParen.start + 1, argsParen.end);
+            const parts = splitTopLevelParts(inner);
+            if (parts.length !== 3 || parts.some((part) => !part)) {
+                idx = expr.toLowerCase().indexOf('int(', argsParen.end + 1);
+                continue;
+            }
+
+            const [integrand, lowerBound, upperBound] = parts.map((part) => convertIntegralSyntax(part));
+            const replacement = `DevCalculatorUtils.definiteIntegral((x) => (${integrand}), (${lowerBound}), (${upperBound}))`;
+            expr = `${expr.slice(0, idx)}${replacement}${expr.slice(argsParen.end + 1)}`;
+            idx = expr.toLowerCase().indexOf('int(');
+        }
+
+        return expr;
+    }
+
     function normalizeExpression(input) {
         const normalized = normalizeNumberString(input);
         let expression = addImplicitMultiplication(
@@ -324,7 +405,7 @@ const DevCalculatorUtils = (() => {
                 )
             )
         );
-        return normalizeConstants(expression)
+        expression = normalizeConstants(expression)
             .replace(/×/g, '*')
             .replace(/÷/g, '/')
             .replace(/−/g, '-')
@@ -342,6 +423,7 @@ const DevCalculatorUtils = (() => {
             .replace(/(?<!Math\.)\bsin\s*\(/g, 'Math.sin(')
             .replace(/(?<!Math\.)\bcos\s*\(/g, 'Math.cos(')
             .replace(/(?<!Math\.)\btan\s*\(/g, 'Math.tan(');
+        return convertIntegralSyntax(expression);
     }
 
     function prepareGraphExpression(input) {
@@ -410,6 +492,7 @@ const DevCalculatorUtils = (() => {
         binomialCoefficient,
         computeBinomProbability,
         logBase,
+        definiteIntegral,
         addImplicitMultiplication,
         normalizeUnaryMinusExponent,
         normalizeConstants,
@@ -421,5 +504,6 @@ const DevCalculatorUtils = (() => {
         convertNCrSyntax,
         convertFactorialSyntax,
         convertBinomSyntaxForMathJS,
+        convertIntegralSyntax,
     };
 })();

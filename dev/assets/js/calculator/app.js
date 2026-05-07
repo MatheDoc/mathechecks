@@ -696,6 +696,23 @@
                     exponent: byId('funcPowerExponent')?.value || '',
                 }),
             },
+            integral: {
+                label: 'Integral',
+                focusId: 'funcIntegralLower',
+                requiredIds: ['funcIntegralExpression', 'funcIntegralLower', 'funcIntegralUpper'],
+                action: 'apply-func-integral',
+                preview: () => {
+                    const integrand = String(byId('funcIntegralExpression')?.value || '').trim() || 'f(x)';
+                    const lowerBound = String(byId('funcIntegralLower')?.value || '').trim() || 'a';
+                    const upperBound = String(byId('funcIntegralUpper')?.value || '').trim() || 'b';
+                    return `int(${integrand};${lowerBound};${upperBound})`;
+                },
+                build: () => DevCalculatorCommands.buildIntegralExpression({
+                    integrand: byId('funcIntegralExpression')?.value || '',
+                    lowerBound: byId('funcIntegralLower')?.value || '',
+                    upperBound: byId('funcIntegralUpper')?.value || '',
+                }),
+            },
         };
     }
 
@@ -862,6 +879,17 @@
                 DevCalculatorCommands.buildPowerExpression({
                     base: byId('funcPowerBase').value,
                     exponent: byId('funcPowerExponent').value,
+                })
+            );
+            return;
+        }
+        if (action === 'apply-func-integral') {
+            if (!requireFilledFields(['funcIntegralExpression', 'funcIntegralLower', 'funcIntegralUpper'])) return;
+            insertIntoMainInput(
+                DevCalculatorCommands.buildIntegralExpression({
+                    integrand: byId('funcIntegralExpression').value,
+                    lowerBound: byId('funcIntegralLower').value,
+                    upperBound: byId('funcIntegralUpper').value,
                 })
             );
         }

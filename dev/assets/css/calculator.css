@@ -4,7 +4,7 @@
     --hintergrundfarbe: var(--panel-solid);
     --hintergrund-hell: var(--surface);
     --hintergrund-hell-hover: var(--surface-hi);
-    --calculator-button-height: 36px;
+    --calculator-button-height: 32px;
     --icon-button-hover-bg: color-mix(in srgb, var(--surface-hi) 82%, transparent);
     --icon-button-active-bg: color-mix(in srgb, var(--surface-hi) 94%, transparent);
     --borderfarbe: var(--border);
@@ -72,7 +72,7 @@ html.light .calculator-overlay {
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 16px;
+    padding: 10px;
     pointer-events: none;
     font-size: 15px;
 }
@@ -128,11 +128,10 @@ html.light .calculator-overlay {
 .calculator {
     background:
         linear-gradient(180deg, color-mix(in srgb, var(--hintergrundfarbe) 92%, #ffffff 8%), var(--hintergrundfarbe));
-    border-radius: 24px;
-    width: min(450px, calc(100vw - 32px));
-    max-width: min(450px, calc(100vw - 32px));
-    height: min(92vh, 920px);
-    max-height: calc(100vh - 32px);
+    border-radius: 18px;
+    width: min(450px, calc(100vw - 20px));
+    height: min(700px, calc(100vh - 20px));
+    height: min(700px, calc(100svh - 20px));
     display: block;
     overflow: hidden;
     border: 1px solid var(--borderfarbe);
@@ -167,7 +166,7 @@ html.light .calculator-overlay {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 10px 12px 8px;
+    padding: 8px 10px 6px;
 }
 
 .calculator .result-display {
@@ -175,7 +174,7 @@ html.light .calculator-overlay {
     min-width: 0;
     font-size: 28px;
     font-weight: 300;
-    min-height: 34px;
+    min-height: 38px;
     padding: 0 0 2px;
     text-align: left;
     font-family: 'Segoe UI', 'Segoe UI Symbol', 'Courier New', Courier, monospace;
@@ -210,8 +209,8 @@ html.light .calculator-overlay {
     background: transparent;
     border: 0;
     color: var(--textfarbe-schwach);
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -265,12 +264,12 @@ html.light .calculator-overlay {
 }
 
 .calculator .main-input {
-    padding: 0 12px;
+    padding: 0 10px;
 }
 
 .calculator .main-input input {
     width: 100%;
-    min-height: 42px;
+    min-height: 40px;
     padding: 6px 8px;
     border-radius: 12px;
     background: var(--hintergrund-hell);
@@ -436,7 +435,7 @@ html.light .calculator-overlay {
 }
 
 .calculator button {
-    padding: 0 8px;
+    padding: 0 7px;
     height: var(--calculator-button-height);
     /* Fixed button height for uniform rows */
     font-size: inherit;
@@ -461,33 +460,6 @@ html.light .calculator-overlay {
 
 .calculator button:active {
     transform: translateY(0);
-}
-
-.calculator .operator {
-    background: var(--hauptfarbe);
-    color: #ffffff;
-}
-
-.calculator .operator:hover {
-    background: var(--hauptfarbe-hover);
-}
-
-.calculator .equals {
-    background: var(--ok-farbe);
-    color: #ffffff;
-}
-
-.calculator .equals:hover {
-    background: var(--ok-farbe-hover);
-}
-
-.calculator .clear {
-    background: var(--warn-farbe);
-    color: #ffffff;
-}
-
-.calculator .clear:hover {
-    background: var(--warn-farbe-hover);
 }
 
 /* Graph Popup Styles */
@@ -571,15 +543,8 @@ html.light .calculator-overlay {
     line-height: 1.4;
 }
 
-@media (max-width: 600px) {
-    .calculator button {
-        padding: 0 7px;
-        /* Keep fixed height, reduce horizontal padding on small screens */
-    }
-
-    .calculator-container .input-row input {
-        margin: 0;
-    }
+.calculator-container .input-row input {
+    margin: 0;
 }
 
 /* Calculator layout */
@@ -590,11 +555,11 @@ html.light .calculator-overlay {
 
 .calculator-workspace {
     display: grid;
-    grid-template-rows: auto minmax(140px, 1fr) auto auto auto;
-    gap: 8px;
+    grid-template-rows: auto minmax(124px, 1fr) auto auto auto;
+    gap: 6px;
     height: 100%;
     min-height: 0;
-    padding: 0 0 10px;
+    padding: 0 0 8px;
 }
 
 .calculator-menu-window {
@@ -622,7 +587,7 @@ html.light .calculator-overlay {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 12px;
-    padding: 12px 14px;
+    padding: 10px 12px;
     background: var(--kopfzeile-hintergrund);
     border-bottom: 1px solid var(--borderfarbe);
     color: var(--textfarbe);
@@ -655,12 +620,12 @@ html.light .calculator-overlay {
 }
 
 .calculator-topbar__actions {
-    gap: 8px;
+    gap: 6px;
     justify-self: end;
 }
 
 .calculator-mode-picker--compact {
-    height: 34px;
+    height: 32px;
     border: 1px solid var(--borderfarbe);
     border-radius: 10px;
     background: var(--kopfzeile-steuerung-hintergrund);
@@ -675,8 +640,8 @@ html.light .calculator-overlay {
 
 .calculator .calculator-topbar__button,
 .calculator .close-calculator {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     padding: 0;
     border: 0;
     border-radius: 10px;
@@ -762,13 +727,13 @@ html.light .calculator-mode-picker--compact:focus-within {
     inset: 0;
     width: 100%;
     min-height: 0;
-    padding: 0 28px 0 12px;
+    padding: 0 24px 0 10px;
     border: 0;
     background: transparent;
     color: inherit;
     cursor: pointer;
     appearance: none;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 1;
     text-align: left;
@@ -780,7 +745,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator-mode-picker--compact {
-    width: clamp(176px, 42vw, 236px);
+    width: clamp(164px, 48%, 196px);
     justify-content: stretch;
 }
 
@@ -804,7 +769,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 .calculator-menu-window {
     min-height: 0;
     overflow: hidden;
-    margin: 0 12px;
+    margin: 0 8px;
     border: 1px solid var(--borderfarbe);
     border-radius: 18px;
     background: color-mix(in srgb, var(--hintergrund-hell) 82%, transparent);
@@ -823,12 +788,12 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator-output.has-secondary-content {
-    min-height: clamp(180px, 32vh, 300px);
+    min-height: clamp(150px, 28vh, 220px);
 }
 
 .calculator-output.has-graph-output {
-    height: clamp(220px, 32vh, 300px);
-    max-height: clamp(220px, 32vh, 300px);
+    height: clamp(180px, 28vh, 220px);
+    max-height: clamp(180px, 28vh, 220px);
 }
 
 .calculator-output.has-graph-output .result-display,
@@ -862,7 +827,7 @@ html.light .calculator-mode-picker--compact:focus-within {
     flex-direction: column;
     gap: 8px;
     overflow: auto;
-    padding: 0 12px 10px;
+    padding: 0 10px 8px;
 }
 
 .calculator-output:not(.has-secondary-content) .calculator-output-body {
@@ -1173,7 +1138,7 @@ html.light .calculator-mode-picker--compact:focus-within {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding: 0;
+    padding: 10px;
     border: 0;
     border-radius: 0;
     background: transparent;
@@ -1194,21 +1159,34 @@ html.light .calculator-mode-picker--compact:focus-within {
     color: var(--textfarbe);
 }
 
-.math-composer--simple {
+.math-composer.math-composer--simple {
     display: grid;
     grid-template-columns: auto auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 6px;
 }
 
-.math-composer--pair {
+.math-composer.math-composer--pair {
     display: grid;
     grid-template-columns: auto auto minmax(0, 1fr) auto minmax(0, 1fr) auto;
     align-items: center;
     gap: 6px;
 }
 
-.math-composer--factorial {
+.math-composer.math-composer--integral {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.math-composer.math-composer--log {
+    display: grid;
+    grid-template-columns: auto 86px auto minmax(0, 1fr) auto;
+    align-items: center;
+}
+
+.math-composer.math-composer--factorial {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
@@ -1244,6 +1222,44 @@ html.light .calculator-mode-picker--compact:focus-within {
 
 .math-composer__main {
     flex: 1;
+}
+
+.math-composer__integral-stack {
+    display: grid;
+    grid-template-areas:
+        "upper"
+        "sign"
+        "lower";
+    grid-template-rows: auto auto auto;
+    justify-items: center;
+    align-items: center;
+    row-gap: 8px;
+    min-width: 56px;
+}
+
+.math-composer__bound {
+    width: 56px;
+    padding: 3px 5px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.1;
+}
+
+.math-composer__bound--upper {
+    grid-area: upper;
+    margin-bottom: 10px;
+}
+
+.math-composer__bound--lower {
+    grid-area: lower;
+    margin-top: 10px;
+}
+
+.math-composer__integral-sign {
+    grid-area: sign;
+    font-size: 42px;
+    line-height: 0.68;
+    color: var(--textfarbe);
 }
 
 .math-composer__paren,
@@ -1287,30 +1303,17 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator-keypad {
-    padding: 0 12px;
+    padding: 0 10px;
 }
 
 .buttons--shared {
     padding: 0;
-    gap: 6px;
-}
-
-.calculator .buttons--shared .clear,
-.calculator .buttons--shared .operator,
-.calculator .buttons--shared .equals {
-    background: var(--hintergrund-hell);
-    color: var(--textfarbe);
-}
-
-.calculator .buttons--shared .clear:hover,
-.calculator .buttons--shared .operator:hover,
-.calculator .buttons--shared .equals:hover {
-    background: var(--hintergrund-hell-hover);
+    gap: 4px;
 }
 
 .keypad-wide {
     grid-column: 1 / -1;
-    min-height: 42px;
+    min-height: 36px;
 }
 
 .calculator .buttons {
@@ -1340,156 +1343,10 @@ html.light .calculator-mode-picker--compact:focus-within {
     width: 58px;
 }
 
-@media (max-height: 720px) {
-    .calculator-overlay {
-        --calculator-button-height: 32px;
-    }
-
-    .calculator-workspace {
-        grid-template-rows: auto minmax(124px, 1fr) auto auto auto;
-        gap: 6px;
-        padding-bottom: 8px;
-    }
-
-    .calculator-topbar {
-        padding: 10px 12px;
-    }
-
-    .calculator-output,
-    .calculator-menu-window {
-        margin-inline: 8px;
-    }
-
-    .calculator-output.has-secondary-content {
-        min-height: clamp(150px, 28vh, 220px);
-    }
-
-    .calculator-output.has-graph-output {
-        height: clamp(180px, 28vh, 220px);
-        max-height: clamp(180px, 28vh, 220px);
-    }
-
-    .calculator .result-display {
-        min-height: 38px;
-    }
-
-    .calculator .result-row {
-        padding: 8px 10px 6px;
-    }
-
-    .calculator-output-body {
-        gap: 8px;
-        padding: 0 10px 8px;
-    }
-
-    .calculator .main-input,
-    .calculator-keypad {
-        padding-inline: 10px;
-    }
-
-    .calculator .main-input input {
-        min-height: 40px;
-    }
-
-    .calculator-panel-window {
-        padding: 10px;
-    }
-
-    .function-card {
-        padding: 10px;
-    }
-
-    .buttons--shared {
-        gap: 4px;
-    }
-
-    .keypad-wide {
-        min-height: 36px;
-    }
-}
-
+/* Viewport-specific: drag is only enabled on wider layouts. */
 @media (max-width: 519px) {
     .calculator-topbar {
-        cursor: default;
         touch-action: auto;
-    }
-}
-
-@media (max-width: 640px) {
-    .calculator-container {
-        padding: 10px;
-    }
-
-    .calculator {
-        width: calc(100vw - 20px);
-        max-width: calc(100vw - 20px);
-        height: calc(100vh - 20px);
-        height: calc(100svh - 20px);
-        max-height: calc(100vh - 20px);
-        max-height: calc(100svh - 20px);
-        border-radius: 18px;
-    }
-
-    .calculator-topbar {
-        padding-inline: 10px;
-    }
-
-    .calculator-output,
-    .calculator-menu-window,
-    .calculator .main-input,
-    .calculator-keypad {
-        margin-inline: 10px;
-    }
-
-    .calculator .main-input,
-    .calculator-output,
-    .calculator-keypad {
-        padding-inline: 0;
-    }
-
-    .calculator-topbar {
-        padding-block: 12px;
-    }
-
-    .calculator .result-display {
-        min-height: 56px;
-    }
-
-    .calculator .result-row {
-        padding: 10px;
-    }
-
-    .math-composer--log {
-        display: grid;
-        grid-template-columns: auto 86px auto minmax(0, 1fr) auto;
-        align-items: center;
-    }
-
-}
-
-@media (max-width: 500px) {
-    .calculator-topbar__actions {
-        gap: 6px;
-    }
-
-    .calculator .calculator-topbar__button,
-    .calculator .close-calculator {
-        width: 32px;
-        height: 32px;
-    }
-
-    .calculator .copy-result {
-        width: 32px;
-        height: 32px;
-    }
-
-    .calculator-mode-picker--compact {
-        width: clamp(164px, 48vw, 196px);
-        height: 32px;
-    }
-
-    .calculator-mode-select--compact {
-        padding-inline: 10px 24px;
-        font-size: 13px;
+        cursor: default;
     }
 }

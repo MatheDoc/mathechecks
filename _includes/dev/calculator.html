@@ -64,6 +64,8 @@
                                                 data-standard-tool-choice="fraction" aria-pressed="false">Bruch</button>
                                             <button type="button" class="standard-tool-grid-button"
                                                 data-standard-tool-choice="power" aria-pressed="false">Potenz</button>
+                                            <button type="button" class="standard-tool-grid-button"
+                                                data-standard-tool-choice="integral" aria-pressed="false">int</button>
                                         </div>
 
                                         <div class="standard-tool-workbench" id="standardToolWorkbench" hidden>
@@ -266,6 +268,28 @@
                                                         </span>
                                                     </div>
                                                 </article>
+
+                                                <article class="function-card standard-tool-editor" hidden
+                                                    data-standard-tool-panel="integral">
+                                                    <div class="math-composer math-composer--integral">
+                                                        <span class="math-composer__integral-stack">
+                                                            <input type="text" id="funcIntegralLower" inputmode="text"
+                                                                autocomplete="off"
+                                                                class="math-composer__bound math-composer__bound--lower"
+                                                                data-standard-input="integral" placeholder="von">
+                                                            <span class="math-composer__integral-sign"
+                                                                aria-hidden="true">&int;</span>
+                                                            <input type="text" id="funcIntegralUpper" inputmode="text"
+                                                                autocomplete="off"
+                                                                class="math-composer__bound math-composer__bound--upper"
+                                                                data-standard-input="integral" placeholder="bis">
+                                                        </span>
+                                                        <input type="text" id="funcIntegralExpression" inputmode="text"
+                                                            autocomplete="off" class="math-composer__main"
+                                                            data-standard-input="integral" placeholder="f(x)">
+                                                        <span class="math-composer__suffix">dx</span>
+                                                    </div>
+                                                </article>
                                             </div>
 
                                             <div class="standard-tool-summary">
@@ -429,35 +453,35 @@
 
                     <div class="calculator-keypad" aria-label="Gemeinsame Rechentastatur">
                         <div class="buttons buttons--shared">
-                            <button class="clear" type="button" data-action="clear">C</button>
-                            <button class="top-key" type="button" data-insert="x">x</button>
-                            <button class="top-key" type="button" data-insert="e">e</button>
-                            <button class="top-key" type="button" data-insert="^">^</button>
+                            <button type="button" data-action="clear">C</button>
+                            <button type="button" data-insert="x">x</button>
+                            <button type="button" data-insert="e">e</button>
+                            <button type="button" data-insert="^">^</button>
 
-                            <button class="clear" type="button" data-action="backspace">⌫</button>
-                            <button class="top-key" type="button" data-insert="=">=</button>
+                            <button type="button" data-action="backspace">⌫</button>
+                            <button type="button" data-insert="=">=</button>
                             <button type="button" data-insert="π">π</button>
-                            <button class="operator" type="button" data-insert="/">÷</button>
+                            <button type="button" data-insert="/">÷</button>
 
                             <button type="button" data-insert="7">7</button>
                             <button type="button" data-insert="8">8</button>
                             <button type="button" data-insert="9">9</button>
-                            <button class="operator" type="button" data-insert="*">×</button>
+                            <button type="button" data-insert="*">×</button>
 
                             <button type="button" data-insert="4">4</button>
                             <button type="button" data-insert="5">5</button>
                             <button type="button" data-insert="6">6</button>
-                            <button class="operator" type="button" data-insert="-">−</button>
+                            <button type="button" data-insert="-">−</button>
 
                             <button type="button" data-insert="1">1</button>
                             <button type="button" data-insert="2">2</button>
                             <button type="button" data-insert="3">3</button>
-                            <button class="operator" type="button" data-insert="+">+</button>
+                            <button type="button" data-insert="+">+</button>
 
-                            <button class="top-key" type="button" data-insert="()">( )</button>
+                            <button type="button" data-insert="()">( )</button>
                             <button type="button" data-insert="0">0</button>
                             <button type="button" data-insert=",">,</button>
-                            <button class="equals" type="button" data-action="execute">EXE</button>
+                            <button type="button" data-action="execute">EXE</button>
                         </div>
                     </div>
                 </div>
