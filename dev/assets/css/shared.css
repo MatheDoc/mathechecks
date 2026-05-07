@@ -5141,3 +5141,160 @@ html.light .filter-select option {
     box-shadow: none;
   }
 }
+
+/* ===== dev/index.html — Startseite (page-home) ===== */
+body.page-home .dev-default-main {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  position: relative;
+}
+
+.dev-home {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.dev-home__hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3rem 1.5rem;
+}
+
+.dev-home__hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  max-width: 640px;
+}
+
+.dev-home__title {
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text);
+  margin: 0;
+}
+
+.dev-home__title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--text-dim);
+}
+
+.dev-home__flow {
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 0 0 1.25rem;
+}
+
+.dev-home__actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.dev-home__footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--border);
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+.dev-home__methods {
+  margin: 2rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  opacity: 0.8;
+}
+
+.dev-home__copyright {
+  margin: 0;
+}
+
+.dev-home__legal {
+  margin: 0;
+}
+
+.dev-home__legal a {
+  color: var(--text-dim);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 160ms, border-color 160ms;
+}
+
+.dev-home__legal a:hover {
+  color: var(--text);
+  border-bottom-color: var(--border);
+}
+
+@media (max-width: 600px) {
+  .dev-home__footer {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .dev-home__methods {
+    display: none;
+  }
+}
+
+/* ===== Legal-/Statikseiten (Impressum, Datenschutz) ===== */
+body.page-legal .dev-default-main {
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+body.page-legal .dev-default-main h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+}
+
+body.page-legal .dev-default-main h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 2rem 0 0.5rem;
+  color: var(--text);
+}
+
+body.page-legal .dev-default-main p {
+  margin: 0 0 1rem;
+  color: var(--text-dim);
+}
+
+body.page-legal .dev-default-main a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: border-color 160ms;
+}
+
+body.page-legal .dev-default-main a:hover {
+  border-bottom-color: var(--text);
+}
