@@ -1,4 +1,6 @@
 const DevCalculatorUtils = (() => {
+    const DISPLAY_DECIMALS = 4;
+
     function normalizeNumberString(value) {
         return String(value ?? '').replace(/\./g, '').replace(/,/g, '.');
     }
@@ -382,14 +384,15 @@ const DevCalculatorUtils = (() => {
         }
         const abs = Math.abs(value);
         if (abs !== 0 && (abs < 1e-4 || abs >= 1e9)) {
-            const exp = value.toExponential(8);
+            const exp = value.toExponential(DISPLAY_DECIMALS);
             const [mantissa, exponent] = exp.split('e');
             const mTrim = mantissa.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
             const expNum = parseInt(exponent, 10);
             const sign = expNum >= 0 ? '+' : '-';
             return `${toGermanNumber(mTrim)}E${sign}${Math.abs(expNum)}`;
         }
-        const text = (Math.round(value * 1e9) / 1e9).toString();
+        const factor = 10 ** DISPLAY_DECIMALS;
+        const text = (Math.round(value * factor) / factor).toString();
         const trimmed = text.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
         return toGermanNumber(trimmed);
     }
