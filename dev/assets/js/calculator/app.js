@@ -8,6 +8,7 @@
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
         lastExecutedMainInput: '',
+        suppressedKeyboardSelectionByInput: {},
     };
 
     function byId(id) {
@@ -95,6 +96,31 @@
     function setActiveInput(input) {
         if (input?.id) {
             state.activeInputId = input.id;
+        }
+    }
+
+    function storeSuppressedSelection(input, start = input?.selectionStart, end = input?.selectionEnd) {
+        if (!input?.id) return;
+        const fallback = input.value?.length || 0;
+        state.suppressedKeyboardSelectionByInput[input.id] = {
+            start: Number.isInteger(start) ? start : fallback,
+            end: Number.isInteger(end) ? end : (Number.isInteger(start) ? start : fallback),
+        };
+    }
+
+    function getSuppressedSelection(input) {
+        if (!input?.id) return null;
+        return state.suppressedKeyboardSelectionByInput[input.id] || null;
+    }
+
+    function applySelectionState(input, start, end = start) {
+        if (!input?.setSelectionRange) return;
+        const length = input.value?.length || 0;
+        const nextStart = clamp(Number.isInteger(start) ? start : length, 0, length);
+        const nextEnd = clamp(Number.isInteger(end) ? end : nextStart, nextStart, length);
+        input.setSelectionRange(nextStart, nextEnd);
+        if (shouldSuppressNativeKeyboard()) {
+            storeSuppressedSelection(input, nextStart, nextEnd);
         }
     }
 
@@ -190,13 +216,15 @@
             if (!Object.prototype.hasOwnProperty.call(input.dataset, 'originalInputmode')) {
                 input.dataset.originalInputmode = input.getAttribute('inputmode') || '';
             }
-
-            input.readOnly = suppressNativeKeyboard;
+            input.readOnly = false;
+            input.autocapitalize = 'off';
+            input.autocomplete = 'off';
+            input.spellcheck = false;
 
             if (suppressNativeKeyboard) {
                 input.setAttribute('inputmode', 'none');
                 input.setAttribute('virtualkeyboardpolicy', 'manual');
-                input.setAttribute('aria-readonly', 'true');
+                input.setAttribute('data-suppress-native-keyboard', 'true');
                 return;
             }
 
@@ -206,7 +234,7 @@
                 input.removeAttribute('inputmode');
             }
             input.removeAttribute('virtualkeyboardpolicy');
-            input.removeAttribute('aria-readonly');
+            input.removeAttribute('data-suppress-native-keyboard');
         });
     }
 
@@ -216,13 +244,19 @@
             syncCalculatorInputMode();
         }
         setActiveInput(input);
-        input.focus({ preventScroll: true });
-        if (placeCursorAtEnd && input.setSelectionRange) {
-            const pos = input.value?.length || 0;
-            input.setSelectionRange(pos, pos);
-        }
         if (input.closest?.('#calculator-overlay') && shouldSuppressNativeKeyboard()) {
+            const storedSelection = getSuppressedSelection(input);
+            if (placeCursorAtEnd) {
+                applySelectionState(input, input.value?.length || 0);
+            } else if (storedSelection) {
+                applySelectionState(input, storedSelection.start, storedSelection.end);
+            }
             scheduleVirtualKeyboardHide();
+            return;
+        }
+        input.focus({ preventScroll: true });
+        if (placeCursorAtEnd) {
+            applySelectionState(input, input.value?.length || 0);
         }
     }
 
@@ -243,10 +277,7 @@
             activeElement.blur();
         }
 
-        if (mainInput.setSelectionRange) {
-            const pos = mainInput.value?.length || 0;
-            mainInput.setSelectionRange(pos, pos);
-        }
+        applySelectionState(mainInput, mainInput.value?.length || 0);
 
         scheduleVirtualKeyboardHide();
         return false;
@@ -269,13 +300,12 @@
             activeElement.blur();
         }
 
-        input.focus({ preventScroll: true });
-
-        if (input.setSelectionRange) {
-            const fallbackPos = input.value?.length || 0;
-            const pos = keepCurrentSelection ? (input.selectionStart ?? fallbackPos) : fallbackPos;
-            input.setSelectionRange(pos, pos);
-        }
+        const fallbackPos = input.value?.length || 0;
+        const storedSelection = getSuppressedSelection(input);
+        const pos = keepCurrentSelection
+            ? (storedSelection?.start ?? input.selectionStart ?? fallbackPos)
+            : fallbackPos;
+        applySelectionState(input, pos, keepCurrentSelection ? (storedSelection?.end ?? input.selectionEnd ?? pos) : pos);
 
         scheduleVirtualKeyboardHide();
     }
@@ -289,22 +319,22 @@
 
     function insertAtCursor(input, value) {
         const currentValue = input.value || '';
-        const start = input.selectionStart ?? currentValue.length;
-        const end = input.selectionEnd ?? start;
+        const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(input) : null;
+        const start = storedSelection?.start ?? input.selectionStart ?? currentValue.length;
+        const end = storedSelection?.end ?? input.selectionEnd ?? start;
         input.value = currentValue.slice(0, start) + value + currentValue.slice(end);
         const nextPos = start + value.length;
-        if (input.setSelectionRange) {
-            input.setSelectionRange(nextPos, nextPos);
-        }
+        applySelectionState(input, nextPos, nextPos);
     }
 
     function insertIntoActiveInput(value) {
         const target = getActiveInput() || getMainInput();
         if (!target) return;
         insertAtCursor(target, value === '()' ? '()' : value);
-        if (value === '()' && target.setSelectionRange) {
-            const pos = (target.selectionStart ?? target.value.length) - 1;
-            target.setSelectionRange(pos, pos);
+        if (value === '()') {
+            const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(target) : null;
+            const pos = (storedSelection?.start ?? target.selectionStart ?? target.value.length) - 1;
+            applySelectionState(target, pos, pos);
         }
         focusInput(target, false);
         emitInputEvent(target);
@@ -332,6 +362,7 @@
         const target = getActiveInput() || getMainInput();
         if (!target) return;
         target.value = '';
+        applySelectionState(target, 0, 0);
         focusInput(target, false);
         emitInputEvent(target);
         if (target === getMainInput()) {
@@ -343,14 +374,15 @@
     function backspaceActiveInput() {
         const target = getActiveInput() || getMainInput();
         if (!target) return;
-        const start = target.selectionStart ?? target.value.length;
-        const end = target.selectionEnd ?? start;
+        const storedSelection = shouldSuppressNativeKeyboard() ? getSuppressedSelection(target) : null;
+        const start = storedSelection?.start ?? target.selectionStart ?? target.value.length;
+        const end = storedSelection?.end ?? target.selectionEnd ?? start;
         if (start !== end) {
             target.value = target.value.slice(0, start) + target.value.slice(end);
-            target.setSelectionRange?.(start, start);
+            applySelectionState(target, start, start);
         } else if (start > 0) {
             target.value = target.value.slice(0, start - 1) + target.value.slice(end);
-            target.setSelectionRange?.(start - 1, start - 1);
+            applySelectionState(target, start - 1, start - 1);
         }
         focusInput(target, false);
         emitInputEvent(target);
