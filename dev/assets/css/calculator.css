@@ -2,19 +2,24 @@
     --hauptfarbe: var(--accent);
     --hauptfarbe-hover: color-mix(in srgb, var(--accent) 82%, #ffffff 18%);
     --hintergrundfarbe: var(--panel-solid);
+    --rechner-oberflaeche: linear-gradient(180deg,
+            color-mix(in srgb, var(--hintergrundfarbe) 92%, #ffffff 8%),
+            var(--hintergrundfarbe));
     --hintergrund-hell: var(--surface);
     --hintergrund-hell-hover: var(--surface-hi);
-    --calculator-button-height: 32px;
+    --calculator-button-height: 40px;
     --icon-button-hover-bg: color-mix(in srgb, var(--surface-hi) 82%, transparent);
     --icon-button-active-bg: color-mix(in srgb, var(--surface-hi) 94%, transparent);
     --borderfarbe: var(--border);
     --textfarbe: var(--text);
     --textfarbe-schwach: var(--text-dim);
-    --kopfzeile-hintergrund: linear-gradient(135deg,
-            color-mix(in srgb, var(--blue) 22%, var(--bg-subtle) 78%),
-            color-mix(in srgb, var(--teal) 14%, var(--bg-subtle) 86%));
-    --kopfzeile-steuerung-hintergrund: var(--card-surface-1);
-    --kopfzeile-steuerung-hintergrund-hover: var(--card-surface-2);
+    --kopfzeile-hintergrund: var(--rechner-oberflaeche);
+    --kopfzeile-akzent: linear-gradient(135deg,
+            color-mix(in srgb, var(--hauptfarbe) 82%, #ffffff 18%),
+            color-mix(in srgb, var(--hauptfarbe) 92%, var(--surface-hi)));
+    --kopfzeile-trennlinie: color-mix(in srgb, var(--hauptfarbe) 16%, var(--borderfarbe));
+    --kopfzeile-steuerung-hintergrund: var(--dropdown-bg);
+    --kopfzeile-steuerung-hintergrund-hover: color-mix(in srgb, var(--dropdown-bg) 82%, var(--surface-hi));
     --ok-farbe: var(--green);
     --ok-farbe-hover: color-mix(in srgb, var(--green) 82%, #000000 18%);
     --warn-farbe: var(--rose);
@@ -24,8 +29,8 @@
 
 html.light .calculator-overlay {
     color-scheme: light;
-    --kopfzeile-steuerung-hintergrund: color-mix(in srgb, var(--panel-solid) 94%, transparent);
-    --kopfzeile-steuerung-hintergrund-hover: color-mix(in srgb, var(--panel-solid) 82%, var(--bg-subtle) 18%);
+    --kopfzeile-steuerung-hintergrund: var(--dropdown-bg);
+    --kopfzeile-steuerung-hintergrund-hover: color-mix(in srgb, var(--dropdown-bg) 88%, var(--surface-hi));
 }
 
 .calculator-container .graph-params-row {
@@ -126,8 +131,7 @@ html.light .calculator-overlay {
 }
 
 .calculator {
-    background:
-        linear-gradient(180deg, color-mix(in srgb, var(--hintergrundfarbe) 92%, #ffffff 8%), var(--hintergrundfarbe));
+    background: var(--rechner-oberflaeche);
     border-radius: 18px;
     width: min(450px, calc(100vw - 20px));
     height: min(700px, calc(100vh - 20px));
@@ -364,56 +368,62 @@ html.light .calculator-overlay {
 }
 
 .calculator-container .lgs-matrix {
-    margin-bottom: 2px;
+    margin-bottom: 0;
+}
+
+.calculator-container .lgs-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .calculator-container .lgs-controls {
-    display: flex;
-    gap: 3px;
-    margin-bottom: 8px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 0;
     align-items: stretch;
 }
 
 .calculator-container .lgs-controls button {
-    flex: 1;
-    padding: 5px;
-    border: none;
-    border-radius: 4px;
+    min-width: 0;
+    padding: 5px 8px;
+    border: 1px solid var(--borderfarbe);
+    border-radius: 10px;
     cursor: pointer;
-    background: var(--ok-farbe);
-    color: #ffffff;
-    transition: background-color 0.15s;
-    font-weight: 500;
+    background: var(--hintergrund-hell);
+    color: var(--textfarbe);
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    font-weight: 600;
     font-size: inherit;
 }
 
 .calculator-container .lgs-controls button:hover {
-    background: var(--ok-farbe-hover);
+    background: var(--hintergrund-hell-hover);
+    border-color: color-mix(in srgb, var(--hauptfarbe) 18%, var(--borderfarbe));
+    transform: none;
 }
 
 .calculator-container .lgs-controls button.remove {
-    background: var(--warn-farbe);
+    background: var(--hintergrund-hell);
+    color: var(--textfarbe);
 }
 
 .calculator-container .lgs-controls button.remove:hover {
-    background: var(--warn-farbe-hover);
-}
-
-.calculator-container .lgs-controls .panel-apply-button--compact {
-    flex: 0 0 auto;
-    width: 36px;
-    min-width: 36px;
-    padding: 0;
-    border-radius: 10px;
-    border: 1px solid var(--borderfarbe);
-    background: var(--hintergrund-hell);
-    color: var(--textfarbe-schwach);
-}
-
-.calculator-container .lgs-controls .panel-apply-button--compact:hover {
     background: var(--hintergrund-hell-hover);
     color: var(--textfarbe);
-    transform: none;
+}
+
+.calculator-container .lgs-controls button:focus-visible {
+    outline: 1px solid var(--hauptfarbe-hover);
+    border-color: var(--hauptfarbe-hover);
+}
+
+.lgs-summary .panel-inline-result__secondary {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    align-items: baseline;
 }
 
 .calculator input[type=number] {
@@ -587,14 +597,27 @@ html.light .calculator-overlay {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
-    background: var(--kopfzeile-hintergrund);
-    border-bottom: 1px solid var(--borderfarbe);
+    padding: 12px 14px 10px;
+    background:
+        var(--kopfzeile-akzent) top / 100% 3px no-repeat,
+        var(--kopfzeile-hintergrund);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--textfarbe) 4%, transparent);
     color: var(--textfarbe);
+    position: relative;
     user-select: none;
     -webkit-user-select: none;
     touch-action: none;
     cursor: move;
+}
+
+.calculator-topbar::after {
+    content: "";
+    position: absolute;
+    inset-inline: 10px;
+    bottom: 0;
+    height: 1px;
+    background: var(--kopfzeile-trennlinie);
+    pointer-events: none;
 }
 
 .calculator-topbar * {
@@ -625,17 +648,16 @@ html.light .calculator-overlay {
 }
 
 .calculator-mode-picker--compact {
-    height: 32px;
-    border: 1px solid var(--borderfarbe);
-    border-radius: 10px;
-    background: var(--kopfzeile-steuerung-hintergrund);
-    color: var(--textfarbe-schwach);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    color: var(--textfarbe);
+    display: block;
     padding: 0;
-    cursor: pointer;
-    transition: background-color 0.15s, color 0.15s;
+    cursor: default;
+    transition: none;
 }
 
 .calculator .calculator-topbar__button,
@@ -661,8 +683,18 @@ html.light .calculator-overlay {
 
 .calculator-mode-picker--compact:hover,
 .calculator-mode-picker--compact:focus-within {
-    background: var(--kopfzeile-steuerung-hintergrund-hover);
+    background: none;
+    box-shadow: none;
     color: var(--textfarbe);
+}
+
+.calculator-mode-picker--compact:focus-within {
+    background: none;
+    box-shadow: none;
+}
+
+.calculator-mode-picker--compact:has(.calculator-mode-select--compact:focus-visible) {
+    box-shadow: none;
 }
 
 .calculator .calculator-topbar__button:hover,
@@ -702,7 +734,7 @@ html.light .calculator .close-calculator {
 }
 
 html.light .calculator-mode-picker--compact {
-    background: rgba(255, 255, 255, 0.88);
+    border-color: transparent;
 }
 
 html.light .calculator .calculator-topbar__button:hover,
@@ -712,40 +744,57 @@ html.light .calculator-mode-picker--compact:focus-within {
     color: var(--textfarbe);
 }
 
-html.light .calculator-mode-picker--compact:hover,
-html.light .calculator-mode-picker--compact:focus-within {
-    background: rgba(255, 255, 255, 0.96);
-}
-
 .calculator-mode-picker {
-    position: relative;
+    position: static;
     justify-self: center;
 }
 
 .calculator-mode-select--compact {
-    position: absolute;
-    inset: 0;
+    position: static;
     width: 100%;
-    min-height: 0;
-    padding: 0 24px 0 10px;
-    border: 0;
-    background: transparent;
-    color: inherit;
+    min-height: 36px;
+    padding: 6px 10px;
+    border: 1px solid var(--dropdown-border);
+    border-radius: 6px;
+    background: var(--kopfzeile-steuerung-hintergrund);
+    color: var(--textfarbe);
     cursor: pointer;
-    appearance: none;
-    font-size: 13px;
+    appearance: auto;
+    -webkit-appearance: menulist;
+    box-shadow: none;
+    font-size: 0.83rem;
     font-weight: 600;
-    line-height: 1;
+    line-height: 1.2;
     text-align: left;
     text-align-last: auto;
 }
 
 .calculator-topbar .calculator-mode-select--compact {
-    background: transparent;
+    min-height: 36px;
+    padding: 6px 10px;
+    border: 1px solid var(--dropdown-border);
+    border-radius: 6px;
+    background: var(--kopfzeile-steuerung-hintergrund);
+    box-shadow: none;
+    font-size: 0.83rem;
+    line-height: 1.2;
+}
+
+.calculator-topbar .calculator-mode-select--compact:hover {
+    border-color: color-mix(in srgb, var(--textfarbe) 22%, var(--dropdown-border));
+    background: var(--kopfzeile-steuerung-hintergrund);
+}
+
+.calculator-topbar .calculator-mode-select--compact:focus,
+.calculator-topbar .calculator-mode-select--compact:focus-visible {
+    outline: none;
+    border-color: color-mix(in srgb, var(--textfarbe) 22%, var(--dropdown-border));
+    background: var(--kopfzeile-steuerung-hintergrund);
+    box-shadow: none;
 }
 
 .calculator-mode-picker--compact {
-    width: clamp(164px, 48%, 196px);
+    width: clamp(172px, 52%, 212px);
     justify-content: stretch;
 }
 
@@ -754,7 +803,7 @@ html.light .calculator-mode-picker--compact:focus-within {
 }
 
 .calculator-mode-picker--compact::after {
-    content: "▾";
+    content: none;
     position: absolute;
     right: 10px;
     top: 50%;
