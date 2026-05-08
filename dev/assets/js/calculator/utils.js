@@ -78,9 +78,6 @@ const DevCalculatorUtils = (() => {
         if (start === end) return 0;
         if (start > end) return -definiteIntegral(integrand, end, start, segments);
 
-        const evenSegments = Math.max(2, Math.floor(Number(segments) / 2) * 2);
-        const stepSize = (end - start) / evenSegments;
-
         const evaluatePoint = (x) => {
             try {
                 const value = Number(integrand(x));
@@ -90,17 +87,70 @@ const DevCalculatorUtils = (() => {
             }
         };
 
-        let sum = evaluatePoint(start) + evaluatePoint(end);
-        if (!Number.isFinite(sum)) return NaN;
+        const simpsonEstimate = (left, right, leftValue, middleValue, rightValue) => (
+            ((right - left) / 6) * (leftValue + (4 * middleValue) + rightValue)
+        );
 
-        for (let index = 1; index < evenSegments; index++) {
-            const x = start + (stepSize * index);
-            const y = evaluatePoint(x);
-            if (!Number.isFinite(y)) return NaN;
-            sum += y * (index % 2 === 0 ? 2 : 4);
+        const requestedSegments = Math.max(2, Math.floor(Number(segments) / 2) * 2);
+        const maxDepth = Math.max(8, Math.min(20, Math.round(Math.log2(requestedSegments)) + 2));
+
+        const integrateAdaptive = (left, right, leftValue, middleValue, rightValue, whole, tolerance, depth) => {
+            const middle = (left + right) / 2;
+            const leftMiddle = (left + middle) / 2;
+            const rightMiddle = (middle + right) / 2;
+            const leftMiddleValue = evaluatePoint(leftMiddle);
+            const rightMiddleValue = evaluatePoint(rightMiddle);
+
+            if (!Number.isFinite(leftMiddleValue) || !Number.isFinite(rightMiddleValue)) {
+                return NaN;
+            }
+
+            const leftEstimate = simpsonEstimate(left, middle, leftValue, leftMiddleValue, middleValue);
+            const rightEstimate = simpsonEstimate(middle, right, middleValue, rightMiddleValue, rightValue);
+            const delta = (leftEstimate + rightEstimate) - whole;
+
+            if (depth <= 0 || Math.abs(delta) <= (15 * tolerance)) {
+                return leftEstimate + rightEstimate + (delta / 15);
+            }
+
+            const leftResult = integrateAdaptive(
+                left,
+                middle,
+                leftValue,
+                leftMiddleValue,
+                middleValue,
+                leftEstimate,
+                tolerance / 2,
+                depth - 1
+            );
+            if (!Number.isFinite(leftResult)) return NaN;
+
+            const rightResult = integrateAdaptive(
+                middle,
+                right,
+                middleValue,
+                rightMiddleValue,
+                rightValue,
+                rightEstimate,
+                tolerance / 2,
+                depth - 1
+            );
+            if (!Number.isFinite(rightResult)) return NaN;
+
+            return leftResult + rightResult;
+        };
+
+        const middle = (start + end) / 2;
+        const leftValue = evaluatePoint(start);
+        const middleValue = evaluatePoint(middle);
+        const rightValue = evaluatePoint(end);
+        if (!Number.isFinite(leftValue) || !Number.isFinite(middleValue) || !Number.isFinite(rightValue)) {
+            return NaN;
         }
 
-        return (stepSize / 3) * sum;
+        const initialEstimate = simpsonEstimate(start, end, leftValue, middleValue, rightValue);
+        const tolerance = 1e-8;
+        return integrateAdaptive(start, end, leftValue, middleValue, rightValue, initialEstimate, tolerance, maxDepth);
     }
 
     function toGermanNumber(text) {
