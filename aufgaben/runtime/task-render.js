@@ -302,6 +302,50 @@ function initializeSelect2ForDropdowns(rootNode) {
     });
 }
 
+function ensureEqualColumns(table) {
+    if (!table) return;
+
+    const hasManualColgroup = Array.from(table.children).some(
+        (child) => child.tagName === "COLGROUP"
+    );
+    if (hasManualColgroup) return;
+
+    const firstRow = table.querySelector("tr");
+    if (!firstRow) return;
+
+    const columnCount = [...firstRow.children].reduce((sum, cell) => {
+        const colspan = parseInt(cell.getAttribute("colspan") || "1", 10);
+        return sum + (Number.isFinite(colspan) && colspan > 0 ? colspan : 1);
+    }, 0);
+
+    if (columnCount < 1) return;
+
+    const colgroup = document.createElement("colgroup");
+    for (let index = 0; index < columnCount; index += 1) {
+        colgroup.appendChild(document.createElement("col"));
+    }
+
+    table.insertBefore(colgroup, table.firstChild);
+}
+
+function wrapTablesForHorizontalScroll(root) {
+    if (!root) return;
+
+    root.querySelectorAll("table").forEach((table) => {
+        ensureEqualColumns(table);
+
+        if (table.closest(".table-scroll")) return;
+
+        const parent = table.parentNode;
+        if (!parent) return;
+
+        const wrapper = document.createElement("div");
+        wrapper.className = "table-scroll";
+        parent.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+    });
+}
+
 export function renderTask(task, options = {}) {
     const {
         index = 0,
@@ -581,6 +625,7 @@ export function renderTask(task, options = {}) {
         persistCurrentUiState();
     }
 
+    wrapTablesForHorizontalScroll(wrapper);
     initializeSelect2ForDropdowns(wrapper);
 
     return wrapper;

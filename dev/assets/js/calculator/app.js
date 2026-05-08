@@ -8,7 +8,10 @@
         activeStandardTool: 'sin',
         activeInputId: 'mainInput',
         lastExecutedMainInput: '',
+        graphPreviewTimeoutId: null,
     };
+
+    const GRAPH_LIVE_PREVIEW_DELAY_MS = 110;
 
     function byId(id) {
         return document.getElementById(id);
@@ -327,6 +330,10 @@
 
     function setMode(mode) {
         state.activeMode = getModeDefinitions()[mode] ? mode : 'basic';
+        if (state.activeMode !== 'graph' && state.graphPreviewTimeoutId !== null) {
+            window.clearTimeout(state.graphPreviewTimeoutId);
+            state.graphPreviewTimeoutId = null;
+        }
         const calculator = getCalculator();
         if (calculator) {
             calculator.dataset.activeMode = state.activeMode;
@@ -499,13 +506,43 @@
         },
     };
 
-    function syncGraphLivePreview() {
-        const fields = getGraphFields();
-        if (!String(fields.function || '').trim()) {
+    function cancelScheduledGraphLivePreview() {
+        if (state.graphPreviewTimeoutId === null) return;
+        window.clearTimeout(state.graphPreviewTimeoutId);
+        state.graphPreviewTimeoutId = null;
+    }
+
+    function runGraphLivePreviewNow({ includeAnalysis = true } = {}) {
+        cancelScheduledGraphLivePreview();
+        const command = getGraphCommandFromPanel();
+        if (!command) {
             clearGraphPanelPreview();
             return;
         }
-        DevCalculatorCommands.execute(DevCalculatorCommands.buildGraphCommand(fields), liveGraphOutputApi);
+        DevCalculatorCommands.execute(command, liveGraphOutputApi, { includeGraphAnalysis: includeAnalysis });
+    }
+
+    function syncGraphLivePreview({ immediate = false, includeAnalysis = true } = {}) {
+        if (!String(byId('graphFunction')?.value || '').trim()) {
+            cancelScheduledGraphLivePreview();
+            clearGraphPanelPreview();
+            return;
+        }
+
+        cancelScheduledGraphLivePreview();
+        if (immediate) {
+            runGraphLivePreviewNow({ includeAnalysis });
+            return;
+        }
+
+        state.graphPreviewTimeoutId = window.setTimeout(() => {
+            state.graphPreviewTimeoutId = null;
+            window.requestAnimationFrame(() => {
+                if (state.activeMode === 'graph') {
+                    runGraphLivePreviewNow({ includeAnalysis });
+                }
+            });
+        }, GRAPH_LIVE_PREVIEW_DELAY_MS);
     }
 
     function getGraphCommandFromPanel() {
@@ -1019,6 +1056,7 @@
     }
 
     function closeOverlay() {
+        cancelScheduledGraphLivePreview();
         if (typeof window.toggleCalculatorOverlay === 'function') {
             window.toggleCalculatorOverlay(false);
         }
@@ -1126,7 +1164,7 @@
             }
             if (action === 'execute') {
                 if (state.activeMode === 'graph') {
-                    syncGraphLivePreview();
+                    syncGraphLivePreview({ immediate: true, includeAnalysis: true });
                     return;
                 }
                 executeMainInput();
