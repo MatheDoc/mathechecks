@@ -422,6 +422,10 @@ body.page-dev-default .shell {
   flex: 0 0 auto;
 }
 
+.brand-text {
+  min-width: 0;
+}
+
 .logo {
   width: 38px;
   height: 38px;
@@ -440,8 +444,12 @@ body.page-dev-default .shell {
 }
 
 .brand-text p {
-  font-size: 0.78rem;
-  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .visually-hidden {
@@ -1586,15 +1594,6 @@ body.page-module-designs .mod-content {
   white-space: nowrap;
 }
 
-.page-context {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  white-space: nowrap;
-}
-
 .topbar-right .nav-pills {
   background: transparent;
   border: none;
@@ -1604,16 +1603,16 @@ body.page-module-designs .mod-content {
 }
 
 @media (max-width: 680px) {
-  .brand-text {
-    display: none;
-  }
-
   .topbar-left {
     gap: 10px;
   }
 
   .topbar .lb-row {
     flex-basis: 120px;
+  }
+
+  .topbar--with-lb-switch .brand-text {
+    display: none;
   }
 
 }

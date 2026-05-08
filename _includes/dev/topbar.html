@@ -1,18 +1,19 @@
-<header class="topbar">
+{% assign show_lb_switch = false %}
+{% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
+{% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
+{% assign header_context = page.page_context | default: "Dev" %}
+{% if show_lb_switch %}{% assign header_context = "Content" %}{% endif %}
+
+<header class="topbar{% if show_lb_switch %} topbar--with-lb-switch{% endif %}">
     <div class="topbar-left">
         <div class="brand">
             <a class="logo" href="{{ '/' | relative_url }}" aria-label="Startseite"
                 style="--logo-mask-url: url('{{ '/dev/assets/img/logo-dark-mode.svg' | relative_url }}');"></a>
             <div class="brand-text">
                 <h1>MatheChecks</h1>
-                <p>Lernplattform</p>
+                <p>{{ header_context }}</p>
             </div>
         </div>
-        {% assign show_lb_switch = false %}
-        {% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
-        {% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
-        <span class="page-context">{% if page.module_key %}{% else %}{{ page.page_context | default: "Dev"
-            }}{% endif %}</span>
         {% if show_lb_switch %}
         <div class="lb-row">
             <select class="lb-switch filter-select lb-gebiet-filter" data-lb-nav="true"
@@ -46,7 +47,7 @@
                 <a class="topbar-actions-item {% if page.nav==" material" and page.module_key==nil %}active{% endif %}"
                     href="{{ '/dev/material.html' | relative_url }}" role="menuitem">
                     <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
-                    <span>Material durchsuchen</span>
+                    <span>Lernbereiche</span>
                 </a>
                 <button class="topbar-actions-item" id="calculatorToggleMenu" type="button" role="menuitem"
                     aria-label="Taschenrechner">
