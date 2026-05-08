@@ -436,7 +436,7 @@ const DevCalculatorUtils = (() => {
             }
 
             const [integrand, lowerBound, upperBound] = parts.map((part) => convertIntegralSyntax(part));
-            const replacement = `DevCalculatorUtils.definiteIntegral((x) => (${integrand}), (${lowerBound}), (${upperBound}))`;
+            const replacement = `DevCalculatorUtils.definiteIntegral((t) => (${integrand}), (${lowerBound}), (${upperBound}))`;
             expr = `${expr.slice(0, idx)}${replacement}${expr.slice(argsParen.end + 1)}`;
             idx = expr.toLowerCase().indexOf('int(');
         }

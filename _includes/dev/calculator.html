@@ -272,6 +272,10 @@
                                                 <article class="function-card standard-tool-editor" hidden
                                                     data-standard-tool-panel="integral">
                                                     <div class="math-composer math-composer--integral">
+                                                        <button type="button" class="math-composer__insert-button"
+                                                            data-standard-insert="t"
+                                                            data-standard-insert-target="funcIntegralExpression"
+                                                            aria-label="t in den Integrand einfügen">t</button>
                                                         <span class="math-composer__integral-stack">
                                                             <input type="text" id="funcIntegralLower" inputmode="text"
                                                                 autocomplete="off"
@@ -286,8 +290,8 @@
                                                         </span>
                                                         <input type="text" id="funcIntegralExpression" inputmode="text"
                                                             autocomplete="off" class="math-composer__main"
-                                                            data-standard-input="integral" placeholder="f(x)">
-                                                        <span class="math-composer__suffix">dx</span>
+                                                            data-standard-input="integral" placeholder="f(t)">
+                                                        <span class="math-composer__suffix">dt</span>
                                                     </div>
                                                 </article>
                                             </div>
@@ -457,10 +461,10 @@
                             <button type="button" data-insert="x">x</button>
                             <button type="button" data-insert="e">e</button>
                             <button type="button" data-insert="^">^</button>
-
                             <button type="button" data-action="backspace">⌫</button>
                             <button type="button" data-insert="=">=</button>
                             <button type="button" data-insert="π">π</button>
+
                             <button type="button" data-insert="/">÷</button>
 
                             <button type="button" data-insert="7">7</button>
