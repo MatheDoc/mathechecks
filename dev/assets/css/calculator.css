@@ -13,7 +13,7 @@
     --borderfarbe: var(--border);
     --textfarbe: var(--text);
     --textfarbe-schwach: var(--text-dim);
-    --kopfzeile-hintergrund: var(--rechner-oberflaeche);
+    --kopfzeile-hintergrund: transparent;
     --kopfzeile-akzent: linear-gradient(135deg,
             color-mix(in srgb, var(--hauptfarbe) 82%, #ffffff 18%),
             color-mix(in srgb, var(--hauptfarbe) 92%, var(--surface-hi)));
@@ -234,12 +234,6 @@ html.light .calculator-overlay {
     fill: currentColor;
 }
 
-.calculator .copy-result:hover {
-    background: var(--icon-button-hover-bg);
-    color: var(--textfarbe);
-    transform: none;
-}
-
 .calculator .copy-result:active {
     background: var(--icon-button-active-bg);
     transform: none;
@@ -349,11 +343,6 @@ html.light .calculator-overlay {
     justify-content: center;
 }
 
-.calculator-container .binom-step:hover {
-    background: var(--hintergrund-hell-hover);
-    transform: none;
-}
-
 .calculator-container .panel-label {
     color: var(--textfarbe);
     font-weight: 500;
@@ -398,19 +387,8 @@ html.light .calculator-overlay {
     font-size: inherit;
 }
 
-.calculator-container .lgs-controls button:hover {
-    background: var(--hintergrund-hell-hover);
-    border-color: color-mix(in srgb, var(--hauptfarbe) 18%, var(--borderfarbe));
-    transform: none;
-}
-
 .calculator-container .lgs-controls button.remove {
     background: var(--hintergrund-hell);
-    color: var(--textfarbe);
-}
-
-.calculator-container .lgs-controls button.remove:hover {
-    background: var(--hintergrund-hell-hover);
     color: var(--textfarbe);
 }
 
@@ -437,6 +415,12 @@ html.light .calculator-overlay {
 }
 
 .calculator .buttons {
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
     padding: 8px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -740,6 +724,10 @@ html.light .calculator-mode-picker--compact {
 html.light .calculator .calculator-topbar__button:hover,
 html.light .calculator .close-calculator:hover,
 html.light .calculator-mode-picker--compact:hover,
+html.light .calculator-mode-picker--compact:focus-within {
+    color: var(--textfarbe);
+}
+
 html.light .calculator-mode-picker--compact:focus-within {
     color: var(--textfarbe);
 }
@@ -1135,12 +1123,6 @@ html.light .calculator-mode-picker--compact:focus-within {
     transform: none;
 }
 
-.calculator .panel-apply-button--compact:hover {
-    background: var(--hintergrund-hell-hover);
-    color: var(--textfarbe);
-    transform: none;
-}
-
 .calculator .panel-apply-button--compact:active {
     transform: none;
 }
@@ -1153,13 +1135,41 @@ html.light .calculator-mode-picker--compact:focus-within {
     overflow: hidden;
 }
 
-.calculator .standard-tool-back:hover {
+.calculator .standard-tool-back:active {
+    transform: none;
+}
+
+.calculator .copy-result:hover {
+    background: var(--icon-button-hover-bg);
+    color: var(--textfarbe);
+    transform: none;
+}
+
+.calculator-container .binom-step:hover {
+    background: var(--hintergrund-hell-hover);
+    transform: none;
+}
+
+.calculator-container .lgs-controls button:hover {
+    background: var(--hintergrund-hell-hover);
+    border-color: color-mix(in srgb, var(--hauptfarbe) 18%, var(--borderfarbe));
+    transform: none;
+}
+
+.calculator-container .lgs-controls button.remove:hover {
+    background: var(--hintergrund-hell-hover);
+    color: var(--textfarbe);
+}
+
+.calculator .panel-apply-button--compact:hover {
     background: var(--hintergrund-hell-hover);
     color: var(--textfarbe);
     transform: none;
 }
 
-.calculator .standard-tool-back:active {
+.calculator .standard-tool-back:hover {
+    background: var(--hintergrund-hell-hover);
+    color: var(--textfarbe);
     transform: none;
 }
 

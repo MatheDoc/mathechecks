@@ -521,23 +521,24 @@ const DevCalculatorCommands = (() => {
     }
 
     const GRAPH_ANALYSIS_CONFIG = Object.freeze({
-        zerosTolerance: 1e-6,
-        zerosRangeMin: -1000,
-        zerosRangeMax: 1000,
-        zerosSteps: 20000,
-        zerosRoundFactor: 1e6,
-        zerosDeduplicateTolerance: 1e-5,
-        gridMinSteps: 300,
-        gridMaxSteps: 3000,
-        gridStepsPerUnit: 200,
+        zerosTolerance: 1e-4,
+        zerosMinSteps: 120,
+        zerosMaxSteps: 600,
+        zerosStepsPerUnit: 40,
+        zerosRoundFactor: 1e4,
+        zerosDeduplicateTolerance: 1e-4,
+        gridMinSteps: 100,
+        gridMaxSteps: 600,
+        gridStepsPerUnit: 40,
         cleanValueEpsilon: 1e-9,
         defaultSignTolerance: 1e-8,
-        defaultRefineIterations: 40,
+        defaultRefineIterations: 12,
         extremaSignTolerance: 1e-7,
-        extremaRefineIterations: 45,
+        extremaRefineIterations: 14,
         inflectionSignTolerance: 1e-8,
-        inflectionRefineIterations: 45,
+        inflectionRefineIterations: 14,
         deduplicateXFactor: 2,
+        pointValueDecimals: 4,
     });
 
     function evaluateGraphFunctionJS(rawExpr, x) {
@@ -550,19 +551,31 @@ const DevCalculatorCommands = (() => {
 
     function findGraphRoots(rawExpr, xMin, xMax) {
         const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
-        const rangeMin = GRAPH_ANALYSIS_CONFIG.zerosRangeMin;
-        const rangeMax = GRAPH_ANALYSIS_CONFIG.zerosRangeMax;
-        const steps = GRAPH_ANALYSIS_CONFIG.zerosSteps;
-        const step = (rangeMax - rangeMin) / steps;
+        const range = xMax - xMin;
+        if (!Number.isFinite(range) || range <= 0) return [];
+
+        const steps = Math.min(
+            GRAPH_ANALYSIS_CONFIG.zerosMaxSteps,
+            Math.max(GRAPH_ANALYSIS_CONFIG.zerosMinSteps, Math.floor(range * GRAPH_ANALYSIS_CONFIG.zerosStepsPerUnit))
+        );
+        const step = range / steps;
         const roots = [];
+        const cache = new Map();
+
+        function f(x) {
+            if (cache.has(x)) return cache.get(x);
+            const value = evaluateGraphFunctionJS(rawExpr, x);
+            cache.set(x, value);
+            return value;
+        }
 
         for (let i = 0; i < steps; i++) {
-            const x1 = rangeMin + i * step;
-            const x2 = x1 + step;
-            const f1 = evaluateGraphFunctionJS(rawExpr, x1);
-            const f2 = evaluateGraphFunctionJS(rawExpr, x2);
+            const x1 = xMin + i * step;
+            const x2 = i === steps - 1 ? xMax : x1 + step;
+            const f1 = f(x1);
+            const f2 = f(x2);
             const root = findRootInInterval(
-                (x) => evaluateGraphFunctionJS(rawExpr, x),
+                f,
                 x1,
                 x2,
                 f1,
@@ -574,11 +587,10 @@ const DevCalculatorCommands = (() => {
 
         return deduplicateNumericRoots(
             roots,
-            (value) => evaluateGraphFunctionJS(rawExpr, value),
+            f,
             GRAPH_ANALYSIS_CONFIG.zerosRoundFactor,
             Math.max(GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance, step / 20)
-        )
-            .filter((value) => value >= xMin && value <= xMax);
+        );
     }
 
     function getGraphAnalysisGrid(xMin, xMax) {
@@ -771,7 +783,7 @@ const DevCalculatorCommands = (() => {
         if (absValue < 0.001 || absValue > 99999) {
             return value.toExponential(2).replace('.', ',');
         }
-        return value.toFixed(5).replace(/\.?0+$/, '').replace('.', ',');
+        return value.toFixed(GRAPH_ANALYSIS_CONFIG.pointValueDecimals).replace(/\.?0+$/, '').replace('.', ',');
     }
 
     function formatGraphAnalysisHtml(analysis) {
@@ -808,7 +820,7 @@ const DevCalculatorCommands = (() => {
         return `<div class="graph-points-list">${sections.join('')}</div>`;
     }
 
-    function execute(command, outputApi) {
+    function execute(command, outputApi, { includeGraphAnalysis = true } = {}) {
         const input = String(command ?? '').trim();
         if (!input) {
             outputApi.setText('0', { headline: 'Bereit' });
@@ -856,7 +868,9 @@ const DevCalculatorCommands = (() => {
             };
             if (Number.isFinite(yMin)) graphOptions.yMin = yMin;
             if (Number.isFinite(yMax)) graphOptions.yMax = yMax;
-            const analysis = analyzeGraph(func, xMin, xMax);
+            const pointsHtml = includeGraphAnalysis
+                ? formatGraphAnalysisHtml(analyzeGraph(func, xMin, xMax))
+                : '';
             outputApi.setGraph({
                 targetId: 'graphPanelPreview',
                 funktionen: [{ term: prepared, name: 'f(x)', beschreibung: prepared }],
@@ -868,7 +882,7 @@ const DevCalculatorCommands = (() => {
                     ymin: options.ymin || '',
                     ymax: options.ymax || '',
                 },
-                pointsHtml: formatGraphAnalysisHtml(analysis),
+                pointsHtml,
                 resultText: 'siehe Graph-Panel',
             });
             return;

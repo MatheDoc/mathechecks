@@ -36,7 +36,6 @@ Im folgenden verwenden wir den [Casio fx-CG 20](https://www.casio-schulrechner.d
 Gegeben sind folgende Werte:
 
 | x   | 0,5   | 1,5   | 2,5  | 3,5  | 4,5  |
-| --- | ----- | ----- | ---- | ---- | ---- |
 | y   | -2,67 | -0,77 | 0,81 | 2,39 | 4,24 |
 
 <img src="lin-reg.png" class="diagramm">
@@ -58,7 +57,6 @@ Wir vermuten, dass die Datenpunkte in etwa auf einer Geraden liegen, daher wird 
 Gegeben sind folgende Werte:
 
 | x   | -7     | -3     | 1    | 6    | 11     |
-| --- | ------ | ------ | ---- | ---- | ------ |
 | y   | -47,24 | -14,85 | 5,83 | 2,42 | -34,33 |
 
 <img src="quad-reg.png" class="diagramm">
