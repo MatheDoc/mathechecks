@@ -5062,27 +5062,22 @@ html.light .dev-bar {
 .lb-switch,
 .mat-lb-dropdown,
 .filter-select {
-  appearance: none;
-  -webkit-appearance: none;
+  appearance: auto;
+  -webkit-appearance: menulist;
   width: min(320px, 100%);
   min-height: 36px;
-  padding: 8px 36px 8px 12px;
-  border-radius: 12px;
+  padding: 6px 10px;
+  border-radius: 6px;
   border: 1px solid var(--dropdown-border);
   background-color: var(--dropdown-bg);
-  background-image:
-    linear-gradient(120deg, color-mix(in srgb, var(--text) 7%, transparent), transparent 62%),
-    url("data:image/svg+xml,%3Csvg width='10' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E");
   color: var(--text);
   font-family: inherit;
   font-size: .83rem;
   font-weight: 600;
   line-height: 1.2;
   cursor: pointer;
-  background-repeat: no-repeat;
-  background-position: left top, right 12px center;
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 6%, transparent);
-  transition: border-color 180ms, background-color 180ms, box-shadow 180ms, transform 120ms;
+  box-shadow: none;
+  transition: border-color 140ms ease;
 }
 
 .mat-lb-dropdown {
@@ -5098,17 +5093,26 @@ html.light .dev-bar {
 .lb-switch:hover,
 .mat-lb-dropdown:hover,
 .filter-select:hover {
-  background-color: color-mix(in srgb, var(--dropdown-bg) 82%, var(--surface-hi));
   border-color: color-mix(in srgb, var(--text) 22%, var(--dropdown-border));
-  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 9%, transparent);
+  background-color: var(--dropdown-bg);
+  box-shadow: none;
 }
 
 .lb-switch:focus,
 .mat-lb-dropdown:focus,
 .filter-select:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-soft);
+  border-color: color-mix(in srgb, var(--text) 22%, var(--dropdown-border));
+  background-color: var(--dropdown-bg);
+  box-shadow: none;
+}
+
+.lb-switch:focus-visible,
+.mat-lb-dropdown:focus-visible,
+.filter-select:focus-visible {
+  border-color: color-mix(in srgb, var(--text) 22%, var(--dropdown-border));
+  background-color: var(--dropdown-bg);
+  box-shadow: none;
 }
 
 .lb-switch option,

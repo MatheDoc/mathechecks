@@ -564,15 +564,40 @@
     }
 
     function syncLGSCommandPreview(options = {}) {
+        const values = getLGSValues();
+        const command = DevCalculatorCommands.buildLGSCommand({
+            variables: state.lgsVariables,
+            equations: state.lgsEquations,
+            values,
+        });
+        const previewTarget = byId('lgsCommandPreview');
+        const resultTarget = byId('lgsLiveResult');
+        const hasAnyValue = Object.values(values).some((value) => String(value ?? '').trim());
+
+        if (previewTarget) {
+            previewTarget.textContent = hasAnyValue
+                ? command
+                : `lgs(${Array.from({ length: state.lgsEquations }, () => '...').join(';')})`;
+        }
+
+        if (resultTarget) {
+            if (!hasAnyValue) {
+                resultTarget.textContent = 'Lösung: -';
+            } else {
+                DevCalculatorCommands.execute(command, {
+                    setText(text) {
+                        const normalizedText = String(text || '').trim() || '-';
+                        resultTarget.textContent = `Lösung: ${normalizedText}`;
+                    },
+                    setGraph() {
+                        resultTarget.textContent = 'Lösung: -';
+                    },
+                });
+            }
+        }
+
         if (!options.commitToMainInput) return;
-        setMainInputValue(
-            DevCalculatorCommands.buildLGSCommand({
-                variables: state.lgsVariables,
-                equations: state.lgsEquations,
-                values: getLGSValues(),
-            }),
-            options
-        );
+        setMainInputValue(command, options);
     }
 
     function syncBinomCommandPreview(options = {}) {

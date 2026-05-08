@@ -323,17 +323,38 @@
                                 </section>
 
                                 <section class="calculator-panel" data-panel="lgs" aria-label="LGS Eingabehilfe">
-                                    <div class="lgs-controls">
-                                        <button type="button" data-action="lgs-add-var">+ Var.</button>
-                                        <button type="button" class="remove" data-action="lgs-remove-var">-
-                                            Var.</button>
-                                        <button type="button" data-action="lgs-add-eq">+ Gl.</button>
-                                        <button type="button" class="remove" data-action="lgs-remove-eq">- Gl.</button>
-                                        <button type="button" class="panel-apply-button panel-apply-button--compact"
-                                            data-action="apply-lgs" aria-label="Übernehmen"
-                                            title="Übernehmen">⤴</button>
+                                    <div class="lgs-panel">
+                                        <div class="lgs-controls">
+                                            <button type="button" data-action="lgs-add-var">+ Var.</button>
+                                            <button type="button" class="remove" data-action="lgs-remove-var">-
+                                                Var.</button>
+                                            <button type="button" data-action="lgs-add-eq">+ Gl.</button>
+                                            <button type="button" class="remove" data-action="lgs-remove-eq">-
+                                                Gl.</button>
+                                        </div>
+                                        <div id="lgsMatrix" class="lgs-matrix"></div>
+                                        <div class="standard-tool-summary lgs-summary">
+                                            <div class="panel-inline-result standard-tool-summary__result">
+                                                <span id="lgsCommandPreview"
+                                                    class="panel-inline-result__primary">lgs(...;...)</span>
+                                                <div class="standard-tool-summary__live-row">
+                                                    <span id="lgsLiveResult"
+                                                        class="panel-inline-result__secondary">Lösung: -</span>
+                                                    <button type="button"
+                                                        class="copy-result standard-tool-summary__apply"
+                                                        data-action="apply-lgs" aria-label="Übernehmen"
+                                                        title="Übernehmen">
+                                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+                                                            fill="none" stroke="currentColor" stroke-width="1.8"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M7 17L17 7"></path>
+                                                            <path d="M10 7H17V14"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="lgsMatrix" class="lgs-matrix"></div>
                                 </section>
 
                                 <section class="calculator-panel" data-panel="binom"
