@@ -74,6 +74,14 @@ const DevCalculatorCommands = (() => {
         );
     }
 
+    function evaluateExpressionWithX(rawExpression, xValue) {
+        const normalized = DevCalculatorUtils.normalizeExpression(
+            normalizeDecimalCommas(`(${String(rawExpression || '')})`)
+        ).replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(');
+        const expression = replaceStandaloneX(normalized, xValue);
+        return eval(expression);
+    }
+
     function formatSubscriptNumber(value) {
         return String(value ?? '').replace(/\d/g, (digit) => '₀₁₂₃₄₅₆₇₈₉'[Number(digit)]);
     }
@@ -403,39 +411,7 @@ const DevCalculatorCommands = (() => {
             if (!rightSide) rightSide = '0';
 
             function f(x) {
-                let expr = `(${leftSide}) - (${rightSide})`;
-                expr = normalizeDecimalCommas(expr);
-                expr = DevCalculatorUtils.addImplicitMultiplication(
-                    DevCalculatorUtils.normalizeUnaryMinusExponent(
-                        DevCalculatorUtils.convertFactorialSyntax(
-                            DevCalculatorUtils.convertNCrSyntax(
-                                DevCalculatorUtils.convertWurzelSyntax(
-                                    DevCalculatorUtils.convertLogBaseSyntax(
-                                        DevCalculatorUtils.convertCustomENotation(expr)
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
-                expr = DevCalculatorUtils.normalizeConstants(expr)
-                    .replace(/\^/g, '**')
-                    .replace(/e\*\*/g, 'Math.E**')
-                    .replace(/(?<!Math\.)\babs\b/g, 'Math.abs')
-                    .replace(/(?<!Math\.)\bbetrag\b/gi, 'Math.abs')
-                    .replace(/(?<!Math\.)\bsqrt\b/g, 'Math.sqrt')
-                    .replace(/(?<!Math\.)\bexp\b/g, 'Math.exp')
-                    .replace(/(?<!Math\.)\bln\b/g, 'Math.log')
-                    .replace(/(?<!DevCalculatorUtils\.)\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
-                    .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-                    .replace(/(?<!Math\.)\basin\b/g, 'Math.asin')
-                    .replace(/(?<!Math\.)\bacos\b/g, 'Math.acos')
-                    .replace(/(?<!Math\.)\batan\b/g, 'Math.atan')
-                    .replace(/(?<!Math\.)\bsin\b/g, 'Math.sin')
-                    .replace(/(?<!Math\.)\bcos\b/g, 'Math.cos')
-                    .replace(/(?<!Math\.)\btan\b/g, 'Math.tan');
-                expr = replaceStandaloneX(expr, x);
-                return eval(expr);
+                return evaluateExpressionWithX(`(${leftSide}) - (${rightSide})`, x);
             }
 
             const tolerance = 1e-6;
@@ -444,6 +420,16 @@ const DevCalculatorCommands = (() => {
             const steps = 20000;
             const step = (rangeMax - rangeMin) / steps;
             const roots = [];
+            const identitySamplePoints = [rangeMin, -10, -1, 0, 1, 10, rangeMax];
+            const isIdentityEquation = identitySamplePoints.every((sampleX) => {
+                const value = f(sampleX);
+                return Number.isFinite(value) && Math.abs(value) < tolerance;
+            });
+
+            if (isIdentityEquation) {
+                outputApi.setText('Unendlich viele Lösungen', { headline: 'Gleichung' });
+                return;
+            }
 
             for (let i = 0; i < steps; i++) {
                 const x1 = rangeMin + i * step;
@@ -556,39 +542,7 @@ const DevCalculatorCommands = (() => {
 
     function evaluateGraphFunctionJS(rawExpr, x) {
         try {
-            let expr = `(${rawExpr})`;
-            expr = normalizeDecimalCommas(expr);
-            expr = DevCalculatorUtils.addImplicitMultiplication(
-                DevCalculatorUtils.normalizeUnaryMinusExponent(
-                    DevCalculatorUtils.convertFactorialSyntax(
-                        DevCalculatorUtils.convertNCrSyntax(
-                            DevCalculatorUtils.convertWurzelSyntax(
-                                DevCalculatorUtils.convertLogBaseSyntax(
-                                    DevCalculatorUtils.convertCustomENotation(expr)
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-            expr = DevCalculatorUtils.normalizeConstants(expr)
-                .replace(/\^/g, '**')
-                .replace(/e\*\*/g, 'Math.E**')
-                .replace(/(?<!Math\.)\babs\b/g, 'Math.abs')
-                .replace(/(?<!Math\.)\bbetrag\b/gi, 'Math.abs')
-                .replace(/(?<!Math\.)\bsqrt\b/g, 'Math.sqrt')
-                .replace(/(?<!Math\.)\bexp\b/g, 'Math.exp')
-                .replace(/(?<!Math\.)\bln\b/g, 'Math.log')
-                .replace(/(?<!DevCalculatorUtils\.)\blogBase\s*\(/g, 'DevCalculatorUtils.logBase(')
-                .replace(/(?<!Math\.)\blog\s*\(/g, 'Math.log10(')
-                .replace(/(?<!Math\.)\basin\b/g, 'Math.asin')
-                .replace(/(?<!Math\.)\bacos\b/g, 'Math.acos')
-                .replace(/(?<!Math\.)\batan\b/g, 'Math.atan')
-                .replace(/(?<!Math\.)\bsin\b/g, 'Math.sin')
-                .replace(/(?<!Math\.)\bcos\b/g, 'Math.cos')
-                .replace(/(?<!Math\.)\btan\b/g, 'Math.tan');
-            expr = replaceStandaloneX(expr, x);
-            return eval(expr);
+            return evaluateExpressionWithX(rawExpr, x);
         } catch {
             return NaN;
         }

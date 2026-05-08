@@ -702,7 +702,7 @@
                 requiredIds: ['funcIntegralExpression', 'funcIntegralLower', 'funcIntegralUpper'],
                 action: 'apply-func-integral',
                 preview: () => {
-                    const integrand = String(byId('funcIntegralExpression')?.value || '').trim() || 'f(x)';
+                    const integrand = String(byId('funcIntegralExpression')?.value || '').trim() || 'f(t)';
                     const lowerBound = String(byId('funcIntegralLower')?.value || '').trim() || 'a';
                     const upperBound = String(byId('funcIntegralUpper')?.value || '').trim() || 'b';
                     return `int(${integrand};${lowerBound};${upperBound})`;
@@ -1053,6 +1053,18 @@
 
         document.querySelectorAll('[data-standard-input]').forEach((input) => {
             input.addEventListener('input', updateStandardToolPreview);
+        });
+
+        document.querySelector('.standard-tool-editors')?.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-standard-insert]');
+            if (!button) return;
+
+            event.preventDefault();
+            const target = byId(button.dataset.standardInsertTarget || '') || getActiveInput() || getMainInput();
+            if (target) {
+                focusInput(target, false);
+            }
+            insertIntoActiveInput(button.dataset.standardInsert || '');
         });
 
         document.querySelector('.standard-tool-editors')?.addEventListener('keydown', (event) => {
