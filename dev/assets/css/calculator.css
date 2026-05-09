@@ -248,7 +248,7 @@ html.light .calculator-overlay {
 .calculator {
     background: var(--rechner-oberflaeche);
     border-radius: 18px;
-    width: min(450px, calc(100vw - 20px));
+    width: min(470px, calc(100vw - 20px));
     height: min(700px, calc(100vh - 20px));
     height: min(700px, calc(100svh - 20px));
     display: block;
@@ -502,7 +502,7 @@ html.light .calculator-overlay {
     justify-content: center;
 }
 
-.calculator .buttons > button,
+.calculator .buttons>button,
 .calculator .standard-tool-grid-button {
     height: var(--calculator-button-height);
 }
@@ -1111,7 +1111,6 @@ html.light .calculator-mode-picker--compact:focus-within {
     background: color-mix(in srgb, var(--hauptfarbe) 10%, var(--hintergrund-hell) 90%);
 }
 
-.standard-tool-back,
 .panel-apply-button--compact {
     position: relative;
     width: 36px;
@@ -1124,25 +1123,14 @@ html.light .calculator-mode-picker--compact:focus-within {
 
 .standard-tool-back {
     padding: 0;
-    color: var(--textfarbe-schwach);
     font-size: 18px;
 }
 
 .standard-tool-detail-header {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: 8px;
+    display: flex;
     align-items: center;
 }
 
-.standard-tool-detail-title {
-    min-width: 0;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--textfarbe);
-}
-
-.standard-tool-back:focus-visible,
 .panel-apply-button--compact:focus-visible {
     outline: 1px solid var(--hauptfarbe-hover);
     border-color: var(--hauptfarbe-hover);
@@ -1197,8 +1185,6 @@ html.light .calculator-mode-picker--compact:focus-within {
 .standard-tool-editors {
     min-height: 0;
     min-width: 0;
-    padding-top: 12px;
-    border-top: 1px solid var(--borderfarbe);
     font-size: var(--calculator-panel-input-font-size);
 }
 
