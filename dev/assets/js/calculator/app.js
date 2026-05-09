@@ -890,11 +890,7 @@
         const definition = getStandardToolDefinition();
         const previewTarget = byId('standardToolPreview');
         const liveTarget = byId('standardToolLiveResult');
-        const detailTitle = byId('standardToolDetailTitle');
         const previewText = definition.preview();
-        if (detailTitle) {
-            detailTitle.textContent = definition.label;
-        }
         document.querySelectorAll('[data-standard-tool-choice]').forEach((button) => {
             const isActive = state.standardToolView === 'detail'
                 && button.dataset.standardToolChoice === state.activeStandardTool;
