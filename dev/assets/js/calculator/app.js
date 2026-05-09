@@ -1,4 +1,6 @@
 (() => {
+    const MAT_PANEL_NAMES = ['A', 'B', 'C', 'D'];
+
     const state = {
         lgsVariables: 2,
         lgsEquations: 2,
@@ -9,6 +11,11 @@
         activeInputId: 'mainInput',
         lastExecutedMainInput: '',
         graphPreviewTimeoutId: null,
+        matPanels: ['A', 'B'],
+        matActiveTab: 'A',
+        matRows: { A: 2, B: 2, C: 2, D: 2 },
+        matCols: { A: 2, B: 2, C: 2, D: 2 },
+        matCellValues: {},
     };
 
     const GRAPH_LIVE_PREVIEW_DELAY_MS = 110;
@@ -123,6 +130,7 @@
             lgs: { icon: '▦', label: 'Gleichungssystem' },
             binom: { icon: '◎', label: 'Binomialverteilung' },
             graph: { icon: '↗', label: 'Graph' },
+            mat: { icon: '⊞', label: 'Matrizen' },
         };
     }
 
@@ -562,10 +570,32 @@
                 textOutput.classList.toggle('is-active', Boolean(detailText));
             }
             clearGraphPanelPreview();
-            outputRoot?.classList.remove('has-graph-output');
+            outputRoot?.classList.remove('has-graph-output', 'has-matrix-output');
             outputRoot?.classList.toggle('has-secondary-content', Boolean(detailText));
-            if (resultDisplay) resultDisplay.textContent = text;
+            if (resultDisplay) {
+                resultDisplay.classList.remove('has-matrix');
+                resultDisplay.textContent = text;
+            }
             state.ans = text;
+        },
+
+        setMatrix(matrix) {
+            const outputRoot = document.querySelector('.calculator-output');
+            const textOutput = byId('calculatorTextOutput');
+            const resultDisplay = byId('resultDisplay');
+            if (textOutput) {
+                textOutput.textContent = '';
+                textOutput.classList.remove('is-active');
+            }
+            clearGraphPanelPreview();
+            outputRoot?.classList.remove('has-graph-output', 'has-secondary-content');
+            outputRoot?.classList.add('has-matrix-output');
+            if (resultDisplay) {
+                resultDisplay.innerHTML = '';
+                resultDisplay.classList.add('has-matrix');
+                resultDisplay.appendChild(DevCalculatorCommands.renderMatrixGrid(matrix));
+            }
+            state.ans = DevCalculatorCommands.matSerialize(matrix);
         },
 
         setGraph({ targetId, funktionen, optionen, pointsHtml, panelFields, resultText = 'Graph' }) {
@@ -1075,7 +1105,7 @@
         const graphCommand = getGraphCommandFromPanel();
         const resultText = calculator?.dataset.activeMode === 'graph'
             ? graphCommand
-            : visibleResult || visibleDetail || fallback;
+            : state.ans || visibleResult || visibleDetail || fallback;
         if (!resultText) return;
         navigator.clipboard?.writeText(resultText);
         const button = byId('copyResultButton');
@@ -1084,6 +1114,137 @@
         void button.offsetWidth;
         button.classList.add('copied');
         window.setTimeout(() => button.classList.remove('copied'), 1200);
+    }
+
+    // --- Matrizen-Panel ---
+
+    function getMatrixCellId(name, row, col) {
+        return `matCell_${name}_${row}_${col}`;
+    }
+
+    function persistVisibleMatrixCells() {
+        const container = byId('matGrid');
+        if (!container) return;
+        container.querySelectorAll('input[data-mat-cell]').forEach((input) => {
+            state.matCellValues[input.id] = input.value;
+        });
+    }
+
+    function clearStoredMatrixPanel(name) {
+        const prefix = `matCell_${name}_`;
+        Object.keys(state.matCellValues).forEach((id) => {
+            if (id.startsWith(prefix)) {
+                delete state.matCellValues[id];
+            }
+        });
+    }
+
+    function buildMatLiteralFromPanel(name) {
+        persistVisibleMatrixCells();
+        const rows = [];
+        for (let r = 0; r < state.matRows[name]; r++) {
+            const row = [];
+            for (let c = 0; c < state.matCols[name]; c++) {
+                row.push(state.matCellValues[getMatrixCellId(name, r, c)] || '0');
+            }
+            rows.push(row);
+        }
+        return DevCalculatorCommands.buildMatLiteralString(rows);
+    }
+
+    function expandMatrixPanelExpr(expr) {
+        let expanded = String(expr || '');
+        // Replace standalone A/B/C/D (not part of longer word) with mat(...) literals
+        [...state.matPanels].reverse().forEach((name) => {
+            const re = new RegExp(`(?<![A-Za-z])${name}(?![A-Za-z])`, 'g');
+            expanded = expanded.replace(re, buildMatLiteralFromPanel(name));
+        });
+        return expanded;
+    }
+
+    function renderMatrixTabContent(name) {
+        const container = byId('matGrid');
+        if (!container) return;
+        persistVisibleMatrixCells();
+        container.innerHTML = '';
+        const rows = state.matRows[name];
+        const cols = state.matCols[name];
+        container.style.gridTemplateColumns = `repeat(${cols}, minmax(0, 1fr))`;
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+                const id = getMatrixCellId(name, r, c);
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.id = id;
+                input.dataset.matCell = `${name}_${r}_${c}`;
+                input.value = state.matCellValues[id] ?? '';
+                input.placeholder = '0';
+                input.autocomplete = 'off';
+                input.inputMode = 'decimal';
+                input.className = 'mat-cell-input';
+                container.appendChild(input);
+            }
+        }
+        syncCalculatorInputMode(container);
+    }
+
+    function renderMatrixTabs() {
+        const tabsContainer = byId('matTabs');
+        if (!tabsContainer) return;
+        tabsContainer.innerHTML = '';
+        state.matPanels.forEach((name) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = `mat-tab${name === state.matActiveTab ? ' is-active' : ''}`;
+            btn.dataset.matTab = name;
+            btn.textContent = name;
+            btn.setAttribute('aria-pressed', String(name === state.matActiveTab));
+            tabsContainer.appendChild(btn);
+        });
+    }
+
+    function renderMatrixPanel() {
+        renderMatrixTabs();
+        renderMatrixTabContent(state.matActiveTab);
+        syncMatrixPreview();
+    }
+
+    function syncMatrixPreview() {
+        const expr = String(byId('matExpr')?.value || '').trim();
+        const previewTarget = byId('matCommandPreview');
+        const liveResult = byId('matLiveResult');
+
+        let expandedExpr = '';
+        if (expr) {
+            try {
+                expandedExpr = expandMatrixPanelExpr(expr);
+            } catch {
+                expandedExpr = '';
+            }
+        }
+
+        if (previewTarget) {
+            previewTarget.textContent = expandedExpr || state.matPanels.map((n) => buildMatLiteralFromPanel(n)).join(' ') || 'mat(...)';
+        }
+
+        if (!liveResult) return;
+        liveResult.innerHTML = '';
+
+        if (!expandedExpr) {
+            liveResult.textContent = '–';
+            return;
+        }
+
+        try {
+            const result = DevCalculatorCommands.evaluateMatrixExpr(expandedExpr);
+            if (result.type === 'matrix') {
+                liveResult.appendChild(DevCalculatorCommands.renderMatrixGrid(result.value));
+            } else {
+                liveResult.textContent = DevCalculatorUtils.formatGeneralResult(result.value);
+            }
+        } catch (e) {
+            liveResult.textContent = e.message || 'Fehler';
+        }
     }
 
     function bindEvents() {
@@ -1248,11 +1409,111 @@
                 syncLGSCommandPreview();
             }
         });
+
+        // Matrix panel events
+        byId('matTabs')?.addEventListener('click', (event) => {
+            const btn = event.target.closest('[data-mat-tab]');
+            if (!btn) return;
+            persistVisibleMatrixCells();
+            state.matActiveTab = btn.dataset.matTab;
+            renderMatrixTabs();
+            renderMatrixTabContent(state.matActiveTab);
+            syncMatrixPreview();
+        });
+
+        byId('matGrid')?.addEventListener('input', (event) => {
+            const input = event.target.closest('input[data-mat-cell]');
+            if (input) {
+                state.matCellValues[input.id] = input.value;
+            }
+            syncMatrixPreview();
+        });
+
+        byId('matExpr')?.addEventListener('input', () => {
+            syncMatrixPreview();
+        });
+
+        document.querySelector('[data-action="apply-mat"]')?.addEventListener('click', () => {
+            const expr = String(byId('matExpr')?.value || '').trim();
+            if (!expr) return;
+            try {
+                const expanded = expandMatrixPanelExpr(expr);
+                setMainInputValue(expanded, { focusMainInput: true });
+            } catch {
+                // Don't apply if expansion fails
+            }
+        });
+
+        document.querySelector('[data-action="mat-add-row"]')?.addEventListener('click', () => {
+            const name = state.matActiveTab;
+            if (state.matRows[name] < 6) {
+                persistVisibleMatrixCells();
+                state.matRows[name] += 1;
+                renderMatrixTabContent(name);
+                syncMatrixPreview();
+            }
+        });
+        document.querySelector('[data-action="mat-remove-row"]')?.addEventListener('click', () => {
+            const name = state.matActiveTab;
+            if (state.matRows[name] > 1) {
+                persistVisibleMatrixCells();
+                state.matRows[name] -= 1;
+                renderMatrixTabContent(name);
+                syncMatrixPreview();
+            }
+        });
+        document.querySelector('[data-action="mat-add-col"]')?.addEventListener('click', () => {
+            const name = state.matActiveTab;
+            if (state.matCols[name] < 6) {
+                persistVisibleMatrixCells();
+                state.matCols[name] += 1;
+                renderMatrixTabContent(name);
+                syncMatrixPreview();
+            }
+        });
+        document.querySelector('[data-action="mat-remove-col"]')?.addEventListener('click', () => {
+            const name = state.matActiveTab;
+            if (state.matCols[name] > 1) {
+                persistVisibleMatrixCells();
+                state.matCols[name] -= 1;
+                renderMatrixTabContent(name);
+                syncMatrixPreview();
+            }
+        });
+        document.querySelector('[data-action="mat-add-panel"]')?.addEventListener('click', () => {
+            const available = MAT_PANEL_NAMES.filter((n) => !state.matPanels.includes(n));
+            if (!available.length) return;
+            persistVisibleMatrixCells();
+            state.matPanels.push(available[0]);
+            renderMatrixPanel();
+        });
+        document.querySelector('[data-action="mat-remove-panel"]')?.addEventListener('click', () => {
+            if (state.matPanels.length <= 1) return;
+            persistVisibleMatrixCells();
+            const removed = state.matPanels[state.matPanels.length - 1];
+            state.matPanels = state.matPanels.slice(0, -1);
+            clearStoredMatrixPanel(removed);
+            if (state.matActiveTab === removed) {
+                state.matActiveTab = state.matPanels[state.matPanels.length - 1];
+            }
+            renderMatrixPanel();
+        });
+        document.querySelector('[data-action="mat-reset"]')?.addEventListener('click', () => {
+            state.matPanels = ['A', 'B'];
+            state.matActiveTab = 'A';
+            state.matRows = { A: 2, B: 2, C: 2, D: 2 };
+            state.matCols = { A: 2, B: 2, C: 2, D: 2 };
+            state.matCellValues = {};
+            const exprEl = byId('matExpr');
+            if (exprEl) exprEl.value = '';
+            renderMatrixPanel();
+        });
     }
 
     function init() {
         if (!byId('calculator-overlay')) return;
         renderLGSMatrix();
+        renderMatrixPanel();
         syncCalculatorInputMode();
         syncBinomPreview();
         outputApi.setText('0', { headline: 'Bereit' });

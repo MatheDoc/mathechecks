@@ -14,6 +14,7 @@
                                 <option value="lgs">Gleichungssystem</option>
                                 <option value="binom">Binomialverteilung</option>
                                 <option value="graph">Graph</option>
+                                <option value="mat">Matrizen</option>
                             </select>
                         </div>
                         <div class="calculator-topbar__actions">
@@ -447,6 +448,61 @@
                                     </div>
                                     <div id="graphPanelPreview" class="graph-panel-preview" hidden></div>
                                     <div id="graphPanelInfo" class="graph-points-info" hidden></div>
+                                </section>
+
+                                <section class="calculator-panel" data-panel="mat" aria-label="Matrizen Eingabehilfe">
+                                    <div class="mat-panel">
+                                        <div class="mat-header">
+                                            <div class="mat-tabs" id="matTabs"></div>
+                                            <div class="mat-size-controls">
+                                                <button type="button" data-action="mat-add-row"
+                                                    title="Zeile hinzufügen">+Z</button>
+                                                <button type="button" class="remove" data-action="mat-remove-row"
+                                                    title="Zeile entfernen">−Z</button>
+                                                <button type="button" data-action="mat-add-col"
+                                                    title="Spalte hinzufügen">+S</button>
+                                                <button type="button" class="remove" data-action="mat-remove-col"
+                                                    title="Spalte entfernen">−S</button>
+                                                <button type="button" data-action="mat-add-panel"
+                                                    title="Matrix hinzufügen">+M</button>
+                                                <button type="button" class="remove" data-action="mat-remove-panel"
+                                                    title="Matrix entfernen">−M</button>
+                                                <button type="button" class="copy-result mat-reset-btn"
+                                                    data-action="mat-reset" aria-label="Panel zurücksetzen"
+                                                    title="Panel zurücksetzen">↺</button>
+                                            </div>
+                                        </div>
+                                        <div id="matGrid" class="mat-grid-editor"></div>
+                                        <div class="mat-expr-section">
+                                            <div class="mat-expr-row">
+                                                <label class="mat-expr-label" for="matExpr">Ausdruck</label>
+                                                <input type="text" id="matExpr" class="mat-expr-input"
+                                                    placeholder="z. B. A * B + A^(-1)" autocomplete="off"
+                                                    autocapitalize="off" spellcheck="false">
+                                            </div>
+                                        </div>
+                                        <div class="standard-tool-summary mat-summary">
+                                            <div class="panel-inline-result mat-summary__result">
+                                                <span id="matCommandPreview"
+                                                    class="panel-inline-result__primary">mat(...)...</span>
+                                                <div class="mat-summary__live-row">
+                                                    <div id="matLiveResult"
+                                                        class="panel-inline-result__secondary mat-live-result">–</div>
+                                                    <button type="button"
+                                                        class="copy-result standard-tool-summary__apply"
+                                                        data-action="apply-mat" aria-label="Übernehmen"
+                                                        title="Übernehmen">
+                                                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+                                                            fill="none" stroke="currentColor" stroke-width="1.8"
+                                                            stroke-linecap="round" stroke-linejoin="round">
+                                                            <path d="M7 17L17 7"></path>
+                                                            <path d="M10 7H17V14"></path>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </section>
                             </div>
                         </div>
