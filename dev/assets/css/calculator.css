@@ -1211,6 +1211,219 @@ html.light .calculator-mode-picker--compact:focus-within {
     background: transparent;
 }
 
+/* ---- Matrizen-Panel ---- */
+
+.mat-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mat-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.mat-tabs {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.mat-tab {
+    min-width: 0;
+    padding: 4px 10px;
+    border: 1px solid var(--borderfarbe);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--hintergrund-hell);
+    color: var(--textfarbe);
+    font-weight: 600;
+    font-size: inherit;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+.mat-tab.is-active {
+    background: color-mix(in srgb, var(--hauptfarbe) 12%, var(--hintergrund-hell));
+    border-color: color-mix(in srgb, var(--hauptfarbe) 40%, var(--borderfarbe));
+    color: var(--hauptfarbe-hover);
+}
+
+.calculator .mat-tab:hover {
+    transform: none;
+}
+
+.mat-tab:hover:not(.is-active) {
+    background: var(--hintergrund-hell-hover);
+}
+
+.mat-size-controls {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.mat-size-controls button {
+    min-width: 0;
+    padding: 4px 7px;
+    border: 1px solid var(--borderfarbe);
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--hintergrund-hell);
+    color: var(--textfarbe);
+    font-weight: 600;
+    font-size: 12px;
+    transition: background-color 0.15s, border-color 0.15s;
+    white-space: nowrap;
+}
+
+.mat-size-controls button:hover {
+    background: var(--hintergrund-hell-hover);
+    border-color: color-mix(in srgb, var(--hauptfarbe) 18%, var(--borderfarbe));
+    transform: none;
+}
+
+.mat-size-controls button.remove {
+    color: var(--textfarbe);
+}
+
+.mat-size-controls button.mat-reset-btn {
+    margin-left: 4px;
+    opacity: 0.7;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.mat-size-controls button.mat-reset-btn:hover {
+    opacity: 1;
+}
+
+.mat-size-controls button:focus-visible {
+    outline: 1px solid var(--hauptfarbe-hover);
+    border-color: var(--hauptfarbe-hover);
+}
+
+.mat-grid-editor {
+    display: grid;
+    gap: 4px;
+}
+
+.mat-cell-input {
+    width: 100%;
+    min-width: 0;
+    padding: 5px 6px;
+    background: var(--hintergrund-hell);
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    border: 1px solid var(--borderfarbe);
+    border-radius: 6px;
+    color: var(--textfarbe);
+}
+
+.mat-cell-input:focus {
+    outline: 1px solid var(--hauptfarbe-hover);
+    border-color: var(--hauptfarbe-hover);
+}
+
+.mat-expr-section {
+    padding-top: 8px;
+    border-top: 1px solid var(--borderfarbe);
+}
+
+.mat-expr-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mat-expr-label {
+    font-weight: 500;
+    white-space: nowrap;
+    color: var(--textfarbe);
+    font-size: 13px;
+}
+
+.mat-expr-input {
+    flex: 1;
+    min-width: 0;
+    padding: 6px 8px;
+    background: var(--hintergrund-hell);
+    border: 1px solid var(--borderfarbe);
+    border-radius: 6px;
+    color: var(--textfarbe);
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.mat-expr-input:focus {
+    outline: 1px solid var(--hauptfarbe-hover);
+    border-color: var(--hauptfarbe-hover);
+}
+
+.mat-summary__result {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 8px 12px;
+    align-items: start;
+}
+
+.mat-summary__live-row {
+    display: inline-flex;
+    gap: 8px;
+    align-items: flex-start;
+    justify-self: end;
+    flex-wrap: nowrap;
+}
+
+.mat-live-result {
+    display: flex;
+    align-items: flex-start;
+}
+
+/* ---- mat-grid (gemeinsam für Panel-Ergebnis und Hauptausgabe) ---- */
+
+.mat-grid {
+    display: inline-grid;
+    gap: 3px 10px;
+    padding: 4px 10px;
+    border-left: 2px solid var(--textfarbe-schwach);
+    border-right: 2px solid var(--textfarbe-schwach);
+    font-family: 'Courier New', monospace;
+    font-weight: 500;
+}
+
+.mat-grid__cell {
+    text-align: right;
+    min-width: 2ch;
+}
+
+/* mat-grid in der Hauptausgabe (result-display) */
+.calculator .result-display.has-matrix {
+    font-size: 16px;
+    align-items: flex-start;
+    padding-top: 4px;
+    white-space: normal;
+    overflow-y: auto;
+}
+
+.calculator .result-display.has-matrix .mat-grid {
+    font-size: 1em;
+    gap: 4px 14px;
+    padding: 6px 14px;
+}
+
+/* mat-grid im Panel-Ergebnis-Bereich */
+.mat-live-result .mat-grid {
+    font-size: 12px;
+    gap: 2px 8px;
+    padding: 2px 8px;
+}
+
 .function-card h4 {
     margin: 0;
     font-size: 13px;

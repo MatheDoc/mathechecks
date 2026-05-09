@@ -820,6 +820,414 @@ const DevCalculatorCommands = (() => {
         return `<div class="graph-points-list">${sections.join('')}</div>`;
     }
 
+    // --- Matrizenrechnung ---
+
+    class MatrixError extends Error {
+        constructor(message) {
+            super(message);
+            this.name = 'MatrixError';
+        }
+    }
+
+    function splitTopLevelByChar(str, sep) {
+        const parts = [];
+        let depth = 0;
+        let current = '';
+        for (const ch of str) {
+            if (ch === '(' || ch === '[' || ch === '{') depth++;
+            else if (ch === ')' || ch === ']' || ch === '}') depth--;
+            else if (ch === sep && depth === 0) {
+                parts.push(current);
+                current = '';
+                continue;
+            }
+            current += ch;
+        }
+        parts.push(current);
+        return parts;
+    }
+
+    function parseMatLiteral(str) {
+        const s = String(str ?? '').trim();
+        const parenStart = s.search(/\s*\(/);
+        if (parenStart < 0 || s[s.length - 1] !== ')') throw new MatrixError('Kein gültiges mat()-Literal');
+        const inner = s.slice(parenStart + 1, s.length - 1).trim();
+        const rowStrs = splitTopLevelByChar(inner, ';');
+        const rows = rowStrs.map((rowStr) => {
+            const r = rowStr.trim();
+            if (!r.startsWith('[') || !r.endsWith(']')) {
+                throw new MatrixError(`Ungültige Zeile: ${r}`);
+            }
+            const entriesRaw = splitTopLevelByChar(r.slice(1, -1), ';');
+            return entriesRaw.map((e) => {
+                const val = DevCalculatorUtils.evaluateExpression(e.trim());
+                if (!Number.isFinite(val)) throw new MatrixError(`Ungültiger Eintrag: ${e.trim()}`);
+                return val;
+            });
+        });
+        if (!rows.length || !rows[0].length) throw new MatrixError('Leere Matrix');
+        const cols = rows[0].length;
+        if (!rows.every((row) => row.length === cols)) throw new MatrixError('Matrix nicht rechteckig');
+        return rows;
+    }
+
+    function matDims(A) {
+        return `${A.length}×${A[0]?.length ?? 0}`;
+    }
+
+    function matAdd(A, B) {
+        if (A.length !== B.length || (A[0]?.length ?? 0) !== (B[0]?.length ?? 0)) {
+            throw new MatrixError(`Addition: Dimensionen passen nicht (${matDims(A)} + ${matDims(B)})`);
+        }
+        return A.map((row, i) => row.map((v, j) => v + B[i][j]));
+    }
+
+    function matSub(A, B) {
+        if (A.length !== B.length || (A[0]?.length ?? 0) !== (B[0]?.length ?? 0)) {
+            throw new MatrixError(`Subtraktion: Dimensionen passen nicht (${matDims(A)} − ${matDims(B)})`);
+        }
+        return A.map((row, i) => row.map((v, j) => v - B[i][j]));
+    }
+
+    function matMul(A, B) {
+        const m = A.length;
+        const n = A[0]?.length ?? 0;
+        const p = B[0]?.length ?? 0;
+        if (n !== B.length) {
+            throw new MatrixError(`Multiplikation: Dimensionen passen nicht (${matDims(A)} · ${matDims(B)})`);
+        }
+        return Array.from({ length: m }, (_, i) =>
+            Array.from({ length: p }, (_, j) =>
+                A[i].reduce((sum, v, k) => sum + v * B[k][j], 0)
+            )
+        );
+    }
+
+    function matScale(scalar, A) {
+        return A.map((row) => row.map((v) => scalar * v));
+    }
+
+    function matInverse(A) {
+        const n = A.length;
+        if (n !== (A[0]?.length ?? 0)) {
+            throw new MatrixError('Inverse: Nur für quadratische Matrizen');
+        }
+        const eps = 1e-12;
+        const aug = A.map((row, i) => {
+            const eye = new Array(n).fill(0);
+            eye[i] = 1;
+            return [...row, ...eye];
+        });
+        for (let col = 0; col < n; col++) {
+            let pivRow = col;
+            for (let row = col + 1; row < n; row++) {
+                if (Math.abs(aug[row][col]) > Math.abs(aug[pivRow][col])) pivRow = row;
+            }
+            [aug[col], aug[pivRow]] = [aug[pivRow], aug[col]];
+            const piv = aug[col][col];
+            if (Math.abs(piv) < eps) throw new MatrixError('Matrix nicht invertierbar');
+            for (let j = 0; j < 2 * n; j++) aug[col][j] /= piv;
+            for (let row = 0; row < n; row++) {
+                if (row === col) continue;
+                const factor = aug[row][col];
+                if (Math.abs(factor) < eps) continue;
+                for (let j = 0; j < 2 * n; j++) aug[row][j] -= factor * aug[col][j];
+            }
+        }
+        return aug.map((row) => row.slice(n));
+    }
+
+    function matIdentity(size) {
+        return Array.from({ length: size }, (_, rowIndex) =>
+            Array.from({ length: size }, (_, colIndex) => (rowIndex === colIndex ? 1 : 0))
+        );
+    }
+
+    function matPow(A, exponent) {
+        const size = A.length;
+        if (size !== (A[0]?.length ?? 0)) {
+            throw new MatrixError('Potenz: Nur für quadratische Matrizen');
+        }
+        if (!Number.isInteger(exponent)) {
+            throw new MatrixError('Potenz: Exponent muss ganzzahlig sein');
+        }
+        if (exponent === 0) return matIdentity(size);
+
+        let base = exponent < 0 ? matInverse(A) : A;
+        let remaining = Math.abs(exponent);
+        let result = matIdentity(size);
+
+        while (remaining > 0) {
+            if (remaining % 2 === 1) {
+                result = matMul(result, base);
+            }
+            remaining = Math.floor(remaining / 2);
+            if (remaining > 0) {
+                base = matMul(base, base);
+            }
+        }
+
+        return result;
+    }
+
+    function isEntireParenthesized(text) {
+        if (!text.startsWith('(') || !text.endsWith(')')) return false;
+        let roundDepth = 0;
+        let squareDepth = 0;
+        let curlyDepth = 0;
+
+        for (let index = 0; index < text.length; index++) {
+            const ch = text[index];
+            if (ch === '(') roundDepth++;
+            else if (ch === ')') roundDepth--;
+            else if (ch === '[') squareDepth++;
+            else if (ch === ']') squareDepth--;
+            else if (ch === '{') curlyDepth++;
+            else if (ch === '}') curlyDepth--;
+
+            if (roundDepth < 0 || squareDepth < 0 || curlyDepth < 0) return false;
+            if (roundDepth === 0 && squareDepth === 0 && curlyDepth === 0 && index < text.length - 1) {
+                return false;
+            }
+        }
+
+        return roundDepth === 0 && squareDepth === 0 && curlyDepth === 0;
+    }
+
+    function unwrapOuterParens(text) {
+        let unwrapped = String(text ?? '').trim();
+        while (isEntireParenthesized(unwrapped)) {
+            unwrapped = unwrapped.slice(1, -1).trim();
+        }
+        return unwrapped;
+    }
+
+    function isUnarySign(text, index) {
+        const ch = text[index];
+        if (ch !== '+' && ch !== '-') return false;
+
+        let prevIndex = index - 1;
+        while (prevIndex >= 0 && /\s/.test(text[prevIndex])) prevIndex--;
+        if (prevIndex < 0) return true;
+
+        return /[+\-*/^([\{;]/.test(text[prevIndex]);
+    }
+
+    function findTopLevelBinaryOperator(text, operators, { preferRightmost = true } = {}) {
+        const operatorSet = new Set(operators);
+        let roundDepth = 0;
+        let squareDepth = 0;
+        let curlyDepth = 0;
+        let candidate = -1;
+
+        for (let index = 0; index < text.length; index++) {
+            const ch = text[index];
+            if (ch === '(') {
+                roundDepth++;
+                continue;
+            }
+            if (ch === ')') {
+                roundDepth--;
+                continue;
+            }
+            if (ch === '[') {
+                squareDepth++;
+                continue;
+            }
+            if (ch === ']') {
+                squareDepth--;
+                continue;
+            }
+            if (ch === '{') {
+                curlyDepth++;
+                continue;
+            }
+            if (ch === '}') {
+                curlyDepth--;
+                continue;
+            }
+
+            if (roundDepth !== 0 || squareDepth !== 0 || curlyDepth !== 0) continue;
+            if (!operatorSet.has(ch)) continue;
+            if ((ch === '+' || ch === '-') && isUnarySign(text, index)) continue;
+
+            candidate = index;
+            if (!preferRightmost) return candidate;
+        }
+
+        return candidate;
+    }
+
+    function evaluateScalarResult(result) {
+        if (result.type !== 'scalar') {
+            throw new MatrixError('An dieser Stelle ist ein Skalar erforderlich');
+        }
+        return result.value;
+    }
+
+    function parseMatrixExponent(result) {
+        const value = evaluateScalarResult(result);
+        if (!Number.isFinite(value)) {
+            throw new MatrixError('Potenz: Exponent ist ungültig');
+        }
+        const rounded = Math.round(value);
+        if (Math.abs(value - rounded) > 1e-10) {
+            throw new MatrixError('Potenz: Matrixexponenten müssen ganzzahlig sein');
+        }
+        return rounded;
+    }
+
+    function parseMatrixAtom(text, matrixVars) {
+        const trimmed = String(text ?? '').trim();
+        if (!trimmed) throw new MatrixError('Leerer Ausdruck');
+
+        if (/^mat\s*\(/i.test(trimmed)) {
+            return { type: 'matrix', value: parseMatLiteral(trimmed) };
+        }
+
+        if (/^[A-D]$/i.test(trimmed)) {
+            const variableName = trimmed.toUpperCase();
+            if (!Object.prototype.hasOwnProperty.call(matrixVars, variableName)) {
+                throw new MatrixError(`Unbekannte Variable: ${variableName}`);
+            }
+            return { type: 'matrix', value: matrixVars[variableName] };
+        }
+
+        let scalarValue;
+        try {
+            scalarValue = DevCalculatorUtils.evaluateExpression(trimmed);
+        } catch {
+            throw new MatrixError(`Ungültiger Ausdruck: ${trimmed}`);
+        }
+        if (!Number.isFinite(scalarValue)) {
+            throw new MatrixError(`Ungültiger Skalarausdruck: ${trimmed}`);
+        }
+        return { type: 'scalar', value: scalarValue };
+    }
+
+    function combineMatrixSum(left, right, operator) {
+        if (left.type === 'scalar' && right.type === 'scalar') {
+            return { type: 'scalar', value: operator === '+' ? left.value + right.value : left.value - right.value };
+        }
+        if (left.type === 'matrix' && right.type === 'matrix') {
+            const fn = operator === '+' ? matAdd : matSub;
+            return { type: 'matrix', value: fn(left.value, right.value) };
+        }
+        throw new MatrixError('Fehler: Skalar und Matrix können nicht addiert/subtrahiert werden');
+    }
+
+    function combineMatrixProduct(left, right) {
+        if (left.type === 'scalar' && right.type === 'scalar') {
+            return { type: 'scalar', value: left.value * right.value };
+        }
+        if (left.type === 'scalar' && right.type === 'matrix') {
+            return { type: 'matrix', value: matScale(left.value, right.value) };
+        }
+        if (left.type === 'matrix' && right.type === 'scalar') {
+            return { type: 'matrix', value: matScale(right.value, left.value) };
+        }
+        return { type: 'matrix', value: matMul(left.value, right.value) };
+    }
+
+    function applyMatrixPower(base, exponent) {
+        if (base.type === 'scalar') {
+            return { type: 'scalar', value: Math.pow(base.value, evaluateScalarResult(exponent)) };
+        }
+        return { type: 'matrix', value: matPow(base.value, parseMatrixExponent(exponent)) };
+    }
+
+    function parseMatrixExpression(input, matrixVars) {
+        function parseMixedExpression(source) {
+            const text = unwrapOuterParens(source);
+            if (!text) throw new MatrixError('Leerer Ausdruck');
+
+            const addIndex = findTopLevelBinaryOperator(text, ['+', '-']);
+            if (addIndex >= 0) {
+                const left = parseMixedExpression(text.slice(0, addIndex));
+                const right = parseMixedExpression(text.slice(addIndex + 1));
+                return combineMatrixSum(left, right, text[addIndex]);
+            }
+
+            const multIndex = findTopLevelBinaryOperator(text, ['*']);
+            if (multIndex >= 0) {
+                const left = parseMixedExpression(text.slice(0, multIndex));
+                const right = parseMixedExpression(text.slice(multIndex + 1));
+                return combineMatrixProduct(left, right);
+            }
+
+            const powerIndex = findTopLevelBinaryOperator(text, ['^'], { preferRightmost: false });
+            if (powerIndex >= 0) {
+                const base = parseMixedExpression(text.slice(0, powerIndex));
+                const exponent = parseMixedExpression(text.slice(powerIndex + 1));
+                return applyMatrixPower(base, exponent);
+            }
+
+            if (text.startsWith('+')) {
+                return parseMixedExpression(text.slice(1));
+            }
+
+            if (text.startsWith('-')) {
+                const operand = parseMixedExpression(text.slice(1));
+                if (operand.type === 'matrix') {
+                    return { type: 'matrix', value: matScale(-1, operand.value) };
+                }
+                return { type: 'scalar', value: -operand.value };
+            }
+
+            return parseMatrixAtom(text, matrixVars);
+        }
+
+        return parseMixedExpression(String(input ?? '').trim());
+    }
+
+    function buildMatLiteralString(rows) {
+        const formatRow = (row) => `[${row.map((v) => String(v ?? '0')).join(';')}]`;
+        return `mat(${rows.map(formatRow).join(';')})`;
+    }
+
+    function matSerialize(matrix) {
+        return buildMatLiteralString(
+            matrix.map((row) => row.map((v) => DevCalculatorUtils.formatGeneralResult(v)))
+        );
+    }
+
+    function renderMatrixGrid(matrix) {
+        const cols = matrix[0]?.length ?? 0;
+        const container = document.createElement('div');
+        container.className = 'mat-grid';
+        if (cols > 0) container.style.gridTemplateColumns = `repeat(${cols}, auto)`;
+        matrix.forEach((row) => {
+            row.forEach((val) => {
+                const cell = document.createElement('span');
+                cell.className = 'mat-grid__cell';
+                cell.textContent = DevCalculatorUtils.formatGeneralResult(val);
+                container.appendChild(cell);
+            });
+        });
+        return container;
+    }
+
+    function evaluateMatrixExpr(input, matrixVars) {
+        return parseMatrixExpression(input, matrixVars || {});
+    }
+
+    function executeMatrixCommand(input, outputApi) {
+        try {
+            const result = evaluateMatrixExpr(input);
+            if (result.type === 'matrix') {
+                if (typeof outputApi.setMatrix === 'function') {
+                    outputApi.setMatrix(result.value, { headline: 'Matrix' });
+                } else {
+                    outputApi.setText(matSerialize(result.value), { headline: 'Matrix' });
+                }
+            } else {
+                outputApi.setText(DevCalculatorUtils.formatGeneralResult(result.value), { headline: 'Ergebnis' });
+            }
+        } catch (e) {
+            outputApi.setText(e.message || 'Fehler', { headline: 'Matrix' });
+        }
+    }
+
     function execute(command, outputApi, { includeGraphAnalysis = true } = {}) {
         const input = String(command ?? '').trim();
         if (!input) {
@@ -888,6 +1296,11 @@ const DevCalculatorCommands = (() => {
             return;
         }
 
+        if (/\bmat\s*\(/i.test(input)) {
+            executeMatrixCommand(input, outputApi);
+            return;
+        }
+
         const binomMatch = input.match(/^binom\s*\((.*)\)\s*$/i);
         if (binomMatch) {
             const values = binomMatch[1].split(';').map((part) => part.trim());
@@ -944,5 +1357,9 @@ const DevCalculatorCommands = (() => {
         buildFactorialExpression,
         buildBinomialCoefficientExpression,
         getLiveBinomResult,
+        evaluateMatrixExpr,
+        buildMatLiteralString,
+        renderMatrixGrid,
+        matSerialize,
     };
 })();

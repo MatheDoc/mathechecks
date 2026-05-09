@@ -13,7 +13,7 @@ Diese Datei beschreibt die vereinbarte Zielarchitektur des MatheChecks-Rechners.
 ## Aktuelle Bedienform
 
 - Die obere Leiste steuert genau eine aktive Eingabehilfe über ein gemeinsames Modus-Dropdown.
-- Sichtbare Modusnamen sind aktuell `Standard`, `Gleichungssystem`, `Binomialverteilung` und `Graph`.
+- Sichtbare Modusnamen sind aktuell `Standard`, `Gleichungssystem`, `Binomialverteilung`, `Graph` und `Matrizen`.
 - Rechts in der oberen Leiste liegen nur globale Aktionen wie Standardansicht wiederherstellen und Schließen.
 - Unterwerkzeuge innerhalb eines Modus sind nicht dasselbe wie ein Rechner-Modus. Im Standard-Menü betrifft das z. B. `sin`, `cos`, `tan`, `ln`, `log`, `Bruch` und `Potenz`.
 - Der Wechsel eines solchen Unterwerkzeugs ändert nur die lokale Eingabehilfe im aktiven Panel, nicht die globale Rechner-Semantik.
@@ -57,6 +57,7 @@ Aktuell:
 - Standard
 - Binom
 - LGS
+- Matrizen
 
 Regeln:
 
@@ -100,6 +101,15 @@ Regeln:
 
 Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig und nicht überraschend ist.
 
+### Typisierte Ausdrücke bleiben explizit
+
+- Der Main-Input darf nicht nur Skalare, sondern auch andere Ergebnistypen verarbeiten, wenn das Feature es fachlich verlangt.
+- Typgrenzen sollen für Nutzer klar bleiben; implizite Umdeutungen sind zu vermeiden.
+- Eine `1x1`-Matrix bleibt deshalb Matrix und wird nicht automatisch als Skalar behandelt.
+- Gemischte Ausdrücke sind nur dort erlaubt, wo die Typregel eindeutig ist.
+- Bei Matrizen betrifft das insbesondere skalare Faktoren vor oder nach einer Matrix sowie skalare Einträge innerhalb von `mat(...)`.
+- Lokale Panel-Abkürzungen sind keine kanonische Hauptsyntax.
+
 ## Ableitungen für aktuelle Menüs
 
 ### Binom
@@ -123,6 +133,17 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 - `graph(...)` darf bei `EXE` das Graph-Panel aktivieren.
 - `graph(...)` bleibt trotzdem als freier Eingabe- und Expertenpfad erhalten.
 - Das Aktivieren passiert bewusst erst bei Ausführung, nicht schon bei bloß erfolgreichem Parse.
+
+### Matrizen
+
+- Das Matrizen-Menü ist ein Builder-Menü mit lokaler Arbeitsfläche, nicht ein eigener Pflichtpfad.
+- Die kanonische Hauptsyntax für Matrizen ist `mat(...)`.
+- Panel-Variablen wie `A`, `B`, `C` und `D` sind nur lokale Hilfssymbole; `Übernehmen` schreibt deshalb expandierte `mat(...)`-Ausdrücke in den Main-Input.
+- Normale Skalarsyntax bleibt in skalaren Positionen erlaubt, z. B. in Matrixeinträgen oder als Faktor in `2 * mat(...)`.
+- Für Matrixausdrücke gelten klare Typregeln: `+` und `-` nur zwischen passenden Matrizen, `*` für Matrix-Matrix und Skalar-Matrix, keine implizite Matrix-Skalar-Umwandlung.
+- Ganzzahlige Matrixexponenten sind erlaubt, aber nur für quadratische Matrizen.
+- Dabei gilt insbesondere `A^0 = E`; negative ganzzahlige Exponenten laufen fachlich über die Inverse.
+- Matrixgleichungen mit freier Variable wie `x` sind ein separates späteres Thema und nicht Teil der aktuellen V1-Regel.
 
 ## Regel für neue Rechner-Features
 
