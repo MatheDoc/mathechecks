@@ -67,6 +67,32 @@ const DevCalculatorCommands = (() => {
         return options;
     }
 
+    function getStandaloneCallInner(input, commandName) {
+        const text = String(input ?? '').trim();
+        const startMatch = text.match(new RegExp(`^${commandName}\\s*\\(`, 'i'));
+        if (!startMatch) return null;
+
+        const openParenIndex = startMatch[0].length - 1;
+        let depth = 0;
+
+        for (let index = openParenIndex; index < text.length; index++) {
+            const ch = text[index];
+            if (ch === '(') depth++;
+            else if (ch === ')') depth--;
+
+            if (depth === 0) {
+                if (index !== text.length - 1) return null;
+                return text.slice(openParenIndex + 1, index);
+            }
+        }
+
+        return null;
+    }
+
+    function startsWithNamedCall(input, commandName) {
+        return new RegExp(`^${commandName}\\s*\\(`, 'i').test(String(input ?? '').trim());
+    }
+
     function replaceStandaloneX(expression, xValue) {
         return String(expression || '').replace(
             /(^|[^a-zA-Z0-9_.])x([^a-zA-Z0-9_]|$)/g,
@@ -1235,13 +1261,12 @@ const DevCalculatorCommands = (() => {
             return;
         }
 
-        if (/^graph\s*\(/i.test(input)) {
-            const match = input.match(/^graph\s*\((.*)\)\s*$/i);
-            if (!match) {
-                outputApi.setText('Ungültiger Graph-Befehl', { headline: 'Fehler' });
-                return;
-            }
-            const inner = match[1];
+        const graphInner = getStandaloneCallInner(input, 'graph');
+        const binomInner = getStandaloneCallInner(input, 'binom');
+        const lgsInner = getStandaloneCallInner(input, 'lgs');
+
+        if (graphInner !== null) {
+            const inner = graphInner;
             const parts = [];
             let depth = 0;
             let chunk = '';
@@ -1296,21 +1321,30 @@ const DevCalculatorCommands = (() => {
             return;
         }
 
+        if (startsWithNamedCall(input, 'graph')) {
+            outputApi.setText('Ungültiger Graph-Befehl', { headline: 'Fehler' });
+            return;
+        }
+
         if (/\bmat\s*\(/i.test(input)) {
             executeMatrixCommand(input, outputApi);
             return;
         }
 
-        const binomMatch = input.match(/^binom\s*\((.*)\)\s*$/i);
-        if (binomMatch) {
-            const values = binomMatch[1].split(';').map((part) => part.trim());
+        if (binomInner !== null) {
+            const values = binomInner.split(';').map((part) => part.trim());
             const live = getLiveBinomResult({ a: values[0], b: values[1], n: values[2], p: values[3] });
             outputApi.setText(live, { headline: 'Binom' });
             return;
         }
 
-        if (/^lgs\s*\(/i.test(input)) {
+        if (lgsInner !== null) {
             executeLGSCommand(input, outputApi);
+            return;
+        }
+
+        if (startsWithNamedCall(input, 'lgs')) {
+            outputApi.setText('Ungültiger LGS-Befehl', { headline: 'Fehler' });
             return;
         }
 
