@@ -1,5 +1,9 @@
 (() => {
-    const MAT_PANEL_NAMES = ['A', 'B', 'C', 'D'];
+    const MAT_PANEL_NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+
+    function createDefaultMatDimensionMap() {
+        return Object.fromEntries(MAT_PANEL_NAMES.map((name) => [name, 2]));
+    }
 
     const state = {
         lgsVariables: 2,
@@ -13,8 +17,8 @@
         graphPreviewTimeoutId: null,
         matPanels: ['A', 'B'],
         matActiveTab: 'A',
-        matRows: { A: 2, B: 2, C: 2, D: 2 },
-        matCols: { A: 2, B: 2, C: 2, D: 2 },
+        matRows: createDefaultMatDimensionMap(),
+        matCols: createDefaultMatDimensionMap(),
         matCellValues: {},
     };
 
@@ -1154,7 +1158,7 @@
 
     function expandMatrixPanelExpr(expr) {
         let expanded = String(expr || '');
-        // Replace standalone A/B/C/D (not part of longer word) with mat(...) literals
+        // Replace standalone matrix symbols (not part of longer word) with mat(...) literals
         [...state.matPanels].reverse().forEach((name) => {
             const re = new RegExp(`(?<![A-Za-z])${name}(?![A-Za-z])`, 'g');
             expanded = expanded.replace(re, buildMatLiteralFromPanel(name));
@@ -1203,8 +1207,37 @@
         });
     }
 
+    function renderMatrixExprSymbols() {
+        const symbolsContainer = byId('matExprSymbols');
+        if (!symbolsContainer) return;
+        symbolsContainer.innerHTML = '';
+        state.matPanels.forEach((name) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'mat-expr-symbol';
+            btn.dataset.matInsertSymbol = name;
+            btn.textContent = name;
+            btn.setAttribute('aria-label', `${name} in Ausdruck einfügen`);
+            btn.title = `${name} in Ausdruck einfügen`;
+            symbolsContainer.appendChild(btn);
+        });
+    }
+
+    function insertIntoMatrixExpression(value) {
+        const exprInput = byId('matExpr');
+        if (!exprInput) return;
+        const isFocused = document.activeElement === exprInput;
+        if (!isFocused) {
+            focusInput(exprInput);
+        }
+        insertAtCursor(exprInput, value);
+        focusInput(exprInput, false);
+        emitInputEvent(exprInput);
+    }
+
     function renderMatrixPanel() {
         renderMatrixTabs();
+        renderMatrixExprSymbols();
         renderMatrixTabContent(state.matActiveTab);
         syncMatrixPreview();
     }
@@ -1433,6 +1466,12 @@
             syncMatrixPreview();
         });
 
+        byId('matExprSymbols')?.addEventListener('click', (event) => {
+            const button = event.target.closest('[data-mat-insert-symbol]');
+            if (!button) return;
+            insertIntoMatrixExpression(button.dataset.matInsertSymbol || '');
+        });
+
         document.querySelector('[data-action="apply-mat"]')?.addEventListener('click', () => {
             const expr = String(byId('matExpr')?.value || '').trim();
             if (!expr) return;
@@ -1501,8 +1540,8 @@
         document.querySelector('[data-action="mat-reset"]')?.addEventListener('click', () => {
             state.matPanels = ['A', 'B'];
             state.matActiveTab = 'A';
-            state.matRows = { A: 2, B: 2, C: 2, D: 2 };
-            state.matCols = { A: 2, B: 2, C: 2, D: 2 };
+            state.matRows = createDefaultMatDimensionMap();
+            state.matCols = createDefaultMatDimensionMap();
             state.matCellValues = {};
             const exprEl = byId('matExpr');
             if (exprEl) exprEl.value = '';

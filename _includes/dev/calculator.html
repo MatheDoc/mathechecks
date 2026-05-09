@@ -453,23 +453,34 @@
                                 <section class="calculator-panel" data-panel="mat" aria-label="Matrizen Eingabehilfe">
                                     <div class="mat-panel">
                                         <div class="mat-header">
-                                            <div class="mat-tabs" id="matTabs"></div>
-                                            <div class="mat-size-controls">
-                                                <button type="button" data-action="mat-add-row"
-                                                    title="Zeile hinzufügen">+Z</button>
-                                                <button type="button" class="remove" data-action="mat-remove-row"
-                                                    title="Zeile entfernen">−Z</button>
-                                                <button type="button" data-action="mat-add-col"
-                                                    title="Spalte hinzufügen">+S</button>
-                                                <button type="button" class="remove" data-action="mat-remove-col"
-                                                    title="Spalte entfernen">−S</button>
-                                                <button type="button" data-action="mat-add-panel"
-                                                    title="Matrix hinzufügen">+M</button>
-                                                <button type="button" class="remove" data-action="mat-remove-panel"
-                                                    title="Matrix entfernen">−M</button>
+                                            <div class="mat-header-top">
+                                                <div class="mat-tabs" id="matTabs"></div>
                                                 <button type="button" class="copy-result mat-reset-btn"
                                                     data-action="mat-reset" aria-label="Panel zurücksetzen"
                                                     title="Panel zurücksetzen">↺</button>
+                                            </div>
+                                            <div class="mat-size-controls" aria-label="Matrix-Struktur anpassen">
+                                                <div class="mat-control-group" aria-label="Zeilen steuern">
+                                                    <button type="button" class="remove" data-action="mat-remove-row"
+                                                        aria-label="Zeile entfernen" title="Zeile entfernen">−</button>
+                                                    <span class="mat-control-group__label" aria-hidden="true">Z</span>
+                                                    <button type="button" data-action="mat-add-row"
+                                                        aria-label="Zeile hinzufügen" title="Zeile hinzufügen">+</button>
+                                                </div>
+                                                <div class="mat-control-group" aria-label="Spalten steuern">
+                                                    <button type="button" class="remove" data-action="mat-remove-col"
+                                                        aria-label="Spalte entfernen" title="Spalte entfernen">−</button>
+                                                    <span class="mat-control-group__label" aria-hidden="true">S</span>
+                                                    <button type="button" data-action="mat-add-col"
+                                                        aria-label="Spalte hinzufügen" title="Spalte hinzufügen">+</button>
+                                                </div>
+                                                <div class="mat-control-group" aria-label="Matrizen steuern">
+                                                    <button type="button" class="remove" data-action="mat-remove-panel"
+                                                        aria-label="Matrix entfernen" title="Matrix entfernen">−</button>
+                                                    <span class="mat-control-group__label" aria-hidden="true">M</span>
+                                                    <button type="button" data-action="mat-add-panel"
+                                                        aria-label="Matrix hinzufügen" title="Matrix hinzufügen">+</button>
+                                                </div>
                                             </div>
                                         </div>
                                         <div id="matGrid" class="mat-grid-editor"></div>
@@ -480,6 +491,8 @@
                                                     placeholder="z. B. A * B + A^(-1)" autocomplete="off"
                                                     autocapitalize="off" spellcheck="false">
                                             </div>
+                                            <div class="mat-expr-symbols" id="matExprSymbols"
+                                                aria-label="Matrix-Variablen einfügen"></div>
                                         </div>
                                         <div class="standard-tool-summary mat-summary">
                                             <div class="panel-inline-result mat-summary__result">
