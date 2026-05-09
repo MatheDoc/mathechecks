@@ -138,7 +138,7 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 
 - Das Matrizen-Menü ist ein Builder-Menü mit lokaler Arbeitsfläche, nicht ein eigener Pflichtpfad.
 - Die kanonische Hauptsyntax für Matrizen ist `mat(...)`.
-- Panel-Variablen wie `A`, `B`, `C` und `D` sind nur lokale Hilfssymbole; `Übernehmen` schreibt deshalb expandierte `mat(...)`-Ausdrücke in den Main-Input.
+- Panel-Variablen wie `A` bis `H` sind nur lokale Hilfssymbole; `Übernehmen` schreibt deshalb expandierte `mat(...)`-Ausdrücke in den Main-Input.
 - Normale Skalarsyntax bleibt in skalaren Positionen erlaubt, z. B. in Matrixeinträgen oder als Faktor in `2 * mat(...)`.
 - Für Matrixausdrücke gelten klare Typregeln: `+` und `-` nur zwischen passenden Matrizen, `*` für Matrix-Matrix und Skalar-Matrix, keine implizite Matrix-Skalar-Umwandlung.
 - Ganzzahlige Matrixexponenten sind erlaubt, aber nur für quadratische Matrizen.

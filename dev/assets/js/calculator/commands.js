@@ -1085,7 +1085,7 @@ const DevCalculatorCommands = (() => {
             return { type: 'matrix', value: parseMatLiteral(trimmed) };
         }
 
-        if (/^[A-D]$/i.test(trimmed)) {
+        if (/^[A-H]$/i.test(trimmed)) {
             const variableName = trimmed.toUpperCase();
             if (!Object.prototype.hasOwnProperty.call(matrixVars, variableName)) {
                 throw new MatrixError(`Unbekannte Variable: ${variableName}`);
