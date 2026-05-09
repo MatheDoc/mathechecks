@@ -674,7 +674,7 @@
     function syncBinomCommandPreview(options = {}) {
         syncBinomPreview();
         if (!options.commitToMainInput) return;
-        setMainInputValue(DevCalculatorCommands.buildBinomCommand(getBinomFields()), options);
+        insertIntoMainInput(DevCalculatorCommands.buildBinomCommand(getBinomFields()));
     }
 
     function requireFilledFields(ids) {
@@ -1477,7 +1477,7 @@
             if (!expr) return;
             try {
                 const expanded = expandMatrixPanelExpr(expr);
-                setMainInputValue(expanded, { focusMainInput: true });
+                insertIntoMainInput(expanded);
             } catch {
                 // Don't apply if expansion fails
             }

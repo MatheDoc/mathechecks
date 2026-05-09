@@ -63,6 +63,8 @@ Regeln:
 
 - Dürfen panelinterne Live-Werte anzeigen.
 - Dürfen Inhalte per `Übernehmen` in den Main-Input schreiben.
+- Wenn das Menü einen komponierbaren Ausdruck erzeugt, fügt `Übernehmen` diesen Ausdruck an der aktuellen Cursorposition im Main-Input ein und löscht den bestehenden Inhalt nicht.
+- Wenn das Menü stattdessen ein vollständiges Top-Level-Kommando erzeugt, darf `Übernehmen` den Main-Input vollständig setzen.
 - Erzwingen keinen automatischen Menü-Sprung, nur weil eine passende Syntax im Main-Input ausgeführt wurde.
 - Werden standardmäßig nicht rückwärts aus dem Main-Input befüllt.
 
@@ -88,6 +90,8 @@ Regeln:
 - Freie Eingabe ist immer erlaubt.
 - Nutzer müssen nicht zuerst ein Menü öffnen, um rechnen zu können.
 - Er muss aber nicht in jedem aktiven Workspace-Menü sichtbar sein, wenn die Arbeit bewusst im Panel stattfindet.
+- Top-Level-Kommandos werden nur dann als solche behandelt, wenn sie den gesamten Main-Input bilden.
+- Komponierbare Funktionen bleiben auch in größeren Ausdrücken normale Ausdrucksteile und dürfen nicht durch eine zu frühe Sonderbehandlung abgeschnitten werden.
 
 ### Ergebnisbereich bleibt kompakt
 
@@ -98,6 +102,7 @@ Regeln:
 
 - Menü-Panel -> Main-Input: ja, bewusst und explizit.
 - Main-Input -> Menü-Panel: standardmäßig nein.
+- `Übernehmen` ist semantisch ein Transfer in die kanonische Main-Input-Syntax, nicht einfach ein beliebiges Ersetzen des Eingabefelds.
 
 Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig und nicht überraschend ist.
 
@@ -117,12 +122,14 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 - `binom(...)` im Main-Input verhält sich wie eine normale skalare Funktion, vergleichbar mit `sin(...)`.
 - Das gilt auch in größeren Ausdrücken wie `2*binom(...)`.
 - Das Binom-Panel ist Eingabehilfe, nicht kanonischer Ausführungsort.
+- `Übernehmen` fügt deshalb den erzeugten `binom(...)`-Ausdruck an der Cursorposition in den Main-Input ein.
 - In der Ergebniszeile reicht der nackte Zahlenwert.
 
 ### LGS
 
 - Das LGS-Panel ist Builder und Solver-Hilfe.
 - Freie LGS-Eingaben im Main-Input bleiben möglich.
+- `Übernehmen` setzt hier bewusst einen vollständigen `lgs(...)`-Block in den Main-Input, statt nur ein Fragment einzufügen.
 - Keine generelle Rückbefüllung des Panels aus Main-Input-Eingaben, weil dabei Struktur und Variablennamen verloren gehen können.
 
 ### Graph
@@ -138,7 +145,7 @@ Ausnahmen sind nur sinnvoll, wenn die Rückübertragung verlustfrei, eindeutig u
 
 - Das Matrizen-Menü ist ein Builder-Menü mit lokaler Arbeitsfläche, nicht ein eigener Pflichtpfad.
 - Die kanonische Hauptsyntax für Matrizen ist `mat(...)`.
-- Panel-Variablen wie `A` bis `H` sind nur lokale Hilfssymbole; `Übernehmen` schreibt deshalb expandierte `mat(...)`-Ausdrücke in den Main-Input.
+- Panel-Variablen wie `A` bis `H` sind nur lokale Hilfssymbole; `Übernehmen` schreibt deshalb expandierte `mat(...)`-Ausdrücke an der Cursorposition in den Main-Input.
 - Normale Skalarsyntax bleibt in skalaren Positionen erlaubt, z. B. in Matrixeinträgen oder als Faktor in `2 * mat(...)`.
 - Für Matrixausdrücke gelten klare Typregeln: `+` und `-` nur zwischen passenden Matrizen, `*` für Matrix-Matrix und Skalar-Matrix, keine implizite Matrix-Skalar-Umwandlung.
 - Ganzzahlige Matrixexponenten sind erlaubt, aber nur für quadratische Matrizen.
