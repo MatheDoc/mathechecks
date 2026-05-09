@@ -325,13 +325,25 @@
 
                                 <section class="calculator-panel" data-panel="lgs" aria-label="LGS Eingabehilfe">
                                     <div class="lgs-panel">
-                                        <div class="lgs-controls">
-                                            <button type="button" data-action="lgs-add-var">+ Var.</button>
-                                            <button type="button" class="remove" data-action="lgs-remove-var">-
-                                                Var.</button>
-                                            <button type="button" data-action="lgs-add-eq">+ Gl.</button>
-                                            <button type="button" class="remove" data-action="lgs-remove-eq">-
-                                                Gl.</button>
+                                        <div class="lgs-controls panel-adjust-strip" aria-label="LGS-Struktur anpassen">
+                                            <div class="panel-adjust-group" aria-label="Variablen steuern">
+                                                <button type="button" class="remove" data-action="lgs-remove-var"
+                                                    aria-label="Variable entfernen"
+                                                    title="Variable entfernen">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">Var.</span>
+                                                <button type="button" data-action="lgs-add-var"
+                                                    aria-label="Variable hinzufügen"
+                                                    title="Variable hinzufügen">+</button>
+                                            </div>
+                                            <div class="panel-adjust-group" aria-label="Gleichungen steuern">
+                                                <button type="button" class="remove" data-action="lgs-remove-eq"
+                                                    aria-label="Gleichung entfernen"
+                                                    title="Gleichung entfernen">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">Gl.</span>
+                                                <button type="button" data-action="lgs-add-eq"
+                                                    aria-label="Gleichung hinzufügen"
+                                                    title="Gleichung hinzufügen">+</button>
+                                            </div>
                                         </div>
                                         <div id="lgsMatrix" class="lgs-matrix"></div>
                                         <div class="standard-tool-summary lgs-summary">
@@ -363,53 +375,61 @@
                                     <div class="binom-container">
                                         <div class="binom-inputs-row">
                                             <div class="binom-field">
-                                                <input type="text" id="binomA" inputmode="decimal" autocomplete="off"
-                                                    placeholder="a" aria-label="a">
+                                                <input type="text" id="binomA" class="panel-text-input"
+                                                    inputmode="decimal" autocomplete="off" placeholder="a"
+                                                    aria-label="a">
                                             </div>
                                             <div class="binom-field">
-                                                <input type="text" id="binomB" inputmode="decimal" autocomplete="off"
-                                                    placeholder="b" aria-label="b">
+                                                <input type="text" id="binomB" class="panel-text-input"
+                                                    inputmode="decimal" autocomplete="off" placeholder="b"
+                                                    aria-label="b">
                                             </div>
                                             <div class="binom-field">
-                                                <input type="text" id="binomN" inputmode="decimal" autocomplete="off"
-                                                    placeholder="n" aria-label="n">
+                                                <input type="text" id="binomN" class="panel-text-input"
+                                                    inputmode="decimal" autocomplete="off" placeholder="n"
+                                                    aria-label="n">
                                             </div>
                                             <div class="binom-field">
-                                                <input type="text" id="binomP" inputmode="decimal" autocomplete="off"
-                                                    placeholder="p" aria-label="p">
+                                                <input type="text" id="binomP" class="panel-text-input"
+                                                    inputmode="decimal" autocomplete="off" placeholder="p"
+                                                    aria-label="p">
                                             </div>
                                         </div>
-                                        <div class="binom-steppers-row">
-                                            <div class="binom-stepper-group">
+                                        <div class="binom-steppers-row panel-adjust-strip">
+                                            <div class="binom-stepper-group panel-adjust-group">
                                                 <button type="button" class="binom-step" data-target="binomA"
-                                                    data-step="-1" aria-label="a verringern">◀</button>
+                                                    data-step="-1" aria-label="a verringern">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">a</span>
                                                 <button type="button" class="binom-step" data-target="binomA"
-                                                    data-step="1" aria-label="a erhöhen">▶</button>
+                                                    data-step="1" aria-label="a erhöhen">+</button>
                                             </div>
-                                            <div class="binom-stepper-group">
+                                            <div class="binom-stepper-group panel-adjust-group">
                                                 <button type="button" class="binom-step" data-target="binomB"
-                                                    data-step="-1" aria-label="b verringern">◀</button>
+                                                    data-step="-1" aria-label="b verringern">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">b</span>
                                                 <button type="button" class="binom-step" data-target="binomB"
-                                                    data-step="1" aria-label="b erhöhen">▶</button>
+                                                    data-step="1" aria-label="b erhöhen">+</button>
                                             </div>
-                                            <div class="binom-stepper-group">
+                                            <div class="binom-stepper-group panel-adjust-group">
                                                 <button type="button" class="binom-step" data-target="binomN"
-                                                    data-step="-1" aria-label="n verringern">◀</button>
+                                                    data-step="-1" aria-label="n verringern">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">n</span>
                                                 <button type="button" class="binom-step" data-target="binomN"
-                                                    data-step="1" aria-label="n erhöhen">▶</button>
+                                                    data-step="1" aria-label="n erhöhen">+</button>
                                             </div>
-                                            <div class="binom-stepper-group">
+                                            <div class="binom-stepper-group panel-adjust-group">
                                                 <button type="button" class="binom-step" data-target="binomP"
-                                                    data-step="-0.01" aria-label="p verringern">◀</button>
+                                                    data-step="-0.01" aria-label="p verringern">−</button>
+                                                <span class="panel-adjust-group__label" aria-hidden="true">p</span>
                                                 <button type="button" class="binom-step" data-target="binomP"
-                                                    data-step="0.01" aria-label="p erhöhen">▶</button>
+                                                    data-step="0.01" aria-label="p erhöhen">+</button>
                                             </div>
                                         </div>
                                         <div class="standard-tool-summary binom-summary">
-                                            <div class="panel-inline-result binom-summary__result">
+                                            <div class="panel-inline-result standard-tool-summary__result">
                                                 <span id="binomCommandPreview"
                                                     class="panel-inline-result__primary">binom(...;...;...;...)</span>
-                                                <div class="binom-summary__live-row">
+                                                <div class="standard-tool-summary__live-row">
                                                     <span class="panel-inline-result__secondary">P(a ≤ X ≤ b) = <span
                                                             id="binomLiveResult">-</span></span>
                                                     <button type="button" class="copy-result binom-summary__apply"
@@ -431,19 +451,25 @@
                                 <section class="calculator-panel" data-panel="graph" aria-label="Graph Eingabehilfe">
                                     <div class="graph-controls">
                                         <div class="graph-input">
-                                            <label class="graph-fx-label" for="graphFunction">f(x) =</label>
-                                            <input type="text" id="graphFunction" placeholder="z.B. x^2 + 4x - 1"
-                                                autocomplete="off" autocapitalize="off" spellcheck="false">
+                                            <label class="panel-field-label graph-fx-label" for="graphFunction">f(x)
+                                                =</label>
+                                            <input type="text" id="graphFunction" class="panel-text-input"
+                                                placeholder="z.B. x^2 + 4x - 1" autocomplete="off" autocapitalize="off"
+                                                spellcheck="false">
                                         </div>
                                         <div class="graph-params-row">
-                                            <input type="text" id="graphXMin" inputmode="decimal" autocomplete="off"
-                                                placeholder="xmin">
-                                            <input type="text" id="graphXMax" inputmode="decimal" autocomplete="off"
-                                                placeholder="xmax">
-                                            <input type="text" id="graphYMin" inputmode="decimal" autocomplete="off"
-                                                placeholder="ymin">
-                                            <input type="text" id="graphYMax" inputmode="decimal" autocomplete="off"
-                                                placeholder="ymax">
+                                            <input type="text" id="graphXMin"
+                                                class="panel-text-input panel-text-input--compact" inputmode="decimal"
+                                                autocomplete="off" placeholder="xmin">
+                                            <input type="text" id="graphXMax"
+                                                class="panel-text-input panel-text-input--compact" inputmode="decimal"
+                                                autocomplete="off" placeholder="xmax">
+                                            <input type="text" id="graphYMin"
+                                                class="panel-text-input panel-text-input--compact" inputmode="decimal"
+                                                autocomplete="off" placeholder="ymin">
+                                            <input type="text" id="graphYMax"
+                                                class="panel-text-input panel-text-input--compact" inputmode="decimal"
+                                                autocomplete="off" placeholder="ymax">
                                         </div>
                                     </div>
                                     <div id="graphPanelPreview" class="graph-panel-preview" hidden></div>
@@ -459,35 +485,45 @@
                                                     data-action="mat-reset" aria-label="Panel zurücksetzen"
                                                     title="Panel zurücksetzen">↺</button>
                                             </div>
-                                            <div class="mat-size-controls" aria-label="Matrix-Struktur anpassen">
-                                                <div class="mat-control-group" aria-label="Zeilen steuern">
+                                            <div class="mat-size-controls panel-adjust-strip"
+                                                aria-label="Matrix-Struktur anpassen">
+                                                <div class="mat-control-group panel-adjust-group"
+                                                    aria-label="Zeilen steuern">
                                                     <button type="button" class="remove" data-action="mat-remove-row"
                                                         aria-label="Zeile entfernen" title="Zeile entfernen">−</button>
-                                                    <span class="mat-control-group__label" aria-hidden="true">Z</span>
+                                                    <span class="panel-adjust-group__label" aria-hidden="true">Z</span>
                                                     <button type="button" data-action="mat-add-row"
-                                                        aria-label="Zeile hinzufügen" title="Zeile hinzufügen">+</button>
+                                                        aria-label="Zeile hinzufügen"
+                                                        title="Zeile hinzufügen">+</button>
                                                 </div>
-                                                <div class="mat-control-group" aria-label="Spalten steuern">
+                                                <div class="mat-control-group panel-adjust-group"
+                                                    aria-label="Spalten steuern">
                                                     <button type="button" class="remove" data-action="mat-remove-col"
-                                                        aria-label="Spalte entfernen" title="Spalte entfernen">−</button>
-                                                    <span class="mat-control-group__label" aria-hidden="true">S</span>
+                                                        aria-label="Spalte entfernen"
+                                                        title="Spalte entfernen">−</button>
+                                                    <span class="panel-adjust-group__label" aria-hidden="true">S</span>
                                                     <button type="button" data-action="mat-add-col"
-                                                        aria-label="Spalte hinzufügen" title="Spalte hinzufügen">+</button>
+                                                        aria-label="Spalte hinzufügen"
+                                                        title="Spalte hinzufügen">+</button>
                                                 </div>
-                                                <div class="mat-control-group" aria-label="Matrizen steuern">
+                                                <div class="mat-control-group panel-adjust-group"
+                                                    aria-label="Matrizen steuern">
                                                     <button type="button" class="remove" data-action="mat-remove-panel"
-                                                        aria-label="Matrix entfernen" title="Matrix entfernen">−</button>
-                                                    <span class="mat-control-group__label" aria-hidden="true">M</span>
+                                                        aria-label="Matrix entfernen"
+                                                        title="Matrix entfernen">−</button>
+                                                    <span class="panel-adjust-group__label" aria-hidden="true">M</span>
                                                     <button type="button" data-action="mat-add-panel"
-                                                        aria-label="Matrix hinzufügen" title="Matrix hinzufügen">+</button>
+                                                        aria-label="Matrix hinzufügen"
+                                                        title="Matrix hinzufügen">+</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div id="matGrid" class="mat-grid-editor"></div>
                                         <div class="mat-expr-section">
                                             <div class="mat-expr-row">
-                                                <label class="mat-expr-label" for="matExpr">Ausdruck</label>
-                                                <input type="text" id="matExpr" class="mat-expr-input"
+                                                <label class="panel-field-label mat-expr-label"
+                                                    for="matExpr">Ausdruck</label>
+                                                <input type="text" id="matExpr" class="panel-text-input mat-expr-input"
                                                     placeholder="z. B. A * B + A^(-1)" autocomplete="off"
                                                     autocapitalize="off" spellcheck="false">
                                             </div>
@@ -495,10 +531,10 @@
                                                 aria-label="Matrix-Variablen einfügen"></div>
                                         </div>
                                         <div class="standard-tool-summary mat-summary">
-                                            <div class="panel-inline-result mat-summary__result">
+                                            <div class="panel-inline-result standard-tool-summary__result">
                                                 <span id="matCommandPreview"
                                                     class="panel-inline-result__primary">mat(...)...</span>
-                                                <div class="mat-summary__live-row">
+                                                <div class="standard-tool-summary__live-row">
                                                     <div id="matLiveResult"
                                                         class="panel-inline-result__secondary mat-live-result">–</div>
                                                     <button type="button"

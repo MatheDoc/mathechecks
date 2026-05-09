@@ -281,14 +281,82 @@
         applySelectionState(input, nextPos, nextPos);
     }
 
+    function getPreviousNonWhitespaceChar(text) {
+        for (let index = text.length - 1; index >= 0; index--) {
+            const ch = text[index];
+            if (!/\s/.test(ch)) return ch;
+        }
+        return '';
+    }
+
+    function getNextNonWhitespaceChar(text) {
+        for (let index = 0; index < text.length; index++) {
+            const ch = text[index];
+            if (!/\s/.test(ch)) return ch;
+        }
+        return '';
+    }
+
+    function countUnclosedParentheses(text) {
+        let depth = 0;
+        for (const ch of String(text || '')) {
+            if (ch === '(') {
+                depth += 1;
+                continue;
+            }
+            if (ch === ')') {
+                depth = Math.max(0, depth - 1);
+            }
+        }
+        return depth;
+    }
+
+    function getSmartParenthesisForInput(input) {
+        const currentValue = input?.value || '';
+        const start = input?.selectionStart ?? currentValue.length;
+        const end = input?.selectionEnd ?? start;
+        const before = currentValue.slice(0, start);
+        const after = currentValue.slice(end);
+        const previousChar = getPreviousNonWhitespaceChar(before);
+        const nextChar = getNextNonWhitespaceChar(after);
+        const openParentheses = countUnclosedParentheses(before);
+        const closesExpressionPart = /[\dA-Za-z_π.,)!\]]/.test(previousChar);
+        const nextAllowsClosing = !nextChar || ')+-*/^=;,]'.includes(nextChar);
+
+        if (openParentheses > 0 && closesExpressionPart && nextAllowsClosing) {
+            return ')';
+        }
+
+        return '(';
+    }
+
+    function insertSmartParenthesis(input) {
+        const target = input || getActiveInput() || getMainInput();
+        if (!target) return;
+
+        const currentValue = target.value || '';
+        const start = target.selectionStart ?? currentValue.length;
+        const end = target.selectionEnd ?? start;
+        const nextToken = getSmartParenthesisForInput(target);
+
+        if (nextToken === ')' && start === end && currentValue[start] === ')') {
+            applySelectionState(target, start + 1, start + 1);
+            return;
+        }
+
+        insertAtCursor(target, nextToken);
+    }
+
     function insertIntoActiveInput(value) {
         const target = getActiveInput() || getMainInput();
         if (!target) return;
-        insertAtCursor(target, value === '()' ? '()' : value);
+
         if (value === '()') {
-            const pos = (target.selectionStart ?? target.value.length) - 1;
-            applySelectionState(target, pos, pos);
+            insertSmartParenthesis(target);
+        } else {
+            insertAtCursor(target, value);
         }
+
         focusInput(target, false);
         emitInputEvent(target);
     }
@@ -392,6 +460,7 @@
                 const input = document.createElement('input');
                 input.type = 'text';
                 input.id = `a${equationIndex}${variableIndex}`;
+                input.className = 'panel-text-input panel-text-input--equation';
                 input.value = existingValues[input.id] ?? '';
                 row.appendChild(input);
                 const variableLabel = document.createElement('span');
@@ -406,6 +475,7 @@
             const resultInput = document.createElement('input');
             resultInput.type = 'text';
             resultInput.id = `b${equationIndex}`;
+            resultInput.className = 'panel-text-input panel-text-input--equation';
             resultInput.value = existingValues[resultInput.id] ?? '';
             row.appendChild(resultInput);
             container.appendChild(row);
@@ -1185,7 +1255,7 @@
                 input.placeholder = '0';
                 input.autocomplete = 'off';
                 input.inputMode = 'decimal';
-                input.className = 'mat-cell-input';
+                input.className = 'panel-text-input panel-text-input--compact mat-cell-input';
                 container.appendChild(input);
             }
         }
