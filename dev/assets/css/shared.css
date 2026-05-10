@@ -97,8 +97,8 @@ html.light {
   --pink: #d94d93;
   --pink-soft: rgba(217, 77, 147, 0.08);
   --panel-solid: #ffffff;
-  --card-surface-1: rgba(255, 255, 255, 0.95);
-  --card-surface-2: rgba(248, 249, 253, 0.95);
+  --card-surface-1: rgba(255, 255, 255, 0.985);
+  --card-surface-2: rgba(252, 253, 255, 0.975);
   --nav-rail-bg: #f1f2f8;
   --nav-tab-bg: rgba(0, 0, 0, 0.06);
   --nav-tab-bg-active: #ffffff;
@@ -758,6 +758,63 @@ body.page-dev-default .shell {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.preview-surface {
+  position: relative;
+  isolation: isolate;
+}
+
+.preview-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
+    repeating-linear-gradient(135deg,
+      rgba(255, 255, 255, 0.04) 0,
+      rgba(255, 255, 255, 0.04) 2px,
+      rgba(255, 255, 255, 0) 2px,
+      rgba(255, 255, 255, 0) 18px);
+  backdrop-filter: blur(2px) saturate(0.92);
+  -webkit-backdrop-filter: blur(2px) saturate(0.92);
+  z-index: 80;
+}
+
+.preview-surface::before {
+  content: attr(data-preview-label);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  pointer-events: none;
+  z-index: 81;
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.34);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.26);
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
+}
+
+.preview-surface--sidebar {
+  min-height: 100%;
+}
+
+.preview-surface--sidebar::before {
+  font-size: clamp(1.8rem, 2.9vw, 3.2rem);
+}
+
+.feed-sidebar.collapsed .preview-surface--sidebar::before {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
 }
 
 .card-title {

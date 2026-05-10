@@ -22,6 +22,7 @@
         matCellValues: {},
     };
 
+    const CALCULATOR_POPUP_STATE_KEY = 'dev-calculator-popup-state-v1';
     const GRAPH_LIVE_PREVIEW_DELAY_MS = 110;
 
     function byId(id) {
@@ -64,6 +65,11 @@
         return Math.min(Math.max(value, min), max);
     }
 
+    function readBoundedInteger(value, fallback, min, max) {
+        const parsed = Number.parseInt(value, 10);
+        return Number.isFinite(parsed) ? clamp(parsed, min, max) : fallback;
+    }
+
     function getCalculatorDragBounds({ width, handleHeight }) {
         const visibleHandleHeight = Math.min(handleHeight || 0, 18);
         const visibleWidth = Math.min(width || 0, 56);
@@ -85,6 +91,172 @@
         calculator.style.removeProperty('bottom');
         calculator.style.removeProperty('transform');
         calculator.style.removeProperty('margin');
+    }
+
+    function getSerializedDraggedCalculatorPosition() {
+        const calculator = getCalculator();
+        if (!calculator || calculator.style.position !== 'fixed') return null;
+        if (!calculator.style.left || !calculator.style.top) return null;
+
+        return {
+            left: calculator.style.left,
+            top: calculator.style.top,
+        };
+    }
+
+    function restoreDraggedCalculatorPosition(position) {
+        const calculator = getCalculator();
+        if (!calculator) return;
+
+        if (!position || !isDesktopDragEnabled()) {
+            clearDraggedCalculatorPosition();
+            return;
+        }
+
+        calculator.style.position = 'fixed';
+        calculator.style.left = position.left;
+        calculator.style.top = position.top;
+        calculator.style.right = 'auto';
+        calculator.style.bottom = 'auto';
+        calculator.style.transform = 'none';
+        calculator.style.margin = '0';
+        normalizeDraggedCalculatorPosition();
+    }
+
+    function sanitizeMatrixPanels(rawPanels) {
+        if (!Array.isArray(rawPanels)) return ['A', 'B'];
+
+        const panels = [...new Set(rawPanels.filter((name) => MAT_PANEL_NAMES.includes(name)))];
+        return panels.length ? panels : ['A', 'B'];
+    }
+
+    function sanitizeMatrixDimensionMap(rawMap) {
+        const fallback = createDefaultMatDimensionMap();
+        const nextMap = { ...fallback };
+
+        if (!rawMap || typeof rawMap !== 'object') {
+            return nextMap;
+        }
+
+        MAT_PANEL_NAMES.forEach((name) => {
+            nextMap[name] = readBoundedInteger(rawMap[name], fallback[name], 1, 6);
+        });
+
+        return nextMap;
+    }
+
+    function loadStoredCalculatorPopupState() {
+        try {
+            const rawValue = window.localStorage.getItem(CALCULATOR_POPUP_STATE_KEY);
+            if (!rawValue) return null;
+            const parsed = JSON.parse(rawValue);
+            return parsed && typeof parsed === 'object' ? parsed : null;
+        } catch {
+            return null;
+        }
+    }
+
+    function clearStoredCalculatorPopupState() {
+        try {
+            window.localStorage.removeItem(CALCULATOR_POPUP_STATE_KEY);
+        } catch {
+            // Ignore storage errors.
+        }
+    }
+
+    function getSerializableCalculatorFieldValues() {
+        const fieldValues = {};
+
+        document
+            .querySelectorAll('#calculator-overlay input[id], #calculator-overlay select[id], #calculator-overlay textarea[id]')
+            .forEach((field) => {
+                fieldValues[field.id] = String(field.value ?? '');
+            });
+
+        return fieldValues;
+    }
+
+    function applySerializableCalculatorFieldValues(fieldValues = {}) {
+        if (!fieldValues || typeof fieldValues !== 'object') return;
+
+        Object.entries(fieldValues).forEach(([id, value]) => {
+            const field = byId(id);
+            if (!field || typeof field.value === 'undefined') return;
+            field.value = String(value ?? '');
+        });
+    }
+
+    function buildCalculatorPopupStateSnapshot() {
+        persistVisibleMatrixCells();
+
+        return {
+            activeMode: state.activeMode,
+            standardToolView: state.standardToolView,
+            activeStandardTool: state.activeStandardTool,
+            activeInputId: state.activeInputId,
+            lgsVariables: state.lgsVariables,
+            lgsEquations: state.lgsEquations,
+            matPanels: [...state.matPanels],
+            matActiveTab: state.matActiveTab,
+            matRows: { ...state.matRows },
+            matCols: { ...state.matCols },
+            matCellValues: { ...state.matCellValues },
+            fieldValues: getSerializableCalculatorFieldValues(),
+            draggedPosition: getSerializedDraggedCalculatorPosition(),
+        };
+    }
+
+    function saveStoredCalculatorPopupState() {
+        if (!byId('calculator-overlay')?.classList.contains('open')) return;
+
+        try {
+            window.localStorage.setItem(
+                CALCULATOR_POPUP_STATE_KEY,
+                JSON.stringify(buildCalculatorPopupStateSnapshot())
+            );
+        } catch {
+            // Ignore storage errors.
+        }
+    }
+
+    function restoreCalculatorPopupState() {
+        const storedState = loadStoredCalculatorPopupState();
+        if (!storedState) return false;
+
+        state.lgsVariables = readBoundedInteger(storedState.lgsVariables, 2, 1, 6);
+        state.lgsEquations = readBoundedInteger(storedState.lgsEquations, 2, 1, 6);
+        state.activeInputId = typeof storedState.activeInputId === 'string'
+            ? storedState.activeInputId
+            : state.activeInputId;
+        state.matPanels = sanitizeMatrixPanels(storedState.matPanels);
+        state.matActiveTab = state.matPanels.includes(storedState.matActiveTab)
+            ? storedState.matActiveTab
+            : state.matPanels[0];
+        state.matRows = sanitizeMatrixDimensionMap(storedState.matRows);
+        state.matCols = sanitizeMatrixDimensionMap(storedState.matCols);
+        state.matCellValues = storedState.matCellValues && typeof storedState.matCellValues === 'object'
+            ? Object.fromEntries(
+                Object.entries(storedState.matCellValues).map(([id, value]) => [id, String(value ?? '')])
+            )
+            : {};
+
+        renderLGSMatrix();
+        renderMatrixPanel();
+        setMode(storedState.activeMode, { focus: false });
+        setStandardTool(storedState.activeStandardTool, { focus: false });
+        setStandardToolView(storedState.standardToolView, { focus: false });
+        applySerializableCalculatorFieldValues(storedState.fieldValues);
+        restoreDraggedCalculatorPosition(storedState.draggedPosition);
+
+        syncCalculatorInputMode();
+        syncBinomPreview();
+        syncLGSCommandPreview();
+        updateStandardToolPreview();
+        syncMatrixPreview();
+        syncGraphLivePreview();
+        syncResultStaleState();
+
+        return true;
     }
 
     function normalizeDraggedCalculatorPosition() {
@@ -408,7 +580,7 @@
         emitInputEvent(target);
     }
 
-    function setMode(mode) {
+    function setMode(mode, { focus = true } = {}) {
         state.activeMode = getModeDefinitions()[mode] ? mode : 'basic';
         if (state.activeMode !== 'graph' && state.graphPreviewTimeoutId !== null) {
             window.clearTimeout(state.graphPreviewTimeoutId);
@@ -426,6 +598,9 @@
         document.querySelectorAll('.calculator-panel').forEach((panel) => {
             panel.classList.toggle('is-active', panel.dataset.panel === state.activeMode);
         });
+
+        if (!focus) return;
+
         queueMicrotask(() => {
             if (state.activeMode === 'basic') {
                 setStandardToolView('overview', { focus: false });
@@ -1623,11 +1798,19 @@
         syncBinomPreview();
         outputApi.setText('0', { headline: 'Bereit' });
         markResultFresh('');
+        const restoredPopupState = restoreCalculatorPopupState();
         bindEvents();
         bindCalculatorDrag();
-        updateModePicker(state.activeMode);
-        setStandardTool(state.activeStandardTool, { focus: false });
-        setStandardToolView('overview', { focus: false });
+        window.addEventListener('pagehide', saveStoredCalculatorPopupState);
+
+        if (!restoredPopupState) {
+            updateModePicker(state.activeMode);
+            setStandardTool(state.activeStandardTool, { focus: false });
+            setStandardToolView('overview', { focus: false });
+        }
+
+        window.restoreCalculatorPopupState = restoreCalculatorPopupState;
+        window.clearStoredCalculatorPopupState = clearStoredCalculatorPopupState;
         focusMainInputForCurrentDevice();
     }
 
