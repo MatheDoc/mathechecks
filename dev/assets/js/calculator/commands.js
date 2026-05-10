@@ -547,7 +547,7 @@ const DevCalculatorCommands = (() => {
     }
 
     const GRAPH_ANALYSIS_CONFIG = Object.freeze({
-        zerosTolerance: 1e-4,
+        zerosTolerance: 1e-9,
         zerosMinSteps: 120,
         zerosMaxSteps: 600,
         zerosStepsPerUnit: 40,
@@ -575,45 +575,175 @@ const DevCalculatorCommands = (() => {
         }
     }
 
-    function findGraphRoots(rawExpr, xMin, xMax) {
-        const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
+    function buildGraphFunctionEvaluator(rawExpr) {
+        const prepared = DevCalculatorUtils.prepareGraphExpression(rawExpr);
+        const cache = new Map();
+        let compiledExpression = null;
+
+        if (typeof window.math !== 'undefined' && prepared) {
+            try {
+                compiledExpression = window.math.parse(prepared).compile();
+            } catch {
+                compiledExpression = null;
+            }
+        }
+
+        return function evaluateGraphAt(x) {
+            if (cache.has(x)) return cache.get(x);
+            const cleanX = Math.abs(x) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : x;
+            let value = NaN;
+
+            if (compiledExpression) {
+                try {
+                    const evaluated = compiledExpression.evaluate({ x: cleanX });
+                    value = typeof evaluated === 'number' && Number.isFinite(evaluated) ? evaluated : NaN;
+                } catch {
+                    value = NaN;
+                }
+            }
+
+            if (!Number.isFinite(value)) {
+                value = evaluateGraphFunctionJS(rawExpr, cleanX);
+            }
+
+            cache.set(x, value);
+            return value;
+        };
+    }
+
+    function buildGraphDerivativeEvaluators(rawExpr) {
+        if (typeof window.math === 'undefined') return null;
+
+        const prepared = DevCalculatorUtils.prepareGraphExpression(rawExpr);
+        if (!prepared) return null;
+
+        function buildCompiledEvaluator(compiledExpression) {
+            return function evaluateCompiledAt(x) {
+                try {
+                    const cleanX = Math.abs(x) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : x;
+                    const value = compiledExpression.evaluate({ x: cleanX });
+                    return typeof value === 'number' && Number.isFinite(value) ? value : NaN;
+                } catch {
+                    return NaN;
+                }
+            };
+        }
+
+        try {
+            const expressionNode = window.math.parse(prepared);
+            const firstDerivativeNode = window.math.derivative(expressionNode, 'x');
+            const secondDerivativeNode = window.math.derivative(firstDerivativeNode, 'x');
+
+            return {
+                firstDerivativeEvaluator: buildCompiledEvaluator(firstDerivativeNode.compile()),
+                secondDerivativeEvaluator: buildCompiledEvaluator(secondDerivativeNode.compile()),
+            };
+        } catch {
+            return null;
+        }
+    }
+
+    function getGraphRootSearchConfig(xMin, xMax) {
         const range = xMax - xMin;
-        if (!Number.isFinite(range) || range <= 0) return [];
+        if (!Number.isFinite(range) || range <= 0) return null;
 
         const steps = Math.min(
             GRAPH_ANALYSIS_CONFIG.zerosMaxSteps,
             Math.max(GRAPH_ANALYSIS_CONFIG.zerosMinSteps, Math.floor(range * GRAPH_ANALYSIS_CONFIG.zerosStepsPerUnit))
         );
         const step = range / steps;
-        const roots = [];
-        const cache = new Map();
 
-        function f(x) {
-            if (cache.has(x)) return cache.get(x);
-            const value = evaluateGraphFunctionJS(rawExpr, x);
-            cache.set(x, value);
-            return value;
+        return { steps, step };
+    }
+
+    function collectGraphSampleZeroRoots(evaluateFn, xMin, xMax, steps, step, tolerance) {
+        const roots = [];
+
+        for (let i = 0; i <= steps; i++) {
+            const x = i === steps ? xMax : xMin + i * step;
+            const value = evaluateFn(x);
+            if (Number.isFinite(value) && Math.abs(value) <= tolerance) roots.push(x);
         }
+
+        return roots;
+    }
+
+    function refineGraphDomainBoundaryRoot(evaluateFn, invalidX, validX, tolerance, maxIterations = 60) {
+        let invalid = invalidX;
+        let valid = validX;
+        let validValue = evaluateFn(valid);
+        if (!Number.isFinite(validValue)) return null;
+
+        for (let i = 0; i < maxIterations; i++) {
+            const mid = (invalid + valid) / 2;
+            if (mid === invalid || mid === valid) break;
+
+            const midValue = evaluateFn(mid);
+            if (Number.isFinite(midValue)) {
+                valid = mid;
+                validValue = midValue;
+            } else {
+                invalid = mid;
+            }
+        }
+
+        return Math.abs(validValue) <= tolerance ? valid : null;
+    }
+
+    function collectGraphDomainBoundaryRoots(evaluateFn, xMin, xMax, steps, step) {
+        const roots = [];
+        const boundaryTolerance = Math.max(
+            GRAPH_ANALYSIS_CONFIG.zerosTolerance,
+            4 * Math.sqrt(Number.EPSILON)
+        );
 
         for (let i = 0; i < steps; i++) {
             const x1 = xMin + i * step;
             const x2 = i === steps - 1 ? xMax : x1 + step;
-            const f1 = f(x1);
-            const f2 = f(x2);
-            const root = findRootInInterval(
-                f,
-                x1,
-                x2,
-                f1,
-                f2,
-                tolerance
-            );
-            if (root !== null) roots.push(root);
+            const v1 = evaluateFn(x1);
+            const v2 = evaluateFn(x2);
+            const finite1 = Number.isFinite(v1);
+            const finite2 = Number.isFinite(v2);
+            if (finite1 === finite2) continue;
+
+            const candidate = finite1
+                ? refineGraphDomainBoundaryRoot(evaluateFn, x2, x1, boundaryTolerance)
+                : refineGraphDomainBoundaryRoot(evaluateFn, x1, x2, boundaryTolerance);
+            if (candidate !== null) roots.push(candidate);
         }
+
+        return roots;
+    }
+
+    function collectGraphSpecialPointRoots(points, evaluateFn, tolerance) {
+        return (points || [])
+            .filter((point) => Number.isFinite(point?.x))
+            .filter((point) => {
+                const residual = evaluateFn(point.x);
+                return Number.isFinite(residual) && Math.abs(residual) <= tolerance;
+            })
+            .map((point) => point.x);
+    }
+
+    function findGraphRoots(evaluateFn, specialPoints, xMin, xMax) {
+        const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
+        const search = getGraphRootSearchConfig(xMin, xMax);
+        if (!search) return [];
+
+        const { steps, step } = search;
+        const signChangeRoots = findSignChangeRoots(evaluateFn, xMin, xMax, step, {
+            signTolerance: tolerance,
+            refineIterations: GRAPH_ANALYSIS_CONFIG.defaultRefineIterations,
+        });
+        const sampleRoots = collectGraphSampleZeroRoots(evaluateFn, xMin, xMax, steps, step, tolerance);
+        const boundaryRoots = collectGraphDomainBoundaryRoots(evaluateFn, xMin, xMax, steps, step);
+        const specialRoots = collectGraphSpecialPointRoots(specialPoints, evaluateFn, tolerance);
+
+        const roots = [...signChangeRoots, ...sampleRoots, ...boundaryRoots, ...specialRoots];
 
         return deduplicateNumericRoots(
             roots,
-            f,
+            evaluateFn,
             GRAPH_ANALYSIS_CONFIG.zerosRoundFactor,
             Math.max(GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance, step / 20)
         );
@@ -701,104 +831,142 @@ const DevCalculatorCommands = (() => {
         return unique;
     }
 
-    function findGraphExtrema(rawExpr, xMin, xMax) {
-        const grid = getGraphAnalysisGrid(xMin, xMax);
-        if (!grid) return [];
-
-        const { h } = grid;
-        const cache = new Map();
-
-        function f(x) {
-            if (cache.has(x)) return cache.get(x);
-            const value = evaluateGraphFunctionJS(rawExpr, x);
-            cache.set(x, value);
-            return value;
-        }
-
-        function firstDiff(x) {
-            return (f(x + h) - f(x - h)) / (2 * h);
-        }
-
-        const roots = findSignChangeRoots(firstDiff, xMin, xMax, h, {
-            signTolerance: GRAPH_ANALYSIS_CONFIG.extremaSignTolerance,
-            refineIterations: GRAPH_ANALYSIS_CONFIG.extremaRefineIterations,
-        });
-        const extrema = [];
-
-        for (const xr of roots) {
-            const leftSlope = firstDiff(xr - h);
-            const rightSlope = firstDiff(xr + h);
-            if (!Number.isFinite(leftSlope) || !Number.isFinite(rightSlope)) continue;
-
-            const leftSign = signWithTolerance(leftSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
-            const rightSign = signWithTolerance(rightSlope, GRAPH_ANALYSIS_CONFIG.extremaSignTolerance);
-            if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
-
-            const y = f(xr);
-            if (!Number.isFinite(y)) continue;
-
-            extrema.push({
-                x: Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr,
-                y: Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y,
-                type: leftSign > rightSign ? 'Max' : 'Min',
-            });
-        }
-
-        return deduplicatePointsByX(extrema, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor)
-            .sort((left, right) => left.x - right.x);
+    function cleanGraphPointValue(value) {
+        return Math.abs(value) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : value;
     }
 
-    function findGraphInflectionPoints(rawExpr, xMin, xMax) {
+    function findGraphCriticalPoints(valueFn, xMin, xMax, options) {
         const grid = getGraphAnalysisGrid(xMin, xMax);
         if (!grid) return [];
 
         const { h } = grid;
-        const cache = new Map();
+        const derivativeFn = options.buildDerivativeFn(h);
+        if (typeof derivativeFn !== 'function') return [];
 
-        function f(x) {
-            if (cache.has(x)) return cache.get(x);
-            const value = evaluateGraphFunctionJS(rawExpr, x);
-            cache.set(x, value);
-            return value;
-        }
-
-        function secondDiff(x) {
-            return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h);
-        }
-
-        const roots = findSignChangeRoots(secondDiff, xMin, xMax, h, {
-            signTolerance: GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance,
-            refineIterations: GRAPH_ANALYSIS_CONFIG.inflectionRefineIterations,
+        const roots = findSignChangeRoots(derivativeFn, xMin, xMax, h, {
+            signTolerance: options.signTolerance,
+            refineIterations: options.refineIterations,
         });
         const points = [];
 
         for (const xr of roots) {
-            const leftCurvature = secondDiff(xr - h);
-            const rightCurvature = secondDiff(xr + h);
-            if (!Number.isFinite(leftCurvature) || !Number.isFinite(rightCurvature)) continue;
+            const leftValue = derivativeFn(xr - h);
+            const rightValue = derivativeFn(xr + h);
+            if (!Number.isFinite(leftValue) || !Number.isFinite(rightValue)) continue;
 
-            const leftSign = signWithTolerance(leftCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
-            const rightSign = signWithTolerance(rightCurvature, GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance);
+            const leftSign = signWithTolerance(leftValue, options.signTolerance);
+            const rightSign = signWithTolerance(rightValue, options.signTolerance);
             if (leftSign === 0 || rightSign === 0 || leftSign === rightSign) continue;
 
-            const y = f(xr);
+            const y = valueFn(xr);
             if (!Number.isFinite(y)) continue;
 
-            points.push({
-                x: Math.abs(xr) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : xr,
-                y: Math.abs(y) < GRAPH_ANALYSIS_CONFIG.cleanValueEpsilon ? 0 : y,
-            });
+            points.push(options.createPoint({
+                x: cleanGraphPointValue(xr),
+                y: cleanGraphPointValue(y),
+                leftSign,
+                rightSign,
+            }));
         }
 
         return deduplicatePointsByX(points, h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor)
             .sort((left, right) => left.x - right.x);
     }
 
+    function mergeGraphPointResults(primaryPoints, secondaryPoints, xMin, xMax) {
+        const grid = getGraphAnalysisGrid(xMin, xMax);
+        const tolerance = grid
+            ? grid.h * GRAPH_ANALYSIS_CONFIG.deduplicateXFactor
+            : GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance;
+
+        return deduplicatePointsByX([...(primaryPoints || []), ...(secondaryPoints || [])], tolerance)
+            .sort((left, right) => left.x - right.x);
+    }
+
+    function findGraphExtremaNumerical(valueFn, xMin, xMax) {
+        return findGraphCriticalPoints(valueFn, xMin, xMax, {
+            buildDerivativeFn(h) {
+                return function firstDiff(x) {
+                    return (valueFn(x + h) - valueFn(x - h)) / (2 * h);
+                };
+            },
+            signTolerance: GRAPH_ANALYSIS_CONFIG.extremaSignTolerance,
+            refineIterations: GRAPH_ANALYSIS_CONFIG.extremaRefineIterations,
+            createPoint({ x, y, leftSign, rightSign }) {
+                return {
+                    x,
+                    y,
+                    type: leftSign > rightSign ? 'Max' : 'Min',
+                };
+            },
+        });
+    }
+
+    function findGraphInflectionPointsNumerical(valueFn, xMin, xMax) {
+        return findGraphCriticalPoints(valueFn, xMin, xMax, {
+            buildDerivativeFn(h) {
+                return function secondDiff(x) {
+                    return (valueFn(x + h) - 2 * valueFn(x) + valueFn(x - h)) / (h * h);
+                };
+            },
+            signTolerance: GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance,
+            refineIterations: GRAPH_ANALYSIS_CONFIG.inflectionRefineIterations,
+            createPoint({ x, y }) {
+                return { x, y };
+            },
+        });
+    }
+
+    function findGraphExtrema(valueFn, firstDerivativeEvaluator, xMin, xMax) {
+        const symbolicExtrema = firstDerivativeEvaluator
+            ? findGraphCriticalPoints(valueFn, xMin, xMax, {
+                buildDerivativeFn() {
+                    return firstDerivativeEvaluator;
+                },
+                signTolerance: GRAPH_ANALYSIS_CONFIG.extremaSignTolerance,
+                refineIterations: GRAPH_ANALYSIS_CONFIG.extremaRefineIterations,
+                createPoint({ x, y, leftSign, rightSign }) {
+                    return {
+                        x,
+                        y,
+                        type: leftSign > rightSign ? 'Max' : 'Min',
+                    };
+                },
+            })
+            : [];
+        const numericalExtrema = findGraphExtremaNumerical(valueFn, xMin, xMax);
+
+        return mergeGraphPointResults(symbolicExtrema, numericalExtrema, xMin, xMax);
+    }
+
+    function findGraphInflectionPoints(valueFn, secondDerivativeEvaluator, xMin, xMax) {
+        const symbolicPoints = secondDerivativeEvaluator
+            ? findGraphCriticalPoints(valueFn, xMin, xMax, {
+                buildDerivativeFn() {
+                    return secondDerivativeEvaluator;
+                },
+                signTolerance: GRAPH_ANALYSIS_CONFIG.inflectionSignTolerance,
+                refineIterations: GRAPH_ANALYSIS_CONFIG.inflectionRefineIterations,
+                createPoint({ x, y }) {
+                    return { x, y };
+                },
+            })
+            : [];
+        const numericalPoints = findGraphInflectionPointsNumerical(valueFn, xMin, xMax);
+
+        return mergeGraphPointResults(symbolicPoints, numericalPoints, xMin, xMax);
+    }
+
     function analyzeGraph(rawExpr, xMin, xMax) {
+        const valueFn = buildGraphFunctionEvaluator(rawExpr);
+        const derivativeEvaluators = buildGraphDerivativeEvaluators(rawExpr);
+        const extrema = findGraphExtrema(valueFn, derivativeEvaluators?.firstDerivativeEvaluator, xMin, xMax);
+        const inflectionPoints = findGraphInflectionPoints(valueFn, derivativeEvaluators?.secondDerivativeEvaluator, xMin, xMax);
+
         return {
-            roots: findGraphRoots(rawExpr, xMin, xMax),
-            extrema: findGraphExtrema(rawExpr, xMin, xMax),
-            inflectionPoints: findGraphInflectionPoints(rawExpr, xMin, xMax),
+            roots: findGraphRoots(valueFn, [...extrema, ...inflectionPoints], xMin, xMax),
+            extrema,
+            inflectionPoints,
         };
     }
 
