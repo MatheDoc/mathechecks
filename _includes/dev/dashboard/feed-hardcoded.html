@@ -1,136 +1,140 @@
-<section class="greeting">
-  <h2>Hey <span>Schueler:in</span>, was steht an?</h2>
-  <p>Samstag, 28. Februar 2026 · 5 Aktionen warten · Streak: 12 Tage · <a
-      href="{{ '/dev/statistik.html' | relative_url }}">Detailstatistik</a></p>
-</section>
+<div class="preview-surface preview-surface--dashboard" data-preview-label="Vorschau">
+  <section class="greeting">
+    <h2>Hey <span>Schueler:in</span>, was steht an?</h2>
+    <p>Samstag, 28. Februar 2026 · 5 Aktionen warten · Streak: 12 Tage · <a
+        href="{{ '/dev/statistik.html' | relative_url }}">Detailstatistik</a></p>
+  </section>
 
-<div class="bento">
-  <div class="card lb-bar" id="lbBar">
-    <span class="lb-bar-label">Meine aktive Session</span>
-    <div id="lbChips">
-      <span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>
+  <div class="bento">
+    <div class="card lb-bar" id="lbBar">
+      <span class="lb-bar-label">Meine aktive Session</span>
+      <div id="lbChips">
+        <span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>
+      </div>
+      <button class="lb-add-btn" type="button" id="lbOpenBtn">Bearbeiten</button>
     </div>
-    <button class="lb-add-btn" type="button" id="lbOpenBtn">Bearbeiten</button>
+
+    <article class="card action-feed">
+      <div class="card-header">
+        <span class="card-title">Deine naechsten Aktionen</span>
+        <button class="btn-ghost" type="button" style="padding:6px 12px;font-size:0.76rem;">Alle anzeigen</button>
+      </div>
+      <ul class="action-list">
+        <li class="action-card action-featured" data-type="training">
+          <div class="action-icon action-icon-featured"
+            style="background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;">▶</div>
+          <div class="action-body">
+            <div class="action-title">Training: Nullstellen kubischer Funktionen</div>
+            <div class="action-desc">Du hast gestern 3 Aufgaben bearbeitet und 2 richtig. Heute empfehlen wir 5 weitere,
+              um das Thema zu sichern.</div>
+            <div class="action-badges">
+              <span class="action-badge type-training">Training</span>
+              <span class="action-badge">Analysis</span>
+              <span class="action-badge">ca. 12 min</span>
+              <span class="action-badge">5 Aufgaben</span>
+            </div>
+          </div>
+          <button class="hero-go" type="button">Starten -></button>
+        </li>
+
+        <li class="action-card action-onboard" data-type="quiz">
+          <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">N</div>
+          <div class="action-body">
+            <div class="action-title">Neuer Bereich: Binomialverteilung - Einstiegs-Quiz</div>
+            <div class="action-desc">Du hast diesen Bereich gerade hinzugefuegt. Starte mit 5 kurzen Fragen (ca. 3 min),
+              damit wir einschaetzen koennen, wo du stehst.</div>
+            <div class="action-badges">
+              <span class="action-badge type-quiz">Einstiegs-Quiz</span>
+              <span class="action-badge">Stochastik</span>
+              <span class="action-badge">ca. 3 min</span>
+            </div>
+          </div>
+          <span class="action-arrow">›</span>
+        </li>
+
+        <li class="action-card" data-type="quiz">
+          <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">?</div>
+          <div class="action-body">
+            <div class="action-title">Quick-Quiz: Vierfeldertafel ablesen</div>
+            <div class="action-desc">5 kurze Fragen - teste, ob du Randwahrscheinlichkeiten und bedingte
+              Wahrscheinlichkeiten sicher abliest.</div>
+            <div class="action-badges">
+              <span class="action-badge type-quiz">Quiz</span>
+              <span class="action-badge">Stochastik</span>
+              <span class="action-badge">ca. 3 min</span>
+            </div>
+          </div>
+          <span class="action-arrow">›</span>
+        </li>
+
+        <li class="action-card" data-type="training">
+          <div class="action-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
+          <div class="action-body">
+            <div class="action-title">Trainings-Session: Ableitung Potenzregel</div>
+            <div class="action-desc">8 Aufgaben mit steigendem Schwierigkeitsgrad. Letztes Mal: 6/8 richtig - heute
+              sichern.</div>
+            <div class="action-badges">
+              <span class="action-badge type-training">Training</span>
+              <span class="action-badge">Analysis</span>
+              <span class="action-badge">ca. 10 min</span>
+            </div>
+          </div>
+          <span class="action-arrow">›</span>
+        </li>
+
+        <li class="action-card" data-type="flashcards">
+          <div class="action-icon" style="background:var(--teal-soft);color:var(--teal);">K</div>
+          <div class="action-body">
+            <div class="action-title">Flashcards: Matrizenrechnung Basics</div>
+            <div class="action-desc">12 Karten faellig - Begriffe und Rechenregeln auffrischen, bevor du in die Aufgaben
+              gehst.</div>
+            <div class="action-badges">
+              <span class="action-badge type-flashcards">Flashcards</span>
+              <span class="action-badge">Lineare Algebra</span>
+              <span class="action-badge">ca. 5 min</span>
+            </div>
+          </div>
+          <span class="action-arrow">›</span>
+        </li>
+      </ul>
+    </article>
+
+    <article class="card skills-area">
+      <div class="card-header">
+        <span class="card-title">Kompetenzfortschritt</span>
+      </div>
+      <div class="skill-rows">
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Ableitungsregeln</span><span class="skill-pct">82%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill gradient-1" data-progress="82"></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Wahrscheinlichkeit und Vierfeldertafel</span><span
+              class="skill-pct">68%</span></div>
+          <div class="skill-track">
+            <div class="skill-fill gradient-2" data-progress="68"></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Lineare Gleichungssysteme</span><span
+              class="skill-pct">55%</span></div>
+          <div class="skill-track">
+            <div class="skill-fill gradient-3" data-progress="55"></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="skill-top"><span class="skill-name">Kurvendiskussion</span><span class="skill-pct">41%</span>
+          </div>
+          <div class="skill-track">
+            <div class="skill-fill gradient-4" data-progress="41"></div>
+          </div>
+        </div>
+      </div>
+    </article>
   </div>
-
-  <article class="card action-feed">
-    <div class="card-header">
-      <span class="card-title">Deine naechsten Aktionen</span>
-      <button class="btn-ghost" type="button" style="padding:6px 12px;font-size:0.76rem;">Alle anzeigen</button>
-    </div>
-    <ul class="action-list">
-      <li class="action-card action-featured" data-type="training">
-        <div class="action-icon action-icon-featured"
-          style="background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;">▶</div>
-        <div class="action-body">
-          <div class="action-title">Training: Nullstellen kubischer Funktionen</div>
-          <div class="action-desc">Du hast gestern 3 Aufgaben bearbeitet und 2 richtig. Heute empfehlen wir 5 weitere,
-            um das Thema zu sichern.</div>
-          <div class="action-badges">
-            <span class="action-badge type-training">Training</span>
-            <span class="action-badge">Analysis</span>
-            <span class="action-badge">ca. 12 min</span>
-            <span class="action-badge">5 Aufgaben</span>
-          </div>
-        </div>
-        <button class="hero-go" type="button">Starten -></button>
-      </li>
-
-      <li class="action-card action-onboard" data-type="quiz">
-        <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">N</div>
-        <div class="action-body">
-          <div class="action-title">Neuer Bereich: Binomialverteilung - Einstiegs-Quiz</div>
-          <div class="action-desc">Du hast diesen Bereich gerade hinzugefuegt. Starte mit 5 kurzen Fragen (ca. 3 min),
-            damit wir einschaetzen koennen, wo du stehst.</div>
-          <div class="action-badges">
-            <span class="action-badge type-quiz">Einstiegs-Quiz</span>
-            <span class="action-badge">Stochastik</span>
-            <span class="action-badge">ca. 3 min</span>
-          </div>
-        </div>
-        <span class="action-arrow">›</span>
-      </li>
-
-      <li class="action-card" data-type="quiz">
-        <div class="action-icon" style="background:var(--amber-soft);color:var(--amber);">?</div>
-        <div class="action-body">
-          <div class="action-title">Quick-Quiz: Vierfeldertafel ablesen</div>
-          <div class="action-desc">5 kurze Fragen - teste, ob du Randwahrscheinlichkeiten und bedingte
-            Wahrscheinlichkeiten sicher abliest.</div>
-          <div class="action-badges">
-            <span class="action-badge type-quiz">Quiz</span>
-            <span class="action-badge">Stochastik</span>
-            <span class="action-badge">ca. 3 min</span>
-          </div>
-        </div>
-        <span class="action-arrow">›</span>
-      </li>
-
-      <li class="action-card" data-type="training">
-        <div class="action-icon" style="background:var(--accent-soft);color:var(--accent);">✎</div>
-        <div class="action-body">
-          <div class="action-title">Trainings-Session: Ableitung Potenzregel</div>
-          <div class="action-desc">8 Aufgaben mit steigendem Schwierigkeitsgrad. Letztes Mal: 6/8 richtig - heute
-            sichern.</div>
-          <div class="action-badges">
-            <span class="action-badge type-training">Training</span>
-            <span class="action-badge">Analysis</span>
-            <span class="action-badge">ca. 10 min</span>
-          </div>
-        </div>
-        <span class="action-arrow">›</span>
-      </li>
-
-      <li class="action-card" data-type="flashcards">
-        <div class="action-icon" style="background:var(--teal-soft);color:var(--teal);">K</div>
-        <div class="action-body">
-          <div class="action-title">Flashcards: Matrizenrechnung Basics</div>
-          <div class="action-desc">12 Karten faellig - Begriffe und Rechenregeln auffrischen, bevor du in die Aufgaben
-            gehst.</div>
-          <div class="action-badges">
-            <span class="action-badge type-flashcards">Flashcards</span>
-            <span class="action-badge">Lineare Algebra</span>
-            <span class="action-badge">ca. 5 min</span>
-          </div>
-        </div>
-        <span class="action-arrow">›</span>
-      </li>
-    </ul>
-  </article>
-
-  <article class="card skills-area">
-    <div class="card-header">
-      <span class="card-title">Kompetenzfortschritt</span>
-    </div>
-    <div class="skill-rows">
-      <div class="skill-row">
-        <div class="skill-top"><span class="skill-name">Ableitungsregeln</span><span class="skill-pct">82%</span></div>
-        <div class="skill-track">
-          <div class="skill-fill gradient-1" data-progress="82"></div>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-top"><span class="skill-name">Wahrscheinlichkeit und Vierfeldertafel</span><span
-            class="skill-pct">68%</span></div>
-        <div class="skill-track">
-          <div class="skill-fill gradient-2" data-progress="68"></div>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-top"><span class="skill-name">Lineare Gleichungssysteme</span><span
-            class="skill-pct">55%</span></div>
-        <div class="skill-track">
-          <div class="skill-fill gradient-3" data-progress="55"></div>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-top"><span class="skill-name">Kurvendiskussion</span><span class="skill-pct">41%</span></div>
-        <div class="skill-track">
-          <div class="skill-fill gradient-4" data-progress="41"></div>
-        </div>
-      </div>
-    </div>
-  </article>
 </div>
 
 <div class="lb-overlay" id="lbOverlay">

@@ -29,6 +29,7 @@ Du optimierst die Lernoberfläche von MatheChecks mit Fokus auf Klarheit, Bedien
 - Bestehende Komponenten bevorzugen, keine unnötigen Neubausteine.
 - Kleine, überprüfbare UI-Änderungen mit klarem Nutzen.
 - Keine visuelle Änderung ohne funktionale oder didaktische Begründung.
+- Sonderregeln und ad-hoc-Overrides möglichst vermeiden; solche Anpassungen zuerst zentral über Tokens, gemeinsame Komponenten oder bestehende Abstraktionen lösen.
 - Konsequent mit root-Variablen und definierten Systemfarben arbeiten; zusätzliche Farbtöne nur aus bestehenden Farben ableiten (z. B. per `linear-gradient`, `color-mix`).
 - Bestehende visuelle Sprache respektieren; keine Stilbrüche ohne ausdrücklichen Auftrag.
 
