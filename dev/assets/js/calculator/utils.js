@@ -5,6 +5,30 @@ const DevCalculatorUtils = (() => {
         return String(value ?? '').replace(/\./g, '').replace(/,/g, '.');
     }
 
+    function normalizeExpressionNumberSeparators(value) {
+        return String(value ?? '').replace(/\d[\d.,]*/g, (token) => {
+            if (token.includes('.') && token.includes(',')) {
+                if (token.lastIndexOf(',') > token.lastIndexOf('.')) {
+                    return token.replace(/\./g, '').replace(/,/g, '.');
+                }
+                return token.replace(/,/g, '');
+            }
+
+            if (token.includes(',')) {
+                return token.replace(/,/g, '.');
+            }
+
+            if (token.includes('.')) {
+                const parts = token.split('.');
+                if (parts.length > 2 && parts.slice(1).every((part) => /^\d{3}$/.test(part))) {
+                    return parts.join('');
+                }
+            }
+
+            return token;
+        });
+    }
+
     function binomialCoefficient(n, k) {
         const normalizedN = Number(n);
         const normalizedK = Number(k);
@@ -445,7 +469,7 @@ const DevCalculatorUtils = (() => {
     }
 
     function normalizeExpression(input) {
-        const normalized = normalizeNumberString(input);
+        const normalized = normalizeExpressionNumberSeparators(input);
         let expression = addImplicitMultiplication(
             normalizeUnaryMinusExponent(
                 convertFactorialSyntax(
