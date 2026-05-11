@@ -124,11 +124,11 @@ Das inverse Baumdiagramm lautet schließlich
     label_bbar="A̅"
 %}
 
-Hier treten nun die Wahrscheinlichkeiten mit $B$- und $\overline{B}$-Bedingung auf. Wir können z.B. ablesen, dass $P_{\overline{B}}(A)=0{,}5625$ ist. Für das Beispiel bedeutet dies: Die Wahrscheinlichkeit, dass ein Schüler, der die Prüfung nicht besteht, gelernt hat, beträgt 56,25&nbsp;%.
+Hier treten nun die Wahrscheinlichkeiten mit $B$- und $\overline{B}$-Bedingung auf. Wir können z.B. ablesen, dass $P_{\overline{B}}(A)=0{,}5625$ ist: die Wahrscheinlichkeit von $A$ unter der Bedingung $\overline{B}$ beträgt 56,25&nbsp;%.
 
 ### Der Satz von Bayes
 
-Aus der Defintion der bedingten Wahrscheinlichkeit
+Aus der Definition der bedingten Wahrscheinlichkeit
 
 $$
 P_A(B)=\frac{P(A\cap B)}{P(A)}
@@ -161,18 +161,28 @@ Ziehen mit Zurücklegen-->
 
 ## Stochastische Unabhängigkeit
 
-Eng verbunden mit dem Begriff der stochastischen Unabhängigkeit ist die **stochastische Unabhängigkeit**. Wir erinnern an das Einführungsbeispiel mit den zwei Ereignissen
+Eng verbunden mit dem Begriff der bedingten Wahrscheinlichkeit ist die **stochastische Unabhängigkeit**. Wir erinnern an das Einführungsbeispiel mit den zwei Ereignissen
 
 - $A$: Ein Schüler lernt für die Prüfung.
 - $B$: Ein Schüler besteht die Prüfung.
 
 und dem Baumdiagramm
 
-<div id="sa" class="diagramm"></div>
+{% include dev/baumdiagramm.html
+    pa="0.7"
+    pba="0.9"
+    pbna="0.2"
+    titel="Stochastisch abhängig"
+%}
 
 Die Wahrscheinlichkeit von $B$ hängt hier davon ab, ob $A$ eingetreten ist. Wir sagen dazu auch, dass $A$ und $B$ **stochastisch abhängig** sind. Wäre dies nicht der Fall, hätte das Baumdiagramm also z.B. die Gestalt
 
-<div id="su" class="diagramm"></div>
+{% include dev/baumdiagramm.html
+    pa="0.7"
+    pba="0.5"
+    pbna="0.5"
+    titel="Stochastisch unabhängig"
+%}
 
 so wäre die Wahrscheinlichkeit von $B$ nicht davon abhängig, ob $A$ eingetreten ist. Wir sagen dann, dass $A$ und $B$ **stochastisch unabhängig** sind. Mit anderen Worten: Zwei Ereignisse $A$ und $B$ sind stochastisch unabhängig, falls $P_A(B)=P_{\overline{A}}(B)$.
 
@@ -246,7 +256,7 @@ Außerdem können hier beliebig $A$ durch $\overline{A}$ und $B$ durch $\overlin
 
 ### Prüfen auf stochastische Unabhängigkeit
 
-Um festzustellen, ob zwei Ereinisse $A$ und $B$ stochastisch abhängig oder unabhängig sind, müssen wir eine der obigen drei Formulierungen prüfen. Sind die bedingten Wahrscheinlichkeiten bekannt, weil z.B. das Baumdiagramm gegeben ist, können wir die stochastische Unabhängigkeit direkt mit der 1. Formulierung ("die Pfadwahrscheinlichkeiten der 2. Stufe sind gleich") feststellen (siehe Beispiele oben).
+Um festzustellen, ob zwei Ereignisse $A$ und $B$ stochastisch abhängig oder unabhängig sind, müssen wir eine der obigen drei Formulierungen prüfen. Sind die bedingten Wahrscheinlichkeiten bekannt, weil z.B. das Baumdiagramm gegeben ist, können wir die stochastische Unabhängigkeit direkt mit der 1. Formulierung ("die Pfadwahrscheinlichkeiten der 2. Stufe sind gleich") feststellen (siehe Beispiele oben).
 
 Sind keine bedingten Wahrscheinlichkeiten bekannt, verwenden wir häufig die 3. Formulierung.
 
@@ -344,7 +354,7 @@ Damit lautet die vollständige Vier-Felder-Tafel
 | $\overline{A}$ | $0{,}0098$ | $0{,}9602$     | $0{,}97$ |
 | $\Sigma$       | $0{,}01$   | $0{,}99$       | $1$      |
 
-Hier können wir z.B. ablesen, dass eine Person mit einer Wahrschheinlichkeit von 96,02&nbsp;% weder Cannabis noch Amphetamine konsumiert.
+Hier können wir z.B. ablesen, dass eine Person mit einer Wahrscheinlichkeit von 96,02&nbsp;% weder Cannabis noch Amphetamine konsumiert.
 
 ### Beispiel: Romeo und Julia (2)
 
@@ -377,7 +387,7 @@ Damit lautet die vollständige Vier-Felder-Tafel
 | $\overline{A}$ | $0{,}3$  | $0{,}1$        | $0{,}4$  |
 | $\Sigma$       | $0{,}75$ | $0{,}25$       | $1$      |
 
-Hier können wir z.B. ablesen, dass Romeo mit einer Wahrschheinlichkeit von 60&nbsp;% anwesend ist.
+Hier können wir z.B. ablesen, dass Romeo mit einer Wahrscheinlichkeit von 60&nbsp;% anwesend ist.
 
 {% include dev/check-anker.html nummer=4 %}
 
@@ -392,7 +402,7 @@ Eine Formulierung der stochastischen Unabhängigkeit ist $P(A\cap B)=P(A)\cdot P
 
 {% include dev/check-anker.html nummer=6 %}
 
-Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, können wir sie interpretieren. Um dabei festzustellen, ob $A$ und $B$ stochastisch unabhägig sind, müssen wir prüfen, ob die Vier-Felder-Tafel multiplikativ ist.
+Haben wir eine vollständig ausgefüllte Vier-Felder-Tafel vorliegen, können wir sie interpretieren. Um dabei festzustellen, ob $A$ und $B$ stochastisch unabhängig sind, müssen wir prüfen, ob die Vier-Felder-Tafel multiplikativ ist.
 
 ### Beispiel: Cannabis und Amphetamine (3)
 
@@ -434,6 +444,8 @@ Baumdiagramme und Vierfeldertafeln stellen Wahrscheinlichkeiten, die beim Betrac
 Stehen weder ein Baumdiagramm noch eine Vierfeldertafel zur Verfügung, können wir mit den vorgestellten Formeln arbeiten. Dabei kann es jedoch hilfreich sein, sich das Baumdiagramm oder die Vierfeldertafel gedanklich vorzustellen.
 
 {% include dev/check-anker.html nummer=8 %}
+
+Liegt zusätzlich stochastische Unabhängigkeit vor, vereinfacht sich die Berechnung: Statt $P_A(B)$ aus $P(A\cap B)$ und $P(A)$ zu bestimmen, kann direkt $P(A\cap B)=P(A)\cdot P(B)$ genutzt werden.
 
 {% include dev/check-anker.html nummer=9 %}
 

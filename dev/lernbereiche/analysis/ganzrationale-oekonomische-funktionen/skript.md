@@ -71,7 +71,7 @@ $$
 \begin{align*}
 G(x) &= 32x - (0{,}5x^3 - 6x^2 + 30x + 48) \\
      &= 32x - 0{,}5x^3 + 6x^2 - 30x - 48 \\
-     &= -0{,}5x^3 + 6x^2 - 2x - 48
+     &= -0{,}5x^3 + 6x^2 + 2x - 48
 \end{align*}
 $$
 
@@ -87,9 +87,11 @@ $$
 
 Sind zwei dieser vier ökonomischen Funktionen bekannt, können wir die übrigen zwei berechnen (außer die bekannten Funktionen wären $p$ und $E$).
 
-{% include dev/check-anker.html nummer="1" %}
+{% include dev/check-anker.html nummer=1 %}
 
-{% include dev/check-anker.html nummer="2" %}
+Dasselbe Prinzip gilt für das Angebotsmonopol, wo zusätzlich die Erlösfunktion $E(x)=p(x)\cdot x$ als Produkt aus Preis-Absatz-Funktion und Menge gebildet wird.
+
+{% include dev/check-anker.html nummer=2 %}
 
 
 ## Kennzahlen
@@ -122,29 +124,92 @@ Diese ökonomischen Funktionen werden mit Hilfe folgender Kennzahlen beschrieben
 
 ## Graphische Darstellungen
 
-
-### Angebotsmonopol
-
-{% include dev/check-anker.html nummer="3" %}
+Graphen geben eine schnelle Übersicht über alle Kennzahlen, bevor sie rechnerisch bestimmt werden. Entscheidend ist dabei, welche Kurve jeweils abgelesen oder geometrisch ausgewertet wird.
 
 ### Angebotspolypol
 
+Im Angebotspolypol ist $E(x) = p \cdot x$ eine Gerade mit Steigung $p$. Da eine Gerade kein inneres Maximum besitzt, fällt die erlösmaximale Menge mit der **Kapazitätsgrenze** zusammen. Das folgende Diagramm zeigt die vier ökonomischen Funktionen für das Beispiel aus der Einführung mit Kapazitätsgrenze bei 13 ME:
 
-{% include dev/check-anker.html nummer="4" %}
+{% include dev/graph.html
+   funktionen='[
+    {"name":"E(x)", "term":"32*x", "beschreibung":"Erlösfunktion"},
+    {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
+    {"name":"G(x)", "term":"-0.5*x^3+6*x^2+2*x-48", "beschreibung":"Gewinnfunktion"},
+    {"name":"p(x)", "term":"32", "beschreibung":"Preis-Absatz-Funktion"}
+   ]'
+   titel="Ökonomische Funktionen (Polypol)"
+   xachse="Menge x in ME"
+   yachse="Betrag y in GE"
+   xmin=0
+   xmax=14
+   ymin=-100
+   ymax=450
+%}
+
+Alle Kennzahlen aus der Tabelle lassen sich direkt am Graphen ablesen:
+
+- **Marktpreis**: konstante Höhe von $p(x)$, gleichzeitig Steigung von $E(x)$
+- **Erlösmaximale Menge und maximaler Erlös**: $x$- und $y$-Koordinate am rechten Ende von $E(x)$ an der Kapazitätsgrenze
+- **Fixkosten** $K_f$: $y$-Achsenabschnitt von $K(x)$
+- **Übergang degressiv/progressiv**: Wendepunkt von $K(x)$, d. h. die Stelle, an der $K(x)$ von links- nach rechtsgekrümmt übergeht
+- **Gewinnschwelle und Gewinngrenze**: Nullstellen von $G(x)$
+- **Gewinnmaximale Menge und maximaler Gewinn**: Hochpunkt von $G(x)$
+- **Break-even-Punkte**: Schnittpunkte von $E(x)$ und $K(x)$
+
+{% include dev/check-anker.html nummer=3 %}
+
+### Angebotsmonopol
+
+Im Angebotsmonopol fällt $p(x)$, sodass $E(x) = p(x) \cdot x$ eine Parabel mit echtem inneren Maximum wird. Neben den aus dem Polypol bekannten Kennzahlen treten im Monopol weitere auf:
+
+{% include dev/graph.html
+   funktionen='[
+    {"name":"E(x)", "term":"-5*x^2+60*x", "beschreibung":"Erlösfunktion"},
+    {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
+    {"name":"G(x)", "term":"-0.5*x^3+x^2+30*x-48", "beschreibung":"Gewinnfunktion"},
+    {"name":"p(x)", "term":"-5*x+60", "beschreibung":"Preis-Absatz-Funktion"}
+   ]'
+   titel="Ökonomische Funktionen (Monopol)"
+   xachse="Menge x in ME"
+   yachse="Betrag y in GE"
+   xmin=0
+   xmax=12.5
+   ymin=-100
+   ymax=250
+%}
+
+- **Höchstpreis** $p_H$: $y$-Achsenabschnitt von $p(x)$ — Preisobergrenze, ab der keine Nachfrage mehr besteht
+- **Sättigungsmenge** $s_m$: Nullstelle von $p(x)$ — Menge, ab der der Marktpreis auf null fällt
+- **Erlösmaximale Menge**: Hochpunkt von $E(x)$ — nun ein echtes inneres Maximum, kein Randpunkt
+- **Cournotscher Punkt** $C(x_{Gmax}|p_{Gmax})$: Punkt auf $p(x)$ zur gewinnmaximalen Menge $x_{Gmax}$
+
+{% include dev/check-anker.html nummer=4 %}
 
 
 
 ## Berechnungen
 
-Um ökonomische Kennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
+Alle Kennzahlen lassen sich nicht nur graphisch ablesen, sondern auch rechnerisch bestimmen. Grundlage dafür sind die Werkzeuge der Differentialrechnung. Der erste Schritt ist stets, die gesuchte Kennzahl dem richtigen mathematischen Konzept zuzuordnen:
 
-{% include dev/check-anker.html nummer="5" %}
+| Mathematisches Konzept | Zugehörige Kennzahlen |
+|---|---|
+| $y$-Achsenabschnitt: $f(0)$ | $p_H$, $K_f$ |
+| Nullstelle: $f(x)=0$ lösen | $s_m$, $x_{GS}$, $x_{GG}$ |
+| Extremstelle (Maximum): $f'(x)=0$, $f''(x)<0$ | $x_{Emax}$ (nur Monopol), $x_{Gmax}$ |
+| Wendestelle: $f''(x)=0$, $f'''(x)\neq 0$ | $x_w$ |
+| $y$-Wert an bekannter Stelle: Einsetzen | $E_{max}$, $G_{max}$, $p_{max}$ |
 
-Jetzt sind wir in der Lage, die ökonomischen Kennzahlen mit Hilfe der analytischer Methoden zu berechnen.
+Im Polypol hat $E(x)$ kein inneres Maximum — die erlösmaximale Menge ist die Kapazitätsgrenze, also kein Extremstellenproblem.
 
-{% include dev/check-anker.html nummer="6" %}
+{% include dev/check-anker.html nummer=5 %}
 
-{% include dev/check-anker.html nummer="7" %}
+Sind die Ansätze bekannt, können wir die Kennzahlen vollständig durchrechnen — zunächst für das Angebotspolypol, wo die lineare Erlösfunktion den Rechenweg etwas vereinfacht.
+
+{% include dev/check-anker.html nummer=6 %}
+
+Im Angebotsmonopol kommen Höchstpreis, Sättigungsmenge und Cournotscher Punkt als zusätzliche Kennzahlen hinzu. Der Rechenweg folgt dabei strukturell denselben Konzepten.
+
+{% include dev/check-anker.html nummer=7 %}
 
 
 
