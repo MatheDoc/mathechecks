@@ -43,6 +43,8 @@ Im Bewegungskontext ist das besonders anschaulich:
 
 Eine positive mittlere Änderungsrate bedeutet, dass der Funktionswert im Durchschnitt zunimmt. Eine negative mittlere Änderungsrate bedeutet, dass er im Durchschnitt abnimmt.
 
+Für typische Aufgaben in diesem Lernschritt ist ein fester Ablauf hilfreich: zuerst die beiden Randwerte berechnen, dann in die Formel einsetzen und das Ergebnis als durchschnittliche Änderung im Intervall deuten. Genau diesen Ablauf greifen auch Tipps, Beispiel und Aufgabe am Check-Anker auf.
+
 {% include dev/check-anker.html nummer="1" %}
 
 ### Von der mittleren zur momentanen Änderungsrate
@@ -71,7 +73,7 @@ Sauber definiert ist die Ableitung an der Stelle $x_0$ deshalb durch
 
 $$f'(x_0)=\lim_{h \to 0} \frac{f(x_0+h)-f(x_0)}{h}.$$ 
 
-Im Widget ist die Funktion $f(x)=x^2$ fest eingestellt. Du kannst $x_0$ und $h$ verändern und sehen, wie die Sekante zur Tangente wird.
+Im Widget ist die Funktion $f(x)=x^2$ fest eingestellt. Du kannst $x_0$ und $h$ verändern und sehen, wie die Sekante zur Tangente wird. Achte dabei auf zwei Dinge: Der Punkt $Q$ rückt an $P$ heran, und gleichzeitig nähert sich die Sekantensteigung $m_h$ einem festen Wert. Genau dieser angenäherte Wert ist die momentane Änderungsrate an der Stelle $x_0$.
 
 {% include dev/widgets/widget-h-methode-ableitung.html %}
 
@@ -102,6 +104,8 @@ Ganzrationale Funktionen haben den großen Vorteil, dass ihre Ableitungen wieder
 
 In diesem Lernbereich tauchen Terme auch in Produktform auf. Dann ist der erste sinnvolle Schritt oft: **zuerst ausmultiplizieren, dann ableiten**. So landet man wieder bei einer übersichtlichen Normalform.
 
+Genau das ist der Standardfall für den nächsten Check: Die Tipps erinnern an Normalform, Potenzregel und Summenregel, das Beispiel zeigt das Ausmultiplizieren an einem Produktterm, und in den Aufgaben musst du denselben Ablauf auf neue Funktionen übertragen.
+
 {% include dev/check-anker.html nummer="2" %}
 
 ### Funktionswerte, Stellen und Tangentensteigungen
@@ -114,6 +118,10 @@ Sobald $f$ und $f'$ bekannt sind, kann man sehr gezielt mit ihnen arbeiten:
 - Eine **Stelle zu einer gegebenen Steigung** findet man durch Lösen von $f'(x)=m$.
 
 Man muss also immer sauber unterscheiden: Geht es um den Wert der Funktion selbst oder um den Wert ihrer Ableitung?
+
+In Aufgaben werden diese Fragetypen oft bewusst gemischt. Manchmal ist nur ein $x$-Wert gesucht, manchmal ein Funktionswert, manchmal die Steigung und manchmal sogar der Punkt des Graphen, an dem eine bestimmte Steigung vorliegt. Im letzten Fall reicht $f'(x)=m$ allein noch nicht: Danach muss auch der zugehörige y-Wert mit $f(x)$ berechnet werden.
+
+Genau diese Unterscheidung trainiert der nächste Check. Die Tipps trennen die vier Standardfälle sauber, das Beispiel rechnet sie nacheinander vor, und die Aufgaben mischen sie anschließend in neuer Reihenfolge.
 
 {% include dev/check-anker.html nummer="3" %}
 
@@ -136,6 +144,8 @@ Bei Zuordnungsaufgaben hilft oft ein fester Ablauf:
 2. Dann prüfen, welcher Funktionsgraph dazu passt.
 3. Zusätzliche Angaben wie $g(0)$ oder $f'(x_0)$ als Anker verwenden.
 
+Gerade solche Zusatzangaben entscheiden oft den ersten Schritt: Sie helfen, einen Graphen sicher zu identifizieren, bevor überhaupt Paare aus Funktion und Ableitung zugeordnet werden. Das Beispiel zum nächsten Check nutzt genau diese Strategie.
+
 {% include dev/check-anker.html nummer="4" %}
 
 ### Vom Ableitungsgraphen zurück zur Ausgangsfunktion
@@ -150,6 +160,8 @@ Für Extremstellen von $f$ schaut man auf die Nullstellen von $f'$:
 Für Wendestellen von $f$ schaut man auf Extremstellen von $f'$. Warum? An einer Wendestelle ist die Steigung von $f$ lokal besonders groß oder besonders klein. Genau das bedeutet: $f'$ hat dort einen Hochpunkt oder Tiefpunkt.
 
 In solchen Aufgaben werden meist zuerst die **x-Werte** gesucht. Die y-Werte der Punkte müsste man erst mit der Ausgangsfunktion berechnen.
+
+Für den nächsten Check ist genau diese Trennung wichtig: Aus dem Graphen von $f'$ lassen sich zunächst nur Aussagen über die Lage auf der x-Achse und über Vorzeichenwechsel ableiten. Die Tipps und das Beispiel führen deshalb systematisch über Nullstellen, Vorzeichenwechsel und Extremstellen von $f'$ zu Extrem- und Wendestellen von $f$.
 
 {% include dev/check-anker.html nummer="5" %}
 
@@ -167,6 +179,8 @@ Solche Stellen sind zunächst nur **Kandidaten**. Ob dort wirklich ein Hoch- ode
 - $f''(x_0)<0$: Hochpunkt
 
 Ist die Art des Extrempunkts geklärt, gehört zum vollständigen Extrempunkt immer auch der zugehörige y-Wert $f(x_0)$.
+
+Im einfachen Check reicht genau diese Dreischrittlogik: Kandidaten über $f'(x)=0$ bestimmen, die Art über $f''$ entscheiden und danach den Punkt mit $f(x)$ vervollständigen. Beispiel und Aufgaben bleiben dabei bewusst noch ohne Spezialfälle mit $f''(x_0)=0$.
 
 {% include dev/check-anker.html nummer="6" %}
 
@@ -188,9 +202,11 @@ Praktisch geht man so vor:
 
 Damit entsteht bereits die Grundidee der **Vorzeichentabelle**.
 
+Genau dieses Schema greift der nächste Check auf: Die Nullstellen von $f'$ liefern die Intervallgrenzen, und erst danach wird jedes Intervall über das Vorzeichen von $f'$ gedeutet.
+
 {% include dev/check-anker.html nummer="7" %}
 
-### Spezialfall: Ups, jetzt ist auch die zweite Ableitung $0$
+### Spezialfall bei Extremstellen: Auch die zweite Ableitung ist $0$
 
 Manchmal klappt der übliche Test nicht. Dann gilt an einer Kandidatenstelle gleichzeitig
 
@@ -213,6 +229,8 @@ Entscheidend ist nur die letzte Frage:
 
 Wenn die Tangente waagrecht ist, aber kein Extrempunkt vorliegt, kann ein **Sattelpunkt** entstehen.
 
+Im nächsten Check sind genau solche Fälle zentral. Die Tipps lenken deshalb auf den Vorzeichenwechsel von $f'$ links und rechts der Kandidatenstelle, und das Beispiel verbindet diese Entscheidung ausdrücklich mit Vorzeichentabelle und Graph von $f'$.
+
 {% include dev/check-anker.html nummer="8" %}
 
 ## Wendestellen und Krümmung
@@ -234,6 +252,8 @@ Ist das erfüllt, liegt tatsächlich eine Wendestelle vor. Zusätzlich kann man 
 - Wechsel von rechtsgekrümmt nach linksgekrümmt: minimale Steigung
 - Wechsel von linksgekrümmt nach rechtsgekrümmt: maximale Steigung
 
+Im zugehörigen Check sind meist zuerst die **x-Werte** der Wendestellen gefragt. Der y-Wert hilft beim geometrischen Verständnis des Punkts, gehört aber oft noch nicht zur eigentlichen Antwort.
+
 {% include dev/check-anker.html nummer="9" %}
 
 ### Krümmungsintervalle über das Vorzeichen von $f''$
@@ -252,9 +272,11 @@ Auch hier ist das Vorgehen analog:
 
 Damit sind Monotonie und Krümmung didaktisch parallel aufgebaut: erst Kandidaten bestimmen, dann über Vorzeichen argumentieren.
 
+Genau diese Parallelität nutzt der nächste Check. Wer Monotonieintervalle über $f'$ schon sicher untersucht, kann Krümmungsintervalle mit derselben Struktur über $f''$ bestimmen.
+
 {% include dev/check-anker.html nummer="10" %}
 
-### Noch ein Spezialfall: $f''(x_0)=0$ und $f'''(x_0)=0$
+### Spezialfall bei Wendestellen: $f''(x_0)=0$ und $f'''(x_0)=0$
 
 Auch bei Wendestellen gibt es schwierige Fälle. Wenn an einer Kandidatenstelle zusätzlich noch $f'''(x_0)=0$ gilt, ist die dritte Ableitung nicht hilfreich.
 
@@ -266,6 +288,8 @@ Diesmal schaut man auf $f''$ links und rechts von $x_0$:
 - ohne Vorzeichenwechsel: keine Wendestelle
 
 Auch dafür ist eine Vorzeichentabelle das sauberste Werkzeug. Man trägt Teststellen, Vorzeichen und die Folgerung zur Krümmung systematisch ein.
+
+Im nächsten Check entscheidet also nicht die bloße Gleichung $f''(x_0)=0$, sondern der tatsächliche Vorzeichenwechsel von $f''$. Genau darauf richten Tipps, Beispiel und Aufgabe den Blick.
 
 {% include dev/check-anker.html nummer="11" %}
 
@@ -288,6 +312,8 @@ Erst der Vergleich der Funktionswerte entscheidet:
 
 Wichtig ist auch: Auf unbeschränkten Intervallen kann es vorkommen, dass nur eines der beiden globalen Extrema existiert oder sogar keines.
 
+Im nächsten Check müssen deshalb innere Kandidaten, Randpunkte und gegebenenfalls das Verhalten für $x\to\pm\infty$ immer gemeinsam betrachtet werden. Erst danach steht fest, ob ein globales Maximum oder Minimum wirklich existiert.
+
 {% include dev/check-anker.html nummer="12" %}
 
 ### Wo ist die Steigung am größten oder am kleinsten?
@@ -303,6 +329,8 @@ Die Kandidatenlogik bleibt dieselbe:
 - bei unbeschränkten Intervallen zusätzlich das Verhalten von $f'(x)$ für $x \to \pm\infty$.
 
 Didaktisch ist das ein wichtiger Perspektivwechsel: Man untersucht weiter dieselbe Funktion $f$, aber die Größe, die verglichen wird, ist jetzt **nicht** der Funktionswert, sondern der Wert der Ableitung.
+
+Genau darauf zielt der nächste Check. Das Beispiel vergleicht deshalb ausdrücklich Werte von $f'$ an inneren Kandidaten und Randpunkten, und die Aufgaben variieren dann nur Funktion und Intervall.
 
 {% include dev/check-anker.html nummer="13" %}
 
@@ -323,6 +351,8 @@ Typische Bedingungen sind:
 So entsteht ein lineares Gleichungssystem für $a$, $b$, $c$ und $d$. Der Schwerpunkt liegt dabei auf dem **sauberen Aufstellen der Bedingungen**. Das Lösen des Systems kann anschließend mit dem Taschenrechner oder mit dem Gauß-Algorithmus erfolgen.
 
 Wenn zusätzlich „Hochpunkt“ oder „Tiefpunkt“ angegeben ist, dient das als Plausibilitätskontrolle für die gefundene Funktion.
+
+Im nächsten Check steht deshalb vor allem das präzise Übersetzen der Punkt- und Ableitungsinformationen in vier Gleichungen für $a$, $b$, $c$ und $d$ im Mittelpunkt. Das Beispiel zeigt diesen Aufbau vollständig; in den Aufgaben ändern sich anschließend nur die konkreten Daten.
 
 {% include dev/check-anker.html nummer="14" %}
 

@@ -63,7 +63,7 @@ Dabei kann es zu zwei Arten von Fehlern kommen:
 
 | | $H_0$ ist wahr. | $H_1$ ist wahr. |
 | $H_0$ wird beibehalten. | ✅ Richtige Entscheidung | ⚠️ Fehler 2. Art (auch $\beta$-Fehler) |
-| $H_0$ wird verwerfen. | ⚠️ Fehler 1. Art (auch $\alpha$-Fehler) | ✅ Richtige Entscheidung |
+| $H_0$ wird verworfen. | ⚠️ Fehler 1. Art (auch $\alpha$-Fehler) | ✅ Richtige Entscheidung |
 
 Solche Fehler lassen sich prinzipiell nicht vermeiden – es sei denn, wir entscheiden uns immer für $H_0$ oder immer für $H_1$. Das ist jedoch nicht zielführend. Der Grund dafür liegt in der Natur einer Stichprobe: Wir können niemals mit absoluter Sicherheit sagen, was für die gesamte Grundgesamtheit gilt.
 
@@ -73,7 +73,7 @@ Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrsch
 
 Um auf Basis eines Stichprobenergebnisses schließlich eine Entscheidung zu treffen, wird eine **Entscheidungsregel** benötigt. Diese teilt den Wertebereich in einen **Annahmebereich** $A$ und einen **Ablehnungsbereich** $\overline{A}$ ein.
 
-Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,2}$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,2}$).
+Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,}2$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,}2$).
 
 ### Grundbegriffe im Beispiel
 
@@ -87,8 +87,8 @@ Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypoth
 
 **Wie lautet die Entscheidungsregel?**
 
-- Annahmebereich $A=\\{0{,}1{,}2{,}...{,}7\\}$
-- Ablehnungsbereich $\overline{A}=\\{8{,}9{,}10{,}...{,}50\\}$
+- Annahmebereich $A=\\{0,1,2,\ldots,7\\}$
+- Ablehnungsbereich $\overline{A}=\\{8,9,10,\ldots,50\\}$
 
 **Wie wird entschieden?**
 
@@ -96,17 +96,17 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 
 **Was bedeuten die Fehler 1. und 2. Art im Sachzusammenhang?**
 
-- Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
+- Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
 
 - Fehler 2. Art: Man entscheidet sich dafür, dass genau 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil höher ist.
 
 **Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
 
-Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8{,}9{,}10{,}\dotsc{,}50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8,9,10,\ldots,50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
 
 $$
 \begin{align*}
-P(X\geq 8)&=Bcd(8;50;200;0{,}1)\\
+P(X\geq 8)&=Bcd(8;50;50;0{,}1)\\
             &=0{,}1221
 \end{align*}
 $$
@@ -115,9 +115,9 @@ $$
 
 Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}1$), wir jedoch die Nullhypothese beibehalten. Ohne zusätzliche Informationen über den tatsächlichen Wert von $p$ unter der Gegenhypothese kann diese Wahrscheinlichkeit nicht bestimmt werden.
 
-{% include dev/check-anker.html nummer="1" %}
+{% include dev/check-anker.html nummer=1 %}
 
-{% include dev/check-anker.html nummer="2" %}
+{% include dev/check-anker.html nummer=2 %}
 
 
 <!-- ## Exkurs: p-Hacking-->
@@ -132,13 +132,17 @@ Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkei
 
 Wir betrachten zunächst die Herleitung der Entscheidungsregel für einen linksseitigen Test, bevor wir uns dem rechtsseitigen Test zuwenden. In beiden Fällen werden wir die Entscheidungsregel zunächst mit Strukturhilfe herleiten, bevor wir sie ohne Strukturhilfe formulieren.
 
-{% include dev/check-anker.html nummer="3" %}
+{% include dev/check-anker.html nummer=3 %}
 
-{% include dev/check-anker.html nummer="4" %}
+Analog gilt das Vorgehen für den rechtsseitigen Test: Hier wird der Ablehnungsbereich am oberen Ende gesucht, und die Bedingung lautet $P(X\geq k) < \alpha$.
 
-{% include dev/check-anker.html nummer="5" %}
+{% include dev/check-anker.html nummer=4 %}
 
-{% include dev/check-anker.html nummer="6" %}
+Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen auch ohne zusätzliche Gerüstung durchgeführt werden.
+
+{% include dev/check-anker.html nummer=5 %}
+
+{% include dev/check-anker.html nummer=6 %}
 
 
 

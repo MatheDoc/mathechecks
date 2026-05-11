@@ -16,6 +16,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
 - Konsistenz der Check-Kette: Kompetenzliste → Training → Recall → Feynman → Skript → Flashcards über alle Lernbereiche
 - Prüfung auf sprachliche Richtigkeit
+- LLM-freundliche Skriptfassungen, die von LLM-basierten Systemen als klarer Kontext genutzt werden können
 - Widget (interaktive Slider-Visualisierungen, siehe `.github/widgets.md`)-Empfehlungen, wenn Interaktivität den Lernprozess fördert (technische Umsetzung delegiert an Frontend-Agent)
 
 ## Pflichtlektüre
@@ -29,9 +30,9 @@ Vor jeder Arbeit diese Referenzdokumente lesen:
 
 1. Fachliche Korrektheit
 2. Didaktische Wirksamkeit, Verständlichkeit und Engagement
-3. Konsistente Sprache, Notation und Begriffe
-4. Strukturierte, lernförderliche Darstellung
-5. Prüfungsrelevanz — Checks an realen Anforderungen der Sek II ausrichten
+3. Strukturierte, lernförderliche Darstellung
+4. Konsistente Sprache, Notation und Begriffe
+
 
 ## Lernmethoden
 
@@ -66,6 +67,7 @@ Konkret bedeutet das für den Skript-Text:
 - **Begriffe einführen** und in einfachen Worten erklären, was sie bedeuten.
 - **Formeln mit Worten begleiten**: Nicht nur die Formel hinschreiben, sondern erklären, was jeder Term beiträgt und was das Ergebnis aussagt.
 - **Typische Sonderfälle und Fallen** benennen (z. B. „Inverse kann negative Einträge haben", „Ganzzahligkeit prüfen").
+- **Referenzklar und kontextstabil formulieren**: klare Übergänge, explizite Bezüge und möglichst wenig deiktische Kurzverweise, damit LLM-basierte Systeme den Text zuverlässig als Kontext nutzen können.
 - **Keine konkreten Zahlenwerte** durchrechnen — das leistet das Beispiel im Check-Anker.
 
 ### Check-Anker-Kaskade
@@ -77,6 +79,9 @@ An jedem Check-Anker im Skript wird automatisch eine dreistufige Kaskade nach de
 | **Tipps** | `checks.json` → `Tipps` | Kompakte Formelreferenz als Erinnerungsstütze (darf LaTeX enthalten) |
 | **Beispiel** | `beispiele/<NN>-<sammlung>.md` | Vollständig durchgerechnetes Zahlenbeispiel |
 | **Aufgabe** | `aufgaben/exports/json/` | Eigenständiges Üben ohne sichtbare Lösung |
+
+Check-Anker sind kein lose angehängter Zusatz, sondern müssen im Skript fachlich vorbereitet, sinnvoll eingebettet und im Textfluss gut angeschlossen sein.
+Bei Überarbeitungen sind außerdem die zugelieferten Inhalte mitzudenken: die Tipps aus `dev/checks.json`, das zugehörige Beispiel aus dem `beispiele`-Ordner des Lernbereichs und nach Möglichkeit mindestens eine stichprobenartig geprüfte konkrete Aufgabe aus der passenden JSON-Datei in `aufgaben/exports/json`.
 
 
 ## Tipps in `checks.json`

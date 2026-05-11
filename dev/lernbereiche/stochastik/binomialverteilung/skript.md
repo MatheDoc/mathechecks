@@ -15,7 +15,15 @@ permalink: /dev/lernbereiche/stochastik/binomialverteilung/skript.html
 ## Einführung
 
 Ein **Bernoulli-Experiment** ist ein Zufallsexperiment mit nur zwei möglichen Ergebnissen: Treffer oder Niete. Die Wahrscheinlichkeit für einen Treffer wird in der Regel mit $p$ bezeichnet, für eine Niete mit $q=1-p$. Wird ein Bernoulli-Experiment $n$-mal hintereinander bei gleichbleibender Trefferwahrscheinlichkeit durchgeführt, so sprechen wir von einer **Bernoulli-Kette** der Länge $n$. Eine gleichbleibende Trefferwahrscheinlichkeit bedeutet im Übrigen, dass die auftretenden Ereignisse voneinander unabhängig sind.
-Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**. Aufgrund dieser klaren Struktur werden sich viele systematische Rechenverfahren ergeben.
+Eine Zufallsgröße, die bei einer Bernoulli-Kette die Anzahl der Treffer angibt, heißt **binomialverteilt**. Ob eine Situation wirklich binomialverteilt ist, entscheidet also nicht ein einzelnes Schlagwort, sondern die Struktur des Experiments.
+
+Für die Prüfung sind vor allem drei Fragen entscheidend:
+
+- Gibt es eine feste Anzahl von Versuchen $n$?
+- Gibt es pro Versuch genau zwei mögliche Ausgänge?
+- Bleibt die Trefferwahrscheinlichkeit $p$ in allen Versuchen gleich?
+
+Genau diese drei Bedingungen greifen die Tipps und Aufgaben des ersten Checks auf. Erst wenn sie erfüllt sind, lohnt sich der Einsatz der Binomialverteilung.
 
 {% include dev/check-anker.html nummer=1 %}
 
@@ -28,7 +36,9 @@ Wir betrachten eine Bernoulli-Kette der Länge $n$ mit Trefferwahrscheinlichkeit
 
 {% include dev/widgets/widget-baumdiagramm-binomial.html %}
 
-Um die Wahrscheinlichkeit für genau $k$ Treffer zu berechnen, benötigen wir die erstens Anzahl der Pfade mit genau $k$ Treffern und zweitens die Endwahrscheinlichkeit eines solchen Pfades.
+Am Baumdiagramm kann man zwei Bausteine der Rechnung gut unterscheiden: Wie viele passende Pfade gibt es überhaupt, und wie groß ist die Wahrscheinlichkeit für jeden einzelnen dieser Pfade?
+
+Um die Wahrscheinlichkeit für genau $k$ Treffer zu berechnen, benötigen wir erstens die Anzahl der Pfade mit genau $k$ Treffern und zweitens die Endwahrscheinlichkeit eines solchen Pfades.
 
 - **Pfadanzahl:** Der sogenannte Binomialkoeffizient (lies: n über k)
 
@@ -41,7 +51,7 @@ Um die Wahrscheinlichkeit für genau $k$ Treffer zu berechnen, benötigen wir di
 
   gibt diese Anzahl an Pfaden an. Er kann mit den meisten Taschenrechnern direkt bestimmt werden.
 
-- **Pfadendwahrscheinlichkeit:** Jeder dieser Pfade hat nach der Pfadmultipliaktionsregel dieselbe Pfadwahrscheinlichkeit
+- **Pfadendwahrscheinlichkeit:** Jeder dieser Pfade hat nach der Pfadmultiplikationsregel dieselbe Pfadwahrscheinlichkeit
   $$
   p^k \cdot (1−p)^{n−k},
   $$
@@ -61,7 +71,7 @@ Eine Basketballspielerin habe von der Freiwurflinie eine Trefferwahrscheinlichke
 
 $$
 \begin{align*}
-P(X=4)&=\binom{4}{3}\cdot 0{,}7^3\cdot (1-0{,}7)^{4-3}\\
+P(X=3)&=\binom{4}{3}\cdot 0{,}7^3\cdot (1-0{,}7)^{4-3}\\
 &=0{,}4116
 \end{align*}
 $$
@@ -84,6 +94,17 @@ $$
 
 Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel auch inhaltlich interpretieren zu können.
 
+Jeder Teil der Formel hat dabei eine klare Rolle im Sachzusammenhang:
+
+- $n$ ist die Anzahl der Versuche.
+- $k$ ist die Anzahl der Treffer.
+- $p$ ist die Trefferwahrscheinlichkeit pro Versuch.
+- $1-p$ ist die Nietenwahrscheinlichkeit pro Versuch.
+- $\binom{n}{k}$ zählt, auf wie viele Arten genau $k$ Treffer angeordnet werden können.
+- $P(X=k)$ ist die Wahrscheinlichkeit für genau $k$ Treffer.
+
+Im nächsten Check geht es deshalb nicht um langes Rechnen, sondern darum, solche Formeln fachsprachlich sauber zu lesen und im Sachzusammenhang zu deuten.
+
 {% include dev/check-anker.html nummer=2 %}
 
 
@@ -93,9 +114,9 @@ Im vorherigen Abschnitt interessierten wir uns für die Wahrscheinlichkeit für 
 
 ### Beispiel
 
-Eine Basketballsperin habe von der Dreierlinie eine Trefferwahrscheinlichkeit von 10% und wirft 20 Mal. Die Zufallsgröße $X$, die die Anzahl der Treffer angibt, ist binomialverteilt mit $n=20$ und $p=0{,}1$.
+Eine Basketballspielerin habe von der Dreierlinie eine Trefferwahrscheinlichkeit von 10 % und wirft 20 Mal. Die Zufallsgröße $X$, die die Anzahl der Treffer angibt, ist binomialverteilt mit $n=20$ und $p=0{,}1$.
 
-Wie groß ist die Wahrscheinlchkeit für höchstens 2 Treffer? Höchstens 2 Treffer bedeutet, dass sie 0, 1 oder 2 Mal trifft. Die gesuchte Wahrscheinlichkeit wird mit $P(X\leq 2)$ bezeichnet und ist
+Wie groß ist die Wahrscheinlichkeit für höchstens 2 Treffer? Höchstens 2 Treffer bedeutet, dass sie 0, 1 oder 2 Mal trifft. Die gesuchte Wahrscheinlichkeit wird mit $P(X\leq 2)$ bezeichnet und ist
 
 $$
 \begin{align*}
@@ -115,7 +136,7 @@ Damit wir die Bernoulli-Formel geeignet anwenden können, müssen wir gut auf di
 | Textuelle Beschreibung | Symbolische Formulierung |
 | ---------------------- | ----------------------- |
 | Wkt für genau 3 Treffer | $P(X=3)$ |
-| Wkt für höchstens 4 Treffer | $P(X\leq 4)=P(X=0)+P(X=1)+\ldots+P(X=4$) |
+| Wkt für höchstens 4 Treffer | $P(X\leq 4)=P(X=0)+P(X=1)+\ldots+P(X=4)$ |
 | Wkt für mindestens 12 Treffer | $P(X\geq 12)=P(X=12)+P(X=13)+\ldots+P(X=20)$ |
 | Wkt für weniger als 10 Treffer | $P(X< 10)=P(X=0)+P(X=1)+\ldots+P(X=9)$ |
 | Wkt für mehr als 7 Treffer | $P(X> 7)=P(X=8)+P(X=9)+\ldots+P(X= 20)$ |
@@ -126,7 +147,17 @@ Damit wir die Bernoulli-Formel geeignet anwenden können, müssen wir gut auf di
 
 Für Bereichswahrscheinlichkeiten werden die Bernoulli-Formeln mehrfach nacheinander angewendet. Dies kann bei vielen Summanden aufwendig und fehleranfällig sein. Typischerweise werden Bereichswahrscheinlichkeiten daher mit Tafelwerken oder Taschenrechnern bestimmt. In Tafelwerken befinden sich in der Regel die **kumulierten Wahrscheinlichkeiten** $P(X\leq k)$. Daher müssen die gesuchten Bereichswahrscheinlichkeiten in Ausdrücke umgeformt werden, die nur kumulierte Wahrscheinlichkeiten enthalten. 
 
+Typische Umformungen sind dabei:
+
+- genau $k$ Treffer: $P(X=k)=P(X\leq k)-P(X\leq k-1)$
+- mindestens $k$ Treffer: $P(X\geq k)=1-P(X\leq k-1)$
+- Treffer zwischen $a$ und $b$: $P(a\leq X\leq b)=P(X\leq b)-P(X\leq a-1)$
+
+Genau diese Übersetzungen stehen im Mittelpunkt des nächsten Checks. Das Beispiel zeigt die Struktur an einem konkreten Sachzusammenhang, und die Aufgaben variieren anschließend nur die sprachliche Formulierung des Bereichs.
+
 {% include dev/check-anker.html nummer=3 %}
+
+Wenn statt Tafelwerk ein Taschenrechner mit einer Funktion wie $Bcd(a;b;n;p)$ verwendet wird, muss dieselbe Bereichsidee in Eingabegrenzen übersetzt werden. Dann sind nicht mehr Differenzen kumulierter Wahrscheinlichkeiten gefragt, sondern passende untere und obere Intervallgrenzen.
 
 {% include dev/check-anker.html nummer=4 %}
 
@@ -140,6 +171,8 @@ Bevor wir Bereichswahrscheinlichkeiten bestimmen können, müssen wir die folgen
 - Was ist im Sachzusammenhang ein Treffer, was ist eine Niete?
 - Müssen die Intervallgrenzen des angegebenen Bereichs eventuell noch berechnet werden?
 - Möglicherweise entstehen Ausdrücke mit nicht-ganzzahligen Intervallgrenzen. Hier müssen wir richtig runden: Ist z.B. $X\leq 3{,}8$ so darf $X$ auf keinen Fall größer als $3{,}8$ sein, es gilt also $P(X\leq 3{,}8)=P(X\leq 3)$. Ist z.B. $X> 5{,}1$, so darf $X$ auf keinen Fall kleiner oder gleich als $5{,}1$ sein, es gilt also $P(X> 5{,}1)=P(X\geq 6)$.
+
+Genau dieser Fragenkatalog ist der Kern des nächsten Checks. Die Aufgaben mischen bewusst Standardfälle, Prozentangaben, Vereinigungen von Ereignissen und Situationen, die gar nicht binomialverteilt sind.
 
 
 
@@ -157,17 +190,19 @@ Die folgende Übersicht zeigt die Histogramme und zugehörigen Intervallwahrsche
 
 {% include dev/widgets/widget-histogramm-binomial.html %}
 
-Damit können wir auch mit Hilfe von Histogrammen Intervallwahrscheinlichkeiten bestimmen.  
+Damit können wir auch mit Hilfe von Histogrammen Intervallwahrscheinlichkeiten bestimmen. Im Histogramm der Einzelwahrscheinlichkeiten liest man einzelne Balkenhöhen als Werte von $P(X=k)$ ab und addiert passende Balken für ein Intervall.
 
 {% include dev/check-anker.html nummer=6 %}
 
+
+Im Histogramm der kumulierten Wahrscheinlichkeiten bedeutet die Balkenhöhe bei $k$ dagegen direkt $P(X\leq k)$. Bereichswahrscheinlichkeiten entstehen dort typischerweise durch Differenzen zweier Balkenhöhen.
 
 {% include dev/check-anker.html nummer=7 %}
 
 
 ## Bestimmung von n, p und k
 
-Mit Hilfe der Bernoulli-Formel $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ lassen sich Intervallwahrscheinlichkeiten binomialverteilter Zufallsgrößen betimmen:
+Mit Hilfe der Bernoulli-Formel $P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}$ lassen sich Intervallwahrscheinlichkeiten binomialverteilter Zufallsgrößen bestimmen:
 
 $$
 \begin{align*}
@@ -177,19 +212,19 @@ P(X\leq k)&=P(X=0) + P(X=1) + \ldots P(X=k)\\
 \end{align*}
 $$
 
-Wie wir gesehen haben, lässt sich dieser komplizierte Ausdruck mit Hilfe von Tafelwerken oder Taschenrechnern bestimmen. Das bedeutet: Wenn $n$, $p$ und $k$ gegeben sind, können wir die Wahrscheinlickeit $P(X\leq k)$ bestimmen.
+Wie wir gesehen haben, lässt sich dieser komplizierte Ausdruck mit Hilfe von Tafelwerken oder Taschenrechnern bestimmen. Das bedeutet: Wenn $n$, $p$ und $k$ gegeben sind, können wir die Wahrscheinlichkeit $P(X\leq k)$ bestimmen.
 
-Wir ändern nun die Perspektive: Angenommen $P(X\leq k)$ und z.b. $p$ und $k$ seien gegeben. Was ist dann $n$?
+Wir ändern nun die Perspektive: Angenommen $P(X\leq k)$ und z. B. $p$ und $k$ seien gegeben. Was ist dann $n$?
 
 Dazu müsste die oben erwähnte Formel nach $n$ aufgelöst werden. Dies ist jedoch nicht elementar möglich. Stattdessen probieren wir mit Hilfe von Wertetabellen systematisch aus.
 
 ### Beispiel 1
 
-Gegegen: $P(X\leq 3)\approx 0{,}71$ und $p=0,4$
+Gegeben: $P(X\leq 3)\approx 0{,}71$ und $p=0{,}4$
 
 Gesucht: $n$
 
-Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelwerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $n$ | $P(X\leq 3)$ |
 | --- | ------------ |
@@ -208,11 +243,11 @@ Wir entnehmen der Tabelle, dass $P(X\leq 3)=0{,}7102\approx 0{,}71$ für $n=7$ i
 
 ### Beispiel 2
 
-Gegegen: $P(X\geq 14)\approx 0{,}15$ und $n=20$
+Gegeben: $P(X\geq 14)\approx 0{,}15$ und $n=20$
 
 Gesucht: $p$
 
-Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelwerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $p$  | $P(X\geq 14)$ |
 | ---- | ------------- |
@@ -231,11 +266,11 @@ Wir entnehmen der Tabelle, dass $P(X\geq 14)=0{,}1499\approx 0{,}15$ für $p=0{,
 
 ### Beispiel 3
 
-Gegegen: $P(X\leq k)\approx 0{,}10$ und $n=200$ und $p=0{,}9$
+Gegeben: $P(X\leq k)\approx 0{,}10$ und $n=200$ und $p=0{,}9$
 
 Gesucht: $k$
 
-Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle auf:
+Mit Hilfe eines Tafelwerks oder Taschenrechners stellen wir folgende Tabelle auf:
 
 | $k$ | $P(X\leq k)$ |
 | --- | ------------ |
@@ -252,11 +287,15 @@ Mit Hilfe eines Tafelswerks oder Taschenrechners stellen wir folgende Tabelle au
 
 Wir entnehmen der Tabelle, dass $P(X\leq 174)=0{,}1005\approx 0{,}10$. Es ist also $k=174$.
 
-Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarte Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
+Häufig stehen wir auch vor der Frage, dass ein minimales oder maximales $n$, $p$ oder $k$ gesucht ist, so dass eine vorgegebene Wahrscheinlichkeit unter- oder überschritten wird. Dazu suchen wir die zwei benachbarten Einträge in der Wahrscheinlichkeitstabelle, zwischen denen die vorgegebene Wahrscheinlichkeit liegt.
 
 {% include dev/check-anker.html nummer=8 %}
 
+Dasselbe Vorgehen lässt sich auf die Trefferwahrscheinlichkeit $p$ übertragen: Jetzt sind $a$, $b$ und $n$ bekannt, und $p$ wird durch systematisches Probieren bestimmt.
+
 {% include dev/check-anker.html nummer=9 %}
+
+Die dritte Variante fragt nach einer Intervallgrenze $k$, wenn $n$, $p$ und eine Wahrscheinlichkeitsbedingung vorgegeben sind.
 
 {% include dev/check-anker.html nummer=10 %}
 
@@ -299,14 +338,16 @@ $$
 Der Beweis für die Standardabweichung,
 
 $$
-\sqrt{n\cdot p\cdot (1-p)}= \sqrt{\sum_{i=1}^{n} (x_i - E(X))^2\cdot P(X=x_i)},
+\sqrt{n\cdot p\cdot (1-p)}= \sqrt{\sum_{i=0}^{n} (x_i - E(X))^2\cdot P(X=x_i)},
 $$
 
 ist noch aufwendiger und wird hier übersprungen.
 
 ### Anwendung der Formeln
 
-Sind $n$ und $p$ gegeben, so können wir nun direkt mit den Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ den Erwartungswert und die Standardabweichung einer binomialverteilten Zufallsgröße berechnen
+Sind $n$ und $p$ gegeben, so können wir mit den Formeln $\mu=n\cdot p$ und $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ den Erwartungswert und die Standardabweichung direkt berechnen.
+
+Der erste Check in diesem Abschnitt trainiert genau diesen Standardfall: gegebene Versuchsanzahl, gegebene Trefferwahrscheinlichkeit, daraus $\mu$ und $\sigma$ bestimmen.
 
 {% include dev/check-anker.html nummer=11 %}
 
@@ -318,6 +359,15 @@ $$
 $$
 
 werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Damit können wir häufig, wenn zwei Werte dieser vier Größen bekannt sind, die Werte der anderen beiden Größen berechnen.
+
+Es lohnt sich dabei ein klarer Ablauf:
+
+- zuerst festhalten, welche zwei Größen gegeben sind,
+- falls möglich dann die einfachere Formel $\mu=n\cdot p$ zum Umstellen nutzen,
+- anschließend die fehlende Größe in die Formel für $\sigma$ einsetzen,
+- bei schwierigeren Fällen beide Formeln gezielt kombinieren.
+
+Genau dieser Perspektivwechsel steckt in den nächsten vier Checks. Die Formeln bleiben gleich, aber die gegebenen und gesuchten Größen wechseln.
 
 {% include dev/check-anker.html nummer=12 %}
 
@@ -331,13 +381,13 @@ werden die vier Größen $n$, $p$, $\mu$ und $\sigma$ miteinander verknüpft. Da
 
 ### Umgebungen des Erwartungswerts
 
-Häufig interssieren wir uns dafür, was die "normalen" Werte einer Zufallsgröße sind, welche Werte sie also typischerweise annimmt. Dies lässt sich beispielsweise in folgenden Situationen beobachten:
+Häufig interessieren wir uns dafür, was die "normalen" Werte einer Zufallsgröße sind, welche Werte sie also typischerweise annimmt. Dies lässt sich beispielsweise in folgenden Situationen beobachten:
 
-- Medizin: In Bei Laborwerten (z. B. Blutzucker, Blutdruck oder Cholesterin) werden sogenannte Referenzbereiche angegeben, innerhalb derer der Wert bei gesunden Personen mit hoher Wahrscheinlichkeit liegt. Werte außerhalb dieses Bereichs können ein Hinweis auf eine Erkrankung sein.
+- Medizin: Bei Laborwerten (z. B. Blutzucker, Blutdruck oder Cholesterin) werden sogenannte Referenzbereiche angegeben, innerhalb derer der Wert bei gesunden Personen mit hoher Wahrscheinlichkeit liegt. Werte außerhalb dieses Bereichs können ein Hinweis auf eine Erkrankung sein.
 - Qualitätskontrolle: In der Produktion wird überprüft, ob Produkte innerhalb zulässiger Toleranzen liegen. Ist der Ausschussanteil zu hoch, liegt ein Qualitätsproblem vor.
 - Wahlumfragen: Wenn in Umfragen ein Anteil (z. B. Zustimmung zu einer Partei) erhoben wird, interessiert man sich für ein Vertrauensintervall um diesen Wert, also für den Bereich, in dem der „wahre“ Wert mit hoher Wahrscheinlichkeit liegt.
 
-Wir betrachten beispielhaft die Binomialverteilung mit $n=10$ und $p=0{,}4$:
+Zur Veranschaulichung betrachten wir weiter eine binomialverteilte Zufallsgröße mit $n=10$ und $p=0{,}4$.
 
 {% include dev/histogramm-binomial-einzel.html
 n=10
@@ -349,7 +399,7 @@ Was versteht man nun genau unter normalen Werten bzw. dem Normbereich?
 
 Es handelt sich dabei um einen Bereich, in dem die Zufallsgröße mit hoher Wahrscheinlichkeit ihre Werte annimmt. Wie hoch diese Wahrscheinlichkeit genau sein soll, ist nicht allgemein festgelegt. Daher ist die Definition eines Normbereichs in gewissem Sinne subjektiv.
 
-Allgemein gilt: Die größte Wahrscheinlichkeit liegt beim Erwartungswert $\mu = n \cdot p$ vor. Falls $\mu$ nicht ganzzahlig ist, ist einer der benachbarten ganzzahligen Werte am wahrscheinlichsten. Im betrachteten Beispiel liegt der Erwartungswert bei $\mu = 4$ und seine Wahrscheinlichkeit ist $P(X=\mu)=0{,}2508$. Auch die benachbarten Werte treten mit vergleichsweise hoher Wahrscheinlichkeit auf: $P(X=3)=0{,}2150$ und $P(X=5)=0{,}2007$. Ein möglicher Normbereich wäre $[3;5]$, die Zufallsgröße hat mit einer Wahrscheinlichkeit von $0{,}2508 + 0{,}2150 + 0{,}2007=0{,}6665$ ihre Werte in diesem Bereich.
+Allgemein gilt: Die größten Wahrscheinlichkeiten liegen in der Nähe des Erwartungswerts $\mu = n \cdot p$. Falls $\mu$ nicht ganzzahlig ist, liegen die wahrscheinlichsten ganzzahligen Werte in seiner Nähe. Normbereiche beschreiben also, wie weit man sich vom Erwartungswert entfernen darf, wenn ein Wert noch als typisch gelten soll.
 
 Es gibt verschiedene Möglichkeiten, Umgebungen des Erwartungswerts anzugeben:
 
@@ -361,17 +411,35 @@ Es gibt verschiedene Möglichkeiten, Umgebungen des Erwartungswerts anzugeben:
 
 Eine mögliche Idee ist es, Normbereiche einfach mit Hilfe absoluter Abweichungen vom Erwartungswert anzugeben.
 
+Typisch ist dann eine Formulierung wie „höchstens 2 vom Erwartungswert entfernt". Mathematisch bedeutet das: Gesucht ist ein Bereich der Form
+
+$$
+\mu-d \leq X \leq \mu+d.
+$$
+
+Da $X$ nur ganzzahlige Werte annehmen kann, müssen die Intervallgrenzen danach gegebenfalls noch passend auf ganze Trefferzahlen übertragen werden.
+
 {% include dev/check-anker.html nummer=16 %}
 
 ### Relative Umgebungen
 
 Um die Höhe des Erwartungswerts berücksichtigen zu können, betrachten wir alternativ eine relative Abweichung vom Erwartungswert.
 
+Hier wird also nicht um eine feste Zahl $d$, sondern um einen prozentualen Anteil des Erwartungswerts erweitert. Auch daraus entsteht am Ende wieder ein Intervall, dessen Grenzen anschließend auf sinnvolle ganzzahlige Trefferzahlen übersetzt werden.
+
 {% include dev/check-anker.html nummer=17 %}
 
 ### Sigma-Umgebungen
 
 Eine gute Idee ist es, Normbereiche mit Hilfe der Standardabweichung $\sigma$ anzugeben, da $\sigma$ ein Maß für die Schwankung ist: Schwanken die Werte der Zufallsgröße relativ stark, sollte auch der Normbereich relativ groß gefasst werden.
+
+Eine Sigma-Umgebung hat also die Form
+
+$$
+\mu-c\sigma \leq X \leq \mu+c\sigma,
+$$
+
+wobei $c$ festlegt, wie breit die Umgebung ist. Auch hier ist anschließend wichtig, ob nach Werten **innerhalb** oder **außerhalb** dieser Umgebung gefragt ist.
 
 {% include dev/check-anker.html nummer=18 %}
 
@@ -398,7 +466,7 @@ In diesem Zusammenhang gelten die sogenannten **Sigma-Regeln**: Die Wahrscheinli
 
 - $P(\mu-\sigma\leq X\leq\mu+\sigma)\approx 0{,}683$
 - $P(\mu-2\sigma\leq X\leq\mu+2\sigma)\approx 0{,}954$
-- $P(\mu-2\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
+- $P(\mu-3\sigma\leq X\leq\mu+3\sigma)\approx 0{,}997$
 
 Als Faustregel hat sich die sogenannte Laplace-Bedingung etabliert. Sie besagt, dass für $\sigma>3$ die Sigma-Regeln angewendet werden können.
 

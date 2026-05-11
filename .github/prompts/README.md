@@ -12,6 +12,7 @@ Konkrete, wiederverwendbare Arbeitsaufträge.
 ## Aktuelle Prompts
 
 - `prompt-aufgaben.md` – 20 JSON-Aufgaben erzeugen (verweist auf `aufgaben/README.md`)
+- `prompt-skript-ueberarbeiten.md` – Skripte fachlich, didaktisch und LLM-freundlich überarbeiten
 - `systemprompt-template.prompt.md` – Vorlage für neue Systemprompts
 
 ## Verwandte Referenzdokumente
