@@ -1,0 +1,47 @@
+<div class="skript-widget roulette-widget">
+    <div class="widget-controls roulette-widget__controls">
+        <div class="widget-row">
+            <label for="roulette-event-select">Ereignis</label>
+            <select id="roulette-event-select" class="roulette-widget__event">
+                <option value="red">rot</option>
+                <option value="black">schwarz</option>
+                <option value="even">gerade Zahl</option>
+                <option value="odd">ungerade Zahl</option>
+                <option value="first-dozen">1 bis 12</option>
+                <option value="zero">0</option>
+            </select>
+        </div>
+
+        <div class="widget-row widget-row--label">Laplace-Wahrscheinlichkeit</div>
+        <div class="widget-row widget-row--center roulette-widget__probability"></div>
+
+        <div class="roulette-widget__actions">
+            <button type="button" class="roulette-widget__button roulette-widget__spin-one">Einmal drehen</button>
+            <button type="button" class="roulette-widget__button roulette-widget__spin-many">100-mal drehen</button>
+            <button type="button" class="roulette-widget__button roulette-widget__reset">Zurücksetzen</button>
+        </div>
+    </div>
+
+    <div class="widget-outputs roulette-widget__outputs">
+        <div class="roulette-widget__wheel-wrap" aria-live="polite">
+            <div class="roulette-widget__pointer"></div>
+            <div class="roulette-widget__wheel"></div>
+            <div class="roulette-widget__result">-</div>
+        </div>
+
+        <div class="roulette-widget__stats">
+            <div>
+                <span>Drehungen</span>
+                <strong class="roulette-widget__spins">0</strong>
+            </div>
+            <div>
+                <span>Treffer</span>
+                <strong class="roulette-widget__hits">0</strong>
+            </div>
+            <div>
+                <span>relative Häufigkeit</span>
+                <strong class="roulette-widget__relative">-</strong>
+            </div>
+        </div>
+    </div>
+</div>

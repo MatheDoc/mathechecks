@@ -124,11 +124,294 @@ export function refreshSkriptTables(root) {
     wrapTablesForHorizontalScroll(root);
 }
 
+const MONO_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const MONO_TEXTS = [
+    "Der zerstreute Detektiv verschlüsselte seine Einkaufsliste und wunderte sich dann sehr, warum er statt Zitronen, Zahnpasta und Zimtschnecken plötzlich zehn Zahnräder, zwei Zirkuszelte und eine Ziehharmonika bestellte.",
+    "Im Geheimclub der gelangweilten Pinguine schrieb der Vorsitzende jede Einladung in einer monoalphabetischen Substitution, damit nicht schon wieder ein neugieriger Eisbär früher auftauchte und den gesamten Vanillepudding wegfutterte.",
+    "Eine kluge Schülerin merkte beim Entschlüsseln sofort, dass ein langer deutscher Text viele verräterische Muster enthält, denn häufige Buchstaben tauchen erstaunlich oft auf, selbst wenn ein übermotivierter Caesar sie geschniegelt und geschniegelt verschoben hat.",
+    "Der Hofzauberer verkündete feierlich, seine neue Geheimschrift sei absolut unknackbar, doch nach fünf Minuten Häufigkeitsanalyse las die halbe Schlossküche bereits mit, dass er heimlich jeden Mittwoch extra Erdbeereis mit Sahne und Streuseln bestellt.",
+];
+const MONO_GERMAN_FREQUENCIES = {
+    E: 17.4, N: 9.8, I: 7.6, S: 7.3, R: 7.0, A: 6.5, T: 6.2, D: 5.1,
+    H: 4.8, U: 4.4, L: 3.4, C: 3.1, G: 3.0, M: 2.5, O: 2.5, B: 1.9,
+    W: 1.9, F: 1.7, K: 1.2, Z: 1.1, P: 0.8, V: 0.7, J: 0.3, Y: 0.04,
+    X: 0.03, Q: 0.02,
+};
+
+const ROULETTE_RED_NUMBERS = new Set([1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]);
+const ROULETTE_WHEEL_ORDER = [0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29, 7, 28, 12, 35, 3, 26];
+const ROULETTE_EVENTS = {
+    red: { label: "rot", favorable: 18, matches: (number) => ROULETTE_RED_NUMBERS.has(number) },
+    black: { label: "schwarz", favorable: 18, matches: (number) => number !== 0 && !ROULETTE_RED_NUMBERS.has(number) },
+    even: { label: "gerade Zahl", favorable: 18, matches: (number) => number !== 0 && number % 2 === 0 },
+    odd: { label: "ungerade Zahl", favorable: 18, matches: (number) => number % 2 === 1 },
+    "first-dozen": { label: "1 bis 12", favorable: 12, matches: (number) => number >= 1 && number <= 12 },
+    zero: { label: "0", favorable: 1, matches: (number) => number === 0 },
+};
+
+function formatDecimalDe(value, digits = 1) {
+    return value.toFixed(digits).replace(".", ",");
+}
+
+function formatPercentDe(value, digits = 1) {
+    return `${formatDecimalDe(value, digits)} %`;
+}
+
+function normalizeGermanAlphabetText(text) {
+    return String(text)
+        .replaceAll("Ä", "AE")
+        .replaceAll("Ö", "OE")
+        .replaceAll("Ü", "UE")
+        .replaceAll("ä", "AE")
+        .replaceAll("ö", "OE")
+        .replaceAll("ü", "UE")
+        .replaceAll("ß", "SS")
+        .toUpperCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^A-Z ]+/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function shuffleItems(items) {
+    const shuffled = [...items];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[swapIndex]] = [shuffled[swapIndex], shuffled[index]];
+    }
+    return shuffled;
+}
+
+function createSubstitutionMap() {
+    const shuffledLetters = shuffleItems(MONO_ALPHABET.split(""));
+    const substitution = new Map();
+    MONO_ALPHABET.split("").forEach((letter, index) => {
+        substitution.set(letter, shuffledLetters[index]);
+    });
+    return substitution;
+}
+
+function encryptMonoalphabetic(text, substitution) {
+    return text
+        .split("")
+        .map((character) => substitution.get(character) || character)
+        .join("");
+}
+
+function buildLetterFrequencyList(text) {
+    const letters = text.replace(/[^A-Z]/g, "").split("");
+    const total = letters.length || 1;
+    const counts = new Map();
+    letters.forEach((letter) => counts.set(letter, (counts.get(letter) || 0) + 1));
+    return Array.from(counts.entries())
+        .map(([letter, count]) => ({ letter, percent: (count / total) * 100 }))
+        .sort((first, second) => second.percent - first.percent || first.letter.localeCompare(second.letter));
+}
+
+function renderFrequencyList(container, frequencies) {
+    if (!container) return;
+    container.innerHTML = "";
+    frequencies.forEach(({ letter, percent }) => {
+        const row = document.createElement("div");
+        row.className = "ms-widget__freq-row";
+        const letterNode = document.createElement("span");
+        letterNode.textContent = letter;
+        const percentNode = document.createElement("span");
+        percentNode.textContent = formatPercentDe(percent, percent < 0.1 ? 2 : 1);
+        row.append(letterNode, percentNode);
+        container.appendChild(row);
+    });
+}
+
+function initMonoalphabetischeSubstitutionWidgets(root) {
+    root.querySelectorAll(".ms-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const cipherTextNode = widget.querySelector(".ms-widget__ciphertext");
+        const decodedTextNode = widget.querySelector(".ms-widget__decoded");
+        const mappingNode = widget.querySelector(".ms-widget__mapping");
+        const statusNode = widget.querySelector(".ms-widget__status");
+        const cipherFrequencyNode = widget.querySelector(".ms-widget__cipher-frequencies");
+        const germanFrequencyNode = widget.querySelector(".ms-widget__german-frequencies");
+        const newButton = widget.querySelector(".ms-widget__new");
+        const resetButton = widget.querySelector(".ms-widget__reset");
+        const germanFrequencies = Object.entries(MONO_GERMAN_FREQUENCIES)
+            .map(([letter, percent]) => ({ letter, percent }))
+            .sort((first, second) => second.percent - first.percent);
+
+        let plainText = "";
+        let cipherText = "";
+        let guesses = new Map();
+        let substitution = createSubstitutionMap();
+
+        function decodedText() {
+            return cipherText
+                .split("")
+                .map((character) => MONO_ALPHABET.includes(character) ? (guesses.get(character) || "_") : character)
+                .join("");
+        }
+
+        function updateDecodedText() {
+            const decoded = decodedText();
+            decodedTextNode.textContent = decoded;
+            const filledCount = Array.from(guesses.values()).filter(Boolean).length;
+            const solved = decoded === plainText;
+            statusNode.textContent = solved
+                ? "Erfolgreich entschlüsselt"
+                : `${filledCount} Buchstaben gesetzt`;
+            statusNode.dataset.solved = solved ? "true" : "false";
+        }
+
+        function renderMappingInputs() {
+            mappingNode.innerHTML = "";
+            const uniqueCipherLetters = Array.from(new Set(cipherText.replace(/[^A-Z]/g, "").split(""))).sort();
+            uniqueCipherLetters.forEach((cipherLetter) => {
+                const field = document.createElement("label");
+                field.className = "ms-widget__mapping-field";
+
+                const cipherNode = document.createElement("span");
+                cipherNode.className = "ms-widget__cipher-letter";
+                cipherNode.textContent = cipherLetter;
+
+                const input = document.createElement("input");
+                input.type = "text";
+                input.inputMode = "latin";
+                input.maxLength = 1;
+                input.autocomplete = "off";
+                input.spellcheck = false;
+                input.setAttribute("aria-label", `Klartextbuchstabe für ${cipherLetter}`);
+                input.addEventListener("input", () => {
+                    const normalized = input.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, 1);
+                    input.value = normalized;
+                    if (normalized) guesses.set(cipherLetter, normalized);
+                    else guesses.delete(cipherLetter);
+                    updateDecodedText();
+                });
+
+                field.append(cipherNode, input);
+                mappingNode.appendChild(field);
+            });
+        }
+
+        function startNewChallenge() {
+            const rawText = MONO_TEXTS[Math.floor(Math.random() * MONO_TEXTS.length)];
+            plainText = normalizeGermanAlphabetText(rawText);
+            substitution = createSubstitutionMap();
+            cipherText = encryptMonoalphabetic(plainText, substitution);
+            guesses = new Map();
+            cipherTextNode.textContent = cipherText;
+            renderFrequencyList(cipherFrequencyNode, buildLetterFrequencyList(cipherText));
+            renderFrequencyList(germanFrequencyNode, germanFrequencies);
+            renderMappingInputs();
+            updateDecodedText();
+        }
+
+        newButton?.addEventListener("click", startNewChallenge);
+        resetButton?.addEventListener("click", () => {
+            guesses = new Map();
+            widget.querySelectorAll(".ms-widget__mapping input").forEach((input) => { input.value = ""; });
+            updateDecodedText();
+        });
+
+        startNewChallenge();
+    });
+}
+
+function rouletteColor(number) {
+    if (number === 0) return "green";
+    return ROULETTE_RED_NUMBERS.has(number) ? "red" : "black";
+}
+
+function rouletteEventDefinition(selectNode) {
+    return ROULETTE_EVENTS[selectNode?.value] || ROULETTE_EVENTS.red;
+}
+
+function initRouletteWidgets(root) {
+    root.querySelectorAll(".roulette-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const eventSelect = widget.querySelector(".roulette-widget__event");
+        const probabilityNode = widget.querySelector(".roulette-widget__probability");
+        const spinOneButton = widget.querySelector(".roulette-widget__spin-one");
+        const spinManyButton = widget.querySelector(".roulette-widget__spin-many");
+        const resetButton = widget.querySelector(".roulette-widget__reset");
+        const wheelNode = widget.querySelector(".roulette-widget__wheel");
+        const resultNode = widget.querySelector(".roulette-widget__result");
+        const spinsNode = widget.querySelector(".roulette-widget__spins");
+        const hitsNode = widget.querySelector(".roulette-widget__hits");
+        const relativeNode = widget.querySelector(".roulette-widget__relative");
+        let spinCount = 0;
+        let hitCount = 0;
+        let rotation = 0;
+
+        function updateProbability() {
+            const eventDefinition = rouletteEventDefinition(eventSelect);
+            probabilityNode.textContent = `$P(${eventDefinition.label}) = ${eventDefinition.favorable}/37 \\approx ${formatDecimalDe(eventDefinition.favorable / 37, 4)}$`;
+            if (window.MathJax?.typesetPromise) {
+                window.MathJax.typesetPromise([probabilityNode]);
+            }
+        }
+
+        function updateStats() {
+            spinsNode.textContent = String(spinCount);
+            hitsNode.textContent = String(hitCount);
+            relativeNode.textContent = spinCount > 0 ? formatDecimalDe(hitCount / spinCount, 4) : "-";
+        }
+
+        function showResult(number) {
+            const color = rouletteColor(number);
+            resultNode.textContent = String(number);
+            resultNode.dataset.color = color;
+            const pocketIndex = ROULETTE_WHEEL_ORDER.indexOf(number);
+            const pocketAngle = (360 / ROULETTE_WHEEL_ORDER.length) * Math.max(pocketIndex, 0);
+            rotation += 720 + (360 - pocketAngle);
+            wheelNode.style.transform = `rotate(${rotation}deg)`;
+        }
+
+        function spin(times) {
+            const eventDefinition = rouletteEventDefinition(eventSelect);
+            let lastNumber = 0;
+            for (let index = 0; index < times; index += 1) {
+                const result = Math.floor(Math.random() * 37);
+                spinCount += 1;
+                if (eventDefinition.matches(result)) hitCount += 1;
+                lastNumber = result;
+            }
+            showResult(lastNumber);
+            updateStats();
+        }
+
+        function reset() {
+            spinCount = 0;
+            hitCount = 0;
+            resultNode.textContent = "-";
+            resultNode.dataset.color = "neutral";
+            updateStats();
+        }
+
+        eventSelect?.addEventListener("change", () => {
+            updateProbability();
+            reset();
+        });
+        spinOneButton?.addEventListener("click", () => spin(1));
+        spinManyButton?.addEventListener("click", () => spin(100));
+        resetButton?.addEventListener("click", reset);
+
+        updateProbability();
+        reset();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
     // Keep table semantics intact and move horizontal scrolling to the wrapper.
     refreshSkriptTables(root);
+    initMonoalphabetischeSubstitutionWidgets(root);
+    initRouletteWidgets(root);
 
     if (!window.Plotly) return;
 
