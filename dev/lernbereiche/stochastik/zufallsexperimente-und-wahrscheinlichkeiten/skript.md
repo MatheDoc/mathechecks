@@ -121,132 +121,76 @@ In der Stochastik treffen wir Aussagen über (vermeintlich) zufällige Ausgänge
 
 ## Wahrscheinlichkeiten - Einführung
 
-Eine Wahrscheinlichkeitsverteilung $P$ eines Zufallsexperiments, ordnet dann jedem Ereignis des Zufallsexperiments eine Zahl zwischen 0 und 1 zu.
+Eine Wahrscheinlichkeitsverteilung $P$ ordnet jedem Ereignis eines Zufallsexperiments eine Zahl zwischen $0$ und $1$ zu. Diese Zahl heißt **Wahrscheinlichkeit**. Je näher die Wahrscheinlichkeit an $1$ liegt, desto eher erwarten wir das Ereignis; je näher sie an $0$ liegt, desto weniger erwarten wir es.
 
-### Beispiel: Einmaliger Münzwurf
+Für ein endliches Zufallsexperiment gilt: Die Wahrscheinlichkeiten aller einzelnen Ergebnisse ergeben zusammen $1$. Die Wahrscheinlichkeit eines Ereignisses erhält man, indem man die Wahrscheinlichkeiten der Ergebnisse addiert, die zu diesem Ereignis gehören.
 
-- Ergebnismenge: $S = \\{1,  2,  3,  4,  5,  6\\}$
-  - Ergebnisse: $\\{1\\}, \\{2\\}, \\{3\\}, \\{4\\}, \\{5\\}, \\{6\\}$
-  - $P(\\{1\\}) = \frac{1}{6}$, $P(\\{2\\}) = \frac{1}{6}$, $P(\\{3\\}) = \frac{1}{6}$, $P(\\{4\\}) = \frac{1}{6}$, $P(\\{5\\}) = \frac{1}{6}$, $P(\\{6\\}) = \frac{1}{6}$
-- $A$: Es wird eine Zahl größer als 4 geworfen.
-  - $A = \\{5,  6\\}$
-  - $P(A) = \frac{2}{6} = \frac{1}{3}$
-- $\overline{A}$: Es wird eine Zahl kleiner als 5 geworfen.
-  - $\overline{A} = \\{1, 2, 3, 4\\}$
-  - $P(\overline{A})=\frac{4}{6} = \frac{2}{3}$
-- $B$: Es wird eine geraden Zahl geworfen.
-  - $B=\\{2, 4, 6\\}$
-  - $P(B)=\frac{3}{6} = \frac{1}{2}$
-- $\overline{A}\cup B$: Es wird eine Zahl kleiner als 5 oder eine gerade Zahl geworfen.
-  - $\overline{A}\cup B= \\{1, 2, 3, 4, 6\\}$
-  - $P(\overline{A}\cup B) = \frac{5}{6}$
-- $(A\cap\overline{B}) \cup (\overline{A}\cap B)$: Es wird entweder eine Zahl größer als 4 oder eine gerade Zahl geworfen.
-  - $(A\cap\overline{B}) \cup (\overline{A}\cap B)= \\{2, 4, 5\\}$
-  - $P((A\cap\overline{B}) \cup (\overline{A}\cap B))=\frac{3}{6} =\frac{1}{2}$
+### Wahrscheinlichkeiten sprachlich lesen
 
-### Beispiel: Zweimaliger Münzwurf
+Wahrscheinlichkeiten enthalten immer zwei Ebenen: den Sachzusammenhang und die Symbolsprache. Die Symbole $A$, $B$, $\overline{A}$, $A\cap B$ und $A\cup B$ beschreiben zuerst Ereignisse. Erst durch $P(\ldots)$ wird daraus eine Wahrscheinlichkeit.
 
-- Ergebnismenge: $S = \\{KK, KZ, ZK, ZZ\\}$
-  - Ergebnisse: $\\{KK\\}, \\{KZ\\}, \\{ZK\\}, \\{ZZ\\}$
-  - $P(\\{KK\\}) = 0{,}25$, $P(\\{KZ\\}) = 0{,}25$, $P(\\{ZK\\}) = 0{,}25$, $P(\\{ZZ\\}) = 0{,}25$
-- $A$: Es wird das Gleiche geworfen.
-  - $A = \\{KK, ZZ\\}$
-  - $P(A) = 0{,}5$
-- $\overline{A}$: Es wird etwas Unterschiedliches geworfen.
-  - $\overline{A} = \\{KZ, ZK\\}$
-  - $P(\overline{A}) =0{,}5$
-- $B$: Es wird die Kombination Kopf-Zahl geworfen.
-  - $B=\\{KZ\\}$
-  - $P(B)=\frac{1}{4}$
-- $\overline{A}\cap{\overline{B}}$: Es wird weder das Gleiche noch die Kombination Kopf-Zahl geworfen.
-  - $\overline{A}\cap{\overline{B}}=\\{ZK\\}$
-  - $P(\overline{A}\cap{\overline{B}})=\frac{1}{4}$
+Bei einem Würfelwurf sei
 
-### Beispiel: Häufigkeit von Buchstaben
+- $A$: Es wird eine Zahl größer als $4$ geworfen.
+- $B$: Es wird eine gerade Zahl geworfen.
 
-Die 30 Buchstaben des Alphabets (a-z, ä, ö, ü, ß) treten in Texten mit unterschiedlichen Häufigkeiten auf (untersucht wurde 99.586 Buchstaben):
+Dann bedeutet zum Beispiel:
 
-<figure>
-  <img src="buchstaben.png"><figcaption>de.wikipedia.org/wiki/Buchstabenhäufigkeit</figcaption>
-</figure>
+| Symbol | Bedeutung im Sachzusammenhang |
+|---|---|
+| $P(A)$ | Wahrscheinlichkeit, dass eine Zahl größer als $4$ geworfen wird |
+| $P(\overline{A})$ | Wahrscheinlichkeit, dass keine Zahl größer als $4$ geworfen wird |
+| $P(A\cap B)$ | Wahrscheinlichkeit, dass die geworfene Zahl größer als $4$ und gerade ist |
+| $P(A\cup B)$ | Wahrscheinlichkeit, dass die geworfene Zahl größer als $4$ oder gerade ist |
+| $P(A\cap\overline{B})+P(\overline{A}\cap B)$ | Wahrscheinlichkeit, dass genau eine der beiden Bedingungen erfüllt ist |
 
-Wir betrachten das Zufallsexperiment, bei dem ein Buchstabe zufällig ausgewählt wird.
-
-- Ergebnismenge: $S = \\{a, b, c, \ldots \\}$
-  - Ergebnisse: $\\{a\\}, \\{b\\}, \\{c\\}, \ldots$
-  - $P(\\{a\\}) = 0{,}0560$, $P(\\{b\\}) = 0{,}0219$, $P(\\{c\\}) = 0{,}0340$, $\ldots$
-- $A$: Es wird ein Vokal ausgewählt (ohne Umlaute).
-
-  - $A = \\{a, e, i, o, u\\}$
-
-    $$
-      \begin{align}
-      P(A) &= 0{,}056+0{,}1611+0{,}0905+0{,}0232+0{,}0370\\
-      &=0{,}3678
-      \end{align}
-    $$
-
-- $B$: Es wird ein Buchstabe aus der ersten Hälfte (a-o) des Alphabets ausgewählt.
-
-  - $B = \\{a,  b,  c,  \ldots ,  o\\}$
-
-    $$
-      \begin{align}
-      P(B)&=0{,}0560 + 0{,}0219 + 0{,}0340 + \ldots + 0{,}0251\\
-      & = 0{,}7066
-      \end{align}
-    $$
-
-- $A\cap \overline{B}$: Es wird ein Vokal ausgewählt, der sich in der zweiten Hälfte (p-ß) des Alphabets befindet.
-  - $A\cap\overline{B} = \\{u\\}$
-  - $P(A\cap\overline{B}) = 0{,}0370$
+Der nächste Check trainiert genau diese Übersetzung zwischen Text und Symbolsprache. Das zugehörige Beispiel nutzt denselben Aufgabentyp wie das Training: Zwei Ereignisse werden vorgegeben, und mehrere Wahrscheinlichkeitsausdrücke müssen im Sachzusammenhang gedeutet werden.
 
 {% include dev/check-anker.html nummer="2" %}
 
+### Beispiel: Buchstabenhäufigkeiten und Verschlüsselungen
+
+Relative Häufigkeiten können helfen, unbekannte Texte zu untersuchen. In deutschen Texten treten Buchstaben nicht gleich häufig auf: $E$ ist sehr häufig, $Q$, $X$ und $Y$ sind selten. Wenn ein Text mit einer **monoalphabetischen Substitution** verschlüsselt wurde, wird jeder Klartextbuchstabe immer durch denselben Geheimtextbuchstaben ersetzt. Die Häufigkeitsstruktur bleibt dadurch teilweise erhalten.
+
+Eine Caesar-Verschlüsselung ist ein besonders einfacher Fall einer solchen Substitution: Alle Buchstaben werden um dieselbe Anzahl Stellen verschoben. Bei allgemeinen monoalphabetischen Substitutionen ist die Zuordnung beliebig, aber die Idee der Häufigkeitsanalyse bleibt ähnlich. Je länger der Geheimtext ist, desto eher lassen sich häufige Geheimtextbuchstaben mit typischen häufigen Buchstaben deutscher Texte vergleichen.
+
+{% include dev/widgets/widget-monoalphabetische-substitution.html %}
 
 
 ## Laplace-Experiment
 
-In einfachen Alltagssituationen funktioniert unser intuitiver Umgang mit Wahrscheinlichkeiten oft gut (wie in den obigen Beispielen), und wir können mit einfachen Methoden die Wahrscheinlichkeiten berechnen.
-
-Ein Laplace-Experiment ist ein Zufallsexperiment, bei dem alle Ergebnisse die gleiche Wahrscheinlichkeit besitzen. Die Wahrscheinlichkeit eines Ereignisses $A$ ist damit:
+Ein Laplace-Experiment ist ein Zufallsexperiment, bei dem alle Ergebnisse gleich wahrscheinlich sind. Dann genügt es, passende Ergebnisse zu zählen:
 
 $$
-P(A) = \frac{\text{Anzahl Ergebnisse in } A}{\text{Gesamtanzahl der Ergebnisse}}
+P(A) = \frac{\text{Anzahl der Ergebnisse in } A}{\text{Anzahl aller Ergebnisse}}
 $$
 
-### Beispiel: Würfelwurf
-
-Würfelwurf: Es sei $A$ das Ereignis „Es wird eine Primzahl geworfen.“ $\Rightarrow A = \\{2, 3, 5\\} $
-Dann gilt:
+Beim Würfelwurf ist das Ereignis $A$: „Es wird eine Primzahl geworfen.“ Dann gilt $A=\lbrace 2,3,5\rbrace$ und damit
 
 $$
-P(A) = \frac{3}{6} = \frac{1}{2}
+P(A)=\frac{3}{6}=\frac{1}{2}.
 $$
 
-### Beispiel: Roulette
+Wichtig ist die Voraussetzung der Gleichwahrscheinlichkeit. Ein normaler Würfel wird als Laplace-Experiment modelliert; ein gezinkter Würfel nicht. Beim europäischen Roulette gibt es $37$ mögliche Felder, nämlich $0$ bis $36$. Wenn jedes Feld gleich wahrscheinlich ist, hat das Ereignis „Die Kugel landet auf einem roten Feld“ die Wahrscheinlichkeit $\frac{18}{37}$.
 
-Es sei $A$ das Ereignis „Die Kugel landet auf einem roten Feld.“
-Dann gilt:
-
-$$
-P(A) = \frac{18}{37}
-$$
-
-<figure>
-  <img src="ChatGPTImage19.Apr.2025,14_05_47.png" class="diagram">
-  <figcaption>KI-generiert mit ChatGPT</figcaption>
-</figure>
+{% include dev/widgets/widget-roulette.html %}
 
 
 ## Relative Häufigkeiten
 
-Relative Häufigkeiten (Aussagen über die Vergangenheit) können als Wahrscheinlichkeiten (Aussagen über die Zukunft) interpretiert werden, z. B.
+Wenn Wahrscheinlichkeiten nicht durch gleich wahrscheinliche Ergebnisse begründet werden können, werden sie oft aus Beobachtungsdaten geschätzt. Die **relative Häufigkeit** eines Ereignisses ist der Anteil der beobachteten Fälle, in denen das Ereignis eingetreten ist:
 
-- Aus persönlichen Beobachtungen sei bekannt, dass 50&nbsp;% aller Kinder am liebsten Pizza essen, 30&nbsp;% Pommes und 20&nbsp;% Nudeln mit Ketchup. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewähltes Kind am liebsten Pommes isst, 30&nbsp;%.
-- In einer Klausur spicken 2 von 20 Schülern. Dann ist die Wahrscheinlichkeit, dass ein zufällig ausgewählter Schüler spickt, $\frac{2}{20}$ oder 10&nbsp;%.
+$$
+{} \text{relative Häufigkeit} = \frac{\text{absolute Häufigkeit des Ereignisses}}{\text{Gesamtanzahl der Beobachtungen}}
+$$
 
-Das **Gesetz der großen Zahlen** beschreibt den Zusammnehang zwischen Laplace-Wahrscheinlochkeiten und relativen Häufigkeiten genauer.
+Beispiel: Wenn in einer Klasse $2$ von $20$ Schülerinnen und Schülern während einer Klausur unerlaubte Hilfsmittel verwenden, beträgt die relative Häufigkeit $\frac{2}{20}=0{,}1$, also $10\,\%$. Als Wahrscheinlichkeitsmodell gelesen bedeutet das: Für eine zufällig ausgewählte Person aus dieser Klasse wird das Ereignis mit Wahrscheinlichkeit $0{,}1$ erwartet.
+
+In den Aufgaben zum nächsten Check sind absolute Häufigkeiten für mehrere Teilgruppen gegeben. Entscheidend ist dann, zuerst die passende absolute Häufigkeit des gesuchten Ereignisses zu bestimmen und sie anschließend durch die Gesamtanzahl zu teilen.
+
+{% include dev/check-anker.html nummer="3" %}
+
+Das **Gesetz der großen Zahlen** erklärt, warum relative Häufigkeiten bei vielen Wiederholungen oft in die Nähe der zugrunde liegenden Wahrscheinlichkeit rücken. Es verbindet damit beobachtete Häufigkeiten mit Wahrscheinlichkeiten als Modell für zukünftige Zufallsexperimente.
 
 ## Exkurs: Axiome von Kolmogorov
 
@@ -257,7 +201,7 @@ Betrachtet wird ein Zufallsexperiment mit Ergebnismenge $S$ und Ereignissen $A$ 
 - $P(S)=1$
 - $P(A\cup B)=P(A)+P(B)$, falls $A\cap B=\emptyset$,
 
-für alle Teilmenge $A$ und $B$ von $S$.
+für alle Teilmengen $A$ und $B$ von $S$.
 
 ### Folgerungen
 

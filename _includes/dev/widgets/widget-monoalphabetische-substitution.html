@@ -1,0 +1,33 @@
+<div class="skript-widget ms-widget">
+    <div class="widget-controls ms-widget__controls">
+        <div class="widget-row widget-row--label">Geheimtext</div>
+        <div class="ms-widget__text ms-widget__ciphertext" aria-live="polite"></div>
+
+        <div class="widget-row widget-row--label">Entschlüsselung</div>
+        <div class="ms-widget__text ms-widget__decoded" aria-live="polite"></div>
+
+        <div class="ms-widget__actions">
+            <button type="button" class="ms-widget__button ms-widget__new">Neuer Text</button>
+            <button type="button" class="ms-widget__button ms-widget__reset">Zurücksetzen</button>
+        </div>
+
+        <div class="ms-widget__status" aria-live="polite"></div>
+    </div>
+
+    <div class="widget-outputs ms-widget__outputs">
+        <section class="ms-widget__panel">
+            <h3>Häufigkeiten im Geheimtext</h3>
+            <div class="ms-widget__freq ms-widget__cipher-frequencies"></div>
+        </section>
+
+        <section class="ms-widget__panel">
+            <h3>Typische Häufigkeiten im Deutschen</h3>
+            <div class="ms-widget__freq ms-widget__german-frequencies"></div>
+        </section>
+
+        <section class="ms-widget__panel ms-widget__panel--mapping">
+            <h3>Buchstaben-Zuordnung</h3>
+            <div class="ms-widget__mapping"></div>
+        </section>
+    </div>
+</div>

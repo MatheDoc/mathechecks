@@ -22,6 +22,8 @@ Widgets werden per `{% include dev/widgets/widget-*.html %}` eingebunden und üb
 | Histogramm binomial | `widget-histogramm-binomial.html` | `.hb-widget` | Einzel- und kumuliertes Histogramm |
 | Baumdiagramm binomial | `widget-baumdiagramm-binomial.html` | `.bb-widget` | Baumdiagramm + Bernoulli-Formel |
 | Baumdiagramme & Vierfeldertafel | `widget-baumdiagramme-vierfeldertafel.html` | `.bvt-widget` | 2 Baumdiagramme + Vierfeldertafel |
+| Roulette | `widget-roulette.html` | `.roulette-widget` | Simulation + relative Häufigkeit |
+| Monoalphabetische Substitution | `widget-monoalphabetische-substitution.html` | `.ms-widget` | Geheimtext + Häufigkeitsanalyse + Zuordnung |
 | Lineare Funktionen | `widget-lineare-funktionen.html` | `.lf-widget` | Graph + Wertetabelle |
 | h-Methode der Ableitung | `widget-h-methode-ableitung.html` | `.qhm-widget` | Graph von $f(x)=x^2$ + Sekante/Tangente + Differenzenquotient |
 | Quadratische Funktionen | `widget-quadratische-funktionen.html` | `.qf-widget` | Graph + Wertetabelle + Formel |

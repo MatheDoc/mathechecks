@@ -1,7 +1,7 @@
 ---
 layout: null
 ---
-In einer Urne befinden 1 rote, 2 blaue, 3 gelbe und 4 grüne Kugeln. Für die Grundgesamtheit gilt $1+2+3+4+=10$. Dann ist die relative Häufigkeit für
+In einer Urne befinden sich 1 rote, 2 blaue, 3 gelbe und 4 grüne Kugeln. Für die Grundgesamtheit gilt $1+2+3+4=10$. Dann ist die relative Häufigkeit für
 
 - rot: $\frac{1}{10}=0{,}1$
 - blau oder gelb: $\frac{2+3}{10}=0{,}5$
