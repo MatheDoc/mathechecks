@@ -1,8 +1,15 @@
----
-layout: skript
-title: Zufallsgrößen
-description: Zufallsgrößen - Skript
+﻿---
+layout: module
+title: Zufallsgrößen - Skript
+description: Lernbereich Zufallsgrößen, Modul Skript.
+page_context: Lernbereich
+nav: dashboard
+body_class: page-module
+module_key: skript
+published: true
 lernbereich: zufallsgroessen
+gebiet: stochastik
+permalink: /lernbereiche/stochastik/zufallsgroessen/skript.html
 ---
 
 ## Einführung
@@ -13,13 +20,13 @@ Eine **Zufallsgröße** $X$ ordnet jedem Ergebnis eines Zufallsexperiment eine r
 
 ### Biathlet A
 
-Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X$:
+Ein Biathlet A absolviert eine Schießeinheit mit fünf Schüssen auf Zielscheiben. Die Zufallsgröße $X$ beschreibt die Anzahl der Fehlschüsse. Aus langfristigen Beobachtungen ergeben sich die folgenden Wahrscheinlichkeiten für die möglichen Werte von $X_A$:
 
 |  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$ |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | --- |
-| $P(X = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
+| $P(X_A = x_i)$      | $0{,}03$ | $0{,}33$ | $0{,}57$ | $0{,}03$ | $0{,}04$ | $0$ |
 
-Beispielsweise bedeutet $P(X=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 57&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
+Beispielsweise bedeutet $P(X_A=2)=0{,}57$, dass die Wahrscheinlichkeit, mit der Biathlet A genau zweimal das Ziel verfehlt, 57&nbsp;% beträgt. Das zugehörige Histogramm hat folgende Darstellung:
 
 {% include histogramm-allgemein.html
     x="[0, 1, 2, 3, 4, 5]"
@@ -33,12 +40,12 @@ Die Wahrscheinlichkeitsverteilung sowie das Histogramm eines weiteren Biathleten
 
 |  $x_i$ | $0$      | $1$      | $2$      | $3$      | $4$      | $5$      |
 | ----------------- | -------- | -------- | -------- | -------- | -------- | -------- |
-| $P(X = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
+| $P(X_B = x_i)$      | $0{,}37$ | $0{,}16$ | $0{,}18$ | $0{,}08$ | $0{,}09$ | $0{,}12$ |
 
 {% include histogramm-allgemein.html
     x="[0, 1, 2, 3, 4, 5]"
     y="[0.37, 0.16, 0.18, 0.08, 0.09, 0.12]"
-    titel="Biathlet A"
+    titel="Biathlet B"
 %}
 
 ## Kenzahlen
@@ -62,7 +69,7 @@ In der Statistik, in der Wahrscheinlichkeiten häufig als relative Häufigkeiten
 
 $$
 \begin{align*}
-E(X) &= 0 \cdot 0{,}03 + 1 \cdot 0{,}33 + 2 \cdot 0{,}57 + 3 \cdot 0{,}03 + 4 \cdot 0{,}04 + 5 \cdot 0 \\
+E(X_A) &= 0 \cdot 0{,}03 + 1 \cdot 0{,}33 + 2 \cdot 0{,}57 + 3 \cdot 0{,}03 + 4 \cdot 0{,}04 + 5 \cdot 0 \\
 &= 0 + 0{,}33 + 1{,}14 + 0{,}09 + 0{,}16 + 0 \\
 &= 1{,}72
 \end{align*}
@@ -74,7 +81,7 @@ Der Erwartungswert beträgt also $1{,}72$. Das bedeutet: Biathlet A verfehlt im 
 
 $$
 \begin{align*}
-E(X) &= 0 \cdot 0{,}37 + 1 \cdot 0{,}16 + 2 \cdot 0{,}18 + 3 \cdot 0{,}08 + 4 \cdot 0{,}09 + 5 \cdot 0{,}12 \\
+E(X_B) &= 0 \cdot 0{,}37 + 1 \cdot 0{,}16 + 2 \cdot 0{,}18 + 3 \cdot 0{,}08 + 4 \cdot 0{,}09 + 5 \cdot 0{,}12 \\
 &= 0 + 0{,}16 + 0{,}36 + 0{,}24 + 0{,}36 + 0{,}60 \\
 &= 1{,}72
 \end{align*}
@@ -84,18 +91,7 @@ Der Erwartungswert für Biathlet B beträgt also $1{,}72$. Auch Biathlet B verfe
 
 Wären die Erwartungswerte der beiden Biathleten unterschiedlich gewesen, hätten wir eine fundierte Entscheidungsgrundlage gehabt, um zu entscheiden, welcher der treffsicherere Biathlet ist.
 
-{%include info.html
-index="1"
-frage="Formel für den Erwartungswert:"
-antwort="
-'Zeile der Werte mal Zeile der Wahrscheinlichkeiten':
-
-$$
-E(X) = x_1 \cdot P(X = x_1) + x_2 \cdot P(X = x_2) + \ldots + x_n \cdot P(X = x_n)
-$$
-
-"
-%}
+{% include check-anker.html nummer="1" %}
 
 
 ## Die Standardabweichung
@@ -115,11 +111,11 @@ Auch der Ausdruck unter der Wurzel eignet sich, die Schwankungen zu messen. Er w
 
 ### Die Standardabweichung von Biathlet A
 
-Der Erwartungswert ist bekanntlich $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
+Der Erwartungswert ist bekanntlich $E(X_A) = 1{,}72$. Wir berechnen zunächst die Varianz:
 
 $$
 \begin{align*}
-\sigma^2(X) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
+\sigma^2(X_A) &= (0 - 1{,}72)^2 \cdot 0{,}03 + (1 - 1{,}72)^2 \cdot 0{,}33 + (2 - 1{,}72)^2 \cdot 0{,}57 + (3 - 1{,}72)^2 \cdot 0{,}03 + (4 - 1{,}72)^2 \cdot 0{,}04 + (5 - 1{,}72)^2 \cdot 0 \\
 &= (2{,}9584) \cdot 0{,}03 + (0{,}5184) \cdot 0{,}33 + (0{,}0784) \cdot 0{,}57 + (1{,}6384) \cdot 0{,}03 + (5{,}1984) \cdot 0{,}04 + (10{,}7584) \cdot 0 \\
 &= 0{,}0888 + 0{,}1700 + 0{,}0447 + 0{,}0492 + 0{,}2079 + 0 \\
 &= 0{,}5606
@@ -131,14 +127,14 @@ Die Varianz beträgt also $0{,}5606$.
 Nun ziehen wir die Wurzel, um die Standardabweichung zu erhalten:
 
 $$
-\sigma(X) = \sqrt{0{,}5606} \approx 0{,}75
+\sigma(X_A) = \sqrt{0{,}5606} \approx 0{,}75
 $$
 
 Die Standardabweichung von Biathlet A beträgt also ungefähr $0{,}75$.
 
 ### Die Standardabweichung von Biathlet B
 
-Auch hier beträgt der Erwartungswert $E(X) = 1{,}72$. Wir berechnen zunächst die Varianz:
+Auch hier beträgt der Erwartungswert $E(X_B) = 1{,}72$. Wir berechnen zunächst die Varianz:
 
 $$
 \begin{align*}
@@ -152,22 +148,12 @@ $$
 Nun ziehen wir die Wurzel, um die Standardabweichung zu berechnen:
 
 $$
-\sigma(X) = \sqrt{3{,}0825} \approx 1{,}75
+\sigma(X_B) = \sqrt{3{,}0825} \approx 1{,}75
 $$
 
 Die Standardabweichung von Biathlet B beträgt also ungefähr $1{,}75$. Die Anzahl der Fehlschüsse schwankt hier also stärker um den Erwartungswert als bei Biathlet A.
 
-{%include info.html
-index="2"
-frage="Formel für die Standardabweichung:"
-antwort="'Zeile der quadrierten Abweichungen vom Erwartungswert mal Zeile der Wahrscheinlichkeiten':
-
-$$
-\sigma(X) = \sqrt{(x_1-E(X))^2 \cdot P(X = x_1) + (x_2-E(X))^2 \cdot P(X = x_2) + \ldots + (x_n-E(X))^2 \cdot P(X = x_n)}
-$$
-
-"
-%}
+{% include check-anker.html nummer="2" %}
 
 
 ## Interpretationen
@@ -213,15 +199,9 @@ Letztlich hängt die Entscheidung davon ab, ob der Fokus auf Konstanz oder auf d
 
 In vielen Anwendungssituationen ist eine kleine Standardabweichung vorteilhaft, weil sie weniger Unsicherheit bedeutet. So ist es für die meisten Menschen vorteilhaft, monatlich in etwa die gleichen Einnahmen und Ausgaben zu haben, da sie dadurch mehr Planungssicherheit gewinnen. Das Gleiche gilt für Unternehmen oder Regierungen, die ebenfalls von stabilen Einnahmen und Ausgaben profitieren, um langfristig erfolgreich agieren zu können.
 
-{%include info.html
-index="3"
-frage="Bedeutung des Erwartungswerts und der Standardabweichung:"
-antwort="
+{% include check-anker.html nummer="3" %}
 
-- Erwartungswert $E(X)$: Langfristiger Mittelwert
-- Standardabweichung $\sigma(X)$: Maß für die Schwankung
-  "
-  %}
+
 
 
 <!--
@@ -258,119 +238,79 @@ Soll die Wahrscheinlichkeitsverteilungen einer Zufallsgröße aufgestellt werden
 
 Zur übersichtlichen Darstellung kann im Anschluss das Histogramm einer Zufallsgröße erstellt werden.
 
-{%include info.html
-index="4"
-frage="Auf der Wahrscheinlichkeitsverteilung einer Zufallsgröße"
-antwort="
+### Beispiel: Elektronikfachmarkt
 
-1. Zeile: Welche Werte nimmt die Zufallsgröße an?
-2. Zeile: Welche Wahrscheinlichkeiten gehören zu den einzelnen Werten?
-   "
-   %}
+Für eine statistische Untersuchung in einem großen Elektronikfachmarkt wurden Aufzeichnungen über die Verkäufe von Laptops mit Windows- bzw. macOS-Betriebssystem geführt. Zusätzlich wurden drei Gerätekategorien erfasst: Einsteigergeräte (E), Mittelklassegeräte (M) und Premiumgeräte (P). Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
+
+<img src="Elektronikfachmarkt-baumdiagramm.png" alt="Baumdiagramm Elektronikfachmarkt" class="diagramm">
+
+Der Gewinn bei Windows-Geräten beträgt unabhängig von der Gerätekategorie 180&nbsp;€ pro Stück. Bei macOS-Geräten beläuft sich der Gewinn auf 130&nbsp;€ für Einsteigergeräte, 210&nbsp;€ für Mittelklassegeräte und 290 € für Premiumgeräte.
+
+Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die den Gewinn pro Laptop angibt?
+
+Zunächst berechnen wir $P(\\{W\\})=0{,}04+0{,}35+0{,}06=0{,}45$. Wir erhalten:
+
+|$x_i$|$180$|$130$|$210$|$290$|
+|-----|-----|-----|-----|-----|
+|$P(X = x_i)$|$0{,}45 $|$0{,}16$|$0{,}35$|$0{,}04$|
+
+Wie sieht das Histogramm der Zufallsgröße aus?
+
+<img src="Elektronikfachmarkt-histogramm.png" alt="Histogramm Elektronikfachmarkt" class="diagramm">
+
+Wie hoch ist der erwartete Gewinn pro Laptop? Und wie hoch ist der Gesamtgewinn bei 80.000 verkauften Laptops?
+
+Wir berechnen den Erwartungswert:
+
+$$
+\begin{align*}
+E(X) &= 180 \cdot 0{,}45 + 130 \cdot 0{,}16 + 210 \cdot 0{,}35 + 290 \cdot 0{,}04 \\ &= 81 + 20{,}8 + 73{,}5 + 11{,}6 \\ &= 186{,}9.
+\end{align*}
+$$
+
+Der Gesamtgewinn beträgt dann $186{,}9 \\cdot 80.000 = 14.952.000$ €.
 
 
-## Vervollständigung von Verteilungen
+### Beispiel: Lern-Apps
+
+Es wurden 2.000 Schülerinnen und Schülern befragt, welche Versionen von Lern-Apps sie nutzen: Starter-Versionen (S), Pro-Versionen (P) oder keine Lern-Apps (k). Außerdem wurde untersucht, ob sie die Apps zur Unterhaltung (U) oder zur Vorbereitung auf Prüfungen (V) verwenden. Der Sachverhalt ist in folgendem Baumdiagramm dargestellt:
+
+<img src="Lernapp-baumdiagramm.png" alt="Baumdiagramm Lernapp" class="diagramm">
+
+Jugendliche, die mit Pro-Versionen von Lern-Apps gezielt für Prüfungen gelernt haben, erreichen in der Abiturprüfung im Durchschnitt 11,3 Punkte. Diejenigen, die mit Starter-Versionen gezielt gelernt haben, erzielen im Mittel 10,4 Punkte, jene, die Lern-Apps zur Unterhaltung nutzen, 9,1 Punkte. Jugendliche ohne Nutzung von Lern-Apps erreichen durchschnittlich 7,3 Punkte.
+
+Wie lautet die Wahrscheinlichkeitsverteilung der Zufallsgröße, die die Punkte in der Abiturprüfung angibt?
+
+Die Wahrscheinlichkeit, dass ein Jugendlicher Lern-Apps nur zur Unterhaltung nutzt beträgt $0{,}357+0{,}048=0{,}405.$ Wir erhalten:
+
+| $x_i$ | $11{,}3$ | $10{,}4$ | $9{,}1$ | $ 7{,}3 $ |
+| ----- | -------- | -------- | ------- | --------- |
+|$ P(X = x_i) $|$ 0{,}112 $|$ 0{,}243 $|$ 0{,}405 $|$ 0{,}24 $|
+
+Wie sieht das Histogramm der Zufallsgröße aus?
+
+<img src="Lernapp-histogramm.png" alt="Histogramm Lernapp" class="diagramm">
+
+Wie viele Punkte erreichen Jugendliche in der Abiturprüfung im langfristigen Mittel?
+
+Wir berechnen den Erwartungswert:
+$$
+\begin{align*}
+E(X) &= 11{,}3 \cdot 0{,}112 + 10{,}4 \cdot 0{,}243 + 9{,}1 \cdot 0{,}405 + 7{,}3 \cdot 0{,}24 \\
+&= 1{,}2656 + 2{,}5272 + 3{,}6855 + 1{,}752 \\
+&= 9{,}2303
+\end{align*}
+ $$
+
+## Vervollständigen von Verteilungen
 
 Häufig stehen wir vor der Aufgabe, eine teilweise gegebene Verteilung zu vervollständigen.
 
-{%include info.html
-index="5"
-frage="Fehlende Wahrscheinlichkeit:"
-antwort="
+{% include check-anker.html nummer="4" %}
 
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $2$      | $5$      |
-| ------------ | -------- | -------- | ---- | -------- | -------- |
-| $P(X = x_i)$ | $0{,}07$ | $0{,}06$ |      | $0{,}41$ | $0{,}44$ |
-
-Hier kann leicht der fehlende Wert berechnet werden, da die Summe der Wahrscheinlichkeiten 1 ergeben muss. Daher ist
-
-$$
-\begin{align*}
-P(X = -1) & = 1 - (0,07 + 0,06 + 0,41 + 0,44) \\
-& = 1 - 0,98 \\
-& = 0,02
-\end{align*}
-$$
-
-"
-%}
+{% include check-anker.html nummer="5" %}
 
 
-{%include info.html
-index="6"
-frage="Fehlender Wert:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-5$     | $x$      | $0$      | $1$      | $4$     |
-| ------------ | -------- | -------- | -------- | -------- | ------- |
-| $P(X = x_i)$ | $0{,}05$ | $0{,}39$ | $0{,}37$ | $0{,}09$ | $0{,}1$ |
-
-Außerdem ist bekannt, dass $E(X)=-0{,}93$.
-
-Um $x$ zu berechnen, verwenden wir die Definition des Erwartungswerts:
-
-$$
--0{,}93 = (-5 \cdot 0{,}05) + (x \cdot 0{,}39) + (0\cdot 0{,}37)  + (1 \cdot 0{,}09) + (4 \cdot 0{,}10)
-$$
-
-Diese Gleichung können wir nach $x$ auflösen
-
-$$
-\begin{align*}
--0{,}93 & = -0{,}25 + 0{,}39x + 0{,}09 + 0{,}40\\
--0{,}93 & = 0{,}39x + 0{,}24 \quad |-0{,}24\\
--1{,}17 & =0{,}39x \quad |:0{,}39\\
-x&=-3
-\end{align*}
-$$
-
-"
-%}
 
 
-{%include info.html
-index="7"
-frage="Zwei fehlende Wahrscheinlichkeiten:"
-antwort="
-
-Die Wahrscheinlichkeitsverteilung laute
-
-| $x_i$        | $-4$     | $-2$     | $-1$ | $1$      | $4$ |
-| ------------ | -------- | -------- | ---- | -------- | --- |
-| $P(X = x_i)$ | $0{,}15$ | $0{,}27$ | $x$  | $0{,}08$ | $y$ |
-
-Außerdem ist bekannt, dass $E(X)=0{,}29$
-
-Da wir zwei Unbekannte haben, sind auch zwei Gleichungen nötig, um sie zu bestimmen:
-
-1. Die Summe der Wahrscheinlichkeiten muss 1 ergeben:
-
-   $$
-   0{,}15 + 0{,}27 + x + 0{,}08 +y = 1
-   $$
-
-2. Der gegebene Erwartungswert:
-
-   $$
-   0{,}29 = (-4 \cdot 0{,}15) + (-2 \cdot 0{,}27) + (-1 \cdot x) + (1 \cdot 0{,}08) + (4 \cdot y)
-   $$
-
-Die Gleichungen lassen sich vereinfachen:
-
-1. $x + y = 0{,}5$
-2. $- x + 4y = 1{,}35$
-
-Nun gibt es verschiedene Techniken, dieses Gleichungssystem zu lösen. Wir lösen zunächst nach $x$ auf:
-
-1. $x = 0{,}5 - y $
-2. $x = 4y - 1{,}35 $
-
-und setzen gleich: $0{,}5 -y = 4y - 1{,}35$. Es folgt $1{,}85 = 5y$ und so $y=0{,}37$. Nun folgt $x=0{,}5 - 0{,}37 = 0{,}13$.
-
-"
-%}
 

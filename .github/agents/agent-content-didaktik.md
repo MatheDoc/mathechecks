@@ -1,4 +1,4 @@
----
+﻿---
 name: agent-content-didaktik
 description: Rolle für mathematische Inhalte, didaktische Qualität, konsistente Fachsprache und sprachliche Richtigkeit in MatheChecks.
 ---
@@ -81,7 +81,7 @@ An jedem Check-Anker im Skript wird automatisch eine dreistufige Kaskade nach de
 | **Aufgabe** | `aufgaben/exports/json/` | Eigenständiges Üben ohne sichtbare Lösung |
 
 Check-Anker sind kein lose angehängter Zusatz, sondern müssen im Skript fachlich vorbereitet, sinnvoll eingebettet und im Textfluss gut angeschlossen sein.
-Bei Überarbeitungen sind außerdem die zugelieferten Inhalte mitzudenken: die Tipps aus `dev/checks.json`, das zugehörige Beispiel aus dem `beispiele`-Ordner des Lernbereichs und nach Möglichkeit mindestens eine stichprobenartig geprüfte konkrete Aufgabe aus der passenden JSON-Datei in `aufgaben/exports/json`.
+Bei Überarbeitungen sind außerdem die zugelieferten Inhalte mitzudenken: die Tipps aus `checks.json`, das zugehörige Beispiel aus dem `beispiele`-Ordner des Lernbereichs und nach Möglichkeit mindestens eine stichprobenartig geprüfte konkrete Aufgabe aus der passenden JSON-Datei in `aufgaben/exports/json`.
 
 
 ## Tipps in `checks.json`
@@ -97,11 +97,11 @@ Kompakte Abruf- und Strukturhilfe — kein Lösungsweg, kein leeres Stichwort. W
 
 ## Beispiele — Konvention
 
-Pfad: `dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md` — kein Front Matter.
+Pfad: `lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md` — kein Front Matter.
 
 - vollständiger Rechenweg, Aufgabenstellung zuerst; Rechenschritte in `$$…$$` (bevorzugt `aligned`)
 - erklärende Zwischentexte zwischen den Rechenschritten
-- bei Graphenbezug `{% include dev/graph.html ... %}` einbinden — kein Verweis ohne Diagramm
+- bei Graphenbezug `{% include graph.html ... %}` einbinden — kein Verweis ohne Diagramm
 - nur Methoden verwenden, die im Skript bis zu diesem Check eingeführt wurden
 
 
@@ -117,3 +117,4 @@ Pfad: `dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md` —
 
 - kurze Liste der Änderungen
 - betroffene Dateien
+

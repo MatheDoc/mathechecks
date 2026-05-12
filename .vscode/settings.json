@@ -1,7 +1,3 @@
-{
-  "editor.formatOnSave": true,
-  "editor.wordWrap": "on",
-  "files.encoding": "utf8",
   "files.autoGuessEncoding": false,
   "files.eol": "\n",
   "files.exclude": {
@@ -28,10 +24,6 @@
       "approve": true,
       "matchCommandLine": true
     },
-    "bundle": true,
-    "/^\\$ErrorActionPreference = 'Stop';\n\\$srcRoot = Join-Path \\(Get-Location\\) 'lernbereiche';\n\\$dstRoot = Join-Path \\(Get-Location\\) 'dev/lernbereiche';\n\\[int\\]\\$createdDirs = 0; \\[int\\]\\$copiedFiles = 0;\nfunction Copy-MissingItems \\{\n  param\\(\\[string\\]\\$src, \\[string\\]\\$dst\\)\n  if \\(-not \\(Test-Path -LiteralPath \\$dst\\)\\) \\{\n    New-Item -ItemType Directory -Path \\$dst \\| Out-Null\n    \\$script:createdDirs\\+\\+\n  \\}\n  Get-ChildItem -LiteralPath \\$src -Force \\| ForEach-Object \\{\n    \\$target = Join-Path \\$dst \\$_\\.Name\n    if \\(\\$_\\.PSIsContainer\\) \\{\n      Copy-MissingItems -src \\$_\\.FullName -dst \\$target\n    \\} else \\{\n      if \\(-not \\(Test-Path -LiteralPath \\$target\\)\\) \\{\n        Copy-Item -LiteralPath \\$_\\.FullName -Destination \\$target\n        \\$script:copiedFiles\\+\\+\n      \\}\n    \\}\n  \\}\n\\}\nCopy-MissingItems -src \\$srcRoot -dst \\$dstRoot;\n\"CreatedDirs=\\$createdDirs CopiedFiles=\\$copiedFiles\"$/": {
-      "approve": true,
-      "matchCommandLine": true
-    }
+    "bundle": true
   }
 }

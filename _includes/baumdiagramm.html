@@ -1,39 +1,5 @@
-<div
-  class="diagramm"
-  data-pa="{{ include.pa }}"
-  data-pba="{{ include.pba }}"
-  data-pbna="{{ include.pbna }}"
-  data-titel="{{ include.titel | default: '' }}"
-  data-label-a="{{ include.label_a | default: 'A' }}"
-  data-label-abar="{{ include.label_abar | default: 'A̅' }}"
-  data-label-b="{{ include.label_b | default: 'B' }}"
-  data-label-bbar="{{ include.label_bbar | default: 'B̅' }}"
-  data-symbol="{{ include.symbol | default: 'false' }}"
-></div>
-<script>
-  (function () {
-    const div = document.currentScript.previousElementSibling;
-    const pa = parseFloat(div.dataset.pa);
-    const pba = parseFloat(div.dataset.pba);
-    const pbna = parseFloat(div.dataset.pbna);
-    const titel = div.dataset.titel;
-    const labelA = div.dataset.labelA;
-    const labelAbar = div.dataset.labelAbar;
-    const labelB = div.dataset.labelB;
-    const labelBbar = div.dataset.labelBbar;
-    const symbol = div.dataset.symbol === "true";
-
-    zeichneBaumdiagramm(
-      div,
-      pa,
-      pba,
-      pbna,
-      titel,
-      labelA,
-      labelAbar,
-      labelB,
-      labelBbar,
-      symbol
-    );
-  })();
-</script>
+<div class="baumdiagramm-auto diagramm" data-pa="{{ include.pa }}" data-pba="{{ include.pba }}"
+    data-pbna="{{ include.pbna }}" data-titel="{{ include.titel | default: '' }}"
+    data-label-a="{{ include.label_a | default: 'A' }}" data-label-abar="{{ include.label_abar | default: 'A̅' }}"
+    data-label-b="{{ include.label_b | default: 'B' }}" data-label-bbar="{{ include.label_bbar | default: 'B̅' }}"
+    data-mode="{{ include.mode | default: 'numeric' }}" data-given-slots="{{ include.givenSlots | default: '' }}"></div>

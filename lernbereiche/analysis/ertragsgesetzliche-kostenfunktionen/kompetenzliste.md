@@ -1,12 +1,16 @@
----
-layout: kompetenzliste
-title: Ertragsgesetzliche Kostenfunktionen
-description: Ertragsgesetzliche Kostenfunktionen - Kompetenzliste
+﻿---
+layout: module
+title: Ertragsgesetzliche Kostenfunktionen - Kompetenzliste
+description: Lernbereich Ertragsgesetzliche Kostenfunktionen, Modul Kompetenzliste.
+page_context: Lernbereich
+nav: dashboard
+body_class: page-module
+module_key: kompetenzliste
+published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
+gebiet: analysis
+permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/kompetenzliste.html
 ---
 
-## Um was geht es hier
+{% include module/kompetenzliste-content.html %}
 
-## Darauf kommmt es an
-
-## Vorkenntnisse

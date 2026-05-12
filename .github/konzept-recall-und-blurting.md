@@ -398,8 +398,8 @@ Für V1 werden **keine neuen Inhaltsfelder** eingeführt.
 
 Das Modul liest nur bereits vorhandene Daten:
 
-- aus `_data/dev_lernbereiche.yml`: `slug`, `name`, `gebiet`
-- aus `dev/checks.json` pro Check: `check_id`, `Nummer`, `Schlagwort`, `Ich kann`, `Tipps`
+- aus `_data/lernbereiche.yml`: `slug`, `name`, `gebiet`
+- aus `checks.json` pro Check: `check_id`, `Nummer`, `Schlagwort`, `Ich kann`, `Tipps`
 
 Sortierung:
 
@@ -551,14 +551,14 @@ Geeignete Pilotkandidaten sind aktuell zum Beispiel:
 
 ### Technischer Umsetzungspfad für V1
 
-1. Zuerst eine **isolierte Prototypseite** bauen, noch **ohne** Eintrag in `dev_moduletypen.yml`.
+1. Zuerst eine **isolierte Prototypseite** bauen, noch **ohne** Eintrag in `_data/moduletypen.yml`.
 2. Diese Prototypseite bekommt einen einzigen Lernbereich fest verdrahtet oder per `data-lernbereich` übergeben.
-3. Das JS-Modul liest nur `dev/checks.json` und `_data/dev_lernbereiche.yml`.
+3. Das JS-Modul liest nur `checks.json` und `_data/lernbereiche.yml`.
 4. Erst wenn der Ablauf didaktisch trägt, wird Modul B als echter Modultyp global in Navigation, Farben und Bootstrap aufgenommen.
 
 Der Grund für diese Reihenfolge:
 
-- Ein neuer Modultyp in `dev_moduletypen.yml` würde sofort global in der Tab-Navigation erscheinen.
+- Ein neuer Modultyp in `_data/moduletypen.yml` würde sofort global in der Tab-Navigation erscheinen.
 - Für einen ersten Test ist das zu früh.
 - V1 sollte zunächst als in sich geschlossener Prototyp überprüft werden.
 

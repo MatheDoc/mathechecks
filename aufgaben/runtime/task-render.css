@@ -1,4 +1,4 @@
-/* Shared task rendering styles for preview and dev training runtime cards. */
+/* Shared task rendering styles for preview and training runtime cards. */
 
 /* Preview scope */
 .task {
@@ -58,9 +58,9 @@
 .task .intro mjx-container[display="true"],
 .task .frage mjx-container[display="true"],
 .task .answer-preview mjx-container[display="true"],
-.dev-check-card__runtime-task .intro mjx-container[display="true"],
-.dev-check-card__runtime-task .frage mjx-container[display="true"],
-.dev-check-card__runtime-task .answer-preview mjx-container[display="true"] {
+.check-card__runtime-task .intro mjx-container[display="true"],
+.check-card__runtime-task .frage mjx-container[display="true"],
+.check-card__runtime-task .answer-preview mjx-container[display="true"] {
     display: block;
     max-width: 100%;
     overflow-x: auto;
@@ -76,7 +76,7 @@
 }
 
 .task table,
-.dev-check-card__runtime-task table {
+.check-card__runtime-task table {
     --task-table-bg: #fff;
     --task-table-bg-muted: rgba(55, 68, 82, 0.08);
     --task-table-vft-bg-muted: rgba(55, 68, 82, 0.12);
@@ -97,7 +97,7 @@
     overflow: hidden;
 }
 
-.dev-check-card__runtime-task table {
+.check-card__runtime-task table {
     --task-table-bg: color-mix(in srgb, var(--card-surface-2, #181824) 96%, white 4%);
     --task-table-bg-muted: color-mix(in srgb, white 10%, transparent);
     --task-table-vft-bg-muted: color-mix(in srgb, white 15%, transparent);
@@ -107,7 +107,7 @@
     --task-table-heading: var(--text);
 }
 
-.dev-check-card__runtime-task .vft-table {
+.check-card__runtime-task .vft-table {
     --task-table-bg: var(--surface, rgba(255, 255, 255, 0.04));
     --task-table-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, rgba(255, 255, 255, 0.04)));
     --task-table-vft-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, rgba(255, 255, 255, 0.04)));
@@ -118,19 +118,19 @@
 }
 
 .task .table-scroll>table.vft-table,
-.dev-check-card__runtime-task .table-scroll>table.vft-table {
+.check-card__runtime-task .table-scroll>table.vft-table {
     --task-table-col-width: 6.5rem;
     width: max-content;
     min-width: 0;
 }
 
 .task .table-scroll>table.vft-table>colgroup>col,
-.dev-check-card__runtime-task .table-scroll>table.vft-table>colgroup>col {
+.check-card__runtime-task .table-scroll>table.vft-table>colgroup>col {
     width: var(--task-table-col-width, 6.5rem);
 }
 
 .task .table-scroll,
-.dev-check-card__runtime-task .table-scroll {
+.check-card__runtime-task .table-scroll {
     display: block;
     margin: 16px 0 20px;
     max-width: 100%;
@@ -141,7 +141,7 @@
 }
 
 .task .table-scroll>table,
-.dev-check-card__runtime-task .table-scroll>table {
+.check-card__runtime-task .table-scroll>table {
     --task-table-col-width: 7rem;
     width: max-content;
     min-width: 100%;
@@ -150,21 +150,21 @@
 }
 
 .task .table-scroll>table>colgroup>col,
-.dev-check-card__runtime-task .table-scroll>table>colgroup>col {
+.check-card__runtime-task .table-scroll>table>colgroup>col {
     width: var(--task-table-col-width, 7rem);
 }
 
 .task .table-scroll th,
 .task .table-scroll td,
-.dev-check-card__runtime-task .table-scroll th,
-.dev-check-card__runtime-task .table-scroll td {
+.check-card__runtime-task .table-scroll th,
+.check-card__runtime-task .table-scroll td {
     white-space: nowrap;
 }
 
 .task th,
 .task td,
-.dev-check-card__runtime-task th,
-.dev-check-card__runtime-task td {
+.check-card__runtime-task th,
+.check-card__runtime-task td {
     padding: var(--task-table-cell-padding);
     border-right: 1px solid var(--task-table-border);
     border-bottom: 1px solid var(--task-table-border);
@@ -176,54 +176,54 @@
 
 .task th mjx-container,
 .task td mjx-container,
-.dev-check-card__runtime-task th mjx-container,
-.dev-check-card__runtime-task td mjx-container {
+.check-card__runtime-task th mjx-container,
+.check-card__runtime-task td mjx-container {
     display: inline-block;
     max-width: 100%;
     vertical-align: middle;
 }
 
 .task tr> :last-child,
-.dev-check-card__runtime-task tr> :last-child {
+.check-card__runtime-task tr> :last-child {
     border-right: 0;
 }
 
 .task thead th,
 .task tbody th,
-.dev-check-card__runtime-task thead th,
-.dev-check-card__runtime-task tbody th {
+.check-card__runtime-task thead th,
+.check-card__runtime-task tbody th {
     font-weight: 700;
     color: var(--task-table-heading);
     background: var(--task-table-bg-muted);
 }
 
 .task tbody tr:last-child>*,
-.dev-check-card__runtime-task tbody tr:last-child>* {
+.check-card__runtime-task tbody tr:last-child>* {
     border-bottom: 0;
 }
 
 .task .vft-table thead th,
 .task .vft-table tbody>tr> :first-child,
-.dev-check-card__runtime-task .vft-table thead th,
-.dev-check-card__runtime-task .vft-table tbody>tr> :first-child {
+.check-card__runtime-task .vft-table thead th,
+.check-card__runtime-task .vft-table tbody>tr> :first-child {
     background: var(--task-table-vft-bg-muted);
     color: var(--task-table-heading);
     font-weight: 700;
 }
 
 .task .vft-table tbody>tr:last-child>*,
-.dev-check-card__runtime-task .vft-table tbody>tr:last-child>* {
+.check-card__runtime-task .vft-table tbody>tr:last-child>* {
     border-top: 1.5px solid var(--task-table-border-strong);
 }
 
 .task .vft-table tr> :last-child,
-.dev-check-card__runtime-task .vft-table tr> :last-child {
+.check-card__runtime-task .vft-table tr> :last-child {
     border-left: 1.5px solid var(--task-table-border-strong);
 }
 
 .task .intro ul,
-.dev-check-card__runtime-task .intro ul,
-.page-skript-md .mod-content .dev-check-card__runtime-task .intro ul {
+.check-card__runtime-task .intro ul,
+.page-skript-md .mod-content .check-card__runtime-task .intro ul {
     list-style: disc;
     margin: 0.45em 0 0.6em;
     padding-left: 1.4em;
@@ -231,8 +231,8 @@
 }
 
 .task .intro ol,
-.dev-check-card__runtime-task .intro ol,
-.page-skript-md .mod-content .dev-check-card__runtime-task .intro ol {
+.check-card__runtime-task .intro ol,
+.page-skript-md .mod-content .check-card__runtime-task .intro ol {
     list-style: decimal;
     margin: 0.45em 0 0.6em;
     padding-left: 1.5em;
@@ -240,8 +240,8 @@
 }
 
 .task .intro li,
-.dev-check-card__runtime-task .intro li,
-.page-skript-md .mod-content .dev-check-card__runtime-task .intro li {
+.check-card__runtime-task .intro li,
+.page-skript-md .mod-content .check-card__runtime-task .intro li {
     margin: 0.2em 0;
 }
 
@@ -364,7 +364,7 @@
 }
 
 .task .answer-field-group.answer-field-group--input,
-.dev-check-card__runtime-task .answer-field-group.answer-field-group--input {
+.check-card__runtime-task .answer-field-group.answer-field-group--input {
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -373,13 +373,13 @@
 }
 
 .task .answer-field-group.answer-field-group--input .answer-input,
-.dev-check-card__runtime-task .answer-field-group.answer-field-group--input .answer-input {
+.check-card__runtime-task .answer-field-group.answer-field-group--input .answer-input {
     width: 100px;
     flex: 0 0 auto;
 }
 
 .task .answer-preview .answer-field-group.answer-field-group--select2,
-.dev-check-card__runtime-task .answer-preview .answer-field-group.answer-field-group--select2 {
+.check-card__runtime-task .answer-preview .answer-field-group.answer-field-group--select2 {
     width: auto;
     max-width: 100%;
     min-width: 0;
@@ -452,14 +452,14 @@
 }
 
 .task .answer-field-group .select2-container,
-.dev-check-card__runtime-task .answer-field-group .select2-container {
+.check-card__runtime-task .answer-field-group .select2-container {
     width: auto !important;
     max-width: 100%;
     min-width: 0;
 }
 
 .task .answer-field-group.answer-field-group--select2 .select2-container,
-.dev-check-card__runtime-task .answer-field-group.answer-field-group--select2 .select2-container {
+.check-card__runtime-task .answer-field-group.answer-field-group--select2 .select2-container {
     width: var(--mc-select-width, 100px) !important;
     max-width: 100%;
     min-width: 0;
@@ -467,20 +467,20 @@
 }
 
 .task .answer-field-group .select2-container .select2-selection,
-.dev-check-card__runtime-task .answer-field-group .select2-container .select2-selection {
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection {
     min-height: 34px;
     height: auto;
     box-sizing: border-box;
 }
 
-.dev-check-card__runtime-task .answer-field-group .select2-container .select2-selection {
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection {
     border: 1px solid color-mix(in srgb, var(--mt-training, var(--accent)) 26%, var(--border));
     background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--mt-training-soft, var(--accent-soft)) 10%);
     color: var(--text);
 }
 
 .task .answer-field-group .select2-container .select2-selection__rendered,
-.dev-check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -489,7 +489,7 @@
     padding-bottom: 6px;
 }
 
-.dev-check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
     color: var(--text);
 }
 
@@ -627,8 +627,8 @@
     border: 1px solid #bfe3c5;
 }
 
-/* Dev training runtime scope */
-.dev-check-card__runtime-task {
+/* Training runtime scope */
+.check-card__runtime-task {
     --qa-item-accent: var(--dcc-accent, var(--mt-training, #4c9aff));
     --qa-item-text: var(--text-body);
     --qa-item-bg: var(--dcc-inner-surface,
@@ -654,7 +654,7 @@
     box-sizing: border-box;
 }
 
-html.light .dev-check-card__runtime-task {
+html.light .check-card__runtime-task {
     --qa-item-bg: var(--dcc-inner-surface,
             linear-gradient(160deg,
                 color-mix(in srgb, var(--card-surface-1, #ffffff) 84%, var(--mt-training-soft, var(--accent-soft))),
@@ -667,7 +667,7 @@ html.light .dev-check-card__runtime-task {
     --qa-item-hover-ring: color-mix(in srgb, var(--qa-item-accent) 24%, rgba(199, 214, 234, 0.96));
 }
 
-.dev-check-card__runtime-task .intro {
+.check-card__runtime-task .intro {
     margin-bottom: 10px;
     color: var(--text-body);
     line-height: 1.6;
@@ -675,22 +675,22 @@ html.light .dev-check-card__runtime-task {
     width: 100%;
 }
 
-.dev-check-card__runtime-task .task-intro-column {
+.check-card__runtime-task .task-intro-column {
     display: grid;
     align-content: start;
     gap: 10px;
     min-width: 0;
 }
 
-.dev-check-card__runtime-task .intro .js-plotly-plot,
-.dev-check-card__runtime-task .intro .plotly,
-.dev-check-card__runtime-task .intro .plot-container,
-.dev-check-card__runtime-task .intro .svg-container {
+.check-card__runtime-task .intro .js-plotly-plot,
+.check-card__runtime-task .intro .plotly,
+.check-card__runtime-task .intro .plot-container,
+.check-card__runtime-task .intro .svg-container {
     width: 100% !important;
     max-width: 100% !important;
 }
 
-.dev-check-card__runtime-task .qa-list {
+.check-card__runtime-task .qa-list {
     margin: 0;
     padding-right: 10px;
     padding-left: 10px;
@@ -701,7 +701,7 @@ html.light .dev-check-card__runtime-task {
     counter-reset: qa-counter;
 }
 
-.dev-check-card__runtime-task .qa-item {
+.check-card__runtime-task .qa-item {
     counter-increment: qa-counter;
     position: relative;
     color: var(--qa-item-text);
@@ -714,16 +714,16 @@ html.light .dev-check-card__runtime-task {
     transition: background-color 0.14s ease, border-color 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
 }
 
-.dev-check-card__runtime-task .qa-item li,
-.dev-check-card__runtime-task .qa-item li::marker {
+.check-card__runtime-task .qa-item li,
+.check-card__runtime-task .qa-item li::marker {
     color: var(--qa-item-text);
 }
 
-.dev-check-card__runtime-task .qa-item li+li {
+.check-card__runtime-task .qa-item li+li {
     margin-top: 12px;
 }
 
-.dev-check-card__runtime-task .qa-item::before {
+.check-card__runtime-task .qa-item::before {
     content: counter(qa-counter);
     position: absolute;
     left: 10px;
@@ -742,7 +742,7 @@ html.light .dev-check-card__runtime-task {
     justify-content: center;
 }
 
-.dev-check-card__runtime-task .qa-item:hover {
+.check-card__runtime-task .qa-item:hover {
     background:
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-1), transparent), transparent 56%),
         radial-gradient(ellipse 92% 56% at 86% 80%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-2), transparent), transparent 50%),
@@ -752,12 +752,12 @@ html.light .dev-check-card__runtime-task {
     transform: none;
 }
 
-.dev-check-card__runtime-task .frage {
+.check-card__runtime-task .frage {
     margin-bottom: 6px;
     color: var(--text-body);
 }
 
-.dev-check-card__runtime-task .answer-preview {
+.check-card__runtime-task .answer-preview {
     margin-bottom: 4px;
     display: flex;
     flex-wrap: wrap;
@@ -765,8 +765,8 @@ html.light .dev-check-card__runtime-task {
     gap: 6px;
 }
 
-.dev-check-card__runtime-task .answer-input,
-.dev-check-card__runtime-task .answer-select {
+.check-card__runtime-task .answer-input,
+.check-card__runtime-task .answer-select {
     min-width: 0;
     width: min(100px, 100%);
     max-width: 100%;
@@ -780,43 +780,43 @@ html.light .dev-check-card__runtime-task {
     transition: border-color 200ms, box-shadow 200ms;
 }
 
-.dev-check-card__runtime-task .answer-input:focus {
+.check-card__runtime-task .answer-input:focus {
     border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 60%, var(--border));
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, var(--accent)) 14%, transparent);
 }
 
-.dev-check-card__runtime-task .answer-input::placeholder {
+.check-card__runtime-task .answer-input::placeholder {
     color: var(--text-muted);
     opacity: .55;
 }
 
-.dev-check-card__runtime-task .answer-select {
+.check-card__runtime-task .answer-select {
     cursor: pointer;
 }
 
-.dev-check-card__runtime-task .answer-input.is-correct,
-.dev-check-card__runtime-task .answer-select.is-correct {
+.check-card__runtime-task .answer-input.is-correct,
+.check-card__runtime-task .answer-select.is-correct {
     border-color: var(--green);
     background: color-mix(in srgb, var(--green-soft) 78%, transparent);
 }
 
-.dev-check-card__runtime-task .select2-container .select2-selection.is-correct {
+.check-card__runtime-task .select2-container .select2-selection.is-correct {
     border-color: var(--green);
     background: color-mix(in srgb, var(--green-soft) 78%, transparent);
 }
 
-.dev-check-card__runtime-task .answer-input.is-incorrect,
-.dev-check-card__runtime-task .answer-select.is-incorrect {
+.check-card__runtime-task .answer-input.is-incorrect,
+.check-card__runtime-task .answer-select.is-incorrect {
     border-color: var(--rose);
     background: color-mix(in srgb, var(--rose-soft) 78%, transparent);
 }
 
-.dev-check-card__runtime-task .select2-container .select2-selection.is-incorrect {
+.check-card__runtime-task .select2-container .select2-selection.is-incorrect {
     border-color: var(--rose);
     background: color-mix(in srgb, var(--rose-soft) 78%, transparent);
 }
 
-.dev-check-card__runtime-task .answer-field-group {
+.check-card__runtime-task .answer-field-group {
     display: inline-block;
     vertical-align: middle;
     white-space: nowrap;
@@ -824,20 +824,20 @@ html.light .dev-check-card__runtime-task {
     min-width: 0;
 }
 
-.dev-check-card__runtime-task .answer-field-group .answer-input,
-.dev-check-card__runtime-task .answer-field-group .answer-select {
+.check-card__runtime-task .answer-field-group .answer-input,
+.check-card__runtime-task .answer-field-group .answer-select {
     vertical-align: middle;
 }
 
-/* NUMERICAL_OPT: input + "existiert nicht" checkbox (dev theme) */
-.dev-check-card__runtime-task .answer-numopt-group {
+/* NUMERICAL_OPT: input + "existiert nicht" checkbox (training theme) */
+.check-card__runtime-task .answer-numopt-group {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     vertical-align: middle;
 }
 
-.dev-check-card__runtime-task .answer-numopt-input {
+.check-card__runtime-task .answer-numopt-input {
     min-width: 0;
     width: 100px;
     max-width: 100%;
@@ -849,7 +849,7 @@ html.light .dev-check-card__runtime-task {
     box-sizing: border-box;
 }
 
-.dev-check-card__runtime-task .answer-numopt-label {
+.check-card__runtime-task .answer-numopt-label {
     display: inline-flex;
     align-items: center;
     gap: 3px;
@@ -860,37 +860,37 @@ html.light .dev-check-card__runtime-task {
     white-space: nowrap;
 }
 
-.dev-check-card__runtime-task .answer-numopt-none {
+.check-card__runtime-task .answer-numopt-none {
     cursor: pointer;
 }
 
-.dev-check-card__runtime-task .answer-numopt-input:disabled {
+.check-card__runtime-task .answer-numopt-input:disabled {
     opacity: 0.4;
 }
 
-.dev-check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-input,
-.dev-check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-input:disabled {
+.check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-input,
+.check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-input:disabled {
     border-color: var(--green);
     background: color-mix(in srgb, var(--green-soft) 78%, transparent);
     opacity: 1;
 }
 
-.dev-check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-label {
+.check-card__runtime-task .answer-numopt-group.is-correct .answer-numopt-label {
     color: var(--green);
 }
 
-.dev-check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-input,
-.dev-check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-input:disabled {
+.check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-input,
+.check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-input:disabled {
     border-color: var(--rose);
     background: color-mix(in srgb, var(--rose-soft) 78%, transparent);
     opacity: 1;
 }
 
-.dev-check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-label {
+.check-card__runtime-task .answer-numopt-group.is-incorrect .answer-numopt-label {
     color: var(--rose);
 }
 
-.dev-check-card__runtime-task .answer-check-btn {
+.check-card__runtime-task .answer-check-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -908,13 +908,13 @@ html.light .dev-check-card__runtime-task {
     transition: background 0.12s, border-color 0.12s;
 }
 
-.dev-check-card__runtime-task .answer-check-btn:hover {
+.check-card__runtime-task .answer-check-btn:hover {
     border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 55%, var(--border));
     background: color-mix(in srgb, var(--mt-training-soft, var(--accent-soft)) 60%, transparent);
     color: var(--text);
 }
 
-.dev-check-card__runtime-task .task-toolbar {
+.check-card__runtime-task .task-toolbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -923,7 +923,7 @@ html.light .dev-check-card__runtime-task {
     min-height: 28px;
 }
 
-.dev-check-card__runtime-task .task-toolbar__stats {
+.check-card__runtime-task .task-toolbar__stats {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -932,14 +932,14 @@ html.light .dev-check-card__runtime-task {
     color: var(--text-dim);
 }
 
-.dev-check-card__runtime-task .task-toolbar__actions {
+.check-card__runtime-task .task-toolbar__actions {
     display: flex;
     align-items: center;
     gap: 4px;
     flex-shrink: 0;
 }
 
-.dev-check-card__runtime-task .task-toolbar-btn {
+.check-card__runtime-task .task-toolbar-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -954,43 +954,43 @@ html.light .dev-check-card__runtime-task {
     transition: background 0.12s, border-color 0.12s, color 0.12s;
 }
 
-.dev-check-card__runtime-task .task-toolbar-link {
+.check-card__runtime-task .task-toolbar-link {
     text-decoration: none;
 }
 
-.dev-check-card__runtime-task .task-toolbar-btn:hover {
+.check-card__runtime-task .task-toolbar-btn:hover {
     background: color-mix(in srgb, var(--mt-training-soft, var(--accent-soft)) 60%, transparent);
     border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 35%, var(--border));
     color: var(--text);
 }
 
-.dev-check-card__runtime-task .task-toolbar-btn i {
+.check-card__runtime-task .task-toolbar-btn i {
     font-size: 14px;
     line-height: 1;
     pointer-events: none;
 }
 
-.dev-check-card__runtime-task .task-feedback {
+.check-card__runtime-task .task-feedback {
     font-size: 0.78rem;
 }
 
-.dev-check-card__runtime-task .task-feedback.is-correct {
+.check-card__runtime-task .task-feedback.is-correct {
     color: var(--green);
 }
 
-.dev-check-card__runtime-task .task-feedback.is-incorrect {
+.check-card__runtime-task .task-feedback.is-incorrect {
     color: var(--rose);
 }
 
-.dev-check-card__runtime-task .task-feedback.is-neutral {
+.check-card__runtime-task .task-feedback.is-neutral {
     color: var(--text-dim);
 }
 
-.dev-check-card__runtime-task .solution {
+.check-card__runtime-task .solution {
     font-size: 0.78rem;
 }
 
-.dev-check-card__runtime-task .solution-badge {
+.check-card__runtime-task .solution-badge {
     display: inline-block;
     padding: 2px 8px;
     border-radius: 999px;
@@ -1027,7 +1027,7 @@ html.light .dev-check-card__runtime-task {
         align-self: start;
     }
 
-    .dev-check-card__runtime-task {
+    .check-card__runtime-task {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         column-gap: 16px;
@@ -1035,19 +1035,19 @@ html.light .dev-check-card__runtime-task {
         align-items: start;
     }
 
-    .dev-check-card__runtime-task .task-toolbar,
-    .dev-check-card__runtime-task h2 {
+    .check-card__runtime-task .task-toolbar,
+    .check-card__runtime-task h2 {
         grid-column: 1 / -1;
     }
 
-    .dev-check-card__runtime-task .task-intro-column {
+    .check-card__runtime-task .task-intro-column {
         grid-column: 1;
         grid-row: 2;
         margin-bottom: 0;
         min-width: 0;
     }
 
-    .dev-check-card__runtime-task .qa-list {
+    .check-card__runtime-task .qa-list {
         grid-column: 2;
         grid-row: 2;
         min-width: 0;

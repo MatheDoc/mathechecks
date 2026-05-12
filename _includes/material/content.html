@@ -1,0 +1,27 @@
+{% assign page_urls_joined = site.pages | map: 'url' | join: '|' %}
+{% assign page_urls_index = '|' | append: page_urls_joined | append: '|' %}
+
+<div class="material-grid material-grid--compact">
+    {% for lb in site.data.lernbereiche %}
+    {% assign start_url = '/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug | append: '/start.html'
+    %}
+    {% assign start_key = '|' | append: start_url | append: '|' %}
+    {% if page_urls_index contains start_key %}
+    {% assign gebiet_label = lb.gebiet %}
+    {% for g in site.data.gebiete %}
+    {% if g.key == lb.gebiet %}
+    {% assign gebiet_label = g.name %}
+    {% endif %}
+    {% endfor %}
+    <a class="mat-card mat-card--compact" href="{{ start_url | relative_url }}" data-gebiet="{{ lb.gebiet }}">
+        {% if lb.szenario_bild %}
+        <img class="mat-card-img" src="{{ '/assets/img/start/' | append: lb.szenario_bild | relative_url }}" alt=""
+            loading="lazy">
+        {% endif %}
+        <span class="mat-badge gebiet-badge" data-gebiet="{{ lb.gebiet }}">{{ gebiet_label }}</span>
+        <div class="mat-card-title">{{ lb.name }}</div>
+
+    </a>
+    {% endif %}
+    {% endfor %}
+</div>

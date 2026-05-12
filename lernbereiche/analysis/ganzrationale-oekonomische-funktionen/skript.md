@@ -1,15 +1,20 @@
----
-layout: skript
-title: Ganzrationale ökonomische Funktionen
-description: Ganzrationale ökonomische Funktionen – Skript
+﻿---
+layout: module
+title: Ganzrationale ökonomische Funktionen - Skript
+description: Lernbereich Ganzrationale ökonomische Funktionen, Modul Skript.
+page_context: Lernbereich
+nav: dashboard
+body_class: page-module
+module_key: skript
+published: true
 lernbereich: ganzrationale-oekonomische-funktionen
+gebiet: analysis
+permalink: /lernbereiche/analysis/ganzrationale-oekonomische-funktionen/skript.html
 ---
 
 ## Einführung
 
-Allgemein verwenden wir die Abkürzungen **ME** für Mengeneinheit und **GE** für Geldeinheit.
-
-In Abhängigkeit von der Menge $x$ betrachten wir folgende Funktionen:
+Allgemein verwenden wir die Abkürzungen **ME** für Mengeneinheit und **GE** für Geldeinheit. In Abhängigkeit von der Menge $x$ werden wir folgende Funktionen betrachten:
 
 ### Preis-Absatz-Funktion
 
@@ -66,7 +71,7 @@ $$
 \begin{align*}
 G(x) &= 32x - (0{,}5x^3 - 6x^2 + 30x + 48) \\
      &= 32x - 0{,}5x^3 + 6x^2 - 30x - 48 \\
-     &= -0{,}5x^3 + 6x^2 - 2x - 48
+     &= -0{,}5x^3 + 6x^2 + 2x - 48
 \end{align*}
 $$
 
@@ -82,49 +87,33 @@ $$
 
 Sind zwei dieser vier ökonomischen Funktionen bekannt, können wir die übrigen zwei berechnen (außer die bekannten Funktionen wären $p$ und $E$).
 
-{% include info.html
-index="1"
-frage="Berechnen von Gleichungen ökonomischer Funktionen mit Hilfe von $E(x)=p(x)\cdot x$ und $G(x)=E(x)-K(x)$ (Angebotspolypol)"
-antwort="
+{% include check-anker.html nummer=1 %}
 
-- Sind $p(x)$ und $K(x)$ gegeben, können mit Hilfe der Formeln direkt $E(x)$ und $G(x)$ berechnet werden.
-- Andernfalls müssen die Formeln umgestellt werden: $p(x)=\frac{E(x)}{x}$, $K(x)=E(x)-G(x)$ und $E(x)=G(x)+K(x)$.
+Dasselbe Prinzip gilt für das Angebotsmonopol, wo zusätzlich die Erlösfunktion $E(x)=p(x)\cdot x$ als Produkt aus Preis-Absatz-Funktion und Menge gebildet wird.
 
-"
-%}
-
-
-{% include info.html
-index="2"
-frage="Berechnen von Gleichungen ökonomischer Funktionen mit Hilfe von $E(x)=p(x)\cdot x$ und $G(x)=E(x)-K(x)$ (Angebotsmonopol)"
-antwort="siehe Info 1"
-%}
+{% include check-anker.html nummer=2 %}
 
 
 ## Kennzahlen
 
 Diese ökonomischen Funktionen werden mit Hilfe folgender Kennzahlen beschrieben und analysiert.
 
-- **Marktpreis:** Preis im Marktgleichgewicht, auch Gleichgewichtspreis (Angebotspolypol).
-- **Höchstpreis:** Maximaler Preis, den ein Konsument zu zahlen bereit ist (Angebotsmonopol).
-- **Sättigungsmenge:** Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht (Angebotsmonopol).
-- **Erlösmaximale Menge:** Menge, bei der der Erlös maximal ist (Maximum der Erlösfunktion).
-- **Maximaler Erlös:** Höchster möglicher Erlös, tritt bei der erlösmaximalen Menge auf.
-- **Fixkosten:** Produktionsunabhängige Kosten (z. B. Miete).
-- **Übergang vom degressiven zum progressiven Kostenwachstum:** Menge, bis zu der die Kosten unterproportional steigen, danach überproportional.
-- **Gewinnschwelle:** Absatzmenge, ab der Gewinn erwirtschaftet wird (erste Nullstelle von $G(x)$).
-- **Gewinngrenze:** Höchste Menge, bei der noch Gewinn erzielt wird (letzte Nullstelle von $G(x)$).
-- **Gewinnmaximale Menge:** Menge, bei der der Gewinn maximal ist (Maximum der Gewinnfunktion).
-- **Maximaler Gewinn:** Wert von $G(x)$ bei der gewinnmaximalen Menge.
-- **Gewinnmaximaler Preis:** Preis bei der gewinnmaximalen Menge (Angebotsmonopol).
-- **Break-even-Point:** Punkt, an dem Erlöse und Kosten gleich sind
-- **Cournotscher Punkt:** Punkt auf $p(x)$ mit gewinnmaximaler Menge und gewinnmaximalem Preis
-
-{% include info.html
-index="3"
-frage="Mathematische Definition ökonomischer Kennzahlen"
-antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstelle, Extremstelle, Wendestelle)"
-%}
+|Kennzahl| Symbol | Beschreibung| Definition|
+|---|---|---|---|
+|Marktpreis| $p$|Preis im Marktgleichgewicht, auch Gleichgewichtspreis (Angebotspolypol)| konstante Wert $p$|
+|Höchstpreis| $p_H$ | Maximaler Preis, den ein Konsument zu zahlen bereit ist (Angebotsmonopol)| $y$-Abschnitt von $p(x)$|
+|Sättigungsmenge| $s_m$ | Absatzmenge, bei der trotz Preis null keine Nachfrage mehr besteht (Angebotsmonopol)| Nullstelle von $p(x)$|
+|Erlösmaximale Menge| $x_{Emax}$ | Menge, bei der der Erlös maximal ist| Extremstelle (Maximum) von $E(x)$|
+|Maximaler Erlös| $E_{max}$ | Höchster möglicher Erlös, tritt bei der erlösmaximalen Menge auf| $E(x_{Emax})$ |
+|Fixkosten| $K_f$ | Produktionsunabhängige Kosten (z. B. Miete)| $y$-Abschnitt von $K(x)$|
+|Übergang degressives/progressives Kostenwachstum| $x_w$|Menge, bis zu der die Kosten unterproportional steigen, danach überproportional|  Wendestelle von $K(x)$|
+|Gewinnschwelle| $x_{GS}$|Absatzmenge, ab der Gewinn erwirtschaftet wird| erste Nullstelle von $G(x)$|
+|Gewinngrenze| $x_{GG}$|Höchste Menge, bei der noch Gewinn erzielt wird| letzte Nullstelle von $G(x)$|
+|Gewinnmaximale Menge| $x_{Gmax}$|Menge, bei der der Gewinn maximal ist| Extremstelle (Maximum) $G(x)$|
+|Maximaler Gewinn| $G_{max}$|Wert von $G(x)$ bei der gewinnmaximalen Menge| $G(x_{Gmax})$|
+|Gewinnmaximaler Preis| $p_{max}$|Preis, bei dem die Gewinne maximiert werden (Angebotsmonopol)|  $p(x_{Gmax})$|
+|Break-even-Point| $BEP$ | Punkt, an dem Erlöse und Kosten gleich sind| Schnittpunkt von $E(x)$ und $K(x)$|
+|Cournotscher Punkt| $C$ | Punkt auf $p(x)$ mit gewinnmaximaler Menge und gewinnmaximalem Preis| $C(x_{Gmax};p_{Gmax})$|
 
 
 ### Hinweise
@@ -135,30 +124,20 @@ antwort="Beschreibung der Kennzahlen mit Hilfe mathematischer Fachbegriffe (y-Ac
 
 ## Graphische Darstellungen
 
-Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen graphisch.
+Graphen geben eine schnelle Übersicht über alle Kennzahlen, bevor sie rechnerisch bestimmt werden. Entscheidend ist dabei, welche Kurve jeweils abgelesen oder geometrisch ausgewertet wird.
 
-### Angebotsmonopol (mit Kapazitätsgrenze $x=13$)
+### Angebotspolypol
+
+Im Angebotspolypol ist $E(x) = p \cdot x$ eine Gerade mit Steigung $p$. Da eine Gerade kein inneres Maximum besitzt, fällt die erlösmaximale Menge mit der **Kapazitätsgrenze** zusammen. Das folgende Diagramm zeigt die vier ökonomischen Funktionen für das Beispiel aus der Einführung mit Kapazitätsgrenze bei 13 ME:
 
 {% include graph.html
    funktionen='[
-    {"name":"E(x)", "term":"32x", "beschreibung":"Erlösfunktion"},
+    {"name":"E(x)", "term":"32*x", "beschreibung":"Erlösfunktion"},
     {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
-    {"name":"G(x)", "term":"-0.5*x^3+6x^2+2*x-48", "beschreibung":"Gewinnfunktion"},
-    {"name":"p(x)", "term":"32", "beschreibung":"Preisfunktion"}
+    {"name":"G(x)", "term":"-0.5*x^3+6*x^2+2*x-48", "beschreibung":"Gewinnfunktion"},
+    {"name":"p(x)", "term":"32", "beschreibung":"Preis-Absatz-Funktion"}
    ]'
-   punkte='[
-     {"x":0,"y":32,"text":"Marktpreis"},
-     {"x":13,"y":0,"text":"Kapazitätsgrenze"},
-     {"x":13,"y":416,"text":"erlösmaximale Menge und maximaler Erlös"},
-     {"x":0,"y":48,"text":"Fixkosten"},
-     {"x":4,"y":104,"text":"Übergang vom degressiven zum progressiven Kostenwachstum"},
-     {"x":3.06,"y":0,"text":"Gewinnschwelle"},
-     {"x":11.63,"y":0,"text":"Gewinngrenze"},
-     {"x":8.16,"y":96.16,"text":"gewinnmaximale Menge und maximaler Gewinn"},
-     {"x":3.06,"y":97.92,"text":"Break-even Point"},
-     {"x":11.63,"y":372.16,"text":"Break-even Point"}
-   ]'
-   titel="Ökonomische Funktionen"
+   titel="Ökonomische Funktionen (Polypol)"
    xachse="Menge x in ME"
    yachse="Betrag y in GE"
    xmin=0
@@ -167,29 +146,30 @@ Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen gra
    ymax=450
 %}
 
-### Angebotspolypol
+Alle Kennzahlen aus der Tabelle lassen sich direkt am Graphen ablesen:
+
+- **Marktpreis**: konstante Höhe von $p(x)$, gleichzeitig Steigung von $E(x)$
+- **Erlösmaximale Menge und maximaler Erlös**: $x$- und $y$-Koordinate am rechten Ende von $E(x)$ an der Kapazitätsgrenze
+- **Fixkosten** $K_f$: $y$-Achsenabschnitt von $K(x)$
+- **Übergang degressiv/progressiv**: Wendepunkt von $K(x)$, d. h. die Stelle, an der $K(x)$ von links- nach rechtsgekrümmt übergeht
+- **Gewinnschwelle und Gewinngrenze**: Nullstellen von $G(x)$
+- **Gewinnmaximale Menge und maximaler Gewinn**: Hochpunkt von $G(x)$
+- **Break-even-Punkte**: Schnittpunkte von $E(x)$ und $K(x)$
+
+{% include check-anker.html nummer=3 %}
+
+### Angebotsmonopol
+
+Im Angebotsmonopol fällt $p(x)$, sodass $E(x) = p(x) \cdot x$ eine Parabel mit echtem inneren Maximum wird. Neben den aus dem Polypol bekannten Kennzahlen treten im Monopol weitere auf:
 
 {% include graph.html
    funktionen='[
-    {"name":"E(x)", "term":"-5x^2+60x", "beschreibung":"Erlösfunktion"},
+    {"name":"E(x)", "term":"-5*x^2+60*x", "beschreibung":"Erlösfunktion"},
     {"name":"K(x)", "term":"0.5*x^3-6*x^2+30*x+48", "beschreibung":"Kostenfunktion"},
     {"name":"G(x)", "term":"-0.5*x^3+x^2+30*x-48", "beschreibung":"Gewinnfunktion"},
-    {"name":"p(x)", "term":"-5x+60", "beschreibung":"Preisfunktion"}
+    {"name":"p(x)", "term":"-5*x+60", "beschreibung":"Preis-Absatz-Funktion"}
    ]'
-   punkte='[
-     {"x":0,"y":60,"text":"Höchstpreis"},
-     {"x":12,"y":0,"text":"Sättigungsmenge"},
-     {"x":6,"y":180,"text":"erlösmaximale Menge und maximaler Erlös"},
-     {"x":0,"y":48,"text":"Fixkosten"},
-     {"x":4,"y":104,"text":"Übergang vom degressiven zum progressiven Kostenwachstum"},
-     {"x":1.58,"y":0,"text":"Gewinnschwelle"},
-     {"x":8,"y":0,"text":"Gewinngrenze"},
-     {"x":5.19,"y":64.74,"text":"gewinnmaximale Menge und maximaler Gewinn"},
-     {"x":5.19,"y":34.05,"text":"Cournotscher Punkt: gewinnmaximale Menge und gewinnmaximaler Preis"},
-     {"x":1.58,"y":82.32,"text":"Break-even Point"},
-     {"x":8,"y":160,"text":"Break-even Point"}
-   ]'
-   titel="Ökonomische Funktionen"
+   titel="Ökonomische Funktionen (Monopol)"
    xachse="Menge x in ME"
    yachse="Betrag y in GE"
    xmin=0
@@ -198,190 +178,41 @@ Die beiden folgenden Diagramme veranschaulichen die ökonomischen Kennzahlen gra
    ymax=250
 %}
 
-{% include info.html
-index="4"
-frage="Graphische Bestimmung (Angebotspolypol)"
-antwort="Graphische Interpretation mathematischer Fachbegriffe (y-Achsenabschnitt, Nullstellen, Extremstellen, Wendestellen)"
-%}
+- **Höchstpreis** $p_H$: $y$-Achsenabschnitt von $p(x)$ — Preisobergrenze, ab der keine Nachfrage mehr besteht
+- **Sättigungsmenge** $s_m$: Nullstelle von $p(x)$ — Menge, ab der der Marktpreis auf null fällt
+- **Erlösmaximale Menge**: Hochpunkt von $E(x)$ — nun ein echtes inneres Maximum, kein Randpunkt
+- **Cournotscher Punkt** $C(x_{Gmax}|p_{Gmax})$: Punkt auf $p(x)$ zur gewinnmaximalen Menge $x_{Gmax}$
 
+{% include check-anker.html nummer=4 %}
 
-{% include info.html
-index="5"
-frage="Graphische Bestimmung (Angebotsmonopol)"
-antwort="siehe Info 4"
-%}
 
 
 ## Berechnungen
 
-Um ökonomische Kennzahlen berechnen zu können, benötigen wir die unter anderem die Werkzeuge der Differentialrechnung. Um die Kennzahlen berechnen zu können, ist es nun wichtig, den richtigen mathematischen Ansatz zu wählen.
+Alle Kennzahlen lassen sich nicht nur graphisch ablesen, sondern auch rechnerisch bestimmen. Grundlage dafür sind die Werkzeuge der Differentialrechnung. Der erste Schritt ist stets, die gesuchte Kennzahl dem richtigen mathematischen Konzept zuzuordnen:
 
-{% include info.html
-index="6"
-frage="Ansatz zur Berechnung charakteristischer Punkte einer Funktion $f(x)$."
-antwort="
+| Mathematisches Konzept | Zugehörige Kennzahlen |
+|---|---|
+| $y$-Achsenabschnitt: $f(0)$ | $p_H$, $K_f$ |
+| Nullstelle: $f(x)=0$ lösen | $s_m$, $x_{GS}$, $x_{GG}$ |
+| Extremstelle (Maximum): $f'(x)=0$, $f''(x)<0$ | $x_{Emax}$ (nur Monopol), $x_{Gmax}$ |
+| Wendestelle: $f''(x)=0$, $f'''(x)\neq 0$ | $x_w$ |
+| $y$-Wert an bekannter Stelle: Einsetzen | $E_{max}$, $G_{max}$, $p_{max}$ |
 
-- y-Abschnitt: $f(0)$
-- Nullstellen: $f(x)=0$
-- Extremstellen: Notwendige Bedingung $f^{\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime}(x) > 0$ (Minimum) oder $f^{\prime\prime}(x) < 0$ (Maximum)
-- Wendestellen: Notwendige Bedingung $f^{\prime\prime}(x) = 0$, hinreichende Bedingung $f^{\prime\prime\prime}(x) > 0$ (minimale Steigung) oder $f^{\prime\prime\prime}(x)<0$ (maximale Steigung)
-  "
-  %}
+Im Polypol hat $E(x)$ kein inneres Maximum — die erlösmaximale Menge ist die Kapazitätsgrenze, also kein Extremstellenproblem.
+
+{% include check-anker.html nummer=5 %}
+
+Sind die Ansätze bekannt, können wir die Kennzahlen vollständig durchrechnen — zunächst für das Angebotspolypol, wo die lineare Erlösfunktion den Rechenweg etwas vereinfacht.
+
+{% include check-anker.html nummer=6 %}
+
+Im Angebotsmonopol kommen Höchstpreis, Sättigungsmenge und Cournotscher Punkt als zusätzliche Kennzahlen hinzu. Der Rechenweg folgt dabei strukturell denselben Konzepten.
+
+{% include check-anker.html nummer=7 %}
 
 
-{% include info.html
-index="7"
-frage="Berechnung ökonomischer Kennzahlen (Angebotspolypol)."
-antwort="
 
-### Marktpreis
 
-Es seien $p(x)=32$ und so $E(x)=32x$. Der Markpreis beträgt hier 32 GE.
-
-Für weitere Kennzahlen siehe Info 8.
-"
-%}
-
-{% include info.html
-index="8"
-frage="Berechnung ökonomischer Kennzahlen (Angebotsmonopol). Den Beispielen liegen folgende Funktionen zugrunde:
-
-$$
-\begin{align*}
-p(x)&=-5x+60\\
-E(x)&=-5x^2+60x\\
-K(x)&=0{,}5x^3-6x^2+30x+48\\
-G(x)&=-0{,}5x^3+x^2+30x-48
-\end{align*}
-$$
-
-"
-
-antwort="
-
-### Höchstpreis
-
-Der y-Achsenabschnitt von $p(x) = -5x + 60$:
-
-$$
-p(0) = 60
-$$
-
-Der Höchstpreis beträgt 60 GE.
-
-### Sättigungsmenge
-
-Nullstelle von $p(x)$:
-
-$$
-\begin{align*}
--5x + 60 &= 0 \\
-x &= 12
-\end{align*}
-$$
-
-Die Sättigungsmenge beträgt 12 ME.
-
-### Erlösmaximale Menge
-
-Extremstelle von $E(x) = -5x^2 + 60x$:
-
-Bestimme $E^{\prime}(x)=-10x+60$ und $E^{\prime\prime}(x)=-10$.
-
-$$
-\begin{align*}
--10x + 60 &= 0 \Rightarrow x = 6\\
-E^{\prime\prime}(6)&=-10 < 0 \text{ (Maximum)}
-\end{align*}
-$$
-
-Die erlösmaximale Menge beträgt 6 ME.
-
-### Maximaler Erlös
-
-Einsetzen der erlösmaximale Menge in $E(x)$:
-
-$$
-E(6) = -5 \cdot 6^2 + 60 \cdot 6 = -180 + 360 = 180
-$$
-
-Der maximale Erlös beträgt 180 GE.
-
-### Fixkosten
-
-y-Achsenabschnitt der Kostenfunktion $K(x)=0{,}5x^3-6x^2+30x+48$:
-
-$$
-K(0) = 48
-$$
-
-Die Fixkosten betragen 48 GE.
-
-### Übergang vom degressiven zum progressiven Kostenwachstum
-
-Wendestelle von $K(x)=0{,}5x^3-6x^2+30x+48$:
-
-Bestimme $K^{\prime\prime}(x)=3x-12$ und $K^{\prime\prime\prime}(x)=3$.
-
-$$
-\begin{align*}
-3x - 12 =  0 \Rightarrow x = 4\\
-K^{\prime\prime\prime}(4)=3 > 0 \text{ (minimale Steigung)}
-\end{align*}
-$$
-
-Der Übergang vom degressiven zum progressiven Kostenwachstum findet bei 4 ME statt.
-
-### Gewinnschwelle und Gewinngrenze
-
-Erste und letzte positive Nullstelle von $G(x)=-0{,}5x^3+x^2+30x-48$:
-
-$$
-\begin{align*}
--0{,}5x^3 + x^2 + 30x - 48 &=0 \Rightarrow x_1=-7{,}58,\ x_2=1{,}58,\ x_3=8\\
-(x_1&=-7{,}58 \text{ liegt nicht im ökonomischen Definitionsbereich})
-\end{align*}
-$$
-
-Die Gewinnschwelle beträgt 1,53 ME und die Gewinngrenze bei 8 ME .
-
-### Gewinnmaximale Menge
-
-Extremstelle von $G(x)=-0{,}5x^3+x^2+30x-48$:
-
-Bestimme $G^{\prime}(x)= -1{,}5x^2 + 2x + 30 $ und $G^{\prime\prime}(x)=-3x+2$
-
-$$
-\begin{align*}
--1{,}5x^2 + 2x + 30 & = 0 \Rightarrow x_1=-3{,}86,\ x_2=5{,}19\\
-G^{\prime\prime}(5{,}19)&=-3\cdot 5{,}19+2=-13{,}57<0 \text{ (Maximum)}\\
-(x_1&=-3{,}86\text{ liegt nicht im ökonomischen Definitionsbereich})
-\end{align*}
-$$
-
-Die gewinnmaximale Menge beträgt 5,19 GE.
-
-### Maximaler Gewinn
-
-Einsetzen der gewinnmaximalen Menge in $G(x)$:
-
-$$
-G(5{,}19) = 64{,}74
-$$
-
-Der maximale Gewinn beträgt 64,74 GE.
-
-### Gewinnmaximaler Preis
-
-Einsetzen der gewinnmaximalen Menge in $p(x)$:
-
-$$
-p(5{,}19) = 34{,}05
-$$
-
-Der gewinnmaximale Preis beträgt 34,05 GE.
-
-"
-%}
 
 

@@ -1,0 +1,21 @@
+{% if page.gebiet and page.lernbereich %}
+{% assign module_base = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append:
+'/' %}
+{% assign start_base = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append:
+'/' %}
+{% else %}
+{% assign module_base = '/moduletypen/' %}
+{% assign start_base = '/moduletypen/' %}
+{% endif %}
+
+<nav class="mod-tab-nav" aria-label="Modultyp-Navigation">
+    {% for mt in site.data.moduletypen %}
+    {% unless mt.key == 'warmup' %}
+    <a class="mod-tab{% if page.module_key == mt.key %} active{% endif %}"
+        href="{% if mt.key == 'start' %}{{ start_base | append: mt.key | append: '.html' | relative_url }}{% else %}{{ module_base | append: mt.key | append: '.html' | relative_url }}{% endif %}">
+        <span class="tab-dot" aria-hidden="true">{{ mt.icon }}</span>
+        <span class="mod-tab-label">{{ mt.name }}</span>
+    </a>
+    {% endunless %}
+    {% endfor %}
+</nav>

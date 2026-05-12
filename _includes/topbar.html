@@ -1,0 +1,137 @@
+{% assign show_lb_switch = false %}
+{% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
+{% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
+{% assign header_context = page.page_context | default: "" %}
+
+<header class="topbar{% if show_lb_switch %} topbar--with-lb-switch{% endif %}">
+    <div class="topbar-left">
+        <div class="brand">
+            <a class="logo" href="{{ '/index.html' | relative_url }}" aria-label="Startseite"
+                style="--logo-mask-url: url('{{ '/assets/img/logo-dark-mode.svg' | relative_url }}');"></a>
+            <div class="brand-text">
+                <h1>MatheChecks</h1>
+                {% if header_context != "" %}
+                <p>{{ header_context }}</p>
+                {% endif %}
+            </div>
+        </div>
+        {% if show_lb_switch %}
+        <div class="lb-row">
+            <select class="lb-switch filter-select lb-gebiet-filter" data-lb-nav="true"
+                aria-label="Lernbereich auswählen">
+                {% for lb in site.data.lernbereiche %}
+                {% assign target_url = '/lernbereiche/' | append: lb.gebiet | append: '/' | append: lb.slug |
+                append: '/start.html' %}
+                <option value="{{ target_url | relative_url }}" data-gebiet="{{ lb.gebiet }}" {% if
+                    page.lernbereich==lb.slug %}selected{% endif %}>{{ lb.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endif %}
+    </div>
+    <div class="topbar-right">
+        <details class="topbar-actions-menu">
+            <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
+                <span class="topbar-dots-vertical" aria-hidden="true">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </span>
+                <span class="visually-hidden">Weitere Aktionen</span>
+            </summary>
+            <div class="topbar-actions-popover" role="menu" aria-label="Schnellaktionen">
+                <a class="topbar-actions-item {% if page.nav==" dashboard" and page.module_key==nil %}active{% endif %}"
+                    href="{{ '/dashboard.html' | relative_url }}" role="menuitem">
+                    <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="topbar-actions-item {% if page.nav==" material" and page.module_key==nil %}active{% endif %}"
+                    href="{{ '/material.html' | relative_url }}" role="menuitem">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🗂️</span>
+                    <span>Lernbereiche</span>
+                </a>
+                <button class="topbar-actions-item" id="calculatorToggleMenu" type="button" role="menuitem"
+                    aria-label="Taschenrechner">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🧮</span>
+                    <span>Taschenrechner</span>
+                </button>
+                <button class="topbar-actions-item" id="themeToggleMenu" data-theme-toggle="true" type="button"
+                    role="menuitem" aria-label="Light / Dark Mode wechseln">
+                    <span class="topbar-nav-glyph" aria-hidden="true">🌗</span>
+                    <span>Light / Dark</span>
+                </button>
+                <button class="topbar-actions-item" id="avatarMenuBtn" type="button" role="menuitem"
+                    aria-label="Anmelden">
+                    <span class="topbar-nav-glyph" aria-hidden="true">👤</span>
+                    <span>Anmelden</span>
+                </button>
+            </div>
+        </details>
+    </div>
+</header>
+
+<style id="moduletypen-runtime-colors">
+    /* Runtime-generated from moduletypen-data. */
+</style>
+
+<script id="moduletypen-data" type="application/json">{{ site.data.moduletypen | jsonify }}</script>
+<script id="gebiete-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
+<script>
+    (() => {
+        const dataNode = document.getElementById('moduletypen-data');
+        const styleNode = document.getElementById('moduletypen-runtime-colors');
+        if (!dataNode || !styleNode) return;
+
+        let moduletypen = [];
+        try {
+            moduletypen = JSON.parse(dataNode.textContent || '[]');
+        } catch (err) {
+            console.error('moduletypen konnten nicht geparst werden', err);
+            return;
+        }
+
+        const rootVars = [];
+        const iconRules = [];
+
+        moduletypen.forEach((mt) => {
+            if (!mt || !mt.key || !mt.system_color || !mt.system_rgb) return;
+            rootVars.push(`--mt-${mt.key}: ${mt.system_color};`);
+            rootVars.push(`--mt-${mt.key}-rgb: ${mt.system_rgb};`);
+            rootVars.push(`--mt-${mt.key}-soft: ${mt.system_soft || `rgba(${mt.system_rgb}, 0.12)`};`);
+            rootVars.push(`--mt-${mt.key}-border: rgba(${mt.system_rgb}, 0.30);`);
+
+            iconRules.push(`.module-icon-${mt.key} { color: ${mt.system_color}; }`);
+        });
+
+        if (!rootVars.length && !iconRules.length) return;
+        styleNode.textContent = `:root {\n  ${rootVars.join('\n  ')}\n}\n\n${iconRules.join('\n')}`;
+    })();
+
+    (() => {
+        const dataNode = document.getElementById('gebiete-data');
+        if (!dataNode) return;
+        let gebiete = [];
+        try {
+            gebiete = JSON.parse(dataNode.textContent || '[]');
+        } catch (err) {
+            console.error('gebiete konnten nicht geparst werden', err);
+            return;
+        }
+
+        const rules = [];
+        gebiete.forEach((g) => {
+            if (!g || !g.key) return;
+            rules.push(`.filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_dark}; }`);
+            rules.push(`.mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
+            rules.push(`.mat-card--compact[data-gebiet="${g.key}"] { --hero-accent: ${g.chip_color}; }`);
+            rules.push(`html.light .filter-select.lb-gebiet-filter option[data-gebiet="${g.key}"] { background: ${g.option_bg_light}; }`);
+            rules.push(`html.light .mat-badge.gebiet-badge[data-gebiet="${g.key}"] { background: ${g.icon_bg}; color: ${g.icon_color}; }`);
+        });
+
+        if (!rules.length) return;
+        const style = document.createElement('style');
+        style.id = 'gebiete-runtime-styles';
+        style.textContent = rules.join('\n');
+        document.head.appendChild(style);
+    })();
+</script>

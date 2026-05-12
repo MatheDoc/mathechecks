@@ -10,10 +10,10 @@ Dokumentation des aktuellen 3-Phasen-Recall-Moduls.
 
 | Schicht | Pfad | Rolle |
 |---|---|---|
-| **JS** | `dev/assets/js/modules/recall.js` | Karten-Rendering, Phasensteuerung, Timer-Logik |
-| **CSS** | `dev/assets/css/shared.css` → Abschnitte `recall-*`, `module-action-button`, `self-check-*` | Recall-spezifische Styles und geteilte UI-Bausteine |
-| **Layout** | `_layouts/dev-module.html` | Gemeinsames Modul-Layout |
-| **Daten** | `dev/checks.json` | Felder `Tipps`, `Ich kann`, `Schlagwort` pro Check |
+| **JS** | `assets/js/modules/recall.js` | Karten-Rendering, Phasensteuerung, Timer-Logik |
+| **CSS** | `assets/css/shared.css` → Abschnitte `recall-*`, `module-action-button`, `self-check-*` | Recall-spezifische Styles und geteilte UI-Bausteine |
+| **Layout** | `_layouts/module.html` | Gemeinsames Modul-Layout |
+| **Daten** | `checks.json` | Felder `Tipps`, `Ich kann`, `Schlagwort` pro Check |
 
 
 ## Lernfluss (3 Phasen + Ergebnis)
