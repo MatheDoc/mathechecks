@@ -1,8 +1,15 @@
----
-layout: skript
-title: Hypothesentests
-description: Hypothesentests - Skript
+﻿---
+layout: module
+title: Hypothesentests - Skript
+description: Lernbereich Hypothesentests, Modul Skript.
+page_context: Lernbereich
+nav: dashboard
+body_class: page-module
+module_key: skript
+published: true
 lernbereich: hypothesentests
+gebiet: stochastik
+permalink: /lernbereiche/stochastik/hypothesentests/skript.html
 ---
 
 ## Einführung
@@ -39,7 +46,7 @@ Ein Hypothesentest soll standardisiert, objektiv und reproduzierbar sein. Daher 
 
 Im Beispiel könnten sich Lehrerin und Schüler **vorab** auf folgende Regel einigen:
 
-> Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt.
+    "Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt."
 
 Erst **nachdem** diese Regel festgelegt wurde, wird die Datenerhebung durchgeführt. Das Ergebnis wird anschließend nach der vorher definierten Regel interpretiert – unabhängig von persönlichen Meinungen oder Interessen.
 
@@ -56,7 +63,7 @@ Dabei kann es zu zwei Arten von Fehlern kommen:
 
 | | $H_0$ ist wahr. | $H_1$ ist wahr. |
 | $H_0$ wird beibehalten. | ✅ Richtige Entscheidung | ⚠️ Fehler 2. Art (auch $\beta$-Fehler) |
-| $H_0$ wird verwerfen. | ⚠️ Fehler 1. Art (auch $\alpha$-Fehler) | ✅ Richtige Entscheidung |
+| $H_0$ wird verworfen. | ⚠️ Fehler 1. Art (auch $\alpha$-Fehler) | ✅ Richtige Entscheidung |
 
 Solche Fehler lassen sich prinzipiell nicht vermeiden – es sei denn, wir entscheiden uns immer für $H_0$ oder immer für $H_1$. Das ist jedoch nicht zielführend. Der Grund dafür liegt in der Natur einer Stichprobe: Wir können niemals mit absoluter Sicherheit sagen, was für die gesamte Grundgesamtheit gilt.
 
@@ -66,7 +73,7 @@ Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrsch
 
 Um auf Basis eines Stichprobenergebnisses schließlich eine Entscheidung zu treffen, wird eine **Entscheidungsregel** benötigt. Diese teilt den Wertebereich in einen **Annahmebereich** $A$ und einen **Ablehnungsbereich** $\overline{A}$ ein.
 
-Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,2}$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,2}$).
+Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,}2$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,}2$).
 
 ### Grundbegriffe im Beispiel
 
@@ -80,8 +87,8 @@ Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypoth
 
 **Wie lautet die Entscheidungsregel?**
 
-- Annahmebereich $A=\\{0{,}1{,}2{,}...{,}7\\}$
-- Ablehnungsbereich $\overline{A}=\\{8{,}9{,}10{,}...{,}50\\}$
+- Annahmebereich $A=\\{0,1,2,\ldots,7\\}$
+- Ablehnungsbereich $\overline{A}=\\{8,9,10,\ldots,50\\}$
 
 **Wie wird entschieden?**
 
@@ -89,17 +96,17 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 
 **Was bedeuten die Fehler 1. und 2. Art im Sachzusammenhang?**
 
-- Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
+- Fehler 1. Art: Man entscheidet sich dafür, dass mehr als 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil genau 10 % beträgt.
 
 - Fehler 2. Art: Man entscheidet sich dafür, dass genau 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil höher ist.
 
 **Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
 
-Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8{,}9{,}10{,}\dotsc{,}50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8,9,10,\ldots,50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
 
 $$
 \begin{align*}
-P(X\geq 8)&=Bcd(8;50;200;0{,}1)\\
+P(X\geq 8)&=Bcd(8;50;50;0{,}1)\\
             &=0{,}1221
 \end{align*}
 $$
@@ -108,58 +115,9 @@ $$
 
 Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}1$), wir jedoch die Nullhypothese beibehalten. Ohne zusätzliche Informationen über den tatsächlichen Wert von $p$ unter der Gegenhypothese kann diese Wahrscheinlichkeit nicht bestimmt werden.
 
-{%include info.html
-index="1"
-frage="Linksseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
-antwort="
-Beispiel: Gegeben ist ein Hypothesentest mit:
+{% include check-anker.html nummer=1 %}
 
-- $n=200$
-- $H_0$: $p=0{,}4$
-- $H_1$: $p<0{,}4$
-- $A=\\{71,72,...,200\\}$ und $\overline{A}=\\{0,1,...,70\\}$
-- Stichprobenergebnis: $k=69$
-
-Anwendung der Entscheidungsregel: Da $69\in\overline{A}$ wird die Nullhypothese abgelehnt und die Gegenhypothese angenommen.
-
-Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art:
-
-$$
-\begin{align*}
-P(X\leq 70) &= Bcd(0;70;200;0{,}4) \\
-            &= 0{,}0844
-\end{align*}
-$$
-
-"
-%}
-
-
-{%include info.html
-index="2"
-frage="Rechtsseitiger Hypothesentest: Anwendung der Entscheidungsregel und Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art"
-antwort="
-Beispiel: Gegeben ist ein Hypothesentest mit:
-
-- $n=200$
-- $H_0$: $p=0{,}4$
-- $H_1$: $p>0{,}4$
-- $A=\\{0,1,2,...,90\\}$ und $\overline{A}=\\{91,92,...,200\\}$
-- Stichprobenergebnis: $k=88$
-
-Anwendung der Entscheidungsregel: Da $88\in A$ wird die Nullhypothese angenommen und die Gegenhypothese abgelehnt.
-
-Bestimmung der Wahrscheinlichkeit des Fehlers 1. Art
-
-$$
-\begin{align*}
-P(X\geq 91) &= Bcd(91;200;200;0{,}4) \\
-            &= 0{,}0655
-\end{align*}
-$$
-
-"
-%}
+{% include check-anker.html nummer=2 %}
 
 
 <!-- ## Exkurs: p-Hacking-->
@@ -172,68 +130,21 @@ Das zentrale Prinzip lautet: Wir legen eine Schranke für die maximal tolerierte
 
 Der Ablehnungsbereich wird anschließend so gewählt, dass die Wahrscheinlichkeit für einen Fehler 1. Art höchstens $\alpha$ beträgt. Zugleich soll der Ablehnungsbereich im Rahmen des vorgegebenen Signifikanzniveaus möglichst groß sein, damit die Wahrscheinlichkeit für einen Fehler 2. Art (fälschliches Beibehalten von $H_0$, obwohl $H_1$ zutrifft) möglichst gering wird.
 
-{%include info.html
-index="3"
-frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel"
-antwort="
-Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}05$. Außerdem gelte
+Wir betrachten zunächst die Herleitung der Entscheidungsregel für einen linksseitigen Test, bevor wir uns dem rechtsseitigen Test zuwenden. In beiden Fällen werden wir die Entscheidungsregel zunächst mit Strukturhilfe herleiten, bevor wir sie ohne Strukturhilfe formulieren.
 
-|Nullhypothese | Gegenhypothese |
-| $H_0: 0{,}4$ | $H_1: p<0{,}4$ |
-| $A=\\{k+1,k+2,...,200\\}$ | $\overline{A}=\\{0,1,2,...,k\\}$ |
+{% include check-anker.html nummer=3 %}
 
-Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p<0{,}4$ bei kleinen Stichprobenergebnissen für $H_1$ entscheiden, und bei großen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das größte $k$, so dass $P(X\leq k)<0{,}05$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
+Analog gilt das Vorgehen für den rechtsseitigen Test: Hier wird der Ablehnungsbereich am oberen Ende gesucht, und die Bedingung lautet $P(X\geq k) < \alpha$.
 
-$$
-\begin{align*}
-P(X\leq 68)&=Bcd(0;68;200;0{,}4)\\
-            &=0{,}0475<0{,}05\\
-            \\
-P(X\leq 69)&=Bcd(0;69;200;0{,}4)\\
-            &=0{,}0639>0{,}05
-\end{align*}
-$$
+{% include check-anker.html nummer=4 %}
 
-Damit folgt $k=68$, und somit $A=\\{69,70,...,200\\}$ und $\overline{A}=\\{0,1,2,...,68\\}$.
-"
-%}
+Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen auch ohne zusätzliche Gerüstung durchgeführt werden.
+
+{% include check-anker.html nummer=5 %}
+
+{% include check-anker.html nummer=6 %}
 
 
-{%include info.html
-index="4"
-frage="Rechtssseitiger Hypothesentest: Herleitung der Entscheidungsregel"
-antwort="
-Beispiel: Gegeben sei ein Hypothesentest mit Stichprobenumfang $n=200$ und Signifikanzniveau $\alpha=0{,}02$. Außerdem gelte
-
-|Nullhypothese | Gegenhypothese |
-| $H_0: 0{,}4$ | $H_1: p>0{,}4$ |
-| $A=\\{0,1,2,...,k-1\\}$ | $\overline{A}=\\{k,k+1,...,200\\}$ |
-
-Der Annahme- und Ablehnungsbereich ist von der abgebildeten Gestalt, da wir uns wegen $H_1: p>0{,}4$ bei großen Stichprobenergebnissen für $H_1$ entscheiden, und bei kleinen für $H_0$. Außerdem haben wir eine Unbekannte $k$ eingefügt, um die Bereiche prägnant beschreiben zu können. Gesucht ist nun das kleinste $k$, so dass $P(X\geq k)<0{,}02$. Mit dem Taschenrechner oder Tafelwerk ermitteln wir:
-
-$$
-\begin{align*}
-P(X\geq 94)&=Bcd(94;200;200;0{,}4)\\
-            &=0{,}0263>0{,}02\\
-            \\
-P(X\geq 95)&=Bcd(95;200;200;0{,}4)\\
-            &=0{,}0188<0{,}02
-\end{align*}
-$$
-
-Damit folgt $k=95$, und somit $A=\\{0,1,2,...,94\\}$ und $\overline{A}=\\{95,96,...,200\\}$.
-"
-%}
 
 
-{%include info.html
-index="5"
-frage="Linksseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
-antwort="siehe oben"%}
-
-
-{%include info.html
-index="6"
-frage="Rechtsseitiger Hypothesentest: Herleitung der Entscheidungsregel (ohne Strukturhilfe)"
-antwort="siehe oben"%}
 

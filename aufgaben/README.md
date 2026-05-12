@@ -86,7 +86,7 @@ Sie werden beim Cleanup **nicht gelöscht**, solange sie in `project_config.json
 
 Nach einem vollständigen Batch-Lauf (ohne `--filter`) werden alle JSON-Dateien in `exports/json/` gelöscht, die **weder** einem Job-Target **noch** einem Static-Eintrag entsprechen. Das stellt sicher, dass verwaiste Dateien automatisch entfernt werden.
 
-## Bezug zu `dev/checks.json`
+## Bezug zu `checks.json`
 
 `checks.json` ist die zentrale Kompetenzliste der Website. Jeder Eintrag dort verweist über `Sammlung` auf den Dateinamen einer Aufgabensammlung (ohne `.json`).  
 Die Kette ist:
@@ -154,7 +154,7 @@ python -m aufgaben.cli validate-binomial
    Jede Sammlung enthält in der Regel ~20 Aufgaben. Das Frontend wählt bei jeder Anzeige zufällig eine davon aus (bzw. beim Reload eine andere). Das ist **immer** der Fall und unabhängig von `questionOrder`.
 
 2. **Fragen-Reihenfolge (innerhalb einer Aufgabe):**  
-   Jede Aufgabe hat ein Array `fragen` mit zugehörigem Array `antworten`. Ob diese Paare bei der Anzeige permutiert werden, steuert `questionOrder` in `dev/checks.json`:
+  Jede Aufgabe hat ein Array `fragen` mit zugehörigem Array `antworten`. Ob diese Paare bei der Anzeige permutiert werden, steuert `questionOrder` in `checks.json`:
    - `"fixed"` – Reihenfolge wie im Generator bzw. in der JSON-Datei definiert.
    - `"shuffle"` – Frage-Antwort-Paare werden bei jedem Rendern zufällig permutiert (Fisher-Yates).
 
@@ -162,14 +162,14 @@ python -m aufgaben.cli validate-binomial
 
 | Aspekt | Quelle | Ort |
 |---|---|---|
-| Aufgabenauswahl (welche der ~20) | Frontend | `dev/assets/js/modules/training.js` |
-| Fragen-Reihenfolge | `questionOrder` in `dev/checks.json` | Frontend (`training.js`, `script-task-duplicates.js`) |
+| Aufgabenauswahl (welche der ~20) | Frontend | `assets/js/modules/training.js` |
+| Fragen-Reihenfolge | `questionOrder` in `checks.json` | Frontend (`training.js`, `script-task-duplicates.js`) |
 | Aufgabenerzeugung | Generatoren / statische JSON | `aufgaben/` (CLI) |
 
 ### Regeln
 
 - Generatoren erzeugen Aufgaben **immer in fester Reihenfolge** – kein Shuffling in der CLI oder in Generatoren.
-- `questionOrder` wird ausschließlich in `dev/checks.json` pro Check-Eintrag gesetzt.
+- `questionOrder` wird ausschließlich in `checks.json` pro Check-Eintrag gesetzt.
 - Das Frontend liest `questionOrder` aus den Check-Daten und shuffelt die Fragen/Antworten nur bei `"shuffle"`.
 
 ## Neuen Generator anlegen
@@ -177,13 +177,13 @@ python -m aufgaben.cli validate-binomial
 1. Neue Klasse in `aufgaben/generators/<bereich>/...` von `TaskGenerator` ableiten.
 2. `generator_key` setzen (z. B. `analysis.nullstellen.linear`).
 3. Job mit `targets` in `project_config.json` ergänzen.
-4. Passenden Eintrag in `dev/checks.json` anlegen (mit übereinstimmender `Sammlung`).
+4. Passenden Eintrag in `checks.json` anlegen (mit übereinstimmender `Sammlung`).
 
 ## Neue statische Sammlung anlegen
 
 1. JSON-Datei manuell unter `aufgaben/exports/json/<gebiet>/<lernbereich>/<sammlung>.json` ablegen.
 2. Eintrag in `project_config.json` unter `"static"` hinzufügen.
-3. Passenden Eintrag in `dev/checks.json` anlegen.
+3. Passenden Eintrag in `checks.json` anlegen.
 
 ## Moodle-XML-Export
 

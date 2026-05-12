@@ -11,21 +11,21 @@ Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, k
 
 | Datenentität | Datei/Ordner | Granularität | Inhalt |
 |---|---|---|---|
-| **Lernbereich-Metadaten** | `_data/dev_lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Szenario (Kontext, Einstiegsfrage, Abschluss, Bild) |
-| **Check-Metadaten** | `dev/checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
+| **Lernbereich-Metadaten** | `_data/lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Szenario (Kontext, Einstiegsfrage, Abschluss, Bild) |
+| **Check-Metadaten** | `checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
-| **Beispiele** | `dev/lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
-| **Warm-Up** | `_data/dev_warmup/<slug>.yml` | pro Lernbereich | meist 3 Karten, optional 4, plus Abschlusstext |
-| **Modultypen** | `_data/dev_moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
-| **Gebiete** | `_data/dev_gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik |
+| **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
+| **Warm-Up** | `_data/warmup/<slug>.yml` | pro Lernbereich | meist 3 Karten, optional 4, plus Abschlusstext |
+| **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
+| **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik |
 
 
 ## Modul → Datenquelle (Konsumenten-Matrix)
 
 ```
-                    dev_lernbereiche  checks.json  beispiele/*.md  Aufgaben-JSON  dev_warmup
+                    lernbereiche.yml  checks.json  beispiele/*.md  Aufgaben-JSON  warmup/*.yml
                     (pro LB)          (pro Check)  (pro Check)    (pro Check)    (pro LB)
-                    ────────────────  ───────────  ─────────────  ─────────────  ──────────
+                    ────────────────  ───────────  ─────────────  ─────────────  ───────────
 Start               Name, Gebiet
 Warm-Up                                                                          meist 3 Karten
 Kompetenzliste                        Kompetenztext
@@ -41,7 +41,7 @@ Flashcards                                                        Aufgaben
 
 ## Kernszenario pro Lernbereich
 
-Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/dev_lernbereiche.yml` definiert ist.
+Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/lernbereiche.yml` definiert ist.
 
 ### Felder
 
@@ -50,7 +50,7 @@ Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/dev_l
 | `szenario` | Kurzbeschreibung des Kontexts (1 Satz) |
 | `szenario_einstieg` | Offene Frage, die zu Beginn des Skripts aufgeworfen wird (noch nicht lösbar) |
 | `szenario_abschluss` | Auflösung am Ende des Skripts (Frage mit gelernten Methoden beantwortet) |
-| `szenario_bild` | Dateiname des charakteristischen Bilds (`dev/assets/img/szenarien/<dateiname>`) |
+| `szenario_bild` | Dateiname des charakteristischen Bilds (`assets/img/start/<dateiname>`) |
 
 ### Verankerung im Skript
 
@@ -75,7 +75,7 @@ Pro Check eine Markdown-Datei im Ordner `beispiele/` des jeweiligen Lernbereichs
 ### Pfad
 
 ```
-dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
+lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 ```
 
 ### Namenskonvention
@@ -96,12 +96,12 @@ dev/lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | direkt in MD | Überblick, Lernpfad |
-| Warm-Up | `warmup.md` | `_data/dev_warmup/<slug>.yml` | meist 3 Karten + Abschluss, optional 4, via Liquid-Template |
+| Warm-Up | `warmup.md` | `_data/warmup/<slug>.yml` | meist 3 Karten + Abschluss, optional 4, via Liquid-Template |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
-| Skript | `skript.md` | direkt in MD + Szenario aus `dev_lernbereiche.yml` | Fachinhalt, Check-Anker |
+| Skript | `skript.md` | direkt in MD + Szenario aus `_data/lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Spaced Repetition, via JS |
 
 

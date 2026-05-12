@@ -1,18 +1,18 @@
-# Skript-Widgets
+﻿# Skript-Widgets
 
 Interaktive Visualisierungen innerhalb von `skript.md`-Dateien.
-Widgets werden per `{% include dev/widgets/widget-*.html %}` eingebunden und über Slider/Checkboxen gesteuert.
+Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über Slider/Checkboxen gesteuert.
 
 
 ## Dateien
 
 | Schicht | Pfad | Rolle |
 |---|---|---|
-| **HTML** | `_includes/dev/widgets/widget-*.html` | Markup (Slider, Labels, Plot-Container) |
-| **CSS** | `dev/assets/css/shared.css` → Abschnitt *Skript-Widget System* | Layout, Panel-Styling, Dark-Mode |
-| **JS – Logik** | `dev/assets/js/modules/skript-visuals.js` | Event-Handling, Slider → Figure-Builder → Plotly-Render |
-| **JS – Visuals** | `dev/assets/js/visuals/*.js` | Figure-Builder (Daten + Layout für Plotly) |
-| **JS – Plotly** | `dev/assets/js/visuals/plotly-defaults.js` | `plotlyRender()`, `themeTextColor()`, shared Defaults |
+| **HTML** | `_includes/widgets/widget-*.html` | Markup (Slider, Labels, Plot-Container) |
+| **CSS** | `assets/css/shared.css` → Abschnitt *Skript-Widget System* | Layout, Panel-Styling, Dark-Mode |
+| **JS – Logik** | `assets/js/modules/skript-visuals.js` | Event-Handling, Slider → Figure-Builder → Plotly-Render |
+| **JS – Visuals** | `assets/js/visuals/*.js` | Figure-Builder (Daten + Layout für Plotly) |
+| **JS – Plotly** | `assets/js/visuals/plotly-defaults.js` | `plotlyRender()`, `themeTextColor()`, shared Defaults |
 
 
 ## Widgets
@@ -73,7 +73,7 @@ Jedes Widget folgt demselben Aufbau:
 
 ## JS-Architektur
 
-### Figure-Builder (`dev/assets/js/visuals/`)
+### Figure-Builder (`assets/js/visuals/`)
 
 Reine Funktionen: Eingabe-Parameter → `{ data, layout }` Objekt.
 Kein DOM-Zugriff, kein Plotly-Aufruf.
@@ -109,8 +109,9 @@ Einstiegspunkt: `initSkriptVisuals(root)`.
 
 ## Neues Widget anlegen
 
-1. HTML-Include in `_includes/dev/widgets/widget-<name>.html` mit Standard-Markup (s. o.)
-2. Figure-Builder in `dev/assets/js/visuals/<name>.js` – exportiert eine `build*Figure()`-Funktion
+1. HTML-Include in `_includes/widgets/widget-<name>.html` mit Standard-Markup (s. o.)
+2. Figure-Builder in `assets/js/visuals/<name>.js` – exportiert eine `build*Figure()`-Funktion
 3. Handler-Block in `skript-visuals.js`: Container suchen, Slider-Events binden, Builder + `plotlyRender()` aufrufen
 4. Falls nötig: Widget-spezifisches CSS in `shared.css` unterhalb des Widget-System-Blocks
-5. In `skript.md` einbinden: `{% include dev/widgets/widget-<name>.html %}`
+5. In `skript.md` einbinden: `{% include widgets/widget-<name>.html %}`
+

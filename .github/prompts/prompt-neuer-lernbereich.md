@@ -8,7 +8,7 @@ Lese vor Beginn `.github/datenmodell.md` und `.github/glossary.md`.
 
 ## Schrittfolge
 
-### 1. Checks definieren (`dev/checks.json`)
+### 1. Checks definieren (`checks.json`)
 
 - Lernbereich in überprüfbare Einheiten gliedern
 - Pro Check: `Ich kann`, `Schlagwort`, `Tipps`, `skript_anchor`, `check_id`, `Nummer`

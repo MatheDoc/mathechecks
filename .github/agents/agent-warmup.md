@@ -1,4 +1,4 @@
----
+﻿---
 name: agent-warmup
 description: "Use when: Warm-Up-Modul erstellen, überarbeiten oder prüfen. Zuständig für Neugier-Karten, Vorwissensaktivierung und motivierenden Einstieg in Lernbereiche von MatheChecks."
 tools: [read, edit, search, agent]
@@ -12,11 +12,11 @@ Du erstellst und überarbeitest die Warm-Up-Karten für alle Lernbereiche von Ma
 
 ## Zuständigkeit
 
-- `_data/dev_warmup/<lernbereich-slug>.yml` – eine Inhaltsdatei pro Lernbereich (3 Karten als Standard, optional 4 + Abschluss)
-- `_includes/dev/moduletypen/warmup-content.html` – Liquid-Template
-- `dev/assets/js/modules/warmup.js` – Interaktionslogik
-- `dev/assets/css/einstieg.css` – Modulspezifisches Styling
-- Eintrag `warmup` in `_data/dev_moduletypen.yml`
+- `_data/warmup/<lernbereich-slug>.yml` – eine Inhaltsdatei pro Lernbereich (3 Karten als Standard, optional 4 + Abschluss)
+- `_includes/module/warmup-content.html` – Liquid-Template
+- `assets/js/modules/warmup.js` – Interaktionslogik
+- `assets/css/einstieg.css` – Modulspezifisches Styling
+- Eintrag `warmup` in `_data/moduletypen.yml`
 
 ## Pflichtlektüre
 
@@ -82,7 +82,7 @@ lernbereich-slug:
   abschluss: "..."       # Motivierender Abschlusstext
 ```
 
-Hinweis: In den aktuellen `_data/dev_warmup/<slug>.yml`-Dateien steht jeweils nur der Inhalt des Lernbereichs, also direkt `karten:` und `abschluss:` ohne äußeren `lernbereich-slug`.
+Hinweis: In den aktuellen `_data/warmup/<slug>.yml`-Dateien steht jeweils nur der Inhalt des Lernbereichs, also direkt `karten:` und `abschluss:` ohne äußeren `lernbereich-slug`.
 
 ## Didaktische Leitlinien
 
@@ -118,3 +118,4 @@ Hinweis: In den aktuellen `_data/dev_warmup/<slug>.yml`-Dateien steht jeweils nu
 - Betroffene Lernbereiche auflisten
 - Geänderte Karten benennen (Rolle im Spannungsbogen + was geändert wurde)
 - Bei neuen Inhalten: kurze didaktische Begründung
+

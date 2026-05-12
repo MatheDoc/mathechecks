@@ -18,7 +18,7 @@ Priorität: fachliche Korrektheit vor Stil.
 
 - Fachlich sind Inhalte in **Lernbereiche** gegliedert.
 - **Checks** unterteilen Lernbereiche weiter in einzelne Einheiten.
-- Die Zuordnung von Checks zu Lernbereichen und Modulen erfolgt über `dev/checks.json`.
+- Die Zuordnung von Checks zu Lernbereichen und Modulen erfolgt über `checks.json`.
 
 Gebiete der Plattform:
 
@@ -67,13 +67,10 @@ Datenmodell & Inhalts-Architektur
 → `.github/datenmodell.md`
 
 Lernbereiche  
-→ `dev/lernbereiche/README.md`
+→ `lernbereiche/README.md`
 
 Aufgabengenerator  
 → `aufgaben/README.md`
-
-Feed-System  
-→ `dev/feed/README.md`
 
 Skript-Widgets  
 → `.github/widgets.md`
