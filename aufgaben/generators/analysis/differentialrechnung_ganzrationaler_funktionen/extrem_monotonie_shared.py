@@ -153,9 +153,7 @@ def interval_delimiters(left: float | None, right: float | None) -> tuple[str, s
 
 def build_interval_input_note() -> str:
     return (
-        "Bei endlichen Grenzen verwenden wir eckige Klammern, bei $\\pm\\infty$ runde Klammern. "
-        "Für unbeschränkte Intervallgrenzen tragen Sie $-\\infty$ bzw. $+\\infty$ ein, "
-        "zum Beispiel als '-inf' bzw. '+inf'."
+        "Für unbeschränkte Intervallgrenzen tragen Sie $-\\infty$ bzw. $+\\infty$ ein, zum Beispiel als '-inf' bzw. '+inf'."
     )
 
 
