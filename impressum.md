@@ -12,19 +12,16 @@ Angaben gemäß § 5 DDG und § 18 Abs. 2 MStV
 
 ### Diensteanbieter
 
-[Vorname Nachname]<br>
-c/o [ladungsfähige Anschrift oder Impressumsservice]<br>
-[Straße Hausnummer]<br>
-[PLZ Ort]<br>
-Deutschland
+Sven Führing<br>
+Siekwiese 3<br>
+32657 Lemgo
 
 ### Kontakt
 
-E-Mail: kontakt@mathechecks.de
+E-Mail: mathechecks@gmail.com
 
 ### Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
 
-[Vorname Nachname]<br>
 Anschrift wie oben
 
 ### Haftung für Inhalte
