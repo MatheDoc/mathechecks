@@ -4,6 +4,7 @@ import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialI
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
+import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
@@ -405,6 +406,53 @@ function initRouletteWidgets(root) {
     });
 }
 
+function initPunktwolkeRegressionWidgets(root) {
+    root.querySelectorAll(".pr-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const plotDiv = widget.querySelector(".pr-widget__plot");
+        const typeNode = widget.querySelector(".pr-widget__type");
+        const formulaNode = widget.querySelector(".pr-widget__formula");
+        const refreshButton = widget.querySelector(".pr-widget__button");
+        let revealTimer = null;
+
+        if (!plotDiv || !typeNode || !formulaNode) return;
+
+        function updateFormula(latex = "") {
+            formulaNode.innerHTML = latex;
+            if (latex && window.MathJax?.typesetPromise) {
+                window.MathJax.typesetPromise([formulaNode]);
+            }
+        }
+
+        function renderScenario() {
+            if (revealTimer) {
+                window.clearTimeout(revealTimer);
+                revealTimer = null;
+            }
+
+            const scenario = createPunktwolkeRegressionScenario();
+            typeNode.textContent = "Punktewolke wird analysiert ...";
+            updateFormula("");
+
+            const initialFigure = buildPunktwolkeRegressionFigure({ scenario, showCurve: false });
+            plotlyRender(plotDiv, initialFigure.data, initialFigure.layout);
+
+            revealTimer = window.setTimeout(() => {
+                if (!widget.isConnected) return;
+                typeNode.textContent = `Passende Regression: ${scenario.typeLabel}`;
+                updateFormula(scenario.formulaLatex);
+                const revealedFigure = buildPunktwolkeRegressionFigure({ scenario, showCurve: true });
+                plotlyRender(plotDiv, revealedFigure.data, revealedFigure.layout);
+            }, 1000);
+        }
+
+        refreshButton?.addEventListener("click", renderScenario);
+        renderScenario();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -414,6 +462,8 @@ export function initSkriptVisuals(root) {
     initRouletteWidgets(root);
 
     if (!window.Plotly) return;
+
+    initPunktwolkeRegressionWidgets(root);
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");

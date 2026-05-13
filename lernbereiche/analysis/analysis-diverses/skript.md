@@ -19,7 +19,7 @@ Wie hängen zwei Größen voneinander ab? Diese Frage stellt sich in nahezu säm
 1. Welche Funktionsart (linear, quadratisch, kubisch, exponentiell etc.) ist am ehesten geeignet?
 2. Welchen Wert haben die Parameter der gewählten Funktionsart (bei linearen Funktionen müssen z.B. die Werte der Steigung und des y-Abschnitts bestimmt werden)?
 
-<img src="bsp-regression.png" class="diagramm">
+{% include widgets/widget-punktwolke-regression.html %}
 
 Die erste Frage kann grob beantwortet werden, indem man die vorliegenden Datenpunkte graphisch darstellt und sich dann überlegt, welcher Funktionsgraph am besten zu der Punktwolke passt (hier gibt es natürlich auch systematischere Verfahren). Die 2. Frage kann direkt mit Hilfe des GTRs (siehe Beispiele) beantwortet werden. Hat man sich bei der 1. Frage für eine lineare Funktion entschieden, so spricht man auch von einer linearen Regression (entsprechend: quadratisch, exponentiell etc.).
 

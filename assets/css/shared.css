@@ -3893,7 +3893,8 @@ html.light .recall-list--user .recall-list__item {
 
 /* ── Widget-specific: Roulette ── */
 .roulette-widget .widget-controls,
-.ms-widget .widget-controls {
+.ms-widget .widget-controls,
+.pr-widget .widget-controls {
   width: 100%;
   max-width: none;
 }
@@ -3907,7 +3908,8 @@ html.light .recall-list--user .recall-list__item {
 }
 
 .roulette-widget__button,
-.ms-widget__button {
+.ms-widget__button,
+.pr-widget__button {
   appearance: none;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -3920,9 +3922,57 @@ html.light .recall-list--user .recall-list__item {
 }
 
 .roulette-widget__button:hover,
-.ms-widget__button:hover {
+.ms-widget__button:hover,
+.pr-widget__button:hover {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   background: var(--accent-soft);
+}
+
+.pr-widget .diagramm {
+  max-width: 760px;
+}
+
+.pr-widget__summary {
+  display: grid;
+  gap: 10px;
+}
+
+.pr-widget__prompt {
+  margin: 0;
+  color: var(--text);
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.pr-widget__type {
+  min-height: 1.4em;
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.pr-widget__formula {
+  min-height: 3.4rem;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 12px;
+  text-align: center;
+}
+
+.pr-widget__formula:empty::before {
+  content: "Regressionsfunktion wird gleich eingeblendet.";
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.pr-widget__actions {
+  display: flex;
+  justify-content: center;
 }
 
 .roulette-widget__event {
