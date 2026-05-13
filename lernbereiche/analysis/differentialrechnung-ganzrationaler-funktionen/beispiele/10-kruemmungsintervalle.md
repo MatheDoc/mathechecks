@@ -7,20 +7,20 @@ Bestimme die Krümmungsintervalle der Funktion $f(x)=x^3-3x^2+2$.
 
 - Zweite Ableitung berechnen
 
-    $$f''(x)=6x-6=6(x-1)$$
+    $$f^{\prime\prime}(x)=6x-6=6(x-1)$$
 
-- Nullstelle von $f''$ bestimmen
+- Nullstelle von $f^{\prime\prime}$ bestimmen
 
     $$x=1$$
 
     Diese Stelle zerlegt die Zahlengerade in zwei Intervalle.
 
-- Vorzeichen von $f''$ prüfen
+- Vorzeichen von $f^{\prime\prime}$ prüfen
 
     | Intervall | $(-\infty;1]$ | $[1;\infty)$ |
     |---|---|---|
     | Beispielwert | $x=0$ | $x=2$ |
-    | Wert von $f''(x)$ | $-6$ | $6$ |
+    | Wert von $f^{\prime\prime}(x)$ | $-6$ | $6$ |
     | Vorzeichen | $-$ | $+$ |
     | Folgerung | rechtsgekrümmt / konkav | linksgekrümmt / konvex |
 

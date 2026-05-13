@@ -9,7 +9,7 @@ Untersuche die Funktion $f(x)=x^4-6x^2+8x$ auf Hochpunkt, Tiefpunkt, Sattelpunkt
 
 $$\begin{aligned}
 f'(x) &= 4x^3-12x+8 = 4(x+2)(x-1)^2 \\
-f''(x) &= 12x^2-12 = 12(x+1)(x-1)
+f^{\prime\prime}(x) &= 12x^2-12 = 12(x+1)(x-1)
 \end{aligned}$$
 
 **Kandidatenstellen bestimmen**
@@ -18,13 +18,13 @@ $$f'(x)=0 \quad\Rightarrow\quad 4(x+2)(x-1)^2=0 \quad\Rightarrow\quad x=-2 \text
 
 **Einfache Extremstelle prüfen**
 
-$$f''(-2)=36>0$$
+$$f^{\prime\prime}(-2)=36>0$$
 
 Also liegt bei $x=-2$ ein Tiefpunkt vor.
 
 **Spezialfall bei $x=1$ untersuchen**
 
-$$f''(1)=0$$
+$$f^{\prime\prime}(1)=0$$
 
 Der Test mit der zweiten Ableitung entscheidet hier also nicht. Deshalb betrachten wir den Vorzeichenwechsel von $f'$.
 

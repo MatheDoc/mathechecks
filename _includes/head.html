@@ -7,3 +7,100 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 <link rel="stylesheet" href="{{ '/assets/css/shared.css?v=20260512-dropdown-native' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/calculator.css?v=20260512-dropdown-native' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/privacy-consent.css?v=20260513-ga-consent' | relative_url }}">
+<script>
+	(function () {
+		const measurementId = {{ site.google_analytics_measurement_id | default: '' | jsonify }};
+		const consentStorageKey = 'mathechecks.analytics-consent.v1';
+		const analyticsState = window.MatheChecksAnalytics = window.MatheChecksAnalytics || {};
+
+		analyticsState.measurementId = measurementId;
+		analyticsState.consentStorageKey = consentStorageKey;
+		analyticsState.scriptId = 'mc-ga-script';
+		analyticsState.loaded = Boolean(analyticsState.loaded);
+
+		analyticsState.readConsent = function readConsent() {
+			try {
+				const raw = window.localStorage.getItem(consentStorageKey);
+				if (!raw) return null;
+				const parsed = JSON.parse(raw);
+				return parsed && typeof parsed === 'object' ? parsed : null;
+			} catch {
+				return null;
+			}
+		};
+
+		analyticsState.hasAnalyticsConsent = function hasAnalyticsConsent() {
+			return Boolean(analyticsState.readConsent()?.analytics);
+		};
+
+		analyticsState.clearAnalyticsCookies = function clearAnalyticsCookies() {
+			const cookieNames = document.cookie
+				.split(';')
+				.map((entry) => entry.trim().split('=')[0])
+				.filter((name) => /^_ga($|_)/.test(name) || /^_gid$/.test(name) || /^_gat($|_)/.test(name));
+
+			if (cookieNames.length === 0) return;
+
+			const hostname = window.location.hostname || '';
+			const domainVariants = [''];
+			if (hostname) {
+				domainVariants.push(hostname);
+				const parts = hostname.split('.');
+				for (let index = 0; index < parts.length - 1; index += 1) {
+					domainVariants.push(`.${parts.slice(index).join('.')}`);
+				}
+			}
+
+			cookieNames.forEach((name) => {
+				domainVariants.forEach((domain) => {
+					const domainPart = domain ? ` domain=${domain};` : '';
+					document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;${domainPart} SameSite=Lax`;
+				});
+			});
+		};
+
+		analyticsState.disableAnalytics = function disableAnalytics() {
+			if (!measurementId) return;
+			window[`ga-disable-${measurementId}`] = true;
+			analyticsState.clearAnalyticsCookies();
+		};
+
+		analyticsState.loadAnalytics = function loadAnalytics() {
+			if (!measurementId) return false;
+
+			window[`ga-disable-${measurementId}`] = false;
+			window.dataLayer = window.dataLayer || [];
+			window.gtag = window.gtag || function gtag() {
+				window.dataLayer.push(arguments);
+			};
+
+			if (!analyticsState.loaded) {
+				const existingScript = document.getElementById(analyticsState.scriptId);
+				if (!existingScript) {
+					const script = document.createElement('script');
+					script.async = true;
+					script.id = analyticsState.scriptId;
+					script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+					document.head.appendChild(script);
+				}
+				analyticsState.loaded = true;
+			}
+
+			window.gtag('js', new Date());
+			window.gtag('config', measurementId, {
+				anonymize_ip: true,
+				allow_google_signals: false,
+				transport_type: 'beacon'
+			});
+
+			return true;
+		};
+
+		if (analyticsState.hasAnalyticsConsent()) {
+			analyticsState.loadAnalytics();
+		} else {
+			analyticsState.disableAnalytics();
+		}
+	})();
+</script>

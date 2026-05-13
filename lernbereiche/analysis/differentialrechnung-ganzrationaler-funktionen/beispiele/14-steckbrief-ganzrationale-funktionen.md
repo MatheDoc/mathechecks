@@ -17,13 +17,13 @@ Stelle eine ganzrationale Funktion dritten Grades auf, die bei $E(0\mid 3)$ eine
 
     Aus $W(1\mid 1)$ folgt:
 
-    $$f(1)=1 \quad\text{und}\quad f''(1)=0$$
+    $$f(1)=1 \quad\text{und}\quad f^{\prime\prime}(1)=0$$
 
 - Ableitungen bilden
 
     $$\begin{aligned}
     f'(x) &= 3ax^2+2bx+c \\
-    f''(x) &= 6ax+2b
+    f^{\prime\prime}(x) &= 6ax+2b
     \end{aligned}$$
 
 - Bedingungen in Gleichungen übersetzen
@@ -32,7 +32,7 @@ Stelle eine ganzrationale Funktion dritten Grades auf, die bei $E(0\mid 3)$ eine
     f(0)=3 &\Rightarrow d=3 \\
     f'(0)=0 &\Rightarrow c=0 \\
     f(1)=1 &\Rightarrow a+b+c+d=1 \\
-    f''(1)=0 &\Rightarrow 6a+2b=0
+    f^{\prime\prime}(1)=0 &\Rightarrow 6a+2b=0
     \end{aligned}$$
 
     Mit $c=0$ und $d=3$ wird daraus das LGS
@@ -54,6 +54,6 @@ Stelle eine ganzrationale Funktion dritten Grades auf, die bei $E(0\mid 3)$ eine
 
     Zur Kontrolle:
 
-    $$f''(0)=6\cdot 0+2\cdot(-3)=-6<0,$$
+    $$f^{\prime\prime}(0)=6\cdot 0+2\cdot(-3)=-6<0,$$
 
     also liegt bei $E(0\mid 3)$ tatsächlich ein Hochpunkt vor.

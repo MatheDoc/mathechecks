@@ -43,7 +43,7 @@ Welche Funktionen haben einen ertragsgesetzlichen Verkauf?
     Die hinreichende Bedingung:
 
     $$
-    K_4'''(-1)=3>0\text{ (minimale Steigung)}
+    K_4^{\prime\prime\prime}(-1)=3>0\text{ (minimale Steigung)}
     $$
 
     Die Wendestelle ist also negativ. 👉 nicht-ertragsgesetzlich ❌
@@ -77,7 +77,7 @@ Welche Funktionen haben einen ertragsgesetzlichen Verkauf?
     Die hinreichende Bedingung:
 
     $$
-    K_5'''(4)=3>0\text{ (minimale Steigung)}
+    K_5^{\prime\prime\prime}(4)=3>0\text{ (minimale Steigung)}
     $$
 
     Die Wendestelle $x_w$ ist also positiv. ✔️

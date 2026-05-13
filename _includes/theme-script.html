@@ -230,4 +230,195 @@
                 // Keep the hardcoded fallback labels when dynamic feed data is unavailable.
             });
     })();
+
+    (function () {
+        const analyticsState = window.MatheChecksAnalytics;
+        if (!analyticsState || !analyticsState.measurementId) return;
+
+        const consentStorageKey = analyticsState.consentStorageKey;
+        const root = document.documentElement;
+        const body = document.body;
+        if (!body) return;
+
+        let bannerNode = null;
+        let settingsNode = null;
+        let analyticsToggleNode = null;
+        let hintNode = null;
+
+        function readConsent() {
+            return analyticsState.readConsent?.() || null;
+        }
+
+        function writeConsent(consent) {
+            try {
+                window.localStorage.setItem(consentStorageKey, JSON.stringify(consent));
+            } catch {
+                // Ignore storage failures and still apply the selection for the current page.
+            }
+        }
+
+        function syncToggleFromConsent() {
+            if (!analyticsToggleNode) return;
+            analyticsToggleNode.checked = Boolean(readConsent()?.analytics);
+        }
+
+        function syncHint() {
+            if (!hintNode) return;
+            const hasConsent = Boolean(readConsent()?.analytics);
+            hintNode.textContent = hasConsent
+                ? 'Google Analytics ist aktuell aktiviert.'
+                : 'Google Analytics ist aktuell deaktiviert.';
+        }
+
+        function closeSettings() {
+            if (!settingsNode) return;
+            settingsNode.hidden = true;
+            root.classList.remove('privacy-settings-open');
+        }
+
+        function openSettings() {
+            ensureUi();
+            syncToggleFromConsent();
+            syncHint();
+            settingsNode.hidden = false;
+            root.classList.add('privacy-settings-open');
+            window.setTimeout(() => analyticsToggleNode?.focus(), 0);
+        }
+
+        function hideBanner() {
+            if (!bannerNode) return;
+            bannerNode.hidden = true;
+        }
+
+        function showBannerIfNeeded() {
+            ensureUi();
+            bannerNode.hidden = Boolean(readConsent());
+        }
+
+        function applyConsent(consent) {
+            writeConsent(consent);
+            if (consent.analytics) {
+                analyticsState.loadAnalytics?.();
+            } else {
+                analyticsState.disableAnalytics?.();
+            }
+            syncHint();
+            hideBanner();
+            closeSettings();
+        }
+
+        function buildBanner() {
+            const node = document.createElement('aside');
+            node.className = 'privacy-banner';
+            node.hidden = true;
+            node.setAttribute('aria-label', 'Tracking-Einwilligung');
+            node.innerHTML = `
+                <div class="privacy-banner__content">
+                    <p class="privacy-banner__title">Datenschutz und Nutzungsstatistik</p>
+                    <p class="privacy-banner__text">Diese Website kann Google Analytics zur anonymisierten Nutzungsanalyse laden. Analytics wird erst nach Ihrer Einwilligung aktiviert. Details finden Sie in der <a href="/datenschutz.html">Datenschutzerklärung</a>.</p>
+                </div>
+                <div class="privacy-banner__actions">
+                    <button type="button" class="privacy-button privacy-button--ghost" data-privacy-action="essential">Nur erforderlich</button>
+                    <button type="button" class="privacy-button privacy-button--ghost" data-privacy-action="settings">Einstellungen</button>
+                    <button type="button" class="privacy-button privacy-button--primary" data-privacy-action="accept">Analytics erlauben</button>
+                </div>
+            `;
+
+            node.addEventListener('click', (event) => {
+                const action = event.target.closest('[data-privacy-action]')?.dataset.privacyAction;
+                if (!action) return;
+
+                if (action === 'essential') {
+                    applyConsent({ analytics: false, updatedAt: new Date().toISOString() });
+                    return;
+                }
+
+                if (action === 'accept') {
+                    applyConsent({ analytics: true, updatedAt: new Date().toISOString() });
+                    return;
+                }
+
+                openSettings();
+            });
+
+            return node;
+        }
+
+        function buildSettings() {
+            const node = document.createElement('div');
+            node.className = 'privacy-settings';
+            node.hidden = true;
+            node.innerHTML = `
+                <div class="privacy-settings__backdrop" data-privacy-close="true"></div>
+                <div class="privacy-settings__panel" role="dialog" aria-modal="true" aria-labelledby="privacy-settings-title">
+                    <button type="button" class="privacy-settings__close" aria-label="Tracking-Einstellungen schließen" data-privacy-close="true">×</button>
+                    <p class="privacy-settings__eyebrow">Tracking-Einstellungen</p>
+                    <h2 id="privacy-settings-title" class="privacy-settings__title">Google Analytics</h2>
+                    <p class="privacy-settings__text">Sie können entscheiden, ob Google Analytics zur anonymisierten Reichweitenmessung geladen werden darf. Ohne Einwilligung bleibt Analytics deaktiviert.</p>
+                    <label class="privacy-settings__toggle">
+                        <input id="privacy-analytics-toggle" type="checkbox">
+                        <span>
+                            <strong>Nutzungsstatistik mit Google Analytics</strong>
+                            <small>Hilft dabei, Seitenaufrufe und Nutzungsmuster statistisch auszuwerten.</small>
+                        </span>
+                    </label>
+                    <p class="privacy-settings__hint" id="privacy-settings-hint"></p>
+                    <div class="privacy-settings__actions">
+                        <button type="button" class="privacy-button privacy-button--ghost" data-privacy-save="essential">Nur erforderlich</button>
+                        <button type="button" class="privacy-button privacy-button--ghost" data-privacy-close="true">Abbrechen</button>
+                        <button type="button" class="privacy-button privacy-button--primary" data-privacy-save="custom">Speichern</button>
+                    </div>
+                </div>
+            `;
+
+            analyticsToggleNode = node.querySelector('#privacy-analytics-toggle');
+            hintNode = node.querySelector('#privacy-settings-hint');
+
+            node.addEventListener('click', (event) => {
+                if (event.target.closest('[data-privacy-close="true"]')) {
+                    closeSettings();
+                    return;
+                }
+
+                const saveAction = event.target.closest('[data-privacy-save]')?.dataset.privacySave;
+                if (!saveAction) return;
+
+                if (saveAction === 'essential') {
+                    applyConsent({ analytics: false, updatedAt: new Date().toISOString() });
+                    return;
+                }
+
+                applyConsent({
+                    analytics: Boolean(analyticsToggleNode?.checked),
+                    updatedAt: new Date().toISOString()
+                });
+            });
+
+            node.addEventListener('keydown', (event) => {
+                if (event.key !== 'Escape') return;
+                closeSettings();
+            });
+
+            return node;
+        }
+
+        function ensureUi() {
+            if (!bannerNode) {
+                bannerNode = buildBanner();
+                body.appendChild(bannerNode);
+            }
+
+            if (!settingsNode) {
+                settingsNode = buildSettings();
+                body.appendChild(settingsNode);
+            }
+        }
+
+        window.showCookieSettings = function showCookieSettings() {
+            openSettings();
+            return false;
+        };
+
+        showBannerIfNeeded();
+    })();
 </script>
