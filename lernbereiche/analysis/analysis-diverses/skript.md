@@ -38,7 +38,22 @@ Gegeben sind folgende Werte:
 | x   | 0,5   | 1,5   | 2,5  | 3,5  | 4,5  |
 | y   | -2,67 | -0,77 | 0,81 | 2,39 | 4,24 |
 
-<img src="lin-reg.png" class="diagramm">
+{% include graph.html
+	funktionen='[]'
+	punkte='[
+	 {"x":0.5,"y":-2.67,"text":"Messpunkt 1"},
+	 {"x":1.5,"y":-0.77,"text":"Messpunkt 2"},
+	 {"x":2.5,"y":0.81,"text":"Messpunkt 3"},
+	 {"x":3.5,"y":2.39,"text":"Messpunkt 4"},
+	 {"x":4.5,"y":4.24,"text":"Messpunkt 5"}
+	]'
+	xachse="x"
+	yachse="y"
+	xmin=0
+	xmax=5
+	ymin=-4
+	ymax=5
+%}
 
 Wir vermuten, dass die Datenpunkte in etwa auf einer Geraden liegen, daher wird mit dem GTR eine lineare Regression durchgeführt:
 
@@ -59,7 +74,22 @@ Gegeben sind folgende Werte:
 | x   | -7     | -3     | 1    | 6    | 11     |
 | y   | -47,24 | -14,85 | 5,83 | 2,42 | -34,33 |
 
-<img src="quad-reg.png" class="diagramm">
+{% include graph.html
+	funktionen='[]'
+	punkte='[
+	 {"x":-7,"y":-47.24,"text":"Messpunkt 1"},
+	 {"x":-3,"y":-14.85,"text":"Messpunkt 2"},
+	 {"x":1,"y":5.83,"text":"Messpunkt 3"},
+	 {"x":6,"y":2.42,"text":"Messpunkt 4"},
+	 {"x":11,"y":-34.33,"text":"Messpunkt 5"}
+	]'
+	xachse="x"
+	yachse="y"
+	xmin=-8
+	xmax=12
+	ymin=-50
+	ymax=10
+%}
 
 Wir vermuten, dass die Datenpunkte in etwa auf einer Parabel liegen, daher wird mit dem GTR eine quadratische Regression durchgeführt:
 

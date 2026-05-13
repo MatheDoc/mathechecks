@@ -11,6 +11,7 @@ import {
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260513-task-check-b";
+import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
@@ -174,33 +175,8 @@ function buildSkriptTippsHref(check) {
   return `/lernbereiche/${gebiet}/${lernbereich}/skript.html#${encodeURIComponent(anchorId)}`;
 }
 
-function buildBeispielUrl(check) {
-  const nummer = String(Number(check?.Nummer) || 0).padStart(2, "0");
-  const sammlung = String(check?.Sammlung || "").trim();
-  const gebiet = String(check?.Gebiet || "").trim();
-  const lernbereich = String(check?.Lernbereich || "").trim();
-  if (!sammlung || !gebiet || !lernbereich) return "";
-  return `/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
-}
-
 async function fetchBeispielHtml(check) {
-  const url = buildBeispielUrl(check);
-  if (!url) return "";
-  if (TR_BEISPIEL_CACHE.has(url)) return TR_BEISPIEL_CACHE.get(url);
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      TR_BEISPIEL_CACHE.set(url, "");
-      return "";
-    }
-    const html = (await response.text()).trim();
-    TR_BEISPIEL_CACHE.set(url, html);
-    return html;
-  } catch {
-    TR_BEISPIEL_CACHE.set(url, "");
-    return "";
-  }
+  return fetchSharedBeispielHtml(check, TR_BEISPIEL_CACHE);
 }
 
 function convertJsonLatexToMarkdown(text) {

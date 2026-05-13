@@ -1,4 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
@@ -133,29 +134,8 @@ function applyInitialReveal(root) {
 
 const FEYNMAN_DELAY_MS = 30000;
 
-function buildBeispielUrl(check) {
-  const nummer = String(Number(check.Nummer) || 0).padStart(2, "0");
-  const sammlung = String(check.Sammlung || "").trim();
-  const gebiet = String(check.Gebiet || "").trim();
-  const lernbereich = String(check.Lernbereich || "").trim();
-  if (!sammlung || !gebiet || !lernbereich) return "";
-  return `/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
-}
-
 async function fetchBeispielHtml(check) {
-  const url = buildBeispielUrl(check);
-  if (!url) return "";
-  if (FY_BEISPIEL_CACHE.has(url)) return FY_BEISPIEL_CACHE.get(url);
-  try {
-    const resp = await fetch(url);
-    if (!resp.ok) { FY_BEISPIEL_CACHE.set(url, ""); return ""; }
-    const html = (await resp.text()).trim();
-    FY_BEISPIEL_CACHE.set(url, html);
-    return html;
-  } catch {
-    FY_BEISPIEL_CACHE.set(url, "");
-    return "";
-  }
+  return fetchSharedBeispielHtml(check, FY_BEISPIEL_CACHE);
 }
 
 function getEvaluationExamplePlaceholder() {
