@@ -195,8 +195,8 @@ Alle Kennzahlen lassen sich nicht nur graphisch ablesen, sondern auch rechnerisc
 |---|---|
 | $y$-Achsenabschnitt: $f(0)$ | $p_H$, $K_f$ |
 | Nullstelle: $f(x)=0$ lösen | $s_m$, $x_{GS}$, $x_{GG}$ |
-| Extremstelle (Maximum): $f'(x)=0$, $f''(x)<0$ | $x_{Emax}$ (nur Monopol), $x_{Gmax}$ |
-| Wendestelle: $f''(x)=0$, $f'''(x)\neq 0$ | $x_w$ |
+| Extremstelle (Maximum): $f'(x)=0$, $f^{\prime\prime}(x)<0$ | $x_{Emax}$ (nur Monopol), $x_{Gmax}$ |
+| Wendestelle: $f^{\prime\prime}(x)=0$, $f^{\prime\prime\prime}(x)\neq 0$ | $x_w$ |
 | $y$-Wert an bekannter Stelle: Einsetzen | $E_{max}$, $G_{max}$, $p_{max}$ |
 
 Im Polypol hat $E(x)$ kein inneres Maximum — die erlösmaximale Menge ist die Kapazitätsgrenze, also kein Extremstellenproblem.

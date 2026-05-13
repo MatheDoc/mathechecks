@@ -175,12 +175,12 @@ $$f'(x_0)=0$$
 
 Solche Stellen sind zunächst nur **Kandidaten**. Ob dort wirklich ein Hoch- oder Tiefpunkt vorliegt, entscheidet in einfachen Fällen die zweite Ableitung:
 
-- $f''(x_0)>0$: Tiefpunkt
-- $f''(x_0)<0$: Hochpunkt
+- $f^{\prime\prime}(x_0)>0$: Tiefpunkt
+- $f^{\prime\prime}(x_0)<0$: Hochpunkt
 
 Ist die Art des Extrempunkts geklärt, gehört zum vollständigen Extrempunkt immer auch der zugehörige y-Wert $f(x_0)$.
 
-Im einfachen Check reicht genau diese Dreischrittlogik: Kandidaten über $f'(x)=0$ bestimmen, die Art über $f''$ entscheiden und danach den Punkt mit $f(x)$ vervollständigen. Beispiel und Aufgaben bleiben dabei bewusst noch ohne Spezialfälle mit $f''(x_0)=0$.
+Im einfachen Check reicht genau diese Dreischrittlogik: Kandidaten über $f'(x)=0$ bestimmen, die Art über $f^{\prime\prime}$ entscheiden und danach den Punkt mit $f(x)$ vervollständigen. Beispiel und Aufgaben bleiben dabei bewusst noch ohne Spezialfälle mit $f^{\prime\prime}(x_0)=0$.
 
 {% include check-anker.html nummer="6" %}
 
@@ -210,7 +210,7 @@ Genau dieses Schema greift der nächste Check auf: Die Nullstellen von $f'$ lief
 
 Manchmal klappt der übliche Test nicht. Dann gilt an einer Kandidatenstelle gleichzeitig
 
-$$f'(x_0)=0 \quad\text{und}\quad f''(x_0)=0.$$
+$$f'(x_0)=0 \quad\text{und}\quad f^{\prime\prime}(x_0)=0.$$
 
 Dann ist die zweite Ableitung **nicht entscheidend**. Jetzt muss man direkt auf den Vorzeichenwechsel von $f'$ links und rechts von $x_0$ schauen.
 
@@ -241,11 +241,11 @@ An einer Wendestelle wechselt die Krümmung des Graphen. Gleichzeitig passiert d
 
 Deshalb beginnt die Suche nach Wendestellen mit der zweiten Ableitung:
 
-$$f''(x_0)=0$$
+$$f^{\prime\prime}(x_0)=0$$
 
 Das ist wieder nur die notwendige Bedingung. In einfachen Fällen genügt dann die dritte Ableitung als Entscheidungshilfe:
 
-$$f'''(x_0) \neq 0.$$
+$$f^{\prime\prime\prime}(x_0) \neq 0.$$
 
 Ist das erfüllt, liegt tatsächlich eine Wendestelle vor. Zusätzlich kann man dann inhaltlich deuten:
 
@@ -256,40 +256,40 @@ Im zugehörigen Check sind meist zuerst die **x-Werte** der Wendestellen gefragt
 
 {% include check-anker.html nummer="9" %}
 
-### Krümmungsintervalle über das Vorzeichen von $f''$
+### Krümmungsintervalle über das Vorzeichen von $f^{\prime\prime}$
 
-So wie $f'$ die Monotonie steuert, steuert $f''$ die Krümmung:
+So wie $f'$ die Monotonie steuert, steuert $f^{\prime\prime}$ die Krümmung:
 
-- $f''(x)>0$: linksgekrümmt bzw. konvex
-- $f''(x)<0$: rechtsgekrümmt bzw. konkav
+- $f^{\prime\prime}(x)>0$: linksgekrümmt bzw. konvex
+- $f^{\prime\prime}(x)<0$: rechtsgekrümmt bzw. konkav
 
 Auch hier ist das Vorgehen analog:
 
-1. Nullstellen von $f''$ bestimmen.
+1. Nullstellen von $f^{\prime\prime}$ bestimmen.
 2. Die Zahlengerade dadurch in Intervalle zerlegen.
-3. In jedem Intervall das Vorzeichen von $f''$ prüfen.
+3. In jedem Intervall das Vorzeichen von $f^{\prime\prime}$ prüfen.
 4. Daraus die Krümmung folgern.
 
 Damit sind Monotonie und Krümmung didaktisch parallel aufgebaut: erst Kandidaten bestimmen, dann über Vorzeichen argumentieren.
 
-Genau diese Parallelität nutzt der nächste Check. Wer Monotonieintervalle über $f'$ schon sicher untersucht, kann Krümmungsintervalle mit derselben Struktur über $f''$ bestimmen.
+Genau diese Parallelität nutzt der nächste Check. Wer Monotonieintervalle über $f'$ schon sicher untersucht, kann Krümmungsintervalle mit derselben Struktur über $f^{\prime\prime}$ bestimmen.
 
 {% include check-anker.html nummer="10" %}
 
-### Spezialfall bei Wendestellen: $f''(x_0)=0$ und $f'''(x_0)=0$
+### Spezialfall bei Wendestellen: $f^{\prime\prime}(x_0)=0$ und $f^{\prime\prime\prime}(x_0)=0$
 
-Auch bei Wendestellen gibt es schwierige Fälle. Wenn an einer Kandidatenstelle zusätzlich noch $f'''(x_0)=0$ gilt, ist die dritte Ableitung nicht hilfreich.
+Auch bei Wendestellen gibt es schwierige Fälle. Wenn an einer Kandidatenstelle zusätzlich noch $f^{\prime\prime\prime}(x_0)=0$ gilt, ist die dritte Ableitung nicht hilfreich.
 
 Dann gilt wieder dasselbe Prinzip wie bei den Extremstellen: **Nicht die formale Ableitung entscheidet, sondern der Vorzeichenwechsel.**
 
-Diesmal schaut man auf $f''$ links und rechts von $x_0$:
+Diesmal schaut man auf $f^{\prime\prime}$ links und rechts von $x_0$:
 
 - mit Vorzeichenwechsel: echte Wendestelle
 - ohne Vorzeichenwechsel: keine Wendestelle
 
 Auch dafür ist eine Vorzeichentabelle das sauberste Werkzeug. Man trägt Teststellen, Vorzeichen und die Folgerung zur Krümmung systematisch ein.
 
-Im nächsten Check entscheidet also nicht die bloße Gleichung $f''(x_0)=0$, sondern der tatsächliche Vorzeichenwechsel von $f''$. Genau darauf richten Tipps, Beispiel und Aufgabe den Blick.
+Im nächsten Check entscheidet also nicht die bloße Gleichung $f^{\prime\prime}(x_0)=0$, sondern der tatsächliche Vorzeichenwechsel von $f^{\prime\prime}$. Genau darauf richten Tipps, Beispiel und Aufgabe den Blick.
 
 {% include check-anker.html nummer="11" %}
 
@@ -324,7 +324,7 @@ Die Frage lautet also in Wahrheit: Wo hat die Funktion $f'$ auf dem betrachteten
 
 Die Kandidatenlogik bleibt dieselbe:
 
-- innere Kandidaten: Stellen, an denen $f''(x)=0$ und damit die Steigung lokal maximal oder minimal sein kann,
+- innere Kandidaten: Stellen, an denen $f^{\prime\prime}(x)=0$ und damit die Steigung lokal maximal oder minimal sein kann,
 - Randpunkte des Intervalls,
 - bei unbeschränkten Intervallen zusätzlich das Verhalten von $f'(x)$ für $x \to \pm\infty$.
 
@@ -346,7 +346,7 @@ Typische Bedingungen sind:
 
 - **Punktbedingung:** Ein Punkt $P(x_P \mid y_P)$ liegt auf dem Graphen, also $f(x_P)=y_P$.
 - **Extrempunktbedingung:** Bei $E(x_E \mid y_E)$ gilt $f(x_E)=y_E$ und $f'(x_E)=0$.
-- **Wendepunktbedingung:** Bei $W(x_W \mid y_W)$ gilt $f(x_W)=y_W$ und $f''(x_W)=0$.
+- **Wendepunktbedingung:** Bei $W(x_W \mid y_W)$ gilt $f(x_W)=y_W$ und $f^{\prime\prime}(x_W)=0$.
 
 So entsteht ein lineares Gleichungssystem für $a$, $b$, $c$ und $d$. Der Schwerpunkt liegt dabei auf dem **sauberen Aufstellen der Bedingungen**. Das Lösen des Systems kann anschließend mit dem Taschenrechner oder mit dem Gauß-Algorithmus erfolgen.
 

@@ -18,11 +18,11 @@ Bestimme Hochpunkt und Tiefpunkt der Funktion $f(x)=x^3-3x+1$.
 
 - Hinreichende Bedingung prüfen
 
-    $$f''(x)=6x$$
+    $$f^{\prime\prime}(x)=6x$$
 
-    $$f''(-1)=-6<0 \quad\Rightarrow\quad \text{Hochpunkt}$$
+    $$f^{\prime\prime}(-1)=-6<0 \quad\Rightarrow\quad \text{Hochpunkt}$$
 
-    $$f''(1)=6>0 \quad\Rightarrow\quad \text{Tiefpunkt}$$
+    $$f^{\prime\prime}(1)=6>0 \quad\Rightarrow\quad \text{Tiefpunkt}$$
 
 - Zugehörige y-Werte berechnen
 

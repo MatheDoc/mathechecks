@@ -15,10 +15,10 @@ Gesucht sind die globalen Extremwerte der Steigungsfunktion $f'$ auf dem Interva
 
     Dazu wird $f'$ selbst wieder abgeleitet:
 
-    $$f''(x)=6x-6$$
+    $$f^{\prime\prime}(x)=6x-6$$
 
     $$\begin{aligned}
-    f''(x) &= 0 \\
+    f^{\prime\prime}(x) &= 0 \\
     6x-6 &= 0 \\
     x &= 1
     \end{aligned}$$

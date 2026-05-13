@@ -1,0 +1,263 @@
+.privacy-banner {
+  position: fixed;
+  inset-inline: 20px;
+  inset-block-end: 20px;
+  z-index: 1200;
+  display: grid;
+  gap: 16px;
+  max-width: 920px;
+  margin-inline: auto;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 18px;
+  background:
+    linear-gradient(135deg, rgba(14, 18, 28, 0.96), rgba(28, 34, 50, 0.94)),
+    var(--surface, #16161e);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+.privacy-banner[hidden],
+.privacy-settings[hidden] {
+  display: none;
+}
+
+.privacy-banner__content {
+  display: grid;
+  gap: 8px;
+}
+
+.privacy-banner__title,
+.privacy-settings__eyebrow {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #cbd5e1;
+}
+
+.privacy-banner__text,
+.privacy-settings__text,
+.privacy-settings__hint {
+  margin: 0;
+  color: var(--text, #f3f4f6);
+  line-height: 1.55;
+}
+
+.privacy-banner__text a,
+.privacy-settings__text a {
+  color: #9fd4ff;
+}
+
+.privacy-banner__actions,
+.privacy-settings__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.privacy-button {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 120ms ease, background-color 120ms ease, border-color 120ms ease;
+}
+
+.privacy-button:hover,
+.privacy-button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.privacy-button--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text, #f3f4f6);
+}
+
+.privacy-button--ghost:hover,
+.privacy-button--ghost:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.privacy-button--primary {
+  border-color: rgba(203, 213, 225, 0.42);
+  background: #cbd5e1;
+  color: #111827;
+}
+
+.privacy-button--primary:hover,
+.privacy-button--primary:focus-visible {
+  background: #e2e8f0;
+}
+
+.privacy-settings {
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+}
+
+.privacy-settings__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7, 10, 16, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.privacy-settings__panel {
+  position: relative;
+  z-index: 1;
+  width: min(560px, calc(100vw - 32px));
+  margin: min(12vh, 72px) auto 0;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, rgba(17, 22, 34, 0.98), rgba(22, 27, 40, 0.96)),
+    var(--surface, #16161e);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.45);
+}
+
+.privacy-settings__close {
+  position: absolute;
+  inset-inline-end: 16px;
+  inset-block-start: 14px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text, #f3f4f6);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.privacy-settings__title {
+  margin: 6px 0 10px;
+  color: var(--text, #f3f4f6);
+}
+
+.privacy-settings__toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  margin: 22px 0 18px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.privacy-settings__toggle input {
+  inline-size: 18px;
+  block-size: 18px;
+  margin-top: 3px;
+}
+
+.privacy-settings__toggle strong,
+.privacy-settings__toggle small {
+  display: block;
+}
+
+.privacy-settings__toggle small {
+  margin-top: 5px;
+  color: var(--text-muted, rgba(255, 255, 255, 0.72));
+  line-height: 1.5;
+}
+
+.privacy-settings-open {
+  overflow: hidden;
+}
+
+html.light .privacy-banner {
+  border-color: rgba(17, 24, 39, 0.12);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(243, 246, 252, 0.98)),
+    #ffffff;
+  box-shadow: 0 20px 50px rgba(17, 24, 39, 0.16);
+}
+
+html.light .privacy-banner__text,
+html.light .privacy-settings__text,
+html.light .privacy-settings__hint,
+html.light .privacy-settings__title,
+html.light .privacy-settings__close,
+html.light .privacy-button--ghost {
+  color: #111827;
+}
+
+html.light .privacy-banner__title,
+html.light .privacy-settings__eyebrow {
+  color: #475569;
+}
+
+html.light .privacy-button--ghost {
+  border-color: rgba(17, 24, 39, 0.12);
+  background: rgba(17, 24, 39, 0.04);
+}
+
+html.light .privacy-button--ghost:hover,
+html.light .privacy-button--ghost:focus-visible {
+  background: rgba(17, 24, 39, 0.08);
+}
+
+html.light .privacy-button--primary {
+  border-color: rgba(71, 85, 105, 0.18);
+  background: #4b5563;
+  color: #f8fafc;
+}
+
+html.light .privacy-button--primary:hover,
+html.light .privacy-button--primary:focus-visible {
+  background: #374151;
+}
+
+html.light .privacy-settings__panel {
+  border-color: rgba(17, 24, 39, 0.12);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(244, 247, 252, 0.98)),
+    #ffffff;
+  box-shadow: 0 24px 80px rgba(17, 24, 39, 0.16);
+}
+
+html.light .privacy-settings__toggle {
+  border-color: rgba(17, 24, 39, 0.1);
+  background: rgba(17, 24, 39, 0.03);
+}
+
+html.light .privacy-settings__toggle small {
+  color: rgba(17, 24, 39, 0.72);
+}
+
+html.light .privacy-settings__close {
+  background: rgba(17, 24, 39, 0.06);
+}
+
+@media (max-width: 640px) {
+  .privacy-banner {
+    inset-inline: 12px;
+    inset-block-end: 12px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .privacy-banner__actions,
+  .privacy-settings__actions {
+    flex-direction: column;
+  }
+
+  .privacy-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .privacy-settings__panel {
+    width: calc(100vw - 24px);
+    margin-top: 20px;
+    padding: 22px 18px 18px;
+    border-radius: 18px;
+  }
+}

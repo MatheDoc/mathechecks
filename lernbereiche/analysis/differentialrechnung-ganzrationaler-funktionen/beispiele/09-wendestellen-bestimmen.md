@@ -9,11 +9,11 @@ Bestimme die Wendestelle der Funktion $f(x)=x^3-3x^2+2$.
 
     $$\begin{aligned}
     f'(x) &= 3x^2-6x \\
-    f''(x) &= 6x-6
+    f^{\prime\prime}(x) &= 6x-6
     \end{aligned}$$
 
     $$\begin{aligned}
-    f''(x) &= 0 \\
+    f^{\prime\prime}(x) &= 0 \\
     6x-6 &= 0 \\
     x &= 1
     \end{aligned}$$
@@ -22,9 +22,9 @@ Bestimme die Wendestelle der Funktion $f(x)=x^3-3x^2+2$.
 
 - Hinreichende Bedingung prüfen
 
-    $$f'''(x)=6$$
+    $$f^{\prime\prime\prime}(x)=6$$
 
-    $$f'''(1)=6 \neq 0$$
+    $$f^{\prime\prime\prime}(1)=6 \neq 0$$
 
     Damit liegt bei $x=1$ tatsächlich eine Wendestelle vor.
 

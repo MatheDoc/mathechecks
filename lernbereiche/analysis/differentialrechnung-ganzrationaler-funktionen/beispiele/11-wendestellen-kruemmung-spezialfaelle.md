@@ -8,26 +8,26 @@ Untersuche die Funktion $f(x)=\frac{3}{4}x^5-\frac{15}{2}x^3-15x^2$ auf Wendeste
 **Zweite und dritte Ableitung berechnen**
 
 $$\begin{aligned}
-f''(x) &= 15x^3-45x-30 = 15(x+1)^2(x-2) \\
-f'''(x) &= 45x^2-45
+f^{\prime\prime}(x) &= 15x^3-45x-30 = 15(x+1)^2(x-2) \\
+f^{\prime\prime\prime}(x) &= 45x^2-45
 \end{aligned}$$
 
-**Kandidatenstellen über $f''(x)=0$ finden**
+**Kandidatenstellen über $f^{\prime\prime}(x)=0$ finden**
 
 $$15(x+1)^2(x-2)=0 \quad\Rightarrow\quad x=-1 \text{ oder } x=2$$
 
-Dabei ist $x=-1$ eine doppelte Nullstelle von $f''$ und $x=2$ eine einfache Nullstelle.
+Dabei ist $x=-1$ eine doppelte Nullstelle von $f^{\prime\prime}$ und $x=2$ eine einfache Nullstelle.
 
 **Üblichen Test prüfen**
 
 $$\begin{aligned}
-f'''(-1) &= 45\cdot(-1)^2-45 = 0 \\
-f'''(2) &= 45\cdot 2^2-45 = 180-45 = 135 \neq 0
+f^{\prime\prime\prime}(-1) &= 45\cdot(-1)^2-45 = 0 \\
+f^{\prime\prime\prime}(2) &= 45\cdot 2^2-45 = 180-45 = 135 \neq 0
 \end{aligned}$$
 
-Also ist $x=2$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test nicht; dort braucht man zusätzlich das Vorzeichen von $f''$.
+Also ist $x=2$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test nicht; dort braucht man zusätzlich das Vorzeichen von $f^{\prime\prime}$.
 
-**Graph von $f''$ und Vorzeichentabelle**
+**Graph von $f^{\prime\prime}$ und Vorzeichentabelle**
 
 <div class="diagramm-row">
     <div style="flex: 1 1 420px; min-width: 0;">
@@ -51,7 +51,7 @@ Also ist $x=2$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test
             </thead>
             <tbody>
                 <tr>
-                    <td>Vorzeichen von $f''$</td>
+                    <td>Vorzeichen von $f^{\prime\prime}$</td>
                     <td>$-$</td>
                     <td>$0$</td>
                     <td>$-$</td>
@@ -71,9 +71,9 @@ Also ist $x=2$ sicher eine Wendestelle. Bei $x=-1$ entscheidet der schnelle Test
     </div>
 </div>
 
-Bei $x=-1$ gibt es **keinen Vorzeichenwechsel** von $f''$. Also ist $x=-1$ trotz $f''(-1)=0$ **keine** Wendestelle.
+Bei $x=-1$ gibt es **keinen Vorzeichenwechsel** von $f^{\prime\prime}$. Also ist $x=-1$ trotz $f^{\prime\prime}(-1)=0$ **keine** Wendestelle.
 
-Bei $x=2$ wechselt das Vorzeichen von $f''$ von $-$ nach $+$. Also liegt dort eine Wendestelle vor.
+Bei $x=2$ wechselt das Vorzeichen von $f^{\prime\prime}$ von $-$ nach $+$. Also liegt dort eine Wendestelle vor.
 
 **Punkt und Krümmungsintervalle angeben**
 
