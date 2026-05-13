@@ -1,6 +1,9 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { fetchBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
+
+const CHECK_ANKER_BEISPIEL_CACHE = new Map();
 
 /* ------------------------------------------------------------------ */
 /*  MathJax helper                                                     */
@@ -77,22 +80,8 @@ function renderTipps(container, check) {
 /* ------------------------------------------------------------------ */
 
 async function renderBeispiel(container, check) {
-    const nummer = String(Number(check.Nummer) || 0).padStart(2, "0");
-    const sammlung = String(check.Sammlung || "").trim();
-    const gebiet = String(check.Gebiet || "").trim();
-    const lernbereich = String(check.Lernbereich || "").trim();
-
-    if (!sammlung || !gebiet || !lernbereich) {
-        container.hidden = true;
-        return;
-    }
-
-    const url = `/lernbereiche/${gebiet}/${lernbereich}/beispiele/${nummer}-${sammlung}.html`;
-
     try {
-        const resp = await fetch(url);
-        if (!resp.ok) { container.hidden = true; return; }
-        const html = await resp.text();
+        const html = await fetchBeispielHtml(check, CHECK_ANKER_BEISPIEL_CACHE);
         if (!html.trim()) { container.hidden = true; return; }
 
         const { card, body } = createAnkerCard(check, "Beispiel", "feynman");

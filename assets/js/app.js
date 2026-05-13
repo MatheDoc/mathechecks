@@ -1,9 +1,9 @@
-import { initTrainingModule } from "./modules/training.js";
+import { initTrainingModule } from "./modules/training.js?v=20260514-beispiel-url-d";
 import { initRecallModule } from "./modules/recall.js";
-import { initFeynmanModule } from "./modules/feynman.js";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260514-beispiel-url-d";
 import { initFlashcardsModule } from "./modules/flashcards.js";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
-import { initCheckAnker } from "./modules/check-anker.js";
+import { initCheckAnker } from "./modules/check-anker.js?v=20260514-beispiel-url-d";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js";
