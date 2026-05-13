@@ -7,8 +7,6 @@ Gegeben sind folgende Werte:
 | x   | 1     | 2     | 3     | 5      | 7      |
 | y   | 11,08 | 20,91 | 45,02 | 195,77 | 703,49 |
 
-<!--<img src="exp-reg.png" class="diagramm">-->
-
 Es soll eine exponentielle Regression durchgeführt werden.
 
 - Menü 2 (Statistik) auswählen

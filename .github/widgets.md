@@ -28,6 +28,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | h-Methode der Ableitung | `widget-h-methode-ableitung.html` | `.qhm-widget` | Graph von $f(x)=x^2$ + Sekante/Tangente + Differenzenquotient |
 | Quadratische Funktionen | `widget-quadratische-funktionen.html` | `.qf-widget` | Graph + Wertetabelle + Formel |
 | Quadratische Funktionen Parameter | `widget-quadratische-funktionen-parameter.html` | `.qfp-widget` | Graph + Scheitel + Formel |
+| Regression erkennen | `widget-punktwolke-regression.html` | `.pr-widget` | Zufällige Punktewolke + verzögert eingeblendete Regressionsfunktion |
 
 
 ## HTML-Struktur
