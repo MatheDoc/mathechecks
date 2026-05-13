@@ -10,10 +10,10 @@ import {
 } from "../state/check-state-store.js";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260504-global-extrema-a";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260513-task-check-b";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 
 const TR_BEISPIEL_CACHE = new Map();
 
