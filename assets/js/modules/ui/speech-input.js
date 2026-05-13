@@ -14,9 +14,12 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const SUPPORTED = Boolean(SpeechRecognition);
 
 const ENHANCED_ATTR = "data-speech-enhanced";
+const AUTO_STOP_DELAY_MS = 4000;
+const TASK_CHECK_REQUEST_EVENT = "task:check-request";
 
 let activeRecognition = null;
 let activeBtn = null;
+let activeRecognitionTimer = null;
 
 /* ── German speech → numeric string normalization (Chrome workaround) ── */
 const DIRECT_NUMBER_WORDS = new Map([
@@ -248,15 +251,79 @@ function normalizeSpeechTranscript(text) {
     return compact.replace(/\s*,\s*/g, ",");
 }
 
+function normalizeSpeechCommand(text) {
+    return String(text || "")
+        .trim()
+        .replace(/[.!?]+$/g, "")
+        .toLowerCase();
+}
+
+function splitSpeechCheckCommand(text) {
+    const trimmed = String(text || "").trim();
+    if (!trimmed) {
+        return { spokenText: "", shouldCheck: false };
+    }
+
+    const standaloneCommand = normalizeSpeechCommand(trimmed);
+    if (standaloneCommand === "check") {
+        return { spokenText: "", shouldCheck: true };
+    }
+
+    const trailingCommandMatch = trimmed.match(/^(.*\S)\s+check[.!?]*$/i);
+    if (!trailingCommandMatch) {
+        return { spokenText: trimmed, shouldCheck: false };
+    }
+
+    return {
+        spokenText: trailingCommandMatch[1].trim(),
+        shouldCheck: true,
+    };
+}
+
+function isCheckCommand(text) {
+    return normalizeSpeechCommand(text) === "check";
+}
+
+function clearActiveRecognitionTimer() {
+    if (activeRecognitionTimer === null) return;
+    window.clearTimeout(activeRecognitionTimer);
+    activeRecognitionTimer = null;
+}
+
+function scheduleActiveRecognitionTimeout(recognition) {
+    clearActiveRecognitionTimer();
+    activeRecognitionTimer = window.setTimeout(() => {
+        if (activeRecognition === recognition) {
+            stopActiveRecognition();
+        }
+    }, AUTO_STOP_DELAY_MS);
+}
+
+function requestTaskCheck(input) {
+    if (!input) return;
+    input.dispatchEvent(new CustomEvent(TASK_CHECK_REQUEST_EVENT, { bubbles: true }));
+}
+
 function stopActiveRecognition() {
-    if (activeRecognition) {
-        try { activeRecognition.stop(); } catch { /* ignore */ }
-        activeRecognition = null;
+    clearActiveRecognitionTimer();
+
+    const recognition = activeRecognition;
+    const btn = activeBtn;
+
+    activeRecognition = null;
+    activeBtn = null;
+
+    if (btn) {
+        btn.classList.remove("speech-mic--active");
     }
-    if (activeBtn) {
-        activeBtn.classList.remove("speech-mic--active");
-        activeBtn = null;
+
+    if (recognition) {
+        try { recognition.stop(); } catch { /* ignore */ }
     }
+}
+
+export function stopActiveSpeechInput() {
+    stopActiveRecognition();
 }
 
 function createMicButton() {
@@ -290,9 +357,19 @@ function bindMic(btn, input) {
             activeRecognition = recognition;
             activeBtn = btn;
             btn.classList.add("speech-mic--active");
+            scheduleActiveRecognitionTimeout(recognition);
+        };
+
+        recognition.onspeechstart = () => {
+            clearActiveRecognitionTimer();
+        };
+
+        recognition.onspeechend = () => {
+            scheduleActiveRecognitionTimeout(recognition);
         };
 
         recognition.onend = () => {
+            clearActiveRecognitionTimer();
             btn.classList.remove("speech-mic--active");
             if (activeBtn === btn) {
                 activeRecognition = null;
@@ -301,6 +378,7 @@ function bindMic(btn, input) {
         };
 
         recognition.onerror = () => {
+            clearActiveRecognitionTimer();
             btn.classList.remove("speech-mic--active");
             if (activeBtn === btn) {
                 activeRecognition = null;
@@ -317,16 +395,28 @@ function bindMic(btn, input) {
             }
             if (!transcript) return;
 
-            const cleaned = normalizeSpeechTranscript(transcript);
+            const { spokenText, shouldCheck } = splitSpeechCheckCommand(transcript);
 
-            const current = input.value;
-            if (current && !current.endsWith(" ")) {
-                input.value = current + " " + cleaned;
-            } else {
-                input.value = current + cleaned;
+            const cleaned = normalizeSpeechTranscript(spokenText);
+            if (cleaned) {
+                const current = input.value;
+                if (current && !current.endsWith(" ")) {
+                    input.value = current + " " + cleaned;
+                } else {
+                    input.value = current + cleaned;
+                }
+
+                input.dispatchEvent(new Event("input", { bubbles: true }));
             }
 
-            input.dispatchEvent(new Event("input", { bubbles: true }));
+            if (shouldCheck) {
+                stopActiveRecognition();
+                requestTaskCheck(input);
+                return;
+            }
+
+            if (!cleaned) return;
+            scheduleActiveRecognitionTimeout(recognition);
         };
 
         try {

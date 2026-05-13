@@ -181,7 +181,7 @@ Im Angebotsmonopol fällt $p(x)$, sodass $E(x) = p(x) \cdot x$ eine Parabel mit 
 - **Höchstpreis** $p_H$: $y$-Achsenabschnitt von $p(x)$ — Preisobergrenze, ab der keine Nachfrage mehr besteht
 - **Sättigungsmenge** $s_m$: Nullstelle von $p(x)$ — Menge, ab der der Marktpreis auf null fällt
 - **Erlösmaximale Menge**: Hochpunkt von $E(x)$ — nun ein echtes inneres Maximum, kein Randpunkt
-- **Cournotscher Punkt** $C(x_{Gmax}|p_{Gmax})$: Punkt auf $p(x)$ zur gewinnmaximalen Menge $x_{Gmax}$
+- **Cournotscher Punkt** $C(x_{Gmax}\mid p_{Gmax})$: Punkt auf $p(x)$ zur gewinnmaximalen Menge $x_{Gmax}$
 
 {% include check-anker.html nummer=4 %}
 

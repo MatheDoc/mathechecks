@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260504-global-extrema-a";
+import { renderTask } from "../runtime/task-render.js?v=20260513-task-check-b";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

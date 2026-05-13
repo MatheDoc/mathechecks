@@ -1,8 +1,10 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260504-global-extrema-a";
 import { renderVisual } from "./task-visuals.js?v=20260423-market-legends-a";
+import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260513-task-check-b";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
+const TASK_CHECK_REQUEST_EVENT = "task:check-request";
 
 function getTabScopeId() {
     try {
@@ -42,6 +44,33 @@ function saveTaskUiState(stateKey, state) {
     } catch {
         // Ignore quota/storage errors to keep task interaction usable.
     }
+}
+
+function attachQuestionCheckShortcuts(answerPreview, onCheck) {
+    if (!answerPreview || typeof onCheck !== "function") return;
+
+    answerPreview.addEventListener(TASK_CHECK_REQUEST_EVENT, (event) => {
+        event.stopPropagation();
+        onCheck();
+    });
+
+    answerPreview.addEventListener("keydown", (event) => {
+        if (event.defaultPrevented) return;
+        if (event.key !== "Enter" || event.isComposing) return;
+        if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+
+        const target = event.target;
+        if (!(target instanceof HTMLInputElement)) return;
+
+        const type = String(target.type || "text").toLowerCase();
+        if (["checkbox", "radio", "button", "submit", "reset", "file"].includes(type)) {
+            return;
+        }
+
+        event.preventDefault();
+        event.stopPropagation();
+        onCheck();
+    });
 }
 
 function readFieldUiState(field) {
@@ -455,6 +484,17 @@ export function renderTask(task, options = {}) {
         };
         questionEvaluators[i] = buildQuestionEvaluation;
 
+        const runQuestionCheck = () => {
+            stopActiveSpeechInput();
+            buildQuestionEvaluation();
+            if (persistenceKey) {
+                checkedQuestionIndexes.add(i);
+                persistCurrentUiState();
+            }
+        };
+
+        attachQuestionCheckShortcuts(answerPreview, runQuestionCheck);
+
         if (interactiveMode && interactionConfig.enablePerQuestionCheck) {
             const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
             fields.forEach((field) => answerFields.push(field));
@@ -481,13 +521,7 @@ export function renderTask(task, options = {}) {
                     checkBtn.className = "answer-check-btn";
                     checkBtn.setAttribute("aria-label", "Prüfen");
                     checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-                    checkBtn.addEventListener("click", () => {
-                        buildQuestionEvaluation();
-                        if (persistenceKey) {
-                            checkedQuestionIndexes.add(i);
-                            persistCurrentUiState();
-                        }
-                    });
+                    checkBtn.addEventListener("click", runQuestionCheck);
                     outerGroup.appendChild(checkBtn);
                     return;
                 }
@@ -505,13 +539,7 @@ export function renderTask(task, options = {}) {
                 checkBtn.className = "answer-check-btn";
                 checkBtn.setAttribute("aria-label", "Prüfen");
                 checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-                checkBtn.addEventListener("click", () => {
-                    buildQuestionEvaluation();
-                    if (persistenceKey) {
-                        checkedQuestionIndexes.add(i);
-                        persistCurrentUiState();
-                    }
-                });
+                checkBtn.addEventListener("click", runQuestionCheck);
                 group.appendChild(checkBtn);
             });
         }
