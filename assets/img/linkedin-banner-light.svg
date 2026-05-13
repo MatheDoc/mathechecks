@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1584 396" role="img" aria-labelledby="title desc">
+  <title id="title">MatheChecks LinkedIn Banner</title>
+  <desc id="desc">Schmales Titelbild im Stil der MatheChecks-Startseite im hellen Modus.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f4f4f8"/>
+      <stop offset="100%" stop-color="#fbfbfd"/>
+    </linearGradient>
+    <radialGradient id="mist-left" cx="0%" cy="0%" r="1">
+      <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mist-right" cx="100%" cy="100%" r="1">
+      <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="divider" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1a1a2e" stop-opacity="0"/>
+      <stop offset="18%" stop-color="#1a1a2e" stop-opacity="0.12"/>
+      <stop offset="82%" stop-color="#1a1a2e" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="#1a1a2e" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="72"/>
+    </filter>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1584" height="396" fill="url(#bg)"/>
+  <ellipse cx="220" cy="32" rx="360" ry="220" fill="url(#mist-left)" filter="url(#blur)"/>
+  <ellipse cx="1396" cy="352" rx="380" ry="240" fill="url(#mist-right)" filter="url(#blur)"/>
+
+  <g opacity="0.34">
+    <circle cx="1290" cy="84" r="116" fill="none" stroke="#1a1a2e" stroke-opacity="0.08" stroke-width="1.5"/>
+    <circle cx="1338" cy="84" r="116" fill="none" stroke="#1a1a2e" stroke-opacity="0.05" stroke-width="1.5"/>
+    <circle cx="150" cy="320" r="56" fill="none" stroke="#1a1a2e" stroke-opacity="0.06" stroke-width="1.5"/>
+  </g>
+
+  <image href="logo-dark-mode.svg" x="1148" y="78" width="214" height="214" opacity="0.07" filter="url(#soft)" preserveAspectRatio="xMidYMid meet"/>
+
+  <g transform="translate(392 56)">
+    <image href="logo-dark-mode.svg" x="0" y="4" width="74" height="74" preserveAspectRatio="xMidYMid meet"/>
+
+    <g transform="translate(118 15)">
+      <rect x="0" y="0" width="226" height="40" rx="20" fill="#1a1a2e" fill-opacity="0.03" stroke="#1a1a2e" stroke-opacity="0.08"/>
+      <text x="113" y="26" fill="#5a5a72" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="20" letter-spacing="1.2" text-anchor="middle">mathechecks.de</text>
+    </g>
+
+    <text x="18" y="168" fill="#1a1a2e" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="96" font-weight="700" letter-spacing="-3.2">Mathe</text>
+    <text x="18" y="252" fill="#5a5a72" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="96" font-weight="500" font-style="italic" letter-spacing="-2.8">checken.</text>
+    <text x="20" y="306" fill="#5a5a72" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="24" letter-spacing="2.1">Analysis · Stochastik · Lineare Algebra</text>
+  </g>
+
+  <path d="M0 334H1584" stroke="url(#divider)" stroke-width="1"/>
+</svg>
