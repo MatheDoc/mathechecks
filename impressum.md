@@ -18,7 +18,7 @@ Siekwiese 3<br>
 
 ### Kontakt
 
-E-Mail: mathechecks@gmail.com
+E-Mail: webmaster@mathechecks.de
 
 ### Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV
 
