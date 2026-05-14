@@ -1,0 +1,722 @@
+[
+  {
+    "einleitung": "Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Großkunde bestellt Halbleiter.</li><li>$B$: Halbleiter werden in Premium-Qualität bestellt.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "die Wahrscheinlichkeit, dass eine Bestellung von einem Großkunden stammt und Premium-Qualität erfordert",
+      "die Wahrscheinlichkeit, dass ein Großkunde Halbleiter bestellt oder Halbleiter in Premium-Qualität bestellt werden",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5100:0,0001}",
+      "{1:NUMERICAL:=0,3876:0,0001}",
+      "{1:NUMERICAL:=0,7109:0,0001}",
+      "{1:NUMERICAL:=0,3233:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.51,
+        "pba": 0.76,
+        "pbna": 0.41,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Passagier hat einen gültigen Fahrschein.</li><li>$B$: Ein Passagier trägt eine Maske.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "$P(\\overline{A} \\cap B)$.",
+      "die Wahrscheinlichkeit, dass ein Passagier einen gültigen Fahrschein hat oder eine Maske trägt",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5100:0,0001}",
+      "{1:NUMERICAL:=0,2842:0,0001}",
+      "{1:NUMERICAL:=0,7942:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.51,
+        "pba": 0.3,
+        "pbna": 0.58,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde bestellt eine Schokolade.</li><li>$B$: Ein Kunde bestellt ein heißes Getränk.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "die Wahrscheinlichkeit, dass ein Kunde einen heißen Kaffee bestellt",
+      "die Wahrscheinlichkeit, dass ein Kunde eine Schokolade oder ein kaltes Getränk bestellt",
+      "$P(A \\cup B) - P(A \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4649:0,0001}",
+      "{1:NUMERICAL:=0,0999:0,0001}",
+      "{1:NUMERICAL:=0,9001:0,0001}",
+      "{1:NUMERICAL:=0,4649:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.73,
+        "pba": 0.5,
+        "pbna": 0.37,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine Sechs geworfen.</li><li>$B$: Es wird ein Zauberspruch aufgesagt.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass eine Sechs geworfen wird",
+      "$P(A \\cap B)$.",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,3315:0,0001}",
+      "{1:NUMERICAL:=0,6685:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.65,
+        "pba": 0.51,
+        "pbna": 0.74,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Bewerber ist Mathematiker.</li><li>$B$: Ein Bewerber hat einen Bachelor.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "die Wahrscheinlichkeit, dass ein Bewerber einen Bachelor in Mathematik hat",
+      "$P(A \\cup B)$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "{1:NUMERICAL:=0,2448:0,0001}",
+      "{1:NUMERICAL:=0,7348:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.48,
+        "pba": 0.51,
+        "pbna": 0.49,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst. Wir betrachten die Ereignisse:<ul><li>$A$: Der Prüfling besteht.</li><li>$B$: Der Prüfer ist ausgeschlafen.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(A)$.",
+      "die Wahrscheinlichkeit, dass ein Prüfling besteht und ein Prüfer ausgeschlafen ist",
+      "die Wahrscheinlichkeit, dass ein Prüfling besteht oder ein Prüfer ausgeschlafen ist",
+      "$P(B \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,4680:0,0001}",
+      "{1:NUMERICAL:=0,8285:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.65,
+        "pba": 0.72,
+        "pbna": 0.51,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Hantel ist aus Metall.</li><li>$B$: Eine Hantel hat einen drehbaren Griff.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "$P(\\overline{A} \\cap \\overline{B})$.",
+      "$P(\\overline{A} \\cup \\overline{B})$.",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3620:0,0001}",
+      "{1:NUMERICAL:=0,0540:0,0001}",
+      "{1:NUMERICAL:=0,7840:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.8,
+        "pba": 0.27,
+        "pbna": 0.73,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden. Wir betrachten die Ereignisse:<ul><li>$A$: Sie gewinnt ein Spiel.</li><li>$B$: Sie dopt in einem Spiel.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass sie in einem Spiel nicht dopt",
+      "die Wahrscheinlichkeit, dass sie ein Spiel gewinnt und dopt",
+      "die Wahrscheinlichkeit, dass sie ein Spiel gewinnt oder dopt",
+      "$P(B \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2830:0,0001}",
+      "{1:NUMERICAL:=0,2838:0,0001}",
+      "{1:NUMERICAL:=0,8632:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.43,
+        "pba": 0.66,
+        "pbna": 0.76,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Mitarbeiter arbeitet im Home-Office.</li><li>$B$: Ein Mitarbeiter arbeitet in Vollzeit.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Mitarbeiter in Teilzeit arbeitet",
+      "die Wahrscheinlichkeit, dass ein Mitarbeiter in Vollzeit und in Präsenz arbeitet",
+      "die Wahrscheinlichkeit, dass ein Mitarbeiter im Home-Office oder in Teilzeit arbeitet",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5103:0,0001}",
+      "{1:NUMERICAL:=0,1325:0,0001}",
+      "{1:NUMERICAL:=0,8675:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.47,
+        "pba": 0.76,
+        "pbna": 0.25,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Restaurant hat einen Biergarten.</li><li>$B$: Ein Restaurant hat eine Spielecke.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "die Wahrscheinlichkeit, dass ein Restaurant über keinen Biergarten aber über eine Spielecke verfügt",
+      "die Wahrscheinlichkeit, dass ein Restaurant über einen Biergarten oder eine Spielecke verfügt",
+      "$P(A \\cap B) + P(\\overline{A} \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4973:0,0001}",
+      "{1:NUMERICAL:=0,1862:0,0001}",
+      "{1:NUMERICAL:=0,6962:0,0001}",
+      "{1:NUMERICAL:=0,6149:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.51,
+        "pba": 0.61,
+        "pbna": 0.38,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft nachhaltige Holzkohle.</li><li>$B$: Ein Kunde kauft ein Originalprodukt.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "$P(A \\cap B)$.",
+      "$P(A \\cup \\overline{B})$.",
+      "$P(A \\cup B) - P(A \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3752:0,0001}",
+      "{1:NUMERICAL:=0,1590:0,0001}",
+      "{1:NUMERICAL:=0,7838:0,0001}",
+      "{1:NUMERICAL:=0,5872:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.53,
+        "pba": 0.3,
+        "pbna": 0.46,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot. Wir betrachten die Ereignisse:<ul><li>$A$: Weiße Farbe ist im Sonderangebot.</li><li>$B$: Matte Farbe ist im Sonderangebot.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass glänzende Farbe im Sonderangebot ist",
+      "$P(\\overline{A} \\cap B)$.",
+      "die Wahrscheinlichkeit, dass weiße oder glänzende Farbe im Sonderangebot ist",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6300:0,0001}",
+      "{1:NUMERICAL:=0,2655:0,0001}",
+      "{1:NUMERICAL:=0,7345:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.55,
+        "pba": 0.19,
+        "pbna": 0.59,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Opfer ist minderjährig.</li><li>$B$: Ein Opfer alarmiert die Polizei.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Opfer die Polizei alarmiert",
+      "die Wahrscheinlichkeit, dass ein Opfer minderjährig ist und nicht die Polizei alarmiert",
+      "die Wahrscheinlichkeit, dass ein Opfer erwachsen ist oder nicht die Polizei alarmiert",
+      "$P(A \\cap B) + P(\\overline{A} \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6978:0,0001}",
+      "{1:NUMERICAL:=0,0540:0,0001}",
+      "{1:NUMERICAL:=0,7840:0,0001}",
+      "{1:NUMERICAL:=0,4642:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.27,
+        "pba": 0.8,
+        "pbna": 0.66,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Glas hat einen Riss.</li><li>$B$: Ein Glas hat einen Blaseneinschluss.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass ein Glas keinen Blaseneinschluss hat",
+      "die Wahrscheinlichkeit, dass ein Glas keinen Riss aber einen Blaseneinschluss hat",
+      "die Wahrscheinlichkeit, dass ein Glas zumindest einen Fehler nicht aufweist",
+      "$P(B \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2336:0,0001}",
+      "{1:NUMERICAL:=0,6630:0,0001}",
+      "{1:NUMERICAL:=0,8966:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.22,
+        "pba": 0.47,
+        "pbna": 0.85,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht. Wir betrachten die Ereignisse:<ul><li>$A$: Ein vorgeschlagener Partner ist attraktiv.</li><li>$B$: Ein vorgeschlagener Partner raucht.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "die Wahrscheinlichkeit, dass ein vorgeschlagener Partner ein attraktiver Nichtraucher ist",
+      "$P(A \\cup \\overline{B})$.",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4472:0,0001}",
+      "{1:NUMERICAL:=0,1272:0,0001}",
+      "{1:NUMERICAL:=0,6656:0,0001}",
+      "{1:NUMERICAL:=0,4616:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.24,
+        "pba": 0.47,
+        "pbna": 0.44,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Smartwatch ist fehlerfrei.</li><li>$B$: Eine Smartwatch wird aussortiert.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{A})$.",
+      "die Wahrscheinlichkeit, dass eine Smartwatch fehlerbehaftet ist und nicht aussortiert wird",
+      "die Wahrscheinlichkeit, dass eine Smartwatch fehlerbehaftet ist oder aussortiert wird",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6300:0,0001}",
+      "{1:NUMERICAL:=0,1323:0,0001}",
+      "{1:NUMERICAL:=0,7595:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.37,
+        "pba": 0.35,
+        "pbna": 0.79,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine große Pommes bestellt.</li><li>$B$: Es wird eine Pommes mit Ketchup bestellt.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "die Wahrscheinlichkeit, dass eine kleine Pommes bestellt wird",
+      "$P(A \\cap \\overline{B})$.",
+      "$P(\\overline{A} \\cup B)$.",
+      "$P(A \\cap \\overline{B}) + P(\\overline{A} \\cap B)$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7900:0,0001}",
+      "{1:NUMERICAL:=0,1365:0,0001}",
+      "{1:NUMERICAL:=0,8635:0,0001}",
+      "{1:NUMERICAL:=0,7843:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.21,
+        "pba": 0.35,
+        "pbna": 0.82,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen verkauft neue und gebrauchte Beamer. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft Neuware.</li><li>$B$: Ein Kunde reklamiert das Produkt.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{A})$.",
+      "$P(\\overline{A} \\cap \\overline{B})$.",
+      "$P(A \\cup B)$.",
+      "$P(A \\cap B) + P(\\overline{A} \\cap \\overline{B})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,0992:0,0001}",
+      "{1:NUMERICAL:=0,9008:0,0001}",
+      "{1:NUMERICAL:=0,5412:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.68,
+        "pba": 0.65,
+        "pbna": 0.69,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen. Wir betrachten die Ereignisse:<ul><li>$A$: Einem Follower gefällt Ambition.</li><li>$B$: Einem Follower gefällt Bonny.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(\\overline{B})$.",
+      "$P(A \\cap B)$.",
+      "die Wahrscheinlichkeit, dass einem Follower mindestens einer der beiden Lippenstifte nicht gefällt",
+      "$P(A \\cap \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4463:0,0001}",
+      "{1:NUMERICAL:=0,3953:0,0001}",
+      "{1:NUMERICAL:=0,6047:0,0001}",
+      "{1:NUMERICAL:=0,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.67,
+        "pba": 0.59,
+        "pbna": 0.48,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Produkt ist biologisch.</li><li>$B$: Ein Produkt ist regional.</li></ul>Bestimmen Sie anhand des Baumdiagramms auf 4 NKS gerundet",
+    "fragen": [
+      "$P(B)$.",
+      "die Wahrscheinlichkeit, dass ein Produkt nicht biologisch und nicht regional ist",
+      "die Wahrscheinlichkeit, dass ein Produkt nicht biologisch oder nicht regional ist",
+      "$P(A \\cup \\overline{A})$."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5276:0,0001}",
+      "{1:NUMERICAL:=0,1512:0,0001}",
+      "{1:NUMERICAL:=0,5912:0,0001}",
+      "{1:NUMERICAL:=1,0000:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.73,
+        "pba": 0.56,
+        "pbna": 0.44,
+        "givenSlots": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  }
+]

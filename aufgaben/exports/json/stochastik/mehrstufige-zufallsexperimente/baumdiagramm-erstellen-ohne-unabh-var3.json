@@ -1,0 +1,822 @@
+[
+  {
+    "einleitung": "Ein Hersteller von Halbleitern erhält Aufträge von Groß- und Kleinkunden. Alle Kunden können zwischen Basis- und Premium-Qualität wählen. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Großkunde bestellt Halbleiter.</li><li>$B$: Halbleiter werden in Premium-Qualität bestellt.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2600:0,0001}",
+      "{1:NUMERICAL:=0,4600:0,0001}",
+      "{1:NUMERICAL:=0,5400:0,0001}",
+      "{1:NUMERICAL:=0,4070:0,0001}",
+      "{1:NUMERICAL:=0,1430:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.55,
+        "pba": 0.74,
+        "pbna": 0.46,
+        "givenSlots": [
+          3,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Zugbegleiterin kontrolliert die Fahrscheine und das Einhalten der Maskenpflicht in einem ICE von Hamburg nach München. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Passagier hat einen gültigen Fahrschein.</li><li>$B$: Ein Passagier trägt eine Maske.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "{1:NUMERICAL:=0,2200:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "{1:NUMERICAL:=0,7900:0,0001}",
+      "{1:NUMERICAL:=0,1232:0,0001}",
+      "{1:NUMERICAL:=0,4368:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.56,
+        "pba": 0.22,
+        "pbna": 0.21,
+        "givenSlots": [
+          4,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Eisstand bietet Getränke an: Schokolade und Kaffee, jeweils entweder heiß oder kalt zubereitet. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde bestellt eine Schokolade.</li><li>$B$: Ein Kunde bestellt ein heißes Getränk.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7900:0,0001}",
+      "{1:NUMERICAL:=0,2100:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,0462:0,0001}",
+      "{1:NUMERICAL:=0,1638:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.79,
+        "pba": 0.6,
+        "pbna": 0.22,
+        "givenSlots": [
+          5,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein angeblich verzauberter Würfel wird geworfen. Bevor man wirft, kann man einen Zauberspruch aufsagen. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine Sechs geworfen.</li><li>$B$: Es wird ein Zauberspruch aufgesagt.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,3500:0,0001}",
+      "{1:NUMERICAL:=0,6500:0,0001}",
+      "{1:NUMERICAL:=0,8300:0,0001}",
+      "{1:NUMERICAL:=0,1700:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6700:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2145:0,0001}",
+      "{1:NUMERICAL:=0,4355:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.35,
+        "pba": 0.83,
+        "pbna": 0.33,
+        "givenSlots": [
+          5,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Für das Controlling bei der Deutschen Bundesbank bewerben sich Mathematiker und Wirtschaftswissenschaftler mit Bachelor- oder Masterabschluss. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Bewerber ist Mathematiker.</li><li>$B$: Ein Bewerber hat einen Bachelor.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2600:0,0001}",
+      "{1:NUMERICAL:=0,7400:0,0001}",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1628:0,0001}",
+      "{1:NUMERICAL:=0,5772:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.26,
+        "pba": 0.32,
+        "pbna": 0.22,
+        "givenSlots": [
+          5,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Bei der praktischen Führerscheinprüfung wird untersucht, ob der Gemütszustand des Prüfers das Ergebnis beeinflusst. Wir betrachten die Ereignisse:<ul><li>$A$: Der Prüfling besteht.</li><li>$B$: Der Prüfer ist ausgeschlafen.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7600:0,0001}",
+      "{1:NUMERICAL:=0,2400:0,0001}",
+      "{1:NUMERICAL:=0,1500:0,0001}",
+      "{1:NUMERICAL:=0,8500:0,0001}",
+      "{1:NUMERICAL:=0,6000:0,0001}",
+      "{1:NUMERICAL:=0,4000:0,0001}",
+      "{1:NUMERICAL:=0,1140:0,0001}",
+      "---",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.76,
+        "pba": 0.15,
+        "pbna": 0.6,
+        "givenSlots": [
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Sportgeschäft werden Hanteln aus Metall und Kunststoff angeboten. Zur Schonung der Handgelenke sind einige Hanteln zudem mit einem drehbaren Griff ausgestattet. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Hantel ist aus Metall.</li><li>$B$: Eine Hantel hat einen drehbaren Griff.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5800:0,0001}",
+      "{1:NUMERICAL:=0,4200:0,0001}",
+      "{1:NUMERICAL:=0,1600:0,0001}",
+      "{1:NUMERICAL:=0,8400:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3600:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2688:0,0001}",
+      "{1:NUMERICAL:=0,1512:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.58,
+        "pba": 0.16,
+        "pbna": 0.64,
+        "givenSlots": [
+          5,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Fußballspielerin nimmt vor einigen Spielen Doping ein. Spiele können entweder gewonnen oder verloren werden. Wir betrachten die Ereignisse:<ul><li>$A$: Sie gewinnt ein Spiel.</li><li>$B$: Sie dopt in einem Spiel.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,5800:0,0001}",
+      "{1:NUMERICAL:=0,7600:0,0001}",
+      "{1:NUMERICAL:=0,2400:0,0001}",
+      "{1:NUMERICAL:=0,1134:0,0001}",
+      "{1:NUMERICAL:=0,1566:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.27,
+        "pba": 0.42,
+        "pbna": 0.76,
+        "givenSlots": [
+          3,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen stellt fest, ob seine Mitarbeiter im Home-Office oder in Präsenz arbeiten. Es gibt Voll- und Teilzeitkräfte. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Mitarbeiter arbeitet im Home-Office.</li><li>$B$: Ein Mitarbeiter arbeitet in Vollzeit.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2800:0,0001}",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,6900:0,0001}",
+      "{1:NUMERICAL:=0,4200:0,0001}",
+      "{1:NUMERICAL:=0,5800:0,0001}",
+      "{1:NUMERICAL:=0,0868:0,0001}",
+      "---",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.28,
+        "pba": 0.31,
+        "pbna": 0.42,
+        "givenSlots": [
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Die Geschäftsleitung eines Restaurants interessiert sich dafür, wie kinderfreundlich die konkurrierenden Restaurants der Stadt sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Restaurant hat einen Biergarten.</li><li>$B$: Ein Restaurant hat eine Spielecke.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "{1:NUMERICAL:=0,8200:0,0001}",
+      "{1:NUMERICAL:=0,2520:0,0001}",
+      "{1:NUMERICAL:=0,3080:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.56,
+        "pba": 0.45,
+        "pbna": 0.18,
+        "givenSlots": [
+          4,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einem Gartencenter wird konventionelle und nachhaltige Holzkohle angeboten. Beide Kohlearten sind als teure Originalprodukte oder günstige Nachahmerprodukte erhältlich. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft nachhaltige Holzkohle.</li><li>$B$: Ein Kunde kauft ein Originalprodukt.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5900:0,0001}",
+      "{1:NUMERICAL:=0,4100:0,0001}",
+      "{1:NUMERICAL:=0,5300:0,0001}",
+      "{1:NUMERICAL:=0,4700:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,6900:0,0001}",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1271:0,0001}",
+      "{1:NUMERICAL:=0,2829:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.59,
+        "pba": 0.53,
+        "pbna": 0.31,
+        "givenSlots": [
+          5,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Geschäft für Heimwerkerbedarf bietet Wandfarbe in den Farben weiß und beige an, jeweils entweder matt oder glänzend. Genau ein Produkt ist im Sonderangebot. Wir betrachten die Ereignisse:<ul><li>$A$: Weiße Farbe ist im Sonderangebot.</li><li>$B$: Matte Farbe ist im Sonderangebot.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2700:0,0001}",
+      "{1:NUMERICAL:=0,7300:0,0001}",
+      "{1:NUMERICAL:=0,3000:0,0001}",
+      "{1:NUMERICAL:=0,7000:0,0001}",
+      "{1:NUMERICAL:=0,2200:0,0001}",
+      "{1:NUMERICAL:=0,7800:0,0001}",
+      "{1:NUMERICAL:=0,0810:0,0001}",
+      "---",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.27,
+        "pba": 0.3,
+        "pbna": 0.22,
+        "givenSlots": [
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Personen werden damit erpresst, dass Hacker angeblich Mitschnitte einer Webcam besitzen, die die Person beim Pornokonsum zeigt. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Opfer ist minderjährig.</li><li>$B$: Ein Opfer alarmiert die Polizei.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "{1:NUMERICAL:=0,2500:0,0001}",
+      "{1:NUMERICAL:=0,7200:0,0001}",
+      "{1:NUMERICAL:=0,2800:0,0001}",
+      "{1:NUMERICAL:=0,5800:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1450:0,0001}",
+      "{1:NUMERICAL:=0,1050:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.75,
+        "pba": 0.72,
+        "pbna": 0.58,
+        "givenSlots": [
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "In einer Glaserei können bei der Produktion von hochwertigen Weingläsern zwei Fehler auftreten: Risse und Blaseneinschlüsse. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Glas hat einen Riss.</li><li>$B$: Ein Glas hat einen Blaseneinschluss.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,8000:0,0001}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,3300:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "{1:NUMERICAL:=0,6900:0,0001}",
+      "{1:NUMERICAL:=0,2640:0,0001}",
+      "{1:NUMERICAL:=0,5360:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.8,
+        "pba": 0.33,
+        "pbna": 0.31,
+        "givenSlots": [
+          4,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Amalia sucht auf einer Online-Partnerbörse den Mann fürs Leben. Neben der äußerlichen Attraktivität ist es für sie wichtig, dass ihr Partner nicht raucht. Wir betrachten die Ereignisse:<ul><li>$A$: Ein vorgeschlagener Partner ist attraktiv.</li><li>$B$: Ein vorgeschlagener Partner raucht.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,2300:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "---",
+      "{1:NUMERICAL:=0,1800:0,0001}",
+      "{1:NUMERICAL:=0,8200:0,0001}",
+      "{1:NUMERICAL:=0,1288:0,0001}",
+      "{1:NUMERICAL:=0,1012:0,0001}",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.23,
+        "pba": 0.56,
+        "pbna": 0.18,
+        "givenSlots": [
+          4,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen produziert Smartwatches, die vor dem Verkauf durch ein automatisiertes Verfahren ausgiebig getestet werden. Fehlerhafte Smartwatches werden aussortiert, allerdings kommt es auch zu Fehlentscheidungen. Wir betrachten die Ereignisse:<ul><li>$A$: Eine Smartwatch ist fehlerfrei.</li><li>$B$: Eine Smartwatch wird aussortiert.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}",
+      "{1:NUMERICAL:=0,1600:0,0001}",
+      "{1:NUMERICAL:=0,8400:0,0001}",
+      "{1:NUMERICAL:=0,5236:0,0001}",
+      "---",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.68,
+        "pba": 0.77,
+        "pbna": 0.16,
+        "givenSlots": [
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Der Besitzer einer Imbissbude interessiert sich dafür, in welchen Größen Pommes bestellt werden und ob Ketchup oder Mayonnaise gewünscht wird. Wir betrachten die Ereignisse:<ul><li>$A$: Es wird eine große Pommes bestellt.</li><li>$B$: Es wird eine Pommes mit Ketchup bestellt.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5700:0,0001}",
+      "{1:NUMERICAL:=0,4300:0,0001}",
+      "{1:NUMERICAL:=0,7700:0,0001}",
+      "{1:NUMERICAL:=0,2300:0,0001}",
+      "{1:NUMERICAL:=0,3100:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,1333:0,0001}",
+      "{1:NUMERICAL:=0,2967:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.57,
+        "pba": 0.77,
+        "pbna": 0.31,
+        "givenSlots": [
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Unternehmen verkauft neue und gebrauchte Beamer. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Kunde kauft Neuware.</li><li>$B$: Ein Kunde reklamiert das Produkt.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,4400:0,0001}",
+      "{1:NUMERICAL:=0,5600:0,0001}",
+      "{1:NUMERICAL:=0,8000:0,0001}",
+      "{1:NUMERICAL:=0,2000:0,0001}",
+      "{1:NUMERICAL:=0,7500:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,4200:0,0001}",
+      "{1:NUMERICAL:=0,1400:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.44,
+        "pba": 0.8,
+        "pbna": 0.75,
+        "givenSlots": [
+          6,
+          7,
+          8
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Eine Influencerin stellt ihren Followern zwei neue Lippenstifte vor: Ambition und Bonny. Sie möchte wissen, wie die beiden Lippenstifte ankommen. Wir betrachten die Ereignisse:<ul><li>$A$: Einem Follower gefällt Ambition.</li><li>$B$: Einem Follower gefällt Bonny.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,6400:0,0001}",
+      "{1:NUMERICAL:=0,3600:0,0001}",
+      "{1:NUMERICAL:=0,3200:0,0001}",
+      "{1:NUMERICAL:=0,6800:0,0001}",
+      "{1:NUMERICAL:=0,1900:0,0001}",
+      "{1:NUMERICAL:=0,8100:0,0001}",
+      "---",
+      "---",
+      "---",
+      "{1:NUMERICAL:=0,2916:0,0001}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.64,
+        "pba": 0.32,
+        "pbna": 0.19,
+        "givenSlots": [
+          7,
+          8,
+          9
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Ein Lebensmittelkonzern verschafft sich einen Überblick darüber, welche seiner Produkte biologisch und regional sind. Wir betrachten die Ereignisse:<ul><li>$A$: Ein Produkt ist biologisch.</li><li>$B$: Ein Produkt ist regional.</li></ul>Vervollständigen Sie das Baumdiagramm (auf 4 NKS gerundet).",
+    "fragen": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,5200:0,0001}",
+      "{1:NUMERICAL:=0,4800:0,0001}",
+      "{1:NUMERICAL:=0,4500:0,0001}",
+      "{1:NUMERICAL:=0,5500:0,0001}",
+      "{1:NUMERICAL:=0,6200:0,0001}",
+      "{1:NUMERICAL:=0,3800:0,0001}",
+      "{1:NUMERICAL:=0,2340:0,0001}",
+      "---",
+      "---",
+      "---"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "ab-tree",
+        "pa": 0.52,
+        "pba": 0.45,
+        "pbna": 0.62,
+        "givenSlots": [
+          8,
+          9,
+          10
+        ]
+      }
+    }
+  }
+]
