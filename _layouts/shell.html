@@ -4,6 +4,7 @@
 <head>
     {% include head.html %}
     {% include mathjax.html %}
+    {% include supabase-runtime-config.html %}
 </head>
 
 <body class="page-shell {{ page.body_class | default: 'page-dashboard' }}"
@@ -31,6 +32,7 @@
     <script type="module" src="{{ page.module_script | relative_url }}"></script>
     {% endif %}
     {% include theme-script.html %}
+    <script type="module" src="{{ '/assets/js/modules/auth-shell.js?v=20260520-start-feed' | relative_url }}"></script>
     {{ page.after_scripts }}
 </body>
 

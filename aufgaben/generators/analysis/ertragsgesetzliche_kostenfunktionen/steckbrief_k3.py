@@ -1,3 +1,4 @@
+import hashlib
 import random
 
 from aufgaben.core.models import Task
@@ -96,6 +97,11 @@ class ErtragsgesetzlicheKostenSteckbriefK3Generator(TaskGenerator):
                 x_stueck = float(rng.choice([2, 4, 5, 25]))
                 x_var = float(rng.randint(max(2, int(x_wende)), max(3, int(3 * x_wende))))
                 x_grenz = float(rng.randint(max(2, int(x_wende)), max(3, int(3 * x_wende))))
+                x_wende_formulierungen = [
+                    f"Der Übergang vom degressiven zum progressiven Kostenwachstum findet bei {_format_number(x_wende)} ME statt.",
+                    f"Die Wendestelle beträgt {_format_number(x_wende)} ME.",
+                    f"Die Kostenzunahme ist bei {_format_number(x_wende)} ME am geringsten.",
+                ]
 
                 clues: dict[int, tuple[str, list[float], float]] = {
                     0: (
@@ -124,7 +130,7 @@ class ErtragsgesetzlicheKostenSteckbriefK3Generator(TaskGenerator):
                         grenzkosten(x_grenz),
                     ),
                     5: (
-                        f"Der Übergang vom degressiven zum progressiven Kostenwachstum findet bei {_format_number(x_wende)} ME statt.",
+                        x_wende_formulierungen[0],
                         [6.0 * x_wende, 2.0, 0.0, 0.0],
                         0.0,
                     ),
@@ -178,7 +184,18 @@ class ErtragsgesetzlicheKostenSteckbriefK3Generator(TaskGenerator):
                     if _rank_of_matrix(matrix) < 4:
                         continue
 
-                    intro_parts = [clues[idx][0] for idx in selected]
+                    x_wende_formulierung = x_wende_formulierungen[
+                        hashlib.sha256(
+                            (
+                                f"{k3}|{k2}|{k1}|{k0}|{x_wende}|{x_betriebsminimum}|{x_betriebsoptimum}"
+                            ).encode("utf-8")
+                        ).digest()[0]
+                        % len(x_wende_formulierungen)
+                    ]
+                    intro_parts = [
+                        x_wende_formulierung if idx == 5 else clues[idx][0]
+                        for idx in selected
+                    ]
                     success = True
                     break
 

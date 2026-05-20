@@ -1,13 +1,17 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260519-feed-actions";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260520-start-feed";
+import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
 const feynmanJumpNavScrollCleanup = new WeakMap();
+const FEYNMAN_FEED_STEP_KEY = "feynman";
 
 function getTabScopeId() {
   try {
@@ -132,7 +136,7 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-const FEYNMAN_DELAY_MS = 30000;
+const FEYNMAN_DELAY_MS = 1000;
 
 async function fetchBeispielHtml(check) {
   return fetchSharedBeispielHtml(check, FY_BEISPIEL_CACHE);
@@ -308,6 +312,122 @@ function htmlToPlainText(html) {
   return [plainText.trim(), graphText].filter(Boolean).join("\n\n");
 }
 
+function normalizeFeynmanFeedContext(activityContext) {
+  if (!activityContext || activityContext.mode !== "feed") return null;
+  return String(activityContext.activityStep || "").trim() === FEYNMAN_FEED_STEP_KEY
+    ? { mode: "feed", activityStep: FEYNMAN_FEED_STEP_KEY }
+    : null;
+}
+
+function attachFeynmanFeedShell(section, activityContext, { lernbereich = "" } = {}) {
+  const feedContext = normalizeFeynmanFeedContext(activityContext);
+  if (!section || !feedContext) return;
+
+  const activityCard = section.querySelector("[data-fy-card]");
+  const toEvaluateButton = activityCard?.querySelector("[data-fy-to-evaluate]") || null;
+  const answerNoButton = activityCard?.querySelector('[data-fy-answer="no"]') || null;
+  const controls = attachFeedCardControls(section, {
+    cardSelector: "[data-fy-card]",
+    stepLabel: "Feynman",
+  });
+  if (!controls) return;
+
+  let canPrepare = false;
+  let completed = false;
+  let busy = false;
+  let statusMessage = "Erkläre den Inhalt und öffne danach die Auswertung. Dann kannst du den Abschluss vorbereiten.";
+  let statusTone = "neutral";
+
+  const checkId = section.dataset.checkId || "";
+
+  async function recordFeynmanCompletion() {
+    return recordCheckFeedDecision({
+      lernbereichSlug: lernbereich,
+      checkId,
+      moduleKey: "feynman",
+      outcomeKey: "can_do",
+    });
+  }
+
+  const enablePrepare = () => {
+    if (completed) return;
+    canPrepare = true;
+    statusMessage = "Die Auswertung ist sichtbar. Du kannst den Feed-Abschluss vorbereiten.";
+    statusTone = "neutral";
+    renderControls();
+  };
+
+  const completeFeynmanDecision = async () => {
+    if (busy) return;
+    busy = true;
+    statusMessage = "Der Feed-Schritt wird gespeichert.";
+    statusTone = "neutral";
+    renderControls();
+
+    try {
+      await recordFeynmanCompletion();
+    } catch (error) {
+      console.error("Feynman-Aktivität konnte nicht abgeschlossen werden:", error);
+      busy = false;
+      statusMessage = "Die Feynman-Aktivität konnte gerade nicht gespeichert werden.";
+      statusTone = "error";
+      renderControls();
+      throw error;
+    }
+
+    completed = true;
+    statusMessage = "Die Feynman-Aktivität wurde abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";
+    statusTone = "success";
+    renderControls();
+  };
+
+  const repeatFeynmanDecision = () => {
+    canPrepare = false;
+    statusMessage = "Die Feynman-Aktivität bleibt im Feed offen.";
+    statusTone = "neutral";
+    answerNoButton?.click();
+    renderControls();
+  };
+
+  const openFeynmanDecision = () => {
+    if (!controls?.openDecisionDialog || busy || completed || !canPrepare) return;
+
+    controls.openDecisionDialog({
+      title: "Feynman abschließen?",
+      detail: "Nutze deine Auswertung als Maßstab für die Entscheidung.",
+      onComplete: completeFeynmanDecision,
+      onRepeat: repeatFeynmanDecision,
+    });
+  };
+
+  function renderControls() {
+    const items = [
+      {
+        icon: "❌",
+        label: "Aktivität abbrechen",
+        onClick: leaveFeedContext,
+      },
+      {
+        icon: "✅",
+        label: busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
+        disabled: busy || completed || !canPrepare,
+        iconPulse: canPrepare && !busy && !completed,
+        onClick: openFeynmanDecision,
+      },
+    ];
+
+    controls.render({
+      status: statusMessage,
+      tone: statusTone,
+      items,
+      ready: canPrepare && !busy && !completed,
+    });
+  }
+
+  toEvaluateButton?.addEventListener("click", enablePrepare);
+  renderControls();
+}
+
 function buildKiAgentPrompt(check, beispielHtml) {
   const schlagwort = check.Schlagwort || `Check ${check.Nummer}`;
   const lernbereich = check.LernbereichAnzeigename || check.Lernbereich || "";
@@ -381,7 +501,7 @@ async function copyToClipboard(text) {
   }
 }
 
-function renderCard(check) {
+function renderCard(check, { includeSelfCheck = false } = {}) {
   const titel = check.Schlagwort || `Check ${check.Nummer}`;
   const ichKann = check?.["Ich kann"] || "";
   const competenceText = String(ichKann || titel).replace(/\.$/, "");
@@ -390,6 +510,22 @@ function renderCard(check) {
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
   const evaluationExampleMarkup = getEvaluationExamplePlaceholder();
+  const selfCheckMarkup = includeSelfCheck
+    ? `
+          <p class="module-flow-prompt module-flow-prompt--self-check">Konntest du es schlüssig erklären?</p>
+          <div class="self-check-actions">
+            <button class="self-check-button yes" type="button" data-fy-answer="yes">
+              <span class="self-check-button__icon">✅</span>
+              <span class="self-check-button__title">Kann ich</span>
+              <span class="self-check-button__sub">Ich habe die Kerngedanken getroffen.</span>
+            </button>
+            <button class="self-check-button no" type="button" data-fy-answer="no">
+              <span class="self-check-button__icon">🔄</span>
+              <span class="self-check-button__title">Noch nicht</span>
+              <span class="self-check-button__sub">Ich brauche noch Wiederholung.</span>
+            </button>
+          </div>`
+    : "";
 
   const kiMenuItem = `<button type="button" class="check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner kopieren</span></button>`;
   const actionsMenu = renderCardActionsMenuMarkup(kiMenuItem);
@@ -438,19 +574,7 @@ function renderCard(check) {
         <div data-fy-stage="evaluate" hidden>
           <p class="module-flow-prompt">Vergleiche deine Erklärung mit dem Auswertungsbeispiel.</p>
           <div style="margin-bottom:20px;">${evaluationExampleMarkup}</div>
-          <p class="module-flow-prompt module-flow-prompt--self-check">Konntest du es schlüssig erklären?</p>
-          <div class="self-check-actions">
-            <button class="self-check-button yes" type="button" data-fy-answer="yes">
-              <span class="self-check-button__icon">✅</span>
-              <span class="self-check-button__title">Kann ich</span>
-              <span class="self-check-button__sub">Ich habe die Kerngedanken getroffen.</span>
-            </button>
-            <button class="self-check-button no" type="button" data-fy-answer="no">
-              <span class="self-check-button__icon">🔄</span>
-              <span class="self-check-button__title">Noch nicht</span>
-              <span class="self-check-button__sub">Ich brauche noch Wiederholung.</span>
-            </button>
-          </div>
+          ${selfCheckMarkup}
         </div>
 
         <div data-fy-stage="result-yes" hidden>
@@ -487,6 +611,8 @@ function renderJumpNav(navNode, checks, activeCheckId) {
       return `<a class="check-jump-tab${activeClass}" href="${escapeHtml(href)}" data-check-id="${escapeHtml(checkId)}">${escapeHtml(label)}</a>`;
     })
     .join("");
+
+  enhanceCheckJumpNav(navNode);
 
   if (navNode.dataset.activeBinding !== "1") {
     navNode.dataset.activeBinding = "1";
@@ -598,11 +724,12 @@ function revealEvaluationStage(stageEl) {
   }, 900);
 }
 
-function initInteractiveFeynmanCards(root, checks) {
+function initInteractiveFeynmanCards(root, checks, lernbereich, activityContext) {
   const cards = root.querySelectorAll("[data-fy-card]");
 
   cards.forEach((card, index) => {
     const check = checks[index];
+    const checkId = check ? getCheckId(check) : "";
     const stages = {
       explain: card.querySelector('[data-fy-stage="explain"]'),
       evaluate: card.querySelector('[data-fy-stage="evaluate"]'),
@@ -652,6 +779,14 @@ function initInteractiveFeynmanCards(root, checks) {
 
     function setResult(canExplain) {
       setStage(canExplain ? "result-yes" : "result-no");
+      if (activityContext?.mode === "feed") {
+        void recordCheckFeedDecision({
+          lernbereichSlug: lernbereich,
+          checkId,
+          moduleKey: "feynman",
+          outcomeKey: canExplain ? "can_do" : "repeat",
+        }).catch(() => {});
+      }
     }
 
     startButton?.addEventListener("click", () => {
@@ -702,7 +837,7 @@ function bindCheckPositionPersistence(root, lernbereich, state) {
   });
 }
 
-export async function initFeynmanModule({ root, lernbereich, preferredCheckId = "" }) {
+export async function initFeynmanModule({ root, lernbereich, preferredCheckId = "", activityContext = null }) {
   if (!lernbereich) {
     renderInfo(root, "Kein Lernbereich gesetzt (data-lernbereich fehlt).");
     return;
@@ -726,11 +861,24 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   saveFeynmanState(lernbereich, state);
 
   renderJumpNav(navNode, checks, selectedCheckId);
-  root.innerHTML = checks.map((check) => renderCard(check)).join("");
+  root.innerHTML = checks
+    .map((check) => renderCard(check, {
+      includeSelfCheck: activityContext?.mode === "feed" && getCheckId(check) === selectedCheckId,
+    }))
+    .join("");
+  const selectedSection = Array.from(root.querySelectorAll("[data-fy-check-viewport][data-check-id]"))
+    .find((section) => section.dataset.checkId === selectedCheckId) || null;
+  if (selectedSection) {
+    attachFeynmanFeedShell(selectedSection, activityContext, { lernbereich });
+    if (activityContext?.mode === "feed") {
+      setJumpNavActive(navNode, selectedCheckId);
+      selectedSection.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+  }
   initCardMenuDismiss(root);
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-fy-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveFeynmanCards(root, checks);
+  initInteractiveFeynmanCards(root, checks, lernbereich, activityContext);
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
   await hydrateBeispielSlots(root, checks);

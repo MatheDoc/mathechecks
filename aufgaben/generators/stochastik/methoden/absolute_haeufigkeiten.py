@@ -60,12 +60,12 @@ class AbsoluteHaeufigkeitenGenerator(TaskGenerator):
 
             einleitung = (
                 f"{scenario.intro} "
-                f"In einer Erhebung wurden insgesamt {total} Faelle beobachtet: "
-                f"{c_pab} Faelle, in denen {scenario.prob_texts['pab']}; "
-                f"{c_panb} Faelle, in denen {scenario.prob_texts['panb']}; "
-                f"{c_pnab} Faelle, in denen {scenario.prob_texts['pnab']}; "
-                f"{c_pnanb} Faelle, in denen {scenario.prob_texts['pnanb']}. "
-                "Berechnen Sie die Wahrscheinlichkeit der folgenden Ereignisse: Ein zufaellig ausgewaehlter Fall erfuellt"
+                f"In einer Erhebung wurden insgesamt {total} Fälle beobachtet: "
+                f"{c_pab} Fälle, in denen {scenario.prob_texts['pab']}; "
+                f"{c_panb} Fälle, in denen {scenario.prob_texts['panb']}; "
+                f"{c_pnab} Fälle, in denen {scenario.prob_texts['pnab']}; "
+                f"{c_pnanb} Fälle, in denen {scenario.prob_texts['pnanb']}. "
+                "Berechnen Sie die Wahrscheinlichkeit der folgenden Ereignisse: Ein zufällig ausgewählter Fall erfüllt"
             )
 
             fragen = [

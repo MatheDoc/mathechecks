@@ -6,6 +6,14 @@ url: "https://www.mathechecks.de"
 baseurl: ""
 google_analytics_measurement_id: "G-Y6GZ0876P9"
 
+# Remote-first MVP fuer Benutzerverwaltung.
+# Die Project URL und der publishable anon key gehoeren zum Supabase-Projekt.
+# Der service role key wird hier bewusst nicht hinterlegt.
+supabase_url: "https://ysqpmtreljfdwtlvjzis.supabase.co"
+supabase_anon_key: "sb_publishable_BIs3hzfB55PaH9sydQ35bw_ipGzUGIX"
+supabase_oauth_providers:
+  - google
+
 lang: de_DE
 
 markdown: kramdown

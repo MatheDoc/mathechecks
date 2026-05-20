@@ -4,18 +4,25 @@ import {
     loadTrainingState,
     loadTaskIndexForCheck,
     saveTaskIndexForCheck,
-} from "../state/check-state-store.js";
-import { buildTaskUiStateKey } from "../state/task-ui-state.js";
+    loadShuffleNonce,
+    saveShuffleNonce,
+    loadTrainingFeedTaskIndexForCheck,
+    saveTrainingFeedTaskIndexForCheck,
+    loadTrainingFeedShuffleNonce,
+    saveTrainingFeedShuffleNonce,
+} from "../state/check-state-store.js?v=20260516-feed-confirm";
+import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260513-task-check-b";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260516-feed-progress-complete";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 import {
+    attachTrainingFeedShell,
     buildTrainingKiAgentPrompt,
     createTrainingCardHeader,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js";
+} from "./training.js?v=20260519-feed-architecture";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;
@@ -151,7 +158,8 @@ function createTaskCard(
     taskUiStateKey,
     readPersistedState = true,
     taskIndex = 0,
-    totalTasks = 0
+    totalTasks = 0,
+    shuffleSeed = ""
 ) {
     if (!aufgabe) return createEmptyTaskCard(check);
 
@@ -167,7 +175,7 @@ function createTaskCard(
     card.appendChild(body);
 
     const effectiveAufgabe =
-        check?.questionOrder === "shuffle" ? shuffleQuestionsInTask(aufgabe, taskUiStateKey) : aufgabe;
+        check?.questionOrder === "shuffle" ? shuffleQuestionsInTask(aufgabe, shuffleSeed || taskUiStateKey) : aufgabe;
 
     let runtimeTaskNode = null;
 
@@ -243,15 +251,18 @@ function createTaskCard(
                 if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen";
             },
         });
+        solutionItem.dataset.trainingFeedControlled = "true";
         actionsPopover.appendChild(solutionItem);
     }
 
     if (runtimeReloadBtn) {
-        actionsPopover.appendChild(createCardMenuItem({
+        const reloadItem = createCardMenuItem({
             emoji: "🔄",
             label: "Neue Aufgabe",
             onClick: () => runtimeReloadBtn.click(),
-        }));
+        });
+        reloadItem.dataset.trainingFeedControlled = "true";
+        actionsPopover.appendChild(reloadItem);
     }
 
     if (runtimeToolbar) {
@@ -274,7 +285,13 @@ function upsertTaskHostAfter(noteNode) {
     return host;
 }
 
-async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedState, taskIndexByCheckId }) {
+async function renderCheckTaskInHost(host, check, {
+    lernbereich,
+    usePersistedState,
+    taskIndexByCheckId,
+    activityContext = null,
+    preferredCheckId = "",
+}) {
     try {
         const sammlung = await getAufgabenSammlung(check.Sammlung, {
             gebiet: check.Gebiet,
@@ -282,15 +299,22 @@ async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedSta
         });
 
         const checkId = getCheckId(check);
-        let taskIndex = usePersistedState
-            ? loadTaskIndexForCheck(
-                lernbereich,
-                checkId,
-                Number.isInteger(taskIndexByCheckId[checkId]) ? taskIndexByCheckId[checkId] : 0
-            )
-            : Number.isInteger(taskIndexByCheckId[checkId])
-                ? taskIndexByCheckId[checkId]
-                : 0;
+        const isActiveFeedTraining =
+            activityContext?.mode === "feed" &&
+            /^training_\d+$/.test(String(activityContext.activityStep || "")) &&
+            (!preferredCheckId || preferredCheckId === checkId);
+        const feedActivityKey = isActiveFeedTraining ? String(activityContext?.activityKey || "").trim() : "";
+        const sharedTaskIndex = Number.isInteger(taskIndexByCheckId[checkId])
+            ? loadTaskIndexForCheck(lernbereich, checkId, taskIndexByCheckId[checkId])
+            : loadTaskIndexForCheck(lernbereich, checkId, 0);
+        const fallbackTaskIndex = isActiveFeedTraining
+            ? pickRandomTaskIndex(sharedTaskIndex, Array.isArray(sammlung) ? sammlung.length : 0)
+            : sharedTaskIndex;
+        let taskIndex = isActiveFeedTraining && feedActivityKey
+            ? loadTrainingFeedTaskIndexForCheck(lernbereich, checkId, feedActivityKey, fallbackTaskIndex)
+            : usePersistedState
+                ? loadTaskIndexForCheck(lernbereich, checkId, fallbackTaskIndex)
+                : fallbackTaskIndex;
 
         if (!Array.isArray(sammlung) || sammlung.length === 0) {
             taskIndex = 0;
@@ -298,13 +322,46 @@ async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedSta
             taskIndex = 0;
         }
 
+        host.dataset.checkId = checkId;
+        host.dataset.lernbereich = check.Lernbereich || lernbereich || "";
+
+        let shuffleNonce = isActiveFeedTraining && feedActivityKey
+            ? loadTrainingFeedShuffleNonce(lernbereich, checkId, feedActivityKey)
+            : loadShuffleNonce(lernbereich, checkId);
+        if (!shuffleNonce) {
+            shuffleNonce = String(Date.now());
+        }
+
+        const saveCurrentTaskIndex = (nextTaskIndex) => {
+            if (isActiveFeedTraining && feedActivityKey) {
+                saveTrainingFeedTaskIndexForCheck(lernbereich, checkId, feedActivityKey, nextTaskIndex);
+                return;
+            }
+            saveTaskIndexForCheck(lernbereich, checkId, nextTaskIndex);
+        };
+
+        const saveCurrentShuffleNonce = (nextNonce) => {
+            if (isActiveFeedTraining && feedActivityKey) {
+                saveTrainingFeedShuffleNonce(lernbereich, checkId, feedActivityKey, nextNonce);
+                return;
+            }
+            saveShuffleNonce(lernbereich, checkId, nextNonce);
+        };
+
+        saveCurrentTaskIndex(taskIndex);
+        saveCurrentShuffleNonce(shuffleNonce);
+
         const renderTaskCardForIndex = async (nextTaskIndex) => {
             const normalizedTaskIndex = Number.isInteger(nextTaskIndex) ? nextTaskIndex : 0;
+            taskIndex = normalizedTaskIndex;
             const aufgabe = Array.isArray(sammlung) ? sammlung[normalizedTaskIndex] || null : null;
             const taskUiStateKey = buildTaskUiStateKey({
                 lernbereich,
                 checkId,
                 taskIndex: normalizedTaskIndex,
+                activityKey: isActiveFeedTraining ? activityContext?.activityKey || "" : "",
+                activityStep: isActiveFeedTraining ? activityContext?.activityStep || "" : "",
+                activityRun: isActiveFeedTraining ? activityContext?.activityRun || "" : "",
             });
 
             host.innerHTML = "";
@@ -314,26 +371,45 @@ async function renderCheckTaskInHost(host, check, { lernbereich, usePersistedSta
                 taskUiStateKey,
                 usePersistedState,
                 normalizedTaskIndex,
-                Array.isArray(sammlung) ? sammlung.length : 0
+                Array.isArray(sammlung) ? sammlung.length : 0,
+                `${taskUiStateKey}::${shuffleNonce}`
             );
             host.appendChild(card);
 
             const runtimeRoot = host.querySelector(".check-card__runtime-task");
             if (runtimeRoot) {
-                runtimeRoot.addEventListener("task:reload", async () => {
-                    const nextRandomIndex = pickRandomTaskIndex(
-                        normalizedTaskIndex,
-                        Array.isArray(sammlung) ? sammlung.length : 0
-                    );
-                    saveTaskIndexForCheck(lernbereich, checkId, nextRandomIndex);
-                    await renderTaskCardForIndex(nextRandomIndex);
+                runtimeRoot.addEventListener("task:reload", () => {
+                    void reloadTask();
                 });
             }
 
             await finalizeTaskRender(host);
         };
 
+        const reloadTask = async () => {
+            const nextRandomIndex = pickRandomTaskIndex(
+                taskIndex,
+                Array.isArray(sammlung) ? sammlung.length : 0
+            );
+            shuffleNonce = String(Date.now());
+            saveCurrentTaskIndex(nextRandomIndex);
+            saveCurrentShuffleNonce(shuffleNonce);
+            await renderTaskCardForIndex(nextRandomIndex);
+            host.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));
+        };
+
+        if (host.dataset.boundTrainingReload !== "true") {
+            host.dataset.boundTrainingReload = "true";
+            host.addEventListener("training:reload-current-task", () => {
+                void reloadTask();
+            });
+        }
+
         await renderTaskCardForIndex(taskIndex);
+
+        if (isActiveFeedTraining) {
+            attachTrainingFeedShell(host, { activityContext, checkId, lernbereich });
+        }
     } catch (error) {
         const message = document.createElement("p");
         message.className = "module-status";
@@ -347,6 +423,8 @@ export async function initScriptTaskDuplicatesModule({
     root,
     lernbereich,
     usePersistedState = true,
+    activityContext = null,
+    preferredCheckId = "",
 }) {
     if (!root || !lernbereich) return;
 
@@ -372,7 +450,7 @@ export async function initScriptTaskDuplicatesModule({
             ? trainingState.taskIndexByCheckId
             : {};
 
-    const opts = { lernbereich, usePersistedState, taskIndexByCheckId };
+    const opts = { lernbereich, usePersistedState, taskIndexByCheckId, activityContext, preferredCheckId };
 
     await Promise.all(
         noteNodes.map(async (noteNode) => {

@@ -1,0 +1,158 @@
+<div data-dashboard-root data-dashboard-checks-url="{{ '/checks.json' | relative_url }}"
+    data-dashboard-material-url="{{ '/material.html' | relative_url }}">
+    <section class="greeting">
+        <h2>Hey <span data-dashboard-greeting-name>Schueler:in</span>, was steht an?</h2>
+        <p data-dashboard-current-date></p>
+    </section>
+
+    <div class="bento">
+        <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Aktuelle Session</span>
+                </div>
+                <div class="check-card__header-actions">
+                    <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-session-menu>
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zur aktuellen Session">
+                            <span class="check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zur aktuellen Session">
+                            <button class="check-card__actions-item" type="button" id="lbOpenBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
+                                <span>Aktuelle Session bearbeiten</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="lbDeleteBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
+                                <span>Aktuelle Session löschen</span>
+                            </button>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="dashboard-panel__body">
+                <p class="dashboard-plan__summary" data-dashboard-plan-summary>Aktuell ist keine Session aktiv.</p>
+                <p class="dashboard-plan__target" data-dashboard-plan-target hidden>Zieldatum: nicht gesetzt.</p>
+                <p class="dashboard-panel__status dashboard-plan__assessment" data-dashboard-plan-assessment hidden></p>
+                <div id="lbChips" hidden aria-hidden="true">
+                    <span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>
+                </div>
+                <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
+            </div>
+        </article>
+
+        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Feed</span>
+                </div>
+            </div>
+
+            <div class="dashboard-panel__body">
+                <p class="dashboard-feed__intro">Hier erscheinen der nächste sinnvolle Schritt und weitere anstehende Aktivitäten: offene Session-Aktivitäten bleiben leitend, fällige Flashcards aus abgeschlossenen Lernbereichen mischen sich nach ihrem Wiederholungsabstand dazwischen.</p>
+                <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
+                    <li class="action-card action-featured" data-type="feed" data-dashboard-primary-feed-card>
+                        <div class="action-icon action-icon-featured" data-dashboard-primary-feed-icon
+                            style="background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;">→</div>
+                        <div class="action-body">
+                            <div class="action-title" data-dashboard-primary-feed-title>Noch keine Empfehlung</div>
+                            <div class="action-desc" data-dashboard-primary-feed-desc>Aktiviere eine Session oder warte auf fällige Wiederholungen. Dann erscheint hier der nächste sinnvolle Schritt.</div>
+                            <div class="action-badges" data-dashboard-primary-feed-badges>
+                                <span class="action-badge">Feed</span>
+                            </div>
+                        </div>
+                        <div class="action-arrow" aria-hidden="true">→</div>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="check-card dashboard-panel dashboard-panel--completed" data-dashboard-completed-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Abgeschlossene Lernbereiche</span>
+                </div>
+            </div>
+
+            <div class="dashboard-panel__body">
+                <p class="dashboard-completed__intro">Hier erscheinen Lernbereiche, bei denen alle ausgewählten Checks über den letzten Kompetenzlisten-Schritt abgeschlossen wurden, auch wenn die zugehörige Session bereits beendet ist.</p>
+                <div class="dashboard-completed__list" data-dashboard-completed-list>
+                    <p class="dashboard-completed__empty">Bisher wurde noch kein Lernbereich vollständig abgeschlossen.</p>
+                </div>
+            </div>
+        </article>
+
+        <!--<article class="card skills-area">
+            <div class="card-header">
+                <span class="card-title">Kompetenzfortschritt</span>
+            </div>
+            <div class="skill-rows">
+                <div class="skill-row">
+                    <div class="skill-top"><span class="skill-name">Ableitungsregeln</span><span
+                            class="skill-pct">82%</span>
+                    </div>
+                    <div class="skill-track">
+                        <div class="skill-fill gradient-1" data-progress="82"></div>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-top"><span class="skill-name">Wahrscheinlichkeit und Vierfeldertafel</span><span
+                            class="skill-pct">68%</span></div>
+                    <div class="skill-track">
+                        <div class="skill-fill gradient-2" data-progress="68"></div>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-top"><span class="skill-name">Lineare Gleichungssysteme</span><span
+                            class="skill-pct">55%</span></div>
+                    <div class="skill-track">
+                        <div class="skill-fill gradient-3" data-progress="55"></div>
+                    </div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-top"><span class="skill-name">Kurvendiskussion</span><span
+                            class="skill-pct">41%</span>
+                    </div>
+                    <div class="skill-track">
+                        <div class="skill-fill gradient-4" data-progress="41"></div>
+                    </div>
+                </div>
+            </div>
+        </article>-->
+    </div>
+</div>
+
+<div class="lb-overlay" id="lbOverlay">
+    <div class="lb-modal">
+        <div class="lb-modal-head">
+            <div>
+                <h2>Aktuelle Session bearbeiten</h2>
+                <p>Aktiviere Lernbereiche und waehle die Kompetenzen aus, die du trainieren moechtest.</p>
+            </div>
+            <button class="lb-close" id="lbCloseBtn" type="button">X</button>
+        </div>
+
+        <div id="lbAccordionContainer"></div>
+
+        <div class="lb-plan-fields">
+            <label class="lb-field" for="lbTargetDateInput">
+                <span class="lb-field__label">Zieldatum</span>
+                <input class="lb-field__input" id="lbTargetDateInput" type="date">
+                <span class="lb-field__hint">Optional. Im Dashboard erscheint dazu eine grobe Einschätzung auf Basis der noch offenen Check-Schritte.</span>
+            </label>
+        </div>
+
+        <div class="lb-modal-footer">
+            <p class="lb-status-message lb-modal-status" id="lbModalStatus" aria-live="polite" hidden></p>
+            <button class="btn-ghost" type="button" id="lbResetBtn">Zurücksetzen</button>
+            <button class="btn-primary" type="button" id="lbSaveBtn">Übernehmen</button>
+        </div>
+    </div>
+</div>
+
+<script id="gebiete-dashboard-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
+<script id="lernbereiche-dashboard-data" type="application/json">{{ site.data.lernbereiche | jsonify }}</script>

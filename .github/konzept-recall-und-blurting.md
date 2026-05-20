@@ -205,22 +205,40 @@ Didaktischer Zweck:
 
 Das Modul darf **kein Feed-Verhalten voraussetzen**.
 
-Darum sollte die bestehende, einfache Selbsteinschätzung erhalten bleiben:
+Darum sollten zwei Ebenen sauber getrennt werden:
 
-- `Kann ich`
-- `Noch nicht`
+1. **Modulinterne Rückmeldung**
+2. **Feed-Entscheidung der Plattform**
 
-Wichtig:
+Die modulinterne Rückmeldung gehört in die Karte selbst:
 
-- `Kann ich` bedeutet hier nur: *Ich fühle mich mit diesem Check gerade ausreichend sicher.*
-- `Noch nicht` bedeutet: *Ich brauche noch einen weiteren Durchlauf mit den Kernpunkten.*
-- Beide Buttons dürfen später vom Feed konsumiert werden, müssen aber aktuell auch ohne Feed vollständig sinnvoll sein.
+- Durchlauf beendet
+- Referenz-Kernpunkte sichtbar
+- optionale Hinweise oder Links zu Skript und Training
+
+Die eigentliche Plattform-Entscheidung gehört **nicht** in die Recall-Karte:
+
+- Diese Aktivität im Feed als erledigt markieren
+- Diese Aktivität im Feed offen lassen
+
+Warum diese Trennung wichtig ist:
+
+- Recall muss auch ohne aktive Session und ohne Feed sinnvoll nutzbar bleiben.
+- Die Buttons `Kann ich` / `Noch nicht` sind als allgemeine Plattformsteuerung zu speziell für andere Aktivitätstypen.
+- Ein einheitlicher Feed-Abschluss über alle Aktivitäten hinweg ist nur möglich, wenn diese Entscheidung außerhalb der Modulkarte liegt.
+
+Empfohlenes Zielbild:
+
+- **Freier Aufruf ohne Feed:** Das Modul endet in einem neutralen Abschlusszustand ohne plattformspezifische Abschlussbuttons.
+- **Aufruf aus dem Feed:** Eine übergeordnete Feed-Shell zeigt einheitliche Aktionen wie `Im Feed abschließen` oder `Im Feed offen lassen`.
+- Das Modul selbst liefert dafür nur ein Ergebnis-Signal, zum Beispiel `ready_for_feed_decision` oder eine neutrale Ergebniszusammenfassung.
 
 Lokales Verhalten ohne Feed:
 
-- `Kann ich` führt zu einem einfachen Erfolgszustand.
-- `Noch nicht` führt zurück zur Kernpunkt-Phase.
-- Ein Skript-Link oder Trainings-Link kann ergänzend angeboten werden, ist aber nicht Teil der Kernlogik.
+- Der Durchlauf endet sichtbar und verständlich.
+- Ein weiterer Durchlauf kann lokal erneut gestartet werden.
+- Skript-Link oder Trainings-Link können ergänzend angeboten werden.
+- Es gibt aber keinen modulinternen Button, der einen Feed-Fortschritt vortäuscht, wenn gar kein Feed-Kontext aktiv ist.
 
 
 ## Designprinzipien für Modul A

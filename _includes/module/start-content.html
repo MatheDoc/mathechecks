@@ -1,68 +1,89 @@
 {% assign sd = site.data.start[page.lernbereich] %}
 {% assign lb_info = nil %}
 {% assign gebiet_info = nil %}
-{% assign mod_kompetenzliste = site.data.moduletypen | where: "key", "kompetenzliste" | first %}
-{% assign mod_training = site.data.moduletypen | where: "key", "training" | first %}
-{% assign mod_skript = site.data.moduletypen | where: "key", "skript" | first %}
-{% assign lernbereich_basis = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich |
-append: '/' %}
 {% for lb in site.data.lernbereiche %}
 {% if lb.slug == page.lernbereich %}{% assign lb_info = lb %}{% endif %}
 {% endfor %}
 {% for g in site.data.gebiete %}
 {% if g.key == page.gebiet %}{% assign gebiet_info = g %}{% endif %}
 {% endfor %}
+{% assign default_podcast_audio_path = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append: '/medien/podcast.m4a' %}
+{% assign default_podcast_audio_url = default_podcast_audio_path | relative_url %}
+{% assign default_podcast_audio_file = site.static_files | where: 'path', default_podcast_audio_path | first %}
+{% assign podcast_audio_url = '' %}
+{% if sd.podcast and sd.podcast.audio_url and sd.podcast.audio_url != '' %}
+{% assign podcast_audio_url = sd.podcast.audio_url %}
+{% elsif default_podcast_audio_file %}
+{% assign podcast_audio_url = default_podcast_audio_url %}
+{% endif %}
+{% assign show_podcast = false %}
+{% if podcast_audio_url != '' or sd.podcast %}
+{% assign show_podcast = true %}
+{% endif %}
 
 <div class="mod-start-content" data-gebiet="{{ page.gebiet }}">
-    <div class="s-hero" data-gebiet="{{ page.gebiet }}">
-        <img class="s-hero-img"
-            src="{{ '/assets/img/start/' | append: page.lernbereich | append: '.svg' | relative_url }}"
-            alt="{{ lb_info.name | default: page.lernbereich }}" loading="lazy">
-        <div class="s-hero-body">
-            <span class="mat-badge gebiet-badge" data-gebiet="{{ page.gebiet }}">{{ gebiet_info.name | default:
-                page.gebiet }}</span>
-            <h1>{{ lb_info.name | default: page.title }}</h1>
+    <section class="check-card check-card--start s-start-card" data-start-feed-card>
+        <div class="check-card__header">
+            <div class="check-card__header-left s-start-card__header-left">
+                <span class="check-card__badge">
+                    <span class="check-card__badge-number">Start</span>
+                </span>
+            </div>
         </div>
-    </div>
-
-
-    <h2 id="start-einstieg">Wähle deinen Einstieg</h2>
-    <div class="s-quickstart-grid">
-        <article class="s-quickstart-card check-card check-card--start">
-            <p>Wenn du zuerst sehen willst, worauf es in diesem Lernbereich ankommt, starte mit der
-                Kompetenzliste.</p>
-            <a class="s-quickstart-link module-action-button module-action-button--start"
-                href="{{ lernbereich_basis | append: 'kompetenzliste.html' | relative_url }}">
-                <span class="s-quickstart-link-icon module-icon-kompetenzliste" aria-hidden="true">{{
-                    mod_kompetenzliste.icon | default: '☑️' }}</span>
-                <span>{{ mod_kompetenzliste.name | default: 'Kompetenzliste' }} öffnen</span>
-            </a>
-        </article>
-        <article class="s-quickstart-card check-card check-card--start">
-            <p>Wenn du lieber sofort ins Anwenden einsteigen willst, beginne im Training mit der ersten Aufgabe.</p>
-            <a class="s-quickstart-link module-action-button module-action-button--start"
-                href="{{ lernbereich_basis | append: 'training.html' | relative_url }}">
-                <span class="s-quickstart-link-icon module-icon-training" aria-hidden="true">{{
-                    mod_training.icon | default: '🏋️' }}</span>
-                <span>{{ mod_training.name | default: 'Training' }} öffnen</span>
-            </a>
-        </article>
-        <article class="s-quickstart-card check-card check-card--start">
-            <p>Wenn du das Thema erst in Ruhe verstehen willst, lies zuerst im Skript.</p>
-            <a class="s-quickstart-link module-action-button module-action-button--start"
-                href="{{ lernbereich_basis | append: 'skript.html' | relative_url }}">
-                <span class="s-quickstart-link-icon module-icon-skript" aria-hidden="true">{{
-                    mod_skript.icon | default: '📖' }}</span>
-                <span>{{ mod_skript.name | default: 'Skript' }} öffnen</span>
-            </a>
-        </article>
-    </div>
+        <div class="check-card__body s-start-card__body">
+            <div class="s-start-card__intro" data-gebiet="{{ page.gebiet }}">
+                <div class="s-start-card__img-shell">
+                    <img class="s-start-card__img"
+                        src="{{ '/assets/img/start/' | append: page.lernbereich | append: '.svg' | relative_url }}"
+                        alt="{{ lb_info.name | default: page.lernbereich }}" loading="lazy">
+                </div>
+                <div class="s-start-card__copy">
+                    <h1 class="s-start-card__headline">{{ lb_info.name | default: page.title }}</h1>
+                    <span class="mat-badge gebiet-badge" data-gebiet="{{ page.gebiet }}">{{ gebiet_info.name | default:
+                        page.gebiet }}</span>
+                    <p class="s-start-card__status" data-start-feed-status hidden>Lies die Orientierung. Danach kannst du diese Aktivität direkt abschließen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     {% if sd.worum_geht_es and sd.worum_geht_es != "" %}
 
     <h2>Worum geht es?</h2>
     {{ sd.worum_geht_es | markdownify }}
 
+    {% endif %}
+
+    {% if show_podcast %}
+    <section class="s-podcast">
+        <div class="s-podcast__head">
+            <span class="mat-badge">Podcast</span>
+            <h2>{{ sd.podcast.title | default: 'Podcast zum Lernbereich' }}</h2>
+        </div>
+        {% if sd.podcast.description and sd.podcast.description != "" %}
+        {{ sd.podcast.description | markdownify }}
+        {% else %}
+        <p>Wenn du dir zuerst einen gesprochenen Überblick holen willst, kannst du hier den Podcast zu diesem Lernbereich hören.</p>
+        {% endif %}
+
+        {% if podcast_audio_url and podcast_audio_url != "" %}
+        <audio class="s-podcast__player" controls preload="none">
+            <source src="{{ podcast_audio_url }}" type="audio/mp4">
+            Dein Browser unterstützt das Audio-Element nicht.
+        </audio>
+        {% else %}
+        <p class="s-podcast__placeholder">Die Audio-Datei ist für diesen Lernbereich noch nicht verknüpft.</p>
+        {% endif %}
+
+        <div class="s-podcast__links">
+            {% if sd.podcast.transcript_url and sd.podcast.transcript_url != "" %}
+            <a class="module-action-button module-action-button--start" href="{{ sd.podcast.transcript_url }}">Transkript öffnen</a>
+            {% endif %}
+            {% if sd.podcast.credit and sd.podcast.credit != "" %}
+            <span class="s-podcast__credit">{{ sd.podcast.credit }}</span>
+            {% endif %}
+        </div>
+    </section>
     {% endif %}
 
     {% assign has_vk = false %}

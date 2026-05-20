@@ -163,6 +163,15 @@ function markPartStates(parts) {
     });
 }
 
+function isQuestionResultCorrect(result) {
+    const parts = Array.isArray(result?.parts) ? result.parts : [];
+    return parts.length > 0 && parts.every((part) => part.isComplete && part.isCorrect);
+}
+
+function isQuestionResultComplete(result) {
+    return Boolean(result?.isComplete);
+}
+
 function renderSelect2OptionWithMath(data) {
     if (!data) return "";
 
@@ -444,7 +453,9 @@ export function renderTask(task, options = {}) {
 
     const solutionNodes = [];
     const answerFields = [];
+    const answerFieldQuestionIndexes = [];
     const questionEvaluators = [];
+    const questionResults = [];
     const checkedQuestionIndexes = new Set(
         Array.isArray(persistedState?.checkedQuestionIndexes)
             ? persistedState.checkedQuestionIndexes.filter((index) => Number.isInteger(index) && index >= 0)
@@ -452,6 +463,29 @@ export function renderTask(task, options = {}) {
     );
     let showSolutionsNow =
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
+
+    const dispatchTaskProgress = () => {
+        const correctCount = Array.from(checkedQuestionIndexes)
+            .filter((questionIndex) => isQuestionResultCorrect(questionResults[questionIndex]))
+            .length;
+
+        wrapper.dispatchEvent(new CustomEvent("task:question-checked", {
+            bubbles: true,
+            detail: {
+                checkedCount: checkedQuestionIndexes.size,
+                totalCount: itemCount,
+                correctCount,
+                isComplete: itemCount > 0 && checkedQuestionIndexes.size >= itemCount,
+            },
+        }));
+    };
+    const scheduleTaskProgress = () => {
+        if (typeof queueMicrotask === "function") {
+            queueMicrotask(dispatchTaskProgress);
+            return;
+        }
+        setTimeout(dispatchTaskProgress, 0);
+    };
 
     const persistCurrentUiState = () => {
         if (!persistenceKey) return;
@@ -479,25 +513,38 @@ export function renderTask(task, options = {}) {
 
         const buildQuestionEvaluation = () => {
             const result = evaluateAnswerFields(antworten[i], answerPreview);
+            questionResults[i] = result;
             markPartStates(result.parts);
             return result;
         };
         questionEvaluators[i] = buildQuestionEvaluation;
 
+        const syncQuestionCheckState = (result) => {
+            if (isQuestionResultComplete(result)) {
+                checkedQuestionIndexes.add(i);
+                return;
+            }
+            checkedQuestionIndexes.delete(i);
+        };
+
         const runQuestionCheck = () => {
             stopActiveSpeechInput();
-            buildQuestionEvaluation();
+            const result = buildQuestionEvaluation();
+            syncQuestionCheckState(result);
             if (persistenceKey) {
-                checkedQuestionIndexes.add(i);
                 persistCurrentUiState();
             }
+            dispatchTaskProgress();
         };
 
         attachQuestionCheckShortcuts(answerPreview, runQuestionCheck);
 
         if (interactiveMode && interactionConfig.enablePerQuestionCheck) {
             const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
-            fields.forEach((field) => answerFields.push(field));
+            fields.forEach((field) => {
+                answerFields.push(field);
+                answerFieldQuestionIndexes.push(i);
+            });
 
             fields.forEach((field) => {
                 // NUMERICAL_OPT groups are already wrapped; wire up checkbox toggle
@@ -638,6 +685,12 @@ export function renderTask(task, options = {}) {
             applyFieldUiState(field, persistedInputs[fieldIndex]);
 
             const onFieldChange = () => {
+                const questionIndex = answerFieldQuestionIndexes[fieldIndex];
+                if (Number.isInteger(questionIndex)) {
+                    checkedQuestionIndexes.delete(questionIndex);
+                    questionResults[questionIndex] = null;
+                    dispatchTaskProgress();
+                }
                 persistCurrentUiState();
             };
 
@@ -645,12 +698,18 @@ export function renderTask(task, options = {}) {
             field.addEventListener("change", onFieldChange);
         });
 
-        checkedQuestionIndexes.forEach((questionIndex) => {
+        Array.from(checkedQuestionIndexes).forEach((questionIndex) => {
             const evaluate = questionEvaluators[questionIndex];
-            if (typeof evaluate === "function") evaluate();
+            if (typeof evaluate === "function") {
+                const result = evaluate();
+                if (!isQuestionResultComplete(result)) checkedQuestionIndexes.delete(questionIndex);
+                return;
+            }
+            checkedQuestionIndexes.delete(questionIndex);
         });
 
         persistCurrentUiState();
+        scheduleTaskProgress();
     }
 
     wrapTablesForHorizontalScroll(wrapper);

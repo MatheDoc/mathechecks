@@ -1,6 +1,10 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260519-feed-actions";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260520-start-feed";
+
+const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 
 function escapeHtml(value) {
     return String(value)
@@ -132,8 +136,127 @@ function renderList(checks) {
     return `<div class="kl-list">${rows}</div>`;
 }
 
-export async function initKompetenzlisteModule({ lernbereich } = {}) {
-    const root = document.getElementById("kompetenzliste-root");
+function normalizeKompetenzlisteFeedContext(activityContext) {
+    if (!activityContext || activityContext.mode !== "feed") return null;
+    return String(activityContext.activityStep || "").trim() === KOMPETENZLISTE_FEED_STEP_KEY
+        ? { mode: "feed", activityStep: KOMPETENZLISTE_FEED_STEP_KEY }
+        : null;
+}
+
+function getTargetCheckCard(root, preferredCheckId) {
+    const cards = Array.from(root?.querySelectorAll?.("[data-check-id]") || []);
+    cards.forEach((card) => {
+        delete card.dataset.feedTarget;
+    });
+
+    const normalizedCheckId = String(preferredCheckId || "").trim();
+    const targetCard = normalizedCheckId
+        ? cards.find((card) => String(card.dataset.checkId || "").trim() === normalizedCheckId)
+        : cards[0] || null;
+
+    if (targetCard) {
+        targetCard.dataset.feedTarget = "true";
+    }
+
+    return targetCard || null;
+}
+
+function attachKompetenzlisteFeedShell(root, { preferredCheckId = "", activityContext = null } = {}) {
+    const feedContext = normalizeKompetenzlisteFeedContext(activityContext);
+    if (!root || !feedContext) return;
+
+    const targetCard = getTargetCheckCard(root, preferredCheckId);
+    const resolvedCheckId = String(targetCard?.dataset?.checkId || preferredCheckId || "").trim();
+    if (!targetCard || !resolvedCheckId) return;
+
+    const controls = attachFeedCardControls(root, {
+        cardSelector: '[data-feed-target="true"]',
+        stepLabel: "Kompetenz",
+    });
+    if (!controls) return;
+
+    let busy = false;
+    let completed = false;
+    let statusMessage = "Prüfe die markierte Kompetenz. Wenn sie sitzt, kannst du diesen Schritt abschließen.";
+    let statusTone = "neutral";
+
+    const completeDecision = async () => {
+        if (busy) return;
+        busy = true;
+        statusMessage = "Der Schritt wird gespeichert.";
+        statusTone = "neutral";
+        renderControls();
+
+        try {
+            await completeKompetenzlisteFeedStep({ checkId: resolvedCheckId });
+        } catch (error) {
+            console.error("Kompetenzlisten-Schritt konnte nicht abgeschlossen werden:", error);
+            busy = false;
+            statusMessage = "Der Schritt konnte gerade nicht gespeichert werden.";
+            statusTone = "error";
+            renderControls();
+            throw error;
+        }
+
+        completed = true;
+        statusMessage = "Der Schritt wurde abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";
+        statusTone = "success";
+        renderControls();
+    };
+
+    const keepOpenDecision = () => {
+        statusMessage = "Die Kompetenz bleibt im Lernplan offen.";
+        statusTone = "neutral";
+        renderControls();
+    };
+
+    const openDecision = () => {
+        if (!controls?.openDecisionDialog || busy || completed) return;
+
+        controls.openDecisionDialog({
+            title: "Kompetenz abhaken?",
+            detail: "Wenn ja, wird der letzte Planschritt für diesen Check abgeschlossen.",
+            onComplete: completeDecision,
+            onRepeat: keepOpenDecision,
+        });
+    };
+
+    function renderControls() {
+        const items = [
+            {
+                icon: "❌",
+                label: "Aktivität abbrechen",
+                onClick: leaveFeedContext,
+            },
+            {
+                icon: "✅",
+                label: busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
+                disabled: busy || completed,
+                iconPulse: !busy && !completed,
+                onClick: openDecision,
+            },
+        ];
+
+        controls.render({
+            status: statusMessage,
+            tone: statusTone,
+            items,
+            ready: !busy && !completed,
+        });
+    }
+
+    window.requestAnimationFrame(() => {
+        targetCard.scrollIntoView({ block: "center", behavior: "auto" });
+    });
+    renderControls();
+}
+
+export async function initKompetenzlisteModule({
+    root = document.getElementById("kompetenzliste-root"),
+    lernbereich,
+    preferredCheckId = "",
+    activityContext = null,
+} = {}) {
     if (!root) return;
 
     if (!lernbereich) {
@@ -144,6 +267,7 @@ export async function initKompetenzlisteModule({ lernbereich } = {}) {
     const checks = await getChecksByLernbereich(lernbereich);
     root.innerHTML = renderList(checks);
     initCardMenuDismiss(root);
+    attachKompetenzlisteFeedShell(root, { preferredCheckId, activityContext });
 
     // Reveal after rendering.
     root.classList.add("module-root--ready");
