@@ -97,6 +97,7 @@ export async function getCurrentAuthState() {
     }
 
     const session = sessionData?.session || null;
+    const sessionUser = session?.user || null;
     if (!session) {
       return {
         configured: true,
@@ -106,13 +107,11 @@ export async function getCurrentAuthState() {
       };
     }
 
-    const { data: userData, error: userError } = await supabase.auth.getUser();
-
     return {
       configured: true,
       session,
-      user: userData?.user || session.user || null,
-      error: userError || null,
+      user: sessionUser,
+      error: null,
     };
   } catch (error) {
     return {

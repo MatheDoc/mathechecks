@@ -1,5 +1,5 @@
 import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260520-start-feed";
-import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js";
+import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_SIDEBAR_ITEM_LIMIT = 5;
 
@@ -45,19 +45,72 @@ async function loadSidebarContentMeta(feedSidebar) {
   return sidebarContentMetaPromise;
 }
 
-function renderSidebarFallback(feedSidebar) {
+function renderSidebarMessage(feedSidebar, {
+  title = "Feed",
+  description = "",
+  badgeLabel = "Feed",
+  icon = "→",
+  iconStyle = "background:linear-gradient(135deg,var(--accent),var(--teal));color:#fff;",
+  actionHref = "",
+} = {}) {
   const listNode = feedSidebar?.querySelector("[data-feed-sidebar-list]");
   if (!listNode) return;
 
+  feedSidebar.dataset.feedRenderToken = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+
+  const safeActionHref = String(actionHref || "").trim();
+  const actionHrefMarkup = safeActionHref ? ` data-action-href="${escapeHtml(safeActionHref)}"` : "";
+  const cursorStyle = safeActionHref ? "cursor:pointer;" : "cursor:default;";
+  const arrowMarkup = safeActionHref ? '<span class="action-arrow" aria-hidden="true">→</span>' : "";
+
   listNode.innerHTML = `
-    <li class="action-card action-featured" data-type="feed" style="cursor:default;">
-      <div class="action-icon action-icon-featured" style="background:linear-gradient(135deg,var(--accent),var(--teal));color:#fff;">→</div>
+    <li class="action-card action-featured" data-type="feed"${actionHrefMarkup} style="${cursorStyle}">
+      <div class="action-icon action-icon-featured" style="${escapeHtml(iconStyle)}">${escapeHtml(icon)}</div>
       <div class="action-body">
-        <div class="action-title">Noch kein Feed-Einstieg</div>
-        <div class="action-badges">${createBadgeMarkup("Feed")}</div>
+        <div class="action-title">${escapeHtml(title)}</div>
+        ${description ? `<div class="action-desc">${escapeHtml(description)}</div>` : ""}
+        <div class="action-badges">${createBadgeMarkup(badgeLabel)}</div>
       </div>
+      ${arrowMarkup}
     </li>
   `;
+}
+
+function renderSidebarLoading(feedSidebar) {
+  renderSidebarMessage(feedSidebar, {
+    title: "Feed wird geladen",
+    description: "Deine nächsten Aktivitäten werden vorbereitet.",
+    badgeLabel: "Feed",
+    icon: "…",
+  });
+}
+
+function renderSidebarAnonymous(feedSidebar) {
+  const nextPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+  renderSidebarMessage(feedSidebar, {
+    title: "Feed nach Anmeldung",
+    description: "Melde dich an, um deinen persönlichen Lernfeed zu sehen.",
+    badgeLabel: "Konto",
+    icon: "↗",
+    actionHref: buildAccountUrl(nextPath),
+  });
+}
+
+function renderSidebarEmpty(feedSidebar) {
+  renderSidebarMessage(feedSidebar, {
+    title: "Gerade keine Feed-Aktivität",
+    description: "Sobald eine Session oder eine fällige Wiederholung ansteht, erscheint sie hier.",
+    badgeLabel: "Feed",
+  });
+}
+
+function renderSidebarError(feedSidebar) {
+  renderSidebarMessage(feedSidebar, {
+    title: "Feed gerade nicht verfügbar",
+    description: "Der Feed konnte gerade nicht geladen werden.",
+    badgeLabel: "Feed",
+    icon: "!",
+  });
 }
 
 function renderSidebarItems(feedSidebar, items) {
@@ -65,7 +118,7 @@ function renderSidebarItems(feedSidebar, items) {
   if (!listNode) return;
 
   if (!Array.isArray(items) || items.length === 0) {
-    renderSidebarFallback(feedSidebar);
+    renderSidebarEmpty(feedSidebar);
     return;
   }
 
@@ -125,7 +178,7 @@ async function refreshFeedSidebar(state) {
 
     if (!supabase) {
       if (feedSidebar.dataset.feedRenderToken === renderToken) {
-        renderSidebarFallback(feedSidebar);
+        renderSidebarError(feedSidebar);
       }
       return;
     }
@@ -142,7 +195,7 @@ async function refreshFeedSidebar(state) {
   } catch (error) {
     console.error("Feed-Sidebar konnte nicht geladen werden:", error);
     if (feedSidebar.dataset.feedRenderToken === renderToken) {
-      renderSidebarFallback(feedSidebar);
+      renderSidebarError(feedSidebar);
     }
   }
 }
@@ -174,10 +227,27 @@ function updateFeedSidebar(state) {
   const feedSidebar = document.getElementById("feedSidebar");
   if (!feedSidebar) return;
 
-  feedSidebar.hidden = !state.user;
-  if (state.user) {
-    void refreshFeedSidebar(state);
+  bindFeedSidebarClicks(feedSidebar);
+
+  if (!state?.configured) {
+    feedSidebar.hidden = true;
+    return;
   }
+
+  feedSidebar.hidden = false;
+
+  if (state.error) {
+    renderSidebarError(feedSidebar);
+    return;
+  }
+
+  if (!state.user) {
+    renderSidebarAnonymous(feedSidebar);
+    return;
+  }
+
+  renderSidebarLoading(feedSidebar);
+  void refreshFeedSidebar(state);
 }
 
 function updateTopbarButton(button, state) {
@@ -282,6 +352,12 @@ async function initAuthShell() {
 
   const config = getSupabaseRuntimeConfig();
   bindTopbarButton(button, config.accountPath);
+
+  const feedSidebar = document.getElementById("feedSidebar");
+  if (config.configured && feedSidebar) {
+    feedSidebar.hidden = false;
+    renderSidebarLoading(feedSidebar);
+  }
 
   const state = await getCurrentAuthState();
   updateTopbarButton(button, state);

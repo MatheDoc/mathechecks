@@ -1,7 +1,7 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260520-start-feed";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260520-hybrid-retention";
-import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js";
+import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
@@ -372,6 +372,62 @@ function restorePrimaryFeedCard(context) {
   clearSecondaryFeedCards(context);
 }
 
+function applyPrimaryFeedMessage(context, {
+  title = "Feed",
+  description = "",
+  badgeLabel = "Feed",
+  icon = "→",
+  iconStyle = "background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;",
+} = {}) {
+  const { elements } = context;
+  if (!elements.primaryFeedCard) return;
+
+  elements.primaryFeedCard.dataset.type = "feed";
+  elements.primaryFeedCard.dataset.actionHref = "";
+
+  if (elements.primaryFeedIcon) {
+    elements.primaryFeedIcon.textContent = icon;
+    elements.primaryFeedIcon.setAttribute("style", iconStyle);
+  }
+  if (elements.primaryFeedTitle) {
+    elements.primaryFeedTitle.textContent = title;
+  }
+  if (elements.primaryFeedDesc) {
+    elements.primaryFeedDesc.textContent = description;
+  }
+  if (elements.primaryFeedBadges) {
+    elements.primaryFeedBadges.innerHTML = createBadgeMarkup(badgeLabel);
+  }
+
+  clearSecondaryFeedCards(context);
+}
+
+function applyPrimaryFeedLoadingState(context) {
+  applyPrimaryFeedMessage(context, {
+    title: "Feed wird geladen",
+    description: "Deine nächsten Aktivitäten werden vorbereitet.",
+    badgeLabel: "Feed",
+    icon: "…",
+  });
+}
+
+function applyPrimaryFeedEmptyState(context) {
+  applyPrimaryFeedMessage(context, {
+    title: "Gerade keine Empfehlung",
+    description: "Sobald eine Session oder eine fällige Wiederholung ansteht, erscheint hier der nächste sinnvolle Schritt.",
+    badgeLabel: "Feed",
+  });
+}
+
+function applyPrimaryFeedErrorState(context) {
+  applyPrimaryFeedMessage(context, {
+    title: "Feed gerade nicht verfügbar",
+    description: "Der nächste sinnvolle Schritt konnte gerade nicht geladen werden.",
+    badgeLabel: "Feed",
+    icon: "!",
+  });
+}
+
 function buildLernbereichStartHref(lernbereichMeta) {
   if (!lernbereichMeta?.gebietKey || !lernbereichMeta?.lernbereichId) return "";
   return `/lernbereiche/${encodeURIComponent(lernbereichMeta.gebietKey)}/${encodeURIComponent(lernbereichMeta.lernbereichId)}/start.html`;
@@ -668,8 +724,7 @@ async function refreshCompletedPanel(context) {
 
 async function refreshPrimaryFeedCard(context) {
   if (!context.supabase) {
-    restorePrimaryFeedCard(context);
-    clearSecondaryFeedCards(context);
+    applyPrimaryFeedEmptyState(context);
     return;
   }
 
@@ -690,12 +745,10 @@ async function refreshPrimaryFeedCard(context) {
       return;
     }
 
-    restorePrimaryFeedCard(context);
-    clearSecondaryFeedCards(context);
+    applyPrimaryFeedEmptyState(context);
   } catch (error) {
     console.error("Feed-Einstieg konnte nicht geladen werden:", error);
-    restorePrimaryFeedCard(context);
-    clearSecondaryFeedCards(context);
+    applyPrimaryFeedErrorState(context);
   }
 }
 
@@ -1467,6 +1520,7 @@ export async function initDashboardModule() {
   updateChipSummary(context);
   updateSessionActionButtons(context, true);
   setBarStatus(context, "");
+  applyPrimaryFeedLoadingState(context);
 
   const authState = await getCurrentAuthState();
   context.authState = authState;
@@ -1474,11 +1528,13 @@ export async function initDashboardModule() {
   context.systemSettings = await loadSystemSettings(context.supabase);
 
   if (!authState.configured) {
+    applyPrimaryFeedErrorState(context);
     setBarStatus(context, "Der Session-Speicher ist noch nicht konfiguriert.");
     return;
   }
 
   if (authState.error) {
+    applyPrimaryFeedErrorState(context);
     setBarStatus(context, "Die Verbindung zur Session-Datenbank konnte nicht aufgebaut werden.", "error");
     return;
   }
@@ -1506,6 +1562,7 @@ export async function initDashboardModule() {
     setBarStatus(context, "");
   } catch (error) {
     console.error("Aktive Session konnte nicht geladen werden:", error);
+    applyPrimaryFeedErrorState(context);
     setBarStatus(context, "Die aktive Session konnte nicht geladen werden.", "error");
   }
 }

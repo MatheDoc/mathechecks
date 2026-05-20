@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260520-start-feed
+module_script: /assets/js/modules/dashboard.js?v=20260520-feed-loading
 ---
 
 {% include dashboard/content.html %}
