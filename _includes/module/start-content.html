@@ -55,11 +55,8 @@
     {% endif %}
 
     {% if show_podcast %}
+    <h2>Podcast</h2>
     <section class="s-podcast">
-        <div class="s-podcast__head">
-            <span class="mat-badge">Podcast</span>
-            <h2>{{ sd.podcast.title | default: 'Podcast zum Lernbereich' }}</h2>
-        </div>
         {% if sd.podcast.description and sd.podcast.description != "" %}
         {{ sd.podcast.description | markdownify }}
         {% else %}
