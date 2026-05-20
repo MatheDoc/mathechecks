@@ -1,15 +1,16 @@
-import { initTrainingModule } from "./modules/training.js?v=20260514-beispiel-url-d";
-import { initRecallModule } from "./modules/recall.js";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260514-beispiel-url-d";
-import { initFlashcardsModule } from "./modules/flashcards.js";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js";
+import { initTrainingModule } from "./modules/training.js?v=20260520-start-feed";
+import { initRecallModule } from "./modules/recall.js?v=20260520-start-feed";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260520-start-feed";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260520-start-feed";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260519-feed-architecture";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260514-beispiel-url-d";
-import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js";
+import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260519-check-nav-scroll";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
-import { initStartModule } from "./modules/start.js";
+import { initStartModule } from "./modules/start.js?v=20260520-start-card";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260520-start-feed";
 import { getChecksByLernbereich } from "./data/checks-repo.js";
+import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
 const SCROLL_STORAGE_PREFIX = "mathechecks.scrollPositions.v2";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -78,10 +79,19 @@ function getPageContext() {
   const body = document.body;
   const params = new URLSearchParams(window.location.search);
   const checkIdFromQuery = params.get("check_id") || "";
+  const isFeedContext = params.get("feed") === "1";
   return {
     lernbereich: body?.dataset?.lernbereich || "",
     moduleKey: body?.dataset?.moduleKey || "",
     checkId: checkIdFromQuery || body?.dataset?.checkId || "",
+    activityContext: isFeedContext
+      ? {
+        mode: "feed",
+        activityKey: params.get("activity_key") || "",
+        activityStep: params.get("activity_step") || "",
+        activityRun: params.get("activity_run") || "",
+      }
+      : null,
   };
 }
 
@@ -220,6 +230,9 @@ function getScrollPageKey() {
 
     // Keep scroll memory stable across transient navigation parameters.
     params.delete("check_id");
+    params.delete("feed");
+    params.delete("activity_key");
+    params.delete("activity_step");
 
     const search = params.toString();
     return `${url.pathname}${search ? `?${search}` : ""}`;
@@ -341,8 +354,8 @@ function bindScrollPersistence(pageKey) {
   });
 }
 
-function scheduleStabilizedRestore(pageKey, explicitTargetId) {
-  if (explicitTargetId) return;
+function scheduleStabilizedRestore(pageKey, explicitTargetId, skipRestore = false) {
+  if (explicitTargetId || skipRestore) return;
   if (!pageKey) return;
 
   const passesMs = [120, 320, 700, 1200];
@@ -458,6 +471,10 @@ function bindLernbereichSwitchNavigation() {
       const value = String(event?.target?.value || "").trim();
       if (!value) return;
       if (value === window.location.pathname) return;
+      if (!confirmFeedActivityAbort()) {
+        selectNode.value = window.location.pathname;
+        return;
+      }
       window.location.assign(value);
     });
   });
@@ -490,8 +507,11 @@ async function bootstrap() {
   userInteractedSinceBootstrap = false;
 
   const context = getPageContext();
+  initFeedActivityGuard(context.activityContext);
   const pageKey = getScrollPageKey();
   const explicitTargetId = resolveScrollTargetId(context);
+  const isFeedContext = context.activityContext?.mode === "feed";
+  const shouldRestoreRememberedScroll = !explicitTargetId && !isFeedContext;
   const contentRoot = document.querySelector(".mod-content") || document.body;
   const shouldDeferNativeSkriptHash = context.moduleKey === "skript" && Boolean(explicitTargetId);
   let handledSkriptTargetEarly = false;
@@ -506,11 +526,11 @@ async function bootstrap() {
   bindScrollPersistence(pageKey);
 
   // Pre-restore to reduce visual jump from top to remembered position.
-  if (!explicitTargetId) {
+  if (shouldRestoreRememberedScroll) {
     restoreScrollPosition(pageKey);
   }
 
-  scheduleStabilizedRestore(pageKey, explicitTargetId);
+  scheduleStabilizedRestore(pageKey, explicitTargetId, isFeedContext);
 
   if (context.moduleKey === "training") {
     const root = document.getElementById("training-root");
@@ -519,12 +539,13 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
       usePersistedState: true,
     });
     await typesetMath(root);
     if (explicitTargetId) {
       scrollToTargetId(explicitTargetId);
-    } else {
+    } else if (shouldRestoreRememberedScroll) {
       // Post-restore after rendering to counter layout shifts.
       restoreScrollPosition(pageKey);
     }
@@ -534,6 +555,7 @@ async function bootstrap() {
   if (context.moduleKey === "start") {
     await initStartModule({
       lernbereich: context.lernbereich,
+      activityContext: context.activityContext,
     });
     return;
   }
@@ -549,8 +571,10 @@ async function bootstrap() {
   if (context.moduleKey === "kompetenzliste") {
     const root = document.getElementById("kompetenzliste-root");
     await initKompetenzlisteModule({
+      root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
     });
     if (root) await typesetMath(root);
     return;
@@ -563,11 +587,12 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
       scrollToTargetId(explicitTargetId);
-    } else {
+    } else if (shouldRestoreRememberedScroll) {
       restoreScrollPosition(pageKey);
     }
     return;
@@ -580,11 +605,12 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
       scrollToTargetId(explicitTargetId);
-    } else {
+    } else if (shouldRestoreRememberedScroll) {
       restoreScrollPosition(pageKey);
     }
     return;
@@ -597,11 +623,12 @@ async function bootstrap() {
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
     });
     await typesetMath(root);
     if (explicitTargetId) {
       scrollToTargetId(explicitTargetId);
-    } else {
+    } else if (shouldRestoreRememberedScroll) {
       restoreScrollPosition(pageKey);
     }
     return;
@@ -629,6 +656,8 @@ async function bootstrap() {
         root: scriptContentRoot,
         lernbereich: context.lernbereich,
         usePersistedState: true,
+        activityContext: context.activityContext,
+        preferredCheckId: context.checkId,
       }),
     ]);
   }
@@ -648,7 +677,7 @@ async function bootstrap() {
     } else {
       scrollToTargetId(explicitTargetId);
     }
-  } else {
+  } else if (shouldRestoreRememberedScroll) {
     restoreScrollPosition(pageKey);
   }
 }

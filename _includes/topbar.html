@@ -2,6 +2,7 @@
 {% if page.module_key %}{% assign show_lb_switch = true %}{% endif %}
 {% if include.show_lb_switch or page.show_lb_switch %}{% assign show_lb_switch = true %}{% endif %}
 {% assign header_context = page.page_context | default: "" %}
+{% assign show_header_status = page.topbar_status | default: false %}
 
 <header class="topbar{% if show_lb_switch %} topbar--with-lb-switch{% endif %}">
     <div class="topbar-left">
@@ -11,7 +12,9 @@
             <div class="brand-text">
                 <h1>MatheChecks</h1>
                 {% if header_context != "" %}
-                <p>{{ header_context }}</p>
+                <p class="brand-context">
+                    {{ header_context }}{% if show_header_status %}<span class="brand-status" data-konto-header-status data-tone="neutral" hidden></span>{% endif %}
+                </p>
                 {% endif %}
             </div>
         </div>
@@ -41,7 +44,8 @@
             </summary>
             <div class="topbar-actions-popover" role="menu" aria-label="Schnellaktionen">
                 <a class="topbar-actions-item {% if page.nav==" dashboard" and page.module_key==nil %}active{% endif %}"
-                    href="{{ '/dashboard.html' | relative_url }}" role="menuitem">
+                    role="menuitem" data-dashboard-nav-item
+                    data-dashboard-href="{{ '/dashboard.html' | relative_url }}" aria-disabled="true" tabindex="-1">
                     <span class="topbar-nav-glyph" aria-hidden="true">📊</span>
                     <span>Dashboard</span>
                 </a>
@@ -61,14 +65,16 @@
                     <span>Light / Dark</span>
                 </button>
                 <button class="topbar-actions-item" id="avatarMenuBtn" type="button" role="menuitem"
-                    aria-label="Anmelden">
+                    aria-label="Benutzerkonto öffnen">
                     <span class="topbar-nav-glyph" aria-hidden="true">👤</span>
-                    <span>Anmelden (inaktiv)</span>
+                    <span data-auth-label>Konto vorbereiten</span>
                 </button>
             </div>
         </details>
     </div>
 </header>
+
+<span class="visually-hidden" data-auth-status>Auth nicht konfiguriert</span>
 
 <style id="moduletypen-runtime-colors">
     /* Runtime-generated from moduletypen-data. */

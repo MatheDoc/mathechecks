@@ -1,10 +1,14 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260519-feed-actions";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260520-start-feed";
+import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
 const recallJumpNavScrollCleanup = new WeakMap();
+const RECALL_FEED_STEP_KEY = "recall";
 
 function getTabScopeId() {
   try {
@@ -120,9 +124,10 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-const RECALL_DELAY_MS = 30000;
+const RECALL_DELAY_MS = 1000;
+const RECALL_MEMORIZE_DELAY_MS = 1000;
 
-function renderCard(check) {
+function renderCard(check, { includeSelfCheck = false } = {}) {
   const begriff = check?.recall?.begriff || check.Schlagwort || `Check ${check.Nummer}`;
   const ichKann = check?.["Ich kann"] || "";
   const checkId = getCheckId(check);
@@ -131,6 +136,22 @@ function renderCard(check) {
   const refs = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const refsListMarkup = refs.length ? renderRecallListMarkup(refs) : "";
   const noRefsNote = `<p class="recall-no-refs">Keine Kernpunkte hinterlegt.</p>`;
+  const selfCheckMarkup = includeSelfCheck
+    ? `
+          <p class="recall-prompt recall-prompt--self-check">Wie sicher fühlst du dich bei dieser Kompetenz?</p>
+          <div class="self-check-actions">
+            <button class="self-check-button yes" type="button" data-recall-answer="yes">
+              <span class="self-check-button__icon">✅</span>
+              <span class="self-check-button__title">Kann ich</span>
+              <span class="self-check-button__sub">Die wichtigsten Kernpunkte waren da.</span>
+            </button>
+            <button class="self-check-button no" type="button" data-recall-answer="no">
+              <span class="self-check-button__icon">🔄</span>
+              <span class="self-check-button__title">Noch nicht</span>
+              <span class="self-check-button__sub">Ich gehe die Kernpunkte noch einmal durch.</span>
+            </button>
+          </div>`
+    : "";
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card check-viewport-item--narrow" data-recall-check-viewport data-check-id="${escapeHtml(
@@ -196,19 +217,7 @@ function renderCard(check) {
             <hr><span>Kernpunkte</span><hr>
           </div>
           ${refs.length ? refsListMarkup : noRefsNote}
-          <p class="recall-prompt recall-prompt--self-check">Wie sicher fühlst du dich bei dieser Kompetenz?</p>
-          <div class="self-check-actions">
-            <button class="self-check-button yes" type="button" data-recall-answer="yes">
-              <span class="self-check-button__icon">✅</span>
-              <span class="self-check-button__title">Kann ich</span>
-              <span class="self-check-button__sub">Die wichtigsten Kernpunkte waren da.</span>
-            </button>
-            <button class="self-check-button no" type="button" data-recall-answer="no">
-              <span class="self-check-button__icon">🔄</span>
-              <span class="self-check-button__title">Noch nicht</span>
-              <span class="self-check-button__sub">Ich gehe die Kernpunkte noch einmal durch.</span>
-            </button>
-          </div>
+          ${selfCheckMarkup}
           </div>
         </div>
 
@@ -239,6 +248,8 @@ function renderJumpNav(navNode, checks, activeCheckId) {
       return `<a class="check-jump-tab${activeClass}" href="${escapeHtml(href)}" data-check-id="${escapeHtml(checkId)}">${escapeHtml(label)}</a>`;
     })
     .join("");
+
+  enhanceCheckJumpNav(navNode);
 
   if (navNode.dataset.activeBinding !== "1") {
     navNode.dataset.activeBinding = "1";
@@ -344,11 +355,128 @@ function revealComparePanel(comparePanel) {
   }
 }
 
-function initInteractiveRecallCards(root) {
+function normalizeRecallFeedContext(activityContext) {
+  if (!activityContext || activityContext.mode !== "feed") return null;
+  return String(activityContext.activityStep || "").trim() === RECALL_FEED_STEP_KEY
+    ? { mode: "feed", activityStep: RECALL_FEED_STEP_KEY }
+    : null;
+}
+
+function attachRecallFeedShell(section, activityContext, { lernbereich = "" } = {}) {
+  const feedContext = normalizeRecallFeedContext(activityContext);
+  if (!section || !feedContext) return;
+
+  const activityCard = section.querySelector("[data-recall-card]");
+  const toCompareButton = activityCard?.querySelector("[data-recall-to-compare]") || null;
+  const answerNoButton = activityCard?.querySelector('[data-recall-answer="no"]') || null;
+  const controls = attachFeedCardControls(section, {
+    cardSelector: "[data-recall-card]",
+    stepLabel: "Recall",
+  });
+  if (!controls) return;
+
+  let canPrepare = false;
+  let completed = false;
+  let busy = false;
+  let statusMessage = "Arbeite den Recall bis zum Vergleich durch. Danach kannst du den Abschluss vorbereiten.";
+  let statusTone = "neutral";
+
+  const checkId = section.dataset.checkId || "";
+
+  async function recordRecallCompletion() {
+    return recordCheckFeedDecision({
+      lernbereichSlug: lernbereich,
+      checkId,
+      moduleKey: "recall",
+      outcomeKey: "can_do",
+    });
+  }
+
+  const enablePrepare = () => {
+    if (completed) return;
+    canPrepare = true;
+    statusMessage = "Der Vergleich ist sichtbar. Du kannst den Feed-Abschluss vorbereiten.";
+    statusTone = "neutral";
+    renderControls();
+  };
+
+  const completeRecallDecision = async () => {
+    if (busy) return;
+    busy = true;
+    statusMessage = "Der Feed-Schritt wird gespeichert.";
+    statusTone = "neutral";
+    renderControls();
+
+    try {
+      await recordRecallCompletion();
+    } catch (error) {
+      console.error("Recall-Aktivität konnte nicht abgeschlossen werden:", error);
+      busy = false;
+      statusMessage = "Die Recall-Aktivität konnte gerade nicht gespeichert werden.";
+      statusTone = "error";
+      renderControls();
+      throw error;
+    }
+
+    completed = true;
+    statusMessage = "Die Recall-Aktivität wurde abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";
+    statusTone = "success";
+    renderControls();
+  };
+
+  const repeatRecallDecision = () => {
+    canPrepare = false;
+    statusMessage = "Die Recall-Aktivität bleibt im Feed offen.";
+    statusTone = "neutral";
+    answerNoButton?.click();
+    renderControls();
+  };
+
+  const openRecallDecision = () => {
+    if (!controls?.openDecisionDialog || busy || completed || !canPrepare) return;
+
+    controls.openDecisionDialog({
+      title: "Recall abschließen?",
+      detail: "Vergleiche deinen Abruf mit den Kernpunkten.",
+      onComplete: completeRecallDecision,
+      onRepeat: repeatRecallDecision,
+    });
+  };
+
+  function renderControls() {
+    const items = [
+      {
+        icon: "❌",
+        label: "Aktivität abbrechen",
+        onClick: leaveFeedContext,
+      },
+      {
+        icon: "✅",
+        label: busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
+        disabled: busy || completed || !canPrepare,
+        iconPulse: canPrepare && !busy && !completed,
+        onClick: openRecallDecision,
+      },
+    ];
+
+    controls.render({
+      status: statusMessage,
+      tone: statusTone,
+      items,
+      ready: canPrepare && !busy && !completed,
+    });
+  }
+
+  toCompareButton?.addEventListener("click", enablePrepare);
+  renderControls();
+}
+
+function initInteractiveRecallCards(root, lernbereich, activityContext) {
   const cards = root.querySelectorAll("[data-recall-card]");
 
   cards.forEach((card) => {
     const section = card.closest("[data-recall-check-viewport]");
+    const checkId = section?.getAttribute("data-check-id") || "";
     const refCount = Number(section?.dataset?.recallRefCount) || 3;
 
     const stageEls = {
@@ -404,7 +532,7 @@ function initInteractiveRecallCards(root) {
     // Phase 1 → 2
     toMemorizeBtn?.addEventListener("click", () => {
       setStage("memorize");
-      const memDuration = Math.min(Math.max(refCount * 5000, 10000), 45000);
+      const memDuration = RECALL_MEMORIZE_DELAY_MS;
       startTimerBar("memorize", memDuration, toRetrieveBtn);
       void renderMath(stageEls.memorize);
     });
@@ -438,13 +566,29 @@ function initInteractiveRecallCards(root) {
     // "Kann ich" → result
     card.querySelector('[data-recall-answer="yes"]')?.addEventListener("click", () => {
       setStage("resultYes");
+      if (activityContext?.mode === "feed") {
+        void recordCheckFeedDecision({
+          lernbereichSlug: lernbereich,
+          checkId,
+          moduleKey: "recall",
+          outcomeKey: "can_do",
+        }).catch(() => {});
+      }
     });
 
     // "Noch nicht" → back to memorize
     card.querySelector('[data-recall-answer="no"]')?.addEventListener("click", () => {
       setStage("memorize");
+      if (activityContext?.mode === "feed") {
+        void recordCheckFeedDecision({
+          lernbereichSlug: lernbereich,
+          checkId,
+          moduleKey: "recall",
+          outcomeKey: "repeat",
+        }).catch(() => {});
+      }
       if (comparePanel) comparePanel.hidden = true;
-      const memDuration = Math.min(Math.max(refCount * 5000, 10000), 45000);
+      const memDuration = RECALL_MEMORIZE_DELAY_MS;
       startTimerBar("memorize", memDuration, toRetrieveBtn);
       void renderMath(stageEls.memorize);
     });
@@ -468,7 +612,7 @@ function bindCheckPositionPersistence(root, lernbereich, state) {
   });
 }
 
-export async function initRecallModule({ root, lernbereich, preferredCheckId = "" }) {
+export async function initRecallModule({ root, lernbereich, preferredCheckId = "", activityContext = null }) {
   if (!lernbereich) {
     renderInfo(root, "Kein Lernbereich gesetzt (data-lernbereich fehlt).");
     return;
@@ -492,10 +636,23 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
   saveRecallState(lernbereich, state);
 
   renderJumpNav(navNode, checks, selectedCheckId);
-  root.innerHTML = checks.map((check) => renderCard(check)).join("");
+  root.innerHTML = checks
+    .map((check) => renderCard(check, {
+      includeSelfCheck: activityContext?.mode === "feed" && getCheckId(check) === selectedCheckId,
+    }))
+    .join("");
+  const selectedSection = Array.from(root.querySelectorAll("[data-recall-check-viewport][data-check-id]"))
+    .find((section) => section.dataset.checkId === selectedCheckId) || null;
+  if (selectedSection) {
+    attachRecallFeedShell(selectedSection, activityContext, { lernbereich });
+    if (activityContext?.mode === "feed") {
+      setJumpNavActive(navNode, selectedCheckId);
+      selectedSection.scrollIntoView({ behavior: "auto", block: "start" });
+    }
+  }
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-recall-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveRecallCards(root);
+  initInteractiveRecallCards(root, lernbereich, activityContext);
   enhanceSpeechInputs(root, ".recall-input-slot");
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);

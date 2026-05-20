@@ -14,7 +14,9 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
    - Lernoberfläche, Includes, Layouts, Barrierearmut und Bedienbarkeit
 4. `agent-infra-architektur.md`
    - Systemgrenzen, Backend-Services, Deploy-/Risikoaspekte
-5. `agent-warmup.md`
+5. `agent-plattform-architektur.md`
+   - Datenbank, Benutzerverwaltung, Session-State, Aktionsfeed, Rollen und Migration
+6. `agent-warmup.md`
    - Warm-Up-Karten: motivierender Auftakt, Relevanz, Gesprächsimpulse, meist 3 Karten pro Lernbereich
 
 ## 3-Schichten-Modell

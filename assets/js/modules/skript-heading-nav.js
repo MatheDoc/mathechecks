@@ -1,4 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 
 const skriptHeadingNavCleanup = new WeakMap();
 
@@ -48,6 +49,8 @@ function renderCheckTabs(navNode, checkAnkers, checkMap) {
             return `<a class="check-jump-tab" href="#${id}" data-target-id="${id}">${label}</a>`;
         })
         .join("");
+
+    enhanceCheckJumpNav(navNode);
 
     if (navNode.dataset.boundClick === "1") return;
     navNode.dataset.boundClick = "1";

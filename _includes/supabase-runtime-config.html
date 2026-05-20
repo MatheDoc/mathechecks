@@ -1,0 +1,9 @@
+<script>
+    window.MatheChecksSupabase = {
+        url: {{ site.supabase_url | default: '' | jsonify }},
+        anonKey: {{ site.supabase_anon_key | default: '' | jsonify }},
+        accountPath: {{ '/konto.html' | relative_url | jsonify }},
+        oauthProviders: [{% for provider in site.supabase_oauth_providers %}{{ provider | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}],
+        configured: Boolean({{ site.supabase_url | default: '' | jsonify }} && {{ site.supabase_anon_key | default: '' | jsonify }})
+    };
+</script>

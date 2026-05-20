@@ -6,6 +6,8 @@ Dieses Dokument beschreibt, wo Inhalte gespeichert sind, wer sie konsumiert und 
 
 Jede Art von Inhalt wird **genau einmal** hinterlegt. Module sind Konsumenten, keine Eigentümer von Daten.
 
+Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, Feed-Aktivitäten und nutzerbezogene Flashcard-Durchgänge liegen in Supabase. Das Repo bleibt Source of Truth für Lernbereiche, Checks, Aufgabenpools und Karteninhalt; Supabase speichert nur persönliche Zustände, Durchgänge, Bewertungen und Fälligkeiten.
+
 
 ## Datenquellen
 
@@ -102,7 +104,19 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `_data/lernbereiche.yml` | Fachinhalt, Check-Anker |
-| Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Spaced Repetition, via JS |
+| Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Karteninhalt aus Aufgaben; Feed-Spaced-Repetition serverseitig |
+
+## Persistente Plattformdaten
+
+Aktueller Stand mit v2-Grundlage:
+
+- `learning_sessions`: aktive Lernkonfiguration eines Benutzers plus Planungsparameter wie Zieltermin, Zeitzone, Freigabelimit und Parallelitätsgrenze.
+- `session_check_state`: checkbezogene Feed-Pipeline (`training_1`, `recall`, `training_2`, `feynman`, `training_3`, `kompetenzliste_gate`) inklusive materialisiertem letztem erfolgreichem Abschlusszeitpunkt.
+- `session_activity_state`: erste lernbereichsweite Feed-Projektion für Flashcards innerhalb einer Core-Session.
+- `user_retention_scopes`: nutzerweite Retention-Scope-Projektion für Flashcards nach Ende einer Core-Session.
+- Flashcard-Tabellen: sessionseitige Durchgänge plus additive user-scoped Retention-Zustände für Kartenfälligkeiten jenseits der Core-Session.
+
+Der freie Flashcards-Aufruf persistiert keinen Spaced-Repetition-Zustand im Browser. Im Feed-Kontext werden nur Karten-IDs, Check-IDs, Aufgabenindex, Bewertung und Fälligkeit gespeichert; der eigentliche Aufgaben-/Karteninhalt bleibt in `aufgaben/exports/json/`. Die endliche Core-Session und die länger laufende Retention-Schicht bleiben dabei bewusst getrennt.
 
 
 ## checks.json — Feldsemantik

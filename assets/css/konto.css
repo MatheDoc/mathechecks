@@ -1,0 +1,196 @@
+.konto-grid {
+  grid-template-columns: minmax(0, 34rem);
+  gap: 18px;
+  align-items: start;
+  justify-content: center;
+}
+
+.konto-grid > .card {
+  min-width: 0;
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.konto-grid > .card[hidden],
+[data-konto-normal-only][hidden],
+.konto-oauth[hidden],
+.konto-divider[hidden] {
+  display: none !important;
+}
+
+.konto-card__hint {
+  margin: 0;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.konto-card__notice {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.konto-card__actions {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.konto-card__actions > .btn-primary {
+  width: 100%;
+}
+
+.konto-auth-card {
+  gap: 1.35rem;
+  text-align: center;
+}
+
+.konto-auth-card .card-header {
+  justify-content: center;
+}
+
+.konto-auth-card .card-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+}
+
+.konto-auth-card .konto-card__hint {
+  max-width: 27rem;
+  margin-inline: auto;
+  font-size: 1.05rem;
+}
+
+.konto-oauth {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.konto-oauth-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  min-height: 3.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.konto-oauth-button:hover {
+  border-color: color-mix(in srgb, var(--teal) 36%, var(--border));
+  background: color-mix(in srgb, var(--teal-soft) 70%, transparent);
+}
+
+.konto-oauth-button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.konto-oauth-icon {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.konto-oauth-button i.konto-oauth-icon {
+  width: auto;
+  height: auto;
+  font-size: 1.15rem;
+}
+
+.konto-oauth-button svg.konto-oauth-icon {
+  display: block;
+}
+
+.konto-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.konto-divider::before,
+.konto-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.konto-form {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.konto-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.konto-form input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  padding: 0.95rem 1.15rem;
+  font: inherit;
+}
+
+.konto-email-auth .btn-primary {
+  width: 100%;
+  min-height: 3.25rem;
+  border-radius: 999px;
+}
+
+html.light .konto-form input {
+  border-color: rgba(17, 24, 39, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+html.light .konto-oauth-button {
+  border-color: rgba(17, 24, 39, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.konto-delete-form {
+  margin-top: 0.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 123, 123, 0.22);
+}
+
+.konto-account-card {
+  border-color: color-mix(in srgb, var(--teal) 18%, var(--border));
+}
+
+.konto-delete-form input {
+  border-color: rgba(255, 123, 123, 0.28);
+}
+
+.konto-danger-button {
+  color: #ff7b7b;
+  border-color: rgba(255, 123, 123, 0.34);
+}
+
+[data-konto-notice][data-tone="success"] {
+  color: var(--teal);
+}
+
+[data-konto-notice][data-tone="error"] {
+  color: #ff7b7b;
+}
+
+@media (max-width: 640px) {
+  .konto-card__actions {
+    flex-direction: column;
+  }
+}

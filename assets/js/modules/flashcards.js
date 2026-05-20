@@ -1,21 +1,44 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
+import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260519-feed-actions";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
-import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260520-start-feed";
 
-const msPerDay = 24 * 60 * 60 * 1000;
-const PROGRESS_PREFIX = "flashcards-progress-v1";
-const VIEW_PREFIX = "flashcards-view-v1";
+const FLASHCARDS_FEED_STEP_KEY = "flashcards";
+const FLASHCARDS_ROUND_LIMIT = 20;
+
+const RATING_KEYS_BY_GRADE = {
+    2: "hard",
+    3: "medium",
+    5: "easy",
+};
+
+const RATING_LABELS = {
+    hard: "Rot",
+    medium: "Orange",
+    easy: "Grün",
+};
 
 const state = {
     cards: [],
-    progress: {},
     currentCard: null,
+    currentTaskIndex: 0,
     root: null,
     lernbereich: "",
-    view: {
-        currentCardId: null,
-        taskIndexByCard: {},
+    activityContext: null,
+    freeCardCount: 0,
+    feed: {
+        active: false,
+        trackKind: "session",
+        controls: null,
+        roundId: "",
+        roundCards: [],
+        currentIndex: 0,
+        canPrepare: false,
+        busy: false,
+        completed: false,
+        statusMessage: "",
+        statusTone: "neutral",
     },
     hasResizeBinding: false,
 };
@@ -31,80 +54,22 @@ function getCheckId(check) {
     return `${gebiet}__${lernbereich}__${nummer}`;
 }
 
-function getProgressStorageKey() {
-    return `${PROGRESS_PREFIX}:${state.lernbereich || "default"}`;
+function normalizeFlashcardsFeedContext(activityContext) {
+    if (!activityContext || activityContext.mode !== "feed") return null;
+    const activityKey = String(activityContext.activityKey || "").trim();
+    return String(activityContext.activityStep || "").trim() === FLASHCARDS_FEED_STEP_KEY
+        ? {
+            mode: "feed",
+            activityKey,
+            activityStep: FLASHCARDS_FEED_STEP_KEY,
+            activityRun: String(activityContext.activityRun || "").trim(),
+            trackKind: activityKey.startsWith("retention:") ? "retention" : "session",
+        }
+        : null;
 }
 
-function getViewStorageKey() {
-    return `${VIEW_PREFIX}:${state.lernbereich || "default"}`;
-}
-
-function createDefaultViewState() {
-    return {
-        currentCardId: null,
-        taskIndexByCard: {},
-    };
-}
-
-function normalizeViewState(raw) {
-    const fallback = createDefaultViewState();
-    if (!raw || typeof raw !== "object") return fallback;
-    return {
-        currentCardId: typeof raw.currentCardId === "string" ? raw.currentCardId : null,
-        taskIndexByCard:
-            raw.taskIndexByCard && typeof raw.taskIndexByCard === "object"
-                ? raw.taskIndexByCard
-                : {},
-    };
-}
-
-function loadProgress() {
-    try {
-        const raw = localStorage.getItem(getProgressStorageKey());
-        const parsed = raw ? JSON.parse(raw) : {};
-        state.progress = parsed && typeof parsed === "object" ? parsed : {};
-    } catch {
-        state.progress = {};
-    }
-}
-
-function saveProgress() {
-    try {
-        localStorage.setItem(getProgressStorageKey(), JSON.stringify(state.progress));
-    } catch {
-        // Ignore storage write failures in private browsing.
-    }
-}
-
-function loadViewState() {
-    try {
-        const raw = localStorage.getItem(getViewStorageKey());
-        state.view = normalizeViewState(raw ? JSON.parse(raw) : null);
-    } catch {
-        state.view = createDefaultViewState();
-    }
-}
-
-function saveViewState() {
-    try {
-        state.view = normalizeViewState(state.view);
-        localStorage.setItem(getViewStorageKey(), JSON.stringify(state.view));
-    } catch {
-        // Ignore storage write failures in private browsing.
-    }
-}
-
-function getCardState(cardId) {
-    const entry = state.progress[cardId];
-    if (!entry) {
-        return { reps: 0, interval: 0, ease: 2.5, due: 0 };
-    }
-    return entry;
-}
-
-function setCardState(cardId, data) {
-    state.progress[cardId] = data;
-    saveProgress();
+function getFeedRoundApi() {
+    return getFlashcardsFeedApi(state.feed.trackKind);
 }
 
 function extractMultipleChoice(text) {
@@ -139,7 +104,7 @@ function extractMultipleChoice(text) {
         const fullMatch = text.slice(start, end + 1);
         const inner = fullMatch.replace(/^\{\d+:(MC|MCV|MULTICHOICE):/, "").slice(0, -1);
         const options = inner.split(/(?<!\\)~/);
-        const correct = options.find((opt) => opt.trim().startsWith("=")) || options[0] || "";
+        const correct = options.find((option) => option.trim().startsWith("=")) || options[0] || "";
         const clean = correct.replace(/^=/, "").trim().replace(/\\~/g, "~");
 
         result.push(clean);
@@ -167,91 +132,32 @@ function cleanupAnswer(text) {
     return cleaned;
 }
 
-function formatDueMessage(nextDue) {
-    if (!nextDue) return "";
-    const now = Date.now();
-    const diff = Math.max(nextDue - now, 0);
-    const minutes = Math.ceil(diff / 60000);
-    if (minutes < 60) return `Nächste Karte in ca. ${minutes} Min.`;
-    const hours = Math.round(minutes / 60);
-    return `Nächste Karte in ca. ${hours} Std.`;
+function clampTaskIndex(card, taskIndex) {
+    const tasks = Array.isArray(card?.tasks) ? card.tasks : [];
+    if (!tasks.length) return -1;
+    const normalized = Number(taskIndex);
+    if (!Number.isInteger(normalized) || normalized < 0 || normalized >= tasks.length) return 0;
+    return normalized;
 }
 
-function getDueSnapshot(cards) {
-    const now = Date.now();
-    const dueCards = [];
-    let nextUpcoming = null;
-
-    cards.forEach((card) => {
-        const cardState = getCardState(card.id);
-        const due = cardState.due || 0;
-        if (due <= now) {
-            dueCards.push(card);
-            return;
-        }
-        if (!nextUpcoming || due < nextUpcoming.due) {
-            nextUpcoming = { card, due };
-        }
-    });
-
-    return { dueCards, nextUpcoming };
+function chooseTaskIndex(card) {
+    const tasks = Array.isArray(card?.tasks) ? card.tasks : [];
+    if (!tasks.length) return -1;
+    if (card.questionOrder === "fixed") return 0;
+    return Math.floor(Math.random() * tasks.length);
 }
 
-function updateCounterAndMessage() {
-    const counterEl = state.root?.querySelector("#flashcards-counter");
-    const messageEl = state.root?.querySelector("#flashcards-message");
-    if (!counterEl || !messageEl) return;
-
-    const { dueCards, nextUpcoming } = getDueSnapshot(state.cards);
-    counterEl.textContent = `Karten ${dueCards.length} von ${state.cards.length}`;
-    messageEl.textContent = dueCards.length > 0 ? "" : formatDueMessage(nextUpcoming?.due);
-}
-
-function chooseNextCard() {
-    const { dueCards, nextUpcoming } = getDueSnapshot(state.cards);
-    if (dueCards.length > 0) {
-        return dueCards[Math.floor(Math.random() * dueCards.length)] || null;
-    }
-    return nextUpcoming?.card || null;
-}
-
-function findStoredCard(cards) {
-    const storedId = state.view?.currentCardId;
-    if (!storedId) return null;
-    return cards.find((card) => card.id === storedId) || null;
-}
-
-function chooseInitialCard(cards, preferredCheckId = "") {
-    const preferred = preferredCheckId
-        ? cards.find((card) => card.checkId === preferredCheckId) || null
-        : null;
-    if (preferred) return preferred;
-    const stored = findStoredCard(cards);
-    if (stored) return stored;
-    return chooseNextCard();
-}
-
-function getTaskForCard(card, refreshVariant = false) {
-    const tasks = Array.isArray(card.tasks) ? card.tasks : [];
+function getTaskForCard(card, taskIndex = null) {
+    const tasks = Array.isArray(card?.tasks) ? card.tasks : [];
     if (!tasks.length) {
         return { task: null, taskIndex: -1 };
     }
 
-    const stored = Number(state.view.taskIndexByCard?.[card.id]);
-    const hasStored = Number.isInteger(stored) && stored >= 0 && stored < tasks.length;
+    const resolvedIndex = taskIndex == null
+        ? chooseTaskIndex(card)
+        : clampTaskIndex(card, taskIndex);
 
-    let taskIndex = 0;
-    if (card.questionOrder === "fixed") {
-        taskIndex = hasStored ? stored : 0;
-    } else {
-        taskIndex = hasStored && !refreshVariant
-            ? stored
-            : Math.floor(Math.random() * tasks.length);
-    }
-
-    state.view.taskIndexByCard[card.id] = taskIndex;
-    saveViewState();
-    return { task: tasks[taskIndex], taskIndex };
+    return { task: tasks[resolvedIndex] || tasks[0] || null, taskIndex: resolvedIndex };
 }
 
 function buildDisplayCard(card, task) {
@@ -260,11 +166,11 @@ function buildDisplayCard(card, task) {
     const einleitung = task?.einleitung || "";
 
     if (card.mode === "single-index") {
-        const idx = card.index;
+        const cardIndex = card.index;
         return {
             einleitung,
-            fragen: [fragen[idx] || ""],
-            antworten: [antworten[idx] || ""],
+            fragen: [fragen[cardIndex] || ""],
+            antworten: [antworten[cardIndex] || ""],
             task,
         };
     }
@@ -283,7 +189,7 @@ function buildFrontHtml(displayCard) {
         ? `<div class="flashcards-intro">${displayCard.einleitung}</div>`
         : "";
     const fragen = hasMultiple
-        ? `<ol class="flashcards-list">${displayCard.fragen.map((f) => `<li>${f}</li>`).join("")}</ol>`
+        ? `<ol class="flashcards-list">${displayCard.fragen.map((question) => `<li>${question}</li>`).join("")}</ol>`
         : `<div class="flashcards-text">${displayCard.fragen[0] || ""}</div>`;
 
     return `
@@ -300,13 +206,13 @@ function buildBackHtml(displayCard) {
         ? `<div class="flashcards-intro">${displayCard.einleitung}</div>`
         : "";
     const fragen = hasQuestions
-        ? `<ol class="flashcards-list">${displayCard.fragen.map((f) => `<li>${f}</li>`).join("")}</ol>`
+        ? `<ol class="flashcards-list">${displayCard.fragen.map((question) => `<li>${question}</li>`).join("")}</ol>`
         : `<div class="flashcards-text">${displayCard.fragen[0] || ""}</div>`;
 
-    const cleaned = displayCard.antworten.map((a) => cleanupAnswer(a));
+    const cleaned = displayCard.antworten.map((answer) => cleanupAnswer(answer));
     const hasMultiple = cleaned.length > 1;
     const antworten = hasMultiple
-        ? `<ol class="flashcards-list flashcards-answer-tone">${cleaned.map((a) => `<li>${a}</li>`).join("")}</ol>`
+        ? `<ol class="flashcards-list flashcards-answer-tone">${cleaned.map((answer) => `<li>${answer}</li>`).join("")}</ol>`
         : `<div class="flashcards-text flashcards-answer-tone">${cleaned[0] || ""}</div>`;
 
     return `
@@ -336,7 +242,7 @@ function resizePlotlyInNode(targetNode, retries = 4) {
 
 function shouldIgnoreFlipTarget(target) {
     if (!(target instanceof Element)) return false;
-    return Boolean(target.closest("button, a, input, select, textarea, [data-grade], #flashcards-reset"));
+    return Boolean(target.closest("button, a, input, select, textarea, [data-grade]"));
 }
 
 async function renderMath(targetNode, retries = 4) {
@@ -393,19 +299,16 @@ function syncCardViewportHeight() {
     const verticalGap = 50;
     const maxCardHeight = Math.max(220, available - ratingHeight - verticalGap);
 
-    const cardHeight = maxCardHeight;
-
-    cardNode.style.height = `${cardHeight}px`;
+    cardNode.style.height = `${maxCardHeight}px`;
     cardNode.style.maxHeight = `${maxCardHeight}px`;
-    innerNode.style.height = `${cardHeight}px`;
+    innerNode.style.height = `${maxCardHeight}px`;
     innerNode.style.maxHeight = `${maxCardHeight}px`;
 
     const setScrollState = (faceNode) => {
         const scrollNode = faceNode?.querySelector(".flashcards-scroll");
         if (!scrollNode) return;
         const overflowDelta = scrollNode.scrollHeight - scrollNode.clientHeight;
-        const hasRealOverflow = overflowDelta > 6;
-        scrollNode.classList.toggle("is-no-scroll", !hasRealOverflow);
+        scrollNode.classList.toggle("is-no-scroll", overflowDelta <= 6);
     };
 
     setScrollState(frontNode);
@@ -416,8 +319,6 @@ function syncCardViewportHeightWithRetry(targetNode, retries = 4) {
     resizePlotlyInNode(targetNode, 0);
     syncCardViewportHeight();
     if (retries <= 0) return;
-
-    // Plotly can settle asynchronously; resync a few times to avoid clipped bottoms.
     setTimeout(() => syncCardViewportHeightWithRetry(targetNode, retries - 1), 140);
 }
 
@@ -443,8 +344,31 @@ function insertVisualIntoFace(faceNode, task) {
     renderVisual(task, visualWrap);
 }
 
+function updateCounterAndMessage() {
+    const counterEl = state.root?.querySelector("#flashcards-counter");
+    const messageEl = state.root?.querySelector("#flashcards-message");
+    if (!counterEl || !messageEl) return;
+
+    if (state.feed.active) {
+        const total = state.feed.roundCards.length;
+        const current = total > 0 ? Math.min(state.feed.currentIndex + 1, total) : 0;
+        const inlineMessage = state.feed.statusTone === "error" ? state.feed.statusMessage : "";
+        counterEl.textContent = `Karte ${current} von ${total}`;
+        messageEl.hidden = !inlineMessage;
+        messageEl.textContent = inlineMessage;
+        messageEl.classList.toggle("is-error", state.feed.statusTone === "error");
+        messageEl.classList.remove("is-success");
+        return;
+    }
+
+    counterEl.textContent = `Karten ${state.cards.length}`;
+    messageEl.hidden = true;
+    messageEl.textContent = "";
+    messageEl.classList.remove("is-error", "is-success");
+}
+
 async function renderCurrentCard(card, options = {}) {
-    const { refreshVariant = false } = options;
+    const { taskIndex = null } = options;
 
     const cardNode = state.root.querySelector("#flashcards-card");
     const innerNode = state.root.querySelector("#flashcards-inner");
@@ -453,12 +377,11 @@ async function renderCurrentCard(card, options = {}) {
     const ratingNode = state.root.querySelector("#flashcards-rating");
     if (!cardNode || !innerNode || !frontNode || !backNode) return;
 
-    const { task } = getTaskForCard(card, refreshVariant);
-    const displayCard = buildDisplayCard(card, task);
+    const resolved = getTaskForCard(card, taskIndex);
+    const displayCard = buildDisplayCard(card, resolved.task);
 
     state.currentCard = card;
-    state.view.currentCardId = card.id;
-    saveViewState();
+    state.currentTaskIndex = resolved.taskIndex;
 
     cardNode.classList.remove("is-flipped");
     cardNode.setAttribute("aria-pressed", "false");
@@ -467,8 +390,8 @@ async function renderCurrentCard(card, options = {}) {
     frontNode.innerHTML = buildFrontHtml(displayCard);
     backNode.innerHTML = buildBackHtml(displayCard);
 
-    insertVisualIntoFace(frontNode, task);
-    insertVisualIntoFace(backNode, task);
+    insertVisualIntoFace(frontNode, resolved.task);
+    insertVisualIntoFace(backNode, resolved.task);
     wrapTablesForHorizontalScroll(frontNode);
     wrapTablesForHorizontalScroll(backNode);
 
@@ -489,58 +412,305 @@ function flipCurrentCard() {
     cardNode.setAttribute("aria-pressed", isFlipped ? "true" : "false");
     ratingNode?.classList.toggle("is-active", isFlipped);
 
-    // Re-sync after flip animation/layout changes to avoid transient phantom scrollbars.
     requestAnimationFrame(() => {
         syncCardViewportHeightWithRetry(cardNode, 2);
     });
 }
 
-async function rateCurrentCard(grade) {
-    if (!state.currentCard) return;
-    const cardId = state.currentCard.id;
-    const now = Date.now();
-    const current = getCardState(cardId);
+function findCardById(cardId) {
+    return state.cards.find((card) => card.id === cardId) || null;
+}
 
-    let reps = current.reps || 0;
-    let interval = current.interval || 0;
-    let ease = current.ease || 2.5;
+function chooseFreeCard(preferredCheckId = "") {
+    const preferredCards = preferredCheckId
+        ? state.cards.filter((card) => card.checkId === preferredCheckId)
+        : [];
+    const pool = preferredCards.length ? preferredCards : state.cards;
+    if (!pool.length) return null;
+    return pool[Math.floor(Math.random() * pool.length)] || null;
+}
 
-    if (grade < 3) {
-        reps = 0;
-        interval = 1;
-    } else {
-        reps += 1;
-        if (reps === 1) {
-            interval = 1;
-        } else if (reps === 2) {
-            interval = 6;
-        } else {
-            interval = Math.max(1, Math.round(interval * ease));
+function buildRoundRequestPayload(cards) {
+    return {
+        cardIds: cards.map((card) => card.id),
+        checkIds: cards.map((card) => card.checkId),
+        taskIndices: cards.map((card) => chooseTaskIndex(card)),
+    };
+}
+
+function normalizeRoundRows(rows) {
+    return (Array.isArray(rows) ? rows : [])
+        .map((row) => {
+            const card = findCardById(row?.card_id);
+            if (!card) return null;
+            return {
+                card,
+                cardId: row.card_id,
+                checkId: row.check_id,
+                position: Number(row.card_position ?? row.position) || 0,
+                taskIndex: Number(row.task_index) || 0,
+                ratingKey: row.rating_key || "",
+                reviewedAt: row.reviewed_at || null,
+            };
+        })
+        .filter(Boolean)
+        .sort((left, right) => left.position - right.position);
+}
+
+function getRatingCounts() {
+    return state.feed.roundCards.reduce((counts, roundCard) => {
+        if (roundCard.ratingKey && counts[roundCard.ratingKey] != null) {
+            counts[roundCard.ratingKey] += 1;
+        }
+        return counts;
+    }, { hard: 0, medium: 0, easy: 0 });
+}
+
+function getReviewedCount() {
+    return state.feed.roundCards.filter((roundCard) => Boolean(roundCard.ratingKey || roundCard.reviewedAt)).length;
+}
+
+function getNextUnreviewedIndex(startIndex = 0) {
+    const total = state.feed.roundCards.length;
+    for (let offset = 0; offset < total; offset += 1) {
+        const index = (startIndex + offset) % total;
+        const roundCard = state.feed.roundCards[index];
+        if (!roundCard?.ratingKey && !roundCard?.reviewedAt) return index;
+    }
+    return -1;
+}
+
+function buildDecisionDetail() {
+    const counts = getRatingCounts();
+    const total = state.feed.roundCards.length;
+    const reviewed = getReviewedCount();
+    return `${reviewed} von ${total} Karten bewertet · ${RATING_LABELS.hard}: ${counts.hard}, ${RATING_LABELS.medium}: ${counts.medium}, ${RATING_LABELS.easy}: ${counts.easy}`;
+}
+
+function mapFlashcardsFeedLoadError(error, trackKind = "session") {
+    const message = String(error?.message || error || "").trim();
+
+    if (message.includes("Authentication required")) {
+        return "Bitte melde dich zuerst an, um diesen Flashcard-Durchgang zu laden.";
+    }
+    if (message.includes("lernbereich_slug is required") || message.includes("card_ids and check_ids must have the same non-empty length")) {
+        return "Der Feed-Kontext für diesen Flashcard-Durchgang ist unvollständig.";
+    }
+
+    if (trackKind === "retention") {
+        if (message.includes("Active flashcard retention scope not found")) {
+            return "Für diesen Lernbereich ist noch keine Wiederholung aktiv.";
+        }
+        if (message.includes("Flashcard retention is not due") || message.includes("No due retention flashcards available")) {
+            return "Dieser Wiederholungsdurchgang ist serverseitig noch nicht bereit.";
         }
     }
 
-    const delta = 0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02);
-    ease = Math.max(1.3, ease + delta);
-    const due = now + interval * msPerDay;
-
-    setCardState(cardId, { reps, interval, ease, due });
-
-    const next = chooseNextCard();
-    if (next) {
-        await renderCurrentCard(next, { refreshVariant: true });
-    }
+    return "Der Flashcard-Durchgang konnte gerade nicht geladen werden.";
 }
 
-async function resetProgress() {
-    const confirmed = window.confirm("Fortschritt wirklich loeschen?");
-    if (!confirmed) return;
+function setFeedStatus(message, tone = "neutral") {
+    state.feed.statusMessage = message;
+    state.feed.statusTone = tone;
+    updateCounterAndMessage();
+    renderFeedControls();
+}
 
-    state.progress = {};
-    saveProgress();
+function renderFeedControls() {
+    const controls = state.feed.controls;
+    if (!controls) return;
 
-    const next = chooseInitialCard(state.cards);
+    const ready = state.feed.canPrepare && !state.feed.busy && !state.feed.completed;
+    const items = [
+        {
+            icon: "❌",
+            label: "Aktivität abbrechen",
+            onClick: leaveFeedContext,
+        },
+        {
+            icon: "✅",
+            label: state.feed.busy ? "Wird gespeichert ..." : "Abschluss vorbereiten",
+            disabled: !ready,
+            iconPulse: ready,
+            onClick: openFlashcardsDecision,
+        },
+    ];
+
+    controls.render({
+        status: state.feed.statusMessage,
+        tone: state.feed.statusTone,
+        items,
+        ready,
+    });
+}
+
+async function completeFlashcardsDecision() {
+    if (state.feed.busy || !state.feed.roundId) return;
+
+    state.feed.busy = true;
+    setFeedStatus("Der Flashcard-Durchgang wird gespeichert.");
+
+    try {
+        await getFeedRoundApi().resolveRound({
+            roundId: state.feed.roundId,
+            decisionKey: "complete",
+        });
+    } catch (error) {
+        state.feed.busy = false;
+        setFeedStatus("Der Flashcard-Durchgang konnte gerade nicht gespeichert werden.", "error");
+        throw error;
+    }
+
+    state.feed.completed = true;
+    setFeedStatus("Flashcard-Durchgang abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.", "success");
+}
+
+async function repeatFlashcardsDecision() {
+    if (state.feed.busy || !state.feed.roundId) return;
+
+    state.feed.busy = true;
+    setFeedStatus("Ein neuer Flashcard-Durchgang wird vorbereitet.");
+
+    try {
+        await getFeedRoundApi().resolveRound({
+            roundId: state.feed.roundId,
+            decisionKey: "keep_open",
+        });
+    } catch (error) {
+        state.feed.busy = false;
+        setFeedStatus("Der neue Flashcard-Durchgang konnte gerade nicht vorbereitet werden.", "error");
+        throw error;
+    }
+
+    await loadFeedRound();
+}
+
+function openFlashcardsDecision() {
+    if (!state.feed.controls?.openDecisionDialog || !state.feed.canPrepare || state.feed.busy) return;
+
+    state.feed.controls.openDecisionDialog({
+        title: "Flashcards abschließen?",
+        detail: buildDecisionDetail(),
+        onComplete: completeFlashcardsDecision,
+        onRepeat: repeatFlashcardsDecision,
+    });
+}
+
+async function loadFeedRound() {
+    const payload = buildRoundRequestPayload(state.cards);
+    state.feed.busy = true;
+    state.feed.canPrepare = false;
+    state.feed.completed = false;
+    setFeedStatus("Flashcard-Durchgang wird geladen.");
+
+    state.feed.busy = false;
+
+    let rows = [];
+    try {
+        const result = await getFeedRoundApi().getOrCreateRound({
+            lernbereichSlug: state.lernbereich,
+            cardIds: payload.cardIds,
+            checkIds: payload.checkIds,
+            taskIndices: payload.taskIndices,
+            cardLimit: FLASHCARDS_ROUND_LIMIT,
+        });
+        rows = Array.isArray(result?.data) ? result.data : [];
+    } catch (error) {
+        console.error("Flashcard-Durchgang konnte im Feed nicht geladen werden:", error);
+        setFeedStatus(mapFlashcardsFeedLoadError(error, state.feed.trackKind), "error");
+        return;
+    }
+
+    const firstRow = rows[0] || null;
+    state.feed.roundId = firstRow?.round_id || "";
+    state.feed.roundCards = normalizeRoundRows(rows);
+    const nextUnreviewedIndex = getNextUnreviewedIndex(0);
+    state.feed.currentIndex = nextUnreviewedIndex >= 0 ? nextUnreviewedIndex : 0;
+    state.feed.canPrepare = state.feed.roundCards.length > 0 && getReviewedCount() >= state.feed.roundCards.length;
+
+    if (!state.feed.roundCards.length) {
+        setFeedStatus("Für diesen Durchgang wurden keine Karten gefunden.", "error");
+        return;
+    }
+
+    setFeedStatus(
+        state.feed.canPrepare
+            ? "Alle Karten wurden bewertet. Du kannst den Abschluss vorbereiten."
+            : "Bewerte alle Karten dieses Durchgangs. Danach kannst du den Abschluss vorbereiten.",
+    );
+
+    const currentRoundCard = state.feed.roundCards[state.feed.currentIndex] || state.feed.roundCards[0];
+    await renderCurrentCard(currentRoundCard.card, { taskIndex: currentRoundCard.taskIndex });
+    renderFeedControls();
+}
+
+function attachFlashcardsFeedShell(activityContext) {
+    const feedContext = normalizeFlashcardsFeedContext(activityContext);
+    state.feed.active = Boolean(feedContext);
+    state.feed.trackKind = feedContext?.trackKind || "session";
+    if (!state.feed.active) return;
+
+    state.feed.controls = attachFeedCardControls(state.root, {
+        cardSelector: "[data-flashcards-app]",
+        stepLabel: "Flashcards",
+    });
+    state.feed.statusMessage = "Bewerte alle Karten dieses Durchgangs. Danach kannst du den Abschluss vorbereiten.";
+    state.feed.statusTone = "neutral";
+    renderFeedControls();
+}
+
+async function rateCurrentFeedCard(ratingKey) {
+    if (state.feed.busy || !state.feed.roundId) return;
+    const roundCard = state.feed.roundCards[state.feed.currentIndex];
+    if (!roundCard) return;
+
+    state.feed.busy = true;
+    renderFeedControls();
+
+    state.feed.busy = false;
+
+    try {
+        await getFeedRoundApi().recordReview({
+            roundId: state.feed.roundId,
+            cardId: roundCard.cardId,
+            ratingKey,
+        });
+    } catch {
+        setFeedStatus("Die Kartenbewertung konnte gerade nicht gespeichert werden.", "error");
+        return;
+    }
+
+    roundCard.ratingKey = ratingKey;
+    roundCard.reviewedAt = new Date().toISOString();
+
+    const nextIndex = getNextUnreviewedIndex(state.feed.currentIndex + 1);
+    if (nextIndex >= 0) {
+        state.feed.currentIndex = nextIndex;
+        const nextRoundCard = state.feed.roundCards[nextIndex];
+        setFeedStatus("Bewerte alle Karten dieses Durchgangs. Danach kannst du den Abschluss vorbereiten.");
+        await renderCurrentCard(nextRoundCard.card, { taskIndex: nextRoundCard.taskIndex });
+        renderFeedControls();
+        return;
+    }
+
+    state.feed.canPrepare = true;
+    setFeedStatus("Alle Karten wurden bewertet. Du kannst den Abschluss vorbereiten.");
+    renderFeedControls();
+}
+
+async function rateCurrentCard(grade) {
+    const ratingKey = RATING_KEYS_BY_GRADE[grade];
+    if (!ratingKey) return;
+
+    if (state.feed.active) {
+        await rateCurrentFeedCard(ratingKey);
+        return;
+    }
+
+    const next = chooseFreeCard();
     if (next) {
-        await renderCurrentCard(next, { refreshVariant: true });
+        state.freeCardCount += 1;
+        await renderCurrentCard(next);
     }
 }
 
@@ -557,17 +727,17 @@ function buildCards(checks) {
 
         if (flashtyp === "einzeln") {
             const maxQuestions = tasks.reduce((max, task) => {
-                const count = Array.isArray(task?.fragen) ? task.fragen.length : 0;
-                return Math.max(max, count);
+                const questionCount = Array.isArray(task?.fragen) ? task.fragen.length : 0;
+                return Math.max(max, questionCount);
             }, 0);
 
-            for (let index = 0; index < maxQuestions; index += 1) {
+            for (let questionIndex = 0; questionIndex < maxQuestions; questionIndex += 1) {
                 cards.push({
-                    id: `${checkId}::single::${index}`,
+                    id: `${checkId}::single::${questionIndex}`,
                     checkId,
                     check,
                     mode: "single-index",
-                    index,
+                    index: questionIndex,
                     questionOrder,
                     tasks,
                 });
@@ -590,7 +760,6 @@ function buildCards(checks) {
 
 function bindEvents() {
     const cardNode = state.root.querySelector("#flashcards-card");
-    const resetBtn = state.root.querySelector("[data-fc-reset-menu]");
 
     cardNode?.addEventListener("click", (event) => {
         if (shouldIgnoreFlipTarget(event.target)) return;
@@ -601,10 +770,6 @@ function bindEvents() {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         flipCurrentCard();
-    });
-
-    resetBtn?.addEventListener("click", () => {
-        void resetProgress();
     });
 
     const ratingButtons = Array.from(state.root.querySelectorAll(".flashcards-rate"));
@@ -624,9 +789,26 @@ function renderInfo(text) {
     body.innerHTML = `<p class="flashcards-message-static">${text}</p>`;
 }
 
-export async function initFlashcardsModule({ root, lernbereich, preferredCheckId = "" }) {
+export async function initFlashcardsModule({ root, lernbereich, preferredCheckId = "", activityContext = null }) {
     state.root = root;
     state.lernbereich = lernbereich || "";
+    state.activityContext = activityContext;
+    state.cards = [];
+    state.currentCard = null;
+    state.currentTaskIndex = 0;
+    state.freeCardCount = 0;
+    state.feed = {
+        active: false,
+        controls: null,
+        roundId: "",
+        roundCards: [],
+        currentIndex: 0,
+        canPrepare: false,
+        busy: false,
+        completed: false,
+        statusMessage: "",
+        statusTone: "neutral",
+    };
 
     if (!state.lernbereich) {
         renderInfo("Kein Lernbereich gesetzt.");
@@ -635,7 +817,7 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
 
     const checks = await getChecksByLernbereich(state.lernbereich);
     if (!checks.length) {
-        renderInfo(`Keine Checks fuer Lernbereich \"${state.lernbereich}\" gefunden.`);
+        renderInfo(`Keine Checks für Lernbereich "${state.lernbereich}" gefunden.`);
         return;
     }
 
@@ -652,7 +834,7 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
             } catch {
                 return { ...check, _sammlung: [] };
             }
-        })
+        }),
     );
 
     state.cards = buildCards(checksWithTasks);
@@ -661,10 +843,8 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
         return;
     }
 
-    loadProgress();
-    loadViewState();
     bindEvents();
-    initCardMenuDismiss(root);
+    attachFlashcardsFeedShell(activityContext);
 
     if (!state.hasResizeBinding) {
         const onResize = () => syncCardViewportHeight();
@@ -672,8 +852,14 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
         state.hasResizeBinding = true;
     }
 
-    const next = chooseInitialCard(state.cards, preferredCheckId);
-    if (next) {
-        await renderCurrentCard(next, { refreshVariant: true });
+    if (state.feed.active) {
+        await loadFeedRound();
+        return;
+    }
+
+    const firstCard = chooseFreeCard(preferredCheckId);
+    if (firstCard) {
+        state.freeCardCount = 1;
+        await renderCurrentCard(firstCard);
     }
 }
