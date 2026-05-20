@@ -1,6 +1,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ page.title | default: "MatheChecks" }} – MatheChecks</title>
+<link rel="icon" href="{{ '/assets/img/icon-source.svg?v=20260518-dark-favicon' | relative_url }}" type="image/svg+xml" sizes="any" />
 <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" type="image/x-icon" />
 <link rel="icon" href="{{ '/assets/img/icon-192.png' | relative_url }}" type="image/png" sizes="192x192" />
 <link rel="icon" href="{{ '/assets/img/icon-512.png' | relative_url }}" type="image/png" sizes="512x512" />
@@ -11,12 +12,15 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-<link rel="stylesheet" href="{{ '/assets/css/shared.css?v=20260512-dropdown-native' | relative_url }}">
+<link rel="stylesheet" href="{{ '/assets/css/shared.css?v=20260516-flashcards-feed' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/calculator.css?v=20260512-dropdown-native' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/privacy-consent.css?v=20260513-ga-consent' | relative_url }}">
+{% if page.page_css %}
+<link rel="stylesheet" href="{{ page.page_css | relative_url }}">
+{% endif %}
 <script>
 	(function () {
-		const measurementId = {{ site.google_analytics_measurement_id | default: '' | jsonify }};
+		const measurementId = "{{ site.google_analytics_measurement_id | default: '' | escape }}";
 		const consentStorageKey = 'mathechecks.analytics-consent.v1';
 		const analyticsState = window.MatheChecksAnalytics = window.MatheChecksAnalytics || {};
 
