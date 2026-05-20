@@ -2188,32 +2188,52 @@ html.light .mod-start-content {
 
 .s-podcast {
   margin: 0 0 28px;
-  padding: 22px 24px;
-  border-radius: 22px;
-  border: 1px solid color-mix(in srgb, var(--s-start-accent) 18%, var(--border));
-  background: linear-gradient(160deg,
-      color-mix(in srgb, var(--card-surface-1) 82%, var(--s-start-surface-tint-strong)),
-      color-mix(in srgb, var(--card-surface-2) 88%, var(--s-start-surface-shell)));
-  box-shadow: var(--shadow-card, none);
-}
-
-.s-podcast__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-}
-
-.s-podcast__head h2 {
-  margin: 0;
 }
 
 .s-podcast__player {
   display: block;
   width: 100%;
   margin-top: 14px;
+  accent-color: var(--mt-start, var(--accent));
+  color-scheme: dark;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(var(--mt-start-rgb, 100, 116, 139), .52);
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--mt-start, var(--text-dim)) 88%, white 12%),
+      color-mix(in srgb, var(--mt-start, var(--text-dim)) 82%, black 18%));
+  box-shadow: 0 12px 28px rgba(var(--mt-start-rgb, 100, 116, 139), .22), inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.s-podcast__player:focus-visible {
+  outline: none;
+  border-color: rgba(var(--mt-start-rgb, 100, 116, 139), .72);
+  box-shadow: 0 0 0 3px rgba(var(--mt-start-rgb, 100, 116, 139), .22), 0 12px 28px rgba(var(--mt-start-rgb, 100, 116, 139), .22), inset 0 1px 0 rgba(255, 255, 255, .16);
+}
+
+.s-podcast__player::-webkit-media-controls-enclosure {
+  border-radius: 12px;
+  border: 0;
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--mt-start, var(--text-dim)) 88%, white 12%),
+      color-mix(in srgb, var(--mt-start, var(--text-dim)) 82%, black 18%));
+}
+
+.s-podcast__player::-webkit-media-controls-panel {
+  background: transparent;
+}
+
+.s-podcast__player::-webkit-media-controls-current-time-display,
+.s-podcast__player::-webkit-media-controls-time-remaining-display {
+  color: #f6fbff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .18);
+}
+
+.s-podcast__player::-webkit-media-controls-play-button,
+.s-podcast__player::-webkit-media-controls-mute-button,
+.s-podcast__player::-webkit-media-controls-fullscreen-button,
+.s-podcast__player::-webkit-media-controls-toggle-closed-captions-button {
+  filter: brightness(0) invert(1);
 }
 
 .s-podcast__placeholder {
