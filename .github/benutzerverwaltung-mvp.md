@@ -192,6 +192,7 @@ Aktuelle Schlüssel:
 - `feed.retention_activity_base_gap`
 - `feed.retention_interleave_lead_session_items`
 - `feed.retention_interleave_stride`
+- `feed.session_follow_up_max_gap`
 - `planning.default_session_tempo_days`
 
 Regeln:

@@ -1,14 +1,14 @@
-import { initTrainingModule } from "./modules/training.js?v=20260520-start-feed";
-import { initRecallModule } from "./modules/recall.js?v=20260520-start-feed";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260520-start-feed";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260520-start-feed";
+import { initTrainingModule } from "./modules/training.js?v=20260521-feed-session-gap";
+import { initRecallModule } from "./modules/recall.js?v=20260521-feed-session-gap";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260521-feed-session-gap";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260521-feed-session-gap";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260519-feed-architecture";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260514-beispiel-url-d";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260519-check-nav-scroll";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
-import { initStartModule } from "./modules/start.js?v=20260520-start-card";
+import { initStartModule } from "./modules/start.js?v=20260521-feed-session-gap";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260520-start-feed";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260521-feed-session-gap";
 import { getChecksByLernbereich } from "./data/checks-repo.js";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

@@ -5,9 +5,11 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Basisabstand N für Retention-Flashcards; weitere Fälligkeiten wachsen als N, 2N, 4N, ...
   feedRetentionActivityBaseGap: 5,
   // Anzahl Session-Aktivitäten, die vor dem ersten Retention-Slot angezeigt werden.
-  feedRetentionInterleaveLeadSessionItems: 1,
+  feedRetentionInterleaveLeadSessionItems: 5,
   // Anzahl weiterer Session-Aktivitäten zwischen zwei Retention-Slots.
-  feedRetentionInterleaveStride: 1,
+  feedRetentionInterleaveStride: 4,
+  // Maximalzahl frischer Training-1-Aktivitäten zwischen zwei Folgeaktivitäten laufender Check-Ketten.
+  feedSessionFollowUpMaxGap: 3,
   // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
   planningDefaultSessionTempoDays: 3,
 });
@@ -17,6 +19,7 @@ const SETTING_KEY_TO_PROPERTY = Object.freeze({
   "feed.retention_activity_base_gap": "feedRetentionActivityBaseGap",
   "feed.retention_interleave_lead_session_items": "feedRetentionInterleaveLeadSessionItems",
   "feed.retention_interleave_stride": "feedRetentionInterleaveStride",
+  "feed.session_follow_up_max_gap": "feedSessionFollowUpMaxGap",
   "planning.default_session_tempo_days": "planningDefaultSessionTempoDays",
 });
 
