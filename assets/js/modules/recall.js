@@ -1,7 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260519-feed-actions";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260520-start-feed";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-session-gap";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 

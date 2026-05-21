@@ -1,4 +1,4 @@
-import { loadSystemSettings } from "./system-settings.js?v=20260521-planning-default-tempo";
+import { loadSystemSettings } from "./system-settings.js?v=20260521-feed-session-gap";
 
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
@@ -467,13 +467,73 @@ async function loadCheckFeedEntries(supabase, sessionId) {
     .in("current_step_key", stepKeys);
 
   if (error) throw error;
-  if (!Array.isArray(data) || data.length === 0) return [];
+  return Array.isArray(data) ? data : [];
+}
 
-  return [...data].sort((left, right) => {
-    const stepDelta = (FEED_STEP_ORDER[left.current_step_key] || 99) - (FEED_STEP_ORDER[right.current_step_key] || 99);
-    if (stepDelta !== 0) return stepDelta;
-    return String(left.check_id || "").localeCompare(String(right.check_id || ""), "de");
-  });
+function compareCheckEntries(left, right, contentMeta) {
+  const leftStep = FEED_STEP_ORDER[String(left?.current_step_key || "").trim()] || 99;
+  const rightStep = FEED_STEP_ORDER[String(right?.current_step_key || "").trim()] || 99;
+  if (leftStep !== rightStep) return leftStep - rightStep;
+
+  const leftMeta = contentMeta?.checkMetaById?.get(String(left?.check_id || "").trim());
+  const rightMeta = contentMeta?.checkMetaById?.get(String(right?.check_id || "").trim());
+  const leftNumber = Number(leftMeta?.number);
+  const rightNumber = Number(rightMeta?.number);
+  const leftOrder = Number.isFinite(leftNumber) && leftNumber > 0 ? leftNumber : Number.MAX_SAFE_INTEGER;
+  const rightOrder = Number.isFinite(rightNumber) && rightNumber > 0 ? rightNumber : Number.MAX_SAFE_INTEGER;
+  if (leftOrder !== rightOrder) return leftOrder - rightOrder;
+
+  const lernbereichDelta = String(leftMeta?.lernbereichName || "").localeCompare(String(rightMeta?.lernbereichName || ""), "de");
+  if (lernbereichDelta !== 0) return lernbereichDelta;
+
+  const titleDelta = formatCheckShortTitle(leftMeta).localeCompare(formatCheckShortTitle(rightMeta), "de");
+  if (titleDelta !== 0) return titleDelta;
+
+  return String(left?.check_id || "").localeCompare(String(right?.check_id || ""), "de");
+}
+
+function orderSessionCheckEntries(checkEntries, contentMeta, systemSettings) {
+  const entries = Array.isArray(checkEntries) ? checkEntries : [];
+  if (!entries.length) return [];
+
+  const followUpGap = normalizePositiveInteger(systemSettings?.feedSessionFollowUpMaxGap, 3);
+  const freshStartEntries = entries
+    .filter((entry) => String(entry?.current_step_key || "").trim() === "training_1")
+    .sort((left, right) => compareCheckEntries(left, right, contentMeta));
+  const followUpEntries = entries
+    .filter((entry) => String(entry?.current_step_key || "").trim() !== "training_1")
+    .sort((left, right) => compareCheckEntries(left, right, contentMeta));
+
+  if (!freshStartEntries.length) return followUpEntries;
+  if (!followUpEntries.length) return freshStartEntries;
+
+  const ordered = [];
+  let freshIndex = 0;
+  let followUpIndex = 0;
+
+  while (freshIndex < freshStartEntries.length || followUpIndex < followUpEntries.length) {
+    for (let gapCount = 0; gapCount < followUpGap && freshIndex < freshStartEntries.length; gapCount += 1) {
+      ordered.push(freshStartEntries[freshIndex]);
+      freshIndex += 1;
+    }
+
+    if (followUpIndex < followUpEntries.length) {
+      ordered.push(followUpEntries[followUpIndex]);
+      followUpIndex += 1;
+    }
+
+    if (freshIndex >= freshStartEntries.length && followUpIndex < followUpEntries.length) {
+      ordered.push(...followUpEntries.slice(followUpIndex));
+      break;
+    }
+
+    if (followUpIndex >= followUpEntries.length && freshIndex < freshStartEntries.length) {
+      ordered.push(...freshStartEntries.slice(freshIndex));
+      break;
+    }
+  }
+
+  return ordered;
 }
 
 async function loadActivityFeedEntries(supabase, sessionId) {
@@ -649,8 +709,9 @@ function mergeHybridFeedItems(sessionItems, retentionItems, systemSettings) {
   return merged;
 }
 
-function buildSessionFeedItems(contentMeta, checkEntries, activityEntries) {
-  const checkItems = (Array.isArray(checkEntries) ? checkEntries : [])
+function buildSessionFeedItems(contentMeta, checkEntries, activityEntries, systemSettings) {
+  const orderedCheckEntries = orderSessionCheckEntries(checkEntries, contentMeta, systemSettings);
+  const checkItems = orderedCheckEntries
     .map((entry) => buildCheckFeedItem(contentMeta, entry))
     .filter(Boolean);
 
@@ -828,7 +889,7 @@ export async function loadFeedProjection({
       loadRetentionFeedEntries(supabase, { activeSession }),
     ]);
 
-    const sessionItems = buildSessionFeedItems(contentMeta, checkEntries, activityEntries);
+    const sessionItems = buildSessionFeedItems(contentMeta, checkEntries, activityEntries, systemSettings);
     const retentionItems = (Array.isArray(retentionEntries) ? retentionEntries : [])
       .map((entry) => buildRetentionFeedItem(contentMeta, entry))
       .filter(Boolean);

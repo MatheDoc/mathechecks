@@ -1,4 +1,4 @@
-import { clearDeferredFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260520-start-feed";
+import { clearDeferredFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260521-feed-session-gap";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -194,7 +194,7 @@ export async function goToNextFeedActivity({ currentActivityKey, deferCurrent = 
   const resolvedActivityKey = String(currentActivityKey || getCurrentFeedActivityKey() || "").trim();
   if (resolvedActivityKey) {
     if (deferCurrent) {
-      const { deferFeedActivity } = await import("../../platform/feed-projection.js?v=20260520-start-feed");
+      const { deferFeedActivity } = await import("../../platform/feed-projection.js?v=20260521-feed-session-gap");
       deferFeedActivity(resolvedActivityKey);
     } else {
       clearDeferredFeedActivity(resolvedActivityKey);

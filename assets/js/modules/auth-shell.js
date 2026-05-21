@@ -1,4 +1,4 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-ui";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-session-gap";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_SIDEBAR_ITEM_LIMIT = 5;

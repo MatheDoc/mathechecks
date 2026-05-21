@@ -1,6 +1,6 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-ui";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-planning-default-tempo";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-session-gap";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-session-gap";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const LERNBEREICH_ALIASES = {
