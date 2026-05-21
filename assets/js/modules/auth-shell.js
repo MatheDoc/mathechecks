@@ -1,4 +1,4 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260520-start-feed";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-ui";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_SIDEBAR_ITEM_LIMIT = 5;
@@ -18,13 +18,6 @@ function createBadgeMarkup(label, type = "") {
   const safeLabel = escapeHtml(label);
   const safeType = type ? ` type-${escapeHtml(type)}` : "";
   return `<span class="action-badge${safeType}">${safeLabel}</span>`;
-}
-
-function buildFeaturedCardStyle(item) {
-  return [
-    `background:linear-gradient(135deg,color-mix(in srgb, ${item.accent} 14%, transparent) 0%,color-mix(in srgb, ${item.accentSoft} 58%, transparent) 100%)`,
-    `border-color:color-mix(in srgb, ${item.accent} 30%, var(--border))`,
-  ].join(";");
 }
 
 async function loadSidebarContentMeta(feedSidebar) {
@@ -61,17 +54,15 @@ function renderSidebarMessage(feedSidebar, {
   const safeActionHref = String(actionHref || "").trim();
   const actionHrefMarkup = safeActionHref ? ` data-action-href="${escapeHtml(safeActionHref)}"` : "";
   const cursorStyle = safeActionHref ? "cursor:pointer;" : "cursor:default;";
-  const arrowMarkup = safeActionHref ? '<span class="action-arrow" aria-hidden="true">→</span>' : "";
 
   listNode.innerHTML = `
-    <li class="action-card action-featured" data-type="feed"${actionHrefMarkup} style="${cursorStyle}">
-      <div class="action-icon action-icon-featured" style="${escapeHtml(iconStyle)}">${escapeHtml(icon)}</div>
+    <li class="action-card" data-type="feed"${actionHrefMarkup} style="${cursorStyle}">
+      <div class="action-icon" style="${escapeHtml(iconStyle)}">${escapeHtml(icon)}</div>
       <div class="action-body">
         <div class="action-title">${escapeHtml(title)}</div>
         ${description ? `<div class="action-desc">${escapeHtml(description)}</div>` : ""}
         <div class="action-badges">${createBadgeMarkup(badgeLabel)}</div>
       </div>
-      ${arrowMarkup}
     </li>
   `;
 }
@@ -123,21 +114,15 @@ function renderSidebarItems(feedSidebar, items) {
   }
 
   listNode.innerHTML = items.map((item, index) => {
-    const featured = index === 0;
-    const cardClassName = featured ? "action-card action-featured" : "action-card";
-    const iconClassName = featured ? "action-icon action-icon-featured" : "action-icon";
     const actionHref = item.href ? ` data-action-href="${escapeHtml(item.href)}"` : "";
-    const cardStyle = featured ? ` style="${escapeHtml(buildFeaturedCardStyle(item))}"` : "";
-    const arrowMarkup = featured ? "" : '<span class="action-arrow" aria-hidden="true">›</span>';
 
     return `
-      <li class="${cardClassName}" data-type="${escapeHtml(item.type)}"${actionHref}${cardStyle}>
-        <div class="${iconClassName}" style="${escapeHtml(item.iconStyle)}">${escapeHtml(item.icon)}</div>
+      <li class="action-card" data-type="${escapeHtml(item.type)}"${actionHref}>
+        <div class="action-icon" style="${escapeHtml(item.iconStyle)}">${escapeHtml(item.icon)}</div>
         <div class="action-body">
           <div class="action-title">${escapeHtml(item.titleText)}</div>
           <div class="action-badges">${item.primaryBadge ? createBadgeMarkup(item.primaryBadge.label, item.primaryBadge.type) : ""}</div>
         </div>
-        ${arrowMarkup}
       </li>
     `;
   }).join("");

@@ -1,6 +1,6 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260520-start-feed";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260520-hybrid-retention";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-ui";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-planning-default-tempo";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const LERNBEREICH_ALIASES = {
@@ -58,6 +58,7 @@ function setStatusNode(node, message, tone = "neutral") {
 
   if (!text) return;
   if (tone === "success") node.classList.add("is-success");
+  if (tone === "warning") node.classList.add("is-warning");
   if (tone === "error") node.classList.add("is-error");
 }
 
@@ -219,6 +220,7 @@ function buildLernbereichMetaById(lernbereiche) {
         lernbereichName: lb.name,
         gebietKey: lb.gebietKey,
         groupName: group.group,
+        totalCheckCount: Array.isArray(lb.checks) ? lb.checks.length : 0,
       });
     });
   });
@@ -337,6 +339,7 @@ function capturePrimaryFeedDefaults(elements) {
     cardHref: elements.primaryFeedCard?.dataset?.actionHref || "",
     title: elements.primaryFeedTitle?.innerHTML || "",
     desc: elements.primaryFeedDesc?.innerHTML || "",
+    descHidden: Boolean(elements.primaryFeedDesc?.hidden),
     badges: elements.primaryFeedBadges?.innerHTML || "",
     icon: elements.primaryFeedIcon?.textContent || "",
     iconStyle: elements.primaryFeedIcon?.getAttribute("style") || "",
@@ -358,7 +361,10 @@ function restorePrimaryFeedCard(context) {
   elements.primaryFeedCard.dataset.type = primaryFeedDefaults.cardType;
   elements.primaryFeedCard.dataset.actionHref = primaryFeedDefaults.cardHref;
   if (elements.primaryFeedTitle) elements.primaryFeedTitle.innerHTML = primaryFeedDefaults.title;
-  if (elements.primaryFeedDesc) elements.primaryFeedDesc.innerHTML = primaryFeedDefaults.desc;
+  if (elements.primaryFeedDesc) {
+    elements.primaryFeedDesc.innerHTML = primaryFeedDefaults.desc;
+    elements.primaryFeedDesc.hidden = Boolean(primaryFeedDefaults.descHidden);
+  }
   if (elements.primaryFeedBadges) elements.primaryFeedBadges.innerHTML = primaryFeedDefaults.badges;
   if (elements.primaryFeedIcon) {
     elements.primaryFeedIcon.textContent = primaryFeedDefaults.icon;
@@ -394,6 +400,7 @@ function applyPrimaryFeedMessage(context, {
   }
   if (elements.primaryFeedDesc) {
     elements.primaryFeedDesc.textContent = description;
+    elements.primaryFeedDesc.hidden = !description;
   }
   if (elements.primaryFeedBadges) {
     elements.primaryFeedBadges.innerHTML = createBadgeMarkup(badgeLabel);
@@ -485,10 +492,9 @@ function renderSecondaryFeedCards(context, items) {
       <div class="action-icon" style="${escapeHtml(item.iconStyle)}">${escapeHtml(item.icon)}</div>
       <div class="action-body">
         <div class="action-title">${item.titleHtml}</div>
-        <div class="action-desc">${escapeHtml(item.descText)}</div>
+        ${item.descText ? `<div class="action-desc">${escapeHtml(item.descText)}</div>` : ""}
         <div class="action-badges">${item.badges}</div>
       </div>
-      <div class="action-arrow" aria-hidden="true">→</div>
     </li>
   `).join("");
 
@@ -514,6 +520,7 @@ function applyPrimaryFeedCardData(context, item) {
   }
   if (elements.primaryFeedDesc) {
     elements.primaryFeedDesc.textContent = item.descText;
+    elements.primaryFeedDesc.hidden = !item.descText;
   }
   if (elements.primaryFeedBadges) {
     elements.primaryFeedBadges.innerHTML = item.badges;
@@ -570,6 +577,7 @@ async function loadActiveSessionCompletedLernbereiche(context) {
         gebietKey: lb.gebietKey,
         groupName: group.group,
         checkCount: selectedChecks.length,
+        totalCheckCount: lb.checks.length,
         lastCompletedAt: completionDates[0] || "",
       });
     });
@@ -649,6 +657,7 @@ async function loadRetentionCompletedLernbereiche(context) {
       gebietKey: lernbereichMeta.gebietKey,
       groupName: lernbereichMeta.groupName,
       checkCount: matchingRows.length,
+      totalCheckCount: lernbereichMeta.totalCheckCount,
       lastCompletedAt: completionDates[0] || String(session?.ended_at || scope?.updated_at || ""),
     };
   }).filter(Boolean);
@@ -675,27 +684,25 @@ async function loadCompletedLernbereiche(context) {
 }
 
 function renderCompletedLernbereichCard(entry) {
-  const checkLabel = entry.checkCount === 1 ? "Check" : "Checks";
   const href = buildLernbereichStartHref(entry);
-  const linkMarkup = href
-    ? `<a class="dashboard-completed-card__link" href="${escapeHtml(href)}">Lernbereich öffnen</a>`
-    : "";
+  const completedCount = Number(entry?.checkCount) || 0;
+  const totalCheckCount = Number(entry?.totalCheckCount) || completedCount;
+  const progressLabel = `${completedCount}/${Math.max(totalCheckCount, completedCount, 1)}`;
+  const tagName = href ? "a" : "article";
+  const hrefMarkup = href ? ` href="${escapeHtml(href)}"` : "";
 
   return `
-    <article class="dashboard-completed-card">
+    <${tagName} class="dashboard-completed-card"${hrefMarkup}>
       <div class="dashboard-completed-card__top">
         <div class="dashboard-completed-card__title-wrap">
-          <div class="dashboard-completed-card__title">${escapeHtml(entry.lernbereichName)}</div>
+          <div class="dashboard-completed-card__title-line">
+            <div class="dashboard-completed-card__title">${escapeHtml(entry.lernbereichName)}</div>
+            <span class="dashboard-completed-card__progress">${escapeHtml(progressLabel)}</span>
+          </div>
           <div class="dashboard-completed-card__meta">${escapeHtml(entry.groupName)}</div>
         </div>
-        <div class="dashboard-completed-card__badges">
-          ${createBadgeMarkup("Abgeschlossen", "kompetenzliste")}
-          ${createBadgeMarkup(`${entry.checkCount} ${checkLabel}`)}
-        </div>
       </div>
-      <p class="dashboard-completed-card__desc">Alle ausgewählten Checks dieses Lernbereichs wurden im letzten Kompetenzlisten-Schritt bestätigt.</p>
-      ${linkMarkup}
-    </article>
+    </${tagName}>
   `;
 }
 
@@ -865,21 +872,23 @@ function getRemainingSelectedActivityCount(context, selectedCheckIds) {
 
 function buildSuggestedTargetDate(context, selectedCheckIds) {
   const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
-  const defaultTempoDays = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
-  const tempoDays = Math.max(1, Number.parseInt(context.activeSession?.tempo_days, 10) || defaultTempoDays);
+  const activitiesPerDay = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const suggestedDate = addCalendarDays(today, remainingSteps > 0 ? (remainingSteps - 1) * tempoDays : 0);
+  const suggestedDate = addCalendarDays(today, remainingSteps > 0 ? Math.floor((remainingSteps - 1) / activitiesPerDay) : 0);
 
   return {
     suggestedDateValue: toDateOnlyValue(suggestedDate),
     remainingSteps,
-    tempoDays,
+    activitiesPerDay,
   };
 }
 
 function buildTargetDateAssessment(context, selectedCheckIds) {
+  const defaultActivitiesPerDay = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
+  const realisticThreshold = defaultActivitiesPerDay;
+  const warningThreshold = Math.max(realisticThreshold + 1, realisticThreshold * 2);
   const targetDateValue = normalizeDateOnlyValue(context.activeSession?.target_date);
   if (!targetDateValue) {
     const suggestion = buildSuggestedTargetDate(context, selectedCheckIds);
@@ -895,9 +904,9 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
       };
     }
 
-    const paceHint = suggestion.tempoDays === 1
+    const paceHint = suggestion.activitiesPerDay === 1
       ? "etwa einer offenen Aktivität pro Tag"
-      : `etwa einer offenen Aktivität alle ${suggestion.tempoDays} Tage`;
+      : `etwa ${suggestion.activitiesPerDay} offenen Aktivitäten pro Tag`;
 
     return {
       targetLabel,
@@ -944,7 +953,7 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
   const stepLabel = remainingSteps === 1 ? "offene Aktivität" : "offene Aktivitäten";
   const workloadText = `Noch ${remainingSteps} ${stepLabel} in ${availableDays} ${dayLabel}, also rund ${formatPlanningRate(stepsPerDay)} pro Tag.`;
 
-  if (stepsPerDay <= 1) {
+  if (stepsPerDay <= realisticThreshold) {
     return {
       targetLabel,
       assessmentMessage: `Rechnerisch wirkt das Zieldatum realistisch. ${workloadText}`,
@@ -952,11 +961,11 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
     };
   }
 
-  if (stepsPerDay <= 2) {
+  if (stepsPerDay <= warningThreshold) {
     return {
       targetLabel,
       assessmentMessage: `Das Zieldatum ist sportlich, aber noch plausibel. ${workloadText}`,
-      assessmentTone: "neutral",
+      assessmentTone: "warning",
     };
   }
 
