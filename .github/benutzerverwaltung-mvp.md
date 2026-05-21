@@ -8,6 +8,7 @@ Sie umfasst Benutzer, Profile, Lern-Sessions, `session_check_state` als erste Ch
 ## Dokumentgrenzen
 
 - Diese Datei beschreibt fachliches Zielbild, Datenmodell, Sicherheitsmodell und MVP-Scope.
+- `.github/feed-logic.md` dokumentiert dagegen die aktuell wirksame Reihenfolge-, Misch- und UI-Stabilisierungslogik des Feeds.
 - `supabase/README.md` dokumentiert dagegen CLI-Workflow, lokales vs. gehostetes Setup, Dashboard-Schritte und SMTP.
 - Die Trennung ist bewusst sinnvoll: Architektur und Betriebs-Runbook ändern sich oft in unterschiedlichem Tempo.
 
@@ -74,10 +75,11 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Das Session-Modal im Dashboard kann ein explizites `target_date` speichern; die Session-Box zeigt dieses Datum anschließend zusammen mit einer groben Heuristik auf Basis der noch offenen Check-Schritte.
 - Das Dashboard trennt im UI zwischen `Session` und `Feed`: Die Session verwaltet die aktive Core-Session, der Feed bündelt Empfehlungen aus der aktiven Session und aus Wiederholungen.
 - Die Feed-Projektion zeigt im Dashboard insgesamt bis zu fünf Einträge, hält offene Session-Aktivitäten vorne und mischt fällige Retention-Flashcards aus früheren Sessions während einer aktiven Session nach serverseitig gezählten Aktivitätsabständen dazwischen.
+- Zurückgestellte Feed-Karten werden inzwischen user-scoped in `user_feed_activity_deferrals` persistiert und erst nach weiteren abgeschlossenen Feed-Aktivitäten wieder normal eingemischt.
 - Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
-- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Hybrid-Abstand, Feed-Limit und Default-Tempo.
+- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Hybrid-Abstand, Deferred-Abstand, Feed-Limit und Default-Tempo.
 
 ## Begriffstrennung
 
@@ -189,11 +191,32 @@ Zentrale Stelle für globale Systemwerte, die Frontend und serverseitige Feed-/P
 Aktuelle Schlüssel:
 
 - `feed.dashboard_item_limit`
+- `feed.deferred_activity_gap`
 - `feed.retention_activity_base_gap`
 - `feed.retention_interleave_lead_session_items`
 - `feed.retention_interleave_stride`
 - `feed.session_follow_up_max_gap`
 - `planning.default_session_tempo_days`
+
+### 4b. `public.user_feed_activity_deferrals`
+
+Zweck:
+User-scoped Sperrmarkierung für bewusst zurückgestellte Feed-Aktivitäten. Die Tabelle modelliert kein visuelles Ranking, sondern eine fachliche Ausblendung bis zu einem Aktivitätszählerwert.
+
+Aktuelle Felder:
+
+- `user_id uuid not null references auth.users(id) on delete cascade`
+- `activity_key text not null`
+- `defer_until_activity_count bigint not null`
+- `created_at timestamptz not null default now()`
+- `updated_at timestamptz not null default now()`
+
+Regeln:
+
+- Primärschlüssel ist `(user_id, activity_key)`.
+- `activity_key` bleibt die stabile Identität einer Feed-Aktivität über Dashboard, Sidebar und Feed-Kontext.
+- `defer_until_activity_count` referenziert bewusst auf `user_feed_activity_counters.completed_activity_count`, nicht auf sichtbare Listenplätze.
+- Das Frontend liest diese Tabelle nur user-scoped; geschrieben wird sie über RPCs.
 
 Regeln:
 
@@ -446,6 +469,8 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - `complete_current_training_step(p_check_id text)`
 - `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text)`
 - `set_retention_scope_status(p_lernbereich_slug text, p_status text)`
+- `defer_feed_activity(p_activity_key text)`
+- `clear_feed_activity_deferral(p_activity_key text)`
 
 ## Minimale Leseflüsse
 
@@ -453,6 +478,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - aktive Lern-Session des Nutzers laden
 - zugehörige Lernbereiche und Check-Ausschlüsse laden, falls eine Session aktiv ist
 - `session_check_state` und `session_activity_state` für die aktive Session lesen
+- aktive `user_feed_activity_deferrals` gegen den aktuellen `completed_activity_count` lesen
 - falls keine Session-Aktivität fällig ist: aktive `user_retention_scopes` und Retention-Fälligkeiten für Flashcards lesen
 - bei Bedarf eigene Recall-/Feynman-Versuche lesen
 - daraus im Frontend den effektiven Session-Umfang, Feed-Titel, Retention-Fallbacks und Routingdaten gegen Repo-Content auflösen
@@ -465,6 +491,7 @@ Wichtig für das Verständnis:
 - Für enthaltene Checks wird inzwischen `session_check_state` synchronisiert; neue Checks starten mit `training_1` als `due`.
 - `recall` und `feynman` schreiben weiterhin Rohversuche nach `learning_activity_attempts`; bei passendem Feed-Kontext bewegen sie zusätzlich die Check-Pipeline weiter.
 - Für `start` und Flashcards gibt es inzwischen zusätzlich `session_activity_state` als erste lernbereichsweite Feed-Projektion.
+- Deferred läuft daneben bewusst nicht über `session_activity_state`, sondern user-scoped über `activity_key` und Aktivitätszähler, damit dieselbe Verschiebung geräte- und tabübergreifend wirkt.
 - Flashcard-Durchgänge, Kartenbewertungen und Karten-Fälligkeiten liegen serverseitig in eigenen Flashcard-Tabellen; der freie Flashcards-Aufruf bleibt ohne persistente Spaced-Repetition.
 - Mit der v2-Grundlage kommen user-scoped Retention-Scope und user-scoped Flashcard-Fälligkeiten hinzu; die laufende Feed-UI nutzt diese Grundlage inzwischen als Session-first-Projektion mit Retention-Fallback.
 - Retention-Flashcards können dabei auch dann wieder in den Feed fallen, wenn für einen aktiven Lernbereich noch keine Retention-Card-State-Zeilen existieren.

@@ -1,6 +1,6 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-session-gap";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-session-gap";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-deterministic-tabs";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const LERNBEREICH_ALIASES = {
@@ -341,8 +341,6 @@ function capturePrimaryFeedDefaults(elements) {
     desc: elements.primaryFeedDesc?.innerHTML || "",
     descHidden: Boolean(elements.primaryFeedDesc?.hidden),
     badges: elements.primaryFeedBadges?.innerHTML || "",
-    icon: elements.primaryFeedIcon?.textContent || "",
-    iconStyle: elements.primaryFeedIcon?.getAttribute("style") || "",
     buttonLabel: elements.primaryFeedButton?.textContent || "",
     buttonHref: elements.primaryFeedButton?.dataset?.actionHref || "",
   };
@@ -366,10 +364,6 @@ function restorePrimaryFeedCard(context) {
     elements.primaryFeedDesc.hidden = Boolean(primaryFeedDefaults.descHidden);
   }
   if (elements.primaryFeedBadges) elements.primaryFeedBadges.innerHTML = primaryFeedDefaults.badges;
-  if (elements.primaryFeedIcon) {
-    elements.primaryFeedIcon.textContent = primaryFeedDefaults.icon;
-    elements.primaryFeedIcon.setAttribute("style", primaryFeedDefaults.iconStyle);
-  }
   if (elements.primaryFeedButton) {
     elements.primaryFeedButton.textContent = primaryFeedDefaults.buttonLabel;
     elements.primaryFeedButton.dataset.actionHref = primaryFeedDefaults.buttonHref;
@@ -382,8 +376,6 @@ function applyPrimaryFeedMessage(context, {
   title = "Feed",
   description = "",
   badgeLabel = "Feed",
-  icon = "→",
-  iconStyle = "background:linear-gradient(135deg, var(--accent), var(--teal));color:#fff;",
 } = {}) {
   const { elements } = context;
   if (!elements.primaryFeedCard) return;
@@ -391,10 +383,6 @@ function applyPrimaryFeedMessage(context, {
   elements.primaryFeedCard.dataset.type = "feed";
   elements.primaryFeedCard.dataset.actionHref = "";
 
-  if (elements.primaryFeedIcon) {
-    elements.primaryFeedIcon.textContent = icon;
-    elements.primaryFeedIcon.setAttribute("style", iconStyle);
-  }
   if (elements.primaryFeedTitle) {
     elements.primaryFeedTitle.textContent = title;
   }
@@ -414,7 +402,6 @@ function applyPrimaryFeedLoadingState(context) {
     title: "Feed wird geladen",
     description: "Deine nächsten Aktivitäten werden vorbereitet.",
     badgeLabel: "Feed",
-    icon: "…",
   });
 }
 
@@ -431,7 +418,6 @@ function applyPrimaryFeedErrorState(context) {
     title: "Feed gerade nicht verfügbar",
     description: "Der nächste sinnvolle Schritt konnte gerade nicht geladen werden.",
     badgeLabel: "Feed",
-    icon: "!",
   });
 }
 
@@ -457,12 +443,10 @@ function buildProjectionBadgesMarkup(item) {
     .join("");
 }
 
-function createFeedCardData({ type, href, icon, iconStyle, titleHtml, descText, badges }) {
+function createFeedCardData({ type, href, titleHtml, descText, badges }) {
   return {
     type,
     href,
-    icon,
-    iconStyle,
     titleHtml,
     descText,
     badges,
@@ -475,8 +459,6 @@ function buildFeedCardDataFromProjection(item) {
   return createFeedCardData({
     type: item.type,
     href: item.href,
-    icon: item.icon,
-    iconStyle: item.iconStyle,
     titleHtml: buildProjectionTitleMarkup(item),
     descText: item.descText,
     badges: buildProjectionBadgesMarkup(item),
@@ -489,7 +471,6 @@ function renderSecondaryFeedCards(context, items) {
 
   const markup = items.map((item) => `
     <li class="action-card" data-type="${escapeHtml(item.type)}" data-action-href="${escapeHtml(item.href)}" data-dashboard-secondary-feed-card>
-      <div class="action-icon" style="${escapeHtml(item.iconStyle)}">${escapeHtml(item.icon)}</div>
       <div class="action-body">
         <div class="action-title">${item.titleHtml}</div>
         ${item.descText ? `<div class="action-desc">${escapeHtml(item.descText)}</div>` : ""}
@@ -511,10 +492,6 @@ function applyPrimaryFeedCardData(context, item) {
   elements.primaryFeedCard.dataset.type = item.type;
   elements.primaryFeedCard.dataset.actionHref = item.href;
 
-  if (elements.primaryFeedIcon) {
-    elements.primaryFeedIcon.textContent = item.icon;
-    elements.primaryFeedIcon.setAttribute("style", item.iconStyle);
-  }
   if (elements.primaryFeedTitle) {
     elements.primaryFeedTitle.innerHTML = item.titleHtml;
   }
@@ -1468,7 +1445,6 @@ function createContext(root, lernbereiche) {
     modalStatusNode: document.getElementById("lbModalStatus"),
     completedList: root.querySelector("[data-dashboard-completed-list]"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),
-    primaryFeedIcon: root.querySelector("[data-dashboard-primary-feed-icon]"),
     primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
     primaryFeedDesc: root.querySelector("[data-dashboard-primary-feed-desc]"),
     primaryFeedBadges: root.querySelector("[data-dashboard-primary-feed-badges]"),

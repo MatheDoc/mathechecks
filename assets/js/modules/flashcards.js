@@ -1,8 +1,8 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
-import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260519-feed-actions";
+import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-session-gap";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
 const FLASHCARDS_ROUND_LIMIT = 20;
@@ -675,8 +675,14 @@ async function rateCurrentFeedCard(ratingKey) {
             cardId: roundCard.cardId,
             ratingKey,
         });
-    } catch {
-        setFeedStatus("Die Kartenbewertung konnte gerade nicht gespeichert werden.", "error");
+    } catch (error) {
+        const detail = String(error?.message || "").trim();
+        setFeedStatus(
+            detail
+                ? `Die Kartenbewertung konnte gerade nicht gespeichert werden. Detail: ${detail}`
+                : "Die Kartenbewertung konnte gerade nicht gespeichert werden.",
+            "error",
+        );
         return;
     }
 

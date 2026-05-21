@@ -1,8 +1,8 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
-import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260519-feed-actions";
+import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-session-gap";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 
 const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 

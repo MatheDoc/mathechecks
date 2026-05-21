@@ -1,7 +1,6 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-session-gap";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-deterministic-tabs";
+import { loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
-
-const FEED_SIDEBAR_ITEM_LIMIT = 5;
 
 let sidebarContentMetaPromise = null;
 
@@ -18,6 +17,22 @@ function createBadgeMarkup(label, type = "") {
   const safeLabel = escapeHtml(label);
   const safeType = type ? ` type-${escapeHtml(type)}` : "";
   return `<span class="action-badge${safeType}">${safeLabel}</span>`;
+}
+
+function buildSidebarTitleText(item) {
+  const checkIndexLabel = String(item?.checkIndexLabel || "").trim();
+  const checkKeyword = String(item?.checkKeyword || "").trim();
+  if (checkIndexLabel && checkKeyword) {
+    return `${escapeHtml(checkIndexLabel)} ${escapeHtml(checkKeyword)}`;
+  }
+
+  return escapeHtml(item?.titleText || "");
+}
+
+function buildSidebarBadgesMarkup(item) {
+  return item?.primaryBadge
+    ? createBadgeMarkup(item.primaryBadge.label, item.primaryBadge.type)
+    : "";
 }
 
 async function loadSidebarContentMeta(feedSidebar) {
@@ -42,8 +57,6 @@ function renderSidebarMessage(feedSidebar, {
   title = "Feed",
   description = "",
   badgeLabel = "Feed",
-  icon = "→",
-  iconStyle = "background:linear-gradient(135deg,var(--accent),var(--teal));color:#fff;",
   actionHref = "",
 } = {}) {
   const listNode = feedSidebar?.querySelector("[data-feed-sidebar-list]");
@@ -57,7 +70,6 @@ function renderSidebarMessage(feedSidebar, {
 
   listNode.innerHTML = `
     <li class="action-card" data-type="feed"${actionHrefMarkup} style="${cursorStyle}">
-      <div class="action-icon" style="${escapeHtml(iconStyle)}">${escapeHtml(icon)}</div>
       <div class="action-body">
         <div class="action-title">${escapeHtml(title)}</div>
         ${description ? `<div class="action-desc">${escapeHtml(description)}</div>` : ""}
@@ -72,7 +84,6 @@ function renderSidebarLoading(feedSidebar) {
     title: "Feed wird geladen",
     description: "Deine nächsten Aktivitäten werden vorbereitet.",
     badgeLabel: "Feed",
-    icon: "…",
   });
 }
 
@@ -82,7 +93,6 @@ function renderSidebarAnonymous(feedSidebar) {
     title: "Feed nach Anmeldung",
     description: "Melde dich an, um deinen persönlichen Lernfeed zu sehen.",
     badgeLabel: "Konto",
-    icon: "↗",
     actionHref: buildAccountUrl(nextPath),
   });
 }
@@ -100,7 +110,6 @@ function renderSidebarError(feedSidebar) {
     title: "Feed gerade nicht verfügbar",
     description: "Der Feed konnte gerade nicht geladen werden.",
     badgeLabel: "Feed",
-    icon: "!",
   });
 }
 
@@ -118,10 +127,9 @@ function renderSidebarItems(feedSidebar, items) {
 
     return `
       <li class="action-card" data-type="${escapeHtml(item.type)}"${actionHref}>
-        <div class="action-icon" style="${escapeHtml(item.iconStyle)}">${escapeHtml(item.icon)}</div>
         <div class="action-body">
-          <div class="action-title">${escapeHtml(item.titleText)}</div>
-          <div class="action-badges">${item.primaryBadge ? createBadgeMarkup(item.primaryBadge.label, item.primaryBadge.type) : ""}</div>
+          <div class="action-title">${buildSidebarTitleText(item)}</div>
+          <div class="action-badges">${buildSidebarBadgesMarkup(item)}</div>
         </div>
       </li>
     `;
@@ -168,10 +176,13 @@ async function refreshFeedSidebar(state) {
       return;
     }
 
+    const systemSettings = await loadSystemSettings(supabase);
+    const feedItemLimit = Math.max(1, Number.parseInt(systemSettings?.feedDashboardItemLimit, 10) || 5);
+
     const projection = await loadFeedProjection({
       supabase,
       contentMeta,
-      limit: FEED_SIDEBAR_ITEM_LIMIT,
+      limit: feedItemLimit,
     });
     const items = Array.isArray(projection?.items) ? projection.items : [];
 

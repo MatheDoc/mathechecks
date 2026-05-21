@@ -1,4 +1,4 @@
-import { getSupabaseClient, getSupabaseRuntimeConfig } from "./supabase-client.js";
+import { getSupabaseClient, getSupabaseRuntimeConfig } from "./supabase-client.js?v=20260520-feed-loading";
 
 function normalizeText(value) {
   return String(value || "").trim();

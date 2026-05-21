@@ -1,4 +1,4 @@
-import { loadSystemSettings } from "./system-settings.js?v=20260521-feed-session-gap";
+import { loadSystemSettings } from "./system-settings.js?v=20260521-feed-deferred-db";
 
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
@@ -6,8 +6,6 @@ const LERNBEREICH_ALIASES = {
 };
 
 const contentMetaPromiseByKey = new Map();
-const DEFERRED_FEED_STORAGE_KEY = "mathechecks.feed.deferred.v1";
-const DEFERRED_FEED_MAX_AGE_MS = 1000 * 60 * 60 * 12;
 
 export const FEED_STEP_ORDER = {
   training_1: 1,
@@ -80,9 +78,9 @@ const START_FEED_META = {
   type: "start",
   icon: "🏠",
   iconStyle: "background:var(--mt-start-soft, var(--accent-soft));color:var(--mt-start, var(--accent));",
-  badgeType: "",
+  badgeType: "start",
   badgeLabel: "Start",
-  description: "Verschaffe dir einen Überblick über Lernziel, Voraussetzungen und Einstieg in den Lernbereich.",
+  description: "",
 };
 
 function parseJsonScript(id, fallback) {
@@ -101,105 +99,53 @@ function normalizeKey(value) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function getDeferredFeedStorage() {
-  if (typeof window === "undefined") return null;
+export async function deferFeedActivity(supabase, activityKey) {
+  const normalizedKey = String(activityKey || "").trim();
+  if (!supabase || !normalizedKey) return;
 
-  try {
-    return window.sessionStorage;
-  } catch {
-    return null;
-  }
-}
-
-function writeDeferredFeedState(state) {
-  const storage = getDeferredFeedStorage();
-  if (!storage) return;
-
-  const entries = Object.entries(state || {}).filter(([key, value]) => {
-    return Boolean(String(key || "").trim()) && Number.isFinite(Number(value));
+  const { error } = await supabase.rpc("defer_feed_activity", {
+    p_activity_key: normalizedKey,
   });
 
-  if (!entries.length) {
-    storage.removeItem(DEFERRED_FEED_STORAGE_KEY);
-    return;
-  }
-
-  storage.setItem(DEFERRED_FEED_STORAGE_KEY, JSON.stringify(Object.fromEntries(entries)));
+  if (error) throw error;
 }
 
-function readDeferredFeedState() {
-  const storage = getDeferredFeedStorage();
-  if (!storage) return {};
+export async function clearDeferredFeedActivity(supabase, activityKey) {
+  const normalizedKey = String(activityKey || "").trim();
+  if (!supabase || !normalizedKey) return;
 
-  let parsed = {};
-  try {
-    parsed = JSON.parse(storage.getItem(DEFERRED_FEED_STORAGE_KEY) || "{}");
-  } catch {
-    storage.removeItem(DEFERRED_FEED_STORAGE_KEY);
-    return {};
-  }
-
-  const now = Date.now();
-  const normalized = {};
-  let changed = false;
-
-  Object.entries(parsed || {}).forEach(([key, value]) => {
-    const activityKey = String(key || "").trim();
-    const deferredAt = Number(value);
-    if (!activityKey || !Number.isFinite(deferredAt) || now - deferredAt > DEFERRED_FEED_MAX_AGE_MS) {
-      changed = true;
-      return;
-    }
-
-    normalized[activityKey] = deferredAt;
+  const { error } = await supabase.rpc("clear_feed_activity_deferral", {
+    p_activity_key: normalizedKey,
   });
 
-  if (changed) {
-    writeDeferredFeedState(normalized);
+  if (error) throw error;
+}
+
+async function loadActiveDeferredFeedActivityKeys(supabase) {
+  if (!supabase) return new Set();
+
+  const currentCompletedActivityCount = await loadCurrentFeedActivityCompletionCount(supabase);
+  const { data, error } = await supabase
+    .from("user_feed_activity_deferrals")
+    .select("activity_key")
+    .gt("defer_until_activity_count", currentCompletedActivityCount);
+
+  if (error) throw error;
+
+  return new Set((Array.isArray(data) ? data : [])
+    .map((row) => String(row?.activity_key || "").trim())
+    .filter(Boolean));
+}
+
+function filterDeferredFeedItems(items, deferredActivityKeys) {
+  if (!deferredActivityKeys || !deferredActivityKeys.size) {
+    return Array.isArray(items) ? items : [];
   }
 
-  return normalized;
-}
-
-export function deferFeedActivity(activityKey) {
-  const normalizedKey = String(activityKey || "").trim();
-  if (!normalizedKey) return;
-
-  const state = readDeferredFeedState();
-  state[normalizedKey] = Date.now();
-  writeDeferredFeedState(state);
-}
-
-export function clearDeferredFeedActivity(activityKey) {
-  const normalizedKey = String(activityKey || "").trim();
-  if (!normalizedKey) return;
-
-  const state = readDeferredFeedState();
-  if (!(normalizedKey in state)) return;
-
-  delete state[normalizedKey];
-  writeDeferredFeedState(state);
-}
-
-function applyDeferredFeedOrdering(items) {
-  const deferredState = readDeferredFeedState();
-  const deferredKeys = new Set(Object.keys(deferredState));
-  if (!deferredKeys.size) return items;
-
-  const activeItems = [];
-  const deferredItems = [];
-
-  (Array.isArray(items) ? items : []).forEach((item) => {
+  return (Array.isArray(items) ? items : []).filter((item) => {
     const activityKey = String(item?.activityKey || "").trim();
-    if (activityKey && deferredKeys.has(activityKey)) {
-      deferredItems.push(item);
-      return;
-    }
-
-    activeItems.push(item);
+    return !activityKey || !deferredActivityKeys.has(activityKey);
   });
-
-  return [...activeItems, ...deferredItems];
 }
 
 function normalizePositiveInteger(value, fallback) {
@@ -507,12 +453,23 @@ function orderSessionCheckEntries(checkEntries, contentMeta, systemSettings) {
   if (!freshStartEntries.length) return followUpEntries;
   if (!followUpEntries.length) return freshStartEntries;
 
+  // Didaktische Regel fuer Session-Checks:
+  // Eine begonnene Check-Kette soll sichtbar weitergehen, aber nicht sofort komplett durchlaufen.
+  // feedSessionFollowUpMaxGap ist deshalb nur eine Obergrenze fuer frische training_1-Eintraege
+  // zwischen zwei Folgeaktivitaeten. Der tatsaechliche Abstand schrumpft dynamisch, wenn vorne
+  // training_1-Eintraege wegfallen, damit wartende Follow-ups wie Recall nach vorne ruecken koennen.
   const ordered = [];
   let freshIndex = 0;
   let followUpIndex = 0;
 
   while (freshIndex < freshStartEntries.length || followUpIndex < followUpEntries.length) {
-    for (let gapCount = 0; gapCount < followUpGap && freshIndex < freshStartEntries.length; gapCount += 1) {
+    const remainingFreshStarts = freshStartEntries.length - freshIndex;
+    const remainingFollowUps = followUpEntries.length - followUpIndex;
+    const dynamicGap = remainingFollowUps > 0
+      ? Math.min(followUpGap, Math.ceil(remainingFreshStarts / (remainingFollowUps + 1)))
+      : remainingFreshStarts;
+
+    for (let gapCount = 0; gapCount < dynamicGap && freshIndex < freshStartEntries.length; gapCount += 1) {
       ordered.push(freshStartEntries[freshIndex]);
       freshIndex += 1;
     }
@@ -582,32 +539,6 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
 
   if (scopeError) throw scopeError;
 
-  if (hasActiveSession) {
-    return (Array.isArray(scopeRows) ? scopeRows : [])
-      .map((row) => {
-        const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
-        const dueAfterActivityCount = Number(row?.next_due_after_activity_count);
-        if (!lernbereichSlug || !Number.isFinite(dueAfterActivityCount) || dueAfterActivityCount > completedActivityCount) {
-          return null;
-        }
-
-        return {
-          activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
-          activity_type: "flashcards",
-          scope_type: "lernbereich",
-          lernbereich_slug: lernbereichSlug,
-          due_after_activity_count: dueAfterActivityCount,
-        };
-      })
-      .filter(Boolean)
-      .sort((left, right) => {
-        const activityDelta = Number(left?.due_after_activity_count || 0) - Number(right?.due_after_activity_count || 0);
-        if (activityDelta !== 0) return activityDelta;
-
-        return String(left?.lernbereich_slug || "").localeCompare(String(right?.lernbereich_slug || ""), "de");
-      });
-  }
-
   const lernbereichSlugs = [...new Set((Array.isArray(scopeRows) ? scopeRows : [])
     .map((row) => String(row?.lernbereich_slug || "").trim())
     .filter(Boolean))];
@@ -640,6 +571,46 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
       summary.firstDueAt = nextDueAt;
     }
   });
+
+  if (hasActiveSession) {
+    return (Array.isArray(scopeRows) ? scopeRows : [])
+      .map((row) => {
+        const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
+        const dueAfterActivityCount = Number(row?.next_due_after_activity_count);
+        const summary = stateBySlug.get(lernbereichSlug) || { hasState: false, firstDueAt: "" };
+        const isDueByActivityCount = Number.isFinite(dueAfterActivityCount) && dueAfterActivityCount <= completedActivityCount;
+        const isDueByCardState = Boolean(summary.hasState && summary.firstDueAt);
+
+        if (!lernbereichSlug || (!isDueByActivityCount && !isDueByCardState)) {
+          return null;
+        }
+
+        return {
+          activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
+          activity_type: "flashcards",
+          scope_type: "lernbereich",
+          lernbereich_slug: lernbereichSlug,
+          due_after_activity_count: isDueByActivityCount ? dueAfterActivityCount : null,
+          due_at: summary.firstDueAt,
+        };
+      })
+      .filter(Boolean)
+      .sort((left, right) => {
+        const leftDueByActivityCount = Number.isFinite(Number(left?.due_after_activity_count));
+        const rightDueByActivityCount = Number.isFinite(Number(right?.due_after_activity_count));
+        const dueTypeDelta = Number(rightDueByActivityCount) - Number(leftDueByActivityCount);
+        if (dueTypeDelta !== 0) return dueTypeDelta;
+
+        const activityDelta = Number(left?.due_after_activity_count || Number.MAX_SAFE_INTEGER)
+          - Number(right?.due_after_activity_count || Number.MAX_SAFE_INTEGER);
+        if (activityDelta !== 0) return activityDelta;
+
+        const dueAtDelta = String(left?.due_at || "").localeCompare(String(right?.due_at || ""));
+        if (dueAtDelta !== 0) return dueAtDelta;
+
+        return String(left?.lernbereich_slug || "").localeCompare(String(right?.lernbereich_slug || ""), "de");
+      });
+  }
 
   return lernbereichSlugs
     .map((lernbereichSlug) => {
@@ -808,7 +779,7 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
       icon: START_FEED_META.icon,
       iconStyle: START_FEED_META.iconStyle,
       titleText: lernbereichMeta.lernbereichName,
-      descText: START_FEED_META.description,
+      descText: "",
       badges: [
         { label: "Session", type: "" },
         { label: lernbereichMeta.lernbereichName, type: "" },
@@ -832,7 +803,7 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
     icon: "📚",
     iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
-    descText: "Bearbeite einen kurzen Flashcard-Durchgang aus deiner aktuellen Session.",
+    descText: "",
     badges: [
       { label: "Session", type: "" },
       { label: lernbereichMeta.lernbereichName, type: "" },
@@ -858,7 +829,7 @@ function buildRetentionFeedItem(contentMeta, entry) {
     icon: "📚",
     iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
-    descText: "Wiederhole Flashcards aus früheren Sessions.",
+    descText: "",
     badges: [
       { label: "Wiederholung", type: "" },
       { label: lernbereichMeta.lernbereichName, type: "" },
@@ -912,11 +883,16 @@ export async function loadFeedProjection({
     }
   }
 
-  items = applyDeferredFeedOrdering(items);
+  if (items.length) {
+    const deferredActivityKeys = await loadActiveDeferredFeedActivityKeys(supabase);
+    items = filterDeferredFeedItems(items, deferredActivityKeys);
+  }
+
+  const visibleItems = items.slice(0, limit);
 
   return {
     activeSession,
-    items: items.slice(0, limit),
+    items: visibleItems,
     source,
   };
 }

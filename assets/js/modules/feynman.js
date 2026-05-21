@@ -1,9 +1,9 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260519-feed-actions";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-session-gap";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 

@@ -135,52 +135,6 @@
     })();
 
     (function () {
-        const SIDEBAR_COOKIE_NAME = 'mathechecks-feed-sidebar';
-        const SIDEBAR_COOKIE_COLLAPSED = 'collapsed';
-        const SIDEBAR_COOKIE_EXPIRY_SECONDS = 60 * 60 * 24 * 365;
-        const feedSidebar = document.getElementById('feedSidebar');
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        if (!feedSidebar || !sidebarToggle) return;
-
-        function getCookieValue(name) {
-            const cookie = document.cookie
-                .split(';')
-                .map((entry) => entry.trim())
-                .find((entry) => entry.startsWith(`${name}=`));
-            if (!cookie) return '';
-            return decodeURIComponent(cookie.slice(name.length + 1));
-        }
-
-        function setCookieValue(name, value, maxAgeSeconds) {
-            document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${maxAgeSeconds}; SameSite=Lax`;
-        }
-
-        function syncSidebarToggle() {
-            const isCollapsed = feedSidebar.classList.contains('collapsed');
-            sidebarToggle.innerHTML = isCollapsed ? '&#8250;' : '&#8249;';
-            sidebarToggle.setAttribute('aria-expanded', String(!isCollapsed));
-            sidebarToggle.title = isCollapsed ? 'Aktionsfeed einblenden' : 'Aktionsfeed ausblenden';
-        }
-
-        sidebarToggle.addEventListener('click', function () {
-            feedSidebar.classList.toggle('collapsed');
-            const isCollapsed = feedSidebar.classList.contains('collapsed');
-            setCookieValue(
-                SIDEBAR_COOKIE_NAME,
-                isCollapsed ? SIDEBAR_COOKIE_COLLAPSED : 'expanded',
-                SIDEBAR_COOKIE_EXPIRY_SECONDS
-            );
-            syncSidebarToggle();
-        });
-
-        if (getCookieValue(SIDEBAR_COOKIE_NAME) === SIDEBAR_COOKIE_COLLAPSED) {
-            feedSidebar.classList.add('collapsed');
-        }
-
-        syncSidebarToggle();
-    })();
-
-    (function () {
         const feedSidebar = document.getElementById('feedSidebar');
         if (!feedSidebar) return;
 

@@ -9,7 +9,7 @@ import {
   recordRetentionFlashcardReview,
   resolveFlashcardRound,
   resolveRetentionFlashcardRound,
-} from "./progress-client.js";
+} from "./progress-client.js?v=20260521-flashcards-review-save";
 
 function ensureFeedActionOk(result, fallbackReason) {
   if (result?.error) {
