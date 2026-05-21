@@ -1,4 +1,5 @@
 const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
+  // Bei Änderungen hier immer die passende Supabase-Migration für public.system_settings nachziehen.
   // Maximale Zahl sichtbarer Feed-Einträge im Dashboard.
   feedDashboardItemLimit: 5,
   // Basisabstand N für Retention-Flashcards; weitere Fälligkeiten wachsen als N, 2N, 4N, ...
@@ -7,8 +8,8 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   feedRetentionInterleaveLeadSessionItems: 1,
   // Anzahl weiterer Session-Aktivitäten zwischen zwei Retention-Slots.
   feedRetentionInterleaveStride: 1,
-  // Fallback-Tempo in Tagen für Zieltermin-Vorschläge ohne explizites Session-Tempo.
-  planningDefaultSessionTempoDays: 1,
+  // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
+  planningDefaultSessionTempoDays: 3,
 });
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({

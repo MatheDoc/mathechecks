@@ -140,7 +140,7 @@ Vorgeschlagene Felder:
 - `id uuid primary key default gen_random_uuid()`
 - `user_id uuid not null references auth.users(id) on delete cascade`
 - `status text not null check (status in ('active', 'completed', 'aborted'))`
-- `tempo_days integer not null default 1`
+- `tempo_days integer not null` (Legacy-Name; aktuell als offene Aktivitäten pro Tag interpretiert)
 - `target_date date null`
 - `target_source text null check (target_source in ('explicit', 'suggested'))`
 - `planning_timezone text not null default 'Europe/Berlin'`
@@ -158,6 +158,7 @@ Regeln:
 - Das sollte über einen partiellen Unique Index erzwungen werden, nicht nur in der UI.
 - Eine abgeschlossene oder abgebrochene Session bleibt aus Nachvollziehbarkeitsgründen erhalten.
 - `target_date` ist der kanonische Zielwert, unabhängig davon, ob der Nutzer ihn direkt oder über „in X Tagen" gesetzt hat.
+- Ohne separate Tempo-UI wird `tempo_days` aktuell aus `planning.default_session_tempo_days` abgeleitet und als offene Aktivitäten pro Tag verstanden.
 - `daily_new_release_limit` begrenzt neue Freigaben pro Tag, nicht die Gesamtzahl bereits offener Aktivitäten.
 - `planning_revision` steigt bei Änderungen an der aktiven Session, ohne vergangene Abschlüsse umzuschreiben.
 

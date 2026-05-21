@@ -46,7 +46,7 @@ Ein Hypothesentest soll standardisiert, objektiv und reproduzierbar sein. Daher 
 
 Im Beispiel könnten sich Lehrerin und Schüler **vorab** auf folgende Regel einigen:
 
-    "Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt."
+"Wenn mehr als 7 von 50 Schülern zu spät kommen, wird angenommen, dass der Anteil verspäteter Schüler über 10 % liegt. Andernfalls wird weiterhin davon ausgegangen, dass der Anteil 10 % beträgt."
 
 Erst **nachdem** diese Regel festgelegt wurde, wird die Datenerhebung durchgeführt. Das Ergebnis wird anschließend nach der vorher definierten Regel interpretiert – unabhängig von persönlichen Meinungen oder Interessen.
 

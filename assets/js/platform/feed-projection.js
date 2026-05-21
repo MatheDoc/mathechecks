@@ -1,4 +1,4 @@
-import { loadSystemSettings } from "./system-settings.js?v=20260520-hybrid-retention";
+import { loadSystemSettings } from "./system-settings.js?v=20260521-planning-default-tempo";
 
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
@@ -26,8 +26,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
     badgeType: "training",
     badgeLabel: "Training 1",
-    accent: "var(--mt-training, var(--accent))",
-    accentSoft: "var(--mt-training-soft, var(--accent-soft))",
     description: "Starte mit der nächsten Trainingsaufgabe für diesen Check.",
   },
   recall: {
@@ -37,8 +35,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-recall-soft, var(--amber-soft));color:var(--mt-recall, var(--amber));",
     badgeType: "recall",
     badgeLabel: "Recall",
-    accent: "var(--mt-recall, var(--amber))",
-    accentSoft: "var(--mt-recall-soft, var(--amber-soft))",
     description: "Prüfe jetzt, ob du die Kernideen aus dem Check abrufen kannst.",
   },
   training_2: {
@@ -48,8 +44,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
     badgeType: "training",
     badgeLabel: "Training 2",
-    accent: "var(--mt-training, var(--accent))",
-    accentSoft: "var(--mt-training-soft, var(--accent-soft))",
     description: "Der zweite Trainingsschritt ist jetzt fällig.",
   },
   feynman: {
@@ -59,8 +53,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-feynman-soft, var(--teal-soft));color:var(--mt-feynman, var(--teal));",
     badgeType: "feynman",
     badgeLabel: "Feynman",
-    accent: "var(--mt-feynman, var(--teal))",
-    accentSoft: "var(--mt-feynman-soft, var(--teal-soft))",
     description: "Erkläre den Check jetzt in eigenen Worten.",
   },
   training_3: {
@@ -70,8 +62,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
     badgeType: "training",
     badgeLabel: "Training 3",
-    accent: "var(--mt-training, var(--accent))",
-    accentSoft: "var(--mt-training-soft, var(--accent-soft))",
     description: "Der letzte Trainingsschritt für diesen Check wartet noch.",
   },
   kompetenzliste_gate: {
@@ -81,8 +71,6 @@ export const FEED_STEP_META = {
     iconStyle: "background:var(--mt-kompetenzliste-soft, var(--lavender-soft));color:var(--mt-kompetenzliste, var(--lavender));",
     badgeType: "kompetenzliste",
     badgeLabel: "Kompetenz",
-    accent: "var(--mt-kompetenzliste, var(--lavender))",
-    accentSoft: "var(--mt-kompetenzliste-soft, var(--lavender-soft))",
     description: "Öffne die Kompetenzliste, prüfe die markierte Kompetenz und bestätige sie erst dann als sicher.",
   },
 };
@@ -94,8 +82,6 @@ const START_FEED_META = {
   iconStyle: "background:var(--mt-start-soft, var(--accent-soft));color:var(--mt-start, var(--accent));",
   badgeType: "",
   badgeLabel: "Start",
-  accent: "var(--mt-start, var(--accent))",
-  accentSoft: "var(--mt-start-soft, var(--accent-soft))",
   description: "Verschaffe dir einen Überblick über Lernziel, Voraussetzungen und Einstieg in den Lernbereich.",
 };
 
@@ -698,8 +684,6 @@ function createFeedItem({
   descText,
   badges,
   primaryBadge,
-  accent,
-  accentSoft,
 }) {
   return {
     kind,
@@ -714,8 +698,6 @@ function createFeedItem({
     descText,
     badges,
     primaryBadge,
-    accent,
-    accentSoft,
   };
 }
 
@@ -738,15 +720,13 @@ function buildCheckFeedItem(contentMeta, entry) {
     titleText: formatCompactCheckTitle(checkMeta),
     checkIndexLabel: formatCheckIndexLabel(checkMeta),
     checkKeyword: formatCheckShortTitle(checkMeta),
-    descText: stripTrailingPeriod(checkMeta.label),
+    descText: "",
     badges: [
       { label: "Session", type: "" },
       { label: checkMeta.lernbereichName, type: "" },
       primaryBadge,
     ],
     primaryBadge,
-    accent: stepMeta.accent,
-    accentSoft: stepMeta.accentSoft,
   });
 }
 
@@ -774,8 +754,6 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
         primaryBadge,
       ],
       primaryBadge,
-      accent: START_FEED_META.accent,
-      accentSoft: START_FEED_META.accentSoft,
     });
   }
 
@@ -800,8 +778,6 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
       primaryBadge,
     ],
     primaryBadge,
-    accent: "var(--mt-flashcards, var(--amber))",
-    accentSoft: "var(--mt-flashcards-soft, var(--amber-soft))",
   });
 }
 
@@ -828,8 +804,6 @@ function buildRetentionFeedItem(contentMeta, entry) {
       primaryBadge,
     ],
     primaryBadge,
-    accent: "var(--mt-flashcards, var(--amber))",
-    accentSoft: "var(--mt-flashcards-soft, var(--amber-soft))",
   });
 }
 

@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260520-feed-loading
+module_script: /assets/js/modules/dashboard.js?v=20260521-planning-activities-per-day
 ---
 
 {% include dashboard/content.html %}
