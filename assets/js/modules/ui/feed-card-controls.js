@@ -1,4 +1,4 @@
-import { clearDeferredFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260521-feed-session-gap";
+import { clearDeferredFeedActivity, deferFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260521-feed-deterministic-tabs";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -192,23 +192,22 @@ function createDecisionButton({ className, icon, label, detail = "" }) {
 
 export async function goToNextFeedActivity({ currentActivityKey, deferCurrent = false } = {}) {
   const resolvedActivityKey = String(currentActivityKey || getCurrentFeedActivityKey() || "").trim();
-  if (resolvedActivityKey) {
-    if (deferCurrent) {
-      const { deferFeedActivity } = await import("../../platform/feed-projection.js?v=20260521-feed-session-gap");
-      deferFeedActivity(resolvedActivityKey);
-    } else {
-      clearDeferredFeedActivity(resolvedActivityKey);
-    }
-  }
-
-  disableFeedActivityGuard();
-
   try {
     const supabase = await getSupabaseClient();
     if (!supabase) {
       goToDashboard();
       return;
     }
+
+    if (resolvedActivityKey) {
+      if (deferCurrent) {
+        await deferFeedActivity(supabase, resolvedActivityKey);
+      } else {
+        await clearDeferredFeedActivity(supabase, resolvedActivityKey);
+      }
+    }
+
+    disableFeedActivityGuard();
 
     const contentMeta = await loadFeedContentMeta(FEED_CONTENT_META_OPTIONS);
     const projection = await loadFeedProjection({
@@ -358,7 +357,8 @@ function openFeedDecisionDialog({
 
   const runCompleteDecision = async () => {
     const currentActivityKey = getCurrentFeedActivityKey();
-    clearDeferredFeedActivity(currentActivityKey);
+    const supabase = await getSupabaseClient();
+    await clearDeferredFeedActivity(supabase, currentActivityKey);
 
     if (typeof onComplete === "function") {
       await onComplete();
@@ -369,7 +369,8 @@ function openFeedDecisionDialog({
 
   const runCompleteDashboardDecision = async () => {
     const currentActivityKey = getCurrentFeedActivityKey();
-    clearDeferredFeedActivity(currentActivityKey);
+    const supabase = await getSupabaseClient();
+    await clearDeferredFeedActivity(supabase, currentActivityKey);
 
     if (typeof onComplete === "function") {
       await onComplete();
@@ -379,7 +380,8 @@ function openFeedDecisionDialog({
   };
 
   const runRepeatNowDecision = async () => {
-    clearDeferredFeedActivity(getCurrentFeedActivityKey());
+    const supabase = await getSupabaseClient();
+    await clearDeferredFeedActivity(supabase, getCurrentFeedActivityKey());
 
     if (typeof onRepeat === "function") {
       await onRepeat();

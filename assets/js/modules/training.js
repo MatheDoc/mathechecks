@@ -19,9 +19,9 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-session-gap";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
-import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260519-feed-actions";
+import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {

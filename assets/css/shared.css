@@ -23,9 +23,9 @@
   --surface: rgba(255, 255, 255, 0.04);
   --surface-hi: rgba(255, 255, 255, 0.07);
   --border: rgba(255, 255, 255, 0.07);
-  --text: #e8e8ed;
+  --text: #d7d7da;
   --text-body: #c9c9d8;
-  --text-dim: #8a8a9a;
+  --text-dim: #9797a8;
   --text-muted: #5a5a6e;
   --accent: #7c6aff;
   --accent-soft: rgba(124, 106, 255, 0.15);
@@ -833,12 +833,6 @@ body.page-shell .shell {
   font-size: clamp(1.8rem, 2.9vw, 3.2rem);
 }
 
-.feed-sidebar.collapsed .preview-surface--sidebar::before {
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-}
 
 .card-title {
   font-size: 0.82rem;
@@ -1108,6 +1102,10 @@ body.page-shell .shell {
 
 .action-badge.type-flashcards {
   --action-badge-accent: var(--mt-flashcards, var(--amber));
+}
+
+.action-badge.type-start {
+  --action-badge-accent: var(--mt-start, var(--accent));
 }
 
 .action-badge.type-kompetenzliste {
@@ -1541,9 +1539,9 @@ body.page-module .shell {
   overflow: hidden;
 }
 
-/* Feed Sidebar (collapsible) */
+/* Feed Sidebar */
 .feed-sidebar {
-  width: 272px;
+  width: 224px;
   flex-shrink: 0;
   align-self: flex-start;
   position: sticky;
@@ -1556,82 +1554,14 @@ body.page-module .shell {
   overflow-x: hidden;
   overflow-y: auto;
   scrollbar-width: thin;
-  transition: width 220ms cubic-bezier(.4, 0, .2, 1);
   z-index: 60;
-}
-
-.feed-sidebar.collapsed {
-  width: 56px;
-}
-
-.sidebar-brand {
-  position: sticky;
-  top: 0;
-  z-index: 45;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 8px;
-  height: 52px;
-  flex-shrink: 0;
-  background: var(--bg);
-  border-bottom: 1px solid var(--border);
-  overflow: hidden;
 }
 
 .sidebar-body {
   height: auto;
   flex: 1;
   overflow: visible;
-  padding: 10px 10px 56px;
-}
-
-.feed-sidebar.collapsed .sidebar-body {
-  padding: 10px 2px 40px;
-}
-
-.feed-sidebar.collapsed .action-body {
-  display: none;
-}
-
-.feed-sidebar.collapsed .action-list {
-  gap: 6px;
-}
-
-.feed-sidebar.collapsed .action-card {
-  padding: 10px 0;
-  border: 1px solid transparent;
-  background: transparent;
-  justify-content: center;
-  gap: 0;
-}
-
-.feed-sidebar.collapsed .action-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  box-shadow: none;
-}
-
-.sidebar-toggle {
-  flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 9px;
-  background: transparent;
-  color: var(--text-muted);
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  font-size: 1.02rem;
-  font-family: inherit;
-  transition: all 160ms;
-}
-
-.sidebar-toggle:hover {
-  background: var(--surface-hi);
-  color: var(--text);
+  padding: 12px 10px 56px;
 }
 
 .page-module .lb-row {
@@ -1959,15 +1889,6 @@ html.light .mod-start-content {
 }
 
 .page-shell--fluid.w-wide {
-  max-width: none;
-}
-
-/* Use additional horizontal space when the feed sidebar is collapsed. */
-.designs-body .feed-sidebar.collapsed+.mod-main .w-wide {
-  max-width: 1240px;
-}
-
-.designs-body .feed-sidebar.collapsed+.mod-main .page-shell--fluid.w-wide {
   max-width: none;
 }
 
@@ -5123,16 +5044,9 @@ html.light .roulette-widget__event {
   transform: none;
 }
 
-.feed-sidebar .action-icon {
-  width: 36px;
-  height: 36px;
-  font-size: .9rem;
-  border-radius: 9px;
-}
-
 .feed-sidebar .action-body {
   flex: 1 1 auto;
-  width: 0;
+  width: 100%;
   min-width: 0;
 }
 
@@ -5149,11 +5063,6 @@ html.light .roulette-widget__event {
   white-space: nowrap;
 }
 
-/* Fade-in body with delay so text appears after sidebar finishes opening */
-.feed-sidebar .action-body {
-  transition: opacity 80ms 140ms;
-}
-
 .feed-sidebar .action-badges {
   flex-wrap: nowrap;
   overflow: hidden;
@@ -5167,10 +5076,6 @@ html.light .roulette-widget__event {
   white-space: nowrap;
   font-size: .65rem;
   padding: 2px 7px;
-}
-
-.feed-sidebar.collapsed .action-card {
-  min-height: 56px;
 }
 
 .mod-main {

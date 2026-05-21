@@ -1,4 +1,4 @@
-import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260517-oauth";
+import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 function setStatus(message, tone = "neutral") {
   document.querySelectorAll("[data-konto-notice]").forEach((statusNode) => {

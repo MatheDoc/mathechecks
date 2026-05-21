@@ -8,7 +8,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /konto.html
-module_script: /assets/js/modules/konto.js?v=20260517-konto-unified
+module_script: /assets/js/modules/konto.js?v=20260521-konto-link-fallback
 page_css: /assets/css/konto.css?v=20260517-konto-unified
 ---
 
