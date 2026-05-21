@@ -1895,7 +1895,7 @@ body.page-module .shell {
   flex: 0 0 auto;
   width: 100%;
   min-height: 100%;
-  padding: 0 0 72px;
+  padding: 0 12px 72px;
 }
 
 .mod-main-shell {
@@ -1908,7 +1908,7 @@ body.page-module .shell {
 
 .mod-script-content {
   margin: 0 auto;
-  padding: 14px 14px 72px 14px;
+  padding: 14px 0px 72px;
 }
 
 .mod-start-content {
@@ -1947,8 +1947,6 @@ html.light .mod-start-content {
 /* Shared helpers */
 .page-shell {
   margin: 0 auto;
-  padding-left: var(--page-pad-inline);
-  padding-right: var(--page-pad-inline);
   box-sizing: border-box;
 }
 
