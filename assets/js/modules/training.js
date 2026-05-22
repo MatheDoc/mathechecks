@@ -25,9 +25,7 @@ import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260521
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
-  training_1: "Training 1",
-  training_2: "Training 2",
-  training_3: "Training 3",
+  training: "Training",
 };
 
 async function renderMath(targetNode, retries = 4) {

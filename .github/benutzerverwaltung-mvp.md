@@ -62,7 +62,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Die Folge-Migration für den schlanken Session-Schreibpfad über `save_active_learning_session(...)` ist im Remote-Projekt bereits aktiv.
 - Die Migration für `learning_activity_attempts` ergänzt einen ersten Fortschrittsschreibpfad für Recall und Feynman.
 - Die Migration `session_check_state_v1` führt eine materialisierte Check-Pipeline ein und erweitert `save_active_learning_session(...)` um die synchronisierten Check-Zeilen.
-- `complete_current_training_step(...)` bildet den manuellen Feed-Abschluss von `training_1`, `training_2` und `training_3` ab.
+- `complete_current_training_step(...)` bildet den manuellen Feed-Abschluss von `training` ab.
 - `record_check_module_attempt(...)` schreibt Recall-/Feynman-Versuche und bewegt passende `session_check_state`-Zeilen bei `can_do` weiter.
 - Die Flashcards-Folge-Migration führt `session_activity_state` als erste lernbereichsweite Feed-Projektion ein; inzwischen trägt sie `start` als direkte Einstiegsaktivität pro Lernbereich und `flashcards` als persistente Wiederholungsaktivität.
 - `get_or_create_flashcard_round(...)`, `record_flashcard_review(...)` und `resolve_flashcard_round(...)` bilden den session-scoped Feed-Schreibpfad für Flashcards ab.
@@ -294,11 +294,9 @@ Schlüssel:
 
 Aktuelle Werte für `current_step_key`:
 
-- `training_1`
+- `training`
 - `recall`
-- `training_2`
 - `feynman`
-- `training_3`
 - `kompetenzliste_gate`
 - `check_completed`
 
@@ -311,7 +309,7 @@ Aktuelle Werte für `current_step_status`:
 Regeln:
 
 - Beim Speichern der aktiven Session synchronisiert `save_active_learning_session(...)` die Zeilen aus den im Frontend aufgelösten enthaltenen Checks.
-- Neue Zeilen starten in v1 mit `training_1` und `due`.
+- Neue Zeilen starten in v1 mit `training` und `due`.
 - Nicht mehr enthaltene Checks werden aus der aktiven Session-Projektion entfernt.
 - Das Frontend darf `session_check_state` lesen, aber nicht direkt schreiben.
 - `last_completed_at` materialisiert den tatsächlichen Abschlusszeitpunkt des zuletzt erfolgreich abgeschlossenen Vorgängerschritts; spätere Nachfolgefenster sollen darauf aufbauen, nicht auf bloß geplanten Fälligkeiten.
@@ -443,7 +441,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 1. Nutzer öffnet einen fälligen Trainingsschritt aus dem Feed.
 2. Die Feed-Shell erlaubt den Abschluss erst nach Bearbeitung aller Teilfragen und nach `Abschluss vorbereiten`.
-3. `complete_current_training_step(p_check_id)` bewegt `training_1 -> recall`, `training_2 -> feynman` oder `training_3 -> kompetenzliste_gate`.
+3. `complete_current_training_step(p_check_id)` bewegt `training -> recall`.
 4. Dieser Abschluss ist ein manueller Feed-Abschluss, noch kein automatisierter fehlerfreier Trainingsnachweis.
 5. Der tatsächliche Abschlusszeitpunkt wird in `session_check_state.last_completed_at` materialisiert.
 
@@ -498,7 +496,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 Wichtig für das Verständnis:
 
 - Beim Start oder Speichern einer Lern-Session wird weiterhin der fachliche Umfang gespeichert: aktive Lernbereiche, ausgeschlossene Checks und daraus abgeleitete enthaltene Checks.
-- Für enthaltene Checks wird inzwischen `session_check_state` synchronisiert; neue Checks starten mit `training_1` als `due`.
+- Für enthaltene Checks wird inzwischen `session_check_state` synchronisiert; neue Checks starten mit `training` als `due`.
 - `recall` und `feynman` schreiben weiterhin Rohversuche nach `learning_activity_attempts`; bei passendem Feed-Kontext bewegen sie zusätzlich die Check-Pipeline weiter.
 - Für `start` und Flashcards gibt es inzwischen zusätzlich `session_activity_state` als erste lernbereichsweite Feed-Projektion.
 - Deferred läuft daneben bewusst nicht über `session_activity_state`, sondern user-scoped über `activity_key` und Aktivitätszähler, damit dieselbe Verschiebung geräte- und tabübergreifend wirkt.
@@ -634,8 +632,7 @@ Das ist fachlich ein **manueller Feed-Abschluss**, nicht schon ein automatisiert
 
 Empfohlene v1-Semantik:
 
-- Ein Abschluss aus `training_1` setzt den nächsten Schritt `recall` auf `due`.
-- Dasselbe gilt analog für `training_2` und `training_3`.
+- Ein Abschluss aus `training` setzt den nächsten Schritt `recall` auf `due`.
 - Diese serverseitige Pipeline-Logik ist getrennt von späteren Kompetenz- oder Statistikdaten.
 
 Wichtig:
@@ -663,7 +660,7 @@ Präferenz für das Zielbild:
 Aktueller v1-Schnitt:
 
 - `save_active_learning_session(...)` bekommt zusätzlich die ausgewählten `p_included_check_ids` und hält damit `session_check_state` synchron.
-- `complete_current_training_step(p_check_id text)` bildet den ersten serverseitigen Pipeline-Übergang für `training_1`, `training_2` und `training_3`.
+- `complete_current_training_step(p_check_id text)` bildet den ersten serverseitigen Pipeline-Übergang für `training`.
 - `record_check_module_attempt(...)` bleibt der Rohdaten-Log für `recall` und `feynman`, kann aber vorhandene `session_check_state`-Zeilen jetzt direkt weiterbewegen.
 
 ### Feed-Kontext im Frontend
@@ -672,8 +669,8 @@ Aktive Feed-Aktivitäten werden im Frontend über URL-Parameter transportiert:
 
 - `feed=1`: Seite läuft im Feed-Kontext.
 - `check_id`: fachlicher Check-Bezug für checkbezogene Aktivitäten.
-- `activity_key`: stabile Feed-Aktivität, zum Beispiel `check:<check_id>:training_1`.
-- `activity_step`: aktueller Pipeline-Schritt oder Aktivitätsschritt, zum Beispiel `training_1`, `recall`, `feynman` oder `flashcards`.
+- `activity_key`: stabile Feed-Aktivität, zum Beispiel `check:<check_id>:training`.
+- `activity_step`: aktueller Pipeline-Schritt oder Aktivitätsschritt, zum Beispiel `training`, `recall`, `feynman` oder `flashcards`.
 - `activity_run`: frischer UI-Durchlauf für Eingaben, Bewertungsmarkierungen und lokale Aufgaben-UI.
 
 Regeln:

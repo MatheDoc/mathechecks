@@ -8,7 +8,7 @@ import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260519
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js?v=20260521-feed-deterministic-tabs";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260521-feed-deterministic-tabs";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260523-kompetenzliste-training-nav";
 import { getChecksByLernbereich } from "./data/checks-repo.js";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

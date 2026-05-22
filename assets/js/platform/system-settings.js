@@ -10,7 +10,7 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   feedRetentionInterleaveLeadSessionItems: 5,
   // Anzahl weiterer Session-Aktivitäten zwischen zwei Retention-Slots.
   feedRetentionInterleaveStride: 4,
-  // Maximalzahl frischer Training-1-Aktivitäten zwischen zwei Folgeaktivitäten laufender Check-Ketten.
+  // Maximalzahl frischer Training-Aktivitäten zwischen zwei Folgeaktivitäten laufender Check-Ketten.
   feedSessionFollowUpMaxGap: 3,
   // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
   planningDefaultSessionTempoDays: 3,

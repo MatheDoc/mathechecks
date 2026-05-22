@@ -1,4 +1,4 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260521-feed-deterministic-tabs";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-defer-fallback";
 import { loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -22,8 +22,10 @@ function createBadgeMarkup(label, type = "") {
 function buildSidebarTitleText(item) {
   const checkIndexLabel = String(item?.checkIndexLabel || "").trim();
   const checkKeyword = String(item?.checkKeyword || "").trim();
-  if (checkIndexLabel && checkKeyword) {
-    return `${escapeHtml(checkIndexLabel)} ${escapeHtml(checkKeyword)}`;
+  if (checkKeyword) {
+    return checkIndexLabel
+      ? `${escapeHtml(checkIndexLabel)} ${escapeHtml(checkKeyword)}`
+      : escapeHtml(checkKeyword);
   }
 
   return escapeHtml(item?.titleText || "");

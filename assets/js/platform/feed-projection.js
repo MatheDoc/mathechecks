@@ -8,22 +8,20 @@ const LERNBEREICH_ALIASES = {
 const contentMetaPromiseByKey = new Map();
 
 export const FEED_STEP_ORDER = {
-  training_1: 1,
+  training: 1,
   recall: 2,
-  training_2: 3,
-  feynman: 4,
-  training_3: 5,
-  kompetenzliste_gate: 6,
+  feynman: 3,
+  kompetenzliste_gate: 4,
 };
 
 export const FEED_STEP_META = {
-  training_1: {
+  training: {
     moduleKey: "training",
     type: "training",
     icon: "🏋️",
     iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
     badgeType: "training",
-    badgeLabel: "Training 1",
+    badgeLabel: "Training",
     description: "Starte mit der nächsten Trainingsaufgabe für diesen Check.",
   },
   recall: {
@@ -35,15 +33,6 @@ export const FEED_STEP_META = {
     badgeLabel: "Recall",
     description: "Prüfe jetzt, ob du die Kernideen aus dem Check abrufen kannst.",
   },
-  training_2: {
-    moduleKey: "training",
-    type: "training",
-    icon: "🏋️",
-    iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
-    badgeType: "training",
-    badgeLabel: "Training 2",
-    description: "Der zweite Trainingsschritt ist jetzt fällig.",
-  },
   feynman: {
     moduleKey: "feynman",
     type: "feynman",
@@ -52,15 +41,6 @@ export const FEED_STEP_META = {
     badgeType: "feynman",
     badgeLabel: "Feynman",
     description: "Erkläre den Check jetzt in eigenen Worten.",
-  },
-  training_3: {
-    moduleKey: "training",
-    type: "training",
-    icon: "🏋️",
-    iconStyle: "background:var(--mt-training-soft, var(--accent-soft));color:var(--mt-training, var(--accent));",
-    badgeType: "training",
-    badgeLabel: "Training 3",
-    description: "Der letzte Trainingsschritt für diesen Check wartet noch.",
   },
   kompetenzliste_gate: {
     moduleKey: "kompetenzliste",
@@ -332,7 +312,7 @@ export async function loadFeedContentMeta({
 
 export function formatCheckIndexLabel(checkMeta) {
   const number = Number(checkMeta?.number);
-  return Number.isFinite(number) && number > 0 ? `${number}. Check` : "Check";
+  return Number.isFinite(number) && number > 0 ? `${number}.` : "";
 }
 
 export function formatCheckShortTitle(checkMeta) {
@@ -444,10 +424,10 @@ function orderSessionCheckEntries(checkEntries, contentMeta, systemSettings) {
 
   const followUpGap = normalizePositiveInteger(systemSettings?.feedSessionFollowUpMaxGap, 3);
   const freshStartEntries = entries
-    .filter((entry) => String(entry?.current_step_key || "").trim() === "training_1")
+    .filter((entry) => String(entry?.current_step_key || "").trim() === "training")
     .sort((left, right) => compareCheckEntries(left, right, contentMeta));
   const followUpEntries = entries
-    .filter((entry) => String(entry?.current_step_key || "").trim() !== "training_1")
+    .filter((entry) => String(entry?.current_step_key || "").trim() !== "training")
     .sort((left, right) => compareCheckEntries(left, right, contentMeta));
 
   if (!freshStartEntries.length) return followUpEntries;
@@ -455,9 +435,9 @@ function orderSessionCheckEntries(checkEntries, contentMeta, systemSettings) {
 
   // Didaktische Regel fuer Session-Checks:
   // Eine begonnene Check-Kette soll sichtbar weitergehen, aber nicht sofort komplett durchlaufen.
-  // feedSessionFollowUpMaxGap ist deshalb nur eine Obergrenze fuer frische training_1-Eintraege
+  // feedSessionFollowUpMaxGap ist deshalb nur eine Obergrenze fuer frische training-Eintraege
   // zwischen zwei Folgeaktivitaeten. Der tatsaechliche Abstand schrumpft dynamisch, wenn vorne
-  // training_1-Eintraege wegfallen, damit wartende Follow-ups wie Recall nach vorne ruecken koennen.
+  // training-Eintraege wegfallen, damit wartende Follow-ups wie Recall nach vorne ruecken koennen.
   const ordered = [];
   let freshIndex = 0;
   let followUpIndex = 0;
@@ -885,7 +865,10 @@ export async function loadFeedProjection({
 
   if (items.length) {
     const deferredActivityKeys = await loadActiveDeferredFeedActivityKeys(supabase);
-    items = filterDeferredFeedItems(items, deferredActivityKeys);
+    const filtered = filterDeferredFeedItems(items, deferredActivityKeys);
+    // Fallback: wenn alle Einträge gedeferrt sind und nichts anderes verfügbar ist,
+    // Defer ignorieren — sonst kann der Feed nicht fortgesetzt werden.
+    items = filtered.length > 0 ? filtered : items;
   }
 
   const visibleItems = items.slice(0, limit);

@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260522-didactic-ordering
+module_script: /assets/js/modules/dashboard.js?v=20260523-simplified-pipeline
 ---
 
 {% include dashboard/content.html %}
