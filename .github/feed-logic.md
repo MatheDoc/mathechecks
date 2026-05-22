@@ -60,17 +60,17 @@ Die zentrale didaktische Regel lautet:
 Aktuell wird das so umgesetzt:
 
 - Offene Check-Schritte werden zunächst in zwei Gruppen getrennt:
-  - frische Starts mit `training_1`
-  - Folgeaktivitäten mit `recall`, `training_2`, `feynman`, `training_3`, `kompetenzliste_gate`
+  - frische Starts mit `training`
+  - Folgeaktivitäten mit `recall`, `feynman`, `kompetenzliste_gate`
 - Die Gruppe der Folgeaktivitäten wird nicht einfach komplett nach vorne gezogen.
-- Stattdessen gilt `feed.session_follow_up_max_gap` als Obergrenze für frische `training_1`-Einträge zwischen zwei Folgeaktivitäten.
+- Stattdessen gilt `feed.session_follow_up_max_gap` als Obergrenze für frische `training`-Einträge zwischen zwei Folgeaktivitäten.
 - Dieser Abstand ist absichtlich keine starre Blockgröße.
-- Wenn vorne `training_1`-Einträge verschwinden, schrumpft der tatsächliche Abstand dynamisch, damit wartende Folgeaktivitäten nach vorne rücken können.
+- Wenn vorne `training`-Einträge verschwinden, schrumpft der tatsächliche Abstand dynamisch, damit wartende Folgeaktivitäten nach vorne rücken können.
 
 Fachliche Konsequenz:
 
 - `recall` oder `feynman` sollen nicht erst ganz am Ende vieler neuer Checks auftauchen.
-- Gleichzeitig soll eine einzelne Check-Kette nicht sofort `training_1 -> recall -> training_2 -> feynman -> training_3` am Stück durchlaufen.
+- Gleichzeitig soll eine einzelne Check-Kette nicht sofort `training → recall → feynman` am Stück durchlaufen.
 
 ## Hybrid-Logik für Session und Retention
 
@@ -132,19 +132,19 @@ Die Feed-Logik nutzt aktuell diese relevanten Schlüssel in `public.system_setti
 - `feed.retention_interleave_stride`
   - weitere Session-Einträge zwischen zwei Retention-Slots im Hybrid-Feed
 - `feed.session_follow_up_max_gap`
-  - Obergrenze frischer `training_1`-Einträge zwischen zwei Folgeaktivitäten laufender Check-Ketten
+  - Obergrenze frischer `training`-Einträge zwischen zwei Folgeaktivitäten laufender Check-Ketten
 
 ## Beispiel 1: Session-Folgeaktivitäten
 
 Beispielhafte sichtbare Session-Liste:
 
-1. Check 6 Training 1
-2. Check 7 Training 1
-3. Check 8 Training 1
+1. Check 6 Training
+2. Check 7 Training
+3. Check 8 Training
 4. Check 1 Recall
-5. Check 9 Training 1
+5. Check 9 Training
 
-Wenn `Check 6 Training 1` abgeschlossen wird, soll `Check 1 Recall` nicht starr auf Platz 4 kleben.
+Wenn `Check 6 Training` abgeschlossen wird, soll `Check 1 Recall` nicht starr auf Platz 4 kleben.
 Die aktuelle Logik versucht deshalb, verbleibende sichtbare Einträge nach oben rücken zu lassen und den Recall-Abstand nur als Obergrenze zu behandeln.
 
 ## Beispiel 2: Retention im Hybrid-Feed

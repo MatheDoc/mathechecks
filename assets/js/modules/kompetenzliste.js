@@ -2,7 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js";
 import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
+import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260523-kompetenzliste-training-nav";
 
 const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 
@@ -70,6 +70,18 @@ function buildFeynmanHref(check) {
 
     const targetPath = path.replace(/kompetenzliste\.html$/, "feynman.html");
     return `${targetPath}#${getFeynmanCheckAnchorId(check)}`;
+}
+
+function buildTrainingHrefFromCheckId(checkId) {
+    const path = window.location?.pathname || "";
+    if (!path.endsWith("kompetenzliste.html")) return "";
+    const targetPath = path.replace(/kompetenzliste\.html$/, "training.html");
+    const parts = String(checkId || "").split("__");
+    const num = parseInt(parts[parts.length - 1], 10);
+    const anchor = Number.isFinite(num) && num > 0
+        ? `check-${num}`
+        : `check-${encodeURIComponent(checkId)}`;
+    return `${targetPath}#${anchor}`;
 }
 
 function buildSkriptHref(check) {
@@ -204,20 +216,20 @@ function attachKompetenzlisteFeedShell(root, { preferredCheckId = "", activityCo
         renderControls();
     };
 
-    const keepOpenDecision = () => {
-        statusMessage = "Die Kompetenz bleibt im Lernplan offen.";
-        statusTone = "neutral";
-        renderControls();
-    };
-
     const openDecision = () => {
         if (!controls?.openDecisionDialog || busy || completed) return;
 
         controls.openDecisionDialog({
             title: "Kompetenz abhaken?",
             detail: "Wenn ja, wird der letzte Planschritt für diesen Check abgeschlossen.",
+            repeatNowLabel: "Nein",
+            repeatNowDetail: "Training anzeigen",
+            repeatNowIcon: "🏋️",
             onComplete: completeDecision,
-            onRepeat: keepOpenDecision,
+            onRepeat: () => {
+                const trainingHref = buildTrainingHrefFromCheckId(resolvedCheckId);
+                if (trainingHref) navigateFromFeedContext(trainingHref);
+            },
         });
     };
 

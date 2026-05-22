@@ -1,4 +1,4 @@
-import { clearDeferredFeedActivity, deferFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260521-feed-deterministic-tabs";
+import { clearDeferredFeedActivity, deferFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260523-defer-fallback";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -394,7 +394,10 @@ function openFeedDecisionDialog({
       return;
     }
 
-    await goToNextFeedActivity({ deferCurrent: true });
+    const supabase = await getSupabaseClient();
+    await deferFeedActivity(supabase, getCurrentFeedActivityKey());
+    disableFeedActivityGuard();
+    goToDashboard();
   };
 
   function handleKeydown(event) {
@@ -450,6 +453,11 @@ export function leaveFeedContext() {
 export function goToDashboard() {
   disableFeedActivityGuard();
   window.location.replace("/dashboard.html");
+}
+
+export function navigateFromFeedContext(url) {
+  disableFeedActivityGuard();
+  window.location.assign(url);
 }
 
 export function attachFeedCardControls(section, { cardSelector, stepLabel = "Feed" } = {}) {
