@@ -118,7 +118,7 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 - Die Folge-Migration `migrations/20260517110000_delete_current_user_account.sql` ergänzt `delete_current_user_account(...)` für die bestätigte Selbstlöschung des aktuell angemeldeten Auth-Users samt kaskadierender Plattformdaten.
 - Die Folge-Migration `migrations/20260518170000_fix_save_active_learning_session_lernbereich_slug_ambiguity.sql` behebt die Laufzeitmehrdeutigkeit in `save_active_learning_session(...)`, damit das Speichern aktiver Sessions trotz Feed-/Flashcard-Sync wieder zuverlässig funktioniert.
 - `_config.yml` enthält `supabase_url` und `supabase_anon_key`; Topbar und `konto.html` lesen diese Werte zur Laufzeit.
-- `konto.html` deckt aktuell E-Mail-Link-Anmeldung und -Registrierung, OAuth-Anmeldung über konfigurierte externe Provider, lokalen Logout, Passwortänderung und bestätigte Kontolöschung ab.
+- `konto.html` deckt aktuell E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung über konfigurierte externe Provider, lokalen Logout, Passwortänderung und bestätigte Kontolöschung ab.
 - `dashboard.html` liest, speichert und löscht die aktive Lern-Session inzwischen über Supabase; die primäre Feed-Karte liest zuerst checkbezogene fällige Schritte aus `session_check_state` und danach lernbereichsweite Flashcards aus `session_activity_state`.
 - `training` schließt Feed-Schritte über `complete_current_training_step(...)` ab.
 - `recall` und `feynman` schreiben explizite Abschlussentscheidungen über `record_check_module_attempt(...)` in Supabase und bewegen passende Check-State-Zeilen weiter.
@@ -205,13 +205,13 @@ Wichtig:
 ## Wichtig: `config.toml` vs. gehostetes Projekt
 
 - `supabase/config.toml` steuert nur einen lokalen Supabase-Stack per Docker.
-- Das gehostete Supabase-Projekt übernimmt SMTP, Redirect-URLs, Rate Limits und andere Auth-Details nicht automatisch aus dieser Datei.
-- Änderungen an Hosted-Auth-Einstellungen erfolgen derzeit im Supabase-Dashboard.
+- Das gehostete Supabase-Projekt übernimmt Auth-Konfigurationen aus `supabase/config.toml`, wenn du sie explizit per `supabase config push` ins verlinkte Projekt überträgst.
+- SMTP-, OAuth- und andere Secret-Werte bleiben dabei weiter gehostete Einstellungen und werden nicht automatisch aus dem Repo befüllt.
 - Geheimnisse wie SMTP-Passwörter oder ein `service_role`-Key werden nicht ins Repo geschrieben.
 
 ## Minimales SMTP-Setup für das MVP
 
-Für die aktuelle Benutzerverwaltung ist ein eigenes SMTP-Setup praktisch Pflicht, sobald du Magic Links, Bestätigungsmails oder Recovery-Mails mehr als kurz antesten willst.
+Für die aktuelle Benutzerverwaltung ist ein eigenes SMTP-Setup nötig, sobald du Recovery-Mails mehr als kurz antesten willst oder wieder mit E-Mail-Bestätigung arbeiten möchtest.
 
 Wichtig für MatheChecks:
 
@@ -227,7 +227,7 @@ Wichtig für MatheChecks:
 3. In Supabase unter `Authentication > SMTP Settings` eigenes SMTP aktivieren.
 4. Host, Port, Benutzername, Passwort und Absenderadresse eintragen.
 5. Unter `Authentication > Rate Limits` das Mail-Limit prüfen.
-6. Danach E-Mail-Link-Anmeldung und Registrierung erneut über `konto.html` testen.
+6. Danach Recovery-Mails und gegebenenfalls reaktivierte E-Mail-Bestätigungen erneut über `konto.html` testen.
 
 ### Welche Daten du im Supabase-Dashboard brauchst
 
@@ -246,7 +246,7 @@ Wichtig für MatheChecks:
 4. `Enable Custom SMTP` aktivieren.
 5. SMTP-Zugangsdaten des Anbieters eintragen.
 6. Änderungen speichern.
-7. Unter `Authentication > URL Configuration` prüfen, dass die Redirect-URLs für `http://127.0.0.1:4001` und `http://localhost:4001` weiter stimmen.
+7. Unter `Authentication > URL Configuration` prüfen, dass die Redirect-URLs für `https://www.mathechecks.de/konto.html**`, `http://127.0.0.1:4001/konto.html**` und `http://localhost:4001/konto.html**` weiter stimmen.
 8. Unter `Authentication > Rate Limits` prüfen, ob das aktuelle Mail-Limit zum Testen reicht.
 
 ### STRATO als minimaler SMTP-Provider

@@ -8,8 +8,8 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /konto.html
-module_script: /assets/js/modules/konto.js?v=20260521-konto-link-fallback
-page_css: /assets/css/konto.css?v=20260517-konto-unified
+module_script: /assets/js/modules/konto.js?v=20260522-konto-auth-dashboard-redirect
+page_css: /assets/css/konto.css?v=20260522-konto-auth-ui
 ---
 
 <div class="bento konto-grid">
@@ -17,18 +17,32 @@ page_css: /assets/css/konto.css?v=20260517-konto-unified
         <div class="card-header">
             <span class="card-title" data-konto-auth-card-title></span>
         </div>
-        <p class="konto-card__hint" data-konto-auth-card-copy></p>
+        <p class="konto-card__hint" data-konto-auth-card-copy hidden></p>
         <p class="konto-card__notice" data-konto-notice data-tone="neutral" hidden></p>
 
         <div class="konto-oauth" data-konto-oauth-options hidden></div>
         <div class="konto-divider" data-konto-email-divider hidden><span>oder</span></div>
+
+        <div class="konto-auth-mode-switch" data-konto-auth-mode-switch>
+            <button class="konto-auth-mode-button" type="button" data-konto-auth-mode="login" aria-pressed="true">Anmelden</button>
+            <button class="konto-auth-mode-button" type="button" data-konto-auth-mode="register" aria-pressed="false">Registrieren</button>
+        </div>
 
         <form class="konto-form konto-email-auth" data-konto-email-auth>
             <label>
                 <span class="visually-hidden">E-Mail-Adresse</span>
                 <input type="email" name="email" autocomplete="email" required placeholder="E-Mail-Adresse" />
             </label>
-            <button class="btn-primary" type="submit">Weiter</button>
+            <label>
+                <span class="visually-hidden">Passwort</span>
+                <input type="password" name="password" autocomplete="current-password" required minlength="6" placeholder="Passwort" data-konto-auth-password-input />
+            </label>
+            <label data-konto-register-only hidden>
+                <span class="visually-hidden">Benutzername</span>
+                <input type="text" name="display_name" autocomplete="nickname" maxlength="80" placeholder="Benutzername (optional)" data-konto-auth-display-name-input disabled />
+            </label>
+            <button class="konto-link-button" type="button" data-konto-password-forgot>Passwort vergessen?</button>
+            <button class="btn-primary" type="submit" data-konto-auth-submit>Anmelden</button>
         </form>
     </article>
 
@@ -42,6 +56,15 @@ page_css: /assets/css/konto.css?v=20260517-konto-unified
         <div class="konto-card__actions" data-konto-normal-only>
             <button class="btn-primary" type="button" data-konto-signout>Abmelden</button>
         </div>
+
+        <p class="konto-card__hint" data-konto-profile-card-copy data-konto-normal-only></p>
+        <form class="konto-form" data-konto-profile-update data-konto-normal-only>
+            <label>
+                <span>Anzeigename</span>
+                <input type="text" name="display_name" autocomplete="nickname" maxlength="80" placeholder="Wie sollen wir dich anzeigen?" data-konto-display-name-input />
+            </label>
+            <button class="btn-ghost" type="submit">Anzeigenamen speichern</button>
+        </form>
 
         <p class="konto-card__hint" data-konto-password-card-copy></p>
         <form class="konto-form" data-konto-password-update>

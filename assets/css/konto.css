@@ -14,6 +14,7 @@
 
 .konto-grid > .card[hidden],
 [data-konto-normal-only][hidden],
+[data-konto-register-only][hidden],
 .konto-oauth[hidden],
 .konto-divider[hidden] {
   display: none !important;
@@ -58,6 +59,33 @@
   max-width: 27rem;
   margin-inline: auto;
   font-size: 1.05rem;
+}
+
+.konto-auth-mode-switch {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.4rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.konto-auth-mode-button {
+  min-height: 2.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-dim);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.konto-auth-mode-button[aria-pressed="true"] {
+  color: var(--text);
+  background: color-mix(in srgb, var(--teal-soft) 82%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--teal) 26%, var(--border));
 }
 
 .konto-oauth {
@@ -162,6 +190,15 @@ html.light .konto-oauth-button {
   background: rgba(255, 255, 255, 0.92);
 }
 
+html.light .konto-auth-mode-switch {
+  border-color: rgba(17, 24, 39, 0.1);
+  background: rgba(17, 24, 39, 0.04);
+}
+
+html.light .konto-auth-mode-button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.96);
+}
+
 .konto-delete-form {
   margin-top: 0.35rem;
   padding-top: 1rem;
@@ -193,4 +230,23 @@ html.light .konto-oauth-button {
   .konto-card__actions {
     flex-direction: column;
   }
+}
+
+.konto-link-button {
+  justify-self: start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--teal);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.konto-link-button:hover {
+  color: color-mix(in srgb, var(--teal) 72%, white);
+}
+
+.konto-link-button[hidden] {
+  display: none !important;
 }
