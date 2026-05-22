@@ -169,10 +169,12 @@ Regeln:
 Zweck:
 Welche Lernbereiche zu einer Lern-Session gehören.
 
-Vorgeschlagene Felder:
+Felder:
 
 - `session_id uuid not null references public.learning_sessions(id) on delete cascade`
 - `lernbereich_slug text not null`
+- `sort_index integer not null default 0` — didaktische Reihenfolge innerhalb eines Gebiets; identische Werte starten gleichzeitig
+- `gebiet text not null default ''` — Gebiet des Lernbereichs (z. B. `analysis`); `''` bedeutet keine Sequenzierung
 - `created_at timestamptz not null default now()`
 
 Schlüssel:
@@ -182,6 +184,8 @@ Schlüssel:
 Bemerkung:
 
 - `lernbereich_slug` referenziert bewusst auf Repo-Content, nicht auf eine eigene Content-Tabelle in der Datenbank.
+- `sort_index` und `gebiet` kommen aus `lernbereiche.yml` (`didactic_order`) und werden vom Frontend beim Speichern der Session übergeben.
+- Lernbereiche verschiedener Gebiete laufen vollständig parallel; die Reihenfolge gilt nur innerhalb desselben Gebiets.
 
 ### 4a. `public.system_settings`
 
@@ -462,16 +466,21 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 ## MVP-RPCs
 
 - `update_own_profile(p_display_name text)`
-- `create_learning_session(p_tempo_days integer, p_lernbereiche text[], p_excluded_check_ids text[])`
-- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_tempo_days integer default null, p_included_check_ids text[] default array[]::text[])`
+- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_tempo_days integer default null, p_included_check_ids text[] default array[]::text[], p_target_date date default null, p_target_source text default null, p_lernbereiche_meta jsonb default null)` — `p_lernbereiche_meta`: optionales JSON-Array `[{slug, gebiet, sort_index}, …]` für didaktische Reihenfolge; fehlt es, starten alle Checks als `due`
 - `delete_active_learning_session()`
-- `complete_kompetenzliste_gate(p_check_id text)`
-- `finish_learning_session(p_session_id uuid, p_status text)`
+- `complete_start_activity(p_lernbereich_slug text)`
 - `complete_current_training_step(p_check_id text)`
 - `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text)`
+- `complete_kompetenzliste_gate(p_check_id text)`
+- `finish_learning_session(p_session_id uuid, p_status text)`
 - `set_retention_scope_status(p_lernbereich_slug text, p_status text)`
 - `defer_feed_activity(p_activity_key text)`
 - `clear_feed_activity_deferral(p_activity_key text)`
+- `delete_current_user_account()`
+
+### Interne Hilfsfunktionen (kein direkter Nutzer-Grant)
+
+- `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — prüft nach einem erfolgreichen Recall, ob alle Checks der Prerequisite-Tier im selben Gebiet abgeschlossen sind, und schaltet die nächste Tier (`sort_index`-Stufe) frei; wird intern von `record_check_module_attempt` aufgerufen
 
 ## Minimale Leseflüsse
 
@@ -542,75 +551,6 @@ Zusätzlich sinnvoll als Rohinformation:
 
 - `last_outcome_key`: letzter Versuch, zum Beispiel `repeat` oder `can_do`
 - `ready_for_feed_decision`: optionales UI-Signal des Moduls, dass der eigentliche Lernablauf durchlaufen wurde
-
-### Aktuelle Felder für `session_check_state`
-
-Die aktuelle Form ist eine materialisierte Projektion mit genau einer Zeile pro Check in einer aktiven Session.
-
-Vorgeschlagene Felder:
-
-- `session_id uuid not null`
-- `check_id text not null`
-- `current_step_key text not null`
-- `current_step_status text not null`
-- `last_outcome_key text null`
-- `updated_at timestamptz not null`
-
-Aktuelle Werte für `current_step_key` in v1:
-
-- `training_1`
-- `recall`
-- `training_2`
-- `feynman`
-- `training_3`
-- `kompetenzliste_gate`
-- `check_completed`
-
-Aktuelle Werte für `current_step_status` in v1:
-
-- `blocked`
-- `due`
-- `completed`
-
-Regeln:
-
-- Primärschlüssel fachlich: `(session_id, check_id)`
-- Es wird nur der **aktuelle** Pipeline-Schritt gespeichert, nicht die komplette Historie aller Schritte.
-- `last_outcome_key` beschreibt nur den letzten relevanten Feed-Abschluss zum aktuellen Schritt.
-- `check_id` reicht in v1 als stabiler Bezug; Lernbereichs- und UI-Metadaten werden weiter aus dem Repo aufgelöst.
-- Zeitfelder wie `due_at` oder Cooldowns gehören bewusst noch nicht in diese erste Stufe.
-- `ready_for_feed_decision` sollte in v1 **kein** Datenbankfeld sein, sondern nur ein temporärer UI-Zustand der Feed-Shell.
-
-### Aktuelle Minimalfelder für `session_activity_state`
-
-Diese zweite Projektion ist UI-näher und beschreibt nicht-checkbezogene Feed-Aktivitäten. Aktuell umfasst sie `start` und Flashcards mit Lernbereichsscope, bleibt aber so angelegt, dass weitere Aktivitätstypen ergänzt werden können.
-
-Vorgeschlagene Felder:
-
-- `activity_key text not null`
-- `session_id uuid not null`
-- `activity_type text not null`
-- `scope_type text not null`
-- `lernbereich_slug text null`
-- `check_id text null`
-- `target_module_key text not null`
-- `status text not null`
-- `sort_bucket integer not null`
-- `sort_index integer not null`
-- `updated_at timestamptz not null`
-
-Empfohlene Werte:
-
-- `scope_type`: `check`, `lernbereich`, später optional `session`
-- `status`: zunächst ebenfalls `blocked`, `due`, `completed`
-- `due_at` und `last_outcome_key` werden für Flashcards bereits genutzt; bei `start` dient `due_at` nur der stabilen Sortierung vor späteren lernbereichsweiten Aktivitäten.
-
-Regeln:
-
-- `activity_key` ist der stabile technische Schlüssel des Feed-Eintrags im jeweiligen Bearbeitungskontext, zum Beispiel `check:extremstellen:recall` oder `retention:lernbereich:analysis-diverses:flashcards`.
-- Checkbezogene Aktivitäten können aus `session_check_state` abgeleitet werden.
-- Lernbereichsweite Aktivitäten wie `start`, `flashcards` und später `warmup` benötigen eigene Ableitungsregeln und dürfen nicht künstlich in `session_check_state` gepresst werden.
-- Anzeige-Titel, Kompetenztexte und andere Content-Labels bleiben weiterhin aus dem Repo bzw. werden im Frontend ergänzt, nicht in dieser Projektion verdoppelt.
 
 ### Aktueller Implementierungsschnitt
 
