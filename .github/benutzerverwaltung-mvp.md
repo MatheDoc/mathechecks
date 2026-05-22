@@ -69,7 +69,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab, ohne den Retention-Aktivitätszähler zu erhöhen.
 - `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad nach Session-Ende.
 - `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
-- E-Mail-Link-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
+- E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
 - Das Session-Modal im Dashboard kann ein explizites `target_date` speichern; die Session-Box zeigt dieses Datum anschließend zusammen mit einer groben Heuristik auf Basis der noch offenen Check-Schritte.
@@ -388,13 +388,14 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 ## Minimale Schreibflüsse
 
-### E-Mail-Link-Anmeldung
+### E-Mail-/Passwort-Anmeldung und Registrierung
 
-1. Frontend ruft `supabase.auth.signInWithOtp(...)` mit `shouldCreateUser: true` auf.
-2. Supabase versendet einen Anmeldelink an die angegebene E-Mail-Adresse.
-3. Bestehende Nutzer melden sich darüber an; neue Nutzer werden im selben Flow angelegt.
+1. Frontend zeigt auf `konto.html` einen Login-Modus und einen separaten Registrierungsmodus.
+2. Bestehende Nutzer melden sich über `supabase.auth.signInWithPassword(...)` an.
+3. Neue Nutzer werden über `supabase.auth.signUp(...)` mit E-Mail, Passwort und optionalem `display_name` registriert.
 4. Nach Anlage des Auth-Benutzers wird automatisch ein `profiles`-Datensatz erzeugt.
-5. Frontend liest danach eigenes Profil und eigene Lern-Sessions.
+5. In der aktuellen Hosted-Konfiguration ist die E-Mail-Bestätigung deaktiviert, damit neue Nutzer nach der Registrierung sofort angemeldet sind.
+6. Falls diese Bestätigung später wieder aktiviert wird, brauchen Registrierung und Recovery wieder eine funktionierende Mailzustellung.
 
 ### OAuth-Login
 

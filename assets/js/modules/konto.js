@@ -21,18 +21,30 @@ function getAuthView(user, recoveryMode) {
   return user ? "signed-in" : "signed-out";
 }
 
-const signedOutText = {
-  title: "Anmelden oder registrieren",
-  copy: "Stelle dir deine persönliche Lernsession mit Action-Feed zusammen.",
-};
+const signedOutTextByMode = Object.freeze({
+  login: {
+    title: "Anmelden",
+    copy: "",
+    submitLabel: "Anmelden",
+  },
+  register: {
+    title: "Registrieren",
+    copy: "",
+    submitLabel: "Registrieren",
+  },
+});
+
+let signedOutAuthMode = "login";
 
 const accountViewText = {
   signedIn: {
     title: "Konto",
+    profileCopy: "Optional: Lege einen Anzeigenamen fest, der in MatheChecks für dein Profil verwendet wird.",
     passwordCopy: "Vergib ein neues Passwort für dein Konto. Die aktuelle Session bleibt dabei aktiv.",
   },
   recovery: {
     title: "Neues Passwort setzen",
+    profileCopy: "",
     passwordCopy: "Der Reset-Link hat eine temporäre Recovery-Session geöffnet. Vergib jetzt ein neues Passwort.",
   },
 };
@@ -91,11 +103,6 @@ function createOAuthIcon(provider, providerMeta) {
   return icon;
 }
 
-function getDashboardPath() {
-  const dashboardPath = String(document.querySelector("[data-dashboard-nav-item]")?.dataset.dashboardHref || "").trim();
-  return dashboardPath.startsWith("/") ? dashboardPath : "/dashboard.html";
-}
-
 function getRequestedNextPath() {
   const searchParams = new URLSearchParams(window.location.search);
   const nextPath = String(searchParams.get("next") || "").trim();
@@ -103,7 +110,85 @@ function getRequestedNextPath() {
 }
 
 function getAccountRedirectUrl() {
-  return buildAccountUrl(getRequestedNextPath() || getDashboardPath());
+  return buildAccountUrl(getRequestedNextPath());
+}
+
+function getDashboardRedirectUrl() {
+  return buildAccountUrl("/dashboard.html");
+}
+
+function showSignupPending() {
+  let seconds = 3;
+  const tick = () => {
+    if (seconds > 0) {
+      setStatus(
+        `Bestätigungs-E-Mail gesendet. Bitte prüfe dein Postfach. Dieses Fenster schließt sich in ${seconds}\u00a0Sekunde${seconds !== 1 ? "n" : ""} …`,
+        "success"
+      );
+      seconds--;
+      setTimeout(tick, 1000);
+    } else {
+      window.close();
+      setStatus("Bestätigungs-E-Mail gesendet. Du kannst dieses Fenster schließen.", "success");
+    }
+  };
+  tick();
+}
+
+function normalizeAuthMode(mode) {
+  return mode === "register" ? "register" : "login";
+}
+
+function getSignedOutAuthMode() {
+  return signedOutAuthMode;
+}
+
+function setSignedOutAuthMode(mode) {
+  signedOutAuthMode = normalizeAuthMode(mode);
+  renderSignedOutMode();
+}
+
+function getEditableDisplayName(user) {
+  const displayName = String(user?.user_metadata?.display_name || "").trim();
+  if (displayName) return displayName;
+
+  const fullName = String(user?.user_metadata?.full_name || "").trim();
+  if (fullName) return fullName;
+
+  return "";
+}
+
+function renderProfileForm(user, recoveryMode) {
+  const displayNameInput = document.querySelector("[data-konto-display-name-input]");
+  const profileCopy = document.querySelector("[data-konto-profile-card-copy]");
+
+  if (profileCopy) {
+    profileCopy.textContent = recoveryMode ? "" : accountViewText.signedIn.profileCopy;
+    profileCopy.hidden = recoveryMode;
+  }
+
+  if (!displayNameInput) return;
+
+  displayNameInput.value = recoveryMode || !user ? "" : getEditableDisplayName(user);
+  displayNameInput.disabled = recoveryMode || !user;
+}
+
+function hasTransientAuthParams() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const transientKeys = [
+    "type",
+    "access_token",
+    "refresh_token",
+    "expires_at",
+    "expires_in",
+    "token_type",
+    "provider_token",
+    "provider_refresh_token",
+    "code",
+  ];
+
+  return transientKeys.some((key) => searchParams.has(key) || hashParams.has(key));
 }
 
 function redirectToRequestedPath() {
@@ -170,11 +255,48 @@ function setOAuthButtonsDisabled(disabled) {
 }
 
 function renderSignedOutMode() {
+  const authMode = getSignedOutAuthMode();
+  const authModeText = signedOutTextByMode[authMode];
   const titleNode = document.querySelector("[data-konto-auth-card-title]");
   const copyNode = document.querySelector("[data-konto-auth-card-copy]");
+  const submitButton = document.querySelector("[data-konto-auth-submit]");
+  const displayNameInput = document.querySelector("[data-konto-auth-display-name-input]");
+  const passwordInput = document.querySelector("[data-konto-auth-password-input]");
+  const forgotPasswordLink = document.querySelector("[data-konto-password-forgot]");
 
-  if (titleNode) titleNode.textContent = signedOutText.title;
-  if (copyNode) copyNode.textContent = signedOutText.copy;
+  document.body.dataset.kontoAuthMode = authMode;
+
+  if (titleNode) titleNode.textContent = authModeText.title;
+  if (copyNode) {
+    copyNode.textContent = authModeText.copy;
+    copyNode.hidden = !authModeText.copy;
+  }
+  if (submitButton) submitButton.textContent = authModeText.submitLabel;
+
+  document.querySelectorAll("[data-konto-auth-mode]").forEach((button) => {
+    const isActive = button instanceof HTMLElement && button.dataset.kontoAuthMode === authMode;
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+
+  document.querySelectorAll("[data-konto-register-only]").forEach((node) => {
+    node.hidden = authMode !== "register";
+  });
+
+  if (displayNameInput) {
+    displayNameInput.required = false;
+    displayNameInput.disabled = authMode !== "register";
+    if (authMode !== "register") {
+      displayNameInput.value = "";
+    }
+  }
+
+  if (passwordInput) {
+    passwordInput.autocomplete = authMode === "register" ? "new-password" : "current-password";
+  }
+
+  if (forgotPasswordLink) {
+    forgotPasswordLink.hidden = authMode !== "login";
+  }
 
   setOAuthVisibility();
 }
@@ -202,6 +324,8 @@ function renderAuthUi(user, recoveryMode) {
   if (accountTitle) {
     accountTitle.textContent = accountText.title;
   }
+
+  renderProfileForm(user, recoveryMode);
 
   document.querySelectorAll("[data-konto-normal-only]").forEach((node) => {
     node.hidden = recoveryMode;
@@ -268,15 +392,15 @@ function mapAuthError(error, fallbackMessage) {
   }
 
   if (code === "invalid_credentials") {
-    return "Anmeldung fehlgeschlagen. Prüfe die E-Mail-Adresse oder fordere einen neuen Link an.";
+    return "Anmeldung fehlgeschlagen. Prüfe E-Mail-Adresse und Passwort.";
   }
 
   if (code === "email_not_confirmed") {
-    return "Die E-Mail-Adresse ist noch nicht bestätigt. Prüfe dein Postfach und bestätige zuerst dein Konto.";
+    return "Die E-Mail-Adresse ist noch nicht bestätigt. Prüfe, ob im Supabase-Projekt versehentlich wieder eine E-Mail-Bestätigung aktiv ist.";
   }
 
   if (code === "user_already_exists" || code === "email_exists") {
-    return "Für diese E-Mail-Adresse existiert bereits ein Konto. Nutze den Anmeldelink oder die externe Anmeldung.";
+    return "Für diese E-Mail-Adresse existiert bereits ein Konto. Wechsle auf Anmelden.";
   }
 
   if (code === "same_password") {
@@ -308,15 +432,19 @@ function mapAuthError(error, fallbackMessage) {
   }
 
   if (normalized.includes("invalid login credentials")) {
-    return "Anmeldung fehlgeschlagen. Prüfe die E-Mail-Adresse oder fordere einen neuen Link an.";
+    return "Anmeldung fehlgeschlagen. Prüfe E-Mail-Adresse und Passwort.";
   }
 
   if (normalized.includes("email not confirmed")) {
-    return "Die E-Mail-Adresse ist noch nicht bestätigt. Prüfe dein Postfach und bestätige zuerst dein Konto.";
+    return "Die E-Mail-Adresse ist noch nicht bestätigt. Prüfe, ob im Supabase-Projekt versehentlich wieder eine E-Mail-Bestätigung aktiv ist.";
   }
 
   if (normalized.includes("user already registered")) {
-    return "Für diese E-Mail-Adresse existiert bereits ein Konto. Nutze den Anmeldelink oder die externe Anmeldung.";
+    return "Für diese E-Mail-Adresse existiert bereits ein Konto. Wechsle auf Anmelden.";
+  }
+
+  if (normalized.includes("password should be at least")) {
+    return "Das Passwort ist zu schwach. Wähle mindestens 6 Zeichen.";
   }
 
   if (normalized.includes("oauth") || normalized.includes("external provider")) {
@@ -352,29 +480,136 @@ function renderProfile(user) {
   }
 }
 
-async function handleEmailAuth(event, supabase) {
+async function handleCredentialAuth(event, supabase) {
   event.preventDefault();
   const form = event.currentTarget;
   const formData = new FormData(form);
+  const authMode = getSignedOutAuthMode();
   const email = String(formData.get("email") || "").trim();
-  const redirectTo = getAccountRedirectUrl();
+  const password = String(formData.get("password") || "");
+  const displayName = String(formData.get("display_name") || "").trim();
 
-  setStatus("Anmeldelink wird versendet ...");
+  if (!email) {
+    setStatus("Bitte gib eine E-Mail-Adresse ein.", "error");
+    return;
+  }
 
-  const { error } = await supabase.auth.signInWithOtp({
+  if (!password) {
+    setStatus("Bitte gib ein Passwort ein.", "error");
+    return;
+  }
+
+  if (authMode === "register") {
+    if (password.length < 6) {
+      setStatus("Das Passwort muss mindestens 6 Zeichen haben.", "error");
+      return;
+    }
+  }
+
+  if (authMode === "login") {
+    setStatus("Anmeldung läuft ...");
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      throw error;
+    }
+
+    setStatus("Anmeldung erfolgreich.", "success");
+    form?.reset();
+    const nextPath = getRequestedNextPath();
+    window.location.assign(new URL(nextPath || "/dashboard.html", window.location.origin).toString());
+    return;
+  }
+
+  setStatus("Konto wird erstellt ...");
+
+  const signUpOptions = {
+    emailRedirectTo: getDashboardRedirectUrl(),
+  };
+  if (displayName) {
+    signUpOptions.data = {
+      display_name: displayName,
+    };
+  }
+
+  const { data, error } = await supabase.auth.signUp({
     email,
-    options: {
-      emailRedirectTo: redirectTo,
-      shouldCreateUser: true,
-    },
+    password,
+    options: signUpOptions,
   });
 
   if (error) {
     throw error;
   }
 
-  setStatus("Anmeldelink versendet. Prüfe dein Postfach.", "success");
   form?.reset();
+
+  if (data?.session) {
+    setStatus("Konto erstellt. Du bist jetzt angemeldet.", "success");
+    return;
+  }
+
+  setSignedOutAuthMode("login");
+  showSignupPending();
+}
+
+async function handlePasswordResetRequest(event, supabase) {
+  event.preventDefault();
+
+  const emailInput = document.querySelector('[data-konto-email-auth] input[name="email"]');
+  const email = String(emailInput?.value || "").trim();
+
+  if (!email) {
+    setStatus("Gib zuerst deine E-Mail-Adresse ein, damit wir dir den Reset-Link senden können.", "error");
+    emailInput?.focus();
+    return;
+  }
+
+  setStatus("Reset-Link wird versendet ...");
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: getAccountRedirectUrl(),
+  });
+
+  if (error) {
+    throw error;
+  }
+
+  setStatus("Reset-Link versendet. Prüfe dein Postfach.", "success");
+}
+
+async function handleProfileUpdate(event, supabase, refreshAuthState, recoveryMode) {
+  event.preventDefault();
+  if (recoveryMode) return;
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+  const displayName = String(formData.get("display_name") || "").trim();
+
+  setStatus("Profil wird gespeichert ...");
+
+  const { error: profileError } = await supabase.rpc("update_own_profile", {
+    p_display_name: displayName || null,
+  });
+  if (profileError) {
+    throw profileError;
+  }
+
+  const { error: authError } = await supabase.auth.updateUser({
+    data: {
+      display_name: displayName || null,
+    },
+  });
+  if (authError) {
+    throw authError;
+  }
+
+  await refreshAuthState();
+  setStatus(displayName ? "Anzeigename gespeichert." : "Anzeigename entfernt.", "success");
 }
 
 async function handleOAuthSignIn(provider, supabase) {
@@ -435,6 +670,7 @@ async function handleSignOut(supabase) {
   if (error) {
     throw error;
   }
+  setSignedOutAuthMode("login");
   renderProfile(null);
   setStatus("");
 }
@@ -472,6 +708,7 @@ async function initKontoPage() {
   setConfiguredState(config.configured);
   let recoveryMode = isPasswordRecoveryFlow();
   let currentUser = null;
+  let arrivedFromAuthRedirect = hasTransientAuthParams();
 
   if (recoveryMode) {
     cleanupAuthUrl();
@@ -496,6 +733,11 @@ async function initKontoPage() {
     renderAuthUi(currentUser, recoveryMode);
   };
 
+  const refreshAuthState = async () => {
+    const nextState = await getCurrentAuthState();
+    applyUiState(nextState.user || null, recoveryMode);
+  };
+
   const applyRecoveryMode = (enabled) => {
     recoveryMode = enabled;
     renderAuthUi(currentUser, enabled);
@@ -506,6 +748,16 @@ async function initKontoPage() {
       currentUser = session?.user || currentUser;
       renderProfile(currentUser);
       renderAuthUi(currentUser, recoveryMode);
+      if (event === "SIGNED_IN" && arrivedFromAuthRedirect && !recoveryMode) {
+        const hasDisplayName = Boolean(getEditableDisplayName(currentUser));
+        setStatus(
+          hasDisplayName
+            ? "Anmeldung erfolgreich. Dein Konto ist jetzt aktiv."
+            : "Anmeldung erfolgreich. Du kannst jetzt Anzeigenamen und Passwort festlegen.",
+          "success"
+        );
+      }
+      arrivedFromAuthRedirect = false;
       cleanupAuthUrl();
       if (!recoveryMode && redirectToRequestedPath()) {
         return;
@@ -548,6 +800,9 @@ async function initKontoPage() {
   }
 
   const emailAuthForm = document.querySelector("[data-konto-email-auth]");
+  const authModeSwitch = document.querySelector("[data-konto-auth-mode-switch]");
+  const forgotPasswordLink = document.querySelector("[data-konto-password-forgot]");
+  const profileUpdateForm = document.querySelector("[data-konto-profile-update]");
   const updatePasswordForm = document.querySelector("[data-konto-password-update]");
   const signOutButton = document.querySelector("[data-konto-signout]");
   const deleteAccountForm = document.querySelector("[data-konto-delete]");
@@ -566,11 +821,43 @@ async function initKontoPage() {
     }
   });
 
+  authModeSwitch?.addEventListener("click", (event) => {
+    const button = event.target instanceof Element ? event.target.closest("[data-konto-auth-mode]") : null;
+    if (!button) return;
+
+    setSignedOutAuthMode(button.dataset.kontoAuthMode);
+    setStatus("");
+  });
+
   emailAuthForm?.addEventListener("submit", async (event) => {
     try {
-      await handleEmailAuth(event, supabase);
+      await handleCredentialAuth(event, supabase);
     } catch (error) {
-      setStatus(mapAuthError(error, "Anmeldelink konnte nicht versendet werden."), "error");
+      setStatus(
+        mapAuthError(
+          error,
+          getSignedOutAuthMode() === "register"
+            ? "Konto konnte nicht erstellt werden."
+            : "Anmeldung fehlgeschlagen."
+        ),
+        "error"
+      );
+    }
+  });
+
+  forgotPasswordLink?.addEventListener("click", async (event) => {
+    try {
+      await handlePasswordResetRequest(event, supabase);
+    } catch (error) {
+      setStatus(mapAuthError(error, "Reset-Link konnte nicht versendet werden."), "error");
+    }
+  });
+
+  profileUpdateForm?.addEventListener("submit", async (event) => {
+    try {
+      await handleProfileUpdate(event, supabase, refreshAuthState, recoveryMode);
+    } catch (error) {
+      setStatus(mapAuthError(error, "Anzeigename konnte nicht gespeichert werden."), "error");
     }
   });
 
