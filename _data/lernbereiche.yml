@@ -9,6 +9,8 @@
 #   szenario_einstieg – Offene Frage zu Beginn des Skripts (motivierend, noch nicht lösbar)
 #   szenario_abschluss– Auflösung am Ende des Skripts (Frage mit gelernten Methoden beantworten)
 #   szenario_bild     – Dateiname des charakteristischen Bilds (in assets/img/start/)
+#   didactic_order    – Didaktische Reihenfolge innerhalb des Gebiets (1, 2, 3 …);
+#                       gleiche Werte starten gleichzeitig; fehlt der Eintrag → 0 (kein Sequencing)
 #
 # Übungsaufgaben sind bewusst NICHT an das Szenario gebunden,
 # um kontextunabhängigen Transfer zu sichern.
@@ -18,6 +20,7 @@
 
 - gebiet: analysis
   slug: analysis-diverses
+  didactic_order: 9
   name: Analysis - Diverses
   szenario: "Streaming-Dienst – Nutzerzahlen über die Zeit modellieren verschiedene Funktionstypen (lineares Wachstum, Sättigung, Rückgang)."
   szenario_einstieg: "Die Nutzerzahlen eines Streaming-Dienstes entwickeln sich über die Jahre ganz unterschiedlich – welcher Funktionstyp beschreibt welche Phase?"
@@ -26,6 +29,7 @@
 
 - gebiet: analysis
   slug: differentialrechnung-ganzrationaler-funktionen
+  didactic_order: 4
   name: Differentialrechnung ganzrationaler Funktionen
   szenario: "E-Scooter-Fahrt durch die Stadt – Weg, Geschwindigkeit (= Ableitung) und Beschleunigung (= zweite Ableitung) an einem Alltagsbeispiel."
   szenario_einstieg: "Du fährst mit dem E-Scooter durch die Stadt. An welcher Stelle der Strecke warst du am schnellsten – und woran erkennst du das mathematisch?"
@@ -34,6 +38,7 @@
 
 - gebiet: analysis
   slug: lineare-funktionen
+  didactic_order: 1
   name: Lineare Funktionen
   szenario: "Handytarif-Vergleich – Grundgebühr (y-Achsenabschnitt) und Minutenpreis (Steigung); Schnittpunkt = ab wann lohnt sich welcher Tarif?"
   szenario_einstieg: "Tarif A kostet 5 € im Monat plus 0,10 € pro Minute. Tarif B hat keine Grundgebühr, aber 0,20 € pro Minute. Ab wie vielen Minuten lohnt sich Tarif A?"
@@ -42,6 +47,7 @@
 
 - gebiet: analysis
   slug: quadratische-funktionen
+  didactic_order: 2
   name: Quadratische Funktionen
   szenario: "Brückenbau – die Fahrbahn eines Brückenbogens hat die Form einer Parabel. Wie hoch und wie breit ist der Bogen?"
   szenario_einstieg: "Ein Architekt plant einen parabelförmigen Brückenbogen über einen 40 m breiten Fluss. Der Bogen soll in der Mitte 12 m hoch sein. Wie lautet die Gleichung des Bogens – und passt ein 10 m hohes Schiff noch durch, wenn es 8 m vom Ufer entfernt fährt?"
@@ -50,6 +56,7 @@
 
 - gebiet: analysis
   slug: ganzrationale-oekonomische-funktionen
+  didactic_order: 5
   name: Ganzrationale ökonomische Funktionen
   szenario: "Online-Shop für Custom-Sneaker – Kosten-, Erlös- und Gewinnfunktion, Break-even-Point und Gewinnmaximierung eines kleinen Unternehmens."
   szenario_einstieg: "Dein Custom-Sneaker-Shop läuft an. Ab welcher Stückzahl schreibst du schwarze Zahlen – und bei welcher Menge verdienst du am meisten?"
@@ -58,6 +65,7 @@
 
 - gebiet: analysis
   slug: ertragsgesetzliche-kostenfunktionen
+  didactic_order: 6
   name: Ertragsgesetzliche Kostenfunktionen
   szenario: "Café-Betrieb – erst effiziente Produktion, dann steigende Grenzkosten bei Überlastung; S-förmiger Kostenverlauf direkt erlebbar."
   szenario_einstieg: "Das Café läuft gut und die Nachfrage steigt. Lohnt es sich, die Produktion immer weiter hochzufahren – oder gibt es eine Grenze?"
@@ -66,6 +74,7 @@
 
 - gebiet: analysis
   slug: marktgleichgewicht-grundlagen
+  didactic_order: 3
   name: Marktgleichgewicht - Grundlagen
   szenario: "Sneaker-Reselling – limitierte Drops, Nachfrageüberschuss, Preisbildung auf dem Sekundärmarkt als Angebot-Nachfrage-Modell."
   szenario_einstieg: "Limitierte Sneaker kosten im Laden 120 €, werden aber für 350 € weiterverkauft. Wie kommt dieser Preis zustande?"
@@ -74,6 +83,7 @@
 
 - gebiet: analysis
   slug: marktgleichgewicht-vertiefung
+  didactic_order: 8
   name: Marktgleichgewicht - Vertiefung
   szenario: "CO₂-Steuer auf Flugreisen – Steuerlastverteilung, Konsumenten-/Produzentenrente und Wohlfahrtseffekte an einem politisch aktuellen Beispiel."
   szenario_einstieg: "Die CO₂-Steuer auf Flüge steigt um 2 € pro Ticket. Zahlt das am Ende der Fluggast, die Airline – oder beide?"
@@ -82,6 +92,7 @@
 
 - gebiet: analysis
   slug: produktlebenszyklus
+  didactic_order: 7
   name: Produktlebenszyklus
   szenario: "Smartphone-Launch (iPhone) – Einführung, Wachstum, Reife, Rückgang eines konkreten Produkts mit glockenförmiger Absatzkurve."
   szenario_einstieg: "Das neue iPhone ist am Markt. Wann sollte Apple das Vorgängermodell vom Markt nehmen – und woran erkennt man den richtigen Zeitpunkt mathematisch?"
@@ -92,6 +103,7 @@
 
 - gebiet: lineare-algebra
   slug: lineare-gleichungssysteme
+  didactic_order: 1
   name: Lineare Gleichungssysteme
   szenario: "Festival-Catering (3 Food-Trucks) – verschiedene Bestellkombinationen ergeben 3 Gleichungen mit 3 Unbekannten; Lösbarkeit und Gauß-Verfahren."
   szenario_einstieg: "Drei Food-Trucks bieten verschiedene Kombi-Pakete an. Ein Burger, eine Pommes, ein Getränk – was kostet jedes Produkt einzeln?"
@@ -100,6 +112,7 @@
 
 - gebiet: lineare-algebra
   slug: matrizenrechnung
+  didactic_order: 2
   name: Matrizenrechnung
   szenario: "Social-Media-Bildfilter – Bildmatrix mal Filtermatrix; Addition, Skalarmultiplikation und Multiplikation am selben visuellen Kontext."
   szenario_einstieg: "Du legst einen Vintage-Filter über dein Selfie. Was passiert dabei mathematisch mit jedem einzelnen Pixel?"
@@ -108,6 +121,7 @@
 
 - gebiet: lineare-algebra
   slug: mehrstufige-produktionsprozesse
+  didactic_order: 3
   name: Mehrstufige Produktionsprozesse
   szenario: "Smartphone-Fertigung – Rohstoffe → Bauteile → Endprodukt; Bedarfsmatrizen über mehrere Produktionsstufen."
   szenario_einstieg: "Für 1000 Smartphones: Wie viel Silizium, Lithium und Glas braucht man insgesamt – über alle Produktionsstufen hinweg?"
@@ -118,6 +132,7 @@
 
 - gebiet: stochastik
   slug: zufallsexperimente-und-wahrscheinlichkeiten
+  didactic_order: 1
   name: Zufallsexperimente und Wahrscheinlichkeiten
   szenario: "Tombola auf dem Schulfest – Lose, Gewinnchancen, Laplace-Wahrscheinlichkeit und Gegenereignis an einer konkreten Losverteilung."
   szenario_einstieg: "Bei der Schulfest-Tombola gibt es 200 Lose, davon 30 Gewinnlose. Wie stehen deine Chancen, wenn du 3 Lose kaufst?"
@@ -126,6 +141,7 @@
 
 - gebiet: stochastik
   slug: mehrstufige-zufallsexperimente
+  didactic_order: 2
   name: Mehrstufige Zufallsexperimente
   szenario: "Qualitätskontrolle (Kopfhörer-Produktion) – mehrere Prüfschritte als Stufen, Baumdiagramm und Pfadregeln."
   szenario_einstieg: "Ein Kopfhörer durchläuft drei Prüfstationen. Wie wahrscheinlich ist es, dass ein fehlerhaftes Exemplar alle drei Kontrollen passiert?"
@@ -134,6 +150,7 @@
 
 - gebiet: stochastik
   slug: bedingte-wahrscheinlichkeiten
+  didactic_order: 3
   name: Bedingte Wahrscheinlichkeiten
   szenario: "Medizinischer Schnelltest – falsch-positive Ergebnisse, Bayes-Paradoxon und bedingte Wahrscheinlichkeiten an einem eindrücklichen Beispiel."
   szenario_einstieg: "Dein Schnelltest ist positiv. Der Test erkennt Kranke zu 99 %, aber auch 1 % der Gesunden werden falsch-positiv getestet. Die Krankheit betrifft 0,5 % der Bevölkerung. Wie wahrscheinlich ist es, dass du wirklich krank bist?"
@@ -142,6 +159,7 @@
 
 - gebiet: stochastik
   slug: binomialverteilung
+  didactic_order: 5
   name: Binomialverteilung
   szenario: "Pünktlichkeit der Bahn – bei 10 Fahrten: Bernoulli-Kette, Erwartungswert und Sigma-Regeln aus Schülererfahrung."
   szenario_einstieg: "Zehnmal Bahn diese Woche. Die Pünktlichkeitsquote liegt bei 80 %. Wie wahrscheinlich ist es, dass sie mindestens achtmal pünktlich kommt?"
@@ -150,6 +168,7 @@
 
 - gebiet: stochastik
   slug: hypothesentests
+  didactic_order: 6
   name: Hypothesentests
   szenario: "A/B-Test einer App – welcher Button-Text bringt mehr Klicks? Nullhypothese, Signifikanzniveau und Ablehnungsbereich."
   szenario_einstieg: "Version A oder B – welcher Button-Text bringt wirklich mehr Klicks? Oder ist der Unterschied nur Zufall?"
@@ -158,6 +177,7 @@
 
 - gebiet: stochastik
   slug: zufallsgroessen
+  didactic_order: 4
   name: Zufallsgrößen
   szenario: "Glücksrad auf dem Jahrmarkt – Auszahlungsbeträge als Zufallsgröße; Erwartungswert = lohnt sich das Spielen? Varianz = wie riskant?"
   szenario_einstieg: "Das Glücksrad kostet 2 € pro Dreh. Die Gewinne: 0 €, 1 €, 5 € und 20 €. Lohnt sich das Spielen auf Dauer – oder verdient nur der Betreiber?"

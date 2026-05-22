@@ -152,6 +152,7 @@ function buildLernbereicheFromData(checks, gebiete, lernbereicheSource) {
       name: lernbereich.name,
       gebietKey: lernbereich.gebiet,
       color: meta.color,
+      didacticOrder: lernbereich.didactic_order ?? null,
       checks: Array.from(checksById.values()),
     });
   });
@@ -775,6 +776,7 @@ function buildSessionPayloadBase(draft, lernbereiche) {
   const activeLernbereiche = [];
   const excludedChecks = new Set();
   const includedChecks = new Set();
+  const lernbereicheMeta = [];
 
   lernbereiche.forEach((group) => {
     group.items.forEach((lb) => {
@@ -782,6 +784,11 @@ function buildSessionPayloadBase(draft, lernbereiche) {
       if (!lbState?.active) return;
 
       activeLernbereiche.push(lb.id);
+      lernbereicheMeta.push({
+        slug: lb.id,
+        gebiet: lb.gebietKey,
+        sort_index: lb.didacticOrder ?? 0,
+      });
       lb.checks.forEach((check) => {
         if (lbState.checks?.[check.id] === false) {
           excludedChecks.add(check.id);
@@ -798,6 +805,7 @@ function buildSessionPayloadBase(draft, lernbereiche) {
     p_excluded_check_ids: Array.from(excludedChecks),
     p_tempo_days: null,
     p_included_check_ids: Array.from(includedChecks),
+    p_lernbereiche_meta: lernbereicheMeta,
   };
 }
 

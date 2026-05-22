@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260521-feed-deterministic-tabs
+module_script: /assets/js/modules/dashboard.js?v=20260522-didactic-ordering
 ---
 
 {% include dashboard/content.html %}

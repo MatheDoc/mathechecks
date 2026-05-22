@@ -29,17 +29,20 @@ Du verantwortest die fachlich-technische Architektur rund um persistente Plattfo
 - `session_check_state` ist als checkbezogene Pipeline-Projektion eingeführt und wird nicht direkt per Tabellen-CRUD vom Frontend geschrieben.
 - `training` wird in v1 über `complete_current_training_step(p_check_id)` manuell im Feed abgeschlossen; das ist noch kein automatisierter fehlerfreier Trainingsnachweis.
 - `recall` und `feynman` schreiben Rohversuche über `record_check_module_attempt(...)` und bewegen passende Check-State-Zeilen bei erfolgreichem Abschluss weiter.
-- `session_activity_state` ist als lernbereichsweite Feed-Projektion für `flashcards` eingeführt.
+- `session_activity_state` ist als lernbereichsweite Feed-Projektion für `start` und `flashcards` eingeführt; `complete_start_activity(...)` schließt die einmalige Start-Aktivität pro Lernbereich ab.
 - Flashcards nutzen serverseitige Durchgänge, Durchgangskarten und Karten-Fälligkeiten; freier Flashcards-Aufruf bleibt ohne persistente Spaced-Repetition.
+- Retention-Flashcards aus abgeschlossenen Sessions laufen user-scoped über `user_retention_scopes` und `retention_flashcard_*`-Tabellen.
+- Deferred-Einträge werden user-scoped in `user_feed_activity_deferrals` persistiert; die Freigabe erfolgt über `user_feed_activity_counters.completed_activity_count`.
 - Der Feed-Kontext im Frontend nutzt `activity_key` als stabile Aktivitätsidentität und `activity_run` nur für frische UI-Zustände.
 - Freier Modulzugriff und Feed-Kontext müssen getrennt bleiben; insbesondere darf freies Training die Feed-Aufgabeninstanz nicht verändern.
-- Feed-Historie, Start-/Abbruchereignisse, Sidebar-Projektion, `warmup`-Persistenz, vollständige generische Aktivitätsschicht und automatisierte Trainingsnachweise sind noch Ausbaupunkte.
+- Feed-Historie, Start-/Abbruchereignisse, `warmup`-Persistenz, vollständige generische Aktivitätsschicht und automatisierte Trainingsnachweise sind noch Ausbaupunkte.
 
 ## Pflichtlektüre
 
 - `.github/glossary.md`
 - `.github/datenmodell.md`
 - `.github/benutzerverwaltung-mvp.md`
+- `.github/feed-logic.md`
 
 ## Prioritäten
 
