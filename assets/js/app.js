@@ -1,15 +1,15 @@
-import { initTrainingModule } from "./modules/training.js?v=20260521-feed-deterministic-tabs";
-import { initRecallModule } from "./modules/recall.js?v=20260521-feed-deterministic-tabs";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260521-feed-deterministic-tabs";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260521-feed-deterministic-tabs";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260519-feed-architecture";
-import { initCheckAnker } from "./modules/check-anker.js?v=20260514-beispiel-url-d";
-import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260519-check-nav-scroll";
+import { initTrainingModule } from "./modules/training.js?v=20260523-feed-actions-fix";
+import { initRecallModule } from "./modules/recall.js?v=20260523-feed-actions-fix";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260523-feed-actions-fix";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260523-feed-actions-fix";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260523-checks-url-fix";
+import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
+import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
-import { initStartModule } from "./modules/start.js?v=20260521-feed-deterministic-tabs";
+import { initStartModule } from "./modules/start.js?v=20260523-feed-actions-fix";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260523-kompetenzliste-training-nav";
-import { getChecksByLernbereich } from "./data/checks-repo.js";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260523-feed-actions-fix";
+import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
 const SCROLL_STORAGE_PREFIX = "mathechecks.scrollPositions.v2";

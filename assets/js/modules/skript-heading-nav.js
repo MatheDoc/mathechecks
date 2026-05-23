@@ -1,4 +1,4 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 
 const skriptHeadingNavCleanup = new WeakMap();

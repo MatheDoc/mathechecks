@@ -1,4 +1,4 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 
 const ROOT_ID = "wissenslandkarte-root";
 const STAGES = ["intro", "dump", "review", "assign", "compare", "summary"];

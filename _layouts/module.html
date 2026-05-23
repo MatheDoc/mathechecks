@@ -28,7 +28,8 @@
 <body
     class="{{ page.body_class | default: 'page-module' }}{% if page.module_key == 'skript' or page.module_key == 'start' %} page-skript-md{% endif %}"
     data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
-    data-module-key="{{ page.module_key | default: '' | escape }}">
+    data-module-key="{{ page.module_key | default: '' | escape }}"
+    data-checks-url="{{ '/checks.json' | relative_url }}">
     <div class="shell">
         {% include topbar.html %}
         <div class="designs-body">
@@ -54,7 +55,7 @@
         src="{{ '/assets/js/calculator/commands.js?v=20260512-calculator-integral-t-variable' | relative_url }}"></script>
     <script
         src="{{ '/assets/js/calculator/app.js?v=20260512-calculator-integral-builder-t-button' | relative_url }}"></script>
-    <script type="module" src="{{ '/assets/js/app.js?v=20260521-feed-deterministic-tabs' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/app.js?v=20260523-feed-actions-fix' | relative_url }}"></script>
     <script id="gebiete-feed-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
     <script id="lernbereiche-feed-data" type="application/json">{{ site.data.lernbereiche | jsonify }}</script>
     {% include theme-script.html %}

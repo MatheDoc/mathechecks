@@ -35,7 +35,7 @@
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-plan__summary" data-dashboard-plan-summary>Aktuell ist keine Session aktiv.</p>
+                <p class="dashboard-plan__summary" data-dashboard-plan-summary></p>
                 <p class="dashboard-plan__target" data-dashboard-plan-target hidden>Zieldatum: nicht gesetzt.</p>
                 <p class="dashboard-panel__status dashboard-plan__assessment" data-dashboard-plan-assessment hidden></p>
                 <div id="lbChips" hidden aria-hidden="true">
@@ -97,11 +97,9 @@
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-completed__intro">Hier erscheinen Lernbereiche, die aktuell für Wiederholungs-Flashcards in Retention aktiv sind, jeweils mit ihrer ausgewählten Check-Menge.</p>
+                <p class="dashboard-completed__intro" data-dashboard-retention-summary></p>
                 <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
-                <div class="dashboard-completed__list" data-dashboard-completed-list>
-                    <p class="dashboard-completed__empty">Bisher wurde noch kein Lernbereich vollständig abgeschlossen.</p>
-                </div>
+                <div class="dashboard-completed__list" data-dashboard-completed-list></div>
             </div>
         </article>
 

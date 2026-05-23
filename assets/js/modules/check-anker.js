@@ -1,4 +1,4 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { fetchBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { initSkriptVisuals, refreshSkriptTables } from "./skript-visuals.js";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
