@@ -734,7 +734,6 @@ function buildCheckFeedItem(contentMeta, entry) {
     checkKeyword: formatCheckShortTitle(checkMeta),
     descText: "",
     badges: [
-      { label: "Session", type: "" },
       { label: checkMeta.lernbereichName, type: "" },
       primaryBadge,
     ],
@@ -761,7 +760,6 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
       titleText: lernbereichMeta.lernbereichName,
       descText: "",
       badges: [
-        { label: "Session", type: "" },
         { label: lernbereichMeta.lernbereichName, type: "" },
         primaryBadge,
       ],
@@ -785,7 +783,6 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
     badges: [
-      { label: "Session", type: "" },
       { label: lernbereichMeta.lernbereichName, type: "" },
       primaryBadge,
     ],
@@ -811,7 +808,6 @@ function buildRetentionFeedItem(contentMeta, entry) {
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
     badges: [
-      { label: "Wiederholung", type: "" },
       { label: lernbereichMeta.lernbereichName, type: "" },
       primaryBadge,
     ],
