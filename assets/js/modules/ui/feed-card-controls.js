@@ -1,4 +1,4 @@
-import { clearDeferredFeedActivity, deferFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260523-feed-badge-cleanup";
+import { clearDeferredFeedActivity, deferFeedActivity, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260523-feed-retention-slot-fill";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

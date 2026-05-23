@@ -1854,8 +1854,6 @@ body.page-module .shell {
 }
 
 .mod-start-content {
-  margin: 0 auto;
-  padding: 14px clamp(14px, 2.4vw, 30px) 72px;
   --s-start-accent: var(--mt-start, var(--accent));
   --s-start-surface-tint: var(--mt-start-soft, var(--accent-soft));
   --s-start-surface-tint-strong: color-mix(in srgb, var(--s-start-accent) 24%, var(--s-start-surface-tint));
