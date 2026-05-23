@@ -1,4 +1,4 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-defer-fallback";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-feed-badge-cleanup";
 import { loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
