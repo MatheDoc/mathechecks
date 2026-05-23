@@ -1,5 +1,5 @@
 import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
 
 const START_FEED_STEP_KEY = "start";
 
@@ -69,7 +69,7 @@ function attachStartFeedShell(root, { lernbereich = "", activityContext = null }
             repeatNowLabel: "Nein",
             repeatNowDetail: "Offen lassen",
             repeatLaterLabel: "Nein",
-            repeatLaterDetail: "Später wiederholen",
+            repeatLaterDetail: "Zum Dashboard",
             onComplete: completeDecision,
             onRepeat: keepOpenDecision,
         });

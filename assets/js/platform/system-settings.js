@@ -2,8 +2,6 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Bei Änderungen hier immer die passende Supabase-Migration für public.system_settings nachziehen.
   // Maximale Zahl sichtbarer Feed-Einträge im Dashboard.
   feedDashboardItemLimit: 5,
-  // Anzahl weiterer abgeschlossener Feed-Aktivitäten, bis eine zurückgestellte Aktivität wieder normal erscheint.
-  feedDeferredActivityGap: 3,
   // Basisabstand N für Retention-Flashcards; weitere Fälligkeiten wachsen als N, 2N, 4N, ...
   feedRetentionActivityBaseGap: 5,
   // Anzahl Session-Aktivitäten, die vor dem ersten Retention-Slot angezeigt werden.
@@ -18,7 +16,6 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
   "feed.dashboard_item_limit": "feedDashboardItemLimit",
-  "feed.deferred_activity_gap": "feedDeferredActivityGap",
   "feed.retention_activity_base_gap": "feedRetentionActivityBaseGap",
   "feed.retention_interleave_lead_session_items": "feedRetentionInterleaveLeadSessionItems",
   "feed.retention_interleave_stride": "feedRetentionInterleaveStride",

@@ -114,8 +114,7 @@ Aktueller Stand mit v2-Grundlage:
 - `session_check_state`: checkbezogene Feed-Pipeline (`training_1`, `recall`, `training_2`, `feynman`, `training_3`, `kompetenzliste_gate`) inklusive materialisiertem letztem erfolgreichem Abschlusszeitpunkt.
 - `session_activity_state`: lernbereichsweite Feed-Projektion für `start` und `flashcards` innerhalb einer Core-Session.
 - `user_retention_scopes`: nutzerweite Retention-Scope-Projektion für Flashcards nach Ende einer Core-Session.
-- `user_feed_activity_deferrals`: user-scoped Sperrmarkierungen für zurückgestellte Feed-Aktivitäten; Freigabe über einen Aktivitätszähler statt über Listenplätze.
-- `user_feed_activity_counters`: user-scoped Zähler abgeschlossener Feed-Aktivitäten; Referenzgröße für Deferred-Freigaben.
+- `user_feed_activity_counters`: user-scoped Zähler abgeschlossener Feed-Aktivitäten; Referenzgröße für serverseitige Retention-Abstände.
 - Flashcard-Tabellen: sessionseitige Durchgänge plus additive user-scoped Retention-Zustände für Kartenfälligkeiten jenseits der Core-Session.
 
 Der freie Flashcards-Aufruf persistiert keinen Spaced-Repetition-Zustand im Browser. Im Feed-Kontext werden nur Karten-IDs, Check-IDs, Aufgabenindex, Bewertung und Fälligkeit gespeichert; der eigentliche Aufgaben-/Karteninhalt bleibt in `aufgaben/exports/json/`. Die endliche Core-Session und die länger laufende Retention-Schicht bleiben dabei bewusst getrennt.

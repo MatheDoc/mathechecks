@@ -117,6 +117,37 @@ function getDashboardRedirectUrl() {
   return buildAccountUrl("/dashboard.html");
 }
 
+function getPostAuthRedirectUrl(fallbackPath = "") {
+  const nextPath = getRequestedNextPath();
+  const accountPathname = new URL(getSupabaseRuntimeConfig().accountPath, window.location.origin).pathname;
+  const requestedTargetUrl = nextPath ? new URL(nextPath, window.location.origin) : null;
+
+  if (requestedTargetUrl && requestedTargetUrl.pathname !== accountPathname) {
+    return requestedTargetUrl.toString();
+  }
+
+  const normalizedFallbackPath = String(fallbackPath || "").trim();
+  if (!normalizedFallbackPath) return "";
+
+  return new URL(normalizedFallbackPath, window.location.origin).toString();
+}
+
+function redirectAfterSuccessfulAuth(options = {}) {
+  const {
+    fallbackPath = "",
+    replace = true,
+  } = options;
+  const targetUrl = getPostAuthRedirectUrl(fallbackPath);
+  if (!targetUrl) return false;
+
+  if (replace) {
+    window.location.replace(targetUrl);
+  } else {
+    window.location.assign(targetUrl);
+  }
+  return true;
+}
+
 function showSignupPending() {
   let seconds = 3;
   const tick = () => {
@@ -192,15 +223,7 @@ function hasTransientAuthParams() {
 }
 
 function redirectToRequestedPath() {
-  const nextPath = getRequestedNextPath();
-  if (!nextPath) return false;
-
-  const accountPathname = new URL(getSupabaseRuntimeConfig().accountPath, window.location.origin).pathname;
-  const targetUrl = new URL(nextPath, window.location.origin);
-  if (targetUrl.pathname === accountPathname) return false;
-
-  window.location.replace(targetUrl.toString());
-  return true;
+  return redirectAfterSuccessfulAuth();
 }
 
 function getEnabledOAuthProviders() {
@@ -520,8 +543,10 @@ async function handleCredentialAuth(event, supabase) {
 
     setStatus("Anmeldung erfolgreich.", "success");
     form?.reset();
-    const nextPath = getRequestedNextPath();
-    window.location.assign(new URL(nextPath || "/dashboard.html", window.location.origin).toString());
+    redirectAfterSuccessfulAuth({
+      fallbackPath: "/dashboard.html",
+      replace: false,
+    });
     return;
   }
 
@@ -757,6 +782,14 @@ async function initKontoPage() {
           "success"
         );
       }
+      if (event === "SIGNED_IN" && arrivedFromAuthRedirect && !recoveryMode) {
+        arrivedFromAuthRedirect = false;
+        cleanupAuthUrl();
+        if (redirectAfterSuccessfulAuth({ fallbackPath: "/dashboard.html" })) {
+          return;
+        }
+      }
+
       arrivedFromAuthRedirect = false;
       cleanupAuthUrl();
       if (!recoveryMode && redirectToRequestedPath()) {
@@ -781,6 +814,10 @@ async function initKontoPage() {
   const state = await getCurrentAuthState();
   currentUser = state.user || null;
   applyUiState(currentUser, recoveryMode);
+
+  if (state.user && arrivedFromAuthRedirect && !recoveryMode && redirectAfterSuccessfulAuth({ fallbackPath: "/dashboard.html" })) {
+    return;
+  }
 
   if (state.user && !recoveryMode && redirectToRequestedPath()) {
     return;

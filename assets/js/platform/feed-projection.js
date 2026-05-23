@@ -79,55 +79,6 @@ function normalizeKey(value) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-export async function deferFeedActivity(supabase, activityKey) {
-  const normalizedKey = String(activityKey || "").trim();
-  if (!supabase || !normalizedKey) return;
-
-  const { error } = await supabase.rpc("defer_feed_activity", {
-    p_activity_key: normalizedKey,
-  });
-
-  if (error) throw error;
-}
-
-export async function clearDeferredFeedActivity(supabase, activityKey) {
-  const normalizedKey = String(activityKey || "").trim();
-  if (!supabase || !normalizedKey) return;
-
-  const { error } = await supabase.rpc("clear_feed_activity_deferral", {
-    p_activity_key: normalizedKey,
-  });
-
-  if (error) throw error;
-}
-
-async function loadActiveDeferredFeedActivityKeys(supabase) {
-  if (!supabase) return new Set();
-
-  const currentCompletedActivityCount = await loadCurrentFeedActivityCompletionCount(supabase);
-  const { data, error } = await supabase
-    .from("user_feed_activity_deferrals")
-    .select("activity_key")
-    .gt("defer_until_activity_count", currentCompletedActivityCount);
-
-  if (error) throw error;
-
-  return new Set((Array.isArray(data) ? data : [])
-    .map((row) => String(row?.activity_key || "").trim())
-    .filter(Boolean));
-}
-
-function filterDeferredFeedItems(items, deferredActivityKeys) {
-  if (!deferredActivityKeys || !deferredActivityKeys.size) {
-    return Array.isArray(items) ? items : [];
-  }
-
-  return (Array.isArray(items) ? items : []).filter((item) => {
-    const activityKey = String(item?.activityKey || "").trim();
-    return !activityKey || !deferredActivityKeys.has(activityKey);
-  });
-}
-
 function normalizePositiveInteger(value, fallback) {
   const parsed = Number.parseInt(value, 10);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
@@ -929,14 +880,6 @@ export async function loadFeedProjection({
     if (items.length) {
       source = "retention";
     }
-  }
-
-  if (items.length) {
-    const deferredActivityKeys = await loadActiveDeferredFeedActivityKeys(supabase);
-    const filtered = filterDeferredFeedItems(items, deferredActivityKeys);
-    // Fallback: wenn alle Einträge gedeferrt sind und nichts anderes verfügbar ist,
-    // Defer ignorieren — sonst kann der Feed nicht fortgesetzt werden.
-    items = filtered.length > 0 ? filtered : items;
   }
 
   const visibleItems = items.slice(0, limit);

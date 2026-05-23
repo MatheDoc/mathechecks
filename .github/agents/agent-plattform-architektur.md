@@ -32,7 +32,7 @@ Du verantwortest die fachlich-technische Architektur rund um persistente Plattfo
 - `session_activity_state` ist als lernbereichsweite Feed-Projektion für `start` und `flashcards` eingeführt; `complete_start_activity(...)` schließt die einmalige Start-Aktivität pro Lernbereich ab.
 - Flashcards nutzen serverseitige Durchgänge, Durchgangskarten und Karten-Fälligkeiten; freier Flashcards-Aufruf bleibt ohne persistente Spaced-Repetition.
 - Retention-Flashcards aus abgeschlossenen Sessions laufen user-scoped über `user_retention_scopes` und `retention_flashcard_*`-Tabellen.
-- Deferred-Einträge werden user-scoped in `user_feed_activity_deferrals` persistiert; die Freigabe erfolgt über `user_feed_activity_counters.completed_activity_count`.
+- Ein `Nein, zum Dashboard` im Feed ändert die Aktivität nicht persistent; sie bleibt unverändert offen und erscheint weiter in der normalen Feed-Projektion.
 - Der Feed-Kontext im Frontend nutzt `activity_key` als stabile Aktivitätsidentität und `activity_run` nur für frische UI-Zustände.
 - Freier Modulzugriff und Feed-Kontext müssen getrennt bleiben; insbesondere darf freies Training die Feed-Aufgabeninstanz nicht verändern.
 - Feed-Historie, Start-/Abbruchereignisse, `warmup`-Persistenz, vollständige generische Aktivitätsschicht und automatisierte Trainingsnachweise sind noch Ausbaupunkte.

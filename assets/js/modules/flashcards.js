@@ -2,7 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-retention-visible-start";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
 const FLASHCARDS_ROUND_LIMIT = 20;

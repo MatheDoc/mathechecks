@@ -29,7 +29,6 @@ Die aktuelle Feed-Projektion in `assets/js/platform/feed-projection.js` kombinie
 - offene checkbezogene Schritte aus `session_check_state`
 - offene lernbereichsweite Session-Aktivitäten aus `session_activity_state`
 - fällige Retention-Scopes und Retention-Fallbacks für Flashcards
-- aktive user-scoped Deferred-Signale aus `user_feed_activity_deferrals`
 - Repo-Metadaten aus `checks.json` und den Lernbereichs-Daten
 
 ## Verarbeitungsreihenfolge
@@ -46,8 +45,7 @@ Die Feed-Projektion läuft in dieser Reihenfolge:
 5. Session-Aktivitäten und geordnete Check-Schritte zu einer Session-Liste zusammenbauen.
 6. Retention-Einträge in die Session-Liste einmischen.
 7. Falls keine Session-Einträge übrig sind, auf reine Retention-Projektion ohne aktive Session zurückfallen.
-8. Aktiv deferrede Einträge über die Datenbank aus der normalen Projektion ausblenden, bis ihr Aktivitätsabstand abgelaufen ist.
-9. Erst ganz am Ende auf das sichtbare Feed-Limit kürzen.
+8. Erst ganz am Ende auf das sichtbare Feed-Limit kürzen.
 
 ## Session-Logik für Check-Ketten
 
@@ -107,24 +105,12 @@ Die Feed-Reihenfolge wird nicht mehr lokal pro Browser-Tab nachstabilisiert.
 - Zwei Tabs mit derselben Session sollen deshalb dieselbe sichtbare Feed-Reihenfolge zeigen.
 - Lokaler Browser-State darf die fachliche Reihenfolge nicht mehr umsortieren.
 
-## Deferred-Logik
-
-`deferred` ist jetzt ein persistentes, user-scoped Signal in der Datenbank.
-
-- Ein verschobener Feed-Eintrag wird in `user_feed_activity_deferrals` mit stabilem `activity_key` gespeichert.
-- Die Freigabe erfolgt nicht über einen lokalen Rangplatz, sondern über `completed_activity_count` aus `user_feed_activity_counters`.
-- Solange `defer_until_activity_count` noch nicht erreicht ist, taucht die Aktivität in der normalen Feed-Projektion nicht auf.
-- Sobald drei weitere Feed-Aktivitäten abgeschlossen wurden, fällt die Aktivität wieder in ihre normale fachliche Reihenfolge zurück.
-- Dadurch ist `deferred` tab- und geräteübergreifend konsistent.
-
 ## Aktuelle Systemwerte
 
 Die Feed-Logik nutzt aktuell diese relevanten Schlüssel in `public.system_settings`:
 
 - `feed.dashboard_item_limit`
   - maximale Zahl sichtbarer Feed-Einträge im Dashboard
-- `feed.deferred_activity_gap`
-  - Zahl weiterer abgeschlossener Feed-Aktivitäten, bis eine zurückgestellte Karte wieder normal erscheint
 - `feed.retention_activity_base_gap`
   - serverseitiger Aktivitätsabstand für user-scoped Retention-Scopes
 - `feed.retention_interleave_lead_session_items`
@@ -169,7 +155,7 @@ Typisch ist daher eher ein Muster wie:
 10. Session
 11. Retention
 
-Die tatsächliche Liste kann durch lokale Stabilisierung oder das Ende einer Gruppe leicht abweichen; aktive `deferred`-Einträge fehlen bis zum Erreichen ihres Aktivitätsabstands komplett.
+Die tatsächliche Liste kann durch das Ende einer Gruppe leicht abweichen.
 
 ## Nicht in dieser Datei pflegen
 
