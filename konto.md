@@ -8,7 +8,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /konto.html
-module_script: /assets/js/modules/konto.js?v=20260522-konto-auth-dashboard-redirect
+module_script: /assets/js/modules/konto.js?v=20260523-konto-auth-dashboard-redirect
 page_css: /assets/css/konto.css?v=20260522-konto-auth-ui
 ---
 

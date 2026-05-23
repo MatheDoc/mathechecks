@@ -1343,7 +1343,6 @@ function mapDeleteSessionError(error) {
    code === "42P01"
    || code === "42703"
    || message.toLowerCase().includes("learning_activity_attempts")
-   || message.toLowerCase().includes("user_feed_activity_deferrals")
   ) {
     return "Die Session-Löschlogik ist im Supabase-Projekt noch nicht vollständig aktiv. Bitte die aktuellen Migrationen deployen und erneut versuchen.";
   }
