@@ -1,4 +1,4 @@
-import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
+import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 
 const START_FEED_STEP_KEY = "start";

@@ -1,5 +1,5 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-feed-retention-slot-fill";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-retention-visible-start";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -10,6 +10,11 @@ const LERNBEREICH_ALIASES = {
 
 const CHECK_PIPELINE_STEP_COUNT = Object.keys(FEED_STEP_ORDER).length;
 const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+const SESSION_EMPTY_SUMMARY = "Aktuell ist keine Session aktiv.";
+const RETENTION_EMPTY_SUMMARY = "Aktuell ist keine Wiederholung aktiv.";
+const RETENTION_LOADING_MESSAGE = "Wiederholungen werden geladen.";
+const RETENTION_UNAVAILABLE_MESSAGE = "Wiederholungen konnten gerade nicht geladen werden.";
+const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht geladen werden.";
 
 function parseJsonScript(id, fallback) {
   try {
@@ -667,6 +672,35 @@ function renderCompletedLernbereichCard(entry) {
   `;
 }
 
+function renderCompletedPanelMessage(listNode, message) {
+  if (!listNode) return;
+  listNode.innerHTML = `<p class="dashboard-completed__empty">${escapeHtml(message)}</p>`;
+}
+
+function updateRetentionSummary(context, entries = [], fallbackMessage = "") {
+  const node = context.elements.retentionSummary;
+  if (!node) return;
+
+  const explicitMessage = String(fallbackMessage || "").trim();
+  if (explicitMessage) {
+    node.textContent = explicitMessage;
+    return;
+  }
+
+  const activeEntries = Array.isArray(entries) ? entries : [];
+  if (!activeEntries.length) {
+    node.textContent = RETENTION_EMPTY_SUMMARY;
+    return;
+  }
+
+  const lernbereichCount = activeEntries.length;
+  const checkCount = activeEntries.reduce((sum, entry) => sum + Math.max(0, Number(entry?.checkCount) || 0), 0);
+  const lernbereichLabel = lernbereichCount === 1 ? "Lernbereich" : "Lernbereiche";
+  const checkLabel = checkCount === 1 ? "Check" : "Checks";
+  const verb = lernbereichCount === 1 ? "ist" : "sind";
+  node.textContent = `Aktuell ${verb} ${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} aktiv.`;
+}
+
 async function refreshCompletedPanel(context) {
   const listNode = context.elements.completedList;
   if (!listNode) return;
@@ -674,7 +708,8 @@ async function refreshCompletedPanel(context) {
   if (!context.supabase) {
     context.hasRetentionEntries = false;
     updateRetentionActionButtons(context, false);
-    listNode.innerHTML = '<p class="dashboard-completed__empty">Abgeschlossene Lernbereiche konnten gerade nicht geladen werden.</p>';
+    updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
+    renderCompletedPanelMessage(listNode, RETENTION_UNAVAILABLE_MESSAGE);
     return;
   }
 
@@ -682,8 +717,9 @@ async function refreshCompletedPanel(context) {
     const { items: completedLernbereiche, hasRetentionEntries } = await loadCompletedLernbereiche(context);
     context.hasRetentionEntries = hasRetentionEntries;
     updateRetentionActionButtons(context, false);
+    updateRetentionSummary(context, completedLernbereiche);
     if (!completedLernbereiche.length) {
-      listNode.innerHTML = '<p class="dashboard-completed__empty">Keine Wiederholungen verfügbar.</p>';
+      renderCompletedPanelMessage(listNode, RETENTION_EMPTY_SUMMARY);
       return;
     }
 
@@ -692,7 +728,8 @@ async function refreshCompletedPanel(context) {
     context.hasRetentionEntries = false;
     updateRetentionActionButtons(context, false);
     console.error("Abgeschlossene Lernbereiche konnten nicht geladen werden:", error);
-    listNode.innerHTML = '<p class="dashboard-completed__empty">Der Abschlussstand der Session konnte gerade nicht geladen werden.</p>';
+    updateRetentionSummary(context, [], RETENTION_LOAD_ERROR_MESSAGE);
+    renderCompletedPanelMessage(listNode, RETENTION_LOAD_ERROR_MESSAGE);
   }
 }
 
@@ -963,7 +1000,7 @@ function updatePlanSummary(context) {
   const assessmentNode = context.elements.planAssessment;
 
   if (!context.activeSession) {
-    node.textContent = "Aktuell ist keine Session aktiv. Im Feed können dann nur fällige Wiederholungen aus Retention auftauchen.";
+    node.textContent = SESSION_EMPTY_SUMMARY;
     if (targetNode) {
       targetNode.hidden = true;
       targetNode.textContent = "";
@@ -977,7 +1014,8 @@ function updatePlanSummary(context) {
   const { lernbereichCount, checkCount, selectedCheckIds } = summarizeActivePlan(context);
   const lernbereichLabel = lernbereichCount === 1 ? "Lernbereich" : "Lernbereiche";
   const checkLabel = checkCount === 1 ? "Check" : "Checks";
-  node.textContent = `${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} sind aktuell in der Session aktiv.`;
+  const verb = lernbereichCount === 1 ? "ist" : "sind";
+  node.textContent = `Aktuell ${verb} ${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} aktiv.`;
 
   if (targetNode) {
     const assessment = buildTargetDateAssessment(context, selectedCheckIds);
@@ -1846,6 +1884,7 @@ function createContext(root, lernbereiche) {
     statusNode: document.getElementById("lbSessionStatus"),
     modalStatusNode: document.getElementById("lbModalStatus"),
     completedList: root.querySelector("[data-dashboard-completed-list]"),
+    retentionSummary: root.querySelector("[data-dashboard-retention-summary]"),
     retentionManageButton: document.getElementById("retentionOpenBtn"),
     retentionDeleteButton: document.getElementById("retentionDeleteBtn"),
     retentionOverlay: document.getElementById("retentionOverlay"),
@@ -1917,6 +1956,8 @@ export async function initDashboardModule() {
   bindEvents(context);
   updatePlanSummary(context);
   updateChipSummary(context);
+  updateRetentionSummary(context);
+  renderCompletedPanelMessage(context.elements.completedList, RETENTION_LOADING_MESSAGE);
   updateSessionActionButtons(context, true);
   updateRetentionActionButtons(context, true);
   setBarStatus(context, "");
@@ -1929,12 +1970,16 @@ export async function initDashboardModule() {
 
   if (!authState.configured) {
     applyPrimaryFeedErrorState(context);
+    updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
+    renderCompletedPanelMessage(context.elements.completedList, RETENTION_UNAVAILABLE_MESSAGE);
     setBarStatus(context, "Der Session-Speicher ist noch nicht konfiguriert.");
     return;
   }
 
   if (authState.error) {
     applyPrimaryFeedErrorState(context);
+    updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
+    renderCompletedPanelMessage(context.elements.completedList, RETENTION_UNAVAILABLE_MESSAGE);
     setBarStatus(context, "Die Verbindung zur Session-Datenbank konnte nicht aufgebaut werden.", "error");
     return;
   }

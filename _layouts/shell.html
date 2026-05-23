@@ -10,7 +10,8 @@
 <body class="page-shell {{ page.body_class | default: 'page-dashboard' }}"
     data-lernbereich="{{ page.lernbereich | default: '' | escape }}"
     data-module-key="{{ page.module_key | default: '' | escape }}"
-    data-prototype-key="{{ page.prototype_key | default: '' | escape }}">
+    data-prototype-key="{{ page.prototype_key | default: '' | escape }}"
+    data-checks-url="{{ '/checks.json' | relative_url }}">
     <div class="shell">
         {% include topbar.html %}
         <main class="shell-main">

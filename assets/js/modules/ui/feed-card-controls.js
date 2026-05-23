@@ -444,6 +444,7 @@ export function leaveFeedContext() {
     url.searchParams.delete("activity_key");
     url.searchParams.delete("activity_step");
     url.searchParams.delete("activity_run");
+    url.searchParams.delete("allow_early_retention_start");
     window.location.assign(`${url.pathname}${url.search}${url.hash}`);
   } catch {
     window.location.assign(window.location.pathname || "/");

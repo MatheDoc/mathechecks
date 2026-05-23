@@ -1,4 +1,4 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
 import {
   loadTrainingState,
@@ -21,7 +21,7 @@ import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
-import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
+import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {

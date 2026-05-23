@@ -224,6 +224,7 @@ export async function getOrCreateRetentionFlashcardRound({
   checkIds,
   taskIndices,
   cardLimit = 20,
+  allowEarlyStart = false,
 }) {
   const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
   const normalizedCardIds = Array.isArray(cardIds) ? cardIds.map(normalizeText) : [];
@@ -232,6 +233,7 @@ export async function getOrCreateRetentionFlashcardRound({
     ? taskIndices.map((value) => Math.max(0, Number(value) || 0))
     : [];
   const normalizedCardLimit = Math.max(1, Math.min(Number(cardLimit) || 20, 50));
+  const normalizedAllowEarlyStart = Boolean(allowEarlyStart);
 
   if (!normalizedLernbereichSlug || normalizedCardIds.length === 0 || normalizedCardIds.length !== normalizedCheckIds.length) {
     return { ok: false, skipped: true, reason: "missing-input" };
@@ -241,13 +243,22 @@ export async function getOrCreateRetentionFlashcardRound({
     const auth = await getAuthenticatedSupabaseClient();
     if (!auth.ok) return auth;
 
-    const { data, error } = await auth.supabase.rpc("get_or_create_retention_flashcard_round", {
+    const rpcName = normalizedAllowEarlyStart
+      ? "get_or_create_retention_flashcard_round_with_options"
+      : "get_or_create_retention_flashcard_round";
+    const rpcArgs = {
       p_lernbereich_slug: normalizedLernbereichSlug,
       p_card_ids: normalizedCardIds,
       p_check_ids: normalizedCheckIds,
       p_task_indices: normalizedTaskIndices,
       p_card_limit: normalizedCardLimit,
-    });
+    };
+
+    if (normalizedAllowEarlyStart) {
+      rpcArgs.p_allow_early_start = true;
+    }
+
+    const { data, error } = await auth.supabase.rpc(rpcName, rpcArgs);
 
     if (error) {
       console.warn("MatheChecks: Retention-Flashcard-Durchgang konnte nicht geladen werden.", error);

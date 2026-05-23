@@ -77,8 +77,8 @@ html.light {
   --surface: rgba(0, 0, 0, 0.03);
   --surface-hi: rgba(0, 0, 0, 0.06);
   --border: rgba(0, 0, 0, 0.09);
-  --text: #1a1a2e;
-  --text-body: #2f3042;
+  --text: #434343;
+  --text-body: #262626;
   --text-dim: #5a5a72;
   --text-muted: #8a8a9e;
   --accent: #6c5ce7;
@@ -1854,6 +1854,7 @@ body.page-module .shell {
 }
 
 .mod-start-content {
+  padding-top: 20px;
   --s-start-accent: var(--mt-start, var(--accent));
   --s-start-surface-tint: var(--mt-start-soft, var(--accent-soft));
   --s-start-surface-tint-strong: color-mix(in srgb, var(--s-start-accent) 24%, var(--s-start-surface-tint));

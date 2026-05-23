@@ -1,8 +1,8 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
-import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
+import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260521-feed-deterministic-tabs";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-retention-visible-start";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
 const FLASHCARDS_ROUND_LIMIT = 20;
@@ -30,6 +30,7 @@ const state = {
     feed: {
         active: false,
         trackKind: "session",
+        allowEarlyRetentionStart: false,
         controls: null,
         roundId: "",
         roundCards: [],
@@ -57,6 +58,7 @@ function getCheckId(check) {
 function normalizeFlashcardsFeedContext(activityContext) {
     if (!activityContext || activityContext.mode !== "feed") return null;
     const activityKey = String(activityContext.activityKey || "").trim();
+    const params = new URLSearchParams(window.location.search);
     return String(activityContext.activityStep || "").trim() === FLASHCARDS_FEED_STEP_KEY
         ? {
             mode: "feed",
@@ -64,6 +66,8 @@ function normalizeFlashcardsFeedContext(activityContext) {
             activityStep: FLASHCARDS_FEED_STEP_KEY,
             activityRun: String(activityContext.activityRun || "").trim(),
             trackKind: activityKey.startsWith("retention:") ? "retention" : "session",
+            allowEarlyRetentionStart: activityKey.startsWith("retention:")
+                && params.get("allow_early_retention_start") === "1",
         }
         : null;
 }
@@ -613,6 +617,7 @@ async function loadFeedRound() {
             checkIds: payload.checkIds,
             taskIndices: payload.taskIndices,
             cardLimit: FLASHCARDS_ROUND_LIMIT,
+            allowEarlyStart: state.feed.trackKind === "retention" && state.feed.allowEarlyRetentionStart,
         });
         rows = Array.isArray(result?.data) ? result.data : [];
     } catch (error) {
@@ -648,6 +653,7 @@ function attachFlashcardsFeedShell(activityContext) {
     const feedContext = normalizeFlashcardsFeedContext(activityContext);
     state.feed.active = Boolean(feedContext);
     state.feed.trackKind = feedContext?.trackKind || "session";
+    state.feed.allowEarlyRetentionStart = Boolean(feedContext?.allowEarlyRetentionStart);
     if (!state.feed.active) return;
 
     state.feed.controls = attachFeedCardControls(state.root, {
@@ -805,6 +811,8 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
     state.freeCardCount = 0;
     state.feed = {
         active: false,
+        trackKind: "session",
+        allowEarlyRetentionStart: false,
         controls: null,
         roundId: "",
         roundCards: [],

@@ -351,6 +351,10 @@ function buildFlashcardsFeedActionHref(lernbereichMeta, entry) {
     activity_run: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
   });
 
+  if (entry.allow_early_feed_start) {
+    params.set("allow_early_retention_start", "1");
+  }
+
   return `/lernbereiche/${encodeURIComponent(lernbereichMeta.gebietKey)}/${encodeURIComponent(lernbereichMeta.lernbereichId)}/flashcards.html?${params.toString()}`;
 }
 
@@ -663,6 +667,7 @@ async function loadRetentionSlotFillEntries(supabase, excludedActivityKeys = new
         scope_type: "lernbereich",
         lernbereich_slug: lernbereichSlug,
         due_after_activity_count: Number(row?.next_due_after_activity_count),
+        allow_early_feed_start: true,
       };
     })
     .filter((entry) => {

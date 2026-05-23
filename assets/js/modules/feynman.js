@@ -1,5 +1,5 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";

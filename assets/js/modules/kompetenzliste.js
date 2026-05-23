@@ -1,5 +1,5 @@
-import { getChecksByLernbereich } from "../data/checks-repo.js";
-import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260521-flashcards-review-save";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
+import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260523-kompetenzliste-training-nav";

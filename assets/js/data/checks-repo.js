@@ -1,8 +1,18 @@
 let checksPromise = null;
 
+function resolveChecksUrl() {
+  const bodyUrl = String(document.body?.dataset?.checksUrl || "").trim();
+  if (bodyUrl) return bodyUrl;
+
+  const dashboardUrl = String(document.querySelector("[data-dashboard-root]")?.dataset?.dashboardChecksUrl || "").trim();
+  if (dashboardUrl) return dashboardUrl;
+
+  return "/checks.json";
+}
+
 async function loadChecks() {
   if (!checksPromise) {
-    checksPromise = fetch("/checks.json").then((response) => {
+    checksPromise = fetch(resolveChecksUrl(), { cache: "no-store" }).then((response) => {
       if (!response.ok) {
         throw new Error("checks.json konnte nicht geladen werden");
       }
