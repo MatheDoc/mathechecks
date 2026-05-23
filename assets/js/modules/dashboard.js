@@ -1,5 +1,5 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-feed-badge-cleanup";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-feed-retention-slot-fill";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -567,78 +567,58 @@ async function loadActiveSessionCompletedLernbereiche(context) {
 async function loadRetentionCompletedLernbereiche(context) {
   if (!context.supabase) return [];
 
-  const { data: scopeRows, error: scopeError } = await context.supabase
-    .from("user_retention_scopes")
-    .select("lernbereich_slug, source_session_id, updated_at")
-    .eq("activity_type", "flashcards")
-    .eq("scope_type", "lernbereich")
-    .not("source_session_id", "is", null);
-
-  if (scopeError) throw scopeError;
-
-  const scopes = (Array.isArray(scopeRows) ? scopeRows : []).filter((row) => {
-    return String(row?.lernbereich_slug || "").trim() && String(row?.source_session_id || "").trim();
-  });
-  if (!scopes.length) return [];
-
-  const sessionIds = [...new Set(scopes.map((row) => String(row.source_session_id).trim()).filter(Boolean))];
-  const [{ data: sessions, error: sessionsError }, { data: states, error: statesError }] = await Promise.all([
+  const [{ data: scopeRows, error: scopeError }, { data: exclusionRows, error: exclusionError }] = await Promise.all([
     context.supabase
-      .from("learning_sessions")
-      .select("id, ended_at")
-      .in("id", sessionIds),
+      .from("user_retention_scopes")
+      .select("lernbereich_slug, updated_at")
+      .eq("activity_type", "flashcards")
+      .eq("scope_type", "lernbereich")
+      .eq("status", "active"),
     context.supabase
-      .from("session_check_state")
-      .select("session_id, check_id, current_step_status, last_completed_at")
-      .in("session_id", sessionIds)
-      .eq("current_step_status", "completed"),
+      .from("user_retention_check_exclusions")
+      .select("lernbereich_slug, check_id"),
   ]);
 
-  if (sessionsError) throw sessionsError;
-  if (statesError) throw statesError;
+  if (scopeError) throw scopeError;
+  if (exclusionError) throw exclusionError;
 
-  const sessionById = new Map(
-    (Array.isArray(sessions) ? sessions : []).map((session) => [String(session?.id || "").trim(), session]),
+  const activeBySlug = new Map(
+    (Array.isArray(scopeRows) ? scopeRows : [])
+      .filter((row) => String(row?.lernbereich_slug || "").trim())
+      .map((row) => [String(row.lernbereich_slug).trim(), String(row.updated_at || "")]),
   );
-  const completedRowsBySessionId = new Map();
 
-  (Array.isArray(states) ? states : []).forEach((row) => {
-    const sessionId = String(row?.session_id || "").trim();
-    if (!sessionId) return;
-    if (!completedRowsBySessionId.has(sessionId)) {
-      completedRowsBySessionId.set(sessionId, []);
-    }
-    completedRowsBySessionId.get(sessionId).push(row);
+  if (!activeBySlug.size) return [];
+
+  const exclusionsBySlug = new Map();
+  (Array.isArray(exclusionRows) ? exclusionRows : []).forEach((row) => {
+    const slug = String(row?.lernbereich_slug || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    if (!slug || !checkId) return;
+    if (!exclusionsBySlug.has(slug)) exclusionsBySlug.set(slug, new Set());
+    exclusionsBySlug.get(slug).add(checkId);
   });
 
-  return scopes.map((scope) => {
-    const lernbereichId = String(scope?.lernbereich_slug || "").trim();
-    const sessionId = String(scope?.source_session_id || "").trim();
-    const lernbereichMeta = context.lernbereichMetaById.get(lernbereichId);
-    if (!lernbereichMeta || !sessionId) return null;
-
-    const matchingRows = (completedRowsBySessionId.get(sessionId) || []).filter((row) => {
-      const checkMeta = context.checkMetaById.get(row?.check_id);
-      return checkMeta?.lernbereichId === lernbereichId;
+  const result = [];
+  context.lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      if (!activeBySlug.has(lb.id)) return;
+      const excluded = exclusionsBySlug.get(lb.id) || new Set();
+      const totalCheckCount = lb.checks.length;
+      const checkCount = Math.max(0, totalCheckCount - excluded.size);
+      result.push({
+        lernbereichId: lb.id,
+        lernbereichName: lb.name,
+        gebietKey: lb.gebietKey,
+        groupName: group.group,
+        checkCount,
+        totalCheckCount,
+        lastCompletedAt: activeBySlug.get(lb.id),
+      });
     });
-    if (!matchingRows.length) return null;
+  });
 
-    const completionDates = matchingRows
-      .map((row) => String(row?.last_completed_at || ""))
-      .filter(Boolean)
-      .sort((left, right) => right.localeCompare(left));
-    const session = sessionById.get(sessionId);
-
-    return {
-      lernbereichId,
-      lernbereichName: lernbereichMeta.lernbereichName,
-      gebietKey: lernbereichMeta.gebietKey,
-      groupName: lernbereichMeta.groupName,
-      checkCount: matchingRows.length,
-      totalCheckCount: lernbereichMeta.totalCheckCount,
-      lastCompletedAt: completionDates[0] || String(session?.ended_at || scope?.updated_at || ""),
-    };
-  }).filter(Boolean);
+  return result;
 }
 
 async function loadCompletedLernbereiche(context) {
@@ -658,7 +638,10 @@ async function loadCompletedLernbereiche(context) {
     }
   });
 
-  return sortCompletedLernbereiche(latestByLernbereichId.values());
+  return {
+    items: sortCompletedLernbereiche(latestByLernbereichId.values()),
+    hasRetentionEntries: retentionEntries.length > 0,
+  };
 }
 
 function renderCompletedLernbereichCard(entry) {
@@ -689,19 +672,25 @@ async function refreshCompletedPanel(context) {
   if (!listNode) return;
 
   if (!context.supabase) {
+    context.hasRetentionEntries = false;
+    updateRetentionActionButtons(context, false);
     listNode.innerHTML = '<p class="dashboard-completed__empty">Abgeschlossene Lernbereiche konnten gerade nicht geladen werden.</p>';
     return;
   }
 
   try {
-    const completedLernbereiche = await loadCompletedLernbereiche(context);
+    const { items: completedLernbereiche, hasRetentionEntries } = await loadCompletedLernbereiche(context);
+    context.hasRetentionEntries = hasRetentionEntries;
+    updateRetentionActionButtons(context, false);
     if (!completedLernbereiche.length) {
-      listNode.innerHTML = '<p class="dashboard-completed__empty">Bisher wurde noch kein Lernbereich vollständig abgeschlossen.</p>';
+      listNode.innerHTML = '<p class="dashboard-completed__empty">Keine Wiederholungen verfügbar.</p>';
       return;
     }
 
     listNode.innerHTML = completedLernbereiche.map((entry) => renderCompletedLernbereichCard(entry)).join("");
   } catch (error) {
+    context.hasRetentionEntries = false;
+    updateRetentionActionButtons(context, false);
     console.error("Abgeschlossene Lernbereiche konnten nicht geladen werden:", error);
     listNode.innerHTML = '<p class="dashboard-completed__empty">Der Abschlussstand der Session konnte gerade nicht geladen werden.</p>';
   }
@@ -974,7 +963,7 @@ function updatePlanSummary(context) {
   const assessmentNode = context.elements.planAssessment;
 
   if (!context.activeSession) {
-    node.textContent = "Aktuell ist keine Session aktiv. Im Feed können dann nur fällige Wiederholungen aus früheren Sessions auftauchen.";
+    node.textContent = "Aktuell ist keine Session aktiv. Im Feed können dann nur fällige Wiederholungen aus Retention auftauchen.";
     if (targetNode) {
       targetNode.hidden = true;
       targetNode.textContent = "";
@@ -1083,12 +1072,21 @@ function updateSessionActionButtons(context, disabled) {
   context.elements.deleteButton.disabled = disabled || !context.activeSession;
 }
 
+function updateRetentionActionButtons(context, disabled) {
+  context.elements.retentionManageButton.disabled = disabled;
+  context.elements.retentionDeleteButton.disabled = disabled || !context.hasRetentionEntries;
+}
+
 function setBarStatus(context, message, tone = "neutral") {
   setStatusNode(context.elements.statusNode, message, tone);
 }
 
 function setModalStatus(context, message, tone = "neutral") {
   setStatusNode(context.elements.modalStatusNode, message, tone);
+}
+
+function setRetentionBarStatus(context, message, tone = "neutral") {
+  setStatusNode(context.elements.retentionStatusNode, message, tone);
 }
 
 function closeModal(context) {
@@ -1297,13 +1295,46 @@ function mapDeleteSessionError(error) {
   const message = String(error?.message || "").trim();
 
   if (code === "PGRST202") {
-     return "Die Löschfunktion für die Session ist noch nicht im API-Schema verfügbar. Seite neu laden und erneut versuchen.";
+    return "Die Löschfunktion für die aktive Session ist noch nicht im API-Schema verfügbar. Seite neu laden und erneut versuchen.";
   }
   if (message.includes("Authentication required")) {
      return "Bitte melde dich zuerst an, um deine Session zu löschen.";
   }
 
-    return "Die aktive Session konnte nicht gelöscht werden.";
+  if (
+   code === "42P01"
+   || code === "42703"
+   || message.toLowerCase().includes("learning_activity_attempts")
+   || message.toLowerCase().includes("user_feed_activity_deferrals")
+  ) {
+    return "Die Session-Löschlogik ist im Supabase-Projekt noch nicht vollständig aktiv. Bitte die aktuellen Migrationen deployen und erneut versuchen.";
+  }
+
+   return "Die aktive Session konnte nicht gelöscht werden.";
+}
+
+function mapDeleteRetentionError(error) {
+  const code = String(error?.code || error?.error_code || "").trim();
+  const message = String(error?.message || "").trim();
+  const normalized = message.toLowerCase();
+
+  if (code === "PGRST202") {
+    return "Die Löschfunktion für Wiederholungen ist noch nicht im API-Schema verfügbar. Seite neu laden und erneut versuchen.";
+  }
+  if (message.includes("Authentication required")) {
+    return "Bitte melde dich zuerst an, um deine Wiederholungen zu löschen.";
+  }
+  if (
+   code === "42P01"
+   || code === "42703"
+   || normalized.includes("user_retention_scopes")
+   || normalized.includes("retention_flashcard")
+   || normalized.includes("user_retention_check_exclusions")
+  ) {
+    return "Die Retention-Löschlogik ist im Supabase-Projekt noch nicht vollständig aktiv. Bitte die aktuellen Migrationen deployen und erneut versuchen.";
+  }
+
+   return "Die Wiederholungen konnten nicht gelöscht werden.";
 }
 
 async function handleSave(context) {
@@ -1355,7 +1386,9 @@ async function handleDelete(context) {
     return;
   }
 
-  const confirmed = window.confirm("Aktive Session und die dazugehörigen sessionbezogenen Schritte wirklich löschen?");
+  const confirmed = window.confirm(
+    "Aktive Session wirklich löschen? Das entfernt die aktive Session mit ihren sessionbezogenen Schritten, Versuchen und Feed-Einträgen. Wiederholungen bleiben unverändert.",
+  );
   if (!confirmed) return;
 
   setMutationBusy(context, true, "delete");
@@ -1377,12 +1410,48 @@ async function handleDelete(context) {
       refreshCompletedPanel(context),
     ]);
     closeModal(context);
-    setBarStatus(context, "");
+    setBarStatus(context, "Aktive Session gelöscht. Wiederholungen bleiben unverändert.", "success");
   } catch (error) {
     console.error("Aktive Session konnte nicht gelöscht werden:", error);
     setBarStatus(context, mapDeleteSessionError(error), "error");
   } finally {
     setMutationBusy(context, false);
+  }
+}
+
+async function handleRetentionDelete(context) {
+  if (context.retentionIsSaving) return;
+  if (!context.supabase || !context.authState?.user) {
+    setRetentionBarStatus(context, "Bitte melde dich zuerst an, um deine Wiederholungen zu löschen.", "error");
+    return;
+  }
+
+  const confirmed = window.confirm(
+    "Alle Wiederholungen wirklich löschen? Das entfernt alle Retention-Lernbereiche mit Check-Auswahl, Flashcard-Ständen, laufenden Durchgängen und retentionbezogenen Feed-Einträgen. Die aktuelle Session bleibt unverändert.",
+  );
+  if (!confirmed) return;
+
+  setRetentionMutationBusy(context, true);
+  setRetentionBarStatus(context, "");
+
+  try {
+    const { error } = await context.supabase.rpc("delete_all_retention_data");
+    if (error) throw error;
+
+    if (context.elements.retentionOverlay?.classList.contains("open")) {
+      closeRetentionModal(context);
+    }
+
+    await Promise.all([
+      refreshPrimaryFeedCard(context),
+      refreshCompletedPanel(context),
+    ]);
+    setRetentionBarStatus(context, "Wiederholungen gelöscht. Die aktuelle Session bleibt unverändert.", "success");
+  } catch (error) {
+    console.error("Wiederholungen konnten nicht gelöscht werden:", error);
+    setRetentionBarStatus(context, mapDeleteRetentionError(error), "error");
+  } finally {
+    setRetentionMutationBusy(context, false);
   }
 }
 
@@ -1393,6 +1462,10 @@ function bindEvents(context) {
 
   context.elements.deleteButton.addEventListener("click", () => {
     void handleDelete(context);
+  });
+
+  context.elements.retentionDeleteButton?.addEventListener("click", () => {
+    void handleRetentionDelete(context);
   });
 
   context.elements.closeButton.addEventListener("click", () => {
@@ -1432,7 +1505,328 @@ function bindEvents(context) {
   context.elements.saveButton.addEventListener("click", () => {
     void handleSave(context);
   });
+
+  // Retention-Modal Events
+  context.elements.retentionManageButton?.addEventListener("click", () => {
+    void openRetentionModal(context);
+  });
+
+  context.elements.retentionCloseButton?.addEventListener("click", () => {
+    if (context.retentionIsSaving) return;
+    closeRetentionModal(context);
+  });
+
+  context.elements.retentionOverlay?.addEventListener("click", (event) => {
+    if (context.retentionIsSaving) return;
+    if (event.target === context.elements.retentionOverlay) {
+      closeRetentionModal(context);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      context.elements.retentionOverlay?.classList.contains("open") &&
+      !context.retentionIsSaving
+    ) {
+      closeRetentionModal(context);
+    }
+  });
+
+  context.elements.retentionResetButton?.addEventListener("click", () => {
+    if (context.retentionIsSaving) return;
+    void openRetentionModal(context);
+  });
+
+  context.elements.retentionSaveButton?.addEventListener("click", () => {
+    void handleRetentionSave(context);
+  });
 }
+
+// ─── Retention-Modal ───────────────────────────────────────────────────────
+
+function buildRetentionStateFromPersisted(lernbereiche, scopeRows, exclusionRows) {
+  const activeBySlug = new Set(
+    (Array.isArray(scopeRows) ? scopeRows : [])
+      .map((row) => String(row?.lernbereich_slug || "").trim())
+      .filter(Boolean),
+  );
+  const exclusionsBySlug = new Map();
+  (Array.isArray(exclusionRows) ? exclusionRows : []).forEach((row) => {
+    const slug = String(row?.lernbereich_slug || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    if (!slug || !checkId) return;
+    if (!exclusionsBySlug.has(slug)) exclusionsBySlug.set(slug, new Set());
+    exclusionsBySlug.get(slug).add(checkId);
+  });
+
+  const state = {};
+  lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      const isActive = activeBySlug.has(lb.id);
+      const excluded = exclusionsBySlug.get(lb.id) || new Set();
+      const lbState = { active: isActive, checks: {} };
+      lb.checks.forEach((check) => {
+        if (excluded.has(check.id)) {
+          lbState.checks[check.id] = false;
+        }
+      });
+      state[lb.id] = lbState;
+    });
+  });
+  return state;
+}
+
+function buildRetentionDraftPayload(retentionDraft, lernbereiche) {
+  const activeLernbereiche = [];
+  const excludedChecksBySlug = {};
+
+  lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      const lbState = retentionDraft[lb.id];
+      if (!lbState?.active) return;
+      activeLernbereiche.push(lb.id);
+      const excluded = lb.checks
+        .filter((check) => lbState.checks?.[check.id] === false)
+        .map((check) => check.id);
+      if (excluded.length) {
+        excludedChecksBySlug[lb.id] = excluded;
+      }
+    });
+  });
+
+  return {
+    p_active_lernbereiche: activeLernbereiche,
+    p_excluded_check_ids: Object.keys(excludedChecksBySlug).length ? excludedChecksBySlug : {},
+  };
+}
+
+function setRetentionModalStatus(context, message, tone = "neutral") {
+  setStatusNode(context.elements.retentionModalStatusNode, message, tone);
+}
+
+function closeRetentionModal(context) {
+  context.elements.retentionOverlay.classList.remove("open");
+  document.body.style.overflow = "";
+  setRetentionModalStatus(context, "");
+}
+
+function updateRetentionCount(item, lb, retentionDraft) {
+  const lbState = retentionDraft[lb.id] || { active: false, checks: {} };
+  const total = lb.checks.length;
+  const selected = countSelectedChecks(lb, lbState);
+  item.querySelector(".lb-accord-count").textContent = `${lbState.active ? `${selected}/${total}` : total} Checks`;
+}
+
+function buildRetentionModal(context) {
+  const { retentionContainer } = context.elements;
+  retentionContainer.innerHTML = "";
+
+  context.lernbereiche.forEach((group) => {
+    const divider = document.createElement("div");
+    divider.className = "lb-group-divider";
+    divider.innerHTML = `<div class="lb-group-div-icon" style="background:${escapeHtml(group.iconBg)};color:${escapeHtml(group.iconColor)};">${escapeHtml(group.icon)}</div><span>${escapeHtml(group.group)}</span>`;
+    retentionContainer.appendChild(divider);
+
+    group.items.forEach((lb) => {
+      const lbState = context.retentionDraft[lb.id] || { active: false, checks: {} };
+      const item = document.createElement("div");
+      item.className = `lb-accord-item${lbState.active ? " active" : ""}`;
+      item.dataset.id = lb.id;
+
+      const total = lb.checks.length;
+      const selected = countSelectedChecks(lb, lbState);
+
+      item.innerHTML = `
+        <div class="lb-accord-head">
+          <label class="lb-toggle">
+            <input type="checkbox" ${lbState.active ? "checked" : ""}>
+            <span class="lb-toggle-slider"></span>
+          </label>
+          <span class="lb-accord-title">${escapeHtml(lb.name)}</span>
+          <span class="lb-accord-count">${lbState.active ? `${selected}/${total}` : total} Checks</span>
+          <span class="lb-accord-arrow">›</span>
+        </div>
+        <div class="lb-accord-body">
+          <div class="lb-kompetenz-actions">
+            <button class="btn-ghost btn-xs" data-action="all" type="button">Alle auswählen</button>
+            <button class="btn-ghost btn-xs" data-action="none" type="button">Alle abwählen</button>
+          </div>
+          <div class="lb-kompetenz-list">
+            ${lb.checks.map((check) => {
+              const checked = isCheckSelected(lbState, check.id);
+              const disabled = !lbState.active;
+              return `<label class="lb-kompetenz${disabled ? " disabled" : ""}">
+                <input type="checkbox" ${checked ? "checked" : ""} ${disabled ? "disabled" : ""} data-check-id="${escapeHtml(check.id)}">
+                ${escapeHtml(check.label)}
+              </label>`;
+            }).join("")}
+          </div>
+        </div>`;
+
+      const toggleLabel = item.querySelector(".lb-toggle");
+      const toggle = item.querySelector(".lb-toggle input");
+
+      toggleLabel?.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
+
+      toggle.addEventListener("change", () => {
+        const isActive = toggle.checked;
+        if (!context.retentionDraft[lb.id]) {
+          context.retentionDraft[lb.id] = { active: false, checks: {} };
+        }
+        context.retentionDraft[lb.id].active = isActive;
+        if (isActive) {
+          lb.checks.forEach((check) => {
+            if (context.retentionDraft[lb.id].checks[check.id] === undefined) {
+              context.retentionDraft[lb.id].checks[check.id] = true;
+            }
+          });
+          item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+        }
+        const checkboxes = Array.from(item.querySelectorAll(".lb-kompetenz input"));
+        const labels = Array.from(item.querySelectorAll(".lb-kompetenz"));
+        checkboxes.forEach((checkbox, index) => {
+          checkbox.disabled = !isActive;
+          if (isActive && context.retentionDraft[lb.id].checks[lb.checks[index].id] !== false) {
+            checkbox.checked = true;
+          }
+          labels[index].classList.toggle("disabled", !isActive);
+        });
+        updateRetentionCount(item, lb, context.retentionDraft);
+      });
+
+      item.querySelector(".lb-accord-head")?.addEventListener("click", (event) => {
+        if (event.target.closest(".lb-toggle")) return;
+        item.classList.toggle("open");
+      });
+
+      item.querySelectorAll(".lb-kompetenz input").forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+          if (!context.retentionDraft[lb.id]) {
+            context.retentionDraft[lb.id] = { active: true, checks: {} };
+          }
+          context.retentionDraft[lb.id].checks[checkbox.dataset.checkId] = checkbox.checked;
+          updateRetentionCount(item, lb, context.retentionDraft);
+        });
+      });
+
+      item.querySelector('[data-action="all"]')?.addEventListener("click", () => {
+        if (!context.retentionDraft[lb.id]?.active) return;
+        item.querySelectorAll(".lb-kompetenz input").forEach((checkbox) => {
+          checkbox.checked = true;
+          context.retentionDraft[lb.id].checks[checkbox.dataset.checkId] = true;
+        });
+        updateRetentionCount(item, lb, context.retentionDraft);
+      });
+
+      item.querySelector('[data-action="none"]')?.addEventListener("click", () => {
+        if (!context.retentionDraft[lb.id]?.active) return;
+        item.querySelectorAll(".lb-kompetenz input").forEach((checkbox) => {
+          checkbox.checked = false;
+          context.retentionDraft[lb.id].checks[checkbox.dataset.checkId] = false;
+        });
+        updateRetentionCount(item, lb, context.retentionDraft);
+      });
+
+      retentionContainer.appendChild(item);
+    });
+  });
+}
+
+async function openRetentionModal(context) {
+  if (!context.authState?.user || !context.lernbereiche.length || !context.supabase) return;
+
+  setRetentionModalStatus(context, "");
+  context.retentionDraft = {};
+  context.elements.retentionOverlay.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  try {
+    const [{ data: scopeRows, error: scopeError }, { data: exclusionRows, error: exclusionError }] = await Promise.all([
+      context.supabase
+        .from("user_retention_scopes")
+        .select("lernbereich_slug")
+        .eq("activity_type", "flashcards")
+        .eq("scope_type", "lernbereich")
+        .eq("status", "active"),
+      context.supabase
+        .from("user_retention_check_exclusions")
+        .select("lernbereich_slug, check_id"),
+    ]);
+
+    if (scopeError) throw scopeError;
+    if (exclusionError) throw exclusionError;
+
+    context.retentionDraft = buildRetentionStateFromPersisted(context.lernbereiche, scopeRows, exclusionRows);
+    buildRetentionModal(context);
+  } catch (error) {
+    console.error("Retention-Scopes konnten nicht geladen werden:", error);
+    setRetentionModalStatus(context, "Der aktuelle Wiederholungsstand konnte nicht geladen werden.", "error");
+  }
+}
+
+function setRetentionMutationBusy(context, busy) {
+  context.retentionIsSaving = busy;
+  updateRetentionActionButtons(context, busy);
+  context.elements.retentionSaveButton.disabled = busy;
+  context.elements.retentionResetButton.disabled = busy;
+  context.elements.retentionCloseButton.disabled = busy;
+  context.elements.retentionSaveButton.textContent = busy ? "Speichern ..." : "Übernehmen";
+}
+
+function mapRetentionError(error) {
+  const code = String(error?.code || error?.error_code || "").trim().toUpperCase();
+  const message = String(error?.message || "").trim();
+
+  if (code === "PGRST202") {
+    return "Die Retention-Funktion ist noch nicht im API-Schema verfügbar. Seite neu laden und erneut versuchen.";
+  }
+  if (message.includes("Authentication required")) {
+    return "Bitte melde dich zuerst an.";
+  }
+  if (code === "42P01" || code === "42703") {
+    return "Die Retention-Migrationen sind noch nicht vollständig aktiv. Bitte deployen und erneut versuchen.";
+  }
+  if (message) {
+    return `Wiederholungen konnten nicht gespeichert werden. Detail: ${message}`;
+  }
+  return "Wiederholungen konnten nicht gespeichert werden.";
+}
+
+async function handleRetentionSave(context) {
+  if (context.retentionIsSaving) return;
+  if (!context.supabase || !context.authState?.user) {
+    setRetentionModalStatus(context, "Bitte melde dich zuerst an.", "error");
+    return;
+  }
+
+  const payload = buildRetentionDraftPayload(context.retentionDraft, context.lernbereiche);
+
+  setRetentionMutationBusy(context, true);
+  setRetentionModalStatus(context, "Speichere Wiederholungen ...");
+
+  try {
+    const { error } = await context.supabase.rpc("manage_retention_scopes", payload);
+    if (error) throw error;
+
+    await Promise.all([
+      refreshPrimaryFeedCard(context),
+      refreshCompletedPanel(context),
+    ]);
+    closeRetentionModal(context);
+  } catch (error) {
+    console.error("Retention-Scopes konnten nicht gespeichert werden:", error);
+    setRetentionModalStatus(context, mapRetentionError(error), "error");
+  } finally {
+    setRetentionMutationBusy(context, false);
+  }
+}
+
+// ─── Ende Retention-Modal ──────────────────────────────────────────────────
 
 function createContext(root, lernbereiche) {
   const elements = {
@@ -1452,6 +1846,15 @@ function createContext(root, lernbereiche) {
     statusNode: document.getElementById("lbSessionStatus"),
     modalStatusNode: document.getElementById("lbModalStatus"),
     completedList: root.querySelector("[data-dashboard-completed-list]"),
+    retentionManageButton: document.getElementById("retentionOpenBtn"),
+    retentionDeleteButton: document.getElementById("retentionDeleteBtn"),
+    retentionOverlay: document.getElementById("retentionOverlay"),
+    retentionContainer: document.getElementById("retentionAccordionContainer"),
+    retentionCloseButton: document.getElementById("retentionCloseBtn"),
+    retentionSaveButton: document.getElementById("retentionSaveBtn"),
+    retentionResetButton: document.getElementById("retentionResetBtn"),
+    retentionModalStatusNode: document.getElementById("retentionModalStatus"),
+    retentionStatusNode: document.getElementById("retentionStatus"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),
     primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
     primaryFeedDesc: root.querySelector("[data-dashboard-primary-feed-desc]"),
@@ -1474,6 +1877,9 @@ function createContext(root, lernbereiche) {
     draft: {},
     draftConfig: { targetDate: "" },
     isSaving: false,
+    retentionDraft: {},
+    retentionIsSaving: false,
+    hasRetentionEntries: false,
     elements,
     primaryFeedDefaults: capturePrimaryFeedDefaults(elements),
   };
@@ -1512,6 +1918,7 @@ export async function initDashboardModule() {
   updatePlanSummary(context);
   updateChipSummary(context);
   updateSessionActionButtons(context, true);
+  updateRetentionActionButtons(context, true);
   setBarStatus(context, "");
   applyPrimaryFeedLoadingState(context);
 
@@ -1539,6 +1946,7 @@ export async function initDashboardModule() {
 
   setGreetingName(authState.user);
   updateSessionActionButtons(context, false);
+  updateRetentionActionButtons(context, false);
 
   try {
     const persisted = await loadPersistedState(context.supabase, lernbereiche);
@@ -1552,6 +1960,7 @@ export async function initDashboardModule() {
       refreshCompletedPanel(context),
     ]);
     updateSessionActionButtons(context, false);
+    updateRetentionActionButtons(context, false);
     setBarStatus(context, "");
   } catch (error) {
     console.error("Aktive Session konnte nicht geladen werden:", error);

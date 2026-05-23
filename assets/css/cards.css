@@ -19,7 +19,7 @@
     --dcc-surface-tint-strong: color-mix(in srgb, var(--dcc-accent) 18%, var(--dcc-accent-soft));
     --dcc-surface-shell: var(--surface);
     --dcc-radius: 24px;
-    --dcc-header-pad-x: 14px;
+    --dcc-header-body-pad-x: clamp(0px, 1vw, 14px);
     --dcc-header-pad-top: 0px;
     --dcc-header-pad-bottom: 8px;
     --dcc-header-action-size: 36px;
@@ -117,14 +117,14 @@ html.light .check-card {
     font-size: 1rem;
     column-gap: 12px;
     margin-bottom: 0;
-    padding: var(--dcc-header-pad-top) var(--dcc-header-pad-x) var(--dcc-header-pad-bottom);
+    padding: var(--dcc-header-pad-top) var(--dcc-header-body-pad-x) var(--dcc-header-pad-bottom);
     flex: 0 0 auto;
 }
 
 .check-card__header::after {
     content: "";
     position: absolute;
-    inset-inline: var(--dcc-header-pad-x);
+    inset-inline: var(--dcc-header-body-pad-x);
     bottom: 0;
     height: 1px;
     background: color-mix(in srgb, var(--dcc-accent) 24%, var(--border));
@@ -824,7 +824,7 @@ html.light .check-card {
     gap: 8px;
     width: 100%;
     min-width: 0;
-    padding: 14px;
+    padding: 14px var(--dcc-header-body-pad-x) 14px;
     box-sizing: border-box;
     align-content: start;
 }

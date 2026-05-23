@@ -9,25 +9,25 @@
         <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Aktuelle Session</span>
+                    <span class="check-card__title dashboard-panel__title">Session</span>
                 </div>
                 <div class="check-card__header-actions">
                     <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-session-menu>
-                        <summary class="check-card__actions-trigger" aria-label="Aktionen zur aktuellen Session">
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zur Session">
                             <span class="check-card__actions-dots" aria-hidden="true">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                             </span>
                         </summary>
-                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zur aktuellen Session">
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zur Session">
                             <button class="check-card__actions-item" type="button" id="lbOpenBtn" role="menuitem">
                                 <span class="check-card__actions-icon" aria-hidden="true">✎</span>
-                                <span>Aktuelle Session bearbeiten</span>
+                                <span>Bearbeiten</span>
                             </button>
                             <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="lbDeleteBtn" role="menuitem">
                                 <span class="check-card__actions-icon" aria-hidden="true">✕</span>
-                                <span>Aktuelle Session löschen</span>
+                                <span>Löschen</span>
                             </button>
                         </div>
                     </details>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-feed__intro">Hier erscheinen der nächste sinnvolle Schritt und weitere anstehende Aktivitäten: offene Session-Aktivitäten bleiben leitend, fällige Flashcards aus abgeschlossenen Lernbereichen mischen sich nach ihrem Wiederholungsabstand dazwischen.</p>
+                <p class="dashboard-feed__intro">Hier erscheinen der nächste sinnvolle Schritt und weitere anstehende Aktivitäten: offene Session-Aktivitäten bleiben leitend, fällige Wiederholungs-Flashcards aus Retention mischen sich nach ihrem Wiederholungsabstand dazwischen.</p>
                 <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
                     <li class="action-card" data-type="feed" data-dashboard-primary-feed-card>
                         <div class="action-body">
@@ -71,12 +71,34 @@
         <article class="check-card dashboard-panel dashboard-panel--completed" data-dashboard-completed-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Abgeschlossene Lernbereiche</span>
+                    <span class="check-card__title dashboard-panel__title">Wiederholungen</span>
+                </div>
+                <div class="check-card__header-actions">
+                    <details class="check-card__actions-menu" data-dashboard-retention-menu>
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zu Wiederholungen">
+                            <span class="check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zu Wiederholungen">
+                            <button class="check-card__actions-item" type="button" id="retentionOpenBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
+                                <span>Bearbeiten</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="retentionDeleteBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
+                                <span>Löschen</span>
+                            </button>
+                        </div>
+                    </details>
                 </div>
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-completed__intro">Hier erscheinen Lernbereiche, bei denen alle ausgewählten Checks über den letzten Kompetenzlisten-Schritt abgeschlossen wurden, auch wenn die zugehörige Session bereits beendet ist.</p>
+                <p class="dashboard-completed__intro">Hier erscheinen Lernbereiche, die aktuell für Wiederholungs-Flashcards in Retention aktiv sind, jeweils mit ihrer ausgewählten Check-Menge.</p>
+                <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
                 <div class="dashboard-completed__list" data-dashboard-completed-list>
                     <p class="dashboard-completed__empty">Bisher wurde noch kein Lernbereich vollständig abgeschlossen.</p>
                 </div>
@@ -127,7 +149,7 @@
     <div class="lb-modal">
         <div class="lb-modal-head">
             <div>
-                <h2>Aktuelle Session bearbeiten</h2>
+                <h2>Session bearbeiten</h2>
                 <p>Aktiviere Lernbereiche und waehle die Kompetenzen aus, die du trainieren moechtest.</p>
             </div>
             <button class="lb-close" id="lbCloseBtn" type="button">X</button>
@@ -147,6 +169,26 @@
             <p class="lb-status-message lb-modal-status" id="lbModalStatus" aria-live="polite" hidden></p>
             <button class="btn-ghost" type="button" id="lbResetBtn">Zurücksetzen</button>
             <button class="btn-primary" type="button" id="lbSaveBtn">Übernehmen</button>
+        </div>
+    </div>
+</div>
+
+<div class="lb-overlay" id="retentionOverlay">
+    <div class="lb-modal">
+        <div class="lb-modal-head">
+            <div>
+                <h2>Wiederholungen verwalten</h2>
+                <p>Wähle Lernbereiche für Retention-Flashcards und passe die Check-Auswahl an.</p>
+            </div>
+            <button class="lb-close" id="retentionCloseBtn" type="button">X</button>
+        </div>
+
+        <div id="retentionAccordionContainer"></div>
+
+        <div class="lb-modal-footer">
+            <p class="lb-status-message lb-modal-status" id="retentionModalStatus" aria-live="polite" hidden></p>
+            <button class="btn-ghost" type="button" id="retentionResetBtn">Zurücksetzen</button>
+            <button class="btn-primary" type="button" id="retentionSaveBtn">Übernehmen</button>
         </div>
     </div>
 </div>

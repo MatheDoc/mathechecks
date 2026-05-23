@@ -505,7 +505,7 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
 
   const hasActiveSession = Boolean(activeSession?.id);
 
-  const [scopeResponse, completedActivityCount] = await Promise.all([
+  const [scopeResponse, completedActivityCount, exclusionResponse] = await Promise.all([
     supabase
       .from("user_retention_scopes")
       .select("activity_type, scope_type, lernbereich_slug, status, next_due_after_activity_count")
@@ -513,17 +513,32 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
       .eq("scope_type", "lernbereich")
       .eq("status", "active"),
     hasActiveSession ? loadCurrentFeedActivityCompletionCount(supabase) : Promise.resolve(0),
+    supabase
+      .from("user_retention_check_exclusions")
+      .select("lernbereich_slug, check_id"),
   ]);
 
   const { data: scopeRows, error: scopeError } = scopeResponse;
+  const { data: exclusionRows, error: exclusionError } = exclusionResponse;
 
   if (scopeError) throw scopeError;
+  if (exclusionError) throw exclusionError;
 
   const lernbereichSlugs = [...new Set((Array.isArray(scopeRows) ? scopeRows : [])
     .map((row) => String(row?.lernbereich_slug || "").trim())
     .filter(Boolean))];
 
   if (!lernbereichSlugs.length) return [];
+
+  // Ausgeschlossene Check-IDs pro Lernbereich
+  const excludedChecksBySlug = new Map();
+  (Array.isArray(exclusionRows) ? exclusionRows : []).forEach((row) => {
+    const slug = String(row?.lernbereich_slug || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    if (!slug || !checkId) return;
+    if (!excludedChecksBySlug.has(slug)) excludedChecksBySlug.set(slug, new Set());
+    excludedChecksBySlug.get(slug).add(checkId);
+  });
 
   const stateBySlug = new Map(lernbereichSlugs.map((slug) => [slug, {
     hasState: false,
@@ -533,7 +548,7 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
   const nowIso = new Date().toISOString();
   const { data: stateRows, error: stateError } = await supabase
     .from("retention_flashcard_card_state")
-    .select("lernbereich_slug, next_due_at")
+    .select("lernbereich_slug, check_id, next_due_at")
     .in("lernbereich_slug", lernbereichSlugs)
     .order("lernbereich_slug", { ascending: true })
     .order("next_due_at", { ascending: true });
@@ -542,6 +557,9 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
 
   (Array.isArray(stateRows) ? stateRows : []).forEach((row) => {
     const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    // Karten ausgeschlossener Checks nicht in die Due-Prüfung einbeziehen
+    if (checkId && excludedChecksBySlug.get(lernbereichSlug)?.has(checkId)) return;
     const summary = stateBySlug.get(lernbereichSlug);
     if (!summary) return;
     summary.hasState = true;
@@ -617,6 +635,39 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
       if (dueDelta !== 0) return dueDelta;
 
       return String(left.lernbereich_slug || "").localeCompare(String(right.lernbereich_slug || ""), "de");
+    });
+}
+
+async function loadRetentionSlotFillEntries(supabase, excludedActivityKeys = new Set()) {
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("user_retention_scopes")
+    .select("activity_type, scope_type, lernbereich_slug, next_due_after_activity_count")
+    .eq("activity_type", "flashcards")
+    .eq("scope_type", "lernbereich")
+    .eq("status", "active")
+    .order("next_due_after_activity_count", { ascending: true })
+    .order("lernbereich_slug", { ascending: true });
+
+  if (error) throw error;
+
+  return (Array.isArray(data) ? data : [])
+    .map((row) => {
+      const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
+      if (!lernbereichSlug) return null;
+
+      return {
+        activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
+        activity_type: "flashcards",
+        scope_type: "lernbereich",
+        lernbereich_slug: lernbereichSlug,
+        due_after_activity_count: Number(row?.next_due_after_activity_count),
+      };
+    })
+    .filter((entry) => {
+      if (!entry) return false;
+      return !excludedActivityKeys.has(String(entry.activity_key || "").trim());
     });
 }
 
@@ -842,6 +893,22 @@ export async function loadFeedProjection({
       .filter(Boolean);
 
     items = mergeHybridFeedItems(sessionItems, retentionItems, systemSettings);
+
+    const canFillVisibleRetentionSlots = Number.isFinite(limit) && limit > 0 && items.length < limit;
+    if (canFillVisibleRetentionSlots) {
+      const existingActivityKeys = new Set(items
+        .map((item) => String(item?.activityKey || "").trim())
+        .filter(Boolean));
+      const slotFillEntries = await loadRetentionSlotFillEntries(supabase, existingActivityKeys);
+      const slotFillItems = slotFillEntries
+        .map((entry) => buildRetentionFeedItem(contentMeta, entry))
+        .filter(Boolean)
+        .slice(0, limit - items.length);
+
+      if (slotFillItems.length) {
+        items = [...items, ...slotFillItems];
+      }
+    }
 
     if (items.length) {
       source = sessionItems.length ? "session" : "retention";
