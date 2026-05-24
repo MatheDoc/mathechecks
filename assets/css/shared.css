@@ -2108,14 +2108,16 @@ html.light .mod-start-content {
   .s-start-card__copy .mat-badge {
     font-size: 0.62rem;
     padding: 2px 8px;
-    margin-bottom: 8px;
   }
 }
 
 @media (max-width: 520px) {
   .s-start-card__intro {
-    flex-direction: column;
-    align-items: flex-start;
+    gap: 0;
+  }
+
+  .s-start-card__img-shell {
+    display: none;
   }
 }
 
