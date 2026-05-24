@@ -1070,7 +1070,11 @@ body.page-shell .shell {
 }
 
 .action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.68rem;
+  line-height: 1.1;
   font-weight: 600;
   padding: 4px 8px;
   border-radius: 10px;
@@ -5087,8 +5091,6 @@ html.light .roulette-widget__event {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: .65rem;
-  padding: 2px 7px;
 }
 
 .mod-main {

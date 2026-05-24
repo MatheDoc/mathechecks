@@ -137,11 +137,16 @@ def inverse_nxn(a: list[list[int]]) -> list[list[int]]:
     return inv
 
 
-def entry_questions(matrix: list[list[int]]) -> tuple[list[str], list[str]]:
+def entry_questions(
+    matrix: list[list[int]],
+    question_template: str | None = None,
+) -> tuple[list[str], list[str]]:
     """Return (fragen, antworten) in compact matrix format.
 
     fragen:  single item – shows the result matrix with named variables
     antworten: single item – variable assignments grouped by rows with <br>
+
+    question_template may contain the placeholder {matrix}.
     """
     rows = len(matrix)
     cols = len(matrix[0])
@@ -159,7 +164,10 @@ def entry_questions(matrix: list[list[int]]) -> tuple[list[str], list[str]]:
     # Build the question: matrix with variable names
     latex_rows = [" & ".join(v for v in row) for row in var_names]
     var_matrix_latex = r"\begin{pmatrix} " + r" \\ ".join(latex_rows) + r" \end{pmatrix}"
-    frage = f"Bestimme die Ergebnismatrix $ {var_matrix_latex} $."
+    if question_template is None:
+        frage = f"Bestimme die Ergebnismatrix $ {var_matrix_latex} $."
+    else:
+        frage = question_template.format(matrix=var_matrix_latex)
 
     # Build the answer: variables with values, grouped by rows via <br>
     answer_parts: list[str] = []

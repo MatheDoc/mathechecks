@@ -11,7 +11,9 @@ const LERNBEREICH_ALIASES = {
 const CHECK_PIPELINE_STEP_COUNT = Object.keys(FEED_STEP_ORDER).length;
 const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
 const SESSION_EMPTY_SUMMARY = "Aktuell ist keine Session aktiv.";
+const SESSION_EMPTY_LIST_MESSAGE = "Wähle Lernbereiche über Bearbeiten aus.";
 const RETENTION_EMPTY_SUMMARY = "Aktuell ist keine Wiederholung aktiv.";
+const RETENTION_EMPTY_LIST_MESSAGE = "Wähle Lernbereiche für Wiederholungen über Bearbeiten aus.";
 const RETENTION_LOADING_MESSAGE = "Wiederholungen werden geladen.";
 const RETENTION_UNAVAILABLE_MESSAGE = "Wiederholungen konnten gerade nicht geladen werden.";
 const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht geladen werden.";
@@ -242,19 +244,39 @@ function initProgressBars() {
   });
 }
 
-function initActionFeed(root, materialUrl) {
-  const listNode = root.querySelector("[data-dashboard-feed-list]");
-  if (!listNode || listNode.dataset.dashboardFeedBound === "true") return;
+function bindActionCardList(listNode, fallbackHref = "") {
+  if (!listNode || listNode.dataset.dashboardActionListBound === "true") return;
 
-  listNode.dataset.dashboardFeedBound = "true";
+  const navigate = (card, event) => {
+    const href = String(card?.dataset?.actionHref || fallbackHref || "").trim();
+    if (!href) return;
+    if (event) event.preventDefault();
+    window.location.href = href;
+  };
+
+  listNode.dataset.dashboardActionListBound = "true";
   listNode.addEventListener("click", (event) => {
     if (event.target.closest("button, a")) return;
 
     const card = event.target.closest(".action-card");
     if (!card || !listNode.contains(card)) return;
 
-    window.location.href = card.dataset.actionHref || materialUrl;
+    navigate(card);
   });
+
+  listNode.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+
+    const card = event.target.closest(".action-card");
+    if (!card || !listNode.contains(card)) return;
+
+    navigate(card, event);
+  });
+}
+
+function initActionFeed(root, materialUrl) {
+  const listNode = root.querySelector("[data-dashboard-feed-list]");
+  bindActionCardList(listNode, materialUrl);
 }
 
 function createBadgeMarkup(label, type = "") {
@@ -649,32 +671,74 @@ async function loadCompletedLernbereiche(context) {
   };
 }
 
-function renderCompletedLernbereichCard(entry) {
+function buildActiveLernbereichSummary(entries, emptyMessage) {
+  const activeEntries = Array.isArray(entries) ? entries : [];
+  if (!activeEntries.length) {
+    return emptyMessage;
+  }
+
+  const lernbereichCount = activeEntries.length;
+  const checkCount = activeEntries.reduce((sum, entry) => sum + Math.max(0, Number(entry?.checkCount) || 0), 0);
+  const lernbereichLabel = lernbereichCount === 1 ? "Lernbereich" : "Lernbereiche";
+  const checkLabel = checkCount === 1 ? "Check" : "Checks";
+  const verb = lernbereichCount === 1 ? "ist" : "sind";
+  return `Aktuell ${verb} ${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} aktiv.`;
+}
+
+function renderDashboardLernbereichCard(entry) {
   const href = buildLernbereichStartHref(entry);
-  const completedCount = Number(entry?.checkCount) || 0;
-  const totalCheckCount = Number(entry?.totalCheckCount) || completedCount;
-  const progressLabel = `${completedCount}/${Math.max(totalCheckCount, completedCount, 1)}`;
-  const tagName = href ? "a" : "article";
-  const hrefMarkup = href ? ` href="${escapeHtml(href)}"` : "";
+  const selectedCount = Math.max(0, Number(entry?.checkCount) || 0);
+  const totalCheckCount = Math.max(selectedCount, Number(entry?.totalCheckCount) || selectedCount || 0);
+  const normalizedTotalCount = Math.max(totalCheckCount, selectedCount, 1);
+  const progressLabel = `${selectedCount}/${normalizedTotalCount}`;
+  const linkAttributes = href
+    ? ` data-action-href="${escapeHtml(href)}" role="link" tabindex="0"`
+    : "";
+  const badgeMarkup = entry?.groupName
+    ? `<div class="action-badges">${createBadgeMarkup(entry.groupName)}</div>`
+    : "";
 
   return `
-    <${tagName} class="dashboard-completed-card"${hrefMarkup}>
-      <div class="dashboard-completed-card__top">
-        <div class="dashboard-completed-card__title-wrap">
-          <div class="dashboard-completed-card__title-line">
-            <div class="dashboard-completed-card__title">${escapeHtml(entry.lernbereichName)}</div>
-            <span class="dashboard-completed-card__progress">${escapeHtml(progressLabel)}</span>
-          </div>
-          <div class="dashboard-completed-card__meta">${escapeHtml(entry.groupName)}</div>
+    <li class="action-card dashboard-panel__action-card" data-type="dashboard"${linkAttributes}>
+      <div class="action-body">
+        <div class="action-title">
+          <span class="dashboard-panel__action-name">${escapeHtml(entry.lernbereichName)}</span>
+          <span class="dashboard-panel__action-progress">${escapeHtml(progressLabel)}</span>
         </div>
+        ${badgeMarkup}
       </div>
-    </${tagName}>
+    </li>
   `;
 }
 
-function renderCompletedPanelMessage(listNode, message) {
+function renderDashboardPanelMessage(listNode, message) {
   if (!listNode) return;
-  listNode.innerHTML = `<p class="dashboard-completed__empty">${escapeHtml(message)}</p>`;
+
+  const text = String(message || "").trim();
+  if (!text) {
+    listNode.hidden = true;
+    listNode.setAttribute("aria-hidden", "true");
+    listNode.innerHTML = "";
+    return;
+  }
+
+  listNode.hidden = false;
+  listNode.setAttribute("aria-hidden", "false");
+  listNode.innerHTML = `<li class="dashboard-panel__empty">${escapeHtml(text)}</li>`;
+}
+
+function renderDashboardLernbereichList(listNode, entries, emptyMessage) {
+  if (!listNode) return;
+
+  const activeEntries = Array.isArray(entries) ? entries : [];
+  if (!activeEntries.length) {
+    renderDashboardPanelMessage(listNode, emptyMessage);
+    return;
+  }
+
+  listNode.hidden = false;
+  listNode.setAttribute("aria-hidden", "false");
+  listNode.innerHTML = activeEntries.map((entry) => renderDashboardLernbereichCard(entry)).join("");
 }
 
 function updateRetentionSummary(context, entries = [], fallbackMessage = "") {
@@ -687,29 +751,18 @@ function updateRetentionSummary(context, entries = [], fallbackMessage = "") {
     return;
   }
 
-  const activeEntries = Array.isArray(entries) ? entries : [];
-  if (!activeEntries.length) {
-    node.textContent = RETENTION_EMPTY_SUMMARY;
-    return;
-  }
-
-  const lernbereichCount = activeEntries.length;
-  const checkCount = activeEntries.reduce((sum, entry) => sum + Math.max(0, Number(entry?.checkCount) || 0), 0);
-  const lernbereichLabel = lernbereichCount === 1 ? "Lernbereich" : "Lernbereiche";
-  const checkLabel = checkCount === 1 ? "Check" : "Checks";
-  const verb = lernbereichCount === 1 ? "ist" : "sind";
-  node.textContent = `Aktuell ${verb} ${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} aktiv.`;
+  node.textContent = buildActiveLernbereichSummary(entries, RETENTION_EMPTY_SUMMARY);
 }
 
 async function refreshCompletedPanel(context) {
-  const listNode = context.elements.completedList;
+  const listNode = context.elements.retentionList;
   if (!listNode) return;
 
   if (!context.supabase) {
     context.hasRetentionEntries = false;
     updateRetentionActionButtons(context, false);
     updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
-    renderCompletedPanelMessage(listNode, RETENTION_UNAVAILABLE_MESSAGE);
+    renderDashboardPanelMessage(listNode, RETENTION_UNAVAILABLE_MESSAGE);
     return;
   }
 
@@ -718,18 +771,13 @@ async function refreshCompletedPanel(context) {
     context.hasRetentionEntries = hasRetentionEntries;
     updateRetentionActionButtons(context, false);
     updateRetentionSummary(context, completedLernbereiche);
-    if (!completedLernbereiche.length) {
-      renderCompletedPanelMessage(listNode, RETENTION_EMPTY_SUMMARY);
-      return;
-    }
-
-    listNode.innerHTML = completedLernbereiche.map((entry) => renderCompletedLernbereichCard(entry)).join("");
+    renderDashboardLernbereichList(listNode, completedLernbereiche, RETENTION_EMPTY_LIST_MESSAGE);
   } catch (error) {
     context.hasRetentionEntries = false;
     updateRetentionActionButtons(context, false);
     console.error("Abgeschlossene Lernbereiche konnten nicht geladen werden:", error);
     updateRetentionSummary(context, [], RETENTION_LOAD_ERROR_MESSAGE);
-    renderCompletedPanelMessage(listNode, RETENTION_LOAD_ERROR_MESSAGE);
+    renderDashboardPanelMessage(listNode, RETENTION_LOAD_ERROR_MESSAGE);
   }
 }
 
@@ -855,6 +903,28 @@ function summarizeActivePlan(context) {
   });
 
   return { lernbereichCount, checkCount, selectedCheckIds };
+}
+
+function collectActiveSessionLernbereiche(context) {
+  const entries = [];
+
+  context.lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      const lbState = context.state[lb.id];
+      if (!lbState?.active) return;
+
+      entries.push({
+        lernbereichId: lb.id,
+        lernbereichName: lb.name,
+        gebietKey: lb.gebietKey,
+        groupName: group.group,
+        checkCount: countSelectedChecks(lb, lbState),
+        totalCheckCount: Array.isArray(lb.checks) ? lb.checks.length : 0,
+      });
+    });
+  });
+
+  return entries;
 }
 
 function buildPayloadFromState(draft, lernbereiche, draftConfig) {
@@ -998,8 +1068,9 @@ function updatePlanSummary(context) {
 
   const targetNode = context.elements.planTarget;
   const assessmentNode = context.elements.planAssessment;
+  const activeEntries = collectActiveSessionLernbereiche(context);
 
-  if (!context.activeSession) {
+  if (!context.activeSession || !activeEntries.length) {
     node.textContent = SESSION_EMPTY_SUMMARY;
     if (targetNode) {
       targetNode.hidden = true;
@@ -1011,11 +1082,8 @@ function updatePlanSummary(context) {
     return;
   }
 
-  const { lernbereichCount, checkCount, selectedCheckIds } = summarizeActivePlan(context);
-  const lernbereichLabel = lernbereichCount === 1 ? "Lernbereich" : "Lernbereiche";
-  const checkLabel = checkCount === 1 ? "Check" : "Checks";
-  const verb = lernbereichCount === 1 ? "ist" : "sind";
-  node.textContent = `Aktuell ${verb} ${lernbereichCount} ${lernbereichLabel} mit ${checkCount} ${checkLabel} aktiv.`;
+  const { selectedCheckIds } = summarizeActivePlan(context);
+  node.textContent = buildActiveLernbereichSummary(activeEntries, SESSION_EMPTY_SUMMARY);
 
   if (targetNode) {
     const assessment = buildTargetDateAssessment(context, selectedCheckIds);
@@ -1070,39 +1138,12 @@ async function loadPersistedState(supabase, lernbereiche) {
   };
 }
 
-function updateChipSummary(context) {
-  const { chipsBox } = context.elements;
-  if (!chipsBox) return;
-
-  const activeItems = [];
-
-  context.lernbereiche.forEach((group) => {
-    group.items.forEach((lb) => {
-      if (context.state[lb.id]?.active) {
-        activeItems.push(lb);
-      }
-    });
-  });
-
-  if (!activeItems.length) {
-    chipsBox.hidden = true;
-    chipsBox.setAttribute("aria-hidden", "true");
-    chipsBox.innerHTML = '<span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>';
-    return;
-  }
-
-  chipsBox.hidden = false;
-  chipsBox.setAttribute("aria-hidden", "false");
-  chipsBox.innerHTML = "";
-  activeItems.forEach((lb) => {
-    const lbState = context.state[lb.id];
-    const total = lb.checks.length;
-    const selected = countSelectedChecks(lb, lbState);
-    const chip = document.createElement("span");
-    chip.className = "lb-chip";
-    chip.innerHTML = `<span class="lb-chip-dot" style="background:${escapeHtml(lb.color)}"></span>${escapeHtml(lb.name)} <span style="opacity:.5;font-size:0.72em;">${selected}/${total}</span>`;
-    context.elements.chipsBox.appendChild(chip);
-  });
+function updateSessionList(context) {
+  renderDashboardLernbereichList(
+    context.elements.sessionList,
+    collectActiveSessionLernbereiche(context),
+    SESSION_EMPTY_LIST_MESSAGE,
+  );
 }
 
 function updateSessionActionButtons(context, disabled) {
@@ -1394,9 +1435,9 @@ async function handleSave(context) {
     const persisted = await loadPersistedState(context.supabase, context.lernbereiche);
     context.state = persisted.state;
     context.activeSession = persisted.session;
-  context.sessionCheckStates = persisted.checkStates;
+    context.sessionCheckStates = persisted.checkStates;
     updatePlanSummary(context);
-    updateChipSummary(context);
+    updateSessionList(context);
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
@@ -1441,7 +1482,7 @@ async function handleDelete(context) {
     context.activeSession = null;
     context.sessionCheckStates = [];
     updatePlanSummary(context);
-    updateChipSummary(context);
+    updateSessionList(context);
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
@@ -1873,7 +1914,7 @@ function createContext(root, lernbereiche) {
     saveButton: document.getElementById("lbSaveBtn"),
     resetButton: document.getElementById("lbResetBtn"),
     overlay: document.getElementById("lbOverlay"),
-    chipsBox: document.getElementById("lbChips"),
+    sessionList: root.querySelector("[data-dashboard-session-list]"),
     planSummary: root.querySelector("[data-dashboard-plan-summary]"),
     planTarget: root.querySelector("[data-dashboard-plan-target]"),
     planAssessment: root.querySelector("[data-dashboard-plan-assessment]"),
@@ -1882,7 +1923,7 @@ function createContext(root, lernbereiche) {
     targetDateInput: document.getElementById("lbTargetDateInput"),
     statusNode: document.getElementById("lbSessionStatus"),
     modalStatusNode: document.getElementById("lbModalStatus"),
-    completedList: root.querySelector("[data-dashboard-completed-list]"),
+    retentionList: root.querySelector("[data-dashboard-retention-list]"),
     retentionSummary: root.querySelector("[data-dashboard-retention-summary]"),
     retentionManageButton: document.getElementById("retentionOpenBtn"),
     retentionDeleteButton: document.getElementById("retentionDeleteBtn"),
@@ -1932,6 +1973,8 @@ export async function initDashboardModule() {
 
   initProgressBars();
   initActionFeed(root, materialUrl);
+  bindActionCardList(root.querySelector("[data-dashboard-session-list]"));
+  bindActionCardList(root.querySelector("[data-dashboard-retention-list]"));
   initCardMenuDismiss(root);
 
   const gebiete = parseJsonScript("gebiete-dashboard-data", []);
@@ -1954,9 +1997,9 @@ export async function initDashboardModule() {
   setGreetingDate();
   bindEvents(context);
   updatePlanSummary(context);
-  updateChipSummary(context);
+  updateSessionList(context);
   updateRetentionSummary(context);
-  renderCompletedPanelMessage(context.elements.completedList, RETENTION_LOADING_MESSAGE);
+  renderDashboardPanelMessage(context.elements.retentionList, RETENTION_LOADING_MESSAGE);
   updateSessionActionButtons(context, true);
   updateRetentionActionButtons(context, true);
   setBarStatus(context, "");
@@ -1970,7 +2013,7 @@ export async function initDashboardModule() {
   if (!authState.configured) {
     applyPrimaryFeedErrorState(context);
     updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
-    renderCompletedPanelMessage(context.elements.completedList, RETENTION_UNAVAILABLE_MESSAGE);
+    renderDashboardPanelMessage(context.elements.retentionList, RETENTION_UNAVAILABLE_MESSAGE);
     setBarStatus(context, "Der Session-Speicher ist noch nicht konfiguriert.");
     return;
   }
@@ -1978,7 +2021,7 @@ export async function initDashboardModule() {
   if (authState.error) {
     applyPrimaryFeedErrorState(context);
     updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
-    renderCompletedPanelMessage(context.elements.completedList, RETENTION_UNAVAILABLE_MESSAGE);
+    renderDashboardPanelMessage(context.elements.retentionList, RETENTION_UNAVAILABLE_MESSAGE);
     setBarStatus(context, "Die Verbindung zur Session-Datenbank konnte nicht aufgebaut werden.", "error");
     return;
   }
@@ -1998,7 +2041,7 @@ export async function initDashboardModule() {
     context.activeSession = persisted.session;
     context.sessionCheckStates = persisted.checkStates;
     updatePlanSummary(context);
-    updateChipSummary(context);
+    updateSessionList(context);
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),

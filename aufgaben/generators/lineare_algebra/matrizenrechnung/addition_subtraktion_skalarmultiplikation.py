@@ -83,11 +83,13 @@ class AddSubSkalarGenerator(TaskGenerator):
                 einleitung = (
                     f"Gegeben sind die Matrizen "
                     f"$$ A = {a_latex}, \\quad B = {b_latex} $$ "
-                    f"und der Skalar $ \\lambda = {lam} $. "
-                    f"Berechne $ {op_label} $."
+                    f"und der Skalar $ \\lambda = {lam} $."
                 )
 
-                fragen, antworten = entry_questions(result)
+                fragen, antworten = entry_questions(
+                    result,
+                    question_template=f"Berechne $ {op_label} = {{matrix}} $.",
+                )
                 tasks.append(Task(
                     einleitung=einleitung,
                     fragen=fragen,

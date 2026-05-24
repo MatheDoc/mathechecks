@@ -28,13 +28,12 @@ class Determinante2x2Generator(TaskGenerator):
                 a_latex = matrix_to_latex(A)
 
                 einleitung = (
-                    f"Berechne die Determinante der Matrix "
-                    f"$$ A = {a_latex} $$"
+                    f"Gegeben ist die Matrix $$ A = {a_latex} $$."
                 )
 
                 tasks.append(Task(
                     einleitung=einleitung,
-                    fragen=["$ \\det(A) = $"],
+                    fragen=["Berechnen Sie die Determinante von A."],
                     antworten=[numerical_int(det_val)],
                 ))
                 break
