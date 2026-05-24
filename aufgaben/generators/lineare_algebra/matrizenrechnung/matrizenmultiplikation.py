@@ -36,11 +36,13 @@ class MatrizenmultiplikationGenerator(TaskGenerator):
 
                 einleitung = (
                     f"Gegeben sind die Matrizen "
-                    f"$$ A = {a_latex}, \\quad B = {b_latex} $$ "
-                    f"Berechne $ A \\cdot B $."
+                    f"$$ A = {a_latex}, \\quad B = {b_latex} $$."
                 )
 
-                fragen, antworten = entry_questions(C)
+                fragen, antworten = entry_questions(
+                    C,
+                    question_template=r"Berechne $ A \cdot B = {matrix} $.",
+                )
                 tasks.append(Task(
                     einleitung=einleitung,
                     fragen=fragen,

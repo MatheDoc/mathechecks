@@ -33,11 +33,13 @@ class TransponierteGenerator(TaskGenerator):
 
                 a_latex = matrix_to_latex(A)
                 einleitung = (
-                    f"Bestimme die Transponierte $ A^T $ der Matrix "
-                    f"$$ A = {a_latex} $$"
+                    f"Gegeben ist die Matrix $$ A = {a_latex} $$."
                 )
 
-                fragen, antworten = entry_questions(AT)
+                fragen, antworten = entry_questions(
+                    AT,
+                    question_template="Bestimmen Sie die transponierte Matrix $ A^T = {matrix} $.",
+                )
                 tasks.append(Task(
                     einleitung=einleitung,
                     fragen=fragen,

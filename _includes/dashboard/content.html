@@ -35,12 +35,10 @@
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-plan__summary" data-dashboard-plan-summary></p>
+                <p class="dashboard-panel__summary" data-dashboard-plan-summary></p>
                 <p class="dashboard-plan__target" data-dashboard-plan-target hidden>Zieldatum: nicht gesetzt.</p>
                 <p class="dashboard-panel__status dashboard-plan__assessment" data-dashboard-plan-assessment hidden></p>
-                <div id="lbChips" hidden aria-hidden="true">
-                    <span class="lb-chip-empty">Noch keine Lernbereiche gewählt - klicke auf Bearbeiten.</span>
-                </div>
+                <ul class="action-list dashboard-panel__list" data-dashboard-session-list hidden aria-hidden="true"></ul>
                 <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
             </div>
         </article>
@@ -97,9 +95,9 @@
             </div>
 
             <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-completed__intro" data-dashboard-retention-summary></p>
+                <p class="dashboard-panel__summary" data-dashboard-retention-summary></p>
                 <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
-                <div class="dashboard-completed__list" data-dashboard-completed-list></div>
+                <ul class="action-list dashboard-panel__list" data-dashboard-retention-list></ul>
             </div>
         </article>
 

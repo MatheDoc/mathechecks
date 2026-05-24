@@ -189,9 +189,8 @@ class MatrizengleichungenGenerator(TaskGenerator):
                     for name, mat in sorted(given.items())
                 )
                 einleitung = (
-                    f"Löse die Matrizengleichung $ {eq_latex} $ "
-                    f"nach $ X $ auf. "
-                    f"$$ {given_parts} $$"
+                    f"Gegeben sind die Matrizen $$ {given_parts} $$ "
+                    f"und die Matrizengleichung $ {eq_latex} $."
                 )
 
                 # Frage 1: MC for solution form
@@ -203,10 +202,13 @@ class MatrizengleichungenGenerator(TaskGenerator):
                 mc_answer = mc(mc_options_formatted, correct_idx)
 
                 # Frage 2: Matrix entries
-                entry_fragen, entry_antworten = entry_questions(X)
+                entry_fragen, entry_antworten = entry_questions(
+                    X,
+                    question_template="Bestimmen Sie $ X = {matrix} $.",
+                )
 
                 fragen = [
-                    f"Welche Gestalt hat $ X $?",
+                    "Lösen Sie die Gleichung nach $ X $ auf.",
                     entry_fragen[0],
                 ]
                 antworten = [

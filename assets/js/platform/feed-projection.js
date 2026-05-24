@@ -740,10 +740,7 @@ function buildCheckFeedItem(contentMeta, entry) {
     checkIndexLabel: formatCheckIndexLabel(checkMeta),
     checkKeyword: formatCheckShortTitle(checkMeta),
     descText: "",
-    badges: [
-      { label: checkMeta.lernbereichName, type: "" },
-      primaryBadge,
-    ],
+    badges: [primaryBadge],
     primaryBadge,
   });
 }
@@ -766,10 +763,7 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
       iconStyle: START_FEED_META.iconStyle,
       titleText: lernbereichMeta.lernbereichName,
       descText: "",
-      badges: [
-        { label: lernbereichMeta.lernbereichName, type: "" },
-        primaryBadge,
-      ],
+      badges: [primaryBadge],
       primaryBadge,
     });
   }
@@ -789,10 +783,7 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
     iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
-    badges: [
-      { label: lernbereichMeta.lernbereichName, type: "" },
-      primaryBadge,
-    ],
+    badges: [primaryBadge],
     primaryBadge,
   });
 }
@@ -814,10 +805,7 @@ function buildRetentionFeedItem(contentMeta, entry) {
     iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
-    badges: [
-      { label: lernbereichMeta.lernbereichName, type: "" },
-      primaryBadge,
-    ],
+    badges: [primaryBadge],
     primaryBadge,
   });
 }
