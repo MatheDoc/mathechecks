@@ -2,13 +2,11 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Bei Änderungen hier immer die passende Supabase-Migration für public.system_settings nachziehen.
   // Maximale Zahl sichtbarer Feed-Einträge im Dashboard.
   feedDashboardItemLimit: 5,
-  // Basisabstand N für Retention-Flashcards; weitere Fälligkeiten wachsen als N, 2N, 4N, ...
+  // Basisabstand N für Retention-Flashcards; weitere Wiedereinblendungen wachsen als N, 2N, 3N, ...
   feedRetentionActivityBaseGap: 5,
-  // Anzahl Session-Aktivitäten, die vor dem ersten Retention-Slot angezeigt werden.
-  feedRetentionInterleaveLeadSessionItems: 5,
-  // Anzahl weiterer Session-Aktivitäten zwischen zwei Retention-Slots.
-  feedRetentionInterleaveStride: 5,
-  // Maximalzahl frischer Training-Aktivitäten zwischen zwei Folgeaktivitäten laufender Check-Ketten.
+  // Sichtbare Einstiegsposition neuer oder neu sichtbarer Retention-Einträge im Dashboard-Feed.
+  feedRetentionNewItemPosition: 5,
+  // Fenstergröße für checkbezogene Folgeaktivitäten: Höchstens so viele spätere Checks dürfen vor Recall/Feynman/Kompetenzliste liegen.
   feedSessionFollowUpMaxGap: 3,
   // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
   planningDefaultSessionTempoDays: 3,
@@ -17,8 +15,7 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
   "feed.dashboard_item_limit": "feedDashboardItemLimit",
   "feed.retention_activity_base_gap": "feedRetentionActivityBaseGap",
-  "feed.retention_interleave_lead_session_items": "feedRetentionInterleaveLeadSessionItems",
-  "feed.retention_interleave_stride": "feedRetentionInterleaveStride",
+  "feed.retention_new_item_position": "feedRetentionNewItemPosition",
   "feed.session_follow_up_max_gap": "feedSessionFollowUpMaxGap",
   "planning.default_session_tempo_days": "planningDefaultSessionTempoDays",
 });

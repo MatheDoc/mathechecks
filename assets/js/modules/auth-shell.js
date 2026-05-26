@@ -1,5 +1,5 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260523-feed-retention-slot-fill";
-import { loadSystemSettings } from "../platform/system-settings.js?v=20260521-feed-deferred-db";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260527-feed-hang-fix";
+import { loadSystemSettings } from "../platform/system-settings.js?v=20260527-retention-gap-fix-3";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 let sidebarContentMetaPromise = null;

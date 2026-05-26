@@ -66,7 +66,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `record_check_module_attempt(...)` schreibt Recall-/Feynman-Versuche und bewegt passende `session_check_state`-Zeilen bei `can_do` weiter.
 - Die Flashcards-Folge-Migration führt `session_activity_state` als erste lernbereichsweite Feed-Projektion ein; inzwischen trägt sie `start` als direkte Einstiegsaktivität pro Lernbereich und `flashcards` als persistente Wiederholungsaktivität.
 - `get_or_create_flashcard_round(...)`, `record_flashcard_review(...)` und `resolve_flashcard_round(...)` bilden den session-scoped Feed-Schreibpfad für Flashcards ab.
-- `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab, ohne den Retention-Aktivitätszähler zu erhöhen.
+- `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab und erhöht dabei den user-scoped Feed-Aktivitätszähler.
 - `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad nach Session-Ende.
 - `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
@@ -74,12 +74,12 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
 - Das Session-Modal im Dashboard kann ein explizites `target_date` speichern; die Session-Box zeigt dieses Datum anschließend zusammen mit einer groben Heuristik auf Basis der noch offenen Check-Schritte.
 - Das Dashboard trennt im UI zwischen `Session` und `Feed`: Die Session verwaltet die aktive Core-Session, der Feed bündelt Empfehlungen aus der aktiven Session und aus Wiederholungen.
-- Die Feed-Projektion zeigt im Dashboard insgesamt bis zu fünf Einträge, hält offene Session-Aktivitäten vorne und mischt fällige Retention-Flashcards aus früheren Sessions während einer aktiven Session nach serverseitig gezählten Aktivitätsabständen dazwischen.
+- Die Feed-Projektion zeigt im Dashboard insgesamt bis zu fünf Einträge, hält offene Session-Aktivitäten vorne und mischt aktive oder fällige Retention-Flashcards aus früheren Sessions queuebasiert in denselben Feed-Kopf ein.
 - Ein `Nein, zum Dashboard` im Feed ändert den Aktivitätszustand nicht persistent; die Aktivität bleibt offen und erscheint in ihrer normalen fachlichen Reihenfolge weiter.
 - Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
-- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Hybrid-Abstand, Feed-Limit und Default-Tempo.
+- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Feed-Limit, Retention-Abstand, Retention-Einstiegsposition, Follow-up-Fenster und Default-Tempo.
 
 ## Begriffstrennung
 
@@ -90,7 +90,7 @@ Weitere Trennung für den aktuellen und nächsten Ausbauschritt:
 
 - **Lernaktivitaet / Versuch:** Append-only Rohdaten eines expliziten Modulabschlusses, zum Beispiel `recall` oder `feynman` mit `can_do` oder `repeat`.
 - **Check-Status:** Materialisierte Zustandsprojektion pro Check in `session_check_state`; wird nicht direkt per Tabellen-CRUD vom Frontend geschrieben.
-- **Feed:** UI-nahe Projektion offener nächster Aktionen; in v1 aus checkbezogenen Schritten in `session_check_state`, `start`/Flashcards in `session_activity_state`, user-scoped Retention-Fallback und Repo-Metadaten abgeleitet, später mit expliziten Freigaben und Aktivitätsfenstern.
+- **Feed:** UI-nahe Projektion offener nächster Aktionen; in v1 aus checkbezogenen Schritten in `session_check_state`, `start`/Flashcards in `session_activity_state`, user-scoped Retention-Scopes und Repo-Metadaten abgeleitet, später mit expliziten Freigaben und Aktivitätsfenstern.
 - **Feed-Aktivität:** Konkreter Bearbeitungskontext einer Feed-Karte, im Frontend über `activity_key`, `activity_step` und `activity_run` transportiert.
 - **Retention-Track:** Nutzerweite Wiederholungsschicht jenseits der endlichen Core-Session; aktuell fachlich auf Flashcards begrenzt.
 
@@ -196,15 +196,18 @@ Aktuelle Schlüssel:
 
 - `feed.dashboard_item_limit`
 - `feed.retention_activity_base_gap`
-- `feed.retention_interleave_lead_session_items`
-- `feed.retention_interleave_stride`
+- `feed.retention_new_item_position`
 - `feed.session_follow_up_max_gap`
 - `planning.default_session_tempo_days`
+
+`feed.retention_activity_base_gap` steuert fuer Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstaende `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
 
 ### 4b. `public.user_feed_activity_counters`
 
 Zweck:
 User-scoped Zähler für abgeschlossene Feed-Aktivitäten. Die Tabelle liefert serverseitige Referenzwerte für Retention-Abstände und andere feedweite Freigabelogik.
+
+Gezählt werden aktuell abgeschlossene `start`-, `training`-, erfolgreiche `recall`-/`feynman`-, `kompetenzliste`- und abgeschlossene Retention-Aktivitäten.
 
 Aktuelle Felder:
 
@@ -361,7 +364,7 @@ Tabellen:
 - `session_flashcard_card_state`: Kartenstand pro Session, Lernbereich und Karte mit Level, nächster Fälligkeit, letzter Bewertung und Zähler.
 - `session_flashcard_rounds`: ein aktiver oder abgeschlossener Durchgang pro Lernbereich.
 - `session_flashcard_round_cards`: stabile Kartenliste eines Durchgangs mit Aufgabenindex und Bewertung.
-- `user_retention_scopes`: user-scoped Retention-Scope pro Lernbereich mit Status `active`, `paused` oder `opted_out`.
+- `user_retention_scopes`: user-scoped Retention-Scope pro Lernbereich mit Status `active`, `paused` oder `opted_out`; `feed_queue_entry_activity_count` verankert neu sichtbare Retention-Einträge im Feed-Kopf.
 - `retention_flashcard_card_state`: user-scoped Kartenfälligkeit für Flashcards jenseits der Core-Session.
 - `retention_flashcard_rounds`: user-scoped Retention-Durchgänge für fällige Flashcards nach Ende der Core-Session.
 - `retention_flashcard_round_cards`: stabile Kartenliste eines Retention-Durchgangs mit Bewertung.
@@ -454,7 +457,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 1. Heute markiert primär das System die aktive Core-Session als `completed`, sobald der letzte offene Check über `complete_kompetenzliste_gate(...)` nach `check_completed` übergeht.
 2. Die Session endet fachlich; `ended_at` wird gesetzt.
-3. Aus den enthaltenen Lernbereichen werden additive `user_retention_scopes` für Flashcards abgeleitet.
+3. Aus den enthaltenen Lernbereichen werden additive `user_retention_scopes` für Flashcards abgeleitet und mit einem Queue-Anker für den sichtbaren Feed-Kopf versehen.
 4. Bestehende session-scoped Flashcard-Kartenstände werden in `retention_flashcard_card_state` user-scoped übernommen.
 5. Bereits `paused` oder `opted_out` gesetzte Retention-Scopes werden dabei nicht automatisch reaktiviert.
 
@@ -481,9 +484,9 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - aktive Lern-Session des Nutzers laden
 - zugehörige Lernbereiche und Check-Ausschlüsse laden, falls eine Session aktiv ist
 - `session_check_state` und `session_activity_state` für die aktive Session lesen
-- falls keine Session-Aktivität fällig ist: aktive `user_retention_scopes` und Retention-Fälligkeiten für Flashcards lesen
+- zusätzlich aktive `user_retention_scopes` und Retention-Fälligkeiten für Flashcards lesen
 - bei Bedarf eigene Recall-/Feynman-Versuche lesen
-- daraus im Frontend den effektiven Session-Umfang, Feed-Titel, Retention-Fallbacks und Routingdaten gegen Repo-Content auflösen
+- daraus im Frontend den effektiven Session-Umfang, Feed-Titel, die Queue-Reihenfolge sichtbarer Retention und Routingdaten gegen Repo-Content auflösen
 
 ## Stand heute: Feed-Schnitt
 
@@ -495,7 +498,7 @@ Wichtig für das Verständnis:
 - Für `start` und Flashcards gibt es inzwischen zusätzlich `session_activity_state` als erste lernbereichsweite Feed-Projektion.
 - Ein `Nein, zum Dashboard` verlässt nur den aktuellen Feed-Kontext; die Aktivität bleibt ohne zusätzliche Persistenzschicht offen.
 - Flashcard-Durchgänge, Kartenbewertungen und Karten-Fälligkeiten liegen serverseitig in eigenen Flashcard-Tabellen; der freie Flashcards-Aufruf bleibt ohne persistente Spaced-Repetition.
-- Mit der v2-Grundlage kommen user-scoped Retention-Scope und user-scoped Flashcard-Fälligkeiten hinzu; die laufende Feed-UI nutzt diese Grundlage inzwischen als Session-first-Projektion mit Retention-Fallback.
+- Mit der v2-Grundlage kommen user-scoped Retention-Scope und user-scoped Flashcard-Fälligkeiten hinzu; die laufende Feed-UI nutzt diese Grundlage inzwischen als Session-first-Projektion mit queuebasiertem Retention-Kopf.
 - Retention-Flashcards können dabei auch dann wieder in den Feed fallen, wenn für einen aktiven Lernbereich noch keine Retention-Card-State-Zeilen existieren.
 - `warmup` ist im aktuellen Feed-Schnitt bewusst ausgeklammert; Begriffe wie `fällig` oder `abgeschlossen` sind aktuell für checkbezogene Pipeline-Schritte sowie für `start` und Flashcards materialisiert.
 
