@@ -28,7 +28,7 @@ Die aktuelle Feed-Projektion in `assets/js/platform/feed-projection.js` kombinie
 - aktive Core-Session aus `learning_sessions`
 - offene checkbezogene Schritte aus `session_check_state`
 - offene lernbereichsweite Session-Aktivitäten aus `session_activity_state`
-- fällige Retention-Scopes und Retention-Fallbacks für Flashcards
+- aktive Retention-Scopes und user-scoped Flashcard-Fälligkeiten
 - Repo-Metadaten aus `checks.json` und den Lernbereichs-Daten
 
 ## Verarbeitungsreihenfolge
@@ -40,10 +40,10 @@ Die Feed-Projektion läuft in dieser Reihenfolge:
 3. Falls eine aktive Session existiert:
    - offene Check-Schritte laden
    - offene Session-Aktivitäten laden
-   - fällige Retention-Einträge für dieselbe Nutzerin oder denselben Nutzer laden
+  - aktive und bereits sichtbare Retention-Einträge für dieselbe Nutzerin oder denselben Nutzer laden
 4. Check-Schritte innerhalb der Session ordnen.
 5. Session-Aktivitäten und geordnete Check-Schritte zu einer Session-Liste zusammenbauen.
-6. Retention-Einträge in die Session-Liste einmischen.
+6. Retention-Einträge queuebasiert in die Session-Liste einmischen.
 7. Falls keine Session-Einträge übrig sind, auf reine Retention-Projektion ohne aktive Session zurückfallen.
 8. Erst ganz am Ende auf das sichtbare Feed-Limit kürzen.
 
@@ -64,38 +64,35 @@ Aktuell wird das so umgesetzt:
 - Stattdessen gilt `feed.session_follow_up_max_gap` als Obergrenze für frische `training`-Einträge zwischen zwei Folgeaktivitäten.
 - Dieser Abstand ist absichtlich keine starre Blockgröße.
 - Wenn vorne `training`-Einträge verschwinden, schrumpft der tatsächliche Abstand dynamisch, damit wartende Folgeaktivitäten nach vorne rücken können.
+- Tiefere frische `training`-Einträge füllen verbrauchte Plätze vor älteren Follow-ups nicht wieder auf.
 
 Fachliche Konsequenz:
 
 - `recall` oder `feynman` sollen nicht erst ganz am Ende vieler neuer Checks auftauchen.
 - Gleichzeitig soll eine einzelne Check-Kette nicht sofort `training → recall → feynman` am Stück durchlaufen.
 
-## Hybrid-Logik für Session und Retention
+## Queue-Logik für Session und Retention
 
-Wenn gleichzeitig Session-Einträge und Retention-Einträge vorliegen, wird ein Hybrid-Feed gebaut.
+Wenn gleichzeitig Session-Einträge und Retention-Einträge vorliegen, wird ein gemeinsamer Feed-Kopf gebaut.
 
-Dabei gelten zwei getrennte Schalter:
+Dabei gilt ein zentraler Schalter:
 
-- `feed.retention_interleave_lead_session_items`
-- `feed.retention_interleave_stride`
+- `feed.retention_new_item_position`
 
 Bedeutung:
 
-- `feed.retention_interleave_lead_session_items` bestimmt, wie viele Session-Einträge vor dem ersten Retention-Slot kommen.
-- Dieser Wert wirkt nur einmal am Anfang des gemischten Feeds.
-- `feed.retention_interleave_stride` bestimmt, wie viele Session-Einträge nach einer Retention-Karte folgen, bevor die nächste Retention-Karte auftaucht.
-- Dieser Wert ist kein Mindestwert und auch kein serverseitiger Freigabeabstand, sondern die Ziel-Dichte der sichtbaren Mischung.
-
-Mit den aktuellen Defaults bedeutet das:
-
-- zuerst 5 Session-Einträge
-- danach typischerweise 1 Retention auf etwa 5 Gesamteinträge, also 1 Retention plus 4 Session-Einträge im laufenden Muster
+- Neue oder neu sichtbare Retention-Einträge steigen an dieser sichtbaren Position in den Feed ein.
+- Mit dem aktuellen Default `5` erscheint eine neue Retention also zunächst auf Platz 5.
+- Werden Feed-Aktivitäten vor ihr abgeschlossen, rutscht dieselbe Retention bei der nächsten Projektion entsprechend nach oben.
+- Bereits fällige Retention-Einträge können dadurch mit wachsender Wartezeit weiter nach oben rücken; sie kleben nicht an einem festen Slot.
+- Checkbezogene Folgeaktivitäten `recall`, `feynman` und `kompetenzliste` dürfen eine sichtbare Retention trotzdem überholen, wenn sie sonst aus ihrem zulässigen Follow-up-Fenster fallen würden.
+- Es gibt keinen festen Lead-/Stride-Interleave mehr.
 
 Wichtig für Session-Neustarts:
 
-- Bereits zeitfällige Retention-Flashcards aus früheren Sessions bleiben auch dann im Retention-Teil des Hybrid-Feeds, wenn eine neue Core-Session gestartet wird.
-- Der Aktivitätszähler steuert zusätzliche Retention-Freigaben, setzt aber eine schon fällige Retention nicht erneut nach hinten.
-- Praktisch heißt das: Neue Session vorne, aber alte fällige Flashcards fallen nicht mehr komplett aus dem sichtbaren Mischmodell heraus.
+- Bereits fällige Retention-Flashcards aus früheren Sessions bleiben auch dann sichtbar, wenn eine neue Core-Session gestartet wird.
+- Neu aus einer Session entstehende Retention-Scopes werden sofort im Feed-Kopf angekündigt, auch wenn ihr serverseitiger Wiederholungsabstand noch nicht vollständig abgelaufen ist.
+- Für diese frühe Sichtbarkeit bleibt der eigentliche Startpfad serverseitig getrennt: Vor dem Fälligkeitszeitpunkt wird Retention nur dort früh gestartet, wo der Feed das ausdrücklich erlaubt.
 
 ## Deterministische Reihenfolge
 
@@ -112,11 +109,9 @@ Die Feed-Logik nutzt aktuell diese relevanten Schlüssel in `public.system_setti
 - `feed.dashboard_item_limit`
   - maximale Zahl sichtbarer Feed-Einträge im Dashboard
 - `feed.retention_activity_base_gap`
-  - serverseitiger Aktivitätsabstand für user-scoped Retention-Scopes
-- `feed.retention_interleave_lead_session_items`
-  - Session-Einträge vor dem ersten Retention-Slot im Hybrid-Feed
-- `feed.retention_interleave_stride`
-  - weitere Session-Einträge zwischen zwei Retention-Slots im Hybrid-Feed
+  - serverseitiger Basisabstand für user-scoped Retention-Scopes; die Wiedereinblendung einer erledigten Retention wächst als `N`, `2N`, `3N`, ... abgeschlossene Feed-Aktivitäten
+- `feed.retention_new_item_position`
+  - sichtbare Einstiegsposition neuer oder neu sichtbarer Retention-Einträge im Feed-Kopf
 - `feed.session_follow_up_max_gap`
   - Obergrenze frischer `training`-Einträge zwischen zwei Folgeaktivitäten laufender Check-Ketten
 
@@ -133,29 +128,28 @@ Beispielhafte sichtbare Session-Liste:
 Wenn `Check 6 Training` abgeschlossen wird, soll `Check 1 Recall` nicht starr auf Platz 4 kleben.
 Die aktuelle Logik versucht deshalb, verbleibende sichtbare Einträge nach oben rücken zu lassen und den Recall-Abstand nur als Obergrenze zu behandeln.
 
-## Beispiel 2: Retention im Hybrid-Feed
+## Beispiel 2: Retention im Feed-Kopf
 
-Bei aktiver Session und gleichzeitig fälliger Retention bedeutet das aktuelle 5er-Paket:
+Bei aktiver Session und einer neu sichtbaren Retention mit Default-Wert `5` ist ein typischer Anfang:
 
-- Session bleibt klar vorne.
-- Die erste Retention taucht erst nach mehreren Session-Aktivitäten auf.
-- Danach erscheint Retention sichtbar, aber nicht in jedem zweiten Slot.
+1. Start oder Session-Aktivität
+2. Check 1 Training
+3. Check 2 Training
+4. Check 3 Training
+5. Retention X
+6. Check 4 Training
 
-Typisch ist daher eher ein Muster wie:
+Wird danach eine der Positionen 1 bis 4 abgeschlossen, rutscht `Retention X` in der nächsten Projektion um einen Platz nach oben.
 
-1. Session
-2. Session
-3. Session
-4. Session
-5. Session
-6. Retention
-7. Session
-8. Session
-9. Session
-10. Session
-11. Retention
+Beispiel nach einem abgeschlossenen Eintrag davor:
 
-Die tatsächliche Liste kann durch das Ende einer Gruppe leicht abweichen.
+1. Check 1 Training
+2. Check 2 Training
+3. Check 3 Training
+4. Retention X
+5. Check 4 Training
+
+Falls an dieser Stelle ein älterer `recall`-, `feynman`- oder `kompetenzliste`-Schritt wegen `feed.session_follow_up_max_gap` weiter nach vorne gezogen werden muss, darf dieser Schritt vor `Retention X` landen.
 
 ## Nicht in dieser Datei pflegen
 

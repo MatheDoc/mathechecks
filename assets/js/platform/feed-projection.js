@@ -1,4 +1,4 @@
-import { loadSystemSettings } from "./system-settings.js?v=20260521-feed-deferred-db";
+import { loadSystemSettings } from "./system-settings.js?v=20260527-retention-gap-fix-3";
 
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
@@ -336,26 +336,21 @@ async function loadActiveSession(supabase) {
   return Array.isArray(data) ? data[0] || null : null;
 }
 
-async function loadCheckFeedEntries(supabase, sessionId) {
+async function loadSessionCheckEntries(supabase, sessionId) {
   if (!supabase || !sessionId) return [];
 
   const stepKeys = Object.keys(FEED_STEP_ORDER);
   const { data, error } = await supabase
     .from("session_check_state")
-    .select("check_id, current_step_key, current_step_status")
+    .select("check_id, current_step_key, current_step_status, updated_at")
     .eq("session_id", sessionId)
-    .eq("current_step_status", "due")
-    .in("current_step_key", stepKeys);
+    .in("current_step_key", [...stepKeys, "check_completed"]);
 
   if (error) throw error;
   return Array.isArray(data) ? data : [];
 }
 
-function compareCheckEntries(left, right, contentMeta) {
-  const leftStep = FEED_STEP_ORDER[String(left?.current_step_key || "").trim()] || 99;
-  const rightStep = FEED_STEP_ORDER[String(right?.current_step_key || "").trim()] || 99;
-  if (leftStep !== rightStep) return leftStep - rightStep;
-
+function compareCheckSequence(left, right, contentMeta) {
   const leftMeta = contentMeta?.checkMetaById?.get(String(left?.check_id || "").trim());
   const rightMeta = contentMeta?.checkMetaById?.get(String(right?.check_id || "").trim());
   const leftNumber = Number(leftMeta?.number);
@@ -373,59 +368,95 @@ function compareCheckEntries(left, right, contentMeta) {
   return String(left?.check_id || "").localeCompare(String(right?.check_id || ""), "de");
 }
 
-function orderSessionCheckEntries(checkEntries, contentMeta, systemSettings) {
-  const entries = Array.isArray(checkEntries) ? checkEntries : [];
+function compareCheckEntries(left, right, contentMeta) {
+  const leftStep = FEED_STEP_ORDER[String(left?.current_step_key || "").trim()] || 99;
+  const rightStep = FEED_STEP_ORDER[String(right?.current_step_key || "").trim()] || 99;
+  if (leftStep !== rightStep) return leftStep - rightStep;
+
+  return compareCheckSequence(left, right, contentMeta);
+}
+
+function compareFollowUpEntries(left, right, contentMeta) {
+  const updatedDelta = String(left?.updated_at || "").localeCompare(String(right?.updated_at || ""));
+  if (updatedDelta !== 0) return updatedDelta;
+
+  return compareCheckSequence(left, right, contentMeta);
+}
+
+function orderSessionCheckEntries(sessionCheckEntries, contentMeta, systemSettings) {
+  const allEntries = (Array.isArray(sessionCheckEntries) ? sessionCheckEntries : [])
+    .filter((entry) => String(entry?.check_id || "").trim());
+  if (!allEntries.length) return [];
+
+  const entries = allEntries.filter((entry) => {
+    const stepKey = String(entry?.current_step_key || "").trim();
+    return entry?.current_step_status === "due" && Object.hasOwn(FEED_STEP_ORDER, stepKey);
+  });
   if (!entries.length) return [];
 
   const followUpGap = normalizePositiveInteger(systemSettings?.feedSessionFollowUpMaxGap, 3);
+  const selectedCheckEntries = [...allEntries]
+    .sort((left, right) => compareCheckSequence(left, right, contentMeta));
+  const selectedIndexByCheckId = new Map(
+    selectedCheckEntries.map((entry, index) => [String(entry?.check_id || "").trim(), index]),
+  );
+
   const freshStartEntries = entries
     .filter((entry) => String(entry?.current_step_key || "").trim() === "training")
-    .sort((left, right) => compareCheckEntries(left, right, contentMeta));
+    .sort((left, right) => compareCheckSequence(left, right, contentMeta));
   const followUpEntries = entries
     .filter((entry) => String(entry?.current_step_key || "").trim() !== "training")
-    .sort((left, right) => compareCheckEntries(left, right, contentMeta));
+    .sort((left, right) => compareFollowUpEntries(left, right, contentMeta));
 
   if (!freshStartEntries.length) return followUpEntries;
   if (!followUpEntries.length) return freshStartEntries;
 
   // Didaktische Regel fuer Session-Checks:
-  // Eine begonnene Check-Kette soll sichtbar weitergehen, aber nicht sofort komplett durchlaufen.
-  // feedSessionFollowUpMaxGap ist deshalb nur eine Obergrenze fuer frische training-Eintraege
-  // zwischen zwei Folgeaktivitaeten. Der tatsaechliche Abstand schrumpft dynamisch, wenn vorne
-  // training-Eintraege wegfallen, damit wartende Follow-ups wie Recall nach vorne ruecken koennen.
-  const ordered = [];
-  let freshIndex = 0;
-  let followUpIndex = 0;
+  // Ein Follow-up reserviert sich seinen Platz hinter den naechsten N Checks
+  // in der fachlichen Reihenfolge. Wenn diese Front-Checks verschwinden,
+  // rueckt der alte Recall/Feynman-Schritt automatisch nach vorne;
+  // tiefere Trainings fuellen diese verbrauchten Plaetze nicht wieder auf.
+  // Zusaetzlich duerfen neue Folgeaktivitaeten nicht direkt hinter einem
+  // aelteren Recall/Feynman/Kompetenzlisten-Schritt stacken, sondern brauchen
+  // dazwischen wieder denselben Puffer an anderen Check-Aktivitaeten.
+  const ordered = freshStartEntries.map((entry) => ({
+    kind: "training",
+    sequenceIndex: selectedIndexByCheckId.get(String(entry?.check_id || "").trim()) ?? Number.MAX_SAFE_INTEGER,
+    entry,
+  }));
+  let previousFollowUpInsertIndex = -1;
 
-  while (freshIndex < freshStartEntries.length || followUpIndex < followUpEntries.length) {
-    const remainingFreshStarts = freshStartEntries.length - freshIndex;
-    const remainingFollowUps = followUpEntries.length - followUpIndex;
-    const dynamicGap = remainingFollowUps > 0
-      ? Math.min(followUpGap, Math.ceil(remainingFreshStarts / (remainingFollowUps + 1)))
-      : remainingFreshStarts;
+  followUpEntries.forEach((followUpEntry) => {
+    const checkId = String(followUpEntry?.check_id || "").trim();
+    const followUpSequenceIndex = selectedIndexByCheckId.get(checkId);
+    const cutoffSequenceIndex = Number.isFinite(followUpSequenceIndex)
+      ? Math.min(selectedCheckEntries.length - 1, followUpSequenceIndex + followUpGap)
+      : Number.MAX_SAFE_INTEGER;
 
-    for (let gapCount = 0; gapCount < dynamicGap && freshIndex < freshStartEntries.length; gapCount += 1) {
-      ordered.push(freshStartEntries[freshIndex]);
-      freshIndex += 1;
+    let insertAt = ordered.length;
+    for (let index = 0; index < ordered.length; index += 1) {
+      const item = ordered[index];
+      if (item.kind === "training" && item.sequenceIndex > cutoffSequenceIndex) {
+        insertAt = index;
+        break;
+      }
     }
 
-    if (followUpIndex < followUpEntries.length) {
-      ordered.push(followUpEntries[followUpIndex]);
-      followUpIndex += 1;
+    if (previousFollowUpInsertIndex >= 0) {
+      const minimumInsertAt = Math.min(ordered.length, previousFollowUpInsertIndex + followUpGap + 1);
+      insertAt = Math.max(insertAt, minimumInsertAt);
     }
 
-    if (freshIndex >= freshStartEntries.length && followUpIndex < followUpEntries.length) {
-      ordered.push(...followUpEntries.slice(followUpIndex));
-      break;
-    }
+    ordered.splice(insertAt, 0, {
+      kind: "follow-up",
+      sequenceIndex: cutoffSequenceIndex,
+      entry: followUpEntry,
+    });
 
-    if (followUpIndex >= followUpEntries.length && freshIndex < freshStartEntries.length) {
-      ordered.push(...freshStartEntries.slice(freshIndex));
-      break;
-    }
-  }
+    previousFollowUpInsertIndex = insertAt;
+  });
 
-  return ordered;
+  return ordered.map((item) => item.entry);
 }
 
 async function loadActivityFeedEntries(supabase, sessionId) {
@@ -463,11 +494,11 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
   const [scopeResponse, completedActivityCount, exclusionResponse] = await Promise.all([
     supabase
       .from("user_retention_scopes")
-      .select("activity_type, scope_type, lernbereich_slug, status, next_due_after_activity_count")
+      .select("activity_type, scope_type, lernbereich_slug, status, next_due_after_activity_count, feed_queue_entry_activity_count, activity_due_exponent")
       .eq("activity_type", "flashcards")
       .eq("scope_type", "lernbereich")
       .eq("status", "active"),
-    hasActiveSession ? loadCurrentFeedActivityCompletionCount(supabase) : Promise.resolve(0),
+    loadCurrentFeedActivityCompletionCount(supabase),
     supabase
       .from("user_retention_check_exclusions")
       .select("lernbereich_slug, check_id"),
@@ -530,29 +561,37 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
       .map((row) => {
         const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
         const dueAfterActivityCount = Number(row?.next_due_after_activity_count);
+        const queueEntryActivityCount = Number(row?.feed_queue_entry_activity_count);
+        const dueExponent = Math.max(0, Number(row?.activity_due_exponent) || 0);
         const summary = stateBySlug.get(lernbereichSlug) || { hasState: false, firstDueAt: "" };
         const isDueByActivityCount = Number.isFinite(dueAfterActivityCount) && dueAfterActivityCount <= completedActivityCount;
-        const isDueByCardState = Boolean(summary.hasState && summary.firstDueAt);
+        const isVisibleByQueue = dueExponent === 0
+          && Number.isFinite(queueEntryActivityCount)
+          && queueEntryActivityCount <= completedActivityCount;
 
-        if (!lernbereichSlug || (!isDueByActivityCount && !isDueByCardState)) {
+        if (!lernbereichSlug || (!isDueByActivityCount && !isVisibleByQueue)) {
           return null;
         }
+
+        const queueAnchorActivityCount = Number.isFinite(queueEntryActivityCount)
+          ? queueEntryActivityCount
+          : (Number.isFinite(dueAfterActivityCount) ? dueAfterActivityCount : completedActivityCount);
 
         return {
           activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
           activity_type: "flashcards",
           scope_type: "lernbereich",
           lernbereich_slug: lernbereichSlug,
-          due_after_activity_count: isDueByActivityCount ? dueAfterActivityCount : null,
+          due_after_activity_count: Number.isFinite(dueAfterActivityCount) ? dueAfterActivityCount : null,
+          queue_age: Math.max(0, completedActivityCount - queueAnchorActivityCount),
           due_at: summary.firstDueAt,
+          allow_early_feed_start: isVisibleByQueue && !isDueByActivityCount,
         };
       })
       .filter(Boolean)
       .sort((left, right) => {
-        const leftDueByActivityCount = Number.isFinite(Number(left?.due_after_activity_count));
-        const rightDueByActivityCount = Number.isFinite(Number(right?.due_after_activity_count));
-        const dueTypeDelta = Number(rightDueByActivityCount) - Number(leftDueByActivityCount);
-        if (dueTypeDelta !== 0) return dueTypeDelta;
+        const queueAgeDelta = Number(right?.queue_age || 0) - Number(left?.queue_age || 0);
+        if (queueAgeDelta !== 0) return queueAgeDelta;
 
         const activityDelta = Number(left?.due_after_activity_count || Number.MAX_SAFE_INTEGER)
           - Number(right?.due_after_activity_count || Number.MAX_SAFE_INTEGER);
@@ -565,24 +604,40 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
       });
   }
 
-  return lernbereichSlugs
-    .map((lernbereichSlug) => {
+  return (Array.isArray(scopeRows) ? scopeRows : [])
+    .map((row) => {
+      const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
+      const dueAfterActivityCount = Number(row?.next_due_after_activity_count);
+      const queueEntryActivityCount = Number(row?.feed_queue_entry_activity_count);
+      const dueExponent = Math.max(0, Number(row?.activity_due_exponent) || 0);
       const summary = stateBySlug.get(lernbereichSlug) || { hasState: false, firstDueAt: "" };
-      if (summary.hasState && !summary.firstDueAt) return null;
+      const isDueByActivityCount = Number.isFinite(dueAfterActivityCount) && dueAfterActivityCount <= completedActivityCount;
+      const isVisibleByQueue = dueExponent === 0
+        && Number.isFinite(queueEntryActivityCount)
+        && queueEntryActivityCount <= completedActivityCount;
+
+      if (!lernbereichSlug || (!isDueByActivityCount && !isVisibleByQueue)) return null;
 
       return {
         activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
         activity_type: "flashcards",
         scope_type: "lernbereich",
         lernbereich_slug: lernbereichSlug,
+        due_after_activity_count: Number.isFinite(dueAfterActivityCount) ? dueAfterActivityCount : null,
+        queue_age: Math.max(0, completedActivityCount - (Number.isFinite(queueEntryActivityCount)
+          ? queueEntryActivityCount
+          : (Number.isFinite(dueAfterActivityCount) ? dueAfterActivityCount : completedActivityCount))),
         due_at: summary.firstDueAt,
-        is_initial_scope: !summary.hasState,
       };
     })
     .filter(Boolean)
     .sort((left, right) => {
-      const initialDelta = Number(Boolean(right.is_initial_scope)) - Number(Boolean(left.is_initial_scope));
-      if (initialDelta !== 0) return initialDelta;
+      const queueAgeDelta = Number(right?.queue_age || 0) - Number(left?.queue_age || 0);
+      if (queueAgeDelta !== 0) return queueAgeDelta;
+
+      const activityDelta = Number(left?.due_after_activity_count || Number.MAX_SAFE_INTEGER)
+        - Number(right?.due_after_activity_count || Number.MAX_SAFE_INTEGER);
+      if (activityDelta !== 0) return activityDelta;
 
       const leftDueAt = String(left.due_at || "");
       const rightDueAt = String(right.due_at || "");
@@ -593,82 +648,68 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
     });
 }
 
-async function loadRetentionSlotFillEntries(supabase, excludedActivityKeys = new Set()) {
-  if (!supabase) return [];
-
-  const { data, error } = await supabase
-    .from("user_retention_scopes")
-    .select("activity_type, scope_type, lernbereich_slug, next_due_after_activity_count")
-    .eq("activity_type", "flashcards")
-    .eq("scope_type", "lernbereich")
-    .eq("status", "active")
-    .order("next_due_after_activity_count", { ascending: true })
-    .order("lernbereich_slug", { ascending: true });
-
-  if (error) throw error;
-
-  return (Array.isArray(data) ? data : [])
-    .map((row) => {
-      const lernbereichSlug = String(row?.lernbereich_slug || "").trim();
-      if (!lernbereichSlug) return null;
-
-      return {
-        activity_key: `retention:lernbereich:${lernbereichSlug}:flashcards`,
-        activity_type: "flashcards",
-        scope_type: "lernbereich",
-        lernbereich_slug: lernbereichSlug,
-        due_after_activity_count: Number(row?.next_due_after_activity_count),
-        allow_early_feed_start: true,
-      };
-    })
-    .filter((entry) => {
-      if (!entry) return false;
-      return !excludedActivityKeys.has(String(entry.activity_key || "").trim());
-    });
+function isProtectedSessionFeedItem(item) {
+  return item?.kind === "check"
+    && (item.type === "recall" || item.type === "feynman" || item.type === "kompetenzliste");
 }
 
-function mergeHybridFeedItems(sessionItems, retentionItems, systemSettings) {
+function getRetentionQueueEntryPosition(systemSettings, item) {
+  const entryPosition = normalizePositiveInteger(systemSettings?.feedRetentionNewItemPosition, 5);
+  const queueAge = Math.max(0, Number(item?.queueAge || 0));
+  return Math.max(1, entryPosition - queueAge);
+}
+
+function compareRetentionQueueItems(left, right, systemSettings) {
+  const positionDelta = getRetentionQueueEntryPosition(systemSettings, left)
+    - getRetentionQueueEntryPosition(systemSettings, right);
+  if (positionDelta !== 0) return positionDelta;
+
+  const queueAgeDelta = Number(right?.queueAge || 0) - Number(left?.queueAge || 0);
+  if (queueAgeDelta !== 0) return queueAgeDelta;
+
+  const activityDelta = Number(left?.dueAfterActivityCount || Number.MAX_SAFE_INTEGER)
+    - Number(right?.dueAfterActivityCount || Number.MAX_SAFE_INTEGER);
+  if (activityDelta !== 0) return activityDelta;
+
+  return String(left?.activityKey || "").localeCompare(String(right?.activityKey || ""), "de");
+}
+
+function mergeQueueHeadFeedItems(sessionItems, retentionItems, systemSettings) {
   if (!Array.isArray(sessionItems) || sessionItems.length === 0) {
-    return Array.isArray(retentionItems) ? [...retentionItems] : [];
+    return Array.isArray(retentionItems)
+      ? [...retentionItems].sort((left, right) => compareRetentionQueueItems(left, right, systemSettings))
+      : [];
   }
 
   if (!Array.isArray(retentionItems) || retentionItems.length === 0) {
     return [...sessionItems];
   }
 
-  const leadSessionItems = normalizePositiveInteger(systemSettings?.feedRetentionInterleaveLeadSessionItems, 1) - 1;
-  const stride = normalizePositiveInteger(systemSettings?.feedRetentionInterleaveStride, 1);
-  const merged = [];
-  let sessionIndex = 0;
-  let retentionIndex = 0;
+  const merged = [...sessionItems];
+  const orderedRetentionItems = [...retentionItems]
+    .sort((left, right) => compareRetentionQueueItems(left, right, systemSettings));
 
-  for (let leadCount = 0; leadCount <= leadSessionItems && sessionIndex < sessionItems.length; leadCount += 1) {
-    merged.push(sessionItems[sessionIndex]);
-    sessionIndex += 1;
-  }
+  orderedRetentionItems.forEach((item) => {
+    let insertAt = Math.min(
+      Math.max(0, getRetentionQueueEntryPosition(systemSettings, item) - 1),
+      merged.length,
+    );
 
-  while (sessionIndex < sessionItems.length || retentionIndex < retentionItems.length) {
-    if (retentionIndex < retentionItems.length) {
-      merged.push(retentionItems[retentionIndex]);
-      retentionIndex += 1;
+    while (
+      insertAt < merged.length
+      && (isProtectedSessionFeedItem(merged[insertAt]) || merged[insertAt]?.kind === "retention")
+    ) {
+      insertAt += 1;
     }
 
-    for (let strideCount = 0; strideCount < stride && sessionIndex < sessionItems.length; strideCount += 1) {
-      merged.push(sessionItems[sessionIndex]);
-      sessionIndex += 1;
-    }
-
-    if (sessionIndex >= sessionItems.length && retentionIndex < retentionItems.length) {
-      merged.push(...retentionItems.slice(retentionIndex));
-      break;
-    }
-  }
+    merged.splice(insertAt, 0, item);
+  });
 
   return merged;
 }
 
-function buildSessionFeedItems(contentMeta, checkEntries, activityEntries, systemSettings) {
-  const orderedCheckEntries = orderSessionCheckEntries(checkEntries, contentMeta, systemSettings);
+function buildSessionFeedItems(contentMeta, sessionCheckEntries, activityEntries, systemSettings) {
+  const orderedCheckEntries = orderSessionCheckEntries(sessionCheckEntries, contentMeta, systemSettings);
   const checkItems = orderedCheckEntries
     .map((entry) => buildCheckFeedItem(contentMeta, entry))
     .filter(Boolean);
@@ -703,6 +744,8 @@ function createFeedItem({
   descText,
   badges,
   primaryBadge,
+  queueAge = 0,
+  dueAfterActivityCount = null,
 }) {
   return {
     kind,
@@ -717,6 +760,8 @@ function createFeedItem({
     descText,
     badges,
     primaryBadge,
+    queueAge,
+    dueAfterActivityCount,
   };
 }
 
@@ -807,6 +852,10 @@ function buildRetentionFeedItem(contentMeta, entry) {
     descText: "",
     badges: [primaryBadge],
     primaryBadge,
+    queueAge: Math.max(0, Number(entry?.queue_age || 0)),
+    dueAfterActivityCount: Number.isFinite(Number(entry?.due_after_activity_count))
+      ? Number(entry.due_after_activity_count)
+      : null,
   });
 }
 
@@ -825,34 +874,18 @@ export async function loadFeedProjection({
   let source = "empty";
 
   if (activeSession?.id) {
-    const [checkEntries, activityEntries, retentionEntries] = await Promise.all([
-      loadCheckFeedEntries(supabase, activeSession.id),
+    const [sessionCheckEntries, activityEntries, retentionEntries] = await Promise.all([
+      loadSessionCheckEntries(supabase, activeSession.id),
       loadActivityFeedEntries(supabase, activeSession.id),
       loadRetentionFeedEntries(supabase, { activeSession }),
     ]);
 
-    const sessionItems = buildSessionFeedItems(contentMeta, checkEntries, activityEntries, systemSettings);
+    const sessionItems = buildSessionFeedItems(contentMeta, sessionCheckEntries, activityEntries, systemSettings);
     const retentionItems = (Array.isArray(retentionEntries) ? retentionEntries : [])
       .map((entry) => buildRetentionFeedItem(contentMeta, entry))
       .filter(Boolean);
 
-    items = mergeHybridFeedItems(sessionItems, retentionItems, systemSettings);
-
-    const canFillVisibleRetentionSlots = Number.isFinite(limit) && limit > 0 && items.length < limit;
-    if (canFillVisibleRetentionSlots) {
-      const existingActivityKeys = new Set(items
-        .map((item) => String(item?.activityKey || "").trim())
-        .filter(Boolean));
-      const slotFillEntries = await loadRetentionSlotFillEntries(supabase, existingActivityKeys);
-      const slotFillItems = slotFillEntries
-        .map((entry) => buildRetentionFeedItem(contentMeta, entry))
-        .filter(Boolean)
-        .slice(0, limit - items.length);
-
-      if (slotFillItems.length) {
-        items = [...items, ...slotFillItems];
-      }
-    }
+    items = mergeQueueHeadFeedItems(sessionItems, retentionItems, systemSettings);
 
     if (items.length) {
       source = sessionItems.length ? "session" : "retention";
