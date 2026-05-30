@@ -41,12 +41,12 @@ LGS finden weitreichend Anwendungen:
 
 Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches LGS nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden, und in der Folge auch die übrigen Unbekannten.
 
-Wir zeigen die drei klassischen Verfahren am Eingangsbeispiel
+Wir zeigen die drei klassischen Verfahren am LGS
 
 $$
 \begin{align*}
-I:\quad & x + 2y = 21 \\
-II:\quad & 4x - 2y = -6
+I:\quad & 2x + y = 13 \\
+II:\quad & 3x - y = 7
 \end{align*}
 $$
 
@@ -56,38 +56,38 @@ Beim Gleichsetzungsverfahren lösen wir beide Gleichungen nach derselben Unbekan
 
 $$
 \begin{align*}
-I:\quad & x + 2y = 21 \Rightarrow y = \tfrac{21-x}{2} \\
-II:\quad & 4x - 2y = -6 \Rightarrow y = 3 + 2x
+I:\quad & 2x + y = 13 \Rightarrow y = 13 - 2x \\
+II:\quad & 3x - y = 7 \Rightarrow y = 3x - 7
 \end{align*}
 $$
 
 Gleichsetzen der beiden rechten Seiten liefert eine Gleichung mit nur einer Unbekannten:
 
 $$
-\tfrac{21-x}{2} = 3 + 2x \;\Rightarrow\; 21 - x = 6 + 4x \;\Rightarrow\; 15 = 5x \;\Rightarrow\; x = 3.
+13 - 2x = 3x - 7 \;\Rightarrow\; 20 = 5x \;\Rightarrow\; x = 4.
 $$
 
-Eingesetzt in eine der Ausgangsgleichungen, etwa $I$, folgt $3 + 2y = 21$, also $y = 9$.
+Eingesetzt in eine der Ausgangsgleichungen, etwa $I$, folgt $2\cdot 4 + y = 13$, also $y = 5$.
 
 ### Einsetzungsverfahren
 
-Beim Einsetzungsverfahren lösen wir eine Gleichung nach einer Unbekannten auf und setzen den Ausdruck in die andere Gleichung ein. Aus $I$ erhalten wir $x = 21 - 2y$. Einsetzen in $II$ ergibt:
+Beim Einsetzungsverfahren lösen wir eine Gleichung nach einer Unbekannten auf und setzen den Ausdruck in die andere Gleichung ein. Aus $II$ erhalten wir $y = 3x - 7$. Einsetzen in $I$ ergibt:
 
 $$
-4(21 - 2y) - 2y = -6 \;\Rightarrow\; 84 - 8y - 2y = -6 \;\Rightarrow\; -10y = -90 \;\Rightarrow\; y = 9.
+2x + (3x - 7) = 13 \;\Rightarrow\; 5x - 7 = 13 \;\Rightarrow\; 5x = 20 \;\Rightarrow\; x = 4.
 $$
 
-Mit $y = 9$ folgt $x = 21 - 2\cdot 9 = 3$.
+Mit $x = 4$ folgt $y = 3\cdot 4 - 7 = 5$.
 
 ### Additionsverfahren
 
 Beim Additionsverfahren werden die Gleichungen (ggf. nach geeigneter Multiplikation) so addiert oder subtrahiert, dass eine Unbekannte herausfällt. Im Beispiel heben sich die $y$-Terme bereits direkt auf:
 
 $$
-I + II:\quad (x + 2y) + (4x - 2y) = 21 + (-6) \;\Rightarrow\; 5x = 15 \;\Rightarrow\; x = 3.
+I + II:\quad (2x + y) + (3x - y) = 13 + 7 \;\Rightarrow\; 5x = 20 \;\Rightarrow\; x = 4.
 $$
 
-Einsetzen in $I$ liefert wieder $3 + 2y = 21$, also $y = 9$.
+Einsetzen in $I$ liefert wieder $2\cdot 4 + y = 13$, also $y = 5$.
 
 {% include check-anker.html nummer="1" %}
 
