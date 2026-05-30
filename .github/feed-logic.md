@@ -11,6 +11,7 @@ Sie dokumentiert die fachliche Reihenfolge- und Mischlogik des Feeds, nicht das 
 - `.github/benutzerverwaltung-mvp.md` beschreibt dagegen Datenmodell, Tabellen, RPCs, Sicherheitsmodell und den Plattform-Schnitt des Feeds.
 - `.github/datenmodell.md` beschreibt die Trennung zwischen Repo-Content und persistenter Plattformlogik.
 - `.github/feed-design-vorschlag.md` bleibt als breiterer Design- und Zielbildtext erhalten; die dortigen Aussagen zur aktuellen Reihenfolge werden nicht mehr als operative Spezifikation gepflegt.
+- `.github/feed-v2-core-spec.md` beschreibt das künftige deterministische Core-Feed-Zielbild ohne Retention und ist nicht Teil des aktuellen Produktivverhaltens.
 
 ## Zielbild in Kurzform
 

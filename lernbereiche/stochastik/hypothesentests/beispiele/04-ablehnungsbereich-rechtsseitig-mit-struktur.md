@@ -8,7 +8,7 @@ Einer Aufgabenstellung entnehmen wir:
 - den Stichprobenumfang, z.B. $n=200$
 - den Parameter der Nullhypothese, z.B. $p=0{,}4$
 - die Form der Gegenhypothese, z.B. $p>0{,}4$
-- das Signifikanzniveau, z.B. $\alpha=0{,}05$
+- das Signifikanzniveau, z.B. $\alpha=0{,}02$
 
 Es handelt sich um einen rechtsseitigen Hypothesentest, da die Gegenhypothese $H_1$ die Form $p>0{,}4$ hat. Wir führen eine Unbekannte $k$ ein, um den Annahme- und Ablehungsbereich prägnant beschreiben zu können. Es gilt:
 

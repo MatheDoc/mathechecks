@@ -5,6 +5,7 @@
 Diese Datei bleibt als breiterer Design- und Zielbildtext erhalten.
 Die aktuell wirksame Feed-Reihenfolge, Hybrid-Mischung und lokale UI-Stabilisierung wird ab jetzt in `.github/feed-logic.md` dokumentiert.
 Tabellen, RPCs und Datenmodellgrenzen bleiben in `.github/benutzerverwaltung-mvp.md`.
+Die V2-Spezifikation fuer den deterministischen Core-Feed ohne Retention steht in `.github/feed-v2-core-spec.md`.
 
 Der Feed steuert, was Schüler:innen als Nächstes tun sollen. Er ist aktuell **hybrid**: Offene Aktivitäten der aktiven Session bleiben leitend, aber fällige Retention-Flashcards aus früher abgeschlossenen Lernbereichen werden während einer aktiven Session in festen Abständen dazwischen gemischt. Ohne aktive Session bleibt für diese Wiederholungen die zeitbasierte Fälligkeit maßgeblich. Eine Session enthält einen oder mehrere Lernbereiche und die je Lernbereich aktiven Checks (Standard: alle). Die Feeds mehrerer Lernbereiche können sich überlappen.
 

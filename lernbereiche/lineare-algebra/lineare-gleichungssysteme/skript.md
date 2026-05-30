@@ -41,25 +41,77 @@ LGS finden weitreichend Anwendungen:
 
 Wir sehen, dass im obigen Beispiel $x$ und $y$ nicht direkt berechnet werden können, da in jeder Gleichung zwei Unbekannte auftreten. Um ein solches LGS nun nach $x$ und $y$ auflösen zu können, gibt es verschiedene Verfahren. Die Grundidee ist immer, die Gleichungen so zu kombinieren, dass nur noch eine Unbekannte in einer Gleichung auftritt. Diese Unbekannte kann dann bestimmt werden, und in der Folge auch die übrigen Unbekannten.
 
+Wir zeigen die drei klassischen Verfahren am Eingangsbeispiel
+
+$$
+\begin{align*}
+I:\quad & x + 2y = 21 \\
+II:\quad & 4x - 2y = -6
+\end{align*}
+$$
+
 ### Gleichsetzungsverfahren
 
-<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/6BuVmbuxZco?si=VKFmyJK_vTDFGmQH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Beim Gleichsetzungsverfahren lösen wir beide Gleichungen nach derselben Unbekannten auf und setzen die Ergebnisse gleich. Hier lösen wir beide Gleichungen nach $y$ auf:
+
+$$
+\begin{align*}
+I:\quad & x + 2y = 21 \Rightarrow y = \tfrac{21-x}{2} \\
+II:\quad & 4x - 2y = -6 \Rightarrow y = 3 + 2x
+\end{align*}
+$$
+
+Gleichsetzen der beiden rechten Seiten liefert eine Gleichung mit nur einer Unbekannten:
+
+$$
+\tfrac{21-x}{2} = 3 + 2x \;\Rightarrow\; 21 - x = 6 + 4x \;\Rightarrow\; 15 = 5x \;\Rightarrow\; x = 3.
+$$
+
+Eingesetzt in eine der Ausgangsgleichungen, etwa $I$, folgt $3 + 2y = 21$, also $y = 9$.
 
 ### Einsetzungsverfahren
 
-<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/SDVU0ENxN7g?si=u7MGxLmobYcPQDDC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Beim Einsetzungsverfahren lösen wir eine Gleichung nach einer Unbekannten auf und setzen den Ausdruck in die andere Gleichung ein. Aus $I$ erhalten wir $x = 21 - 2y$. Einsetzen in $II$ ergibt:
+
+$$
+4(21 - 2y) - 2y = -6 \;\Rightarrow\; 84 - 8y - 2y = -6 \;\Rightarrow\; -10y = -90 \;\Rightarrow\; y = 9.
+$$
+
+Mit $y = 9$ folgt $x = 21 - 2\cdot 9 = 3$.
 
 ### Additionsverfahren
 
-<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/T08IjF7OPf4?si=dG4-2SQxtpGjR7bc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Beim Additionsverfahren werden die Gleichungen (ggf. nach geeigneter Multiplikation) so addiert oder subtrahiert, dass eine Unbekannte herausfällt. Im Beispiel heben sich die $y$-Terme bereits direkt auf:
+
+$$
+I + II:\quad (x + 2y) + (4x - 2y) = 21 + (-6) \;\Rightarrow\; 5x = 15 \;\Rightarrow\; x = 3.
+$$
+
+Einsetzen in $I$ liefert wieder $3 + 2y = 21$, also $y = 9$.
 
 {% include check-anker.html nummer="1" %}
 
 ### Gauß-Algorithmus
 
-Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen. DAs Video zeigt die Anwendung des Gauß-Algorithmus auf ein LGS mit drei Gleichungen und drei Unbekannten (ohne Verwendung von Matrizen).
+Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen.
 
-<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/aosbq7Ci7Ec?si=Z-LlK00xnOk_908D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+Das folgende interaktive Beispiel zeigt das Vorgehen am LGS
+
+$$
+\begin{align*}
+x_1 + 2x_2 + 3x_3 &= 6 \\
+2x_1 + 3x_2 + x_3 &= 6 \\
+3x_1 + x_2 + 2x_3 &= 6
+\end{align*}
+$$
+
+Klicke auf „Nächste Umformung", um schrittweise die rechts notierten Zeilenumformungen anzuwenden, bis die Matrix in Zeilenstufenform vorliegt.
+
+{% include widgets/widget-gauss-schritte.html
+  id="gauss-bsp-grundlegend"
+  matrix='[[1,2,3,6],[2,3,1,6],[3,1,2,6]]'
+  steps='[{"title":"erste Spalte unter der Pivotzeile räumen","ops":[["addMul",1,0,-2,"II-2\\cdot I"],["addMul",2,0,-3,"III-3\\cdot I"]]},{"title":"zweite Spalte unter der Pivotzeile räumen","ops":[["addMul",2,1,-5,"III-5\\cdot II"]]}]'
+%}
 
 Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar. Diese Matrixform erhalten wir, indem wir die Unbekannten und Rechenoperationen auslassen, die Koeffizienten müssen dabei konsequent untereinander geschrieben werden. Aus dem LGS
 
@@ -87,9 +139,13 @@ Im Anschluss wird diese Matrix mit Hilfe der sogenannten elementaren Zeilenumfor
 - Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
 - Addieren oder Subtrahieren eines Vielfachen einer Zeile zu einer anderen Zeile
 
-Das folgende Video zeigt ein Beispiel, in dem ein Zeilentausch notwendig ist, um in der linken oberen Ecke eine Zahl ungleich Null zu erhalten.
+Das folgende Beispiel zeigt den Fall, in dem zu Beginn ein Zeilentausch nötig ist, um in der linken oberen Ecke eine Zahl ungleich Null zu erhalten.
 
-<iframe width="100%" height="315" style="max-width:560px;aspect-ratio:16/9;height:auto;" src="https://www.youtube.com/embed/ac8r-E5h9FI?si=pOwZHOmOnZLPiBol" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{% include widgets/widget-gauss-schritte.html
+  id="gauss-bsp-tausch"
+  matrix='[[0,1,2,7],[1,2,1,8],[2,3,1,13]]'
+  steps='[{"title":"Pivot über Zeilentausch herstellen","ops":[["swap",0,1,"I \\leftrightarrow II"]]},{"title":"erste Spalte unter der Pivotzeile räumen","ops":[["addMul",2,0,-2,"III-2\\cdot I"]]},{"title":"zweite Spalte unter der Pivotzeile räumen","ops":[["addMul",2,1,1,"III+II"]]}]'
+%}
 
 {% include check-anker.html nummer="2" %}
 
