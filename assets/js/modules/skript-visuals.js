@@ -509,14 +509,77 @@ function gaussOpLabel(op) {
     return op[op.length - 1];
 }
 
-function gaussRenderMatrixLatex(matrix) {
+function gaussFormatSignedCell(value) {
+    const formatted = gaussFormatCell(value);
+    return value < 0 ? `(${formatted})` : formatted;
+}
+
+function gaussRenderMatrixLatex(matrix, highlightSet) {
     const nCols = matrix[0].length;
     const valueCols = nCols - 1;
     const colSpec = "r".repeat(valueCols) + "|r";
     const body = matrix
-        .map((row) => row.map(gaussFormatCell).join(" & "))
+        .map((row, i) => row.map((value, j) => {
+            const text = gaussFormatCell(value);
+            if (highlightSet && highlightSet.has(`${i}:${j}`)) {
+                return `{\\color{#d97706} ${text}}`;
+            }
+            return text;
+        }).join(" & "))
         .join(" \\\\ ");
     return `\\left( \\begin{array}{${colSpec}} ${body} \\end{array} \\right)`;
+}
+
+function gaussComputeChangeMask(prev, next) {
+    const mask = new Set();
+    for (let i = 0; i < next.length; i += 1) {
+        for (let j = 0; j < next[i].length; j += 1) {
+            const a = prev?.[i]?.[j];
+            if (a === undefined || Math.abs(a - next[i][j]) > 1e-9) {
+                mask.add(`${i}:${j}`);
+            }
+        }
+    }
+    return mask;
+}
+
+function gaussRenderStepCalcLatex(prevMatrix, nextMatrix, step) {
+    const lines = [];
+    (step?.ops || []).forEach((op) => {
+        const [type] = op;
+        if (type === "addMul") {
+            const [, target, source, factor] = op;
+            const sign = factor >= 0 ? "+" : "-";
+            const absF = Math.abs(factor);
+            const factorPart = absF === 1 ? "" : `${gaussFormatCell(absF)} \\cdot `;
+            const terms = [];
+            for (let j = 0; j < prevMatrix[target].length; j += 1) {
+                const a = prevMatrix[target][j];
+                const b = prevMatrix[source][j];
+                const r = nextMatrix[target][j];
+                terms.push(
+                    `${gaussFormatCell(a)} ${sign} ${factorPart}${gaussFormatSignedCell(b)} = {\\color{#d97706} ${gaussFormatCell(r)}}`,
+                );
+            }
+            lines.push(`\\text{${gaussRowName(target)}:}\\;${terms.join(",\\;\\;")}`);
+        } else if (type === "scale") {
+            const [, row, factor] = op;
+            const terms = [];
+            for (let j = 0; j < prevMatrix[row].length; j += 1) {
+                const a = prevMatrix[row][j];
+                const r = nextMatrix[row][j];
+                terms.push(
+                    `${gaussFormatCell(factor)} \\cdot ${gaussFormatSignedCell(a)} = {\\color{#d97706} ${gaussFormatCell(r)}}`,
+                );
+            }
+            lines.push(`\\text{${gaussRowName(row)}:}\\;${terms.join(",\\;\\;")}`);
+        } else if (type === "swap") {
+            const [, a, b] = op;
+            lines.push(`\\text{Zeilen ${gaussRowName(a)} und ${gaussRowName(b)} getauscht.}`);
+        }
+    });
+    if (!lines.length) return "";
+    return `\\begin{aligned} ${lines.join(" \\\\ ")} \\end{aligned}`;
 }
 
 function gaussRenderOpsLatex(opsByRow, nRows) {
@@ -580,8 +643,17 @@ function initGaussSchritteWidgets(root) {
             for (let i = 0; i < visibleCount; i += 1) {
                 const matrix = matrices[i];
                 const appliedStep = i < stepIndex ? steps[i] : null;
+                const highlight = i > 0 ? gaussComputeChangeMask(matrices[i - 1], matrix) : null;
+
+                if (i > 0) {
+                    const calcLatex = gaussRenderStepCalcLatex(matrices[i - 1], matrix, steps[i - 1]);
+                    if (calcLatex) {
+                        parts.push(`<div class="gauss-calc">\\[ ${calcLatex} \\]</div>`);
+                    }
+                }
+
                 parts.push('<div class="gauss-row">');
-                parts.push(`<div class="gauss-matrix">\\[ ${gaussRenderMatrixLatex(matrix)} \\]</div>`);
+                parts.push(`<div class="gauss-matrix">\\[ ${gaussRenderMatrixLatex(matrix, highlight)} \\]</div>`);
                 if (appliedStep) {
                     parts.push(
                         `<div class="gauss-ops">\\[ ${gaussRenderOpsLatex(opsByRowFor(appliedStep), matrix.length)} \\]</div>`,
