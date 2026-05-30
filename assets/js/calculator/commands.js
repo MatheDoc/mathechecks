@@ -212,6 +212,60 @@ const CalculatorCommands = (() => {
             ?? (endpointAbsValue < tolerance ? endpointCandidate : null);
     }
 
+    function collectAdaptiveIntervalRoots(evaluateFn, xMin, xMax, step, options = {}) {
+        const tolerance = options.tolerance ?? 1e-6;
+        const maxDepth = options.maxDepth ?? 4;
+        const variationFactor = options.variationFactor ?? 20;
+        const roots = [];
+        const steps = Math.max(1, Math.floor((xMax - xMin) / step));
+
+        function scanInterval(a, b, fA, fB, depth) {
+            if (!Number.isFinite(fA) || !Number.isFinite(fB)) return;
+
+            const directRoot = findRootInInterval(evaluateFn, a, b, fA, fB, tolerance);
+            if (directRoot !== null) {
+                roots.push(directRoot);
+                return;
+            }
+
+            if (depth <= 0) return;
+
+            const mid = (a + b) / 2;
+            const fMid = evaluateFn(mid);
+            const finiteValues = [fA, fB].filter((value) => Number.isFinite(value)).map((value) => Math.abs(value));
+            if (Number.isFinite(fMid)) finiteValues.push(Math.abs(fMid));
+
+            const leftSign = signWithTolerance(fA, tolerance);
+            const midSign = Number.isFinite(fMid) ? signWithTolerance(fMid, tolerance) : null;
+            const rightSign = signWithTolerance(fB, tolerance);
+            const hasInteriorSignVariation = Number.isFinite(fMid) && (
+                midSign === 0
+                || (leftSign !== 0 && midSign !== 0 && leftSign !== midSign)
+                || (midSign !== 0 && rightSign !== 0 && midSign !== rightSign)
+            );
+
+            const minAbs = finiteValues.length ? Math.min(...finiteValues) : Number.POSITIVE_INFINITY;
+            const maxAbs = finiteValues.length ? Math.max(...finiteValues) : 0;
+            const hasStrongVariation = minAbs > 0 && maxAbs / minAbs >= variationFactor;
+
+            if (!Number.isFinite(fMid) && depth <= 1) return;
+            if (!hasInteriorSignVariation && !hasStrongVariation && Number.isFinite(fMid)) return;
+
+            scanInterval(a, mid, fA, fMid, depth - 1);
+            scanInterval(mid, b, fMid, fB, depth - 1);
+        }
+
+        for (let i = 0; i < steps; i++) {
+            const x1 = xMin + i * step;
+            const x2 = i === steps - 1 ? xMax : x1 + step;
+            const f1 = evaluateFn(x1);
+            const f2 = evaluateFn(x2);
+            scanInterval(x1, x2, f1, f2, maxDepth);
+        }
+
+        return roots;
+    }
+
     function deduplicateNumericRoots(values, evaluateFn, roundFactor, proximityTolerance) {
         const sorted = values
             .map((value) => ({
@@ -436,19 +490,17 @@ const CalculatorCommands = (() => {
             let [leftSide, rightSide] = equation.split('=').map((part) => part.trim());
             if (!rightSide) rightSide = '0';
 
-            function f(x) {
-                return evaluateExpressionWithX(`(${leftSide}) - (${rightSide})`, x);
-            }
+            const equationExpression = `(${leftSide}) - (${rightSide})`;
+            const valueFn = buildGraphFunctionEvaluator(equationExpression);
 
             const tolerance = 1e-6;
             const rangeMin = -1000;
             const rangeMax = 1000;
             const steps = 20000;
             const step = (rangeMax - rangeMin) / steps;
-            const roots = [];
             const identitySamplePoints = [rangeMin, -10, -1, 0, 1, 10, rangeMax];
             const isIdentityEquation = identitySamplePoints.every((sampleX) => {
-                const value = f(sampleX);
+                const value = valueFn(sampleX);
                 return Number.isFinite(value) && Math.abs(value) < tolerance;
             });
 
@@ -457,16 +509,46 @@ const CalculatorCommands = (() => {
                 return;
             }
 
-            for (let i = 0; i < steps; i++) {
-                const x1 = rangeMin + i * step;
-                const x2 = x1 + step;
-                const f1 = f(x1);
-                const f2 = f(x2);
-                const root = findRootInInterval(f, x1, x2, f1, f2, tolerance);
-                if (root !== null) roots.push(root);
+            const derivativeEvaluators = buildGraphDerivativeEvaluators(equationExpression);
+            const extrema = findGraphExtrema(valueFn, derivativeEvaluators?.firstDerivativeEvaluator, rangeMin, rangeMax);
+            const inflectionPoints = findGraphInflectionPoints(valueFn, derivativeEvaluators?.secondDerivativeEvaluator, rangeMin, rangeMax);
+
+            function refineEquationRootCandidate(candidate) {
+                if (!Number.isFinite(candidate)) return null;
+
+                const halfWindow = Math.max(step / 4, 1e-3);
+                const left = Math.max(rangeMin, candidate - halfWindow);
+                const right = Math.min(rangeMax, candidate + halfWindow);
+                const leftValue = valueFn(left);
+                const rightValue = valueFn(right);
+
+                if (Number.isFinite(leftValue) && Number.isFinite(rightValue)) {
+                    const bracketedRoot = findRootInInterval(valueFn, left, right, leftValue, rightValue, tolerance);
+                    if (bracketedRoot !== null) return bracketedRoot;
+                }
+
+                const touchingRoot = refineTouchingRoot(valueFn, left, right, tolerance);
+                if (touchingRoot !== null) return touchingRoot;
+
+                const residual = valueFn(candidate);
+                return Number.isFinite(residual) && Math.abs(residual) <= tolerance ? candidate : null;
             }
 
-            const uniqueRoots = deduplicateNumericRoots(roots, f, 1e6, Math.max(1e-5, step / 20));
+            const uniqueRoots = findFunctionRoots(valueFn, {
+                xMin: rangeMin,
+                xMax: rangeMax,
+                tolerance,
+                search: { steps, step },
+                specialPoints: [...extrema, ...inflectionPoints],
+                includeAdaptiveSubdivision: true,
+                adaptiveOptions: {
+                    maxDepth: 4,
+                    variationFactor: 20,
+                },
+                refineCandidate: (candidate) => refineEquationRootCandidate(candidate),
+                roundFactor: 1e6,
+                proximityTolerance: Math.max(1e-5, step / 20),
+            });
 
             if (!uniqueRoots.length) {
                 outputApi.setText('Keine Lösung', { headline: 'Gleichung' });
@@ -725,9 +807,11 @@ const CalculatorCommands = (() => {
             .map((point) => point.x);
     }
 
-    function findGraphRoots(evaluateFn, specialPoints, xMin, xMax) {
-        const tolerance = GRAPH_ANALYSIS_CONFIG.zerosTolerance;
-        const search = getGraphRootSearchConfig(xMin, xMax);
+    function findFunctionRoots(evaluateFn, options = {}) {
+        const xMin = options.xMin;
+        const xMax = options.xMax;
+        const tolerance = options.tolerance ?? GRAPH_ANALYSIS_CONFIG.zerosTolerance;
+        const search = options.search ?? getGraphRootSearchConfig(xMin, xMax);
         if (!search) return [];
 
         const { steps, step } = search;
@@ -737,15 +821,34 @@ const CalculatorCommands = (() => {
         });
         const sampleRoots = collectGraphSampleZeroRoots(evaluateFn, xMin, xMax, steps, step, tolerance);
         const boundaryRoots = collectGraphDomainBoundaryRoots(evaluateFn, xMin, xMax, steps, step);
-        const specialRoots = collectGraphSpecialPointRoots(specialPoints, evaluateFn, tolerance);
+        const specialRoots = collectGraphSpecialPointRoots(options.specialPoints, evaluateFn, tolerance);
+        const adaptiveRoots = options.includeAdaptiveSubdivision
+            ? collectAdaptiveIntervalRoots(evaluateFn, xMin, xMax, step, {
+                tolerance,
+                ...(options.adaptiveOptions || {}),
+            })
+            : [];
 
-        const roots = [...signChangeRoots, ...sampleRoots, ...boundaryRoots, ...specialRoots];
+        let rootCandidates = [...signChangeRoots, ...sampleRoots, ...boundaryRoots, ...specialRoots, ...adaptiveRoots];
+
+        if (typeof options.refineCandidate === 'function') {
+            rootCandidates = rootCandidates
+                .map((candidate) => options.refineCandidate(candidate, { tolerance, xMin, xMax, step, steps }))
+                .filter((candidate) => candidate !== null);
+        }
+
+        if (options.requireFiniteResidual !== false) {
+            rootCandidates = rootCandidates.filter((candidate) => {
+                const residual = evaluateFn(candidate);
+                return Number.isFinite(residual) && Math.abs(residual) <= tolerance;
+            });
+        }
 
         return deduplicateNumericRoots(
-            roots,
+            rootCandidates,
             evaluateFn,
-            GRAPH_ANALYSIS_CONFIG.zerosRoundFactor,
-            Math.max(GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance, step / 20)
+            options.roundFactor ?? GRAPH_ANALYSIS_CONFIG.zerosRoundFactor,
+            options.proximityTolerance ?? Math.max(GRAPH_ANALYSIS_CONFIG.zerosDeduplicateTolerance, step / 20)
         );
     }
 
@@ -964,7 +1067,11 @@ const CalculatorCommands = (() => {
         const inflectionPoints = findGraphInflectionPoints(valueFn, derivativeEvaluators?.secondDerivativeEvaluator, xMin, xMax);
 
         return {
-            roots: findGraphRoots(valueFn, [...extrema, ...inflectionPoints], xMin, xMax),
+            roots: findFunctionRoots(valueFn, {
+                xMin,
+                xMax,
+                specialPoints: [...extrema, ...inflectionPoints],
+            }),
             extrema,
             inflectionPoints,
         };

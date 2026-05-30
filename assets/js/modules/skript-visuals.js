@@ -453,6 +453,183 @@ function initPunktwolkeRegressionWidgets(root) {
     });
 }
 
+/* ---- Gauß-Schritte-Widget ---- */
+
+const GAUSS_ROW_NAMES = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+
+function gaussRowName(index) {
+    return GAUSS_ROW_NAMES[index] ?? `R_{${index + 1}}`;
+}
+
+function gaussFormatCell(value) {
+    if (Object.is(value, -0)) value = 0;
+    if (Number.isInteger(value)) return String(value);
+    const rounded = Math.round(value * 1e9) / 1e9;
+    if (Number.isInteger(rounded)) return String(rounded);
+    for (let denom = 2; denom <= 16; denom += 1) {
+        const numerator = rounded * denom;
+        if (Math.abs(numerator - Math.round(numerator)) < 1e-9) {
+            const num = Math.round(numerator);
+            const sign = num < 0 ? "-" : "";
+            return `${sign}\\tfrac{${Math.abs(num)}}{${denom}}`;
+        }
+    }
+    return rounded.toString().replace(".", ",");
+}
+
+function gaussApplyOp(matrix, op) {
+    const [type] = op;
+    if (type === "addMul") {
+        const [, target, source, factor] = op;
+        for (let j = 0; j < matrix[target].length; j += 1) {
+            matrix[target][j] = matrix[target][j] + factor * matrix[source][j];
+        }
+    } else if (type === "swap") {
+        const [, a, b] = op;
+        const tmp = matrix[a];
+        matrix[a] = matrix[b];
+        matrix[b] = tmp;
+    } else if (type === "scale") {
+        const [, row, factor] = op;
+        for (let j = 0; j < matrix[row].length; j += 1) {
+            matrix[row][j] = matrix[row][j] * factor;
+        }
+    }
+}
+
+function gaussOpRows(op) {
+    const [type] = op;
+    if (type === "addMul") return [op[1]];
+    if (type === "swap") return [op[1], op[2]];
+    if (type === "scale") return [op[1]];
+    return [];
+}
+
+function gaussOpLabel(op) {
+    return op[op.length - 1];
+}
+
+function gaussRenderMatrixLatex(matrix) {
+    const nCols = matrix[0].length;
+    const valueCols = nCols - 1;
+    const colSpec = "r".repeat(valueCols) + "|r";
+    const body = matrix
+        .map((row) => row.map(gaussFormatCell).join(" & "))
+        .join(" \\\\ ");
+    return `\\left( \\begin{array}{${colSpec}} ${body} \\end{array} \\right)`;
+}
+
+function gaussRenderOpsLatex(opsByRow, nRows) {
+    const lines = [];
+    for (let i = 0; i < nRows; i += 1) {
+        const ops = opsByRow.get(i);
+        lines.push(ops && ops.length ? ops.join(",\\;") : "\\phantom{X}");
+    }
+    return `\\begin{matrix} ${lines.join(" \\\\ ")} \\end{matrix}`;
+}
+
+function initGaussSchritteWidgets(root) {
+    root.querySelectorAll(".gauss-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        let initialMatrix;
+        let steps;
+        try {
+            initialMatrix = JSON.parse(widget.dataset.matrix);
+            steps = JSON.parse(widget.dataset.steps);
+        } catch (error) {
+            console.warn("[gauss-widget] ungültige Konfiguration", error);
+            return;
+        }
+
+        if (!Array.isArray(initialMatrix) || !Array.isArray(steps)) return;
+
+        const matrices = [initialMatrix.map((row) => row.slice())];
+        steps.forEach((step) => {
+            const previous = matrices[matrices.length - 1];
+            const next = previous.map((row) => row.slice());
+            (step.ops || []).forEach((op) => gaussApplyOp(next, op));
+            matrices.push(next);
+        });
+
+        const totalSteps = steps.length;
+        let stepIndex = 0;
+
+        const historyHost = widget.querySelector(".gauss-history");
+        const labelNode = widget.querySelector(".gauss-step-label");
+        const prevButton = widget.querySelector(".gauss-prev");
+        const nextButton = widget.querySelector(".gauss-next");
+        const resetButton = widget.querySelector(".gauss-reset");
+
+        function opsByRowFor(step) {
+            const opsByRow = new Map();
+            (step?.ops || []).forEach((op) => {
+                gaussOpRows(op).forEach((row) => {
+                    const existing = opsByRow.get(row) ?? [];
+                    existing.push(gaussOpLabel(op));
+                    opsByRow.set(row, existing);
+                });
+            });
+            return opsByRow;
+        }
+
+        function render() {
+            const visibleCount = stepIndex + 1; // initial matrix + applied steps
+            const parts = [];
+            for (let i = 0; i < visibleCount; i += 1) {
+                const matrix = matrices[i];
+                const appliedStep = i < stepIndex ? steps[i] : null;
+                parts.push('<div class="gauss-row">');
+                parts.push(`<div class="gauss-matrix">\\[ ${gaussRenderMatrixLatex(matrix)} \\]</div>`);
+                if (appliedStep) {
+                    parts.push(
+                        `<div class="gauss-ops">\\[ ${gaussRenderOpsLatex(opsByRowFor(appliedStep), matrix.length)} \\]</div>`,
+                    );
+                }
+                parts.push("</div>");
+            }
+            historyHost.innerHTML = parts.join("");
+
+            if (stepIndex < totalSteps) {
+                const planned = steps[stepIndex];
+                const title = planned.title ? `: ${planned.title}` : "";
+                labelNode.textContent = `Nächste Umformung (${stepIndex + 1} von ${totalSteps})${title}`;
+                labelNode.dataset.state = "active";
+            } else {
+                labelNode.textContent = `Zeilenstufenform nach ${totalSteps} Umformung${totalSteps === 1 ? "" : "en"} erreicht.`;
+                labelNode.dataset.state = "done";
+            }
+
+            prevButton.disabled = stepIndex === 0;
+            nextButton.disabled = stepIndex >= totalSteps;
+
+            if (window.MathJax?.typesetPromise) {
+                window.MathJax.typesetPromise([widget]).catch(() => { });
+            }
+        }
+
+        prevButton?.addEventListener("click", () => {
+            if (stepIndex > 0) {
+                stepIndex -= 1;
+                render();
+            }
+        });
+        nextButton?.addEventListener("click", () => {
+            if (stepIndex < totalSteps) {
+                stepIndex += 1;
+                render();
+            }
+        });
+        resetButton?.addEventListener("click", () => {
+            stepIndex = 0;
+            render();
+        });
+
+        render();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -460,6 +637,7 @@ export function initSkriptVisuals(root) {
     refreshSkriptTables(root);
     initMonoalphabetischeSubstitutionWidgets(root);
     initRouletteWidgets(root);
+    initGaussSchritteWidgets(root);
 
     if (!window.Plotly) return;
 

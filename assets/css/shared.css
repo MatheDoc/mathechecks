@@ -3678,6 +3678,85 @@ html.light .recall-list--user .recall-list__item {
   max-width: 760px;
 }
 
+/* Gauß-Schritte-Widget */
+.gauss-widget {
+  align-items: stretch;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gauss-widget .gauss-history {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: var(--r, 12px);
+  padding: 14px 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.gauss-widget .gauss-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 24px;
+}
+
+.gauss-widget .gauss-matrix,
+.gauss-widget .gauss-ops {
+  margin: 0;
+}
+
+.gauss-widget .gauss-step-label {
+  text-align: center;
+  font-size: 0.95em;
+  color: var(--text-dim);
+}
+
+.gauss-widget .gauss-step-label[data-state="done"] {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gauss-widget .gauss-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.gauss-widget .gauss-controls button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font: inherit;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+
+.gauss-widget .gauss-controls .gauss-reset {
+  padding: 8px 12px;
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.gauss-widget .gauss-controls button:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+  background: var(--accent-soft);
+}
+
+.gauss-widget .gauss-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .pr-widget__summary {
   display: grid;
   gap: 10px;
