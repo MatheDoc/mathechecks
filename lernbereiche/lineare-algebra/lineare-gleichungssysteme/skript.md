@@ -95,24 +95,6 @@ Einsetzen in $I$ liefert wieder $2\cdot 4 + y = 13$, also $y = 5$.
 
 Der Gauß-Algorithmus ist im Grunde eine systematische Erweiterung des Additionsverfahrens. Durch geschickte Umformungen der Gleichungen wird das System schrittweise vereinfacht, bis sich die Lösungen direkt berechnen lassen.
 
-Das folgende interaktive Beispiel zeigt das Vorgehen am LGS
-
-$$
-\begin{align*}
-x_1 + 2x_2 + 3x_3 &= 6 \\
-2x_1 + 3x_2 + x_3 &= 6 \\
-3x_1 + x_2 + 2x_3 &= 6
-\end{align*}
-$$
-
-Klicke auf „Nächste Umformung", um schrittweise die rechts notierten Zeilenumformungen anzuwenden, bis die Matrix in Zeilenstufenform vorliegt.
-
-{% include widgets/widget-gauss-schritte.html
-  id="gauss-bsp-grundlegend"
-  matrix='[[1,2,3,6],[2,3,1,6],[3,1,2,6]]'
-  steps='[{"title":"erste Spalte unter der Pivotzeile räumen","ops":[["addMul",1,0,-2,"II-2\\cdot I"],["addMul",2,0,-3,"III-3\\cdot I"]]},{"title":"zweite Spalte unter der Pivotzeile räumen","ops":[["addMul",2,1,-5,"III-5\\cdot II"]]}]'
-%}
-
 Die Stärke des Gauß-Algorithmus liegt darin, dass er grundsätzlich für beliebig viele Gleichungen und Unbekannte anwendbar ist. Der Einfachheit halber verzichten wir dabei meist auf die Bezeichnung der Unbekannten und stellen das Gleichungssystem stattdessen in einer übersichtlichen Matrixform dar. Diese Matrixform erhalten wir, indem wir die Unbekannten und Rechenoperationen auslassen, die Koeffizienten müssen dabei konsequent untereinander geschrieben werden. Aus dem LGS
 
 $$
@@ -138,6 +120,26 @@ Im Anschluss wird diese Matrix mit Hilfe der sogenannten elementaren Zeilenumfor
 - Vertauschen zweier Zeilen
 - Multiplizieren einer Zeile mit einem von null verschiedenen Faktor
 - Addieren oder Subtrahieren eines Vielfachen einer Zeile zu einer anderen Zeile
+
+Das folgende interaktive Beispiel zeigt das Vorgehen am LGS
+
+$$
+\begin{align*}
+x_1 + 2x_2 + 3x_3 &= 6 \\
+2x_1 + 3x_2 + x_3 &= 6 \\
+3x_1 + x_2 + 2x_3 &= 6
+\end{align*}
+$$
+
+Klicke auf „weiter", um schrittweise die rechts notierten Zeilenumformungen anzuwenden, bis die Matrix in Zeilenstufenform vorliegt.
+
+{% include widgets/widget-gauss-schritte.html
+  id="gauss-bsp-grundlegend"
+  matrix='[[1,2,3,6],[2,3,1,6],[3,1,2,6]]'
+  steps='[{"title":"erste Spalte unter der Pivotzeile räumen","ops":[["addMul",1,0,-2,"II-2\\cdot I"],["addMul",2,0,-3,"III-3\\cdot I"]]},{"title":"zweite Spalte unter der Pivotzeile räumen","ops":[["addMul",2,1,-5,"III-5\\cdot II"]]}]'
+%}
+
+
 
 Das folgende Beispiel zeigt den Fall, in dem zu Beginn ein Zeilentausch nötig ist, um in der linken oberen Ecke eine Zahl ungleich Null zu erhalten.
 
