@@ -8,6 +8,8 @@
  *
  * Shortcuts: P Stift · M Marker · L Lasso · E Radierer
  *            Ctrl+Z Rückgängig · Entf/Backspace Selektion löschen · Esc Abbrechen
+ *
+ * Scratch-to-Erase: Zickzack-Kratzen mit dem Stift löscht gekreuzte Striche.
  */
 
 // ─── DOM ──────────────────────────────────────────────────────────────────────
@@ -30,6 +32,72 @@ const MARKER_ALPHA = 0.38;
 const PEN_BASE_W   = 3;
 const ERASER_WIDTH = 28;
 
+// ─── Cursor-SVGs (dynamisch, farbabhängig) ────────────────────────────────────
+function _cur(svg, hx, hy) {
+  return `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${hx} ${hy}, auto`;
+}
+
+function _enc(hex) {
+  // "#3b82f6" → "%233b82f6" für SVG-Attribute im data-URL
+  return encodeURIComponent(hex);
+}
+
+function _cursorPen(color) {
+  // Stift: Spitze unten-links, Körper in gewählter Farbe
+  const c  = _enc(color);
+  const c2 = _enc(color + 'cc'); // leicht transparent für Schaftfläche
+  return _cur(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>`
+    + `<path d='M4 16L13 7L17 11L8 20Z' fill='${c2}' stroke='%23fff' stroke-width='0.8' stroke-linejoin='round'/>`
+    + `<path d='M2 20L4 16L8 20Z' fill='%23888' stroke='%23fff' stroke-width='0.6'/>`
+    + `<path d='M13 7L16 4L20 4L20 8L17 11Z' fill='%23e0e0e0' stroke='%23fff' stroke-width='0.6'/>`
+    + `</svg>`,
+    2, 20
+  );
+}
+
+function _cursorMarker(color) {
+  // Marker: breiter vertikaler Block, Hotspot oben-mittig
+  const c = _enc(color);
+  return _cur(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='16' height='20'>`
+    + `<rect x='1' y='1' width='14' height='18' rx='2' fill='${c}' fill-opacity='0.55' stroke='%23333' stroke-width='1.2'/>`
+    + `<rect x='1' y='1' width='14' height='6' rx='2' fill='${c}' fill-opacity='0.9' stroke='none'/>`
+    + `</svg>`,
+    8, 1
+  );
+}
+
+function _cursorEraser() {
+  return _cur(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><rect x='1' y='5' width='18' height='11' rx='2' fill='%23f8d7c4' stroke='%23cc4455' stroke-width='1.5'/><line x1='1' y1='11' x2='19' y2='11' stroke='%23cc4455' stroke-width='1'/></svg>`,
+    10, 10
+  );
+}
+
+function _cursorLasso() {
+  return _cur(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='%23fff' stroke-width='3'/><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='%23222' stroke-width='1.5' stroke-dasharray='3 2'/><line x1='10' y1='13' x2='10' y2='20' stroke='%23fff' stroke-width='3' stroke-linecap='round'/><line x1='10' y1='13' x2='10' y2='20' stroke='%23222' stroke-width='1.5' stroke-linecap='round'/></svg>`,
+    10, 8
+  );
+}
+
+function applyToolCursor() {
+  if (!penMode) { canvas.style.cursor = 'default'; return; }
+  const cursors = {
+    pen:    _cursorPen(penColor),
+    marker: _cursorMarker(markerColor),
+    eraser: _cursorEraser(),
+    lasso:  _cursorLasso(),
+  };
+  canvas.style.cursor = cursors[activeTool] ?? 'crosshair';
+}
+
+// Scratch-to-Erase-Schwellen
+const SCRATCH_MIN_REVERSALS  = 4;    // Mindestanzahl Richtungsumkehrungen
+const SCRATCH_MIN_SPEED_SQ   = 8*8;  // Mindestgeschwindigkeit² je Segment (px)
+const SCRATCH_MIN_TOTAL_DIST = 60;   // Mindest-Gesamtweg des Strichs (px)
+
 // ─── State ────────────────────────────────────────────────────────────────────
 let penMode     = false;
 let activeTool  = 'pen';   // 'pen' | 'marker' | 'lasso' | 'eraser'
@@ -47,6 +115,12 @@ let strokes = [];
 
 /** @type {Stroke|null} */
 let liveStroke = null;
+
+// Scratch-to-Erase
+/** Richtungs-Vorzeichen des letzten Segments (+1 / -1 / 0) */
+let scratchLastDirX = 0;
+let scratchReversals = 0;
+let scratchTotalDist = 0;
 
 // Lasso
 /** @type {{ x: number, y: number }[]} */
@@ -209,6 +283,10 @@ function onDown(e) {
   drawing = true;
   const color = activeTool === 'marker' ? markerColor : penColor;
   liveStroke = { tool: activeTool, color, points: [] };
+  // Scratch-Zähler zurücksetzen
+  scratchLastDirX  = 0;
+  scratchReversals = 0;
+  scratchTotalDist = 0;
   appendPoint(e, doc);
   redraw();
 }
@@ -230,6 +308,10 @@ function onMove(e) {
   }
 
   appendPoint(e, doc);
+  // Scratch-to-Erase nur beim Stift prüfen
+  if (activeTool === 'pen' && liveStroke && liveStroke.points.length >= 2) {
+    updateScratch(liveStroke);
+  }
   redraw();
 }
 
@@ -265,6 +347,115 @@ function appendPoint(e, doc) {
       ? ERASER_WIDTH
       : MARKER_WIDTH;
   liveStroke.points.push({ x: doc.x, y: doc.y, w });
+}
+
+// ─── Scratch-to-Erase ────────────────────────────────────────────────────────
+/**
+ * Analysiert den laufenden Strich auf Zickzack-Muster.
+ * Kriterien: mind. SCRATCH_MIN_REVERSALS X-Richtungsumkehrungen,
+ * jedes Segment schnell genug, Gesamtweg ≥ Mindestdistanz.
+ */
+function updateScratch(stroke) {
+  const pts = stroke.points;
+  const n   = pts.length;
+  if (n < 2) return;
+
+  const p1 = pts[n - 2];
+  const p2 = pts[n - 1];
+  const dx  = p2.x - p1.x;
+  const dy  = p2.y - p1.y;
+  const d2  = dx * dx + dy * dy;
+
+  scratchTotalDist += Math.sqrt(d2);
+  if (d2 < SCRATCH_MIN_SPEED_SQ) return;   // zu langsam / zu kurz
+
+  const dir = dx > 0 ? 1 : dx < 0 ? -1 : 0;
+  if (dir !== 0 && scratchLastDirX !== 0 && dir !== scratchLastDirX) {
+    scratchReversals++;
+  }
+  if (dir !== 0) scratchLastDirX = dir;
+
+  if (
+    scratchReversals >= SCRATCH_MIN_REVERSALS &&
+    scratchTotalDist >= SCRATCH_MIN_TOTAL_DIST
+  ) {
+    triggerScratchErase(stroke);
+  }
+}
+
+/**
+ * Löscht alle Striche, die der Scratch-Strich kreuzt,
+ * und verwirft den Scratch-Strich selbst.
+ */
+function triggerScratchErase(scratchStroke) {
+  const bbox = strokeBBox(scratchStroke.points);
+  const toDelete = new Set();
+
+  strokes.forEach((s, i) => {
+    if (s.tool === 'eraser') return;
+    if (!bboxOverlaps(bbox, strokeBBox(s.points))) return;
+    if (strokesCross(scratchStroke.points, s.points)) toDelete.add(i);
+  });
+
+  if (toDelete.size > 0) {
+    strokes = strokes.filter((_, i) => !toDelete.has(i));
+  }
+
+  // Scratch-Strich nicht in strokes aufnehmen, Aktion als abgeschlossen markieren
+  drawing    = false;
+  liveStroke = null;
+  scratchReversals = 0;
+  scratchTotalDist = 0;
+  redraw();
+  // Kurzes visuelles Feedback: Flackern auf dem Canvas
+  flashErase();
+}
+
+function flashErase() {
+  ctx.save();
+  ctx.fillStyle = 'rgba(239,68,68,0.08)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+  setTimeout(() => redraw(), 120);
+}
+
+/** Bounding-Box eines Strichs (Dokument-Koordinaten) */
+function strokeBBox(pts) {
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity;
+  for (const p of pts) {
+    if (p.x < minX) minX = p.x;
+    if (p.y < minY) minY = p.y;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y > maxY) maxY = p.y;
+  }
+  return { minX, minY, maxX, maxY };
+}
+
+function bboxOverlaps(a, b) {
+  return a.maxX >= b.minX && a.minX <= b.maxX &&
+         a.maxY >= b.minY && a.minY <= b.maxY;
+}
+
+/** Prüft ob zwei Strich-Punktlisten sich mindestens einmal kreuzen (Segment-Schnitt). */
+function strokesCross(ptsA, ptsB) {
+  for (let i = 0; i < ptsA.length - 1; i++) {
+    for (let j = 0; j < ptsB.length - 1; j++) {
+      if (segmentsIntersect(ptsA[i], ptsA[i+1], ptsB[j], ptsB[j+1])) return true;
+    }
+  }
+  return false;
+}
+
+/** Segment-Schnitt-Test (2D, keine Endpunkt-Randbehandlung nötig) */
+function segmentsIntersect(p1, p2, p3, p4) {
+  const d1x = p2.x - p1.x, d1y = p2.y - p1.y;
+  const d2x = p4.x - p3.x, d2y = p4.y - p3.y;
+  const cross = d1x * d2y - d1y * d2x;
+  if (Math.abs(cross) < 1e-10) return false;   // parallel
+  const dx = p3.x - p1.x, dy = p3.y - p1.y;
+  const t = (dx * d2y - dy * d2x) / cross;
+  const u = (dx * d1y - dy * d1x) / cross;
+  return t >= 0 && t <= 1 && u >= 0 && u <= 1;
 }
 
 // ─── Lasso-Hilfsfunktionen ───────────────────────────────────────────────────
@@ -398,6 +589,7 @@ function updateBodyClass() {
   document.body.classList.toggle('pen-drawing',  penMode && activeTool !== 'eraser' && activeTool !== 'lasso');
   document.body.classList.toggle('pen-erasing',  penMode && activeTool === 'eraser');
   document.body.classList.toggle('pen-lassoing', penMode && activeTool === 'lasso');
+  applyToolCursor();
 }
 
 // ─── Werkzeug wählen ─────────────────────────────────────────────────────────
@@ -453,8 +645,8 @@ document.querySelectorAll('.pen-color-dot').forEach(btn => {
     const color = b.dataset.color;
     if (!mode || !color) return;
 
-    if (mode === 'pen')    { penColor    = color; if (activeTool !== 'pen')    setTool('pen');    }
-    if (mode === 'marker') { markerColor = color; if (activeTool !== 'marker') setTool('marker'); }
+    if (mode === 'pen')    { penColor    = color; if (activeTool !== 'pen')    setTool('pen');    else applyToolCursor(); }
+    if (mode === 'marker') { markerColor = color; if (activeTool !== 'marker') setTool('marker'); else applyToolCursor(); }
 
     document.querySelectorAll(`.pen-color-dot[data-mode="${mode}"]`)
       .forEach(b2 => b2.classList.remove('selected'));
