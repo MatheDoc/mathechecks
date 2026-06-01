@@ -194,11 +194,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── Body-Cursor-Zustände ── */
-body.pen-drawing  { cursor: crosshair; }
-body.pen-erasing  { cursor: cell; }
-body.pen-lassoing { cursor: crosshair; }
-
+/* ── Body-Zustände (Cursor wird per JS auf #pen-canvas gesetzt) ── */
 body.pen-drawing .mod-content,
 body.pen-erasing .mod-content,
 body.pen-lassoing .mod-content {
