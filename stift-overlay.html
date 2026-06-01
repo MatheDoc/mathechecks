@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stift-Overlay Demo</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Georgia, serif;
+    line-height: 1.8;
+    background: #fafaf8;
+    color: #1a1a1a;
+  }
+
+  /* ── Floating button cluster ── */
+  #toolbar {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .fab {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+    flex-shrink: 0;
+  }
+
+  .fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22);
+  }
+
+  .fab:active { transform: scale(0.95); }
+
+  /* Main toggle — always visible */
+  #btn-toggle {
+    background: #1a1a1a;
+    color: #fafaf8;
+  }
+
+  #btn-toggle.active {
+    background: #f5e642;
+    color: #1a1a1a;
+  }
+
+  /* Tool buttons — hidden when pen off */
+  .pen-tool {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.7) translateY(-8px);
+    transition: opacity 0.2s, transform 0.2s;
+  }
+
+  .pen-tool.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+  }
+
+  .fab.tool-selected {
+    box-shadow: 0 0 0 3px #1a1a1a, 0 2px 10px rgba(0,0,0,0.18);
+  }
+
+  /* Pen */
+  #btn-pen   { background: #fff; color: #1a1a1a; }
+  /* Marker (highlighter) */
+  #btn-mark  { background: #f5e642; color: #1a1a1a; }
+  /* Eraser */
+  #btn-erase { background: #fff; color: #888; border: 1.5px solid #ddd; }
+
+  /* Color dots */
+  .color-fab {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2.5px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.15);
+    transition: border-color 0.15s, transform 0.15s;
+    flex-shrink: 0;
+  }
+
+  .color-fab:hover { transform: scale(1.15); }
+  .color-fab.selected { border-color: #1a1a1a; }
+
+  /* Divider line between groups */
+  .fab-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(0,0,0,0.12);
+  }
+
+  /* Undo / clear — small secondary fabs */
+  #btn-undo, #btn-clear {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+    background: #fff;
+    color: #888;
+    border: 1.5px solid #e0e0e0;
+  }
+
+  /* ── Canvas ── */
+  #canvas-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 500;
+    pointer-events: none;
+    touch-action: none;
+  }
+
+  /* ── Content ── */
+  #content {
+    max-width: 680px;
+    margin: 60px auto;
+    padding: 0 40px 120px;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-size: 1.9rem;
+    font-weight: normal;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .meta {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #aaa;
+    margin-bottom: 36px;
+    letter-spacing: 0.06em;
+  }
+
+  h2 { font-size: 1.05rem; font-weight: bold; margin: 2em 0 0.5em; }
+  p  { margin-bottom: 1.3em; }
+
+  body.pen-active           { cursor: crosshair; }
+  body.eraser-active        { cursor: cell; }
+  body.pen-active #content,
+  body.eraser-active #content { pointer-events: none; user-select: none; }
+</style>
+</head>
+<body>
+
+<div id="toolbar">
+  <!-- Always visible: toggle pen mode -->
+  <button class="fab" id="btn-toggle" title="Stiftmodus">✏</button>
+
+  <!-- Pen tool -->
+  <button class="fab pen-tool tool-selected" id="btn-pen" title="Stift">✒</button>
+
+  <!-- Marker / Highlighter -->
+  <button class="fab pen-tool" id="btn-mark" title="Marker">▬</button>
+
+  <!-- Eraser -->
+  <button class="fab pen-tool" id="btn-erase" title="Radierer">⌫</button>
+
+  <!-- Color picker (pen only) -->
+  <button class="color-fab pen-tool selected" id="c-red"   data-color="#e63030" style="background:#e63030" title="Rot"></button>
+  <button class="color-fab pen-tool"           id="c-blue"  data-color="#1a6fe6" style="background:#1a6fe6" title="Blau"></button>
+  <button class="color-fab pen-tool"           id="c-black" data-color="#1a1a1a" style="background:#1a1a1a" title="Schwarz"></button>
+
+  <!-- Actions -->
+  <button class="fab pen-tool" id="btn-undo"  title="Rückgängig">↩</button>
+  <button class="fab pen-tool" id="btn-clear" title="Alles löschen">✕</button>
+</div>
+
+<canvas id="canvas-overlay"></canvas>
+
+<div id="content">
+  <h1>Ertragsgesetzliche Kostenfunktionen</h1>
+  <p class="meta">DEMO · STIFT-OVERLAY · SCROLL-STABIL</p>
+
+  <p>Hier kann mit Maus, Touch oder Surface Pen direkt auf die Webseite geschrieben werden. Scrolle nach unten und zeichne an verschiedenen Stellen — die Striche bleiben an ihrer Position im Dokument verankert.</p>
+
+  <h2>Kostenbegriffe</h2>
+  <p>Die Gesamtkosten K(x) setzen sich aus fixen Kosten K_f und variablen Kosten K_v(x) zusammen. Während die fixen Kosten unabhängig von der Produktionsmenge x anfallen, steigen die variablen Kosten mit zunehmender Produktion.</p>
+  <p>Die Grenzkostenfunktion K'(x) beschreibt, wie stark die Gesamtkosten bei einer marginalen Erhöhung der Produktionsmenge ansteigen. Am Betriebsoptimum nimmt die Grenzkostenfunktion ihr Minimum an.</p>
+
+  <h2>Durchschnittskosten</h2>
+  <p>Die Stückkostenfunktion k(x) = K(x)/x gibt die Kosten pro produzierter Einheit an. Das Betriebsoptimum liegt dort, wo Stückkosten und Grenzkosten übereinstimmen: k(x) = K'(x).</p>
+  <p>Das Betriebsminimum beschreibt den Punkt, ab dem die variablen Stückkosten ihr Minimum erreichen. Unterhalb dieses Punktes sollte die Produktion kurzfristig eingestellt werden, da die Erlöse die variablen Kosten nicht mehr decken.</p>
+
+  <h2>Polynomiale Kostenfunktionen</h2>
+  <p>Im ertragsgesetzlichen Modell wird die Gesamtkostenfunktion häufig als kubisches Polynom der Form K(x) = ax³ + bx² + cx + d modelliert, wobei d die Fixkosten repräsentiert und a > 0 gilt.</p>
+  <p>Für die Existenz eines typisch S-förmigen Verlaufs muss die Diskriminante der Grenzkostenfunktion positiv sein. Dies sichert zwei reelle Extremstellen der Grenzkosten und einen Wendepunkt der Gesamtkostenkurve.</p>
+
+  <div id="extra-content"></div>
+</div>
+
+<script>
+// Generate paragraphs
+const extra = document.getElementById('extra-content');
+const topics = ['Gewinnmaximierung','Break-Even-Analyse','Deckungsbeitragsrechnung',
+  'Kostenplanung','Preisuntergrenze','Kapazitätsauslastung',
+  'Fixkostendegression','Skalenerträge','Grenzproduktivität'];
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('p');
+  p.textContent = `Absatz ${i+1} (${topics[i%topics.length]}): Die Analyse der Kostenfunktion erlaubt Rückschlüsse auf optimale Produktionsmengen und Preisuntergrenzen. Markiere diesen Text oder zeichne eine Anmerkung daneben.`;
+  extra.appendChild(p);
+}
+</script>
+
+<script>
+const canvas = document.getElementById('canvas-overlay');
+const ctx    = canvas.getContext('2d');
+
+// ── State ──
+let penMode   = false;
+let activeTool = 'pen';   // 'pen' | 'marker' | 'eraser'
+let drawing   = false;
+let strokes   = [];
+let current   = null;
+let penColor  = '#e63030';
+
+const TOOL_CONFIG = {
+  pen:    { width: 3,  alpha: 1.0,  composite: 'source-over' },
+  marker: { width: 18, alpha: 0.28, composite: 'source-over' },
+  eraser: { width: 22, alpha: 1.0,  composite: 'destination-out' },
+};
+
+// ── Canvas sizing ──
+function syncCanvasSize() {
+  const W = document.documentElement.scrollWidth;
+  const H = document.documentElement.scrollHeight;
+  if (canvas.width === W && canvas.height === H) return;
+  canvas.width  = W;
+  canvas.height = H;
+  redraw();
+}
+new ResizeObserver(syncCanvasSize).observe(document.body);
+window.addEventListener('resize', syncCanvasSize);
+syncCanvasSize();
+
+// ── Rendering ──
+function redraw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (const s of strokes) drawStroke(s);
+}
+
+function drawStroke(s) {
+  if (s.points.length < 2) return;
+  const cfg = TOOL_CONFIG[s.tool];
+  ctx.save();
+  ctx.globalCompositeOperation = cfg.composite;
+  ctx.globalAlpha  = cfg.alpha;
+  ctx.lineCap      = 'round';
+  ctx.lineJoin     = 'round';
+  ctx.strokeStyle  = s.tool === 'eraser' ? '#000' : s.color;
+
+  ctx.beginPath();
+  ctx.moveTo(s.points[0].x, s.points[0].y);
+  for (let i = 1; i < s.points.length; i++) {
+    ctx.lineWidth = s.points[i].w;
+    if (i < s.points.length - 1) {
+      const mx = (s.points[i].x + s.points[i+1].x) / 2;
+      const my = (s.points[i].y + s.points[i+1].y) / 2;
+      ctx.quadraticCurveTo(s.points[i].x, s.points[i].y, mx, my);
+    } else {
+      ctx.lineTo(s.points[i].x, s.points[i].y);
+    }
+  }
+  ctx.stroke();
+  ctx.restore();
+}
+
+// ── Pointer events ──
+canvas.addEventListener('pointerdown', e => {
+  if (!penMode) return;
+  drawing = true;
+  canvas.setPointerCapture(e.pointerId);
+  const cfg = TOOL_CONFIG[activeTool];
+  current = { tool: activeTool, color: penColor, points: [] };
+  strokes.push(current);
+  addPoint(e, cfg);
+});
+
+canvas.addEventListener('pointermove', e => {
+  if (!drawing || !penMode) return;
+  const cfg = TOOL_CONFIG[activeTool];
+  addPoint(e, cfg);
+  // Incremental draw
+  if (current.points.length >= 2) {
+    const pts  = current.points;
+    const last = pts[pts.length - 1];
+    const prev = pts[pts.length - 2];
+    ctx.save();
+    ctx.globalCompositeOperation = cfg.composite;
+    ctx.globalAlpha  = cfg.alpha;
+    ctx.lineCap      = 'round';
+    ctx.lineJoin     = 'round';
+    ctx.strokeStyle  = activeTool === 'eraser' ? '#000' : penColor;
+    ctx.lineWidth    = last.w;
+    ctx.beginPath();
+    ctx.moveTo(prev.x, prev.y);
+    ctx.lineTo(last.x, last.y);
+    ctx.stroke();
+    ctx.restore();
+  }
+});
+
+canvas.addEventListener('pointerup',     () => { drawing = false; });
+canvas.addEventListener('pointercancel', () => { drawing = false; });
+
+function addPoint(e, cfg) {
+  const pressure = e.pressure > 0 ? e.pressure : 0.5;
+  current.points.push({
+    x: e.pageX,
+    y: e.pageY,
+    w: cfg.width * (activeTool === 'pen' ? (0.5 + pressure) : 1),
+  });
+}
+
+// ── UI helpers ──
+function setPenMode(on) {
+  penMode = on;
+  canvas.style.pointerEvents = on ? 'auto' : 'none';
+  document.body.classList.toggle('pen-active',    on && activeTool !== 'eraser');
+  document.body.classList.toggle('eraser-active', on && activeTool === 'eraser');
+
+  const btn = document.getElementById('btn-toggle');
+  btn.classList.toggle('active', on);
+  btn.title = on ? 'Stiftmodus beenden' : 'Stiftmodus starten';
+
+  document.querySelectorAll('.pen-tool').forEach(el => {
+    el.classList.toggle('visible', on);
+  });
+}
+
+function setActiveTool(name) {
+  activeTool = name;
+  ['btn-pen','btn-mark','btn-erase'].forEach(id => {
+    document.getElementById(id).classList.remove('tool-selected');
+  });
+  const map = { pen:'btn-pen', marker:'btn-mark', eraser:'btn-erase' };
+  document.getElementById(map[name]).classList.add('tool-selected');
+
+  // Cursor
+  document.body.classList.toggle('eraser-active', name === 'eraser');
+  document.body.classList.toggle('pen-active',    name !== 'eraser');
+
+  // Hide color dots for eraser/marker
+  ['c-red','c-blue','c-black'].forEach(id => {
+    document.getElementById(id).style.display =
+      name === 'pen' ? '' : 'none';
+  });
+}
+
+// ── Toolbar wiring ──
+document.getElementById('btn-toggle').addEventListener('click', () => setPenMode(!penMode));
+document.getElementById('btn-pen').addEventListener('click',   () => setActiveTool('pen'));
+document.getElementById('btn-mark').addEventListener('click',  () => setActiveTool('marker'));
+document.getElementById('btn-erase').addEventListener('click', () => setActiveTool('eraser'));
+
+document.getElementById('btn-undo').addEventListener('click', () => {
+  strokes.pop();
+  redraw();
+});
+
+document.getElementById('btn-clear').addEventListener('click', () => {
+  strokes = [];
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+
+document.querySelectorAll('.color-fab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    penColor = btn.dataset.color;
+    document.querySelectorAll('.color-fab').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+</script>
+</body>
+</html>
