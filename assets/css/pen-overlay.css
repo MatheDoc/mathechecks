@@ -1,0 +1,242 @@
+/* ══════════════════════════════════════════════════════════════
+   MatheChecks – Stift-Overlay
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Canvas ── */
+#pen-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  touch-action: none;
+}
+
+/* ── Toolbar ── */
+#pen-toolbar {
+  position: fixed;
+  right: 14px;
+  /* unterhalb Topbar + Modul-Tab-Nav + optionaler Check-Nav */
+  top: calc(
+    var(--sticky-topbar-h, 72px)
+    + var(--module-tab-nav-h, 52px)
+    + var(--module-check-nav-h, 0px)
+    + 12px
+  );
+  z-index: 210;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Basis-Button ── */
+.pen-fab {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--panel-solid);
+  color: var(--text-dim);
+  cursor: pointer;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.22);
+  transition: transform 0.14s, box-shadow 0.14s, background 0.14s, color 0.14s;
+  flex-shrink: 0;
+  font-family: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.pen-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+  background: var(--surface-hi);
+  color: var(--text);
+}
+
+.pen-fab:active { transform: scale(0.93); }
+
+/* ── Toggle (immer sichtbar) ── */
+#pen-btn-toggle {
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  background: color-mix(in srgb, var(--surface) 80%, var(--panel-solid));
+}
+
+#pen-btn-toggle.active {
+  background: var(--accent);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 18px rgba(124, 106, 255, 0.45);
+}
+
+#pen-btn-toggle.active:hover {
+  background: color-mix(in srgb, var(--accent) 85%, #fff);
+  transform: scale(1.05);
+}
+
+/* ── Sub-Tools: versteckt wenn Stiftmodus off ── */
+.pen-tool {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(10px) scale(0.82);
+  transition: opacity 0.18s, transform 0.18s;
+}
+
+.pen-tool.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+/* Gestaffeltes Einblenden */
+.pen-tool:nth-child(2)  { transition-delay: 0ms; }
+.pen-tool:nth-child(3)  { transition-delay: 25ms; }
+.pen-tool:nth-child(4)  { transition-delay: 45ms; }
+.pen-tool:nth-child(5)  { transition-delay: 62ms; }
+.pen-tool:nth-child(6)  { transition-delay: 76ms; }
+.pen-tool:nth-child(7)  { transition-delay: 88ms; }
+.pen-tool:nth-child(8)  { transition-delay: 98ms; }
+.pen-tool:nth-child(9)  { transition-delay: 106ms; }
+.pen-tool:nth-child(10) { transition-delay: 113ms; }
+.pen-tool:nth-child(11) { transition-delay: 119ms; }
+.pen-tool:nth-child(12) { transition-delay: 124ms; }
+.pen-tool:nth-child(13) { transition-delay: 128ms; }
+.pen-tool:nth-child(14) { transition-delay: 131ms; }
+.pen-tool:nth-child(15) { transition-delay: 133ms; }
+
+/* ── Aktives Werkzeug (Ring) ── */
+.pen-fab.pen-tool-active {
+  box-shadow: 0 0 0 2px var(--accent), 0 2px 10px rgba(0, 0, 0, 0.22);
+  background: var(--surface-hi);
+  color: var(--text);
+}
+
+/* ── Farb-Dots ── */
+.pen-color-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2.5px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.22);
+  transition: border-color 0.14s, transform 0.14s, opacity 0.18s;
+  flex-shrink: 0;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+}
+
+.pen-color-dot:hover   { transform: scale(1.18); }
+.pen-color-dot.selected { border-color: var(--text); }
+
+/* ── Trennlinie ── */
+.pen-fab-sep {
+  width: 22px;
+  height: 1px;
+  background: var(--border);
+  border-radius: 1px;
+  flex-shrink: 0;
+  margin: 2px 0;
+}
+
+/* ── Kleine Aktions-Buttons ── */
+#pen-btn-undo,
+#pen-btn-clear {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+}
+
+/* Lasso-Löschen (erscheint nur mit Selektion) */
+#pen-btn-delete-sel {
+  width: 34px;
+  height: 34px;
+  font-size: 14px;
+  background: color-mix(in srgb, var(--rose-soft) 60%, var(--panel-solid));
+  border-color: color-mix(in srgb, var(--rose) 30%, var(--border));
+  color: var(--rose);
+}
+
+#pen-btn-delete-sel:hover {
+  background: var(--rose-soft);
+  color: var(--rose);
+}
+
+/* ── Hinweis-Bar (Lasso) ── */
+#pen-lasso-hint {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  background: var(--panel-solid);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 220;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  font-family: inherit;
+}
+
+#pen-lasso-hint.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Body-Cursor-Zustände ── */
+body.pen-drawing  { cursor: crosshair; }
+body.pen-erasing  { cursor: cell; }
+body.pen-lassoing { cursor: crosshair; }
+
+body.pen-drawing .mod-content,
+body.pen-erasing .mod-content,
+body.pen-lassoing .mod-content {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ── Light-Mode ── */
+html.light .pen-fab {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+}
+
+html.light #pen-btn-toggle.active {
+  box-shadow: 0 4px 18px rgba(108, 92, 231, 0.35);
+}
+
+/* ── Mobile ── */
+@media (max-width: 680px) {
+  #pen-toolbar {
+    right: 8px;
+    gap: 5px;
+  }
+
+  .pen-fab {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  #pen-btn-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .pen-color-dot {
+    width: 22px;
+    height: 22px;
+  }
+}
