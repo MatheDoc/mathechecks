@@ -1,8 +1,8 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
+import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260602-feed-cursor";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
+import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 
 const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 
@@ -151,7 +151,11 @@ function renderList(checks) {
 function normalizeKompetenzlisteFeedContext(activityContext) {
     if (!activityContext || activityContext.mode !== "feed") return null;
     return String(activityContext.activityStep || "").trim() === KOMPETENZLISTE_FEED_STEP_KEY
-        ? { mode: "feed", activityStep: KOMPETENZLISTE_FEED_STEP_KEY }
+        ? {
+            mode: "feed",
+            activityKey: String(activityContext.activityKey || "").trim(),
+            activityStep: KOMPETENZLISTE_FEED_STEP_KEY,
+        }
         : null;
 }
 
@@ -200,7 +204,10 @@ function attachKompetenzlisteFeedShell(root, { preferredCheckId = "", activityCo
         renderControls();
 
         try {
-            await completeKompetenzlisteFeedStep({ checkId: resolvedCheckId });
+            await completeKompetenzlisteFeedStep({
+                checkId: resolvedCheckId,
+                activityKey: feedContext.activityKey,
+            });
         } catch (error) {
             console.error("Kompetenzlisten-Schritt konnte nicht abgeschlossen werden:", error);
             busy = false;

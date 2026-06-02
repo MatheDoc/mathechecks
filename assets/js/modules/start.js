@@ -1,12 +1,16 @@
-import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
+import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260602-start-complete-fix";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-start-complete-fix";
 
 const START_FEED_STEP_KEY = "start";
 
 function normalizeStartFeedContext(activityContext) {
     if (!activityContext || activityContext.mode !== "feed") return null;
     return String(activityContext.activityStep || "").trim() === START_FEED_STEP_KEY
-        ? { mode: "feed", activityStep: START_FEED_STEP_KEY }
+        ? {
+            mode: "feed",
+            activityKey: String(activityContext.activityKey || "").trim(),
+            activityStep: START_FEED_STEP_KEY,
+        }
         : null;
 }
 
@@ -34,7 +38,10 @@ function attachStartFeedShell(root, { lernbereich = "", activityContext = null }
         renderControls();
 
         try {
-            await completeStartFeedStep({ lernbereichSlug: lernbereich });
+            await completeStartFeedStep({
+                lernbereichSlug: lernbereich,
+                activityKey: feedContext.activityKey,
+            });
         } catch (error) {
             console.error("Start-Aktivität konnte nicht abgeschlossen werden:", error);
             busy = false;

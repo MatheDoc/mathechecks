@@ -1,9 +1,9 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260602-feed-cursor";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 
@@ -315,7 +315,11 @@ function htmlToPlainText(html) {
 function normalizeFeynmanFeedContext(activityContext) {
   if (!activityContext || activityContext.mode !== "feed") return null;
   return String(activityContext.activityStep || "").trim() === FEYNMAN_FEED_STEP_KEY
-    ? { mode: "feed", activityStep: FEYNMAN_FEED_STEP_KEY }
+    ? {
+      mode: "feed",
+      activityKey: String(activityContext.activityKey || "").trim(),
+      activityStep: FEYNMAN_FEED_STEP_KEY,
+    }
     : null;
 }
 
@@ -346,6 +350,7 @@ function attachFeynmanFeedShell(section, activityContext, { lernbereich = "" } =
       checkId,
       moduleKey: "feynman",
       outcomeKey: "can_do",
+      activityKey: feedContext.activityKey,
     });
   }
 
@@ -785,6 +790,7 @@ function initInteractiveFeynmanCards(root, checks, lernbereich, activityContext)
           checkId,
           moduleKey: "feynman",
           outcomeKey: canExplain ? "can_do" : "repeat",
+          activityKey: String(activityContext?.activityKey || "").trim(),
         }).catch(() => {});
       }
     }

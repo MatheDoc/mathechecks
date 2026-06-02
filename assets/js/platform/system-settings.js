@@ -1,22 +1,19 @@
 const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Bei Änderungen hier immer die passende Supabase-Migration für public.system_settings nachziehen.
-  // Maximale Zahl sichtbarer Feed-Einträge im Dashboard.
-  feedDashboardItemLimit: 5,
+  // Basisabstand in Stunden für didaktische Folgeaktivitäten im Core-Feed.
+  feedCoreGapNormalHours: 24,
   // Basisabstand N für Retention-Flashcards; weitere Wiedereinblendungen wachsen als N, 2N, 3N, ...
   feedRetentionActivityBaseGap: 5,
   // Sichtbare Einstiegsposition neuer oder neu sichtbarer Retention-Einträge im Dashboard-Feed.
   feedRetentionNewItemPosition: 5,
-  // Fenstergröße für checkbezogene Folgeaktivitäten: Höchstens so viele spätere Checks dürfen vor Recall/Feynman/Kompetenzliste liegen.
-  feedSessionFollowUpMaxGap: 3,
   // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
   planningDefaultSessionTempoDays: 3,
 });
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
-  "feed.dashboard_item_limit": "feedDashboardItemLimit",
+  "feed.core_gap_normal_hours": "feedCoreGapNormalHours",
   "feed.retention_activity_base_gap": "feedRetentionActivityBaseGap",
   "feed.retention_new_item_position": "feedRetentionNewItemPosition",
-  "feed.session_follow_up_max_gap": "feedSessionFollowUpMaxGap",
   "planning.default_session_tempo_days": "planningDefaultSessionTempoDays",
 });
 

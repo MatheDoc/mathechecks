@@ -19,9 +19,9 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
-import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
+import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260602-feed-cursor";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
@@ -321,7 +321,10 @@ export function attachTrainingFeedShell(viewportNode, { activityContext, checkId
     renderControls();
 
     try {
-      await completeTrainingFeedStep({ checkId });
+      await completeTrainingFeedStep({
+        checkId,
+        activityKey: feedContext.activityKey,
+      });
       clearCurrentTrainingPersistence();
       completed = true;
       statusMessage = "Trainingsschritt abgeschlossen. Die nächste Feed-Aktivität wird geöffnet.";

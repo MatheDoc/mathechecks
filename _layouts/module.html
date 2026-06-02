@@ -34,7 +34,6 @@
     <div class="shell">
         {% include topbar.html %}
         <div class="designs-body">
-            {% include module/sidebar.html %}
             <div class="mod-main mod-main-shell">
                 {% include module/nav.html %}
                 <main class="mod-content mod-content-stage">
@@ -56,11 +55,9 @@
         src="{{ '/assets/js/calculator/commands.js?v=20260512-calculator-integral-t-variable' | relative_url }}"></script>
     <script
         src="{{ '/assets/js/calculator/app.js?v=20260512-calculator-integral-builder-t-button' | relative_url }}"></script>
-    <script type="module" src="{{ '/assets/js/app.js?v=20260530-gauss-widget-calc' | relative_url }}"></script>
-    <script id="gebiete-feed-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
-    <script id="lernbereiche-feed-data" type="application/json">{{ site.data.lernbereiche | jsonify }}</script>
+    <script type="module" src="{{ '/assets/js/app.js?v=20260602-start-complete-fix' | relative_url }}"></script>
     {% include theme-script.html %}
-    <script type="module" src="{{ '/assets/js/modules/auth-shell.js?v=20260521-feed-deterministic-tabs' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/modules/auth-shell.js?v=20260602-feed-cursor-clean' | relative_url }}"></script>
     {{ page.after_scripts }}
     {% include pen-overlay.html %}
 </body>

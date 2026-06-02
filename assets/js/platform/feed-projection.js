@@ -1,5 +1,3 @@
-import { loadSystemSettings } from "./system-settings.js?v=20260527-retention-gap-fix-3";
-
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
   "zufallsexperimente-und-wahrscheinlichkeiten": ["zufallsexperimente"],
@@ -336,144 +334,15 @@ async function loadActiveSession(supabase) {
   return Array.isArray(data) ? data[0] || null : null;
 }
 
-async function loadSessionCheckEntries(supabase, sessionId) {
-  if (!supabase || !sessionId) return [];
+async function pickCurrentFeedCursor(supabase, sessionId) {
+  if (!supabase || !sessionId) return null;
 
-  const stepKeys = Object.keys(FEED_STEP_ORDER);
-  const { data, error } = await supabase
-    .from("session_check_state")
-    .select("check_id, current_step_key, current_step_status, updated_at")
-    .eq("session_id", sessionId)
-    .in("current_step_key", [...stepKeys, "check_completed"]);
-
-  if (error) throw error;
-  return Array.isArray(data) ? data : [];
-}
-
-function compareCheckSequence(left, right, contentMeta) {
-  const leftMeta = contentMeta?.checkMetaById?.get(String(left?.check_id || "").trim());
-  const rightMeta = contentMeta?.checkMetaById?.get(String(right?.check_id || "").trim());
-  const leftNumber = Number(leftMeta?.number);
-  const rightNumber = Number(rightMeta?.number);
-  const leftOrder = Number.isFinite(leftNumber) && leftNumber > 0 ? leftNumber : Number.MAX_SAFE_INTEGER;
-  const rightOrder = Number.isFinite(rightNumber) && rightNumber > 0 ? rightNumber : Number.MAX_SAFE_INTEGER;
-  if (leftOrder !== rightOrder) return leftOrder - rightOrder;
-
-  const lernbereichDelta = String(leftMeta?.lernbereichName || "").localeCompare(String(rightMeta?.lernbereichName || ""), "de");
-  if (lernbereichDelta !== 0) return lernbereichDelta;
-
-  const titleDelta = formatCheckShortTitle(leftMeta).localeCompare(formatCheckShortTitle(rightMeta), "de");
-  if (titleDelta !== 0) return titleDelta;
-
-  return String(left?.check_id || "").localeCompare(String(right?.check_id || ""), "de");
-}
-
-function compareCheckEntries(left, right, contentMeta) {
-  const leftStep = FEED_STEP_ORDER[String(left?.current_step_key || "").trim()] || 99;
-  const rightStep = FEED_STEP_ORDER[String(right?.current_step_key || "").trim()] || 99;
-  if (leftStep !== rightStep) return leftStep - rightStep;
-
-  return compareCheckSequence(left, right, contentMeta);
-}
-
-function compareFollowUpEntries(left, right, contentMeta) {
-  const updatedDelta = String(left?.updated_at || "").localeCompare(String(right?.updated_at || ""));
-  if (updatedDelta !== 0) return updatedDelta;
-
-  return compareCheckSequence(left, right, contentMeta);
-}
-
-function orderSessionCheckEntries(sessionCheckEntries, contentMeta, systemSettings) {
-  const allEntries = (Array.isArray(sessionCheckEntries) ? sessionCheckEntries : [])
-    .filter((entry) => String(entry?.check_id || "").trim());
-  if (!allEntries.length) return [];
-
-  const entries = allEntries.filter((entry) => {
-    const stepKey = String(entry?.current_step_key || "").trim();
-    return entry?.current_step_status === "due" && Object.hasOwn(FEED_STEP_ORDER, stepKey);
-  });
-  if (!entries.length) return [];
-
-  const followUpGap = normalizePositiveInteger(systemSettings?.feedSessionFollowUpMaxGap, 3);
-  const selectedCheckEntries = [...allEntries]
-    .sort((left, right) => compareCheckSequence(left, right, contentMeta));
-  const selectedIndexByCheckId = new Map(
-    selectedCheckEntries.map((entry, index) => [String(entry?.check_id || "").trim(), index]),
-  );
-
-  const freshStartEntries = entries
-    .filter((entry) => String(entry?.current_step_key || "").trim() === "training")
-    .sort((left, right) => compareCheckSequence(left, right, contentMeta));
-  const followUpEntries = entries
-    .filter((entry) => String(entry?.current_step_key || "").trim() !== "training")
-    .sort((left, right) => compareFollowUpEntries(left, right, contentMeta));
-
-  if (!freshStartEntries.length) return followUpEntries;
-  if (!followUpEntries.length) return freshStartEntries;
-
-  // Didaktische Regel fuer Session-Checks:
-  // Ein Follow-up reserviert sich seinen Platz hinter den naechsten N Checks
-  // in der fachlichen Reihenfolge. Wenn diese Front-Checks verschwinden,
-  // rueckt der alte Recall/Feynman-Schritt automatisch nach vorne;
-  // tiefere Trainings fuellen diese verbrauchten Plaetze nicht wieder auf.
-  // Zusaetzlich duerfen neue Folgeaktivitaeten nicht direkt hinter einem
-  // aelteren Recall/Feynman/Kompetenzlisten-Schritt stacken, sondern brauchen
-  // dazwischen wieder denselben Puffer an anderen Check-Aktivitaeten.
-  const ordered = freshStartEntries.map((entry) => ({
-    kind: "training",
-    sequenceIndex: selectedIndexByCheckId.get(String(entry?.check_id || "").trim()) ?? Number.MAX_SAFE_INTEGER,
-    entry,
-  }));
-  let previousFollowUpInsertIndex = -1;
-
-  followUpEntries.forEach((followUpEntry) => {
-    const checkId = String(followUpEntry?.check_id || "").trim();
-    const followUpSequenceIndex = selectedIndexByCheckId.get(checkId);
-    const cutoffSequenceIndex = Number.isFinite(followUpSequenceIndex)
-      ? Math.min(selectedCheckEntries.length - 1, followUpSequenceIndex + followUpGap)
-      : Number.MAX_SAFE_INTEGER;
-
-    let insertAt = ordered.length;
-    for (let index = 0; index < ordered.length; index += 1) {
-      const item = ordered[index];
-      if (item.kind === "training" && item.sequenceIndex > cutoffSequenceIndex) {
-        insertAt = index;
-        break;
-      }
-    }
-
-    if (previousFollowUpInsertIndex >= 0) {
-      const minimumInsertAt = Math.min(ordered.length, previousFollowUpInsertIndex + followUpGap + 1);
-      insertAt = Math.max(insertAt, minimumInsertAt);
-    }
-
-    ordered.splice(insertAt, 0, {
-      kind: "follow-up",
-      sequenceIndex: cutoffSequenceIndex,
-      entry: followUpEntry,
-    });
-
-    previousFollowUpInsertIndex = insertAt;
+  const { data, error } = await supabase.rpc("pick_feed_cursor", {
+    p_session_id: sessionId,
   });
 
-  return ordered.map((item) => item.entry);
-}
-
-async function loadActivityFeedEntries(supabase, sessionId) {
-  if (!supabase || !sessionId) return [];
-
-  const { data, error } = await supabase
-    .from("session_activity_state")
-    .select("activity_key, activity_type, scope_type, lernbereich_slug, target_module_key, status, due_at, sort_bucket, sort_index")
-    .eq("session_id", sessionId)
-    .eq("status", "due")
-    .order("sort_bucket", { ascending: true })
-    .order("sort_index", { ascending: true })
-    .order("due_at", { ascending: true })
-    .order("activity_key", { ascending: true });
-
   if (error) throw error;
-  return Array.isArray(data) ? data : [];
+  return Array.isArray(data) ? data[0] || null : null;
 }
 
 async function loadCurrentFeedActivityCompletionCount(supabase) {
@@ -708,29 +577,6 @@ function mergeQueueHeadFeedItems(sessionItems, retentionItems, systemSettings) {
   return merged;
 }
 
-function buildSessionFeedItems(contentMeta, sessionCheckEntries, activityEntries, systemSettings) {
-  const orderedCheckEntries = orderSessionCheckEntries(sessionCheckEntries, contentMeta, systemSettings);
-  const checkItems = orderedCheckEntries
-    .map((entry) => buildCheckFeedItem(contentMeta, entry))
-    .filter(Boolean);
-
-  const sessionActivityItems = (Array.isArray(activityEntries) ? activityEntries : [])
-    .map((entry) => ({
-      rawType: String(entry?.activity_type || "").trim(),
-      item: buildSessionActivityFeedItem(contentMeta, entry),
-    }))
-    .filter((entry) => entry.item);
-
-  const leadingStartItems = sessionActivityItems
-    .filter((entry) => entry.rawType === "start")
-    .map((entry) => entry.item);
-  const trailingActivityItems = sessionActivityItems
-    .filter((entry) => entry.rawType !== "start")
-    .map((entry) => entry.item);
-
-  return [...leadingStartItems, ...checkItems, ...trailingActivityItems];
-}
-
 function createFeedItem({
   kind,
   type,
@@ -833,6 +679,28 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
   });
 }
 
+function buildCurrentCursorFeedItem(contentMeta, cursorState) {
+  const activityKind = String(cursorState?.activity_kind || "").trim();
+
+  if (activityKind === "check") {
+    return buildCheckFeedItem(contentMeta, {
+      check_id: cursorState?.check_id,
+      current_step_key: cursorState?.step_key,
+    });
+  }
+
+  if (activityKind === "start" || activityKind === "flashcards") {
+    return buildSessionActivityFeedItem(contentMeta, {
+      activity_key: cursorState?.current_activity_key,
+      activity_type: cursorState?.activity_type,
+      lernbereich_slug: cursorState?.lernbereich_slug,
+      target_module_key: cursorState?.target_module_key,
+    });
+  }
+
+  return null;
+}
+
 function buildRetentionFeedItem(contentMeta, entry) {
   const lernbereichMeta = contentMeta?.lernbereichMetaById?.get(entry?.lernbereich_slug);
   if (entry?.activity_type !== "flashcards" || !lernbereichMeta) return null;
@@ -865,34 +733,30 @@ export async function loadFeedProjection({
   limit = Infinity,
 } = {}) {
   if (!supabase || !contentMeta) {
-    return { activeSession: null, items: [], source: "empty" };
+    return { activeSession: null, items: [], source: "empty", waiting: null };
   }
 
   const activeSession = await loadActiveSession(supabase);
-  const systemSettings = await loadSystemSettings(supabase);
   let items = [];
   let source = "empty";
+  let waiting = null;
 
   if (activeSession?.id) {
-    const [sessionCheckEntries, activityEntries, retentionEntries] = await Promise.all([
-      loadSessionCheckEntries(supabase, activeSession.id),
-      loadActivityFeedEntries(supabase, activeSession.id),
-      loadRetentionFeedEntries(supabase, { activeSession }),
-    ]);
+    const cursorState = await pickCurrentFeedCursor(supabase, activeSession.id);
+    const currentItem = buildCurrentCursorFeedItem(contentMeta, cursorState);
 
-    const sessionItems = buildSessionFeedItems(contentMeta, sessionCheckEntries, activityEntries, systemSettings);
-    const retentionItems = (Array.isArray(retentionEntries) ? retentionEntries : [])
-      .map((entry) => buildRetentionFeedItem(contentMeta, entry))
-      .filter(Boolean);
-
-    items = mergeQueueHeadFeedItems(sessionItems, retentionItems, systemSettings);
-
-    if (items.length) {
-      source = sessionItems.length ? "session" : "retention";
+    if (currentItem) {
+      items = [currentItem];
+      source = "session";
+    } else if (String(cursorState?.activity_kind || "").trim() === "waiting") {
+      source = "waiting";
+      waiting = {
+        nextAvailableFrom: String(cursorState?.next_available_from || "").trim(),
+      };
     }
   }
 
-  if (!items.length) {
+  if (!items.length && !waiting) {
     const retentionEntries = await loadRetentionFeedEntries(supabase);
     items = (Array.isArray(retentionEntries) ? retentionEntries : [])
       .map((entry) => buildRetentionFeedItem(contentMeta, entry))
@@ -909,5 +773,6 @@ export async function loadFeedProjection({
     activeSession,
     items: visibleItems,
     source,
+    waiting,
   };
 }

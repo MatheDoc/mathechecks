@@ -32,13 +32,15 @@ export async function recordCheckModuleAttempt({
   checkId,
   moduleKey,
   outcomeKey,
+  activityKey,
 }) {
   const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
   const normalizedCheckId = normalizeText(checkId);
   const normalizedModuleKey = normalizeText(moduleKey).toLowerCase();
   const normalizedOutcomeKey = normalizeText(outcomeKey).toLowerCase();
+  const normalizedActivityKey = normalizeText(activityKey);
 
-  if (!normalizedLernbereichSlug || !normalizedCheckId || !normalizedModuleKey || !normalizedOutcomeKey) {
+  if (!normalizedLernbereichSlug || !normalizedCheckId || !normalizedModuleKey || !normalizedOutcomeKey || !normalizedActivityKey) {
     return { ok: false, skipped: true, reason: "missing-input" };
   }
 
@@ -51,6 +53,7 @@ export async function recordCheckModuleAttempt({
       p_check_id: normalizedCheckId,
       p_module_key: normalizedModuleKey,
       p_outcome_key: normalizedOutcomeKey,
+      p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
@@ -65,10 +68,11 @@ export async function recordCheckModuleAttempt({
   }
 }
 
-export async function completeKompetenzlisteGate({ checkId }) {
+export async function completeKompetenzlisteGate({ checkId, activityKey }) {
   const normalizedCheckId = normalizeText(checkId);
+  const normalizedActivityKey = normalizeText(activityKey);
 
-  if (!normalizedCheckId) {
+  if (!normalizedCheckId || !normalizedActivityKey) {
     return { ok: false, skipped: true, reason: "missing-input" };
   }
 
@@ -78,6 +82,7 @@ export async function completeKompetenzlisteGate({ checkId }) {
 
     const { data, error } = await auth.supabase.rpc("complete_kompetenzliste_gate", {
       p_check_id: normalizedCheckId,
+      p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
@@ -92,10 +97,11 @@ export async function completeKompetenzlisteGate({ checkId }) {
   }
 }
 
-export async function completeCurrentTrainingStep({ checkId }) {
+export async function completeCurrentTrainingStep({ checkId, activityKey }) {
   const normalizedCheckId = normalizeText(checkId);
+  const normalizedActivityKey = normalizeText(activityKey);
 
-  if (!normalizedCheckId) {
+  if (!normalizedCheckId || !normalizedActivityKey) {
     return { ok: false, skipped: true, reason: "missing-input" };
   }
 
@@ -105,6 +111,7 @@ export async function completeCurrentTrainingStep({ checkId }) {
 
     const { data, error } = await auth.supabase.rpc("complete_current_training_step", {
       p_check_id: normalizedCheckId,
+      p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
@@ -119,10 +126,11 @@ export async function completeCurrentTrainingStep({ checkId }) {
   }
 }
 
-export async function completeStartActivity({ lernbereichSlug }) {
+export async function completeStartActivity({ lernbereichSlug, activityKey }) {
   const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
+  const normalizedActivityKey = normalizeText(activityKey);
 
-  if (!normalizedLernbereichSlug) {
+  if (!normalizedLernbereichSlug || !normalizedActivityKey) {
     return { ok: false, skipped: true, reason: "missing-input" };
   }
 
@@ -132,6 +140,7 @@ export async function completeStartActivity({ lernbereichSlug }) {
 
     const { data, error } = await auth.supabase.rpc("complete_start_activity", {
       p_lernbereich_slug: normalizedLernbereichSlug,
+      p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
@@ -142,6 +151,60 @@ export async function completeStartActivity({ lernbereichSlug }) {
     return { ok: true, data };
   } catch (error) {
     console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen der Start-Aktivität.", error);
+    return { ok: false, error };
+  }
+}
+
+export async function keepCurrentFeedActivity({ activityKey }) {
+  const normalizedActivityKey = normalizeText(activityKey);
+
+  if (!normalizedActivityKey) {
+    return { ok: false, skipped: true, reason: "missing-input" };
+  }
+
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("keep_current_feed_activity", {
+      p_activity_key: normalizedActivityKey,
+    });
+
+    if (error) {
+      console.warn("MatheChecks: Feed-Sperre konnte nicht erneuert werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: Boolean(data) };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Erneuern der Feed-Sperre.", error);
+    return { ok: false, error };
+  }
+}
+
+export async function releaseCurrentFeedActivity({ activityKey }) {
+  const normalizedActivityKey = normalizeText(activityKey);
+
+  if (!normalizedActivityKey) {
+    return { ok: false, skipped: true, reason: "missing-input" };
+  }
+
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("release_current_feed_activity", {
+      p_activity_key: normalizedActivityKey,
+    });
+
+    if (error) {
+      console.warn("MatheChecks: Feed-Cursor konnte nicht freigegeben werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: Boolean(data) };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Freigeben des Feed-Cursors.", error);
     return { ok: false, error };
   }
 }

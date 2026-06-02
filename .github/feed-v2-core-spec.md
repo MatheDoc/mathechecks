@@ -1,11 +1,13 @@
-# Core-Feed V2 (ohne Retention)
+# Feed V2
 
 ## Dokumentstatus
 
-Diese Datei beschreibt das fachliche Zielbild für einen deterministischen Core-Feed V2 ohne Retention. Sie ist keine Beschreibung des aktuell produktiven Verhaltens.
+Diese Datei beschreibt das fachliche Zielbild für den deterministischen Feed V2 und ist die kanonische Feed-Doku für die Weiterentwicklung.
 
-- Der aktuelle Ist-Stand bleibt in `.github/feed-logic.md` dokumentiert.
+Der singuläre Core-Feed mit serverseitigen Zeitfenstern, `planned_from`, Sticky-Lock und serverseitigem Cursor ist bereits weitgehend umgesetzt. Wo der aktuelle Stand noch vom Zielbild abweicht, ist dieses Dokument trotzdem normativ für die weitere Arbeit.
+
 - Tabellen, RPCs und Datenmodellgrenzen zum aktuell produktiven System bleiben in `.github/benutzerverwaltung-mvp.md`.
+- Übergangs- oder Hybridverhalten außerhalb dieses Zielbilds ist bewusst nicht als eigene zweite Feed-Doku ausgelagert.
 
 ## Zielbild
 
@@ -13,12 +15,21 @@ Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkarte
 
 ## Scope und Abgrenzung
 
-- Diese Spezifikation behandelt nur den Core-Feed ohne Retention.
+- Primärer Gegenstand dieser Spezifikation ist der deterministische Core-Feed.
+- Retention wird hier nur auf Prinzipienebene festgehalten; eine konkrete Retention-Auswahl- oder Mischlogik wird erst nach Stabilisierung des Core-Feeds neu spezifiziert.
 - Freier Modulzugriff bleibt immer möglich und wird nicht vom Feed gesperrt.
 - Ein Core-Feed-Schritt darf nur dann abgeschlossen oder weiterbewegt werden, wenn er über einen gültigen Feed-Cursor im Feed-Kontext geöffnet wurde.
 - UI-Feinheiten wie Ampel, Farben oder genaue CSS-Zustände sind nicht Teil dieser V2-Spezifikation.
 - `warmup` bleibt außerhalb dieses Feed-Schnitts.
 - Das Frontend soll den V2-Feed nicht per direktem Tabellen-CRUD steuern.
+
+## Retention und Mischbetrieb
+
+- Retention bleibt fachlich getrennt vom Core-Cursor.
+- Retention darf keine Core-Schritte abschließen, weiterbewegen oder den Sticky-Lock eines Core-Elements erneuern.
+- Ob Retention später als eigener Cursor, als sekundäre Queue oder nur als Dashboard-Fallback erscheint, wird erst nach Stabilisierung des Core-Feeds entschieden.
+- Solange diese Entscheidung offen ist, legt diese Spezifikation bewusst keine normative Mischreihenfolge zwischen Core und Retention fest.
+- Sinnvoller Minimalanspruch für die spätere Retention-Anbindung bleibt: Retention darf eine aktive Core-Session nicht dominieren und freier Retention-Zugriff darf vom Core-Feed getrennt bleiben.
 
 ## Grundbegriffe
 
@@ -441,4 +452,4 @@ Die eigentliche Ampel- oder CSS-Diskussion kann später erfolgen. Zuerst müssen
 2. Aus den Goldszenarien formale Abnahmekriterien ableiten.
 3. Additives Datenmodell gegen `session_check_state` und `session_activity_state` auf Doppelungen prüfen und entscheiden, ob `start` in `session_activity_state` bleibt oder in das neue Schrittmodell wandert.
 4. Serverseitige RPCs für Cursor-Wahl, Schrittabschluss und Replanning entwerfen.
-5. Erst danach UI und Retention wieder dazunehmen.
+5. Erst danach offene UI-Details konkretisieren und die Retention-Anbindung separat spezifizieren.
