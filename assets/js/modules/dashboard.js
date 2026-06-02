@@ -1,6 +1,6 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260527-feed-hang-fix";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260527-retention-gap-fix-3";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260602-feed-cursor-clean";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260602-server-feed-time";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const LERNBEREICH_ALIASES = {
@@ -324,6 +324,18 @@ function formatDateOnlyLabel(value) {
   }).format(date);
 }
 
+function formatDateTimeLabel(value) {
+  const date = new Date(String(value || ""));
+  if (Number.isNaN(date.getTime())) return "";
+
+  return new Intl.DateTimeFormat("de-DE", {
+    day: "numeric",
+    month: "long",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(date);
+}
+
 function toDateOnlyValue(date) {
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
 
@@ -359,6 +371,26 @@ function getRemainingCheckStepCount(row) {
   return Number.isFinite(order)
     ? CHECK_PIPELINE_STEP_COUNT - order + 1
     : CHECK_PIPELINE_STEP_COUNT;
+}
+
+function getRemainingDidacticGapCount(row) {
+  const status = String(row?.current_step_status || "").trim();
+  const stepKey = String(row?.current_step_key || "").trim();
+  if (status === "completed" || stepKey === "check_completed") {
+    return 0;
+  }
+
+  switch (stepKey) {
+    case "recall":
+      return 2;
+    case "feynman":
+      return 1;
+    case "kompetenzliste_gate":
+      return 0;
+    case "training":
+    default:
+      return 3;
+  }
 }
 
 function capturePrimaryFeedDefaults(elements) {
@@ -437,6 +469,18 @@ function applyPrimaryFeedEmptyState(context) {
   applyPrimaryFeedMessage(context, {
     title: "Gerade keine Empfehlung",
     description: "Sobald eine Session oder eine fällige Wiederholung ansteht, erscheint hier der nächste sinnvolle Schritt.",
+    badgeLabel: "Feed",
+  });
+}
+
+function applyPrimaryFeedWaitingState(context, waiting = null) {
+  const nextLabel = formatDateTimeLabel(waiting?.nextAvailableFrom);
+
+  applyPrimaryFeedMessage(context, {
+    title: "Nächster Schritt später",
+    description: nextLabel
+      ? `Der nächste geplante Feed-Schritt wird ab ${nextLabel} freigeschaltet.`
+      : "Im Moment ist kein Schritt geplant, den du sofort aus dem Feed öffnen solltest.",
     badgeLabel: "Feed",
   });
 }
@@ -788,19 +832,23 @@ async function refreshPrimaryFeedCard(context) {
   }
 
   try {
-    const feedItemLimit = Math.max(1, Number.parseInt(context.systemSettings?.feedDashboardItemLimit, 10) || 5);
     const projection = await loadFeedProjection({
       supabase: context.supabase,
       contentMeta: context.feedContentMeta,
-      limit: feedItemLimit,
+      limit: 1,
     });
-    const feedItems = (Array.isArray(projection?.items) ? projection.items : [])
+    const [feedItem] = (Array.isArray(projection?.items) ? projection.items : [])
       .map((item) => buildFeedCardDataFromProjection(item))
       .filter(Boolean);
 
-    if (feedItems.length) {
-      applyPrimaryFeedCardData(context, feedItems[0]);
-      renderSecondaryFeedCards(context, feedItems.slice(1));
+    if (feedItem) {
+      applyPrimaryFeedCardData(context, feedItem);
+      clearSecondaryFeedCards(context);
+      return;
+    }
+
+    if (projection?.waiting?.nextAvailableFrom) {
+      applyPrimaryFeedWaitingState(context, projection.waiting);
       return;
     }
 
@@ -927,14 +975,33 @@ function collectActiveSessionLernbereiche(context) {
   return entries;
 }
 
-function buildPayloadFromState(draft, lernbereiche, draftConfig) {
+function buildPayloadFromState(context, draft, lernbereiche, draftConfig) {
   const basePayload = {
     ...buildSessionPayloadBase(draft, lernbereiche),
   };
 
+  const selectedCheckIds = Array.isArray(basePayload.p_included_check_ids)
+    ? basePayload.p_included_check_ids
+    : [];
   const targetDate = normalizeDateOnlyValue(draftConfig?.targetDate);
-  basePayload.p_target_date = targetDate || null;
-  basePayload.p_target_source = targetDate ? "explicit" : null;
+  if (targetDate) {
+    basePayload.p_target_date = targetDate;
+    basePayload.p_target_source = "explicit";
+    return basePayload;
+  }
+
+  const hasActiveSelection = Array.isArray(basePayload.p_lernbereiche)
+    && basePayload.p_lernbereiche.length > 0
+    && selectedCheckIds.length > 0;
+  if (!hasActiveSelection) {
+    basePayload.p_target_date = null;
+    basePayload.p_target_source = null;
+    return basePayload;
+  }
+
+  const suggestion = buildSuggestedTargetDate(context, selectedCheckIds);
+  basePayload.p_target_date = suggestion.suggestedDateValue || null;
+  basePayload.p_target_source = suggestion.suggestedDateValue ? "suggested" : null;
   return basePayload;
 }
 
@@ -954,15 +1021,29 @@ function getRemainingSelectedActivityCount(context, selectedCheckIds) {
 function buildSuggestedTargetDate(context, selectedCheckIds) {
   const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
   const activitiesPerDay = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
+  const didacticGapHours = Math.max(1, Number.parseInt(context.systemSettings?.feedCoreGapNormalHours, 10) || 24);
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const now = new Date();
+  const checkStateById = buildSessionCheckStateById(context);
 
-  const suggestedDate = addCalendarDays(today, remainingSteps > 0 ? Math.floor((remainingSteps - 1) / activitiesPerDay) : 0);
+  const workloadDate = addCalendarDays(today, remainingSteps > 0 ? Math.floor((remainingSteps - 1) / activitiesPerDay) : 0);
+  const earliestCompletionTimestamp = selectedCheckIds.reduce((latestTimestamp, checkId) => {
+    const gapCount = getRemainingDidacticGapCount(checkStateById.get(checkId));
+    return Math.max(latestTimestamp, now.getTime() + (gapCount * didacticGapHours * 60 * 60 * 1000));
+  }, today.getTime());
+  const earliestCompletionDate = new Date(earliestCompletionTimestamp);
+  earliestCompletionDate.setHours(0, 0, 0, 0);
+
+  const suggestedDate = workloadDate.getTime() >= earliestCompletionDate.getTime()
+    ? workloadDate
+    : earliestCompletionDate;
 
   return {
     suggestedDateValue: toDateOnlyValue(suggestedDate),
     remainingSteps,
     activitiesPerDay,
+    didacticGapHours,
   };
 }
 
@@ -988,16 +1069,23 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
     const paceHint = suggestion.activitiesPerDay === 1
       ? "etwa einer offenen Aktivität pro Tag"
       : `etwa ${suggestion.activitiesPerDay} offenen Aktivitäten pro Tag`;
+    const gapDays = suggestion.didacticGapHours / 24;
+    const gapHint = Number.isInteger(gapDays)
+      ? `Mindestabständen von ${gapDays} Tag${gapDays === 1 ? "" : "en"}`
+      : `Mindestabständen von ${suggestion.didacticGapHours} Stunden`;
 
     return {
       targetLabel,
-      assessmentMessage: `Kein Zieldatum gesetzt. Vorschlag auf Basis von ${paceHint}.`,
+      assessmentMessage: `Kein Zieldatum gesetzt. Vorschlag auf Basis von ${paceHint} und ${gapHint} zwischen den didaktischen Folgeschritten.`,
       assessmentTone: "neutral",
     };
   }
 
   const targetDate = parseDateOnlyValue(targetDateValue);
-  const targetLabel = `Zieldatum: ${formatDateOnlyLabel(targetDateValue)}`;
+  const isSuggestedTarget = String(context.activeSession?.target_source || "").trim() === "suggested";
+  const targetLabel = isSuggestedTarget
+    ? `Zieldatum: ${formatDateOnlyLabel(targetDateValue)} (Vorschlag)`
+    : `Zieldatum: ${formatDateOnlyLabel(targetDateValue)}`;
   if (!targetDate) {
     return {
       targetLabel,
@@ -1423,7 +1511,7 @@ async function handleSave(context) {
     return;
   }
 
-  const payload = buildPayloadFromState(context.draft, context.lernbereiche, context.draftConfig);
+  const payload = buildPayloadFromState(context, context.draft, context.lernbereiche, context.draftConfig);
 
   setMutationBusy(context, true, "save");
   setModalStatus(context, "Speichere Session ...");

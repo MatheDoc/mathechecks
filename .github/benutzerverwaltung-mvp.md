@@ -8,8 +8,7 @@ Sie umfasst Benutzer, Profile, Lern-Sessions, `session_check_state` als erste Ch
 ## Dokumentgrenzen
 
 - Diese Datei beschreibt fachliches Zielbild, Datenmodell, Sicherheitsmodell und MVP-Scope.
-- `.github/feed-logic.md` dokumentiert dagegen die aktuell wirksame Reihenfolge-, Misch- und UI-Stabilisierungslogik des Feeds.
-- `.github/feed-v2-core-spec.md` dokumentiert das fachliche Zielbild des deterministischen Core-Feed V2; diese Datei trägt dafür nur die additive Datenmodell- und Migrationssicht.
+- `.github/feed-v2-core-spec.md` ist die kanonische Feed-Zieldoku; diese Datei trägt dafür nur die additive Datenmodell- und Migrationssicht.
 - `supabase/README.md` dokumentiert dagegen CLI-Workflow, lokales vs. gehostetes Setup, Dashboard-Schritte und SMTP.
 - Die Trennung ist bewusst sinnvoll: Architektur und Betriebs-Runbook ändern sich oft in unterschiedlichem Tempo.
 
@@ -75,13 +74,13 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
 - Das Session-Modal im Dashboard kann ein explizites `target_date` speichern; die Session-Box zeigt dieses Datum anschließend zusammen mit einer groben Heuristik auf Basis der noch offenen Check-Schritte.
 - Das Dashboard trennt im UI zwischen `Session` und `Feed`: Die Session verwaltet die aktive Core-Session, der Feed bündelt Empfehlungen aus der aktiven Session und aus Wiederholungen.
-- Die Feed-Projektion zeigt im Dashboard insgesamt bis zu fünf Einträge, hält offene Session-Aktivitäten vorne und mischt aktive oder fällige Retention-Flashcards aus früheren Sessions queuebasiert in denselben Feed-Kopf ein.
+- Die Feed-Projektion zeigt im Dashboard aktuell genau ein aktuelles Element, priorisiert offene `start`-Aktivitäten und sonst serverseitig freigegebene Check-Schritte mit materialisierten Zeitfenstern; aktive oder fällige Retention-Flashcards aus früheren Sessions bleiben ein Fallback, wenn keine Session-Aktivität sichtbar ist.
 - Ein `Nein, zum Dashboard` im Feed ändert den Aktivitätszustand nicht persistent; die Aktivität bleibt offen und erscheint in ihrer normalen fachlichen Reihenfolge weiter.
 - Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
 - Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt in diesem ersten Umbau ausdrücklich außen vor.
-- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Feed-Limit, Retention-Abstand, Retention-Einstiegsposition, Follow-up-Fenster und Default-Tempo.
+- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Core-Gap für didaktische Folgeaktivitäten, Retention-Abstand, Retention-Einstiegsposition und Default-Tempo.
 
 ## Additive V2-Richtung
 
@@ -208,11 +207,12 @@ Zentrale Stelle für globale Systemwerte, die Frontend und serverseitige Feed-/P
 
 Aktuelle Schlüssel:
 
-- `feed.dashboard_item_limit`
+- `feed.core_gap_normal_hours`
 - `feed.retention_activity_base_gap`
 - `feed.retention_new_item_position`
-- `feed.session_follow_up_max_gap`
 - `planning.default_session_tempo_days`
+
+`feed.core_gap_normal_hours` steuert aktuell die serverseitig materialisierte Mindestwartezeit für `training -> recall`, `recall -> feynman` und `feynman -> kompetenzliste`. `available_from` und `overdue_from` liegen dazu bereits in `session_check_state`; `planned_from` und der eigentliche Feed-Cursor bleiben nächste V2-Schritte.
 
 `feed.retention_activity_base_gap` steuert für Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstände `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
 

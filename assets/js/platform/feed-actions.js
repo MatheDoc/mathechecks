@@ -4,12 +4,14 @@ import {
   completeKompetenzlisteGate,
   getOrCreateFlashcardRound,
   getOrCreateRetentionFlashcardRound,
+  keepCurrentFeedActivity,
   recordCheckModuleAttempt,
+  releaseCurrentFeedActivity,
   recordFlashcardReview,
   recordRetentionFlashcardReview,
   resolveFlashcardRound,
   resolveRetentionFlashcardRound,
-} from "./progress-client.js?v=20260523-retention-visible-start";
+} from "./progress-client.js?v=20260602-start-complete-fix";
 
 function ensureFeedActionOk(result, fallbackReason) {
   if (result?.error) {
@@ -30,16 +32,16 @@ function ensureFeedActionOk(result, fallbackReason) {
   return result;
 }
 
-export async function completeTrainingFeedStep({ checkId }) {
+export async function completeTrainingFeedStep({ checkId, activityKey }) {
   return ensureFeedActionOk(
-    await completeCurrentTrainingStep({ checkId }),
+    await completeCurrentTrainingStep({ checkId, activityKey }),
     "training-not-saved",
   );
 }
 
-export async function completeStartFeedStep({ lernbereichSlug }) {
+export async function completeStartFeedStep({ lernbereichSlug, activityKey }) {
   return ensureFeedActionOk(
-    await completeStartActivity({ lernbereichSlug }),
+    await completeStartActivity({ lernbereichSlug, activityKey }),
     "start-not-saved",
   );
 }
@@ -49,6 +51,7 @@ export async function recordCheckFeedDecision({
   checkId,
   moduleKey,
   outcomeKey,
+  activityKey,
 }) {
   return ensureFeedActionOk(
     await recordCheckModuleAttempt({
@@ -56,15 +59,30 @@ export async function recordCheckFeedDecision({
       checkId,
       moduleKey,
       outcomeKey,
+      activityKey,
     }),
     "progress-not-saved",
   );
 }
 
-export async function completeKompetenzlisteFeedStep({ checkId }) {
+export async function completeKompetenzlisteFeedStep({ checkId, activityKey }) {
   return ensureFeedActionOk(
-    await completeKompetenzlisteGate({ checkId }),
+    await completeKompetenzlisteGate({ checkId, activityKey }),
     "kompetenzliste-gate-not-saved",
+  );
+}
+
+export async function keepCurrentFeedCursor({ activityKey }) {
+  return ensureFeedActionOk(
+    await keepCurrentFeedActivity({ activityKey }),
+    "feed-cursor-not-kept",
+  );
+}
+
+export async function releaseCurrentFeedCursor({ activityKey }) {
+  return ensureFeedActionOk(
+    await releaseCurrentFeedActivity({ activityKey }),
+    "feed-cursor-not-released",
   );
 }
 

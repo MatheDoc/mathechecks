@@ -1,7 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260523-feed-actions-fix";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260602-feed-cursor";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260523-feed-no-defer-dashboard";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 
@@ -358,7 +358,11 @@ function revealComparePanel(comparePanel) {
 function normalizeRecallFeedContext(activityContext) {
   if (!activityContext || activityContext.mode !== "feed") return null;
   return String(activityContext.activityStep || "").trim() === RECALL_FEED_STEP_KEY
-    ? { mode: "feed", activityStep: RECALL_FEED_STEP_KEY }
+    ? {
+      mode: "feed",
+      activityKey: String(activityContext.activityKey || "").trim(),
+      activityStep: RECALL_FEED_STEP_KEY,
+    }
     : null;
 }
 
@@ -389,6 +393,7 @@ function attachRecallFeedShell(section, activityContext, { lernbereich = "" } = 
       checkId,
       moduleKey: "recall",
       outcomeKey: "can_do",
+      activityKey: feedContext.activityKey,
     });
   }
 
@@ -572,6 +577,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
           checkId,
           moduleKey: "recall",
           outcomeKey: "can_do",
+          activityKey: String(activityContext?.activityKey || "").trim(),
         }).catch(() => {});
       }
     });
@@ -585,6 +591,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
           checkId,
           moduleKey: "recall",
           outcomeKey: "repeat",
+          activityKey: String(activityContext?.activityKey || "").trim(),
         }).catch(() => {});
       }
       if (comparePanel) comparePanel.hidden = true;

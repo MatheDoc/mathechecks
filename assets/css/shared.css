@@ -380,7 +380,7 @@ img{
   z-index: 70;
   flex: 0 0 auto;
   width: 100%;
-  padding: 12px var(--page-pad-inline);
+  padding: 12px;
   gap: 16px;
   flex-wrap: nowrap;
   min-height: var(--sticky-topbar-h);
@@ -564,6 +564,18 @@ body.page-shell .shell {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+
+.topbar-feed-launcher {
+  position: relative;
+}
+
+.topbar-feed-launcher__icon {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
 }
 
 .topbar-actions-menu {

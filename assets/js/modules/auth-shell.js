@@ -1,199 +1,100 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260527-feed-hang-fix";
-import { loadSystemSettings } from "../platform/system-settings.js?v=20260527-retention-gap-fix-3";
+import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260602-feed-cursor-clean";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
-let sidebarContentMetaPromise = null;
+let feedContentMetaPromise = null;
 
-function escapeHtml(value) {
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#39;");
-}
-
-function createBadgeMarkup(label, type = "") {
-  const safeLabel = escapeHtml(label);
-  const safeType = type ? ` type-${escapeHtml(type)}` : "";
-  return `<span class="action-badge${safeType}">${safeLabel}</span>`;
-}
-
-function buildSidebarTitleText(item) {
-  const checkIndexLabel = String(item?.checkIndexLabel || "").trim();
-  const checkKeyword = String(item?.checkKeyword || "").trim();
-  if (checkKeyword) {
-    return checkIndexLabel
-      ? `${escapeHtml(checkIndexLabel)} ${escapeHtml(checkKeyword)}`
-      : escapeHtml(checkKeyword);
+async function loadSharedFeedContentMeta() {
+  if (feedContentMetaPromise) {
+    return feedContentMetaPromise;
   }
 
-  return escapeHtml(item?.titleText || "");
-}
-
-function buildSidebarBadgesMarkup(item) {
-  return item?.primaryBadge
-    ? createBadgeMarkup(item.primaryBadge.label, item.primaryBadge.type)
-    : "";
-}
-
-async function loadSidebarContentMeta(feedSidebar) {
-  if (sidebarContentMetaPromise) {
-    return sidebarContentMetaPromise;
-  }
-
-  sidebarContentMetaPromise = loadFeedContentMeta({
-    checksUrl: feedSidebar?.dataset?.feedSidebarChecksUrl || "/checks.json",
+  feedContentMetaPromise = loadFeedContentMeta({
+    checksUrl: "/checks.json",
     gebieteScriptId: "gebiete-feed-data",
     lernbereicheScriptId: "lernbereiche-feed-data",
   }).catch((error) => {
-    sidebarContentMetaPromise = null;
-    console.error("Feed-Sidebar: checks.json konnte nicht geladen werden:", error);
+    feedContentMetaPromise = null;
     throw error;
   });
 
-  return sidebarContentMetaPromise;
+  return feedContentMetaPromise;
 }
 
-function renderSidebarMessage(feedSidebar, {
-  title = "Feed",
-  description = "",
-  badgeLabel = "Feed",
-  actionHref = "",
-} = {}) {
-  const listNode = feedSidebar?.querySelector("[data-feed-sidebar-list]");
-  if (!listNode) return;
+function buildFeedLauncherLabel(item) {
+  const badgeLabel = String(item?.primaryBadge?.label || item?.type || "Feed").trim();
+  const checkIndexLabel = String(item?.checkIndexLabel || "").trim();
+  const checkKeyword = String(item?.checkKeyword || "").trim();
+  const titleText = String(item?.titleText || "").trim();
+  const title = checkKeyword
+    ? [checkIndexLabel, checkKeyword].filter(Boolean).join(" ")
+    : titleText;
 
-  feedSidebar.dataset.feedRenderToken = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-
-  const safeActionHref = String(actionHref || "").trim();
-  const actionHrefMarkup = safeActionHref ? ` data-action-href="${escapeHtml(safeActionHref)}"` : "";
-  const cursorStyle = safeActionHref ? "cursor:pointer;" : "cursor:default;";
-
-  listNode.innerHTML = `
-    <li class="action-card" data-type="feed"${actionHrefMarkup} style="${cursorStyle}">
-      <div class="action-body">
-        <div class="action-title">${escapeHtml(title)}</div>
-        ${description ? `<div class="action-desc">${escapeHtml(description)}</div>` : ""}
-        <div class="action-badges">${createBadgeMarkup(badgeLabel)}</div>
-      </div>
-    </li>
-  `;
+  return title
+    ? `Aktuelles Feed-Element öffnen: ${badgeLabel}, ${title}`
+    : `Aktuelles Feed-Element öffnen: ${badgeLabel}`;
 }
 
-function renderSidebarLoading(feedSidebar) {
-  renderSidebarMessage(feedSidebar, {
-    title: "Feed wird geladen",
-    description: "Deine nächsten Aktivitäten werden vorbereitet.",
-    badgeLabel: "Feed",
-  });
-}
+function applyFeedLauncherState(button, item = null) {
+  if (!button) return;
 
-function renderSidebarAnonymous(feedSidebar) {
-  const nextPath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-  renderSidebarMessage(feedSidebar, {
-    title: "Feed nach Anmeldung",
-    description: "Melde dich an, um deinen persönlichen Lernfeed zu sehen.",
-    badgeLabel: "Konto",
-    actionHref: buildAccountUrl(nextPath),
-  });
-}
+  const labelNode = button.querySelector("[data-feed-launcher-label]");
 
-function renderSidebarEmpty(feedSidebar) {
-  renderSidebarMessage(feedSidebar, {
-    title: "Gerade keine Feed-Aktivität",
-    description: "Sobald eine Session oder eine fällige Wiederholung ansteht, erscheint sie hier.",
-    badgeLabel: "Feed",
-  });
-}
-
-function renderSidebarError(feedSidebar) {
-  renderSidebarMessage(feedSidebar, {
-    title: "Feed gerade nicht verfügbar",
-    description: "Der Feed konnte gerade nicht geladen werden.",
-    badgeLabel: "Feed",
-  });
-}
-
-function renderSidebarItems(feedSidebar, items) {
-  const listNode = feedSidebar?.querySelector("[data-feed-sidebar-list]");
-  if (!listNode) return;
-
-  if (!Array.isArray(items) || items.length === 0) {
-    renderSidebarEmpty(feedSidebar);
+  if (!item?.href) {
+    button.hidden = true;
+    button.dataset.feedReady = "false";
+    button.setAttribute("href", buildAccountUrl("/dashboard.html"));
+    button.setAttribute("aria-label", "Aktuelles Feed-Element öffnen");
+    button.title = "Aktuelles Feed-Element öffnen";
+    if (labelNode) labelNode.textContent = "Aktuelles Feed-Element öffnen";
     return;
   }
 
-  listNode.innerHTML = items.map((item, index) => {
-    const actionHref = item.href ? ` data-action-href="${escapeHtml(item.href)}"` : "";
-
-    return `
-      <li class="action-card" data-type="${escapeHtml(item.type)}"${actionHref}>
-        <div class="action-body">
-          <div class="action-title">${buildSidebarTitleText(item)}</div>
-          <div class="action-badges">${buildSidebarBadgesMarkup(item)}</div>
-        </div>
-      </li>
-    `;
-  }).join("");
+  const label = buildFeedLauncherLabel(item);
+  button.hidden = false;
+  button.dataset.feedReady = "true";
+  button.setAttribute("href", item.href);
+  button.setAttribute("aria-label", label);
+  button.title = label;
+  if (labelNode) labelNode.textContent = label;
 }
 
-function bindFeedSidebarClicks(feedSidebar) {
-  const listNode = feedSidebar?.querySelector("[data-feed-sidebar-list]");
-  if (!listNode || listNode.dataset.feedSidebarBound === "true") return;
+async function refreshFeedLauncher(state) {
+  const button = document.getElementById("feedLaunchBtn");
+  if (!button) return;
 
-  listNode.dataset.feedSidebarBound = "true";
-  listNode.addEventListener("click", (event) => {
-    if (event.target.closest("a, button")) return;
-
-    const card = event.target.closest(".action-card[data-action-href]");
-    if (!card || !listNode.contains(card)) return;
-
-    const href = String(card.dataset.actionHref || "").trim();
-    if (href) {
-      window.location.href = href;
-    }
-  });
-}
-
-async function refreshFeedSidebar(state) {
-  const feedSidebar = document.getElementById("feedSidebar");
-  if (!feedSidebar || !state?.user) return;
-
-  bindFeedSidebarClicks(feedSidebar);
+  if (!state?.configured || state?.error || !state?.user) {
+    applyFeedLauncherState(button, null);
+    return;
+  }
 
   const renderToken = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-  feedSidebar.dataset.feedRenderToken = renderToken;
+  button.dataset.feedRenderToken = renderToken;
 
   try {
     const [supabase, contentMeta] = await Promise.all([
       getSupabaseClient(),
-      loadSidebarContentMeta(feedSidebar),
+      loadSharedFeedContentMeta(),
     ]);
 
     if (!supabase) {
-      if (feedSidebar.dataset.feedRenderToken === renderToken) {
-        renderSidebarError(feedSidebar);
+      if (button.dataset.feedRenderToken === renderToken) {
+        applyFeedLauncherState(button, null);
       }
       return;
     }
 
-    const systemSettings = await loadSystemSettings(supabase);
-    const feedItemLimit = Math.max(1, Number.parseInt(systemSettings?.feedDashboardItemLimit, 10) || 5);
-
     const projection = await loadFeedProjection({
       supabase,
       contentMeta,
-      limit: feedItemLimit,
+      limit: 1,
     });
-    const items = Array.isArray(projection?.items) ? projection.items : [];
+    const item = Array.isArray(projection?.items) ? projection.items[0] || null : null;
 
-    if (feedSidebar.dataset.feedRenderToken !== renderToken) return;
-    renderSidebarItems(feedSidebar, items);
-  } catch (error) {
-    console.error("Feed-Sidebar konnte nicht geladen werden:", error);
-    if (feedSidebar.dataset.feedRenderToken === renderToken) {
-      renderSidebarError(feedSidebar);
+    if (button.dataset.feedRenderToken !== renderToken) return;
+    applyFeedLauncherState(button, item);
+  } catch {
+    if (button.dataset.feedRenderToken === renderToken) {
+      applyFeedLauncherState(button, null);
     }
   }
 }
@@ -222,30 +123,7 @@ function updateDashboardNavItem(state) {
 }
 
 function updateFeedSidebar(state) {
-  const feedSidebar = document.getElementById("feedSidebar");
-  if (!feedSidebar) return;
-
-  bindFeedSidebarClicks(feedSidebar);
-
-  if (!state?.configured) {
-    feedSidebar.hidden = true;
-    return;
-  }
-
-  feedSidebar.hidden = false;
-
-  if (state.error) {
-    renderSidebarError(feedSidebar);
-    return;
-  }
-
-  if (!state.user) {
-    renderSidebarAnonymous(feedSidebar);
-    return;
-  }
-
-  renderSidebarLoading(feedSidebar);
-  void refreshFeedSidebar(state);
+  void refreshFeedLauncher(state);
 }
 
 function updateTopbarButton(button, state) {
@@ -350,12 +228,6 @@ async function initAuthShell() {
 
   const config = getSupabaseRuntimeConfig();
   bindTopbarButton(button, config.accountPath);
-
-  const feedSidebar = document.getElementById("feedSidebar");
-  if (config.configured && feedSidebar) {
-    feedSidebar.hidden = false;
-    renderSidebarLoading(feedSidebar);
-  }
 
   const state = await getCurrentAuthState();
   updateTopbarButton(button, state);

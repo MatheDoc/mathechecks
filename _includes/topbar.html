@@ -33,6 +33,17 @@
         {% endif %}
     </div>
     <div class="topbar-right">
+        <a class="topbar-icon-button topbar-feed-launcher" id="feedLaunchBtn"
+            href="{{ '/dashboard.html' | relative_url }}" hidden aria-label="Aktuelles Feed-Element öffnen"
+            title="Aktuelles Feed-Element öffnen">
+            <span class="topbar-feed-launcher__icon" aria-hidden="true">
+                <svg class="feed-card-menu__svg" viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 12h3l2-5 4 10 2-5h5"></path>
+                    <circle cx="19" cy="5" r="2"></circle>
+                </svg>
+            </span>
+            <span class="visually-hidden" data-feed-launcher-label>Aktuelles Feed-Element öffnen</span>
+        </a>
         <details class="topbar-actions-menu">
             <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
                 <span class="topbar-dots-vertical" aria-hidden="true">
@@ -82,6 +93,8 @@
 
 <script id="moduletypen-data" type="application/json">{{ site.data.moduletypen | jsonify }}</script>
 <script id="gebiete-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
+<script id="gebiete-feed-data" type="application/json">{{ site.data.gebiete | jsonify }}</script>
+<script id="lernbereiche-feed-data" type="application/json">{{ site.data.lernbereiche | jsonify }}</script>
 <script>
     (() => {
         const dataNode = document.getElementById('moduletypen-data');

@@ -1,4 +1,5 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260527-feed-hang-fix";
+import { keepCurrentFeedCursor, releaseCurrentFeedCursor } from "../../platform/feed-actions.js?v=20260602-start-complete-fix";
+import { loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260602-start-complete-fix";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -55,6 +56,18 @@ function getCurrentFeedActivityKey() {
   } catch {
     return "";
   }
+}
+
+async function keepCurrentFeedSelection() {
+  const currentActivityKey = String(getCurrentFeedActivityKey() || "").trim();
+  if (!currentActivityKey) return;
+  await keepCurrentFeedCursor({ activityKey: currentActivityKey });
+}
+
+async function releaseCurrentFeedSelection() {
+  const currentActivityKey = String(getCurrentFeedActivityKey() || "").trim();
+  if (!currentActivityKey) return;
+  await releaseCurrentFeedCursor({ activityKey: currentActivityKey });
 }
 
 function clampNumber(value, min, max) {
@@ -365,12 +378,16 @@ function openFeedDecisionDialog({
   };
 
   const runRepeatNowDecision = async () => {
+    await keepCurrentFeedSelection();
+
     if (typeof onRepeat === "function") {
       await onRepeat();
     }
   };
 
   const runRepeatLaterDecision = async () => {
+    await releaseCurrentFeedSelection();
+
     if (typeof onRepeatLater === "function") {
       await onRepeatLater();
       return;
