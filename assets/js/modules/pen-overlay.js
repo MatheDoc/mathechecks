@@ -57,14 +57,12 @@ function _cursorPen(color) {
 }
 
 function _cursorMarker(color) {
-  // Marker: breiter vertikaler Block, Hotspot oben-mittig
   const c = _enc(color);
   return _cur(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='16' height='20'>`
-    + `<rect x='1' y='1' width='14' height='18' rx='2' fill='${c}' fill-opacity='0.55' stroke='%23333' stroke-width='1.2'/>`
-    + `<rect x='1' y='1' width='14' height='6' rx='2' fill='${c}' fill-opacity='0.9' stroke='none'/>`
+    `<svg xmlns='http://www.w3.org/2000/svg' width='12' height='24'>`
+    + `<rect x='0' y='0' width='12' height='24' rx='2' fill='${c}' fill-opacity='0.55' stroke='%23333' stroke-width='1'/>`
     + `</svg>`,
-    8, 1
+    6, 12
   );
 }
 
