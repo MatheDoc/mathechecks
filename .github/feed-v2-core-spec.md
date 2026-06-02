@@ -5,7 +5,6 @@
 Diese Datei beschreibt das fachliche Zielbild für einen deterministischen Core-Feed V2 ohne Retention. Sie ist keine Beschreibung des aktuell produktiven Verhaltens.
 
 - Der aktuelle Ist-Stand bleibt in `.github/feed-logic.md` dokumentiert.
-- Das breitere Feed-Zielbild und historische Übergangsfragen bleiben in `.github/feed-design-vorschlag.md`.
 - Tabellen, RPCs und Datenmodellgrenzen zum aktuell produktiven System bleiben in `.github/benutzerverwaltung-mvp.md`.
 
 ## Zielbild
@@ -16,6 +15,7 @@ Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkarte
 
 - Diese Spezifikation behandelt nur den Core-Feed ohne Retention.
 - Freier Modulzugriff bleibt immer möglich und wird nicht vom Feed gesperrt.
+- Ein Core-Feed-Schritt darf nur dann abgeschlossen oder weiterbewegt werden, wenn er über einen gültigen Feed-Cursor im Feed-Kontext geöffnet wurde.
 - UI-Feinheiten wie Ampel, Farben oder genaue CSS-Zustände sind nicht Teil dieser V2-Spezifikation.
 - `warmup` bleibt außerhalb dieses Feed-Schnitts.
 - Das Frontend soll den V2-Feed nicht per direktem Tabellen-CRUD steuern.
@@ -344,7 +344,7 @@ Wenn ein Schritt in Tab B abgeschlossen wird, der in Tab A noch als Sticky-Eleme
 - Tab A zeigt den alten Stand bis zum nächsten Read weiter.
 - Beim nächsten Read erkennt der Server den Abschluss und gibt eine neue Auswahl oder einen Wartezustand zurück.
 
-Reiner freier Modulaufruf ohne erfolgreichen Abschluss verändert keinen Feed-State. Ein erfolgreicher Modul-Abschluss, z. B. bei `recall` oder `feynman`, bewegt die Check-Pipeline unabhängig vom Einstiegskontext weiter und kann den Feed-Cursor ungültig machen. Freie Navigation allein erneuert oder löscht den Lock nicht.
+Freie Navigation allein erneuert oder löscht den Lock nicht. Ein freier Modulaufruf ohne gültigen Feed-Cursor verändert den Core-Feed nicht; auch ein erfolgreicher freier Modulabschluss schließt keinen Core-Feed-Schritt ab und bewegt die Check-Pipeline nicht weiter.
 
 ## Additives Datenmodell (Vorschlag)
 
@@ -400,7 +400,7 @@ Mögliche neue `public.system_settings`-Schlüssel:
 Das Frontend soll den V2-Feed nicht per Tabellen-CRUD steuern. Die zentralen Operationen sollten serverseitig laufen:
 
 - `pick_feed_cursor(session_id)`: validiert Cursor, führt bei Bedarf Neuwahl aus und liefert genau ein aktuelles Element oder einen Wartezustand.
-- `complete_feed_step(activity_key, decision)`: schließt einen Feed-Schritt ab oder verarbeitet eine Popup-Entscheidung.
+- `complete_feed_step(activity_key, decision)`: validiert `activity_key` gegen den aktuellen Feed-Cursor und schließt nur diesen Feed-Schritt ab oder verarbeitet dessen Popup-Entscheidung.
 - `replan_session(session_id)`: materialisiert `planned_from` für offene Schritte bei Re-Plan-Triggern.
 
 Namen sind Platzhalter; wichtig ist die Trennung zwischen Lesen, Abschließen und Replanning.
@@ -433,7 +433,7 @@ Die eigentliche Ampel- oder CSS-Diskussion kann später erfolgen. Zuerst müssen
 10. Wird ein Check aus der Session entfernt, verschwinden seine künftigen offenen Schritte sofort.
 11. Session-Druck betrifft alle offenen Schritte, nicht nur Trainingsschritte.
 12. Wenn Tab B einen in Tab A gelockten Schritt abschließt, wird der Cursor serverseitig gelöscht und Tab A bekommt beim nächsten Read eine neue Auswahl.
-13. Freier Modulzugriff bleibt jederzeit möglich; reine Navigation verändert den Cursor nicht, ein erfolgreicher Modul-Abschluss kann die Check-Pipeline weiterbewegen.
+13. Freier Modulzugriff bleibt jederzeit möglich; reine Navigation und freie Modulabschlüsse verändern den Core-Feed nicht.
 
 ## Konkrete nächste Schritte
 

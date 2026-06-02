@@ -10,7 +10,6 @@ Sie dokumentiert die fachliche Reihenfolge- und Mischlogik des Feeds, nicht das 
 - Diese Datei beschreibt die aktuelle Projektion und Reihenfolge des Feeds aus Sicht von Dashboard, Sidebar und Feed-Kontext im Frontend.
 - `.github/benutzerverwaltung-mvp.md` beschreibt dagegen Datenmodell, Tabellen, RPCs, Sicherheitsmodell und den Plattform-Schnitt des Feeds.
 - `.github/datenmodell.md` beschreibt die Trennung zwischen Repo-Content und persistenter Plattformlogik.
-- `.github/feed-design-vorschlag.md` bleibt als breiterer Design- und Zielbildtext erhalten; die dortigen Aussagen zur aktuellen Reihenfolge werden nicht mehr als operative Spezifikation gepflegt.
 - `.github/feed-v2-core-spec.md` beschreibt das künftige deterministische Core-Feed-Zielbild ohne Retention und ist nicht Teil des aktuellen Produktivverhaltens.
 
 ## Zielbild in Kurzform
@@ -20,7 +19,7 @@ Sie dokumentiert die fachliche Reihenfolge- und Mischlogik des Feeds, nicht das 
 - Begonnene Check-Ketten sollen sichtbar weitergehen, aber nicht sofort komplett durchlaufen.
 - Retention-Flashcards aus früheren Sessions bleiben sichtbar, sollen die aktive Session aber nicht dominieren.
 - Dashboard und Sidebar lesen dieselbe Projektion und dieselbe Reihenfolge.
-- Der Feed-Kontext bleibt von freiem Modulzugriff getrennt.
+- Abschlussentscheidungen werden aktuell nur im Feed-Kontext angeboten; freier Modulzugriff bleibt davon getrennt.
 
 ## Datenquellen des Feeds
 

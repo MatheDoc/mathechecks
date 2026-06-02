@@ -9,6 +9,7 @@ Sie umfasst Benutzer, Profile, Lern-Sessions, `session_check_state` als erste Ch
 
 - Diese Datei beschreibt fachliches Zielbild, Datenmodell, Sicherheitsmodell und MVP-Scope.
 - `.github/feed-logic.md` dokumentiert dagegen die aktuell wirksame Reihenfolge-, Misch- und UI-Stabilisierungslogik des Feeds.
+- `.github/feed-v2-core-spec.md` dokumentiert das fachliche Zielbild des deterministischen Core-Feed V2; diese Datei trägt dafür nur die additive Datenmodell- und Migrationssicht.
 - `supabase/README.md` dokumentiert dagegen CLI-Workflow, lokales vs. gehostetes Setup, Dashboard-Schritte und SMTP.
 - Die Trennung ist bewusst sinnvoll: Architektur und Betriebs-Runbook ändern sich oft in unterschiedlichem Tempo.
 
@@ -63,7 +64,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Die Migration für `learning_activity_attempts` ergänzt einen ersten Fortschrittsschreibpfad für Recall und Feynman.
 - Die Migration `session_check_state_v1` führt eine materialisierte Check-Pipeline ein und erweitert `save_active_learning_session(...)` um die synchronisierten Check-Zeilen.
 - `complete_current_training_step(...)` bildet den manuellen Feed-Abschluss von `training` ab.
-- `record_check_module_attempt(...)` schreibt Recall-/Feynman-Versuche und bewegt passende `session_check_state`-Zeilen bei `can_do` weiter.
+- `record_check_module_attempt(...)` schreibt Recall-/Feynman-Versuche; im aktuellen Frontend bewegen erfolgreiche Abschlüsse die Check-Pipeline nur aus dem Feed-Kontext weiter.
 - Die Flashcards-Folge-Migration führt `session_activity_state` als erste lernbereichsweite Feed-Projektion ein; inzwischen trägt sie `start` als direkte Einstiegsaktivität pro Lernbereich und `flashcards` als persistente Wiederholungsaktivität.
 - `get_or_create_flashcard_round(...)`, `record_flashcard_review(...)` und `resolve_flashcard_round(...)` bilden den session-scoped Feed-Schreibpfad für Flashcards ab.
 - `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab und erhöht dabei den user-scoped Feed-Aktivitätszähler.
@@ -79,7 +80,18 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
+- Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt in diesem ersten Umbau ausdrücklich außen vor.
 - Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Feed-Limit, Retention-Abstand, Retention-Einstiegsposition, Follow-up-Fenster und Default-Tempo.
+
+## Additive V2-Richtung
+
+Für den anstehenden Core-Feed-V2-Umbau soll das Datenmodell nicht neu erfunden, sondern entlang der bestehenden Projektionen erweitert werden.
+
+- `session_check_state` bleibt die checkbezogene Pipeline-Projektion und wird um materialisierte Zeitfenster für checkbezogene Schritte erweitert.
+- `session_activity_state` bleibt im ersten V2-Schnitt Träger von `start`; eine spätere Zusammenführung in ein gemeinsames Schrittmodell bleibt offen.
+- Eine neue session-scoped Projektion `session_feed_cursor` trägt `current_activity_key`, `locked_until`, `selected_at` und `selection_reason`.
+- Checkbezogene Rohversuche außerhalb des Feed-Kontexts dürfen im Core-Feed-V2 keinen Feed-Schritt abschließen; die eigentliche Pipeline-Bewegung wandert in einen cursor-validierten Feed-Abschluss.
+- Retention bleibt im ersten Core-Feed-V2-Umbau außerhalb des neuen Core-Read-Pfads und wird erst nach stabilem Cursor- und Zeitfenster-Modell wieder angebunden.
 
 ## Begriffstrennung
 
@@ -88,10 +100,12 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 
 Weitere Trennung für den aktuellen und nächsten Ausbauschritt:
 
-- **Lernaktivitaet / Versuch:** Append-only Rohdaten eines expliziten Modulabschlusses, zum Beispiel `recall` oder `feynman` mit `can_do` oder `repeat`.
+- **Lernaktivität / Versuch:** Append-only Rohdaten eines expliziten Modulabschlusses, zum Beispiel `recall` oder `feynman` mit `can_do` oder `repeat`.
 - **Check-Status:** Materialisierte Zustandsprojektion pro Check in `session_check_state`; wird nicht direkt per Tabellen-CRUD vom Frontend geschrieben.
 - **Feed:** UI-nahe Projektion offener nächster Aktionen; in v1 aus checkbezogenen Schritten in `session_check_state`, `start`/Flashcards in `session_activity_state`, user-scoped Retention-Scopes und Repo-Metadaten abgeleitet, später mit expliziten Freigaben und Aktivitätsfenstern.
 - **Feed-Aktivität:** Konkreter Bearbeitungskontext einer Feed-Karte, im Frontend über `activity_key`, `activity_step` und `activity_run` transportiert.
+- **Feed-Cursor:** Session-scoped Persistenz des aktuell ausgewählten Core-Feed-Elements mit Lock-Information und Auswahlgrund.
+- **Feed-Abschluss:** Serverseitig validierte Entscheidung auf die aktuelle Feed-Aktivität; nur mit gültigem Feed-Cursor darf dadurch die Check-Pipeline weiterbewegt werden.
 - **Retention-Track:** Nutzerweite Wiederholungsschicht jenseits der endlichen Core-Session; aktuell fachlich auf Flashcards begrenzt.
 
 Diese Begriffe dürfen weder in UI noch im Datenmodell vermischt werden.
@@ -200,7 +214,7 @@ Aktuelle Schlüssel:
 - `feed.session_follow_up_max_gap`
 - `planning.default_session_tempo_days`
 
-`feed.retention_activity_base_gap` steuert fuer Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstaende `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
+`feed.retention_activity_base_gap` steuert für Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstände `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
 
 ### 4b. `public.user_feed_activity_counters`
 
@@ -221,9 +235,6 @@ Regeln:
 - Primärschlüssel ist `user_id`.
 - `completed_activity_count` steigt nur über serverseitige Abschlusslogik, nicht über Tabellen-CRUD aus dem Frontend.
 - Der Zähler ist bewusst klein und integerbasiert gehalten und bleibt von sichtbaren Listenplätzen entkoppelt.
-
-Regeln:
-
 - Die Werte sind bewusst klein und integerbasiert gehalten.
 - Jeder Schlüssel trägt zusätzlich eine Kurzbeschreibung direkt in der Tabelle.
 - Änderungen an diesen Werten sollen zukünftige Feed- und Planungseffekte steuern, ohne Suchläufe durch mehrere Frontend-Dateien oder SQL-Funktionen zu erzwingen.
@@ -592,7 +603,7 @@ Empfohlene Werte für `decision_key` in v1:
 Regeln:
 
 - `open_feed_activity(...)` ist zunächst vor allem Routing- und Kontextlogik; eine persistente Speicherung ist optional.
-- `resolve_feed_activity(...)` ist die eigentliche Plattformentscheidung aus der Feed-Shell.
+- `resolve_feed_activity(...)` ist die eigentliche Plattformentscheidung aus der Feed-Shell und validiert `activity_key` gegen den aktuellen Feed-Cursor.
 - Modulspezifische Details wie Recall-/Feynman-Ergebnis, Trainingsabschluss oder spätere Flashcard-Logik bleiben eigene Rohdatenquellen, werden aber nicht direkt als UI-Aktion exponiert.
 - Die Feed-Shell spricht langfristig nur mit diesem generischen Aktivitätsmodell, nicht mit modulspezifischen Button-Semantiken.
 
@@ -658,7 +669,7 @@ Aktueller v1-Schnitt:
 
 - `save_active_learning_session(...)` bekommt zusätzlich die ausgewählten `p_included_check_ids` und hält damit `session_check_state` synchron.
 - `complete_current_training_step(p_check_id text)` bildet den ersten serverseitigen Pipeline-Übergang für `training`.
-- `record_check_module_attempt(...)` bleibt der Rohdaten-Log für `recall` und `feynman`, kann aber vorhandene `session_check_state`-Zeilen jetzt direkt weiterbewegen.
+- `record_check_module_attempt(...)` bleibt der Rohdaten-Log für `recall` und `feynman`; im Core-Feed-V2 soll die eigentliche Pipeline-Bewegung hinter `resolve_feed_activity(...)` bzw. einem cursor-validierten Feed-Abschluss liegen.
 
 ### Feed-Kontext im Frontend
 
@@ -724,6 +735,6 @@ Mindestregeln:
 
 - Soll neben `display_name` noch ein Pflichtfeld wie `schule` oder `kursstufe` ins Profil?
 - Braucht der Nutzer mehrere gespeicherte Entwürfe für Sessions oder nur genau eine aktive und beliebig viele historische?
-- Wie wird die Flashcards-spezifische Form von `session_activity_state` zu einer generischen Aktivitätsschicht für `warmup`, Sidebar und spätere Feed-Listen erweitert?
+- Bleibt `start` auch nach dem ersten Core-Feed-V2-Umbau in `session_activity_state`, oder zieht es später in ein gemeinsames Schrittmodell um?
 - Soll `activity_key` künftig serverseitig validiert und in einer generischen Feed-RPC wie `resolve_feed_activity(...)` aufgelöst werden?
 - Bleibt `learning_activity_attempts` checkbezogenen Modulversuchen vorbehalten, oder bekommt `warmup` einen eigenen Rohdatenpfad wie Flashcards?
