@@ -1,7 +1,16 @@
-import { loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260602-feed-cursor-clean";
+import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260603-topbar-feed-badge";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
+const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
+
 let feedContentMetaPromise = null;
+let currentAuthState = {
+  configured: false,
+  session: null,
+  user: null,
+  error: null,
+};
+let feedLauncherRefreshBound = false;
 
 async function loadSharedFeedContentMeta() {
   if (feedContentMetaPromise) {
@@ -20,36 +29,110 @@ async function loadSharedFeedContentMeta() {
   return feedContentMetaPromise;
 }
 
-function buildFeedLauncherLabel(item) {
+function formatFeedBadgeCount(count) {
+  const normalizedCount = Math.max(0, Number(count) || 0);
+  return normalizedCount > 99 ? "99+" : String(normalizedCount);
+}
+
+function buildFeedAttentionLabel(attentionSummary) {
+  const overdueCount = Math.max(0, Number(attentionSummary?.overdueCount) || 0);
+  const dueCount = Math.max(0, Number(attentionSummary?.dueCount) || 0);
+
+  if (overdueCount > 0 && dueCount > 0) {
+    return `${overdueCount} überfällig, ${dueCount} fällig`;
+  }
+  if (overdueCount > 0) {
+    return `${overdueCount} überfällig`;
+  }
+  if (dueCount > 0) {
+    return `${dueCount} fällig`;
+  }
+
+  return "";
+}
+
+async function syncFeedAppBadge(attentionSummary) {
+  try {
+    const totalCount = Math.max(0, Number(attentionSummary?.totalCount) || 0);
+    if (typeof navigator === "undefined") {
+      return;
+    }
+
+    if (totalCount > 0 && typeof navigator.setAppBadge === "function") {
+      await navigator.setAppBadge(totalCount);
+      return;
+    }
+
+    if (typeof navigator.clearAppBadge === "function") {
+      await navigator.clearAppBadge();
+    }
+  } catch {
+    // Some browsers only expose badging in installed-app contexts.
+  }
+}
+
+function buildFeedLauncherLabel(item, attentionSummary = null) {
   const badgeLabel = String(item?.primaryBadge?.label || item?.type || "Feed").trim();
   const checkIndexLabel = String(item?.checkIndexLabel || "").trim();
   const checkKeyword = String(item?.checkKeyword || "").trim();
   const titleText = String(item?.titleText || "").trim();
+  const attentionLabel = buildFeedAttentionLabel(attentionSummary);
   const title = checkKeyword
     ? [checkIndexLabel, checkKeyword].filter(Boolean).join(" ")
     : titleText;
 
-  return title
-    ? `Aktuelles Feed-Element öffnen: ${badgeLabel}, ${title}`
+  if (title) {
+    return attentionLabel
+      ? `Aktuelles Feed-Element öffnen: ${badgeLabel}, ${title}. ${attentionLabel}.`
+      : `Aktuelles Feed-Element öffnen: ${badgeLabel}, ${title}`;
+  }
+
+  return attentionLabel
+    ? `Aktuelles Feed-Element öffnen: ${badgeLabel}. ${attentionLabel}.`
     : `Aktuelles Feed-Element öffnen: ${badgeLabel}`;
 }
 
-function applyFeedLauncherState(button, item = null) {
+function applyFeedLauncherAttention(button, attentionSummary = null) {
+  if (!button) return 0;
+
+  const badgeNode = button.querySelector("[data-feed-launcher-badge]");
+  const totalCount = Math.max(0, Number(attentionSummary?.totalCount) || 0);
+
+  if (badgeNode) {
+    if (totalCount > 0) {
+      badgeNode.hidden = false;
+      badgeNode.textContent = formatFeedBadgeCount(totalCount);
+    } else {
+      badgeNode.hidden = true;
+      badgeNode.textContent = "";
+    }
+  }
+
+  void syncFeedAppBadge(attentionSummary);
+  return totalCount;
+}
+
+function applyFeedLauncherState(button, item = null, attentionSummary = null) {
   if (!button) return;
 
   const labelNode = button.querySelector("[data-feed-launcher-label]");
+  const totalCount = applyFeedLauncherAttention(button, attentionSummary);
+  const attentionLabel = buildFeedAttentionLabel(attentionSummary);
 
   if (!item?.href) {
-    button.hidden = true;
-    button.dataset.feedReady = "false";
+    const fallbackLabel = attentionLabel
+      ? `Feed öffnen. ${attentionLabel}.`
+      : "Aktuelles Feed-Element öffnen";
+    button.hidden = totalCount <= 0;
+    button.dataset.feedReady = totalCount > 0 ? "attention" : "false";
     button.setAttribute("href", buildAccountUrl("/dashboard.html"));
-    button.setAttribute("aria-label", "Aktuelles Feed-Element öffnen");
-    button.title = "Aktuelles Feed-Element öffnen";
-    if (labelNode) labelNode.textContent = "Aktuelles Feed-Element öffnen";
+    button.setAttribute("aria-label", fallbackLabel);
+    button.title = fallbackLabel;
+    if (labelNode) labelNode.textContent = fallbackLabel;
     return;
   }
 
-  const label = buildFeedLauncherLabel(item);
+  const label = buildFeedLauncherLabel(item, attentionSummary);
   button.hidden = false;
   button.dataset.feedReady = "true";
   button.setAttribute("href", item.href);
@@ -63,7 +146,7 @@ async function refreshFeedLauncher(state) {
   if (!button) return;
 
   if (!state?.configured || state?.error || !state?.user) {
-    applyFeedLauncherState(button, null);
+    applyFeedLauncherState(button, null, null);
     return;
   }
 
@@ -71,32 +154,46 @@ async function refreshFeedLauncher(state) {
   button.dataset.feedRenderToken = renderToken;
 
   try {
-    const [supabase, contentMeta] = await Promise.all([
-      getSupabaseClient(),
-      loadSharedFeedContentMeta(),
-    ]);
+    const supabase = await getSupabaseClient();
 
     if (!supabase) {
       if (button.dataset.feedRenderToken === renderToken) {
-        applyFeedLauncherState(button, null);
+        applyFeedLauncherState(button, null, null);
       }
       return;
     }
 
-    const projection = await loadFeedProjection({
-      supabase,
-      contentMeta,
-      limit: 1,
-    });
-    const item = Array.isArray(projection?.items) ? projection.items[0] || null : null;
+    const [attentionSummary, contentMeta] = await Promise.all([
+      loadFeedAttentionSummary({ supabase }).catch(() => ({ overdueCount: 0, dueCount: 0, totalCount: 0 })),
+      loadSharedFeedContentMeta().catch(() => null),
+    ]);
+
+    let item = null;
+    if (contentMeta) {
+      const projection = await loadFeedProjection({
+        supabase,
+        contentMeta,
+        limit: 1,
+      });
+      item = Array.isArray(projection?.items) ? projection.items[0] || null : null;
+    }
 
     if (button.dataset.feedRenderToken !== renderToken) return;
-    applyFeedLauncherState(button, item);
+    applyFeedLauncherState(button, item, attentionSummary);
   } catch {
     if (button.dataset.feedRenderToken === renderToken) {
-      applyFeedLauncherState(button, null);
+      applyFeedLauncherState(button, null, null);
     }
   }
+}
+
+function bindFeedLauncherRefreshListener() {
+  if (feedLauncherRefreshBound || typeof window === "undefined") return;
+
+  feedLauncherRefreshBound = true;
+  window.addEventListener(FEED_BADGE_UPDATE_EVENT, () => {
+    void refreshFeedLauncher(currentAuthState);
+  });
 }
 
 function updateDashboardNavItem(state) {
@@ -128,6 +225,13 @@ function updateFeedSidebar(state) {
 
 function updateTopbarButton(button, state) {
   if (!button) return;
+
+  currentAuthState = {
+    configured: Boolean(state?.configured),
+    session: state?.session || null,
+    user: state?.user || null,
+    error: state?.error || null,
+  };
 
   const labelNode = button.querySelector("[data-auth-label]") || button.querySelector("span:last-child");
   const statusNode = document.querySelector("[data-auth-status]");
@@ -228,6 +332,7 @@ async function initAuthShell() {
 
   const config = getSupabaseRuntimeConfig();
   bindTopbarButton(button, config.accountPath);
+  bindFeedLauncherRefreshListener();
 
   const state = await getCurrentAuthState();
   updateTopbarButton(button, state);

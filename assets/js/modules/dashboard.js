@@ -1,8 +1,9 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260602-feed-cursor-clean";
+import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260603-topbar-feed-badge";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260602-server-feed-time";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
+const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 const LERNBEREICH_ALIASES = {
   "differentialrechnung-ganzrationaler-funktionen": ["differentialrechnung"],
   "zufallsexperimente-und-wahrscheinlichkeiten": ["zufallsexperimente"],
@@ -17,6 +18,11 @@ const RETENTION_EMPTY_LIST_MESSAGE = "Wähle Lernbereiche für Wiederholungen ü
 const RETENTION_LOADING_MESSAGE = "Wiederholungen werden geladen.";
 const RETENTION_UNAVAILABLE_MESSAGE = "Wiederholungen konnten gerade nicht geladen werden.";
 const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht geladen werden.";
+
+function notifyFeedBadgeRefresh() {
+  if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
+  window.dispatchEvent(new CustomEvent(FEED_BADGE_UPDATE_EVENT));
+}
 
 function parseJsonScript(id, fallback) {
   try {
@@ -1546,6 +1552,7 @@ async function handleSave(context) {
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
     ]);
+    notifyFeedBadgeRefresh();
     closeModal(context);
     setBarStatus(context, "");
   } catch (error) {
@@ -1591,6 +1598,7 @@ async function handleDelete(context) {
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
     ]);
+    notifyFeedBadgeRefresh();
     closeModal(context);
     setBarStatus(context, "Aktive Session gelöscht. Wiederholungen bleiben unverändert.", "success");
   } catch (error) {
@@ -1628,6 +1636,7 @@ async function handleRetentionDelete(context) {
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
     ]);
+    notifyFeedBadgeRefresh();
     setRetentionBarStatus(context, "Wiederholungen gelöscht. Die aktuelle Session bleibt unverändert.", "success");
   } catch (error) {
     console.error("Wiederholungen konnten nicht gelöscht werden:", error);
@@ -1999,6 +2008,7 @@ async function handleRetentionSave(context) {
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
     ]);
+    notifyFeedBadgeRefresh();
     closeRetentionModal(context);
   } catch (error) {
     console.error("Retention-Scopes konnten nicht gespeichert werden:", error);

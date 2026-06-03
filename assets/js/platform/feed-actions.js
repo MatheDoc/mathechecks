@@ -13,7 +13,14 @@ import {
   resolveRetentionFlashcardRound,
 } from "./progress-client.js?v=20260602-start-complete-fix";
 
-function ensureFeedActionOk(result, fallbackReason) {
+const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
+
+function emitFeedUpdated() {
+  if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
+  window.dispatchEvent(new CustomEvent(FEED_BADGE_UPDATE_EVENT));
+}
+
+function ensureFeedActionOk(result, fallbackReason, { emitsFeedUpdate = false } = {}) {
   if (result?.error) {
     throw result.error;
   }
@@ -29,6 +36,10 @@ function ensureFeedActionOk(result, fallbackReason) {
     throw new Error(reason);
   }
 
+  if (emitsFeedUpdate) {
+    emitFeedUpdated();
+  }
+
   return result;
 }
 
@@ -36,6 +47,7 @@ export async function completeTrainingFeedStep({ checkId, activityKey }) {
   return ensureFeedActionOk(
     await completeCurrentTrainingStep({ checkId, activityKey }),
     "training-not-saved",
+    { emitsFeedUpdate: true },
   );
 }
 
@@ -43,6 +55,7 @@ export async function completeStartFeedStep({ lernbereichSlug, activityKey }) {
   return ensureFeedActionOk(
     await completeStartActivity({ lernbereichSlug, activityKey }),
     "start-not-saved",
+    { emitsFeedUpdate: true },
   );
 }
 
@@ -62,6 +75,7 @@ export async function recordCheckFeedDecision({
       activityKey,
     }),
     "progress-not-saved",
+    { emitsFeedUpdate: true },
   );
 }
 
@@ -69,6 +83,7 @@ export async function completeKompetenzlisteFeedStep({ checkId, activityKey }) {
   return ensureFeedActionOk(
     await completeKompetenzlisteGate({ checkId, activityKey }),
     "kompetenzliste-gate-not-saved",
+    { emitsFeedUpdate: true },
   );
 }
 
@@ -119,6 +134,7 @@ export function getFlashcardsFeedApi(trackKind = "session") {
       return ensureFeedActionOk(
         await api.resolveRound(params),
         "flashcards-round-not-resolved",
+        { emitsFeedUpdate: true },
       );
     },
   };

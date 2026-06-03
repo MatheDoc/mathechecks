@@ -578,6 +578,32 @@ body.page-shell .shell {
   height: 24px;
 }
 
+.topbar-feed-launcher__badge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--rose);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.01em;
+  box-shadow: 0 0 0 2px var(--bg, #111), 0 8px 18px rgba(214, 40, 57, .28);
+  pointer-events: none;
+}
+
+.topbar-feed-launcher__badge[hidden] {
+  display: none;
+}
+
 .topbar-actions-menu {
   display: block;
   position: relative;
@@ -1142,6 +1168,18 @@ body.page-shell .shell {
 
 .action-badge.type-quiz {
   --action-badge-accent: var(--amber);
+}
+
+.action-badge.type-overdue {
+  --action-badge-accent: var(--rose);
+}
+
+.action-badge.type-due {
+  --action-badge-accent: var(--amber);
+}
+
+.action-badge.type-available {
+  --action-badge-accent: var(--accent);
 }
 
 .action-onboard {

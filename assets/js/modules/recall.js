@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260602-feed-cursor";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
