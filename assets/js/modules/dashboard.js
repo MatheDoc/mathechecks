@@ -1018,10 +1018,25 @@ function getRemainingSelectedActivityCount(context, selectedCheckIds) {
   }, 0);
 }
 
+function getConfiguredPositiveInteger(value) {
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
 function buildSuggestedTargetDate(context, selectedCheckIds) {
   const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
-  const activitiesPerDay = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
-  const didacticGapHours = Math.max(1, Number.parseInt(context.systemSettings?.feedCoreGapNormalHours, 10) || 24);
+  const activitiesPerDay = getConfiguredPositiveInteger(context.systemSettings?.planningDefaultSessionTempoDays);
+  const didacticGapHours = getConfiguredPositiveInteger(context.systemSettings?.feedCoreGapNormalHours);
+
+  if (!activitiesPerDay || !didacticGapHours) {
+    return {
+      suggestedDateValue: "",
+      remainingSteps,
+      activitiesPerDay: null,
+      didacticGapHours: null,
+    };
+  }
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const now = new Date();
@@ -1048,48 +1063,39 @@ function buildSuggestedTargetDate(context, selectedCheckIds) {
 }
 
 function buildTargetDateAssessment(context, selectedCheckIds) {
-  const defaultActivitiesPerDay = Math.max(1, Number.parseInt(context.systemSettings?.planningDefaultSessionTempoDays, 10) || 1);
+  const defaultActivitiesPerDay = getConfiguredPositiveInteger(context.systemSettings?.planningDefaultSessionTempoDays);
   const realisticThreshold = defaultActivitiesPerDay;
-  const warningThreshold = Math.max(realisticThreshold + 1, realisticThreshold * 2);
+  const warningThreshold = defaultActivitiesPerDay === null
+    ? null
+    : Math.max(realisticThreshold + 1, realisticThreshold * 2);
   const targetDateValue = normalizeDateOnlyValue(context.activeSession?.target_date);
   if (!targetDateValue) {
     const suggestion = buildSuggestedTargetDate(context, selectedCheckIds);
     const targetLabel = suggestion.suggestedDateValue
-      ? `Zieldatum: ${formatDateOnlyLabel(suggestion.suggestedDateValue)} (Vorschlag)`
+      ? `Zieldatum: ${formatDateOnlyLabel(suggestion.suggestedDateValue)}`
       : "Zieldatum: nicht gesetzt.";
 
     if (suggestion.remainingSteps <= 0) {
       return {
         targetLabel,
-        assessmentMessage: "Kein Zieldatum gesetzt. Die aktuellen Aktivitäten sind bereits vollständig abgeschlossen.",
+        assessmentLabel: "Fertig",
         assessmentTone: "success",
       };
     }
 
-    const paceHint = suggestion.activitiesPerDay === 1
-      ? "etwa einer offenen Aktivität pro Tag"
-      : `etwa ${suggestion.activitiesPerDay} offenen Aktivitäten pro Tag`;
-    const gapDays = suggestion.didacticGapHours / 24;
-    const gapHint = Number.isInteger(gapDays)
-      ? `Mindestabständen von ${gapDays} Tag${gapDays === 1 ? "" : "en"}`
-      : `Mindestabständen von ${suggestion.didacticGapHours} Stunden`;
-
     return {
       targetLabel,
-      assessmentMessage: `Kein Zieldatum gesetzt. Vorschlag auf Basis von ${paceHint} und ${gapHint} zwischen den didaktischen Folgeschritten.`,
+      assessmentLabel: suggestion.suggestedDateValue ? "Offen" : "",
       assessmentTone: "neutral",
     };
   }
 
   const targetDate = parseDateOnlyValue(targetDateValue);
-  const isSuggestedTarget = String(context.activeSession?.target_source || "").trim() === "suggested";
-  const targetLabel = isSuggestedTarget
-    ? `Zieldatum: ${formatDateOnlyLabel(targetDateValue)} (Vorschlag)`
-    : `Zieldatum: ${formatDateOnlyLabel(targetDateValue)}`;
+  const targetLabel = `Zieldatum: ${formatDateOnlyLabel(targetDateValue)}`;
   if (!targetDate) {
     return {
       targetLabel,
-      assessmentMessage: "Das gespeicherte Zieldatum konnte nicht gelesen werden.",
+      assessmentLabel: "Fehler",
       assessmentTone: "error",
     };
   }
@@ -1104,7 +1110,7 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
   if (dayDelta < 0) {
     return {
       targetLabel,
-      assessmentMessage: "Das Zieldatum liegt bereits in der Vergangenheit.",
+      assessmentLabel: "Überfällig",
       assessmentTone: "error",
     };
   }
@@ -1112,20 +1118,25 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
   if (remainingSteps <= 0) {
     return {
       targetLabel,
-      assessmentMessage: "Die aktuellen Aktivitäten sind bereits vollständig abgeschlossen.",
+      assessmentLabel: "Fertig",
       assessmentTone: "success",
     };
   }
 
+  if (defaultActivitiesPerDay === null || warningThreshold === null) {
+    return {
+      targetLabel,
+      assessmentLabel: "",
+      assessmentTone: "neutral",
+    };
+  }
+
   const stepsPerDay = remainingSteps / availableDays;
-  const dayLabel = availableDays === 1 ? "Kalendertag" : "Kalendertage";
-  const stepLabel = remainingSteps === 1 ? "offene Aktivität" : "offene Aktivitäten";
-  const workloadText = `Noch ${remainingSteps} ${stepLabel} in ${availableDays} ${dayLabel}, also rund ${formatPlanningRate(stepsPerDay)} pro Tag.`;
 
   if (stepsPerDay <= realisticThreshold) {
     return {
       targetLabel,
-      assessmentMessage: `Rechnerisch wirkt das Zieldatum realistisch. ${workloadText}`,
+      assessmentLabel: "Realistisch",
       assessmentTone: "success",
     };
   }
@@ -1133,14 +1144,14 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
   if (stepsPerDay <= warningThreshold) {
     return {
       targetLabel,
-      assessmentMessage: `Das Zieldatum ist sportlich, aber noch plausibel. ${workloadText}`,
+      assessmentLabel: "Sportlich",
       assessmentTone: "warning",
     };
   }
 
   return {
     targetLabel,
-    assessmentMessage: `Das Zieldatum wirkt aktuell eher unrealistisch. ${workloadText}`,
+    assessmentLabel: "Unrealistisch",
     assessmentTone: "error",
   };
 }
@@ -1155,6 +1166,7 @@ function updatePlanSummary(context) {
   if (!node) return;
 
   const targetNode = context.elements.planTarget;
+  const targetLabelNode = context.elements.planTargetLabel;
   const assessmentNode = context.elements.planAssessment;
   const activeEntries = collectActiveSessionLernbereiche(context);
 
@@ -1162,7 +1174,9 @@ function updatePlanSummary(context) {
     node.textContent = SESSION_EMPTY_SUMMARY;
     if (targetNode) {
       targetNode.hidden = true;
-      targetNode.textContent = "";
+    }
+    if (targetLabelNode) {
+      targetLabelNode.textContent = "";
     }
     if (assessmentNode) {
       setStatusNode(assessmentNode, "");
@@ -1176,9 +1190,11 @@ function updatePlanSummary(context) {
   if (targetNode) {
     const assessment = buildTargetDateAssessment(context, selectedCheckIds);
     targetNode.hidden = false;
-    targetNode.textContent = assessment.targetLabel;
+    if (targetLabelNode) {
+      targetLabelNode.textContent = assessment.targetLabel;
+    }
     if (assessmentNode) {
-      setStatusNode(assessmentNode, assessment.assessmentMessage, assessment.assessmentTone);
+      setStatusNode(assessmentNode, assessment.assessmentLabel, assessment.assessmentTone);
     }
   }
 }
@@ -2005,6 +2021,7 @@ function createContext(root, lernbereiche) {
     sessionList: root.querySelector("[data-dashboard-session-list]"),
     planSummary: root.querySelector("[data-dashboard-plan-summary]"),
     planTarget: root.querySelector("[data-dashboard-plan-target]"),
+    planTargetLabel: root.querySelector("[data-dashboard-plan-target-label]"),
     planAssessment: root.querySelector("[data-dashboard-plan-assessment]"),
     feedList: root.querySelector("[data-dashboard-feed-list]"),
     container: document.getElementById("lbAccordionContainer"),
