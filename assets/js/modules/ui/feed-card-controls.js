@@ -1,5 +1,5 @@
-import { keepCurrentFeedCursor, releaseCurrentFeedCursor } from "../../platform/feed-actions.js?v=20260602-start-complete-fix";
-import { loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260602-start-complete-fix";
+import { keepCurrentFeedCursor, releaseCurrentFeedCursor } from "../../platform/feed-actions.js?v=20260603-topbar-feed-badge";
+import { loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260603-topbar-feed-badge";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

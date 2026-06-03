@@ -734,12 +734,12 @@ begin
 
     insert into public.session_feed_cursor (session_id)
     values (resolved_session_id)
-    on conflict (session_id) do nothing;
+    on conflict on constraint session_feed_cursor_pkey do nothing;
 
-    select *
+    select sfc.*
     into cursor_row
-    from public.session_feed_cursor
-    where session_id = resolved_session_id
+    from public.session_feed_cursor as sfc
+    where sfc.session_id = resolved_session_id
     for update;
 
     if cursor_row.current_activity_key is not null then
@@ -800,17 +800,17 @@ begin
             else 'auto_pick'
         end;
 
-        update public.session_feed_cursor
+        update public.session_feed_cursor as sfc
         set current_activity_key = next_item.activity_key,
             locked_until = now() + public.get_feed_cursor_lock_interval(),
             selected_at = now(),
             selection_reason = next_selection_reason
-        where session_id = resolved_session_id;
+        where sfc.session_id = resolved_session_id;
 
-        select *
+        select sfc.*
         into cursor_row
-        from public.session_feed_cursor
-        where session_id = resolved_session_id;
+        from public.session_feed_cursor as sfc
+        where sfc.session_id = resolved_session_id;
 
         return query
         select

@@ -1,6 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
-import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260602-feed-cursor";
+import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
 

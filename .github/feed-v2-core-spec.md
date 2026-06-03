@@ -154,7 +154,11 @@ Konzeptionell gilt:
 - `d`: verbleibende Tage bis zum Session-Ziel
 - `C = d * a`: grobe Plan-Kapazität
 
-Für V2 kommt `a` aus einem System-Default, z. B. `feed.plan_activities_per_day`. Eine spätere nutzerspezifische Überschreibung ist möglich, aber nicht Teil dieser Spezifikation.
+Im aktuellen Stand ist `a` als materialisierter Planwert in `learning_sessions.tempo_days` abgelegt.
+
+- Bei explizitem `target_date` wird `a` serverseitig aus verbleibender Session-Last und verbleibenden Tagen abgeleitet.
+- Ohne explizites Zieldatum bleibt `a = planning.default_session_tempo_days`.
+- Ein nur vorgeschlagenes `target_date` (`target_source = 'suggested'`) dient als UI- und Planungshinweis, verschärft das Tagespensum aber nicht selbstständig.
 
 Für Tagesgrenzen, `d` und Tagespakete gilt die Zeitzone `Europe/Berlin`.
 
@@ -296,6 +300,8 @@ In den Kandidatenpool kommen nur Schritte mit:
 3. nur verfügbare Schritte (`available_from <= now < effective_planned_from`)
 
 Diese Priorität gilt für alle offenen Schrittarten, also auch für offene `recall`, `feynman` und `kompetenzliste`, nicht nur für `training`.
+
+Für die UI soll diese Server-Klasse direkt transportiert werden (`overdue`, `due`, `available`). Das Badge im Feed darf nicht nur aus Browser-Zeitstempeln rekonstruiert werden, weil sonst kleine Uhrabweichungen zwischen Client und Server frisch geplante Schritte fälschlich als nur `available` labeln können.
 
 Innerhalb derselben Prioritätsklasse entscheidet in V2:
 

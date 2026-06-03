@@ -492,6 +492,7 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
           ? queueEntryActivityCount
           : (Number.isFinite(dueAfterActivityCount) ? dueAfterActivityCount : completedActivityCount))),
         due_at: summary.firstDueAt,
+        allow_early_feed_start: isVisibleByQueue && !isDueByActivityCount,
       };
     })
     .filter(Boolean)
@@ -544,6 +545,98 @@ function createFeedItem({
     primaryBadge,
     queueAge,
     dueAfterActivityCount,
+  };
+}
+
+function parseTimestampMs(value) {
+  const timestamp = Date.parse(String(value || "").trim());
+  return Number.isFinite(timestamp) ? timestamp : null;
+}
+
+function resolveEffectivePlannedMs({
+  availableFrom = "",
+  dueAt = "",
+  plannedFrom = "",
+  effectivePlannedFrom = "",
+} = {}) {
+  const explicitEffectiveMs = parseTimestampMs(effectivePlannedFrom);
+  if (explicitEffectiveMs !== null) {
+    return explicitEffectiveMs;
+  }
+
+  const availableMs = parseTimestampMs(availableFrom || dueAt);
+  const plannedMs = parseTimestampMs(plannedFrom);
+
+  if (plannedMs === null) return availableMs;
+  if (availableMs === null) return plannedMs;
+  return Math.max(availableMs, plannedMs);
+}
+
+function resolveOpenFeedTimingStatus({
+  timingStatus = "",
+  availableFrom = "",
+  dueAt = "",
+  plannedFrom = "",
+  effectivePlannedFrom = "",
+  overdueFrom = "",
+} = {}) {
+  const normalizedTimingStatus = String(timingStatus || "").trim();
+  if (normalizedTimingStatus === "overdue" || normalizedTimingStatus === "due" || normalizedTimingStatus === "available") {
+    return normalizedTimingStatus;
+  }
+
+  const nowMs = Date.now();
+  const overdueMs = parseTimestampMs(overdueFrom);
+  if (overdueMs !== null && overdueMs <= nowMs) {
+    return "overdue";
+  }
+
+  const effectivePlannedMs = resolveEffectivePlannedMs({
+    availableFrom,
+    dueAt,
+    plannedFrom,
+    effectivePlannedFrom,
+  });
+  if (effectivePlannedMs !== null && effectivePlannedMs <= nowMs) {
+    return "due";
+  }
+
+  const availableMs = parseTimestampMs(availableFrom || dueAt);
+  if (availableMs !== null && availableMs <= nowMs) {
+    return "available";
+  }
+
+  return null;
+}
+
+function resolveCurrentFeedTimingBadge(cursorState) {
+  const timingStatus = resolveOpenFeedTimingStatus({
+    timingStatus: cursorState?.timing_status,
+    availableFrom: cursorState?.available_from,
+    dueAt: cursorState?.due_at,
+    effectivePlannedFrom: cursorState?.effective_planned_from,
+    overdueFrom: cursorState?.overdue_from,
+  });
+
+  if (timingStatus === "overdue") {
+    return { label: "Überfällig", type: "overdue" };
+  }
+  if (timingStatus === "due") {
+    return { label: "Fällig", type: "due" };
+  }
+  if (timingStatus === "available") {
+    return { label: "Verfügbar", type: "available" };
+  }
+
+  return null;
+}
+
+function appendFeedBadge(item, badge) {
+  if (!item || !badge) return item;
+
+  return {
+    ...item,
+    badges: [...(Array.isArray(item.badges) ? item.badges : []), badge],
   };
 }
 
@@ -617,21 +710,22 @@ function buildSessionActivityFeedItem(contentMeta, entry) {
 
 function buildCurrentCursorFeedItem(contentMeta, cursorState) {
   const activityKind = String(cursorState?.activity_kind || "").trim();
+  const timingBadge = resolveCurrentFeedTimingBadge(cursorState);
 
   if (activityKind === "check") {
-    return buildCheckFeedItem(contentMeta, {
+    return appendFeedBadge(buildCheckFeedItem(contentMeta, {
       check_id: cursorState?.check_id,
       current_step_key: cursorState?.step_key,
-    });
+    }), timingBadge);
   }
 
   if (activityKind === "start" || activityKind === "flashcards") {
-    return buildSessionActivityFeedItem(contentMeta, {
+    return appendFeedBadge(buildSessionActivityFeedItem(contentMeta, {
       activity_key: cursorState?.current_activity_key,
       activity_type: cursorState?.activity_type,
       lernbereich_slug: cursorState?.lernbereich_slug,
       target_module_key: cursorState?.target_module_key,
-    });
+    }), timingBadge);
   }
 
   return null;
@@ -661,6 +755,79 @@ function buildRetentionFeedItem(contentMeta, entry) {
       ? Number(entry.due_after_activity_count)
       : null,
   });
+}
+
+export async function loadFeedAttentionSummary({ supabase } = {}) {
+  if (!supabase) {
+    return { overdueCount: 0, dueCount: 0, totalCount: 0 };
+  }
+
+  const activeSession = await loadActiveSession(supabase);
+  let overdueCount = 0;
+  let dueCount = 0;
+
+  if (activeSession?.id) {
+    const [{ data: activityRows, error: activityError }, { data: checkRows, error: checkError }] = await Promise.all([
+      supabase
+        .from("session_activity_state")
+        .select("activity_type, due_at, planned_from, overdue_from")
+        .eq("session_id", activeSession.id)
+        .eq("status", "due"),
+      supabase
+        .from("session_check_state")
+        .select("current_step_key, available_from, planned_from, overdue_from")
+        .eq("session_id", activeSession.id)
+        .eq("current_step_status", "due")
+        .in("current_step_key", Object.keys(FEED_STEP_META)),
+    ]);
+
+    if (activityError) throw activityError;
+    if (checkError) throw checkError;
+
+    (Array.isArray(activityRows) ? activityRows : []).forEach((row) => {
+      const timingStatus = resolveOpenFeedTimingStatus({
+        dueAt: row?.due_at,
+        plannedFrom: row?.planned_from,
+        overdueFrom: row?.overdue_from,
+      });
+
+      if (timingStatus === "overdue") {
+        overdueCount += 1;
+        return;
+      }
+      if (timingStatus === "due") {
+        dueCount += 1;
+      }
+    });
+
+    (Array.isArray(checkRows) ? checkRows : []).forEach((row) => {
+      const timingStatus = resolveOpenFeedTimingStatus({
+        availableFrom: row?.available_from,
+        plannedFrom: row?.planned_from,
+        overdueFrom: row?.overdue_from,
+      });
+
+      if (timingStatus === "overdue") {
+        overdueCount += 1;
+        return;
+      }
+      if (timingStatus === "due") {
+        dueCount += 1;
+      }
+    });
+  }
+
+  const retentionEntries = await loadRetentionFeedEntries(supabase, { activeSession });
+  (Array.isArray(retentionEntries) ? retentionEntries : []).forEach((entry) => {
+    if (entry?.allow_early_feed_start) return;
+    dueCount += 1;
+  });
+
+  return {
+    overdueCount,
+    dueCount,
+    totalCount: overdueCount + dueCount,
+  };
 }
 
 export async function loadFeedProjection({
