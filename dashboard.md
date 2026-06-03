@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260603-feed-timing-status
+module_script: /assets/js/modules/dashboard.js?v=20260603-activities-cleanup
 ---
 
 {% include dashboard/content.html %}

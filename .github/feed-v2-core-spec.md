@@ -48,7 +48,9 @@ Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkarte
 - `G_gate`: Gate-Abstand für `start -> training`; in V2 gilt `G_gate = 0`.
 - `M`: Überfälligkeitsfaktor. Für didaktische Übergänge gilt in V2 fachlich `M = 2` bezogen auf den Abschluss des Vorgängerschritts.
 - `L`: Sticky-Lock-Dauer.
-- `a`: Erwartete abgeschlossene Aktivitäten pro Tag für die Session-Planung.
+- `activities_per_day`: Materialisierte Session-Geschwindigkeit in Aktivitäten pro Tag.
+- `required_activities_per_day`: Aus offener Last und verbleibenden Tagen abgeleitete erforderliche Geschwindigkeit in Aktivitäten pro Tag.
+- `p`: Druckverhältnis `activities_per_day / required_activities_per_day`.
 
 ## Zustandsmodell pro Lernbereich und Check
 
@@ -109,9 +111,11 @@ Für V2 werden die drei didaktischen Übergänge gleich behandelt. Sie teilen de
 
 Vorgeschlagene Startwerte:
 
-- `entspannt`: `G = 2 Tage`
-- `normal`: `G = 1 Tag`
-- `eng`: `G = 12 Stunden`
+- `sehr eng`: `G = 12 Stunden`
+- `eng`: `G = 18 Stunden`
+- `normal`: `G = 24 Stunden`
+- `entspannt`: `G = 36 Stunden`
+- `sehr entspannt`: `G = 48 Stunden`
 
 Damit ist im Normalprofil das typische Ziel:
 
@@ -150,15 +154,16 @@ Deshalb bekommt jeder offene Schritt, auch ein offenes `training`, ein `planned_
 
 Konzeptionell gilt:
 
-- `a`: erwartete abgeschlossene Aktivitäten pro Tag
+- `activities_per_day`: materialisierte Session-Geschwindigkeit
 - `d`: verbleibende Tage bis zum Session-Ziel
-- `C = d * a`: grobe Plan-Kapazität
+- `C = d * activities_per_day`: grobe Plan-Kapazität der Session-Geschwindigkeit
 
-Im aktuellen Stand ist `a` als materialisierter Planwert in `learning_sessions.tempo_days` abgelegt.
+`activities_per_day` ist ein persistenter Sessionwert in `learning_sessions.activities_per_day`.
 
-- Bei explizitem `target_date` wird `a` serverseitig aus verbleibender Session-Last und verbleibenden Tagen abgeleitet.
-- Ohne explizites Zieldatum bleibt `a = planning.default_session_tempo_days`.
-- Ein nur vorgeschlagenes `target_date` (`target_source = 'suggested'`) dient als UI- und Planungshinweis, verschärft das Tagespensum aber nicht selbstständig.
+- Ohne explizite Nutzerangabe bleibt `activities_per_day = planning.default_activities_per_day`.
+- Ein explizites `target_date` aendert nicht stillschweigend die gespeicherte Session-Geschwindigkeit.
+- Ein nur vorgeschlagenes `target_date` (`target_source = 'suggested'`) dient als UI- und Planungshinweis, verschärft das Tagespensum nicht selbstständig.
+- Für explizite Zieltermine wird zusätzlich `required_activities_per_day = W / d` aus offener Last und verbleibenden Tagen berechnet.
 
 Für Tagesgrenzen, `d` und Tagespakete gilt die Zeitzone `Europe/Berlin`.
 
@@ -173,19 +178,33 @@ Damit ergibt sich:
 
 `W = 1.0 * n_T + 0.7 * n_R + 1.0 * n_F + 0.5 * n_K`
 
-und daraus ein grober Druckwert:
+und fuer explizite Ziele daraus die erforderliche Geschwindigkeit:
 
-`p = C / W`
+`required_activities_per_day = W / d`
+
+Der Druckwert lautet dann:
+
+`p = activities_per_day / required_activities_per_day`
 
 Wenn `W = 0`, gibt es keine offene Last und der Feed liefert einen abgeschlossenen Zustand statt eines Druckprofils.
 
 ### Druckprofile
 
-- `entspannt`: `p >= 1.35`
-- `normal`: `0.95 <= p < 1.35`
-- `eng`: `p < 0.95`
+- `sehr eng`: `p < 0.80`
+- `eng`: `0.80 <= p < 0.95`
+- `normal`: `0.95 <= p < 1.20`
+- `entspannt`: `1.20 <= p < 1.45`
+- `sehr entspannt`: `p >= 1.45`
 
-Das Druckprofil wählt nicht einzelne Minutenwerte direkt aus, sondern entscheidet, welches gemeinsame `G` für neu entstehende didaktische Übergänge verwendet wird. Ein Profilwechsel wirkt nur auf neu entstehende didaktische Übergänge; bereits geschriebene `available_from`- und `overdue_from`-Werte bleiben stabil.
+Das Druckprofil waehlt das gemeinsame `G` fuer neu entstehende didaktische Übergänge:
+
+- `sehr eng`: `G = 12 Stunden`
+- `eng`: `G = 18 Stunden`
+- `normal`: `G = 24 Stunden`
+- `entspannt`: `G = 36 Stunden`
+- `sehr entspannt`: `G = 48 Stunden`
+
+Ein Profilwechsel wirkt nur auf neu entstehende didaktische Übergänge; bereits geschriebene `available_from`- und `overdue_from`-Werte bleiben stabil.
 
 ### Lebenszyklus von `planned_from`
 
@@ -194,7 +213,7 @@ Das Druckprofil wählt nicht einzelne Minutenwerte direkt aus, sondern entscheid
 Re-Plan-Trigger sind:
 
 - Sessionstart
-- Zieldatum- oder Tempoänderung, wobei Tempo eine Änderung von `a` meint
+- Zieldatum- oder Geschwindigkeitsänderung, wobei damit eine Änderung von `activities_per_day` gemeint ist
 - Hinzufügen oder Entfernen von Lernbereichen oder Checks
 - Abschluss eines Schritts
 - Tageswechsel
@@ -207,9 +226,9 @@ Kurzregel: Planbasiertes `overdue_from` folgt seinem `planned_from`; didaktische
 
 ### Berechnung von `planned_from`
 
-Alle offenen Schritte werden in eine kanonische Reihenfolge gebracht und in Tagespakete nach `a` Aktivitäten pro Tag aufgeteilt.
+Alle offenen Schritte werden in eine kanonische Reihenfolge gebracht und in Tagespakete nach `activities_per_day` Aktivitäten pro Tag aufgeteilt.
 
-Beispiel bei `a = 3`:
+Beispiel bei `activities_per_day = 3`:
 
 - Rang 1 bis 3: `planned_from = heute`
 - Rang 4 bis 6: `planned_from = morgen`
@@ -337,7 +356,7 @@ Regeln:
 1. Abgeschlossene Schritte bleiben stabil.
 2. Entfernte Checks verlieren ihre noch offenen künftigen Schritte.
 3. Wenn das aktuelle Feed-Element dadurch ungültig wird, wird `current_activity_key` sofort geleert.
-4. Nach Zieländerung wird das Druckprofil neu berechnet.
+4. Nach Zieländerung wird `required_activities_per_day` und damit das Druckprofil neu berechnet.
 5. Noch nicht fällige Schritte dürfen mit dem neuen Profil neu geplant werden.
 6. Bereits fällige oder überfällige Schritte dürfen nicht wieder in die Zukunft geschoben werden.
 7. Der Sticky-Lock bleibt nur bestehen, wenn das aktuelle Element weiterhin gültig ist.
@@ -402,11 +421,17 @@ Neue session-scoped Projektion, z. B. `session_feed_cursor`:
 
 Mögliche neue `public.system_settings`-Schlüssel:
 
-- `feed.core_gap_relaxed_hours`
-- `feed.core_gap_normal_hours`
+- `planning.default_activities_per_day`
+- `feed.core_gap_very_tight_hours`
 - `feed.core_gap_tight_hours`
+- `feed.core_gap_normal_hours`
+- `feed.core_gap_relaxed_hours`
+- `feed.core_gap_very_relaxed_hours`
+- `feed.pressure_very_tight_threshold`
+- `feed.pressure_tight_threshold`
+- `feed.pressure_relaxed_threshold`
+- `feed.pressure_very_relaxed_threshold`
 - `feed.lock_duration_minutes`
-- `feed.plan_activities_per_day`
 - `feed.weight_training`
 - `feed.weight_recall`
 - `feed.weight_feynman`

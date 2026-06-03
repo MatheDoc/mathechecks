@@ -3,20 +3,20 @@ const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
   // Das Frontend haelt hier nur noch den aktuell verwendeten Read-Only-Teilausschnitt vor.
   // Kein lokaler Zahlen-Fallback: fehlende Werte bleiben null und werden im UI explizit nicht ersetzt.
   feedCoreGapNormalHours: null,
-  planningDefaultSessionTempoDays: null,
+  planningDefaultActivitiesPerDay: null,
 });
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
   "feed.core_gap_normal_hours": "feedCoreGapNormalHours",
-  "planning.default_session_tempo_days": "planningDefaultSessionTempoDays",
+  "planning.default_activities_per_day": "planningDefaultActivitiesPerDay",
 });
 
 const ACTIVE_FRONTEND_SETTING_KEYS = Object.freeze(Object.keys(SETTING_KEY_TO_PROPERTY));
 
 let systemSettingsPromise = null;
 
-function normalizePositiveInteger(value, fallback) {
-  const parsed = Number.parseInt(value, 10);
+function normalizePositiveNumber(value, fallback) {
+  const parsed = Number.parseFloat(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
 }
 
@@ -34,7 +34,7 @@ export async function loadSystemSettings(supabase) {
       const settings = getDefaultSystemSettings();
       const { data, error } = await supabase
         .from("system_settings")
-        .select("setting_key, value_integer")
+        .select("setting_key, value_integer, value_numeric")
         .in("setting_key", ACTIVE_FRONTEND_SETTING_KEYS);
 
       if (error) {
@@ -46,7 +46,10 @@ export async function loadSystemSettings(supabase) {
         const propertyName = SETTING_KEY_TO_PROPERTY[String(row?.setting_key || "").trim()];
         if (!propertyName) return;
 
-        settings[propertyName] = normalizePositiveInteger(row?.value_integer, settings[propertyName]);
+        settings[propertyName] = normalizePositiveNumber(
+          row?.value_numeric ?? row?.value_integer,
+          settings[propertyName],
+        );
       });
 
       return settings;
