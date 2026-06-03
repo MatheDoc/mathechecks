@@ -1,21 +1,17 @@
 const DEFAULT_SYSTEM_SETTINGS = Object.freeze({
-  // Bei Änderungen hier immer die passende Supabase-Migration für public.system_settings nachziehen.
-  // Basisabstand in Stunden für didaktische Folgeaktivitäten im Core-Feed.
-  feedCoreGapNormalHours: 24,
-  // Basisabstand N für Retention-Flashcards; weitere Wiedereinblendungen wachsen als N, 2N, 3N, ...
-  feedRetentionActivityBaseGap: 5,
-  // Sichtbare Einstiegsposition neuer oder neu sichtbarer Retention-Einträge im Dashboard-Feed.
-  feedRetentionNewItemPosition: 5,
-  // Legacy-Name: meint für die Planung offene Aktivitäten pro Tag, nicht Tage pro Aktivität.
-  planningDefaultSessionTempoDays: 3,
+  // Source of truth liegt in public.system_settings.
+  // Das Frontend haelt hier nur noch den aktuell verwendeten Read-Only-Teilausschnitt vor.
+  // Kein lokaler Zahlen-Fallback: fehlende Werte bleiben null und werden im UI explizit nicht ersetzt.
+  feedCoreGapNormalHours: null,
+  planningDefaultSessionTempoDays: null,
 });
 
 const SETTING_KEY_TO_PROPERTY = Object.freeze({
   "feed.core_gap_normal_hours": "feedCoreGapNormalHours",
-  "feed.retention_activity_base_gap": "feedRetentionActivityBaseGap",
-  "feed.retention_new_item_position": "feedRetentionNewItemPosition",
   "planning.default_session_tempo_days": "planningDefaultSessionTempoDays",
 });
+
+const ACTIVE_FRONTEND_SETTING_KEYS = Object.freeze(Object.keys(SETTING_KEY_TO_PROPERTY));
 
 let systemSettingsPromise = null;
 
@@ -38,7 +34,8 @@ export async function loadSystemSettings(supabase) {
       const settings = getDefaultSystemSettings();
       const { data, error } = await supabase
         .from("system_settings")
-        .select("setting_key, value_integer");
+        .select("setting_key, value_integer")
+        .in("setting_key", ACTIVE_FRONTEND_SETTING_KEYS);
 
       if (error) {
         console.warn("MatheChecks: Systemwerte konnten nicht geladen werden.", error);

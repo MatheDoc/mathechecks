@@ -77,11 +77,6 @@ function normalizeKey(value) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
-function normalizePositiveInteger(value, fallback) {
-  const parsed = Number.parseInt(value, 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
-
 export function stripTrailingPeriod(text) {
   return String(text || "").trim().replace(/[.。]\s*$/, "");
 }
@@ -517,65 +512,6 @@ async function loadRetentionFeedEntries(supabase, { activeSession = null } = {})
     });
 }
 
-function isProtectedSessionFeedItem(item) {
-  return item?.kind === "check"
-    && (item.type === "recall" || item.type === "feynman" || item.type === "kompetenzliste");
-}
-
-function getRetentionQueueEntryPosition(systemSettings, item) {
-  const entryPosition = normalizePositiveInteger(systemSettings?.feedRetentionNewItemPosition, 5);
-  const queueAge = Math.max(0, Number(item?.queueAge || 0));
-  return Math.max(1, entryPosition - queueAge);
-}
-
-function compareRetentionQueueItems(left, right, systemSettings) {
-  const positionDelta = getRetentionQueueEntryPosition(systemSettings, left)
-    - getRetentionQueueEntryPosition(systemSettings, right);
-  if (positionDelta !== 0) return positionDelta;
-
-  const queueAgeDelta = Number(right?.queueAge || 0) - Number(left?.queueAge || 0);
-  if (queueAgeDelta !== 0) return queueAgeDelta;
-
-  const activityDelta = Number(left?.dueAfterActivityCount || Number.MAX_SAFE_INTEGER)
-    - Number(right?.dueAfterActivityCount || Number.MAX_SAFE_INTEGER);
-  if (activityDelta !== 0) return activityDelta;
-
-  return String(left?.activityKey || "").localeCompare(String(right?.activityKey || ""), "de");
-}
-
-function mergeQueueHeadFeedItems(sessionItems, retentionItems, systemSettings) {
-  if (!Array.isArray(sessionItems) || sessionItems.length === 0) {
-    return Array.isArray(retentionItems)
-      ? [...retentionItems].sort((left, right) => compareRetentionQueueItems(left, right, systemSettings))
-      : [];
-  }
-
-  if (!Array.isArray(retentionItems) || retentionItems.length === 0) {
-    return [...sessionItems];
-  }
-
-  const merged = [...sessionItems];
-  const orderedRetentionItems = [...retentionItems]
-    .sort((left, right) => compareRetentionQueueItems(left, right, systemSettings));
-
-  orderedRetentionItems.forEach((item) => {
-    let insertAt = Math.min(
-      Math.max(0, getRetentionQueueEntryPosition(systemSettings, item) - 1),
-      merged.length,
-    );
-
-    while (
-      insertAt < merged.length
-      && (isProtectedSessionFeedItem(merged[insertAt]) || merged[insertAt]?.kind === "retention")
-    ) {
-      insertAt += 1;
-    }
-
-    merged.splice(insertAt, 0, item);
-  });
-
-  return merged;
-}
 
 function createFeedItem({
   kind,
