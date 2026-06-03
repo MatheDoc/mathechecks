@@ -155,7 +155,7 @@ Vorgeschlagene Felder:
 - `id uuid primary key default gen_random_uuid()`
 - `user_id uuid not null references auth.users(id) on delete cascade`
 - `status text not null check (status in ('active', 'completed', 'aborted'))`
-- `tempo_days integer not null` (Legacy-Name; aktuell als materialisierter Planwert „offene Aktivitäten pro Tag“ interpretiert)
+- `activities_per_day numeric(6,2) not null` — materialisierte Session-Geschwindigkeit in Aktivitäten pro Tag
 - `target_date date null`
 - `target_source text null check (target_source in ('explicit', 'suggested'))`
 - `planning_timezone text not null default 'Europe/Berlin'`
@@ -173,9 +173,9 @@ Regeln:
 - Das sollte über einen partiellen Unique Index erzwungen werden, nicht nur in der UI.
 - Eine abgeschlossene oder abgebrochene Session bleibt aus Nachvollziehbarkeitsgründen erhalten.
 - `target_date` ist der kanonische Zielwert, unabhängig davon, ob der Nutzer ihn direkt oder über „in X Tagen" gesetzt hat.
-- Ohne separate Tempo-UI setzt das System `tempo_days` nicht frei durch den Nutzer, sondern serverseitig.
-- Bei `target_source = 'explicit'` wird `tempo_days` aus verbleibender Session-Last und `target_date` abgeleitet.
-- Bei `target_source is null` oder `target_source = 'suggested'` bleibt `tempo_days = planning.default_session_tempo_days`.
+- Ohne separate Pace-UI setzt das System `activities_per_day` nicht frei durch den Nutzer, sondern serverseitig.
+- Bei `target_source = 'explicit'` wird zusätzlich `required_activities_per_day` aus verbleibender Session-Last und `target_date` abgeleitet.
+- Bei `target_source is null` oder `target_source = 'suggested'` bleibt `activities_per_day = planning.default_activities_per_day`.
 - `daily_new_release_limit` begrenzt neue Freigaben pro Tag, nicht die Gesamtzahl bereits offener Aktivitäten.
 - `planning_revision` steigt bei Änderungen an der aktiven Session, ohne vergangene Abschlüsse umzuschreiben.
 
@@ -209,12 +209,20 @@ Zentrale Stelle für globale Systemwerte, die Frontend und serverseitige Feed-/P
 
 Aktuelle Schlüssel:
 
+- `planning.default_activities_per_day`
+- `feed.core_gap_very_tight_hours`
+- `feed.core_gap_tight_hours`
 - `feed.core_gap_normal_hours`
+- `feed.core_gap_relaxed_hours`
+- `feed.core_gap_very_relaxed_hours`
+- `feed.pressure_very_tight_threshold`
+- `feed.pressure_tight_threshold`
+- `feed.pressure_relaxed_threshold`
+- `feed.pressure_very_relaxed_threshold`
 - `feed.retention_activity_base_gap`
 - `feed.retention_new_item_position`
-- `planning.default_session_tempo_days`
 
-`feed.core_gap_normal_hours` steuert aktuell die serverseitig materialisierte Mindestwartezeit für `training -> recall`, `recall -> feynman` und `feynman -> kompetenzliste`. `available_from` und `overdue_from` liegen dazu bereits in `session_check_state`; `planned_from` und der eigentliche Feed-Cursor bleiben nächste V2-Schritte.
+Die `feed.core_gap_*_hours`-Werte definieren die fünf serverseitigen `G`-Profile für neue didaktische Übergänge. Welche Stufe gezogen wird, entscheidet das Druckverhältnis aus `activities_per_day` und `required_activities_per_day`. `available_from` und `overdue_from` liegen dazu bereits in `session_check_state`; `planned_from` und der eigentliche Feed-Cursor bleiben nächste V2-Schritte.
 
 `feed.retention_activity_base_gap` steuert für Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstände `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
 
@@ -477,7 +485,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 ## MVP-RPCs
 
 - `update_own_profile(p_display_name text)`
-- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_tempo_days integer default null, p_included_check_ids text[] default array[]::text[], p_target_date date default null, p_target_source text default null, p_lernbereiche_meta jsonb default null)` — `p_lernbereiche_meta`: optionales JSON-Array `[{slug, gebiet, sort_index}, …]` für didaktische Reihenfolge; fehlt es, starten alle Checks als `due`
+- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_activities_per_day numeric default null, p_included_check_ids text[] default array[]::text[], p_target_date date default null, p_target_source text default null, p_lernbereiche_meta jsonb default null)` — `p_lernbereiche_meta`: optionales JSON-Array `[{slug, gebiet, sort_index}, …]` für didaktische Reihenfolge; fehlt es, starten alle Checks als `due`
 - `delete_active_learning_session()`
 - `complete_start_activity(p_lernbereich_slug text)`
 - `complete_current_training_step(p_check_id text)`

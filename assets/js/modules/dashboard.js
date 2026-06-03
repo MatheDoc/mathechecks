@@ -1,6 +1,6 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
 import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260603-topbar-feed-badge";
-import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260602-server-feed-time";
+import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
@@ -931,7 +931,7 @@ function buildSessionPayloadBase(draft, lernbereiche) {
   return {
     p_lernbereiche: activeLernbereiche,
     p_excluded_check_ids: Array.from(excludedChecks),
-    p_tempo_days: null,
+    p_activities_per_day: null,
     p_included_check_ids: Array.from(includedChecks),
     p_lernbereiche_meta: lernbereicheMeta,
   };
@@ -1024,15 +1024,15 @@ function getRemainingSelectedActivityCount(context, selectedCheckIds) {
   }, 0);
 }
 
-function getConfiguredPositiveInteger(value) {
-  const parsed = Number.parseInt(value, 10);
+function getConfiguredPositiveNumber(value) {
+  const parsed = Number.parseFloat(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
 function buildSuggestedTargetDate(context, selectedCheckIds) {
   const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
-  const activitiesPerDay = getConfiguredPositiveInteger(context.systemSettings?.planningDefaultSessionTempoDays);
-  const didacticGapHours = getConfiguredPositiveInteger(context.systemSettings?.feedCoreGapNormalHours);
+  const activitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
+  const didacticGapHours = getConfiguredPositiveNumber(context.systemSettings?.feedCoreGapNormalHours);
 
   if (!activitiesPerDay || !didacticGapHours) {
     return {
@@ -1069,7 +1069,7 @@ function buildSuggestedTargetDate(context, selectedCheckIds) {
 }
 
 function buildTargetDateAssessment(context, selectedCheckIds) {
-  const defaultActivitiesPerDay = getConfiguredPositiveInteger(context.systemSettings?.planningDefaultSessionTempoDays);
+  const defaultActivitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
   const realisticThreshold = defaultActivitiesPerDay;
   const warningThreshold = defaultActivitiesPerDay === null
     ? null
@@ -1208,7 +1208,7 @@ function updatePlanSummary(context) {
 async function loadPersistedState(supabase, lernbereiche) {
   const { data: sessions, error: sessionError } = await supabase
     .from("learning_sessions")
-    .select("id, tempo_days, started_at, target_date, target_source")
+    .select("id, activities_per_day, started_at, target_date, target_source")
     .eq("status", "active")
     .order("started_at", { ascending: false })
     .limit(1);
@@ -1447,7 +1447,7 @@ function mapSessionError(error) {
   if (message.includes("Authentication required")) {
      return "Bitte melde dich zuerst an, um deine Session zu speichern.";
   }
-  if (message.includes("tempo_days must be positive")) {
+    if (message.includes("activities_per_day must be positive")) {
      return "Die Session konnte mit diesem Tempo nicht gespeichert werden.";
   }
     if (message.includes("target_date must be today or later")) {
