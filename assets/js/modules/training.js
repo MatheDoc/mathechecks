@@ -22,6 +22,7 @@ import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardM
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
@@ -1280,6 +1281,7 @@ function createTaskCardNode(
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
   card.className = "check-card check-card--training";
+  card.dataset.trainingSolutionsShown = "false";
 
   const { header, actionsPopover } = createTrainingCardHeader(check, titel);
   card.appendChild(header);
@@ -1287,6 +1289,11 @@ function createTaskCardNode(
   const body = document.createElement("div");
   body.className = "check-card__body";
   card.appendChild(body);
+
+  const syncSolutionsShownState = () => {
+    const solutionsVisible = Array.from(card.querySelectorAll(".solution")).some((node) => !node.hidden);
+    card.dataset.trainingSolutionsShown = solutionsVisible ? "true" : "false";
+  };
 
   if (!aufgabe) {
     body.textContent = "Keine Aufgabe in dieser Sammlung gefunden.";
@@ -1342,6 +1349,7 @@ function createTaskCardNode(
     },
   });
   body.appendChild(runtimeTaskNode);
+  syncSolutionsShownState();
 
   const runtimeToolbar = runtimeTaskNode.querySelector(".task-toolbar");
   const runtimeActionButtons = runtimeTaskNode.querySelectorAll(".task-toolbar__actions .task-toolbar-btn");
@@ -1355,6 +1363,12 @@ function createTaskCardNode(
   });
 
   if (runtimeSolutionBtn) {
+    runtimeSolutionBtn.addEventListener("click", () => {
+      queueMicrotask(() => {
+        syncSolutionsShownState();
+      });
+    });
+
     const isHidden = () => {
       const label = (runtimeSolutionBtn.getAttribute("aria-label") || runtimeSolutionBtn.title || "").toLowerCase();
       return label.includes("ausblenden");
@@ -1396,6 +1410,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     onTaskIndexChange = null,
     readPersistedState = true,
     activityContext = null,
+    onTaskCompleted = null,
   } = options;
 
   const hasTasks = Array.isArray(sammlung) && sammlung.length > 0;
@@ -1443,10 +1458,14 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
 
   shuffleNonce = loadCurrentShuffleNonce() || String(Date.now());
   saveCurrentShuffleNonce(shuffleNonce);
+  let taskCompletionTracked = false;
+  let initialProgressSeen = false;
 
   const reloadCurrentTask = () => {
     taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
     shuffleNonce = String(Date.now());
+    taskCompletionTracked = false;
+    initialProgressSeen = false;
     saveCurrentShuffleNonce(shuffleNonce);
     if (typeof onTaskIndexChange === "function") {
       onTaskIndexChange(taskIndex);
@@ -1478,6 +1497,32 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       sammlung.length
     );
   };
+
+  viewportNode.addEventListener("task:question-checked", (event) => {
+    const isComplete = Boolean(event.detail?.isComplete);
+
+    if (!initialProgressSeen) {
+      initialProgressSeen = true;
+      if (isComplete) {
+        taskCompletionTracked = true;
+        return;
+      }
+    }
+
+    if (taskCompletionTracked || !isComplete) return;
+    taskCompletionTracked = true;
+
+    if (typeof onTaskCompleted === "function") {
+      onTaskCompleted({
+        checkId,
+        taskIndex,
+        checkedCount: Number(event.detail?.checkedCount) || 0,
+        totalCount: Number(event.detail?.totalCount) || 0,
+        correctCount: Number(event.detail?.correctCount) || 0,
+        solutionsShown: cardNode?.dataset?.trainingSolutionsShown === "true",
+      });
+    }
+  });
 
   viewportNode.addEventListener("training:reload-current-task", reloadCurrentTask);
 
@@ -1691,6 +1736,20 @@ export async function initTrainingModule({
               state.taskIndexByCheckId[checkId] = taskIndex;
               saveTaskIndexForCheck(lernbereich, checkId, taskIndex);
               persist();
+            },
+            onTaskCompleted: ({ checkId: completedCheckId, taskIndex: completedTaskIndex, totalCount, correctCount, solutionsShown }) => {
+              void recordUserActivity({
+                activityType: "training",
+                lernbereichSlug: lernbereich,
+                checkId: completedCheckId,
+                contextKey: isActiveFeedTraining ? "feed" : "free",
+                details: {
+                  taskIndex: completedTaskIndex,
+                  totalCount,
+                  correctCount,
+                  solutionsShown: Boolean(solutionsShown),
+                },
+              });
             },
           });
         } catch (error) {

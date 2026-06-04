@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -555,6 +556,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
     // Phase 3: compare + self-assess inside the same stage
     toCompareBtn?.addEventListener("click", () => {
+      const shouldTrackActivity = !comparePanel || comparePanel.hidden;
       if (userNotesEl && inputSlots) {
         const entries = Array.from(inputSlots.querySelectorAll(".recall-input-slot"))
           .map((el) => el.value.trim())
@@ -564,6 +566,20 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
           ? renderRecallListMarkup(entries, { user: true })
           : noUserNotesNote;
       }
+
+      if (shouldTrackActivity) {
+        void recordUserActivity({
+          activityType: "recall",
+          lernbereichSlug: lernbereich,
+          checkId,
+          contextKey: activityContext?.mode === "feed" ? "feed" : "free",
+          details: {
+            trigger: "self_check_start",
+            refCount,
+          },
+        });
+      }
+
       revealComparePanel(comparePanel);
       void renderMath(stageEls.retrieve);
     });

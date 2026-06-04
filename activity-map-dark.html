@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aktivitätskarte – MatheChecks</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0e1420;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .card {
+    background: #19223a;
+    border: 0.5px solid #252f48;
+    border-radius: 14px;
+    padding: 1.125rem 1.25rem;
+    width: 100%; max-width: 620px;
+  }
+  .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .625rem; }
+  .title { font-size: 15px; font-weight: 500; color: #4ecdc4; }
+  .head-right { display: flex; align-items: center; gap: 16px; }
+  .head-stat { text-align: right; }
+  .head-stat .hs-val { font-size: 17px; font-weight: 500; color: #dde3f0; line-height: 1; }
+  .head-stat .hs-lbl { font-size: 10px; color: #3d4f72; margin-top: 2px; }
+  .head-div { width: .5px; height: 24px; background: #252f48; }
+  .div   { height: .5px; background: #252f48; margin-bottom: 1rem; }
+
+  /* grid */
+  .grid-wrap { display: flex; gap: 6px; }
+  .day-labels { display: flex; flex-direction: column; gap: 0; width: 22px; flex-shrink: 0; padding-top: 16px; }
+  .day-lbl { font-size: 9px; color: #3d4f72; height: 14px; display: flex; align-items: center; margin-bottom: 2px; }
+  .grid-area { flex: 1; overflow: hidden; }
+  .month-row { display: grid; gap: 2px; margin-bottom: 3px; }
+  .hm-grid   { display: grid; gap: 2px; }
+  .hm-cell {
+    aspect-ratio: 1; border-radius: 3px; cursor: default;
+    transition: opacity .12s;
+  }
+  .hm-cell:hover { opacity: .65; }
+  .legend {
+    display: flex; align-items: center; gap: 5px;
+    margin-top: .875rem; justify-content: flex-end;
+  }
+  .leg-lbl { font-size: 10px; color: #3d4f72; }
+  .leg-cell { width: 10px; height: 10px; border-radius: 2px; }
+  .tooltip {
+    display: none; position: fixed;
+    background: #19223a; border: .5px solid #4ecdc4;
+    border-radius: 8px; padding: 4px 10px;
+    font-size: 11px; color: #dde3f0;
+    pointer-events: none; z-index: 99; white-space: nowrap;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <span class="title">Aktivität</span>
+    <div class="head-right">
+      <div class="head-stat">
+        <div class="hs-val" id="h-streak">7 <span style="font-size:12px;color:#3d4f72">Tage</span></div>
+        <div class="hs-lbl">Streak</div>
+      </div>
+      <div class="head-div"></div>
+      <div class="head-stat">
+        <div class="hs-val">18 <span style="font-size:12px;color:#3d4f72">E.</span></div>
+        <div class="hs-lbl">dieser Monat</div>
+      </div>
+      <div class="head-div"></div>
+      <span style="font-size:11px;color:#3d4f72">letzte 18 Wochen</span>
+    </div>
+  </div>
+  <div class="div"></div>
+
+  <div class="grid-wrap">
+    <div id="day-labels" class="day-labels"></div>
+    <div class="grid-area">
+      <div id="month-row" class="month-row"></div>
+      <div id="hm-grid" class="hm-grid"></div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span class="leg-lbl">Wenig</span>
+    <div class="leg-cell" style="background:#12172a"></div>
+    <div class="leg-cell" style="background:#1e3048"></div>
+    <div class="leg-cell" style="background:#1a5a52"></div>
+    <div class="leg-cell" style="background:#2a9088"></div>
+    <div class="leg-cell" style="background:#4ecdc4"></div>
+    <span class="leg-lbl">Viel</span>
+  </div>
+</div>
+<div class="tooltip" id="tip"></div>
+
+<script>
+  const WEEKS = 18, DAYS = 7;
+  const dayNames   = ['Mo','Di','Mi','Do','Fr','Sa','So'];
+  const dayNamesDE = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const monthMap   = ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+  const colors     = ['#12172a','#1e3048','#1a5a52','#2a9088','#4ecdc4','#a0ede8'];
+
+  function getLevel(v) {
+    if (v === 0) return 0; if (v <= 1) return 1; if (v <= 2) return 2;
+    if (v <= 3) return 3; if (v <= 5) return 4; return 5;
+  }
+  function seedRand(s) { return () => { s = (s*9301+49297)%233280; return s/233280; }; }
+  const rand = seedRand(42);
+
+  const data = [];
+  for (let w = 0; w < WEEKS; w++) {
+    const wd = [], wa = rand()<.3?.1:rand()<.5?.5:1, rb = Math.pow(w/WEEKS,1.5);
+    for (let d = 0; d < DAYS; d++) {
+      const prob = (d>=5?.25:.65)*wa*(.4+rb*.6);
+      wd.push(rand()<prob ? Math.ceil(rand()*6) : 0);
+    }
+    data.push(wd);
+  }
+
+  const today = new Date();
+  function getDate(w, d) {
+    const dt = new Date(today);
+    dt.setDate(today.getDate() - (WEEKS-1-w)*7 - (DAYS-1-d));
+    return dt;
+  }
+
+  const dlEl = document.getElementById('day-labels');
+  dayNames.forEach((n, i) => {
+    const el = document.createElement('div');
+    el.className = 'day-lbl';
+    el.textContent = i%2===0 ? n : '';
+    dlEl.appendChild(el);
+  });
+
+  const mRow = document.getElementById('month-row');
+  mRow.style.gridTemplateColumns = `repeat(${WEEKS}, minmax(0,1fr))`;
+  let lastM = -1;
+  for (let w = 0; w < WEEKS; w++) {
+    const m = getDate(w,0).getMonth();
+    const el = document.createElement('div');
+    el.style.cssText = 'font-size:9px;color:#3d4f72;';
+    if (m !== lastM) { el.textContent = monthMap[m]; lastM = m; }
+    mRow.appendChild(el);
+  }
+
+  const grid = document.getElementById('hm-grid');
+  grid.style.gridTemplateColumns = `repeat(${WEEKS}, minmax(0,1fr))`;
+  grid.style.gridTemplateRows = `repeat(${DAYS}, minmax(0,1fr))`;
+  const tip = document.getElementById('tip');
+
+  for (let d = 0; d < DAYS; d++) {
+    for (let w = 0; w < WEEKS; w++) {
+      const v = data[w][d];
+      const cell = document.createElement('div');
+      cell.className = 'hm-cell';
+      cell.style.background = colors[getLevel(v)];
+      cell.style.gridColumn = w+1; cell.style.gridRow = d+1;
+      if (getLevel(v)>=4) cell.style.borderTop = '1px solid rgba(200,255,250,0.1)';
+      const dt = getDate(w,d);
+      const ds = dt.toLocaleDateString('de-DE',{day:'numeric',month:'short'});
+      const txt = v===0 ? `Keine Aktivität · ${dayNamesDE[dt.getDay()]}, ${ds}`
+                       : `${v} Einheit${v!==1?'en':''} · ${dayNamesDE[dt.getDay()]}, ${ds}`;
+      cell.addEventListener('mouseenter', () => { tip.textContent = txt; tip.style.display = 'block'; });
+      cell.addEventListener('mousemove',  e => { tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-32)+'px'; });
+      cell.addEventListener('mouseleave', () => { tip.style.display='none'; });
+      grid.appendChild(cell);
+    }
+  }
+</script>
+</body>
+</html>

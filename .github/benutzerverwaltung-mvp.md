@@ -1,6 +1,6 @@
 # Benutzerverwaltung & Session-MVP
 
-Stand: Mai 2026
+Stand: Juni 2026
 
 Diese Datei beschreibt die erste persistente Plattform-Stufe für MatheChecks, den aktuellen checkbezogenen Feed-Schnitt und die additive v2-Grundlage für Planungsziel, Freigabelimits und Retention nach Ende einer Core-Session.
 Sie umfasst Benutzer, Profile, Lern-Sessions, `session_check_state` als erste Check-Pipeline-Projektion, additive Planungsparameter und schlanke Fortschrittsschreibpfade für Training, Recall, Feynman und Flashcards.
@@ -68,6 +68,8 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `get_or_create_flashcard_round(...)`, `record_flashcard_review(...)` und `resolve_flashcard_round(...)` bilden den session-scoped Feed-Schreibpfad für Flashcards ab.
 - `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab und erhöht dabei den user-scoped Feed-Aktivitätszähler.
 - `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad außerhalb des Core-Cursors; die Durchgänge können auch während einer aktiven Core-Session sichtbar werden.
+- `user_activity_events` ergänzt einen separaten user-scoped Append-only Log für accountgebundene Aktivitätsstatistik außerhalb der Feed-Projektion.
+- `record_user_activity(...)` schreibt kumulative Ereignisse für `training`, `recall`, `feynman` und `flashcards`; `get_user_activity_overview()` liefert daraus das Dashboard-Read-Model für Gesamtzahlen und 7-Tage-Überblick.
 - `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
@@ -255,6 +257,31 @@ Regeln:
 - Die Werte sind bewusst klein und integerbasiert gehalten.
 - Jeder Schlüssel trägt zusätzlich eine Kurzbeschreibung direkt in der Tabelle.
 - Änderungen an diesen Werten sollen zukünftige Feed- und Planungseffekte steuern, ohne Suchläufe durch mehrere Frontend-Dateien oder SQL-Funktionen zu erzwingen.
+
+### 4c. `public.user_activity_events`
+
+Zweck:
+User-scoped Append-only Log für accountgebundene Aktivitätsstatistik außerhalb der Feed-Pipeline. Die Tabelle ist bewusst getrennt von `user_feed_activity_counters`: Dort liegt die kleine serverseitige Referenz für Freigabelogik, hier die breitere Rohdatenbasis für Dashboard-Auswertung und spätere Activity-Map.
+
+Aktuelle Felder:
+
+- `id uuid primary key default gen_random_uuid()`
+- `user_id uuid not null references auth.users(id) on delete cascade`
+- `activity_type text not null check (activity_type in ('training', 'recall', 'feynman', 'flashcards'))`
+- `lernbereich_slug text null`
+- `check_id text null`
+- `context_key text null` — aktuell fachlich `feed` oder `free`
+- `details jsonb not null default '{}'::jsonb`
+- `created_at timestamptz not null default now()`
+
+Regeln:
+
+- Jeder erfolgreiche Schreibfall erzeugt genau ein neues Ereignis; es gibt keinen Reset- oder Überschreibpfad.
+- Die Tabelle dient nicht als Feed-Source-of-Truth und bewegt keine `session_check_state`- oder `session_activity_state`-Zeilen.
+- `training` wird im Frontend aktuell beim ersten vollständigen Beantworten einer Aufgabenkarte geschrieben.
+- `recall` und `feynman` werden aktuell beim Start des Selbstchecks geschrieben.
+- `flashcards` wird pro abgeschlossenem Durchgang geschrieben, sowohl im Feed-Kontext als auch bei freiem Aufruf.
+- `details` trägt nur leichte UI-/Auswertungsmetadaten und bleibt fachlich optional.
 
 ### 5. `public.session_check_exclusions`
 
@@ -498,6 +525,8 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - `complete_current_training_step(p_check_id text, p_activity_key text)`
 - `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text, p_activity_key text)`
 - `complete_kompetenzliste_gate(p_check_id text, p_activity_key text)`
+- `record_user_activity(p_activity_type text, p_lernbereich_slug text default null, p_check_id text default null, p_context_key text default null, p_details jsonb default '{}'::jsonb)`
+- `get_user_activity_overview()`
 - `finish_learning_session(p_session_id uuid, p_status text)`
 - `set_retention_scope_status(p_lernbereich_slug text, p_status text)`
 - `delete_current_user_account()`

@@ -41,6 +41,16 @@ body.page-dashboard .dashboard-panel--completed {
   grid-row: 2;
 }
 
+body.page-dashboard .dashboard-panel--activity {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+body.page-dashboard .dashboard-panel--activity-map {
+  grid-column: 1 / -1;
+  grid-row: 4;
+}
+
 body.page-dashboard .dashboard-panel__body {
   display: grid;
   gap: 14px;
@@ -57,6 +67,63 @@ body.page-dashboard .dashboard-feed__intro {
   color: var(--text-dim);
   font-size: 0.9rem;
   line-height: 1.55;
+}
+
+body.page-dashboard .dashboard-plan__progress {
+  display: grid;
+  gap: 10px;
+}
+
+body.page-dashboard .dashboard-plan__progress[hidden] {
+  display: none;
+}
+
+body.page-dashboard .dashboard-plan__progress-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+body.page-dashboard .dashboard-plan__progress-percent {
+  color: var(--text);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+body.page-dashboard .dashboard-plan__progress-track {
+  height: 14px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--dashboard-accent) 12%, rgba(255, 255, 255, 0.04));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
+  overflow: hidden;
+}
+
+body.page-dashboard .dashboard-plan__progress-fill {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--dashboard-accent) 68%, white 32%),
+    color-mix(in srgb, var(--teal) 72%, white 28%)
+  );
+  box-shadow: 0 0 20px color-mix(in srgb, var(--dashboard-accent) 26%, transparent);
+}
+
+body.page-dashboard .dashboard-plan__progress-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 16px;
+  color: var(--text-dim);
+  font-size: 0.84rem;
+  line-height: 1.45;
+}
+
+body.page-dashboard .dashboard-plan__progress-completed {
+  color: var(--text-dim);
+  font-weight: 600;
 }
 
 body.page-dashboard .dashboard-plan__target {
@@ -249,12 +316,296 @@ body.page-dashboard .dashboard-panel__empty {
   background: color-mix(in srgb, var(--dashboard-accent) 6%, transparent);
 }
 
+body.page-dashboard .dashboard-activity {
+  gap: 18px;
+}
+
+body.page-dashboard .dashboard-activity__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+body.page-dashboard .dashboard-activity__hero-copy,
+body.page-dashboard .dashboard-activity__spark,
+body.page-dashboard .dashboard-activity__metric,
+body.page-dashboard .dashboard-activity__type-pill {
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--dashboard-accent) 14%, var(--border));
+  background: color-mix(in srgb, var(--dashboard-accent-soft) 34%, transparent);
+}
+
+body.page-dashboard .dashboard-activity__hero-copy {
+  padding: 18px 20px;
+  display: grid;
+  gap: 6px;
+  align-content: start;
+}
+
+body.page-dashboard .dashboard-activity__hero-value {
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--text);
+}
+
+body.page-dashboard .dashboard-activity__hero-label {
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+body.page-dashboard .dashboard-activity__hero-meta {
+  color: var(--text-dim);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+body.page-dashboard .dashboard-activity__spark {
+  padding: 16px 16px 12px;
+  display: grid;
+  gap: 10px;
+}
+
+body.page-dashboard .dashboard-activity__spark-title {
+  color: var(--text-dim);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+body.page-dashboard .dashboard-activity__bars {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  align-items: end;
+  min-height: 118px;
+}
+
+body.page-dashboard .dashboard-activity__bar-col {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  align-content: end;
+  min-height: 118px;
+}
+
+body.page-dashboard .dashboard-activity__bar-track {
+  width: 100%;
+  min-height: 86px;
+  display: flex;
+  align-items: end;
+}
+
+body.page-dashboard .dashboard-activity__bar {
+  width: 100%;
+  border-radius: 999px 999px 10px 10px;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dashboard-accent) 78%, white 12%), var(--dashboard-accent));
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+}
+
+body.page-dashboard .dashboard-activity__bar.is-today {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--teal) 74%, white 18%), var(--teal));
+}
+
+body.page-dashboard .dashboard-activity__bar-count {
+  color: var(--text);
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+body.page-dashboard .dashboard-activity__bar-label {
+  color: var(--text-dim);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+body.page-dashboard .dashboard-activity__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+body.page-dashboard .dashboard-activity__metric {
+  padding: 14px 16px;
+  display: grid;
+  gap: 6px;
+}
+
+body.page-dashboard .dashboard-activity__metric-value {
+  color: var(--text);
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+body.page-dashboard .dashboard-activity__metric-label {
+  color: var(--text-dim);
+  font-size: 0.76rem;
+  line-height: 1.45;
+}
+
+body.page-dashboard .dashboard-activity__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+body.page-dashboard .dashboard-activity__type-pill {
+  padding: 10px 14px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+  color: var(--text-dim);
+  font-size: 0.82rem;
+}
+
+body.page-dashboard .dashboard-activity__type-pill strong {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+body.page-dashboard .dashboard-activity-map {
+  gap: 16px;
+}
+
+body.page-dashboard .dashboard-activity-map__header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+body.page-dashboard .dashboard-activity-map__target {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
+  background: color-mix(in srgb, var(--dashboard-accent-soft) 40%, transparent);
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+body.page-dashboard .dashboard-activity-map__target[hidden] {
+  display: none;
+}
+
+body.page-dashboard .dashboard-activity-map__board {
+  --activity-map-weeks: 12;
+  display: grid;
+  grid-template-columns: 26px repeat(var(--activity-map-weeks), minmax(0, 1fr));
+  gap: 6px;
+  padding: 16px 18px 18px;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--dashboard-accent) 14%, var(--border));
+  background: color-mix(in srgb, var(--dashboard-accent-soft) 28%, transparent);
+  align-items: center;
+}
+
+body.page-dashboard .dashboard-activity-map__month,
+body.page-dashboard .dashboard-activity-map__day-label {
+  color: var(--text-dim);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+body.page-dashboard .dashboard-activity-map__month {
+  min-height: 12px;
+}
+
+body.page-dashboard .dashboard-activity-map__day-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+body.page-dashboard .dashboard-activity-map__cell {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: color-mix(in srgb, var(--dashboard-accent) 8%, transparent);
+  transition: transform 140ms ease, border-color 140ms ease, background-color 140ms ease, opacity 140ms ease;
+}
+
+body.page-dashboard .dashboard-activity-map__cell:hover {
+  transform: translateY(-1px);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-0 {
+  background: color-mix(in srgb, var(--text-dim) 8%, transparent);
+  border-color: color-mix(in srgb, var(--text-dim) 10%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-1 {
+  background: color-mix(in srgb, var(--dashboard-accent) 22%, transparent);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-2 {
+  background: color-mix(in srgb, var(--dashboard-accent) 40%, transparent);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 24%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-3 {
+  background: color-mix(in srgb, var(--dashboard-accent) 62%, transparent);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 34%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-4 {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dashboard-accent) 88%, white 12%), var(--dashboard-accent));
+  border-color: color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.is-before-start {
+  background: transparent;
+  border-style: dashed;
+  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
+  opacity: 0.55;
+}
+
+body.page-dashboard .dashboard-activity-map__cell.is-future {
+  background: color-mix(in srgb, var(--text-dim) 6%, transparent);
+  border-color: transparent;
+  opacity: 0.35;
+}
+
+body.page-dashboard .dashboard-activity-map__cell.is-today {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 46%, transparent);
+}
+
 @media (max-width: 960px) {
   body.page-dashboard .dashboard-panel--plan,
   body.page-dashboard .dashboard-panel--feed,
-  body.page-dashboard .dashboard-panel--completed {
+  body.page-dashboard .dashboard-panel--completed,
+  body.page-dashboard .dashboard-panel--activity,
+  body.page-dashboard .dashboard-panel--activity-map {
     grid-column: 1 / -1;
     grid-row: auto;
+  }
+
+  body.page-dashboard .dashboard-activity__hero {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-dashboard .dashboard-activity__metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body.page-dashboard .dashboard-activity-map__board {
+    gap: 5px;
+    padding: 14px 16px 16px;
   }
 }
 
@@ -580,6 +931,29 @@ html.light .lb-field__input {
   body.page-dashboard .dashboard-panel .action-card {
     gap: 10px;
     padding: 14px;
+  }
+
+  body.page-dashboard .dashboard-activity__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  body.page-dashboard .dashboard-activity__bars {
+    gap: 6px;
+  }
+
+  body.page-dashboard .dashboard-activity-map__board {
+    grid-template-columns: 22px repeat(var(--activity-map-weeks), minmax(0, 1fr));
+    gap: 4px;
+    padding: 12px 14px 14px;
+  }
+
+  body.page-dashboard .dashboard-activity-map__month,
+  body.page-dashboard .dashboard-activity-map__day-label {
+    font-size: 0.66rem;
+  }
+
+  body.page-dashboard .dashboard-activity-map__cell {
+    border-radius: 4px;
   }
 
   .lb-modal {

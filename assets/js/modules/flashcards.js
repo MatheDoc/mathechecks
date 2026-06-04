@@ -1,6 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
 
@@ -26,7 +27,13 @@ const state = {
     root: null,
     lernbereich: "",
     activityContext: null,
-    freeCardCount: 0,
+    free: {
+        preferredCheckId: "",
+        roundCards: [],
+        currentIndex: 0,
+        statusMessage: "",
+        statusTone: "neutral",
+    },
     feed: {
         active: false,
         trackKind: "session",
@@ -365,6 +372,17 @@ function updateCounterAndMessage() {
         return;
     }
 
+    if (state.free.roundCards.length) {
+        const total = state.free.roundCards.length;
+        const current = Math.min(state.free.currentIndex + 1, total);
+        counterEl.textContent = `Karte ${current} von ${total}`;
+        messageEl.hidden = !state.free.statusMessage;
+        messageEl.textContent = state.free.statusMessage;
+        messageEl.classList.toggle("is-error", state.free.statusTone === "error");
+        messageEl.classList.toggle("is-success", state.free.statusTone === "success");
+        return;
+    }
+
     counterEl.textContent = `Karten ${state.cards.length}`;
     messageEl.hidden = true;
     messageEl.textContent = "";
@@ -432,6 +450,43 @@ function chooseFreeCard(preferredCheckId = "") {
     const pool = preferredCards.length ? preferredCards : state.cards;
     if (!pool.length) return null;
     return pool[Math.floor(Math.random() * pool.length)] || null;
+}
+
+function shuffleCards(cards) {
+    const shuffled = [...cards];
+    for (let index = shuffled.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+    }
+    return shuffled;
+}
+
+function buildFreeRoundCards(preferredCheckId = "") {
+    const preferredCards = preferredCheckId
+        ? state.cards.filter((card) => card.checkId === preferredCheckId)
+        : [];
+    const pool = preferredCards.length ? preferredCards : state.cards;
+    const limitedCards = shuffleCards(pool).slice(0, Math.min(FLASHCARDS_ROUND_LIMIT, pool.length));
+    return limitedCards.map((card) => ({
+        card,
+        taskIndex: chooseTaskIndex(card),
+    }));
+}
+
+async function startFreeRound({ preferredCheckId = state.free.preferredCheckId, statusMessage = "", statusTone = "neutral" } = {}) {
+    state.free.preferredCheckId = String(preferredCheckId || "").trim();
+    state.free.roundCards = buildFreeRoundCards(state.free.preferredCheckId);
+    state.free.currentIndex = 0;
+    state.free.statusMessage = statusMessage;
+    state.free.statusTone = statusTone;
+
+    const firstRoundCard = state.free.roundCards[0] || null;
+    if (!firstRoundCard) {
+        updateCounterAndMessage();
+        return;
+    }
+
+    await renderCurrentCard(firstRoundCard.card, { taskIndex: firstRoundCard.taskIndex });
 }
 
 function buildRoundRequestPayload(cards) {
@@ -558,6 +613,14 @@ async function completeFlashcardsDecision() {
         await getFeedRoundApi().resolveRound({
             roundId: state.feed.roundId,
             decisionKey: "complete",
+        });
+        await recordUserActivity({
+            activityType: "flashcards",
+            lernbereichSlug: state.lernbereich,
+            contextKey: state.feed.trackKind === "retention" ? "retention_feed" : "feed",
+            details: {
+                roundSize: state.feed.roundCards.length,
+            },
         });
     } catch (error) {
         state.feed.busy = false;
@@ -719,11 +782,33 @@ async function rateCurrentCard(grade) {
         return;
     }
 
-    const next = chooseFreeCard();
-    if (next) {
-        state.freeCardCount += 1;
-        await renderCurrentCard(next);
+    const currentRoundSize = state.free.roundCards.length;
+    if (!currentRoundSize) return;
+
+    const nextIndex = state.free.currentIndex + 1;
+    if (nextIndex < currentRoundSize) {
+        state.free.currentIndex = nextIndex;
+        state.free.statusMessage = "";
+        state.free.statusTone = "neutral";
+        const nextRoundCard = state.free.roundCards[nextIndex];
+        await renderCurrentCard(nextRoundCard.card, { taskIndex: nextRoundCard.taskIndex });
+        return;
     }
+
+    await recordUserActivity({
+        activityType: "flashcards",
+        lernbereichSlug: state.lernbereich,
+        contextKey: "free",
+        details: {
+            roundSize: currentRoundSize,
+        },
+    });
+
+    await startFreeRound({
+        preferredCheckId: state.free.preferredCheckId,
+        statusMessage: `Stapel mit ${currentRoundSize} Karten abgeschlossen. Neuer Durchgang gestartet.`,
+        statusTone: "success",
+    });
 }
 
 function buildCards(checks) {
@@ -808,7 +893,13 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
     state.cards = [];
     state.currentCard = null;
     state.currentTaskIndex = 0;
-    state.freeCardCount = 0;
+    state.free = {
+        preferredCheckId: String(preferredCheckId || "").trim(),
+        roundCards: [],
+        currentIndex: 0,
+        statusMessage: "",
+        statusTone: "neutral",
+    };
     state.feed = {
         active: false,
         trackKind: "session",
@@ -871,9 +962,5 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
         return;
     }
 
-    const firstCard = chooseFreeCard(preferredCheckId);
-    if (firstCard) {
-        state.freeCardCount = 1;
-        await renderCurrentCard(firstCard);
-    }
+    await startFreeRound({ preferredCheckId });
 }

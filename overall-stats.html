@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Overall – MatheChecks</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0e1420;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .card {
+    background: #19223a;
+    border: 0.5px solid #252f48;
+    border-radius: 14px;
+    padding: 1.125rem 1.25rem;
+    width: 100%; max-width: 480px;
+  }
+  .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .625rem; }
+  .title { font-size: 15px; font-weight: 500; color: #4ecdc4; }
+  .menu  { font-size: 18px; color: #3d4f72; cursor: pointer; }
+  .div   { height: .5px; background: #252f48; margin-bottom: 1rem; }
+  .grid  { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 1rem; }
+  .stat  { background: #131b2e; border-radius: 10px; padding: .875rem .875rem .75rem; }
+  .stat.hero {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 1rem 1.125rem;
+  }
+  .num   { font-size: 22px; font-weight: 500; color: #dde3f0; line-height: 1; letter-spacing: -.5px; }
+  .hero .num { font-size: 32px; letter-spacing: -1px; }
+  .lbl   { font-size: 11px; color: #4a5878; margin-top: 4px; line-height: 1.3; font-variant-numeric: tabular-nums; }
+  .hero .lbl { font-size: 12px; }
+  .hero-sub { font-size: 11px; color: #3d4f72; margin-top: 6px; }
+  .bars { display: flex; align-items: flex-end; gap: 3px; height: 40px; }
+  .bar-col { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; }
+  .bar { width: 100%; border-radius: 3px 3px 0 0; background: #4ecdc4; transition: opacity .12s; cursor: default; }
+  .bar:hover { opacity: .65; }
+  .bar.today { background: #dde3f0; }
+  .bar-lbl { font-size: 9px; color: #3d4f72; }
+  .footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: .75rem; border-top: .5px solid #252f48;
+  }
+  .ft { font-size: 11px; color: #3d4f72; }
+  .ft span { color: #6b7a99; }
+  .week-lbl-row { display: flex; gap: 3px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <span class="title">Overall</span>
+    <i class="ti ti-dots-vertical menu" aria-hidden="true"></i>
+  </div>
+  <div class="div"></div>
+
+  <div class="grid">
+    <div class="stat hero">
+      <i class="ti ti-bolt" style="font-size:28px;color:#4ecdc4;flex-shrink:0" aria-hidden="true"></i>
+      <div>
+        <div class="num">1.247</div>
+        <div class="lbl">Aktivitäten gesamt</div>
+        <div class="hero-sub">seit 14. Feb. 2026 · 67 aktive Tage</div>
+      </div>
+    </div>
+
+    <div class="stat">
+      <div class="num">31</div>
+      <div class="lbl">Tageshoch<br>14. Mai</div>
+    </div>
+    <div class="stat">
+      <div class="num">134</div>
+      <div class="lbl">Wochenhoch<br>KW 18</div>
+    </div>
+    <div class="stat">
+      <div class="num">18,6</div>
+      <div class="lbl">Ø / aktivem Tag</div>
+    </div>
+
+    <div class="stat">
+      <div class="num" style="color:#4ecdc4">94%</div>
+      <div class="lbl">beste Tagesquote<br>korrekte Antworten</div>
+    </div>
+    <div class="stat">
+      <div class="num">78%</div>
+      <div class="lbl">Ø Quote<br>alle Aktivitäten</div>
+    </div>
+    <div class="stat">
+      <div class="num" style="color:#fb923c">7</div>
+      <div class="lbl">längster Streak<br>Tage</div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:.5rem">
+    <div style="font-size:11px;color:#3d4f72;margin-bottom:6px">letzte 7 Tage</div>
+    <div class="bars" id="bars"></div>
+    <div class="week-lbl-row" id="wlbls"></div>
+  </div>
+
+  <div class="footer">
+    <span class="ft">Training <span>612</span></span>
+    <span class="ft">Recall <span>389</span></span>
+    <span class="ft">Feynman <span>148</span></span>
+    <span class="ft">Flashcards <span>98</span></span>
+  </div>
+</div>
+
+<script>
+  const days = [{d:'Mo',v:12},{d:'Di',v:19},{d:'Mi',v:8},{d:'Do',v:23},{d:'Fr',v:15},{d:'Sa',v:4},{d:'So',v:0}];
+  const max = Math.max(...days.map(x=>x.v), 1);
+  const bEl = document.getElementById('bars');
+  const lEl = document.getElementById('wlbls');
+  days.forEach((item, i) => {
+    const today = i === 6;
+    const pct = item.v === 0 ? 3 : Math.round((item.v / max) * 100);
+    const col = document.createElement('div'); col.className = 'bar-col';
+    const bar = document.createElement('div');
+    bar.className = 'bar' + (today ? ' today' : '');
+    bar.style.height = pct + '%';
+    bar.style.opacity = item.v === 0 ? '0.18' : '1';
+    bar.title = item.d + ': ' + item.v + ' Aktivitäten';
+    col.appendChild(bar); bEl.appendChild(col);
+    const lbl = document.createElement('div');
+    lbl.className = 'bar-lbl'; lbl.style.flex = '1'; lbl.style.textAlign = 'center';
+    lbl.style.color = today ? '#6b7a99' : '#3d4f72';
+    lbl.textContent = item.d;
+    lEl.appendChild(lbl);
+  });
+</script>
+</body>
+</html>

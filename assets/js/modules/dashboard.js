@@ -23,6 +23,14 @@ const RETENTION_EMPTY_LIST_MESSAGE = "Wähle Lernbereiche für Wiederholungen ü
 const RETENTION_LOADING_MESSAGE = "Wiederholungen werden geladen.";
 const RETENTION_UNAVAILABLE_MESSAGE = "Wiederholungen konnten gerade nicht geladen werden.";
 const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht geladen werden.";
+const ACTIVITY_SUMMARY_EMPTY = "Sobald du Training, Recall, Feynman oder Flashcards abschließt, erscheinen sie hier accountgebunden.";
+const ACTIVITY_UNAVAILABLE_MESSAGE = "Die Aktivitätsstatistik ist gerade nicht verfügbar.";
+const ACTIVITY_LOAD_ERROR_MESSAGE = "Die Aktivitätsstatistik konnte gerade nicht geladen werden.";
+const ACTIVITY_MAP_SUMMARY_COPY = "Rollierender Verlauf der letzten 12 Wochen bis heute.";
+const ACTIVITY_MAP_EMPTY_SUMMARY = "Letzte 12 Wochen bis heute. Sobald Aktivitäten erfasst werden, füllt sich die Karte automatisch.";
+const ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY = "In den letzten 12 Wochen wurden noch keine Aktivitäten erfasst.";
+const ACTIVITY_MAP_DEFAULT_WEEKS = 12;
+const ACTIVITY_MAP_DAY_LABELS = ["Mo", "", "Mi", "", "Fr", "", "So"];
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -383,6 +391,369 @@ function formatPlanningRate(value) {
     minimumFractionDigits: value < 10 && !Number.isInteger(value) ? 1 : 0,
     maximumFractionDigits: 1,
   }).format(value);
+}
+
+function formatActivityCount(value) {
+  return new Intl.NumberFormat("de-DE", {
+    maximumFractionDigits: 0,
+  }).format(Math.max(0, Number(value) || 0));
+}
+
+function formatActivityAverage(value) {
+  const numericValue = Number(value) || 0;
+  return new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: numericValue > 0 && !Number.isInteger(numericValue) ? 1 : 0,
+    maximumFractionDigits: 1,
+  }).format(Math.max(0, numericValue));
+}
+
+function formatActivityPercent(value) {
+  if (!Number.isFinite(Number(value))) return "–";
+  const numericValue = Math.max(0, Number(value) || 0);
+  const formatted = new Intl.NumberFormat("de-DE", {
+    minimumFractionDigits: numericValue > 0 && !Number.isInteger(numericValue) ? 1 : 0,
+    maximumFractionDigits: 1,
+  }).format(numericValue);
+  return `${formatted} %`;
+}
+
+function buildEmptyActivityOverviewDays() {
+  const today = new Date();
+  const entries = [];
+
+  for (let offset = 6; offset >= 0; offset -= 1) {
+    const day = new Date(today);
+    day.setDate(today.getDate() - offset);
+    entries.push({
+      date: toDateOnlyValue(day),
+      count: 0,
+    });
+  }
+
+  return entries;
+}
+
+function startOfWeekMonday(date) {
+  const normalized = date instanceof Date ? new Date(date) : new Date();
+  normalized.setHours(0, 0, 0, 0);
+  const weekday = (normalized.getDay() + 6) % 7;
+  normalized.setDate(normalized.getDate() - weekday);
+  return normalized;
+}
+
+function buildEmptyActivityMapData(weeks = ACTIVITY_MAP_DEFAULT_WEEKS) {
+  const normalizedWeeks = Math.max(1, Number(weeks) || ACTIVITY_MAP_DEFAULT_WEEKS);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const currentWeekStart = startOfWeekMonday(today);
+  const startDate = new Date(currentWeekStart);
+  startDate.setDate(currentWeekStart.getDate() - ((normalizedWeeks - 1) * 7));
+  const endDate = new Date(currentWeekStart);
+  endDate.setDate(currentWeekStart.getDate() + 6);
+
+  const days = [];
+  const cursor = new Date(startDate);
+  while (cursor <= endDate) {
+    days.push({
+      date: toDateOnlyValue(cursor),
+      count: 0,
+    });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  return {
+    weeks: normalizedWeeks,
+    todayDate: toDateOnlyValue(today),
+    startDate: toDateOnlyValue(startDate),
+    endDate: toDateOnlyValue(endDate),
+    days,
+  };
+}
+
+function normalizeActivityMap(overview) {
+  const rawMap = overview?.activityMap && typeof overview.activityMap === "object"
+    ? overview.activityMap
+    : {};
+  const normalizedWeeks = Math.max(1, Number(rawMap?.weeks) || ACTIVITY_MAP_DEFAULT_WEEKS);
+  const fallback = buildEmptyActivityMapData(normalizedWeeks);
+  const startDate = normalizeDateOnlyValue(rawMap?.startDate) || fallback.startDate;
+  const endDate = normalizeDateOnlyValue(rawMap?.endDate) || fallback.endDate;
+  const todayDate = normalizeDateOnlyValue(rawMap?.todayDate) || fallback.todayDate;
+  const start = parseDateOnlyValue(startDate);
+  const end = parseDateOnlyValue(endDate);
+  if (!(start instanceof Date) || Number.isNaN(start.getTime()) || !(end instanceof Date) || Number.isNaN(end.getTime())) {
+    return fallback;
+  }
+
+  const rawDays = Array.isArray(rawMap?.days) ? rawMap.days : [];
+  const countByDate = new Map();
+  rawDays.forEach((entry) => {
+    const dateValue = normalizeDateOnlyValue(entry?.date);
+    if (!dateValue) return;
+    countByDate.set(dateValue, Math.max(0, Number(entry?.count) || 0));
+  });
+
+  const days = [];
+  const cursor = new Date(start);
+  while (cursor <= end) {
+    const dateValue = toDateOnlyValue(cursor);
+    days.push({
+      date: dateValue,
+      count: countByDate.get(dateValue) || 0,
+    });
+    cursor.setDate(cursor.getDate() + 1);
+  }
+
+  if (days.length !== normalizedWeeks * 7) {
+    return fallback;
+  }
+
+  return {
+    weeks: normalizedWeeks,
+    todayDate,
+    startDate,
+    endDate,
+    days,
+  };
+}
+
+function normalizeActivityOverviewDays(overview) {
+  const entries = Array.isArray(overview?.last7Days) ? overview.last7Days : [];
+  return entries.length ? entries : buildEmptyActivityOverviewDays();
+}
+
+function getActivityTypeCount(overview, type) {
+  return Math.max(0, Number(overview?.byType?.[type]) || 0);
+}
+
+function renderActivityBars(container, overview) {
+  if (!container) return;
+
+  const entries = normalizeActivityOverviewDays(overview);
+  const maxCount = Math.max(1, ...entries.map((entry) => Math.max(0, Number(entry?.count) || 0)));
+  const todayKey = toDateOnlyValue(new Date());
+
+  container.innerHTML = entries.map((entry) => {
+    const count = Math.max(0, Number(entry?.count) || 0);
+    const date = parseDateOnlyValue(entry?.date) || new Date();
+    const label = new Intl.DateTimeFormat("de-DE", { weekday: "short" }).format(date).replace(".", "");
+    const heightPercent = count > 0 ? Math.max(10, Math.round((count / maxCount) * 100)) : 8;
+    const todayClass = String(entry?.date || "") === todayKey ? " is-today" : "";
+
+    return `
+      <div class="dashboard-activity__bar-col" aria-label="${escapeHtml(label)}: ${escapeHtml(String(count))} Aktivitäten">
+        <span class="dashboard-activity__bar-count">${escapeHtml(formatActivityCount(count))}</span>
+        <div class="dashboard-activity__bar-track">
+          <div class="dashboard-activity__bar${todayClass}" style="height:${heightPercent}%"></div>
+        </div>
+        <span class="dashboard-activity__bar-label">${escapeHtml(label)}</span>
+      </div>
+    `;
+  }).join("");
+}
+
+function getActivityMapLevel(count) {
+  const normalizedCount = Math.max(0, Number(count) || 0);
+  if (normalizedCount <= 0) return 0;
+  if (normalizedCount === 1) return 1;
+  if (normalizedCount === 2) return 2;
+  if (normalizedCount <= 4) return 3;
+  return 4;
+}
+
+function formatActivityMapTooltipDate(value) {
+  const date = parseDateOnlyValue(value);
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("de-DE", {
+    weekday: "long",
+    day: "numeric",
+    month: "short",
+  }).format(date);
+}
+
+function formatActivityMapMonthLabel(value) {
+  const date = parseDateOnlyValue(value);
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("de-DE", { month: "short" }).format(date).replace(/\.$/, "");
+}
+
+function buildActivityMapCellLabel(dateValue, count, state) {
+  const dateLabel = formatActivityMapTooltipDate(dateValue);
+  if (!dateLabel) return "";
+  if (state === "future") {
+    return `Noch nicht erreicht · ${dateLabel}`;
+  }
+  if (state === "before-start") {
+    return `Vor dem ersten erfassten Aktivitätstag · ${dateLabel}`;
+  }
+  if (count <= 0) {
+    return `Keine Aktivität · ${dateLabel}`;
+  }
+  return `${formatActivityCount(count)} Aktivität${count === 1 ? "" : "en"} · ${dateLabel}`;
+}
+
+function renderActivityMapBoard(container, overview) {
+  if (!container) return buildEmptyActivityMapData();
+
+  const mapData = normalizeActivityMap(overview);
+  const firstActivityDate = normalizeDateOnlyValue(overview?.firstActivityDate) || "";
+  container.style.setProperty("--activity-map-weeks", String(mapData.weeks));
+
+  const monthCells = [];
+  let previousMonthKey = "";
+  for (let weekIndex = 0; weekIndex < mapData.weeks; weekIndex += 1) {
+    const entry = mapData.days[weekIndex * 7] || null;
+    const date = parseDateOnlyValue(entry?.date);
+    const monthKey = date instanceof Date && !Number.isNaN(date.getTime())
+      ? `${date.getFullYear()}-${date.getMonth()}`
+      : `week-${weekIndex}`;
+    const label = monthKey !== previousMonthKey ? formatActivityMapMonthLabel(entry?.date) : "";
+    previousMonthKey = monthKey;
+
+    monthCells.push(`
+      <div class="dashboard-activity-map__month" style="grid-column:${weekIndex + 2};grid-row:1;">${escapeHtml(label)}</div>
+    `);
+  }
+
+  const dayLabels = ACTIVITY_MAP_DAY_LABELS.map((label, dayIndex) => `
+    <div class="dashboard-activity-map__day-label" style="grid-column:1;grid-row:${dayIndex + 2};">${escapeHtml(label)}</div>
+  `);
+
+  const dayCells = mapData.days.map((entry, index) => {
+    const dateValue = normalizeDateOnlyValue(entry?.date) || "";
+    const count = Math.max(0, Number(entry?.count) || 0);
+    const weekIndex = Math.floor(index / 7);
+    const dayIndex = index % 7;
+    let state = "tracked";
+    const classes = ["dashboard-activity-map__cell"];
+
+    if (dateValue && mapData.todayDate && dateValue > mapData.todayDate) {
+      state = "future";
+      classes.push("is-future");
+    } else if (firstActivityDate && dateValue && dateValue < firstActivityDate) {
+      state = "before-start";
+      classes.push("is-before-start");
+    } else {
+      classes.push(`level-${getActivityMapLevel(count)}`);
+    }
+
+    if (dateValue && dateValue === mapData.todayDate) {
+      classes.push("is-today");
+    }
+
+    const label = buildActivityMapCellLabel(dateValue, count, state);
+    return `
+      <span class="${classes.join(" ")}" style="grid-column:${weekIndex + 2};grid-row:${dayIndex + 2};" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"></span>
+    `;
+  });
+
+  container.innerHTML = `${monthCells.join("")}${dayLabels.join("")}${dayCells.join("")}`;
+  return mapData;
+}
+
+function applyActivityMap(context, overview = null) {
+  const summaryNode = context.elements.activityMapSummary;
+  const targetNode = context.elements.activityMapTarget;
+  const mapData = renderActivityMapBoard(context.elements.activityMapBoard, overview);
+  const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
+  const visibleActivityCount = Array.isArray(mapData?.days)
+    ? mapData.days.reduce((sum, entry) => sum + Math.max(0, Number(entry?.count) || 0), 0)
+    : 0;
+
+  if (summaryNode) {
+    summaryNode.textContent = visibleActivityCount > 0
+      ? ACTIVITY_MAP_SUMMARY_COPY
+      : totalCount > 0
+        ? ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY
+        : ACTIVITY_MAP_EMPTY_SUMMARY;
+  }
+
+  if (targetNode) {
+    const targetDate = normalizeDateOnlyValue(context.activeSession?.target_date);
+    if (targetDate) {
+      targetNode.hidden = false;
+      targetNode.textContent = `Ziel: ${formatDateOnlyLabel(targetDate)}`;
+    } else {
+      targetNode.hidden = true;
+      targetNode.textContent = "";
+    }
+  }
+
+  setStatusNode(context.elements.activityMapStatusNode, "");
+}
+
+function applyActivityOverview(context, overview = null) {
+  const summaryNode = context.elements.activitySummary;
+  const totalNode = context.elements.activityTotal;
+  const metaNode = context.elements.activityMeta;
+  const activeDaysNode = context.elements.activityActiveDays;
+  const averageNode = context.elements.activityAverage;
+  const longestStreakNode = context.elements.activityLongestStreak;
+  const trainingSuccessNode = context.elements.activityTrainingSuccess;
+  const trainingNode = context.elements.activityTraining;
+  const recallNode = context.elements.activityRecall;
+  const feynmanNode = context.elements.activityFeynman;
+  const flashcardsNode = context.elements.activityFlashcards;
+
+  const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
+  const activeDays = Math.max(0, Number(overview?.activeDays) || 0);
+  const averagePerActiveDay = Number(overview?.averagePerActiveDay) || 0;
+  const firstActivityDate = String(overview?.firstActivityDate || "").trim();
+  const longestStreak = Math.max(0, Number(overview?.longestStreak?.length) || 0);
+  const trainingSuccessRate = overview?.trainingSuccess?.rate;
+
+  if (summaryNode) {
+    summaryNode.textContent = totalCount > 0
+      ? "Gezählt werden abgeschlossene Trainingsaufgaben ohne eingeblendete Lösungen, Recall-, Feynman- und Flashcard-Durchgänge über Feed und freien Zugriff."
+      : ACTIVITY_SUMMARY_EMPTY;
+  }
+  if (totalNode) totalNode.textContent = formatActivityCount(totalCount);
+  if (metaNode) {
+    metaNode.textContent = firstActivityDate
+      ? `seit ${formatDateOnlyLabel(firstActivityDate)} · ${formatActivityCount(activeDays)} aktive Tage`
+      : "Noch keine abgeschlossenen Aktivitäten erfasst.";
+  }
+  if (activeDaysNode) activeDaysNode.textContent = formatActivityCount(activeDays);
+  if (averageNode) averageNode.textContent = formatActivityAverage(averagePerActiveDay);
+  if (longestStreakNode) longestStreakNode.textContent = formatActivityCount(longestStreak);
+  if (trainingSuccessNode) {
+    trainingSuccessNode.textContent = formatActivityPercent(trainingSuccessRate);
+    trainingSuccessNode.title = Number.isFinite(Number(trainingSuccessRate))
+      ? "Gewichtet nach korrekt beantworteten Teilfragen in Trainingsaufgaben ohne eingeblendete Lösungen."
+      : "Die Quote erscheint, sobald Trainingsaufgaben ohne eingeblendete Lösungen erfasst wurden.";
+  }
+  if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
+  if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
+  if (feynmanNode) feynmanNode.textContent = formatActivityCount(getActivityTypeCount(overview, "feynman"));
+  if (flashcardsNode) flashcardsNode.textContent = formatActivityCount(getActivityTypeCount(overview, "flashcards"));
+
+  renderActivityBars(context.elements.activityBars, overview);
+  setStatusNode(context.elements.activityStatusNode, "");
+}
+
+async function refreshActivityOverview(context) {
+  if (!context.supabase) {
+    applyActivityOverview(context, null);
+    applyActivityMap(context, null);
+    setStatusNode(context.elements.activityStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
+    setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
+    return;
+  }
+
+  try {
+    const { data, error } = await context.supabase.rpc("get_user_activity_overview");
+    if (error) throw error;
+
+    applyActivityOverview(context, data || null);
+    applyActivityMap(context, data || null);
+  } catch (error) {
+    console.error("Aktivitätsstatistik konnte nicht geladen werden:", error);
+    applyActivityOverview(context, null);
+    applyActivityMap(context, null);
+    setStatusNode(context.elements.activityStatusNode, ACTIVITY_LOAD_ERROR_MESSAGE, "error");
+    setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_LOAD_ERROR_MESSAGE, "error");
+  }
 }
 
 function getRemainingCheckStepCount(row) {
@@ -981,6 +1352,85 @@ function summarizeActivePlan(context) {
   return { lernbereichCount, checkCount, selectedCheckIds };
 }
 
+function buildActiveSessionProgress(context) {
+  if (!context.activeSession) return null;
+
+  const { selectedCheckIds } = summarizeActivePlan(context);
+  const totalStepCount = selectedCheckIds.length * CHECK_PIPELINE_STEP_COUNT;
+  if (totalStepCount <= 0) {
+    return null;
+  }
+
+  const remainingStepCount = Math.max(
+    0,
+    Math.min(totalStepCount, getRemainingSelectedActivityCount(context, selectedCheckIds)),
+  );
+  const completedStepCount = Math.max(0, totalStepCount - remainingStepCount);
+  const percent = Math.round((completedStepCount / totalStepCount) * 100);
+
+  return {
+    totalStepCount,
+    completedStepCount,
+    remainingStepCount,
+    percent,
+  };
+}
+
+function setPlanProgressFill(node, percent) {
+  if (!node) return;
+
+  const normalizedPercent = Math.max(0, Math.min(100, Number(percent) || 0));
+  node.dataset.progress = String(normalizedPercent);
+
+  requestAnimationFrame(() => {
+    node.style.width = `${normalizedPercent}%`;
+  });
+}
+
+function updatePlanProgress(context) {
+  const container = context.elements.planProgress;
+  if (!container) return;
+
+  const fillNode = context.elements.planProgressFill;
+  const barNode = context.elements.planProgressBar;
+  const percentNode = context.elements.planProgressPercent;
+  const completedNode = context.elements.planProgressCompleted;
+  const remainingNode = context.elements.planProgressRemaining;
+  const progress = buildActiveSessionProgress(context);
+
+  if (!progress) {
+    container.hidden = true;
+    if (fillNode) {
+      fillNode.dataset.progress = "0";
+      fillNode.style.width = "0%";
+    }
+    if (barNode) {
+      barNode.setAttribute("aria-valuenow", "0");
+      barNode.setAttribute("aria-valuetext", "0 Prozent der aktuellen Session abgeschlossen");
+    }
+    return;
+  }
+
+  container.hidden = false;
+
+  const percentLabel = `${progress.percent}%`;
+  if (percentNode) {
+    percentNode.textContent = percentLabel;
+  }
+  if (completedNode) {
+    completedNode.textContent = `${progress.completedStepCount} / ${progress.totalStepCount} Schritte abgeschlossen`;
+  }
+  if (remainingNode) {
+    remainingNode.textContent = `${progress.remainingStepCount} verbleibend`;
+  }
+  if (barNode) {
+    barNode.setAttribute("aria-valuenow", String(progress.percent));
+    barNode.setAttribute("aria-valuetext", `${percentLabel} der aktuellen Session abgeschlossen`);
+  }
+
+  setPlanProgressFill(fillNode, progress.percent);
+}
+
 function collectActiveSessionLernbereiche(context) {
   const entries = [];
 
@@ -1200,6 +1650,7 @@ function updatePlanSummary(context) {
 
   if (!context.activeSession || !activeEntries.length) {
     node.textContent = SESSION_EMPTY_SUMMARY;
+    updatePlanProgress(context);
     if (targetNode) {
       targetNode.hidden = true;
     }
@@ -1214,6 +1665,7 @@ function updatePlanSummary(context) {
 
   const { selectedCheckIds } = summarizeActivePlan(context);
   node.textContent = buildActiveLernbereichSummary(activeEntries, SESSION_EMPTY_SUMMARY);
+  updatePlanProgress(context);
 
   if (targetNode) {
     const assessment = buildTargetDateAssessment(context, selectedCheckIds);
@@ -1278,14 +1730,21 @@ function updateSessionList(context) {
   );
 }
 
+function setDashboardMenuItemDisabledState(button, disabled) {
+  if (!button) return;
+  const isDisabled = Boolean(disabled);
+  button.disabled = isDisabled;
+  button.classList.toggle("check-card__actions-item--disabled", isDisabled);
+}
+
 function updateSessionActionButtons(context, disabled) {
-  context.elements.openButton.disabled = disabled;
-  context.elements.deleteButton.disabled = disabled || !context.activeSession;
+  setDashboardMenuItemDisabledState(context.elements.openButton, disabled);
+  setDashboardMenuItemDisabledState(context.elements.deleteButton, disabled || !context.activeSession);
 }
 
 function updateRetentionActionButtons(context, disabled) {
-  context.elements.retentionManageButton.disabled = disabled;
-  context.elements.retentionDeleteButton.disabled = disabled || !context.hasRetentionEntries;
+  setDashboardMenuItemDisabledState(context.elements.retentionManageButton, disabled);
+  setDashboardMenuItemDisabledState(context.elements.retentionDeleteButton, disabled || !context.hasRetentionEntries);
 }
 
 function setBarStatus(context, message, tone = "neutral") {
@@ -1573,6 +2032,7 @@ async function handleSave(context) {
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
+      refreshActivityOverview(context),
     ]);
     notifyFeedBadgeRefresh();
     closeModal(context);
@@ -1619,6 +2079,7 @@ async function handleDelete(context) {
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
+      refreshActivityOverview(context),
     ]);
     notifyFeedBadgeRefresh();
     closeModal(context);
@@ -2081,6 +2542,12 @@ function createContext(root, lernbereiche) {
     overlay: document.getElementById("lbOverlay"),
     sessionList: root.querySelector("[data-dashboard-session-list]"),
     planSummary: root.querySelector("[data-dashboard-plan-summary]"),
+    planProgress: root.querySelector("[data-dashboard-plan-progress]"),
+    planProgressBar: root.querySelector("[data-dashboard-plan-progress-bar]"),
+    planProgressFill: root.querySelector("[data-dashboard-plan-progress-fill]"),
+    planProgressPercent: root.querySelector("[data-dashboard-plan-progress-percent]"),
+    planProgressCompleted: root.querySelector("[data-dashboard-plan-progress-completed]"),
+    planProgressRemaining: root.querySelector("[data-dashboard-plan-progress-remaining]"),
     planTarget: root.querySelector("[data-dashboard-plan-target]"),
     planTargetLabel: root.querySelector("[data-dashboard-plan-target-label]"),
     planAssessment: root.querySelector("[data-dashboard-plan-assessment]"),
@@ -2100,6 +2567,23 @@ function createContext(root, lernbereiche) {
     retentionResetButton: document.getElementById("retentionResetBtn"),
     retentionModalStatusNode: document.getElementById("retentionModalStatus"),
     retentionStatusNode: document.getElementById("retentionStatus"),
+    activitySummary: root.querySelector("[data-dashboard-activity-summary]"),
+    activityTotal: root.querySelector("[data-dashboard-activity-total]"),
+    activityMeta: root.querySelector("[data-dashboard-activity-meta]"),
+    activityBars: root.querySelector("[data-dashboard-activity-bars]"),
+    activityActiveDays: root.querySelector("[data-dashboard-activity-active-days]"),
+    activityAverage: root.querySelector("[data-dashboard-activity-average]"),
+    activityLongestStreak: root.querySelector("[data-dashboard-activity-longest-streak]"),
+    activityTrainingSuccess: root.querySelector("[data-dashboard-activity-training-success]"),
+    activityTraining: root.querySelector("[data-dashboard-activity-training]"),
+    activityRecall: root.querySelector("[data-dashboard-activity-recall]"),
+    activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),
+    activityFlashcards: root.querySelector("[data-dashboard-activity-flashcards]"),
+    activityStatusNode: document.getElementById("activityStatsStatus"),
+    activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
+    activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),
+    activityMapTarget: root.querySelector("[data-dashboard-activity-map-target]"),
+    activityMapStatusNode: document.getElementById("activityMapStatus"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),
     primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
     primaryFeedDesc: root.querySelector("[data-dashboard-primary-feed-desc]"),
@@ -2171,6 +2655,8 @@ export async function initDashboardModule() {
   updateRetentionActionButtons(context, true);
   setBarStatus(context, "");
   applyPrimaryFeedLoadingState(context);
+  applyActivityOverview(context, null);
+  applyActivityMap(context, null);
 
   const authState = await getCurrentAuthState();
   context.authState = authState;
@@ -2181,6 +2667,8 @@ export async function initDashboardModule() {
     applyPrimaryFeedErrorState(context);
     updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
     renderDashboardPanelMessage(context.elements.retentionList, RETENTION_UNAVAILABLE_MESSAGE);
+    setStatusNode(context.elements.activityStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
+    setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
     setBarStatus(context, "Der Session-Speicher ist noch nicht konfiguriert.");
     return;
   }
@@ -2189,6 +2677,8 @@ export async function initDashboardModule() {
     applyPrimaryFeedErrorState(context);
     updateRetentionSummary(context, [], RETENTION_UNAVAILABLE_MESSAGE);
     renderDashboardPanelMessage(context.elements.retentionList, RETENTION_UNAVAILABLE_MESSAGE);
+    setStatusNode(context.elements.activityStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "error");
+    setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "error");
     setBarStatus(context, "Die Verbindung zur Session-Datenbank konnte nicht aufgebaut werden.", "error");
     return;
   }
@@ -2212,6 +2702,7 @@ export async function initDashboardModule() {
     await Promise.all([
       refreshPrimaryFeedCard(context),
       refreshCompletedPanel(context),
+      refreshActivityOverview(context),
     ]);
     updateSessionActionButtons(context, false);
     updateRetentionActionButtons(context, false);

@@ -497,6 +497,18 @@ export function renderTask(task, options = {}) {
         });
     };
 
+    const restoreCheckedQuestionStates = () => {
+        Array.from(checkedQuestionIndexes).forEach((questionIndex) => {
+            const evaluate = questionEvaluators[questionIndex];
+            if (typeof evaluate === "function") {
+                const result = evaluate();
+                if (!isQuestionResultComplete(result)) checkedQuestionIndexes.delete(questionIndex);
+                return;
+            }
+            checkedQuestionIndexes.delete(questionIndex);
+        });
+    };
+
     for (let i = 0; i < itemCount; i += 1) {
         const item = document.createElement("li");
         item.className = "qa-item";
@@ -698,15 +710,7 @@ export function renderTask(task, options = {}) {
             field.addEventListener("change", onFieldChange);
         });
 
-        Array.from(checkedQuestionIndexes).forEach((questionIndex) => {
-            const evaluate = questionEvaluators[questionIndex];
-            if (typeof evaluate === "function") {
-                const result = evaluate();
-                if (!isQuestionResultComplete(result)) checkedQuestionIndexes.delete(questionIndex);
-                return;
-            }
-            checkedQuestionIndexes.delete(questionIndex);
-        });
+        restoreCheckedQuestionStates();
 
         persistCurrentUiState();
         scheduleTaskProgress();
@@ -714,6 +718,10 @@ export function renderTask(task, options = {}) {
 
     wrapTablesForHorizontalScroll(wrapper);
     initializeSelect2ForDropdowns(wrapper);
+
+    if (persistenceKey && checkedQuestionIndexes.size > 0) {
+        restoreCheckedQuestionStates();
+    }
 
     return wrapper;
 }
