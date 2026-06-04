@@ -27,14 +27,14 @@ Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkarte
 
 - Retention bleibt fachlich getrennt vom Core-Cursor.
 - Retention darf keine Core-Schritte abschließen, weiterbewegen oder den Sticky-Lock eines Core-Elements erneuern.
-- Ob Retention später als eigener Cursor, als sekundäre Queue oder nur als Dashboard-Fallback erscheint, wird erst nach Stabilisierung des Core-Feeds entschieden.
-- Solange diese Entscheidung offen ist, legt diese Spezifikation bewusst keine normative Mischreihenfolge zwischen Core und Retention fest.
-- Sinnvoller Minimalanspruch für die spätere Retention-Anbindung bleibt: Retention darf eine aktive Core-Session nicht dominieren und freier Retention-Zugriff darf vom Core-Feed getrennt bleiben.
+- Fällige Retention-Flashcards laufen als eigener user-scoped Kopf außerhalb von `current_activity_key`; sie können im sichtbaren Feed vorgezogen werden, wenn kein `due`- oder `overdue`-Core-Schritt Vorrang hat.
+- Sichtbare, aber noch nicht fällige Retention bleibt sekundär und erneuert keinen Core-Lock.
+- Freier Retention-Zugriff bleibt vom Core-Feed getrennt.
 
 ## Grundbegriffe
 
-- `activity_key`: Stabile Identität eines Feed-Schritts. Für V2 gilt fachlich `session:{session_id}:area:{lernbereich_id}:step:start` für Lernbereichsstarts und `session:{session_id}:check:{check_id}:step:{step_key}` für Check-Schritte.
-- `status`: Persistenter Lebenszykluswert eines Schritts. In V2 reichen `pending`, `completed` und `dropped`; Fälligkeit wird aus den Zeitfeldern abgeleitet.
+- `activity_key`: Stabile Identität eines Feed-Schritts. Die laufende Runtime nutzt `lernbereich:{lernbereich_slug}:start` für Lernbereichsstarts, `check:{check_id}:{step_key}` für Core-Checks und `retention:lernbereich:{lernbereich_slug}:flashcards` für Retention-Flashcards.
+- `status`: Persistenter Freigabe- und Lebenszykluswert eines Schritts. Die laufende Runtime materialisiert dafür `blocked`, `due` und `completed`; Dringlichkeit offener Schritte wird zusätzlich aus `available_from`, `planned_from` und `overdue_from` abgeleitet.
 - `available_from`: Ab dann darf ein Schritt überhaupt im Feed kandidieren.
 - `planned_from`: Ab dann sollte ein Schritt aus Session-Sicht drankommen, damit das Ziel realistisch bleibt.
 - `overdue_from`: Ab dann gilt ein Schritt als deutlich hinten dran.
@@ -59,7 +59,9 @@ Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkarte
 - Jeder Lernbereich beginnt mit genau einer `start`-Aktivität.
 - `start` ist ein Gate-Schritt und löst selbst keine spaced-repetition-Kette aus.
 - Solange `start` für einen Lernbereich offen ist, darf kein Check-Schritt dieses Lernbereichs im Feed kandidieren.
-- Bei mehreren neuen Lernbereichen sind alle `start`-Aktivitäten gleichzeitig verfügbar. Ihre Bearbeitungsreihenfolge ergibt sich aus der kanonischen Reihenfolge.
+- Innerhalb desselben Gebiets bestimmt `didactic_order` die Freischaltung von `start`.
+- Lernbereiche mit kleinerem `didactic_order` müssen vollständig abgeschlossen sein, bevor die nächste `start`-Stufe `due` wird; gleiche Werte dürfen gleichzeitig starten.
+- Zwischen verschiedenen Gebieten dürfen offene `start`-Aktivitäten parallel existieren. Bei Gleichstand entscheidet die Gebietsreihenfolge aus `gebiete.yml`, aktuell `analysis = 1`, `stochastik = 2`, `lineare algebra = 3`.
 - `start.available_from` ist der Sessionstart oder der Zeitpunkt, zu dem der Lernbereich zur Session hinzugefügt wurde.
 - `start.planned_from` kommt aus der Session-Planung.
 - `start.overdue_from` ist planbasiert: Sobald `planned_from` materialisiert ist, gilt `overdue_from = effective_planned_from + G`.
@@ -169,14 +171,17 @@ Für Tagesgrenzen, `d` und Tagespakete gilt die Zeitzone `Europe/Berlin`.
 
 Die offene Last wird gewichtet nach Schritttyp betrachtet. Ein möglicher V2-Startwert ist:
 
+- `start = 1.0`
 - `training = 1.0`
 - `recall = 0.7`
 - `feynman = 1.0`
 - `kompetenzliste = 0.5`
 
+`start` zählt bewusst mit, weil es ein echter Feed-Schritt mit eigener Zeit- und Lock-Semantik ist.
+
 Damit ergibt sich:
 
-`W = 1.0 * n_T + 0.7 * n_R + 1.0 * n_F + 0.5 * n_K`
+`W = 1.0 * n_S + 1.0 * n_T + 0.7 * n_R + 1.0 * n_F + 0.5 * n_K`
 
 und fuer explizite Ziele daraus die erforderliche Geschwindigkeit:
 

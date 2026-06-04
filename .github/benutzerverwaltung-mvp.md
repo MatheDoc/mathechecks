@@ -67,20 +67,20 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Die Flashcards-Folge-Migration führt `session_activity_state` als erste lernbereichsweite Feed-Projektion ein; inzwischen trägt sie `start` als direkte Einstiegsaktivität pro Lernbereich und `flashcards` als persistente Wiederholungsaktivität.
 - `get_or_create_flashcard_round(...)`, `record_flashcard_review(...)` und `resolve_flashcard_round(...)` bilden den session-scoped Feed-Schreibpfad für Flashcards ab.
 - `complete_start_activity(...)` schließt die einmalige Start-Aktivität eines Lernbereichs innerhalb der aktiven Session ab und erhöht dabei den user-scoped Feed-Aktivitätszähler.
-- `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad nach Session-Ende.
+- `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad außerhalb des Core-Cursors; die Durchgänge können auch während einer aktiven Core-Session sichtbar werden.
 - `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
 - Das Session-Modal im Dashboard kann ein explizites `target_date` speichern; die Session-Box zeigt dieses Datum anschließend zusammen mit einer groben Heuristik auf Basis der noch offenen Check-Schritte.
 - Das Dashboard trennt im UI zwischen `Session` und `Feed`: Die Session verwaltet die aktive Core-Session, der Feed bündelt Empfehlungen aus der aktiven Session und aus Wiederholungen.
-- Die Feed-Projektion zeigt im Dashboard aktuell genau ein aktuelles Element, priorisiert offene `start`-Aktivitäten und sonst serverseitig freigegebene Check-Schritte mit materialisierten Zeitfenstern; aktive oder fällige Retention-Flashcards aus früheren Sessions bleiben ein Fallback, wenn keine Session-Aktivität sichtbar ist.
+- Die Feed-Projektion zeigt im Dashboard aktuell genau ein sichtbares Hauptelement, priorisiert offene `start`-Aktivitäten und sonst serverseitig freigegebene Check-Schritte mit materialisierten Zeitfenstern; fällige Retention-Flashcards bleiben cursor-separat und dürfen den sichtbaren Feed-Kopf übernehmen, wenn gerade kein `due`- oder `overdue`-Core-Schritt Vorrang hat.
 - Ein `Nein, zum Dashboard` im Feed ändert den Aktivitätszustand nicht persistent; die Aktivität bleibt offen und erscheint in ihrer normalen fachlichen Reihenfolge weiter.
 - Dashboard und Sidebar lesen inzwischen dieselbe Feed-Projektion; die Feed-Shell und eine gemeinsame Feed-Aktionsschicht sind für `start`, `training`, `recall`, `feynman`, `kompetenzliste` und `flashcards` umgesetzt.
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
-- Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt in diesem ersten Umbau ausdrücklich außen vor.
-- Zentrale Systemwerte werden in `public.system_settings` mit Integer-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Core-Gap für didaktische Folgeaktivitäten, Retention-Abstand, Retention-Einstiegsposition und Default-Tempo.
+- Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt dabei außerhalb des serverseitigen Core-Cursors, kann aber im Frontend als separater sichtbarer Kopf auftauchen.
+- Zentrale Systemwerte werden in `public.system_settings` mit Integer- oder Numeric-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Core-Gap für didaktische Folgeaktivitäten, Gewichte der offenen Last, Retention-Abstand, Retention-Einstiegsposition und Default-Tempo.
 
 ## Additive V2-Richtung
 
@@ -90,7 +90,7 @@ Für den anstehenden Core-Feed-V2-Umbau soll das Datenmodell nicht neu erfunden,
 - `session_activity_state` bleibt im ersten V2-Schnitt Träger von `start`; eine spätere Zusammenführung in ein gemeinsames Schrittmodell bleibt offen.
 - Eine neue session-scoped Projektion `session_feed_cursor` trägt `current_activity_key`, `locked_until`, `selected_at` und `selection_reason`.
 - Checkbezogene Rohversuche außerhalb des Feed-Kontexts dürfen im Core-Feed-V2 keinen Feed-Schritt abschließen; die eigentliche Pipeline-Bewegung wandert in einen cursor-validierten Feed-Abschluss.
-- Retention bleibt im ersten Core-Feed-V2-Umbau außerhalb des neuen Core-Read-Pfads und wird erst nach stabilem Cursor- und Zeitfenster-Modell wieder angebunden.
+- Retention bleibt im ersten Core-Feed-V2-Umbau außerhalb des serverseitigen Core-Cursors; die UI darf fällige Retention-Flashcards separat einblenden, ohne `current_activity_key` zu verändern.
 
 ## Begriffstrennung
 
@@ -190,6 +190,7 @@ Felder:
 - `lernbereich_slug text not null`
 - `sort_index integer not null default 0` — didaktische Reihenfolge innerhalb eines Gebiets; identische Werte starten gleichzeitig
 - `gebiet text not null default ''` — Gebiet des Lernbereichs (z. B. `analysis`); `''` bedeutet keine Sequenzierung
+- `gebiet_order integer not null default 0` — Reihenfolge zwischen Gebieten bei gleichzeitigen Freigaben, aktuell aus `gebiete.yml`
 - `created_at timestamptz not null default now()`
 
 Schlüssel:
@@ -199,8 +200,9 @@ Schlüssel:
 Bemerkung:
 
 - `lernbereich_slug` referenziert bewusst auf Repo-Content, nicht auf eine eigene Content-Tabelle in der Datenbank.
-- `sort_index` und `gebiet` kommen aus `lernbereiche.yml` (`didactic_order`) und werden vom Frontend beim Speichern der Session übergeben.
-- Lernbereiche verschiedener Gebiete laufen vollständig parallel; die Reihenfolge gilt nur innerhalb desselben Gebiets.
+- `sort_index` und `gebiet` kommen aus `lernbereiche.yml` (`didactic_order`), `gebiet_order` aus `gebiete.yml`; alle drei Werte werden beim Speichern der Session als Repo-Snapshot mitgegeben.
+- Innerhalb eines Gebiets schaltet die Runtime neue `start`-Aktivitäten erst frei, wenn alle nicht ausgeschlossenen Checks kleinerer `sort_index`-Stufen `check_completed` erreicht haben.
+- Lernbereiche verschiedener Gebiete dürfen parallel laufen; `gebiet_order` liefert nur den deterministischen Tiebreaker.
 
 ### 4a. `public.system_settings`
 
@@ -210,6 +212,11 @@ Zentrale Stelle für globale Systemwerte, die Frontend und serverseitige Feed-/P
 Aktuelle Schlüssel:
 
 - `planning.default_activities_per_day`
+- `feed.weight_start`
+- `feed.weight_training`
+- `feed.weight_recall`
+- `feed.weight_feynman`
+- `feed.weight_kompetenzliste`
 - `feed.core_gap_very_tight_hours`
 - `feed.core_gap_tight_hours`
 - `feed.core_gap_normal_hours`
@@ -478,26 +485,27 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 1. Heute markiert primär das System die aktive Core-Session als `completed`, sobald der letzte offene Check über `complete_kompetenzliste_gate(...)` nach `check_completed` übergeht.
 2. Die Session endet fachlich; `ended_at` wird gesetzt.
-3. Aus den enthaltenen Lernbereichen werden additive `user_retention_scopes` für Flashcards abgeleitet und mit einem Queue-Anker für den sichtbaren Feed-Kopf versehen.
+3. Aus vollständig abgeschlossenen Lernbereichen werden additive `user_retention_scopes` für Flashcards abgeleitet, sofort fällig gemacht und mit einem Queue-Anker für den sichtbaren Feed-Kopf versehen.
 4. Bestehende session-scoped Flashcard-Kartenstände werden in `retention_flashcard_card_state` user-scoped übernommen.
 5. Bereits `paused` oder `opted_out` gesetzte Retention-Scopes werden dabei nicht automatisch reaktiviert.
 
 ## MVP-RPCs
 
 - `update_own_profile(p_display_name text)`
-- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_activities_per_day numeric default null, p_included_check_ids text[] default array[]::text[], p_target_date date default null, p_target_source text default null, p_lernbereiche_meta jsonb default null)` — `p_lernbereiche_meta`: optionales JSON-Array `[{slug, gebiet, sort_index}, …]` für didaktische Reihenfolge; fehlt es, starten alle Checks als `due`
+- `save_active_learning_session(p_lernbereiche text[], p_excluded_check_ids text[], p_activities_per_day numeric default null, p_included_check_ids text[] default array[]::text[], p_target_date date default null, p_target_source text default null, p_lernbereiche_meta jsonb default null)` — `p_lernbereiche_meta`: optionales JSON-Array `[{slug, gebiet, gebiet_order, sort_index}, …]`; `start` wird daraus gebietsweise freigeschaltet, eigentliche Check-Aktivitäten bleiben bis zum abgeschlossenen `start` des Lernbereichs `blocked`
 - `delete_active_learning_session()`
-- `complete_start_activity(p_lernbereich_slug text)`
-- `complete_current_training_step(p_check_id text)`
-- `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text)`
-- `complete_kompetenzliste_gate(p_check_id text)`
+- `complete_start_activity(p_lernbereich_slug text, p_activity_key text)`
+- `complete_current_training_step(p_check_id text, p_activity_key text)`
+- `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text, p_activity_key text)`
+- `complete_kompetenzliste_gate(p_check_id text, p_activity_key text)`
 - `finish_learning_session(p_session_id uuid, p_status text)`
 - `set_retention_scope_status(p_lernbereich_slug text, p_status text)`
 - `delete_current_user_account()`
 
 ### Interne Hilfsfunktionen (kein direkter Nutzer-Grant)
 
-- `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — prüft nach einem erfolgreichen Recall, ob alle Checks der Prerequisite-Tier im selben Gebiet abgeschlossen sind, und schaltet die nächste Tier (`sort_index`-Stufe) frei; wird intern von `record_check_module_attempt` aufgerufen
+- `is_lernbereich_start_ready(p_session_id uuid, p_lernbereich_slug text)` — prüft, ob alle nicht ausgeschlossenen Checks kleinerer `sort_index`-Stufen desselben Gebiets bereits `check_completed` sind
+- `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — schaltet nach vollständigem Lernbereichsabschluss die nächste `start`-Stufe desselben Gebiets frei; wird intern von `complete_kompetenzliste_gate` aufgerufen
 
 ## Minimale Leseflüsse
 
