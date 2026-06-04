@@ -3,7 +3,91 @@ const LERNBEREICH_ALIASES = {
   "zufallsexperimente-und-wahrscheinlichkeiten": ["zufallsexperimente"],
 };
 
+const MANUAL_RETENTION_PRIORITY_STORAGE_KEY = "mathechecks.manualRetentionPriority.v1";
 const contentMetaPromiseByKey = new Map();
+
+function readManualRetentionPriority() {
+  if (typeof window === "undefined") return [];
+
+  try {
+    const raw = window.sessionStorage?.getItem(MANUAL_RETENTION_PRIORITY_STORAGE_KEY);
+    if (!raw) return [];
+
+    const parsed = JSON.parse(raw);
+    const lernbereichSlugs = Array.isArray(parsed?.lernbereichSlugs)
+      ? parsed.lernbereichSlugs.map((value) => String(value || "").trim()).filter(Boolean)
+      : [];
+    return [...new Set(lernbereichSlugs)];
+  } catch {
+    return [];
+  }
+}
+
+function writeManualRetentionPriority(lernbereichSlugs = []) {
+  if (typeof window === "undefined") return;
+
+  const normalizedLernbereichSlugs = [...new Set(
+    (Array.isArray(lernbereichSlugs) ? lernbereichSlugs : [])
+      .map((value) => String(value || "").trim())
+      .filter(Boolean),
+  )];
+
+  try {
+    if (!normalizedLernbereichSlugs.length) {
+      window.sessionStorage?.removeItem(MANUAL_RETENTION_PRIORITY_STORAGE_KEY);
+      return;
+    }
+
+    window.sessionStorage?.setItem(MANUAL_RETENTION_PRIORITY_STORAGE_KEY, JSON.stringify({
+      lernbereichSlugs: normalizedLernbereichSlugs,
+    }));
+  } catch {
+    // Session-Storage dient hier nur als UX-Hinweis.
+  }
+}
+
+export function rememberManualRetentionPriority(lernbereichSlugs = []) {
+  writeManualRetentionPriority(lernbereichSlugs);
+}
+
+export function clearManualRetentionPriority() {
+  writeManualRetentionPriority([]);
+}
+
+function prioritizeManualRetentionEntries(retentionEntries = []) {
+  const manualPrioritySlugs = new Set(readManualRetentionPriority());
+  if (!manualPrioritySlugs.size) {
+    return {
+      entries: Array.isArray(retentionEntries) ? retentionEntries : [],
+      hasManualPriorityMatch: false,
+    };
+  }
+
+  const prioritizedEntries = [];
+  const remainingEntries = [];
+
+  (Array.isArray(retentionEntries) ? retentionEntries : []).forEach((entry) => {
+    const lernbereichSlug = String(entry?.lernbereich_slug || "").trim();
+    if (lernbereichSlug && manualPrioritySlugs.has(lernbereichSlug)) {
+      prioritizedEntries.push(entry);
+      return;
+    }
+    remainingEntries.push(entry);
+  });
+
+  if (!prioritizedEntries.length) {
+    clearManualRetentionPriority();
+    return {
+      entries: Array.isArray(retentionEntries) ? retentionEntries : [],
+      hasManualPriorityMatch: false,
+    };
+  }
+
+  return {
+    entries: [...prioritizedEntries, ...remainingEntries],
+    hasManualPriorityMatch: true,
+  };
+}
 
 export const FEED_STEP_ORDER = {
   training: 1,
@@ -85,6 +169,7 @@ function buildGebietMeta(gebiete) {
   return Object.fromEntries(
     (Array.isArray(gebiete) ? gebiete : []).map((gebiet) => [gebiet.key, {
       group: gebiet.name,
+      order: Number.isFinite(Number(gebiet.order)) ? Number(gebiet.order) : 999,
       icon: gebiet.icon,
       iconBg: gebiet.icon_bg,
       iconColor: gebiet.icon_color,
@@ -143,6 +228,7 @@ function buildLernbereicheFromData(checks, gebiete, lernbereicheSource) {
     if (!grouped.has(lernbereich.gebiet)) {
       grouped.set(lernbereich.gebiet, {
         group: meta.group,
+        order: meta.order,
         icon: meta.icon,
         iconBg: meta.iconBg,
         iconColor: meta.iconColor,
@@ -171,12 +257,27 @@ function buildLernbereicheFromData(checks, gebiete, lernbereicheSource) {
       id: lernbereich.slug,
       name: lernbereich.name,
       gebietKey: lernbereich.gebiet,
+      gebietOrder: meta.order,
       color: meta.color,
+      didacticOrder: lernbereich.didactic_order ?? null,
       checks: Array.from(checksById.values()),
     });
   });
 
-  return Array.from(grouped.values());
+  return Array.from(grouped.values())
+    .map((group) => ({
+      ...group,
+      items: [...group.items].sort((left, right) => {
+        const leftOrder = Number.isFinite(Number(left.didacticOrder)) ? Number(left.didacticOrder) : 999;
+        const rightOrder = Number.isFinite(Number(right.didacticOrder)) ? Number(right.didacticOrder) : 999;
+        if (leftOrder !== rightOrder) return leftOrder - rightOrder;
+        return String(left.name || "").localeCompare(String(right.name || ""), "de");
+      }),
+    }))
+    .sort((left, right) => {
+      if (left.order !== right.order) return left.order - right.order;
+      return String(left.group || "").localeCompare(String(right.group || ""), "de");
+    });
 }
 
 function buildCheckMetaById(lernbereiche) {
@@ -843,14 +944,28 @@ export async function loadFeedProjection({
   let items = [];
   let source = "empty";
   let waiting = null;
+  let retentionEntries = [];
 
   if (activeSession?.id) {
     const cursorState = await pickCurrentFeedCursor(supabase, activeSession.id);
     const currentItem = buildCurrentCursorFeedItem(contentMeta, cursorState);
+    retentionEntries = await loadRetentionFeedEntries(supabase, { activeSession });
+    const prioritizedRetention = prioritizeManualRetentionEntries(retentionEntries);
+    const dueRetentionItems = prioritizedRetention.entries
+      .filter((entry) => !entry?.allow_early_feed_start)
+      .map((entry) => buildRetentionFeedItem(contentMeta, entry))
+      .filter(Boolean);
+    const shouldPreferRetention = dueRetentionItems.length > 0 && (
+      prioritizedRetention.hasManualPriorityMatch
+      || String(cursorState?.timing_status || "").trim() === "available"
+    );
 
-    if (currentItem) {
+    if (currentItem && !shouldPreferRetention) {
       items = [currentItem];
       source = "session";
+    } else if (dueRetentionItems.length) {
+      items = dueRetentionItems;
+      source = "retention";
     } else if (String(cursorState?.activity_kind || "").trim() === "waiting") {
       source = "waiting";
       waiting = {
@@ -860,8 +975,10 @@ export async function loadFeedProjection({
   }
 
   if (!items.length && !waiting) {
-    const retentionEntries = await loadRetentionFeedEntries(supabase);
-    items = (Array.isArray(retentionEntries) ? retentionEntries : [])
+    const fallbackRetentionEntries = activeSession?.id
+      ? retentionEntries
+      : await loadRetentionFeedEntries(supabase);
+    items = (Array.isArray(fallbackRetentionEntries) ? fallbackRetentionEntries : [])
       .map((entry) => buildRetentionFeedItem(contentMeta, entry))
       .filter(Boolean);
 

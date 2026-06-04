@@ -1,5 +1,10 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { FEED_STEP_ORDER, buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260603-topbar-feed-badge";
+import {
+  FEED_STEP_ORDER,
+  buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,
+  loadFeedProjection,
+  rememberManualRetentionPriority,
+} from "../platform/feed-projection.js?v=20260604-manual-retention-head";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -79,6 +84,7 @@ function buildGebietMeta(gebiete) {
   return Object.fromEntries(
     (Array.isArray(gebiete) ? gebiete : []).map((gebiet) => [gebiet.key, {
       group: gebiet.name,
+      order: Number.isFinite(Number(gebiet.order)) ? Number(gebiet.order) : 999,
       icon: gebiet.icon,
       iconBg: gebiet.icon_bg,
       iconColor: gebiet.icon_color,
@@ -136,6 +142,7 @@ function buildLernbereicheFromData(checks, gebiete, lernbereicheSource) {
     if (!grouped.has(lernbereich.gebiet)) {
       grouped.set(lernbereich.gebiet, {
         group: meta.group,
+        order: meta.order,
         icon: meta.icon,
         iconBg: meta.iconBg,
         iconColor: meta.iconColor,
@@ -164,13 +171,27 @@ function buildLernbereicheFromData(checks, gebiete, lernbereicheSource) {
       id: lernbereich.slug,
       name: lernbereich.name,
       gebietKey: lernbereich.gebiet,
+      gebietOrder: meta.order,
       color: meta.color,
       didacticOrder: lernbereich.didactic_order ?? null,
       checks: Array.from(checksById.values()),
     });
   });
 
-  return Array.from(grouped.values());
+  return Array.from(grouped.values())
+    .map((group) => ({
+      ...group,
+      items: [...group.items].sort((left, right) => {
+        const leftOrder = Number.isFinite(Number(left.didacticOrder)) ? Number(left.didacticOrder) : 999;
+        const rightOrder = Number.isFinite(Number(right.didacticOrder)) ? Number(right.didacticOrder) : 999;
+        if (leftOrder !== rightOrder) return leftOrder - rightOrder;
+        return String(left.name || "").localeCompare(String(right.name || ""), "de");
+      }),
+    }))
+    .sort((left, right) => {
+      if (left.order !== right.order) return left.order - right.order;
+      return String(left.group || "").localeCompare(String(right.group || ""), "de");
+    });
 }
 
 function isCheckSelected(lbState, checkId) {
@@ -915,6 +936,7 @@ function buildSessionPayloadBase(draft, lernbereiche) {
       lernbereicheMeta.push({
         slug: lb.id,
         gebiet: lb.gebietKey,
+        gebiet_order: lb.gebietOrder ?? 999,
         sort_index: lb.didacticOrder ?? 0,
       });
       lb.checks.forEach((check) => {
@@ -1792,6 +1814,22 @@ function buildRetentionDraftPayload(retentionDraft, lernbereiche) {
   };
 }
 
+function collectNewlyActivatedRetentionLernbereiche(retentionDraft, persistedRetentionDraft, lernbereiche) {
+  const newlyActivated = [];
+
+  lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      const wasActive = Boolean(persistedRetentionDraft?.[lb.id]?.active);
+      const isActive = Boolean(retentionDraft?.[lb.id]?.active);
+      if (!wasActive && isActive) {
+        newlyActivated.push(lb.id);
+      }
+    });
+  });
+
+  return newlyActivated;
+}
+
 function setRetentionModalStatus(context, message, tone = "neutral") {
   setStatusNode(context.elements.retentionModalStatusNode, message, tone);
 }
@@ -1933,6 +1971,7 @@ async function openRetentionModal(context) {
 
   setRetentionModalStatus(context, "");
   context.retentionDraft = {};
+  context.retentionPersistedDraft = {};
   context.elements.retentionOverlay.classList.add("open");
   document.body.style.overflow = "hidden";
 
@@ -1953,6 +1992,7 @@ async function openRetentionModal(context) {
     if (exclusionError) throw exclusionError;
 
     context.retentionDraft = buildRetentionStateFromPersisted(context.lernbereiche, scopeRows, exclusionRows);
+    context.retentionPersistedDraft = cloneState(context.retentionDraft);
     buildRetentionModal(context);
   } catch (error) {
     console.error("Retention-Scopes konnten nicht geladen werden:", error);
@@ -1996,6 +2036,11 @@ async function handleRetentionSave(context) {
   }
 
   const payload = buildRetentionDraftPayload(context.retentionDraft, context.lernbereiche);
+  const newlyActivatedLernbereiche = collectNewlyActivatedRetentionLernbereiche(
+    context.retentionDraft,
+    context.retentionPersistedDraft,
+    context.lernbereiche,
+  );
 
   setRetentionMutationBusy(context, true);
   setRetentionModalStatus(context, "Speichere Wiederholungen ...");
@@ -2003,6 +2048,12 @@ async function handleRetentionSave(context) {
   try {
     const { error } = await context.supabase.rpc("manage_retention_scopes", payload);
     if (error) throw error;
+
+    if (newlyActivatedLernbereiche.length) {
+      rememberManualRetentionPriority(newlyActivatedLernbereiche);
+    }
+
+    context.retentionPersistedDraft = cloneState(context.retentionDraft);
 
     await Promise.all([
       refreshPrimaryFeedCard(context),
@@ -2072,6 +2123,7 @@ function createContext(root, lernbereiche) {
     draftConfig: { targetDate: "" },
     isSaving: false,
     retentionDraft: {},
+    retentionPersistedDraft: {},
     retentionIsSaving: false,
     hasRetentionEntries: false,
     elements,

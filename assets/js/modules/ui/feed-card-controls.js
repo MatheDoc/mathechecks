@@ -1,5 +1,5 @@
 import { keepCurrentFeedCursor, releaseCurrentFeedCursor } from "../../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260603-topbar-feed-badge";
+import { clearManualRetentionPriority, loadFeedContentMeta, loadFeedProjection } from "../../platform/feed-projection.js?v=20260604-manual-retention-head";
 import { getSupabaseClient } from "../../platform/supabase-client.js";
 import { confirmFeedActivityAbort, disableFeedActivityGuard } from "./feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -460,6 +460,10 @@ export function navigateFromFeedContext(url) {
 export function attachFeedCardControls(section, { cardSelector, stepLabel = "Feed" } = {}) {
   const card = section?.querySelector?.(cardSelector || ".check-card");
   if (!section || !card) return null;
+
+  if (getCurrentFeedActivityKey()) {
+    clearManualRetentionPriority();
+  }
 
   section.dataset.feedActive = "true";
   card.classList.add("check-card--feed-active");

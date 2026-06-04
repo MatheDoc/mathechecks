@@ -7,7 +7,7 @@ nav: dashboard
 body_class: page-dashboard
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260603-activities-cleanup
+module_script: /assets/js/modules/dashboard.js?v=20260604-manual-retention-head
 ---
 
 {% include dashboard/content.html %}

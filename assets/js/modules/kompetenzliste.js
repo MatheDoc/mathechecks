@@ -2,7 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks
 import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260602-feed-cursor";
+import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
 
 const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 
