@@ -1,5 +1,6 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
@@ -802,7 +803,18 @@ function initInteractiveFeynmanCards(root, checks, lernbereich, activityContext)
       startTimerBar("explain", FEYNMAN_DELAY_MS, toEvaluateButton);
     });
 
-    toEvaluateButton?.addEventListener("click", revealEvaluation);
+    toEvaluateButton?.addEventListener("click", () => {
+      void recordUserActivity({
+        activityType: "feynman",
+        lernbereichSlug: lernbereich,
+        checkId,
+        contextKey: activityContext?.mode === "feed" ? "feed" : "free",
+        details: {
+          trigger: "self_check_start",
+        },
+      });
+      revealEvaluation();
+    });
     card.querySelector('[data-fy-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-fy-answer="no"]')?.addEventListener("click", () => setResult(false));
 

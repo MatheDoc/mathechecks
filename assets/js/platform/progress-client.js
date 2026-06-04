@@ -68,6 +68,49 @@ export async function recordCheckModuleAttempt({
   }
 }
 
+export async function recordUserActivity({
+  activityType,
+  lernbereichSlug = "",
+  checkId = "",
+  contextKey = "",
+  details = {},
+}) {
+  const normalizedActivityType = normalizeText(activityType).toLowerCase();
+  const normalizedLernbereichSlug = normalizeText(lernbereichSlug);
+  const normalizedCheckId = normalizeText(checkId);
+  const normalizedContextKey = normalizeText(contextKey).toLowerCase();
+  const normalizedDetails = details && typeof details === "object" && !Array.isArray(details)
+    ? details
+    : {};
+
+  if (!normalizedActivityType) {
+    return { ok: false, skipped: true, reason: "missing-input" };
+  }
+
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("record_user_activity", {
+      p_activity_type: normalizedActivityType,
+      p_lernbereich_slug: normalizedLernbereichSlug || null,
+      p_check_id: normalizedCheckId || null,
+      p_context_key: normalizedContextKey || null,
+      p_details: normalizedDetails,
+    });
+
+    if (error) {
+      console.warn("MatheChecks: Nutzeraktivität konnte nicht gespeichert werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Speichern der Nutzeraktivität.", error);
+    return { ok: false, error };
+  }
+}
+
 export async function completeKompetenzlisteGate({ checkId, activityKey }) {
   const normalizedCheckId = normalizeText(checkId);
   const normalizedActivityKey = normalizeText(activityKey);
