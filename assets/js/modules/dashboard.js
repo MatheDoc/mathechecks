@@ -31,6 +31,164 @@ const ACTIVITY_MAP_EMPTY_SUMMARY = "Letzte 12 Wochen bis heute. Sobald Aktivitä
 const ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY = "In den letzten 12 Wochen wurden noch keine Aktivitäten erfasst.";
 const ACTIVITY_MAP_DEFAULT_WEEKS = 12;
 const ACTIVITY_MAP_DAY_LABELS = ["Mo", "", "Mi", "", "Fr", "", "So"];
+const GREETING_TIME_VARIANTS = [
+  {
+    key: "early-morning",
+    startHour: 5,
+    endHour: 8,
+    variants: [
+      "Hey {name}, so früh schon am Werk? Respekt.",
+      "Frühaufsteher-Modus, {name}? Mathe ist offenbar auch schon wach.",
+      "Der Tag ist jung, {name}. Dein Dashboard leider auch.",
+    ],
+  },
+  {
+    key: "morning",
+    startHour: 8,
+    endHour: 12,
+    variants: [
+      "Guten Morgen, {name}. Kopf noch frei? Perfekt.",
+      "Morgenfenster, {name}. Gute Zeit für klare Gedanken.",
+      "Noch ist der Kopf nicht voller Tabs, {name}. Nutzen wir das.",
+    ],
+  },
+  {
+    key: "midday",
+    startHour: 12,
+    endHour: 14,
+    variants: [
+      "Mittagspause mit Mathe? Könnte schlimmer sein.",
+      "Kurzer Check zur Mittagszeit, {name}? Reicht oft schon.",
+      "Zwischen zwei Dingen noch kurz Mathe. Starker Move, {name}.",
+    ],
+  },
+  {
+    key: "afternoon",
+    startHour: 14,
+    endHour: 18,
+    variants: [
+      "Nachmittags-Check, {name}. Heute schon was gelernt?",
+      "Der Nachmittag läuft. Ein kleiner Schritt passt noch rein.",
+      "Nicht mehr ganz früh, aber definitiv früh genug, {name}.",
+    ],
+  },
+  {
+    key: "evening",
+    startHour: 18,
+    endHour: 21,
+    variants: [
+      "Guten Abend, {name}. Der Tag hat noch was übrig.",
+      "Abendrunde, {name}? Ein Haken mehr ist schnell gesetzt.",
+      "Der Tag ist fast durch. Für einen kleinen Fortschritt reicht's noch.",
+    ],
+  },
+  {
+    key: "late-evening",
+    startHour: 21,
+    endHour: 23,
+    variants: [
+      "Spätschicht, {name}? Noch ein sauberer Schritt geht.",
+      "Hallo {name}, der Abend ist weit fortgeschritten. Du offenbar auch.",
+      "Noch wach, {name}? Dann kann das Dashboard auch kurz mitmachen.",
+    ],
+  },
+  {
+    key: "after-midnight",
+    startHour: 23,
+    endHour: 5,
+    variants: [
+      "Hey {name}, es ist nach Mitternacht. Respekt – oder Sorge.",
+      "Nach Mitternacht noch hier, {name}? Das ist Einsatz.",
+      "Sehr späte Lernzeit, {name}. Kurz, konzentriert, dann Feierabend.",
+    ],
+  },
+];
+const GREETING_EVENT_VARIANTS = {
+  streak1: [
+    "Erster Tag – oder Neustart. Beides zählt.",
+    "Hey {name}, Tag eins. Mehr Anfang braucht es nicht.",
+    "Neu angefangen ist auch angefangen, {name}.",
+  ],
+  streak3: [
+    "3 Tage am Stück, {name}. Das ist kein Zufall mehr.",
+    "Drei Tage in Folge. Sieht verdächtig nach Gewohnheit aus.",
+    "Hi {name}, drei Tage nacheinander. Läuft.",
+  ],
+  streak7: [
+    "Eine Woche. Aus Vorsatz wird Gewohnheit.",
+    "7 Tage, {name}. Das ist inzwischen ziemlich echt.",
+    "Eine volle Woche dran geblieben. Sauber.",
+  ],
+  streak14: [
+    "Zwei Wochen, {name}. Du machst das ernsthaft.",
+    "14 Tage am Stück. Das nennt man inzwischen Routine.",
+    "Hey {name}, zwei Wochen. Nicht laut, aber konsequent.",
+  ],
+  streak30: [
+    "30 Tage. Entweder Abitur in Sicht – oder du meinst das wirklich ernst.",
+    "Ein Monat Streak, {name}. Schwer, das noch Zufall zu nennen.",
+    "30 Tage am Stück. Das ist schon fast verdächtig diszipliniert.",
+  ],
+  streak100: [
+    "Hallo {name}, 100 Tage. Wir müssen über deine Zukunft als Mathematiker reden.",
+    "100 Tage in Folge, {name}. Das ist keine Phase mehr.",
+    "Dreistellig, {name}. Spätestens jetzt wird's ernst.",
+  ],
+  missedYesterday: [
+    "Da bist du wieder, {name}. Der Streak ist weg, der Fortschritt nicht.",
+    "Hey {name}, gestern war Pause. Heute geht's trotzdem weiter.",
+    "Ein Tag weg ist kein Drama, {name}. Wieder einsteigen reicht.",
+  ],
+  longPause: [
+    "Hallo {name}! Es ist eine Weile her. Fangen wir da an, wo du aufgehört hast.",
+    "Willkommen zurück, {name}. Wir tun einfach so, als wäre das geplant gewesen.",
+    "Etwas länger nicht hier gewesen, {name}. Kein Problem. Weiter geht's.",
+  ],
+  streakAtRisk: [
+    "Hey {name}, heute noch nichts? Der Streak zittert.",
+    "Der Tag läuft, der Streak auch. Noch zumindest.",
+    "Wenn du heute noch kurz reinschaust, lebt der Streak weiter.",
+  ],
+};
+const GREETING_PROGRESS_VARIANTS = {
+  yesterdayBusy: [
+    "Du warst gestern fleißig. Heute reicht auch ein kurzer Check.",
+    "Gestern war stark, {name}. Heute muss es kein Marathon sein.",
+    "Viel erledigt gestern. Ein kleiner Schritt heute hält den Takt.",
+  ],
+  sessionPressureHigh: [
+    "Der Plan ist gerade etwas ambitioniert. Ein Schritt heute hilft sofort.",
+    "Hallo {name}, das Zieldatum schaut gerade ziemlich ernst.",
+    "Heute lohnt sich selbst ein kleiner Fortschritt doppelt.",
+  ],
+  sessionPressureMedium: [
+    "Der Plan ist machbar, aber er wartet nicht.",
+    "Hey {name}, gerade ist es eher sportlich als gemütlich.",
+    "Nicht dramatisch, aber heute wäre ein guter Tag für einen Haken.",
+  ],
+  sessionSmooth: [
+    "Alles läuft, {name}. Einfach weitermachen.",
+    "Sauber im Plan, {name}. Genau so.",
+    "Das sieht gerade ziemlich stabil aus. Weiter so, nur ohne Pathos.",
+  ],
+  sessionDone: [
+    "Session praktisch durch. Das war sauber.",
+    "Hey {name}, hier steht fast nur noch Abhaken an.",
+    "Sieht aus, als hättest du das Gröbste schon erledigt.",
+  ],
+};
+const GREETING_FALLBACK_VARIANTS = [
+  "Na, {name}. Bereit?",
+  "Schön, dass du da bist, {name}.",
+  "Hey {name}, Mathe wartet. Wie immer.",
+  "Heute wieder ein bisschen schlauer werden?",
+  "Kleine Schritte, {name}. Jeden Tag.",
+  "Hey {name}, los geht's.",
+];
+const GREETING_STREAK_MILESTONES = [100, 30, 14, 7, 3, 1];
+const GREETING_LONG_PAUSE_DAYS = 7;
+const GREETING_BUSY_YESTERDAY_THRESHOLD = 4;
+const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -64,6 +222,26 @@ function escapeHtml(value) {
 
 function cloneState(state) {
   return JSON.parse(JSON.stringify(state || {}));
+}
+
+function hashString(value) {
+  return Array.from(String(value || "")).reduce((hash, char) => {
+    return ((hash * 33) ^ char.codePointAt(0)) >>> 0;
+  }, 5381);
+}
+
+function pickGreetingVariant(variants, seed) {
+  const options = Array.isArray(variants) ? variants.filter(Boolean) : [];
+  if (!options.length) return "";
+  return options[hashString(seed) % options.length];
+}
+
+function renderGreetingTemplate(template, displayName) {
+  const safeName = `<span data-dashboard-greeting-name>${escapeHtml(displayName)}</span>`;
+  return String(template || "")
+    .split("{name}")
+    .map((part) => escapeHtml(part))
+    .join(safeName);
 }
 
 function getBaseClassName(node) {
@@ -212,8 +390,10 @@ function countSelectedChecks(lb, lbState) {
 
 function setGreetingName(user) {
   const node = document.querySelector("[data-dashboard-greeting-name]");
-  if (!node || !user) return;
-  node.textContent = formatAuthDisplayName(user);
+  if (!node) return;
+
+  const label = String(user ? formatAuthDisplayName(user) : "").trim() || "Schüler:in";
+  node.textContent = label;
 }
 
 function setGreetingDate(date = new Date()) {
@@ -226,6 +406,273 @@ function setGreetingDate(date = new Date()) {
     month: "long",
     year: "numeric",
   }).format(date);
+}
+
+function shiftDateByDays(date, dayOffset) {
+  const nextDate = date instanceof Date ? new Date(date) : new Date();
+  nextDate.setDate(nextDate.getDate() + (Number(dayOffset) || 0));
+  return nextDate;
+}
+
+function isGreetingHourInWindow(hour, startHour, endHour) {
+  if (startHour === endHour) return true;
+  if (startHour < endHour) {
+    return hour >= startHour && hour < endHour;
+  }
+  return hour >= startHour || hour < endHour;
+}
+
+function getGreetingTimeWindow(hour) {
+  return GREETING_TIME_VARIANTS.find((entry) => {
+    return isGreetingHourInWindow(hour, entry.startHour, entry.endHour);
+  }) || null;
+}
+
+function getActivityCountByDate(entries, dateValue) {
+  const normalizedDateValue = normalizeDateOnlyValue(dateValue);
+  if (!normalizedDateValue) return 0;
+
+  return Math.max(
+    0,
+    Number(
+      (Array.isArray(entries) ? entries : []).find((entry) => normalizeDateOnlyValue(entry?.date) === normalizedDateValue)?.count,
+    ) || 0,
+  );
+}
+
+function getStreakLengthEndingOnDate(overview, endDateValue) {
+  const normalizedEndDate = normalizeDateOnlyValue(endDateValue);
+  if (!normalizedEndDate) return 0;
+
+  const mapData = normalizeActivityMap(overview);
+  const countByDate = new Map(
+    (Array.isArray(mapData?.days) ? mapData.days : []).map((entry) => [
+      normalizeDateOnlyValue(entry?.date),
+      Math.max(0, Number(entry?.count) || 0),
+    ]),
+  );
+
+  let streakLength = 0;
+  const cursor = parseDateOnlyValue(normalizedEndDate);
+  while (cursor instanceof Date && !Number.isNaN(cursor.getTime())) {
+    const dateValue = toDateOnlyValue(cursor);
+    if ((countByDate.get(dateValue) || 0) <= 0) break;
+    streakLength += 1;
+    cursor.setDate(cursor.getDate() - 1);
+  }
+
+  const longestStreakEndDate = normalizeDateOnlyValue(overview?.longestStreak?.endDate);
+  const longestStreakLength = Math.max(0, Number(overview?.longestStreak?.length) || 0);
+  if (longestStreakEndDate === normalizedEndDate) {
+    return Math.max(streakLength, longestStreakLength);
+  }
+
+  return streakLength;
+}
+
+function buildGreetingSeed(context, todayDateValue, key) {
+  const user = context?.authState?.user;
+  const userSeed = String(user?.id || (user ? formatAuthDisplayName(user) : "") || "guest").trim() || "guest";
+  return `${todayDateValue}|${userSeed}|${key}`;
+}
+
+function buildGreetingSnapshot(context, date = new Date()) {
+  const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+
+  const todayDateValue = toDateOnlyValue(today);
+  const yesterdayDateValue = toDateOnlyValue(shiftDateByDays(today, -1));
+  const dayBeforeYesterdayDateValue = toDateOnlyValue(shiftDateByDays(today, -2));
+  const overview = context?.activityOverview;
+  const recentEntries = normalizeActivityOverviewDays(overview);
+  const todayCount = getActivityCountByDate(recentEntries, todayDateValue);
+  const yesterdayCount = getActivityCountByDate(recentEntries, yesterdayDateValue);
+  const lastActivityDate = normalizeDateOnlyValue(overview?.lastActivityDate);
+  const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
+  const progress = buildActiveSessionProgress(context);
+
+  let daysSinceLastActivity = Number.POSITIVE_INFINITY;
+  if (lastActivityDate) {
+    const lastActivity = parseDateOnlyValue(lastActivityDate);
+    if (lastActivity instanceof Date && !Number.isNaN(lastActivity.getTime())) {
+      lastActivity.setHours(0, 0, 0, 0);
+      daysSinceLastActivity = Math.floor((today.getTime() - lastActivity.getTime()) / 86400000);
+    }
+  }
+
+  let targetAssessment = null;
+  if (context?.activeSession) {
+    const { selectedCheckIds, activeLernbereichIds } = summarizeActivePlan(context);
+    if (selectedCheckIds.length || activeLernbereichIds.length) {
+      targetAssessment = buildTargetDateAssessment(context, selectedCheckIds, activeLernbereichIds);
+    }
+  }
+
+  return {
+    hour: now.getHours(),
+    todayDateValue,
+    yesterdayDateValue,
+    dayBeforeYesterdayDateValue,
+    todayCount,
+    yesterdayCount,
+    lastActivityDate,
+    totalCount,
+    daysSinceLastActivity,
+    recentStreakLength: getStreakLengthEndingOnDate(overview, lastActivityDate),
+    hasActiveSession: Boolean(context?.activeSession),
+    progress,
+    targetAssessment,
+  };
+}
+
+function resolveGreetingEvent(context, snapshot) {
+  if (snapshot.todayCount > 0 && snapshot.lastActivityDate === snapshot.todayDateValue) {
+    const milestone = GREETING_STREAK_MILESTONES.find((value) => snapshot.recentStreakLength === value);
+    if (milestone) {
+      const key = `streak${milestone}`;
+      return {
+        key,
+        template: pickGreetingVariant(GREETING_EVENT_VARIANTS[key], buildGreetingSeed(context, snapshot.todayDateValue, key)),
+      };
+    }
+  }
+
+  if (snapshot.totalCount <= 0 || snapshot.todayCount > 0) {
+    return null;
+  }
+
+  if (snapshot.daysSinceLastActivity >= GREETING_LONG_PAUSE_DAYS) {
+    return {
+      key: "longPause",
+      template: pickGreetingVariant(
+        GREETING_EVENT_VARIANTS.longPause,
+        buildGreetingSeed(context, snapshot.todayDateValue, "longPause"),
+      ),
+    };
+  }
+
+  if (snapshot.lastActivityDate === snapshot.dayBeforeYesterdayDateValue) {
+    return {
+      key: "missedYesterday",
+      template: pickGreetingVariant(
+        GREETING_EVENT_VARIANTS.missedYesterday,
+        buildGreetingSeed(context, snapshot.todayDateValue, "missedYesterday"),
+      ),
+    };
+  }
+
+  if (
+    snapshot.lastActivityDate === snapshot.yesterdayDateValue
+    && snapshot.recentStreakLength >= 2
+    && snapshot.hour >= 18
+  ) {
+    return {
+      key: "streakAtRisk",
+      template: pickGreetingVariant(
+        GREETING_EVENT_VARIANTS.streakAtRisk,
+        buildGreetingSeed(context, snapshot.todayDateValue, "streakAtRisk"),
+      ),
+    };
+  }
+
+  return null;
+}
+
+function resolveGreetingProgress(context, snapshot) {
+  if (snapshot.hasActiveSession && snapshot.progress && snapshot.progress.remainingStepCount <= 0) {
+    return {
+      key: "sessionDone",
+      template: pickGreetingVariant(
+        GREETING_PROGRESS_VARIANTS.sessionDone,
+        buildGreetingSeed(context, snapshot.todayDateValue, "sessionDone"),
+      ),
+    };
+  }
+
+  if (snapshot.todayCount === 0 && snapshot.yesterdayCount >= GREETING_BUSY_YESTERDAY_THRESHOLD) {
+    return {
+      key: "yesterdayBusy",
+      template: pickGreetingVariant(
+        GREETING_PROGRESS_VARIANTS.yesterdayBusy,
+        buildGreetingSeed(context, snapshot.todayDateValue, "yesterdayBusy"),
+      ),
+    };
+  }
+
+  if (snapshot.targetAssessment?.assessmentTone === "error") {
+    return {
+      key: "sessionPressureHigh",
+      template: pickGreetingVariant(
+        GREETING_PROGRESS_VARIANTS.sessionPressureHigh,
+        buildGreetingSeed(context, snapshot.todayDateValue, "sessionPressureHigh"),
+      ),
+    };
+  }
+
+  if (snapshot.targetAssessment?.assessmentTone === "warning") {
+    return {
+      key: "sessionPressureMedium",
+      template: pickGreetingVariant(
+        GREETING_PROGRESS_VARIANTS.sessionPressureMedium,
+        buildGreetingSeed(context, snapshot.todayDateValue, "sessionPressureMedium"),
+      ),
+    };
+  }
+
+  if (
+    snapshot.targetAssessment?.assessmentTone === "success"
+    && snapshot.progress
+    && snapshot.progress.remainingStepCount > 0
+    && snapshot.progress.percent >= GREETING_CONFIDENT_PROGRESS_PERCENT
+  ) {
+    return {
+      key: "sessionSmooth",
+      template: pickGreetingVariant(
+        GREETING_PROGRESS_VARIANTS.sessionSmooth,
+        buildGreetingSeed(context, snapshot.todayDateValue, "sessionSmooth"),
+      ),
+    };
+  }
+
+  return null;
+}
+
+function resolveGreetingTime(context, snapshot) {
+  const timeWindow = getGreetingTimeWindow(snapshot.hour);
+  if (!timeWindow) return null;
+
+  return {
+    key: `time-${timeWindow.key}`,
+    template: pickGreetingVariant(
+      timeWindow.variants,
+      buildGreetingSeed(context, snapshot.todayDateValue, `time-${timeWindow.key}`),
+    ),
+  };
+}
+
+function updateGreetingHeading(context, date = new Date()) {
+  const headingNode = context?.elements?.greetingHeading;
+  if (!headingNode) {
+    setGreetingName(context?.authState?.user);
+    return;
+  }
+
+  const displayName = String(context?.authState?.user ? formatAuthDisplayName(context.authState.user) : "").trim() || "Schüler:in";
+  const snapshot = buildGreetingSnapshot(context, date);
+  const greeting = resolveGreetingEvent(context, snapshot)
+    || resolveGreetingProgress(context, snapshot)
+    || resolveGreetingTime(context, snapshot)
+    || {
+      key: "fallback",
+      template: pickGreetingVariant(
+        GREETING_FALLBACK_VARIANTS,
+        buildGreetingSeed(context, snapshot.todayDateValue, "fallback"),
+      ),
+    };
+
+  headingNode.innerHTML = renderGreetingTemplate(greeting.template, displayName);
+  headingNode.dataset.greetingVariant = greeting.key;
 }
 
 function buildCheckMetaById(lernbereiche) {
@@ -734,10 +1181,12 @@ function applyActivityOverview(context, overview = null) {
 
 async function refreshActivityOverview(context) {
   if (!context.supabase) {
+    context.activityOverview = null;
     applyActivityOverview(context, null);
     applyActivityMap(context, null);
     setStatusNode(context.elements.activityStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
     setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_UNAVAILABLE_MESSAGE, "warning");
+    updateGreetingHeading(context);
     return;
   }
 
@@ -745,14 +1194,18 @@ async function refreshActivityOverview(context) {
     const { data, error } = await context.supabase.rpc("get_user_activity_overview");
     if (error) throw error;
 
+    context.activityOverview = data || null;
     applyActivityOverview(context, data || null);
     applyActivityMap(context, data || null);
+    updateGreetingHeading(context);
   } catch (error) {
     console.error("Aktivitätsstatistik konnte nicht geladen werden:", error);
+    context.activityOverview = null;
     applyActivityOverview(context, null);
     applyActivityMap(context, null);
     setStatusNode(context.elements.activityStatusNode, ACTIVITY_LOAD_ERROR_MESSAGE, "error");
     setStatusNode(context.elements.activityMapStatusNode, ACTIVITY_LOAD_ERROR_MESSAGE, "error");
+    updateGreetingHeading(context);
   }
 }
 
@@ -1789,6 +2242,7 @@ function updatePlanSummary(context) {
     if (assessmentNode) {
       setStatusNode(assessmentNode, "");
     }
+    updateGreetingHeading(context);
     return;
   }
 
@@ -1806,6 +2260,8 @@ function updatePlanSummary(context) {
       setStatusNode(assessmentNode, assessment.assessmentLabel, assessment.assessmentTone);
     }
   }
+
+  updateGreetingHeading(context);
 }
 
 async function loadPersistedState(supabase, lernbereiche) {
@@ -2677,6 +3133,7 @@ async function handleRetentionSave(context) {
 
 function createContext(root, lernbereiche) {
   const elements = {
+    greetingHeading: root.querySelector("[data-dashboard-greeting-heading]"),
     openButton: document.getElementById("lbOpenBtn"),
     deleteButton: document.getElementById("lbDeleteBtn"),
     closeButton: document.getElementById("lbCloseBtn"),
@@ -2744,6 +3201,7 @@ function createContext(root, lernbereiche) {
     supabase: null,
     authState: null,
     activeSession: null,
+    activityOverview: null,
     sessionCheckStates: [],
     sessionActivityStates: [],
     state: {},
@@ -2790,6 +3248,7 @@ export async function initDashboardModule() {
   const context = createContext(root, lernbereiche);
 
   setGreetingDate();
+  updateGreetingHeading(context);
   bindEvents(context);
   updatePlanSummary(context);
   updateSessionList(context);
@@ -2832,7 +3291,7 @@ export async function initDashboardModule() {
     return;
   }
 
-  setGreetingName(authState.user);
+  updateGreetingHeading(context);
   updateSessionActionButtons(context, false);
   updateRetentionActionButtons(context, false);
 
