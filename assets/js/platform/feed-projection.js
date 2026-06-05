@@ -625,6 +625,7 @@ function createFeedItem({
   titleText,
   checkIndexLabel = "",
   checkKeyword = "",
+  lernbereichText = "",
   descText,
   badges,
   primaryBadge,
@@ -641,6 +642,7 @@ function createFeedItem({
     titleText,
     checkIndexLabel,
     checkKeyword,
+    lernbereichText,
     descText,
     badges,
     primaryBadge,
@@ -760,6 +762,7 @@ function buildCheckFeedItem(contentMeta, entry) {
     titleText: formatCompactCheckTitle(checkMeta),
     checkIndexLabel: formatCheckIndexLabel(checkMeta),
     checkKeyword: formatCheckShortTitle(checkMeta),
+    lernbereichText: checkMeta.lernbereichName || "",
     descText: "",
     badges: [primaryBadge],
     primaryBadge,
@@ -840,6 +843,9 @@ function buildRetentionFeedItem(contentMeta, entry) {
   if (!href) return null;
 
   const primaryBadge = { label: "Flashcards", type: "flashcards" };
+  const timingBadge = entry?.allow_early_feed_start
+    ? { label: "Verfügbar", type: "available" }
+    : { label: "Fällig", type: "due" };
   return createFeedItem({
     kind: "retention",
     type: "flashcards",
@@ -849,7 +855,7 @@ function buildRetentionFeedItem(contentMeta, entry) {
     iconStyle: "background:var(--mt-flashcards-soft, var(--amber-soft));color:var(--mt-flashcards, var(--amber));",
     titleText: lernbereichMeta.lernbereichName,
     descText: "",
-    badges: [primaryBadge],
+    badges: [primaryBadge, timingBadge],
     primaryBadge,
     queueAge: Math.max(0, Number(entry?.queue_age || 0)),
     dueAfterActivityCount: Number.isFinite(Number(entry?.due_after_activity_count))

@@ -6,6 +6,29 @@
     </section>
 
     <div class="bento">
+        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Nächste Aktion</span>
+                    <div class="dashboard-feed__header-status" data-dashboard-primary-feed-status hidden></div>
+                </div>
+            </div>
+
+            <div class="check-card__body dashboard-panel__body">
+                <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
+                    <li class="action-card" data-type="feed" data-dashboard-primary-feed-card>
+                        <div class="action-body">
+                            <div class="dashboard-feed__primary-head">
+                                <div class="action-title dashboard-feed__primary-title" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</div>
+                            </div>
+                            <span class="action-badge dashboard-feed__lernbereich-badge" data-dashboard-primary-feed-subtitle hidden></span>
+                            <div class="action-desc" data-dashboard-primary-feed-desc hidden>Deine nächsten Aktivitäten werden vorbereitet.</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </article>
+
         <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
@@ -44,7 +67,7 @@
                         <div class="skill-fill dashboard-plan__progress-fill" data-dashboard-plan-progress-fill data-progress="0"></div>
                     </div>
                     <div class="dashboard-plan__progress-meta">
-                        <span class="dashboard-plan__progress-completed" data-dashboard-plan-progress-completed>0 / 0 Schritte abgeschlossen</span>
+                        <span class="dashboard-plan__progress-completed" data-dashboard-plan-progress-completed>0 / 0 abgeschlossen</span>
                         <span class="dashboard-plan__progress-remaining" data-dashboard-plan-progress-remaining>0 verbleibend</span>
                     </div>
                 </div>
@@ -54,29 +77,6 @@
                 </p>
                 <ul class="action-list dashboard-panel__list" data-dashboard-session-list hidden aria-hidden="true"></ul>
                 <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
-            </div>
-        </article>
-
-        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Feed</span>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-feed__intro">Hier erscheinen der nächste sinnvolle Schritt und weitere anstehende Aktivitäten: offene Session-Aktivitäten bleiben leitend, fällige Wiederholungs-Flashcards aus Retention mischen sich nach ihrem Wiederholungsabstand dazwischen.</p>
-                <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
-                    <li class="action-card" data-type="feed" data-dashboard-primary-feed-card>
-                        <div class="action-body">
-                            <div class="action-title" data-dashboard-primary-feed-title>Feed wird geladen</div>
-                            <div class="action-desc" data-dashboard-primary-feed-desc>Deine nächsten Aktivitäten werden vorbereitet.</div>
-                            <div class="action-badges" data-dashboard-primary-feed-badges>
-                                <span class="action-badge">Feed</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
             </div>
         </article>
 
@@ -118,7 +118,7 @@
         <article class="check-card dashboard-panel dashboard-panel--activity" data-dashboard-activity-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Aktivitäten</span>
+                    <span class="check-card__title dashboard-panel__title">Statistik</span>
                 </div>
             </div>
 
@@ -166,7 +166,7 @@
         <article class="check-card dashboard-panel dashboard-panel--activity-map" data-dashboard-activity-map-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Aktivitätskarte</span>
+                    <span class="check-card__title dashboard-panel__title">Aktivity Map</span>
                 </div>
                 <div class="dashboard-activity-map__header-right">
                     <span class="dashboard-activity-map__target" data-dashboard-activity-map-target hidden></span>

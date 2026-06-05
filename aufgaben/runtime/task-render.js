@@ -456,6 +456,7 @@ export function renderTask(task, options = {}) {
     const answerFieldQuestionIndexes = [];
     const questionEvaluators = [];
     const questionResults = [];
+    const checkableQuestionIndexes = new Set();
     const checkedQuestionIndexes = new Set(
         Array.isArray(persistedState?.checkedQuestionIndexes)
             ? persistedState.checkedQuestionIndexes.filter((index) => Number.isInteger(index) && index >= 0)
@@ -465,17 +466,22 @@ export function renderTask(task, options = {}) {
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
 
     const dispatchTaskProgress = () => {
+        const checkableQuestionCount = checkableQuestionIndexes.size;
+        const checkedCount = Array.from(checkedQuestionIndexes)
+            .filter((questionIndex) => checkableQuestionIndexes.has(questionIndex))
+            .length;
         const correctCount = Array.from(checkedQuestionIndexes)
+            .filter((questionIndex) => checkableQuestionIndexes.has(questionIndex))
             .filter((questionIndex) => isQuestionResultCorrect(questionResults[questionIndex]))
             .length;
 
         wrapper.dispatchEvent(new CustomEvent("task:question-checked", {
             bubbles: true,
             detail: {
-                checkedCount: checkedQuestionIndexes.size,
-                totalCount: itemCount,
+                checkedCount,
+                totalCount: checkableQuestionCount,
                 correctCount,
-                isComplete: itemCount > 0 && checkedQuestionIndexes.size >= itemCount,
+                isComplete: checkableQuestionCount === 0 || checkedCount >= checkableQuestionCount,
             },
         }));
     };
@@ -551,8 +557,12 @@ export function renderTask(task, options = {}) {
 
         attachQuestionCheckShortcuts(answerPreview, runQuestionCheck);
 
+        const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
+        if (fields.length > 0) {
+            checkableQuestionIndexes.add(i);
+        }
+
         if (interactiveMode && interactionConfig.enablePerQuestionCheck) {
-            const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
             fields.forEach((field) => {
                 answerFields.push(field);
                 answerFieldQuestionIndexes.push(i);
