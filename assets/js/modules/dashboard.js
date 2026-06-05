@@ -4,7 +4,7 @@ import {
   buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,
   loadFeedProjection,
   rememberManualRetentionPriority,
-} from "../platform/feed-projection.js?v=20260604-manual-retention-head";
+} from "../platform/feed-projection.js?v=20260606-retention-status";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -26,7 +26,7 @@ const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht
 const ACTIVITY_SUMMARY_EMPTY = "Sobald du Training, Recall, Feynman oder Flashcards abschließt, erscheinen sie hier accountgebunden.";
 const ACTIVITY_UNAVAILABLE_MESSAGE = "Die Aktivitätsstatistik ist gerade nicht verfügbar.";
 const ACTIVITY_LOAD_ERROR_MESSAGE = "Die Aktivitätsstatistik konnte gerade nicht geladen werden.";
-const ACTIVITY_MAP_SUMMARY_COPY = "Rollierender Verlauf der letzten 12 Wochen bis heute.";
+const ACTIVITY_MAP_SUMMARY_COPY = "Verlauf der letzten 12 Wochen";
 const ACTIVITY_MAP_EMPTY_SUMMARY = "Letzte 12 Wochen bis heute. Sobald Aktivitäten erfasst werden, füllt sich die Karte automatisch.";
 const ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY = "In den letzten 12 Wochen wurden noch keine Aktivitäten erfasst.";
 const ACTIVITY_MAP_DEFAULT_WEEKS = 12;
@@ -795,12 +795,13 @@ function capturePrimaryFeedDefaults(elements) {
   return {
     cardType: elements.primaryFeedCard?.dataset?.type || "training",
     cardHref: elements.primaryFeedCard?.dataset?.actionHref || "",
+    subtitle: elements.primaryFeedSubtitle?.textContent || "",
+    subtitleHidden: Boolean(elements.primaryFeedSubtitle?.hidden),
+    status: elements.primaryFeedStatus?.innerHTML || "",
+    statusHidden: Boolean(elements.primaryFeedStatus?.hidden),
     title: elements.primaryFeedTitle?.innerHTML || "",
     desc: elements.primaryFeedDesc?.innerHTML || "",
     descHidden: Boolean(elements.primaryFeedDesc?.hidden),
-    badges: elements.primaryFeedBadges?.innerHTML || "",
-    buttonLabel: elements.primaryFeedButton?.textContent || "",
-    buttonHref: elements.primaryFeedButton?.dataset?.actionHref || "",
   };
 }
 
@@ -816,15 +817,25 @@ function restorePrimaryFeedCard(context) {
 
   elements.primaryFeedCard.dataset.type = primaryFeedDefaults.cardType;
   elements.primaryFeedCard.dataset.actionHref = primaryFeedDefaults.cardHref;
+  if (primaryFeedDefaults.cardHref) {
+    elements.primaryFeedCard.setAttribute("role", "link");
+    elements.primaryFeedCard.setAttribute("tabindex", "0");
+  } else {
+    elements.primaryFeedCard.removeAttribute("role");
+    elements.primaryFeedCard.removeAttribute("tabindex");
+  }
+  if (elements.primaryFeedSubtitle) {
+    elements.primaryFeedSubtitle.textContent = primaryFeedDefaults.subtitle;
+    elements.primaryFeedSubtitle.hidden = Boolean(primaryFeedDefaults.subtitleHidden);
+  }
+  if (elements.primaryFeedStatus) {
+    elements.primaryFeedStatus.innerHTML = primaryFeedDefaults.status;
+    elements.primaryFeedStatus.hidden = Boolean(primaryFeedDefaults.statusHidden);
+  }
   if (elements.primaryFeedTitle) elements.primaryFeedTitle.innerHTML = primaryFeedDefaults.title;
   if (elements.primaryFeedDesc) {
     elements.primaryFeedDesc.innerHTML = primaryFeedDefaults.desc;
     elements.primaryFeedDesc.hidden = Boolean(primaryFeedDefaults.descHidden);
-  }
-  if (elements.primaryFeedBadges) elements.primaryFeedBadges.innerHTML = primaryFeedDefaults.badges;
-  if (elements.primaryFeedButton) {
-    elements.primaryFeedButton.textContent = primaryFeedDefaults.buttonLabel;
-    elements.primaryFeedButton.dataset.actionHref = primaryFeedDefaults.buttonHref;
   }
 
   clearSecondaryFeedCards(context);
@@ -833,23 +844,29 @@ function restorePrimaryFeedCard(context) {
 function applyPrimaryFeedMessage(context, {
   title = "Feed",
   description = "",
-  badgeLabel = "Feed",
 } = {}) {
   const { elements } = context;
   if (!elements.primaryFeedCard) return;
 
   elements.primaryFeedCard.dataset.type = "feed";
   elements.primaryFeedCard.dataset.actionHref = "";
+  elements.primaryFeedCard.removeAttribute("role");
+  elements.primaryFeedCard.removeAttribute("tabindex");
 
+  if (elements.primaryFeedSubtitle) {
+    elements.primaryFeedSubtitle.textContent = "";
+    elements.primaryFeedSubtitle.hidden = true;
+  }
+  if (elements.primaryFeedStatus) {
+    elements.primaryFeedStatus.innerHTML = "";
+    elements.primaryFeedStatus.hidden = true;
+  }
   if (elements.primaryFeedTitle) {
     elements.primaryFeedTitle.textContent = title;
   }
   if (elements.primaryFeedDesc) {
     elements.primaryFeedDesc.textContent = description;
     elements.primaryFeedDesc.hidden = !description;
-  }
-  if (elements.primaryFeedBadges) {
-    elements.primaryFeedBadges.innerHTML = createBadgeMarkup(badgeLabel);
   }
 
   clearSecondaryFeedCards(context);
@@ -859,7 +876,6 @@ function applyPrimaryFeedLoadingState(context) {
   applyPrimaryFeedMessage(context, {
     title: "Feed wird geladen",
     description: "Deine nächsten Aktivitäten werden vorbereitet.",
-    badgeLabel: "Feed",
   });
 }
 
@@ -867,7 +883,6 @@ function applyPrimaryFeedEmptyState(context) {
   applyPrimaryFeedMessage(context, {
     title: "Gerade keine Empfehlung",
     description: "Sobald eine Session oder eine fällige Wiederholung ansteht, erscheint hier der nächste sinnvolle Schritt.",
-    badgeLabel: "Feed",
   });
 }
 
@@ -879,7 +894,6 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
     description: nextLabel
       ? `Der nächste geplante Feed-Schritt wird ab ${nextLabel} freigeschaltet.`
       : "Im Moment ist kein Schritt geplant, den du sofort aus dem Feed öffnen solltest.",
-    badgeLabel: "Feed",
   });
 }
 
@@ -887,7 +901,6 @@ function applyPrimaryFeedErrorState(context) {
   applyPrimaryFeedMessage(context, {
     title: "Feed gerade nicht verfügbar",
     description: "Der nächste sinnvolle Schritt konnte gerade nicht geladen werden.",
-    badgeLabel: "Feed",
   });
 }
 
@@ -913,11 +926,87 @@ function buildProjectionBadgesMarkup(item) {
     .join("");
 }
 
-function createFeedCardData({ type, href, titleHtml, descText, badges }) {
+function padFeedCheckNumber(value) {
+  const digits = String(value || "").replace(/\D+/g, "");
+  if (!digits) return "";
+
+  const number = Number(digits);
+  return Number.isFinite(number) && number > 0 ? String(number).padStart(2, "0") : "";
+}
+
+function resolvePrimaryFeedModuleLabel(item) {
+  const itemType = String(item?.type || "").trim();
+  if (itemType === "training") return "Aufgabe";
+
+  const primaryLabel = String(item?.primaryBadge?.label || "").trim();
+  if (primaryLabel) return primaryLabel;
+
+  return String(item?.titleText || "").trim();
+}
+
+function buildPrimaryFeedTitleHtml(item) {
+  const moduleLabel = resolvePrimaryFeedModuleLabel(item);
+  const checkNumber = padFeedCheckNumber(item?.checkIndexLabel);
+  const topicText = String(item?.checkKeyword || "").trim();
+
+  const moduleText = [moduleLabel, checkNumber].filter(Boolean).join(" ").trim();
+  if (!moduleText) return "";
+
+  const safeModuleText = escapeHtml(moduleText.toLocaleUpperCase("de-DE"));
+  if (!topicText) {
+    return `<span class="dashboard-feed__primary-label dashboard-feed__primary-label--standalone">${safeModuleText}</span>`;
+  }
+
+  return [
+    `<span class="dashboard-feed__primary-label dashboard-feed__primary-label--with-topic">${safeModuleText}</span>`,
+    `<span class="dashboard-feed__primary-topic">${escapeHtml(topicText)}</span>`,
+  ].join("");
+}
+
+function buildPrimaryFeedTitleText(item) {
+  const moduleLabel = resolvePrimaryFeedModuleLabel(item);
+  const checkNumber = padFeedCheckNumber(item?.checkIndexLabel);
+  const checkKeyword = String(item?.checkKeyword || "").trim();
+
+  if (checkKeyword) {
+    return checkNumber
+      ? `${moduleLabel} ${checkNumber} | ${checkKeyword}`
+      : `${moduleLabel} | ${checkKeyword}`;
+  }
+
+  return moduleLabel || String(item?.titleText || "").trim();
+}
+
+function buildPrimaryFeedSubtitleText(item) {
+  const explicitText = String(item?.lernbereichText || "").trim();
+  if (explicitText) return explicitText;
+
+  if (item?.kind === "session-activity" || item?.kind === "retention") {
+    return String(item?.titleText || "").trim();
+  }
+
+  return "";
+}
+
+function buildPrimaryFeedStatusMarkup(item) {
+  const statusBadge = (Array.isArray(item?.badges) ? item.badges : []).find((badge) => {
+    const badgeType = String(badge?.type || "").trim();
+    return badgeType === "overdue" || badgeType === "due" || badgeType === "available";
+  });
+  if (!statusBadge?.label) return "";
+
+  return createBadgeMarkup(String(statusBadge.label).toLowerCase(), statusBadge.type || "");
+}
+
+function createFeedCardData({ type, href, subtitleText, titleHtml, primaryTitleHtml, primaryTitleText, statusMarkup, descText, badges }) {
   return {
     type,
     href,
+    subtitleText,
     titleHtml,
+    primaryTitleHtml,
+    primaryTitleText,
+    statusMarkup,
     descText,
     badges,
   };
@@ -929,7 +1018,11 @@ function buildFeedCardDataFromProjection(item) {
   return createFeedCardData({
     type: item.type,
     href: item.href,
+    subtitleText: buildPrimaryFeedSubtitleText(item),
     titleHtml: buildProjectionTitleMarkup(item),
+    primaryTitleHtml: buildPrimaryFeedTitleHtml(item),
+    primaryTitleText: buildPrimaryFeedTitleText(item),
+    statusMarkup: buildPrimaryFeedStatusMarkup(item),
     descText: item.descText,
     badges: buildProjectionBadgesMarkup(item),
   });
@@ -961,16 +1054,28 @@ function applyPrimaryFeedCardData(context, item) {
 
   elements.primaryFeedCard.dataset.type = item.type;
   elements.primaryFeedCard.dataset.actionHref = item.href;
+  if (item.href) {
+    elements.primaryFeedCard.setAttribute("role", "link");
+    elements.primaryFeedCard.setAttribute("tabindex", "0");
+  } else {
+    elements.primaryFeedCard.removeAttribute("role");
+    elements.primaryFeedCard.removeAttribute("tabindex");
+  }
 
+  if (elements.primaryFeedSubtitle) {
+    elements.primaryFeedSubtitle.textContent = item.subtitleText || "";
+    elements.primaryFeedSubtitle.hidden = !item.subtitleText;
+  }
+  if (elements.primaryFeedStatus) {
+    elements.primaryFeedStatus.innerHTML = item.statusMarkup || "";
+    elements.primaryFeedStatus.hidden = !item.statusMarkup;
+  }
   if (elements.primaryFeedTitle) {
-    elements.primaryFeedTitle.innerHTML = item.titleHtml;
+    elements.primaryFeedTitle.innerHTML = item.primaryTitleHtml || escapeHtml(item.primaryTitleText || "");
   }
   if (elements.primaryFeedDesc) {
     elements.primaryFeedDesc.textContent = item.descText;
     elements.primaryFeedDesc.hidden = !item.descText;
-  }
-  if (elements.primaryFeedBadges) {
-    elements.primaryFeedBadges.innerHTML = item.badges;
   }
 }
 
@@ -1334,6 +1439,7 @@ function summarizeActivePlan(context) {
   let lernbereichCount = 0;
   let checkCount = 0;
   const selectedCheckIds = [];
+  const activeLernbereichIds = [];
 
   context.lernbereiche.forEach((group) => {
     group.items.forEach((lb) => {
@@ -1341,6 +1447,7 @@ function summarizeActivePlan(context) {
       if (!lbState?.active) return;
 
       lernbereichCount += 1;
+      activeLernbereichIds.push(lb.id);
       lb.checks.forEach((check) => {
         if (!isCheckSelected(lbState, check.id)) return;
         checkCount += 1;
@@ -1349,21 +1456,21 @@ function summarizeActivePlan(context) {
     });
   });
 
-  return { lernbereichCount, checkCount, selectedCheckIds };
+  return { lernbereichCount, checkCount, selectedCheckIds, activeLernbereichIds };
 }
 
 function buildActiveSessionProgress(context) {
   if (!context.activeSession) return null;
 
-  const { selectedCheckIds } = summarizeActivePlan(context);
-  const totalStepCount = selectedCheckIds.length * CHECK_PIPELINE_STEP_COUNT;
+  const { selectedCheckIds, activeLernbereichIds } = summarizeActivePlan(context);
+  const totalStepCount = activeLernbereichIds.length + (selectedCheckIds.length * CHECK_PIPELINE_STEP_COUNT);
   if (totalStepCount <= 0) {
     return null;
   }
 
   const remainingStepCount = Math.max(
     0,
-    Math.min(totalStepCount, getRemainingSelectedActivityCount(context, selectedCheckIds)),
+    Math.min(totalStepCount, getRemainingSelectedSessionActivityCount(context, selectedCheckIds, activeLernbereichIds)),
   );
   const completedStepCount = Math.max(0, totalStepCount - remainingStepCount);
   const percent = Math.round((completedStepCount / totalStepCount) * 100);
@@ -1418,7 +1525,7 @@ function updatePlanProgress(context) {
     percentNode.textContent = percentLabel;
   }
   if (completedNode) {
-    completedNode.textContent = `${progress.completedStepCount} / ${progress.totalStepCount} Schritte abgeschlossen`;
+    completedNode.textContent = `${progress.completedStepCount} / ${progress.totalStepCount} abgeschlossen`;
   }
   if (remainingNode) {
     remainingNode.textContent = `${progress.remainingStepCount} verbleibend`;
@@ -1477,7 +1584,7 @@ function buildPayloadFromState(context, draft, lernbereiche, draftConfig) {
     return basePayload;
   }
 
-  const suggestion = buildSuggestedTargetDate(context, selectedCheckIds);
+  const suggestion = buildSuggestedTargetDate(context, selectedCheckIds, basePayload.p_lernbereiche || []);
   basePayload.p_target_date = suggestion.suggestedDateValue || null;
   basePayload.p_target_source = suggestion.suggestedDateValue ? "suggested" : null;
   return basePayload;
@@ -1489,6 +1596,14 @@ function buildSessionCheckStateById(context) {
   );
 }
 
+function buildSessionStartStateByLernbereichId(context) {
+  return new Map(
+    (Array.isArray(context.sessionActivityStates) ? context.sessionActivityStates : [])
+      .filter((row) => String(row?.activity_type || "").trim() === "start")
+      .map((row) => [String(row?.lernbereich_slug || "").trim(), row]),
+  );
+}
+
 function getRemainingSelectedActivityCount(context, selectedCheckIds) {
   const checkStateById = buildSessionCheckStateById(context);
   return selectedCheckIds.reduce((sum, checkId) => {
@@ -1496,13 +1611,27 @@ function getRemainingSelectedActivityCount(context, selectedCheckIds) {
   }, 0);
 }
 
+function getRemainingSelectedStartActivityCount(context, selectedLernbereichIds) {
+  const startStateByLernbereichId = buildSessionStartStateByLernbereichId(context);
+  return selectedLernbereichIds.reduce((sum, lernbereichId) => {
+    const row = startStateByLernbereichId.get(String(lernbereichId || "").trim());
+    const status = String(row?.status || "").trim();
+    return sum + (status === "completed" ? 0 : 1);
+  }, 0);
+}
+
+function getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds) {
+  return getRemainingSelectedActivityCount(context, selectedCheckIds)
+    + getRemainingSelectedStartActivityCount(context, selectedLernbereichIds);
+}
+
 function getConfiguredPositiveNumber(value) {
   const parsed = Number.parseFloat(value);
   return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
 }
 
-function buildSuggestedTargetDate(context, selectedCheckIds) {
-  const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
+function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereichIds) {
+  const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
   const activitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
   const didacticGapHours = getConfiguredPositiveNumber(context.systemSettings?.feedCoreGapNormalHours);
 
@@ -1540,7 +1669,7 @@ function buildSuggestedTargetDate(context, selectedCheckIds) {
   };
 }
 
-function buildTargetDateAssessment(context, selectedCheckIds) {
+function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereichIds) {
   const defaultActivitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
   const realisticThreshold = defaultActivitiesPerDay;
   const warningThreshold = defaultActivitiesPerDay === null
@@ -1548,7 +1677,7 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
     : Math.max(realisticThreshold + 1, realisticThreshold * 2);
   const targetDateValue = normalizeDateOnlyValue(context.activeSession?.target_date);
   if (!targetDateValue) {
-    const suggestion = buildSuggestedTargetDate(context, selectedCheckIds);
+    const suggestion = buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereichIds);
     const targetLabel = suggestion.suggestedDateValue
       ? `Zieldatum: ${formatDateOnlyLabel(suggestion.suggestedDateValue)}`
       : "Zieldatum: nicht gesetzt.";
@@ -1583,7 +1712,7 @@ function buildTargetDateAssessment(context, selectedCheckIds) {
   const dayDelta = Math.floor((targetDate.getTime() - today.getTime()) / 86400000);
   const availableDays = dayDelta + 1;
 
-  const remainingSteps = getRemainingSelectedActivityCount(context, selectedCheckIds);
+  const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
 
   if (dayDelta < 0) {
     return {
@@ -1663,12 +1792,12 @@ function updatePlanSummary(context) {
     return;
   }
 
-  const { selectedCheckIds } = summarizeActivePlan(context);
+  const { selectedCheckIds, activeLernbereichIds } = summarizeActivePlan(context);
   node.textContent = buildActiveLernbereichSummary(activeEntries, SESSION_EMPTY_SUMMARY);
   updatePlanProgress(context);
 
   if (targetNode) {
-    const assessment = buildTargetDateAssessment(context, selectedCheckIds);
+    const assessment = buildTargetDateAssessment(context, selectedCheckIds, activeLernbereichIds);
     targetNode.hidden = false;
     if (targetLabelNode) {
       targetLabelNode.textContent = assessment.targetLabel;
@@ -1693,10 +1822,15 @@ async function loadPersistedState(supabase, lernbereiche) {
 
   const activeSession = Array.isArray(sessions) ? sessions[0] || null : null;
   if (!activeSession?.id) {
-    return { state: {}, session: null, checkStates: [] };
+    return { state: {}, session: null, checkStates: [], activityStates: [] };
   }
 
-  const [{ data: lernbereicheRows, error: lernbereicheError }, { data: exclusionRows, error: exclusionError }, { data: checkStateRows, error: checkStateError }] = await Promise.all([
+  const [
+    { data: lernbereicheRows, error: lernbereicheError },
+    { data: exclusionRows, error: exclusionError },
+    { data: checkStateRows, error: checkStateError },
+    { data: activityStateRows, error: activityStateError },
+  ] = await Promise.all([
     supabase
       .from("session_lernbereiche")
       .select("lernbereich_slug")
@@ -1709,16 +1843,23 @@ async function loadPersistedState(supabase, lernbereiche) {
       .from("session_check_state")
       .select("check_id, current_step_key, current_step_status")
       .eq("session_id", activeSession.id),
+    supabase
+      .from("session_activity_state")
+      .select("lernbereich_slug, activity_type, status")
+      .eq("session_id", activeSession.id)
+      .eq("activity_type", "start"),
   ]);
 
   if (lernbereicheError) throw lernbereicheError;
   if (exclusionError) throw exclusionError;
   if (checkStateError) throw checkStateError;
+  if (activityStateError) throw activityStateError;
 
   return {
     state: buildStateFromPersisted(lernbereiche, lernbereicheRows, exclusionRows),
     session: activeSession,
     checkStates: Array.isArray(checkStateRows) ? checkStateRows : [],
+    activityStates: Array.isArray(activityStateRows) ? activityStateRows : [],
   };
 }
 
@@ -2027,6 +2168,7 @@ async function handleSave(context) {
     context.state = persisted.state;
     context.activeSession = persisted.session;
     context.sessionCheckStates = persisted.checkStates;
+    context.sessionActivityStates = persisted.activityStates;
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
@@ -2074,6 +2216,7 @@ async function handleDelete(context) {
     context.draftConfig = { targetDate: "" };
     context.activeSession = null;
     context.sessionCheckStates = [];
+    context.sessionActivityStates = [];
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
@@ -2585,10 +2728,10 @@ function createContext(root, lernbereiche) {
     activityMapTarget: root.querySelector("[data-dashboard-activity-map-target]"),
     activityMapStatusNode: document.getElementById("activityMapStatus"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),
+    primaryFeedSubtitle: root.querySelector("[data-dashboard-primary-feed-subtitle]"),
+    primaryFeedStatus: root.querySelector("[data-dashboard-primary-feed-status]"),
     primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
     primaryFeedDesc: root.querySelector("[data-dashboard-primary-feed-desc]"),
-    primaryFeedBadges: root.querySelector("[data-dashboard-primary-feed-badges]"),
-    primaryFeedButton: root.querySelector("[data-dashboard-primary-feed-button]"),
   };
 
   return {
@@ -2602,6 +2745,7 @@ function createContext(root, lernbereiche) {
     authState: null,
     activeSession: null,
     sessionCheckStates: [],
+    sessionActivityStates: [],
     state: {},
     draft: {},
     draftConfig: { targetDate: "" },
@@ -2697,6 +2841,7 @@ export async function initDashboardModule() {
     context.state = persisted.state;
     context.activeSession = persisted.session;
     context.sessionCheckStates = persisted.checkStates;
+    context.sessionActivityStates = persisted.activityStates;
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
