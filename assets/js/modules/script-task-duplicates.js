@@ -119,6 +119,11 @@ function buildLookupKeys(check) {
         .filter(Boolean);
 }
 
+function isTrainingFeedStep(activityStep) {
+    const normalized = String(activityStep || "").trim();
+    return normalized === "training" || /^training_\d+$/.test(normalized);
+}
+
 function findCheckForNote(noteNode, checksByLookupKey) {
     const candidates = [
         noteNode?.dataset?.check || "",
@@ -301,7 +306,7 @@ async function renderCheckTaskInHost(host, check, {
         const checkId = getCheckId(check);
         const isActiveFeedTraining =
             activityContext?.mode === "feed" &&
-            /^training_\d+$/.test(String(activityContext.activityStep || "")) &&
+            isTrainingFeedStep(activityContext?.activityStep) &&
             (!preferredCheckId || preferredCheckId === checkId);
         const feedActivityKey = isActiveFeedTraining ? String(activityContext?.activityKey || "").trim() : "";
         const sharedTaskIndex = Number.isInteger(taskIndexByCheckId[checkId])
