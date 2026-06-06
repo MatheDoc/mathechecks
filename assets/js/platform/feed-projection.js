@@ -874,54 +874,17 @@ export async function loadFeedAttentionSummary({ supabase } = {}) {
   let dueCount = 0;
 
   if (activeSession?.id) {
-    const [{ data: activityRows, error: activityError }, { data: checkRows, error: checkError }] = await Promise.all([
-      supabase
-        .from("session_activity_state")
-        .select("activity_type, due_at, planned_from, overdue_from")
-        .eq("session_id", activeSession.id)
-        .eq("status", "due"),
-      supabase
-        .from("session_check_state")
-        .select("current_step_key, available_from, planned_from, overdue_from")
-        .eq("session_id", activeSession.id)
-        .eq("current_step_status", "due")
-        .in("current_step_key", Object.keys(FEED_STEP_META)),
-    ]);
-
-    if (activityError) throw activityError;
-    if (checkError) throw checkError;
-
-    (Array.isArray(activityRows) ? activityRows : []).forEach((row) => {
-      const timingStatus = resolveOpenFeedTimingStatus({
-        dueAt: row?.due_at,
-        plannedFrom: row?.planned_from,
-        overdueFrom: row?.overdue_from,
-      });
-
-      if (timingStatus === "overdue") {
-        overdueCount += 1;
-        return;
-      }
-      if (timingStatus === "due") {
-        dueCount += 1;
-      }
+    // Serverseitige Zeitklasse statt Browser-Rekonstruktion: vermeidet, dass
+    // frisch geplante (server-fällige) Schritte durch Uhrabweichungen aus dem
+    // Badge fallen.
+    const { data, error } = await supabase.rpc("feed_attention_summary", {
+      p_session_id: activeSession.id,
     });
+    if (error) throw error;
 
-    (Array.isArray(checkRows) ? checkRows : []).forEach((row) => {
-      const timingStatus = resolveOpenFeedTimingStatus({
-        availableFrom: row?.available_from,
-        plannedFrom: row?.planned_from,
-        overdueFrom: row?.overdue_from,
-      });
-
-      if (timingStatus === "overdue") {
-        overdueCount += 1;
-        return;
-      }
-      if (timingStatus === "due") {
-        dueCount += 1;
-      }
-    });
+    const summaryRow = Array.isArray(data) ? data[0] || null : data || null;
+    overdueCount = Math.max(0, Number(summaryRow?.overdue_count) || 0);
+    dueCount = Math.max(0, Number(summaryRow?.due_count) || 0);
   }
 
   const retentionEntries = await loadRetentionFeedEntries(supabase, { activeSession });

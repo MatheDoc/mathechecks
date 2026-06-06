@@ -1,4 +1,4 @@
-import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260604-manual-retention-head";
+import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260606-feed-badge-server-timing";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
@@ -11,6 +11,64 @@ let currentAuthState = {
   error: null,
 };
 let feedLauncherRefreshBound = false;
+let feedLauncherRefreshTimer = null;
+let feedLauncherDayChangeTimer = null;
+let lastFeedLauncherState = {
+  item: null,
+  attentionSummary: null,
+};
+
+function createEmptyAttentionSummary() {
+  return { overdueCount: 0, dueCount: 0, totalCount: 0 };
+}
+
+function normalizeFeedAttentionSummary(attentionSummary = null) {
+  const overdueCount = Math.max(0, Number(attentionSummary?.overdueCount) || 0);
+  const dueCount = Math.max(0, Number(attentionSummary?.dueCount) || 0);
+  return {
+    overdueCount,
+    dueCount,
+    totalCount: overdueCount + dueCount,
+  };
+}
+
+function queueFeedLauncherRefresh(state, { delay = 180 } = {}) {
+  if (typeof window === "undefined") {
+    void refreshFeedLauncher(state);
+    return;
+  }
+
+  if (feedLauncherRefreshTimer) {
+    window.clearTimeout(feedLauncherRefreshTimer);
+    feedLauncherRefreshTimer = null;
+  }
+
+  const effectiveDelay = Math.max(0, Number(delay) || 0);
+  const refreshState = state || currentAuthState;
+  feedLauncherRefreshTimer = window.setTimeout(() => {
+    feedLauncherRefreshTimer = null;
+    void refreshFeedLauncher(refreshState?.configured ? refreshState : currentAuthState);
+  }, effectiveDelay);
+}
+
+function scheduleFeedLauncherDayRefresh() {
+  if (typeof window === "undefined") return;
+
+  if (feedLauncherDayChangeTimer) {
+    window.clearTimeout(feedLauncherDayChangeTimer);
+    feedLauncherDayChangeTimer = null;
+  }
+
+  const nextMidnight = new Date();
+  nextMidnight.setHours(24, 0, 1, 0);
+  const delay = Math.max(1000, nextMidnight.getTime() - Date.now());
+
+  feedLauncherDayChangeTimer = window.setTimeout(() => {
+    feedLauncherDayChangeTimer = null;
+    queueFeedLauncherRefresh(currentAuthState, { delay: 0 });
+    scheduleFeedLauncherDayRefresh();
+  }, delay);
+}
 
 async function loadSharedFeedContentMeta() {
   if (feedContentMetaPromise) {
@@ -141,11 +199,19 @@ function applyFeedLauncherState(button, item = null, attentionSummary = null) {
   if (labelNode) labelNode.textContent = label;
 }
 
+function resetFeedLauncherSnapshot() {
+  lastFeedLauncherState = {
+    item: null,
+    attentionSummary: null,
+  };
+}
+
 async function refreshFeedLauncher(state) {
   const button = document.getElementById("feedLaunchBtn");
   if (!button) return;
 
   if (!state?.configured || state?.error || !state?.user) {
+    resetFeedLauncherSnapshot();
     applyFeedLauncherState(button, null, null);
     return;
   }
@@ -158,31 +224,70 @@ async function refreshFeedLauncher(state) {
 
     if (!supabase) {
       if (button.dataset.feedRenderToken === renderToken) {
+        resetFeedLauncherSnapshot();
         applyFeedLauncherState(button, null, null);
       }
       return;
     }
 
-    const [attentionSummary, contentMeta] = await Promise.all([
-      loadFeedAttentionSummary({ supabase }).catch(() => ({ overdueCount: 0, dueCount: 0, totalCount: 0 })),
-      loadSharedFeedContentMeta().catch(() => null),
-    ]);
+    // Zuerst die Feed-Projektion laden: pick_feed_cursor ruft serverseitig
+    // replan_session auf und aktualisiert dabei die due/overdue-Status in den
+    // Projektionen. Die Aufmerksamkeitszahl muss danach gelesen werden, sonst
+    // zählt sie den nicht neu geplanten Vorstand und stimmt erst nach einem
+    // Seiten-Reload.
+    const contentMeta = await loadSharedFeedContentMeta().catch(() => null);
 
+    let itemLoaded = false;
     let item = null;
     if (contentMeta) {
-      const projection = await loadFeedProjection({
-        supabase,
-        contentMeta,
-        limit: 1,
-      });
-      item = Array.isArray(projection?.items) ? projection.items[0] || null : null;
+      try {
+        const projection = await loadFeedProjection({
+          supabase,
+          contentMeta,
+          limit: 1,
+        });
+        item = Array.isArray(projection?.items) ? projection.items[0] || null : null;
+        itemLoaded = true;
+      } catch (error) {
+        console.error("Feed-Projektion für den Header-Badge konnte nicht geladen werden:", error);
+      }
     }
 
+    const attentionSummaryResult = await loadFeedAttentionSummary({ supabase })
+      .then((value) => ({ ok: true, value }))
+      .catch((error) => ({ ok: false, error }));
+
     if (button.dataset.feedRenderToken !== renderToken) return;
-    applyFeedLauncherState(button, item, attentionSummary);
+
+    // Das Launcher-Item nur dann aus dem letzten Snapshot übernehmen, wenn die
+    // Projektion fehlgeschlagen ist. Eine erfolgreich leere Projektion bedeutet,
+    // dass der Feed wirklich leer ist und das alte Item nicht weiterleben darf.
+    const resolvedItem = itemLoaded
+      ? (item?.href ? item : null)
+      : (lastFeedLauncherState.item?.href ? lastFeedLauncherState.item : null);
+
+    // Der Badge-Wert ist die einfach berechenbare Summe aus überfälligen und
+    // fälligen Feed-Schritten. Nur bei einem fehlgeschlagenen Laden greift der
+    // letzte bekannte Stand als Fallback.
+    const resolvedAttentionSummary = attentionSummaryResult?.ok
+      ? normalizeFeedAttentionSummary(attentionSummaryResult.value)
+      : lastFeedLauncherState.attentionSummary
+        ? normalizeFeedAttentionSummary(lastFeedLauncherState.attentionSummary)
+        : normalizeFeedAttentionSummary(createEmptyAttentionSummary());
+
+    lastFeedLauncherState = {
+      item: resolvedItem?.href ? resolvedItem : null,
+      attentionSummary: resolvedAttentionSummary,
+    };
+
+    applyFeedLauncherState(button, resolvedItem, resolvedAttentionSummary);
   } catch {
     if (button.dataset.feedRenderToken === renderToken) {
-      applyFeedLauncherState(button, null, null);
+      const fallbackItem = lastFeedLauncherState.item?.href ? lastFeedLauncherState.item : null;
+      const fallbackAttentionSummary = lastFeedLauncherState.attentionSummary
+        ? normalizeFeedAttentionSummary(lastFeedLauncherState.attentionSummary)
+        : null;
+      applyFeedLauncherState(button, fallbackItem, fallbackAttentionSummary);
     }
   }
 }
@@ -191,8 +296,16 @@ function bindFeedLauncherRefreshListener() {
   if (feedLauncherRefreshBound || typeof window === "undefined") return;
 
   feedLauncherRefreshBound = true;
+  scheduleFeedLauncherDayRefresh();
   window.addEventListener(FEED_BADGE_UPDATE_EVENT, () => {
-    void refreshFeedLauncher(currentAuthState);
+    queueFeedLauncherRefresh(currentAuthState);
+  });
+  window.addEventListener("focus", () => {
+    queueFeedLauncherRefresh(currentAuthState, { delay: 0 });
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState !== "visible") return;
+    queueFeedLauncherRefresh(currentAuthState, { delay: 0 });
   });
 }
 
@@ -220,7 +333,7 @@ function updateDashboardNavItem(state) {
 }
 
 function updateFeedSidebar(state) {
-  void refreshFeedLauncher(state);
+  queueFeedLauncherRefresh(state);
 }
 
 function updateTopbarButton(button, state) {
