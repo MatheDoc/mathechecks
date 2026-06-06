@@ -1003,10 +1003,7 @@ function renderActivityBars(container, overview) {
 function getActivityMapLevel(count) {
   const normalizedCount = Math.max(0, Number(count) || 0);
   if (normalizedCount <= 0) return 0;
-  if (normalizedCount === 1) return 1;
-  if (normalizedCount === 2) return 2;
-  if (normalizedCount <= 4) return 3;
-  return 4;
+  return Math.min(10, Math.floor(normalizedCount));
 }
 
 function formatActivityMapTooltipDate(value) {
@@ -1031,13 +1028,133 @@ function buildActivityMapCellLabel(dateValue, count, state) {
   if (state === "future") {
     return `Noch nicht erreicht · ${dateLabel}`;
   }
-  if (state === "before-start") {
-    return `Vor dem ersten erfassten Aktivitätstag · ${dateLabel}`;
-  }
   if (count <= 0) {
     return `Keine Aktivität · ${dateLabel}`;
   }
   return `${formatActivityCount(count)} Aktivität${count === 1 ? "" : "en"} · ${dateLabel}`;
+}
+
+function setActiveActivityMapCell(context, nextCell = null) {
+  const previousCell = context?.activityMapHoveredCell instanceof Element ? context.activityMapHoveredCell : null;
+  if (previousCell && previousCell !== nextCell) {
+    previousCell.classList.remove("is-hovered");
+  }
+
+  if (nextCell instanceof Element) {
+    nextCell.classList.add("is-hovered");
+    context.activityMapHoveredCell = nextCell;
+    return;
+  }
+
+  context.activityMapHoveredCell = null;
+}
+
+function ensureActivityMapTooltip(context) {
+  if (!context?.elements) return null;
+
+  if (context.elements.activityMapTooltip instanceof HTMLElement) {
+    const tooltip = context.elements.activityMapTooltip;
+    if (tooltip.parentElement !== document.body) {
+      document.body.appendChild(tooltip);
+    }
+    tooltip.style.display = tooltip.hidden ? "none" : "block";
+    return tooltip;
+  }
+
+  const tooltip = document.createElement("div");
+  tooltip.className = "dashboard-activity-map__tooltip";
+  tooltip.hidden = true;
+  tooltip.style.display = "none";
+  document.body.appendChild(tooltip);
+  context.elements.activityMapTooltip = tooltip;
+  return tooltip;
+}
+
+function hideActivityMapTooltip(context) {
+  const tooltip = ensureActivityMapTooltip(context);
+  setActiveActivityMapCell(context, null);
+  if (!tooltip) return;
+
+  tooltip.hidden = true;
+  tooltip.style.display = "none";
+  tooltip.textContent = "";
+}
+
+function positionActivityMapTooltip(tooltip, event) {
+  if (!tooltip || !event) return;
+
+  const offsetX = 12;
+  const offsetY = -32;
+  const viewportWidth = window.innerWidth || document.documentElement.clientWidth || 0;
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 0;
+
+  let left = Number(event.clientX || 0) + offsetX;
+  let top = Number(event.clientY || 0) + offsetY;
+
+  const tooltipWidth = tooltip.offsetWidth || 0;
+  const tooltipHeight = tooltip.offsetHeight || 0;
+
+  if (viewportWidth > 0) {
+    left = Math.min(left, Math.max(12, viewportWidth - tooltipWidth - 12));
+  }
+  if (viewportHeight > 0) {
+    top = Math.max(12, Math.min(top, Math.max(12, viewportHeight - tooltipHeight - 12)));
+  }
+
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+}
+
+function showActivityMapTooltip(context, cell, event) {
+  const tooltip = ensureActivityMapTooltip(context);
+  const fallbackLabel = buildActivityMapCellLabel(
+    String(cell?.dataset?.date || ""),
+    Number(cell?.dataset?.count || 0),
+    String(cell?.dataset?.state || ""),
+  );
+  const label = String(cell?.dataset?.tooltip || fallbackLabel || cell?.getAttribute("aria-label") || "").trim();
+  if (!tooltip || !label) {
+    hideActivityMapTooltip(context);
+    return;
+  }
+
+  setActiveActivityMapCell(context, cell);
+  tooltip.textContent = label;
+  tooltip.hidden = false;
+  tooltip.style.display = "block";
+  positionActivityMapTooltip(tooltip, event);
+}
+
+function bindActivityMapTooltip(context) {
+  const board = context?.elements?.activityMapBoard;
+  if (!board) return;
+
+  ensureActivityMapTooltip(context);
+
+  if (board.dataset.activityMapTooltipLeaveBound !== "true") {
+    board.dataset.activityMapTooltipLeaveBound = "true";
+    board.addEventListener("mouseleave", () => {
+      hideActivityMapTooltip(context);
+    });
+  }
+
+  const cells = board.querySelectorAll(".dashboard-activity-map__cell");
+  cells.forEach((cell) => {
+    if (cell.dataset.activityMapTooltipBound === "true") return;
+
+    cell.dataset.activityMapTooltipBound = "true";
+    cell.addEventListener("mouseenter", (event) => {
+      showActivityMapTooltip(context, cell, event);
+    });
+    cell.addEventListener("mousemove", (event) => {
+      showActivityMapTooltip(context, cell, event);
+    });
+    cell.addEventListener("mouseleave", () => {
+      if (context.activityMapHoveredCell === cell) {
+        hideActivityMapTooltip(context);
+      }
+    });
+  });
 }
 
 function renderActivityMapBoard(container, overview) {
@@ -1091,7 +1208,7 @@ function renderActivityMapBoard(container, overview) {
 
     const label = buildActivityMapCellLabel(dateValue, count, state);
     return `
-      <span class="${classes.join(" ")}" style="grid-column:${weekIndex + 2};grid-row:${dayIndex + 2};" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"></span>
+      <span class="${classes.join(" ")}" style="grid-column:${weekIndex + 2};grid-row:${dayIndex + 2};" data-tooltip="${escapeHtml(label)}" data-date="${escapeHtml(dateValue)}" data-count="${escapeHtml(String(count))}" data-state="${escapeHtml(state)}" aria-label="${escapeHtml(label)}"></span>
     `;
   });
 
@@ -1103,6 +1220,8 @@ function applyActivityMap(context, overview = null) {
   const summaryNode = context.elements.activityMapSummary;
   const targetNode = context.elements.activityMapTarget;
   const mapData = renderActivityMapBoard(context.elements.activityMapBoard, overview);
+  hideActivityMapTooltip(context);
+  bindActivityMapTooltip(context);
   const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
   const visibleActivityCount = Array.isArray(mapData?.days)
     ? mapData.days.reduce((sum, entry) => sum + Math.max(0, Number(entry?.count) || 0), 0)
@@ -3182,6 +3301,7 @@ function createContext(root, lernbereiche) {
     activityStatusNode: document.getElementById("activityStatsStatus"),
     activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
     activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),
+    activityMapTooltip: root.querySelector("[data-dashboard-activity-map-tooltip]"),
     activityMapTarget: root.querySelector("[data-dashboard-activity-map-target]"),
     activityMapStatusNode: document.getElementById("activityMapStatus"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),

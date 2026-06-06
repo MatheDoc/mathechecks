@@ -2,6 +2,8 @@ body.page-dashboard {
   --dashboard-accent: color-mix(in srgb, var(--blue) 60%, var(--teal) 40%);
   --dashboard-accent-soft: color-mix(in srgb, var(--blue-soft) 72%, var(--teal-soft) 28%);
   --dashboard-border: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
+  --activity-map-hover-border: color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
+  --activity-map-hover-ring: color-mix(in srgb, var(--dashboard-accent) 16%, transparent);
   --dashboard-panel-bg: linear-gradient(
     180deg,
     color-mix(in srgb, var(--surface) 92%, var(--dashboard-accent-soft)) 0%,
@@ -13,6 +15,8 @@ body.page-dashboard {
 html.light body.page-dashboard {
   --dashboard-accent: color-mix(in srgb, var(--blue) 66%, var(--teal) 34%);
   --dashboard-accent-soft: color-mix(in srgb, var(--blue-soft) 78%, var(--teal-soft) 22%);
+  --activity-map-hover-border: color-mix(in srgb, var(--dashboard-accent) 30%, var(--border));
+  --activity-map-hover-ring: color-mix(in srgb, var(--dashboard-accent) 10%, transparent);
 }
 
 body.page-dashboard .dashboard-panel {
@@ -631,12 +635,40 @@ body.page-dashboard .dashboard-activity-map__board {
   --activity-map-weeks: 12;
   display: grid;
   grid-template-columns: 26px repeat(var(--activity-map-weeks), minmax(0, 1fr));
-  gap: 6px;
+  gap: 4px;
   padding: 16px 18px 18px;
   border-radius: 18px;
   border: 1px solid color-mix(in srgb, var(--dashboard-accent) 14%, var(--border));
   background: color-mix(in srgb, var(--dashboard-accent-soft) 28%, transparent);
   align-items: center;
+}
+
+body.page-dashboard .dashboard-activity-map__tooltip {
+  position: fixed;
+  z-index: 9999;
+  max-width: min(260px, calc(100vw - 24px));
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--dashboard-accent) 28%, var(--border));
+  background: color-mix(in srgb, var(--surface) 94%, var(--dashboard-accent-soft));
+  color: var(--text);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 14px 30px color-mix(in srgb, black 24%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+body.page-dashboard .dashboard-activity-map__tooltip[hidden] {
+  display: none;
+}
+
+html.light body.page-dashboard .dashboard-activity-map__tooltip {
+  background: color-mix(in srgb, white 96%, var(--dashboard-accent-soft));
+  border-color: color-mix(in srgb, var(--dashboard-accent) 22%, var(--border));
+  box-shadow: 0 12px 24px color-mix(in srgb, black 12%, transparent);
 }
 
 body.page-dashboard .dashboard-activity-map__month,
@@ -661,58 +693,76 @@ body.page-dashboard .dashboard-activity-map__cell {
   display: block;
   width: 100%;
   aspect-ratio: 1;
-  border-radius: 6px;
-  border: 1px solid transparent;
+  border-radius: 3px;
   background: color-mix(in srgb, var(--dashboard-accent) 8%, transparent);
-  transition: transform 140ms ease, border-color 140ms ease, background-color 140ms ease, opacity 140ms ease;
+  transition: opacity 120ms ease, background-color 140ms ease;
 }
 
-body.page-dashboard .dashboard-activity-map__cell:hover {
-  transform: translateY(-1px);
+body.page-dashboard .dashboard-activity-map__cell:hover,
+body.page-dashboard .dashboard-activity-map__cell.is-hovered {
+  opacity: 0.68;
 }
 
 body.page-dashboard .dashboard-activity-map__cell.level-0 {
   background: color-mix(in srgb, var(--text-dim) 8%, transparent);
-  border-color: color-mix(in srgb, var(--text-dim) 10%, transparent);
 }
 
 body.page-dashboard .dashboard-activity-map__cell.level-1 {
-  background: color-mix(in srgb, var(--dashboard-accent) 22%, transparent);
-  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, transparent);
+  background: color-mix(in srgb, var(--dashboard-accent) 10%, transparent);
 }
 
 body.page-dashboard .dashboard-activity-map__cell.level-2 {
-  background: color-mix(in srgb, var(--dashboard-accent) 40%, transparent);
-  border-color: color-mix(in srgb, var(--dashboard-accent) 24%, transparent);
+  background: color-mix(in srgb, var(--dashboard-accent) 16%, transparent);
 }
 
 body.page-dashboard .dashboard-activity-map__cell.level-3 {
-  background: color-mix(in srgb, var(--dashboard-accent) 62%, transparent);
-  border-color: color-mix(in srgb, var(--dashboard-accent) 34%, transparent);
+  background: color-mix(in srgb, var(--dashboard-accent) 22%, transparent);
 }
 
 body.page-dashboard .dashboard-activity-map__cell.level-4 {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--dashboard-accent) 88%, white 12%), var(--dashboard-accent));
-  border-color: color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
-  box-shadow: inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
+  background: color-mix(in srgb, var(--dashboard-accent) 28%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-5 {
+  background: color-mix(in srgb, var(--dashboard-accent) 36%, transparent);
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-6 {
+  background: color-mix(in srgb, var(--dashboard-accent) 44%, color-mix(in srgb, var(--teal) 8%, transparent));
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-7 {
+  background: color-mix(in srgb, var(--dashboard-accent) 52%, color-mix(in srgb, var(--teal) 12%, transparent));
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-8 {
+  background: color-mix(in srgb, var(--teal) 44%, color-mix(in srgb, var(--dashboard-accent) 34%, transparent));
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-9 {
+  background: color-mix(in srgb, var(--teal) 58%, color-mix(in srgb, var(--dashboard-accent) 28%, transparent));
+}
+
+body.page-dashboard .dashboard-activity-map__cell.level-10 {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--teal) 74%, white 18%),
+    color-mix(in srgb, var(--dashboard-accent) 62%, var(--teal) 38%)
+  );
 }
 
 body.page-dashboard .dashboard-activity-map__cell.is-before-start {
-  background: transparent;
-  border-style: dashed;
-  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
-  opacity: 0.55;
+  background: color-mix(in srgb, var(--dashboard-accent) 8%, transparent);
+  opacity: 0.34;
 }
 
 body.page-dashboard .dashboard-activity-map__cell.is-future {
   background: color-mix(in srgb, var(--text-dim) 6%, transparent);
-  border-color: transparent;
   opacity: 0.35;
 }
 
 body.page-dashboard .dashboard-activity-map__cell.is-today {
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
-  border-color: color-mix(in srgb, var(--dashboard-accent) 46%, transparent);
+  filter: saturate(1.08) brightness(1.04);
 }
 
 @media (max-width: 960px) {
@@ -734,7 +784,7 @@ body.page-dashboard .dashboard-activity-map__cell.is-today {
   }
 
   body.page-dashboard .dashboard-activity-map__board {
-    gap: 5px;
+    gap: 4px;
     padding: 14px 16px 16px;
   }
 }
