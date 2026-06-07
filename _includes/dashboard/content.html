@@ -1,7 +1,7 @@
 <div data-dashboard-root data-dashboard-checks-url="{{ '/checks.json' | relative_url }}"
     data-dashboard-material-url="{{ '/material.html' | relative_url }}">
     <section class="greeting">
-        <h2 data-dashboard-greeting-heading>Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
+        <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
         <p data-dashboard-current-date></p>
     </section>
 
@@ -226,20 +226,20 @@
         <div class="lb-modal-head">
             <div>
                 <h2>Session bearbeiten</h2>
-                <p>Aktiviere Lernbereiche und waehle die Kompetenzen aus, die du trainieren moechtest.</p>
+                <p>Aktiviere Lernbereiche und Kompetenzen und setze ein Zieldatum (optional).</p>
             </div>
             <button class="lb-close" id="lbCloseBtn" type="button">X</button>
         </div>
-
-        <div id="lbAccordionContainer"></div>
 
         <div class="lb-plan-fields">
             <label class="lb-field" for="lbTargetDateInput">
                 <span class="lb-field__label">Zieldatum</span>
                 <input class="lb-field__input" id="lbTargetDateInput" type="date">
-                <span class="lb-field__hint">Optional. Im Dashboard erscheint dazu eine grobe Einschätzung auf Basis der noch offenen Check-Schritte.</span>
+                <span class="lb-field__hint">Falls nicht gesetzt, wird das Zieldatum automatisch anhand des aktivierten Lernumfangs berechnet.</span>
             </label>
         </div>
+
+        <div id="lbAccordionContainer"></div>
 
         <div class="lb-modal-footer">
             <p class="lb-status-message lb-modal-status" id="lbModalStatus" aria-live="polite" hidden></p>

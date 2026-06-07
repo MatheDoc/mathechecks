@@ -1,6 +1,6 @@
 [
   {
-    "einleitung": "Für den Vergleich von Anlage A und Anlage B liegen folgende Kennzahlen der Zufallsgröße \\( E \\) (Stromertrag pro Tag, in kWh) vor: \\( E(E_A) = 440 \\), \\( \\sigma(E_A) = 15 \\), \\( E(E_B) = 440 \\), \\( \\sigma(E_B) = 45 \\).",
+    "einleitung": "Zwei Solaranlagen werden hinsichtlich ihres täglichen Stromertrags miteinander verglichen. Der Ertrag pro Tag wird als Zufallsgröße \\( E \\) (in kWh) modelliert. Für Anlage A gilt: \\( E(E_A) = 440 \\), \\( \\sigma(E_A) = 15 \\). Für Anlage B gilt: \\( E(E_B) = 440 \\), \\( \\sigma(E_B) = 45 \\).",
     "fragen": [
       "Bei welcher Anlage ist der durchschnittliche Tagesertrag größer?",
       "Bei welcher Anlage sind die täglichen Schwankungen im Stromertrag geringer?",
@@ -15,12 +15,12 @@
     ]
   },
   {
-    "einleitung": "Tägliche Rendite in € wird für Fonds X und Fonds Y als Zufallsgröße \\( G \\) modelliert. Für Fonds X: \\( E(G_A) = 700 \\), \\( \\sigma(G_A) = 125 \\). Für Fonds Y: \\( E(G_B) = 750 \\), \\( \\sigma(G_B) = 84 \\).",
+    "einleitung": "Ein Finanzberater vergleicht zwei Investmentfonds anhand ihrer täglichen Rendite (in €), die jeweils als Zufallsgröße \\( G \\) modelliert wird. Für Fonds X gilt: \\( E(G_A) = 700 \\), \\( \\sigma(G_A) = 125 \\). Für Fonds Y gilt: \\( E(G_B) = 750 \\), \\( \\sigma(G_B) = 84 \\).",
     "fragen": [
       "Welcher Fonds liefert im Durchschnitt die höhere Rendite?",
       "Welcher Fonds ist die stabilere Anlage?",
       "Fonds X erzielte an einem Tag eine Rendite von 526 €. Handelt es sich um einen ungewöhnlichen Wert?",
-      "An einem Handelstag erwirtschaftete Fonds Y 959 €. Wie ist dies im Kontext der Verteilung einzuordnen?"
+      "An einem Handelstag erwirtschaftete Fonds Y 959 €. Wie ist dieser Wert einzuordnen?"
     ],
     "antworten": [
       "{1:MC:~Fonds X.~=Fonds Y.~Beide Fonds haben im Mittel die gleiche Rendite.}",
@@ -30,12 +30,12 @@
     ]
   },
   {
-    "einleitung": "Tagesproduktion in Stück wird für Linie A und Linie B als Zufallsgröße \\( P \\) modelliert. Für Linie A: \\( E(P_A) = 2300 \\), \\( \\sigma(P_A) = 100 \\). Für Linie B: \\( E(P_B) = 2200 \\), \\( \\sigma(P_B) = 33 \\).",
+    "einleitung": "In einem Fertigungsbetrieb laufen zwei Produktionslinien parallel. Die tägliche Stückzahl jeder Linie wird als Zufallsgröße \\( P \\) modelliert. Für Linie A gilt: \\( E(P_A) = 2300 \\), \\( \\sigma(P_A) = 100 \\). Für Linie B gilt: \\( E(P_B) = 2200 \\), \\( \\sigma(P_B) = 33 \\).",
     "fragen": [
       "Welche Produktionslinie stellt im Mittel mehr Stücke her?",
       "Bei welcher Linie schwankt die Tagesproduktion weniger?",
       "Linie A fertigte an einem Tag 2443 Stück. Ist das eine deutliche Abweichung vom Erwartungswert?",
-      "An einem Arbeitstag produzierte Linie B 2227 Stück. Wie würden Sie diesen Wert einordnen?"
+      "An einem Arbeitstag produzierte Linie B 2227 Stück. Wie ist dieser Wert einzuordnen?"
     ],
     "antworten": [
       "{1:MC:~=Linie A.~Linie B.~Beide Linien haben die gleiche mittlere Tagesproduktion.}",
@@ -45,7 +45,7 @@
     ]
   },
   {
-    "einleitung": "Lieferzeit in h wird für Anbieter A und Anbieter B als Zufallsgröße \\( L \\) modelliert. Für Anbieter A: \\( E(L_A) = 44{,}0 \\), \\( \\sigma(L_A) = 7{,}5 \\). Für Anbieter B: \\( E(L_B) = 44{,}0 \\), \\( \\sigma(L_B) = 3{,}8 \\).",
+    "einleitung": "Ein Unternehmen vergleicht zwei Lieferanten anhand ihrer Lieferzeiten (in Stunden), die jeweils als Zufallsgröße \\( L \\) modelliert werden. Für Anbieter A gilt: \\( E(L_A) = 44{,}0 \\), \\( \\sigma(L_A) = 7{,}5 \\). Für Anbieter B gilt: \\( E(L_B) = 44{,}0 \\), \\( \\sigma(L_B) = 3{,}8 \\).",
     "fragen": [
       "Welcher Anbieter liefert im Mittel schneller?",
       "Welcher Anbieter ist in seiner Lieferzeit konstanter?",
@@ -60,7 +60,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Filiale Nord und Filiale Süd liegen folgende Kennzahlen der Zufallsgröße \\( U \\) (Tagesumsatz, in €) vor: \\( E(U_A) = 10500 \\), \\( \\sigma(U_A) = 1500 \\), \\( E(U_B) = 12000 \\), \\( \\sigma(U_B) = 3750 \\).",
+    "einleitung": "Zwei Filialen eines Einzelhandelsunternehmens werden anhand ihres täglichen Umsatzes miteinander verglichen. Der Tagesumsatz (in €) wird als Zufallsgröße \\( U \\) modelliert. Für Filiale Nord gilt: \\( E(U_A) = 10500 \\), \\( \\sigma(U_A) = 1500 \\). Für Filiale Süd gilt: \\( E(U_B) = 12000 \\), \\( \\sigma(U_B) = 3750 \\).",
     "fragen": [
       "Bei welcher Filiale ist der mittlere Tagesumsatz größer?",
       "Bei welcher Filiale schwankt der Tagesumsatz weniger?",
@@ -75,7 +75,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Standort A und Standort B liegen folgende Kennzahlen der Zufallsgröße \\( B \\) (tägliche Besucherzahl, in Personen) vor: \\( E(B_A) = 425 \\), \\( \\sigma(B_A) = 30 \\), \\( E(B_B) = 450 \\), \\( \\sigma(B_B) = 20 \\).",
+    "einleitung": "Zwei Standorte eines Museums werden anhand ihrer täglichen Besucherzahl miteinander verglichen. Die Anzahl der Besucher pro Tag wird als Zufallsgröße \\( B \\) (in Personen) modelliert. Für Standort A gilt: \\( E(B_A) = 425 \\), \\( \\sigma(B_A) = 30 \\). Für Standort B gilt: \\( E(B_B) = 450 \\), \\( \\sigma(B_B) = 20 \\).",
     "fragen": [
       "Welcher Standort verzeichnet im Mittel mehr Besucher?",
       "Bei welchem Standort sind die Besucherzahlen stabiler?",
@@ -90,7 +90,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( N \\): Prüfungspunktzahl in Punkte. Gruppe A: \\( E(N_A) = 59 \\), \\( \\sigma(N_A) = 8 \\); Gruppe B: \\( E(N_B) = 50 \\), \\( \\sigma(N_B) = 24 \\).",
+    "einleitung": "In einer Klasse werden zwei Lerngruppen anhand ihrer Prüfungsergebnisse verglichen. Die erzielte Punktzahl wird als Zufallsgröße \\( N \\) (in Punkten) modelliert. Für Gruppe A gilt: \\( E(N_A) = 59 \\), \\( \\sigma(N_A) = 8 \\). Für Gruppe B gilt: \\( E(N_B) = 50 \\), \\( \\sigma(N_B) = 24 \\).",
     "fragen": [
       "Bei welcher Gruppe ist die mittlere Prüfungspunktzahl höher?",
       "Welche Gruppe schneidet gleichmäßiger ab?",
@@ -105,7 +105,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Maschine A und Maschine B liegen folgende Kennzahlen der Zufallsgröße \\( D \\) (Vorgangsdauer, in s) vor: \\( E(D_A) = 33{,}0 \\), \\( \\sigma(D_A) = 1{,}2 \\), \\( E(D_B) = 32{,}0 \\), \\( \\sigma(D_B) = 2{,}4 \\).",
+    "einleitung": "In einer Fabrik werden zwei Maschinen eingesetzt, die denselben Fertigungsschritt ausführen. Die Dauer eines Vorgangs (in Sekunden) wird als Zufallsgröße \\( D \\) modelliert. Für Maschine A gilt: \\( E(D_A) = 33{,}0 \\), \\( \\sigma(D_A) = 1{,}2 \\). Für Maschine B gilt: \\( E(D_B) = 32{,}0 \\), \\( \\sigma(D_B) = 2{,}4 \\).",
     "fragen": [
       "Welche Maschine hat im Mittel eine kürzere Vorgangsdauer?",
       "Welche Maschine arbeitet präziser (geringere Streuung)?",
@@ -120,7 +120,7 @@
     ]
   },
   {
-    "einleitung": "Anzahl der Tagesbestellungen in Bestellungen wird für Shop A und Shop B als Zufallsgröße \\( K \\) modelliert. Für Shop A: \\( E(K_A) = 730 \\), \\( \\sigma(K_A) = 75 \\). Für Shop B: \\( E(K_B) = 730 \\), \\( \\sigma(K_B) = 188 \\).",
+    "einleitung": "Zwei Online-Shops werden anhand der täglichen Anzahl eingehender Bestellungen verglichen. Die Bestellanzahl pro Tag wird als Zufallsgröße \\( K \\) modelliert. Für Shop A gilt: \\( E(K_A) = 730 \\), \\( \\sigma(K_A) = 75 \\). Für Shop B gilt: \\( E(K_B) = 730 \\), \\( \\sigma(K_B) = 188 \\).",
     "fragen": [
       "Welcher Shop erhält im Mittel mehr Bestellungen pro Tag?",
       "Welcher Shop weist konstantere Bestellzahlen auf?",
@@ -135,7 +135,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( M \\): tägliche Ernte in kg. Betrieb A: \\( E(M_A) = 1200 \\), \\( \\sigma(M_A) = 75 \\); Betrieb B: \\( E(M_B) = 1150 \\), \\( \\sigma(M_B) = 150 \\).",
+    "einleitung": "Zwei landwirtschaftliche Betriebe werden anhand ihrer täglichen Erntemenge (in kg) miteinander verglichen. Der Tagesertrag wird als Zufallsgröße \\( M \\) modelliert. Für Betrieb A gilt: \\( E(M_A) = 1200 \\), \\( \\sigma(M_A) = 75 \\). Für Betrieb B gilt: \\( E(M_B) = 1150 \\), \\( \\sigma(M_B) = 150 \\).",
     "fragen": [
       "Welcher Betrieb erntet im Durchschnitt mehr?",
       "Welcher Betrieb weist geringere Schwankungen im Ernteertrag auf?",
@@ -150,7 +150,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Station A und Station B liegen folgende Kennzahlen der Zufallsgröße \\( T \\) (Tageshöchsttemperatur, in °C) vor: \\( E(T_A) = 18{,}0 \\), \\( \\sigma(T_A) = 2{,}5 \\), \\( E(T_B) = 18{,}0 \\), \\( \\sigma(T_B) = 0{,}8 \\).",
+    "einleitung": "Zwei Wetterstationen werden anhand ihrer täglichen Höchsttemperaturen (in °C) miteinander verglichen. Die Tageshöchsttemperatur wird als Zufallsgröße \\( T \\) modelliert. Für Station A gilt: \\( E(T_A) = 18{,}0 \\), \\( \\sigma(T_A) = 2{,}5 \\). Für Station B gilt: \\( E(T_B) = 18{,}0 \\), \\( \\sigma(T_B) = 0{,}8 \\).",
     "fragen": [
       "Welche Station weist im Mittel wärmere Tageshöchsttemperaturen auf?",
       "Welche Station hat gleichmäßigere Temperaturen?",
@@ -165,9 +165,9 @@
     ]
   },
   {
-    "einleitung": "Wartezeit in min wird für Schalter A und Schalter B als Zufallsgröße \\( W \\) modelliert. Für Schalter A: \\( E(W_A) = 9{,}0 \\), \\( \\sigma(W_A) = 1{,}9 \\). Für Schalter B: \\( E(W_B) = 10{,}5 \\), \\( \\sigma(W_B) = 3{,}8 \\).",
+    "einleitung": "An einem Servicecenter stehen zwei Schalter zur Verfügung. Die Wartezeit bis zur Bedienung (in Minuten) wird an jedem Schalter als Zufallsgröße \\( W \\) modelliert. Für Schalter A gilt: \\( E(W_A) = 9{,}0 \\), \\( \\sigma(W_A) = 1{,}9 \\). Für Schalter B gilt: \\( E(W_B) = 10{,}5 \\), \\( \\sigma(W_B) = 3{,}8 \\).",
     "fragen": [
-      "Welcher Schalter hat im Mittel einen niedrigeren Erwartungswert der Wartezeit?",
+      "An welchem Schalter ist die durchschnittliche Wartezeit geringer?",
       "An welchem Schalter sind die Wartezeiten konstanter?",
       "An Schalter A betrug die Wartezeit einmal 12,4 min. Wie ist dies einzuordnen?",
       "An Schalter B betrug die Wartezeit einmal 20,5 min. Wie ist dies einzuordnen?"
@@ -180,7 +180,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( S \\): täglicher Stromverbrauch in kWh. Maschine X: \\( E(S_A) = 30{,}0 \\), \\( \\sigma(S_A) = 5{,}0 \\); Maschine Y: \\( E(S_B) = 32{,}0 \\), \\( \\sigma(S_B) = 1{,}7 \\).",
+    "einleitung": "Zwei Industriemaschinen werden hinsichtlich ihres täglichen Stromverbrauchs (in kWh) miteinander verglichen. Der Verbrauch wird als Zufallsgröße \\( S \\) modelliert. Für Maschine X gilt: \\( E(S_A) = 30{,}0 \\), \\( \\sigma(S_A) = 5{,}0 \\). Für Maschine Y gilt: \\( E(S_B) = 32{,}0 \\), \\( \\sigma(S_B) = 1{,}7 \\).",
     "fragen": [
       "Bei welcher Maschine ist der durchschnittliche Tagesverbrauch geringer?",
       "Bei welcher Maschine ist der Stromverbrauch gleichmäßiger?",
@@ -195,7 +195,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Produkt A und Produkt B liegen folgende Kennzahlen der Zufallsgröße \\( V \\) (wöchentliche Verkaufszahl, in Einheiten) vor: \\( E(V_A) = 790 \\), \\( \\sigma(V_A) = 90 \\), \\( E(V_B) = 850 \\), \\( \\sigma(V_B) = 135 \\).",
+    "einleitung": "Ein Handelsunternehmen analysiert die Absatzzahlen zweier Produkte. Die wöchentliche Verkaufsmenge (in Einheiten) wird als Zufallsgröße \\( V \\) modelliert. Für Produkt A gilt: \\( E(V_A) = 790 \\), \\( \\sigma(V_A) = 90 \\). Für Produkt B gilt: \\( E(V_B) = 850 \\), \\( \\sigma(V_B) = 135 \\).",
     "fragen": [
       "Bei welchem Produkt ist die durchschnittliche wöchentliche Verkaufszahl höher?",
       "Bei welchem Produkt ist die Nachfrage konstanter?",
@@ -210,7 +210,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( F \\): täglich zurückgelegte Strecke in km. Fahrer A: \\( E(F_A) = 290 \\), \\( \\sigma(F_A) = 18 \\); Fahrer B: \\( E(F_B) = 290 \\), \\( \\sigma(F_B) = 12 \\).",
+    "einleitung": "Zwei Fahrer eines Logistikunternehmens werden anhand der täglich zurückgelegten Strecke (in km) miteinander verglichen. Die Tagesstrecke wird als Zufallsgröße \\( F \\) modelliert. Für Fahrer A gilt: \\( E(F_A) = 290 \\), \\( \\sigma(F_A) = 18 \\). Für Fahrer B gilt: \\( E(F_B) = 290 \\), \\( \\sigma(F_B) = 12 \\).",
     "fragen": [
       "Welcher Fahrer legt im Mittel mehr Kilometer zurück?",
       "Welcher Fahrer weist geringere Schwankungen in der täglich gefahrenen Strecke auf?",
@@ -225,7 +225,7 @@
     ]
   },
   {
-    "einleitung": "Für den Vergleich von Abteilung A und Abteilung B liegen folgende Kennzahlen der Zufallsgröße \\( H \\) (Behandlungsdauer, in min) vor: \\( E(H_A) = 51 \\), \\( \\sigma(H_A) = 8 \\), \\( E(H_B) = 53 \\), \\( \\sigma(H_B) = 4 \\).",
+    "einleitung": "In einer medizinischen Einrichtung werden zwei Abteilungen anhand ihrer Behandlungsdauern (in Minuten) miteinander verglichen. Die Dauer einer Behandlung wird als Zufallsgröße \\( H \\) modelliert. Für Abteilung A gilt: \\( E(H_A) = 51 \\), \\( \\sigma(H_A) = 8 \\). Für Abteilung B gilt: \\( E(H_B) = 53 \\), \\( \\sigma(H_B) = 4 \\).",
     "fragen": [
       "In welcher Abteilung ist die durchschnittliche Behandlungsdauer kürzer?",
       "Welche Abteilung weist geringere Schwankungen in der Behandlungsdauer auf?",
@@ -240,7 +240,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( A \\): Anzahl bearbeiteter Aufträge pro Tag in Aufträge. Mitarbeiter A: \\( E(A_A) = 22 \\), \\( \\sigma(A_A) = 2 \\); Mitarbeiter B: \\( E(A_B) = 21 \\), \\( \\sigma(A_B) = 5 \\).",
+    "einleitung": "In einem Kundendienst werden zwei Mitarbeiter anhand der Anzahl täglich bearbeiteter Aufträge miteinander verglichen. Die tägliche Bearbeitungsleistung wird als Zufallsgröße \\( A \\) modelliert. Für Mitarbeiter A gilt: \\( E(A_A) = 22 \\), \\( \\sigma(A_A) = 2 \\). Für Mitarbeiter B gilt: \\( E(A_B) = 21 \\), \\( \\sigma(A_B) = 5 \\).",
     "fragen": [
       "Bei welchem Mitarbeiter ist die durchschnittliche Tagesleistung höher?",
       "Bei welchem Mitarbeiter schwankt die Tagesleistung weniger?",
@@ -255,7 +255,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( R \\): Anzahl der Trainingseinheiten pro Tag in Einheiten. Zentrum A: \\( E(R_A) = 38 \\), \\( \\sigma(R_A) = 6 \\); Zentrum B: \\( E(R_B) = 44 \\), \\( \\sigma(R_B) = 3 \\).",
+    "einleitung": "Zwei Fitnesszentren werden anhand der Anzahl der täglich angebotenen Trainingseinheiten verglichen. Die tägliche Kursanzahl wird als Zufallsgröße \\( R \\) modelliert. Für Zentrum A gilt: \\( E(R_A) = 38 \\), \\( \\sigma(R_A) = 6 \\). Für Zentrum B gilt: \\( E(R_B) = 44 \\), \\( \\sigma(R_B) = 3 \\).",
     "fragen": [
       "Bei welchem Zentrum ist die durchschnittliche Anzahl täglicher Trainingseinheiten höher?",
       "Bei welchem Zentrum ist das Angebot an Trainingseinheiten gleichmäßiger?",
@@ -270,7 +270,7 @@
     ]
   },
   {
-    "einleitung": "Täglicher Lagerbestand in Einheiten wird für Lager Nord und Lager Süd als Zufallsgröße \\( Z \\) modelliert. Für Lager Nord: \\( E(Z_A) = 3700 \\), \\( \\sigma(Z_A) = 400 \\). Für Lager Süd: \\( E(Z_B) = 3800 \\), \\( \\sigma(Z_B) = 1200 \\).",
+    "einleitung": "Zwei Lagerhäuser eines Handelsunternehmens werden anhand ihres täglichen Lagerbestands (in Einheiten) miteinander verglichen. Der Bestand wird als Zufallsgröße \\( Z \\) modelliert. Für Lager Nord gilt: \\( E(Z_A) = 3700 \\), \\( \\sigma(Z_A) = 400 \\). Für Lager Süd gilt: \\( E(Z_B) = 3800 \\), \\( \\sigma(Z_B) = 1200 \\).",
     "fragen": [
       "Bei welchem Lager ist der durchschnittliche Tagesbestand größer?",
       "Bei welchem Lager schwankt der Bestand weniger?",
@@ -285,7 +285,7 @@
     ]
   },
   {
-    "einleitung": "Zufallsgröße \\( C \\): durchschnittliche Gesprächsdauer in min. Team A: \\( E(C_A) = 6{,}1 \\), \\( \\sigma(C_A) = 0{,}8 \\); Team B: \\( E(C_B) = 6{,}1 \\), \\( \\sigma(C_B) = 1{,}6 \\).",
+    "einleitung": "In einem Callcenter werden zwei Teams anhand der Dauer ihrer Kundengespräche (in Minuten) miteinander verglichen. Die Gesprächsdauer wird als Zufallsgröße \\( C \\) modelliert. Für Team A gilt: \\( E(C_A) = 6{,}1 \\), \\( \\sigma(C_A) = 0{,}8 \\). Für Team B gilt: \\( E(C_B) = 6{,}1 \\), \\( \\sigma(C_B) = 1{,}6 \\).",
     "fragen": [
       "Bei welchem Team ist die durchschnittliche Gesprächsdauer geringer?",
       "Bei welchem Team sind die Gesprächsdauern gleichmäßiger?",
