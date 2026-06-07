@@ -779,6 +779,10 @@ body.page-shell .shell {
   margin-bottom: 4px;
 }
 
+.greeting h2[data-dashboard-greeting-ready="false"] {
+  visibility: hidden;
+}
+
 .greeting h2 span {
   background: linear-gradient(90deg, var(--accent), var(--teal));
   -webkit-background-clip: text;
