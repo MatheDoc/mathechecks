@@ -1,0 +1,302 @@
+[
+  {
+    "einleitung": "Für den Vergleich von Anlage A und Anlage B liegen folgende Kennzahlen der Zufallsgröße \\( E \\) (Stromertrag pro Tag, in kWh) vor: \\( E(E_A) = 440 \\), \\( \\sigma(E_A) = 15 \\), \\( E(E_B) = 440 \\), \\( \\sigma(E_B) = 45 \\).",
+    "fragen": [
+      "Bei welcher Anlage ist der durchschnittliche Tagesertrag größer?",
+      "Bei welcher Anlage sind die täglichen Schwankungen im Stromertrag geringer?",
+      "Anlage A erzielte an einem Tag einen Ertrag von 462 kWh. Wie ist dieser Wert einzuordnen?",
+      "An einem Tag produzierte Anlage B 504 kWh. Handelt es sich um eine ungewöhnliche Abweichung vom Erwartungswert?"
+    ],
+    "antworten": [
+      "{1:MC:~Anlage A.~Anlage B.~=Beide Anlagen haben den gleichen mittleren Stromertrag.}",
+      "{1:MC:~=Anlage A.~Anlage B.~Beide Anlagen haben die gleiche Standardabweichung.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~=Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Tägliche Rendite in € wird für Fonds X und Fonds Y als Zufallsgröße \\( G \\) modelliert. Für Fonds X: \\( E(G_A) = 700 \\), \\( \\sigma(G_A) = 125 \\). Für Fonds Y: \\( E(G_B) = 750 \\), \\( \\sigma(G_B) = 84 \\).",
+    "fragen": [
+      "Welcher Fonds liefert im Durchschnitt die höhere Rendite?",
+      "Welcher Fonds ist die stabilere Anlage?",
+      "Fonds X erzielte an einem Tag eine Rendite von 526 €. Handelt es sich um einen ungewöhnlichen Wert?",
+      "An einem Handelstag erwirtschaftete Fonds Y 959 €. Wie ist dies im Kontext der Verteilung einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Fonds X.~=Fonds Y.~Beide Fonds haben im Mittel die gleiche Rendite.}",
+      "{1:MC:~Fonds X.~=Fonds Y.~Beide Fonds haben die gleiche Streuung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~=Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Tagesproduktion in Stück wird für Linie A und Linie B als Zufallsgröße \\( P \\) modelliert. Für Linie A: \\( E(P_A) = 2300 \\), \\( \\sigma(P_A) = 100 \\). Für Linie B: \\( E(P_B) = 2200 \\), \\( \\sigma(P_B) = 33 \\).",
+    "fragen": [
+      "Welche Produktionslinie stellt im Mittel mehr Stücke her?",
+      "Bei welcher Linie schwankt die Tagesproduktion weniger?",
+      "Linie A fertigte an einem Tag 2443 Stück. Ist das eine deutliche Abweichung vom Erwartungswert?",
+      "An einem Arbeitstag produzierte Linie B 2227 Stück. Wie würden Sie diesen Wert einordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~=Linie A.~Linie B.~Beide Linien haben die gleiche mittlere Tagesproduktion.}",
+      "{1:MC:~Linie A.~=Linie B.~Beide Linien haben die gleiche Standardabweichung.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~=Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Lieferzeit in h wird für Anbieter A und Anbieter B als Zufallsgröße \\( L \\) modelliert. Für Anbieter A: \\( E(L_A) = 44{,}0 \\), \\( \\sigma(L_A) = 7{,}5 \\). Für Anbieter B: \\( E(L_B) = 44{,}0 \\), \\( \\sigma(L_B) = 3{,}8 \\).",
+    "fragen": [
+      "Welcher Anbieter liefert im Mittel schneller?",
+      "Welcher Anbieter ist in seiner Lieferzeit konstanter?",
+      "Anbieter A hatte bei einer Lieferung eine Lieferzeit von 24,0 h. Wie ist dies einzuordnen?",
+      "Anbieter B hatte bei einer Lieferung eine Lieferzeit von 38,1 h. Wie ist dies einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Anbieter A.~Anbieter B.~=Beide Anbieter haben die gleiche durchschnittliche Lieferzeit.}",
+      "{1:MC:~Anbieter A.~=Anbieter B.~Beide Anbieter haben die gleiche Standardabweichung.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~=Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~=Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Filiale Nord und Filiale Süd liegen folgende Kennzahlen der Zufallsgröße \\( U \\) (Tagesumsatz, in €) vor: \\( E(U_A) = 10500 \\), \\( \\sigma(U_A) = 1500 \\), \\( E(U_B) = 12000 \\), \\( \\sigma(U_B) = 3750 \\).",
+    "fragen": [
+      "Bei welcher Filiale ist der mittlere Tagesumsatz größer?",
+      "Bei welcher Filiale schwankt der Tagesumsatz weniger?",
+      "An einem Verkaufstag erwirtschaftete Filiale Nord 10086 €. Wie ist dieser Wert zu bewerten?",
+      "Filiale Süd erzielte an einem Tag einen Umsatz von 21599 €. Handelt es sich um eine ungewöhnliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~Filiale Nord.~=Filiale Süd.~Beide Filialen haben den gleichen mittleren Tagesumsatz.}",
+      "{1:MC:~=Filiale Nord.~Filiale Süd.~Beide Filialen haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~=Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Standort A und Standort B liegen folgende Kennzahlen der Zufallsgröße \\( B \\) (tägliche Besucherzahl, in Personen) vor: \\( E(B_A) = 425 \\), \\( \\sigma(B_A) = 30 \\), \\( E(B_B) = 450 \\), \\( \\sigma(B_B) = 20 \\).",
+    "fragen": [
+      "Welcher Standort verzeichnet im Mittel mehr Besucher?",
+      "Bei welchem Standort sind die Besucherzahlen stabiler?",
+      "Standort A zählte an einem Tag 498 Besucher. Wie ist dieser Wert einzuordnen?",
+      "Standort B zählte an einem Tag 507 Besucher. Wie ist dieser Wert einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Standort A.~=Standort B.~Beide Standorte haben die gleiche mittlere Besucherzahl.}",
+      "{1:MC:~Standort A.~=Standort B.~Beide Standorte haben die gleiche Standardabweichung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~=Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~=Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( N \\): Prüfungspunktzahl in Punkte. Gruppe A: \\( E(N_A) = 59 \\), \\( \\sigma(N_A) = 8 \\); Gruppe B: \\( E(N_B) = 50 \\), \\( \\sigma(N_B) = 24 \\).",
+    "fragen": [
+      "Bei welcher Gruppe ist die mittlere Prüfungspunktzahl höher?",
+      "Welche Gruppe schneidet gleichmäßiger ab?",
+      "Ein Schüler aus Gruppe A erreichte 49 Punkte. Wie ist dieses Ergebnis einzuordnen?",
+      "Ein Schüler aus Gruppe B erreichte -15 Punkte. Wie ist dieses Ergebnis einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~=Gruppe A.~Gruppe B.~Beide Gruppen haben die gleiche mittlere Punktzahl.}",
+      "{1:MC:~=Gruppe A.~Gruppe B.~Beide Gruppen haben die gleiche Standardabweichung.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~=Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Maschine A und Maschine B liegen folgende Kennzahlen der Zufallsgröße \\( D \\) (Vorgangsdauer, in s) vor: \\( E(D_A) = 33{,}0 \\), \\( \\sigma(D_A) = 1{,}2 \\), \\( E(D_B) = 32{,}0 \\), \\( \\sigma(D_B) = 2{,}4 \\).",
+    "fragen": [
+      "Welche Maschine hat im Mittel eine kürzere Vorgangsdauer?",
+      "Welche Maschine arbeitet präziser (geringere Streuung)?",
+      "Ein Vorgang an Maschine A dauerte 34,6 s. Handelt es sich um eine deutliche Abweichung?",
+      "Maschine B benötigte für einen Vorgang 25,8 s. Ist das ein ungewöhnlicher Wert?"
+    ],
+    "antworten": [
+      "{1:MC:~Maschine A.~=Maschine B.~Beide Maschinen haben die gleiche mittlere Vorgangsdauer.}",
+      "{1:MC:~=Maschine A.~Maschine B.~Beide Maschinen haben die gleiche Standardabweichung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~=Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Anzahl der Tagesbestellungen in Bestellungen wird für Shop A und Shop B als Zufallsgröße \\( K \\) modelliert. Für Shop A: \\( E(K_A) = 730 \\), \\( \\sigma(K_A) = 75 \\). Für Shop B: \\( E(K_B) = 730 \\), \\( \\sigma(K_B) = 188 \\).",
+    "fragen": [
+      "Welcher Shop erhält im Mittel mehr Bestellungen pro Tag?",
+      "Welcher Shop weist konstantere Bestellzahlen auf?",
+      "An einem Tag gingen bei Shop A 633 Bestellungen ein. Ist das eine ungewöhnliche Abweichung?",
+      "An einem Tag gingen bei Shop B 392 Bestellungen ein. Ist das eine ungewöhnliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~Shop A.~Shop B.~=Beide Shops haben die gleiche mittlere Anzahl an Tagesbestellungen.}",
+      "{1:MC:~=Shop A.~Shop B.~Beide Shops haben die gleiche Standardabweichung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~=Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( M \\): tägliche Ernte in kg. Betrieb A: \\( E(M_A) = 1200 \\), \\( \\sigma(M_A) = 75 \\); Betrieb B: \\( E(M_B) = 1150 \\), \\( \\sigma(M_B) = 150 \\).",
+    "fragen": [
+      "Welcher Betrieb erntet im Durchschnitt mehr?",
+      "Welcher Betrieb weist geringere Schwankungen im Ernteertrag auf?",
+      "An einem Erntetag brachte Betrieb A 1150 kg ein. Wie ist dieser Wert zu bewerten?",
+      "An einem Erntetag brachte Betrieb B 1382 kg ein. Wie ist dieser Wert zu bewerten?"
+    ],
+    "antworten": [
+      "{1:MC:~=Betrieb A.~Betrieb B.~Beide Betriebe haben den gleichen mittleren Tagesertrag.}",
+      "{1:MC:~=Betrieb A.~Betrieb B.~Beide Betriebe haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Station A und Station B liegen folgende Kennzahlen der Zufallsgröße \\( T \\) (Tageshöchsttemperatur, in °C) vor: \\( E(T_A) = 18{,}0 \\), \\( \\sigma(T_A) = 2{,}5 \\), \\( E(T_B) = 18{,}0 \\), \\( \\sigma(T_B) = 0{,}8 \\).",
+    "fragen": [
+      "Welche Station weist im Mittel wärmere Tageshöchsttemperaturen auf?",
+      "Welche Station hat gleichmäßigere Temperaturen?",
+      "Station A maß an einem Tag eine Höchsttemperatur von 16,3 °C. Handelt es sich um einen ungewöhnlichen Wert?",
+      "An einem Tag betrug die Höchsttemperatur an Station B 17,6 °C. Wie ist dies einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Station A.~Station B.~=Beide Stationen haben die gleiche mittlere Tageshöchsttemperatur.}",
+      "{1:MC:~Station A.~=Station B.~Beide Stationen haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~=Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Wartezeit in min wird für Schalter A und Schalter B als Zufallsgröße \\( W \\) modelliert. Für Schalter A: \\( E(W_A) = 9{,}0 \\), \\( \\sigma(W_A) = 1{,}9 \\). Für Schalter B: \\( E(W_B) = 10{,}5 \\), \\( \\sigma(W_B) = 3{,}8 \\).",
+    "fragen": [
+      "Welcher Schalter hat im Mittel einen niedrigeren Erwartungswert der Wartezeit?",
+      "An welchem Schalter sind die Wartezeiten konstanter?",
+      "An Schalter A betrug die Wartezeit einmal 12,4 min. Wie ist dies einzuordnen?",
+      "An Schalter B betrug die Wartezeit einmal 20,5 min. Wie ist dies einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~=Schalter A.~Schalter B.~Beide Schalter haben die gleiche mittlere Wartezeit.}",
+      "{1:MC:~=Schalter A.~Schalter B.~Beide Schalter haben die gleiche Standardabweichung.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~=Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( S \\): täglicher Stromverbrauch in kWh. Maschine X: \\( E(S_A) = 30{,}0 \\), \\( \\sigma(S_A) = 5{,}0 \\); Maschine Y: \\( E(S_B) = 32{,}0 \\), \\( \\sigma(S_B) = 1{,}7 \\).",
+    "fragen": [
+      "Bei welcher Maschine ist der durchschnittliche Tagesverbrauch geringer?",
+      "Bei welcher Maschine ist der Stromverbrauch gleichmäßiger?",
+      "An einem Tag lag der Stromverbrauch von Maschine X bei 39,0 kWh. Wie ist dieser Wert einzuordnen?",
+      "Maschine Y verbrauchte an einem Tag 36,8 kWh. Handelt es sich um eine ungewöhnliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~=Maschine X.~Maschine Y.~Beide Maschinen haben den gleichen mittleren Stromverbrauch.}",
+      "{1:MC:~Maschine X.~=Maschine Y.~Beide Maschinen haben die gleiche Standardabweichung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~=Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Produkt A und Produkt B liegen folgende Kennzahlen der Zufallsgröße \\( V \\) (wöchentliche Verkaufszahl, in Einheiten) vor: \\( E(V_A) = 790 \\), \\( \\sigma(V_A) = 90 \\), \\( E(V_B) = 850 \\), \\( \\sigma(V_B) = 135 \\).",
+    "fragen": [
+      "Bei welchem Produkt ist die durchschnittliche wöchentliche Verkaufszahl höher?",
+      "Bei welchem Produkt ist die Nachfrage konstanter?",
+      "Produkt A erzielte in einer Woche 837 Verkäufe. Wie ist dieser Wert einzuordnen?",
+      "Produkt B erzielte in einer Woche 551 Verkäufe. Wie ist dieser Wert einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Produkt A.~=Produkt B.~Beide Produkte haben die gleiche mittlere Verkaufszahl.}",
+      "{1:MC:~=Produkt A.~Produkt B.~Beide Produkte haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~=Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( F \\): täglich zurückgelegte Strecke in km. Fahrer A: \\( E(F_A) = 290 \\), \\( \\sigma(F_A) = 18 \\); Fahrer B: \\( E(F_B) = 290 \\), \\( \\sigma(F_B) = 12 \\).",
+    "fragen": [
+      "Welcher Fahrer legt im Mittel mehr Kilometer zurück?",
+      "Welcher Fahrer weist geringere Schwankungen in der täglich gefahrenen Strecke auf?",
+      "Fahrer A legte an einem Tag 266 km zurück. Ist das eine deutliche Abweichung vom Erwartungswert?",
+      "An einem Arbeitstag fuhr Fahrer B 297 km. Wie ist dieser Wert zu bewerten?"
+    ],
+    "antworten": [
+      "{1:MC:~Fahrer A.~Fahrer B.~=Beide Fahrer legen im Mittel die gleiche Tagesstrecke zurück.}",
+      "{1:MC:~Fahrer A.~=Fahrer B.~Beide Fahrer haben die gleiche Standardabweichung.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~=Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Für den Vergleich von Abteilung A und Abteilung B liegen folgende Kennzahlen der Zufallsgröße \\( H \\) (Behandlungsdauer, in min) vor: \\( E(H_A) = 51 \\), \\( \\sigma(H_A) = 8 \\), \\( E(H_B) = 53 \\), \\( \\sigma(H_B) = 4 \\).",
+    "fragen": [
+      "In welcher Abteilung ist die durchschnittliche Behandlungsdauer kürzer?",
+      "Welche Abteilung weist geringere Schwankungen in der Behandlungsdauer auf?",
+      "In Abteilung A betrug die Behandlungsdauer einmal 46 min. Wie ist dieser Wert einzuordnen?",
+      "Eine Behandlung in Abteilung B dauerte 55 min. Handelt es sich um eine ungewöhnliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~=Abteilung A.~Abteilung B.~Beide Abteilungen haben die gleiche mittlere Behandlungsdauer.}",
+      "{1:MC:~Abteilung A.~=Abteilung B.~Beide Abteilungen haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~=Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( A \\): Anzahl bearbeiteter Aufträge pro Tag in Aufträge. Mitarbeiter A: \\( E(A_A) = 22 \\), \\( \\sigma(A_A) = 2 \\); Mitarbeiter B: \\( E(A_B) = 21 \\), \\( \\sigma(A_B) = 5 \\).",
+    "fragen": [
+      "Bei welchem Mitarbeiter ist die durchschnittliche Tagesleistung höher?",
+      "Bei welchem Mitarbeiter schwankt die Tagesleistung weniger?",
+      "Mitarbeiter A bearbeitete an einem Tag 20 Aufträge. Ist das eine deutliche Abweichung vom Erwartungswert?",
+      "Mitarbeiter B bearbeitete an einem Tag 23 Aufträge. Ist das eine deutliche Abweichung vom Erwartungswert?"
+    ],
+    "antworten": [
+      "{1:MC:~=Mitarbeiter A.~Mitarbeiter B.~Beide Mitarbeiter bearbeiten im Mittel gleich viele Aufträge.}",
+      "{1:MC:~=Mitarbeiter A.~Mitarbeiter B.~Beide Mitarbeiter haben die gleiche Standardabweichung.}",
+      "{1:MC:~=Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}",
+      "{1:MC:~=Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( R \\): Anzahl der Trainingseinheiten pro Tag in Einheiten. Zentrum A: \\( E(R_A) = 38 \\), \\( \\sigma(R_A) = 6 \\); Zentrum B: \\( E(R_B) = 44 \\), \\( \\sigma(R_B) = 3 \\).",
+    "fragen": [
+      "Bei welchem Zentrum ist die durchschnittliche Anzahl täglicher Trainingseinheiten höher?",
+      "Bei welchem Zentrum ist das Angebot an Trainingseinheiten gleichmäßiger?",
+      "An einem Tag bot Zentrum A 29 Trainingseinheiten an. Ist das ein ungewöhnlicher Wert?",
+      "Zentrum B verzeichnete an einem Tag 49 Trainingseinheiten. Wie ist dieser Wert einzuordnen?"
+    ],
+    "antworten": [
+      "{1:MC:~Zentrum A.~=Zentrum B.~Beide Zentren bieten im Mittel gleich viele Trainingseinheiten an.}",
+      "{1:MC:~Zentrum A.~=Zentrum B.~Beide Zentren haben die gleiche Standardabweichung.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~=Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~=Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  },
+  {
+    "einleitung": "Täglicher Lagerbestand in Einheiten wird für Lager Nord und Lager Süd als Zufallsgröße \\( Z \\) modelliert. Für Lager Nord: \\( E(Z_A) = 3700 \\), \\( \\sigma(Z_A) = 400 \\). Für Lager Süd: \\( E(Z_B) = 3800 \\), \\( \\sigma(Z_B) = 1200 \\).",
+    "fragen": [
+      "Bei welchem Lager ist der durchschnittliche Tagesbestand größer?",
+      "Bei welchem Lager schwankt der Bestand weniger?",
+      "Lager Nord verzeichnete an einem Tag einen Bestand von 4581 Einheiten. Ist das eine deutliche Abweichung?",
+      "Lager Süd verzeichnete an einem Tag einen Bestand von 2320 Einheiten. Ist das eine deutliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~Lager Nord.~=Lager Süd.~Beide Lager haben im Mittel den gleichen Bestand.}",
+      "{1:MC:~=Lager Nord.~Lager Süd.~Beide Lager haben die gleiche Standardabweichung.}",
+      "{1:MC:~Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~=Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}",
+      "{1:MC:~Kein ungewöhnlicher Wert – er liegt innerhalb einer Standardabweichung vom Erwartungswert.~=Leicht erhöhte Abweichung – der Wert liegt ein bis zwei Standardabweichungen vom Erwartungswert entfernt.~Deutliche Abweichung – der Wert liegt mehr als zwei Standardabweichungen vom Erwartungswert entfernt.}"
+    ]
+  },
+  {
+    "einleitung": "Zufallsgröße \\( C \\): durchschnittliche Gesprächsdauer in min. Team A: \\( E(C_A) = 6{,}1 \\), \\( \\sigma(C_A) = 0{,}8 \\); Team B: \\( E(C_B) = 6{,}1 \\), \\( \\sigma(C_B) = 1{,}6 \\).",
+    "fragen": [
+      "Bei welchem Team ist die durchschnittliche Gesprächsdauer geringer?",
+      "Bei welchem Team sind die Gesprächsdauern gleichmäßiger?",
+      "Ein Gespräch in Team A dauerte 4,8 min. Handelt es sich um eine ungewöhnliche Abweichung?",
+      "Ein Gespräch in Team B dauerte 7,3 min. Handelt es sich um eine ungewöhnliche Abweichung?"
+    ],
+    "antworten": [
+      "{1:MC:~Team A.~Team B.~=Beide Teams haben die gleiche mittlere Gesprächsdauer.}",
+      "{1:MC:~=Team A.~Team B.~Beide Teams haben die gleiche Standardabweichung.}",
+      "{1:MC:~Normaler Bereich – der Abstand zum Erwartungswert beträgt weniger als eine Standardabweichung.~=Erhöhte, aber noch übliche Abweichung – zwischen einer und zwei Standardabweichungen vom Erwartungswert.~Ungewöhnlicher Wert – der Abstand zum Erwartungswert überschreitet zwei Standardabweichungen.}",
+      "{1:MC:~=Keine deutliche Abweichung – der Wert liegt im Bereich \\( \\mu \\pm \\sigma \\).~Moderate Abweichung – der Wert liegt ein bis zwei Standardabweichungen außerhalb des Erwartungswerts.~Starke Abweichung – der Abstand zum Erwartungswert übersteigt zwei Standardabweichungen.}"
+    ]
+  }
+]
