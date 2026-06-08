@@ -492,6 +492,10 @@ export function renderTask(task, options = {}) {
     };
     let showSolutionsNow =
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
+    // Wurde die globale "alle Lösungen anzeigen"-Aktion genutzt, gilt der ganze
+    // Versuch als ungewertet (Quote bleibt unverändert). Per-Frage-Lösungen zählen
+    // weiterhin als Fragescore 0.
+    let globalSolutionsRevealed = Boolean(persistedState?.globalSolutionsRevealed);
 
     const dispatchTaskProgress = () => {
         const checkableList = Array.from(checkableQuestionIndexes);
@@ -515,6 +519,7 @@ export function renderTask(task, options = {}) {
                 revealedCount,
                 checkableCount: checkableQuestionCount,
                 questionAttempts,
+                solutionsRevealedGlobally: globalSolutionsRevealed,
                 isComplete: checkableQuestionCount === 0 || resolvedCount >= checkableQuestionCount,
             },
         }));
@@ -540,6 +545,7 @@ export function renderTask(task, options = {}) {
         });
         saveTaskUiState(persistenceKey, {
             showSolutions: showSolutionsNow,
+            globalSolutionsRevealed,
             checkedQuestionIndexes: normalizedChecked,
             questionStates: serializedQuestionStates,
             inputs: answerFields.map((field) => readFieldUiState(field)),
@@ -753,6 +759,7 @@ export function renderTask(task, options = {}) {
                     node.hidden = !showSolutionsNow;
                 });
                 if (showSolutionsNow) {
+                    globalSolutionsRevealed = true;
                     checkableQuestionIndexes.forEach((questionIndex) => {
                         const state = getQuestionState(questionIndex);
                         if (!state.correct && !state.revealed) {

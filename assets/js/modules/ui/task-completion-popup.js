@@ -111,6 +111,7 @@ function buildDialogButton({ variant = "primary", icon = "", label = "", detail 
 export function showTaskCompletionPopup({
   mode = "training",
   showQuote = false,
+  quoteUnchanged = false,
   previousRate = null,
   newRate = null,
   onRepeat = null,
@@ -136,8 +137,15 @@ export function showTaskCompletionPopup({
   heading.textContent = mode === "training" ? "Aufgabe abgeschlossen" : "Durchgang abgeschlossen";
   popup.appendChild(heading);
 
-  if (showQuote) {
+  if (showQuote && !quoteUnchanged) {
     popup.appendChild(buildQuoteDelta(previousRate, newRate));
+  }
+
+  if (quoteUnchanged) {
+    const note = document.createElement("p");
+    note.className = "task-completion-popup__void-note";
+    note.textContent = "Dieser Durchgang wurde nicht gewertet, da alle Lösungen angezeigt wurden. Deine Quote bleibt unverändert.";
+    popup.appendChild(note);
   }
 
   const close = () => overlay.remove();

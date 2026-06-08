@@ -7,7 +7,7 @@ import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedba
 import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-complete-icon";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
