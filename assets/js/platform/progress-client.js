@@ -497,3 +497,32 @@ export async function resolveRetentionFlashcardRound({ roundId, decisionKey }) {
     return { ok: false, error };
   }
 }
+
+export async function getUserCheckProficiency() {
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("get_user_check_proficiency");
+
+    if (error) {
+      console.warn("MatheChecks: Quoten konnten nicht geladen werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: data && typeof data === "object" ? data : null };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Laden der Quoten.", error);
+    return { ok: false, error };
+  }
+}
+
+export function extractCheckProficiencyRate(proficiency, checkId) {
+  const normalizedCheckId = normalizeText(checkId);
+  if (!proficiency || typeof proficiency !== "object" || !normalizedCheckId) return null;
+  const checks = Array.isArray(proficiency.checks) ? proficiency.checks : [];
+  const entry = checks.find((item) => normalizeText(item?.checkId) === normalizedCheckId);
+  if (!entry) return null;
+  const rate = Number(entry.rate);
+  return Number.isFinite(rate) ? rate : null;
+}

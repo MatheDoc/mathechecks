@@ -4,9 +4,10 @@ import { recordUserActivity } from "../platform/progress-client.js?v=20260604-ac
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-complete-icon";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
@@ -755,6 +756,35 @@ function initInteractiveFeynmanCards(root, checks, lernbereich, activityContext)
       stages.resultNo.hidden = nextStage !== "result-no";
     }
 
+    const isFreeMode = activityContext?.mode !== "feed";
+    let freeCompletionControl = null;
+
+    function resetFeynmanCard() {
+      if (freeCompletionControl) freeCompletionControl.setReady(false);
+      setStage("explain");
+      if (explainActive) explainActive.hidden = true;
+      if (explainIdle) explainIdle.hidden = false;
+    }
+
+    function ensureFreeCompletionControl() {
+      if (!isFreeMode) return;
+      if (!freeCompletionControl) {
+        const section = card.closest("[data-fy-check-viewport]");
+        freeCompletionControl = attachFreeCompletionControl(section, {
+          cardSelector: "[data-fy-card]",
+          stepLabel: "Feynman",
+          onComplete: () => {
+            showTaskCompletionPopup({
+              mode: "feynman",
+              showQuote: false,
+              onRepeat: resetFeynmanCard,
+            });
+          },
+        });
+      }
+      if (freeCompletionControl) freeCompletionControl.setReady(true);
+    }
+
     function startTimerBar(scope, durationMs, btn) {
       const fill = card.querySelector(`[data-fy-timer-fill="${scope}"]`);
       if (fill) {
@@ -814,6 +844,7 @@ function initInteractiveFeynmanCards(root, checks, lernbereich, activityContext)
         },
       });
       revealEvaluation();
+      ensureFreeCompletionControl();
     });
     card.querySelector('[data-fy-answer="yes"]')?.addEventListener("click", () => setResult(true));
     card.querySelector('[data-fy-answer="no"]')?.addEventListener("click", () => setResult(false));

@@ -401,6 +401,81 @@ html.light .check-card {
     animation: feed-icon-ready-ring 900ms ease-out infinite;
 }
 
+/* ── Einheitliches Abschluss-Icon (freie Modulaufrufe) ── */
+
+.card-complete-menu__trigger {
+    min-width: var(--dcc-header-action-size);
+    width: var(--dcc-header-action-size);
+    min-height: var(--dcc-header-action-size);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-dim);
+    box-shadow: none;
+    border-radius: 999px;
+}
+
+.card-complete-menu__trigger:hover,
+.card-complete-menu__trigger:focus-visible {
+    background: transparent;
+    box-shadow: none;
+}
+
+.card-complete-menu__trigger:disabled {
+    cursor: default;
+    opacity: 0.55;
+}
+
+.card-complete-menu__trigger:disabled:hover,
+.card-complete-menu__trigger:disabled:focus-visible {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-dim);
+}
+
+.card-complete-menu__trigger:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--green) 70%, transparent);
+    outline-offset: 2px;
+}
+
+.card-complete-menu__icon {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+}
+
+.card-complete-menu__svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.card-complete-menu[data-complete-ready="true"] .card-complete-menu__trigger {
+    cursor: pointer;
+    color: var(--green);
+}
+
+.card-complete-menu[data-complete-ready="true"] .card-complete-menu__svg {
+    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--green) 48%, transparent));
+    animation: feed-icon-ready-pulse 900ms ease-in-out infinite;
+}
+
+.card-complete-menu[data-complete-ready="true"] .card-complete-menu__icon::after {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border-radius: 999px;
+    border: 2px solid var(--green);
+    opacity: 0.5;
+    animation: feed-icon-ready-ring 900ms ease-out infinite;
+}
+
 .feed-decision-dialog {
     position: fixed;
     inset: 0;

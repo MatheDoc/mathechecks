@@ -3,7 +3,7 @@ import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
 const FLASHCARDS_ROUND_LIMIT = 20;

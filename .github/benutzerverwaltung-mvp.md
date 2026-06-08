@@ -8,7 +8,7 @@ Sie umfasst Benutzer, Profile, Lern-Sessions, `session_check_state` als erste Ch
 ## Dokumentgrenzen
 
 - Diese Datei beschreibt fachliches Zielbild, Datenmodell, Sicherheitsmodell und MVP-Scope.
-- `.github/feed-v2-core-spec.md` ist die kanonische Feed-Zieldoku; diese Datei trägt dafür nur die additive Datenmodell- und Migrationssicht.
+- `.github/feed.md` ist die kanonische Feed-Zieldoku; diese Datei trägt dafür nur die additive Datenmodell- und Migrationssicht.
 - `supabase/README.md` dokumentiert dagegen CLI-Workflow, lokales vs. gehostetes Setup, Dashboard-Schritte und SMTP.
 - Die Trennung ist bewusst sinnvoll: Architektur und Betriebs-Runbook ändern sich oft in unterschiedlichem Tempo.
 
@@ -70,6 +70,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `get_or_create_retention_flashcard_round(...)`, `record_retention_flashcard_review(...)` und `resolve_retention_flashcard_round(...)` ergänzen den user-scoped Retention-Schreibpfad außerhalb des Core-Cursors; die Durchgänge können auch während einer aktiven Core-Session sichtbar werden.
 - `user_activity_events` ergänzt einen separaten user-scoped Append-only Log für accountgebundene Aktivitätsstatistik außerhalb der Feed-Projektion.
 - `record_user_activity(...)` schreibt kumulative Ereignisse für `training`, `recall`, `feynman` und `flashcards`; `get_user_activity_overview()` liefert daraus das Dashboard-Read-Model für Gesamtzahlen und 7-Tage-Überblick.
+- `get_user_check_proficiency()` leitet die user-scoped Quote je Check als recency-gewichtetes Read-Model aus den `training`-Ereignissen ab (Parameter `proficiency.*` in `system_settings`); `get_user_activity_overview().trainingSuccess` und `.proficiency` beziehen ihre Erfolgsquote daraus, das Dashboard rendert die nach Quote sortierte Trainingsfokus-Liste.
 - `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
@@ -364,7 +365,7 @@ Aktuelle Werte für `current_step_status`:
 Regeln:
 
 - Beim Speichern der aktiven Session synchronisiert `save_active_learning_session(...)` die Zeilen aus den im Frontend aufgelösten enthaltenen Checks.
-- Neue Zeilen starten in v1 mit `training` und `due`.
+- Neue Zeilen starten in v1 mit `training` und `blocked`; nach abgeschlossenem `start` des Lernbereichs werden sie serverseitig auf `due` gesetzt.
 - Nicht mehr enthaltene Checks werden aus der aktiven Session-Projektion entfernt.
 - Das Frontend darf `session_check_state` lesen, aber nicht direkt schreiben.
 - `last_completed_at` materialisiert den tatsächlichen Abschlusszeitpunkt des zuletzt erfolgreich abgeschlossenen Vorgängerschritts; spätere Nachfolgefenster sollen darauf aufbauen, nicht auf bloß geplanten Fälligkeiten.
@@ -527,6 +528,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - `complete_kompetenzliste_gate(p_check_id text, p_activity_key text)`
 - `record_user_activity(p_activity_type text, p_lernbereich_slug text default null, p_check_id text default null, p_context_key text default null, p_details jsonb default '{}'::jsonb)`
 - `get_user_activity_overview()`
+- `get_user_check_proficiency()`
 - `finish_learning_session(p_session_id uuid, p_status text)`
 - `set_retention_scope_status(p_lernbereich_slug text, p_status text)`
 - `delete_current_user_account()`
@@ -535,6 +537,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 - `is_lernbereich_start_ready(p_session_id uuid, p_lernbereich_slug text)` — prüft, ob alle nicht ausgeschlossenen Checks kleinerer `sort_index`-Stufen desselben Gebiets bereits `check_completed` sind
 - `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — schaltet nach vollständigem Lernbereichsabschluss die nächste `start`-Stufe desselben Gebiets frei; wird intern von `complete_kompetenzliste_gate` aufgerufen
+- `_compute_training_task_score(p_details jsonb, p_retry_penalty numeric)` — berechnet den Aufgaben-Score eines `training`-Ereignisses (Mittel der Frage-Scores `max(0, 1−(n−1)·p)`, eingeblendete Lösung = 0); Legacy-Ereignisse fallen auf das alte `correctCount/totalCount`-Schema zurück
 
 ## Minimale Leseflüsse
 

@@ -14,15 +14,16 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260605-noncheckable-parts";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260608-quote-perq";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-complete-icon";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
@@ -1281,7 +1282,6 @@ function createTaskCardNode(
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
   card.className = "check-card check-card--training";
-  card.dataset.trainingSolutionsShown = "false";
 
   const { header, actionsPopover } = createTrainingCardHeader(check, titel);
   card.appendChild(header);
@@ -1289,11 +1289,6 @@ function createTaskCardNode(
   const body = document.createElement("div");
   body.className = "check-card__body";
   card.appendChild(body);
-
-  const syncSolutionsShownState = () => {
-    const solutionsVisible = Array.from(card.querySelectorAll(".solution")).some((node) => !node.hidden);
-    card.dataset.trainingSolutionsShown = solutionsVisible ? "true" : "false";
-  };
 
   if (!aufgabe) {
     body.textContent = "Keine Aufgabe in dieser Sammlung gefunden.";
@@ -1349,7 +1344,6 @@ function createTaskCardNode(
     },
   });
   body.appendChild(runtimeTaskNode);
-  syncSolutionsShownState();
 
   const runtimeToolbar = runtimeTaskNode.querySelector(".task-toolbar");
   const runtimeActionButtons = runtimeTaskNode.querySelectorAll(".task-toolbar__actions .task-toolbar-btn");
@@ -1363,12 +1357,6 @@ function createTaskCardNode(
   });
 
   if (runtimeSolutionBtn) {
-    runtimeSolutionBtn.addEventListener("click", () => {
-      queueMicrotask(() => {
-        syncSolutionsShownState();
-      });
-    });
-
     const isHidden = () => {
       const label = (runtimeSolutionBtn.getAttribute("aria-label") || runtimeSolutionBtn.title || "").toLowerCase();
       return label.includes("ausblenden");
@@ -1461,11 +1449,53 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   let taskCompletionTracked = false;
   let initialProgressSeen = false;
 
+  const isFreeMode = !feedContext?.activityKey;
+  let freeCompleteControl = null;
+  let freeCompleteReady = false;
+  let latestRates = null;
+
+  const attachFreeCompleteControl = () => {
+    if (!isFreeMode) return;
+    freeCompleteControl = attachFreeCompletionControl(viewportNode, {
+      cardSelector: ".check-card--training",
+      stepLabel: "Training",
+      onComplete: () => {
+        void openFreeCompletionPopup();
+      },
+    });
+    if (freeCompleteControl) freeCompleteControl.setReady(freeCompleteReady);
+  };
+
+  const markFreeCompleteReady = () => {
+    if (!isFreeMode) return;
+    freeCompleteReady = true;
+    if (freeCompleteControl) freeCompleteControl.setReady(true);
+  };
+
+  const openFreeCompletionPopup = async () => {
+    let rates = latestRates;
+    if (!rates) {
+      const proficiency = await getUserCheckProficiency();
+      const newRate = proficiency.ok ? extractCheckProficiencyRate(proficiency.data, checkId) : null;
+      rates = { previousRate: null, newRate };
+    }
+    showTaskCompletionPopup({
+      mode: "training",
+      showQuote: true,
+      previousRate: rates.previousRate,
+      newRate: rates.newRate,
+      onRepeat: () => reloadCurrentTask(),
+      onDashboard: () => window.location.assign("/dashboard.html"),
+    });
+  };
+
   const reloadCurrentTask = () => {
     taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
     shuffleNonce = String(Date.now());
     taskCompletionTracked = false;
     initialProgressSeen = false;
+    latestRates = null;
+    freeCompleteReady = false;
     saveCurrentShuffleNonce(shuffleNonce);
     if (typeof onTaskIndexChange === "function") {
       onTaskIndexChange(taskIndex);
@@ -1474,6 +1504,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     cardNode.replaceWith(nextCard);
     cardNode = nextCard;
     finalizeTaskRender(viewportNode);
+    attachFreeCompleteControl();
     viewportNode.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));
   };
 
@@ -1505,6 +1536,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       initialProgressSeen = true;
       if (isComplete) {
         taskCompletionTracked = true;
+        markFreeCompleteReady();
         return;
       }
     }
@@ -1513,14 +1545,33 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     taskCompletionTracked = true;
 
     if (typeof onTaskCompleted === "function") {
-      onTaskCompleted({
-        checkId,
-        taskIndex,
-        checkedCount: Number(event.detail?.checkedCount) || 0,
-        totalCount: Number(event.detail?.totalCount) || 0,
-        correctCount: Number(event.detail?.correctCount) || 0,
-        solutionsShown: cardNode?.dataset?.trainingSolutionsShown === "true",
-      });
+      const detail = event.detail || {};
+      Promise.resolve(
+        onTaskCompleted({
+          checkId,
+          taskIndex,
+          checkedCount: Number(detail.checkedCount) || 0,
+          totalCount: Number(detail.totalCount) || 0,
+          correctCount: Number(detail.correctCount) || 0,
+          revealedCount: Number(detail.revealedCount) || 0,
+          checkableCount: Number(detail.checkableCount) || (Number(detail.totalCount) || 0),
+          questionAttempts: Array.isArray(detail.questionAttempts) ? detail.questionAttempts : [],
+        })
+      )
+        .then((rates) => {
+          if (rates && typeof rates === "object") {
+            latestRates = {
+              previousRate: rates.previousRate ?? null,
+              newRate: rates.newRate ?? null,
+            };
+          }
+          markFreeCompleteReady();
+        })
+        .catch(() => {
+          markFreeCompleteReady();
+        });
+    } else {
+      markFreeCompleteReady();
     }
   });
 
@@ -1528,6 +1579,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
 
   cardNode = renderCurrentCard();
   viewportNode.appendChild(cardNode);
+  attachFreeCompleteControl();
   return viewportNode;
 }
 
@@ -1737,19 +1789,26 @@ export async function initTrainingModule({
               saveTaskIndexForCheck(lernbereich, checkId, taskIndex);
               persist();
             },
-            onTaskCompleted: ({ checkId: completedCheckId, taskIndex: completedTaskIndex, totalCount, correctCount, solutionsShown }) => {
-              void recordUserActivity({
+            onTaskCompleted: async ({ checkId: completedCheckId, taskIndex: completedTaskIndex, checkableCount, revealedCount, questionAttempts }) => {
+              const before = await getUserCheckProficiency();
+              const previousRate = before.ok ? extractCheckProficiencyRate(before.data, completedCheckId) : null;
+
+              await recordUserActivity({
                 activityType: "training",
                 lernbereichSlug: lernbereich,
                 checkId: completedCheckId,
                 contextKey: isActiveFeedTraining ? "feed" : "free",
                 details: {
                   taskIndex: completedTaskIndex,
-                  totalCount,
-                  correctCount,
-                  solutionsShown: Boolean(solutionsShown),
+                  checkable_count: checkableCount,
+                  question_attempts: Array.isArray(questionAttempts) ? questionAttempts : [],
+                  revealed_count: revealedCount,
                 },
               });
+
+              const after = await getUserCheckProficiency();
+              const newRate = after.ok ? extractCheckProficiencyRate(after.data, completedCheckId) : null;
+              return { previousRate, newRate };
             },
           });
         } catch (error) {

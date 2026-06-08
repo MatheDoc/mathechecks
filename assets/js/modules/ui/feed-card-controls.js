@@ -9,6 +9,12 @@ const FEED_ICON_SVG = `
     <circle cx="19" cy="5" r="2" />
   </svg>
 `;
+const COMPLETE_ICON_SVG = `
+  <svg class="card-complete-menu__svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 12.3l2.7 2.7L16 9.5" />
+  </svg>
+`;
 const DIALOG_DRAG_BLOCK_SELECTOR = "button, a, input, textarea, select, summary, [data-dialog-drag-block]";
 const FEED_CONTENT_META_OPTIONS = {
   checksUrl: "/checks.json",
@@ -521,4 +527,59 @@ export function attachFeedCardControls(section, { cardSelector, stepLabel = "Fee
   }
 
   return { card, menu, trigger, render, openDecisionDialog: openFeedDecisionDialog };
+}
+
+/**
+ * Einheitliches Abschluss-Icon im Karten-Header fuer freie Modulaufrufe.
+ * Spiegelt Platzierung und Pulsoptik des Feed-Icons, ist aber visuell ein
+ * Abschluss-Haken (kein Feed-Signal) und oeffnet kein Feed-Entscheidungsdialog.
+ * @param {HTMLElement} section
+ * @param {object} options
+ * @param {string} options.cardSelector
+ * @param {string} [options.stepLabel]
+ * @param {function} [options.onComplete]
+ * @returns {{ menu: HTMLElement, trigger: HTMLButtonElement, setReady: (ready: boolean) => void } | null}
+ */
+export function attachFreeCompletionControl(section, { cardSelector, stepLabel = "Abschluss", onComplete } = {}) {
+  const card = section?.querySelector?.(cardSelector || ".check-card");
+  if (!card) return null;
+
+  const headerActions = ensureHeaderActions(card);
+  if (!headerActions) return null;
+
+  const existing = headerActions.querySelector(".card-complete-menu");
+  if (existing) existing.remove();
+
+  const menu = document.createElement("div");
+  menu.className = "check-card__actions-menu card-complete-menu";
+  menu.dataset.completeReady = "false";
+
+  const trigger = document.createElement("button");
+  trigger.type = "button";
+  trigger.className = "check-card__actions-trigger card-complete-menu__trigger";
+  trigger.disabled = true;
+  const idleLabel = `${stepLabel}: noch nicht abschließbar`;
+  trigger.setAttribute("aria-label", idleLabel);
+  trigger.title = idleLabel;
+  trigger.innerHTML = `<span class="card-complete-menu__icon">${COMPLETE_ICON_SVG}</span><span class="visually-hidden">${stepLabel} abschließen</span>`;
+
+  trigger.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (trigger.disabled || typeof onComplete !== "function") return;
+    onComplete(event);
+  });
+
+  menu.appendChild(trigger);
+  headerActions.prepend(menu);
+
+  const setReady = (ready) => {
+    const isReady = Boolean(ready);
+    menu.dataset.completeReady = isReady ? "true" : "false";
+    trigger.disabled = !isReady;
+    const label = isReady ? `${stepLabel} abschließen` : idleLabel;
+    trigger.setAttribute("aria-label", label);
+    trigger.title = label;
+  };
+
+  return { menu, trigger, setReady };
 }

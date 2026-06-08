@@ -2,9 +2,10 @@ import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260604-manual-retention-head";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-complete-icon";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -508,6 +509,38 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       }
     }
 
+    const isFreeMode = activityContext?.mode !== "feed";
+    let freeCompletionControl = null;
+
+    function resetRecallCard() {
+      if (comparePanel) comparePanel.hidden = true;
+      if (freeCompletionControl) freeCompletionControl.setReady(false);
+      if (inputSlots) {
+        inputSlots.querySelectorAll(".recall-input-slot").forEach((el) => { el.value = ""; });
+      }
+      setStage("recall");
+      if (recallActive) recallActive.hidden = true;
+      if (recallIdle) recallIdle.hidden = false;
+    }
+
+    function ensureFreeCompletionControl() {
+      if (!isFreeMode) return;
+      if (!freeCompletionControl) {
+        freeCompletionControl = attachFreeCompletionControl(section, {
+          cardSelector: "[data-recall-card]",
+          stepLabel: "Recall",
+          onComplete: () => {
+            showTaskCompletionPopup({
+              mode: "recall",
+              showQuote: false,
+              onRepeat: resetRecallCard,
+            });
+          },
+        });
+      }
+      if (freeCompletionControl) freeCompletionControl.setReady(true);
+    }
+
     function startTimerBar(scope, durationMs, btn) {
       const fill = card.querySelector(`[data-recall-timer-fill="${scope}"]`);
       if (fill) {
@@ -581,6 +614,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       }
 
       revealComparePanel(comparePanel);
+      ensureFreeCompletionControl();
       void renderMath(stageEls.retrieve);
     });
 
