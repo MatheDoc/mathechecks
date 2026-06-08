@@ -116,6 +116,17 @@
     color: var(--text-dim, #9a9ab0);
 }
 
+.task-completion-popup__void-note {
+    margin: 0 0 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--amber, #e0a93b) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--amber, #e0a93b) 28%, var(--border, #2c2c3a));
+    color: var(--text-body, #e8e8f0);
+    font-size: 0.84rem;
+    line-height: 1.4;
+}
+
 @keyframes task-quote-rise {
     0% {
         transform: translateY(10px) scale(0.85);

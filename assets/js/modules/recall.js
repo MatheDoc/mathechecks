@@ -5,7 +5,7 @@ import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js"
 import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-complete-icon";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
