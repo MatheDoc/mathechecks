@@ -452,6 +452,8 @@ export function renderTask(task, options = {}) {
     qaList.style.paddingBlock = "0";
 
     const solutionNodes = [];
+    const questionSolutionNodes = [];
+    const questionRevealControls = [];
     const answerFields = [];
     const answerFieldQuestionIndexes = [];
     const questionEvaluators = [];
@@ -462,26 +464,58 @@ export function renderTask(task, options = {}) {
             ? persistedState.checkedQuestionIndexes.filter((index) => Number.isInteger(index) && index >= 0)
             : []
     );
+    // Per-Frage-Zustand fuer das Quotenmodell (siehe .github/quoten.md):
+    //   attempts = Anzahl vollstaendiger Pruefungen bis korrekt (n)
+    //   revealed = Loesung aktiv angefordert, bevor die Frage korrekt war (Fragescore 0)
+    //   correct  = Frage korrekt beantwortet
+    const persistedQuestionStates =
+        persistedState && typeof persistedState.questionStates === "object" && persistedState.questionStates
+            ? persistedState.questionStates
+            : {};
+    const questionStates = new Map();
+    const getQuestionState = (index) => {
+        let state = questionStates.get(index);
+        if (!state) {
+            const restored = persistedQuestionStates[index];
+            state = {
+                attempts: Number.isInteger(restored?.attempts) && restored.attempts >= 0 ? restored.attempts : 0,
+                revealed: Boolean(restored?.revealed),
+                correct: Boolean(restored?.correct),
+            };
+            questionStates.set(index, state);
+        }
+        return state;
+    };
+    const isQuestionResolved = (index) => {
+        const state = getQuestionState(index);
+        return state.correct || state.revealed;
+    };
     let showSolutionsNow =
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
 
     const dispatchTaskProgress = () => {
-        const checkableQuestionCount = checkableQuestionIndexes.size;
-        const checkedCount = Array.from(checkedQuestionIndexes)
-            .filter((questionIndex) => checkableQuestionIndexes.has(questionIndex))
-            .length;
-        const correctCount = Array.from(checkedQuestionIndexes)
-            .filter((questionIndex) => checkableQuestionIndexes.has(questionIndex))
-            .filter((questionIndex) => isQuestionResultCorrect(questionResults[questionIndex]))
-            .length;
+        const checkableList = Array.from(checkableQuestionIndexes);
+        const checkableQuestionCount = checkableList.length;
+        const resolvedCount = checkableList.filter((questionIndex) => isQuestionResolved(questionIndex)).length;
+        const correctCount = checkableList.filter((questionIndex) => getQuestionState(questionIndex).correct).length;
+        const revealedCount = checkableList.filter((questionIndex) => {
+            const state = getQuestionState(questionIndex);
+            return state.revealed && !state.correct;
+        }).length;
+        const questionAttempts = checkableList
+            .filter((questionIndex) => getQuestionState(questionIndex).correct)
+            .map((questionIndex) => Math.max(getQuestionState(questionIndex).attempts, 1));
 
         wrapper.dispatchEvent(new CustomEvent("task:question-checked", {
             bubbles: true,
             detail: {
-                checkedCount,
+                checkedCount: resolvedCount,
                 totalCount: checkableQuestionCount,
                 correctCount,
-                isComplete: checkableQuestionCount === 0 || checkedCount >= checkableQuestionCount,
+                revealedCount,
+                checkableCount: checkableQuestionCount,
+                questionAttempts,
+                isComplete: checkableQuestionCount === 0 || resolvedCount >= checkableQuestionCount,
             },
         }));
     };
@@ -496,9 +530,18 @@ export function renderTask(task, options = {}) {
     const persistCurrentUiState = () => {
         if (!persistenceKey) return;
         const normalizedChecked = Array.from(checkedQuestionIndexes).sort((a, b) => a - b);
+        const serializedQuestionStates = {};
+        questionStates.forEach((state, index) => {
+            serializedQuestionStates[index] = {
+                attempts: state.attempts,
+                revealed: state.revealed,
+                correct: state.correct,
+            };
+        });
         saveTaskUiState(persistenceKey, {
             showSolutions: showSolutionsNow,
             checkedQuestionIndexes: normalizedChecked,
+            questionStates: serializedQuestionStates,
             inputs: answerFields.map((field) => readFieldUiState(field)),
         });
     };
@@ -537,6 +580,13 @@ export function renderTask(task, options = {}) {
         };
         questionEvaluators[i] = buildQuestionEvaluation;
 
+        const showQuestionSolution = () => {
+            const solutionNode = questionSolutionNodes[i];
+            if (solutionNode) solutionNode.hidden = false;
+            const revealControl = questionRevealControls[i];
+            if (revealControl) revealControl.hidden = true;
+        };
+
         const syncQuestionCheckState = (result) => {
             if (isQuestionResultComplete(result)) {
                 checkedQuestionIndexes.add(i);
@@ -549,6 +599,31 @@ export function renderTask(task, options = {}) {
             stopActiveSpeechInput();
             const result = buildQuestionEvaluation();
             syncQuestionCheckState(result);
+
+            const state = getQuestionState(i);
+            if (!state.correct && !state.revealed && isQuestionResultComplete(result)) {
+                state.attempts += 1;
+                if (isQuestionResultCorrect(result)) {
+                    state.correct = true;
+                    showQuestionSolution();
+                } else {
+                    const revealControl = questionRevealControls[i];
+                    if (revealControl) revealControl.hidden = false;
+                }
+            }
+
+            if (persistenceKey) {
+                persistCurrentUiState();
+            }
+            dispatchTaskProgress();
+        };
+
+        const requestQuestionSolution = () => {
+            const state = getQuestionState(i);
+            if (!state.correct && !state.revealed) {
+                state.revealed = true;
+            }
+            showQuestionSolution();
             if (persistenceKey) {
                 persistCurrentUiState();
             }
@@ -617,11 +692,25 @@ export function renderTask(task, options = {}) {
             const solution = document.createElement("div");
             solution.className = "solution";
             solution.innerHTML = answerToSolution(antworten[i]);
-            if (!showSolutionsNow) {
+            const questionResolvedOnRender = checkableQuestionIndexes.has(i) && isQuestionResolved(i);
+            if (!showSolutionsNow && !questionResolvedOnRender) {
                 solution.hidden = true;
             }
             solutionNodes.push(solution);
+            questionSolutionNodes[i] = solution;
             item.appendChild(solution);
+
+            if (interactiveMode && interactionConfig.enablePerQuestionCheck && checkableQuestionIndexes.has(i)) {
+                const revealControl = document.createElement("button");
+                revealControl.type = "button";
+                revealControl.className = "answer-reveal-request";
+                revealControl.textContent = "Lösung anzeigen";
+                const stateOnRender = getQuestionState(i);
+                revealControl.hidden = !(checkedQuestionIndexes.has(i) && !stateOnRender.correct && !stateOnRender.revealed);
+                revealControl.addEventListener("click", requestQuestionSolution);
+                questionRevealControls[i] = revealControl;
+                item.appendChild(revealControl);
+            }
         }
 
         qaList.appendChild(item);
@@ -663,8 +752,19 @@ export function renderTask(task, options = {}) {
                 solutionNodes.forEach((node) => {
                     node.hidden = !showSolutionsNow;
                 });
+                if (showSolutionsNow) {
+                    checkableQuestionIndexes.forEach((questionIndex) => {
+                        const state = getQuestionState(questionIndex);
+                        if (!state.correct && !state.revealed) {
+                            state.revealed = true;
+                        }
+                        const revealControl = questionRevealControls[questionIndex];
+                        if (revealControl) revealControl.hidden = true;
+                    });
+                }
                 updateSolutionBtn(showSolutionsNow);
                 persistCurrentUiState();
+                dispatchTaskProgress();
             });
             actions.appendChild(solutionBtn);
         }

@@ -42,7 +42,7 @@ Du verantwortest die fachlich-technische Architektur rund um persistente Plattfo
 - `.github/glossary.md`
 - `.github/datenmodell.md`
 - `.github/benutzerverwaltung-mvp.md`
-- `.github/feed-v2-core-spec.md`
+- `.github/feed.md`
 
 
 ## Prioritäten

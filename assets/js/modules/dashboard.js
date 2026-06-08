@@ -1352,7 +1352,7 @@ function applyActivityOverview(context, overview = null) {
 
   if (summaryNode) {
     summaryNode.textContent = totalCount > 0
-      ? "Gezählt werden abgeschlossene Trainingsaufgaben ohne eingeblendete Lösungen, Recall-, Feynman- und Flashcard-Durchgänge über Feed und freien Zugriff."
+      ? "Gezählt werden abgeschlossene Trainingsaufgaben, Recall-, Feynman- und Flashcard-Durchgänge über Feed und freien Zugriff."
       : ACTIVITY_SUMMARY_EMPTY;
   }
   if (totalNode) totalNode.textContent = formatActivityCount(totalCount);
@@ -1367,8 +1367,8 @@ function applyActivityOverview(context, overview = null) {
   if (trainingSuccessNode) {
     trainingSuccessNode.textContent = formatActivityPercent(trainingSuccessRate);
     trainingSuccessNode.title = Number.isFinite(Number(trainingSuccessRate))
-      ? "Gewichtet nach korrekt beantworteten Teilfragen in Trainingsaufgaben ohne eingeblendete Lösungen."
-      : "Die Quote erscheint, sobald Trainingsaufgaben ohne eingeblendete Lösungen erfasst wurden.";
+      ? "Quote aus den jüngsten Trainingsdurchgängen je Check, zusammengesetzt über alle trainierten Checks."
+      : "Die Quote erscheint, sobald Trainingsaufgaben erfasst wurden.";
   }
   if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
   if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
@@ -1376,7 +1376,117 @@ function applyActivityOverview(context, overview = null) {
   if (flashcardsNode) flashcardsNode.textContent = formatActivityCount(getActivityTypeCount(overview, "flashcards"));
 
   renderActivityBars(context.elements.activityBars, overview);
+  applyProficiencyWorklist(context, overview);
   setStatusNode(context.elements.activityStatusNode, "");
+}
+
+function buildCheckTrainingHref(checkMeta) {
+  if (!checkMeta?.gebietKey || !checkMeta?.lernbereichId || !checkMeta?.checkId) return "";
+  const params = new URLSearchParams({ check_id: checkMeta.checkId });
+  return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/training.html?${params.toString()}`;
+}
+
+function applyProficiencyWorklist(context, overview = null) {
+  const listNode = context.elements.worklistList;
+  const summaryNode = context.elements.worklistSummary;
+  if (!listNode) return;
+
+  context.activityOverview = overview ?? context.activityOverview ?? null;
+  syncWorklistSessionToggle(context);
+
+  const effectiveOverview = context.activityOverview;
+  const allChecks = Array.isArray(effectiveOverview?.proficiency?.checks) ? effectiveOverview.proficiency.checks : [];
+  listNode.innerHTML = "";
+
+  if (!allChecks.length) {
+    if (summaryNode) {
+      summaryNode.textContent = "Sobald du Trainingsaufgaben abschließt, erscheint hier deine nach Quote sortierte Trainingsliste – schwächste Checks zuerst.";
+    }
+    return;
+  }
+
+  const sessionOnly = context.worklistSessionOnly !== false;
+  let checks = allChecks;
+  if (sessionOnly) {
+    const sessionCheckIds = new Set(summarizeActivePlan(context).selectedCheckIds);
+    checks = allChecks.filter((check) => sessionCheckIds.has(String(check?.checkId || "").trim()));
+  }
+
+  if (!checks.length) {
+    if (summaryNode) {
+      summaryNode.textContent = sessionOnly
+        ? "Noch keine trainierten Checks aus deiner aktiven Session. Schalte den Session-Filter im Menü aus, um alle Checks zu sehen."
+        : "Sobald du Trainingsaufgaben abschließt, erscheint hier deine nach Quote sortierte Trainingsliste – schwächste Checks zuerst.";
+    }
+    return;
+  }
+
+  if (summaryNode) {
+    summaryNode.textContent = sessionOnly
+      ? "Checks deiner Session, nach Quote sortiert – schwächste zuerst. Tippe einen Check an, um ihn frei zu trainieren."
+      : "Alle trainierten Checks, nach Quote sortiert – schwächste zuerst. Tippe einen Check an, um ihn frei zu trainieren.";
+  }
+
+  checks.forEach((check) => {
+    const checkId = String(check?.checkId || "").trim();
+    if (!checkId) return;
+
+    const meta = context.checkMetaById?.get(checkId) || null;
+    const rate = Number(check?.rate);
+    const hasRate = Number.isFinite(rate);
+    const clampedRate = hasRate ? Math.max(0, Math.min(100, rate)) : 0;
+    const href = buildCheckTrainingHref(meta ? { ...meta, checkId } : null);
+
+    const label = meta?.shortTitle || meta?.label || `Check ${checkId}`;
+    const lernbereichName = meta?.lernbereichName || check?.lernbereichSlug || "";
+    const number = Number(meta?.number);
+    const indexLabel = Number.isFinite(number) && number > 0 ? `${number}.` : "";
+
+    const item = document.createElement("li");
+    item.className = "dashboard-worklist__item";
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "dashboard-worklist__button";
+    button.innerHTML = [
+      '<span class="dashboard-worklist__title">',
+      `<span class="dashboard-worklist__label">${indexLabel ? `<span class="dashboard-worklist__index">${escapeHtml(indexLabel)}</span> ` : ""}${escapeHtml(label)}</span>`,
+      lernbereichName ? `<span class="dashboard-worklist__lernbereich">${escapeHtml(lernbereichName)}</span>` : "",
+      "</span>",
+      `<span class="dashboard-worklist__value">${hasRate ? formatActivityPercent(rate) : "–"}</span>`,
+      `<span class="dashboard-worklist__track"><span class="dashboard-worklist__fill" style="width: ${clampedRate}%;"></span></span>`,
+    ].join("");
+
+    if (href) {
+      button.dataset.actionHref = href;
+      button.addEventListener("click", () => {
+        window.location.href = href;
+      });
+    } else {
+      button.disabled = true;
+    }
+
+    item.appendChild(button);
+    listNode.appendChild(item);
+  });
+}
+
+function syncWorklistSessionToggle(context) {
+  const toggle = context.elements.worklistSessionToggle;
+  const icon = context.elements.worklistSessionIcon;
+  const sessionOnly = context.worklistSessionOnly !== false;
+  if (toggle) toggle.setAttribute("aria-checked", sessionOnly ? "true" : "false");
+  if (icon) icon.textContent = sessionOnly ? "✓" : "";
+}
+
+function setupWorklistSessionToggle(context) {
+  const toggle = context.elements.worklistSessionToggle;
+  if (!toggle) return;
+  toggle.addEventListener("click", () => {
+    context.worklistSessionOnly = context.worklistSessionOnly === false;
+    applyProficiencyWorklist(context, context.activityOverview);
+  });
+  syncWorklistSessionToggle(context);
 }
 
 async function refreshActivityOverview(context) {
@@ -3380,6 +3490,12 @@ function createContext(root, lernbereiche) {
     activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),
     activityFlashcards: root.querySelector("[data-dashboard-activity-flashcards]"),
     activityStatusNode: document.getElementById("activityStatsStatus"),
+    worklistPanel: root.querySelector("[data-dashboard-worklist-panel]"),
+    worklistSummary: root.querySelector("[data-dashboard-worklist-summary]"),
+    worklistList: root.querySelector("[data-dashboard-worklist-list]"),
+    worklistSessionToggle: root.querySelector("[data-dashboard-worklist-session-toggle]"),
+    worklistSessionIcon: root.querySelector("[data-dashboard-worklist-session-icon]"),
+    worklistStatusNode: document.getElementById("worklistStatus"),
     activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
     activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),
     activityMapTooltip: root.querySelector("[data-dashboard-activity-map-tooltip]"),
@@ -3415,6 +3531,7 @@ function createContext(root, lernbereiche) {
     retentionPersistedDraft: {},
     retentionIsSaving: false,
     hasRetentionEntries: false,
+    worklistSessionOnly: true,
     elements,
     primaryFeedDefaults: capturePrimaryFeedDefaults(elements),
   };
@@ -3453,6 +3570,7 @@ export async function initDashboardModule() {
   setGreetingDate();
   updateGreetingHeading(context);
   bindEvents(context);
+  setupWorklistSessionToggle(context);
   updatePlanSummary(context);
   updateSessionList(context);
   updateRetentionSummary(context);

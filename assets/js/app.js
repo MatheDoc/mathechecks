@@ -1,14 +1,14 @@
-import { initTrainingModule } from "./modules/training.js?v=20260604-activity-stats";
-import { initRecallModule } from "./modules/recall.js?v=20260604-activity-stats";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260604-activity-stats";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260604-activity-stats";
+import { initTrainingModule } from "./modules/training.js?v=20260609-complete-icon";
+import { initRecallModule } from "./modules/recall.js?v=20260609-complete-icon";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260609-complete-icon";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260609-complete-icon";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260606-script-feed-context";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
-import { initStartModule } from "./modules/start.js?v=20260604-manual-retention-head";
+import { initStartModule } from "./modules/start.js?v=20260609-complete-icon";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260604-manual-retention-head";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260609-complete-icon";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

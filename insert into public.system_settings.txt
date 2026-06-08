@@ -1,0 +1,113 @@
+insert into public.system_settings (
+  setting_key,
+  value_integer,
+  value_numeric,
+  description
+)
+values
+  (
+    'feed.lock_duration_minutes',
+    60,
+    null,
+    'Wie lange ein aktuelles Feed-Element nach Auswahl als klebriger Cursor gesperrt bleibt.'
+  ),
+  (
+    'planning.default_activities_per_day',
+    null,
+    3.0,
+    'Standardgeschwindigkeit einer Session in Aktivitäten pro Tag, wenn keine andere Session-Vorgabe gespeichert ist.'
+  ),
+  (
+    'feed.core_gap_very_tight_hours',
+    12,
+    null,
+    'Didaktischer Basisabstand G für sehr engen Druck.'
+  ),
+  (
+    'feed.core_gap_tight_hours',
+    18,
+    null,
+    'Didaktischer Basisabstand G für engen Druck.'
+  ),
+  (
+    'feed.core_gap_normal_hours',
+    24,
+    null,
+    'Didaktischer Basisabstand G für normales Druckniveau.'
+  ),
+  (
+    'feed.core_gap_relaxed_hours',
+    36,
+    null,
+    'Didaktischer Basisabstand G für entspannten Druck.'
+  ),
+  (
+    'feed.core_gap_very_relaxed_hours',
+    48,
+    null,
+    'Didaktischer Basisabstand G für sehr entspannten Druck.'
+  ),
+  (
+    'feed.pressure_very_tight_threshold',
+    null,
+    0.80,
+    'Unterhalb dieses Druckverhältnisses gilt eine Session als sehr eng.'
+  ),
+  (
+    'feed.pressure_tight_threshold',
+    null,
+    0.95,
+    'Unterhalb dieses Druckverhältnisses gilt eine Session als eng.'
+  ),
+  (
+    'feed.pressure_relaxed_threshold',
+    null,
+    1.20,
+    'Ab diesem Druckverhältnis gilt eine Session als entspannt.'
+  ),
+  (
+    'feed.pressure_very_relaxed_threshold',
+    null,
+    1.45,
+    'Ab diesem Druckverhältnis gilt eine Session als sehr entspannt.'
+  ),
+  (
+    'feed.weight_start',
+    null,
+    1.0,
+    'Gewicht einer offenen Start-Aktivität für die Druckberechnung.'
+  ),
+  (
+    'feed.weight_training',
+    null,
+    1.0,
+    'Gewicht eines offenen Trainingsschritts für die Druckberechnung.'
+  ),
+  (
+    'feed.weight_recall',
+    null,
+    0.7,
+    'Gewicht eines offenen Recall-Schritts für die Druckberechnung.'
+  ),
+  (
+    'feed.weight_feynman',
+    null,
+    1.0,
+    'Gewicht eines offenen Feynman-Schritts für die Druckberechnung.'
+  ),
+  (
+    'feed.weight_kompetenzliste',
+    null,
+    0.5,
+    'Gewicht eines offenen Kompetenzlisten-Schritts für die Druckberechnung.'
+  ),
+  (
+    'feed.retention_activity_base_gap',
+    6,
+    null,
+    'Basisabstand N für Retention-Flashcards; weitere Wiedereinblendungen wachsen linear als N, 2N, 3N, ...'
+  )
+on conflict (setting_key) do update
+set value_integer = excluded.value_integer,
+    value_numeric = excluded.value_numeric,
+    description = excluded.description;

@@ -618,6 +618,26 @@
     font-size: 12.5px;
 }
 
+.task .answer-reveal-request {
+    margin-top: 6px;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    border: 1px solid #d3ddea;
+    background: #f6f9fd;
+    color: #5a6678;
+    cursor: pointer;
+}
+
+.task .answer-reveal-request:hover {
+    border-color: #a5b8d6;
+    color: #3d4452;
+}
+
+.task .answer-reveal-request[hidden] {
+    display: none;
+}
+
 .task .solution-badge {
     display: inline-block;
     padding: 2px 8px;
@@ -988,6 +1008,26 @@ html.light .check-card__runtime-task {
 
 .check-card__runtime-task .solution {
     font-size: 0.78rem;
+}
+
+.check-card__runtime-task .answer-reveal-request {
+    margin-top: 6px;
+    padding: 3px 10px;
+    font-size: 0.74rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--mt-training, #4c9aff) 22%, var(--border));
+    background: color-mix(in srgb, var(--card-surface-2, #181824) 88%, transparent);
+    color: var(--text-dim);
+    cursor: pointer;
+}
+
+.check-card__runtime-task .answer-reveal-request:hover {
+    border-color: color-mix(in srgb, var(--mt-training, #4c9aff) 40%, var(--border));
+    color: var(--text-body);
+}
+
+.check-card__runtime-task .answer-reveal-request[hidden] {
+    display: none;
 }
 
 .check-card__runtime-task .solution-badge {

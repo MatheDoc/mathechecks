@@ -1,0 +1,206 @@
+/* Abschluss-Popup fuer freie Modulaufrufe (siehe .github/quoten.md). */
+
+.task-completion-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: color-mix(in srgb, var(--bg, #11131c) 62%, transparent);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    transition: opacity 160ms ease;
+}
+
+.task-completion-overlay.is-visible {
+    opacity: 1;
+}
+
+.task-completion-popup {
+    width: min(440px, 100%);
+    padding: 22px;
+    border-radius: 12px;
+    background: var(--panel-solid, #1e1e2b);
+    border: 1px solid var(--border, #2c2c3a);
+    box-shadow: 0 22px 70px rgba(16, 20, 30, 0.22);
+    text-align: left;
+    transform: translateY(8px) scale(0.98);
+    transition: transform 180ms ease;
+}
+
+.task-completion-overlay.is-visible .task-completion-popup {
+    transform: translateY(0) scale(1);
+}
+
+.task-completion-popup__eyebrow {
+    margin: 0 0 8px;
+    color: var(--teal);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.task-completion-popup__title {
+    margin: 0 0 14px;
+    font-size: 1.14rem;
+    line-height: 1.25;
+    font-weight: 700;
+    color: var(--text, #e8e8f0);
+}
+
+.task-completion-popup__quote {
+    margin: 0 0 16px;
+    padding: 14px 12px;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--card-surface-2, #181824) 80%, transparent);
+    border: 1px solid var(--border, #2c2c3a);
+}
+
+.task-completion-popup__quote-label {
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: var(--text-dim, #9a9ab0);
+    margin-bottom: 8px;
+}
+
+.task-completion-popup__quote-values {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+}
+
+.task-completion-popup__quote-prev {
+    font-size: 1rem;
+    color: var(--text-dim, #9a9ab0);
+    text-decoration: line-through;
+}
+
+.task-completion-popup__quote-arrow {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.task-completion-popup__quote-current {
+    font-size: 1.9rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.task-completion-popup__quote.is-up .task-completion-popup__quote-current,
+.task-completion-popup__quote.is-up .task-completion-popup__quote-arrow {
+    color: var(--green, #4caf76);
+}
+
+.task-completion-popup__quote.is-up .task-completion-popup__quote-current {
+    animation: task-quote-rise 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.task-completion-popup__quote.is-down .task-completion-popup__quote-current,
+.task-completion-popup__quote.is-down .task-completion-popup__quote-arrow {
+    color: var(--text-body, #e8e8f0);
+}
+
+.task-completion-popup__quote.is-flat .task-completion-popup__quote-current,
+.task-completion-popup__quote.is-neutral .task-completion-popup__quote-current {
+    color: var(--text-body, #e8e8f0);
+}
+
+.task-completion-popup__quote-note {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-dim, #9a9ab0);
+}
+
+@keyframes task-quote-rise {
+    0% {
+        transform: translateY(10px) scale(0.85);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(-2px) scale(1.06);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.task-completion-popup__actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.task-completion-popup__button {
+    min-height: 58px;
+    border-radius: 10px;
+    border: 1px solid var(--border, #2c2c3a);
+    background: transparent;
+    color: var(--text-body, #e8e8f0);
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.task-completion-popup__button:hover,
+.task-completion-popup__button:focus-visible {
+    outline: none;
+    background: var(--surface-hi);
+    color: var(--text);
+}
+
+.task-completion-popup__button--primary {
+    border-color: color-mix(in srgb, var(--teal) 36%, var(--border));
+    color: var(--teal);
+    background: color-mix(in srgb, var(--teal) 10%, transparent);
+}
+
+.task-completion-popup__button--secondary {
+    border-color: color-mix(in srgb, var(--rose) 26%, var(--border));
+    color: color-mix(in srgb, var(--rose) 78%, var(--text));
+    background: color-mix(in srgb, var(--rose) 8%, transparent);
+}
+
+.task-completion-popup__button-icon {
+    flex: 0 0 auto;
+    margin-top: 2px;
+}
+
+.task-completion-popup__button-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.task-completion-popup__button-label {
+    line-height: 1.25;
+}
+
+.task-completion-popup__button-detail {
+    color: var(--text-dim);
+    font-size: 0.74rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+@media (max-width: 520px) {
+    .task-completion-popup__actions {
+        grid-template-columns: 1fr;
+    }
+}
