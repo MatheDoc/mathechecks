@@ -1447,15 +1447,46 @@ function applyProficiencyWorklist(context, overview = null) {
 
     const button = document.createElement("button");
     button.type = "button";
-    button.className = "dashboard-worklist__button";
-    button.innerHTML = [
-      '<span class="dashboard-worklist__title">',
-      `<span class="dashboard-worklist__label">${indexLabel ? `<span class="dashboard-worklist__index">${escapeHtml(indexLabel)}</span> ` : ""}${escapeHtml(label)}</span>`,
-      lernbereichName ? `<span class="dashboard-worklist__lernbereich">${escapeHtml(lernbereichName)}</span>` : "",
-      "</span>",
-      `<span class="dashboard-worklist__value">${hasRate ? formatActivityPercent(rate) : "–"}</span>`,
-      `<span class="dashboard-worklist__track"><span class="dashboard-worklist__fill" style="width: ${clampedRate}%;"></span></span>`,
-    ].join("");
+    button.className = "action-card dashboard-panel__action-card dashboard-worklist__button";
+
+    const titleRow = document.createElement("span");
+    titleRow.className = "action-title dashboard-panel__action-title";
+    if (indexLabel) {
+      const idx = document.createElement("span");
+      idx.className = "dashboard-panel__action-index";
+      idx.setAttribute("aria-hidden", "true");
+      idx.textContent = indexLabel + "\u00a0";
+      titleRow.appendChild(idx);
+    }
+
+    const nameSpan = document.createElement("span");
+    nameSpan.className = "dashboard-panel__action-name";
+    nameSpan.textContent = label;
+    titleRow.appendChild(nameSpan);
+
+    const lernbereichSpan = document.createElement("span");
+    lernbereichSpan.className = "action-badge dashboard-feed__lernbereich-badge dashboard-worklist__lernbereich";
+    lernbereichSpan.textContent = lernbereichName;
+
+    const rateSpan = document.createElement("span");
+    rateSpan.className = "dashboard-panel__action-side dashboard-panel__action-progress";
+    rateSpan.textContent = hasRate ? formatActivityPercent(rate) : "–";
+
+    const trackWrap = document.createElement("span");
+    trackWrap.className = "dashboard-worklist__track";
+    const trackFill = document.createElement("span");
+    trackFill.className = "dashboard-worklist__fill";
+    trackFill.style.width = `${clampedRate}%`;
+    trackWrap.appendChild(trackFill);
+
+    const body = document.createElement("span");
+    body.className = "action-body";
+    body.appendChild(titleRow);
+    if (lernbereichName) body.appendChild(lernbereichSpan);
+    body.appendChild(trackWrap);
+
+    button.appendChild(body);
+    button.appendChild(rateSpan);
 
     if (href) {
       button.dataset.actionHref = href;
@@ -1673,14 +1704,14 @@ function buildLernbereichStartHref(lernbereichMeta) {
 }
 
 function buildProjectionTitleMarkup(item) {
-  if (item?.checkIndexLabel && item?.checkKeyword) {
-    return [
-      `<span class="dashboard-feed__check-index">${escapeHtml(item.checkIndexLabel)}</span>`,
-      `<span class="dashboard-feed__check-keyword">${escapeHtml(item.checkKeyword)}</span>`,
-    ].join("");
-  }
+  const parts = [
+    String(item?.checkIndexLabel || "").trim(),
+    String(item?.checkKeyword || item?.titleText || "").trim(),
+  ].filter(Boolean);
+  const titleText = parts.join(" ").trim();
+  if (!titleText) return "";
 
-  return escapeHtml(item?.titleText || "");
+  return `<span class="dashboard-panel__action-name">${escapeHtml(titleText)}</span>`;
 }
 
 function buildProjectionBadgesMarkup(item) {
@@ -1708,22 +1739,10 @@ function resolvePrimaryFeedModuleLabel(item) {
 }
 
 function buildPrimaryFeedTitleHtml(item) {
-  const moduleLabel = resolvePrimaryFeedModuleLabel(item);
-  const checkNumber = padFeedCheckNumber(item?.checkIndexLabel);
-  const topicText = String(item?.checkKeyword || "").trim();
+  const titleText = buildPrimaryFeedTitleText(item);
+  if (!titleText) return "";
 
-  const moduleText = [moduleLabel, checkNumber].filter(Boolean).join(" ").trim();
-  if (!moduleText) return "";
-
-  const safeModuleText = escapeHtml(moduleText.toLocaleUpperCase("de-DE"));
-  if (!topicText) {
-    return `<span class="dashboard-feed__primary-label dashboard-feed__primary-label--standalone">${safeModuleText}</span>`;
-  }
-
-  return [
-    `<span class="dashboard-feed__primary-label dashboard-feed__primary-label--with-topic">${safeModuleText}</span>`,
-    `<span class="dashboard-feed__primary-topic">${escapeHtml(topicText)}</span>`,
-  ].join("");
+  return `<span class="dashboard-panel__action-name">${escapeHtml(titleText)}</span>`;
 }
 
 function buildPrimaryFeedTitleText(item) {
@@ -1796,9 +1815,9 @@ function renderSecondaryFeedCards(context, items) {
   if (!context.elements.feedList || !context.elements.primaryFeedCard || !Array.isArray(items) || !items.length) return;
 
   const markup = items.map((item) => `
-    <li class="action-card" data-type="${escapeHtml(item.type)}" data-action-href="${escapeHtml(item.href)}" data-dashboard-secondary-feed-card>
+    <li class="action-card dashboard-panel__action-card" data-type="${escapeHtml(item.type)}" data-action-href="${escapeHtml(item.href)}" data-dashboard-secondary-feed-card>
       <div class="action-body">
-        <div class="action-title">${item.titleHtml}</div>
+        <div class="action-title dashboard-panel__action-title">${item.titleHtml}</div>
         ${item.descText ? `<div class="action-desc">${escapeHtml(item.descText)}</div>` : ""}
         <div class="action-badges">${item.badges}</div>
       </div>
@@ -2011,12 +2030,12 @@ function renderDashboardLernbereichCard(entry) {
   return `
     <li class="action-card dashboard-panel__action-card" data-type="dashboard"${linkAttributes}>
       <div class="action-body">
-        <div class="action-title">
+        <div class="action-title dashboard-panel__action-title">
           <span class="dashboard-panel__action-name">${escapeHtml(entry.lernbereichName)}</span>
-          <span class="dashboard-panel__action-progress">${escapeHtml(progressLabel)}</span>
         </div>
         ${badgeMarkup}
       </div>
+      <span class="dashboard-panel__action-side dashboard-panel__action-progress">${escapeHtml(progressLabel)}</span>
     </li>
   `;
 }

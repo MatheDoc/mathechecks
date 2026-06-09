@@ -2,11 +2,14 @@
    MatheChecks – Stift-Overlay
    ══════════════════════════════════════════════════════════════ */
 
-/* ── Canvas ── */
+/* ── Canvas ──
+   Liegt im Stacking-Context von .shell, bewusst UNTER den sticky-Headern
+   (Jump-Nav 35, Tab-Nav 45, Sidebar 60, Topbar 70), aber über dem Inhalt.
+   So verschwinden Anmerkungen beim Scrollen hinter den Headern statt darüber. */
 #pen-canvas {
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 30;
   pointer-events: none;
   touch-action: none;
 }
@@ -58,6 +61,20 @@
 }
 
 .pen-fab:active { transform: scale(0.93); }
+
+/* ── Icons (inline SVG, erben Button-Farbe über currentColor) ── */
+.pen-fab svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  pointer-events: none;
+}
+
+#pen-btn-toggle svg { width: 22px; height: 22px; }
+
+#pen-btn-undo svg,
+#pen-btn-delete-sel svg,
+#pen-btn-clear svg { width: 17px; height: 17px; }
 
 /* ── Toggle (immer sichtbar) ── */
 #pen-btn-toggle {
@@ -194,11 +211,14 @@
   transform: translateX(-50%) translateY(0);
 }
 
-/* ── Body-Zustände (Cursor wird per JS auf #pen-canvas gesetzt) ── */
-body.pen-drawing .mod-content,
-body.pen-erasing .mod-content,
-body.pen-lassoing .mod-content {
-  pointer-events: none;
+/* ── Body-Zustände ──
+   Im Stiftmodus zeichnet Maus/Stylus, Finger-Touch scrollt weiterhin.
+   Daher KEIN pointer-events:none auf dem Inhalt (das würde Touch-Scroll
+   blockieren) – nur Textauswahl unterbinden und den Stift-Cursor zeigen.
+   Der Cursor-Wert kommt dynamisch (farbabhängig) per JS über --pen-cursor. */
+body.pen-active .mod-content,
+body.pen-active .mod-content * {
+  cursor: var(--pen-cursor, crosshair) !important;
   user-select: none;
   -webkit-user-select: none;
 }

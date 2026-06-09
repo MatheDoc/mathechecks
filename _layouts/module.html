@@ -10,7 +10,7 @@
     <script type="module"
         src="{{ '/assets/js/visuals/calculator-graph-bridge.js?v=20260512-visual-graph' | relative_url }}"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ '/assets/css/pen-overlay.css?v=20260601-pen-overlay-v1' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/assets/css/pen-overlay.css?v=20260609-pen-style' | relative_url }}">
     <style>
         .check-card__runtime-task ol.qa-list,
         .check-card__runtime-task ul.qa-list {
@@ -46,6 +46,7 @@
             </div>
         </div>
     </div>
+    {% include pen-overlay.html %}
     {% include calculator.html %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -55,11 +56,10 @@
         src="{{ '/assets/js/calculator/commands.js?v=20260512-calculator-integral-t-variable' | relative_url }}"></script>
     <script
         src="{{ '/assets/js/calculator/app.js?v=20260512-calculator-integral-builder-t-button' | relative_url }}"></script>
-    <script type="module" src="{{ '/assets/js/app.js?v=20260609-void-revealed' | relative_url }}"></script>
+    <script type="module" src="{{ '/assets/js/app.js?v=20260609-answer-lines' | relative_url }}"></script>
     {% include theme-script.html %}
     <script type="module" src="{{ '/assets/js/modules/auth-shell.js?v=20260606-feed-badge-robust' | relative_url }}"></script>
     {{ page.after_scripts }}
-    {% include pen-overlay.html %}
 </body>
 
 </html>

@@ -314,6 +314,21 @@
     line-height: 1.55;
 }
 
+.task .answer-preview-line,
+.task .solution-line {
+    display: block;
+}
+
+.task .answer-preview-line + .answer-preview-line,
+.task .solution-line + .solution-line {
+    margin-top: 4px;
+}
+
+.task .answer-preview-line.answer-preview-line--spaced,
+.task .solution-line.solution-line--spaced {
+    margin-top: 10px;
+}
+
 .task .answer-input,
 .task .answer-select {
     min-width: 0;

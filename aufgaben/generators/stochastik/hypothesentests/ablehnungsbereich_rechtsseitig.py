@@ -98,23 +98,25 @@ class AblehnungsbereichRechtsseitigGenerator(TaskGenerator):
             # Ablehnungsbereich-Grenzen: [k, … , n]  -  Distraktoren: 0 bzw. k+1
             mc_ab_low = mc(["k", "0"], correct_index=0)
             mc_ab_up  = mc([str(n), "k+1"], correct_index=0)
+            num_ab_low = numerical(k, tolerance=0, decimals=0)
+            num_ab_up = numerical(n, tolerance=0, decimals=0)
 
             a1 = (
-                f"$ H_0: p = $ {num_p0}<br>"
+                f"$ H_0: p = $ {num_p0}<br><br>"
                 f"Annahmebereich: [ {mc_an_low}, &nbsp;&#8230;&nbsp; , {mc_an_up} ]"
             )
             a2 = (
-                f"$ H_1: p $ {mc(['>', '<'], correct_index=0)}{num_p0}<br>"
+                f"$ H_1: p $ {mc(['>', '<'], correct_index=0)}{num_p0}<br><br>"
                 f"Ablehnungsbereich: [ {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} ]"
             )
             a3 = (
-                f"Gesucht ist das {mc(['kleinste', 'größte'], correct_index=0)} $ k $, "
+                f"Gesucht ist das {mc(['kleinste', 'größte'], correct_index=0)} $ k $, <br><br>"
                 f"so dass $ P(X $ {mc_geq} $ k $ ) &leq; {num_alpha} ist."
             )
             a4 = (
-                f"$ P(X $ {mc_geq}{k - 1} $ ) = $ {numerical_stochastik_calc(p_at_km1)}<br>"
-                f"$ P(X $ {mc_geq}{k} $ ) = $ {numerical_stochastik_calc(p_at_k)}<br>"
-                f"Der Ablehnungsbereich lautet daher $ [ $ {mc_ab_low}, &nbsp;&#8230;&nbsp; , {mc_ab_up} $ ] $."
+                f"$ P(X $ {mc_geq}{k - 1} $ ) = $ {numerical_stochastik_calc(p_at_km1)}<br><br>"
+                f"$ P(X $ {mc_geq}{k} $ ) = $ {numerical_stochastik_calc(p_at_k)}<br><br>"
+                f"Der Ablehnungsbereich lautet daher $ [ $ {num_ab_low}, &nbsp;&#8230;&nbsp; , {num_ab_up} $ ] $."
             )
 
             tasks.append(Task(
