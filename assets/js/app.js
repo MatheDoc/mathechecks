@@ -1,8 +1,8 @@
-import { initTrainingModule } from "./modules/training.js?v=20260609-void-revealed";
+import { initTrainingModule } from "./modules/training.js?v=20260609-answer-lines";
 import { initRecallModule } from "./modules/recall.js?v=20260609-void-revealed";
 import { initFeynmanModule } from "./modules/feynman.js?v=20260609-void-revealed";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260609-complete-icon";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260609-void-revealed";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260609-answer-lines";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";

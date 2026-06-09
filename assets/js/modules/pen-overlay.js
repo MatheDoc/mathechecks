@@ -28,67 +28,68 @@ let markerBufCtx = /** @type {OffscreenCanvasRenderingContext2D|null} */ (null);
 
 // ─── Konstanten ───────────────────────────────────────────────────────────────
 const MARKER_WIDTH = 20;
-const MARKER_ALPHA = 0.38;
+const MARKER_ALPHA = 0.46;
 const PEN_BASE_W   = 3;
 const ERASER_WIDTH = 28;
 
 // ─── Cursor-SVGs (dynamisch, farbabhängig) ────────────────────────────────────
+// _cur() kodiert das SVG genau einmal. Daher in den SVG-Strings literale Zeichen
+// (#, <, >, ') und rohe Hex-Farben verwenden – kein Vor-Encoding.
 function _cur(svg, hx, hy) {
   return `url("data:image/svg+xml,${encodeURIComponent(svg)}") ${hx} ${hy}, auto`;
 }
 
-function _enc(hex) {
-  // "#3b82f6" → "%233b82f6" für SVG-Attribute im data-URL
-  return encodeURIComponent(hex);
-}
-
 function _cursorPen(color) {
-  // Stift: Spitze unten-links, Körper in gewählter Farbe
-  const c  = _enc(color);
-  const c2 = _enc(color + 'cc'); // leicht transparent für Schaftfläche
+  // Stift: Korpus in gewählter Farbe, Spitze (Hotspot) unten-links.
   return _cur(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>`
-    + `<path d='M4 16L13 7L17 11L8 20Z' fill='${c2}' stroke='%23fff' stroke-width='0.8' stroke-linejoin='round'/>`
-    + `<path d='M2 20L4 16L8 20Z' fill='%23888' stroke='%23fff' stroke-width='0.6'/>`
-    + `<path d='M13 7L16 4L20 4L20 8L17 11Z' fill='%23e0e0e0' stroke='%23fff' stroke-width='0.6'/>`
+    `<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24'>`
+    + `<path d='M5 19L7.4 13.4L15.4 5.4a2.1 2.1 0 0 1 3 3L10.6 16.4L5 19Z' fill='${color}' stroke='#ffffff' stroke-width='1.4' stroke-linejoin='round'/>`
+    + `<path d='M5 19L6.2 16.3L7.7 17.8L5 19Z' fill='#222222' stroke='#ffffff' stroke-width='0.6' stroke-linejoin='round'/>`
     + `</svg>`,
-    2, 20
+    4, 19
   );
 }
 
 function _cursorMarker(color) {
-  const c = _enc(color);
+  // Marker: stilisierter Highlighter mit breiter Keilspitze in gewählter Farbe.
+  // Hotspot an der unteren Mitte der breiten Spitze.
   return _cur(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='12' height='24'>`
-    + `<rect x='0' y='0' width='12' height='24' rx='2' fill='${c}' fill-opacity='0.55' stroke='%23333' stroke-width='1'/>`
+    `<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26'>`
+    // Schaft (neutral, grau)
+    + `<path d='M16.5 4.2L21.8 9.5L13.7 17.6L8.4 12.3Z' fill='#d7d7df' stroke='#ffffff' stroke-width='1.2' stroke-linejoin='round'/>`
+    // breite Spitze in Farbe
+    + `<path d='M8.4 12.3L13.7 17.6L9.6 21.7L3.2 21.7L2.6 18.1Z' fill='${color}' stroke='#ffffff' stroke-width='1.2' stroke-linejoin='round'/>`
+    // Abrisskante der Spitze (dunkel)
+    + `<path d='M2.6 18.1L9.6 21.7L3.2 21.7Z' fill='#222222' fill-opacity='0.55'/>`
     + `</svg>`,
-    6, 12
+    3, 21
   );
 }
 
 function _cursorEraser() {
   return _cur(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><rect x='1' y='5' width='18' height='11' rx='2' fill='%23f8d7c4' stroke='%23cc4455' stroke-width='1.5'/><line x1='1' y1='11' x2='19' y2='11' stroke='%23cc4455' stroke-width='1'/></svg>`,
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><rect x='1' y='5' width='18' height='11' rx='2' fill='#f8d7c4' stroke='#cc4455' stroke-width='1.5'/><line x1='1' y1='11' x2='19' y2='11' stroke='#cc4455' stroke-width='1'/></svg>`,
     10, 10
   );
 }
 
 function _cursorLasso() {
   return _cur(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='%23fff' stroke-width='3'/><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='%23222' stroke-width='1.5' stroke-dasharray='3 2'/><line x1='10' y1='13' x2='10' y2='20' stroke='%23fff' stroke-width='3' stroke-linecap='round'/><line x1='10' y1='13' x2='10' y2='20' stroke='%23222' stroke-width='1.5' stroke-linecap='round'/></svg>`,
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='#ffffff' stroke-width='3'/><ellipse cx='10' cy='8' rx='7' ry='5' fill='none' stroke='#222222' stroke-width='1.5' stroke-dasharray='3 2'/><line x1='10' y1='13' x2='10' y2='20' stroke='#ffffff' stroke-width='3' stroke-linecap='round'/><line x1='10' y1='13' x2='10' y2='20' stroke='#222222' stroke-width='1.5' stroke-linecap='round'/></svg>`,
     10, 8
   );
 }
 
 function applyToolCursor() {
-  if (!penMode) { canvas.style.cursor = 'default'; return; }
+  const body = document.body;
+  if (!penMode) { body.style.removeProperty('--pen-cursor'); return; }
   const cursors = {
     pen:    _cursorPen(penColor),
     marker: _cursorMarker(markerColor),
     eraser: _cursorEraser(),
     lasso:  _cursorLasso(),
   };
-  canvas.style.cursor = cursors[activeTool] ?? 'crosshair';
+  body.style.setProperty('--pen-cursor', cursors[activeTool] ?? 'crosshair');
 }
 
 // Scratch-to-Erase-Schwellen
@@ -100,12 +101,13 @@ const SCRATCH_MIN_TOTAL_DIST = 60;   // Mindest-Gesamtweg des Strichs (px)
 let penMode     = false;
 let activeTool  = 'pen';   // 'pen' | 'marker' | 'lasso' | 'eraser'
 let penColor    = '#3b82f6';
-let markerColor = '#fde047';
+let markerColor = '#ffe600';
 let drawing     = false;
+let _clipTop    = 0;       // Oberkante des Clip-Bereichs, pro redraw() berechnet
 
 /**
  * @typedef {{ x: number, y: number, w: number }} Point
- * @typedef {{ tool: string, color: string, points: Point[] }} Stroke
+ * @typedef {{ tool: string, color: string, points: Point[], anchorEl: Element|null, clipEls: Element[] }} Stroke
  */
 
 /** @type {Stroke[]} */
@@ -126,7 +128,7 @@ let lassoPoints  = [];
 let lassoClosed  = false;
 /** @type {Set<number>} */
 let selectedIds  = new Set();
-/** @type {{ docX: number, docY: number, origStrokes: Map<number, Point[]>, origLasso: { x: number, y: number }[] }|null} */
+/** @type {{ startX: number, startY: number, origStrokes: Map<number, Point[]>, origLasso: { x: number, y: number }[] }|null} */
 let dragState    = null;
 
 // ─── Canvas-Größe ─────────────────────────────────────────────────────────────
@@ -145,48 +147,181 @@ window.addEventListener('resize', syncSize, { passive: true });
 new ResizeObserver(syncSize).observe(document.documentElement);
 syncSize();
 
-scrollEl.addEventListener('scroll', redraw, { passive: true });
+// Beliebige Scroll-Quelle (auch verschachtelte Container) abfangen.
+window.addEventListener('scroll', onAnyScroll, { passive: true, capture: true });
 
-// ─── Koordinaten-Helper ───────────────────────────────────────────────────────
-/** PointerEvent → Dokument-Koordinaten (y einschließlich scrollTop) */
-function toDoc(e) {
-  return { x: e.clientX, y: e.clientY + scrollEl.scrollTop };
+function onAnyScroll() {
+  // Selektion löst sich beim Scrollen vom Inhalt → aufheben.
+  if (selectedIds.size || lassoPoints.length) clearSelection();
+  redraw();
+}
+
+// ─── Anker-System ─────────────────────────────────────────────────────────────
+// Jeder Strich wird an das tiefste Inhaltselement unter dem Zeiger gebunden.
+// Dieses Element liegt innerhalb evtl. scrollender Karten-Bodys und wandert
+// daher per getBoundingClientRect() korrekt mit Scroll (auch verschachtelt),
+// Zoom und Fenstergrößen-Änderung mit.
+const ANCHOR_ROOT_SEL = '.mod-content';
+
+/**
+ * Findet das tiefste hit-testbare Inhaltselement an einer Viewport-Position.
+ * Der Canvas ist pointer-events:none, daher liefert elementsFromPoint direkt
+ * die Inhaltsknoten (Canvas und reine Deko werden nicht zurückgegeben).
+ */
+function findAnchorEl(clientX, clientY) {
+  const content = document.querySelector(ANCHOR_ROOT_SEL);
+  const stack = document.elementsFromPoint(clientX, clientY);
+
+  for (let el of stack) {
+    if (!el || el === canvas) continue;
+    if (el.closest && (el.closest('#pen-toolbar') || el.closest('#pen-lasso-hint'))) continue;
+    if (!el.closest || !el.closest(ANCHOR_ROOT_SEL)) continue;
+    // MathJax-Interna werden bei Re-Typeset ersetzt → auf stabilen Eltern-Block.
+    const mjx = el.closest('mjx-container');
+    if (mjx && mjx.parentElement && mjx.parentElement.closest(ANCHOR_ROOT_SEL)) {
+      el = mjx.parentElement;
+    }
+    return el;
+  }
+  return content || null;
+}
+
+/** Aktueller Viewport-Versatz eines Ankers (Fallback: Scroll-Container). */
+function anchorOffset(anchorEl) {
+  if (anchorEl && anchorEl.isConnected) {
+    const r = anchorEl.getBoundingClientRect();
+    return { ox: r.left, oy: r.top };
+  }
+  return { ox: 0, oy: -scrollEl.scrollTop };
+}
+
+/** Gespeicherte (anker-relative) Punkte → aktuelle Viewport-Koordinaten. */
+function strokeViewportPoints(s) {
+  const { ox, oy } = anchorOffset(s.anchorEl);
+  return s.points.map(p => ({ x: p.x + ox, y: p.y + oy, w: p.w }));
+}
+
+// ─── Clipping ─────────────────────────────────────────────────────────────────
+// Ein einzelner globaler Canvas kann per z-index nicht zwischen Kartenkörper
+// und Karten-Header geschoben werden (Karten/Inhalt bilden eigene Stacking-
+// Contexts). Stattdessen begrenzen wir jeden Strich beim Zeichnen auf seinen
+// Scroll-/Inhaltsbereich: Anmerkungen erscheinen so nie über Karten-Header,
+// Check-Nav oder außerhalb des scrollenden Karten-Bodys.
+const CLIP_OVERFLOW_RE = /(auto|scroll|hidden|clip)/;
+
+/** Sammelt alle clippenden Vorfahren (overflow ≠ visible) eines Elements. */
+function collectClipAncestors(el) {
+  const list = [];
+  let node = el;
+  while (node && node !== document.body && node !== document.documentElement) {
+    const st = getComputedStyle(node);
+    if (CLIP_OVERFLOW_RE.test(st.overflowY) || CLIP_OVERFLOW_RE.test(st.overflowX)) {
+      list.push(node);
+    }
+    node = node.parentElement;
+  }
+  return list;
+}
+
+/** Oberkante des erlaubten Zeichenbereichs: unter den oberen Sticky-Leisten. */
+function contentClipTop() {
+  let top = 0;
+  for (const sel of ['.topbar', '.mod-tab-nav', '.check-jump-nav-wrap']) {
+    const el = document.querySelector(sel);
+    if (!el) continue;
+    const r = el.getBoundingClientRect();
+    if (r.height > 0 && r.bottom > top) top = r.bottom;
+  }
+  return top;
+}
+
+/** Sichtbares Clip-Rechteck eines Strichs (Schnitt aller Clip-Vorfahren). */
+function computeStrokeClip(s) {
+  let left = 0, top = 0, right = canvas.width, bottom = canvas.height;
+  const els = s.clipEls || [];
+  for (const el of els) {
+    if (!el.isConnected) continue;
+    const r = el.getBoundingClientRect();
+    if (r.left   > left)   left   = r.left;
+    if (r.top    > top)    top    = r.top;
+    if (r.right  < right)  right  = r.right;
+    if (r.bottom < bottom) bottom = r.bottom;
+  }
+  if (_clipTop > top) top = _clipTop;
+  if (right <= left || bottom <= top) return null; // nichts sichtbar
+  return { left, top, right, bottom };
+}
+
+// Inhaltswechsel (z. B. neue Trainingsaufgabe) → verwaiste Striche entfernen.
+const _contentRoot = document.querySelector('.mod-content') || document.body;
+let _pruneScheduled = false;
+const _contentObserver = new MutationObserver(() => {
+  if (_pruneScheduled) return;
+  _pruneScheduled = true;
+  requestAnimationFrame(() => {
+    _pruneScheduled = false;
+    pruneOrphanStrokes();
+  });
+});
+_contentObserver.observe(_contentRoot, { childList: true, subtree: true });
+
+function pruneOrphanStrokes() {
+  const before = strokes.length;
+  strokes = strokes.filter(s => !s.anchorEl || s.anchorEl.isConnected);
+  if (strokes.length !== before) clearSelection();
+  redraw();
 }
 
 // ─── Rendering ────────────────────────────────────────────────────────────────
 function redraw() {
-  const sy = scrollEl.scrollTop;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  _clipTop = contentClipTop();
 
   for (let i = 0; i < strokes.length; i++) {
-    renderStroke(ctx, strokes[i], sy, selectedIds.has(i));
+    const s = strokes[i];
+    if (s.anchorEl && !s.anchorEl.isConnected) continue; // verwaist → nicht zeichnen
+    renderStroke(ctx, s, selectedIds.has(i));
   }
-  if (liveStroke) renderStroke(ctx, liveStroke, sy, false);
-  if (lassoPoints.length > 1) renderLasso(sy);
+  if (liveStroke) renderStroke(ctx, liveStroke, false);
+  if (lassoPoints.length > 1) renderLasso();
 }
 
-/** Rendert einen Strich; y-Koordinaten werden um scrollTop verschoben. */
-function renderStroke(c, s, sy, selected) {
-  if (!s.points || s.points.length < 2) return;
-  if (s.tool === 'marker') { renderMarker(c, s, sy, selected); return; }
-  if (s.tool === 'eraser') { renderEraser(c, s, sy);           return; }
+/** Rendert einen Strich in aktuellen Viewport-Koordinaten (anker-bezogen). */
+function renderStroke(c, s, selected) {
+  const pts = strokeViewportPoints(s);
+  if (pts.length < 2) return;
 
-  // ── Stift ──────────────────────────────────────────────────────────────────
+  const clip = computeStrokeClip(s);
+  if (clip === null) return;          // vollständig hinter Header/Nav/Rand
+  c.save();
+  c.beginPath();
+  c.rect(clip.left, clip.top, clip.right - clip.left, clip.bottom - clip.top);
+  c.clip();
+
+  if (s.tool === 'marker')      renderMarker(c, pts, s.color, selected);
+  else if (s.tool === 'eraser') renderEraser(c, pts);
+  else                          renderPen(c, pts, s.color, selected);
+
+  c.restore();
+}
+
+/** Stift-Strich. */
+function renderPen(c, pts, color, selected) {
   c.save();
   c.lineCap     = 'round';
   c.lineJoin    = 'round';
-  c.strokeStyle = selected ? 'rgba(124,106,255,1)' : s.color;
+  c.strokeStyle = selected ? 'rgba(124,106,255,1)' : color;
   c.globalAlpha = 1;
   c.beginPath();
-  c.moveTo(s.points[0].x, s.points[0].y - sy);
-  for (let i = 1; i < s.points.length; i++) {
-    c.lineWidth = s.points[i].w;
-    if (i < s.points.length - 1) {
-      const mx = (s.points[i].x   + s.points[i + 1].x) / 2;
-      const my = (s.points[i].y   + s.points[i + 1].y) / 2;
-      c.quadraticCurveTo(s.points[i].x, s.points[i].y - sy, mx, my - sy);
+  c.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length; i++) {
+    c.lineWidth = pts[i].w;
+    if (i < pts.length - 1) {
+      const mx = (pts[i].x + pts[i + 1].x) / 2;
+      const my = (pts[i].y + pts[i + 1].y) / 2;
+      c.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
     } else {
-      c.lineTo(s.points[i].x, s.points[i].y - sy);
+      c.lineTo(pts[i].x, pts[i].y);
     }
   }
   c.stroke();
@@ -197,7 +332,7 @@ function renderStroke(c, s, sy, selected) {
  * Textmarker: Off-screen-Canvas verhindert Alpha-Akkumulation innerhalb
  * eines Strichs → gleichmäßige, flache Deckung wie ein echter Textmarker.
  */
-function renderMarker(c, s, sy, selected) {
+function renderMarker(c, pts, color, selected) {
   if (!markerBuf || !markerBufCtx) return;
   const mc = markerBufCtx;
   mc.clearRect(0, 0, markerBuf.width, markerBuf.height);
@@ -205,37 +340,37 @@ function renderMarker(c, s, sy, selected) {
   mc.lineCap     = 'square';
   mc.lineJoin    = 'bevel';
   mc.lineWidth   = MARKER_WIDTH;
-  mc.strokeStyle = selected ? 'rgb(124,106,255)' : s.color;
+  mc.strokeStyle = selected ? 'rgb(124,106,255)' : color;
   mc.globalAlpha = 1;
   mc.beginPath();
-  mc.moveTo(s.points[0].x, s.points[0].y - sy);
-  for (const pt of s.points.slice(1)) mc.lineTo(pt.x, pt.y - sy);
+  mc.moveTo(pts[0].x, pts[0].y);
+  for (const pt of pts.slice(1)) mc.lineTo(pt.x, pt.y);
   mc.stroke();
   mc.restore();
 
   c.save();
-  c.globalAlpha = selected ? 0.58 : MARKER_ALPHA;
+  c.globalAlpha = selected ? 0.64 : MARKER_ALPHA;
   c.drawImage(markerBuf, 0, 0);
   c.restore();
 }
 
-function renderEraser(c, s, sy) {
+function renderEraser(c, pts) {
   c.save();
   c.globalCompositeOperation = 'destination-out';
   c.lineCap     = 'round';
   c.lineJoin    = 'round';
   c.strokeStyle = 'rgba(0,0,0,1)';
   c.beginPath();
-  c.moveTo(s.points[0].x, s.points[0].y - sy);
-  for (const pt of s.points.slice(1)) {
+  c.moveTo(pts[0].x, pts[0].y);
+  for (const pt of pts.slice(1)) {
     c.lineWidth = pt.w;
-    c.lineTo(pt.x, pt.y - sy);
+    c.lineTo(pt.x, pt.y);
   }
   c.stroke();
   c.restore();
 }
 
-function renderLasso(sy) {
+function renderLasso() {
   ctx.save();
   ctx.strokeStyle = 'rgba(124,106,255,0.88)';
   ctx.fillStyle   = 'rgba(124,106,255,0.07)';
@@ -243,9 +378,9 @@ function renderLasso(sy) {
   ctx.setLineDash([5, 4]);
   ctx.lineCap = 'round';
   ctx.beginPath();
-  ctx.moveTo(lassoPoints[0].x, lassoPoints[0].y - sy);
+  ctx.moveTo(lassoPoints[0].x, lassoPoints[0].y);
   for (let i = 1; i < lassoPoints.length; i++) {
-    ctx.lineTo(lassoPoints[i].x, lassoPoints[i].y - sy);
+    ctx.lineTo(lassoPoints[i].x, lassoPoints[i].y);
   }
   if (lassoClosed) ctx.closePath();
   ctx.fill();
@@ -254,25 +389,53 @@ function renderLasso(sy) {
 }
 
 // ─── Pointer-Events ───────────────────────────────────────────────────────────
-canvas.addEventListener('pointerdown',   onDown);
-canvas.addEventListener('pointermove',   onMove);
-canvas.addEventListener('pointerup',     onUp);
-canvas.addEventListener('pointercancel', onUp);
+// OneNote-Systematik: Finger (touch) scrollt immer, Maus/Stylus zeichnet.
+// Der Canvas selbst ist pointer-events:none → Touch erreicht den Inhalt und
+// scrollt verschachtelte Container nativ. Gezeichnet wird nur bei mouse/pen.
+window.addEventListener('pointerdown',   onDown, true);
+window.addEventListener('pointermove',   onMove, true);
+window.addEventListener('pointerup',     onUp,   true);
+window.addEventListener('pointercancel', onUp,   true);
+window.addEventListener('click',         onClickGuard, true);
+
+/** Nur Maus und Stylus zeichnen – Finger-Touch bleibt fürs Scrollen frei. */
+function isDrawingPointer(e) {
+  return e.pointerType === 'mouse' || e.pointerType === 'pen';
+}
+
+/** Liegt das Ziel in der Stift-UI (Toolbar/Hinweis)? Dann nicht zeichnen. */
+function isPenUiTarget(e) {
+  const t = e.target;
+  return !!(t && t.closest && t.closest('#pen-toolbar, #pen-lasso-hint'));
+}
+
+// Unterdrückt den synthetischen Klick nach einem Maus-/Stylus-Strich,
+// damit darunterliegende Links/Buttons nicht ausgelöst werden.
+let suppressNextClick = false;
+function onClickGuard(e) {
+  if (penMode && suppressNextClick && !isPenUiTarget(e)) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  suppressNextClick = false;
+}
 
 function onDown(e) {
-  if (!penMode || drawing) return;
-  canvas.setPointerCapture(e.pointerId);
-  const doc = toDoc(e);
+  if (!penMode || drawing || dragState) return;
+  if (!isDrawingPointer(e)) return;      // Finger → Seite scrollen lassen
+  if (isPenUiTarget(e)) return;          // Toolbar bedienen, nicht zeichnen
+  e.preventDefault();
+  suppressNextClick = true;
 
   if (activeTool === 'lasso') {
     // Klick innerhalb bestehender Selektion → Drag starten
-    if (selectedIds.size > 0 && isInsideLasso(doc)) {
-      startDrag(doc);
+    if (selectedIds.size > 0 && isInsideLasso(e.clientX, e.clientY)) {
+      startDrag(e.clientX, e.clientY);
       return;
     }
-    // Neue Lasso-Selektion
+    // Neue Lasso-Selektion (Viewport-Koordinaten)
     clearSelection();
-    lassoPoints = [doc];
+    lassoPoints = [{ x: e.clientX, y: e.clientY }];
     lassoClosed = false;
     drawing = true;
     return;
@@ -280,32 +443,36 @@ function onDown(e) {
 
   drawing = true;
   const color = activeTool === 'marker' ? markerColor : penColor;
-  liveStroke = { tool: activeTool, color, points: [] };
+  const anchorEl = findAnchorEl(e.clientX, e.clientY);
+  const clipEls = collectClipAncestors(anchorEl);
+  liveStroke = { tool: activeTool, color, points: [], anchorEl, clipEls };
   // Scratch-Zähler zurücksetzen
   scratchLastDirX  = 0;
   scratchReversals = 0;
   scratchTotalDist = 0;
-  appendPoint(e, doc);
+  appendPoint(e);
   redraw();
 }
 
 function onMove(e) {
   if (!penMode) return;
-  const doc = toDoc(e);
 
   if (dragState) {
-    applyDrag(doc);
+    e.preventDefault();
+    applyDrag(e.clientX, e.clientY);
     return;
   }
   if (!drawing) return;
+  if (!isDrawingPointer(e)) return;
+  e.preventDefault();
 
   if (activeTool === 'lasso') {
-    lassoPoints.push(doc);
+    lassoPoints.push({ x: e.clientX, y: e.clientY });
     redraw();
     return;
   }
 
-  appendPoint(e, doc);
+  appendPoint(e);
   // Scratch-to-Erase nur beim Stift prüfen
   if (activeTool === 'pen' && liveStroke && liveStroke.points.length >= 2) {
     updateScratch(liveStroke);
@@ -337,14 +504,15 @@ function onUp(e) {
   redraw();
 }
 
-function appendPoint(e, doc) {
+function appendPoint(e) {
   const pressure = e.pressure > 0 ? e.pressure : 0.5;
   const w = activeTool === 'pen'
     ? PEN_BASE_W * (0.5 + pressure)
     : activeTool === 'eraser'
       ? ERASER_WIDTH
       : MARKER_WIDTH;
-  liveStroke.points.push({ x: doc.x, y: doc.y, w });
+  const { ox, oy } = anchorOffset(liveStroke.anchorEl);
+  liveStroke.points.push({ x: e.clientX - ox, y: e.clientY - oy, w });
 }
 
 // ─── Scratch-to-Erase ────────────────────────────────────────────────────────
@@ -386,13 +554,16 @@ function updateScratch(stroke) {
  * und verwirft den Scratch-Strich selbst.
  */
 function triggerScratchErase(scratchStroke) {
-  const bbox = strokeBBox(scratchStroke.points);
+  const scratchVp = strokeViewportPoints(scratchStroke);
+  const bbox = strokeBBox(scratchVp);
   const toDelete = new Set();
 
   strokes.forEach((s, i) => {
     if (s.tool === 'eraser') return;
-    if (!bboxOverlaps(bbox, strokeBBox(s.points))) return;
-    if (strokesCross(scratchStroke.points, s.points)) toDelete.add(i);
+    if (s.anchorEl && !s.anchorEl.isConnected) return;
+    const vp = strokeViewportPoints(s);
+    if (!bboxOverlaps(bbox, strokeBBox(vp))) return;
+    if (strokesCross(scratchVp, vp)) toDelete.add(i);
   });
 
   if (toDelete.size > 0) {
@@ -472,13 +643,15 @@ function pointInPolygon(x, y, poly) {
 function findStrokesInLasso(lasso) {
   const ids = new Set();
   strokes.forEach((s, i) => {
-    if (s.points.some(pt => pointInPolygon(pt.x, pt.y, lasso))) ids.add(i);
+    if (s.anchorEl && !s.anchorEl.isConnected) return;
+    const vp = strokeViewportPoints(s);
+    if (vp.some(pt => pointInPolygon(pt.x, pt.y, lasso))) ids.add(i);
   });
   return ids;
 }
 
-function isInsideLasso(doc) {
-  return lassoPoints.length >= 3 && pointInPolygon(doc.x, doc.y, lassoPoints);
+function isInsideLasso(clientX, clientY) {
+  return lassoPoints.length >= 3 && pointInPolygon(clientX, clientY, lassoPoints);
 }
 
 function clearSelection() {
@@ -496,22 +669,22 @@ function deleteSelected() {
 }
 
 // ─── Drag ─────────────────────────────────────────────────────────────────────
-function startDrag(doc) {
+function startDrag(clientX, clientY) {
   const origStrokes = new Map();
   for (const i of selectedIds) {
     origStrokes.set(i, strokes[i].points.map(p => ({ ...p })));
   }
   dragState = {
-    docX: doc.x,
-    docY: doc.y,
+    startX: clientX,
+    startY: clientY,
     origStrokes,
     origLasso: lassoPoints.map(p => ({ ...p })),
   };
 }
 
-function applyDrag(doc) {
-  const dx = doc.x - dragState.docX;
-  const dy = doc.y - dragState.docY;
+function applyDrag(clientX, clientY) {
+  const dx = clientX - dragState.startX;
+  const dy = clientY - dragState.startY;
   for (const [i, origPts] of dragState.origStrokes) {
     strokes[i].points = origPts.map(p => ({ x: p.x + dx, y: p.y + dy, w: p.w }));
   }
@@ -564,7 +737,9 @@ function undo() {
 // ─── Stiftmodus ───────────────────────────────────────────────────────────────
 function setPenMode(on) {
   penMode = on;
-  canvas.style.pointerEvents = on ? 'auto' : 'none';
+  // Canvas bleibt immer pointer-events:none, damit Finger-Touch zum Inhalt
+  // durchreicht und scrollt; gezeichnet wird über window-Listener (mouse/pen).
+  document.body.classList.toggle('pen-active', on);
 
   const toggle = document.getElementById('pen-btn-toggle');
   if (toggle) {
@@ -584,9 +759,6 @@ function setPenMode(on) {
 }
 
 function updateBodyClass() {
-  document.body.classList.toggle('pen-drawing',  penMode && activeTool !== 'eraser' && activeTool !== 'lasso');
-  document.body.classList.toggle('pen-erasing',  penMode && activeTool === 'eraser');
-  document.body.classList.toggle('pen-lassoing', penMode && activeTool === 'lasso');
   applyToolCursor();
 }
 

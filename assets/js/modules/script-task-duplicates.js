@@ -13,7 +13,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260609-void-revealed";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260609-answer-lines";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 import {
@@ -22,7 +22,7 @@ import {
     createTrainingCardHeader,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20260519-feed-architecture";
+} from "./training.js?v=20260609-answer-lines";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;

@@ -5,10 +5,10 @@ description: Dashboard mit gemeinsamer Feed-Projektion fuer Session- und Wiederh
 page_context: Dashboard
 nav: dashboard
 body_class: page-dashboard
-page_css: /assets/css/dashboard.css?v=20260608-worklist-cols
+page_css: /assets/css/dashboard.css?v=20260609-dashboard-columns
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260608-worklist-cols
+module_script: /assets/js/modules/dashboard.js?v=20260609-unified-action-card
 ---
 
 {% include dashboard/content.html %}

@@ -340,6 +340,60 @@ function initializeSelect2ForDropdowns(rootNode) {
     });
 }
 
+function createStructuredLine(lineClassName) {
+    const line = document.createElement("div");
+    line.className = lineClassName;
+    return line;
+}
+
+function wrapInlineBreaksAsLines(container, lineClassName) {
+    if (!container || !lineClassName) return;
+
+    const nodes = Array.from(container.childNodes);
+    const hasBreaks = nodes.some((node) => node.nodeName === "BR");
+    if (!hasBreaks) return;
+
+    const fragment = document.createDocumentFragment();
+    let currentLine = createStructuredLine(lineClassName);
+    let currentLineHasContent = false;
+    let pendingBreakCount = 0;
+
+    const flushCurrentLine = () => {
+        if (!currentLineHasContent) return;
+        fragment.appendChild(currentLine);
+        currentLine = createStructuredLine(lineClassName);
+        currentLineHasContent = false;
+    };
+
+    nodes.forEach((node) => {
+        if (node.nodeName === "BR") {
+            flushCurrentLine();
+            pendingBreakCount += 1;
+            return;
+        }
+
+        if (pendingBreakCount > 1) {
+            currentLine.classList.add(`${lineClassName}--spaced`);
+        }
+        pendingBreakCount = 0;
+
+        currentLine.appendChild(node);
+        if (node.nodeType === Node.TEXT_NODE) {
+            if (String(node.textContent || "").trim().length > 0) {
+                currentLineHasContent = true;
+            }
+            return;
+        }
+
+        currentLineHasContent = true;
+    });
+
+    flushCurrentLine();
+    if (fragment.childNodes.length > 0) {
+        container.replaceChildren(fragment);
+    }
+}
+
 function ensureEqualColumns(table) {
     if (!table) return;
 
@@ -576,6 +630,7 @@ export function renderTask(task, options = {}) {
         const answerPreview = document.createElement("div");
         answerPreview.className = "answer-preview";
         answerPreview.innerHTML = answerToPreview(antworten[i]);
+        wrapInlineBreaksAsLines(answerPreview, "answer-preview-line");
         item.appendChild(answerPreview);
 
         const buildQuestionEvaluation = () => {
@@ -698,6 +753,7 @@ export function renderTask(task, options = {}) {
             const solution = document.createElement("div");
             solution.className = "solution";
             solution.innerHTML = answerToSolution(antworten[i]);
+            wrapInlineBreaksAsLines(solution, "solution-line");
             const questionResolvedOnRender = checkableQuestionIndexes.has(i) && isQuestionResolved(i);
             if (!showSolutionsNow && !questionResolvedOnRender) {
                 solution.hidden = true;

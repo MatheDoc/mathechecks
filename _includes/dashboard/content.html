@@ -10,18 +10,20 @@
             <div class="check-card__header">
                 <div class="check-card__header-left">
                     <span class="check-card__title dashboard-panel__title">Nächste Aktion</span>
-                    <div class="dashboard-feed__header-status" data-dashboard-primary-feed-status hidden></div>
                 </div>
             </div>
 
             <div class="check-card__body dashboard-panel__body">
                 <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
-                    <li class="action-card" data-type="feed" data-dashboard-primary-feed-card>
+                    <li class="action-card dashboard-panel__action-card" data-type="feed" data-dashboard-primary-feed-card>
                         <div class="action-body">
                             <div class="dashboard-feed__primary-head">
-                                <div class="action-title dashboard-feed__primary-title" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</div>
+                                <div class="action-title dashboard-panel__action-title dashboard-feed__primary-title" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</div>
                             </div>
-                            <span class="action-badge dashboard-feed__lernbereich-badge" data-dashboard-primary-feed-subtitle hidden></span>
+                            <div class="action-badges dashboard-feed__meta">
+                                <span class="action-badge dashboard-feed__lernbereich-badge" data-dashboard-primary-feed-subtitle hidden></span>
+                                <div class="dashboard-feed__header-status" data-dashboard-primary-feed-status hidden></div>
+                            </div>
                             <div class="action-desc" data-dashboard-primary-feed-desc hidden>Deine nächsten Aktivitäten werden vorbereitet.</div>
                         </div>
                     </li>
@@ -132,7 +134,7 @@
                         <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zum Trainingsfokus">
                             <button class="check-card__actions-item" type="button" role="menuitemcheckbox" aria-checked="true" data-dashboard-worklist-session-toggle>
                                 <span class="check-card__actions-icon" aria-hidden="true" data-dashboard-worklist-session-icon>✓</span>
-                                <span>Nur Session-Checks</span>
+                                <span>🎯 Nur Session-Checks</span>
                             </button>
                         </div>
                     </details>
