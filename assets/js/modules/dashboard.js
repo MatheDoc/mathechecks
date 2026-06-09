@@ -191,6 +191,7 @@ const GREETING_BUSY_YESTERDAY_THRESHOLD = 4;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 const GREETING_ROTATION_STEP_HOURS = 3;
 const GREETING_STORAGE_PREFIX = "mathechecks:greeting-first-seen";
+const GREETING_STREAK_FIRST_SELECTION_KEY = "streak-first";
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -224,6 +225,35 @@ function escapeHtml(value) {
 
 function cloneState(state) {
   return JSON.parse(JSON.stringify(state || {}));
+}
+
+function buildGreetingCandidate(key, variants) {
+  const options = Array.isArray(variants) ? variants.filter(Boolean) : [];
+  if (!options.length) return null;
+
+  return {
+    key,
+    variants: options,
+  };
+}
+
+function pickRandomInteger(count) {
+  const normalizedCount = Math.max(0, Number(count) || 0);
+  if (normalizedCount <= 1) return 0;
+  return Math.floor(Math.random() * normalizedCount);
+}
+
+function createRandomGreetingSelection(key, variants, refreshMode = "rotation-only") {
+  const candidate = buildGreetingCandidate(key, variants);
+  if (!candidate) return null;
+
+  const variantIndex = pickRandomInteger(candidate.variants.length);
+  return {
+    key: candidate.key,
+    template: candidate.variants[variantIndex] || candidate.variants[0],
+    variantCount: candidate.variants.length,
+    refreshMode,
+  };
 }
 
 function pickGreetingVariant(variants, context, todayDateValue, date = new Date()) {
@@ -483,51 +513,150 @@ function getGreetingStorageKey(context, todayDateValue) {
   return `${GREETING_STORAGE_PREFIX}|${normalizedDateValue}|${getGreetingUserSeed(context)}`;
 }
 
-function getGreetingFirstSeenAt(context, todayDateValue, date = new Date()) {
+function readGreetingStorageState(context, todayDateValue, date = new Date()) {
   const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
   const normalizedDateValue = normalizeDateOnlyValue(todayDateValue) || toDateOnlyValue(now);
+  const fallbackState = {
+    firstSeenAt: now,
+    selections: {},
+  };
 
   if (typeof window === "undefined" || !window.localStorage) {
-    return now;
+    return fallbackState;
   }
 
   try {
     const storageKey = getGreetingStorageKey(context, normalizedDateValue);
     const storedValue = window.localStorage.getItem(storageKey);
     if (storedValue) {
-      const storedDate = new Date(storedValue);
-      if (!Number.isNaN(storedDate.getTime()) && toDateOnlyValue(storedDate) === normalizedDateValue) {
-        return storedDate;
+      let parsedValue = null;
+      try {
+        parsedValue = JSON.parse(storedValue);
+      } catch {
+        parsedValue = null;
+      }
+
+      const firstSeenValue = parsedValue && typeof parsedValue === "object"
+        ? parsedValue.firstSeenAt
+        : storedValue;
+      const firstSeenAt = new Date(String(firstSeenValue || ""));
+      if (!Number.isNaN(firstSeenAt.getTime()) && toDateOnlyValue(firstSeenAt) === normalizedDateValue) {
+        const selections = parsedValue && typeof parsedValue.selections === "object" && parsedValue.selections
+          ? parsedValue.selections
+          : {};
+        return {
+          firstSeenAt,
+          selections,
+        };
       }
     }
 
-    window.localStorage.setItem(storageKey, now.toISOString());
+    window.localStorage.setItem(storageKey, JSON.stringify({
+      firstSeenAt: now.toISOString(),
+      selections: {},
+    }));
   } catch {
-    return now;
+    return fallbackState;
   }
 
-  return now;
+  return fallbackState;
+}
+
+function writeGreetingStorageState(context, todayDateValue, state) {
+  if (typeof window === "undefined" || !window.localStorage) {
+    return;
+  }
+
+  const normalizedDateValue = normalizeDateOnlyValue(todayDateValue) || toDateOnlyValue(new Date());
+  const firstSeenAt = state?.firstSeenAt instanceof Date && !Number.isNaN(state.firstSeenAt.getTime())
+    ? state.firstSeenAt
+    : new Date(String(state?.firstSeenAt || ""));
+  if (Number.isNaN(firstSeenAt.getTime())) {
+    return;
+  }
+
+  const selections = state && typeof state.selections === "object" && state.selections
+    ? state.selections
+    : {};
+
+  try {
+    window.localStorage.setItem(getGreetingStorageKey(context, normalizedDateValue), JSON.stringify({
+      firstSeenAt: firstSeenAt.toISOString(),
+      selections,
+    }));
+  } catch {
+    // Ignore storage write failures and fall back to in-memory behavior.
+  }
+}
+
+function getStoredGreetingSelection(context, todayDateValue, selectionKey, date = new Date()) {
+  const state = readGreetingStorageState(context, todayDateValue, date);
+  const selection = state?.selections?.[selectionKey];
+  if (!selection || typeof selection.template !== "string") {
+    return null;
+  }
+
+  return {
+    key: String(selection.key || "").trim(),
+    template: selection.template,
+    variantCount: Math.max(1, Number(selection.variantCount) || 1),
+    refreshMode: String(selection.refreshMode || "rotation-only").trim() || "rotation-only",
+  };
+}
+
+function storeGreetingSelection(context, todayDateValue, selectionKey, selection, date = new Date()) {
+  if (!selectionKey || !selection?.template) {
+    return selection;
+  }
+
+  const state = readGreetingStorageState(context, todayDateValue, date);
+  const nextState = {
+    firstSeenAt: state.firstSeenAt,
+    selections: {
+      ...state.selections,
+      [selectionKey]: {
+        key: selection.key,
+        template: selection.template,
+        variantCount: selection.variantCount,
+        refreshMode: selection.refreshMode,
+      },
+    },
+  };
+  writeGreetingStorageState(context, todayDateValue, nextState);
+  return selection;
+}
+
+function getGreetingFirstSeenAt(context, todayDateValue, date = new Date()) {
+  return readGreetingStorageState(context, todayDateValue, date).firstSeenAt;
+}
+
+function getGreetingStepIndex(context, todayDateValue, date = new Date()) {
+  const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
+  const firstSeenAt = getGreetingFirstSeenAt(context, todayDateValue, now);
+  const stepMs = GREETING_ROTATION_STEP_HOURS * 60 * 60 * 1000;
+  if (stepMs <= 0) return 0;
+
+  return Math.max(0, Math.floor(Math.max(0, now.getTime() - firstSeenAt.getTime()) / stepMs));
 }
 
 function getGreetingVariantIndex(context, todayDateValue, variantCount, date = new Date()) {
   const count = Math.max(0, Number(variantCount) || 0);
   if (count <= 1) return 0;
 
-  const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
-  const firstSeenAt = getGreetingFirstSeenAt(context, todayDateValue, now);
-  const elapsedMs = Math.max(0, now.getTime() - firstSeenAt.getTime());
-  const stepMs = GREETING_ROTATION_STEP_HOURS * 60 * 60 * 1000;
-  const nextIndex = Math.floor(elapsedMs / stepMs);
+  const nextIndex = getGreetingStepIndex(context, todayDateValue, date);
 
   return Math.min(nextIndex, count - 1);
 }
 
 function buildGreetingSelection(context, snapshot, key, variants) {
-  const options = Array.isArray(variants) ? variants.filter(Boolean) : [];
+  const candidate = buildGreetingCandidate(key, variants);
+  if (!candidate) return null;
+
   return {
-    key,
-    template: pickGreetingVariant(options, context, snapshot.todayDateValue, snapshot.now),
-    variantCount: options.length,
+    key: candidate.key,
+    template: pickGreetingVariant(candidate.variants, context, snapshot.todayDateValue, snapshot.now),
+    variantCount: candidate.variants.length,
+    refreshMode: "default",
   };
 }
 
@@ -582,25 +711,29 @@ function buildGreetingSnapshot(context, date = new Date()) {
   };
 }
 
-function resolveGreetingEvent(context, snapshot) {
+function resolveGreetingStreakCandidate(snapshot) {
   if (snapshot.todayCount > 0 && snapshot.lastActivityDate === snapshot.todayDateValue) {
     const milestone = GREETING_STREAK_MILESTONES.find((value) => snapshot.recentStreakLength === value);
     if (milestone) {
       const key = `streak${milestone}`;
-      return buildGreetingSelection(context, snapshot, key, GREETING_EVENT_VARIANTS[key]);
+      return buildGreetingCandidate(key, GREETING_EVENT_VARIANTS[key]);
     }
   }
 
+  return null;
+}
+
+function resolveGreetingSecondaryEventCandidate(snapshot) {
   if (snapshot.totalCount <= 0 || snapshot.todayCount > 0) {
     return null;
   }
 
   if (snapshot.daysSinceLastActivity >= GREETING_LONG_PAUSE_DAYS) {
-    return buildGreetingSelection(context, snapshot, "longPause", GREETING_EVENT_VARIANTS.longPause);
+    return buildGreetingCandidate("longPause", GREETING_EVENT_VARIANTS.longPause);
   }
 
   if (snapshot.lastActivityDate === snapshot.dayBeforeYesterdayDateValue) {
-    return buildGreetingSelection(context, snapshot, "missedYesterday", GREETING_EVENT_VARIANTS.missedYesterday);
+    return buildGreetingCandidate("missedYesterday", GREETING_EVENT_VARIANTS.missedYesterday);
   }
 
   if (
@@ -608,27 +741,27 @@ function resolveGreetingEvent(context, snapshot) {
     && snapshot.recentStreakLength >= 2
     && snapshot.hour >= 18
   ) {
-    return buildGreetingSelection(context, snapshot, "streakAtRisk", GREETING_EVENT_VARIANTS.streakAtRisk);
+    return buildGreetingCandidate("streakAtRisk", GREETING_EVENT_VARIANTS.streakAtRisk);
   }
 
   return null;
 }
 
-function resolveGreetingProgress(context, snapshot) {
+function resolveGreetingProgressCandidate(snapshot) {
   if (snapshot.hasActiveSession && snapshot.progress && snapshot.progress.remainingStepCount <= 0) {
-    return buildGreetingSelection(context, snapshot, "sessionDone", GREETING_PROGRESS_VARIANTS.sessionDone);
+    return buildGreetingCandidate("sessionDone", GREETING_PROGRESS_VARIANTS.sessionDone);
   }
 
   if (snapshot.todayCount === 0 && snapshot.yesterdayCount >= GREETING_BUSY_YESTERDAY_THRESHOLD) {
-    return buildGreetingSelection(context, snapshot, "yesterdayBusy", GREETING_PROGRESS_VARIANTS.yesterdayBusy);
+    return buildGreetingCandidate("yesterdayBusy", GREETING_PROGRESS_VARIANTS.yesterdayBusy);
   }
 
   if (snapshot.targetAssessment?.assessmentTone === "error") {
-    return buildGreetingSelection(context, snapshot, "sessionPressureHigh", GREETING_PROGRESS_VARIANTS.sessionPressureHigh);
+    return buildGreetingCandidate("sessionPressureHigh", GREETING_PROGRESS_VARIANTS.sessionPressureHigh);
   }
 
   if (snapshot.targetAssessment?.assessmentTone === "warning") {
-    return buildGreetingSelection(context, snapshot, "sessionPressureMedium", GREETING_PROGRESS_VARIANTS.sessionPressureMedium);
+    return buildGreetingCandidate("sessionPressureMedium", GREETING_PROGRESS_VARIANTS.sessionPressureMedium);
   }
 
   if (
@@ -637,17 +770,112 @@ function resolveGreetingProgress(context, snapshot) {
     && snapshot.progress.remainingStepCount > 0
     && snapshot.progress.percent >= GREETING_CONFIDENT_PROGRESS_PERCENT
   ) {
-    return buildGreetingSelection(context, snapshot, "sessionSmooth", GREETING_PROGRESS_VARIANTS.sessionSmooth);
+    return buildGreetingCandidate("sessionSmooth", GREETING_PROGRESS_VARIANTS.sessionSmooth);
   }
 
   return null;
 }
 
-function resolveGreetingTime(context, snapshot) {
+function resolveGreetingTimeCandidate(snapshot) {
   const timeWindow = getGreetingTimeWindow(snapshot.hour);
   if (!timeWindow) return null;
 
-  return buildGreetingSelection(context, snapshot, `time-${timeWindow.key}`, timeWindow.variants);
+  return buildGreetingCandidate(`time-${timeWindow.key}`, timeWindow.variants);
+}
+
+function resolveGreetingFallbackCandidate() {
+  return buildGreetingCandidate("fallback", GREETING_FALLBACK_VARIANTS);
+}
+
+function getPostStreakGreetingSelectionKey(stepIndex) {
+  return `post-streak-${Math.max(1, Number(stepIndex) || 1)}`;
+}
+
+function resolveStreakFirstRandomGreeting(context, snapshot, stepIndex) {
+  if (stepIndex !== 0) return null;
+
+  const storedSelection = getStoredGreetingSelection(
+    context,
+    snapshot.todayDateValue,
+    GREETING_STREAK_FIRST_SELECTION_KEY,
+    snapshot.now,
+  );
+  if (storedSelection) {
+    return storedSelection;
+  }
+
+  const streakCandidate = resolveGreetingStreakCandidate(snapshot);
+  if (!streakCandidate) {
+    return null;
+  }
+
+  const nextSelection = createRandomGreetingSelection(streakCandidate.key, streakCandidate.variants);
+  return storeGreetingSelection(
+    context,
+    snapshot.todayDateValue,
+    GREETING_STREAK_FIRST_SELECTION_KEY,
+    nextSelection,
+    snapshot.now,
+  );
+}
+
+function resolvePostStreakRandomGreeting(context, snapshot, stepIndex) {
+  if (stepIndex <= 0) return null;
+
+  const streakFirstSelection = getStoredGreetingSelection(
+    context,
+    snapshot.todayDateValue,
+    GREETING_STREAK_FIRST_SELECTION_KEY,
+    snapshot.now,
+  );
+  if (!streakFirstSelection) {
+    return null;
+  }
+
+  const selectionKey = getPostStreakGreetingSelectionKey(stepIndex);
+  const storedSelection = getStoredGreetingSelection(context, snapshot.todayDateValue, selectionKey, snapshot.now);
+  if (storedSelection) {
+    return storedSelection;
+  }
+
+  const candidatePools = [
+    resolveGreetingProgressCandidate(snapshot),
+    resolveGreetingTimeCandidate(snapshot),
+    resolveGreetingFallbackCandidate(),
+  ].filter(Boolean);
+  if (!candidatePools.length) {
+    return null;
+  }
+
+  const pickedPool = candidatePools[pickRandomInteger(candidatePools.length)];
+  const nextSelection = createRandomGreetingSelection(pickedPool.key, pickedPool.variants);
+  return storeGreetingSelection(context, snapshot.todayDateValue, selectionKey, nextSelection, snapshot.now);
+}
+
+function resolveGreetingEvent(context, snapshot) {
+  const streakCandidate = resolveGreetingStreakCandidate(snapshot);
+  if (streakCandidate) {
+    return buildGreetingSelection(context, snapshot, streakCandidate.key, streakCandidate.variants);
+  }
+
+  const secondaryCandidate = resolveGreetingSecondaryEventCandidate(snapshot);
+  return secondaryCandidate
+    ? buildGreetingSelection(context, snapshot, secondaryCandidate.key, secondaryCandidate.variants)
+    : null;
+}
+
+function resolveGreetingProgress(context, snapshot) {
+  const candidate = resolveGreetingProgressCandidate(snapshot);
+  return candidate
+    ? buildGreetingSelection(context, snapshot, candidate.key, candidate.variants)
+    : null;
+}
+
+function resolveGreetingTime(context, snapshot) {
+  const candidate = resolveGreetingTimeCandidate(snapshot);
+  return candidate
+    ? buildGreetingSelection(context, snapshot, candidate.key, candidate.variants)
+    : null;
 }
 
 function getNextGreetingTimeBoundary(date = new Date()) {
@@ -678,16 +906,16 @@ function getNextGreetingMidnight(date = new Date()) {
   return nextMidnight;
 }
 
-function getNextGreetingRotationBoundary(context, todayDateValue, variantCount, date = new Date()) {
+function getNextGreetingRotationBoundary(context, todayDateValue, variantCount, date = new Date(), force = false) {
   const count = Math.max(0, Number(variantCount) || 0);
-  if (count <= 1) return null;
+  if (!force && count <= 1) return null;
 
   const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
   const firstSeenAt = getGreetingFirstSeenAt(context, todayDateValue, now);
   const stepMs = GREETING_ROTATION_STEP_HOURS * 60 * 60 * 1000;
   const elapsedMs = Math.max(0, now.getTime() - firstSeenAt.getTime());
   const nextIndex = Math.floor(elapsedMs / stepMs) + 1;
-  if (nextIndex >= count) return null;
+  if (!force && nextIndex >= count) return null;
 
   return new Date(firstSeenAt.getTime() + nextIndex * stepMs);
 }
@@ -705,11 +933,17 @@ function scheduleGreetingRefresh(context, snapshot, greeting) {
   const now = snapshot?.now instanceof Date && !Number.isNaN(snapshot.now.getTime())
     ? new Date(snapshot.now)
     : new Date();
-  const candidates = [
-    getNextGreetingMidnight(now),
-    getNextGreetingTimeBoundary(now),
-    getNextGreetingRotationBoundary(context, snapshot?.todayDateValue, greeting?.variantCount, now),
-  ].filter((candidate) => candidate instanceof Date && candidate.getTime() > now.getTime());
+  const usesRotationOnlyRefresh = greeting?.refreshMode === "rotation-only";
+  const candidates = (usesRotationOnlyRefresh
+    ? [
+      getNextGreetingMidnight(now),
+      getNextGreetingRotationBoundary(context, snapshot?.todayDateValue, greeting?.variantCount, now, true),
+    ]
+    : [
+      getNextGreetingMidnight(now),
+      getNextGreetingTimeBoundary(now),
+      getNextGreetingRotationBoundary(context, snapshot?.todayDateValue, greeting?.variantCount, now),
+    ]).filter((candidate) => candidate instanceof Date && candidate.getTime() > now.getTime());
 
   if (!candidates.length || typeof window === "undefined") {
     return;
@@ -739,7 +973,10 @@ function updateGreetingHeading(context, date = new Date()) {
 
   const displayName = getGreetingDisplayName(context?.authState?.user);
   const snapshot = buildGreetingSnapshot(context, date);
-  const greeting = resolveGreetingEvent(context, snapshot)
+  const stepIndex = getGreetingStepIndex(context, snapshot.todayDateValue, snapshot.now);
+  const greeting = resolveStreakFirstRandomGreeting(context, snapshot, stepIndex)
+    || resolvePostStreakRandomGreeting(context, snapshot, stepIndex)
+    || resolveGreetingEvent(context, snapshot)
     || resolveGreetingProgress(context, snapshot)
     || resolveGreetingTime(context, snapshot)
     || buildGreetingSelection(context, snapshot, "fallback", GREETING_FALLBACK_VARIANTS);
