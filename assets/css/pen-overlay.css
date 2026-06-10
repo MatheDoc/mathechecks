@@ -23,7 +23,7 @@
     var(--sticky-topbar-h, 72px)
     + var(--module-tab-nav-h, 52px)
     + var(--module-check-nav-h, 0px)
-    + 12px
+    + 24px
   );
   z-index: 210;
   display: flex;
@@ -221,6 +221,16 @@ body.pen-active .mod-content * {
   cursor: var(--pen-cursor, crosshair) !important;
   user-select: none;
   -webkit-user-select: none;
+}
+
+/* Scrollsperre nur, solange ein Stift/die Maus aktiv ist (per JS getoggelt).
+   So zeichnet der Stift, statt den Inhalt zu scrollen. Bei Finger-Touch wird
+   die Klasse entfernt → Touch scrollt weiterhin nativ. Mausrad bleibt von
+   touch-action unberührt. */
+body.pen-active.pen-input-active .mod-main,
+body.pen-active.pen-input-active .mod-content,
+body.pen-active.pen-input-active .mod-content * {
+  touch-action: none !important;
 }
 
 /* ── Light-Mode ── */

@@ -1831,7 +1831,7 @@ background: var(--bg);
   min-height: 100%;
 }
 
-.mod-script-content {
+.mod-script-content, .mod-start-content {
   margin: 0 auto;
   padding: 14px 54px 72px;
 }
@@ -5198,7 +5198,7 @@ html.light .roulette-widget__event {
 }
 
 @media (max-width: 680px) {
-.mod-script-content {
+.mod-script-content, .mod-start-content {
   margin: 0 auto;
   padding: 14px 14px 72px;
 }
