@@ -92,10 +92,16 @@ function applyToolCursor() {
   body.style.setProperty('--pen-cursor', cursors[activeTool] ?? 'crosshair');
 }
 
-// Scratch-to-Erase-Schwellen
-const SCRATCH_MIN_REVERSALS  = 4;    // Mindestanzahl Richtungsumkehrungen
-const SCRATCH_MIN_SPEED_SQ   = 8*8;  // Mindestgeschwindigkeit² je Segment (px)
-const SCRATCH_MIN_TOTAL_DIST = 60;   // Mindest-Gesamtweg des Strichs (px)
+// Scratch-to-Erase-Schwellen. Die Analyse tastet den jüngsten Pfadabschnitt
+// nach Bogenlänge neu ab (abtastraten-unabhängig). Unterscheidungsmerkmal
+// Kratzen ↔ Schreiben: Kratzen faltet sich stark (Weglänge ≫ Bounding-Box)
+// und hat viele Richtungsumkehrungen; Schreiben schreitet voran.
+const SCRATCH_SCAN_LEN      = 320;  // betrachtete Pfadlänge am Strichende (px)
+const SCRATCH_STEP          = 10;   // Neu-Abtast-Schritt nach Bogenlänge (px)
+const SCRATCH_MIN_REVERSALS = 4;    // Richtungsumkehrungen (dominante Achse)
+const SCRATCH_MIN_PATH      = 80;   // Mindest-Weglänge im Abschnitt (px)
+const SCRATCH_MIN_FOLD      = 1.7;  // Weglänge / Bounding-Box-Diagonale (Faltung)
+const ERASE_HIT_RADIUS      = 14;   // Trefferradius um den Kratzpfad (px)
 
 // ─── State ────────────────────────────────────────────────────────────────────
 let penMode     = false;
@@ -104,6 +110,7 @@ let penColor    = '#3b82f6';
 let markerColor = '#ffe600';
 let drawing     = false;
 let _clipTop    = 0;       // Oberkante des Clip-Bereichs, pro redraw() berechnet
+let _capturedPid = /** @type {number|null} */ (null); // gefangener Pointer (Pen/Maus)
 
 /**
  * @typedef {{ x: number, y: number, w: number }} Point
@@ -115,12 +122,6 @@ let strokes = [];
 
 /** @type {Stroke|null} */
 let liveStroke = null;
-
-// Scratch-to-Erase
-/** Richtungs-Vorzeichen des letzten Segments (+1 / -1 / 0) */
-let scratchLastDirX = 0;
-let scratchReversals = 0;
-let scratchTotalDist = 0;
 
 // Lasso
 /** @type {{ x: number, y: number }[]} */
@@ -398,15 +399,56 @@ window.addEventListener('pointerup',     onUp,   true);
 window.addEventListener('pointercancel', onUp,   true);
 window.addEventListener('click',         onClickGuard, true);
 
+// Eingabeart-Sonde: Sobald ein Stift (oder die Maus) den Inhalt überfährt –
+// auch nur im Hover, bevor er aufsetzt – sperren wir das Scrollen des Inhalts
+// (touch-action:none), damit der Stift zeichnet statt zu scrollen. Ein
+// Finger setzt sofort zurück, sodass Touch weiterhin nativ scrollt.
+// Die Hover-Events des Stylus liefern den nötigen Vorlauf, bevor er aufsetzt –
+// nur dann greift touch-action zuverlässig für die folgende Geste.
+window.addEventListener('pointerover', onPointerProbe, true);
+window.addEventListener('pointermove', onPointerProbe, true);
+window.addEventListener('pointerdown', onPointerProbe, true);
+
 /** Nur Maus und Stylus zeichnen – Finger-Touch bleibt fürs Scrollen frei. */
 function isDrawingPointer(e) {
   return e.pointerType === 'mouse' || e.pointerType === 'pen';
+}
+
+/** Schaltet die Inhalts-Scrollsperre (CSS-Klasse → touch-action:none). */
+function setPenInputActive(active) {
+  document.body.classList.toggle('pen-input-active', penMode && active);
+}
+
+/** Aktualisiert die Scrollsperre anhand der zuletzt gesehenen Eingabeart. */
+function onPointerProbe(e) {
+  if (!penMode) return;
+  if (e.pointerType === 'touch') setPenInputActive(false);
+  else if (isDrawingPointer(e))  setPenInputActive(true);
 }
 
 /** Liegt das Ziel in der Stift-UI (Toolbar/Hinweis)? Dann nicht zeichnen. */
 function isPenUiTarget(e) {
   const t = e.target;
   return !!(t && t.closest && t.closest('#pen-toolbar, #pen-lasso-hint'));
+}
+
+/**
+ * Fängt den Pointer (nur Maus/Stylus) für die Dauer eines Strichs.
+ * Das unterdrückt die Browser-eigene Scroll-/Pan-Geste, die sonst einen
+ * Stift-Strich nach kurzer Strecke per pointercancel abbricht. Finger-Touch
+ * wird nicht gefangen und scrollt weiterhin nativ.
+ */
+function capturePointer(e) {
+  try {
+    document.body.setPointerCapture(e.pointerId);
+    _capturedPid = e.pointerId;
+  } catch { /* manche Pointer lassen sich nicht fangen – unkritisch */ }
+}
+
+function releaseCapturedPointer() {
+  if (_capturedPid === null) return;
+  try { document.body.releasePointerCapture(_capturedPid); } catch { /* egal */ }
+  _capturedPid = null;
 }
 
 // Unterdrückt den synthetischen Klick nach einem Maus-/Stylus-Strich,
@@ -426,6 +468,7 @@ function onDown(e) {
   if (isPenUiTarget(e)) return;          // Toolbar bedienen, nicht zeichnen
   e.preventDefault();
   suppressNextClick = true;
+  capturePointer(e);                     // Scroll-Geste für Pen/Maus unterdrücken
 
   if (activeTool === 'lasso') {
     // Klick innerhalb bestehender Selektion → Drag starten
@@ -446,10 +489,6 @@ function onDown(e) {
   const anchorEl = findAnchorEl(e.clientX, e.clientY);
   const clipEls = collectClipAncestors(anchorEl);
   liveStroke = { tool: activeTool, color, points: [], anchorEl, clipEls };
-  // Scratch-Zähler zurücksetzen
-  scratchLastDirX  = 0;
-  scratchReversals = 0;
-  scratchTotalDist = 0;
   appendPoint(e);
   redraw();
 }
@@ -472,15 +511,27 @@ function onMove(e) {
     return;
   }
 
-  appendPoint(e);
+  // Bei schnellen Bewegungen bündelt der Browser mehrere Positionen in einem
+  // Event. Die zusammengefassten Zwischenpunkte einlesen, sonst gehen genau
+  // die Richtungswechsel eines hektischen Kratzers verloren.
+  const evs = (typeof e.getCoalescedEvents === 'function')
+    ? e.getCoalescedEvents()
+    : null;
+  if (evs && evs.length) {
+    for (const ce of evs) appendPoint(ce);
+  } else {
+    appendPoint(e);
+  }
+
   // Scratch-to-Erase nur beim Stift prüfen
-  if (activeTool === 'pen' && liveStroke && liveStroke.points.length >= 2) {
+  if (activeTool === 'pen' && liveStroke && liveStroke.points.length >= 3) {
     updateScratch(liveStroke);
   }
   redraw();
 }
 
 function onUp(e) {
+  releaseCapturedPointer();
   if (dragState) {
     dragState = null;
     return;
@@ -517,36 +568,94 @@ function appendPoint(e) {
 
 // ─── Scratch-to-Erase ────────────────────────────────────────────────────────
 /**
- * Analysiert den laufenden Strich auf Zickzack-Muster.
- * Kriterien: mind. SCRATCH_MIN_REVERSALS X-Richtungsumkehrungen,
- * jedes Segment schnell genug, Gesamtweg ≥ Mindestdistanz.
+ * Erkennt absichtliches Zickzack-Kratzen. Wichtig: Die Analyse läuft NICHT
+ * auf den rohen Pointer-Punkten, da deren Dichte von der Abtastrate abhängt
+ * (ein Stift liefert sehr viele Punkte je Sekunde → ein Punkt-Fenster deckt
+ * nur Sekundenbruchteile und damit kaum Umkehrungen ab). Stattdessen wird der
+ * jüngste Pfadabschnitt nach Bogenlänge gleichmäßig neu abgetastet
+ * (fester Pixel-Schritt). So sind Richtungsumkehrungen geräteunabhängig
+ * zählbar. Maßgeblich ist die Faltung: Beim Kratzen ist die Weglänge ein
+ * Vielfaches der Bounding-Box-Diagonale; beim Schreiben schreitet der Strich
+ * voran (geringe Faltung).
  */
 function updateScratch(stroke) {
   const pts = stroke.points;
-  const n   = pts.length;
-  if (n < 2) return;
+  if (pts.length < 3) return;
 
-  const p1 = pts[n - 2];
-  const p2 = pts[n - 1];
-  const dx  = p2.x - p1.x;
-  const dy  = p2.y - p1.y;
-  const d2  = dx * dx + dy * dy;
-
-  scratchTotalDist += Math.sqrt(d2);
-  if (d2 < SCRATCH_MIN_SPEED_SQ) return;   // zu langsam / zu kurz
-
-  const dir = dx > 0 ? 1 : dx < 0 ? -1 : 0;
-  if (dir !== 0 && scratchLastDirX !== 0 && dir !== scratchLastDirX) {
-    scratchReversals++;
+  // Jüngsten Pfadabschnitt bis SCRATCH_SCAN_LEN (Bogenlänge) rückwärts sammeln.
+  let acc = 0;
+  let startIdx = pts.length - 1;
+  for (let i = pts.length - 1; i > 0; i--) {
+    acc += Math.hypot(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y);
+    startIdx = i - 1;
+    if (acc >= SCRATCH_SCAN_LEN) break;
   }
-  if (dir !== 0) scratchLastDirX = dir;
+  const tail = pts.slice(startIdx);
+
+  // Nach Bogenlänge gleichmäßig neu abtasten (Schritt SCRATCH_STEP).
+  const res = resampleByLength(tail, SCRATCH_STEP);
+  if (res.length < SCRATCH_MIN_REVERSALS + 2) return;
+
+  let pathLen = 0;
+  let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+  for (let i = 0; i < res.length; i++) {
+    const p = res[i];
+    if (p.x < minX) minX = p.x;
+    if (p.x > maxX) maxX = p.x;
+    if (p.y < minY) minY = p.y;
+    if (p.y > maxY) maxY = p.y;
+    if (i > 0) pathLen += Math.hypot(p.x - res[i - 1].x, p.y - res[i - 1].y);
+  }
+
+  const bw   = maxX - minX;
+  const bh   = maxY - minY;
+  const diag = Math.hypot(bw, bh) || 1;
+
+  // Umkehrungen entlang der dominanten Achse zählen.
+  const horizontal = bw >= bh;
+  let reversals = 0;
+  let lastDir   = 0;
+  for (let i = 1; i < res.length; i++) {
+    const d = horizontal ? res[i].x - res[i - 1].x : res[i].y - res[i - 1].y;
+    const dir = d > 0 ? 1 : d < 0 ? -1 : 0;
+    if (dir !== 0 && lastDir !== 0 && dir !== lastDir) reversals++;
+    if (dir !== 0) lastDir = dir;
+  }
 
   if (
-    scratchReversals >= SCRATCH_MIN_REVERSALS &&
-    scratchTotalDist >= SCRATCH_MIN_TOTAL_DIST
+    reversals >= SCRATCH_MIN_REVERSALS &&
+    pathLen   >= SCRATCH_MIN_PATH &&
+    pathLen   >= diag * SCRATCH_MIN_FOLD
   ) {
     triggerScratchErase(stroke);
   }
+}
+
+/** Tastet eine Punktliste gleichmäßig nach Bogenlänge mit Schritt step neu ab. */
+function resampleByLength(pts, step) {
+  if (pts.length < 2) return pts.slice();
+  const out = [{ x: pts[0].x, y: pts[0].y }];
+  let prev = pts[0];
+  let dist = 0;
+  for (let i = 1; i < pts.length; i++) {
+    let segDx = pts[i].x - prev.x;
+    let segDy = pts[i].y - prev.y;
+    let segLen = Math.hypot(segDx, segDy);
+    while (dist + segLen >= step) {
+      const t = (step - dist) / segLen;
+      const nx = prev.x + segDx * t;
+      const ny = prev.y + segDy * t;
+      out.push({ x: nx, y: ny });
+      prev = { x: nx, y: ny };
+      segDx = pts[i].x - prev.x;
+      segDy = pts[i].y - prev.y;
+      segLen = Math.hypot(segDx, segDy);
+      dist = 0;
+    }
+    dist += segLen;
+    prev = pts[i];
+  }
+  return out;
 }
 
 /**
@@ -563,7 +672,9 @@ function triggerScratchErase(scratchStroke) {
     if (s.anchorEl && !s.anchorEl.isConnected) return;
     const vp = strokeViewportPoints(s);
     if (!bboxOverlaps(bbox, strokeBBox(vp))) return;
-    if (strokesCross(scratchVp, vp)) toDelete.add(i);
+    if (strokesCross(scratchVp, vp) || strokesNear(scratchVp, vp, ERASE_HIT_RADIUS)) {
+      toDelete.add(i);
+    }
   });
 
   if (toDelete.size > 0) {
@@ -573,8 +684,7 @@ function triggerScratchErase(scratchStroke) {
   // Scratch-Strich nicht in strokes aufnehmen, Aktion als abgeschlossen markieren
   drawing    = false;
   liveStroke = null;
-  scratchReversals = 0;
-  scratchTotalDist = 0;
+  releaseCapturedPointer();
   redraw();
   // Kurzes visuelles Feedback: Flackern auf dem Canvas
   flashErase();
@@ -625,6 +735,29 @@ function segmentsIntersect(p1, p2, p3, p4) {
   const t = (dx * d2y - dy * d2x) / cross;
   const u = (dx * d1y - dy * d1x) / cross;
   return t >= 0 && t <= 1 && u >= 0 && u <= 1;
+}
+
+/** Prüft, ob sich zwei Strich-Punktlisten auf ≤ r Pixel annähern. */
+function strokesNear(ptsA, ptsB, r) {
+  const r2 = r * r;
+  for (let i = 0; i < ptsA.length - 1; i++) {
+    for (let j = 0; j < ptsB.length; j++) {
+      if (pointSegDist2(ptsB[j], ptsA[i], ptsA[i + 1]) <= r2) return true;
+    }
+  }
+  return false;
+}
+
+/** Quadrierte Distanz von Punkt p zum Segment a–b. */
+function pointSegDist2(p, a, b) {
+  const vx = b.x - a.x, vy = b.y - a.y;
+  const wx = p.x - a.x, wy = p.y - a.y;
+  const len2 = vx * vx + vy * vy;
+  let t = len2 > 0 ? (wx * vx + wy * vy) / len2 : 0;
+  t = t < 0 ? 0 : t > 1 ? 1 : t;
+  const dx = a.x + t * vx - p.x;
+  const dy = a.y + t * vy - p.y;
+  return dx * dx + dy * dy;
 }
 
 // ─── Lasso-Hilfsfunktionen ───────────────────────────────────────────────────
@@ -752,6 +885,8 @@ function setPenMode(on) {
     drawing = false;
     liveStroke = null;
     dragState  = null;
+    releaseCapturedPointer();
+    setPenInputActive(false);   // Scrollsperre aufheben
     clearSelection();
     redraw();
   }
