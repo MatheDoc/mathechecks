@@ -33,161 +33,128 @@ const ACTIVITY_MAP_DEFAULT_WEEKS = 12;
 const ACTIVITY_MAP_DAY_LABELS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 const GREETING_TIME_VARIANTS = [
   {
-    key: "early-morning",
-    startHour: 5,
-    endHour: 8,
-    variants: [
-      "Hey {name}, so früh schon am Werk? Respekt.",
-      "Frühaufsteher-Modus, {name}? Mathe ist offenbar auch schon wach.",
-      "Der Tag ist jung, {name}. Dein Dashboard leider auch.",
-    ],
-  },
-  {
     key: "morning",
-    startHour: 8,
+    startHour: 4,
     endHour: 12,
     variants: [
-      "Guten Morgen, {name}. Kopf noch frei? Perfekt.",
-      "Morgenfenster, {name}. Gute Zeit für klare Gedanken.",
-      "Noch ist der Kopf nicht voller Tabs, {name}. Nutzen wir das.",
+      "Hey {name}, so früh schon am Werk?",
+      "Guten Morgen {name}.",
+      "Hi {name}, was steht heute an?",
     ],
   },
   {
-    key: "midday",
+    key: "daytime",
     startHour: 12,
-    endHour: 14,
-    variants: [
-      "Mittagspause mit Mathe? Könnte schlimmer sein.",
-      "Kurzer Check zur Mittagszeit, {name}? Reicht oft schon.",
-      "Zwischen zwei Dingen noch kurz Mathe. Starker Move, {name}.",
-    ],
-  },
-  {
-    key: "afternoon",
-    startHour: 14,
     endHour: 18,
     variants: [
-      "Nachmittags-Check, {name}. Heute schon was gelernt?",
-      "Der Nachmittag läuft. Ein kleiner Schritt passt noch rein.",
-      "Nicht mehr ganz früh, aber definitiv früh genug, {name}.",
+      "Hi {name}, eine Runde Mathe checken?",
+      "Guten Tag {name}.",
+      "Willkommen zum Nachmittags-Check, {name}.",
     ],
   },
   {
     key: "evening",
     startHour: 18,
-    endHour: 21,
-    variants: [
-      "Guten Abend, {name}. Der Tag hat noch was übrig.",
-      "Abendrunde, {name}? Ein Haken mehr ist schnell gesetzt.",
-      "Der Tag ist fast durch. Für einen kleinen Fortschritt reicht's noch.",
-    ],
-  },
-  {
-    key: "late-evening",
-    startHour: 21,
     endHour: 23,
     variants: [
-      "Spätschicht, {name}? Noch ein sauberer Schritt geht.",
-      "Hallo {name}, der Abend ist weit fortgeschritten. Du offenbar auch.",
-      "Noch wach, {name}? Dann kann das Dashboard auch kurz mitmachen.",
+      "Guten Abend {name}.",
+      "Mathe am Abend, {name}? Gute Wahl.",
+      "Hallo {name], heute Abend noch etwas Mathe checken?",
     ],
   },
   {
-    key: "after-midnight",
+    key: "late-night",
     startHour: 23,
-    endHour: 5,
+    endHour: 4,
     variants: [
-      "Hey {name}, es ist nach Mitternacht. Respekt – oder Sorge.",
-      "Nach Mitternacht noch hier, {name}? Das ist Einsatz.",
-      "Sehr späte Lernzeit, {name}. Kurz, konzentriert, dann Feierabend.",
+      "Hey {name}, du Nacheule.",
+      "Zu später Stunde noch aktiv, {name}? Respekt.",
+      "Späte Lernzeit, {name}. Kurz, konzentriert, dann verdienter Feierabend.",
     ],
   },
 ];
 const GREETING_EVENT_VARIANTS = {
   streak1: [
-    "Erster Tag – oder Neustart. Beides zählt.",
-    "Hey {name}, Tag eins. Mehr Anfang braucht es nicht.",
-    "Neu angefangen ist auch angefangen, {name}.",
+    "Hallo {name}, einen guten Start!",
+    "Hey {name}, der Anfang ist gemacht!",
+    "Hi {name}, ab jetzt wird Mathe gecheckt.",
   ],
   streak3: [
-    "3 Tage am Stück, {name}. Das ist kein Zufall mehr.",
+    "Drei Tage am Stück, {name}. Das ist kein Zufall mehr.",
     "Drei Tage in Folge. Sieht verdächtig nach Gewohnheit aus.",
     "Hi {name}, drei Tage nacheinander. Läuft.",
   ],
   streak7: [
-    "Eine Woche. Aus Vorsatz wird Gewohnheit.",
-    "7 Tage, {name}. Das ist inzwischen ziemlich echt.",
+    "Eine Woche, {name}. Aus Vorsatz wird Gewohnheit.",
+    "7 Tage am Stück, {name}. Guter Drive.",
     "Eine volle Woche dran geblieben. Sauber.",
   ],
   streak14: [
     "Zwei Wochen, {name}. Du machst das ernsthaft.",
-    "14 Tage am Stück. Das nennt man inzwischen Routine.",
-    "Hey {name}, zwei Wochen. Nicht laut, aber konsequent.",
+    "14 Tage am Stück. Das nennt man Routine.",
+    "Hey {name}, zwei Wochen drangeblieben. Sehr gut.",
   ],
   streak30: [
-    "30 Tage. Entweder Abitur in Sicht – oder du meinst das wirklich ernst.",
+    "30 Tage am Stück. Du meinst es wirklich ernst.",
     "Ein Monat Streak, {name}. Schwer, das noch Zufall zu nennen.",
-    "30 Tage am Stück. Das ist schon fast verdächtig diszipliniert.",
+    "30 Tage in Folge {name}, das ist schon fast verdächtig diszipliniert.",
   ],
   streak100: [
-    "Hallo {name}, 100 Tage. Wir müssen über deine Zukunft als Mathematiker reden.",
-    "100 Tage in Folge, {name}. Das ist keine Phase mehr.",
-    "Dreistellig, {name}. Spätestens jetzt wird's ernst.",
+    "Hallo {name}, 100 Tage. Wir müssen reden, über deine Zukunft als Mathematiker.",
   ],
   missedYesterday: [
-    "Da bist du wieder, {name}. Der Streak ist weg, der Fortschritt nicht.",
-    "Hey {name}, gestern war Pause. Heute geht's trotzdem weiter.",
-    "Ein Tag weg ist kein Drama, {name}. Wieder einsteigen reicht.",
+    "Da bist du wieder, {name}. Weiter geht´s.",
+    "Hey {name}, gestern war Pause. Heute geht's weiter.",
+    "Hi {name}, es ist wieder Zeit, Mathe zu checken.",
   ],
   longPause: [
-    "Hallo {name}! Es ist eine Weile her. Fangen wir da an, wo du aufgehört hast.",
-    "Willkommen zurück, {name}. Wir tun einfach so, als wäre das geplant gewesen.",
-    "Etwas länger nicht hier gewesen, {name}. Kein Problem. Weiter geht's.",
+    "Hallo {name}, schön dich wiederzusehen.",
+    "Willkommen zurück, {name}.",
+    "{name} ist wieder da!",
   ],
   streakAtRisk: [
-    "Hey {name}, heute noch nichts? Der Streak zittert.",
+    "Hey {name}, halte den Streak am Laufen.",
     "Der Tag läuft, der Streak auch. Noch zumindest.",
-    "Wenn du heute noch kurz reinschaust, lebt der Streak weiter.",
+    "Heute noch eine Aktivität, {name}, und der Streak lebt weiter.",
   ],
 };
 const GREETING_PROGRESS_VARIANTS = {
   yesterdayBusy: [
-    "Du warst gestern fleißig. Heute reicht auch ein kurzer Check.",
-    "Gestern war stark, {name}. Heute muss es kein Marathon sein.",
+    "Du warst gestern fleißig {name}, weiter so.",
+    "Gestern war stark, {name}. Heute darf es auch weniger sein.",
     "Viel erledigt gestern. Ein kleiner Schritt heute hält den Takt.",
   ],
   sessionPressureHigh: [
-    "Der Plan ist gerade etwas ambitioniert. Ein Schritt heute hilft sofort.",
+    "Hi {name}, dein Plan ist gerade recht ambitioniert.",
     "Hallo {name}, das Zieldatum schaut gerade ziemlich ernst.",
-    "Heute lohnt sich selbst ein kleiner Fortschritt doppelt.",
+    "Heute wird Mathe gecheckt!",
   ],
   sessionPressureMedium: [
-    "Der Plan ist machbar, aber er wartet nicht.",
+    "Dein Plan ist machbar, {name}, aber er wartet nicht.",
     "Hey {name}, gerade ist es eher sportlich als gemütlich.",
-    "Nicht dramatisch, aber heute wäre ein guter Tag für einen Haken.",
+    "Heute wäre ein guter Tag für ein paar Aktivitäten.",
   ],
   sessionSmooth: [
     "Alles läuft, {name}. Einfach weitermachen.",
-    "Sauber im Plan, {name}. Genau so.",
-    "Das sieht gerade ziemlich stabil aus. Weiter so, nur ohne Pathos.",
+    "Gut im Plan, {name}. Weiter so.",
+    "Hallo {name}, solide Arbeit.",
   ],
   sessionDone: [
-    "Session praktisch durch. Das war sauber.",
-    "Hey {name}, hier steht fast nur noch Abhaken an.",
-    "Sieht aus, als hättest du das Gröbste schon erledigt.",
+    "Glückwunsch {name}, Session abgeschlossen.",
+    "Toll {name}, du hast die Session erfolgreich beendet.",
+    "Gut gemacht {name}, die Session ist finished.",
   ],
 };
 const GREETING_FALLBACK_VARIANTS = [
   "Na, {name}. Bereit?",
   "Schön, dass du da bist, {name}.",
-  "Hey {name}, Mathe wartet. Wie immer.",
-  "Heute wieder ein bisschen schlauer werden?",
-  "Kleine Schritte, {name}. Jeden Tag.",
+  "Hey {name}!",
+  "Hallo {name}.",
   "Hey {name}, los geht's.",
 ];
 const GREETING_STREAK_MILESTONES = [100, 30, 14, 7, 3, 1];
 const GREETING_LONG_PAUSE_DAYS = 7;
-const GREETING_BUSY_YESTERDAY_THRESHOLD = 4;
+const GREETING_BUSY_YESTERDAY_THRESHOLD = 5;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 const GREETING_ROTATION_STEP_HOURS = 3;
 const GREETING_STORAGE_PREFIX = "mathechecks:greeting-first-seen";
