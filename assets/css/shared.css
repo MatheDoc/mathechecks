@@ -523,7 +523,7 @@ body.page-shell .shell {
   border: 1px solid transparent;
   background: transparent;
   border-radius: 10px;
-  color: var(--text-dim);
+  color: var(--text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1642,9 +1642,8 @@ body.page-module .shell {
   isolation: isolate;
   margin-inline: auto;
   padding-inline: 30px;
-  background: color-mix(in srgb, var(--nav-rail-bg) 92%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+background: var(--bg);
+
   border-bottom: 1px solid var(--border);
 }
 
@@ -1821,7 +1820,7 @@ body.page-module .shell {
   flex: 0 0 auto;
   width: 100%;
   min-height: 100%;
-  padding: 0 54px 72px;
+  padding: 0 0 72px;
 }
 
 .mod-main-shell {
@@ -1834,7 +1833,7 @@ body.page-module .shell {
 
 .mod-script-content {
   margin: 0 auto;
-  padding: 14px 0px 72px;
+  padding: 14px 54px 72px;
 }
 
 .mod-start-content {
@@ -1873,10 +1872,20 @@ html.light .mod-start-content {
 .page-shell {
   margin: 0 auto;
   box-sizing: border-box;
+
 }
+
+
 
 .w-wide {
   max-width: 1060px;
+  padding: 0 54px;
+}
+
+@media (max-width: 680px){
+  .w-wide{
+    padding: 0 12px;
+  }
 }
 
 .page-shell--fluid {
@@ -1899,6 +1908,13 @@ html.light .mod-start-content {
 
 .w-narrow {
   max-width: 660px;
+  padding: 0 54px;
+}
+
+@media (max-width: 680px){
+  .w-narrow{
+    padding: 0 12px;
+  }
 }
 
 .w-card {
@@ -5182,9 +5198,10 @@ html.light .roulette-widget__event {
 }
 
 @media (max-width: 680px) {
-  .feed-sidebar {
-    display: none;
-  }
+.mod-script-content {
+  margin: 0 auto;
+  padding: 14px 14px 72px;
+}
 
 
 
@@ -5461,9 +5478,7 @@ body.page-legal .shell-main a:hover {
 
 @media (max-width: 680px) {
 
-  .mod-content {
-    padding: 0 12px 72px;
-  }
+
   
   .topbar {
     flex-direction: row;
