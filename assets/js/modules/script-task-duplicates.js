@@ -15,7 +15,10 @@ import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-c
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260609-answer-lines";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 import {
     attachTrainingFeedShell,
     buildTrainingKiAgentPrompt,
@@ -75,6 +78,41 @@ function getCheckId(check) {
     const lernbereich = check?.Lernbereich || "lernbereich";
     const nummer = String(Number(check?.Nummer) || 0).padStart(2, "0");
     return `${gebiet}__${lernbereich}__${nummer}`;
+}
+
+async function recordTrainingTaskCompletion({
+    lernbereich,
+    checkId,
+    taskIndex,
+    checkableCount,
+    revealedCount,
+    questionAttempts,
+    solutionsRevealedGlobally,
+    contextKey = "free",
+}) {
+    const before = await getUserCheckProficiency();
+    const previousRate = before.ok ? extractCheckProficiencyRate(before.data, checkId) : null;
+
+    if (solutionsRevealedGlobally) {
+        return { previousRate, newRate: previousRate, quoteUnchanged: true };
+    }
+
+    await recordUserActivity({
+        activityType: "training",
+        lernbereichSlug: lernbereich,
+        checkId,
+        contextKey,
+        details: {
+            taskIndex,
+            checkable_count: checkableCount,
+            question_attempts: Array.isArray(questionAttempts) ? questionAttempts : [],
+            revealed_count: revealedCount,
+        },
+    });
+
+    const after = await getUserCheckProficiency();
+    const newRate = after.ok ? extractCheckProficiencyRate(after.data, checkId) : null;
+    return { previousRate, newRate };
 }
 
 function pickRandomTaskIndex(currentIndex, totalCount) {
@@ -308,12 +346,15 @@ async function renderCheckTaskInHost(host, check, {
             activityContext?.mode === "feed" &&
             isTrainingFeedStep(activityContext?.activityStep) &&
             (!preferredCheckId || preferredCheckId === checkId);
+        const isFreeMode = !isActiveFeedTraining;
+        const totalTaskCount = Array.isArray(sammlung) ? sammlung.length : 0;
+        const trackingLernbereich = check.Lernbereich || lernbereich || "";
         const feedActivityKey = isActiveFeedTraining ? String(activityContext?.activityKey || "").trim() : "";
         const sharedTaskIndex = Number.isInteger(taskIndexByCheckId[checkId])
             ? loadTaskIndexForCheck(lernbereich, checkId, taskIndexByCheckId[checkId])
             : loadTaskIndexForCheck(lernbereich, checkId, 0);
         const fallbackTaskIndex = isActiveFeedTraining
-            ? pickRandomTaskIndex(sharedTaskIndex, Array.isArray(sammlung) ? sammlung.length : 0)
+            ? pickRandomTaskIndex(sharedTaskIndex, totalTaskCount)
             : sharedTaskIndex;
         let taskIndex = isActiveFeedTraining && feedActivityKey
             ? loadTrainingFeedTaskIndexForCheck(lernbereich, checkId, feedActivityKey, fallbackTaskIndex)
@@ -336,6 +377,51 @@ async function renderCheckTaskInHost(host, check, {
         if (!shuffleNonce) {
             shuffleNonce = String(Date.now());
         }
+
+        let taskCompletionTracked = false;
+        let initialProgressSeen = false;
+        let freeCompleteControl = null;
+        let freeCompleteReady = false;
+        let latestRates = null;
+
+        const attachFreeCompleteControl = () => {
+            if (!isFreeMode || totalTaskCount <= 0) return;
+            freeCompleteControl = attachFreeCompletionControl(host, {
+                cardSelector: ".check-card--training",
+                stepLabel: "Training",
+                onComplete: () => {
+                    void openFreeCompletionPopup();
+                },
+            });
+            if (freeCompleteControl) freeCompleteControl.setReady(freeCompleteReady);
+        };
+
+        const markFreeCompleteReady = () => {
+            if (!isFreeMode) return;
+            freeCompleteReady = true;
+            if (freeCompleteControl) freeCompleteControl.setReady(true);
+        };
+
+        const openFreeCompletionPopup = async () => {
+            let rates = latestRates;
+            if (!rates) {
+                const proficiency = await getUserCheckProficiency();
+                const newRate = proficiency.ok ? extractCheckProficiencyRate(proficiency.data, checkId) : null;
+                rates = { previousRate: null, newRate };
+            }
+
+            showTaskCompletionPopup({
+                mode: "training",
+                showQuote: true,
+                quoteUnchanged: Boolean(rates.quoteUnchanged),
+                previousRate: rates.previousRate,
+                newRate: rates.newRate,
+                onRepeat: () => {
+                    void reloadTask();
+                },
+                onDashboard: () => window.location.assign("/dashboard.html"),
+            });
+        };
 
         const saveCurrentTaskIndex = (nextTaskIndex) => {
             if (isActiveFeedTraining && feedActivityKey) {
@@ -376,7 +462,7 @@ async function renderCheckTaskInHost(host, check, {
                 taskUiStateKey,
                 usePersistedState,
                 normalizedTaskIndex,
-                Array.isArray(sammlung) ? sammlung.length : 0,
+                totalTaskCount,
                 `${taskUiStateKey}::${shuffleNonce}`
             );
             host.appendChild(card);
@@ -389,19 +475,69 @@ async function renderCheckTaskInHost(host, check, {
             }
 
             await finalizeTaskRender(host);
+            attachFreeCompleteControl();
         };
 
         const reloadTask = async () => {
             const nextRandomIndex = pickRandomTaskIndex(
                 taskIndex,
-                Array.isArray(sammlung) ? sammlung.length : 0
+                totalTaskCount
             );
             shuffleNonce = String(Date.now());
+            taskCompletionTracked = false;
+            initialProgressSeen = false;
+            latestRates = null;
+            freeCompleteReady = false;
             saveCurrentTaskIndex(nextRandomIndex);
             saveCurrentShuffleNonce(shuffleNonce);
             await renderTaskCardForIndex(nextRandomIndex);
             host.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));
         };
+
+        if (isFreeMode) {
+            host.addEventListener("task:question-checked", (event) => {
+                const isComplete = Boolean(event.detail?.isComplete);
+
+                if (!initialProgressSeen) {
+                    initialProgressSeen = true;
+                    if (isComplete) {
+                        taskCompletionTracked = true;
+                        markFreeCompleteReady();
+                        return;
+                    }
+                }
+
+                if (taskCompletionTracked || !isComplete) return;
+                taskCompletionTracked = true;
+
+                const detail = event.detail || {};
+                Promise.resolve(
+                    recordTrainingTaskCompletion({
+                        lernbereich: trackingLernbereich,
+                        checkId,
+                        taskIndex,
+                        checkableCount: Number(detail.checkableCount) || (Number(detail.totalCount) || 0),
+                        revealedCount: Number(detail.revealedCount) || 0,
+                        questionAttempts: Array.isArray(detail.questionAttempts) ? detail.questionAttempts : [],
+                        solutionsRevealedGlobally: Boolean(detail.solutionsRevealedGlobally),
+                        contextKey: "free",
+                    })
+                )
+                    .then((rates) => {
+                        if (rates && typeof rates === "object") {
+                            latestRates = {
+                                previousRate: rates.previousRate ?? null,
+                                newRate: rates.newRate ?? null,
+                                quoteUnchanged: Boolean(rates.quoteUnchanged),
+                            };
+                        }
+                        markFreeCompleteReady();
+                    })
+                    .catch(() => {
+                        markFreeCompleteReady();
+                    });
+            });
+        }
 
         if (host.dataset.boundTrainingReload !== "true") {
             host.dataset.boundTrainingReload = "true";
