@@ -58,8 +58,8 @@ const GREETING_TIME_VARIANTS = [
     endHour: 23,
     variants: [
       "Guten Abend {name}.",
-      "Mathe am Abend, {name}? Gute Wahl.",
-      "Hallo {name], heute Abend noch etwas Mathe checken?",
+      "Hey {name}, Mathe am Abend? Gute Wahl.",
+      "Hallo {name}, heute Abend noch etwas Mathe checken?",
     ],
   },
   {
@@ -1569,7 +1569,7 @@ function applyActivityOverview(context, overview = null) {
   if (averageNode) averageNode.textContent = formatActivityAverage(averagePerActiveDay);
   if (longestStreakNode) longestStreakNode.textContent = formatActivityCount(longestStreak);
   if (trainingSuccessNode) {
-    trainingSuccessNode.textContent = formatActivityPercent(trainingSuccessRate);
+    trainingSuccessNode.textContent = formatActivityPercent(Math.round(trainingSuccessRate));
     trainingSuccessNode.title = Number.isFinite(Number(trainingSuccessRate))
       ? "Quote aus den jüngsten Trainingsdurchgängen je Check, zusammengesetzt über alle trainierten Checks."
       : "Die Quote erscheint, sobald Trainingsaufgaben erfasst wurden.";
