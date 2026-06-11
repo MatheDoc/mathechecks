@@ -626,8 +626,23 @@ function renderJumpNav(navNode, checks, activeCheckId) {
     navNode.addEventListener("click", (event) => {
       const target = event.target.closest(".check-jump-tab");
       if (!target) return;
+      event.preventDefault();
       navNode.querySelectorAll(".check-jump-tab.active").forEach((el) => el.classList.remove("active"));
       target.classList.add("active");
+      const href = target.getAttribute("href");
+      const targetId = href?.startsWith("#") ? href.slice(1) : null;
+      if (targetId) {
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          const scrollContainer = document.querySelector(".mod-main");
+          if (scrollContainer) {
+            const y = scrollContainer.scrollTop + targetEl.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
+            scrollContainer.scrollTo({ top: y, behavior: "auto" });
+          } else {
+            targetEl.scrollIntoView({ behavior: "auto", block: "start" });
+          }
+        }
+      }
     });
   }
 }
