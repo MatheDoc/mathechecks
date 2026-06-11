@@ -76,6 +76,13 @@
                     <span class="topbar-nav-glyph" aria-hidden="true">🌗</span>
                     <span>Light / Dark</span>
                 </button>
+                {% if page.module_key %}
+                <button class="topbar-actions-item" id="navToggleMenu" data-nav-toggle="true" type="button"
+                    role="menuitem" aria-label="Navigation ein-/ausblenden">
+                    <span class="topbar-nav-glyph" aria-hidden="true">☰</span>
+                    <span>Navigation</span>
+                </button>
+                {% endif %}
                 <a class="topbar-actions-item" id="avatarMenuBtn" href="{{ '/konto.html' | relative_url }}" role="menuitem"
                     aria-label="Benutzerkonto öffnen">
                     <span class="topbar-nav-glyph" aria-hidden="true">👤</span>
