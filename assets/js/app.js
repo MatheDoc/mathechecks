@@ -1,6 +1,6 @@
-import { initTrainingModule } from "./modules/training.js?v=20260611-pwa-scroll-fix";
-import { initRecallModule } from "./modules/recall.js?v=20260611-pwa-scroll-fix";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260611-pwa-scroll-fix";
+import { initTrainingModule } from "./modules/training.js?v=20260611-pwa-mod-scroll";
+import { initRecallModule } from "./modules/recall.js?v=20260611-pwa-mod-scroll";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260611-pwa-mod-scroll";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260609-complete-icon";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260610-script-duplicate-complete";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
@@ -381,15 +381,7 @@ function scrollToTargetId(targetId, retries = 8) {
     openNoteCardIfPresent(target);
     requestAnimationFrame(() => {
       suppressScrollSaveFor(900);
-      // Scroll via .mod-main container when available to avoid iOS PWA window-scroll
-      // which pushes the sticky topbar out of view.
-      const scrollContainer = document.querySelector(".mod-main");
-      if (scrollContainer) {
-        const y = scrollContainer.scrollTop + target.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
-        scrollContainer.scrollTo({ top: y, behavior: "auto" });
-      } else {
-        target.scrollIntoView({ behavior: getPreferredScrollBehavior(), block: "start", inline: "nearest" });
-      }
+      target.scrollIntoView({ behavior: getPreferredScrollBehavior(), block: "start", inline: "nearest" });
       if (window.location.hash !== `#${targetId}`) {
         window.history.replaceState(null, "", `#${targetId}`);
       }

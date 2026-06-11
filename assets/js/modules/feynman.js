@@ -15,6 +15,16 @@ const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
 const feynmanJumpNavScrollCleanup = new WeakMap();
 const FEYNMAN_FEED_STEP_KEY = "feynman";
 
+function scrollModMainToEl(el) {
+  const container = document.querySelector(".mod-main");
+  if (!container) { el.scrollIntoView({ behavior: "auto", block: "start" }); return; }
+  const tabNav = container.querySelector(".mod-tab-nav");
+  const jumpNavWrap = container.querySelector(".check-jump-nav-wrap");
+  const offset = (tabNav ? tabNav.offsetHeight : 0) + (jumpNavWrap ? jumpNavWrap.offsetHeight : 0);
+  const y = container.scrollTop + el.getBoundingClientRect().top - container.getBoundingClientRect().top - offset;
+  container.scrollTo({ top: Math.max(0, y), behavior: "auto" });
+}
+
 function getTabScopeId() {
   try {
     let scope = window.sessionStorage.getItem(TAB_SCOPE_SESSION_KEY);
@@ -633,15 +643,7 @@ function renderJumpNav(navNode, checks, activeCheckId) {
       const targetId = href?.startsWith("#") ? href.slice(1) : null;
       if (targetId) {
         const targetEl = document.getElementById(targetId);
-        if (targetEl) {
-          const scrollContainer = document.querySelector(".mod-main");
-          if (scrollContainer) {
-            const y = scrollContainer.scrollTop + targetEl.getBoundingClientRect().top - scrollContainer.getBoundingClientRect().top;
-            scrollContainer.scrollTo({ top: y, behavior: "auto" });
-          } else {
-            targetEl.scrollIntoView({ behavior: "auto", block: "start" });
-          }
-        }
+        if (targetEl) scrollModMainToEl(targetEl);
       }
     });
   }
@@ -936,7 +938,7 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
     attachFeynmanFeedShell(selectedSection, activityContext, { lernbereich });
     if (activityContext?.mode === "feed") {
       setJumpNavActive(navNode, selectedCheckId);
-      selectedSection.scrollIntoView({ behavior: "auto", block: "start" });
+      scrollModMainToEl(selectedSection);
     }
   }
   initCardMenuDismiss(root);
