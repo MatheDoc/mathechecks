@@ -34,6 +34,27 @@
     })();
 
     (function () {
+        const NAV_KEY = 'mathechecks-module-nav';
+        const buttons = Array.from(document.querySelectorAll('[data-nav-toggle="true"]'));
+        if (!buttons.length) return;
+
+        function applyNavState(isVisible) {
+            document.body.classList.toggle('nav-hidden', !isVisible);
+            buttons.forEach((btn) => btn.classList.toggle('active', isVisible));
+        }
+
+        applyNavState(localStorage.getItem(NAV_KEY) !== 'hidden');
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const willBeVisible = document.body.classList.contains('nav-hidden');
+                localStorage.setItem(NAV_KEY, willBeVisible ? 'visible' : 'hidden');
+                applyNavState(willBeVisible);
+            });
+        });
+    })();
+
+    (function () {
         const actionsMenu = document.querySelector('.topbar-actions-menu');
         if (!actionsMenu) return;
 

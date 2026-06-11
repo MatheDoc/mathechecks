@@ -773,7 +773,7 @@ body.page-shell .shell {
 }
 
 .greeting h2 {
-  margin-top: 22px;
+  margin-top: 12px;
   font-size: 1.6rem;
   font-weight: 800;
   letter-spacing: -0.03em;
@@ -1514,6 +1514,16 @@ body.page-module {
 
 body.page-module:not(:has(.check-jump-nav-wrap)) {
   --module-check-nav-h: 0px;
+}
+
+body.nav-hidden.page-module {
+  --module-tab-nav-h: 0px;
+  --module-check-nav-h: 0px;
+}
+
+body.nav-hidden .mod-tab-nav,
+body.nav-hidden .check-jump-nav-wrap {
+  display: none;
 }
 
 body.page-module .shell {
