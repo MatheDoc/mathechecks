@@ -480,12 +480,12 @@ body.page-dashboard .dashboard-activity {
   gap: 18px;
 }
 
-body.page-dashboard .dashboard-activity__hero {
+/*body.page-dashboard .dashboard-activity__hero {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
   gap: 18px;
   align-items: stretch;
-}
+}*/
 
 body.page-dashboard .dashboard-activity__hero-copy,
 body.page-dashboard .dashboard-activity__spark,
@@ -585,7 +585,7 @@ body.page-dashboard .dashboard-activity__bar-label {
 
 body.page-dashboard .dashboard-activity__metrics {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
@@ -610,8 +610,8 @@ body.page-dashboard .dashboard-activity__metric-label {
 }
 
 body.page-dashboard .dashboard-activity__types {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -802,12 +802,19 @@ body.page-dashboard .dashboard-activity-map__cell.is-today {
     grid-row: auto;
   }
 
+  .dashboard-panel--feed     { order: 1; }
+  .dashboard-panel--worklist { order: 2; }
+  .dashboard-panel--plan     { order: 3; }
+  .dashboard-panel--completed { order: 4; }
+  .dashboard-panel--activity { order: 5; }
+  .dashboard-panel--activity-map { order: 6; }
+
   body.page-dashboard .dashboard-activity__hero {
     grid-template-columns: 1fr;
   }
 
   body.page-dashboard .dashboard-activity__metrics {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 
   body.page-dashboard .dashboard-activity-map__board {
