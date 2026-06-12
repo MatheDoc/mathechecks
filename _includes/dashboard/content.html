@@ -6,6 +6,7 @@
     </section>
 
     <div class="bento">
+        <div class="dashboard-col--left">
         <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
@@ -30,6 +31,39 @@
                 </ul>
             </div>
         </article>
+
+        <article class="check-card dashboard-panel dashboard-panel--worklist" data-dashboard-worklist-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Trainingsfokus</span>
+                </div>
+                <div class="check-card__header-actions">
+                    <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-worklist-menu>
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zum Trainingsfokus">
+                            <span class="check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zum Trainingsfokus">
+                            <button class="check-card__actions-item" type="button" role="menuitemcheckbox" aria-checked="true" data-dashboard-worklist-session-toggle>
+                                <span class="check-card__actions-icon" aria-hidden="true" data-dashboard-worklist-session-icon>✓</span>
+                                <span>🎯 Nur Session-Checks</span>
+                            </button>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="check-card__body dashboard-panel__body">
+                <p class="dashboard-panel__summary" data-dashboard-worklist-summary></p>
+                <ul class="dashboard-worklist__list" data-dashboard-worklist-list></ul>
+                <p class="dashboard-panel__status" id="worklistStatus" aria-live="polite" hidden></p>
+            </div>
+        </article>
+
+        </div><!-- /.dashboard-col--left -->
 
         <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
             <div class="check-card__header">
@@ -114,37 +148,6 @@
                 <p class="dashboard-panel__summary" data-dashboard-retention-summary></p>
                 <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
                 <ul class="action-list dashboard-panel__list" data-dashboard-retention-list></ul>
-            </div>
-        </article>
-
-        <article class="check-card dashboard-panel dashboard-panel--worklist" data-dashboard-worklist-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Trainingsfokus</span>
-                </div>
-                <div class="check-card__header-actions">
-                    <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-worklist-menu>
-                        <summary class="check-card__actions-trigger" aria-label="Aktionen zum Trainingsfokus">
-                            <span class="check-card__actions-dots" aria-hidden="true">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                            </span>
-                        </summary>
-                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zum Trainingsfokus">
-                            <button class="check-card__actions-item" type="button" role="menuitemcheckbox" aria-checked="true" data-dashboard-worklist-session-toggle>
-                                <span class="check-card__actions-icon" aria-hidden="true" data-dashboard-worklist-session-icon>✓</span>
-                                <span>🎯 Nur Session-Checks</span>
-                            </button>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-panel__summary" data-dashboard-worklist-summary></p>
-                <ul class="dashboard-worklist__list" data-dashboard-worklist-list></ul>
-                <p class="dashboard-panel__status" id="worklistStatus" aria-live="polite" hidden></p>
             </div>
         </article>
 

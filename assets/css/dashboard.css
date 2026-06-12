@@ -28,11 +28,50 @@ body.page-dashboard .dashboard-panel {
   background:
     radial-gradient(circle at top right, var(--dashboard-panel-glow), transparent 42%),
     var(--dashboard-panel-bg);
+  /* Karte füllt die Grid-Zelle, Body scrollt intern */
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Body scrollt, Header bleibt sichtbar (Flex-Prinzip: Header flex: 0 0 auto, Body flex: 1) */
+body.page-dashboard .dashboard-panel .check-card__body {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Scrollbar dezent */
+body.page-dashboard .dashboard-panel .check-card__body::-webkit-scrollbar {
+  width: 4px;
+}
+body.page-dashboard .dashboard-panel .check-card__body::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 999px;
+}
+body.page-dashboard .dashboard-panel .check-card__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Spalte-1-Wrapper: feed (content-height) + worklist (Rest) */
+body.page-dashboard .dashboard-col--left {
+  grid-column: 1 / span 4;
+  grid-row: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
 }
 
 body.page-dashboard .dashboard-panel--feed {
-  grid-column: 1 / span 4;
-  grid-row: 1;
+  /* natürliche Höhe, kein Strecken */
+  flex: 0 0 auto;
+}
+
+/* Feed-Body: kein Scroll, passt sich dem Inhalt an */
+body.page-dashboard .dashboard-panel--feed .check-card__body {
+  flex: 0 0 auto;
+  overflow: visible;
 }
 
 body.page-dashboard .dashboard-panel--plan {
@@ -46,8 +85,9 @@ body.page-dashboard .dashboard-panel--completed {
 }
 
 body.page-dashboard .dashboard-panel--worklist {
-  grid-column: 1 / span 4;
-  grid-row: 2 / span 2;
+  /* grid-Positionierung liegt jetzt am Wrapper .dashboard-col--left */
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 body.page-dashboard .dashboard-panel--activity {
@@ -161,7 +201,6 @@ body.page-dashboard .dashboard-panel__action-side {
 body.page-dashboard .dashboard-panel__body {
   display: grid;
   gap: 14px;
-
 }
 
 body.page-dashboard .dashboard-panel__title {
@@ -792,22 +831,51 @@ body.page-dashboard .dashboard-activity-map__cell.is-today {
 }
 
 @media (max-width: 960px) {
-  body.page-dashboard .dashboard-panel--feed,
+  /* Mobile: Single-column-Stack, kein internes Scrollen, jede Karte so hoch wie ihr Inhalt */
+  body.page-dashboard .bento {
+    grid-template-rows: none;
+    height: auto;
+  }
+
+  body.page-dashboard .dashboard-col--left {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    order: 1;
+    height: auto;
+  }
+
+  /* Worklist: natürliche Höhe statt flex-grow */
+  body.page-dashboard .dashboard-panel--worklist {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+
   body.page-dashboard .dashboard-panel--plan,
   body.page-dashboard .dashboard-panel--completed,
-  body.page-dashboard .dashboard-panel--worklist,
   body.page-dashboard .dashboard-panel--activity,
   body.page-dashboard .dashboard-panel--activity-map {
     grid-column: 1 / -1;
     grid-row: auto;
   }
 
-  .dashboard-panel--feed     { order: 1; }
-  .dashboard-panel--worklist { order: 2; }
-  .dashboard-panel--plan     { order: 3; }
-  .dashboard-panel--completed { order: 4; }
-  .dashboard-panel--activity { order: 5; }
-  .dashboard-panel--activity-map { order: 6; }
+  /* Alle Panels: kein Clipping, kein max-height */
+  body.page-dashboard .dashboard-panel {
+    overflow: visible;
+    max-height: none;
+  }
+
+  /* Alle Panel-Bodies: kein internes Scrollen, volle Inhaltshöhe */
+  body.page-dashboard .dashboard-panel .check-card__body {
+    flex: 0 0 auto;
+    min-height: unset;
+    max-height: none;
+    overflow: visible;
+  }
+
+  body.page-dashboard .dashboard-panel--plan     { order: 2; }
+  body.page-dashboard .dashboard-panel--completed { order: 3; }
+  body.page-dashboard .dashboard-panel--activity  { order: 4; }
+  body.page-dashboard .dashboard-panel--activity-map { order: 5; }
 
   body.page-dashboard .dashboard-activity__hero {
     grid-template-columns: 1fr;
