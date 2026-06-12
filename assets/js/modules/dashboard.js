@@ -49,7 +49,7 @@ const GREETING_TIME_VARIANTS = [
     variants: [
       "Hi {name}, eine Runde Mathe checken?",
       "Guten Tag {name}.",
-      "Willkommen zum Nachmittags-Check, {name}.",
+      "Check am Nachmittag? Gute Idee, {name}.",
     ],
   },
   {
