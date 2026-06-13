@@ -206,6 +206,23 @@ html.light .check-card {
     margin-inline-end: calc(6px - var(--dcc-shell-pad-x));
 }
 
+/* Trainingsquote-Badge im Karten-Header */
+.check-card__rate-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-dim);
+    line-height: 1;
+    min-width: 2.8ch;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    transition: color 300ms ease;
+}
+
+.check-card__rate-badge[data-has-rate="true"] {
+    color: var(--dcc-accent, var(--text-dim));
+}
+
 /* ── Card three-dot actions menu ── */
 
 .check-card__actions-menu {

@@ -119,10 +119,11 @@ body.page-dashboard .dashboard-worklist__item {
   padding: 0;
 }
 
-/* Worklist-Button: nutzt action-card als Basis; ergänzt Quote + Balken */
+/* Worklist-Button: nutzt action-card als Basis; Ring rechts */
 body.page-dashboard .dashboard-worklist__button {
   width: 100%;
   text-align: left;
+  align-items: center;
 }
 
 body.page-dashboard .dashboard-panel__action-card .action-body {
@@ -146,18 +147,6 @@ body.page-dashboard .dashboard-panel__action-title {
   line-height: 1.35;
 }
 
-body.page-dashboard .dashboard-panel__action-index,
-body.page-dashboard .dashboard-panel__action-name {
-  color: inherit;
-  font: inherit;
-  line-height: inherit;
-}
-
-body.page-dashboard .dashboard-panel__action-index {
-  font-variant-numeric: tabular-nums;
-  flex-shrink: 0;
-}
-
 body.page-dashboard .dashboard-panel__action-name {
   min-width: 0;
   overflow: hidden;
@@ -170,32 +159,42 @@ body.page-dashboard .dashboard-worklist__lernbereich {
   font-size: 0.72rem;
 }
 
-body.page-dashboard .dashboard-worklist__track {
-  height: 6px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--text) 10%, transparent);
-  overflow: hidden;
-}
-
-body.page-dashboard .dashboard-worklist__fill {
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--mt-training, var(--blue)), var(--teal));
-  transition: width 0.4s ease;
-}
-
-body.page-dashboard .dashboard-panel__action-progress {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--dashboard-accent);
-}
-
-body.page-dashboard .dashboard-panel__action-side {
+/* Fortschrittsring */
+body.page-dashboard .dashboard-worklist__ring-wrap {
   flex: 0 0 auto;
-  align-self: start;
-  text-align: right;
-  padding-top: 2px;
+  align-self: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+}
+
+body.page-dashboard .dashboard-worklist__ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+body.page-dashboard .dashboard-worklist__ring-bg {
+  stroke: color-mix(in srgb, var(--dashboard-accent) 14%, var(--border));
+}
+
+body.page-dashboard .dashboard-worklist__ring-fill {
+  stroke: url(#worklist-ring-gradient);
+  stroke: color-mix(in srgb, var(--dashboard-accent) 80%, var(--teal) 20%);
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+body.page-dashboard .dashboard-worklist__ring-text {
+  position: relative;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--dashboard-accent);
+  line-height: 1;
+  text-align: center;
 }
 
 body.page-dashboard .dashboard-panel__body {
@@ -296,19 +295,26 @@ body.page-dashboard .dashboard-plan__progress[hidden] {
   display: none;
 }
 
-body.page-dashboard .dashboard-plan__progress-head {
+body.page-dashboard .dashboard-plan__progress-bar-row {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
+  align-items: center;
+  gap: 10px;
+}
+
+body.page-dashboard .dashboard-plan__progress-bar-row .dashboard-plan__progress-track {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 body.page-dashboard .dashboard-plan__progress-percent {
+  flex: 0 0 auto;
   color: var(--text);
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: 1.45rem;
   font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.05em;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  min-width: 3.2ch;
+  text-align: right;
 }
 
 body.page-dashboard .dashboard-plan__progress-track {
@@ -326,22 +332,6 @@ body.page-dashboard .dashboard-plan__progress-fill {
     color-mix(in srgb, var(--teal) 72%, white 28%)
   );
   box-shadow: 0 0 20px color-mix(in srgb, var(--dashboard-accent) 26%, transparent);
-}
-
-body.page-dashboard .dashboard-plan__progress-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px 16px;
-  color: var(--text-dim);
-  font-size: 0.84rem;
-  line-height: 1.45;
-}
-
-body.page-dashboard .dashboard-plan__progress-completed {
-  color: var(--text-dim);
-  font-weight: 600;
 }
 
 body.page-dashboard .dashboard-plan__target {
@@ -536,10 +526,10 @@ body.page-dashboard .dashboard-activity__type-pill {
 }
 
 body.page-dashboard .dashboard-activity__hero-copy {
-  padding: 18px 20px;
-  display: grid;
-  gap: 6px;
-  align-content: start;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 body.page-dashboard .dashboard-activity__hero-value {
@@ -548,18 +538,27 @@ body.page-dashboard .dashboard-activity__hero-value {
   line-height: 0.95;
   letter-spacing: -0.04em;
   color: var(--text);
+  flex: 0 0 auto;
+}
+
+body.page-dashboard .dashboard-activity__hero-text {
+  display: grid;
+  gap: 3px;
+  align-content: center;
+  min-width: 0;
 }
 
 body.page-dashboard .dashboard-activity__hero-label {
   color: var(--text);
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 700;
+  line-height: 1.3;
 }
 
 body.page-dashboard .dashboard-activity__hero-meta {
   color: var(--text-dim);
-  font-size: 0.82rem;
-  line-height: 1.5;
+  font-size: 0.78rem;
+  line-height: 1.4;
 }
 
 body.page-dashboard .dashboard-activity__spark {

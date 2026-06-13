@@ -1,5 +1,5 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260504-global-extrema-a";
-import { renderVisual } from "./task-visuals.js?v=20260423-market-legends-a";
+import { renderVisual } from "./task-visuals.js?v=20260613-typed-axes";
 import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260513-task-check-b";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";

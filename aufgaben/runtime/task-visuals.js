@@ -8,11 +8,104 @@ function toNumber(value, fallback) {
     return Number.isFinite(numeric) ? numeric : fallback;
 }
 
+function evaluatePolynomial(coefficients, xValue) {
+    const safeCoefficients = Array.isArray(coefficients) ? coefficients : [];
+    let result = 0;
+    safeCoefficients.forEach((coefficient) => {
+        result = result * xValue + toNumber(coefficient, 0);
+    });
+    return Math.abs(result) < 1e-12 ? 0 : result;
+}
+
+function applyTraceOptions(target, source) {
+    if (!source || typeof source !== "object") return;
+    if (source.line != null) target.line = source.line;
+    if (source.marker != null) target.marker = source.marker;
+    if (source.fill != null) target.fill = source.fill;
+    if (source.fillcolor != null) target.fillcolor = source.fillcolor;
+    if (source.text != null) target.text = source.text;
+    if (source.textposition != null) target.textposition = source.textposition;
+    if (source.textfont != null) target.textfont = source.textfont;
+    if (source.showlegend != null) target.showlegend = source.showlegend;
+    if (source.opacity != null) target.opacity = source.opacity;
+    if (source.hoverinfo != null) target.hoverinfo = source.hoverinfo;
+}
+
+function buildPolynomialCurvesFigure(spec) {
+    const figure = { data: [], layout: {} };
+    const layout = typeof spec?.layout === "object" && spec.layout ? spec.layout : {};
+    const xAxis = typeof layout.xaxis === "object" && layout.xaxis ? layout.xaxis : {};
+    const xRangeRaw = Array.isArray(xAxis.range) ? xAxis.range : [-8, 8];
+    let xMin = toNumber(xRangeRaw[0], -8);
+    let xMax = toNumber(xRangeRaw[1], 8);
+    if (xMax <= xMin) {
+        xMin = -8;
+        xMax = 8;
+    }
+
+    const points = Math.max(40, Math.trunc(toNumber(spec?.points, 241)));
+    const xValues = [];
+    for (let index = 0; index < points; index += 1) {
+        const xValue = xMin + ((xMax - xMin) * index) / (points - 1);
+        xValues.push(roundNumber(xValue, 4));
+    }
+
+    const curves = Array.isArray(spec?.curves) ? spec.curves : [];
+    curves.forEach((curve) => {
+        const coefficients = Array.isArray(curve?.coefficients) ? curve.coefficients : [];
+        const plotlyTrace = {
+            x: xValues,
+            y: xValues.map((xValue) => roundNumber(evaluatePolynomial(coefficients, xValue), 6)),
+            mode: curve?.mode ?? "lines",
+            name: curve?.name,
+            type: curve?.kind ?? "scatter",
+        };
+        applyTraceOptions(plotlyTrace, curve);
+        figure.data.push(plotlyTrace);
+    });
+
+    const extraTraces = Array.isArray(spec?.extraTraces) ? spec.extraTraces : [];
+    extraTraces.forEach((trace) => {
+        if (!trace || typeof trace !== "object") return;
+        const plotlyTrace = {
+            x: Array.isArray(trace.x) ? trace.x : [],
+            y: Array.isArray(trace.y) ? trace.y : [],
+            mode: trace.mode ?? "lines",
+            name: trace.name,
+            type: trace.kind ?? "scatter",
+        };
+        applyTraceOptions(plotlyTrace, trace);
+        figure.data.push(plotlyTrace);
+    });
+
+    const rawLayout = typeof spec?.layout === "object" && spec.layout ? spec.layout : {};
+    figure.layout = { ...rawLayout };
+
+    return figure;
+}
+
+function roundNumber(value, digits) {
+    const factor = 10 ** digits;
+    return Math.round(toNumber(value, 0) * factor) / factor;
+}
+
 function buildPlotlyFigure(spec) {
     const figure = { data: [], layout: {} };
     const specType = String(spec?.type ?? "plotly").toLowerCase();
 
-    if (specType === "economic-curves") {
+    if (specType === "linear-function" || specType === "quadratic-function") {
+        const fixedSpec = {
+            ...spec,
+            layout: {
+                title: spec?.title ?? "",
+                xaxis: { title: "x", range: [-8, 8], dtick: 1, zeroline: true },
+                yaxis: { title: "y", range: [-8, 8], dtick: 1, zeroline: true },
+            },
+        };
+        return buildPolynomialCurvesFigure(fixedSpec);
+    } else if (specType === "polynomial-curves") {
+        return buildPolynomialCurvesFigure(spec);
+    } else if (specType === "economic-curves") {
         const params = typeof spec?.params === "object" && spec.params ? spec.params : {};
         const hasMonopolyRevenue = Number.isFinite(Number(params.a2)) && Number.isFinite(Number(params.a1));
         const a2 = toNumber(params.a2, -0.15);
@@ -311,16 +404,7 @@ function buildPlotlyFigure(spec) {
                 name: trace.name,
                 type: trace.kind ?? "scatter",
             };
-            if (trace.line != null) plotlyTrace.line = trace.line;
-            if (trace.marker != null) plotlyTrace.marker = trace.marker;
-            if (trace.fill != null) plotlyTrace.fill = trace.fill;
-            if (trace.fillcolor != null) plotlyTrace.fillcolor = trace.fillcolor;
-            if (trace.text != null) plotlyTrace.text = trace.text;
-            if (trace.textposition != null) plotlyTrace.textposition = trace.textposition;
-            if (trace.textfont != null) plotlyTrace.textfont = trace.textfont;
-            if (trace.showlegend != null) plotlyTrace.showlegend = trace.showlegend;
-            if (trace.opacity != null) plotlyTrace.opacity = trace.opacity;
-            if (trace.hoverinfo != null) plotlyTrace.hoverinfo = trace.hoverinfo;
+            applyTraceOptions(plotlyTrace, trace);
             figure.data.push(plotlyTrace);
         });
     }

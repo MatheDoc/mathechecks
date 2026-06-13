@@ -2,14 +2,17 @@
 
 from __future__ import annotations
 
-import math
 import random
 
 from aufgaben.core.latex import coeff_latex, const_latex, fmt, display_eq, inline
-from aufgaben.core.tolerances import nice_axis_max, graph_read_tolerance_from_span
 
 # Rückwärtskompatibel: einige Module importieren ``fmt_number``
 fmt_number = fmt
+
+
+def _visual_coeff(value: float) -> float:
+    rounded = round(float(value), 6)
+    return 0.0 if abs(rounded) < 1e-12 else rounded
 
 
 # ---------------------------------------------------------------------------
@@ -87,7 +90,7 @@ def sample_two_linear_intersecting(
 
 
 # ---------------------------------------------------------------------------
-# Visual-Builder (Plotly-Traces via Fallback-Renderer)
+# Visual-Builder
 # ---------------------------------------------------------------------------
 
 def build_linear_visual(
@@ -101,38 +104,15 @@ def build_linear_visual(
     extra_points: list[tuple[float, float, str]] | None = None,
     title: str = "",
 ) -> dict:
-    """Plotly-Visual für eine oder mehrere lineare Funktionen."""
+    """Kompaktes Visual-Spec für eine lineare Funktion."""
     x_min, x_max = x_range
-    axis_max_x = nice_axis_max(max(abs(x_min), abs(x_max)))
-    y_lo = m * x_min + b if m > 0 else m * x_max + b
-    y_hi = m * x_max + b if m > 0 else m * x_min + b
-    axis_max_y = nice_axis_max(max(abs(y_lo), abs(y_hi)) * 1.15)
-
-    step = (x_max - x_min) / 200
-    xs_set = {round(x_min + i * step, 10) for i in range(201)}
-    for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
-        xs_set.add(float(ix))
-    xs = sorted(xs_set)
-    ys = [m * x + b for x in xs]
-
-    traces = [
-        {
-            "x": [round(v, 4) for v in xs],
-            "y": [round(v, 4) for v in ys],
-            "mode": "lines",
-            "name": f"{name}(x)",
-            "line": {"color": color, "width": 2.5},
-        }
-    ]
-
-    if extra_traces:
-        traces.extend(extra_traces)
+    extra_plotly_traces = list(extra_traces) if extra_traces else []
 
     if extra_points:
         px = [p[0] for p in extra_points]
         py = [p[1] for p in extra_points]
         labels = [p[2] for p in extra_points]
-        traces.append({
+        extra_plotly_traces.append({
             "x": px,
             "y": py,
             "mode": "markers+text",
@@ -147,25 +127,17 @@ def build_linear_visual(
         "type": "plot",
         "spec": {
             "type": "linear-function",
-            "traces": traces,
-            "layout": {
-                "title": title,
-                "xaxis": {
-                    "title": "x",
-                    "range": [-8, 8],
-                    "dtick": 1,
-                    "zeroline": True,
-                },
-                "yaxis": {
-                    "title": "y",
-                    "range": [-8, 8],
-                    "dtick": 1,
-                    "zeroline": True,
-                },
-            },
-            "width": 700,
-            "height": 500,
-            "scale": 1,
+            "title": title,
+            "curves": [
+                {
+                    "coefficients": [_visual_coeff(m), _visual_coeff(b)],
+                    "mode": "lines",
+                    "name": f"{name}(x)",
+                    "line": {"color": color, "width": 2.5},
+                }
+            ],
+            "points": 201,
+            **({"extraTraces": extra_plotly_traces} if extra_plotly_traces else {}),
         },
     }
 
@@ -179,24 +151,26 @@ def build_two_linear_visual(
 ) -> dict:
     """Visual mit zwei linearen Funktionen."""
     x_min, x_max = x_range
-    step = (x_max - x_min) / 200
-    xs_set = {round(x_min + i * step, 10) for i in range(201)}
-    for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
-        xs_set.add(float(ix))
-    xs = sorted(xs_set)
-    ys2 = [m2 * x + b2 for x in xs]
 
-    extra_trace = {
-        "x": [round(v, 4) for v in xs],
-        "y": [round(v, 4) for v in ys2],
-        "mode": "lines",
-        "name": f"{name2}(x)",
-        "line": {"color": "#d62728", "width": 2.5},
+    return {
+        "type": "plot",
+        "spec": {
+            "type": "linear-function",
+            "title": "",
+            "curves": [
+                {
+                    "coefficients": [_visual_coeff(m1), _visual_coeff(b1)],
+                    "mode": "lines",
+                    "name": f"{name1}(x)",
+                    "line": {"color": "#1f77b4", "width": 2.5},
+                },
+                {
+                    "coefficients": [_visual_coeff(m2), _visual_coeff(b2)],
+                    "mode": "lines",
+                    "name": f"{name2}(x)",
+                    "line": {"color": "#d62728", "width": 2.5},
+                },
+            ],
+            "points": 201,
+        },
     }
-
-    return build_linear_visual(
-        m1, b1,
-        name=name1,
-        x_range=x_range,
-        extra_traces=[extra_trace],
-    )

@@ -22,6 +22,11 @@ _WIDE_DOMAIN_MIN = -9
 _WIDE_DOMAIN_MAX = 9
 
 
+def _visual_coeff(value: float) -> float:
+    rounded = round(float(value), 6)
+    return 0.0 if abs(rounded) < 1e-12 else rounded
+
+
 @dataclass(frozen=True)
 class PolynomialCase:
     coeffs: tuple[float, ...]
@@ -189,18 +194,17 @@ def build_plotly_visual_from_cases(
     x_min, x_max = x_range
     x_values = [round(x_min + (x_max - x_min) * index / 240.0, 4) for index in range(241)]
 
-    traces: list[dict] = []
     y_min = float("inf")
     y_max = float("-inf")
+    curves: list[dict] = []
 
     for index, (case, name) in enumerate(zip(cases, names)):
         y_values = [round(case.evaluate(x_value), 6) for x_value in x_values]
         y_min = min(y_min, min(y_values))
         y_max = max(y_max, max(y_values))
-        traces.append(
+        curves.append(
             {
-                "x": x_values,
-                "y": y_values,
+                "coefficients": [_visual_coeff(value) for value in case.coeffs],
                 "mode": "lines",
                 "name": name,
                 "line": {"color": GRAPH_COLORS[index % len(GRAPH_COLORS)], "width": 2.5},
@@ -221,8 +225,9 @@ def build_plotly_visual_from_cases(
     return {
         "type": "plot",
         "spec": {
-            "type": "plotly",
-            "traces": traces,
+            "type": "polynomial-curves",
+            "curves": curves,
+            "points": len(x_values),
             "layout": {
                 "title": title,
                 "showlegend": showlegend,

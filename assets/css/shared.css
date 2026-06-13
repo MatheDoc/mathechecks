@@ -791,9 +791,73 @@ body.page-shell .shell {
   background-clip: text;
 }
 
-.greeting p {
+.greeting__date-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.greeting__date-row p {
   color: var(--text-dim);
   font-size: 0.92rem;
+  margin: 0;
+}
+
+/* Streak-Badge */
+.greeting__streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* Flamme: Sättigung + Opacity je Zustand */
+.greeting__streak-flame {
+  font-size: 1rem;
+  line-height: 1;
+  transition: opacity 400ms ease, filter 400ms ease;
+}
+
+.greeting__streak-count {
+  color: var(--text);
+  transition: opacity 400ms ease;
+}
+
+/* done – heute aktiv: voll gesättigt, warmer Glow */
+.greeting__streak-badge[data-streak-state="done"] .greeting__streak-flame {
+  opacity: 1;
+  filter: saturate(1.2) drop-shadow(0 0 4px rgba(245, 120, 40, 0.45));
+}
+.greeting__streak-badge[data-streak-state="done"] .greeting__streak-count {
+  opacity: 1;
+}
+
+/* pending – gestern aktiv, heute noch nichts: gedämpft + leises Pulsieren */
+.greeting__streak-badge[data-streak-state="pending"] .greeting__streak-flame {
+  opacity: 0.45;
+  filter: saturate(0.6);
+  animation: streak-pulse 3s ease-in-out infinite;
+}
+.greeting__streak-badge[data-streak-state="pending"] .greeting__streak-count {
+  opacity: 0.55;
+}
+
+/* none – kein Streak: graue Flamme, keine Zahl */
+.greeting__streak-badge[data-streak-state="none"] .greeting__streak-flame {
+  opacity: 0.22;
+  filter: saturate(0) brightness(0.9);
+}
+.greeting__streak-badge[data-streak-state="none"] .greeting__streak-count {
+  display: none;
+}
+
+@keyframes streak-pulse {
+  0%, 100% { opacity: 0.45; filter: saturate(0.6); }
+  50%       { opacity: 0.62; filter: saturate(0.85); }
 }
 
 /* ─────────────────────── Bento Grid ─────────────────────── */

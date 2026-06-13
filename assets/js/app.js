@@ -1,8 +1,8 @@
-import { initTrainingModule } from "./modules/training.js?v=20260611-pwa-mod-scroll";
+import { initTrainingModule } from "./modules/training.js?v=20260613-axis-grid-b";
 import { initRecallModule } from "./modules/recall.js?v=20260611-pwa-mod-scroll";
 import { initFeynmanModule } from "./modules/feynman.js?v=20260611-pwa-mod-scroll";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260609-complete-icon";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260610-script-duplicate-complete";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260613-axis-grid-b";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260613-axis-grid-b";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
@@ -511,7 +511,10 @@ async function bootstrap() {
   const pageKey = getScrollPageKey();
   const explicitTargetId = resolveScrollTargetId(context);
   const isFeedContext = context.activityContext?.mode === "feed";
-  const shouldRestoreRememberedScroll = !explicitTargetId && !isFeedContext;
+  // Suppress scroll restore when a check_id is present – the module scrolls to
+  // the target itself; restoring the old position would overwrite that scroll.
+  const hasCheckTarget = Boolean(context.checkId);
+  const shouldRestoreRememberedScroll = !explicitTargetId && !isFeedContext && !hasCheckTarget;
   const contentRoot = document.querySelector(".mod-content") || document.body;
   const shouldDeferNativeSkriptHash = context.moduleKey === "skript" && Boolean(explicitTargetId);
   let handledSkriptTargetEarly = false;
@@ -530,7 +533,9 @@ async function bootstrap() {
     restoreScrollPosition(pageKey);
   }
 
-  scheduleStabilizedRestore(pageKey, explicitTargetId, isFeedContext);
+  // Pass a truthy second arg to suppress the repeated stabilized restores
+  // whenever the module will scroll to a specific check on its own.
+  scheduleStabilizedRestore(pageKey, explicitTargetId || (hasCheckTarget ? context.checkId : ""), isFeedContext);
 
   if (context.moduleKey === "training") {
     const root = document.getElementById("training-root");
