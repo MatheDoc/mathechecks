@@ -1,10 +1,11 @@
 const sammlungCache = new Map();
 const EXPORT_BASE_PATH = "/aufgaben/exports/json";
+const EXPORT_URL_VERSION = "20260613-axis-grid-b";
 
 function buildExportUrl(gebiet, lernbereich, sammlung) {
   const segments = [gebiet, lernbereich, `${sammlung}.json`]
     .map((seg) => encodeURIComponent(seg.trim().toLowerCase()));
-  return `${EXPORT_BASE_PATH}/${segments.join("/")}`;
+  return `${EXPORT_BASE_PATH}/${segments.join("/")}?v=${EXPORT_URL_VERSION}`;
 }
 
 /**
@@ -22,13 +23,13 @@ export async function getAufgabenSammlung(sammlungName, context = {}) {
     );
   }
 
-  const cacheKey = `${gebiet}/${lernbereich}/${sammlung}`;
+  const cacheKey = `${gebiet}/${lernbereich}/${sammlung}?v=${EXPORT_URL_VERSION}`;
   if (sammlungCache.has(cacheKey)) {
     return sammlungCache.get(cacheKey);
   }
 
   const url = buildExportUrl(gebiet, lernbereich, sammlung);
-  const response = await fetch(url);
+  const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(
       `Export konnte nicht geladen werden: ${sammlungName} (${url}, HTTP ${response.status})`

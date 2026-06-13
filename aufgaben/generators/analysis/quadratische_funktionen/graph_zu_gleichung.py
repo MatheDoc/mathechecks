@@ -6,7 +6,6 @@ Nur Funktionen mit zwei reellen Nullstellen (ganzzahlig).
 
 from __future__ import annotations
 
-import math
 import random
 
 from aufgaben.core.models import Task
@@ -59,30 +58,10 @@ class GraphZuGleichungQuadGenerator(TaskGenerator):
             # NF für Visual
             a_nf, b_nf, c_nf = spf_to_nf(a, d, e)
 
-            # Sichtbereich um markante Punkte zentrieren
-            all_x = [x1, x2, d]
-            all_y = [0, 0, e]
-            x_lo = min(all_x) - 2
-            x_hi = max(all_x) + 2
-            y_lo = min(all_y) - 2
-            y_hi = max(all_y) + 2
-            # Mindestgröße 8 Einheiten, auf ganze Zahlen runden
-            x_center = (x_lo + x_hi) / 2
-            y_center = (y_lo + y_hi) / 2
-            x_span = max(x_hi - x_lo, 8)
-            y_span = max(y_hi - y_lo, 8)
-            x_lo = math.floor(x_center - x_span / 2)
-            x_hi = math.ceil(x_center + x_span / 2)
-            y_lo = math.floor(y_center - y_span / 2)
-            y_hi = math.ceil(y_center + y_span / 2)
-
             visual = build_quadratic_visual(
                 a_nf, b_nf, c_nf,
                 title="Graph von f",
-                x_range=(x_lo, x_hi),
             )
-            visual["spec"]["layout"]["xaxis"] = {"range": [x_lo, x_hi], "dtick": 1}
-            visual["spec"]["layout"]["yaxis"] = {"range": [y_lo, y_hi], "dtick": 1}
 
             # SPF und FF als je eine Gleichung abfragen
             tasks.append(Task(

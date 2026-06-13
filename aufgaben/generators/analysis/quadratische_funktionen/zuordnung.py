@@ -28,6 +28,11 @@ _COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
 _LABELS = ["a", "b", "c", "d"]
 
 
+def _visual_coeff(value: float) -> float:
+    rounded = round(float(value), 6)
+    return 0.0 if abs(rounded) < 1e-12 else rounded
+
+
 def _random_form_latex(
     a: float, b: float, c: float, form: str, name: str = "f"
 ) -> str:
@@ -98,12 +103,10 @@ class ZuordnungGraphenQuadGenerator(TaskGenerator):
             # Traces bauen – sichtbarer Bereich [-8, 8] × [-8, 8]
             x_min, x_max = -8, 8
             xs = [x_min + i * 0.08 for i in range(201)]
-            traces = []
+            curves = []
             for gi, (fa, fb, fc) in enumerate(funcs):
-                ys = [fa * x**2 + fb * x + fc for x in xs]
-                traces.append({
-                    "x": [round(x, 2) for x in xs],
-                    "y": [round(y, 4) for y in ys],
+                curves.append({
+                    "coefficients": [_visual_coeff(fa), _visual_coeff(fb), _visual_coeff(fc)],
                     "mode": "lines",
                     "name": _LABELS[gi],
                     "line": {"color": _COLORS[gi], "width": 2.5},
@@ -112,8 +115,9 @@ class ZuordnungGraphenQuadGenerator(TaskGenerator):
             visual = {
                 "type": "plot",
                 "spec": {
-                    "type": "plotly",
-                    "traces": traces,
+                    "type": "polynomial-curves",
+                    "curves": curves,
+                    "points": len(xs),
                     "layout": {
                         "xaxis": {"range": [-8, 8], "dtick": 1},
                         "yaxis": {"range": [-8, 8], "dtick": 1},
@@ -123,7 +127,7 @@ class ZuordnungGraphenQuadGenerator(TaskGenerator):
 
             # Gleichungen erzeugen
             eq_labels = [
-                _random_form_latex(fa, fb, fc, forms[gi], name=_LABELS[gi])
+                _random_form_latex(fa, fb, fc, forms[gi], name="f")
                 for gi, (fa, fb, fc) in enumerate(funcs)
             ]
 

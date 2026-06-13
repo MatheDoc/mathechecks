@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
+import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260613-axis-grid-b";
 import {
     loadTrainingState,
     loadTaskIndexForCheck,
@@ -13,7 +13,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260609-answer-lines";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260613-typed-axes";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
@@ -23,9 +23,10 @@ import {
     attachTrainingFeedShell,
     buildTrainingKiAgentPrompt,
     createTrainingCardHeader,
+    updateCheckRateBadge,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20260609-answer-lines";
+} from "./training.js?v=20260613-axis-grid-b";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;
@@ -530,6 +531,9 @@ async function renderCheckTaskInHost(host, check, {
                                 newRate: rates.newRate ?? null,
                                 quoteUnchanged: Boolean(rates.quoteUnchanged),
                             };
+                            // Badge sofort aktualisieren
+                            const badge = host.querySelector(".check-card__rate-badge");
+                            updateCheckRateBadge(badge, latestRates.newRate);
                         }
                         markFreeCompleteReady();
                     })
@@ -551,6 +555,14 @@ async function renderCheckTaskInHost(host, check, {
         if (isActiveFeedTraining) {
             attachTrainingFeedShell(host, { activityContext, checkId, lernbereich });
         }
+
+        // Trainingsquote-Badge initial befüllen
+        getUserCheckProficiency().then((proficiency) => {
+            if (!proficiency.ok) return;
+            const rate = extractCheckProficiencyRate(proficiency.data, checkId);
+            const badge = host.querySelector(".check-card__rate-badge");
+            updateCheckRateBadge(badge, rate);
+        });
     } catch (error) {
         const message = document.createElement("p");
         message.className = "module-status";

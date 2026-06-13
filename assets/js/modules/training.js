@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js";
+import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260613-axis-grid-b";
 import {
   loadTrainingState,
   saveTrainingState,
@@ -14,7 +14,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260609-answer-lines";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260613-typed-axes";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -738,6 +738,11 @@ function formatPolynomialExpression(coefficients) {
     .join("");
 }
 
+function formatDescendingPolynomialExpression(coefficients) {
+  const coeffs = Array.isArray(coefficients) ? coefficients.slice().reverse() : [];
+  return formatPolynomialExpression(coeffs);
+}
+
 function appendSignedConstant(baseExpression, constantValue) {
   const c = toFiniteNumber(constantValue, 0);
   if (Math.abs(c) < 1e-10) return baseExpression;
@@ -1015,6 +1020,18 @@ function buildFunctionLinesFromSpec(spec) {
     if (lines.length > 0) return lines;
   }
 
+  if (specType === "polynomial-curves" || specType === "linear-function" || specType === "quadratic-function") {
+    const curves = Array.isArray(spec.curves) ? spec.curves : [];
+    curves.forEach((curve, index) => {
+      const name = String(curve?.name || "").trim() || `f_${index + 1}(x)`;
+      const expression = formatDescendingPolynomialExpression(curve?.coefficients);
+      if (!expression) return;
+      const description = describeFunctionName(name);
+      lines.push(formatFunctionLine(name, expression, description));
+    });
+    if (lines.length > 0) return lines;
+  }
+
   const traces = Array.isArray(spec.traces) ? spec.traces : [];
   traces.forEach((trace, index) => {
     const name = String(trace?.name || "").trim() || `f_${index + 1}(x)`;
@@ -1044,7 +1061,7 @@ function buildVisualContext(task, runtimeTaskNode = null) {
 
   // Layout-based title/axes (for Plotly-rendered charts)
   const layout = spec.layout || {};
-  const diagrammTitel = layout?.title || "";
+  const diagrammTitel = spec?.title || layout?.title || "";
   if (diagrammTitel) {
     lines.push(`Diagramm: ${diagrammTitel}`);
   } else if (specType && !["vft", "wkt-tabelle"].includes(specType)) {
@@ -1257,6 +1274,13 @@ function createTrainingCardHeader(check, titleText = check.Schlagwort || check["
   const headerRight = document.createElement("div");
   headerRight.className = "check-card__header-actions";
 
+  // Trainingsquote-Badge (wird asynchron befüllt)
+  const rateBadge = document.createElement("span");
+  rateBadge.className = "check-card__rate-badge";
+  rateBadge.textContent = "–";
+  rateBadge.setAttribute("aria-label", "Trainingsquote");
+  headerRight.appendChild(rateBadge);
+
   const { menu: actionsMenu, popover: actionsPopover } = createCardActionsMenu();
   headerRight.appendChild(actionsMenu);
 
@@ -1268,13 +1292,26 @@ function createTrainingCardHeader(check, titleText = check.Schlagwort || check["
 
   header.appendChild(headerLeft);
   header.appendChild(headerRight);
-  return { header, actionsPopover };
+  return { header, actionsPopover, rateBadge };
+}
+
+/** Setzt die Trainingsquote im Header-Badge. rate = number (0–100) oder null. */
+function updateCheckRateBadge(badgeEl, rate) {
+  if (!badgeEl) return;
+  if (rate === null || !Number.isFinite(rate)) {
+    badgeEl.textContent = "–";
+    badgeEl.removeAttribute("data-has-rate");
+  } else {
+    badgeEl.textContent = `${Math.round(rate)} %`;
+    badgeEl.setAttribute("data-has-rate", "true");
+  }
 }
 
 export {
   buildTrainingKiAgentPrompt,
   buildSkriptTippsHref,
   createTrainingCardHeader,
+  updateCheckRateBadge,
   copyToClipboard as copyTrainingPromptToClipboard,
   fetchBeispielHtml as fetchTrainingBeispielHtml,
 };
@@ -1577,6 +1614,9 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
               newRate: rates.newRate ?? null,
               quoteUnchanged: Boolean(rates.quoteUnchanged),
             };
+            // Badge der eigenen Karte sofort aktualisieren
+            const badge = viewportNode.querySelector(".check-card__rate-badge");
+            updateCheckRateBadge(badge, latestRates.newRate);
           }
           markFreeCompleteReady();
         })
@@ -1851,6 +1891,18 @@ export async function initTrainingModule({
     );
 
     cards.forEach((card) => shell.taskHost.appendChild(card));
+
+    // Trainingsquoten-Badges initial befüllen (einmaliger Fetch für alle Karten)
+    getUserCheckProficiency().then((proficiency) => {
+      if (!proficiency.ok) return;
+      const viewportItems = Array.from(shell.taskHost.querySelectorAll(".check-viewport-item[data-check-id]"));
+      viewportItems.forEach((item) => {
+        const cId = item.dataset.checkId;
+        const rate = extractCheckProficiencyRate(proficiency.data, cId);
+        const badge = item.querySelector(".check-card__rate-badge");
+        updateCheckRateBadge(badge, rate);
+      });
+    });
 
     if (activeCheckId) {
       const cardNodes = Array.from(

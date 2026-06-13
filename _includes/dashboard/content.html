@@ -2,7 +2,12 @@
     data-dashboard-material-url="{{ '/material.html' | relative_url }}">
     <section class="greeting">
         <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
-        <p data-dashboard-current-date></p>
+        <div class="greeting__date-row">
+            <p data-dashboard-current-date></p>
+            <span class="greeting__streak-badge" data-dashboard-streak-badge data-streak-state="none" aria-label="Aktueller Streak">
+                <span class="greeting__streak-flame" aria-hidden="true">🔥</span><span class="greeting__streak-count" data-dashboard-streak-count></span>
+            </span>
+        </div>
     </section>
 
     <div class="bento">
@@ -96,15 +101,11 @@
             <div class="check-card__body dashboard-panel__body">
                 <p class="dashboard-panel__summary" data-dashboard-plan-summary></p>
                 <div class="dashboard-plan__progress" data-dashboard-plan-progress hidden>
-                    <div class="dashboard-plan__progress-head">
+                    <div class="dashboard-plan__progress-bar-row">
+                        <div class="skill-track dashboard-plan__progress-track" data-dashboard-plan-progress-bar role="progressbar" aria-label="Fortschritt der aktuellen Session" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 Prozent der aktuellen Session abgeschlossen">
+                            <div class="skill-fill dashboard-plan__progress-fill" data-dashboard-plan-progress-fill data-progress="0"></div>
+                        </div>
                         <span class="dashboard-plan__progress-percent" data-dashboard-plan-progress-percent>0%</span>
-                    </div>
-                    <div class="skill-track dashboard-plan__progress-track" data-dashboard-plan-progress-bar role="progressbar" aria-label="Fortschritt der aktuellen Session" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 Prozent der aktuellen Session abgeschlossen">
-                        <div class="skill-fill dashboard-plan__progress-fill" data-dashboard-plan-progress-fill data-progress="0"></div>
-                    </div>
-                    <div class="dashboard-plan__progress-meta">
-                        <span class="dashboard-plan__progress-completed" data-dashboard-plan-progress-completed>0 / 0 abgeschlossen</span>
-                        <span class="dashboard-plan__progress-remaining" data-dashboard-plan-progress-remaining>0 verbleibend</span>
                     </div>
                 </div>
                 <p class="dashboard-plan__target" data-dashboard-plan-target hidden>
@@ -163,8 +164,10 @@
                 <!--<div class="dashboard-activity__hero">-->
                     <div class="dashboard-activity__hero-copy">
                         <div class="dashboard-activity__hero-value" data-dashboard-activity-total>0</div>
-                        <div class="dashboard-activity__hero-label">abgeschlossene Aktivitäten</div>
-                        <div class="dashboard-activity__hero-meta" data-dashboard-activity-meta></div>
+                        <div class="dashboard-activity__hero-text">
+                            <div class="dashboard-activity__hero-label">abgeschlossene Aktivitäten</div>
+                            <div class="dashboard-activity__hero-meta" data-dashboard-activity-meta></div>
+                        </div>
                     </div>
                     <div class="dashboard-activity__spark">
                         <div class="dashboard-activity__spark-title">letzte 7 Tage</div>

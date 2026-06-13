@@ -67,7 +67,7 @@ const GREETING_TIME_VARIANTS = [
     startHour: 23,
     endHour: 4,
     variants: [
-      "Hey {name}, du Nacheule.",
+      "Hey {name}, du Nachteule.",
       "Zu später Stunde noch aktiv, {name}? Respekt.",
       "Späte Lernzeit, {name}. Kurz, konzentriert, dann verdienter Feierabend.",
     ],
@@ -406,6 +406,38 @@ function setGreetingDate(date = new Date()) {
     month: "long",
     year: "numeric",
   }).format(date);
+}
+
+function applyStreakBadge(context, date = new Date()) {
+  const badgeEl = context?.elements?.streakBadge;
+  const countEl = context?.elements?.streakCount;
+  if (!badgeEl) return;
+
+  const snapshot = buildGreetingSnapshot(context, date);
+  const streak = snapshot.recentStreakLength;
+
+  // Zustand bestimmen
+  let state;
+  if (streak <= 0) {
+    state = "none";
+  } else if (snapshot.todayCount > 0) {
+    state = "done";
+  } else if (snapshot.lastActivityDate === snapshot.yesterdayDateValue) {
+    state = "pending";
+  } else {
+    // Streak > 0 aber letzter Tag liegt weiter zurück → erloschen
+    state = "none";
+  }
+
+  badgeEl.dataset.streakState = state;
+  if (countEl) {
+    countEl.textContent = streak > 0 ? String(streak) : "";
+  }
+  badgeEl.setAttribute("aria-label",
+    state === "done" ? `Streak: ${streak} Tage, heute aktiv` :
+    state === "pending" ? `Streak: ${streak} Tage, heute noch offen` :
+    "Kein aktiver Streak"
+  );
 }
 
 function shiftDateByDays(date, dayOffset) {
@@ -952,6 +984,7 @@ function updateGreetingHeading(context, date = new Date()) {
   headingNode.dataset.greetingVariant = greeting.key;
   headingNode.dataset.dashboardGreetingReady = "true";
   scheduleGreetingRefresh(context, snapshot, greeting);
+  applyStreakBadge(context, date);
 }
 
 function finalizeGreetingHydration(context, date = new Date()) {
@@ -1655,13 +1688,6 @@ function applyProficiencyWorklist(context, overview = null) {
 
     const titleRow = document.createElement("span");
     titleRow.className = "action-title dashboard-panel__action-title";
-    if (indexLabel) {
-      const idx = document.createElement("span");
-      idx.className = "dashboard-panel__action-index";
-      idx.setAttribute("aria-hidden", "true");
-      idx.textContent = indexLabel + "\u00a0";
-      titleRow.appendChild(idx);
-    }
 
     const nameSpan = document.createElement("span");
     nameSpan.className = "dashboard-panel__action-name";
@@ -1672,25 +1698,55 @@ function applyProficiencyWorklist(context, overview = null) {
     lernbereichSpan.className = "action-badge dashboard-feed__lernbereich-badge dashboard-worklist__lernbereich";
     lernbereichSpan.textContent = lernbereichName;
 
-    const rateSpan = document.createElement("span");
-    rateSpan.className = "dashboard-panel__action-side dashboard-panel__action-progress";
-    rateSpan.textContent = hasRate ? formatActivityPercent(rate) : "–";
+    // SVG-Fortschrittsring
+    const ringSize = 44;
+    const ringStroke = 3.5;
+    const ringR = (ringSize - ringStroke) / 2;
+    const ringCirc = 2 * Math.PI * ringR;
+    const ringOffset = ringCirc * (1 - clampedRate / 100);
+    const ringLabel = hasRate ? formatActivityPercent(Math.round(rate)) : "–";
+    const ringSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    ringSvg.setAttribute("class", "dashboard-worklist__ring");
+    ringSvg.setAttribute("width", ringSize);
+    ringSvg.setAttribute("height", ringSize);
+    ringSvg.setAttribute("viewBox", `0 0 ${ringSize} ${ringSize}`);
+    ringSvg.setAttribute("aria-hidden", "true");
+    const ringBg = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    ringBg.setAttribute("class", "dashboard-worklist__ring-bg");
+    ringBg.setAttribute("cx", ringSize / 2);
+    ringBg.setAttribute("cy", ringSize / 2);
+    ringBg.setAttribute("r", ringR);
+    ringBg.setAttribute("fill", "none");
+    ringBg.setAttribute("stroke-width", ringStroke);
+    const ringFill = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    ringFill.setAttribute("class", "dashboard-worklist__ring-fill");
+    ringFill.setAttribute("cx", ringSize / 2);
+    ringFill.setAttribute("cy", ringSize / 2);
+    ringFill.setAttribute("r", ringR);
+    ringFill.setAttribute("fill", "none");
+    ringFill.setAttribute("stroke-width", ringStroke);
+    ringFill.setAttribute("stroke-dasharray", ringCirc);
+    ringFill.setAttribute("stroke-dashoffset", ringOffset);
+    ringFill.setAttribute("stroke-linecap", "round");
+    ringSvg.appendChild(ringBg);
+    ringSvg.appendChild(ringFill);
 
-    const trackWrap = document.createElement("span");
-    trackWrap.className = "dashboard-worklist__track";
-    const trackFill = document.createElement("span");
-    trackFill.className = "dashboard-worklist__fill";
-    trackFill.style.width = `${clampedRate}%`;
-    trackWrap.appendChild(trackFill);
+    const ringWrap = document.createElement("span");
+    ringWrap.className = "dashboard-worklist__ring-wrap";
+    ringWrap.setAttribute("aria-label", `${ringLabel} Erfolgsquote`);
+    const ringText = document.createElement("span");
+    ringText.className = "dashboard-worklist__ring-text";
+    ringText.textContent = ringLabel;
+    ringWrap.appendChild(ringSvg);
+    ringWrap.appendChild(ringText);
 
     const body = document.createElement("span");
     body.className = "action-body";
     body.appendChild(titleRow);
     if (lernbereichName) body.appendChild(lernbereichSpan);
-    body.appendChild(trackWrap);
 
     button.appendChild(body);
-    button.appendChild(rateSpan);
+    button.appendChild(ringWrap);
 
     if (href) {
       button.dataset.actionHref = href;
@@ -2239,7 +2295,6 @@ function renderDashboardLernbereichCard(entry) {
         </div>
         ${badgeMarkup}
       </div>
-      <span class="dashboard-panel__action-side dashboard-panel__action-progress">${escapeHtml(progressLabel)}</span>
     </li>
   `;
 }
@@ -3724,6 +3779,8 @@ function createContext(root, lernbereiche) {
     activityMapTooltip: root.querySelector("[data-dashboard-activity-map-tooltip]"),
     activityMapTarget: root.querySelector("[data-dashboard-activity-map-target]"),
     activityMapStatusNode: document.getElementById("activityMapStatus"),
+    streakBadge: root.querySelector("[data-dashboard-streak-badge]"),
+    streakCount: root.querySelector("[data-dashboard-streak-count]"),
     primaryFeedCard: root.querySelector("[data-dashboard-primary-feed-card]"),
     primaryFeedSubtitle: root.querySelector("[data-dashboard-primary-feed-subtitle]"),
     primaryFeedStatus: root.querySelector("[data-dashboard-primary-feed-status]"),

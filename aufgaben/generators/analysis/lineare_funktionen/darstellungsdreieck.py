@@ -56,27 +56,7 @@ class GraphZuGleichungGenerator(TaskGenerator):
                 continue
             used.add((m, b))
 
-            # Sichtbereich um Nullstelle und y-Abschnitt zentrieren
-            x0 = -b / m  # Nullstelle
-            all_x = [0, x0]
-            all_y = [b, 0]
-            x_lo = min(all_x) - 2
-            x_hi = max(all_x) + 2
-            y_lo = min(all_y) - 2
-            y_hi = max(all_y) + 2
-            x_span = max(x_hi - x_lo, 8)
-            y_span = max(y_hi - y_lo, 8)
-            x_center = (x_lo + x_hi) / 2
-            y_center = (y_lo + y_hi) / 2
-            x_lo = math.floor(x_center - x_span / 2)
-            x_hi = math.ceil(x_center + x_span / 2)
-            y_lo = math.floor(y_center - y_span / 2)
-            y_hi = math.ceil(y_center + y_span / 2)
-
-            visual = build_linear_visual(m, b, title="Graph von f",
-                                         x_range=(x_lo, x_hi))
-            visual["spec"]["layout"]["xaxis"] = {"range": [x_lo, x_hi], "dtick": 1, "zeroline": True}
-            visual["spec"]["layout"]["yaxis"] = {"range": [y_lo, y_hi], "dtick": 1, "zeroline": True}
+            visual = build_linear_visual(m, b, title="Graph von f")
 
             tasks.append(Task(
                 einleitung=(
@@ -174,6 +154,11 @@ class ZuordnungGraphenGenerator(TaskGenerator):
 
     generator_key = "analysis.lineare_funktionen.zuordnung_graphen"
 
+    @staticmethod
+    def _visual_coeff(value: float) -> float:
+        rounded = round(float(value), 6)
+        return 0.0 if abs(rounded) < 1e-12 else rounded
+
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
         tasks: list[Task] = []
@@ -208,12 +193,10 @@ class ZuordnungGraphenGenerator(TaskGenerator):
             for ix in range(math.ceil(x_min), math.floor(x_max) + 1):
                 xs_set.add(float(ix))
             xs = sorted(xs_set)
-            traces = []
+            curves = []
             for gi, (fm, fb) in enumerate(funcs):
-                ys = [fm * x + fb for x in xs]
-                traces.append({
-                    "x": [round(v, 4) for v in xs],
-                    "y": [round(v, 4) for v in ys],
+                curves.append({
+                    "coefficients": [self._visual_coeff(fm), self._visual_coeff(fb)],
                     "mode": "lines",
                     "name": _GRAPH_LABELS[gi],
                     "line": {"color": _GRAPH_COLORS[gi], "width": 2.5},
@@ -222,8 +205,9 @@ class ZuordnungGraphenGenerator(TaskGenerator):
             visual = {
                 "type": "plot",
                 "spec": {
-                    "type": "linear-zuordnung",
-                    "traces": traces,
+                    "type": "polynomial-curves",
+                    "curves": curves,
+                    "points": len(xs),
                     "layout": {
                         "title": "",
                         "xaxis": {"title": "x", "range": [-8, 8], "dtick": 1, "zeroline": True},

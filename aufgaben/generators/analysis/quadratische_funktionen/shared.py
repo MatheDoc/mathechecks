@@ -21,6 +21,11 @@ _const = const_latex
 _signed = signed_number
 
 
+def _visual_coeff(value: float) -> float:
+    rounded = round(float(value), 6)
+    return 0.0 if abs(rounded) < 1e-12 else rounded
+
+
 def nf_latex(a: float, b: float, c: float, name: str = "f", var: str = "x") -> str:
     """Normalform f(x) = ax² + bx + c."""
     a_str = _coeff(a, f"{var}^2", leading=True)
@@ -156,44 +161,23 @@ def build_quadratic_visual(
     title: str = "",
     extra_traces: list[dict] | None = None,
 ) -> dict:
-    """Plotly-basiertes Visual für eine quadratische Funktion."""
-    d = -b / (2 * a)
-    if x_range is None:
-        span = max(6, abs(d) + 5)
-        x_min = d - span
-        x_max = d + span
-    else:
-        x_min, x_max = x_range
-
+    """Kompaktes Visual-Spec für eine quadratische Funktion."""
     n_pts = 201
-    xs = [x_min + i * (x_max - x_min) / (n_pts - 1) for i in range(n_pts)]
-    ys = [a * x**2 + b * x + c for x in xs]
-
-    traces = [
-        {
-            "x": [round(x, 4) for x in xs],
-            "y": [round(y, 4) for y in ys],
-            "mode": "lines",
-            "name": f"{name}(x)",
-            "line": {"color": color, "width": 2.5},
-        }
-    ]
-    if extra_traces:
-        traces.extend(extra_traces)
-
-    y_abs = [abs(y) for y in ys]
-    axis_y = nice_axis_max(max(y_abs) * 1.1) if y_abs else 10
-    axis_x = nice_axis_max(max(abs(x_min), abs(x_max)))
 
     return {
         "type": "plot",
         "spec": {
-            "type": "plotly",
-            "traces": traces,
-            "layout": {
-                "title": title,
-                "xaxis": {"range": [-axis_x, axis_x], "dtick": 1},
-                "yaxis": {"range": [-axis_y, axis_y], "dtick": 1 if axis_y <= 10 else 2},
-            },
+            "type": "quadratic-function",
+            "title": title,
+            "curves": [
+                {
+                    "coefficients": [_visual_coeff(a), _visual_coeff(b), _visual_coeff(c)],
+                    "mode": "lines",
+                    "name": f"{name}(x)",
+                    "line": {"color": color, "width": 2.5},
+                }
+            ],
+            "points": n_pts,
+            **({"extraTraces": extra_traces} if extra_traces else {}),
         },
     }
