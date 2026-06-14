@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260613-axis-grid-b";
+import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import {
     loadTrainingState,
     loadTaskIndexForCheck,
@@ -13,7 +13,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260613-typed-axes";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260614-expression-curves-b";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
@@ -26,7 +26,7 @@ import {
     updateCheckRateBadge,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20260613-axis-grid-b";
+} from "./training.js?v=20260614-expression-curves-b";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;

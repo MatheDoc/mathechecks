@@ -1,5 +1,5 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260613-axis-grid-b";
+import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import {
   loadTrainingState,
   saveTrainingState,
@@ -14,7 +14,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260613-typed-axes";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260614-expression-curves-b";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -1027,6 +1027,18 @@ function buildFunctionLinesFromSpec(spec) {
       const expression = formatDescendingPolynomialExpression(curve?.coefficients);
       if (!expression) return;
       const description = describeFunctionName(name);
+      lines.push(formatFunctionLine(name, expression, description));
+    });
+    if (lines.length > 0) return lines;
+  }
+
+  if (specType === "expression-curves") {
+    const curves = Array.isArray(spec.curves) ? spec.curves : [];
+    curves.forEach((curve, index) => {
+      const name = String(curve?.name || "").trim() || `f_${index + 1}(t)`;
+      const expression = String(curve?.term || "").trim();
+      if (!expression) return;
+      const description = String(curve?.description || "").trim() || describeFunctionName(name);
       lines.push(formatFunctionLine(name, expression, description));
     });
     if (lines.length > 0) return lines;

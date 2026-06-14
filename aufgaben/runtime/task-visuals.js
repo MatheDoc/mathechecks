@@ -89,6 +89,91 @@ function roundNumber(value, digits) {
     return Math.round(toNumber(value, 0) * factor) / factor;
 }
 
+function buildExpressionFunction(term, variableName = "x") {
+    const sourceTerm = String(term ?? "").trim();
+    const safeVariable = /^[a-zA-Z]$/.test(variableName) ? variableName : "x";
+    if (!sourceTerm) return null;
+
+    const withoutExp = sourceTerm.replace(/\bexp\b/g, "");
+    const withoutVariable = withoutExp.replace(new RegExp(safeVariable, "g"), "");
+    if (/[a-zA-Z_]/.test(withoutVariable)) return null;
+    if (/[^0-9\s+\-*/().^]/.test(withoutVariable)) return null;
+
+    const executable = sourceTerm
+        .replace(/\^/g, "**")
+        .replace(/\bexp\s*\(/g, "Math.exp(");
+
+    try {
+        const evaluator = new Function(safeVariable, `"use strict"; return ${executable};`);
+        return (value) => {
+            const result = Number(evaluator(value));
+            if (!Number.isFinite(result)) return null;
+            return Math.abs(result) < 1e-12 ? 0 : result;
+        };
+    } catch {
+        return null;
+    }
+}
+
+function buildExpressionCurvesFigure(spec) {
+    const figure = { data: [], layout: {} };
+    const layout = typeof spec?.layout === "object" && spec.layout ? spec.layout : {};
+    const xAxis = typeof layout.xaxis === "object" && layout.xaxis ? layout.xaxis : {};
+    const xRangeRaw = Array.isArray(xAxis.range) ? xAxis.range : [0, 10];
+    let xMin = toNumber(xRangeRaw[0], 0);
+    let xMax = toNumber(xRangeRaw[1], 10);
+    if (xMax <= xMin) {
+        xMin = 0;
+        xMax = 10;
+    }
+
+    const points = Math.max(40, Math.trunc(toNumber(spec?.points, 241)));
+    const xValues = [];
+    for (let index = 0; index < points; index += 1) {
+        const xValue = xMin + ((xMax - xMin) * index) / (points - 1);
+        xValues.push(roundNumber(xValue, 4));
+    }
+
+    const curves = Array.isArray(spec?.curves) ? spec.curves : [];
+    curves.forEach((curve) => {
+        const variableName = String(curve?.variable || spec?.variable || "x").trim() || "x";
+        const evaluateExpression = buildExpressionFunction(curve?.term, variableName);
+        if (typeof evaluateExpression !== "function") return;
+
+        const yValues = xValues.map((xValue) => {
+            const result = evaluateExpression(xValue);
+            return result == null ? null : roundNumber(result, 6);
+        });
+
+        const plotlyTrace = {
+            x: xValues,
+            y: yValues,
+            mode: curve?.mode ?? "lines",
+            name: curve?.name,
+            type: curve?.kind ?? "scatter",
+        };
+        applyTraceOptions(plotlyTrace, curve);
+        figure.data.push(plotlyTrace);
+    });
+
+    const extraTraces = Array.isArray(spec?.extraTraces) ? spec.extraTraces : [];
+    extraTraces.forEach((trace) => {
+        if (!trace || typeof trace !== "object") return;
+        const plotlyTrace = {
+            x: Array.isArray(trace.x) ? trace.x : [],
+            y: Array.isArray(trace.y) ? trace.y : [],
+            mode: trace.mode ?? "lines",
+            name: trace.name,
+            type: trace.kind ?? "scatter",
+        };
+        applyTraceOptions(plotlyTrace, trace);
+        figure.data.push(plotlyTrace);
+    });
+
+    figure.layout = { ...layout };
+    return figure;
+}
+
 function buildPlotlyFigure(spec) {
     const figure = { data: [], layout: {} };
     const specType = String(spec?.type ?? "plotly").toLowerCase();
@@ -105,6 +190,8 @@ function buildPlotlyFigure(spec) {
         return buildPolynomialCurvesFigure(fixedSpec);
     } else if (specType === "polynomial-curves") {
         return buildPolynomialCurvesFigure(spec);
+    } else if (specType === "expression-curves") {
+        return buildExpressionCurvesFigure(spec);
     } else if (specType === "economic-curves") {
         const params = typeof spec?.params === "object" && spec.params ? spec.params : {};
         const hasMonopolyRevenue = Number.isFinite(Number(params.a2)) && Number.isFinite(Number(params.a1));
