@@ -523,37 +523,112 @@ def _du_latex(case: _PLCCase, order: int) -> str:
 
 def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> float:
     if case.has_market_exit:
-        return case.t_end
+        return case.t_end + max(0.6, min(1.2, 0.05 * case.t_end))
 
-    amplitude = max(0.8, y_peak - case.offset)
-    threshold = max(0.2, 0.04 * amplitude)
-    slope_threshold = max(0.03, 0.015 * amplitude)
-    t = max(t_peak + 1.0, case.t_end)
-    upper = min(75.0, max(case.t_end * 2.8, t_peak + 18.0))
+    tau = 1.0 / case.exp_rate
+    amplitude = max(0.8, abs(y_peak - case.offset), abs(case.u(0.0) - case.offset))
+    threshold = max(0.05, 0.05 * amplitude)
+    upper = min(90.0, max(case.t_end + 4.0 * tau, t_peak + 5.0 * tau, t_peak + 12.0))
+    tail_buffer = max(1.0, min(2.0, 0.5 * tau))
+    t = t_peak + 0.25
     stable_hits = 0
-    prev_val = case.u(t)
 
     while t < upper:
-        current_val = case.u(t)
-        slope_estimate = abs(current_val - prev_val) / 0.25
-        if abs(current_val - case.offset) <= threshold and slope_estimate <= slope_threshold:
+        if abs(case.u(t) - case.offset) <= threshold:
             stable_hits += 1
-            # Require a sustained near-horizontal tail so the asymptote is visually clear.
-            if stable_hits >= 8:
-                return min(upper, max(case.t_end * 1.35, t + 2.0))
+            if stable_hits >= 3:
+                return min(upper, t + tail_buffer)
         else:
             stable_hits = 0
 
-        prev_val = current_val
         t += 0.25
 
-    return max(case.t_end * 1.35, upper)
+    return upper
 
 
 def _effective_du_plot_limit(case: _PLCCase, t_peak: float) -> float:
-    d2_roots = [root for root in _roots_by_scan(case.d2u, 0.0, case.t_end) if 0.0 <= root <= case.t_end]
-    right_ref = max(d2_roots) if d2_roots else t_peak
-    return min(55.0, max(16.0, case.t_end * 1.4, right_ref + 0.4 * case.t_end, t_peak + 6.0))
+    t_inc, t_dec = _max_min_of_du(case)
+    tau = 1.0 / case.exp_rate
+    anchor = max(t_peak, t_inc, t_dec)
+    scan_end = min(90.0, max(anchor + 4.5 * tau, case.t_end + 2.5 * tau, 14.0))
+
+    later_roots = [
+        root
+        for root in _roots_by_scan(case.du, 0.0, scan_end, steps=4200)
+        if root > anchor + 1e-3
+    ]
+    if later_roots:
+        anchor = later_roots[-1]
+
+    amplitude = max(0.4, abs(case.du(t_inc)), abs(case.du(t_dec)))
+    threshold = max(0.02, 0.05 * amplitude)
+    tail_buffer = max(1.0, min(2.5, 0.8 * tau))
+
+    t = anchor + 0.25
+    stable_hits = 0
+    while t < scan_end:
+        if abs(case.du(t)) <= threshold:
+            stable_hits += 1
+            if stable_hits >= 3:
+                return min(scan_end, t + tail_buffer)
+        else:
+            stable_hits = 0
+        t += 0.25
+
+    return scan_end
+
+
+def _sample_curve_values(x_limit: float, fn, *, points: int = 261) -> list[float]:
+    if points <= 1:
+        return [float(fn(0.0))]
+
+    values: list[float] = []
+    for idx in range(points):
+        t = x_limit * idx / (points - 1)
+        values.append(float(fn(t)))
+    return values
+
+
+def _tight_axis_range(
+    values: list[float],
+    *,
+    include_zero: bool = False,
+    snap_lower_to_zero: bool = False,
+    pad_ratio: float = 0.08,
+) -> tuple[float, float]:
+    finite_values = [float(value) for value in values if math.isfinite(value)]
+    if not finite_values:
+        return (-1.0, 1.0) if include_zero else (0.0, 1.0)
+
+    v_min = min(finite_values)
+    v_max = max(finite_values)
+    if include_zero:
+        v_min = min(v_min, 0.0)
+        v_max = max(v_max, 0.0)
+
+    span = max(v_max - v_min, 0.6)
+    pad = max(pad_ratio * span, 0.04 * max(1.0, abs(v_min), abs(v_max)))
+    lower = v_min - pad
+    upper = v_max + pad
+
+    if snap_lower_to_zero and v_min >= 0.0 and v_min <= 0.15 * span:
+        lower = 0.0
+
+    if abs(lower) < 1e-12:
+        lower = 0.0
+    if abs(upper) < 1e-12:
+        upper = 0.0
+    return lower, upper
+
+
+def _positive_y_axis_range(values: list[float], *, pad_ratio: float = 0.04) -> tuple[float, float]:
+    finite_values = [float(value) for value in values if math.isfinite(value)]
+    if not finite_values:
+        return 0.0, 1.0
+
+    y_max = max(0.0, max(finite_values))
+    pad = max(0.12, pad_ratio * max(1.0, y_max))
+    return 0.0, y_max + pad
 
 
 def _plot_visual(
@@ -562,42 +637,52 @@ def _plot_visual(
     x_axis: str,
     y_axis: str,
     trace_name: str,
-    x_values: list[float],
-    y_values: list[float],
+    term: str,
+    beschreibung: str,
     x_tick: float,
     y_tick: float,
     x_range: tuple[float, float],
     y_range: tuple[float, float],
-    funktionen: list[dict] | None = None,
 ) -> dict:
     spec: dict = {
-        "type": "plotly",
-        "traces": [
+        "type": "expression-curves",
+        "title": title,
+        "curves": [
             {
-                "kind": "scatter",
+                "term": term,
+                "variable": "t",
                 "mode": "lines",
                 "name": trace_name,
-                "x": x_values,
-                "y": y_values,
+                "description": beschreibung,
                 "line": {"color": "#1f77b4", "width": 2},
             }
         ],
+        "points": 261,
         "layout": {
             "title": title,
             "xaxis": {
                 "title": x_axis,
                 "range": [round(x_range[0], 4), round(x_range[1], 4)],
                 "dtick": round(x_tick, 4),
+                "zeroline": True,
+                "showline": True,
             },
             "yaxis": {
                 "title": y_axis,
                 "range": [round(y_range[0], 4), round(y_range[1], 4)],
                 "dtick": round(y_tick, 4),
+                "zeroline": True,
+                "showline": True,
             },
         },
+        "funktionen": [
+            {
+                "name": trace_name,
+                "term": term,
+                "beschreibung": beschreibung,
+            }
+        ],
     }
-    if funktionen:
-        spec["funktionen"] = funktionen
     return {"type": "plot", "spec": spec}
 
 
@@ -854,17 +939,15 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
             t_inc, t_dec = _max_min_of_du(case)
 
             t_limit = _effective_u_plot_limit(case, t_peak, y_peak)
-            x_values = [round(t_limit * idx / 260.0, 4) for idx in range(261)]
             if case.has_market_exit:
-                y_values = [round(max(0.0, case.u(x)), 6) for x in x_values]
+                y_values = _sample_curve_values(t_limit, lambda t: max(0.0, case.u(t)))
             else:
-                y_values = [round(case.u(x), 6) for x in x_values]
+                y_values = _sample_curve_values(t_limit, case.u)
 
             t_eval = uniform_sig(rng, 1.0, min(case.t_end * 0.85, t_limit * 0.9))
 
-            y_min = min(0.0, min(y_values) * 1.05)
-            y_max = max(y_values) * 1.08
-            y_span = max(1.0, y_max - y_min)
+            y_min, y_max = _positive_y_axis_range(y_values, pad_ratio=0.04)
+            y_span = max(0.6, y_max - y_min)
             x_tick = _nice_step(t_limit)
             y_tick = _nice_step(y_span)
             tol_x = x_tick / 4.0
@@ -921,17 +1004,12 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
                         x_axis="Zeit t in Jahren",
                         y_axis="jährlicher Umsatz u(t)",
                         trace_name="u(t)",
-                        x_values=x_values,
-                        y_values=y_values,
+                        term=_u_term_plain(case),
+                        beschreibung="Umsatzfunktion",
                         x_tick=x_tick,
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
                         y_range=(y_min, y_max),
-                        funktionen=[{
-                            "name": "u(t)",
-                            "term": _u_term_plain(case),
-                            "beschreibung": "Umsatzfunktion",
-                        }],
                     ),
                 )
             )
@@ -963,13 +1041,9 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
             t_limit = _effective_du_plot_limit(case, t_peak)
             t_eval = uniform_sig(rng, 1.0, min(case.t_end * 0.9, t_limit * 0.9))
 
-            x_values = [round(t_limit * idx / 260.0, 4) for idx in range(261)]
-            y_values = [round(case.du(x), 6) for x in x_values]
+            y_values = _sample_curve_values(t_limit, case.du)
 
-            y_abs = max(abs(min(y_values)), abs(max(y_values)))
-            y_pad = max(0.8, 0.15 * y_abs)
-            y_min = min(y_values) - y_pad
-            y_max = max(y_values) + y_pad
+            y_min, y_max = _tight_axis_range(y_values, include_zero=True, pad_ratio=0.04)
             x_tick = _nice_step(t_limit)
             y_tick = _nice_step(y_max - y_min)
             tol_x = x_tick / 4.0
@@ -1008,17 +1082,12 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
                         x_axis="Zeit t in Jahren",
                         y_axis="Änderung u'(t) in GE/Jahr",
                         trace_name="u'(t)",
-                        x_values=x_values,
-                        y_values=y_values,
+                        term=_du_term_plain(case, order=1),
+                        beschreibung="Ableitungsfunktion (Umsatzänderung)",
                         x_tick=x_tick,
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
                         y_range=(y_min, y_max),
-                        funktionen=[{
-                            "name": "u'(t)",
-                            "term": _du_term_plain(case, order=1),
-                            "beschreibung": "Ableitungsfunktion (Umsatzaenderung)",
-                        }],
                     ),
                 )
             )

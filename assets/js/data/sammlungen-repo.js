@@ -1,6 +1,6 @@
 const sammlungCache = new Map();
 const EXPORT_BASE_PATH = "/aufgaben/exports/json";
-const EXPORT_URL_VERSION = "20260613-axis-grid-b";
+const EXPORT_URL_VERSION = "20260614-expression-curves-b";
 
 function buildExportUrl(gebiet, lernbereich, sammlung) {
   const segments = [gebiet, lernbereich, `${sammlung}.json`]

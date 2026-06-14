@@ -1,8 +1,8 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260613-axis-grid-b";
+import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
-import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260613-polynomial-curves";
+import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
 import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
