@@ -7,7 +7,7 @@
 {% for g in site.data.gebiete %}
 {% if g.key == page.gebiet %}{% assign gebiet_info = g %}{% endif %}
 {% endfor %}
-{% assign default_podcast_audio_path = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append: '/medien/podcast.m4a' %}
+{% assign default_podcast_audio_path = '/lernbereiche/' | append: page.gebiet | append: '/' | append: page.lernbereich | append: '/medien/podcast.mp3' %}
 {% assign default_podcast_audio_url = default_podcast_audio_path | relative_url %}
 {% assign default_podcast_audio_file = site.static_files | where: 'path', default_podcast_audio_path | first %}
 {% assign podcast_audio_url = '' %}
