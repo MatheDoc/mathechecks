@@ -1,0 +1,29 @@
+select
+  setting_key,
+  value_integer,
+  value_numeric,
+  description
+from public.system_settings
+where setting_key in (
+  'feed.lock_duration_minutes',
+  'planning.default_activities_per_day',
+  'feed.core_gap_very_tight_hours',
+  'feed.core_gap_tight_hours',
+  'feed.core_gap_normal_hours',
+  'feed.core_gap_relaxed_hours',
+  'feed.core_gap_very_relaxed_hours',
+  'feed.pressure_very_tight_threshold',
+  'feed.pressure_tight_threshold',
+  'feed.pressure_relaxed_threshold',
+  'feed.pressure_very_relaxed_threshold',
+  'feed.weight_start',
+  'feed.weight_training',
+  'feed.weight_recall',
+  'feed.weight_feynman',
+  'feed.weight_kompetenzliste',
+  'feed.retention_activity_base_gap',
+  'proficiency.window_size',
+  'proficiency.recency_decay',
+  'proficiency.retry_penalty'
+)
+order by setting_key;

@@ -423,23 +423,7 @@ Neue session-scoped Projektion, z. B. `session_feed_cursor`:
 
 ### Systemwerte
 
-Mögliche neue `public.system_settings`-Schlüssel:
-
-- `planning.default_activities_per_day`
-- `feed.core_gap_very_tight_hours`
-- `feed.core_gap_tight_hours`
-- `feed.core_gap_normal_hours`
-- `feed.core_gap_relaxed_hours`
-- `feed.core_gap_very_relaxed_hours`
-- `feed.pressure_very_tight_threshold`
-- `feed.pressure_tight_threshold`
-- `feed.pressure_relaxed_threshold`
-- `feed.pressure_very_relaxed_threshold`
-- `feed.lock_duration_minutes`
-- `feed.weight_training`
-- `feed.weight_recall`
-- `feed.weight_feynman`
-- `feed.weight_kompetenzliste`
+Die feedrelevanten `public.system_settings`-Schlüssel sind bereits aktiv. Die kanonische Liste (Lock-Dauer, Default-Tempo, Core-Gap-Profile, Druckschwellen, Lastgewichte, Retention-Abstand) steht in `.github/benutzerverwaltung-mvp.md`, Abschnitt `public.system_settings`. Sie wird hier nicht doppelt geführt.
 
 ## Serverseitige Operationen (Zielbild)
 

@@ -7,7 +7,7 @@ insert into public.system_settings (
 values
   (
     'feed.lock_duration_minutes',
-    60,
+    30,
     null,
     'Wie lange ein aktuelles Feed-Element nach Auswahl als klebriger Cursor gesperrt bleibt.'
   ),
@@ -103,9 +103,27 @@ values
   ),
   (
     'feed.retention_activity_base_gap',
-    6,
+    5,
     null,
     'Basisabstand N für Retention-Flashcards; weitere Wiedereinblendungen wachsen linear als N, 2N, 3N, ...'
+  ),
+  (
+    'proficiency.window_size',
+    3,
+    null,
+    'Quoten: Anzahl der jüngsten Taskscores je Check im Recency-Fenster (N).'
+  ),
+  (
+    'proficiency.recency_decay',
+    null,
+    0.5,
+    'Quoten: Recency-Decay d je Position im Fenster (jüngere Taskscores zählen stärker).'
+  ),
+  (
+    'proficiency.retry_penalty',
+    null,
+    0.5,
+    'Quoten: Versuchsabzug p je zusätzlichem Versuch einer Frage.'
   )
 on conflict (setting_key) do update
 set value_integer = excluded.value_integer,

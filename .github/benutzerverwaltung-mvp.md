@@ -83,7 +83,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - Das Dashboard ergänzt dazu eine eigene Box `Abgeschlossen`, die vollständig bestätigte Lernbereiche auch nach Ende der zugehörigen Session aus bestehenden Check-State-Zeilen und Retention-Bezügen ableitet.
 - Die v2-Grundlage ergänzt additive Planungsparameter an `learning_sessions`, `last_completed_at` an `session_check_state` und user-scoped Retention-Tabellen für Flashcards.
 - Für den ersten Core-Feed-V2-Umbau ist die kleinste additive Richtung derzeit: `start` zunächst in `session_activity_state` belassen, checkbezogene Zeitfenster an `session_check_state` ergänzen und einen separaten session-scoped Feed-Cursor einführen. Retention bleibt dabei außerhalb des serverseitigen Core-Cursors, kann aber im Frontend als separater sichtbarer Kopf auftauchen.
-- Zentrale Systemwerte werden in `public.system_settings` mit Integer- oder Numeric-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Core-Gap für didaktische Folgeaktivitäten, Gewichte der offenen Last, Retention-Abstand, Retention-Einstiegsposition und Default-Tempo.
+- Zentrale Systemwerte werden in `public.system_settings` mit Integer- oder Numeric-Wert und Kurzbeschreibung gepflegt; dazu gehören aktuell Lock-Dauer, Default-Tempo, Core-Gap-Profile, Druckschwellen, Lastgewichte, Retention-Abstand und die Quoten-Parameter.
 
 ## Additive V2-Richtung
 
@@ -215,6 +215,7 @@ Zentrale Stelle für globale Systemwerte, die Frontend und serverseitige Feed-/P
 Aktuelle Schlüssel:
 
 - `planning.default_activities_per_day`
+- `feed.lock_duration_minutes`
 - `feed.weight_start`
 - `feed.weight_training`
 - `feed.weight_recall`
@@ -230,11 +231,13 @@ Aktuelle Schlüssel:
 - `feed.pressure_relaxed_threshold`
 - `feed.pressure_very_relaxed_threshold`
 - `feed.retention_activity_base_gap`
-- `feed.retention_new_item_position`
+- `proficiency.window_size`
+- `proficiency.recency_decay`
+- `proficiency.retry_penalty`
 
-Die `feed.core_gap_*_hours`-Werte definieren die fünf serverseitigen `G`-Profile für neue didaktische Übergänge. Welche Stufe gezogen wird, entscheidet das Druckverhältnis aus `activities_per_day` und `required_activities_per_day`. `available_from` und `overdue_from` liegen dazu bereits in `session_check_state`; `planned_from` und der eigentliche Feed-Cursor bleiben nächste V2-Schritte.
+Die `feed.core_gap_*_hours`-Werte definieren die fünf serverseitigen `G`-Profile für neue didaktische Übergänge. Welche Stufe gezogen wird, entscheidet das Druckverhältnis aus `activities_per_day` und `required_activities_per_day`; `available_from`, `planned_from` und `overdue_from` liegen materialisiert in `session_check_state` bzw. `session_activity_state`, der Feed-Cursor in `session_feed_cursor`.
 
-`feed.retention_activity_base_gap` steuert für Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstände `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden.
+`feed.retention_activity_base_gap` steuert für Retention-Scopes sowohl den ersten serverseitigen Due-Abstand `N` als auch die weiteren linearen Wiederkehr-Abstände `2N`, `3N`, `4N`, ... nach abgeschlossenen Retention-Runden. Die `proficiency.*`-Werte steuern das Quoten-Read-Model (Spezifikation in `.github/quoten.md`).
 
 ### 4b. `public.user_feed_activity_counters`
 
