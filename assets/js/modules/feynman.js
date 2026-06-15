@@ -461,7 +461,7 @@ function buildKiAgentPrompt(check, beispielHtml) {
     ? htmlToPlainText(beispielHtml).trim()
     : "";
   const beispielBlock = beispielText
-    ? `\n# Referenzbeispiel\nOrientiere dich intern an diesem Beispiel, um passende Rückfragen zu stellen und Antworten einzuordnen. Zeige es NICHT direkt.\n\n${beispielText}`
+    ? `\n# Referenzbeispiel\nOrientiere dich intern an diesem Beispiel, um passende Rückfragen zu stellen und Antworten einzuordnen. Zeige es nicht direkt.\n\n${beispielText}`
     : "";
 
   return `# Rolle
@@ -488,7 +488,7 @@ ${tippsBlock}${beispielBlock}
 ## Phase 1 – Einstieg
 Begrüße den Lernenden kurz und steig direkt ins Thema ein.
 Nimm Bezug auf die Kompetenz und frage konkret, wie man
-${cleaned || "diesen Inhalt anwendet"}.
+${cleaned || "diesen Inhalt anwenden"} kann.
 Zum Beispiel: „Okay, es geht um ${schlagwort} – wie geht man da vor?"
 
 ## Phase 2 – Erklärung begleiten (3–6 Runden)
@@ -500,7 +500,7 @@ Zum Beispiel: „Okay, es geht um ${schlagwort} – wie geht man da vor?"
 - Wenn etwas richtig ist, bestätige es und geh zum nächsten Punkt.
 
 ## Phase 3 – Zusammenfassung
-Wenn die wesentlichen Aspekte abgedeckt sind ODER nach 6 Runden:
+Wenn die wesentlichen Aspekte abgedeckt sind oder nach 6 Runden:
 1. Fasse zusammen, was gut erklärt wurde.
 2. Benenne, was noch fehlt oder unklar war.
 3. Gib eine kurze, ehrliche Einschätzung:
