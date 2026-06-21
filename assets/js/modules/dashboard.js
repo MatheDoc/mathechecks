@@ -137,7 +137,7 @@ const GREETING_PROGRESS_VARIANTS = {
   sessionSmooth: [
     "Alles läuft, {name}. Einfach weitermachen.",
     "Gut im Plan, {name}. Weiter so.",
-    "Hallo {name}, solide Arbeit.",
+    "Respekt {name}, du bist gut in der Zeit.",
   ],
   sessionDone: [
     "Glückwunsch {name}, Session abgeschlossen.",
@@ -158,7 +158,6 @@ const GREETING_BUSY_YESTERDAY_THRESHOLD = 5;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 const GREETING_ROTATION_STEP_HOURS = 3;
 const GREETING_STORAGE_PREFIX = "mathechecks:greeting-first-seen";
-const GREETING_STREAK_FIRST_SELECTION_KEY = "streak-first";
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -629,6 +628,15 @@ function getGreetingFirstSeenAt(context, todayDateValue, date = new Date()) {
   return readGreetingStorageState(context, todayDateValue, date).firstSeenAt;
 }
 
+function getUsedGreetingCategoryKeys(context, todayDateValue, date) {
+  const state = readGreetingStorageState(context, todayDateValue, date);
+  const keys = new Set();
+  for (const sel of Object.values(state.selections || {})) {
+    if (sel?.key) keys.add(sel.key);
+  }
+  return keys;
+}
+
 function getGreetingStepIndex(context, todayDateValue, date = new Date()) {
   const now = date instanceof Date && !Number.isNaN(date.getTime()) ? new Date(date) : new Date();
   const firstSeenAt = getGreetingFirstSeenAt(context, todayDateValue, now);
@@ -707,6 +715,9 @@ function buildGreetingSnapshot(context, date = new Date()) {
     hasActiveSession: Boolean(context?.activeSession),
     progress,
     targetAssessment,
+    hasOverdueChecks: (Array.isArray(context?.sessionCheckStates) ? context.sessionCheckStates : []).some(
+      (row) => String(row?.current_step_status || "").trim() === "due" && row?.overdue_from && new Date(row.overdue_from).getTime() <= now.getTime(),
+    ),
   };
 }
 
@@ -768,6 +779,7 @@ function resolveGreetingProgressCandidate(snapshot) {
     && snapshot.progress
     && snapshot.progress.remainingStepCount > 0
     && snapshot.progress.percent >= GREETING_CONFIDENT_PROGRESS_PERCENT
+    && !snapshot.hasOverdueChecks
   ) {
     return buildGreetingCandidate("sessionSmooth", GREETING_PROGRESS_VARIANTS.sessionSmooth);
   }
@@ -786,71 +798,6 @@ function resolveGreetingFallbackCandidate() {
   return buildGreetingCandidate("fallback", GREETING_FALLBACK_VARIANTS);
 }
 
-function getPostStreakGreetingSelectionKey(stepIndex) {
-  return `post-streak-${Math.max(1, Number(stepIndex) || 1)}`;
-}
-
-function resolveStreakFirstRandomGreeting(context, snapshot, stepIndex) {
-  if (stepIndex !== 0) return null;
-
-  const storedSelection = getStoredGreetingSelection(
-    context,
-    snapshot.todayDateValue,
-    GREETING_STREAK_FIRST_SELECTION_KEY,
-    snapshot.now,
-  );
-  if (storedSelection) {
-    return storedSelection;
-  }
-
-  const streakCandidate = resolveGreetingStreakCandidate(snapshot);
-  if (!streakCandidate) {
-    return null;
-  }
-
-  const nextSelection = createRandomGreetingSelection(streakCandidate.key, streakCandidate.variants);
-  return storeGreetingSelection(
-    context,
-    snapshot.todayDateValue,
-    GREETING_STREAK_FIRST_SELECTION_KEY,
-    nextSelection,
-    snapshot.now,
-  );
-}
-
-function resolvePostStreakRandomGreeting(context, snapshot, stepIndex) {
-  if (stepIndex <= 0) return null;
-
-  const streakFirstSelection = getStoredGreetingSelection(
-    context,
-    snapshot.todayDateValue,
-    GREETING_STREAK_FIRST_SELECTION_KEY,
-    snapshot.now,
-  );
-  if (!streakFirstSelection) {
-    return null;
-  }
-
-  const selectionKey = getPostStreakGreetingSelectionKey(stepIndex);
-  const storedSelection = getStoredGreetingSelection(context, snapshot.todayDateValue, selectionKey, snapshot.now);
-  if (storedSelection) {
-    return storedSelection;
-  }
-
-  const candidatePools = [
-    resolveGreetingProgressCandidate(snapshot),
-    resolveGreetingTimeCandidate(snapshot),
-    resolveGreetingFallbackCandidate(),
-  ].filter(Boolean);
-  if (!candidatePools.length) {
-    return null;
-  }
-
-  const pickedPool = candidatePools[pickRandomInteger(candidatePools.length)];
-  const nextSelection = createRandomGreetingSelection(pickedPool.key, pickedPool.variants);
-  return storeGreetingSelection(context, snapshot.todayDateValue, selectionKey, nextSelection, snapshot.now);
-}
-
 function resolveGreetingEvent(context, snapshot) {
   const streakCandidate = resolveGreetingStreakCandidate(snapshot);
   if (streakCandidate) {
@@ -863,18 +810,28 @@ function resolveGreetingEvent(context, snapshot) {
     : null;
 }
 
-function resolveGreetingProgress(context, snapshot) {
-  const candidate = resolveGreetingProgressCandidate(snapshot);
-  return candidate
-    ? buildGreetingSelection(context, snapshot, candidate.key, candidate.variants)
-    : null;
-}
+function resolveGreetingNonEvent(context, snapshot) {
+  const stepIndex = getGreetingStepIndex(context, snapshot.todayDateValue, snapshot.now);
+  const selectionKey = `nonEvent-step-${stepIndex}`;
 
-function resolveGreetingTime(context, snapshot) {
-  const candidate = resolveGreetingTimeCandidate(snapshot);
-  return candidate
-    ? buildGreetingSelection(context, snapshot, candidate.key, candidate.variants)
-    : null;
+  const stored = getStoredGreetingSelection(context, snapshot.todayDateValue, selectionKey, snapshot.now);
+  if (stored) return stored;
+
+  const candidates = [
+    resolveGreetingProgressCandidate(snapshot),
+    resolveGreetingTimeCandidate(snapshot),
+    resolveGreetingFallbackCandidate(),
+  ].filter(Boolean);
+
+  if (!candidates.length) return null;
+
+  const usedKeys = getUsedGreetingCategoryKeys(context, snapshot.todayDateValue, snapshot.now);
+  const unused = candidates.filter((c) => !usedKeys.has(c.key));
+  const pool = unused.length > 0 ? unused : candidates;
+
+  const picked = pool[pickRandomInteger(pool.length)];
+  const selection = createRandomGreetingSelection(picked.key, picked.variants);
+  return storeGreetingSelection(context, snapshot.todayDateValue, selectionKey, selection, snapshot.now);
 }
 
 function getNextGreetingTimeBoundary(date = new Date()) {
@@ -972,12 +929,8 @@ function updateGreetingHeading(context, date = new Date()) {
 
   const displayName = getGreetingDisplayName(context?.authState?.user);
   const snapshot = buildGreetingSnapshot(context, date);
-  const stepIndex = getGreetingStepIndex(context, snapshot.todayDateValue, snapshot.now);
-  const greeting = resolveStreakFirstRandomGreeting(context, snapshot, stepIndex)
-    || resolvePostStreakRandomGreeting(context, snapshot, stepIndex)
-    || resolveGreetingEvent(context, snapshot)
-    || resolveGreetingProgress(context, snapshot)
-    || resolveGreetingTime(context, snapshot)
+  const greeting = resolveGreetingEvent(context, snapshot)
+    || resolveGreetingNonEvent(context, snapshot)
     || buildGreetingSelection(context, snapshot, "fallback", GREETING_FALLBACK_VARIANTS);
 
   headingNode.innerHTML = renderGreetingTemplate(greeting.template, displayName);
@@ -1695,8 +1648,12 @@ function applyProficiencyWorklist(context, overview = null) {
     titleRow.appendChild(nameSpan);
 
     const lernbereichSpan = document.createElement("span");
-    lernbereichSpan.className = "action-badge dashboard-feed__lernbereich-badge dashboard-worklist__lernbereich";
+    lernbereichSpan.className = "action-badge dashboard-feed__lernbereich-badge";
     lernbereichSpan.textContent = lernbereichName;
+
+    const metaRow = document.createElement("div");
+    metaRow.className = "action-badges dashboard-panel__action-meta";
+    metaRow.appendChild(lernbereichSpan);
 
     // SVG-Fortschrittsring
     const ringSize = 44;
@@ -1732,7 +1689,7 @@ function applyProficiencyWorklist(context, overview = null) {
     ringSvg.appendChild(ringFill);
 
     const ringWrap = document.createElement("span");
-    ringWrap.className = "dashboard-worklist__ring-wrap";
+    ringWrap.className = "dashboard-worklist__ring-wrap dashboard-panel__action-status";
     ringWrap.setAttribute("aria-label", `${ringLabel} Erfolgsquote`);
     const ringText = document.createElement("span");
     ringText.className = "dashboard-worklist__ring-text";
@@ -1743,7 +1700,7 @@ function applyProficiencyWorklist(context, overview = null) {
     const body = document.createElement("span");
     body.className = "action-body";
     body.appendChild(titleRow);
-    if (lernbereichName) body.appendChild(lernbereichSpan);
+    if (lernbereichName) body.appendChild(metaRow);
 
     button.appendChild(body);
     button.appendChild(ringWrap);
@@ -2030,6 +1987,71 @@ function buildPrimaryFeedSubtitleText(item) {
   return "";
 }
 
+function buildDashboardClockStatusMarkup(label, tone = "available") {
+  const accessibleLabel = String(label || "").trim();
+  if (!accessibleLabel) return "";
+
+  const normalizedTone = ["available", "due", "overdue"].includes(String(tone || "").trim())
+    ? String(tone || "").trim()
+    : "available";
+
+  return `
+    <span class="dashboard-panel__action-status dashboard-panel__action-status--icon" data-tone="${escapeHtml(normalizedTone)}" role="img" aria-label="${escapeHtml(accessibleLabel)}" title="${escapeHtml(accessibleLabel)}">
+      <span class="dashboard-panel__status-clock" aria-hidden="true"></span>
+    </span>
+  `;
+}
+
+function buildDashboardCountStatusMarkup(value, accessibleLabel) {
+  const count = Math.max(0, Number(value) || 0);
+  const compactValue = formatActivityCount(count);
+  const description = String(accessibleLabel || "").trim();
+
+  return `
+    <span class="dashboard-panel__action-status dashboard-panel__action-status--count" aria-label="${escapeHtml(description)}" title="${escapeHtml(description)}">
+      <span class="dashboard-panel__action-status-value">${escapeHtml(compactValue)}</span>
+    </span>
+  `;
+}
+
+function buildDashboardProgressStatusMarkup(progress = null) {
+  const totalStepCount = Math.max(0, Number(progress?.totalStepCount) || 0);
+  if (totalStepCount <= 0) return "";
+
+  const completedStepCount = Math.max(0, Math.min(totalStepCount, Number(progress?.completedStepCount) || 0));
+  const percent = Math.max(0, Math.min(100, Number(progress?.percent) || 0));
+  const compactLabel = `${formatActivityCount(completedStepCount)}/${formatActivityCount(totalStepCount)}`;
+  const accessibleLabel = `${completedStepCount} von ${totalStepCount} Session-Schritten abgeschlossen`;
+
+  return `
+    <span class="dashboard-panel__action-status dashboard-panel__action-status--progress" aria-label="${escapeHtml(accessibleLabel)}" title="${escapeHtml(accessibleLabel)}">
+      <span class="dashboard-panel__action-status-value">${escapeHtml(compactLabel)}</span>
+      <span class="dashboard-panel__action-status-track" aria-hidden="true">
+        <span class="dashboard-panel__action-status-fill" style="width:${percent}%"></span>
+      </span>
+    </span>
+  `;
+}
+
+function buildDashboardLernbereichStatusMarkup(entry) {
+  const statusKind = String(entry?.statusKind || "").trim();
+
+  if (statusKind === "session-progress") {
+    return buildDashboardProgressStatusMarkup(entry?.sessionProgress || null);
+  }
+
+  if (statusKind === "flashcard-count") {
+    const completedFlashcardCount = Math.max(0, Number(entry?.completedFlashcardCount) || 0);
+    const durchgangLabel = completedFlashcardCount === 1 ? "Durchgang" : "Durchgänge";
+    return buildDashboardCountStatusMarkup(
+      completedFlashcardCount,
+      `${completedFlashcardCount} abgeschlossene Flashcard-${durchgangLabel}`,
+    );
+  }
+
+  return "";
+}
+
 function buildPrimaryFeedStatusMarkup(item) {
   const statusBadge = (Array.isArray(item?.badges) ? item.badges : []).find((badge) => {
     const badgeType = String(badge?.type || "").trim();
@@ -2037,7 +2059,7 @@ function buildPrimaryFeedStatusMarkup(item) {
   });
   if (!statusBadge?.label) return "";
 
-  return createBadgeMarkup(String(statusBadge.label).toLowerCase(), statusBadge.type || "");
+  return buildDashboardClockStatusMarkup(String(statusBadge.label), statusBadge.type || "available");
 }
 
 function createFeedCardData({ type, href, subtitleText, titleHtml, primaryTitleHtml, primaryTitleText, statusMarkup, descText, badges }) {
@@ -2180,10 +2202,70 @@ async function loadActiveSessionCompletedLernbereiche(context) {
   return completedLernbereiche;
 }
 
+async function loadFlashcardCompletionStatsByLernbereich(context) {
+  if (!context.supabase) return new Map();
+
+  const statsBySlug = new Map();
+  const pageSize = 1000;
+  let fromIndex = 0;
+
+  while (true) {
+    const { data, error } = await context.supabase
+      .from("user_activity_events")
+      .select("lernbereich_slug, created_at")
+      .eq("activity_type", "flashcards")
+      .not("lernbereich_slug", "is", null)
+      .order("created_at", { ascending: false })
+      .range(fromIndex, fromIndex + pageSize - 1);
+
+    if (error) throw error;
+
+    const rows = Array.isArray(data) ? data : [];
+    rows.forEach((row) => {
+      const slug = String(row?.lernbereich_slug || "").trim();
+      const createdAt = String(row?.created_at || "").trim();
+      if (!slug) return;
+
+      const current = statsBySlug.get(slug) || { count: 0, lastCompletedAt: "" };
+      current.count += 1;
+      if (createdAt && createdAt.localeCompare(current.lastCompletedAt) > 0) {
+        current.lastCompletedAt = createdAt;
+      }
+      statsBySlug.set(slug, current);
+    });
+
+    if (rows.length < pageSize) break;
+    fromIndex += pageSize;
+  }
+
+  return statsBySlug;
+}
+
+function applyFlashcardCompletionStats(entries, statsBySlug) {
+  const sourceEntries = Array.isArray(entries) ? entries : [];
+
+  return sourceEntries.map((entry) => {
+    const slug = String(entry?.lernbereichId || "").trim();
+    const stats = slug ? statsBySlug.get(slug) : null;
+    const existingLastCompletedAt = String(entry?.lastCompletedAt || "").trim();
+    const statsLastCompletedAt = String(stats?.lastCompletedAt || "").trim();
+
+    return {
+      ...entry,
+      completedFlashcardCount: Math.max(0, Number(stats?.count) || 0),
+      lastCompletedAt: statsLastCompletedAt || existingLastCompletedAt,
+      statusKind: "flashcard-count",
+    };
+  });
+}
+
 async function loadRetentionCompletedLernbereiche(context) {
   if (!context.supabase) return [];
 
-  const [{ data: scopeRows, error: scopeError }, { data: exclusionRows, error: exclusionError }] = await Promise.all([
+  const [
+    { data: scopeRows, error: scopeError },
+    { data: exclusionRows, error: exclusionError },
+  ] = await Promise.all([
     context.supabase
       .from("user_retention_scopes")
       .select("lernbereich_slug, updated_at")
@@ -2238,13 +2320,17 @@ async function loadRetentionCompletedLernbereiche(context) {
 }
 
 async function loadCompletedLernbereiche(context) {
-  const [activeEntries, retentionEntries] = await Promise.all([
+  const [activeEntries, retentionEntries, flashcardCompletionStatsBySlug] = await Promise.all([
     loadActiveSessionCompletedLernbereiche(context),
     loadRetentionCompletedLernbereiche(context),
+    loadFlashcardCompletionStatsByLernbereich(context),
   ]);
 
+  const decoratedActiveEntries = applyFlashcardCompletionStats(activeEntries, flashcardCompletionStatsBySlug);
+  const decoratedRetentionEntries = applyFlashcardCompletionStats(retentionEntries, flashcardCompletionStatsBySlug);
+
   const latestByLernbereichId = new Map();
-  [...activeEntries, ...retentionEntries].forEach((entry) => {
+  [...decoratedActiveEntries, ...decoratedRetentionEntries].forEach((entry) => {
     const key = String(entry?.lernbereichId || "").trim();
     if (!key) return;
 
@@ -2276,16 +2362,13 @@ function buildActiveLernbereichSummary(entries, emptyMessage) {
 
 function renderDashboardLernbereichCard(entry) {
   const href = buildLernbereichStartHref(entry);
-  const selectedCount = Math.max(0, Number(entry?.checkCount) || 0);
-  const totalCheckCount = Math.max(selectedCount, Number(entry?.totalCheckCount) || selectedCount || 0);
-  const normalizedTotalCount = Math.max(totalCheckCount, selectedCount, 1);
-  const progressLabel = `${selectedCount}/${normalizedTotalCount}`;
   const linkAttributes = href
     ? ` data-action-href="${escapeHtml(href)}" role="link" tabindex="0"`
     : "";
   const badgeMarkup = entry?.groupName
-    ? `<div class="action-badges">${createBadgeMarkup(entry.groupName)}</div>`
+    ? `<div class="action-badges dashboard-panel__action-meta">${createBadgeMarkup(entry.groupName)}</div>`
     : "";
+  const statusMarkup = buildDashboardLernbereichStatusMarkup(entry);
 
   return `
     <li class="action-card dashboard-panel__action-card" data-type="dashboard"${linkAttributes}>
@@ -2295,6 +2378,7 @@ function renderDashboardLernbereichCard(entry) {
         </div>
         ${badgeMarkup}
       </div>
+      ${statusMarkup}
     </li>
   `;
 }
@@ -2579,21 +2663,58 @@ function updatePlanProgress(context) {
   setPlanProgressFill(fillNode, progress.percent);
 }
 
+function buildSessionLernbereichProgressData(selectedCheckIds, checkStateById, startState) {
+  const normalizedCheckIds = Array.isArray(selectedCheckIds)
+    ? selectedCheckIds.map((checkId) => String(checkId || "").trim()).filter(Boolean)
+    : [];
+  const totalStepCount = 1 + (normalizedCheckIds.length * CHECK_PIPELINE_STEP_COUNT);
+  if (totalStepCount <= 0) return null;
+
+  const remainingCheckStepCount = normalizedCheckIds.reduce((sum, checkId) => {
+    return sum + getRemainingCheckStepCount(checkStateById.get(checkId));
+  }, 0);
+  const startStepCompleted = String(startState?.status || "").trim() === "completed";
+  const remainingStepCount = Math.max(
+    0,
+    Math.min(totalStepCount, remainingCheckStepCount + (startStepCompleted ? 0 : 1)),
+  );
+  const completedStepCount = Math.max(0, totalStepCount - remainingStepCount);
+  const percent = Math.round((completedStepCount / totalStepCount) * 100);
+
+  return {
+    totalStepCount,
+    completedStepCount,
+    remainingStepCount,
+    percent,
+  };
+}
+
 function collectActiveSessionLernbereiche(context) {
   const entries = [];
+  const checkStateById = buildSessionCheckStateById(context);
+  const startStateByLernbereichId = buildSessionStartStateByLernbereichId(context);
 
   context.lernbereiche.forEach((group) => {
     group.items.forEach((lb) => {
       const lbState = context.state[lb.id];
       if (!lbState?.active) return;
 
+      const selectedChecks = lb.checks.filter((check) => isCheckSelected(lbState, check.id));
+      const selectedCheckIds = selectedChecks.map((check) => check.id);
+
       entries.push({
         lernbereichId: lb.id,
         lernbereichName: lb.name,
         gebietKey: lb.gebietKey,
         groupName: group.group,
-        checkCount: countSelectedChecks(lb, lbState),
+        checkCount: selectedCheckIds.length,
         totalCheckCount: Array.isArray(lb.checks) ? lb.checks.length : 0,
+        statusKind: "session-progress",
+        sessionProgress: buildSessionLernbereichProgressData(
+          selectedCheckIds,
+          checkStateById,
+          startStateByLernbereichId.get(lb.id),
+        ),
       });
     });
   });
@@ -2885,7 +3006,7 @@ async function loadPersistedState(supabase, lernbereiche) {
       .eq("session_id", activeSession.id),
     supabase
       .from("session_check_state")
-      .select("check_id, current_step_key, current_step_status")
+      .select("check_id, current_step_key, current_step_status, overdue_from")
       .eq("session_id", activeSession.id),
     supabase
       .from("session_activity_state")

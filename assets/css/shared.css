@@ -1194,9 +1194,6 @@ body.page-dashboard .bento {
 }
 
 .action-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
   font-size: 0.68rem;
   line-height: 1.1;
   font-weight: 600;
@@ -1207,6 +1204,9 @@ body.page-dashboard .bento {
   color: var(--text-dim);
   white-space: nowrap;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
 }
 
 .action-badge[class*="type-"] {
@@ -1626,23 +1626,7 @@ body.page-module .shell {
   overflow: hidden;
 }
 
-/* Feed Sidebar */
-.feed-sidebar {
-  width: 150px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  position: sticky;
-  top: var(--module-sticky-top);
-  display: flex;
-  flex-direction: column;
-  border-right: 1px solid var(--border);
-  background: var(--bg);
-  height: calc(100dvh - var(--module-sticky-top));
-  overflow-x: hidden;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  z-index: 60;
-}
+
 
 .sidebar-body {
   height: auto;
@@ -5225,57 +5209,6 @@ html.light .roulette-widget__event {
   background: var(--surface-hi);
 }
 
-.feed-sidebar .action-list {
-  width: 100%;
-  min-width: 0;
-  gap: 8px;
-}
-
-.feed-sidebar .action-card {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 10px 12px;
-  gap: 10px;
-  min-height: 56px;
-}
-
-.feed-sidebar .action-card:hover {
-  transform: none;
-}
-
-.feed-sidebar .action-body {
-  flex: 1 1 auto;
-  width: 100%;
-  min-width: 0;
-}
-
-.feed-sidebar .action-title {
-  font-size: .8rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.feed-sidebar .action-desc {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.feed-sidebar .action-badges {
-  flex-wrap: nowrap;
-  overflow: hidden;
-}
-
-.feed-sidebar .action-badge {
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
 
 .mod-main {
   flex: 1;

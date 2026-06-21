@@ -2,6 +2,7 @@ body.page-dashboard {
   --dashboard-accent: color-mix(in srgb, var(--blue) 60%, var(--teal) 40%);
   --dashboard-accent-soft: color-mix(in srgb, var(--blue-soft) 72%, var(--teal-soft) 28%);
   --dashboard-border: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
+  --dashboard-action-status-size: 44px;
   --activity-map-hover-border: color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
   --activity-map-hover-ring: color-mix(in srgb, var(--dashboard-accent) 16%, transparent);
   --dashboard-panel-bg: linear-gradient(
@@ -155,8 +156,136 @@ body.page-dashboard .dashboard-panel__action-name {
   flex: 1 1 auto;
 }
 
-body.page-dashboard .dashboard-worklist__lernbereich {
-  font-size: 0.72rem;
+body.page-dashboard .dashboard-panel__action-meta {
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+body.page-dashboard .dashboard-panel__action-meta:empty {
+  display: none;
+}
+
+body.page-dashboard .dashboard-panel__action-status {
+  --dashboard-status-accent: var(--action-accent, var(--dashboard-accent));
+  flex: 0 0 auto;
+  align-self: center;
+  display: grid;
+  width: var(--dashboard-action-status-size);
+  min-width: var(--dashboard-action-status-size);
+  height: var(--dashboard-action-status-size);
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+body.page-dashboard .dashboard-panel__action-status--icon {
+  width: var(--dashboard-action-status-size);
+  min-width: var(--dashboard-action-status-size);
+  height: var(--dashboard-action-status-size);
+  padding: 0;
+}
+
+body.page-dashboard .dashboard-panel__action-status--count {
+  width: var(--dashboard-action-status-size);
+  min-width: var(--dashboard-action-status-size);
+  height: var(--dashboard-action-status-size);
+  padding: 0;
+}
+
+body.page-dashboard .dashboard-panel__action-status--progress {
+  width: var(--dashboard-action-status-size);
+  min-width: var(--dashboard-action-status-size);
+  height: var(--dashboard-action-status-size);
+  padding: 0;
+  justify-items: center;
+}
+
+body.page-dashboard .dashboard-panel__action-status[data-tone="available"] {
+  --dashboard-status-accent: color-mix(in srgb, var(--action-accent, var(--dashboard-accent)) 72%, var(--teal) 28%);
+}
+
+body.page-dashboard .dashboard-panel__action-status[data-tone="due"] {
+  --dashboard-status-accent: var(--amber);
+}
+
+body.page-dashboard .dashboard-panel__action-status[data-tone="overdue"] {
+  --dashboard-status-accent: var(--rose);
+}
+
+body.page-dashboard .dashboard-panel__action-status-value {
+  color: var(--dashboard-status-accent);
+  font-size: 0.92rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+body.page-dashboard .dashboard-panel__action-status--count .dashboard-panel__action-status-value {
+  font-size: 1.08rem;
+}
+
+body.page-dashboard .dashboard-panel__action-status--progress .dashboard-panel__action-status-value {
+  font-size: 0.82rem;
+}
+
+body.page-dashboard .dashboard-panel__action-status-track {
+  display: block;
+  width: calc(var(--dashboard-action-status-size) - 12px);
+  max-width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--dashboard-status-accent) 12%, rgba(255, 255, 255, 0.04));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dashboard-status-accent) 16%, var(--border));
+}
+
+body.page-dashboard .dashboard-panel__action-status-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--dashboard-status-accent) 76%, white 24%) 0%,
+    color-mix(in srgb, var(--dashboard-status-accent) 82%, var(--teal) 18%) 100%
+  );
+}
+
+body.page-dashboard .dashboard-panel__status-clock {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  color: var(--dashboard-status-accent);
+}
+
+body.page-dashboard .dashboard-panel__status-clock::before,
+body.page-dashboard .dashboard-panel__status-clock::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2px;
+  background: currentColor;
+  border-radius: 999px;
+}
+
+body.page-dashboard .dashboard-panel__status-clock::before {
+  height: 7px;
+  transform: translate(-50%, -100%);
+}
+
+body.page-dashboard .dashboard-panel__status-clock::after {
+  height: 8px;
+  transform-origin: center 1px;
+  transform: translate(-50%, -50%) rotate(55deg);
 }
 
 /* Fortschrittsring */
@@ -167,8 +296,8 @@ body.page-dashboard .dashboard-worklist__ring-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: var(--dashboard-action-status-size);
+  height: var(--dashboard-action-status-size);
 }
 
 body.page-dashboard .dashboard-worklist__ring {
@@ -216,73 +345,13 @@ body.page-dashboard .dashboard-panel__summary {
 
 body.page-dashboard .dashboard-feed__header-status {
   display: flex;
+  align-self: center;
   align-items: center;
-  justify-self: start;
-  flex: 0 0 auto;
-  margin-inline-end: 0;
+  justify-content: flex-end;
+  min-width: var(--dashboard-action-status-size);
 }
 
 body.page-dashboard .dashboard-feed__header-status[hidden] {
-  display: none;
-}
-
-body.page-dashboard .dashboard-feed__header-status .action-badge {
-  min-height: 24px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
-  background: color-mix(in srgb, var(--dashboard-accent) 10%, transparent);
-  color: var(--text-dim);
-  font-size: 0.74rem;
-  font-weight: 700;
-  line-height: 1;
-  box-shadow: none;
-  text-transform: lowercase;
-}
-
-body.page-dashboard .dashboard-feed__header-status .action-badge.type-available {
-  border-color: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
-  background: color-mix(in srgb, var(--dashboard-accent) 10%, transparent);
-  color: var(--dashboard-accent);
-}
-
-body.page-dashboard .dashboard-feed__header-status .action-badge.type-due {
-  background: color-mix(in srgb, var(--amber) 14%, transparent);
-  border-color: color-mix(in srgb, var(--amber) 24%, var(--border));
-  color: var(--amber);
-}
-
-body.page-dashboard .dashboard-feed__header-status .action-badge.type-overdue {
-  background: color-mix(in srgb, var(--rose) 12%, transparent);
-  border-color: color-mix(in srgb, var(--rose) 24%, var(--border));
-  color: var(--rose);
-}
-
-body.page-dashboard .dashboard-feed__primary-head {
-  display: block;
-  min-width: 0;
-  max-width: 100%;
-}
-
-body.page-dashboard .dashboard-feed__primary-title {
-  width: 100%;
-  max-width: 100%;
-}
-
-body.page-dashboard .dashboard-feed__meta {
-  gap: 8px;
-  align-items: center;
-}
-
-body.page-dashboard .dashboard-feed__lernbereich-badge {
-  align-self: start;
-  width: fit-content;
-  max-width: 100%;
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-body.page-dashboard .dashboard-feed__lernbereich-badge[hidden] {
   display: none;
 }
 
@@ -1205,6 +1274,10 @@ html.light .lb-field__input {
     --dcc-shell-pad-bottom: 14px;
   }
 
+  body.page-dashboard {
+    --dashboard-action-status-size: 40px;
+  }
+
   body.page-dashboard .dashboard-panel__body {
     gap: 12px;
   }
@@ -1212,6 +1285,18 @@ html.light .lb-field__input {
   body.page-dashboard .dashboard-panel .action-card {
     gap: 10px;
     padding: 14px;
+  }
+
+  body.page-dashboard .dashboard-panel__action-status-value {
+    font-size: 0.84rem;
+  }
+
+  body.page-dashboard .dashboard-panel__action-status--count .dashboard-panel__action-status-value {
+    font-size: 0.98rem;
+  }
+
+  body.page-dashboard .dashboard-panel__action-status--progress .dashboard-panel__action-status-value {
+    font-size: 0.74rem;
   }
 
   body.page-dashboard .dashboard-activity__metrics {

@@ -3,7 +3,8 @@ import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expre
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";
 const FLASHCARDS_ROUND_LIMIT = 20;
@@ -31,6 +32,8 @@ const state = {
         preferredCheckId: "",
         roundCards: [],
         currentIndex: 0,
+        canPrepare: false,
+        completionControl: null,
         statusMessage: "",
         statusTone: "neutral",
     },
@@ -389,6 +392,36 @@ function updateCounterAndMessage() {
     messageEl.classList.remove("is-error", "is-success");
 }
 
+function syncFreeCompletionControl() {
+    state.free.completionControl?.setReady(Boolean(state.free.canPrepare));
+}
+
+function openFreeFlashcardsCompletionPopup() {
+    if (!state.free.canPrepare) return;
+
+    showTaskCompletionPopup({
+        mode: "flashcards",
+        showQuote: false,
+        onRepeat: () => {
+            void startFreeRound({ preferredCheckId: state.free.preferredCheckId });
+        },
+        onDashboard: () => window.location.assign("/dashboard.html"),
+    });
+}
+
+function attachFlashcardsFreeCompletionControl() {
+    if (state.feed.active) return;
+
+    state.free.completionControl = attachFreeCompletionControl(state.root, {
+        cardSelector: "[data-flashcards-app]",
+        stepLabel: "Flashcards",
+        onComplete: () => {
+            openFreeFlashcardsCompletionPopup();
+        },
+    });
+    syncFreeCompletionControl();
+}
+
 async function renderCurrentCard(card, options = {}) {
     const { taskIndex = null } = options;
 
@@ -477,8 +510,10 @@ async function startFreeRound({ preferredCheckId = state.free.preferredCheckId, 
     state.free.preferredCheckId = String(preferredCheckId || "").trim();
     state.free.roundCards = buildFreeRoundCards(state.free.preferredCheckId);
     state.free.currentIndex = 0;
+    state.free.canPrepare = false;
     state.free.statusMessage = statusMessage;
     state.free.statusTone = statusTone;
+    syncFreeCompletionControl();
 
     const firstRoundCard = state.free.roundCards[0] || null;
     if (!firstRoundCard) {
@@ -804,11 +839,11 @@ async function rateCurrentCard(grade) {
         },
     });
 
-    await startFreeRound({
-        preferredCheckId: state.free.preferredCheckId,
-        statusMessage: `Stapel mit ${currentRoundSize} Karten abgeschlossen. Neuer Durchgang gestartet.`,
-        statusTone: "success",
-    });
+    state.free.canPrepare = true;
+    state.free.statusMessage = "";
+    state.free.statusTone = "neutral";
+    syncFreeCompletionControl();
+    updateCounterAndMessage();
 }
 
 function buildCards(checks) {
@@ -897,6 +932,8 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
         preferredCheckId: String(preferredCheckId || "").trim(),
         roundCards: [],
         currentIndex: 0,
+        canPrepare: false,
+        completionControl: null,
         statusMessage: "",
         statusTone: "neutral",
     };
@@ -950,6 +987,7 @@ export async function initFlashcardsModule({ root, lernbereich, preferredCheckId
 
     bindEvents();
     attachFlashcardsFeedShell(activityContext);
+    attachFlashcardsFreeCompletionControl();
 
     if (!state.hasResizeBinding) {
         const onResize = () => syncCardViewportHeight();

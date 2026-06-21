@@ -540,7 +540,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       if (recallIdle) recallIdle.hidden = false;
     }
 
-    function ensureFreeCompletionControl() {
+    function ensureFreeCompletionControl(ready = true) {
       if (!isFreeMode) return;
       if (!freeCompletionControl) {
         freeCompletionControl = attachFreeCompletionControl(section, {
@@ -555,8 +555,10 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
           },
         });
       }
-      if (freeCompletionControl) freeCompletionControl.setReady(true);
+      if (freeCompletionControl) freeCompletionControl.setReady(Boolean(ready));
     }
+
+    ensureFreeCompletionControl(false);
 
     function startTimerBar(scope, durationMs, btn) {
       const fill = card.querySelector(`[data-recall-timer-fill="${scope}"]`);

@@ -1,7 +1,7 @@
 import { initTrainingModule } from "./modules/training.js?v=20260614-expression-curves-b";
-import { initRecallModule } from "./modules/recall.js?v=20260611-pwa-mod-scroll";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260611-pwa-mod-scroll";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260614-expression-curves-b";
+import { initRecallModule } from "./modules/recall.js?v=20260621-free-complete-controls";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260621-free-complete-controls";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260621-free-complete-cleanup";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260614-expression-curves-b";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";

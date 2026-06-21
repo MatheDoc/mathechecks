@@ -97,13 +97,13 @@ function buildFeedAttentionLabel(attentionSummary) {
   const dueCount = Math.max(0, Number(attentionSummary?.dueCount) || 0);
 
   if (overdueCount > 0 && dueCount > 0) {
-    return `${overdueCount} überfällig, ${dueCount} fällig`;
+    return `${overdueCount} Überfällig, ${dueCount} fällig`;
   }
   if (overdueCount > 0) {
-    return `${overdueCount} überfällig`;
+    return `${overdueCount} Überfällig`;
   }
   if (dueCount > 0) {
-    return `${dueCount} fällig`;
+    return `${dueCount} Fällig`;
   }
 
   return "";
