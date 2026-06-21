@@ -75,7 +75,7 @@ const GREETING_TIME_VARIANTS = [
 ];
 const GREETING_EVENT_VARIANTS = {
   streak1: [
-    "Hallo {name}, einen guten Start!",
+    "Hey {name}, los geht's.",
     "Hey {name}, der Anfang ist gemacht!",
     "Hi {name}, ab jetzt wird Mathe gecheckt.",
   ],
@@ -150,7 +150,6 @@ const GREETING_FALLBACK_VARIANTS = [
   "Schön, dass du da bist, {name}.",
   "Hey {name}!",
   "Hallo {name}.",
-  "Hey {name}, los geht's.",
 ];
 const GREETING_STREAK_MILESTONES = [100, 30, 14, 7, 3, 1];
 const GREETING_LONG_PAUSE_DAYS = 7;
