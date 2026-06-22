@@ -838,9 +838,9 @@ body.page-shell .shell {
 
 /* pending – gestern aktiv, heute noch nichts: gedämpft + leises Pulsieren */
 .greeting__streak-badge[data-streak-state="pending"] .greeting__streak-flame {
-  opacity: 0.45;
-  filter: saturate(0.6);
-  animation: streak-pulse 3s ease-in-out infinite;
+  opacity: 1;
+  filter: saturate(1.2);
+  animation: streak-pulse 2s ease-in-out infinite;
 }
 .greeting__streak-badge[data-streak-state="pending"] .greeting__streak-count {
   opacity: 0.55;

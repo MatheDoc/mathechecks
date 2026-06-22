@@ -121,7 +121,7 @@ const GREETING_EVENT_VARIANTS = {
 const GREETING_PROGRESS_VARIANTS = {
   yesterdayBusy: [
     "Du warst gestern fleißig {name}, weiter so.",
-    "Gestern war stark, {name}. Heute darf es auch weniger sein.",
+    "Hey {name}, gestern war stark!",
     "Viel erledigt gestern. Ein kleiner Schritt heute hält den Takt.",
   ],
   sessionPressureHigh: [
