@@ -2793,7 +2793,8 @@ function getConfiguredPositiveNumber(value) {
 
 function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereichIds) {
   const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
-  const activitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
+  const activitiesPerDay = getConfiguredPositiveNumber(context.activeSession?.activities_per_day)
+    ?? getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
   const didacticGapHours = getConfiguredPositiveNumber(context.systemSettings?.feedCoreGapNormalHours);
 
   if (!activitiesPerDay || !didacticGapHours) {
@@ -2832,8 +2833,9 @@ function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereich
 
 function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereichIds) {
   const defaultActivitiesPerDay = getConfiguredPositiveNumber(context.systemSettings?.planningDefaultActivitiesPerDay);
-  const realisticThreshold = defaultActivitiesPerDay;
-  const warningThreshold = defaultActivitiesPerDay === null
+  const sessionActivitiesPerDay = getConfiguredPositiveNumber(context.activeSession?.activities_per_day);
+  const realisticThreshold = sessionActivitiesPerDay ?? defaultActivitiesPerDay;
+  const warningThreshold = realisticThreshold === null
     ? null
     : Math.max(realisticThreshold + 1, realisticThreshold * 2);
   const targetDateValue = normalizeDateOnlyValue(context.activeSession?.target_date);
@@ -2891,7 +2893,23 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
     };
   }
 
-  if (defaultActivitiesPerDay === null || warningThreshold === null) {
+  const targetEndMs = targetDate.getTime() + 24 * 60 * 60 * 1000;
+  const checkStateById = buildSessionCheckStateById(context);
+  const hasTimingConflict = (Array.isArray(selectedCheckIds) ? selectedCheckIds : []).some((checkId) => {
+    const row = checkStateById.get(checkId);
+    if (!row || String(row?.current_step_status || "").trim() !== "due") return false;
+    const af = row?.available_from ? new Date(row.available_from).getTime() : NaN;
+    return Number.isFinite(af) && af >= targetEndMs;
+  });
+  if (hasTimingConflict) {
+    return {
+      targetLabel,
+      assessmentLabel: "Unrealistisch",
+      assessmentTone: "error",
+    };
+  }
+
+  if (realisticThreshold === null || warningThreshold === null) {
     return {
       targetLabel,
       assessmentLabel: "",
@@ -3005,7 +3023,7 @@ async function loadPersistedState(supabase, lernbereiche) {
       .eq("session_id", activeSession.id),
     supabase
       .from("session_check_state")
-      .select("check_id, current_step_key, current_step_status, overdue_from")
+      .select("check_id, current_step_key, current_step_status, overdue_from, available_from")
       .eq("session_id", activeSession.id),
     supabase
       .from("session_activity_state")
