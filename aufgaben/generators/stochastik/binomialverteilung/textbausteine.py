@@ -9,6 +9,7 @@ class ScenarioTemplate:
     success_plural: str
     failure_plural: str
     success_event_accusative: str
+    success_genitive_plural: str | None = None
 
 
 def sample_probability_intro_variants(
@@ -47,6 +48,17 @@ def join_sentences(*parts: str) -> str:
     return " ".join(part.strip() for part in parts if part and part.strip())
 
 
+def environment_probability_question(
+    scenario: ScenarioTemplate,
+    deviation_phrase: str,
+) -> str:
+    success_genitive_plural = scenario.success_genitive_plural or scenario.success_plural
+    return (
+        f"Bestimmen Sie die Wahrscheinlichkeit, dass die Zahl der {success_genitive_plural} "
+        f"unter den {scenario.group_dative_plural} {deviation_phrase} (auf 4 NKS gerundet)."
+    )
+
+
 SCENARIOS: list[ScenarioTemplate] = [
     ScenarioTemplate(
         intro_prefix="Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern.",
@@ -55,6 +67,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="defekte Halbleiter",
         failure_plural="heile Halbleiter",
         success_event_accusative="einen defekten Halbleiter",
+        success_genitive_plural="defekten Halbleiter",
     ),
     ScenarioTemplate(
         intro_prefix="Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn.",
@@ -87,6 +100,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="erfolgreiche Bewerber",
         failure_plural="nicht erfolgreiche Bewerber",
         success_event_accusative="einen erfolgreichen Bewerber",
+        success_genitive_plural="erfolgreichen Bewerber",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Fahrlehrer wertet theoretische Führerscheinprüfungen aus.",
@@ -95,6 +109,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="nicht bestandene Prüfungen",
         failure_plural="bestandene Prüfungen",
         success_event_accusative="eine nicht bestandene Prüfung",
+        success_genitive_plural="nicht bestandenen Prüfungen",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Zollbeamter überprüft Turnschuhe auf Fälschungen.",
@@ -103,6 +118,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="gefälschte Turnschuhe",
         failure_plural="nicht gefälschte Turnschuhe",
         success_event_accusative="einen gefälschten Turnschuh",
+        success_genitive_plural="gefälschten Turnschuhe",
     ),
     ScenarioTemplate(
         intro_prefix="Eine Fußballspielerin dokumentiert Torschüsse im Training.",
@@ -119,6 +135,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="zufriedene Mitarbeitende",
         failure_plural="unzufriedene Mitarbeitende",
         success_event_accusative="eine zufriedene Person",
+        success_genitive_plural="zufriedenen Mitarbeitenden",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte.",
@@ -127,6 +144,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="vegetarische Gerichte",
         failure_plural="Gerichte mit Fleisch",
         success_event_accusative="ein vegetarisches Gericht",
+        success_genitive_plural="vegetarischen Gerichte",
     ),
     ScenarioTemplate(
         intro_prefix="Eine Gärtnerei überprüft Pflanzen auf Trockenstress.",
@@ -135,6 +153,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="zu trockene Pflanzen",
         failure_plural="ausreichend bewässerte Pflanzen",
         success_event_accusative="eine zu trockene Pflanze",
+        success_genitive_plural="zu trockenen Pflanzen",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden.",
@@ -167,6 +186,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="angeklickte Empfehlungen",
         failure_plural="nicht angeklickte Empfehlungen",
         success_event_accusative="eine angeklickte Empfehlung",
+        success_genitive_plural="angeklickten Empfehlungen",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Versandhändler legt stichprobenartig Gutscheine in Pakete.",
@@ -191,6 +211,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="auffällige Wasserproben",
         failure_plural="unauffällige Wasserproben",
         success_event_accusative="eine auffällige Wasserprobe",
+        success_genitive_plural="auffälligen Wasserproben",
     ),
     ScenarioTemplate(
         intro_prefix="Ein Kundendienst erfasst Anfragen, die im Erstkontakt gelöst werden.",
@@ -199,6 +220,7 @@ SCENARIOS: list[ScenarioTemplate] = [
         success_plural="im Erstkontakt gelöste Anfragen",
         failure_plural="nicht im Erstkontakt gelöste Anfragen",
         success_event_accusative="eine im Erstkontakt gelöste Anfrage",
+        success_genitive_plural="im Erstkontakt gelösten Anfragen",
     ),
     ScenarioTemplate(
         intro_prefix="Eine Schule dokumentiert Anwesenheiten im Mathekurs.",

@@ -9,7 +9,11 @@ from aufgaben.generators.stochastik.binomialverteilung.shared import (
     prob_at_least,
     violates_probability_rounding_policy,
 )
-from aufgaben.generators.stochastik.binomialverteilung.textbausteine import SCENARIOS, sample_probability_intro_variants
+from aufgaben.generators.stochastik.binomialverteilung.textbausteine import (
+    SCENARIOS,
+    environment_probability_question,
+    sample_probability_intro_variants,
+)
 
 
 def _sample_parameters(rng: random.Random) -> tuple[int, float]:
@@ -75,9 +79,9 @@ class BinomialUmgebungenAbsolutGenerator(TaskGenerator):
                 )
             )
 
-            question = (
-                f"Bestimmen Sie die Wahrscheinlichkeit, dass die Anzahl der Erfolge um "
-                f"{qualifier} {delta} vom Erwartungswert abweicht (auf 4 NKS gerundet)."
+            question = environment_probability_question(
+                scenario=scenario,
+                deviation_phrase=f"um {qualifier} {delta} vom Erwartungswert abweicht",
             )
 
             tasks.append(
