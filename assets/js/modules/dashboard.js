@@ -2819,9 +2819,12 @@ function buildSuggestedTargetDate(context, selectedCheckIds, selectedLernbereich
   const earliestCompletionDate = new Date(earliestCompletionTimestamp);
   earliestCompletionDate.setHours(0, 0, 0, 0);
 
-  const suggestedDate = workloadDate.getTime() >= earliestCompletionDate.getTime()
+  // target_date = test day (start of day); last prep day must be the day BEFORE.
+  // So suggest the day after the last activity.
+  const lastActivityDate = workloadDate.getTime() >= earliestCompletionDate.getTime()
     ? workloadDate
     : earliestCompletionDate;
+  const suggestedDate = addCalendarDays(lastActivityDate, 1);
 
   return {
     suggestedDateValue: toDateOnlyValue(suggestedDate),
@@ -2873,7 +2876,8 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const dayDelta = Math.floor((targetDate.getTime() - today.getTime()) / 86400000);
-  const availableDays = dayDelta + 1;
+  // target_date = test day; prep days = days strictly before it.
+  const availableDays = Math.max(dayDelta, 1);
 
   const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
 
@@ -2893,7 +2897,7 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
     };
   }
 
-  const targetEndMs = targetDate.getTime() + 24 * 60 * 60 * 1000;
+  const targetEndMs = targetDate.getTime(); // deadline = start of target day (00:00)
   const checkStateById = buildSessionCheckStateById(context);
   const hasTimingConflict = (Array.isArray(selectedCheckIds) ? selectedCheckIds : []).some((checkId) => {
     const row = checkStateById.get(checkId);
