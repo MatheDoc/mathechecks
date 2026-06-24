@@ -8,7 +8,7 @@ body_class: page-dashboard
 page_css: /assets/css/dashboard.css?v=20260609-dashboard-columns
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260609-unified-action-card
+module_script: /assets/js/modules/dashboard.js?v=20260624-target-start-of-day
 ---
 
 {% include dashboard/content.html %}
