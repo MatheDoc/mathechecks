@@ -151,7 +151,11 @@ Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen au
 
 {% include check-anker.html nummer=6 %}
 
+## Rekonstruktion von Testparametern aus Fehlerwahrscheinlichkeiten
 
+Sind die Entscheidungsregel und die Fehlerwahrscheinlichkeiten bekannt, lassen sich daraus unter Umständen die Testparameter rekonstruieren.
+
+{% include check-anker.html nummer=7 %}
 
 ## Multiples-Testen-Problem
 
@@ -175,7 +179,7 @@ Signifikanzniveau von $\alpha = 5\,\%$. Da die Tests unabhängig voneinander sin
 Nullhypothese in jedem Test zutrifft, beträgt die Wahrscheinlichkeit, dass mindestens ein Test
 fälschlicherweise die Nullhypothese verwirft:
 
-$$P(X \geq 1) = Bcd(1;n;n;0,05)$$
+$$P(X \geq 1) = Bcd(1;n;n;0{,}05)$$
 
 Die Tabelle zeigt diese Wahrscheinlichkeiten für verschiedene Werte von $n$:
 
