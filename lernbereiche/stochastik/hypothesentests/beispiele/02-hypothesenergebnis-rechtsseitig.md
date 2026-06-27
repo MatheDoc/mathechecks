@@ -20,3 +20,12 @@ P(X\geq 91) &= Bcd(91;200;200;0{,}4) \\
             &= 0{,}0655
 \end{align*}
 $$
+
+Ist nun bekannt, dass $H_1$: $p=0{,}5$ gilt, beträgt die Wahrscheinlichkeit für den Fehler 2. Art:
+
+$$
+\begin{align*}
+P(X\leq 90) &= Bcd(0;90;200;0{,}5) \\
+            &= 0{,}0895
+\end{align*}
+$$

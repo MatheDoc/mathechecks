@@ -113,36 +113,21 @@ $$
 
 **Wie hoch ist die Wahrscheinlichkeit für den Fehler 2. Art?**
 
+Zu Beginn eines Hypothesentests ist die Wahrscheinlichkeit für den Fehler 2. Art typischerweise nicht bekannt, denn dazu müsste man wissen, welcher konkrete Wert des Parameters unter der Gegenhypothese tatsächlich vorliegt. Die Gegenhypothese legt meist nur eine Richtung fest (z. B. $p>0{,}1$), nicht einen bestimmten Wert. Ist dieser Wert jedoch aus anderen Gründen bekannt oder plausibel annehmbar, lässt sich der Fehler 2. Art nachträglich berechnen.
 
-Zu Beginn eines Hypothesentests ist die Wahrscheinlichkeit für den Fehler 2. Art typischerweise
-nicht bekannt – denn dazu müsste man wissen, welcher konkrete Wert des Parameters unter der
-Gegenhypothese tatsächlich vorliegt. Die Gegenhypothese legt meist nur eine Richtung fest
-(z. B. $p > p_0$), nicht einen bestimmten Wert. Ist dieser Wert jedoch aus anderen Gründen bekannt oder plausibel annehmbar, lässt sich der
-Fehler 2. Art nachträglich berechnen – nachdem Annahme- und Ablehnungsbereich bereits
-festgelegt wurden.
-
-
-Angenommen wir wüssten also, dass der tatsächliche Anteil verspäteter Schüler bei $p = 0{,}2$ liegt, lässt sich die Wahrscheinlichkeit für den Fehler 2. Art berechnen.
-
-Ein Fehler 2. Art tritt ein, wenn trotz $p = 0{,}2$ die Testgröße im Annahmebereich
-$A = \{0,1,\ldots,7\}$ landet:
+Angenommen wir wüssten also, dass der tatsächliche Anteil verspäteter Schüler bei $p = 0{,}2$ liegt. Der Fehler 2. Art tritt ein, wenn trotz $p = 0{,}2$ die Testgröße im Annahmebereich $A = \\{0,1,\ldots,7\\}$ landet:
 
 $$
 \begin{align*}
-P(X \leq 7 \mid p = 0{,}2) &= Bcd(7;50;50;0{,}2) \\
-                             &= 0{,}2732
+P(X \leq 7) &= Bcd(0;7;50;0{,}2) \\
+                             &= 0{,}1904
 \end{align*}
 $$
-
-Das heißt: Liegt der wahre Anteil verspäteter Schüler bei 20 %, wird der Test dies in etwa 27 % der Fälle nicht erkennen.
-
 
 {% include check-anker.html nummer=1 %}
 
 {% include check-anker.html nummer=2 %}
 
-
-<!-- ## Exkurs: p-Hacking-->
 
 ## Herleitung der Entscheidungsregel
 
@@ -199,6 +184,6 @@ Die Tabelle zeigt diese Wahrscheinlichkeiten für verschiedene Werte von $n$:
 
 Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die
 Nullhypothese zu verwerfen, bei über 64 %. Genau diesen Test könnte das Institut als Beleg für die
-Gefährdung der Meinungsfreiheit anführen – obwohl der wahre Anteil unverändert bei 25 % liegt und
+Gefährdung der Meinungsfreiheit anführen, obwohl der wahre Anteil unverändert bei 25 % liegt und
 kein echter Effekt nachgewiesen wurde.
 

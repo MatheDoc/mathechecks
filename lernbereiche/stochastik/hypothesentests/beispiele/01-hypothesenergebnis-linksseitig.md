@@ -20,3 +20,12 @@ P(X\leq 70) &= Bcd(0;70;200;0{,}4) \\
             &= 0{,}0844
 \end{align*}
 $$
+
+Ist nun bekannt, dass $H_1$: $p=0{,}3$ gilt, beträgt die Wahrscheinlichkeit für den Fehler 2. Art:
+
+$$
+\begin{align*}
+P(X\geq 71) &= Bcd(71;200;200;0{,}3) \\
+            &= 0{,}0542
+\end{align*}
+$$
