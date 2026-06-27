@@ -73,7 +73,7 @@ Der Fehler 2. Art ist oft schwieriger zu behandeln, da die tatsächliche Wahrsch
 
 Um auf Basis eines Stichprobenergebnisses schließlich eine Entscheidung zu treffen, wird eine **Entscheidungsregel** benötigt. Diese teilt den Wertebereich in einen **Annahmebereich** $A$ und einen **Ablehnungsbereich** $\overline{A}$ ein.
 
-Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,}2$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,}2$).
+Im Übrigen sprechen wir von einem **linksseitigen** Test, falls die Gegenhypothese kleinere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p<0{,}1$). Dagegen liegt ein **rechtsseitiger** Test vor, wenn die Gegenhypothese größere Wahrscheinlichkeiten als die Nullhypothese vermutet (z.B. $H_1: p>0{,}1$).
 
 ### Grundbegriffe im Beispiel
 
@@ -113,7 +113,29 @@ $$
 
 **Wie hoch ist die Wahrscheinlichkeit für den Fehler 2. Art?**
 
-Ein Fehler 2. Art tritt ein, wenn die Gegenhypothese wahr ist (d. h. $p > 0{,}1$), wir jedoch die Nullhypothese beibehalten. Ohne zusätzliche Informationen über den tatsächlichen Wert von $p$ unter der Gegenhypothese kann diese Wahrscheinlichkeit nicht bestimmt werden.
+
+Zu Beginn eines Hypothesentests ist die Wahrscheinlichkeit für den Fehler 2. Art typischerweise
+nicht bekannt – denn dazu müsste man wissen, welcher konkrete Wert des Parameters unter der
+Gegenhypothese tatsächlich vorliegt. Die Gegenhypothese legt meist nur eine Richtung fest
+(z. B. $p > p_0$), nicht einen bestimmten Wert. Ist dieser Wert jedoch aus anderen Gründen bekannt oder plausibel annehmbar, lässt sich der
+Fehler 2. Art nachträglich berechnen – nachdem Annahme- und Ablehnungsbereich bereits
+festgelegt wurden.
+
+
+Angenommen wir wüssten also, dass der tatsächliche Anteil verspäteter Schüler bei $p = 0{,}2$ liegt, lässt sich die Wahrscheinlichkeit für den Fehler 2. Art berechnen.
+
+Ein Fehler 2. Art tritt ein, wenn trotz $p = 0{,}2$ die Testgröße im Annahmebereich
+$A = \{0,1,\ldots,7\}$ landet:
+
+$$
+\begin{align*}
+P(X \leq 7 \mid p = 0{,}2) &= Bcd(7;50;50;0{,}2) \\
+                             &= 0{,}2732
+\end{align*}
+$$
+
+Das heißt: Liegt der wahre Anteil verspäteter Schüler bei 20 %, wird der Test dies in etwa 27 % der Fälle nicht erkennen.
+
 
 {% include check-anker.html nummer=1 %}
 
@@ -138,7 +160,7 @@ Analog gilt das Vorgehen für den rechtsseitigen Test: Hier wird der Ablehnungsb
 
 {% include check-anker.html nummer=4 %}
 
-Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen auch ohne zusätzliche Gerüstung durchgeführt werden.
+Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen auch ohne zusätzliche Struktur durchgeführt werden.
 
 {% include check-anker.html nummer=5 %}
 
@@ -146,5 +168,37 @@ Sind die Struktur und das Verfahren einmal klar, können beide Testrichtungen au
 
 
 
+## Multiples-Testen-Problem
 
+Ich glaube keiner Statistik, die ich nicht selbst gefälscht habe. – Winston Churchill. Es gibt viele
+Möglichkeiten, Statistiken zu manipulieren: Die Stichprobe kann gezielt so gewählt werden, dass ein
+gewünschtes Ergebnis herauskommt; unbequeme Daten werden weggelassen; oder die Hypothese wird so
+formuliert, dass ein bestimmtes Ergebnis begünstigt wird.
+
+Eine besonders tückische Methode ist das multiple Testen. Dabei werden mehrere Hypothesentests
+durchgeführt, ohne die Ergebnisse der einzelnen Tests in Beziehung zueinander zu setzen. Jeder
+einzelne Test kann dabei durchaus strikten Vorgaben genügen. Da der Fehler 1. Art jedoch prinzipiell
+nicht ausgeschlossen werden kann, steigt die Wahrscheinlichkeit, dass mindestens ein Test ein
+signifikantes Ergebnis liefert, mit der Anzahl der durchgeführten Tests.
+
+### Beispiel
+
+Angenommen, der Anteil der Bürger, die die Meinungsfreiheit als gefährdet ansehen, liegt bei 25 %.
+Nun möchte ein politisches Institut untersuchen – oder besser: mutwillig konstatieren –, dass sich
+dieser Anteil erhöht hat. Dazu werden $n$ Hypothesentests durchgeführt, jeweils mit einem
+Signifikanzniveau von $\alpha = 5\,\%$. Da die Tests unabhängig voneinander sind und die
+Nullhypothese in jedem Test zutrifft, beträgt die Wahrscheinlichkeit, dass mindestens ein Test
+fälschlicherweise die Nullhypothese verwirft:
+
+$$P(X \geq 1) = Bcd(1;n;n;0,05)$$
+
+Die Tabelle zeigt diese Wahrscheinlichkeiten für verschiedene Werte von $n$:
+
+| Anzahl $n$       |    1 |      5 |     10 |     20 |     50 |    100 |
+| $P(X \geq 1)$    | 0,05 | 0,2262 | 0,4013 | 0,6415 | 0,9231 | 0,9941 |
+
+Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die
+Nullhypothese zu verwerfen, bei über 64 %. Genau diesen Test könnte das Institut als Beleg für die
+Gefährdung der Meinungsfreiheit anführen – obwohl der wahre Anteil unverändert bei 25 % liegt und
+kein echter Effekt nachgewiesen wurde.
 
