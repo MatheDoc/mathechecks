@@ -42,7 +42,12 @@ _ENTSCHEIDUNG_RECHTS = [
     "Treten mindestens {k} {success_plural} auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
     "Treten in der Stichprobe mindestens {k} {success_plural} auf, wird die Vermutung als richtig angesehen.",
 ]
-
+_ES_IST_BEKANNT = [
+    "Es ist nun bekannt, dass die Wahrscheinlichkeit, {success_event_acc} anzutreffen, tatsächlich {p1} beträgt.",
+    "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für {success_event_acc} gleich {p1} ist.",
+    "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für {success_event_acc} beträgt {p1}.",
+    "Inzwischen ist bekannt, dass der wahre Wert der Wahrscheinlichkeit für {success_event_acc} bei {p1} liegt.",
+]
 
 class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
     generator_key = "stochastik.hypothesentests.hypothesenergebnis_rechtsseitig"
@@ -79,6 +84,13 @@ class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
                     f"In der Stichprobe werden ${case.observed_x}$ {sc.success_plural} festgestellt. "
                     "Ist von der Null- oder der Gegenhypothese auszugehen?"
                 ),
+                (
+                    rng.choice(_ES_IST_BEKANNT).format(
+                        success_event_acc=sc.success_event_accusative,
+                        p1=_p_fmt(case.p1, rng),
+                    )
+                    + " Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+                ),
             ]
 
             decision_options = [
@@ -90,6 +102,7 @@ class HypothesenergebnisRechtsseitigGenerator(TaskGenerator):
             answers = [
                 numerical_stochastik_calc(case.alpha),
                 mc(decision_options, correct_index=decision_correct),
+                numerical_stochastik_calc(case.beta),
             ]
 
             tasks.append(Task(einleitung=intro, fragen=questions, antworten=answers))

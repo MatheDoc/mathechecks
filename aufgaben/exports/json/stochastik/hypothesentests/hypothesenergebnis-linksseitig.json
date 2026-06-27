@@ -1,222 +1,262 @@
 [
   {
-    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. Bisherige Daten belegen eine Wahrscheinlichkeit von 38 % dafür, einen Passagier ohne gültigen Fahrschein zu beobachten. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Zur Überprüfung werden 65 Passagiere stichprobenartig betrachtet. Treten in der Stichprobe höchstens 18 Passagiere ohne gültigen Fahrschein auf, wird die Vermutung als richtig angesehen.",
+    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. Erfahrungsgemäß liegt die Wahrscheinlichkeit, einen Krug mit Kratzer zu beobachten, bei 0,38. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. 65 Krüge werden dafür zufällig ausgewählt und überprüft. Treten höchstens 18 Krüge mit Kratzer auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $13$ Passagiere ohne gültigen Fahrschein festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $13$ Krüge mit Kratzer festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für einen Krug mit Kratzer gleich 0,33 ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
       "{1:NUMERICAL:=0,0543:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,7799:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 0,43 tritt ein vegetarisches Gericht auf. Man vermutet, dass die aktuelle Rate darunter liegt. Zur Überprüfung werden 100 Bestellungen stichprobenartig betrachtet. Treten höchstens 38 vegetarische Gerichte auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,29 eine zu trockene Pflanze auftritt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Zur Überprüfung werden 93 Pflanzen stichprobenartig betrachtet. Treten in der Stichprobe höchstens 18 zu trockene Pflanzen auf, wird die Vermutung als richtig angesehen.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $22$ vegetarische Gerichte festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $0$ zu trockene Pflanzen festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es ist nun bekannt, dass die Wahrscheinlichkeit, eine zu trockene Pflanze anzutreffen, tatsächlich 0,24 beträgt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,1819:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,0233:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,8225:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,57 eine zufriedene Person auftritt. Man vermutet, dass die aktuelle Rate darunter liegt. Zur Überprüfung werden 102 befragte Mitarbeitende stichprobenartig betrachtet. Treten höchstens 49 zufriedene Mitarbeitende auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 0,55 tritt ein vegetarisches Gericht auf. Inzwischen wird vermutet, dass dieser Wert gesunken ist. 78 Bestellungen werden dafür zufällig ausgewählt und überprüft. Treten höchstens 36 vegetarische Gerichte auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $3$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $52$ vegetarische Gerichte festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für ein vegetarisches Gericht gleich 0,40 ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0426:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,0730:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1109:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. Bisher nahm man an, dass die Wahrscheinlichkeit, ein Paket mit Gutschein anzutreffen, 0,51 beträgt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. 128 Pakete werden dafür zufällig ausgewählt und überprüft. Treten höchstens 56 Pakete mit Gutschein auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Ein Verlag prüft Drucke auf Rechtschreibfehler. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 47 % eine Seite mit Rechtschreibfehler auftritt. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Zur Überprüfung werden 59 gedruckte Seiten stichprobenartig betrachtet. Treten höchstens 23 Seiten mit Rechtschreibfehler auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $122$ Pakete mit Gutschein festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $54$ Seiten mit Rechtschreibfehler festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für eine Seite mit Rechtschreibfehler beträgt 39 %. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0602:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,1347:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,4442:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. Bisher nahm man an, dass die Wahrscheinlichkeit, ein Werkzeug mit Akku anzutreffen, 0,50 beträgt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. 121 Werkzeuge werden dafür zufällig ausgewählt und überprüft. Treten in der Stichprobe höchstens 50 Werkzeuge mit Akku auf, wird die Vermutung als richtig angesehen.",
+    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Bisherige Daten belegen eine Wahrscheinlichkeit von 35 % dafür, eine zufriedene Person zu beobachten. Man vermutet, dass die aktuelle Rate darunter liegt. 76 befragte Mitarbeitende werden dafür zufällig ausgewählt und überprüft. Falls höchstens 19 zufriedene Mitarbeitende auftreten, sieht man die Vermutung als bestätigt an.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $82$ Werkzeuge mit Akku festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,0343:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Eine Fußballspielerin dokumentiert Torschüsse im Training. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Fehlschuss anzutreffen, 0,51 beträgt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Um dies zu prüfen, werden 90 Torschüsse zufällig ausgewählt. Treten in der Stichprobe höchstens 39 Fehlschüsse auf, wird die Vermutung als richtig angesehen.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $73$ Fehlschüsse festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,0885:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,56 dafür, eine auffällige Wasserprobe zu beobachten. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Zur Überprüfung werden 125 Wasserproben stichprobenartig betrachtet. Werden dabei höchstens 59 auffällige Wasserproben festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $106$ auffällige Wasserproben festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,0296:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine zu trockene Pflanze zu beobachten, bei 34 %. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Um dies zu prüfen, werden 75 Pflanzen zufällig ausgewählt. Werden dabei höchstens 18 zu trockene Pflanzen festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $36$ zu trockene Pflanzen festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $5$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es ist nun bekannt, dass die Wahrscheinlichkeit, eine zufriedene Person anzutreffen, tatsächlich 23 % beträgt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
       "{1:NUMERICAL:=0,0412:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,2852:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Bisherige Daten belegen eine Wahrscheinlichkeit von 50 % dafür, eine zufriedene Person zu beobachten. Man vermutet, dass die aktuelle Rate darunter liegt. 127 befragte Mitarbeitende werden dafür zufällig ausgewählt und überprüft. Falls höchstens 57 zufriedene Mitarbeitende auftreten, sieht man die Vermutung als bestätigt an.",
+    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Passagier ohne gültigen Fahrschein anzutreffen, 53 % beträgt. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu prüfen, werden 106 Passagiere zufällig ausgewählt. Werden dabei höchstens 50 Passagiere ohne gültigen Fahrschein festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $82$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $36$ Passagiere ohne gültigen Fahrschein festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für einen Passagier ohne gültigen Fahrschein gleich 48 % ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,1435:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,1346:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,5289:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Versandhändler legt stichprobenartig Gutscheine in Pakete. Erfahrungsgemäß liegt die Wahrscheinlichkeit, ein Paket mit Gutschein zu beobachten, bei 0,28. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 58 Pakete zufällig untersucht. Treten höchstens 11 Pakete mit Gutschein auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,24 ein Werkzeug mit Akku auftritt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Zur Überprüfung werden 95 Werkzeuge stichprobenartig betrachtet. Werden dabei höchstens 17 Werkzeuge mit Akku festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $11$ Pakete mit Gutschein festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $53$ Werkzeuge mit Akku festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für ein Werkzeug mit Akku beträgt 0,16. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0792:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,0987:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,2539:0,0001}"
     ]
   },
   {
-    "einleitung": "Eine Schaffnerin kontrolliert Fahrscheine in einer Regionalbahn. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Passagier ohne gültigen Fahrschein anzutreffen, 58 % beträgt. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu prüfen, werden 69 Passagiere zufällig ausgewählt. Werden dabei höchstens 32 Passagiere ohne gültigen Fahrschein festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Bisher nahm man an, dass die Wahrscheinlichkeit, eine zufriedene Person anzutreffen, 0,65 beträgt. Inzwischen wird vermutet, dass dieser Wert gesunken ist. 126 befragte Mitarbeitende werden dafür zufällig ausgewählt und überprüft. Treten in der Stichprobe höchstens 73 zufriedene Mitarbeitende auf, wird die Vermutung als richtig angesehen.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $48$ Passagiere ohne gültigen Fahrschein festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $13$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für eine zufriedene Person beträgt 53 %. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0341:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,0597:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1149:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,50 eine auffällige Wasserprobe auftritt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Um dies zu prüfen, werden 114 Wasserproben zufällig ausgewählt. Falls höchstens 52 auffällige Wasserproben auftreten, sieht man die Vermutung als bestätigt an.",
+    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 49 % tritt einen defekten Halbleiter auf. Man vermutet, dass die aktuelle Rate darunter liegt. Um dies zu prüfen, werden 78 Halbleiter zufällig ausgewählt. Falls höchstens 33 defekte Halbleiter auftreten, sieht man die Vermutung als bestätigt an.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $65$ auffällige Wasserproben festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $49$ defekte Halbleiter festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für einen defekten Halbleiter beträgt 0,39. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,1997:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,1425:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,2361:0,0001}"
     ]
   },
   {
-    "einleitung": "Eine IT-Abteilung kontrolliert Geräte auf ausreichenden Virenschutz. Bisher nahm man an, dass die Wahrscheinlichkeit, einen Computer ohne ausreichenden Virenschutz anzutreffen, 0,30 beträgt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Daher werden 104 Computer zufällig untersucht. Werden dabei höchstens 25 Computer ohne ausreichenden Virenschutz festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "einleitung": "Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Bisher nahm man an, dass die Wahrscheinlichkeit, eine zu trockene Pflanze anzutreffen, 52 % beträgt. Man vermutet, dass die aktuelle Rate darunter liegt. Um dies zu prüfen, werden 118 Pflanzen zufällig ausgewählt. Werden dabei höchstens 56 zu trockene Pflanzen festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $75$ Computer ohne ausreichenden Virenschutz festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $13$ zu trockene Pflanzen festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Inzwischen ist bekannt, dass der wahre Wert der Wahrscheinlichkeit für eine zu trockene Pflanze bei 0,42 liegt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,1098:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,1852:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,0982:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 24 % tritt eine zufriedene Person auf. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Zur Überprüfung werden 120 befragte Mitarbeitende stichprobenartig betrachtet. Treten höchstens 22 zufriedene Mitarbeitende auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Ein Kontrolleur überprüft die Funktionsfähigkeit von Halbleitern. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 37 % einen defekten Halbleiter auftritt. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Zur Überprüfung werden 114 Halbleiter stichprobenartig betrachtet. Werden dabei höchstens 32 defekte Halbleiter festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $33$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $21$ defekte Halbleiter festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für einen defekten Halbleiter beträgt 0,29. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0862:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:NUMERICAL:=0,0285:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,5403:0,0001}"
     ]
   },
   {
-    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. Erfahrungsgemäß liegt die Wahrscheinlichkeit, ein vegetarisches Gericht zu beobachten, bei 0,31. Inzwischen wird vermutet, dass dieser Wert gesunken ist. Um dies zu prüfen, werden 106 Bestellungen zufällig ausgewählt. Treten höchstens 28 vegetarische Gerichte auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
+    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,24 eine auffällige Wasserprobe auftritt. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu prüfen, werden 112 Wasserproben zufällig ausgewählt. Falls höchstens 22 auffällige Wasserproben auftreten, sieht man die Vermutung als bestätigt an.",
     "fragen": [
       "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $104$ vegetarische Gerichte festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,1805:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Labor testet Wasserproben auf einen Grenzwert. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine auffällige Wasserprobe zu beobachten, bei 16 %. Man vermutet, dass die aktuelle Rate darunter liegt. 49 Wasserproben werden dafür zufällig ausgewählt und überprüft. Falls höchstens 3 auffällige Wasserproben auftreten, sieht man die Vermutung als bestätigt an.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $2$ auffällige Wasserproben festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,0351:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. Bisherige Daten belegen eine Wahrscheinlichkeit von 27 % dafür, eine Bestellung mit Streuseln zu beobachten. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu prüfen, werden 45 Bestellungen zufällig ausgewählt. Falls höchstens 9 Bestellungen mit Streuseln auftreten, sieht man die Vermutung als bestätigt an.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $2$ Bestellungen mit Streuseln festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,1883:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 0,41 eine Bestellung mit Streuseln auftritt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. 47 Bestellungen werden dafür zufällig ausgewählt und überprüft. Falls höchstens 13 Bestellungen mit Streuseln auftreten, sieht man die Vermutung als bestätigt an.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $30$ Bestellungen mit Streuseln festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,0413:0,0001}",
-      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 24 % tritt eine zufriedene Person auf. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 101 befragte Mitarbeitende zufällig untersucht. Treten höchstens 19 zufriedene Mitarbeitende auf, geht man von der neuen Annahme aus - ansonsten bleibt man beim bisherigen Wert.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $8$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=0,1335:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
-    ]
-  },
-  {
-    "einleitung": "Ein Restaurant betrachtet Bestellungen vegetarischer Gerichte. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,24 dafür, ein vegetarisches Gericht zu beobachten. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 112 Bestellungen zufällig untersucht. Falls höchstens 22 vegetarische Gerichte auftreten, sieht man die Vermutung als bestätigt an.",
-    "fragen": [
-      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
-      "In der Stichprobe werden $13$ vegetarische Gerichte festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?"
+      "In der Stichprobe werden $13$ auffällige Wasserproben festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für eine auffällige Wasserprobe gleich 16 % ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
     ],
     "antworten": [
       "{1:NUMERICAL:=0,1665:0,0001}",
-      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}"
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1207:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Eine Glaserei untersucht Krüge auf Kratzer. Erfahrungsgemäß liegt die Wahrscheinlichkeit, einen Krug mit Kratzer zu beobachten, bei 0,17. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Zur Überprüfung werden 102 Krüge stichprobenartig betrachtet. Treten in der Stichprobe höchstens 11 Krüge mit Kratzer auf, wird die Vermutung als richtig angesehen.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $55$ Krüge mit Kratzer festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es ist nun bekannt, dass die Wahrscheinlichkeit, einen Krug mit Kratzer anzutreffen, tatsächlich 0,10 beträgt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0560:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,3211:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. Der bisherige Erfahrungswert sagt: Mit einer Wahrscheinlichkeit von 0,19 tritt einen gefälschten Turnschuh auf. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 85 Turnschuhe zufällig untersucht. Treten in der Stichprobe höchstens 10 gefälschte Turnschuhe auf, wird die Vermutung als richtig angesehen.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $8$ gefälschte Turnschuhe festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für einen gefälschten Turnschuh beträgt 0,09. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0533:0,0001}",
+      "{1:MC:~=Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1408:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. Bisher nahm man an, dass die Wahrscheinlichkeit, einen gefälschten Turnschuh anzutreffen, 0,17 beträgt. Neuere Beobachtungen legen nahe, dass der Anteil gesunken sein könnte. Um dies zu prüfen, werden 54 Turnschuhe zufällig ausgewählt. Werden dabei höchstens 6 gefälschte Turnschuhe festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $12$ gefälschte Turnschuhe festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es ist nun bekannt, dass die Wahrscheinlichkeit, einen gefälschten Turnschuh anzutreffen, tatsächlich 0,12 beträgt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1660:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,4751:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Eine Plattform wertet Reaktionen auf Produktempfehlungen aus. Erfahrungsgemäß liegt die Wahrscheinlichkeit, eine angeklickte Empfehlung zu beobachten, bei 25 %. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Um dies zu prüfen, werden 123 angezeigte Empfehlungen zufällig ausgewählt. Werden dabei höchstens 23 angeklickte Empfehlungen festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $75$ angeklickte Empfehlungen festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es ist nun bekannt, dass die Wahrscheinlichkeit, eine angeklickte Empfehlung anzutreffen, tatsächlich 15 % beträgt. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0623:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1038:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Unternehmen erhebt die Zufriedenheit der Mitarbeitenden. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,66 dafür, eine zufriedene Person zu beobachten. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Daher werden 45 befragte Mitarbeitende zufällig untersucht. Treten in der Stichprobe höchstens 23 zufriedene Mitarbeitende auf, wird die Vermutung als richtig angesehen.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $29$ zufriedene Mitarbeitende festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Aktuelle Daten zeigen: Die tatsächliche Wahrscheinlichkeit für eine zufriedene Person beträgt 51 %. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0276:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,4354:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Onlineshop prüft, ob Werkzeuge mit Akku ausgeliefert werden. Aus früheren Erhebungen ist bekannt, dass mit einer Wahrscheinlichkeit von 46 % ein Werkzeug mit Akku auftritt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. Zur Überprüfung werden 124 Werkzeuge stichprobenartig betrachtet. Treten in der Stichprobe höchstens 50 Werkzeuge mit Akku auf, wird die Vermutung als richtig angesehen.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $88$ Werkzeuge mit Akku festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für ein Werkzeug mit Akku gleich 0,34 ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,1191:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,0584:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Zollbeamter überprüft Turnschuhe auf Fälschungen. Bisherige Daten belegen eine Wahrscheinlichkeit von 0,40 dafür, einen gefälschten Turnschuh zu beobachten. Es besteht nun die Vermutung, dass sich dieser Anteil verringert hat. Um dies zu prüfen, werden 127 Turnschuhe zufällig ausgewählt. Falls höchstens 42 gefälschte Turnschuhe auftreten, sieht man die Vermutung als bestätigt an.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $127$ gefälschte Turnschuhe festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für einen gefälschten Turnschuh gleich 30 % ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0652:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,1961:0,0001}"
+    ]
+  },
+  {
+    "einleitung": "Ein Eisstand untersucht Bestellungen mit und ohne Streusel. Bisher nahm man an, dass die Wahrscheinlichkeit, eine Bestellung mit Streuseln anzutreffen, 14 % beträgt. Es wird angenommen, dass der wahre Anteil heute kleiner ist. 80 Bestellungen werden dafür zufällig ausgewählt und überprüft. Werden dabei höchstens 6 Bestellungen mit Streuseln festgestellt, gilt die Vermutung als bestätigt - andernfalls hält man an der bisherigen Annahme fest.",
+    "fragen": [
+      "Berechnen Sie die Wahrscheinlichkeit für den Fehler 1. Art.",
+      "In der Stichprobe werden $29$ Bestellungen mit Streuseln festgestellt. Ist von der Null- oder der Gegenhypothese auszugehen?",
+      "Es stellt sich heraus, dass die wahre Wahrscheinlichkeit für eine Bestellung mit Streuseln gleich 0,06 ist. Berechnen Sie die Wahrscheinlichkeit für den Fehler 2. Art."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=0,0570:0,0001}",
+      "{1:MC:~Von der Gegenhypothese $H_1$ ausgehen ($H_0$ verwerfen)~=Von der Nullhypothese $H_0$ ausgehen}",
+      "{1:NUMERICAL:=0,2039:0,0001}"
     ]
   }
 ]

@@ -18,6 +18,11 @@ class OneSidedTestCase:
     alpha: float
     observed_x: int
     reject_h0: bool
+    p1: float = 0.0
+    beta: float = 0.0
+
+
+_DELTAS = [0.05, 0.07, 0.08, 0.10, 0.12, 0.15]
 
 
 def _sample_probability(rng: random.Random) -> float:
@@ -70,6 +75,32 @@ def _sample_right_case(rng: random.Random) -> tuple[int, float, int, float]:
     return n, p0, critical, alpha
 
 
+def _sample_p1_left(rng: random.Random, n: int, p0: float, critical: int) -> tuple[float, float]:
+    """Linksseitig: p1 < p0; Beta = P(X > k | p1) = 1 - P(X <= k | p1)."""
+    for delta in rng.sample(_DELTAS, len(_DELTAS)):
+        p1 = round(p0 - delta, 2)
+        if p1 <= 0.0:
+            continue
+        beta = 1.0 - binom_cdf(n=n, p=p1, k=critical)
+        if 0.05 <= beta <= 0.95 and not rounds_to_extreme_without_boundary(beta, decimals=4):
+            return p1, beta
+    p1 = max(0.05, round(p0 - 0.10, 2))
+    return p1, 1.0 - binom_cdf(n=n, p=p1, k=critical)
+
+
+def _sample_p1_right(rng: random.Random, n: int, p0: float, critical: int) -> tuple[float, float]:
+    """Rechtsseitig: p1 > p0; Beta = P(X < k | p1) = P(X <= k-1 | p1)."""
+    for delta in rng.sample(_DELTAS, len(_DELTAS)):
+        p1 = round(p0 + delta, 2)
+        if p1 >= 1.0:
+            continue
+        beta = binom_cdf(n=n, p=p1, k=critical - 1)
+        if 0.05 <= beta <= 0.95 and not rounds_to_extreme_without_boundary(beta, decimals=4):
+            return p1, beta
+    p1 = min(0.95, round(p0 + 0.10, 2))
+    return p1, binom_cdf(n=n, p=p1, k=critical - 1)
+
+
 def _sample_observed_left(rng: random.Random, n: int, critical: int) -> tuple[int, bool]:
     reject = rng.choice([True, False])
     if reject:
@@ -91,6 +122,7 @@ def _sample_observed_right(rng: random.Random, n: int, critical: int) -> tuple[i
 def sample_linksseitig(rng: random.Random) -> OneSidedTestCase:
     n, p0, critical, alpha = _sample_left_case(rng)
     observed_x, reject = _sample_observed_left(rng, n=n, critical=critical)
+    p1, beta = _sample_p1_left(rng, n=n, p0=p0, critical=critical)
     scenario = rng.choice(SCENARIOS)
     return OneSidedTestCase(
         scenario=scenario,
@@ -100,12 +132,15 @@ def sample_linksseitig(rng: random.Random) -> OneSidedTestCase:
         alpha=alpha,
         observed_x=observed_x,
         reject_h0=reject,
+        p1=p1,
+        beta=beta,
     )
 
 
 def sample_rechtsseitig(rng: random.Random) -> OneSidedTestCase:
     n, p0, critical, alpha = _sample_right_case(rng)
     observed_x, reject = _sample_observed_right(rng, n=n, critical=critical)
+    p1, beta = _sample_p1_right(rng, n=n, p0=p0, critical=critical)
     scenario = rng.choice(SCENARIOS)
     return OneSidedTestCase(
         scenario=scenario,
@@ -115,6 +150,8 @@ def sample_rechtsseitig(rng: random.Random) -> OneSidedTestCase:
         alpha=alpha,
         observed_x=observed_x,
         reject_h0=reject,
+        p1=p1,
+        beta=beta,
     )
 
 
