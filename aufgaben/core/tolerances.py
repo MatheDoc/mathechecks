@@ -8,8 +8,8 @@ ANALYSIS_CALC_TOLERANCE = 0.01
 STOCHASTIK_CALC_DECIMALS = 4
 STOCHASTIK_CALC_TOLERANCE = 0.0001
 
-# Standardregel fuer graphisches Ablesen: ein Viertel der Achsen-Schrittweite.
-GRAPH_READ_FRACTION = 0.25
+# Standardregel fuer graphisches Ablesen: ein Zehntel der Achsen-Schrittweite.
+GRAPH_READ_FRACTION = 0.1
 
 
 def axis_tick_step(span: float) -> float:

@@ -100,9 +100,9 @@ In der Stichprobe kamen 6 Schüler verspätet. Da $6$ im Annahmebereich liegt, w
 
 - Fehler 2. Art: Man entscheidet sich dafür, dass genau 10 % der Schüler zu spät kommen, obwohl in Wirklichkeit der Anteil höher ist.
 
-**Wie hoch ist die maximale Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
+**Wie hoch ist die Wahrscheinlichkeit für den Fehler 1. Art im Sachzusammenhang?**
 
-Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8,9,10,\ldots,50\\}$ liegt. Die maximale Wahrscheinlichkeit dafür beträgt:
+Ein Fehler 1. Art tritt ein, wenn die Nullhypothese wahr ist (also $p = 0{,}1$ gilt), wir jedoch aufgrund des Testergebnisses $H_0$ verwerfen. Dies geschieht dann, wenn die beobachtete Anzahl verspäteter Schüler im Ablehnungsbereich $\overline{A} = \\{8,9,10,\ldots,50\\}$ liegt. Die Wahrscheinlichkeit dafür beträgt:
 
 $$
 \begin{align*}
@@ -159,16 +159,12 @@ Sind die Entscheidungsregel und die Fehlerwahrscheinlichkeiten bekannt, lassen s
 
 ## Multiples-Testen-Problem
 
-Ich glaube keiner Statistik, die ich nicht selbst gefälscht habe. – Winston Churchill. Es gibt viele
-Möglichkeiten, Statistiken zu manipulieren: Die Stichprobe kann gezielt so gewählt werden, dass ein
-gewünschtes Ergebnis herauskommt; unbequeme Daten werden weggelassen; oder die Hypothese wird so
-formuliert, dass ein bestimmtes Ergebnis begünstigt wird.
+Ich glaube keiner Statistik, die ich nicht selbst gefälscht habe. – Winston Churchill.
 
-Eine besonders tückische Methode ist das multiple Testen. Dabei werden mehrere Hypothesentests
-durchgeführt, ohne die Ergebnisse der einzelnen Tests in Beziehung zueinander zu setzen. Jeder
-einzelne Test kann dabei durchaus strikten Vorgaben genügen. Da der Fehler 1. Art jedoch prinzipiell
-nicht ausgeschlossen werden kann, steigt die Wahrscheinlichkeit, dass mindestens ein Test ein
-signifikantes Ergebnis liefert, mit der Anzahl der durchgeführten Tests.
+Es gibt viele Möglichkeiten, Statistiken zu manipulieren: Die Stichprobe wird nicht repräsentativ gewählt, unbequeme Daten werden weggelassen, die Hypothese wird so formuliert, dass ein bestimmtes Ergebnis begünstigt wird etc.
+
+Eine besonders tückische Methode ist das multiple Testen. Dabei werden mehrere Hypothesentests durchgeführt, ohne die Ergebnisse der einzelnen Tests in Beziehung zueinander zu setzen. Jeder einzelne Test kann dabei durchaus strikten Vorgaben genügen. Da der Fehler 1. Art jedoch prinzipiell
+nicht ausgeschlossen werden kann, steigt die Wahrscheinlichkeit, dass mindestens ein Test ein signifikantes Ergebnis liefert, mit der Anzahl der durchgeführten Tests.
 
 ### Beispiel
 
@@ -186,8 +182,5 @@ Die Tabelle zeigt diese Wahrscheinlichkeiten für verschiedene Werte von $n$:
 | Anzahl $n$       |    1 |      5 |     10 |     20 |     50 |    100 |
 | $P(X \geq 1)$    | 0,05 | 0,2262 | 0,4013 | 0,6415 | 0,9231 | 0,9941 |
 
-Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die
-Nullhypothese zu verwerfen, bei über 64 %. Genau diesen Test könnte das Institut als Beleg für die
-Gefährdung der Meinungsfreiheit anführen, obwohl der wahre Anteil unverändert bei 25 % liegt und
-kein echter Effekt nachgewiesen wurde.
+Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die Nullhypothese zu verwerfen, bei über 64 %. Genau diesen Test könnte das Institut als Beleg für die Gefährdung der Meinungsfreiheit anführen, obwohl der wahre Anteil unverändert bei 25 % liegt und kein echter Effekt nachgewiesen wurde.
 
