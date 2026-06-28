@@ -339,14 +339,14 @@ def _kennzahlen_items(
     e_max = price * capacity
 
     items = [
-        ("den Verkaufspreis.", _num_tol(price, tolerance=y_tol)),
+        ("den Verkaufspreis.", _num_tol(price, tolerance=0.2*y_tol/x_tol)),
         ("die Gewinnschwelle.", _num_tol(x_break_even_low, tolerance=x_tol)),
         ("die Fixkosten.", _num_tol(k0, tolerance=y_tol)),
         ("den maximalen Gewinn.", _num_tol(g_max, tolerance=y_tol)),
         ("die Gewinngrenze.", _num_tol(x_break_even_high, tolerance=x_tol)),
         (
             "die Menge beim Übergang vom degressiven zum progressiven Kostenwachstum.",
-            _num_tol(x_wende, tolerance=x_tol),
+            _num_tol(x_wende, tolerance=2*x_tol),
         ),
         ("den maximalen Erlös.", _num_tol(e_max, tolerance=y_tol)),
         ("die gewinnmaximale Menge.", _num_tol(x_gain_max, tolerance=x_tol)),
