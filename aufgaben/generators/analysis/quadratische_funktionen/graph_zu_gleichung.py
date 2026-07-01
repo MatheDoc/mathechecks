@@ -67,11 +67,11 @@ class GraphZuGleichungQuadGenerator(TaskGenerator):
             tasks.append(Task(
                 einleitung=(
                     "Bestimmen Sie die Gleichung der quadratischen Funktion "
-                    "$ f $ in der Scheitelpunktform und in der faktorisierten Form."
+                    "$ f $ in der angegebenen Form."
                 ),
                 fragen=[
-                    "Scheitelpunktform",
-                    "Faktorisierte Form",
+                    "Scheitelpunktform:",
+                    "Faktorisierte Form:",
                 ],
                 antworten=[
                     (

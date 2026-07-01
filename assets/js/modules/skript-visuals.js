@@ -2,7 +2,7 @@ import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildBaumdiagrammBinomialFigure } from "../visuals/baumdiagramm-binomial.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
-import { buildGraphFigure } from "../visuals/graph.js";
+import { buildGraphFigure } from "../visuals/graph.js?v=20260701c-graph-hilfslinien";
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
@@ -742,11 +742,13 @@ export function initSkriptVisuals(root) {
         try { funktionen = JSON.parse(div.dataset.funktionen); } catch { return; }
         const punkte = div.dataset.punkte ? JSON.parse(div.dataset.punkte) : null;
         const flaechen = div.dataset.flaechen ? JSON.parse(div.dataset.flaechen) : null;
+        const hilfslinien = div.dataset.hilfslinien ? JSON.parse(div.dataset.hilfslinien) : null;
 
         const figure = buildGraphFigure({
             funktionen,
             punkte,
             flaechen,
+            hilfslinien,
             titel: div.dataset.titel || "",
             xAchse: div.dataset.xachse || "",
             yAchse: div.dataset.yachse || "",

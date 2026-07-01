@@ -24,15 +24,15 @@ Wir bestimmen zunächst das Marktgleichgewicht. Dazu setzen wir die Angebotsfunk
 Wir bestimmen nun die nachgefragte Menge zu dem Teilmarktpreis $p_2$:
 
 $$
-p_N(x)=20 \Rightarrow x_2=1{,}2197
+p_N(x)=20 \Rightarrow x_2=12{,}1968
 $$
 
-Die abgeschöüpfte Konsumentenrente entspricht dem Inhalt des weißen Rechtecks in der schematischen Darstellung mit den Kantenlängen $x_2$ und $p_2-p_G$. Daher berechnen wir die abgeschöpfte Konsumentenrente wie folgt:
+Die abgeschöpfte Konsumentenrente entspricht dem Inhalt der grau schraffierten Fläche im Diagramm im Skript mit den Kantenlängen $x_2$ und $p_2-p_G$. Daher berechnen wir die abgeschöpfte Konsumentenrente wie folgt:
 
 $$
 \begin{align*}
 KR_{abgeschöpft} &= x_2\cdot (p_2-p_G)\\
-                 &= 1{,}2197\cdot (20-12{,}5715)\\
-                 &= 9{,}0605
+                 &= 12{,}1968\cdot (20-12{,}5715)\\
+                 &= 90{,}6039
 \end{align*}
 $$
