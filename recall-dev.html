@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recall-Antworten prüfen (Batch, Gemini)</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    background: #f5f5f3;
+    padding: 2rem 1rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #e0e0dc;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  h1 { font-size: 18px; font-weight: 500; margin-bottom: 0.25rem; }
+  .subtitle { font-size: 13px; color: #888; margin-bottom: 1.5rem; }
+
+  details { margin-bottom: 1.25rem; }
+  summary { font-size: 13px; color: #888; cursor: pointer; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"], input[type="password"], select {
+    width: 100%;
+    font-size: 14px;
+    font-family: inherit;
+    padding: 8px 10px;
+    border: 1px solid #d0d0cc;
+    border-radius: 8px;
+    background: #fafaf8;
+    color: #1a1a1a;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+
+  input:focus, select:focus { border-color: #7c7cee; }
+
+  .hint { font-size: 12px; color: #999; margin-top: 4px; }
+  .hint a { color: #7c7cee; }
+
+  .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .top-row span { font-size: 13px; color: #555; }
+
+  select#model { width: auto; font-size: 13px; padding: 6px 8px; }
+
+  .item-card {
+    background: #fafaf8;
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .item-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .item-top span { font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .remove-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #aaa;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 6px;
+  }
+  .remove-btn:hover { color: #c0392b; }
+
+  .item-card input { margin-bottom: 6px; }
+  .item-card input:last-child { margin-bottom: 0; }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    background: #fff;
+    border: 1px solid #b0b0aa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+
+  button:hover:not(:disabled) { background: #f0f0ec; }
+  button:disabled { opacity: 0.45; cursor: not-allowed; }
+
+  #addBtn { margin-bottom: 1rem; font-weight: 400; }
+
+  #runBtn { font-weight: 500; }
+
+  .status { font-size: 13px; color: #888; margin-top: 0.75rem; min-height: 18px; }
+
+  .result-item {
+    border: 1px solid #e8e8e4;
+    border-radius: 10px;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    gap: 8px;
+  }
+
+  .result-cue { font-size: 13px; color: #777; flex: 1; }
+
+  .badge {
+    font-size: 12px;
+    padding: 2px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .badge.correct { background: #e3f5ec; color: #2a7a50; }
+  .badge.partial { background: #fdf1de; color: #a06010; }
+  .badge.wrong   { background: #fbe7e7; color: #a03030; }
+
+  .result-student { font-size: 13.5px; color: #1a1a1a; margin-bottom: 2px; }
+  .result-reason { font-size: 12px; color: #999; }
+
+  #resultsContainer { margin-top: 1rem; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Recall-Antworten prüfen</h1>
+  <p class="subtitle">Cue / erwartete Antwort / Schülerantwort &middot; gebündelter Gemini-Call</p>
+
+  <details>
+    <summary>Gemini API-Key eintragen</summary>
+    <div style="margin-top: 8px;">
+      <input type="password" id="apiKey" placeholder="AIza...">
+      <p class="hint">Kostenlos erstellen unter <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a> → "Get API Key"</p>
+    </div>
+  </details>
+
+  <div class="top-row">
+    <span>Items</span>
+    <select id="model">
+      <option value="gemini-2.5-flash">gemini-2.5-flash</option>
+      <option value="gemini-2.5-flash-lite">gemini-2.5-flash-lite</option>
+    </select>
+  </div>
+
+  <div id="itemsContainer"></div>
+
+  <button id="addBtn">+ Item hinzufügen</button>
+  <button id="runBtn">Alle prüfen (1 Gemini-Call)</button>
+
+  <div id="status" class="status"></div>
+  <div id="resultsContainer"></div>
+</div>
+
+<script>
+  let items = [
+    { cue: "\\(n\\)", response: "Anzahl der Versuche", student: "n ist die Versuchsanzahl" },
+    { cue: "\\(p\\)", response: "Trefferwahrscheinlichkeit pro Versuch", student: "p bleibt immer gleich" },
+    { cue: "notwendige Bedingung für Extrempunkte", response: "f'(x_0)=0", student: "die Ableitung ist null" },
+    { cue: "Gesamtanzahl berechnen", response: "zuerst die Gesamtanzahl aller Ergebnisse bestimmen", student: "keine Ahnung" }
+  ];
+
+  function esc(s) {
+    return (s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  }
+
+  function renderItems() {
+    const c = document.getElementById('itemsContainer');
+    c.innerHTML = items.map((it, i) => `
+      <div class="item-card">
+        <div class="item-top">
+          <span>Item ${i+1}</span>
+          <button class="remove-btn" data-remove="${i}" title="entfernen">&times;</button>
+        </div>
+        <input type="text" data-field="cue" data-idx="${i}" placeholder="Cue, z.B. \\(p\\) oder eine Frage" value="${esc(it.cue)}">
+        <input type="text" data-field="response" data-idx="${i}" placeholder="Erwartete Antwort" value="${esc(it.response)}">
+        <input type="text" data-field="student" data-idx="${i}" placeholder="Schülerantwort" value="${esc(it.student)}">
+      </div>
+    `).join('');
+
+    c.querySelectorAll('input').forEach(inp => {
+      inp.addEventListener('input', e => {
+        const idx = parseInt(e.target.dataset.idx);
+        const field = e.target.dataset.field;
+        items[idx][field] = e.target.value;
+      });
+    });
+    c.querySelectorAll('[data-remove]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        items.splice(parseInt(e.target.closest('[data-remove]').dataset.remove), 1);
+        renderItems();
+      });
+    });
+  }
+
+  document.getElementById('addBtn').addEventListener('click', () => {
+    items.push({ cue: "", response: "", student: "" });
+    renderItems();
+  });
+
+  function setStatus(msg) {
+    document.getElementById('status').textContent = msg;
+  }
+
+  function buildPrompt(payload) {
+    return `Du bewertest Schülerantworten in einer Mathematik-Recall-Übung (Sekundarstufe/Berufskolleg).
+
+Kontext: Den Schülern wurde ein Hinweis ("cue") gezeigt, z.B. ein Symbol, eine Formel oder eine kurze Frage. Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedächtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schülerantwort, sondern natürlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z.B. "f Strich von x Null gleich Null" für $f'(x_0)=0$, oder "p mal eins minus p" für $p(1-p)$).
+
+Bewerte für jedes Item: Trifft die Schülerantwort die fachliche Kernaussage der erwarteten Antwort? Toleriere umgangssprachliche/diktierte Schreibweise, andere Variablennamen bei gleicher Struktur, unvollständige aber im Kern richtige Antworten (mittlerer Score). Bewerte STRENG bei fehlenden zentralen Bestandteilen oder Verwechslung von Symbolen/Bedingungen.
+
+Eingabedaten:
+${JSON.stringify(payload, null, 2)}
+
+Antworte NUR mit einem JSON-Array, keine weiteren Erklärungen, keine Markdown-Codeblöcke:
+[{"nr": 1, "score": 0.0-1.0, "correct": true/false, "reason": "max 12 Wörter auf Deutsch"}]`;
+  }
+
+  async function callGemini(apiKey, model, validItems) {
+    const payload = validItems.map((it, i) => ({
+      nr: i + 1,
+      cue: it.cue,
+      erwartete_antwort: it.response,
+      schueler_antwort: it.student
+    }));
+    const prompt = buildPrompt(payload);
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { temperature: 0.1 }
+      })
+    });
+
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error(`Gemini API Fehler (${res.status}): ${errText.slice(0, 250)}`);
+    }
+
+    const data = await res.json();
+    let text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    text = text.replace(/```json|```/g, '').trim();
+
+    try {
+      return JSON.parse(text);
+    } catch {
+      throw new Error('Konnte Gemini-Antwort nicht parsen: ' + text.slice(0, 200));
+    }
+  }
+
+  function verdictFor(score) {
+    if (score >= 0.82) return { label: 'korrekt', cls: 'correct' };
+    if (score >= 0.65) return { label: 'teilweise', cls: 'partial' };
+    return { label: 'nicht erkannt', cls: 'wrong' };
+  }
+
+  function renderResults(results, validItems) {
+    const c = document.getElementById('resultsContainer');
+    c.innerHTML = results.map(r => {
+      const item = validItems[r.nr - 1];
+      const v = verdictFor(r.score);
+      return `
+        <div class="result-item">
+          <div class="result-top">
+            <span class="result-cue">${esc(item ? item.cue : '')}</span>
+            <span class="badge ${v.cls}">${r.score.toFixed(2)} &middot; ${v.label}</span>
+          </div>
+          <div class="result-student">${esc(item ? item.student : '')}</div>
+          <div class="result-reason">${esc(r.reason || '')}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.getElementById('runBtn').addEventListener('click', async () => {
+    const apiKey = document.getElementById('apiKey').value.trim();
+    const model = document.getElementById('model').value;
+
+    if (!apiKey) { setStatus('Bitte API-Key eintragen.'); return; }
+    const validItems = items.filter(it => it.cue && it.response && it.student);
+    if (validItems.length === 0) { setStatus('Bitte mindestens ein vollständiges Item ausfüllen.'); return; }
+
+    document.getElementById('runBtn').disabled = true;
+    setStatus('Frage Gemini (1 Request für ' + validItems.length + ' Items)…');
+
+    try {
+      const results = await callGemini(apiKey, model, validItems);
+      renderResults(results, validItems);
+      setStatus('');
+    } catch (e) {
+      setStatus(e.message);
+    }
+
+    document.getElementById('runBtn').disabled = false;
+  });
+
+  renderItems();
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ Das folgende Diagramm veranschaulicht die Kennzahlen zum Marktgleichgewicht.
    ]'
     punkte='[
      {"x":0,"y":42,"text":"Höchstpreis"},
-     {"x":0,"y":14,"text":"Mindesangebotspreis"},
+     {"x":0,"y":14,"text":"Mindestangebotspreis"},
      {"x":8,"y":26,"text":"Marktgleichgewicht: Gleichgewichtsmenge und Gleichgewichtspreis"},
      {"x":21,"y":0,"text":"Sättigungsmenge"}
    ]'

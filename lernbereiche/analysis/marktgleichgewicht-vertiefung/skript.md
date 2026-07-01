@@ -150,8 +150,26 @@ Die Konsumentenrente beschreibt mit Hilfe der Differenz aus der Zahlungsbereitsc
 
 Die Produzentenrente beschreibt mit Hilfe der Differenz aus dem Umsatz im Marktlgeichgewicht und der Angebotsbereitschaft, wie Produzenten vom Marktgleichgewicht profitieren. Graphisch entspricht die Produzentenrente der Fläche zwischen dem Marktpreis und dem Graphen der Angebotsfunktion von 0 bis zur Gleichgewichtsmenge.
 
-<img src="KRPR.png" class="diagramm" alt="Diagramm zur Konsumenten- und Produzentenrente">
-
+{% include graph.html
+   funktionen='[
+    {"name":"p<sub>N</sub>(x)", "term":"45.75*exp(-0.044*x)-6.75", "beschreibung":"Nachfragefunktion", "color":"#1f77b4"},
+    {"name":"p<sub>A</sub>(x)", "term":"0.016*x^2+0.022*x+6", "beschreibung":"Angebotsfunktion", "color":"#d62728"}
+   ]'
+   flaechen='[
+    {"term":"45.75*exp(-0.044*x)-6.75", "von":0, "bis":19.5903, "basis":12.5715, "farbe":"rgba(31,119,180,0.3)", "name":"Konsumentenrente (KR)"},
+    {"term":"0.016*x^2+0.022*x+6", "von":0, "bis":19.5903, "basis":12.5715, "farbe":"rgba(214,39,40,0.3)", "name":"Produzentenrente (PR)"}
+   ]'
+    punkte='[
+     {"x":19.5903,"y":12.5715,"text":"Marktgleichgewicht: x_G, p_G"}
+   ]'
+   titel="Konsumenten- und Produzentenrente"
+   xachse="Menge x in ME"
+   yachse="Preis p in GE"
+   xmin=0
+   xmax=40
+   ymin=0
+   ymax=42
+%}
 
 {% include check-anker.html nummer="3" %}
 
@@ -168,13 +186,34 @@ Die Abschöpfung der Konsumentenrente bezeichnet eine Preissetzungsstrategie, be
 
 Bei einer Preisdifferenzierung wird der Markt in zwei Teilmärkte aufgeteilt wird. Auf dem ersten Teilmarkt gilt der Gleichgewichtspreis. Auf dem zweiten Teilmarkt wird ein neuer Preis $p_2$ festgelegt. Die Konsumentenrente ergibt sich dann aus der Summe der Konsumentenrente des ersten Teilmarkts KR1 und der Konsumentenrente des zweiten Teilmarkts KR2. Der Sachverhalt ist in folgendem Diagramm dargestellt:
 
-<img src='Analysis_Wirtschaft_Marktgleichgewicht_Preisdifferenzierung.png' class='diagramm' alt='Diagramm zur Abschöpfung der Konsumentenrente'>
+{% include graph.html
+   funktionen='[
+    {"name":"p<sub>N</sub>(x)", "term":"45.75*exp(-0.044*x)-6.75", "beschreibung":"Nachfragefunktion", "color":"#1f77b4"},
+    {"name":"p<sub>A</sub>(x)", "term":"0.016*x^2+0.022*x+6", "beschreibung":"Angebotsfunktion", "color":"#d62728"}
+   ]'
+   flaechen='[
+    {"term":"45.75*exp(-0.044*x)-6.75", "von":0, "bis":12.1968, "basis":20, "farbe":"rgba(59,130,246,0.25)", "name":"KR2"},
+    {"term":"45.75*exp(-0.044*x)-6.75", "von":12.1968, "bis":19.5903, "basis":12.5715, "farbe":"rgba(16,185,129,0.25)", "name":"KR1"},
+    {"term":"20", "von":0, "bis":12.1968, "basis":12.5715, "farbe":"rgba(120,120,120,0.6)", "schraffur":true, "name":"abgeschöpfter Betrag"}
+   ]'
+   hilfslinien='[
+    {"x":12.1968,"y":20,"xLabel":"x<sub>2</sub>","yLabel":"p<sub>2</sub>"},
+    {"x":19.5903,"y":12.5715,"xLabel":"x<sub>G</sub>","yLabel":"p<sub>G</sub>"}
+   ]'
+   titel="Preisdifferenzierung: Abschöpfung der Konsumentenrente"
+   xachse="Menge x in ME"
+   yachse="Preis p in GE"
+   xmin=0
+   xmax=40
+   ymin=0
+   ymax=42
+%}
 
 {% include check-anker.html nummer="4" %}
 
-Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Dies ist genau dann der Fall, falls der Inhalt des weißen Rechtecks mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird (siehe schematische Darstellung).
+Interessant ist die Frage, bei wechelm Preis $p_2$ die Konsumentenrente maximal abgeschöpft wird. Wir beobachten: Dies ist genau dann der Fall, falls der Inhalt der grau schraffierten Fläche zwischen KR1 und KR2 mit den Kantenlängen $x_2$ und $p_2-p_G$ maximal wird.
 
-Der Flächeninhalt des weißen Rechtecks in Abhängigkeit von $x_2$ lautet:
+Der Flächeninhalt des grau schraffierten Bereichs in Abhängigkeit von $x_2$ lautet:
 
 $$
 \begin{align*}
@@ -183,7 +222,7 @@ A(x_2)&=x_2\cdot (p_2-p_G)\\
 \end{align*}
 $$
 
-Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des weißen Rechtecks maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
+Letzterer Ausdruck hängt, bei bekanntem $p_N(x)$ und $p_G$, nur noch von $x_2$ ab. Die Extremstelle für das Maximum von $A(x_2)$ kann nun mit den bekannten Methoden der Differentailrechnung bestimmt werden. Für das ermittelte $x_2$ ist dann der Flächeninhalt des grau schraffierten Bereichs maximal und die Produzenrente minimal. Der entsprechende Preis ist $p_N(x_2)$.
 
 
 {% include check-anker.html nummer="5" %}

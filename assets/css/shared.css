@@ -4938,14 +4938,13 @@ html.light .roulette-widget__event {
   flex-direction: column;
   border-radius: 16px;
   padding: 18px 18px 16px;
-  border: 1px solid color-mix(in srgb, var(--mt-flashcards, var(--amber)) 26%, var(--border));
-  background: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-flashcards-soft, var(--amber-soft)) 8%);
+  border: 1px solid var(--dcc-inner-border, color-mix(in srgb, var(--mt-flashcards, var(--amber)) 26%, var(--border)));
+  background: var(--dcc-inner-surface,
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--mt-flashcards, var(--amber)) 12%, transparent),
+        color-mix(in srgb, var(--card-surface-2, #181824) 92%, transparent)));
+  box-shadow: var(--dcc-inner-shadow, inset 0 1px 0 rgba(255, 255, 255, .04));
   overflow: hidden;
-}
-
-.flashcards-front,
-.flashcards-back {
-  background: color-mix(in srgb, var(--card-surface-2, #181824) 92%, var(--mt-flashcards-soft, var(--amber-soft)) 8%);
 }
 
 .flashcards-back {

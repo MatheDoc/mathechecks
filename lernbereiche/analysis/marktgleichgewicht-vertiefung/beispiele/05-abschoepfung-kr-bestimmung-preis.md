@@ -18,7 +18,7 @@ Die Gleichgewichtsmenge beträgt $x_G=19{,}5903$ und der Gleichgewichtspreis $p_
 
 Auf einem Teilmarkt soll ein Preis $p_2=$ so festgelegt werden, dass die Konsumentenrente maximal abgeschöpft wird.
 
-Die Konsumentenrente wird maximal abgeschöpft, wenn der Flächeninhalt des weißen Rechtecks maximal wird. In Abhängigkeit von $x_2$ lautet er:
+Die Konsumentenrente wird maximal abgeschöpft, wenn der Flächeninhalt der grau schraffierten Fläche im Diagramm im Skript maximal wird. In Abhängigkeit von $x_2$ lautet er:
 
 $$
 \begin{align*}
