@@ -19,7 +19,7 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
@@ -433,6 +433,15 @@ function convertJsonLatexToMarkdown(text) {
   return String(text || "")
     .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
     .replace(/\\\[(.+?)\\\]/gs, (_, m) => `$$${m}$$`);
+}
+
+function normalizeTippForPrompt(raw) {
+  if (raw && typeof raw === "object") {
+    const cue = typeof raw.cue === "string" ? raw.cue.trim() : "";
+    const response = typeof raw.response === "string" ? raw.response.trim() : "";
+    return cue ? `${cue}: ${response}` : response;
+  }
+  return typeof raw === "string" ? raw : "";
 }
 
 function extractGraphDescriptions(container) {
@@ -1193,7 +1202,7 @@ function buildTrainingKiAgentPrompt({ check, task, taskIndex, totalTasks, runtim
 
   const tips = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const tippsBlock = tips.length > 0
-    ? `Hinweise:\n${tips.map((t) => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    ? `Hinweise:\n${tips.map((t) => `- ${convertJsonLatexToMarkdown(normalizeTippForPrompt(t))}`).join("\n")}`
     : "";
 
   const beispielText = beispielHtml ? htmlToPlainText(beispielHtml).trim() : "";

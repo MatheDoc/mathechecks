@@ -55,8 +55,32 @@ function createAnkerCard(check, label, moduleTone) {
 /*  Tipps rendern                                                      */
 /* ------------------------------------------------------------------ */
 
+function normalizeTipp(raw) {
+    if (raw && typeof raw === "object") {
+        return {
+            cue: typeof raw.cue === "string" ? raw.cue.trim() : "",
+            response: typeof raw.response === "string" ? raw.response.trim() : "",
+        };
+    }
+    return { cue: "", response: typeof raw === "string" ? raw.trim() : "" };
+}
+
+function appendTippLine(li, item) {
+    if (item.cue) {
+        const strong = document.createElement("strong");
+        strong.textContent = `${item.cue}:`;
+        li.appendChild(strong);
+        li.append(` ${item.response}`);
+        return;
+    }
+
+    li.textContent = item.response;
+}
+
 function renderTipps(container, check) {
-    const tipps = Array.isArray(check?.Tipps) ? check.Tipps : [];
+    const tipps = Array.isArray(check?.Tipps)
+        ? check.Tipps.map(normalizeTipp).filter((tipp) => tipp.response)
+        : [];
     if (tipps.length === 0) {
         container.hidden = true;
         return;
@@ -65,10 +89,11 @@ function renderTipps(container, check) {
     const { card, body } = createAnkerCard(check, "Tipps", "recall");
 
     const ul = document.createElement("ul");
-    ul.className = "check-anker__tipps-list";
+    ul.className = "recall-list recall-list--tips";
     for (const tipp of tipps) {
         const li = document.createElement("li");
-        li.textContent = tipp;
+        li.className = "recall-list__item";
+        appendTippLine(li, tipp);
         ul.appendChild(li);
     }
     body.appendChild(ul);

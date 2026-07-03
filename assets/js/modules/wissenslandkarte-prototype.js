@@ -200,15 +200,32 @@ function renderThoughtPills(thoughts) {
   `;
 }
 
+function normalizeTipp(raw) {
+  if (raw && typeof raw === "object") {
+    return {
+      cue: typeof raw.cue === "string" ? raw.cue.trim() : "",
+      response: typeof raw.response === "string" ? raw.response.trim() : "",
+    };
+  }
+  return { cue: "", response: typeof raw === "string" ? raw.trim() : "" };
+}
+
+function renderTipLine(tipp) {
+  const responseHtml = escapeHtml(tipp.response);
+  return tipp.cue ? `<strong>${escapeHtml(tipp.cue)}:</strong> ${responseHtml}` : responseHtml;
+}
+
 function renderTips(check) {
-  const tipps = Array.isArray(check?.Tipps) ? check.Tipps : [];
+  const tipps = Array.isArray(check?.Tipps)
+    ? check.Tipps.map(normalizeTipp).filter((tipp) => tipp.response)
+    : [];
   if (!tipps.length) {
     return `<p class="wl-empty-copy">Für diesen Check sind noch keine Kernpunkte hinterlegt.</p>`;
   }
 
   return `
     <ul class="wl-tips-list">
-      ${tipps.map((tipp) => `<li>${escapeHtml(tipp)}</li>`).join("")}
+      ${tipps.map((tipp) => `<li>${renderTipLine(tipp)}</li>`).join("")}
     </ul>
   `;
 }

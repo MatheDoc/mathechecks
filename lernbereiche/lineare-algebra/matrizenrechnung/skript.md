@@ -232,51 +232,9 @@ $$
 
 ## Lineare Matrizengleichungen
 
-Mit Hilfe der inversen Matrix können wir Gleichungen lösen, in denen Matrizen als Unbekannte auftreten.
-
-### Prinzip
-
-Eine Matrizengleichung wird – ähnlich wie eine gewöhnliche Gleichung – nach der unbekannten Matrix $X$ aufgelöst. Dabei ist die **Reihenfolge** der Multiplikation entscheidend, da die Matrizenmultiplikation nicht kommutativ ist.
-
-### Grundtypen
-
-| Gleichung | Lösung |
-|---|---|
-| $A \cdot X = B$ | $X = A^{-1} \cdot B$ |
-| $X \cdot A = B$ | $X = B \cdot A^{-1}$ |
-
-In beiden Fällen muss $A$ invertierbar sein.
-
-### Beispiel
-
-Löse die Gleichung $A \cdot X + B = C$ mit
-
-$$
-A = \begin{pmatrix} 2 & 1 \\ 5 & 3 \end{pmatrix}, \quad B = \begin{pmatrix} 1 & 0 \\ -1 & 2 \end{pmatrix}, \quad C = \begin{pmatrix} 5 & 3 \\ 9 & 11 \end{pmatrix}
-$$
-
-**Schritt 1:** Umstellen nach $A \cdot X$:
-
-$$
-A \cdot X = C - B = \begin{pmatrix} 5 & 3 \\ 9 & 11 \end{pmatrix} - \begin{pmatrix} 1 & 0 \\ -1 & 2 \end{pmatrix} = \begin{pmatrix} 4 & 3 \\ 10 & 9 \end{pmatrix}
-$$
-
-**Schritt 2:** Von links mit $A^{-1}$ multiplizieren. Es ist $A^{-1} = \begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}$ (vgl. oben).
-
-$$
-X = A^{-1} \cdot (C - B) = \begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix} \cdot \begin{pmatrix} 4 & 3 \\ 10 & 9 \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 3 \end{pmatrix}
-$$
-
-### Achtung bei der Reihenfolge
-
-Steht $X$ rechts vom Faktor, muss $A^{-1}$ von **rechts** multipliziert werden:
-
-$$
-X \cdot A + B = C \implies X = (C - B) \cdot A^{-1}
-$$
+Mit Hilfe der inversen Matrix können wir Gleichungen lösen, in denen Matrizen als Unbekannte auftreten. Eine Matrizengleichung wird – ähnlich wie eine gewöhnliche Gleichung – nach der unbekannten Matrix $X$ aufgelöst. Dabei ist die Reihenfolge der Multiplikation wichtig, da die Matrizenmultiplikation nicht kommutativ ist.
 
 {% include check-anker.html nummer="6" %}
-
 
 ## Die Transponierte
 
@@ -365,10 +323,10 @@ $$
 Für $4 \times 4$-Matrizen (und größere) verwenden wir die **Laplace-Entwicklung**. Dabei wird die Determinante nach einer Zeile oder Spalte entwickelt und auf kleinere Determinanten zurückgeführt. Entwicklung nach der ersten Zeile:
 
 $$
-\det(A) = \sum_{j=1}^{4} (-1)^{1+j} \cdot a_{1j} \cdot \det(A_{1j})
+\det(A) = \sum_{j=1}^{4} (-1)^{i+j} \cdot a_{ij} \cdot \det(A_{ij})
 $$
 
-Dabei ist $A_{1j}$ die $3 \times 3$-Matrix, die durch Streichen der 1. Zeile und $j$-ten Spalte entsteht. Es empfiehlt sich, nach einer Zeile oder Spalte mit möglichst vielen Nullen zu entwickeln.
+Dabei ist $A_{ij}$ die $3 \times 3$-Matrix, die durch Streichen der $i$-ten Zeile und $j$-ten Spalte entsteht. Es empfiehlt sich, nach einer Zeile oder Spalte mit möglichst vielen Nullen zu entwickeln.
 
 {% include check-anker.html nummer="10" %}
 
