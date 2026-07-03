@@ -10,7 +10,7 @@ Diese Datei ist die kanonische Spezifikation für die check-, lernbereichs- und 
 
 ## Zielbild
 
-Die Quote ist ein didaktisches Instrument für Kompetenzerleben, keine Zeugnisnote. Sie ist fortschritts-, nicht defizitorientiert: Auch nach anfänglichen Fehlern kann ein Nutzer realistisch wieder auf 100 % kommen. Sie wird ausschließlich aus `training`-Versuchen gebildet; `recall` und `feynman` bleiben reine Selbsteinschätzung und tragen nicht zur Quote bei.
+Die Quote ist ein didaktisches Instrument für Kompetenzerleben, keine Zeugnisnote. Sie ist fortschritts-, nicht defizitorientiert: Auch nach anfänglichen Fehlern kann ein Nutzer realistisch wieder auf 100 % kommen. Sie wird ausschließlich aus `training`-Versuchen gebildet; `recall` und `feynman` bleiben reine Selbsteinschätzung und tragen nicht zu **dieser** Quote bei. `recall` speist stattdessen ein eigenes, separates Read-Model, siehe [Recall-Quote](#recall-quote-separates-paralleles-read-model) am Ende dieses Dokuments; `feynman` bleibt vollständig quotenfrei.
 
 ## Grundprinzipien
 
@@ -150,7 +150,7 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 6. Freies Training eines Session-Checks hebt die Session-Quote, ohne den Feed-Cursor zu verändern.
 7. Die Lernbereichs-Quote berücksichtigt nur trainierte Checks.
 8. Das Abschluss-Popup zeigt in allen drei Trainings-Modi ein Quotendelta; aufwärts motivierend, abwärts sachlich.
-9. `recall`/`feynman` erzeugen keine Quote und kein Delta.
+9. `recall`/`feynman` erzeugen keine Quote und kein Delta **in diesem Training-Quote-Modell**. `recall` hat ein eigenes, separates Recall-Quote-Read-Model (siehe unten); dieses zeigt kein Delta und ändert nichts am Training-Quote-Verhalten. `feynman` bleibt vollständig quotenfrei.
 10. Das automatische Einblenden der Einzellösung nach korrekter Antwort verändert die Wertung nicht.
 
 ## Konkrete nächste Schritte
@@ -161,3 +161,36 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 4. (d) Per-Frage-Auto-Lösung und Weiterprobieren/Lösung-anzeigen.
 5. (e) Dashboard-Worklist.
 6. Legacy entfernen und `glossary.md`/`benutzerverwaltung-mvp.md` nachziehen.
+
+## Recall-Quote (separates, paralleles Read-Model)
+
+Die Recall-Quote ist **kein Teil** der obigen Trainings-Quote und beeinflusst sie nicht. Sie ist eine eigenständige, analog aufgebaute Projektion für den Recall-Check (Cue/Response-Kernpunkte), weil Recall inhaltlich etwas anderes prüft als Training (aktiver Abruf statt gerechneter Aufgaben) und bewusst eigene Stellschrauben behalten soll.
+
+### Rohdaten
+
+`checks.json` liefert je Check ein `Tipps`-Array aus `{cue, response}`-Objekten sowie `tippOrder` (`shuffle` als Standard, `fixed` z. B. bei Schritten eines Hypothesentests). `cue` kann leer sein (noch nicht redigierter Kernpunkt); die Abfrage bleibt dann „blind“, das Item zählt aber weiterhin.
+
+### Bewertung
+
+Beim Abruf (Retrieve-Stage) tippt der Nutzer je Kernpunkt eine Antwort. Ein minimaler serverseitiger Proxy (`supabase/functions/recall-evaluate`) hält den Gemini-API-Key und bewertet alle noch offenen Items eines Durchgangs gebündelt (Score `0.0–1.0` je Item, kurzer Hinweis). Nach jeder Prüfung werden die Response-Felder direkt eingefärbt. Teilweise/falsche Antworten können im selben Feld beliebig oft nachgebessert und erneut geprüft werden; angezeigte Lösungen zählen wie im Training als aufgelöst. Schlägt die KI-Bewertung fehl (Netzwerk, Rate-Limit, Parsing), werden die Lösungen der noch offenen Items eingeblendet; damit ist der Durchgang abschließbar, diese Items zählen aber als aufgelöst.
+
+### Taskscore und Aggregation
+
+`task_score = Summe der Item-Scores / checkableCount`. Korrekte Items verwenden den KI-Score mit einem Versuchsabzug analog Training: `max(0, rawScore · (1 - (n - 1) · p))`; aufgelöste Items zählen als `0`. Ein Durchgang wird erst abschließbar, wenn alle Items entweder korrekt bewertet wurden oder die Lösung angezeigt wurde.
+
+Die Check-Recall-Quote ist wie bei Training das recency-gewichtete Mittel der letzten `N` Taskscores:
+
+```
+recall_quote = Σ_i ( d^alter_i * task_score_i ) / Σ_i ( d^alter_i )
+```
+
+mit eigenen Parametern `recall_proficiency.window_size` (Default `3`), `recall_proficiency.recency_decay` (Default `0.5`) und `recall_proficiency.retry_penalty` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*`.
+
+### Erfassung und Projektion
+
+`record_user_activity('recall', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount` plus den kompatiblen `details.itemScores`-Snapshot, `selfOutcome` und `model`. `public._compute_recall_task_score(details, p)` berechnet daraus den Taskscore; Legacy-Events mit nur `itemScores` bleiben lesbar. `public.get_user_recall_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu `get_user_check_proficiency()`; `get_user_activity_overview()` liefert sie zusätzlich unter `recallProficiency`.
+
+### UI
+
+Die Bewertung erscheint inline am jeweiligen Response-Feld: gemeinsame Trainingsklassen `answer-input`, `is-correct`/`is-incorrect`, zusätzlich `is-partial` für orange, KI-Hinweis direkt unter dem Feld. Bei korrekten Antworten wird die hinterlegte Response direkt angezeigt; bei teilweise/falsch erscheint ein Button „Lösung anzeigen“. Das Header-Abschluss-Icon pulsiert und wird erst klickbar, wenn alle Items korrekt oder aufgelöst sind. `feynman` bleibt unverändert reine Selbsteinschätzung ohne KI-Bewertung und ohne Recall-Quote.
+

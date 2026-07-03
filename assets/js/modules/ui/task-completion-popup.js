@@ -14,7 +14,7 @@ function formatRate(rate) {
   return `${rounded}\u202f%`;
 }
 
-function buildQuoteDelta(previousRate, newRate) {
+function buildQuoteDelta(previousRate, newRate, { labelText = "Deine Quote für diesen Check" } = {}) {
   const wrap = document.createElement("div");
   wrap.className = "task-completion-popup__quote";
 
@@ -41,7 +41,7 @@ function buildQuoteDelta(previousRate, newRate) {
 
   const label = document.createElement("div");
   label.className = "task-completion-popup__quote-label";
-  label.textContent = "Deine Quote für diesen Check";
+  label.textContent = labelText;
   wrap.appendChild(label);
 
   const valueRow = document.createElement("div");
@@ -134,11 +134,17 @@ export function showTaskCompletionPopup({
 
   const heading = document.createElement("h2");
   heading.className = "task-completion-popup__title";
-  heading.textContent = mode === "training" ? "Aufgabe abgeschlossen" : "Durchgang abgeschlossen";
+  heading.textContent = mode === "training"
+    ? "Aufgabe abgeschlossen"
+    : mode === "recall"
+      ? "Recall abgeschlossen"
+      : "Durchgang abgeschlossen";
   popup.appendChild(heading);
 
   if (showQuote && !quoteUnchanged) {
-    popup.appendChild(buildQuoteDelta(previousRate, newRate));
+    popup.appendChild(buildQuoteDelta(previousRate, newRate, {
+      labelText: mode === "recall" ? "Deine Recall-Quote für diesen Check" : "Deine Quote für diesen Check",
+    }));
   }
 
   if (quoteUnchanged) {

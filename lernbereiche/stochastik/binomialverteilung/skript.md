@@ -92,18 +92,7 @@ $$
 
 ### Interpretationen
 
-Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel auch inhaltlich interpretieren zu können.
-
-Jeder Teil der Formel hat dabei eine klare Rolle im Sachzusammenhang:
-
-- $n$ ist die Anzahl der Versuche.
-- $k$ ist die Anzahl der Treffer.
-- $p$ ist die Trefferwahrscheinlichkeit pro Versuch.
-- $1-p$ ist die Nietenwahrscheinlichkeit pro Versuch.
-- $\binom{n}{k}$ zählt, auf wie viele Arten genau $k$ Treffer angeordnet werden können.
-- $P(X=k)$ ist die Wahrscheinlichkeit für genau $k$ Treffer.
-
-Im nächsten Check geht es deshalb nicht um langes Rechnen, sondern darum, solche Formeln fachsprachlich sauber zu lesen und im Sachzusammenhang zu deuten.
+Durch den häufigen Einsatz von Taschenrechnern oder Tafelwerken gerät die Bedeutung der Bernoulli-Formel in den Hintergrund. Dabei ist gerade diese Formel die Grundlage dafür, dass solche Hilfsmittel Wahrscheinlichkeiten so zuverlässig angeben können. Es ist daher wichtig, die Formel inhaltlich interpretieren zu können.
 
 {% include check-anker.html nummer=2 %}
 

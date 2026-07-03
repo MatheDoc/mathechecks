@@ -517,7 +517,26 @@ export async function getUserCheckProficiency() {
   }
 }
 
-export function extractCheckProficiencyRate(proficiency, checkId) {
+export async function getUserRecallProficiency() {
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("get_user_recall_proficiency");
+
+    if (error) {
+      console.warn("MatheChecks: Recall-Quoten konnten nicht geladen werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: data && typeof data === "object" ? data : null };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Laden der Recall-Quoten.", error);
+    return { ok: false, error };
+  }
+}
+
+function extractProficiencyRate(proficiency, checkId) {
   const normalizedCheckId = normalizeText(checkId);
   if (!proficiency || typeof proficiency !== "object" || !normalizedCheckId) return null;
   const checks = Array.isArray(proficiency.checks) ? proficiency.checks : [];
@@ -525,4 +544,12 @@ export function extractCheckProficiencyRate(proficiency, checkId) {
   if (!entry) return null;
   const rate = Number(entry.rate);
   return Number.isFinite(rate) ? rate : null;
+}
+
+export function extractCheckProficiencyRate(proficiency, checkId) {
+  return extractProficiencyRate(proficiency, checkId);
+}
+
+export function extractRecallProficiencyRate(proficiency, checkId) {
+  return extractProficiencyRate(proficiency, checkId);
 }

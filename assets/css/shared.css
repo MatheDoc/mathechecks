@@ -2716,7 +2716,7 @@ html.light .mod-start-content {
 .recall-list {
   display: grid;
   gap: 8px;
-  margin: 0 0 12px;
+  margin: 0 0 8px;
   padding: 0;
   list-style: none;
 }
@@ -2724,6 +2724,7 @@ html.light .mod-start-content {
 .recall-list__item {
   position: relative;
   width: 100%;
+  display: block;
   background: rgba(255, 255, 255, .03);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -2731,24 +2732,40 @@ html.light .mod-start-content {
   font-size: .88rem;
   color: var(--text);
   line-height: 1.45;
+  list-style: none;
   animation: kwIn 200ms ease both;
+}
+
+.recall-list__item::marker {
+  content: "";
 }
 
 .recall-list__item::before {
   content: "";
   position: absolute;
-  top: 1.02rem;
+  top: 50%;
   left: 14px;
   width: 6px;
   height: 6px;
   border-radius: 50%;
   background: var(--mt-recall, var(--amber));
+  transform: translateY(-50%);
+}
+
+.recall-list--tips .recall-list__item {
+  border-color: color-mix(in srgb, var(--mt-recall, var(--amber)) 20%, var(--border));
+  background: color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
 }
 
 .recall-list--user .recall-list__item {
   border-color: color-mix(in srgb, var(--mt-recall, var(--amber)) 24%, var(--border));
   background: color-mix(in srgb, var(--surface-hi) 78%, var(--mt-recall, var(--amber)) 22%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+html.light .recall-list--tips .recall-list__item {
+  background: color-mix(in srgb, white 92%, var(--mt-recall, var(--amber)) 8%);
 }
 
 html.light .recall-list--user .recall-list__item {
@@ -2831,12 +2848,10 @@ html.light .recall-list--user .recall-list__item {
   white-space: nowrap;
 }
 
-.recall-prompt--self-check,
 .module-flow-prompt--self-check {
   margin-bottom: 14px;
 }
 
-.recall-prompt--self-check::before,
 .module-flow-prompt--self-check::before {
   content: "Selbstcheck";
 }
@@ -2922,6 +2937,78 @@ html.light .recall-list--user .recall-list__item {
   color: var(--text-body);
   text-align: center;
   line-height: 1.35;
+}
+
+.self-check-button--suggested {
+  box-shadow: 0 0 0 2px rgba(var(--module-action-accent-rgb, 245, 166, 35), .35), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+.recall-cue-list {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* .check-card__runtime-task wird nur wegen gemeinsamer Card-Variablen
+   mitgenutzt; ab 1080px definiert task-render.css dafuer ein zweispaltiges
+   Trainings-Layout (Intro-Spalte | Fragenliste). Fuer Recall sollen die
+   Kernpunkte aber immer einspaltig untereinander stehen. */
+.recall-cue-list.check-card__runtime-task {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.recall-cue-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 6px;
+}
+
+.recall-cue-item__label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.recall-response-cell {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.check-card--recall .answer-input.is-partial,
+.check-card--recall .answer-select.is-partial,
+.recall-input-slot.is-partial {
+  border-color: var(--amber) !important;
+  background: color-mix(in srgb, var(--amber-soft) 78%, transparent) !important;
+}
+
+.recall-input-slot.recall-input-slot--unchecked {
+  border-color: rgba(148, 163, 184, .42) !important;
+  background: rgba(148, 163, 184, .08) !important;
+}
+
+.check-card--recall .task-feedback.is-partial,
+.recall-inline-feedback.is-partial {
+  color: var(--amber);
+}
+
+.recall-inline-feedback {
+  line-height: 1.35;
+}
+
+.recall-inline-solution {
+  margin-top: 0;
+}
+
+.recall-eval-status {
+  margin-bottom: 8px;
+}
+
+.recall-eval-note {
+  font-size: .82rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
 }
 
 /* success / cooldown (shared by recall + feynman) */
@@ -3577,13 +3664,13 @@ html.light .recall-list--user .recall-list__item {
 .page-skript-md .mod-content ul {
   list-style: disc;
   margin: 0 0 16px;
-  padding-left: 20px;
+  padding-left: 16px;
 }
 
 .page-skript-md .mod-content ol {
   list-style: decimal;
   margin: 0 0 16px;
-  padding-left: 20px;
+  padding-left: 16px;
 }
 
 /* ── Skript-Widget System ─────────────────────────────────── */
@@ -4261,8 +4348,9 @@ html.light .roulette-widget__event {
   margin: 16px 0;
 }
 
-.page-skript-md .mod-content .check-anker__tipps ul {
+.page-skript-md .mod-content .check-anker__tipps .recall-list {
   margin-bottom: 0;
+  padding-left: 0;
 }
 
 .page-skript-md .mod-content .check-anker__beispiel {

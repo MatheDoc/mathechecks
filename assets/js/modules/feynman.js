@@ -4,7 +4,7 @@ import { recordUserActivity } from "../platform/progress-client.js?v=20260604-ac
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260609-complete-icon";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
@@ -217,6 +217,15 @@ function convertJsonLatexToMarkdown(text) {
   return String(text || "")
     .replace(/\\\((.+?)\\\)/g, (_, m) => `$${m}$`)
     .replace(/\\\[(.+?)\\\]/gs, (_, m) => `$$${m}$$`);
+}
+
+function normalizeTippForPrompt(raw) {
+  if (raw && typeof raw === "object") {
+    const cue = typeof raw.cue === "string" ? raw.cue.trim() : "";
+    const response = typeof raw.response === "string" ? raw.response.trim() : "";
+    return cue ? `${cue}: ${response}` : response;
+  }
+  return typeof raw === "string" ? raw : "";
 }
 
 function extractGraphDescriptions(container) {
@@ -454,7 +463,7 @@ function buildKiAgentPrompt(check, beispielHtml) {
   const tipps = Array.isArray(check.Tipps) ? check.Tipps : [];
 
   const tippsBlock = tipps.length > 0
-    ? `\nWichtige Aspekte, die in einer guten Erklärung vorkommen könnten:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(t)}`).join("\n")}`
+    ? `\nWichtige Aspekte, die in einer guten Erklärung vorkommen könnten:\n${tipps.map(t => `- ${convertJsonLatexToMarkdown(normalizeTippForPrompt(t))}`).join("\n")}`
     : "";
 
   const beispielText = beispielHtml

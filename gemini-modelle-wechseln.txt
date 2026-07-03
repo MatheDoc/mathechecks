@@ -1,0 +1,96 @@
+Gemini-Modelle fuer Recall wechseln
+===================================
+
+Ziel
+----
+Die produktive Recall-Bewertung laeuft nicht ueber die Standalone-Test-HTML,
+sondern ueber die Supabase Edge Function:
+
+supabase/functions/recall-evaluate/index.ts
+
+Wenn du dort die Modellnamen aenderst, wirkt das im Projekt erst nach einem
+Deploy der Edge Function.
+
+
+1. Modellnamen in der Edge Function aendern
+-------------------------------------------
+Oeffne:
+
+supabase/functions/recall-evaluate/index.ts
+
+Aendere oben diese beiden Konstanten:
+
+const MODEL_PRIMARY = "gemini-3.1-flash-lite";
+const MODEL_FALLBACK = "gemini-3.5-flash";
+
+MODEL_PRIMARY ist das Standardmodell. MODEL_FALLBACK wird nur versucht, wenn
+das Primaermodell mit 503/Servicefehler scheitert.
+
+Wichtig: 429/Quota-Fehler duerfen nicht auf das Fallback-Modell weitergereicht
+werden, sonst kann ein einziger Recall-Klick mehrere Modellquoten belasten.
+Die Schleife in der Function sollte daher nur bei Status 503 weiterlaufen:
+
+if (status === 503) {
+  continue;
+}
+break;
+
+
+2. Lokal kurz pruefen
+---------------------
+Im Terminal im Repo-Wurzelverzeichnis ausfuehren:
+
+Select-String -Path "supabase\functions\recall-evaluate\index.ts" -Pattern "MODEL_PRIMARY|MODEL_FALLBACK|gemini-"
+
+Erwartung: Es erscheinen nur die gewuenschten Modellnamen.
+
+Hinweis: VS Code kann in dieser Datei lokal "Cannot find name 'Deno'" anzeigen.
+Das ist fuer diesen Deploy kein Blocker, solange die Function selbst syntaktisch
+korrekt ist. Die Supabase Edge Runtime stellt Deno bereit.
+
+
+3. Edge Function deployen
+-------------------------
+Im Terminal im Repo-Wurzelverzeichnis ausfuehren:
+
+& "C:\Users\fue\bin\supabase.exe" functions deploy recall-evaluate --project-ref ysqpmtreljfdwtlvjzis
+
+Die Warnung "Docker is not running" ist bei diesem Remote-Deploy normal und kein
+Problem, solange danach etwa Folgendes erscheint:
+
+Deployed Functions on project ysqpmtreljfdwtlvjzis: recall-evaluate
+
+
+4. Danach testen
+----------------
+Im Projekt eine Recall-Karte oeffnen, hart neu laden und "Antworten pruefen"
+klicken.
+
+Wenn die Bewertung klappt, nutzt die produktive Edge Function die neuen Modelle.
+Wenn die Bewertung nicht klappt und die Loesungen automatisch angezeigt werden,
+ist die Frontend-Fallback-Logik aktiv; dann die Supabase Function Logs und die
+Google-AI-Studio-Quota pruefen.
+
+
+5. Wichtige Stolperfallen
+-------------------------
+- Die Datei recall_batch_tester.html ist nur ein Standalone-Test und ruft Gemini
+  direkt aus dem Browser auf. Modellwechsel dort wirken nicht auf das Projekt.
+- Ein Jekyll-Build ist fuer reine Modellwechsel in der Edge Function nicht noetig.
+  Nur bei Frontend- oder Layout-Aenderungen neu bauen.
+- Den Gemini-API-Key niemals in Dateien schreiben oder committen. Der Key liegt
+  als Supabase Secret GEMINI_API_KEY.
+- Wenn du nur den API-Key wechselst, musst du nicht die Function-Datei aendern.
+  Dann reicht ein neues Supabase Secret und ggf. ein kurzer Test.
+- Wenn Google 429 meldet, ist das ein Quota-/Rate-Limit. Dann nicht automatisch
+  auf ein anderes Modell ausweichen, ausser du willst bewusst dessen Quote nutzen.
+
+
+6. Rollback
+-----------
+Wenn ein neues Modell im Projekt nicht funktioniert:
+
+1. MODEL_PRIMARY und MODEL_FALLBACK wieder auf die vorherigen funktionierenden
+   Modellnamen setzen.
+2. Den Deploy-Befehl aus Schritt 3 erneut ausfuehren.
+3. Recall im Projekt erneut testen.

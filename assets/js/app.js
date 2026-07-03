@@ -1,14 +1,14 @@
-import { initTrainingModule } from "./modules/training.js?v=20260614-expression-curves-b";
-import { initRecallModule } from "./modules/recall.js?v=20260621-free-complete-controls";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260621-free-complete-controls";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260621-free-complete-cleanup";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260614-expression-curves-b";
-import { initCheckAnker } from "./modules/check-anker.js?v=20260523-checks-url-fix";
+import { initTrainingModule } from "./modules/training.js?v=20260701h-tipps-object";
+import { initRecallModule } from "./modules/recall.js?v=20260702-recall-tips-shared";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260701h-tipps-object";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260701-shared-client";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260701-shared-client";
+import { initCheckAnker } from "./modules/check-anker.js?v=20260702-recall-tips-shared";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
-import { initStartModule } from "./modules/start.js?v=20260609-complete-icon";
+import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260609-complete-icon";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260701-shared-client";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 

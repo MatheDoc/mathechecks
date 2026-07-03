@@ -348,6 +348,11 @@ function bindMic(btn, input) {
 
         stopActiveRecognition();
 
+        if (input.value) {
+            input.value = "";
+            input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+
         const recognition = new SpeechRecognition();
         recognition.lang = "de-DE";
         recognition.continuous = true;

@@ -11,20 +11,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(n\\)",
-                "response": "feste Versuchsanzahl"
-            },
-            {
-                "cue": "pro Versuch",
-                "response": "zwei Ausgänge: Treffer oder Niete"
-            },
-            {
-                "cue": "\\(p\\)",
-                "response": "Trefferwahrscheinlichkeit in jedem Versuch gleich"
-            }
+            "feste Versuchsanzahl \\(n\\)",
+            "pro Versuch genau zwei Ausgänge: Treffer oder Niete",
+            "Trefferwahrscheinlichkeit \\(p\\) in jedem Versuch gleich"
         ]
     },
     {
@@ -39,32 +29,13 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(X=k)\\)",
-                "response": "Wahrscheinlichkeit für genau \\(k\\) Treffer"
-            },
-            {
-                "cue": "\\(k\\)",
-                "response": "Anzahl der Treffer"
-            },
-            {
-                "cue": "\\(n\\)",
-                "response": "Anzahl der Versuche"
-            },
-            {
-                "cue": "\\(p\\)",
-                "response": "Trefferwahrscheinlichkeit pro Versuch"
-            },
-            {
-                "cue": "\\(1-p\\)",
-                "response": "Nietenwahrscheinlichkeit pro Versuch"
-            },
-            {
-                "cue": "\\(\\binom{n}{k}\\)",
-                "response": "Anzahl der Möglichkeiten für genau \\(k\\) Treffer"
-            }
+            "\\(P(X=k)\\): Wahrscheinlichkeit für genau \\(k\\) Treffer",
+            "\\(k\\): Anzahl der Treffer",
+            "\\(n\\): Anzahl der Versuche",
+            "\\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "\\(1-p\\): Nietenwahrscheinlichkeit pro Versuch",
+            "\\(\\binom{n}{k}\\): Anzahl der Möglichkeiten für genau \\(k\\) Treffer"
         ]
     },
     {
@@ -79,24 +50,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(X\\leq k)\\)",
-                "response": "ist kumulierte Wahrscheinlichkeit bis einschließlich \\(k\\)"
-            },
-            {
-                "cue": "\\(P(X=k)\\)",
-                "response": "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)"
-            },
-            {
-                "cue": "\\(P(X\\geq k)\\)",
-                "response": "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)"
-            },
-            {
-                "cue": "\\(P(a\\leq X\\leq b)\\)",
-                "response": "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
-            }
+            "\\(P(X\\leq k)\\): kumulierte Wahrscheinlichkeit bis einschließlich \\(k\\)",
+            "\\(P(X=k)=P(X\\leq k)-P(X\\leq k-1)\\)",
+            "\\(P(X\\geq k)=1-P(X\\leq k-1)\\)",
+            "\\(P(a\\leq X\\leq b)=P(X\\leq b)-P(X\\leq a-1)\\)"
         ]
     },
     {
@@ -111,24 +69,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(n\\)",
-                "response": "Anzahl der Versuche"
-            },
-            {
-                "cue": "\\(p\\)",
-                "response": "Trefferwahrscheinlichkeit pro Versuch"
-            },
-            {
-                "cue": "\\(a\\), \\(b\\)",
-                "response": "untere und obere ganzzahlige Intervallgrenze"
-            },
-            {
-                "cue": "\\(Bcd(a;b;n;p)\\)",
-                "response": "Wahrscheinlichkeit für \\(a \\leq X \\leq b\\)"
-            }
+            "\\(n\\): Anzahl der Versuche",
+            "\\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "\\(a\\), \\(b\\): untere und obere ganzzahlige Intervallgrenze",
+            "\\(Bcd(a;b;n;p)\\): Wahrscheinlichkeit für \\(a \\leq X \\leq b\\)"
         ]
     },
     {
@@ -143,24 +88,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-05",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "zuerst prüfen",
-                "response": "binomialverteilt oder nicht"
-            },
-            {
-                "cue": "\\(n\\)",
-                "response": "Anzahl der Versuche"
-            },
-            {
-                "cue": "\\(p\\)",
-                "response": "Trefferwahrscheinlichkeit im Sachzusammenhang"
-            },
-            {
-                "cue": "Intervallgrenzen",
-                "response": "auf innerhalb des Intervalls liegende Anzahlen runden"
-            }
+            "zuerst prüfen: binomialverteilt oder nicht",
+            "\\(n\\): Anzahl der Versuche, \\(p\\): Trefferwahrscheinlichkeit pro Versuch",
+            "Treffer im Sachzusammenhang festlegen",
+            "Intervallgrenzen auf ganze Trefferzahlen runden"
         ]
     },
     {
@@ -175,20 +107,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(x\\)-Achse",
-                "response": "Anzahl der Treffer"
-            },
-            {
-                "cue": "\\(y\\)-Achse",
-                "response": "Einzelwahrscheinlichkeit \\(P(X=k)\\)"
-            },
-            {
-                "cue": "Intervallwahrscheinlichkeit",
-                "response": "passende Balken im Intervall addieren"
-            }
+            "\\(x\\)-Achse: Anzahl der Treffer",
+            "\\(y\\)-Achse: Einzelwahrscheinlichkeit \\(P(X=k)\\)",
+            "Intervallwahrscheinlichkeit: passende Balken im Intervall addieren"
         ]
     },
     {
@@ -203,24 +125,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-07",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(x\\)-Achse",
-                "response": "Anzahl der Treffer"
-            },
-            {
-                "cue": "\\(y\\)-Achse",
-                "response": "kumulierte Wahrscheinlichkeit \\(P(X\\leq k)\\)"
-            },
-            {
-                "cue": "Balkenhöhe bei \\(k\\)",
-                "response": "Wahrscheinlichkeit für höchstens \\(k\\) Treffer"
-            },
-            {
-                "cue": "Einzelwahrscheinlichkeit",
-                "response": "passende Stufenhöhen"
-            }
+            "\\(x\\)-Achse: Anzahl der Treffer",
+            "\\(y\\)-Achse: kumulierte Wahrscheinlichkeit \\(P(X\\leq k)\\)",
+            "Balkenhöhe bei \\(k\\): Wahrscheinlichkeit für höchstens \\(k\\) Treffer",
+            "Einzelwahrscheinlichkeit: passende Stufenhöhen"
         ]
     },
     {
@@ -235,20 +144,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-08",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(k\\), \\(P(X\\leq k \\) oder \\(P(X\\geq k \\) und \\(p\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(n\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "Bedingung als Intervallwahrscheinlichkeit notieren und \\(n\\) durch Probieren oder mit Tabelle bestimmen"
-            }
+            "\\(a\\), \\(b\\) und \\(p\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "\\(n\\) durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -263,20 +162,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-09",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(k\\), \\(P(X\\leq k \\) oder \\(P(X\\geq k \\) und \\(n\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(p\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "Bedingung als Intervallwahrscheinlichkeit notieren und \\(p\\) durch Probieren oder mit Tabelle bestimmen"
-            }
+            "\\(a\\), \\(b\\) und \\(n\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "\\(p\\) durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -291,20 +180,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-10",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(P(X\\leq k \\) oder \\(P(X\\geq k \\) sowie \\(n\\) und \\(p\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(k\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "Bedingung als Intervallwahrscheinlichkeit notieren und \\(k\\) durch Probieren oder mit Tabelle bestimmen"
-            }
+            "gegebene Intervallgrenze sowie \\(n\\) und \\(p\\) identifizieren",
+            "Bedingung als Intervallwahrscheinlichkeit notieren",
+            "fehlende Intervallgrenze durch Probieren oder mit Tabelle so bestimmen, dass die Bedingung erfüllt ist"
         ]
     },
     {
@@ -319,20 +198,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-11",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(n\\) und \\(p\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(\\mu\\) und \\(\\sigma\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "\\(\\mu=n\\cdot p\\) und \\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-            }
+            "\\(n\\) und \\(p\\) identifizieren",
+            "\\(\\mu=n\\cdot p\\)",
+            "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
         ]
     },
     {
@@ -347,20 +216,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-12",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(n\\) und \\(\\mu\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(p\\) und \\(\\sigma\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "\\(\\mu=n\\cdot p\\) nach \\(p\\) umstellen, dann \\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-            }
+            "\\(n\\) und \\(\\mu\\) identifizieren",
+            "\\(\\mu=n\\cdot p\\) nach \\(p\\) umstellen",
+            "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
         ]
     },
     {
@@ -375,20 +234,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-13",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(p\\) und \\(\\mu\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(n\\) und \\(\\sigma\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "\\(\\mu=n\\cdot p\\) nach \\(n\\) umstellen, dann \\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
-            }
+            "\\(p\\) und \\(\\mu\\) identifizieren",
+            "\\(\\mu=n\\cdot p\\) nach \\(n\\) umstellen",
+            "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)"
         ]
     },
     {
@@ -403,20 +252,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-14",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(\\mu\\) und \\(\\sigma\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(n\\) und \\(p\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "\\(\\mu=n\\cdot p\\) und \\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\) kombinieren"
-            }
+            "\\(\\mu\\) und \\(\\sigma\\) identifizieren",
+            "\\(\\mu=n\\cdot p\\)",
+            "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)",
+            "Formeln kombinieren"
         ]
     },
     {
@@ -431,20 +271,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-15",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "gegeben",
-                "response": "\\(p\\) und \\(\\sigma\\)"
-            },
-            {
-                "cue": "gesucht",
-                "response": "\\(n\\) und \\(\\mu\\)"
-            },
-            {
-                "cue": "Ansatz",
-                "response": "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\) nach \\(n\\) umstellen, dann \\(\\mu=n\\cdot p\\)"
-            }
+            "\\(p\\) und \\(\\sigma\\) identifizieren",
+            "\\(\\mu=n\\cdot p\\)",
+            "\\(\\sigma=\\sqrt{n\\cdot p\\cdot (1-p)}\\)",
+            "Formeln kombinieren"
         ]
     },
     {
@@ -459,20 +290,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-16",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Intervallgrenzen",
-                "response": "\\(\\mu \\pm\\) absoluter Wert, ggf. auf ganze Anzahlen runden"
-            },
-            {
-                "cue": "gesuchte Wahrscheinlichkeit",
-                "response": "prüfen, ob innerhalb oder außerhalb der Intervallgrenzen"
-            },
-            {
-                "cue": "Berechnung",
-                "response": "Standardfunktion im Taschenrechner verwenden"
-            }
+            "Umgebung identifizieren: \\(\\mu \\pm\\) absoluter Wert",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
+            "Intervallwahrscheinlichkeit berechnen"
         ]
     },
     {
@@ -487,20 +309,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-17",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Intervallgrenzen",
-                "response": "\\(\\mu \\pm\\) relativer Wert, ggf. auf ganze Anzahlen runden"
-            },
-             {
-                "cue": "gesuchte Wahrscheinlichkeit",
-                "response": "prüfen, ob innerhalb oder außerhalb der Intervallgrenzen"
-            },
-            {
-                "cue": "Berechnung",
-                "response": "Standardfunktion im Taschenrechner verwenden"
-            }
+            "Umgebung identifizieren: \\(\\mu \\pm\\) relativer Wert",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
+            "Intervallwahrscheinlichkeit berechnen"
         ]
     },
     {
@@ -515,20 +328,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-binomialverteilung-18",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Intervallgrenzen",
-                "response": "\\(\\mu \\pm\\) Vielfaches von \\(\\sigma\\), ggf. auf ganze Anzahlen runden"
-            },
-             {
-                "cue": "gesuchte Wahrscheinlichkeit",
-                "response": "prüfen, ob innerhalb oder außerhalb der Intervallgrenzen"
-            },
-            {
-                "cue": "Berechnung",
-                "response": "Standardfunktion im Taschenrechner verwenden"
-            }
+            "Umgebung identifizieren: \\(\\mu \\pm\\) Vielfaches von \\(\\sigma\\)",
+            "gesuchten Bereich festlegen: innerhalb oder außerhalb der Umgebung",
+            "Intervallgrenzen bestimmen",
+            "Intervallwahrscheinlichkeit berechnen"
         ]
     },
     {
@@ -543,16 +347,9 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-01",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "an jedem Knoten",
-                "response": "ausgehende Wahrscheinlichkeiten summieren sich zu 1"
-            },
-            {
-                "cue": "Pfadmultiplikationsregel",
-                "response": "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
-            }
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
         ]
     },
     {
@@ -567,20 +364,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-02",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "an jedem Knoten",
-                "response": "ausgehende Wahrscheinlichkeiten summieren sich zu 1"
-            },
-            {
-                "cue": "Pfadmultiplikationsregel",
-                "response": "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
-            },
-            {
-                "cue": "Pfadmultiplikationsregel umgeformt",
-                "response": "gesuchte Pfadwahrscheinlichkeit = Endwahrscheinlichkeit geteilt durch gegebene Pfadwahrscheinlichkeit"
-            }
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
+            "gesuchte Pfadwahrscheinlchkeit = Endwahrscheinlichkeit geteilt durch gegebene Pfadwahrscheinlchkeit"
         ]
     },
     {
@@ -595,20 +382,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "an jedem Knoten",
-                "response": "ausgehende Wahrscheinlichkeiten summieren sich zu 1"
-            },
-            {
-                "cue": "Pfadmultiplikationsregel",
-                "response": "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
-            },
-            {
-                "cue": "Pfadadditionsregel",
-                "response": "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)"
-            }
+            "an jedem Knoten: ausgehende Wahrscheinlichkeiten summieren sich zu 1",
+            "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit",
+            "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)",
+            "\\(P(\\overline{A})=P(\\overline{A}\\cap B)+P(\\overline{A}\\cap \\overline{B})\\)"
         ]
     },
     {
@@ -623,36 +401,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\)",
-                "response": "erste Pfadwahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(B)\\)",
-                "response": "Summe zweier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "entsprechende Pfadendwahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "entsprechende Summe dreier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) bzw. \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Summe zweier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup\\overline{A})\\)",
-                "response": "Ereignis tritt immer ein"
-            },
-            {
-                "cue": "\\(P(A\\cap\\overline{A})\\)",
-                "response": "Ereignis tritt nie ein"
-            }
+            "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
+            "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cap B)\\): entsprechende Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
@@ -667,20 +421,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-05",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Baumdiagramm aufstellen",
-                "response": "Baumdiagramm zeichnen und gegebene Werte eintragen"
-            },
-            {
-                "cue": "2. Baumdiagramm vervollständigen",
-                "response": "Pfadadditionsregel und Pfadmultiplikationsregel anwenden"
-            },
-            {
-                "cue": "3. Baumdiagramm interpretieren",
-                "response": "gesuchte Wahrscheinlichkeiten identifizieren"
-            }
+            "Pfadmultiplikationsregel",
+            "Pfadadditionsregel",
+            "Gegenwahrscheinlichkeit",
+            "Relative Häufigkeiten als Wahrscheinlichkeiten"
         ]
     },
     {
@@ -695,20 +440,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "1. Baumdiagramm aufstellen",
-                "response": "Baumdiagramm zeichnen und gegebene Werte eintragen"
-            },
-            {
-                "cue": "2. Baumdiagramm vervollständigen",
-                "response": "Pfadadditionsregel und Pfadmultiplikationsregel anwenden"
-            },
-            {
-                "cue": "3. Baumdiagramm interpretieren",
-                "response": "gesuchte Wahrscheinlichkeiten identifizieren"
-            }
+            "Pfadmultiplikationsregel",
+            "Pfadadditionsregel",
+            "Gegenwahrscheinlichkeit",
+            "Relative Häufigkeiten als Wahrscheinlichkeiten"
         ]
     },
     {
@@ -723,36 +459,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\)"
-            },
-            {
-                "cue": "\\(P(B)\\)",
-                "response": "Wahrscheinlichkeit von \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\) und \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\) oder \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\), aber nicht beides"
-            },
-            {
-                "cue": "\\(P_A(B)\\)",
-                "response": "Wahrscheinlichkeit von \\(B\\) unter Bedingung \\(A\\)"
-            },
-            {
-                "cue": "\\(P_B(A)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\) unter Bedingung \\(B\\)"
-            }
+            "\\(P(A)\\): Wahrscheinlichkeit von \\(A\\)",
+            "\\(P(B)\\): Wahrscheinlichkeit von \\(B\\)",
+            "\\(P(A\\cap B)\\): Wahrscheinlichkeit von \\(A\\) und \\(B\\)",
+            "\\(P(A\\cup B)\\): Wahrscheinlichkeit von \\(A\\) oder \\(B\\)",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\): Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\), aber nicht beides",
+            "\\(P_A(B)\\): Wahrscheinlichkeit von \\(B\\) unter Bedingung \\(A\\)",
+            "\\(P_B(A)\\): Wahrscheinlichkeit von \\(A\\) unter Bedingung \\(B\\)"
         ]
     },
     {
@@ -767,24 +481,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-02",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-          {
-                "cue": "an jedem Knoten",
-                "response": "ausgehende Wahrscheinlichkeiten summieren sich zu 1"
-            },
-            {
-                "cue": "Pfadmultiplikationsregel",
-                "response": "erste Pfadwahrscheinlichkeit mal zweite Pfadwahrscheinlichkeit = Endwahrscheinlichkeit"
-            },
-            {
-                "cue": "Pfadadditionsregel",
-                "response": "\\(P(A)=P(A\\cap B)+P(A\\cap \\overline{B})\\)"
-            },
-            {
-                "cue": "Unabhängigkeit",
-                "response": "\\( P_A(B)=P_{\\overline{A}}(B) \\)"
-            }
+            "Pfadadditionsregel",
+            "Pfadmultiplikationsregel",
+            "Unabhängigkeit: \\( P_A(B)=P_{\\overline{A}}(B) \\)"
         ]
     },
     {
@@ -799,44 +499,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\)",
-                "response": "erste Pfadwahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(B)\\)",
-                "response": "Summe zweier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "entsprechende Pfadendwahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "entsprechende Summe dreier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) bzw. \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Summe zweier Pfadendwahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup\\overline{A})\\)",
-                "response": "Ereignis tritt immer ein"
-            },
-            {
-                "cue": "\\(P(A\\cap\\overline{A})\\)",
-                "response": "Ereignis tritt nie ein"
-            },
-            {
-                "cue": "\\(P_A(B)\\)",
-                "response": "zweite Pfadwahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P_B(A)\\)",
-                "response": "nicht direkt ablesbar, \\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
-            }
+            "\\(P(A)\\): erste Pfadwahrscheinlichkeit",
+            "\\(P(B)\\): Summe zweier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cap B)\\): entsprechende Pfadendwahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier Pfadendwahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
+            "\\(P_A(B)\\): zweite Pfadwahrscheinlichkeit",
+            "\\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
         ]
     },
     {
@@ -851,16 +521,9 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-04",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "äußere Wahrscheinlichkeiten",
-                "response": "Summe der entsprechenden inneren Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "innere Wahrscheinlichkeiten",
-                "response": "Differenz aus entsprechender äußerer und innerer Wahrscheinlichkeit"
-            }
+            "innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            "äußere Wahrscheinlichkeiten = Summe der entsprechenden inneren Wahrscheinlichkeiten = "
         ]
     },
     {
@@ -875,32 +538,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-05",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\) und \\(P(B)\\)",
-                "response": "letzte Zeile/Spalte"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "entsprechende innere Wahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "entsprechende Summe dreier innerer Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) bzw. \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Summe zweier innerer Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup\\overline{A})\\)",
-                "response": "Ereignis tritt immer ein"
-            },
-            {
-                "cue": "\\(P(A\\cap\\overline{A})\\)",
-                "response": "Ereignis tritt nie ein"
-            }
+            "\\(P(A)\\): letzte Zeile/Spalte",
+            "\\(P(B)\\): letzte Zeile/Spalte",
+            "\\(P(A\\cap B)\\): entsprechende innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
@@ -915,20 +558,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-06",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "äußere Wahrscheinlichkeiten",
-                "response": "Summe der entsprechenden inneren Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "innere Wahrscheinlichkeiten",
-                "response": "Differenz aus entsprechender äußerer und innerer Wahrscheinlichkeit"
-            },
-            {
-                "cue": "Unabhängigkeit",
-                "response": "Vier-Felder-Tafel ist multiplikativ, d.h. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
-            }
+            "innere Wahrscheinlichkeiten = Und-Wahrscheinlichkeiten",
+            " äußere Wahrscheinlichkeit = Summe der entsprechenden inneren Wahrscheinlichkeiten",
+            "Unabhängigkeit: Vier-Felder-Tafel ist multiplikativ, d.h. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
         ]
     },
     {
@@ -943,40 +576,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-07",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\) und \\(P(B)\\)",
-                "response": "letzte Zeile/Spalte"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "entsprechende innere Wahrscheinlichkeit"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "entsprechende Summe dreier innerer Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) bzw. \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Summe zweier innerer Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "\\(P(A\\cup\\overline{A})\\)",
-                "response": "Ereignis tritt immer ein"
-            },
-            {
-                "cue": "\\(P(A\\cap\\overline{A})\\)",
-                "response": "Ereignis tritt nie ein"
-            },
-            {
-                "cue": "\\(P_A(B) \\)",
-                "response": "\\frac{P(A\\cap B)}{P(A)}\\)"
-            },
-            {
-                "cue": "\\(P_B(A) \\)",
-                "response": "\\frac{P(A\\cap B)}{P(B)}\\)"
-            }
+            "\\(P(A)\\): letzte Zeile/Spalte",
+            "\\(P(B)\\): letzte Zeile/Spalte",
+            "\\(P(A\\cap B)\\): entsprechende innere Wahrscheinlichkeit",
+            "\\(P(A\\cup B)\\): entsprechende Summe dreier innerer Wahrscheinlichkeiten",
+            "\\(P(A\\cup B) - P(A\\cap B)\\) entspricht \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
+            "\\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)",
+            "\\(P_B(A) = \\frac{P(A\\cap B)}{P(B)}\\)"
         ]
     },
     {
@@ -991,24 +598,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-08",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Satz von der Gegenwahrscheinlichkeit",
-                "response": "\\(P(A) = 1 - P(\\overline{A})\\)"
-            },
-            {
-                "cue": "Satz von der totalen Wahrscheinlichkeit",
-                "response": "\\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)"
-            },
-            {
-                "cue": "Satz von Sylvester",
-                "response": "\\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)"
-            },
-            {
-                "cue": "Satz von der bedingten Wahrscheinlichkeit",
-                "response": "\\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)"
-            }
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von der totalen Wahrscheinlichkeit: \\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)",
+            "Satz von der bedingten Wahrscheinlichkeit: \\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)"
         ]
     },
     {
@@ -1023,28 +617,12 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-09",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Satz von der Gegenwahrscheinlichkeit",
-                "response": "\\(P(A) = 1 - P(\\overline{A})\\)"
-            },
-            {
-                "cue": "Satz von der totalen Wahrscheinlichkeit",
-                "response": "\\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)"
-            },
-            {
-                "cue": "Satz von Sylvester",
-                "response": "\\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)"
-            },
-            {
-                "cue": "Satz von der bedingten Wahrscheinlichkeit",
-                "response": "\\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)"
-            },
-            {
-                "cue": "Unabhängigkeit",
-                "response": ": \\(P_A(B) = P_{\\overline{A}}(B) bzw. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
-            }
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von der totalen Wahrscheinlichkeit: \\(P(B) = P(A\\cap B) + P(\\overline{A}\\cap B)\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)",
+            "Satz von der bedingten Wahrscheinlichkeit: \\(P_A(B) = \\frac{P(A\\cap B)}{P(A)}\\)",
+            "Unabhängigkeit: \\(P_A(B) = P_{\\overline{A}}(B) oder \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
         ]
     },
     {
@@ -1059,20 +637,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-bedingte-wahrscheinlichkeiten-10",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Flächen",
-                "response": "Ereignisse"
-            },
-            {
-                "cue": "Flächeninhalte",
-                "response": "Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "Bedingung",
-                "response": "beide markierte Flächen zusammen"
-            }
+            "Flächen = Ereignisse",
+            "Flächeninhalte = Wahrscheinlichkeiten",
+            "Bedingung = hell- und dunkelblau eingefärbte Fläche"
         ]
     },
     {
@@ -1087,20 +655,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$\\overline{A}$",
-                "response": "Komplement von $A$"
-            },
-            {
-                "cue": "$A\\cup B$",
-                "response": "$A$ oder $B$"
-            },
-            {
-                "cue": "$A\\cap B$",
-                "response": "$A$ und $B$"
-            }
+            "$\\overline{A}$: Komplement von $A$",
+            "$A\\cup B$: $A$ oder $B$",
+            "$A\\cap B$: $A$ und $B$"
         ]
     },
     {
@@ -1115,28 +673,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "\\(P(A)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\)"
-            },
-            {
-                "cue": "\\(P(B)\\)",
-                "response": "Wahrscheinlichkeit von \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cap B)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\) und \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cup B)\\)",
-                "response": "Wahrscheinlichkeit von \\(A\\) oder \\(B\\)"
-            },
-            {
-                "cue": "\\(P(A\\cup B) - P(A\\cap B)\\) oder \\(P(A\\cap\\overline{B}) + P(\\overline{A}\\cap B)\\)",
-                "response": "Wahrscheinlichkeit von entweder \\(A\\) oder \\(B\\), aber nicht beides"
-            }
+            "\\(P(A)\\): Wahrscheinlichkeit von \\(A\\)",
+            "\\(P(A\\cap B)\\): \\(A\\) und \\(B\\)",
+            "\\(P(A\\cup B)\\): \\(A\\) oder \\(B\\)",
+            "entweder \\(A\\) oder \\(B\\): \\(P(A\\cap\\overline{B})+P(\\overline{A}\\cap B)\\)"
         ]
     },
     {
@@ -1151,16 +692,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-03",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Gesamtanzahl berechnen",
-                "response": "alle absoluten Häufigkeiten addieren"
-            },
-            {
-                "cue": "2. relative Häufigkeit berechnen",
-                "response": "relative Häufigkeit = absolute Häufigkeit / Gesamtanzahl"
-            }
+            "Gesamtanzahl berechnen",
+            "absolute Häufigkeit des Ereignisses berechnen",
+            "relative Häufigkeit = absolute Häufigkeit / Gesamtanzahl"
         ]
     },
     {
@@ -1175,16 +710,9 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Satz von der Gegenwahrscheinlichkeit",
-                "response": "\\(P(A) = 1 - P(\\overline{A})\\)"
-            },
-            {
-                "cue": "Satz von Sylvester",
-                "response": "\\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)"
-            }
+            "Satz von der Gegenwahrscheinlichkeit: \\(P(A) = 1 - P(\\overline{A})\\)",
+            "Satz von Sylvester: \\(P(A\\cup B) = P(A) + P(B) - P(A\\cap B)\\)"
         ]
     },
     {
@@ -1199,16 +727,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsexperimente-und-wahrscheinlichkeiten-05",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Flächen",
-                "response": "Ereignisse"
-            },
-            {
-                "cue": "Flächeninhalte",
-                "response": "Wahrscheinlichkeiten"
-            }
+            "Flächen = Ereignisse",
+            "Flächeninhalte = Wahrscheinlichkeiten",
+            "Dunkles Blau: betroffenes Ereignis"
         ]
     },
     {
@@ -1223,16 +745,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "allgemeine Formel",
-                "response": "\\(E(X) = \\sum x_i \\cdot P(X=x_i)\\)"
-            },
-            {
-                "cue": "Erklärung der Formel",
-                "response": "Wert und Wahrscheinlichkeit multiplizieren, dann alles addieren"
-            }
+            "für jede Ausprägung: Wert mal Wahrscheinlichkeit berechnen",
+            "alle Produkte addieren: \\(E(X) = \\sum x_i \\cdot P(X=x_i)\\)"
         ]
     },
     {
@@ -1247,17 +762,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "allgemeine Formel,",
-                "response": "\\( \\sigma(X) = \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)"
-            },
-            {
-                "cue": "Erklärung der Formel",
-                "response": "Abweichung vom Erwartungswert quadrieren, mit Wahrscheinlichkeit multiplizieren, alles addieren und dann Wurzel ziehen"
-            }
- 
+            "für jede Ausprägung: Abweichung vom Erwartungswert quadrieren und mit Wahrscheinlichkeit multiplizieren",
+            "alle Produkte addieren, dann die Wurzel ziehen: \\( \\sigma(X) = \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)"
         ]
     },
     {
@@ -1272,20 +779,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-zufallsgroessen-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Erwartungswert \\(E(X)\\)",
-                "response": "langfristig erwartete Durchschnittwert"
-            },
-            {
-                "cue": "Standardabweichung \\(\\sigma(X)\\)",
-                "response": "Maß für die Streuung der Werte"
-            },
-            {
-                "cue": "Fausregel für gewöhnliche Werte",
-                "response": "zwischen \\(E(X) - \\sigma(X)\\) und \\(E(X) + \\sigma(X)\\)"
-            }
+            "Erwartungswert \\(E(X)\\): der langfristig erwartete Durchschnittwerts",
+            "Standardabweichung \\(\\sigma(X)\\):  Maß für die Streuung der Werte",
+            "gewöhnlich liegt $X$ zwischen \\(E(X) - \\sigma(X)\\) und \\(E(X) + \\sigma(X)\\)"
         ]
     },
     {
@@ -1293,23 +790,17 @@
         "Lernbereich": "zufallsgroessen",
         "LernbereichAnzeigename": "Zufallsgrößen",
         "Nummer": 4,
-        "check_id": "stochastik__zufallsgroessen__04",
+        "check_id": "stochastik__zufallsgroessen__05",
         "Ich kann": "bei gegebenen Erwartungswert eine fehlende Wahrscheinlichkeit und einen fehlenden Wert der Wahrscheinlichkeitsverteilung berechnen.",
         "Sammlung": "kennzahlen-fehlende-wsk",
         "Schlagwort": "Wkt und Wert bestimmen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsgroessen-04",
+        "skript_anchor": "check-stochastik-zufallsgroessen-05",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Fehlende Wahrscheinlichkeit berechnen",
-                "response": "1 - Summe aller gegebenen Wahrscheinlichkeiten"
-            },
-            {
-                "cue": "2. Fehlenden Wert berechnen",
-                "response": "Erwartungswert-Formel nach fehlendem Wert umstellen"
-            }
+            "Summe aller Wahrscheinlichkeiten = 1",
+            "Ansatz: Erwartungswert-Formel",
+            "nach fehlendem Wert umformen"
         ]
     },
     {
@@ -1317,27 +808,17 @@
         "Lernbereich": "zufallsgroessen",
         "LernbereichAnzeigename": "Zufallsgrößen",
         "Nummer": 5,
-        "check_id": "stochastik__zufallsgroessen__05",
+        "check_id": "stochastik__zufallsgroessen__06",
         "Ich kann": "bei gegebenem Erwartungswert zwei fehlende Wahrscheinlichkeiten einer Wahrscheinlichkeitsverteilung berechnen.",
         "Sammlung": "kennzahlen-fehlende-wsk-zwei",
         "Schlagwort": "Zwei Wkt bstimmen",
         "Flashtyp": "einzeln",
-        "skript_anchor": "check-stochastik-zufallsgroessen-05",
+        "skript_anchor": "check-stochastik-zufallsgroessen-06",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Gleichung",
-                "response": "Summe aller Wahrscheinlichkeiten = 1"
-            },
-            {
-                "cue": "2. Gleichung",
-                "response": "Erwartungswert-Formel"
-            },
-            {
-                "cue": "3. Gleichungssystem lösen",
-                "response": "fehlende Werte mit Gleichsetzung- oder Einsetzungsverfahren berechnen"
-            }
+            "Summe aller Wahrscheinlichkeiten = 1",
+            "Ansatz: Erwartungswert-Formel",
+            "lösen des Gleichungssystems mit zwei Gleichungen und zwei Unbekannten"
         ]
     },
     {
@@ -1352,28 +833,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-01",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Entscheidung",
-                "response": "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt"
-            },
-            {
-                "cue": "Fehler 1. Art im Allgemeinen",
-                "response": "\\( H_0 \\) wahr, \\( H_1 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 1. Art beim linksseitigen Test",
-                "response": "\\( P(X\\leq k) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art im Allgemeinen",
-                "response": "\\( H_1 \\) wahr, \\( H_0 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 2. Art beim linksseitigen Test",
-                "response": "\\( P(X\\geq k) \\)"
-            }
+            "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt",
+            "Fehler 1. Art im Allgemeinen: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "Fehler 1. Art beim linksseitigen Test: \\( P(X\\leq k) \\)",
+            "Fehler 2. Art im Allgemeinen: \\( H_1 \\) wahr, \\( H_0 \\) gewählt",
+            "Fehler 2. Art beim linksseitigen Test: \\( P(X\\geq k) \\)"
         ]
     },
     {
@@ -1388,28 +853,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-02",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Entscheidung",
-                "response": "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt"
-            },
-            {
-                "cue": "Fehler 1. Art im Allgemeinen",
-                "response": "\\( H_0 \\) wahr, \\( H_1 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 1. Art beim rechtsseitigen Test",
-                "response": "\\( P(X\\geq k) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art im Allgemeinen",
-                "response": "\\( H_1 \\) wahr, \\( H_0 \\) gewählt"
-            },
-            {
-                "cue": "Fehlerwahrscheinlichkeit 2. Art beim rechtsseitigen Test",
-                "response": "\\( P(X\\leq k) \\)"
-            }
+            "prüfen, ob Stichprobenergebnis in \\( A \\) oder \\( \\overline{A} \\) liegt",
+            "Fehler 1. Art im Allgemeinen: \\( H_0 \\) wahr, \\( H_1 \\) gewählt",
+            "Fehler 1. Art beim rechtsseitigen Test: \\( P(X\\geq k) \\)",
+            "Fehler 2. Art im Allgemeinen: \\( H_1 \\) wahr, \\( H_0 \\) gewählt",
+            "Fehler 2. Art beim rechtsseitigen Test: \\( P(X\\leq k) \\)"
         ]
     },
     {
@@ -1424,32 +873,13 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-03",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "\\(H_0\\)",
-                "response": "das 'alte' $p$"
-            },
-            {
-                "cue": "\\(H_1\\)",
-                "response": "$p$ wird kleiner (linksseitig)"
-            },
-            {
-                "cue": "\\( A=\\{k+1,\\ldots, n\\}\\)",
-                "response": "Annahmebereich (linksseitig)"
-            },
-            {
-                "cue": "\\( \\overline{A}=\\{0,\\ldots,k\\}\\)",
-                "response": "Ablehnungsbereich (linksseitig)"
-            },
-            {
-                "cue": "Ansatz mit Signifikanzniveau (linksseitig)",
-                "response": "\\( P(X\\leq k)< \\alpha \\)"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
+            "\\(H_0:\\) das 'alte' $p$",
+            "\\(H_1:\\) $p$ wird kleiner (linksseitig)",
+            "\\( A=\\{k+1,\\ldots, n\\}:\\) Annahmebereich  (linksseitig)",
+            "\\( \\overline{A}=\\{0,\\ldots,k\\}: \\) Ablehnungsbereich  (linksseitig)",
+            "Ansatz mit Signifikanzniveau (linksseitig): \\( P(X\\leq k)< \\alpha \\)",
+            "Bestimmung von \\( k \\) mit TR oder TW, so dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -1464,32 +894,13 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-04",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "\\(H_0\\)",
-                "response": "das 'alte' $p$"
-            },
-            {
-                "cue": "\\(H_1\\)",
-                "response": "$p$ wird größer (rechtsseitig)"
-            },
-            {
-                "cue": "\\( A=\\{0,\\ldots, k-1\\}\\)",
-                "response": "Annahmebereich (rechtsseitig)"
-            },
-            {
-                "cue": "\\( \\overline{A}=\\{k,\\ldots,n\\}\\)",
-                "response": "Ablehnungsbereich (rechtsseitig)"
-            },
-            {
-                "cue": "Ansatz mit Signifikanzniveau (rechtsseitig)",
-                "response": "\\( P(X\\geq k)< \\alpha \\)"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
+            "\\(H_0:\\) das 'alte' $p$",
+            "\\(H_1:\\) $p$ wird größer (rechtsseitig)",
+            "\\( A=\\{0,\\ldots, k-1\\}:\\) Annahmebereich  (rechtsseitig)",
+            "\\( \\overline{A}=\\{k,\\ldots,n\\}: \\) Ablehnungsbereich  (rechtsseitig)",
+            "Ansatz mit Signifikanzniveau (rechtsseitig): \\( P(X\\geq k)< \\alpha \\)",
+            "Bestimmung von \\( k \\) mit TR oder TW, so dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -1504,20 +915,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-05",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Hypothesen formulieren",
-                "response": "Wahrscheinlichkeiten für \\(H_0 \\) und \\( H_1\\) notieren"
-            },
-            {
-                "cue": "2. Annahme- und Ablehnungsbereich notieren",
-                "response": "\\( A=\\{k+1,\\ldots, n\\} \\) und \\( \\overline{A}=\\{0,\\ldots,k\\} \\) notieren"
-            },
-           {
-                "cue": "3. Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
+            "\\(H_0 \\) und \\( H_1\\) formulieren",
+            "\\( A=\\{k+1,\\ldots, n\\} \\) und \\( \\overline{A}=\\{0,\\ldots,k\\} \\) notieren",
+            "$k$ bestimmen, so dass \\( P(X\\leq k)< \\) (linksseitig) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -1532,20 +933,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-hypothesentests-06",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Hypothesen formulieren",
-                "response": "Wahrscheinlichkeiten für \\(H_0 \\) und \\( H_1\\) notieren"
-            },
-            {
-                "cue": "2. Annahme- und Ablehnungsbereich notieren",
-                "response": "\\( A=\\{0,\\ldots, k-1\\} \\) und \\( \\overline{A}=\\{k,\\ldots,n\\} \\) notieren"
-            },
-            {
-                "cue": "Bestimmung von \\( k \\)",
-                "response": "wähle \\(k\\) so, dass \\( P(X\\geq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
-            }
+            "\\(H_0 \\) und \\( H_1\\) formulieren",
+            "\\( A=\\{0,\\ldots, k-1\\} \\) und \\( \\overline{A}=\\{k,\\ldots,n\\} \\) notieren",
+            "$k$ bestimmen, so dass \\( P(X\\geq k)< \\) (rechtsseitig) gerade noch kleiner als \\( \\alpha \\) ist"
         ]
     },
     {
@@ -1560,28 +951,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-stochastik-hypothesentests-07",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Fehler 1. Art (linksseitig)",
-                "response": "\\( Bcd(0;k;n;p_0) \\)"
-            },
-            {
-                "cue": "Fehler 1. Art (rechtsseitig)",
-                "response": "\\( Bcd(k;n;n;p_0) \\)"
-            },
-            {
-                "cue": "Fehler 2. Art (linksseitig)",
-                "response": "\\( Bcd(k;n;n;p_1)\\)"
-            },
-            {
-                "cue": "Fehler 2. Art (rechtsseitig)",
-                "response": "\\( Bcd(0;k;n;p_1) \\)"
-            },
-            {
-                "cue": "Bestimmung von $p$ oder $n$",
-                "response": "Fehlerwahrscheinlichkeit mit gegebenem Wert gleichsetzen und $p$ oder $n$ durch Probieren bestimmen"
-            }
+            "Fehler 1. Art (linksseitig): \\( Bcd(0;k;n;p_0) \\)",
+            "Fehler 1. Art (rechtsseitig): \\( Bcd(k;n;n;p_0) \\)",
+            "Fehler 2. Art (linksseitig): \\( Bcd(k;n;n;p_1)\\)",
+            "Fehler 2. Art (rechtsseitig): \\( Bcd(0;k;n;p_1) \\)",
+            "gesuchtes $p$ oder $n$ durch Probieren bestimmen"
         ]
     },
     {
@@ -1596,28 +971,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Erlös aus Preis und Menge",
-                "response": "$E(x)=p\\cdot x$"
-            },
-            {
-                "cue": "Gewinn",
-                "response": "$G(x)=E(x)-K(x)$"
-            },
-            {
-                "cue": "Preis",
-                "response": "$p=\\frac{E(x)}{x}$"
-            },
-            {
-                "cue": "Erlös aus Gewinn und Kosten",
-                "response": "$E(x)=G(x)+K(x)$"
-            },
-            {
-                "cue": "Kosten aus Erlös und Gewinn",
-                "response": "$K(x)=E(x)-G(x)$"
-            }
+            "$E(x)=p\\cdot x$",
+            "$G(x)=E(x)-K(x)$",
+            "$p=\\frac{E(x)}{x}$",
+            "$E(x)=G(x)+K(x)$",
+            "$K(x)=E(x)-G(x)$"
         ]
     },
     {
@@ -1632,28 +991,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Erlös aus Preis und Menge",
-                "response": "$E(x)=p(x)\\cdot x$"
-            },
-            {
-                "cue": "Gewinn",
-                "response": "$G(x)=E(x)-K(x)$"
-            },
-            {
-                "cue": "Preis",
-                "response": "$p(x)=\\frac{E(x)}{x}$"
-            },
-            {
-                "cue": "Erlös aus Gewinn und Kosten",
-                "response": "$E(x)=G(x)+K(x)$"
-            },
-            {
-                "cue": "Kosten aus Erlös und Gewinn",
-                "response": "$K(x)=E(x)-G(x)$"
-            }
+            "$E(x)=p(x)\\cdot x$",
+            "$G(x)=E(x)-K(x)$",
+            "$p(x)=\\frac{E(x)}{x}$",
+            "$E(x)=G(x)+K(x)$",
+            "$K(x)=E(x)-G(x)$"
         ]
     },
     {
@@ -1668,41 +1011,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Verkaufspreis $p$",
-                "response": "Steigung von $E$ bzw. konstanter Wert von $p(x)$"
-            },
-            {
-                "cue": "erlösmaximale Menge $x_{Emax}$",
-                "response": "Kapazitätsgrenze (Polypol)"
-            },
-            {
-                "cue": "maximaler Erlös $E_{max}$",
-                "response": "Erlös an Kapazitätsgrenze (Polypol)"
-            },
-            {
-                "cue": "Fixkosten $K_f$",
-                "response": "$y$-Abschnitt von $K$"
-            },
-            {
-                "cue": "Übergang degressiv/progressiv $x_w$",
-                "response": "Wendestelle von $K$"
-            },
-            {
-                "cue": "Gewinnschwelle $x_{GS}$ und Gewinngrenze $x_{GG}$",
-                "response": "erste und zweite positive Nullstelle von $G$"
-            },
-            {
-                "cue": "gewinnmaximale Menge $x_{Gmax}$",
-                "response": "$x$-Wert des Hochpunkts von $G$"
-            }
-            ,
-            {
-                "cue": "maximaler Gewinn $G_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $G$"
-            }
+            "Verkaufspreis ist Steigung von $E$ bzw. konstanter Wert von $p$",
+            "$x_{Emax}$ ist Kapazitätsgrenze",
+            "$E_{max}$ ist Erlös an Kapazitätsgrenze",
+            "$K_f$ ist $y$-Abschnitt von $K$",
+            "Übergang degressiv/progressiv ist Wendestelle von $K$",
+            "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
+            "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$"
         ]
     },
     {
@@ -1717,50 +1033,15 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$p_H$",
-                "response": "$y$-Abschnitt von $p$"
-            },
-            {
-                "cue": "$s_m$",
-                "response": "Nullstelle von $p$"
-            },
-            {
-                "cue": "erlösmaximale Menge $x_{Emax}$",
-                "response": "$x$-Wert des Hochpunkts von $E$"
-            }
-            ,
-            {
-                "cue": "maximaler Erlös $E_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $E$"
-            },
-            {
-                "cue": "$K_f$",
-                "response": "$y$-Abschnitt von $K$"
-            },
-            {
-                "cue": "Übergang degressiv/progressiv $x_w$",
-                "response": "Wendestelle von $K$"
-            },
-            {
-                "cue": "Gewinnschwelle $x_{GS}$ und Gewinngrenze $x_{GG}$",
-                "response": "erste und zweite positive Nullstelle von $G$"
-            },
-            {
-                "cue": "gewinnmaximale Menge $x_{Gmax}$",
-                "response": "$x$-Wert des Hochpunkts von $G$"
-            }
-            ,
-            {
-                "cue": "maximaler Gewinn $G_{max}$",
-                "response": "$y$-Wert des Hochpunkts von $G$"
-            },
-            {
-                "cue": "gewinnmaximaler Verkaufspreis $p_{max}$",
-                "response": "Wert von $p$ an $x_{Gmax}$"
-            }
+            "$p_H$ ist $y$-Abschnitt von $p$",
+            "$s_m$ ist Nullstelle von $p$",
+            "$(x_{Emax}|E_{max})$ ist Hochpunkt von $E$",
+            "$K_f$ ist $y$-Abschnitt von $K$",
+            "Übergang degressiv/progressiv ist Wendestelle von $K$",
+            "$x_{GS}$ und $x_{GG}$ sind Nullstellen von $G$",
+            "$(x_{Gmax}|G_{max})$ ist Hochpunkt von $G$",
+            "$p_{max}$ ist Wert von $p$ an $x_{Gmax}$"
         ]
     },
     {
@@ -1775,28 +1056,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-05",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Nullstellen ($s_m$, $x_{GS}$, $x_{GG}$)",
-                "response": "Gleichung $f(x)=0$ nach $x$ auflösen"
-            },
-            {
-                "cue": "$y$-Abschnitte ($p_H$, $K_f$)",
-                "response": "$f(0)$ berechnen"
-            },
-            {
-                "cue": "lokale Maxima ($x_{Gmax}$ und ggf. $x_{Emax}$)",
-                "response": "notwendige Bedingung: $f'(x)=0$, hinreichende Bedingung: $f''(x)<0$"
-            },
-            {
-                "cue": "$y$-Werte ($E_{max}$, $G_{max}$, ggf. $p_{max}$)",
-                "response": "$f(x)$ berechnen"
-            },
-            {
-                "cue": "Wendestellen ($x_w$)",
-                "response": "notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$"
-            }
+            "$s_m$, $x_{GS}$ und $x_{GG}$ sind Nullstellen → Gleichung $f(x)=0$ nach $x$ auflösen",
+            "$p_H$ und $K_f$ sind $y$-Abschnitte → $f(0)$ berechnen",
+            "$x_{Gmax}$ ist Extremstelle → notwendige Bedingung: $f'(x)=0$, hinreichende Bedingung: $f''(x)<0$  ",
+            "$x_{Emax}$ ist Kapazitätsgrenze (Polppol) oder Extremstelle (Monopol)",
+            "$E_{max}$ und $G_{max}$ sind $y$-Werte der Extremstellen → Einsetzen und Ausrechnen",
+            "Übergang degressiv/progressiv ist Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$",
+            "$p_{max}$ ist $y$-Wert von $p$ an $x_{Gmax}$ → $p(x_{Gmax})$ berechnen"
         ]
     },
     {
@@ -1811,20 +1078,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-06",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Kennzahl zuordnen",
-                "response": "Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert"
-            },
-            {
-                "cue": "2. Ansatz",
-                "response": "passenden Ansatz formulieren"
-            },
-            {
-                "cue": "3. Berechnung",
-                "response": "gesuchten $x$ oder $y$-Wert berechnen"
-            }
+            "gesuchte Kennzahl zuordnen: Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert",
+            "passenden Ansatz formulieren",
+            "gesuchten $x$ oder $y$-Wert berechnen"
         ]
     },
     {
@@ -1839,20 +1096,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ganzrationale-oekonomische-funktionen-07",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Kennzahl zuordnen",
-                "response": "Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert"
-            },
-            {
-                "cue": "2. Ansatz",
-                "response": "passenden Ansatz formulieren"
-            },
-            {
-                "cue": "3. Berechnung",
-                "response": "gesuchten $x$ oder $y$-Wert berechnen"
-            }
+            "gesuchte Kennzahl zuordnen: Nullstelle, $y$-Abschnitt, Extremstelle, Wendestelle, $y$-Wert",
+            "passenden Ansatz formulieren",
+            "gesuchten $x$ oder $y$-Wert berechnen"
         ]
     },
     {
@@ -1867,24 +1114,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Funktionsart",
-                "response": "ganzrationale Funktion 3. Grades"
-            },
-            {
-                "cue": "$y$-Achsenabschnitt",
-                "response": "positiv"
-            },
-            {
-                "cue": "Monotonie",
-                "response": "monoton wachsend"
-            },
-            {
-                "cue": "Wendestelle",
-                "response": "positiv"
-            }
+            "Funktion 3. Grades",
+            "positiver $y$-Achsenabschnitt",
+            "monoton wachsend",
+            "positive Wendestelle"
         ]
     },
     {
@@ -1899,24 +1133,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Funktionsart",
-                "response": "ganzrationale Funktion 3. Grades"
-            },
-            {
-                "cue": "$y$-Achsenabschnitt",
-                "response": "positiv"
-            },
-            {
-                "cue": "Monotonie",
-                "response": "monoton wachsend"
-            },
-            {
-                "cue": "Wendestelle",
-                "response": "positiv"
-            }
+            "Funktion 3. Grades",
+            "positiver $y$-Achsenabschnitt",
+            "monoton wachsend",
+            "positive Wendestelle"
         ]
     },
     {
@@ -1931,36 +1152,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Betriebsminimum $BM$",
-                "response": "$x$-Wert des Tiefpunkts von $k_v$"
-            },
-                        {
-                "cue": "kurzfristige Preisuntergrenze $KPU$",
-                "response": "$y$-Wert des Tiefpunkts von $k_v$"
-            },
-            {
-                "cue": "Betriebsminimum $BM$ aus $K'$ und $k_v$",
-                "response": "Schnittstelle von $K'$ und $k_v$"
-            },
-            {
-                "cue": "Betriebsoptimum $BO$",
-                "response": "$x$-Wert des Tiefpunkts von $k$"
-            },
-                        {
-                "cue": "langfristige Preisuntergrenze $LPU$",
-                "response": "$y$-Wert des Tiefpunkts von $k$"
-            },
-            {
-                "cue": "Betriebsoptimum $BO$ aus $K'$ und $k$",
-                "response": "Schnittstelle von $K'$ und $k$"
-            },
-            {
-                "cue": "Übergang degressiv/progressiv $x_w$",
-                "response": "Extremstelle von $K''$"
-            }
+            "$(BM|KPU)$ ist Tiefpunkt von $k_v$",
+            "$BM$ ist Schnittstelle von $K'$ und $k_v$",
+            "$(BO|LPU)$ ist Tiefpunkt von $k$",
+            "$BO$ ist Schnittstelle von $K'$ und $k$",
+            "Übergang degressiv/progressiv ist Extremstelle von $K''$"
         ]
     },
     {
@@ -1975,24 +1172,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Extremstellen ($BM$ und $BO$)",
-                "response": "notwendige Bedingung: $f^{\\prime}(x) = 0$, hinreichende Bedingung: $f^{\\prime\\prime}(x) \\neq 0$"
-            },
-            {
-                "cue": "Schnittstellen ($BM$ und $BO$)",
-                "response": "Gleichsetzen der Funktionsgleichungen"
-            },
-            {
-                "cue": "$y$-Werte ($KPU$ und $LPU$)",
-                "response": "$f(x)$ berechnen"
-            },
-            {
-                "cue": "Wendestellen ($x_w$)",
-                "response": "notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$"
-            }
+            "$BM$ und $BO$ sind Extremstellen → Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) \\neq 0$",
+            "$BM$ bzw. $BO$ sind Schnittstellen von $K'$ und $k$ bzw. von $K'$ und $k_v$ → Ansatz: $K'(x)=k(x)$ bzw. $K'(x)=k_v(x)$",
+            "$KPU$ und $LPU$ sind $y$-Werte der Extremstellen → Einsetzen und Ausrechnen",
+            "Übergang degressiv/progressiv ist eine Wendestelle → Notwendige Bedingung: $f^{\\prime\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime\\prime}(x) \\neq 0$"
         ]
     },
     {
@@ -2007,28 +1191,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-05",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Kennzahl zuordnen",
-                "response": "Extremstelle, Wendestelle, $y$-Wert"
-            },
-            {
-                "cue": "2. Ansatz",
-                "response": "passenden Ansatz formulieren"
-            },
-            {
-                "cue": "3. Berechnung",
-                "response": "gesuchten $x$ oder $y$-Wert berechnen"
-            },
-            {
-                "cue": "Ableitung von $\\frac{1}{x}$",
-                "response": "$f(x)=\\frac{1}{x} \\Rightarrow f'(x)=-\\frac{1}{x^2}$"
-            },
-            {
-                "cue": "Ableitung von $\\frac{1}{x^2}$",
-                "response": "$f(x)=\\frac{1}{x^2} \\Rightarrow f'(x)=-\\frac{2}{x^3}$"
-            }
+            "Kennzahlen: $BM$, $BO$, $KPU$, $LPU$, Übergang degressiv/progressiv",
+            "$K', k_v$ und $k$ berechnen",
+            "Extremwertbestimmung: Notwendige Bedingung: $f^{\\prime}(x) = 0$, Hinreichende Bedingung: $f^{\\prime\\prime}(x) \\neq 0$",
+            "$f(x)=\\frac{1}{x} \\Rightarrow f'(x)=-\\frac{1}{x^2}$",
+            "$f(x)=\\frac{1}{x^2} \\Rightarrow f'(x)=-\\frac{2}{x^3}$"
         ]
     },
     {
@@ -2043,24 +1211,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-ertragsgesetzliche-kostenfunktionen-06",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Ansatz",
-                "response": "Allgemeine Form $K(x)=ax^3+bx^2+cx+d$ aufstellen, evtl. weitere"
-            },
-            {
-                "cue": "2. Bedingungen",
-                "response": "Informationen in Gleichung überführen"
-            },
-            {
-                "cue": "3. Gleichungssystem",
-                "response": "Lineares Gleichungssystem mit 4 Gleichungen und 4 Unbekannten aufstellen"
-            },
-            {
-                "cue": "4. Lösung",
-                "response": "Lineares Gleichungssystem mit Taschenrechner oder Gauß-Algorithmus lösen"
-            }
+            "Allgemeine Form $K(x)=ax^3+bx^2+cx+d$ aufstellen, evtl. weitere",
+            "Informationen in Gleichung überführen",
+            "LGS aufstellen",
+            "LGS lösen"
         ]
     },
     {
@@ -2075,24 +1230,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Sättigungsmenge",
-                "response": "Nullstelle von $p_N$"
-            },
-            {
-                "cue": "Höchstpreis",
-                "response": "$y$-Abschnitt von $p_N$"
-            },
-            {
-                "cue": "Mindestangebotspreis",
-                "response": "$y$-Abschnitt von $p_A$"
-            },
-            {
-                "cue": "Gleichgewichtspunkt $(x_G | p_G)$",
-                "response": "Schnittpunkt von $p_N$ und $p_A$"
-            }
+            "Nullstelle von $p_N$: Sättigungsmenge",
+            "$y$-Abschnitt von $p_N$: Prohibitivpreis",
+            "$y$-Abschnitt von $p_A$: Mindestangebotspreis",
+            "Schnittpunkt von $p_N$ und $p_A$: Gleichgewichtspunkt $(x_G | p_G)$"
         ]
     },
     {
@@ -2107,28 +1249,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Höchstpreis",
-                "response": "$p_N(0)$ berechnen"
-            },
-            {
-                "cue": "Sättigungsmenge",
-                "response": "$p_N(x)=0$ setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "Mindestangebotspreis",
-                "response": "$p_A(0)$ berechnen"
-            },
-            {
-                "cue": "Gleichgewichtsmenge",
-                "response": "$p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen"
-            },
-            {
-                "cue": "Gleichgewichtspreis",
-                "response": "$x_G$ in $p_N$ oder $p_A$ einsetzen"
-            }
+            "Höchstpreis: $p_N(0)$ berechnen",
+            "Sättigungsmenge: $p_N(x)=0$ setzen und nach $x$ auflösen",
+            "Mindestangebotspreis: $p_A(0)$ berechnen",
+            "Gleichgewichtsmenge: $p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen",
+            "Gleichgewichtspreis: $x_G$ in $p_N$ oder $p_A$ einsetzen"
         ]
     },
     {
@@ -2143,24 +1269,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-marktgleichgewicht-grundlagen-03",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "nachgefragte Menge bestimmen",
-                "response": "Nachfragefunktion gleich dem gegebenem Preis setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "angebotene Menge bestimmen",
-                "response": "Angebotsfunktion gleich dem gegebenem Preis setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "Nachfrageüberschuss, falls",
-                "response": "Nachfrage > Angebot"
-            },
-            {
-                "cue": "Angebotsüberschuss, falls",
-                "response": "Angebot > Nachfrage"
-            }
+            "Nachgefragte Menge bei gegebenem Preis bestimmen",
+            "Angebotene Menge bei gegebenem Preis bestimmen",
+            "Nachfrageüberschuss: Nachfrage > Angebot",
+            "Angebotsüberschuss: Angebot > Nachfrage"
         ]
     },
     {
@@ -2175,24 +1288,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Sättigungsmenge",
-                "response": "Nullstelle von $p_N$"
-            },
-            {
-                "cue": "Prohibitivpreis",
-                "response": "$y$-Abschnitt von $p_N$"
-            },
-            {
-                "cue": "Mindestangebotspreis",
-                "response": "$y$-Abschnitt von $p_A$"
-            },
-            {
-                "cue": "Gleichgewichtspunkt $(x_G | p_G)$",
-                "response": "Schnittpunkt von $p_N$ und $p_A$"
-            }
+            "Nullstelle von $p_N$: Sättigungsmenge",
+            "$y$-Abschnitt von $p_N$: Prohibitivpreis",
+            "$y$-Abschnitt von $p_A$: Mindestangebotspreis",
+            "Schnittpunkt von $p_N$ und $p_A$: Gleichgewichtspunkt $(x_G | p_G)$"
         ]
     },
     {
@@ -2207,28 +1307,12 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Höchstpreis",
-                "response": "$p_N(0)$ berechnen"
-            },
-            {
-                "cue": "Sättigungsmenge",
-                "response": "$p_N(x)=0$ setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "Mindestangebotspreis",
-                "response": "$p_A(0)$ berechnen"
-            },
-            {
-                "cue": "Gleichgewichtsmenge",
-                "response": "$p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen"
-            },
-            {
-                "cue": "Gleichgewichtspreis",
-                "response": "$x_G$ in $p_N$ oder $p_A$ einsetzen"
-            }
+            "Höchstpreis: $p_N(0)$ berechnen",
+            "Sättigungsmenge: $p_N(x)=0$ setzen und nach $x$ auflösen",
+            "Mindestangebotspreis: $p_A(0)$ berechnen",
+            "Gleichgewichtsmenge: $p_N(x)=p_A(x)$ setzen und nach $x_G$ auflösen",
+            "Gleichgewichtspreis: $x_G$ in $p_N$ oder $p_A$ einsetzen"
         ]
     },
     {
@@ -2243,16 +1327,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Konsumentenrente",
-                "response": "$KR=\\int_0^{x_G}p_N(x)dx - x_G\\cdot p_G$"
-            },
-            {
-                "cue": "Produzentenrente",
-                "response": "$PR=x_G\\cdot p_G - \\int_0^{x_G}p_A(x)dx$"
-            }
+            "$KR=\\int_0^{x_G}p_N(x)dx - x_G\\cdot p_G$",
+            "$PR=x_G\\cdot p_G - \\int_0^{x_G}p_A(x)dx$"
         ]
     },
     {
@@ -2267,20 +1344,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-04",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Gleichgewichtspreis",
-                "response": "Gleichsetzen von $p_N$ und $p_A$, nach $x_G$ auflösen und $p_G$ berechnen"
-            },
-            {
-                "cue": "2. Teilmarktmenge",
-                "response": "Teilmarktmenge $x_2$ bestimmen: $p_N(x_2)=p_2$"
-            },
-            {
-                "cue": "3. Abschöpfung",
-                "response": "Abschöpfung durch Teilmarktpreis: $x_2\\cdot (p_2-p_G)$"
-            }
+            "Gleichgewichtsmenge $x_G$ bestimmen",
+            "nachgefragte Menge $x_2$ bei Teilmarktpreis bestimmen",
+            "Abschöpfung durch Teilmarktpreis $p_2$: $x_2\\cdot (p_2-p_G)$"
         ]
     },
     {
@@ -2295,24 +1362,12 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-marktgleichgewicht-vertiefung-05",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Gleichgewichtspreis",
-                "response": "Gleichsetzen von $p_N$ und $p_A$, nach $x_G$ auflösen und $p_G$ berechnen"
-            },
-            {
-                "cue": "2. Abschöpfung $A$ in Abhängigkeit von Teilmarktmenge $x_2$",
-                "response": "$A(x_2)=x_2\\cdot (p_N(x_2)-p_G)$"
-            },
-            {
-                "cue": "3. Extremstelle von $A(x_2)$",
-                "response": "Extremstelle mit Standardverfahren bestimmen"
-            },
-            {
-                "cue": "4. Verkaufspreis bei maximaler Abschöpfung",
-                "response": "$p_N(x_2)$"
-            }
+            "Gleichgewichtsmenge $x_G$ bestimmen",
+            "$x_2$ als Variable für Teilmarktmenge anlegen",
+            "Abschöpfung $A$ in Abhängigkeit von $x_2$ formulieren: $A(x_2)=x_2\\cdot (p_N(x_2)-p_G)$",
+            "$A(x_2)$ maximieren",
+            "Verkaufspreis = $p_N(x_2)$"
         ]
     },
     {
@@ -2327,20 +1382,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-analysis-diverses-01",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Vorbereitung",
-                "response": "Daten eingeben und passende Regression wählen"
-            },
-            {
-                "cue": "Ergebnis",
-                "response": "Funktionsgleichung und Bestimmtheitsmaß $R^2$ notieren"
-            },
-            {
-                "cue": "Interpretation Bestimmheitsmaß $R^2$",
-                "response": "je näher an 1, desto besser ist die Regression"
-            }
+            "Daten eingeben und passende Regression im TR wählen",
+            "Modellform am Verlauf der Daten orientieren: linear, quadratisch, kubisch oder exponentiell",
+            "Bestimmheitsmaß $R^2$: je näher an 1, desto besser passt das Modell",
+            "bei mehreren Modellen: das mit dem größeren $R^2$ bevorzugen"
         ]
     },
     {
@@ -2355,24 +1401,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "mittlere Änderungsrate auf $[a;b]$:",
-                "response": "$\\frac{f(b)-f(a)}{b-a}$"
-            },
-            {
-                "cue": "Zähler",
-                "response": "Änderung des Funktionswerts"
-            },
-            {
-                "cue": "Nenner",
-                "response": "Änderung der Stelle"
-            },
-            {
-                "cue": "Deutung",
-                "response": "durchschnittliche Änderung pro Einheit"
-            }
+            "mittlere Änderungsrate auf $[a;b]$: $\\frac{f(b)-f(a)}{b-a}$",
+            "Zähler: Änderung des Funktionswerts",
+            "Nenner: Änderung der Stelle",
+            "Deutung: durchschnittliche Änderung pro Einheit"
         ]
     },
     {
@@ -2387,24 +1420,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-02",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Produktform",
-                "response": "zuerst ausmultiplizieren"
-            },
-            {
-                "cue": "Potenzregel",
-                "response": "Potenzregel: $(x^n)' = n\\cdot x^{n-1}$"
-            },
-            {
-                "cue": "Summenregel",
-                "response": "termweise ableiten"
-            },
-            {
-                "cue": "Ergebnis",
-                "response": "Ergebnis in Normalform angeben"
-            }
+            "Polynomform herstellen: zuerst ausmultiplizieren",
+            "Potenzregel: $(x^n)' = n\\cdot x^{n-1}$",
+            "Summenregel: termweise ableiten",
+            "Ergebnis in Normalform angeben"
         ]
     },
     {
@@ -2419,24 +1439,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Funktionswert an gegebener Stelle $x_0$",
-                "response": "$x_0$ in $f(x)$ einsetzen"
-            },
-            {
-                "cue": "Stelle zu gegebenem Wert $y_0$",
-                "response": "$f(x)=y_0$ nach $x$ auflösen"
-            },
-            {
-                "cue": "Tangentensteigung an gegebener Stelle $x_0$",
-                "response": "$x_0$ in $f'(x)$ einsetzen"
-            },
-            {
-                "cue": "Stelle zu gegebener Steigung $m$",
-                "response": "$f'(x)=m$ nach $x$ auflösen"
-            }
+            "Funktionswert: $x_0$ in $f(x)$ einsetzen",
+            "Stelle zu gegebenem Wert: $f(x)=y_0$ lösen",
+            "Tangentensteigung an $x_0$: $f'(x_0)$",
+            "Stelle zu gegebener Steigung: $f'(x)=m$ lösen"
         ]
     },
     {
@@ -2451,20 +1458,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Nullstellen von $f'$",
-                "response": "Extrem- oder Sattelpunkte von $f$"
-            },
-            {
-                "cue": "Vorzeichen von $f'$ positiv bzw. negativ",
-                "response": "Funktionsgraph steigt bzw. fällt"
-            },
-            {
-                "cue": "Punkt auf Graph",
-                "response": "vorgegebener Funktionspunkt identifiziert ggf. einen Graphen"
-            }
+            "Nullstellen von $f'$ bzw. $g'$: waagrechte Tangenten von $f$ bzw. $g$",
+            "Vorzeichen von $f'$ bzw. $g'$: Der zugehörige Funktionsgraph steigt oder fällt",
+            "Ein vorgegebener Wert wie $g(x_0)$ oder $f'(x_0)$ identifiziert einen der fünf Graphen",
+            "Danach bleiben das passende Funktions-Ableitungs-Paar und ein zusätzlicher Graph übrig"
         ]
     },
     {
@@ -2479,24 +1477,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-05",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Nullstellen von $f'$ mit Vorzeichenwechsel von positiv nach negativ",
-                "response": "Extremstellen (Maximum) von $f$"
-            },
-            {
-                "cue": "Nullstellen von $f'$ mit Vorzeichenwechsel von negativ nach positiv",
-                "response": "Extremstellen (Minimum) von $f$"
-            },
-            {
-                "cue": "Extremstellen (Maximum)  von $f'$",
-                "response": "Wendestelle von $f$ mit Wechsel von linksgekrümmt nach rechtsgekrümmt"
-            },
-            {
-                "cue": "Extremstellen (Minimum) von $f'$",
-                "response": "Wendestelle von $f$ mit Wechsel von rechtsgekrümmt nach linksgekrümmt"
-            }
+            "Nullstellen von $f'$: Kandidaten für Extremstellen von $f$",
+            "Vorzeichenwechsel von $f'$: Art des Extremums",
+            "Hochpunkt von $f'$: Wendestelle von $f$ mit Wechsel von linksgekrümmt nach rechtsgekrümmt",
+            "Tiefpunkt von $f'$: Wendestelle von $f$ mit Wechsel von rechtsgekrümmt nach linksgekrümmt"
         ]
     },
     {
@@ -2511,20 +1496,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-06",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. notwendige Bedingung",
-                "response": "$f'(x_0)=0$"
-            },
-            {
-                "cue": "2. hinreichende Bedingung",
-                "response": "$f''(x_0)>0$ Tiefpunkt, $f''(x_0)<0$ Hochpunkt"
-            },
-            {
-                "cue": "3. $y$-Wert",
-                "response": "Extremstellen in $f$ einsetzen, $y_0=f(x_0)$"
-            }
+            "notwendige Bedingung für Extrempunkte: $f'(x_0)=0$",
+            "hinreichende Bedingung in diesem Check: $f''(x_0)>0$ Tiefpunkt, $f''(x_0)<0$ Hochpunkt",
+            "zum Extrempunkt gehört auch der y-Wert: $y_0=f(x_0)$",
+            "in diesem Check treten keine Spezialfälle mit $f''(x_0)=0$ auf"
         ]
     },
     {
@@ -2539,24 +1515,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-07",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Nullstellen von $f'$",
-                "response": "zerlegen die Zahlengerade in Intervalle, in denen sich die Monotonie nicht ändert"
-            },
-            {
-                "cue": "Vorzeichen prüfen",
-                "response": "Vorzeichen von $f'$ in jedem Intervall bestimmen"
-            },
-            {
-                "cue": "Graph von $f$ ist streng monoton wachsend, falls",
-                "response": "$f'(x)>0$"
-            },
-            {
-                "cue": "Graph von $f$ ist streng monoton fallend, falls",
-                "response": "$f'(x)<0$"
-            }
+            "Nullstellen von $f'$ zerlegen die Zahlengerade in Intervalle",
+            "Vorzeichen von $f'$ in jedem Intervall prüfen",
+            "$f'(x)>0$: streng monoton wachsend",
+            "$f'(x)<0$: streng monoton fallend"
         ]
     },
     {
@@ -2571,24 +1534,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-08",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "falls $f'(x_0)=0$ und $f''(x_0)=0$",
-                "response": "keine Entscheidung bzgl. Extremstellen möglich"
-            },
-            {
-                "cue": "stattdessen zu prüfen",
-                "response": "Liegt ein Vorzeichenwechsel von $f'$ vor?"
-            },
-            {
-                "cue": "mit Vorzeichenwechsel von $f'$",
-                "response": "Extremstelle"
-            },
-            {
-                "cue": "ohne Vorzeichenwechsel von $f'$",
-                "response": "keine Extremstelle, sondern Sattelstelle"
-            }
+            "bei $f'(x_0)=0$ und $f''(x_0)=0$: zweite Ableitung nicht entscheidend",
+            "entscheidend ist der Vorzeichenwechsel von $f'$ links und rechts von $x_0$",
+            "mit Vorzeichenwechsel: Extremstelle",
+            "ohne Vorzeichenwechsel: kein Extrempunkt; in diesem Check können dabei Sattelstellen auftreten"
         ]
     },
     {
@@ -2603,20 +1553,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-09",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. notwendige Bedingung",
-                "response": "$f''(x_0)=0$"
-            },
-            {
-                "cue": "2. hinreichende Bedingung",
-                "response": "$f'''(x_0)>0$ min. Steigung, $f'''(x_0)<0$ max. Steigung"
-            },
-            {
-                "cue": "3. $y$-Wert",
-                "response": "Extremstellen in $f$ einsetzen, $y_0=f(x_0)$"
-            }
+            "notwendige Bedingung für Wendestellen: $f''(x_0)=0$",
+            "hinreichende Bedingung in diesem Check: $f'''(x_0)>0$ min. Steigung, $f'''(x_0)<0$ max. Steigung",
+            "alternativ sichtbar: an einer Wendestelle wechselt das Vorzeichen von $f''$",
+            "gefragt sind hier die x-Werte der Wendestellen"
         ]
     },
     {
@@ -2631,24 +1572,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-10",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Nullstellen von $f''$",
-                "response": "zerlegen die Zahlengerade in Intervalle, in denen sich das Krümmungsverhalten nicht ändert"
-            },
-            {
-                "cue": "Vorzeichen prüfen",
-                "response": "Vorzeichen von $f''$ in jedem Intervall bestimmen"
-            },
-            {
-                "cue": "Graph von $f$ ist linksgekrümmt / konvex, falls",
-                "response": "$f''(x)>0$"
-            },
-            {
-                "cue": "Graph von $f$ ist rechtsgekrümmt / konkav, falls",
-                "response": "$f''(x)<0$"
-            }
+            "Nullstellen von $f''$ zerlegen die Zahlengerade in Intervalle",
+            "Vorzeichen von $f''$ in jedem Intervall prüfen",
+            "$f''(x)>0$: linksgekrümmt / konvex",
+            "$f''(x)<0$: rechtsgekrümmt / konkav"
         ]
     },
     {
@@ -2663,24 +1591,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-11",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "falls $f''(x_0)=0$ und $f'''(x_0)=0$",
-                "response": "keine Entscheidung bzgl. Wendestellen möglich"
-            },
-            {
-                "cue": "stattdessen zu prüfen",
-                "response": "Liegt ein Vorzeichenwechsel von $f''$ vor?"
-            },
-            {
-                "cue": "mit Vorzeichenwechsel von $f''$",
-                "response": "Wendestelle"
-            },
-            {
-                "cue": "ohne Vorzeichenwechsel von $f'$",
-                "response": "keine Wendestelle"
-            }
+            "bei $f''(x_0)=0$ und $f'''(x_0)=0$: dritte Ableitung nicht entscheidend",
+            "entscheidend ist der Vorzeichenwechsel von $f''$ links und rechts von $x_0$",
+            "mit Vorzeichenwechsel: Wendestelle",
+            "Krümmungsintervalle folgen ebenfalls aus dem Vorzeichen von $f''$"
         ]
     },
     {
@@ -2695,28 +1610,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-12",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "globale Extrema sind",
-                "response": "Stellen, an denen die absolut größten oder kleinsten Funktionswerte angenommen werden"
-            },
-            {
-                "cue": "Kandidaten im Inneren des Definitionsbereichs",
-                "response": "lokale Extremstellen, Funktionswerte berechnen"
-            },
-            {
-                "cue": "Kandidaten am Rand des Definitionsbereichs",
-                "response": "Randpunkte, Funktionswerte berechnen"
-            },
-            {
-                "cue": "globale Extrema bestimmen",
-                "response": "Funktionswerte der Kandidaten im Inneren und am Rand vergleichen"
-            },
-            {
-                "cue": "bei unbeschränkten Intervallen",
-                "response": "Verhalten für $x\\to\\pm\\infty$ beachten"
-            }
+            "Kandidaten im Inneren: lokale Extremstellen",
+            "Randpunkte des Intervalls mitprüfen",
+            "globale Extrema: größte bzw. kleinste Funktionswerte vergleichen",
+            "bei unbeschränkten Intervallen: Verhalten für $x\\to\\pm\\infty$ beachten"
         ]
     },
     {
@@ -2731,28 +1629,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-13",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "globale Steigungsextrema sind",
-                "response": "Stellen, an denen die absolut größten oder kleinsten Steigungswerte angenommen werden"
-            },
-            {
-                "cue": "Kandidaten im Inneren des Definitionsbereichs",
-                "response": "lokale Wendestellen, Steigungen berechnen"
-            },
-            {
-                "cue": "Kandidaten am Rand des Definitionsbereichs",
-                "response": "Randpunkte, Steigungen berechnen"
-            },
-            {
-                "cue": "globale Steigungsextrema bestimmen",
-                "response": "Steigungen der Kandidaten im Inneren und am Rand vergleichen"
-            },
-            {
-                "cue": "bei unbeschränkten Intervallen",
-                "response": "Verhalten für $x\\to\\pm\\infty$ beachten"
-            }
+            "Kandidaten im Inneren: echte Wendestellen mit maximaler bzw. minimaler Steigung",
+            "Randpunkte des Intervalls mitprüfen",
+            "globale Steigungsextrema: größte bzw. kleinste Werte von $f'(x)$ vergleichen",
+            "bei unbeschränkten Intervallen: Verhalten von $f'(x)$ für $x\\to\\pm\\infty$ beachten"
         ]
     },
     {
@@ -2767,24 +1648,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-differentialrechnung-ganzrationaler-funktionen-14",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. allgemeine Form notieren",
-                "response": "allgemeine Form: $f(x)=ax^3+bx^2+cx+d$"
-            },
-            {
-                "cue": "2. Bedingungen als Gleichungen formulieren",
-                "response": "Extrempunkt $E(x_E\\mid y_E)$: $f(x_E)=y_E$ und $f'(x_E)=0$ bzw. Wendepunkt $W(x_W\\mid y_W)$: $f(x_W)=y_W$ und $f''(x_W)=0$"
-            },
-            {
-                "cue": "3. Gleichungssystem",
-                "response": "Lineares Gleichungssystem aufstellen"
-            },
-            {
-                "cue": "4. Lösung",
-                "response": "Lineares Gleichungssystem mit Taschenrechner oder Gauß-Algorithmus lösen"
-            }
+            "allgemeine Form: $f(x)=ax^3+bx^2+cx+d$",
+            "Extrempunkt $E(x_E\\mid y_E)$: $f(x_E)=y_E$ und $f'(x_E)=0$",
+            "Wendepunkt $W(x_W\\mid y_W)$: $f(x_W)=y_W$ und $f''(x_W)=0$",
+            "die vier Bedingungen zu einem linearen Gleichungssystem zusammenfassen"
         ]
     },
     {
@@ -2799,20 +1667,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-01",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Gleichsetzungsverfahren",
-                "response": "beide Gleichungen nach derselben Variable umformen, dann gleichsetzen"
-            },
-            {
-                "cue": "Einsetzungsverfahren",
-                "response": "eine Variable isolieren und in die andere Gleichung einsetzen"
-            },
-            {
-                "cue": "Additionsverfahren",
-                "response": "Gleichungen so umformen, sodass eine Variable durch Addition wegfällt"
-            }
+            "Gleichsetzungsverfahren: beide Gleichungen nach derselben Variable umformen, dann gleichsetzen",
+            "Einsetzungsverfahren: eine Variable isolieren und in die andere Gleichung einsetzen",
+            "Additionsverfahren: Gleichungen so umformen, sodass eine Variable durch Addition wegfällt"
         ]
     },
     {
@@ -2827,20 +1685,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-02",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Gauß-Algorithmus",
-                "response": "schrittweise auf obere Dreiecksform umformen"
-            },
-            {
-                "cue": "elementare Zeilenumformungen",
-                "response": "Zeilenvielfache addieren, evtl. Zeilen tauschen"
-            },
-            {
-                "cue": "Rückwärtseinsetzen",
-                "response": "Gleichungen nacheinander lösen"
-            }
+            "Gauß-Algorithmus: schrittweise auf obere Dreiecksform umformen",
+            "elementare Zeilenumformungen: Zeilenvielfache addieren, evtl. Zeilen tauschen",
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -2855,20 +1703,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Gauß-Algorithmus",
-                "response": "schrittweise auf obere Dreiecksform umformen"
-            },
-            {
-                "cue": "elementare Zeilenumformungen",
-                "response": "Zeilenvielfache addieren, evtl. Zeilen tauschen"
-            },
-            {
-                "cue": "Rückwärtseinsetzen",
-                "response": "Gleichungen nacheinander lösen"
-            }
+            "Gauß-Algorithmus: schrittweise auf obere Dreiecksform umformen",
+            "elementare Zeilenumformungen: Zeilenvielfache addieren, evtl. Zeilen tauschen",
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -2883,20 +1721,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-04",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Gauß-Algorithmus",
-                "response": "schrittweise auf obere Dreiecksform umformen"
-            },
-            {
-                "cue": "Parameter",
-                "response": "letzte Variable als Parameter $t$ setzen"
-            },
-            {
-                "cue": "Rückwärtseinsetzen",
-                "response": "Gleichungen in Abhängigkeit von $t$ ncheinander lösen"
-            }
+            "Gauß-Algorithmus anwenden",
+            "letzte Variable als Parameter $t$ setzen",
+            "Rückwärtseinsetzen: von der untersten Zeile nach oben lösen"
         ]
     },
     {
@@ -2911,32 +1739,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-lineare-gleichungssysteme-05",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Rang $rg(A)$",
-                "response": "Anzahl Nicht-Nullzeilen der Koeffizientenmatrix $A$"
-            },
-                        {
-                "cue": "$rg(A|y)$",
-                "response": "Anzahl Nicht-Nullzeilen der erweiterten Koeffizientenmatrix $(A|y)$"
-            },
-                        {
-                "cue": "Variablenanzahl $n$",
-                "response": "Anzahl der Spalten von $A$"
-            },
-            {
-                "cue": "$rg(A) \\neq rg(A|y)$",
-                "response": "keine Lösung"
-            },
-            {
-                "cue": "$rg(A) = rg(A|y) = n$",
-                "response": "eindeutig lösbar"
-            },
-            {
-                "cue": "$rg(A) = rg(A|y) < n$",
-                "response": "unendlich viele Lösungen"
-            }
+            "$rg(A)$, $rg(A|y)$ und Variablenanzahl $n$ bestimmen",
+            "keine Lösung: $rg(A) \\neq rg(A|y)$",
+            "eindeutig lösbar: $rg(A) = rg(A|y) = n$",
+            "unendlich viele Lösungen: $rg(A) = rg(A|y) < n$"
         ]
     },
     {
@@ -2951,20 +1758,9 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-01",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Matrizenaddition bzw. -subtraktion",
-                "response": "elementweise addieren bzw. subtrahieren"
-            },
-            {
-                "cue": "Skalarmultiplikation",
-                "response": "jeden Eintrag mit dem Skalar multiplizieren"
-            },
-            {
-                "cue": "Matrizen können mit einander addiert bzw. subtrahiert werden, falls",
-                "response": "sie die gleiche Anzahl an Zeilen und Spalten haben"
-            }
+            "Elementweise addieren bzw. subtrahieren — gleiche Dimension erforderlich",
+            "Skalarmultiplikation: jeden Eintrag mit dem Skalar multiplizieren"
         ]
     },
     {
@@ -2979,20 +1775,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-02",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Merkregel",
-                "response": "Zeilen von $A$ mal Spalten von $B$"
-            },
-            {
-                "cue": "Matrizen $A$ und $B$ können mit einander multipliziert werden, falls",
-                "response": "Spaltenanzahl von $A$ = Zeilenanzahl von $B$"
-            },
-            {
-                "cue": "Beachte",
-                "response": "Matrizenmultiplikation ist nicht kommutativ: $AB \neq BA$"
-            }
+            "Zeile mal Spalte: Summe der Produkte der $i$-ten Zeile und $j$-ten Spalte",
+            "Voraussetzung: Spaltenanzahl von $A$ = Zeilenanzahl von $B$",
+            "Matrizenmultiplikation ist nicht kommutativ: $AB \neq BA$"
         ]
     },
     {
@@ -3007,20 +1793,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-03",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Gauß-Jordan-Algorithmus",
-                "response": "$(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen"
-            },
-            {
-                "cue": "Inverse existiert nur, falls",
-                "response": "keine Nullzeile entsteht"
-            },
-            {
-                "cue": "$A^{-1}$ ist die Inverse von $A$, falls",
-                "response": "$A \\cdot A^{-1} = E$"
-            }
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -3035,20 +1811,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-04",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Gauß-Jordan-Algorithmus",
-                "response": "$(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen"
-            },
-            {
-                "cue": "Inverse existiert nur, falls",
-                "response": "keine Nullzeile entsteht"
-            },
-            {
-                "cue": "$A^{-1}$ ist die Inverse von $A$, falls",
-                "response": "$A \\cdot A^{-1} = E$"
-            }
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -3063,20 +1829,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-05",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Gauß-Jordan-Algorithmus",
-                "response": "$(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen"
-            },
-            {
-                "cue": "Inverse existiert nur, falls",
-                "response": "keine Nullzeile entsteht"
-            },
-            {
-                "cue": "$A^{-1}$ ist die Inverse von $A$, falls",
-                "response": "$A \\cdot A^{-1} = E$"
-            }
+            "Gauß-Jordan: $(A|E)$ durch elementare Zeilenumformungen auf $(E|A^{-1})$ bringen",
+            "Inverse existiert nur, wenn $A$ regulär ist (keine Nullzeile entsteht)",
+            "Probe: $A \\cdot A^{-1} = E$"
         ]
     },
     {
@@ -3091,20 +1847,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-06",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "elementare Rechenregeln",
-                "response": "Klammer vor Punkt vor Strich"
-            },
-            {
-                "cue": "aus $XA=B$ folgt",
-                "response": "$X=BA^{-1}$"
-            },
-            {
-                "cue": "aus $AX=B$ folgt",
-                "response": "$X=A^{-1}B$"
-            }
+            "mit Matrizenoperationen nach $X$ umstellen",
+            "Reihenfolge Klammer, Punkt, Strich beachten",
+            "Reihenfolge der Multiplikation beachten"
         ]
     },
     {
@@ -3119,12 +1865,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-07",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Merkregel",
-                "response": "Zeilen und Spalten vertauschen"
-            }
+            "Zeilen und Spalten vertauschen",
+            "$(A^T)^T = A$",
+            "Dimension tauscht sich"
         ]
     },
     {
@@ -3139,16 +1883,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-08",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}$",
-                "response": "$ad-bc$"
-            },
-            {
-                "cue": "Merkregel",
-                "response": "Produkt der Hauptdiagonale minus Produkt der Nebendiagonale"
-            }
+            "$\\det\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}=ad-bc$",
+            "Hauptdiagonale minus Nebendiagonale"
         ]
     },
     {
@@ -3163,20 +1900,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-09",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Regel von Sarrus 1. Schritt",
-                "response": "erste zwei Spalten rechts anfügen"
-            },
-            {
-                "cue": "Regel von Sarrus 2. Schritt",
-                "response": "Diagonalen von links oben → Produkte addieren"
-            },
-            {
-                "cue": "Regel von Sarrus 3. Schritt",
-                "response": "Diagonalen von rechts oben → Produkte subtrahieren"
-            }
+            "Regel von Sarrus: erste zwei Spalten rechts anfügen",
+            "Diagonalen von links oben → Produkte addieren",
+            "Diagonalen von rechts oben → Produkte subtrahieren"
         ]
     },
     {
@@ -3191,20 +1918,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-matrizenrechnung-10",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Laplace-Entwicklung 1. Schritt",
-                "response": "Zeile oder Spalte mit vielen Nullen auswählen"
-            },
-            {
-                "cue": "Laplace-Entwicklung 2. Schritt",
-                "response": "jedes Element der Zeile oder Spalte mit $(-1)^{i+j}$ und $\\det(A_{ij})$ multiplizieren"
-            },
-            {
-                "cue": "Laplace-Entwicklung 3. Schritt",
-                "response": "alle Produkte addieren"
-            }
+            "Laplace-Entwicklung nach einer Zeile oder Spalte mit vielen Nullen",
+            "Vorzeichen des $(i,j)$-Eintrags: $(-1)^{i+j}$",
+            "$\\det(A) = \\sum_j (-1)^{i+j} \\cdot a_{ij} \\cdot M_{ij}$"
         ]
     },
     {
@@ -3219,16 +1936,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-01",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Verflechtungsdiagramm, Zahl am Pfeil von Input-Produkt \\( i \\) zu Output-Produkt \\( j \\) ist",
-                "response": "die benötigte Menge von Input-Produkt \\( i \\) für 1 ME von Output-Produkt \\( j \\)"
-            },
-            {
-                "cue": "Produktionsmatrizen, \\( a_{ij} \\) ist",
-                "response": "die benötigte Menge von Input-Produkt \\( i \\) für 1 ME von Output-Produkt \\( j \\)"
-            }
+            "Verflechtungsdiagramm: Zahl an Pfeil ist benötigte Inputmenge für 1 ME Output",
+            "Produktionsmatrizen: Matrixelement \\( a_{ij} \\) ist benötigte Menge von Input-Produkt \\( i \\) für 1 ME von Output-Produkt \\( j \\)",
+            "Zeile = Input, Spalte = Output"
         ]
     },
     {
@@ -3243,12 +1954,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Element in der $i$-ten Spalte und $j$-ten Zeile \\( a_{ij} \\) ist",
-                "response": "die benötigte Menge von Input-Produkt \\( i \\) für 1 ME von Output-Produkt \\( j \\)"
-            }
+            "Matrixelement $a_{ij}$ ist benötigte Menge von Input-Produkt $i$ für 1 ME von Output-Produkt $j$",
+            "Zeile = Input, Spalte = Output"
         ]
     },
     {
@@ -3263,20 +1971,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Berechnung von $RE$",
-                "response": "$RZ\\cdot ZE = RE$"
-            },
-            {
-                "cue": "Berechnung von $RZ$",
-                "response": "$RZ = RE\\cdot ZE^{-1}$"
-            },
-            {
-                "cue": "Berechnung von $ZE$",
-                "response": "$ZE = RZ^{-1}\\cdot RE$"
-            }
+            "$RZ\\cdot ZE = RE$",
+            "$RZ = RE\\cdot ZE^{-1}$",
+            "$ZE = RZ^{-1}\\cdot RE$"
         ]
     },
     {
@@ -3291,20 +1989,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-04",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Rohstoffe aus Endprodukten",
-                "response": "$RE\\cdot \\vec{m} = \\vec{r}$"
-            },
-            {
-                "cue": "Rohstoffe aus Zwischenprodukten",
-                "response": "$RZ\\cdot \\vec{z} = \\vec{r}$"
-            },
-            {
-                "cue": "Zwischenprodukte aus Endprodukten",
-                "response": "$ZE\\cdot \\vec{m} = \\vec{z}$"
-            }
+            "$RE\\cdot \\vec{m} = \\vec{r}$",
+            "$RZ\\cdot \\vec{z} = \\vec{r}$",
+            "$ZE\\cdot \\vec{m} = \\vec{z}$"
         ]
     },
     {
@@ -3319,20 +2007,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-05",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Endprodukte aus Rohstoffen",
-                "response": "$\\vec{m} = RE^{-1}\\cdot \\vec{r}$"
-            },
-            {
-                "cue": "Zwischenprodukte aus Rohstoffen",
-                "response": "$\\vec{z} = RZ^{-1}\\cdot \\vec{r}$"
-            },
-            {
-                "cue": "Endprodukte aus Zwischenprodukten",
-                "response": "$\\vec{m} = ZE^{-1}\\cdot \\vec{z}$"
-            }
+            "$\\vec{m} = RE^{-1}\\cdot \\vec{r}$",
+            "$\\vec{z} = RZ^{-1}\\cdot \\vec{r}$",
+            "$\\vec{m} = ZE^{-1}\\cdot \\vec{z}$"
         ]
     },
     {
@@ -3347,32 +2025,14 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Vektor der variablen Stückkosten",
-                "response": "$\\vec{k}_v = \\vec{k}_R \\cdot RE + \\vec{k}_Z \\cdot ZE + \\vec{k}_E$"
-            },
-            {
-                "cue": "Stückkosten",
-                "response": "$K_v = \\vec{k}_v \\cdot \\vec{m}$"
-            },
-            {
-                "cue": "Erlöse",
-                "response": "$E = \\vec{p} \\cdot \\vec{m}$"
-            },
-            {
-                "cue": "Vektor der Stückdeckungsbeiträge",
-                "response": "$\\vec{db} = \\vec{p} - \\vec{k}_v$"
-            },
-            {
-                "cue": "Stückdeckungsbeitrag",
-                "response": "$DB = \\vec{db} \\cdot \\vec{m} = E - K_v$"
-            },
-            {
-                "cue": "Gewinn",
-                "response": "$G = E - K$ oder $G = DB - K_f$"
-            }
+            "$\\vec{k}_v = \\vec{k}_R \\cdot RE + \\vec{k}_Z \\cdot ZE + \\vec{k}_E$",
+            "$K_v = \\vec{k}_v \\cdot \\vec{m}$",
+            "$E = \\vec{p} \\cdot \\vec{m}$",
+            "$\\vec{db} = \\vec{p} - \\vec{k}_v$",
+            "$DB = \\vec{db} \\cdot \\vec{m} = E - K_v$",
+            "$G = E - K$",
+            "$G = DB - K_f$"
         ]
     },
     {
@@ -3387,20 +2047,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-07",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Schritt",
-                "response": "Kennzahl in Abhängigkeit von $t$ ausdrücken"
-            },
-            {
-                "cue": "2. Schritt",
-                "response": "Definitionsbereich von $t$ beachten"
-            },
-            {
-                "cue": "3. Schritt",
-                "response": "Minimum oder Maximum durch Vergleich der Kennzahl auf dem Definitionsbereich bestimmen"
-            }
+            "Kennzahl in Abhängigkeit von $t$ ausdrücken",
+            "Definitionsbereich von $t$ beachten",
+            "Minimum oder Maximum durch Vergleich der Kennzahl auf dem Definitionsbereich bestimmen"
         ]
     },
     {
@@ -3415,16 +2065,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-lineare-algebra-mehrstufige-produktionsprozesse-08",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "1. Schritt",
-                "response": "gegebene Bedingung als Gleichung in Abhängigkeit von $t$ formulieren"
-            },
-            {
-                "cue": "2. Schritt",
-                "response": "nach $t$ auflösen und mit Definitionsbereich abgleichen"
-            }
+            "gegebene Bedingung als Gleichung in Abhängigkeit von $t$ formulieren",
+            "nach $t$ auflösen und mit Definitionsbereich abgleichen",
+            "passenden Produktionsvektor durch Einsetzen von $t$ bestimmen"
         ]
     },
     {
@@ -3439,32 +2083,13 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Umsatz zur Produkteinführung",
-                "response": "$y$-Abschnitt"
-            },
-            {
-                "cue": "Marktaustritt",
-                "response": "positive Nullstelle"
-            },
-            {
-                "cue": "Zeitpunkt des höchsten bzw. niedrigsten Umsatzes",
-                "response": "Extremstellen"
-            },
-            {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "Wendestellen"
-            },
-            {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
-            },
-            {
-                "cue": "langfristiger Umsatz",
-                "response": "Asymptote für $t\\to\\infty$"
-            }
+            "$y$-Abschnitt: Umsatz zur Produkteinführung",
+            "Positive Nullstelle: Marktaustritt",
+            "Extrempunkte: höchster bzw. niedrigster Umsatz",
+            "Wendepunkte: Änderung des Umsatzverlaufs",
+            "Beachte mögliche Randextrema",
+            "Asymptoten: langfristiger Umsatz"
         ]
     },
     {
@@ -3479,24 +2104,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Veränderung des Umsatzes",
-                "response": "$y$-Werte"
-            },
-            {
-                "cue": "Zeitpunkt des höchsten bzw. niedrigsten Umsatzes",
-                "response": "Nullstellen"
-            },
-            {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "Extremstellen"
-            },
-            {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
-            }
+            "$y$-Achse: Veränderung des Umsatzes",
+            "Extremstellen von $u$ entsprechen Nullstellen von $u'$",
+            "Extremstellen von $u'$ entsprechen Wendestellen von $u$",
+            "Beachte mögliche Randextrema"
         ]
     },
     {
@@ -3505,34 +2117,18 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 3,
         "check_id": "analysis__produktlebenszyklus__03",
-        "Ich kann": "Kennzahlen des Produktlebenszyklus berechnen (ohne Integration).",
+        "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (ohne Integration).",
         "Sammlung": "kennzahlen-rechnerisch-gesamt",
         "Schlagwort": "Kennzahlen (ohne Integral)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-03",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Umsatz bei Produkteinführung",
-                "response": "berechne $u(0)$"
-            },
-            {
-                "cue": "Marktaustritt",
-                "response": "löse $u(t)=0$ nach $t$ auf"
-            },
-            {
-                "cue": "höchster/niedrigster Umsatz",
-                "response": "$u'(t)=0$ und $u''(t)\\neq 0$"
-            },
-            {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "$u''(t)=0$ und $u'''(t)\\neq 0$"
-            },
-            {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
-            }
+            "Umsatz bei Produkteinführung: $u(0)$",
+            "Marktaustritt: $u(t)=0$",
+            "Höchster/niedrigster Umsatz: $u'(t)=0$ und $u''(t)\\neq 0$",
+            "Änderung des Umsatzverlaufs: $u''(t)=0$ und $u'''(t)\\neq 0$",
+            "Beachte mögliche Randextrema"
         ]
     },
     {
@@ -3541,26 +2137,16 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 4,
         "check_id": "analysis__produktlebenszyklus__04",
-        "Ich kann": "Kennzahlen des Produktlebenszyklus berechnen (mit Integration).",
+        "Ich kann": "Kenzahlen des Produktlebenszyklus berechnen (mit Integration).",
         "Sammlung": "integrale-gemischt",
         "Schlagwort": "Kennzahlen (mit Integral)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-04",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Jjährliche Umsatz",
-                "response": "Funktionswert $u(t)$"
-            },
-            {
-                "cue": "Gesamtumsatz in einem Zeitraum",
-                "response": "$\\int_a^b u(t)\\,dt$"
-            },
-            {
-                "cue": "Durchschnittlicher in einem Zeitraum",
-                "response": ": $\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
-            }
+            "Jährlicher Umsatz: Funktionswert $u(t)$",
+            "Gesamtumsatz in einem Zeitraum: $\\int_a^b u(t)\\,dt$",
+            "Durchschnittlicher Jahresumsatz: $\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
         ]
     },
     {
@@ -3575,20 +2161,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-05",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Jährlicher EKG-Wert",
-                "response": "Funktionswert der EKG-Funktion"
-            },
-            {
-                "cue": "Gesamter EKG-Wert in einem Zeitraum",
-                "response": "Integral"
-            },
-            {
-                "cue": "Zeitpunkt maximaler Verlust",
-                "response": "Vergleich geeigneter Integrale"
-            }
+            "Jährlicher EKG-Wert: Funktionswert",
+            "Gesamter EKG-Wert: Integral",
+            "Zeitpunkt maximaler Verlust: Integralvergleich"
         ]
     },
     {
@@ -3603,24 +2179,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-01",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$y$-Achsenabschnitt $b$",
-                "response": "Schnittpunkt mit $y$-Achse?"
-            },
-            {
-                "cue": "Steigung $m > 0$",
-                "response": "Graph steigt"
-            },
-            {
-                "cue": "Steigung $m < 0$",
-                "response": "Graph fällt"
-            },
-            {
-                "cue": "Steigungsdreieck",
-                "response": "1 Einheit nach rechts, $m$ Einheiten nach oben/unten"
-            }
+            "$y$-Achsenabschnitt $b$: Wo schneidet der Graph die $y$-Achse?",
+            "Steigung $m > 0$: Graph steigt; $m < 0$: Graph fällt",
+            "Steigungsdreieck zum Vergleich nutzen"
         ]
     },
     {
@@ -3635,20 +2197,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Steigung $m$",
-                "response": "Steigungsdreieck, 1 Einheit nach rechts, $m$ Einheiten nach oben/unten"
-            },
-            {
-                "cue": "$y$-Achsenabschnitt $b$",
-                "response": "Schnittpunkt mit $y$-Achse"
-            },
-            {
-                "cue": "Funktionsgleichung",
-                "response": "$f(x) = mx + b$"
-            }
+            "Steigung $m$: Steigungsdreieck ablesen",
+            "$y$-Achsenabschnitt $b$: Schnittpunkt mit $y$-Achse",
+            "$f(x) = mx + b$"
         ]
     },
     {
@@ -3663,12 +2215,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$y$-Werte bestimmen",
-                "response": "$x$-Werte in Gleichung einsetzen "
-            }
+            "$x$-Werte einsetzen → $y$-Werte berechnen",
+            "$f(x) = mx + b$"
         ]
     },
     {
@@ -3683,20 +2232,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-lineare-funktionen-04",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Steigungsformel",
-                "response": "$m = \\frac{y_2 - y_1}{x_2 - x_1}$"
-            },
-            {
-                "cue": "$y$-Abschnitt",
-                "response": "$b = y_1 - m \\cdot x_1$"
-            },
-            {
-                "cue": "Funktionsgleichung",
-                "response": "$f(x) = mx + b$"
-            }
+            "$m = \\frac{y_2 - y_1}{x_2 - x_1}$",
+            "$b = y_1 - m \\cdot x_1$",
+            "$f(x) = mx + b$"
         ]
     },
     {
@@ -3711,24 +2250,11 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-05",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "$f(x_0)$ berechnen",
-                "response": "$x_0$ in Funktionsgleichung einsetzen"
-            },
-            {
-                "cue": "falls $f(x_0) = y_0$",
-                "response": "Punkt liegt auf dem Graphen"
-            },
-            {
-                "cue": "falls $y_0 > f(x_0)$",
-                "response": "Punkt liegt oberhalb"
-            },
-            {
-                "cue": "falls $y_0 < f(x_0)$",
-                "response": "Punkt liegt unterhalb"
-            }
+            "$x$-Wert einsetzen und $f(x_0)$ berechnen",
+            "$f(x_0) = y_0$: Punkt liegt auf dem Graphen",
+            "$y_0 > f(x_0)$: Punkt liegt oberhalb",
+            "$y_0 < f(x_0)$: Punkt liegt unterhalb"
         ]
     },
     {
@@ -3743,16 +2269,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Funktionswert",
-                "response": "$x_0$ in $f(x) = mx + b$ einsetzen"
-            },
-            {
-                "cue": "Umkehrwert",
-                "response": "$f(x) = y_0$ setzen und nach $x$ auflösen"
-            }
+            "Funktionswert: $x_0$ in $f(x) = mx + b$ einsetzen",
+            "Umkehrwert: $f(x) = y_0$ setzen und nach $x$ auflösen"
         ]
     },
     {
@@ -3767,20 +2286,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-07",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Nullstellen",
-                "response": "$f(x) = 0$ setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "falls $m > 0$",
-                "response": "links der Nullstelle negativ, rechts positiv"
-            },
-            {
-                "cue": "falls $m < 0$",
-                "response": "links der Nullstelle positiv, rechts negativ"
-            }
+            "Nullstelle: $f(x) = 0$ setzen und nach $x$ auflösen",
+            "$m > 0$: links der Nullstelle negativ, rechts positiv",
+            "$m < 0$: links der Nullstelle positiv, rechts negativ"
         ]
     },
     {
@@ -3795,20 +2304,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-lineare-funktionen-08",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Ansatz",
-                "response": "Gleichsetzen der Funktionsgleichungen"
-            },
-            {
-                "cue": "$x$-Wert",
-                "response": "Gleichung nach $x$ auflösen"
-            },
-            {
-                "cue": "$y$-Wert",
-                "response": "$x$-Wert in eine Funktionsgleichung einsetzen"
-            }
+            "Gleichsetzen: $m_1 x + b_1 = m_2 x + b_2$",
+            "Gleichung nach $x$ auflösen",
+            "$y$-Wert durch Einsetzen in eine Funktionsgleichung bestimmen"
         ]
     },
     {
@@ -3823,20 +2322,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-lineare-funktionen-09",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Startwert",
-                "response": "$y$-Achsenabschnitt $b$"
-            },
-            {
-                "cue": "Änderungsrate",
-                "response": "Steigung $m$"
-            },
-            {
-                "cue": "Auswertung",
-                "response": "Funktionswerte, Umkehrwerte, Nullstelle berechnen und interpretieren"
-            }
+            "Startwert = $y$-Achsenabschnitt $b$",
+            "Änderungsrate = Steigung $m$",
+            "$f(x) = mx + b$ aufstellen",
+            "Funktionswerte, Umkehrwerte, Nullstelle berechnen und interpretieren"
         ]
     },
     {
@@ -3851,24 +2341,11 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-lineare-funktionen-10",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Grundgebühr und Ähnliches",
-                "response": "$y$-Achsenabschnitt $b$"
-            },
-            {
-                "cue": "Kosten pro Einheit und Ähnliches",
-                "response": "Steigung $m$"
-            },
-            {
-                "cue": "Bestimmung der Stelle gleicher Kosten",
-                "response": "Gleichsetzen der Funktionsgleichungen"
-            },
-            {
-                "cue": "günstigere Option",
-                "response": "links der Schnittstelle: Option mit kleinerem $y$-Abschnitt, rechts der Schnittstelle: Option mit kleinerer Steigung"
-            }
+            "Zwei Funktionen aufstellen",
+            "Gleichsetzen → Schnittpunkt",
+            "Bereiche vergleichen: Welches Modell liegt wann günstiger/höher?",
+            "Ergebnis im Sachzusammenhang interpretieren"
         ]
     },
     {
@@ -3883,20 +2360,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-01",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Öffnungsfaktor $a$",
-                "response": "$a > 0$ nach oben, $a < 0$ nach unten"
-            },
-            {
-                "cue": "Scheitel ablesen",
-                "response": "Scheitelpunktform prüfen"
-            },
-            {
-                "cue": "Nullstellen ablesen",
-                "response": "faktorisierte Form prüfen"
-            }
+            "Öffnung: $a > 0$ nach oben, $a < 0$ nach unten",
+            "Scheitel ablesen → Scheitelpunktform prüfen",
+            "Nullstellen ablesen → faktorisierte Form prüfen"
         ]
     },
     {
@@ -3911,20 +2378,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-02",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Scheitel $(d, e)$ ablesen",
-                "response": "$f(x) = a(x - d)^2 + e$"
-            },
-            {
-                "cue": "Nullstellen $x_1, x_2$ ablesen",
-                "response": "$f(x) = a(x - x_1)(x - x_2)$"
-            },
-            {
-                "cue": "Öffnungsfaktor $a$",
-                "response": "über weiteren Punkt bestimmen"
-            }
+            "Scheitel $(d, e)$ ablesen → $f(x) = a(x - d)^2 + e$",
+            "Nullstellen $x_1, x_2$ ablesen → $f(x) = a(x - x_1)(x - x_2)$",
+            "Öffnungsfaktor $a$ über einen weiteren Punkt bestimmen"
         ]
     },
     {
@@ -3939,16 +2396,9 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-03",
         "questionOrder": "fixed",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "$y$-Werte bestimmen",
-                "response": "$x$-Werte in Gleichung einsetzen"
-            },
-            {
-                "cue": "Symmetrie-Test",
-                "response": "Wertetabelle muss symmetrisch zur Scheitelstelle sein"
-            }
+            "$x$-Werte einsetzen → $y$-Werte berechnen",
+            "Symmetrie der Wertetabelle zum Scheitel prüfen"
         ]
     },
     {
@@ -3963,28 +2413,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-04",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Normalform, ggf. durch $a$ geteilt",
-                "response": "$x^2 + px + q = 0$"
-            },
-            {
-                "cue": "pq-Formel",
-                "response": "$x_{1{,}2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}$"
-            },
-            {
-                "cue": "falls Terme unter der Wurzel positiv",
-                "response": "zwei Nullstellen"
-            },
-            {
-                "cue": "falls Terme unter der Wurzel 0",
-                "response": "eine Nullstelle"
-            },
-            {
-                "cue": "falls Terme unter der Wurzel negativ",
-                "response": "keine Nullstellen"
-            }
+            "Normalform: $x^2 + px + q = 0$",
+            "$x_{1{,}2} = -\\frac{p}{2} \\pm \\sqrt{\\left(\\frac{p}{2}\\right)^2 - q}$",
+            "Diskriminante $D = \\left(\\frac{p}{2}\\right)^2 - q$ prüfen"
         ]
     },
     {
@@ -3999,20 +2431,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-05",
         "questionOrder": "shuffle",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "faktorisierte Form",
-                "response": "$f(x) = a(x - x_1)(x - x_2)$"
-            },
-            {
-                "cue": "Satz vom Nullprodukt",
-                "response": "Produkt ist 0, falls mindestens ein Faktor 0 ist"
-            },
-            {
-                "cue": "Nullstellen direkt ablesbar",
-                "response": "$x_1$ und $x_2$"
-            }
+            "$f(x) = a(x - x_1)(x - x_2)$",
+            "Nullstellen direkt ablesen: $x_1$ und $x_2$",
+            "Satz vom Nullprodukt"
         ]
     },
     {
@@ -4027,20 +2449,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Scheitelpunktform",
-                "response": "$a(x - d)^2 + e = 0$"
-            },
-            {
-                "cue": "elementare Umformungen minus $e$ und geteilt durch $a$ führt zu",
-                "response": "$(x - d)^2 = -\\frac{e}{a}$"
-            },
-            {
-                "cue": "Existenzbedingung",
-                "response": "Nullstellen existieren nur, wenn $-\\frac{e}{a} \\geq 0$"
-            }
+            "$a(x - d)^2 + e = 0$",
+            "$(x - d)^2 = -\\frac{e}{a}$",
+            "Nullstellen existieren nur, wenn $-\\frac{e}{a} \\geq 0$"
         ]
     },
     {
@@ -4055,20 +2467,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-07",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Funktionswert",
-                "response": "$x_0$ einsetzen und berechnen"
-            },
-            {
-                "cue": "Umkehrwert",
-                "response": "$f(x) = y_0$ setzen und nach $x$ auflösen"
-            },
-            {
-                "cue": "Lösungsmethode für Umkehrwert",
-                "response": "quadratische Gleichung mit $pq$-Formel lösen"
-            }
+            "Funktionswert: $x_0$ einsetzen und berechnen",
+            "Umkehrwert: $f(x) = y_0$ setzen und nach $x$ auflösen",
+            "Quadratische Gleichung mit $p$-$q$-Formel lösen"
         ]
     },
     {
@@ -4083,20 +2485,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-quadratische-funktionen-08",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Ansatz",
-                "response": "Gleichsetzen der Funktionsgleichungen"
-            },
-            {
-                "cue": "x-Wert",
-                "response": "quadratische Gleichung mit $pq$-Formel lösen"
-            },
-            {
-                "cue": "y-Wert",
-                "response": "$x$-Wert in eine Funktionsgleichung einsetzen"
-            }
+            "Gleichsetzen → quadratische Gleichung lösen",
+            "$y$-Koordinaten durch Einsetzen bestimmen",
+            "Parabel–Gerade: eine quadratische Gleichung; Parabel–Parabel: Differenz bilden"
         ]
     },
     {
@@ -4111,20 +2503,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-09",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Normelform → faktorisierte Form",
-                "response": "Nullstellen mit pq-Formel berechnen"
-            },
-            {
-                "cue": "Normalform → Scheitelpunktform",
-                "response": "quadratische Ergänzung"
-            },
-            {
-                "cue": "Scheitelpunktform / faktorisierte Form → Normalform",
-                "response": "Ausmultiplizieren"
-            }
+            "NF → FF: Nullstellen mit pq-Formel berechnen",
+            "NF → SPF: quadratische Ergänzung",
+            "SPF/FF → NF: Ausmultiplizieren"
         ]
     },
     {
@@ -4139,20 +2521,10 @@
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-quadratische-funktionen-10",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
         "Tipps": [
-            {
-                "cue": "Nullstellen gegeben",
-                "response": "faktorisierte Form ansetzen"
-            },
-            {
-                "cue": "Scheitel gegeben ",
-                "response": "Scheitelpunktform ansetzen"
-            },
-            {
-                "cue": "drei Punkte gegeben",
-                "response": "Normalform ansetzen, Punkte einsetzen und lineares Gleichungssystem lösen"
-            }
+            "Nullstellen gegeben → faktorisierte Form ansetzen",
+            "Scheitel gegeben → Scheitelpunktform ansetzen",
+            "Drei Punkte gegeben → Normalform mit LGS oder passende Form wählen"
         ]
     },
     {
@@ -4167,16 +2539,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-quadratische-funktionen-11",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Sachzusammenhang klären",
-                "response": "Was entspricht $x$ und $y$?"
-            },
-            {
-                "cue": "für Maximum oder Minimum",
-                "response": "Scheitelpunkt bestimmen"
-            }
+            "Koordinatensystem sinnvoll festlegen",
+            "Gegebene Punkte ablesen → Gleichung aufstellen",
+            "Funktionswerte oder Nullstellen im Sachkontext interpretieren"
         ]
     },
     {
@@ -4191,16 +2557,10 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-analysis-quadratische-funktionen-12",
         "questionOrder": "fixed",
-        "tippOrder": "fixed",
         "Tipps": [
-            {
-                "cue": "Art des Extremums",
-                "response": "$a>0$ Minimum, $a<0$ Maximum"
-            },
-            {
-                "cue": "für Maximum oder Minimum",
-                "response": "Scheitelpunkt bestimmen"
-            }
+            "Zielfunktion aufstellen (quadratisch)",
+            "Scheitel bestimmen → Maximum oder Minimum",
+            "Ergebnis im Sachzusammenhang interpretieren"
         ]
     }
 ]

@@ -229,8 +229,6 @@ Entscheidend ist nur die letzte Frage:
 
 Wenn die Tangente waagrecht ist, aber kein Extrempunkt vorliegt, kann ein **Sattelpunkt** entstehen.
 
-Im nächsten Check sind genau solche Fälle zentral. Die Tipps lenken deshalb auf den Vorzeichenwechsel von $f'$ links und rechts der Kandidatenstelle, und das Beispiel verbindet diese Entscheidung ausdrücklich mit Vorzeichentabelle und Graph von $f'$.
-
 {% include check-anker.html nummer="8" %}
 
 ## Wendestellen und Krümmung
@@ -289,8 +287,6 @@ Diesmal schaut man auf $f^{\prime\prime}$ links und rechts von $x_0$:
 
 Auch dafür ist eine Vorzeichentabelle das sauberste Werkzeug. Man trägt Teststellen, Vorzeichen und die Folgerung zur Krümmung systematisch ein.
 
-Im nächsten Check entscheidet also nicht die bloße Gleichung $f^{\prime\prime}(x_0)=0$, sondern der tatsächliche Vorzeichenwechsel von $f^{\prime\prime}$. Genau darauf richten Tipps, Beispiel und Aufgabe den Blick.
-
 {% include check-anker.html nummer="11" %}
 
 ## Lokale und globale Aussagen
@@ -310,9 +306,7 @@ Erst der Vergleich der Funktionswerte entscheidet:
 - größter Wert: globales Maximum
 - kleinster Wert: globales Minimum
 
-Wichtig ist auch: Auf unbeschränkten Intervallen kann es vorkommen, dass nur eines der beiden globalen Extrema existiert oder sogar keines.
-
-Im nächsten Check müssen deshalb innere Kandidaten, Randpunkte und gegebenenfalls das Verhalten für $x\to\pm\infty$ immer gemeinsam betrachtet werden. Erst danach steht fest, ob ein globales Maximum oder Minimum wirklich existiert.
+Es kann es auch vorkommen, dass nur eines der beiden globalen Extrema existiert oder sogar keines.
 
 {% include check-anker.html nummer="12" %}
 
@@ -351,8 +345,6 @@ Typische Bedingungen sind:
 So entsteht ein lineares Gleichungssystem für $a$, $b$, $c$ und $d$. Der Schwerpunkt liegt dabei auf dem **sauberen Aufstellen der Bedingungen**. Das Lösen des Systems kann anschließend mit dem Taschenrechner oder mit dem Gauß-Algorithmus erfolgen.
 
 Wenn zusätzlich „Hochpunkt“ oder „Tiefpunkt“ angegeben ist, dient das als Plausibilitätskontrolle für die gefundene Funktion.
-
-Im nächsten Check steht deshalb vor allem das präzise Übersetzen der Punkt- und Ableitungsinformationen in vier Gleichungen für $a$, $b$, $c$ und $d$ im Mittelpunkt. Das Beispiel zeigt diesen Aufbau vollständig; in den Aufgaben ändern sich anschließend nur die konkreten Daten.
 
 {% include check-anker.html nummer="14" %}
 
