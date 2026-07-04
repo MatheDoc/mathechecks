@@ -239,7 +239,7 @@
         "Tipps": [
             {
                 "cue": "gegeben",
-                "response": "\\(k\\), \\(P(X\\leq k \\) oder \\(P(X\\geq k \\) und \\(p\\)"
+                "response": "\\(k\\), \\(P(X\\leq k)\\) oder \\(P(X\\geq k)\\) und \\(p\\)"
             },
             {
                 "cue": "gesucht",
@@ -267,7 +267,7 @@
         "Tipps": [
             {
                 "cue": "gegeben",
-                "response": "\\(k\\), \\(P(X\\leq k \\) oder \\(P(X\\geq k \\) und \\(n\\)"
+                "response": "\\(k\\), \\(P(X\\leq k)\\) oder \\(P(X\\geq k)\\) und \\(n\\)"
             },
             {
                 "cue": "gesucht",
@@ -295,7 +295,7 @@
         "Tipps": [
             {
                 "cue": "gegeben",
-                "response": "\\(P(X\\leq k \\) oder \\(P(X\\geq k \\) sowie \\(n\\) und \\(p\\)"
+                "response": "\\(P(X\\leq k)\\) oder \\(P(X\\geq k)\\) sowie \\(n\\) und \\(p\\)"
             },
             {
                 "cue": "gesucht",
@@ -695,7 +695,7 @@
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-stochastik-mehrstufige-zufallsexperimente-06",
         "questionOrder": "shuffle",
-        "tippOrder": "shuffle",
+        "tippOrder": "fixed",
         "Tipps": [
             {
                 "cue": "1. Baumdiagramm aufstellen",
@@ -971,11 +971,11 @@
             },
             {
                 "cue": "\\(P_A(B) \\)",
-                "response": "\\frac{P(A\\cap B)}{P(A)}\\)"
+                "response": "\\(\\frac{P(A\\cap B)}{P(A)}\\)"
             },
             {
                 "cue": "\\(P_B(A) \\)",
-                "response": "\\frac{P(A\\cap B)}{P(B)}\\)"
+                "response": "\\(\\frac{P(A\\cap B)}{P(B)}\\)"
             }
         ]
     },
@@ -1043,7 +1043,7 @@
             },
             {
                 "cue": "Unabhängigkeit",
-                "response": ": \\(P_A(B) = P_{\\overline{A}}(B) bzw. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
+                "response": "\\(P_A(B) = P_{\\overline{A}}(B)\\) bzw. \\(P(A) \\cdot P(B) = P(A\\cap B)\\)"
             }
         ]
     },
@@ -1250,7 +1250,7 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "allgemeine Formel,",
+                "cue": "allgemeine Formel",
                 "response": "\\( \\sigma(X) = \\sqrt{\\sum (x_i - E(X))^2 \\cdot P(X=x_i)} \\)"
             },
             {
@@ -1276,14 +1276,14 @@
         "Tipps": [
             {
                 "cue": "Erwartungswert \\(E(X)\\)",
-                "response": "langfristig erwartete Durchschnittwert"
+                "response": "langfristig erwarteter Durchschnittswert"
             },
             {
                 "cue": "Standardabweichung \\(\\sigma(X)\\)",
                 "response": "Maß für die Streuung der Werte"
             },
             {
-                "cue": "Fausregel für gewöhnliche Werte",
+                "cue": "Faustregel für gewöhnliche Werte",
                 "response": "zwischen \\(E(X) - \\sigma(X)\\) und \\(E(X) + \\sigma(X)\\)"
             }
         ]
@@ -2338,7 +2338,7 @@
                 "response": "Funktionsgleichung und Bestimmtheitsmaß $R^2$ notieren"
             },
             {
-                "cue": "Interpretation Bestimmheitsmaß $R^2$",
+                "cue": "Interpretation Bestimmtheitsmaß $R^2$",
                 "response": "je näher an 1, desto besser ist die Regression"
             }
         ]
@@ -2358,7 +2358,7 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "mittlere Änderungsrate auf $[a;b]$:",
+                "cue": "mittlere Änderungsrate auf $[a;b]$",
                 "response": "$\\frac{f(b)-f(a)}{b-a}$"
             },
             {
@@ -2490,7 +2490,7 @@
                 "response": "Extremstellen (Minimum) von $f$"
             },
             {
-                "cue": "Extremstellen (Maximum)  von $f'$",
+                "cue": "Extremstellen (Maximum) von $f'$",
                 "response": "Wendestelle von $f$ mit Wechsel von linksgekrümmt nach rechtsgekrümmt"
             },
             {
@@ -2678,7 +2678,7 @@
                 "response": "Wendestelle"
             },
             {
-                "cue": "ohne Vorzeichenwechsel von $f'$",
+                "cue": "ohne Vorzeichenwechsel von $f''$",
                 "response": "keine Wendestelle"
             }
         ]
@@ -2895,7 +2895,7 @@
             },
             {
                 "cue": "Rückwärtseinsetzen",
-                "response": "Gleichungen in Abhängigkeit von $t$ ncheinander lösen"
+                "response": "Gleichungen in Abhängigkeit von $t$ nacheinander lösen"
             }
         ]
     },
@@ -2962,7 +2962,7 @@
                 "response": "jeden Eintrag mit dem Skalar multiplizieren"
             },
             {
-                "cue": "Matrizen können mit einander addiert bzw. subtrahiert werden, falls",
+                "cue": "Matrizen können miteinander addiert bzw. subtrahiert werden, falls",
                 "response": "sie die gleiche Anzahl an Zeilen und Spalten haben"
             }
         ]
@@ -2986,12 +2986,12 @@
                 "response": "Zeilen von $A$ mal Spalten von $B$"
             },
             {
-                "cue": "Matrizen $A$ und $B$ können mit einander multipliziert werden, falls",
+                "cue": "Matrizen $A$ und $B$ können miteinander multipliziert werden, falls",
                 "response": "Spaltenanzahl von $A$ = Zeilenanzahl von $B$"
             },
             {
                 "cue": "Beachte",
-                "response": "Matrizenmultiplikation ist nicht kommutativ: $AB \neq BA$"
+                "response": "Matrizenmultiplikation ist nicht kommutativ: $AB \\neq BA$"
             }
         ]
     },
@@ -3246,7 +3246,7 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Element in der $i$-ten Spalte und $j$-ten Zeile \\( a_{ij} \\) ist",
+                "cue": "Element in der $i$-ten Zeile und $j$-ten Spalte \\( a_{ij} \\) ist",
                 "response": "die benötigte Menge von Input-Produkt \\( i \\) für 1 ME von Output-Produkt \\( j \\)"
             }
         ]
@@ -3550,7 +3550,7 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Jjährliche Umsatz",
+                "cue": "Jährlicher Umsatz",
                 "response": "Funktionswert $u(t)$"
             },
             {
@@ -3558,8 +3558,8 @@
                 "response": "$\\int_a^b u(t)\\,dt$"
             },
             {
-                "cue": "Durchschnittlicher in einem Zeitraum",
-                "response": ": $\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
+                "cue": "Durchschnittlicher Umsatz in einem Zeitraum",
+                "response": "$\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
             }
         ]
     },
@@ -3607,7 +3607,7 @@
         "Tipps": [
             {
                 "cue": "$y$-Achsenabschnitt $b$",
-                "response": "Schnittpunkt mit $y$-Achse?"
+                "response": "Schnittpunkt mit $y$-Achse"
             },
             {
                 "cue": "Steigung $m > 0$",
@@ -3667,7 +3667,7 @@
         "Tipps": [
             {
                 "cue": "$y$-Werte bestimmen",
-                "response": "$x$-Werte in Gleichung einsetzen "
+                "response": "$x$-Werte in Gleichung einsetzen"
             }
         ]
     },
@@ -4114,7 +4114,7 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Normelform → faktorisierte Form",
+                "cue": "Normalform → faktorisierte Form",
                 "response": "Nullstellen mit pq-Formel berechnen"
             },
             {
@@ -4146,7 +4146,7 @@
                 "response": "faktorisierte Form ansetzen"
             },
             {
-                "cue": "Scheitel gegeben ",
+                "cue": "Scheitel gegeben",
                 "response": "Scheitelpunktform ansetzen"
             },
             {

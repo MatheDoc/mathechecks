@@ -4,15 +4,9 @@
 
 Tipps sind kurze Hinweise, die den Lernenden beim Bearbeiten und Verständnis eines Checks unterstützen. Sie können inhaltlicher oder prozessualer Natur sein. Inhaltliche Tipps geben Hinweise auf mathematische Zusammenhänge, Formeln oder Regeln. Prozessuale Tipps geben Hinweise auf den Lösungsweg.
 
-## Funktion im System
-
-- Im Skript werden die Tipps in einer Liste mit Einträgen "`cue`: `response`" angezeigt.
-- Bei den Aufgaben und der Feynman-Aktivität dienen die Tipps als Kontext für KI-Agenten, den der User kopieren kann.
-- Im Recall werden die Tipps zunächst vollständig angezeigt, und zwar immer in der Reihenfolge wie in checks.json (unabhängig von `tippOrder`). Danach werden die `responses` verdeckt, und der User muss die `responses` per Text- oder Spracheingabe in ein Input-Feld eingeben. In dieser Abfragephase richtet sich die Reihenfolge der Tipps nach `tippOrder`: bei `shuffle` werden sie zufällig angeordnet, bei `fixed` bleibt die Reihenfolge aus checks.json erhalten. Im Anschluss prüft eine KI, ob die User-Eingabe inhaltlich zum hinterlegten Systemwert passt.
-
 ## Technischer Aufbau
 
-Jeder Check muss die Felder `Tipps` und `tippOrder` enthalten. Ein Tipp muss die Felder `cue` und `response` enthalten. `tippOrder` hat den Wert `shuffle` oder `fixed`.
+Jeder Check aus `checks.json` muss die Felder `Tipps` und `tippOrder` enthalten. Ein Tipp muss die Felder `cue` und `response` enthalten. `tippOrder` hat den Wert `shuffle` oder `fixed`.
 
 - Die Anzahl der Tipps pro Check liegt typischerweise bei 2–4, ist aber keine harte Bedingung.
 - `cue` und `response` dürfen nicht leer sein.
@@ -102,6 +96,12 @@ Prozess-Tipps sind Schritt-für-Schritt-Anleitungen, die den Lösungsweg für ei
   }
 ]
 ```
+
+## Funktion im System
+
+- Im Skript werden die Tipps in einer Liste mit Einträgen "`cue`: `response`" angezeigt.
+- Bei den Aufgaben und der Feynman-Aktivität dienen die Tipps als Kontext für KI-Agenten, den der User kopieren kann.
+- Im Recall werden die Tipps zunächst vollständig angezeigt, und zwar immer in der Reihenfolge wie in checks.json (unabhängig von `tippOrder`). Danach werden die `responses` verdeckt, und der User muss die `responses` per Text- oder Spracheingabe in ein Input-Feld eingeben. In dieser Abfragephase richtet sich die Reihenfolge der Tipps nach `tippOrder`: bei `shuffle` werden sie zufällig angeordnet, bei `fixed` bleibt die Reihenfolge aus checks.json erhalten. Im Anschluss prüft eine KI, ob die User-Eingabe inhaltlich zum hinterlegten Systemwert passt.
 
 ## Allgemeine Hinweise zur Darstellung
 
