@@ -1,7 +1,13 @@
 <div data-dashboard-root data-dashboard-checks-url="{{ '/checks.json' | relative_url }}"
     data-dashboard-material-url="{{ '/material.html' | relative_url }}">
     <section class="greeting">
-        <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
+        <div class="greeting__top-row">
+            <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
+            <button class="dashboard-next-action" type="button" data-dashboard-primary-feed-button disabled>
+                <span class="dashboard-next-action__status" data-dashboard-primary-feed-status aria-hidden="true"></span>
+                <span class="dashboard-next-action__label">Weiter</span>
+            </button>
+        </div>
         <div class="greeting__date-row">
             <p data-dashboard-current-date></p>
             <span class="greeting__streak-badge" data-dashboard-streak-badge data-streak-state="none" aria-label="Aktueller Streak">
@@ -12,44 +18,21 @@
 
     <div class="bento">
         <div class="dashboard-col--left">
-        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Nächste Aktion</span>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body">
-                <ul class="action-list dashboard-panel__feed" data-dashboard-feed-list>
-                    <li class="action-card dashboard-panel__action-card" data-type="feed" data-dashboard-primary-feed-card>
-                        <div class="action-body">
-                            <div class="action-title dashboard-panel__action-title" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</div>
-                            <div class="action-badges dashboard-panel__action-meta">
-                                <span class="action-badge dashboard-feed__lernbereich-badge" data-dashboard-primary-feed-subtitle hidden></span>
-                            </div>
-                            <div class="action-desc" data-dashboard-primary-feed-desc hidden>Deine nächsten Aktivitäten werden vorbereitet.</div>
-                        </div>
-                        <div class="dashboard-feed__header-status" data-dashboard-primary-feed-status hidden></div>
-                    </li>
-                </ul>
-            </div>
-        </article>
-
         <article class="check-card dashboard-panel dashboard-panel--worklist" data-dashboard-worklist-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Trainingsquoten</span>
+                    <span class="check-card__title dashboard-panel__title">Erfolgsquoten</span>
                 </div>
                 <div class="check-card__header-actions">
                     <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-worklist-menu>
-                        <summary class="check-card__actions-trigger" aria-label="Aktionen zum Trainingsfokus">
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zu Erfolgsquoten">
                             <span class="check-card__actions-dots" aria-hidden="true">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                             </span>
                         </summary>
-                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zum Trainingsfokus">
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zu Erfolgsquoten">
                             <button class="check-card__actions-item" type="button" role="menuitemcheckbox" aria-checked="true" data-dashboard-worklist-session-toggle>
                                 <span class="check-card__actions-icon" aria-hidden="true" data-dashboard-worklist-session-icon>✓</span>
                                 <span>🎯 Nur Session-Checks</span>
