@@ -37,23 +37,23 @@ function truncate(value: unknown, maxLength: number): string {
 type PromptItem = { nr: number; cue: string; erwartete_antwort: string; schueler_antwort: string };
 
 function buildPrompt(payload: PromptItem[]): string {
-  return `Du bewertest Schuelerantworten in einer Mathematik-Recall-Uebung (Sekundarstufe/Berufskolleg).
+  return `Du bewertest Schuelerantworten in einer Mathematik-Recall-Uebung.
 
-Kontext: Den Schuelern wurde ein Hinweis ("cue") gezeigt, z.B. ein Symbol, eine Formel oder eine kurze Frage (kann auch leer sein, dann ist die Erinnerung "blind"). Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedaechtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schuelerantwort, sondern natuerlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z.B. "f Strich von x Null gleich Null" fuer f'(x_0)=0, oder "p mal eins minus p" fuer p(1-p)).
+Kontext: Den Schuelern wurde ein Hinweis gezeigt, z.B. ein Symbol, eine Formel oder ein Schritt eines Prozesses. Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedaechtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schuelerantwort, sondern natuerlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z.B. "f Strich von x Null gleich Null" fuer f'(x_0)=0, oder "p mal eins minus p" fuer p(1-p)).
 
 Bewerte fuer jedes Item, ob die Schuelerantwort die fachliche Kernaussage der erwarteten Antwort trifft. Nutze diese Score-Skala als Anker:
-- 1.0: fachlich vollstaendig korrekt und vollstaendig
+- 1.0: fachlich korrekt und vollstaendig
 - 0.8: im Kern richtig, kleine Ungenauigkeit oder Luecke
 - 0.5: teilweise richtig, ein wichtiger Teil fehlt oder ist ungenau
 - 0.0: falsch, keine Aussage erkennbar, oder keine Antwort
 
-Toleriere umgangssprachliche/diktierte Schreibweise und andere Variablennamen bei gleicher Struktur. Bewerte STRENG bei fehlenden zentralen Bestandteilen oder Verwechslung von Symbolen/Bedingungen.
-Schreibe "reason" als vollstaendigen, kurzen deutschen Satz. Bei score < 0.8 soll "reason" ein hilfreicher Hinweis sein, aber NICHT die erwartete Antwort verraten. Zitiere die erwartete Antwort nicht und verwende keine Formulierungen wie "Die erwartete Antwort ist ...". Nenne stattdessen knapp, welche Art von Bestandteil fehlt oder in welche Richtung der Schueler denken soll.
+Toleriere umgangssprachliche Schreibweise, Fehler, die offensichtlich durch fehlerhafte Spracherkennung entstanden sind, und andere Variablennamen bei gleicher Struktur. Bewerte STRENG bei fehlenden zentralen Bestandteilen oder Verwechslung von Symbolen/Bedingungen.
+Schreibe "reason" als vollstaendigen, kurzen deutschen Satz. Bei score < 0.8 soll "reason" ein hilfreicher Hinweis sein, aber NICHT die erwartete Antwort verraten. Zitiere die erwartete Antwort nicht. Nenne stattdessen knapp, welche Art von Bestandteil fehlt oder in welche Richtung der Schueler denken soll.
 
 Eingabedaten:
 ${JSON.stringify(payload, null, 2)}
 
-Antworte NUR mit einem JSON-Array, keine weiteren Erklaerungen, keine Markdown-Codebloecke:
+Antworte NUR mit einem JSON-Array:
 [{"nr": 1, "score": 0.0, "reason": "vollstaendiger Hinweis, max 18 Woerter"}]`;
 }
 
