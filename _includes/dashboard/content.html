@@ -1,13 +1,7 @@
 <div data-dashboard-root data-dashboard-checks-url="{{ '/checks.json' | relative_url }}"
     data-dashboard-material-url="{{ '/material.html' | relative_url }}">
     <section class="greeting">
-        <div class="greeting__top-row">
-            <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
-            <button class="dashboard-next-action" type="button" data-dashboard-primary-feed-button disabled>
-                <span class="dashboard-next-action__status" data-dashboard-primary-feed-status aria-hidden="true"></span>
-                <span class="dashboard-next-action__label">Weiter</span>
-            </button>
-        </div>
+        <h2 data-dashboard-greeting-heading data-dashboard-greeting-ready="false">Hey <span data-dashboard-greeting-name>Schüler:in</span>, was steht an?</h2>
         <div class="greeting__date-row">
             <p data-dashboard-current-date></p>
             <span class="greeting__streak-badge" data-dashboard-streak-badge data-streak-state="none" aria-label="Aktueller Streak">
@@ -18,6 +12,28 @@
 
     <div class="bento">
         <div class="dashboard-col--left">
+        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Nächste Aktion</span>
+                </div>
+            </div>
+
+            <div class="check-card__body dashboard-panel__body dashboard-next-action-card">
+                <button class="action-card dashboard-panel__action-card dashboard-next-action-card__button" type="button" data-type="feed" data-dashboard-primary-feed-button aria-disabled="true">
+                    <span class="action-body dashboard-next-action-card__copy">
+                        <span class="action-title dashboard-panel__action-title dashboard-next-action-card__title">
+                            <span class="dashboard-panel__action-name" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</span>
+                        </span>
+                        <span class="action-badges dashboard-panel__action-meta">
+                            <span class="action-badge dashboard-next-action-card__module" data-dashboard-primary-feed-module>Feed</span>
+                        </span>
+                    </span>
+                    <span class="dashboard-next-action-card__status" data-dashboard-primary-feed-status></span>
+                </button>
+            </div>
+        </article>
+
         <article class="check-card dashboard-panel dashboard-panel--worklist" data-dashboard-worklist-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
@@ -142,7 +158,7 @@
 
             <div class="check-card__body dashboard-panel__body dashboard-activity">
                 <p class="dashboard-panel__summary" data-dashboard-activity-summary></p>
-                <!--<div class="dashboard-activity__hero">-->
+                <div class="dashboard-activity__hero-row">
                     <div class="dashboard-activity__hero-copy">
                         <div class="dashboard-activity__hero-value" data-dashboard-activity-total>0</div>
                         <div class="dashboard-activity__hero-text">
@@ -150,27 +166,23 @@
                             <div class="dashboard-activity__hero-meta" data-dashboard-activity-meta></div>
                         </div>
                     </div>
-                    <div class="dashboard-activity__spark">
-                        <div class="dashboard-activity__spark-title">letzte 7 Tage</div>
-                        <div class="dashboard-activity__bars" data-dashboard-activity-bars></div>
+                    <div class="dashboard-activity__hero-average">
+                        <div class="dashboard-activity__hero-average-value" data-dashboard-activity-average>0</div>
+                        <div class="dashboard-activity__hero-average-label">Ø / Tag</div>
                     </div>
-                <!--</div>-->
-                <div class="dashboard-activity__metrics">
-                    <!--<div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-active-days>0</div>
-                        <div class="dashboard-activity__metric-label">aktive Tage</div>
-                    </div>-->
-                    <div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-average>0</div>
-                        <div class="dashboard-activity__metric-label">Ø / Tag</div>
-                    </div>
-                    <div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-longest-streak>0</div>
-                        <div class="dashboard-activity__metric-label">längster Streak</div>
-                    </div>
+                </div>
+                <div class="dashboard-activity__spark">
+                    <div class="dashboard-activity__spark-title">letzte 7 Tage</div>
+                    <div class="dashboard-activity__bars" data-dashboard-activity-bars></div>
+                </div>
+                <div class="dashboard-activity__quotes">
                     <div class="dashboard-activity__metric">
                         <div class="dashboard-activity__metric-value" data-dashboard-activity-training-success>–</div>
                         <div class="dashboard-activity__metric-label">Quote Training</div>
+                    </div>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-activity-recall-success>–</div>
+                        <div class="dashboard-activity__metric-label">Quote Recall</div>
                     </div>
                 </div>
                 <div class="dashboard-activity__types">
@@ -180,24 +192,16 @@
                     <div class="dashboard-activity__type-pill"><span>Flashcards</span><strong data-dashboard-activity-flashcards>0</strong></div>
                 </div>
                 <p class="dashboard-panel__status" id="activityStatsStatus" aria-live="polite" hidden></p>
-            </div>
-        </article>
 
-        <article class="check-card dashboard-panel dashboard-panel--activity-map" data-dashboard-activity-map-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Aktivity Map</span>
+                <div class="dashboard-activity-map">
+                    <div class="dashboard-activity-map__header-right">
+                        <span class="dashboard-activity-map__target" data-dashboard-activity-map-target hidden></span>
+                    </div>
+                    <p class="dashboard-panel__summary" data-dashboard-activity-map-summary></p>
+                    <div class="dashboard-activity-map__board" data-dashboard-activity-map-board aria-label="Aktivitätskarte der letzten 12 Wochen"></div>
+                    <div class="dashboard-activity-map__tooltip" data-dashboard-activity-map-tooltip hidden></div>
+                    <p class="dashboard-panel__status" id="activityMapStatus" aria-live="polite" hidden></p>
                 </div>
-                <div class="dashboard-activity-map__header-right">
-                    <span class="dashboard-activity-map__target" data-dashboard-activity-map-target hidden></span>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body dashboard-activity-map">
-                <p class="dashboard-panel__summary" data-dashboard-activity-map-summary></p>
-                <div class="dashboard-activity-map__board" data-dashboard-activity-map-board aria-label="Aktivitätskarte der letzten 12 Wochen"></div>
-                <div class="dashboard-activity-map__tooltip" data-dashboard-activity-map-tooltip hidden></div>
-                <p class="dashboard-panel__status" id="activityMapStatus" aria-live="polite" hidden></p>
             </div>
         </article>
 
