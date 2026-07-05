@@ -329,18 +329,18 @@ function renderCard(check) {
             </div>
           </div>
           <div data-recall-active hidden>
-            <p class="recall-prompt">Überlege jetzt, was dir alles zu dieser Kompetenz einfällt.</p>
+            <p class="recall-prompt">Welche Tipps fallen dir dazu ein?</p>
             <div class="recall-timer-bar" data-recall-timer-bar="recall">
               <div class="recall-timer-bar__fill" data-recall-timer-fill="recall"></div>
             </div>
             <div class="recall-action-row">
-              <button class="module-action-button module-action-button--locked" type="button" data-recall-to-memorize disabled>Zu den Kernpunkten</button>
+              <button class="module-action-button module-action-button--locked" type="button" data-recall-to-memorize disabled>Zu den Tipps</button>
             </div>
           </div>
         </div>
 
         <div data-recall-stage="memorize" hidden>
-          <p class="recall-prompt">Merke dir jetzt die wichtigsten Kernpunkte.</p>
+          <p class="recall-prompt">Merke dir jetzt die wichtigsten Tipps.</p>
           <div class="recall-timer-bar" data-recall-timer-bar="memorize">
             <div class="recall-timer-bar__fill" data-recall-timer-fill="memorize"></div>
           </div>
@@ -351,7 +351,7 @@ function renderCard(check) {
         </div>
 
         <div data-recall-stage="retrieve" hidden>
-          <p class="recall-prompt">Welche Kernpunkte kannst du jetzt abrufen?</p>
+          <p class="recall-prompt">Welche Tipps kannst du abrufen?</p>
           <div class="recall-cue-list check-card__runtime-task" data-recall-cue-list>
             ${cueItemsMarkup}
           </div>
@@ -891,6 +891,13 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       });
     }
 
+    function goToMemorizeStage() {
+      setStage("memorize");
+      const memDuration = RECALL_MEMORIZE_DELAY_MS;
+      startTimerBar("memorize", memDuration, toRetrieveBtn);
+      void renderMath(stageEls.memorize);
+    }
+
     function resetRecallCard() {
       if (comparePanel) comparePanel.hidden = true;
       if (freeCompletionControl) freeCompletionControl.setReady(false);
@@ -905,9 +912,9 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       if (userNotesEl) { userNotesEl.hidden = true; userNotesEl.innerHTML = ""; }
       cardEvalState.delete(card);
       section?.dispatchEvent(new CustomEvent("recall:evaluation-ready", { detail: { ready: false }, bubbles: true }));
-      setStage("recall");
       if (recallActive) recallActive.hidden = true;
       if (recallIdle) recallIdle.hidden = false;
+      goToMemorizeStage();
     }
 
     function ensureFreeCompletionControl(ready = false) {
@@ -955,10 +962,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
     // Phase 1 → 2
     toMemorizeBtn?.addEventListener("click", () => {
-      setStage("memorize");
-      const memDuration = RECALL_MEMORIZE_DELAY_MS;
-      startTimerBar("memorize", memDuration, toRetrieveBtn);
-      void renderMath(stageEls.memorize);
+      goToMemorizeStage();
     });
 
     // Phase 2 → 3

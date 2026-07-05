@@ -1033,7 +1033,7 @@ function bindNextActionButton(button, fallbackHref = "") {
   button.dataset.dashboardNextActionBound = "true";
   button.addEventListener("click", () => {
     const href = String(button?.dataset?.actionHref || fallbackHref || "").trim();
-    if (!href || button.disabled) return;
+    if (!href || button.getAttribute("aria-disabled") === "true") return;
     window.location.href = href;
   });
 }
@@ -1536,8 +1536,8 @@ function applyActivityOverview(context, overview = null) {
   const metaNode = context.elements.activityMeta;
   const activeDaysNode = context.elements.activityActiveDays;
   const averageNode = context.elements.activityAverage;
-  const longestStreakNode = context.elements.activityLongestStreak;
   const trainingSuccessNode = context.elements.activityTrainingSuccess;
+  const recallSuccessNode = context.elements.activityRecallSuccess;
   const trainingNode = context.elements.activityTraining;
   const recallNode = context.elements.activityRecall;
   const feynmanNode = context.elements.activityFeynman;
@@ -1547,8 +1547,8 @@ function applyActivityOverview(context, overview = null) {
   const activeDays = Math.max(0, Number(overview?.activeDays) || 0);
   const averagePerActiveDay = Number(overview?.averagePerActiveDay) || 0;
   const firstActivityDate = String(overview?.firstActivityDate || "").trim();
-  const longestStreak = Math.max(0, Number(overview?.longestStreak?.length) || 0);
   const trainingSuccessRate = overview?.trainingSuccess?.rate;
+  const recallSuccessRate = overview?.recallProficiency?.overall?.rate;
 
   if (summaryNode) {
     summaryNode.textContent = totalCount > 0
@@ -1563,12 +1563,17 @@ function applyActivityOverview(context, overview = null) {
   }
   if (activeDaysNode) activeDaysNode.textContent = formatActivityCount(activeDays);
   if (averageNode) averageNode.textContent = formatActivityAverage(averagePerActiveDay);
-  if (longestStreakNode) longestStreakNode.textContent = formatActivityCount(longestStreak);
   if (trainingSuccessNode) {
     trainingSuccessNode.textContent = formatActivityPercent(Math.round(trainingSuccessRate));
     trainingSuccessNode.title = Number.isFinite(Number(trainingSuccessRate))
       ? "Quote aus den jüngsten Trainingsdurchgängen je Check, zusammengesetzt über alle trainierten Checks."
       : "Die Quote erscheint, sobald Trainingsaufgaben erfasst wurden.";
+  }
+  if (recallSuccessNode) {
+    recallSuccessNode.textContent = formatActivityPercent(Math.round(recallSuccessRate));
+    recallSuccessNode.title = Number.isFinite(Number(recallSuccessRate))
+      ? "Quote aus den jüngsten Recall-Durchgängen je Check, zusammengesetzt über alle abgefragten Checks."
+      : "Die Quote erscheint, sobald Recall-Durchgänge erfasst wurden.";
   }
   if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
   if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
@@ -1853,6 +1858,9 @@ function getRemainingDidacticGapCount(row) {
 function applyPrimaryFeedButtonState(context, {
   href = "",
   statusMarkup = "",
+  title = "Nächste Aktion",
+  moduleLabel = "Feed",
+  type = "feed",
   accessibleLabel = "Nächste Aktion",
   disabled = false,
 } = {}) {
@@ -1861,17 +1869,33 @@ function applyPrimaryFeedButtonState(context, {
   if (!button) return;
 
   const normalizedHref = String(href || "").trim();
+  const normalizedModuleLabel = String(moduleLabel || "").trim();
   button.dataset.actionHref = normalizedHref;
-  button.disabled = Boolean(disabled || !normalizedHref);
+  button.dataset.type = type || "feed";
+  button.setAttribute("aria-disabled", disabled || !normalizedHref ? "true" : "false");
   button.setAttribute("aria-label", accessibleLabel || "Nächste Aktion");
   button.title = accessibleLabel || "Nächste Aktion";
   if (elements.primaryFeedStatus) {
     elements.primaryFeedStatus.innerHTML = statusMarkup || buildDashboardClockStatusMarkup(accessibleLabel || "Nächste Aktion", "available");
   }
+  if (elements.primaryFeedTitle) {
+    elements.primaryFeedTitle.textContent = title || "Nächste Aktion";
+  }
+  if (elements.primaryFeedModule) {
+    const moduleBadgeList = elements.primaryFeedModule.closest(".action-badges");
+    elements.primaryFeedModule.textContent = normalizedModuleLabel || "Feed";
+    elements.primaryFeedModule.hidden = !normalizedModuleLabel;
+    if (moduleBadgeList) {
+      moduleBadgeList.hidden = !normalizedModuleLabel;
+    }
+  }
 }
 
 function applyPrimaryFeedLoadingState(context) {
   applyPrimaryFeedButtonState(context, {
+    title: "Nächste Aktion wird geladen",
+    moduleLabel: "Feed",
+    type: "feed",
     accessibleLabel: "Nächste Aktion wird geladen",
     disabled: true,
   });
@@ -1879,6 +1903,9 @@ function applyPrimaryFeedLoadingState(context) {
 
 function applyPrimaryFeedEmptyState(context) {
   applyPrimaryFeedButtonState(context, {
+    title: "Gerade keine Empfehlung",
+    moduleLabel: "Feed",
+    type: "feed",
     accessibleLabel: "Gerade keine nächste Aktion verfügbar",
     disabled: true,
   });
@@ -1888,6 +1915,11 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
   const nextLabel = formatDateTimeLabel(waiting?.nextAvailableFrom);
 
   applyPrimaryFeedButtonState(context, {
+    title: nextLabel
+      ? `Nächste Aktion wird ab ${nextLabel} freigeschaltet`
+      : "Nächste Aktion wird später freigeschaltet",
+    moduleLabel: "",
+    type: "feed",
     accessibleLabel: nextLabel
       ? `Nächste Aktion ab ${nextLabel}`
       : "Nächste Aktion später verfügbar",
@@ -1897,6 +1929,9 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
 
 function applyPrimaryFeedErrorState(context) {
   applyPrimaryFeedButtonState(context, {
+    title: "Feed gerade nicht verfügbar",
+    moduleLabel: "Feed",
+    type: "feed",
     accessibleLabel: "Nächste Aktion gerade nicht verfügbar",
     disabled: true,
   });
@@ -1974,6 +2009,14 @@ function buildPrimaryFeedSubtitleText(item) {
   return "";
 }
 
+function buildPrimaryFeedKeywordText(item) {
+  return String(item?.checkKeyword || item?.titleText || "").trim();
+}
+
+function buildPrimaryFeedModuleLabel(item) {
+  return String(item?.primaryBadge?.label || resolvePrimaryFeedModuleLabel(item) || "").trim();
+}
+
 function buildDashboardClockStatusMarkup(label, tone = "available") {
   const accessibleLabel = String(label || "").trim();
   if (!accessibleLabel) return "";
@@ -2049,7 +2092,7 @@ function buildPrimaryFeedStatusMarkup(item) {
   return buildDashboardClockStatusMarkup(String(statusBadge.label), statusBadge.type || "available");
 }
 
-function createFeedCardData({ type, href, subtitleText, titleHtml, primaryTitleHtml, primaryTitleText, statusMarkup, descText, badges }) {
+function createFeedCardData({ type, href, subtitleText, titleHtml, primaryTitleHtml, primaryTitleText, keywordText, moduleLabel, statusMarkup, descText, badges }) {
   return {
     type,
     href,
@@ -2057,6 +2100,8 @@ function createFeedCardData({ type, href, subtitleText, titleHtml, primaryTitleH
     titleHtml,
     primaryTitleHtml,
     primaryTitleText,
+    keywordText,
+    moduleLabel,
     statusMarkup,
     descText,
     badges,
@@ -2073,6 +2118,8 @@ function buildFeedCardDataFromProjection(item) {
     titleHtml: buildProjectionTitleMarkup(item),
     primaryTitleHtml: buildPrimaryFeedTitleHtml(item),
     primaryTitleText: buildPrimaryFeedTitleText(item),
+    keywordText: buildPrimaryFeedKeywordText(item),
+    moduleLabel: buildPrimaryFeedModuleLabel(item),
     statusMarkup: buildPrimaryFeedStatusMarkup(item),
     descText: item.descText,
     badges: buildProjectionBadgesMarkup(item),
@@ -2088,6 +2135,9 @@ function applyPrimaryFeedCardData(context, item) {
   applyPrimaryFeedButtonState(context, {
     href: item.href,
     statusMarkup: item.statusMarkup,
+    title: item.keywordText || item.primaryTitleText || "Nächste Aktion",
+    moduleLabel: item.moduleLabel || "Feed",
+    type: item.type || "feed",
     accessibleLabel: item.primaryTitleText ? `Nächste Aktion: ${item.primaryTitleText}` : "Nächste Aktion öffnen",
   });
 }
@@ -3831,6 +3881,8 @@ function createContext(root, lernbereiche) {
     planTargetLabel: root.querySelector("[data-dashboard-plan-target-label]"),
     planAssessment: root.querySelector("[data-dashboard-plan-assessment]"),
     primaryFeedButton: root.querySelector("[data-dashboard-primary-feed-button]"),
+    primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
+    primaryFeedModule: root.querySelector("[data-dashboard-primary-feed-module]"),
     container: document.getElementById("lbAccordionContainer"),
     targetDateInput: document.getElementById("lbTargetDateInput"),
     statusNode: document.getElementById("lbSessionStatus"),
@@ -3852,8 +3904,8 @@ function createContext(root, lernbereiche) {
     activityBars: root.querySelector("[data-dashboard-activity-bars]"),
     activityActiveDays: root.querySelector("[data-dashboard-activity-active-days]"),
     activityAverage: root.querySelector("[data-dashboard-activity-average]"),
-    activityLongestStreak: root.querySelector("[data-dashboard-activity-longest-streak]"),
     activityTrainingSuccess: root.querySelector("[data-dashboard-activity-training-success]"),
+    activityRecallSuccess: root.querySelector("[data-dashboard-activity-recall-success]"),
     activityTraining: root.querySelector("[data-dashboard-activity-training]"),
     activityRecall: root.querySelector("[data-dashboard-activity-recall]"),
     activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),

@@ -816,8 +816,8 @@ html.light .check-card__runtime-task {
 }
 
 .check-card__runtime-task .answer-input:focus {
-    border-color: color-mix(in srgb, var(--mt-training, var(--accent)) 60%, var(--border));
-    box-shadow: 0 0 0 2px color-mix(in srgb, var(--mt-training, var(--accent)) 14%, transparent);
+    border-color: color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 60%, var(--border));
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 14%, transparent);
 }
 
 .check-card__runtime-task .answer-input::placeholder {

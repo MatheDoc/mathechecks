@@ -391,7 +391,7 @@ function renderCompareStage(state, checks) {
   return `
     <article class="check-card wl-stage-card">
       <div class="check-card__body">
-        <p class="wl-stage-kicker">Phase 4 – Abgleich mit Kernpunkten</p>
+        <p class="wl-stage-kicker">Phase 4 – Abgleich mit Tipps</p>
         <h3 class="wl-stage-title">Vergleiche deine Zuordnungen mit der Check-Struktur des Lernbereichs.</h3>
         <p class="wl-stage-copy">Die Farben zeigen nur eine Mengenregel: mindestens zwei Karten = abgedeckt, eine Karte = angerissen, keine Karte = offen.</p>
         ${renderCheckOverview(state, checks)}
