@@ -114,7 +114,7 @@ Die folgenden Punkte konkretisieren die Bildungsplan-Vorgaben zu neuronalen Netz
 - Allgemein gesucht ist eine hochgradig nichtlineare, multidimensionale Regressionsfunktion.
 - Aber bereits die lineare Regression skaliert schlecht wegen der Berechnung von $(X^TX)^{-1}$.
 - Training erfolgt in der Praxis über Gradient Descent u. Ä.
-- Der Bildungsplan verlangt kein eigenständiges Training (Z 7: "beurteilen die Eignung von gegebenen Gewichtsmatrizen mit Hilfe der Fehlerfunktion"), sondern nur die Bewertung bereits vorgegebener Gewichtsmatrizen. Das entschärft die unten genannte Schwierigkeit fehlender partieller Ableitungen.
+- Wird kein eigenständiges, mehrdimensionales Training verlangt, sondern nur die Bewertung bereits vorgegebener Gewichtsmatrizen, entschärft dies die Schwierigkeit fehlender partieller Ableitungen.
 
 ### Mögliche Aufgabentypen
 - Den konkreten Trainingsvorgang rechnerisch zu bearbeiten ist schwierig – selbst einfaches Gradient Descent ist kaum möglich, da den Schülern keine partiellen Ableitungen zur Verfügung stehen.
