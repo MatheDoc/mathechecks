@@ -26,33 +26,34 @@ permalink: /ki2.html
 
 ## Multiple lineare Regression
 - Setting: Aus $n$ Datenpunkten die lineare Regressionsfunktion $\mathbb{R}^m\to\mathbb{R}$ finden. Z. B.: $n=4$ und $m=2$
-- Gegeben: $((x_{11},x_{12}) \mid y_1)$, $((x_{21},x_{22}) \mid y_2)$, $((x_{31},x_{32}) \mid y_3)$, $((x_{41},x_{42}) \mid y_4)$
-- Gesucht: "beste"/fehlerquadrat-minimierende Funktion
-$$
-w=(w_1,w_2,b):\mathbb{R}^2\to\mathbb{R}, \quad (x_1,x_2) \mapsto w_1x_1+w_2x_2+b
-$$
-- Dann ist $w=(X^TX)^{-1}X^Ty$, wobei
-$$
-X=\begin{pmatrix} x_{11} & x_{12} & 1 \\ x_{21} & x_{22} & 1 \\ x_{31} & x_{32} & 1 \\ x_{41} & x_{42} & 1 \end{pmatrix}, \qquad y=\begin{pmatrix} y_1\\y_2\\y_3\\y_4 \end{pmatrix}
-$$
+    - Gegeben: $((x_{11},x_{12}) \mid y_1)$, $((x_{21},x_{22}) \mid y_2)$, $((x_{31},x_{32}) \mid y_3)$, $((x_{41},x_{42}) \mid y_4)$
+    - Gesucht: fehlerquadrat-minimierende Funktion $w=(w_1,w_2,b):\mathbb{R}^2\to\mathbb{R}$, $\quad$ $(x_1,x_2) \mapsto w_1x_1+w_2x_2+b$    
+    - Dann ist $w=(X^TX)^{-1}X^Ty$, wobei
+
+    $$
+    X=\begin{pmatrix} x_{11} & x_{12} & 1 \\ x_{21} & x_{22} & 1 \\ x_{31} & x_{32} & 1 \\ x_{41} & x_{42} & 1 \end{pmatrix}, \qquad y=\begin{pmatrix} y_1\\y_2\\y_3\\y_4 \end{pmatrix}
+    $$
 
 - Hinweis: keine geschlossene Formel für nicht-lineare Regression
 
 ### Spezialfall: n=2, m=1
 
-Gegeben: $(x_1\mid y_1)$, $(x_2\mid y_2)$
+Gegeben: $(x_1\mid y_1)$, $(x_2\mid y_2)$ Dann ist
 
 $$
 X=\begin{pmatrix} x_1 & 1 \\ x_2 & 1 \end{pmatrix}, \qquad y=\begin{pmatrix} y_1 \\ y_2 \end{pmatrix}
 $$
 
-$X^TX$ ist invertierbar, falls $x_1 \neq x_2$.
+$X^TX$ ist nun invertierbar, falls $x_1 \neq x_2$.
 
 Dann führt $w=(X^TX)^{-1}X^Ty=(m,b)$ zu den gewöhnlichen Gleichungen der Geraden durch zwei Punkte:
+
 $$
 m=\frac{y_2-y_1}{x_2-x_1}
 $$
+
 und
+
 $$
 b=\frac{x_2y_1-x_1y_2}{x_2-x_1} \quad (=y_1-mx_1)
 $$
@@ -60,9 +61,13 @@ $$
 
 ### Spezialfall: n allgemein, m=1
 
-D. h. gesucht ist eine lineare Regression $\mathbb{R}\to\mathbb{R}$ aus $n$ Datenpunkten $(x_1\mid y_1),\dots,(x_n\mid y_n)$.
+D. h. gesucht ist eine lineare Regression $\mathbb{R}\to\mathbb{R}$ aus $n$ Datenpunkten $(x_1\mid y_1),\dots,(x_n\mid y_n)$. Dann ist
 
-Dann führt $w=(X^TX)^{-1}X^Ty=(m,b)$ zu den gewöhnlichen Formeln der eindimensionalen linearen Regression:
+$$
+X=\begin{pmatrix} x_1 & 1 \\ \vdots & \vdots \\ x_n & 1 \end{pmatrix}, \qquad y=\begin{pmatrix} y_1 \\ \vdots \\ y_n \end{pmatrix}
+$$
+
+Nun führt $w=(X^TX)^{-1}X^Ty=(m,b)$ zu den gewöhnlichen Formeln der eindimensionalen linearen Regression:
 
 $$
 m=\frac{\sum_{i=1}^n (x_i-\bar x)(y_i-\bar y)}{\sum_{i=1}^n (x_i-\bar x)^2}
@@ -142,23 +147,57 @@ mit Sigmoid-Aktivierung $\sigma(z)=\frac{1}{1+e^{-z}}$ in **beiden** Schichten (
 *Startfehler:* $h=\sigma(0{,}5)\approx0{,}6225$, $\hat y=\sigma(0{,}3113)\approx0{,}5772$, $E\approx(1-0{,}5772)^2\approx0{,}1788$.
 
 **Schritt 1 – Update von $w_2$** (nur $w_2$ variabel; $h=0{,}6225$, $b_2=0$ fest):
-$$E(w_2)=(1-\sigma(w_2h+b_2))^2,\qquad \frac{dE}{dw_2}=-2(1-\hat y)\,\sigma'(z_2)\,h$$
-$\frac{dE}{dw_2}\approx-2\cdot0{,}4228\cdot0{,}2441\cdot0{,}6225\approx-0{,}1285$
+
+$$
+E(w_2)=(1-\sigma(w_2h+b_2))^2
+$$
+
+$$
+\begin{aligned}
+\frac{dE}{dw_2} &= -2(1-\hat y)\,\sigma'(z_2)\,h \\
+&\approx -2\cdot0{,}4228\cdot0{,}2441\cdot0{,}6225 \\
+&\approx -0{,}1285
+\end{aligned}
+$$
+
 Update: $w_2^{neu}=0{,}5-1\cdot(-0{,}1285)\approx0{,}6285$
 
 **Schritt 2 – Update von $b_2$** (jetzt $w_2=0{,}6285$ fest, $h=0{,}6225$ fest):
-$$\frac{dE}{db_2}=-2(1-\hat y)\,\sigma'(z_2)\approx-2\cdot0{,}4034\cdot0{,}2407\approx-0{,}1942$$
+
+$$
+\begin{aligned}
+\frac{dE}{db_2} &= -2(1-\hat y)\,\sigma'(z_2) \\
+&\approx -2\cdot0{,}4034\cdot0{,}2407 \\
+&\approx -0{,}1942
+\end{aligned}
+$$
+
 Update: $b_2^{neu}=0-1\cdot(-0{,}1942)\approx0{,}1942$
 
 **Schritt 3 – Update von $w_1$** (jetzt $b_1=0,\ w_2=0{,}6285,\ b_2=0{,}1942$ fest; Kettenregel über *zwei* Sigmoid-Stufen, aber weiterhin nur eindimensional, da nur $w_1$ variiert):
-$$\frac{dE}{dw_1}=-2(1-\hat y)\,\sigma'(z_2)\,w_2\,\sigma'(z_1)\,x\approx-2\cdot0{,}3577\cdot0{,}2298\cdot0{,}6285\cdot0{,}2350\cdot1\approx-0{,}0243$$
+
+$$
+\begin{aligned}
+\frac{dE}{dw_1} &= -2(1-\hat y)\,\sigma'(z_2)\,w_2\,\sigma'(z_1)\,x \\
+&\approx -2\cdot0{,}3577\cdot0{,}2298\cdot0{,}6285\cdot0{,}2350\cdot1 \\
+&\approx -0{,}0243
+\end{aligned}
+$$
+
 Update: $w_1^{neu}=0{,}5-1\cdot(-0{,}0243)\approx0{,}5243$
 
 **Schritt 4 – Update von $b_1$** (analog, jetzt mit $w_1=0{,}5243$ fest):
-$$\frac{dE}{db_1}=-2(1-\hat y)\,\sigma'(z_2)\,w_2\,\sigma'(z_1)\approx-0{,}0241$$
+
+$$
+\begin{aligned}
+\frac{dE}{db_1} &= -2(1-\hat y)\,\sigma'(z_2)\,w_2\,\sigma'(z_1) \\
+&\approx -0{,}0241
+\end{aligned}
+$$
+
 Update: $b_1^{neu}=0-1\cdot(-0{,}0241)\approx0{,}0241$
 
-**Ergebnis nach einer vollständigen Runde:** neues Netz $w_1\approx0{,}5243,\ b_1\approx0{,}0241,\ w_2\approx0{,}6285,\ b_2\approx0{,}1942$.
+**Ergebnis nach einer vollständigen Runde:** neues Netz $w_1\approx0{,}5243$, $b_1\approx0{,}0241$, $w_2\approx0{,}6285$, und $b_2\approx0{,}1942$.
 
 *Fehlervergleich (Kernaufgabe für die Schüler):* Beide Netze (Start- und neue Gewichte) mit demselben Input $x=1$ durchrechnen, jeweils den Fehler $(y-\hat y)^2$ berechnen und vergleichen:
 

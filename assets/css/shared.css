@@ -4369,6 +4369,16 @@ html.light .roulette-widget__event {
   overflow-y: hidden;
 }
 
+body.page-legal .shell-main mjx-container[display="true"] {
+  color: var(--text-body);
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
 .sk-section {
   margin-bottom: 36px;
 }
@@ -5523,6 +5533,7 @@ body.page-home .shell-main {
 body.page-legal .shell-main {
   margin: 0 auto;
   padding: 2.5rem 1.5rem 4rem;
+  overflow-x: auto;
   line-height: 1.65;
   color: var(--text);
 }
