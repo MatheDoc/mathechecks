@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schrittweise Regression</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --card: #fffdf8;
+      --surface-1: #f1ede5;
+      --border: #ddd6c8;
+      --text: #1f2933;
+      --text-secondary: #6f6a61;
+      --accent: #378add;
+      --accent-soft: #5dcaa5;
+      --radius: 14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at top, #fcfaf5 0%, var(--bg) 58%, #ebe5d8 100%);
+      color: var(--text);
+    }
+
+    .page {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 18px 48px rgba(76, 60, 30, 0.08);
+    }
+
+    .intro {
+      margin-bottom: 1rem;
+    }
+
+    .intro h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 600;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    button {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--text);
+      padding: 0.65rem 0.9rem;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #f8f4ec;
+    }
+
+    input[type="range"] {
+      accent-color: var(--accent);
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+  <section class="card">
+    <header class="intro">
+      <h1>Schrittweise Regression</h1>
+      <p>Die Simulation zeigt, wie ein kleines neuronales Netz seine Modellkurve schrittweise an verrauschte Datenpunkte anpasst, statt direkt eine geschlossene Formel zu berechnen.</p>
+    </header>
+
+    <h2 class="sr-only">Interaktive Simulation zur schrittweisen Anpassung einer Regressionskurve an verrauschte Datenpunkte.</h2>
+
+<div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:1rem;">
+  <button id="btnStep2" style="min-width:100px;"><i class="ti ti-player-track-next" style="font-size:16px; vertical-align:-3px; margin-right:4px;" aria-hidden="true"></i>Schritt</button>
+  <button id="btnPlay2" style="min-width:120px;"><i class="ti ti-player-play" style="font-size:16px; vertical-align:-3px; margin-right:4px;" aria-hidden="true"></i>Abspielen</button>
+  <button id="btnReset2" style="min-width:100px;"><i class="ti ti-refresh" style="font-size:16px; vertical-align:-3px; margin-right:4px;" aria-hidden="true"></i>Neue Punkte</button>
+  <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
+    <label style="font-size:13px; color:var(--text-secondary); white-space:nowrap;">Lernrate</label>
+    <input type="range" id="lr2" min="0.01" max="0.5" step="0.01" value="0.1" style="width:110px;">
+    <span id="lrOut2" style="font-size:13px; font-weight:500; min-width:32px;">0.10</span>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:12px; margin-bottom:1rem;">
+  <div style="background:var(--surface-1); border-radius:var(--radius); padding:1rem;">
+    <p style="font-size:13px; color:var(--text-secondary); margin:0 0 4px;">Epoche</p>
+    <p style="font-size:24px; font-weight:500; margin:0;" id="epochOut2">0</p>
+  </div>
+  <div style="background:var(--surface-1); border-radius:var(--radius); padding:1rem;">
+    <p style="font-size:13px; color:var(--text-secondary); margin:0 0 4px;">Verlust (MSE)</p>
+    <p style="font-size:24px; font-weight:500; margin:0;" id="lossOut2">-</p>
+  </div>
+</div>
+
+<div style="display:flex; gap:16px; margin-bottom:8px; font-size:12px; color:var(--text-secondary);">
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:10px; height:10px; border-radius:50%; background:#5DCAA5;"></span>Datenpunkte</span>
+  <span style="display:flex; align-items:center; gap:4px;"><span style="width:14px; height:2px; background:#378ADD;"></span>Modellkurve</span>
+</div>
+
+<div style="position:relative; width:100%; height:280px;">
+  <canvas id="regChart" role="img" aria-label="Streudiagramm mit verrauschten Datenpunkten und einer Modellkurve, die sich im Laufe des Trainings zunehmend an die Punkte anschmiegt">Datenpunkte einer verrauschten Kurve und eine Modellkurve, die sich beim Training zunehmend anpasst.</canvas>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let xs, ys, W1, b1, W2, b2, epoch;
+let playing2 = false;
+let timer2 = null;
+const H = 6;
+
+function rand(scale){ return (Math.random()-0.5)*scale; }
+
+function generateData(){
+  const n = 24;
+  const xa = [], ya = [];
+  for(let i=0;i<n;i++){
+    const x = -3 + (6*i/(n-1));
+    const noise = rand(2.4);
+    const y = Math.sin(x*1.3)*1.5 + noise ;
+    xa.push(x); ya.push(y);
+  }
+  return {xa, ya};
+}
+
+function initNet(){
+  W1 = Array.from({length:H}, () => rand(1));
+  b1 = Array.from({length:H}, () => rand(0.5));
+  W2 = Array.from({length:H}, () => rand(1));
+  b2 = rand(0.5);
+  epoch = 0;
+}
+
+function forward(x){
+  const h = W1.map((w,j) => Math.tanh(x*w + b1[j]));
+  let pred = b2;
+  for(let j=0;j<H;j++) pred += h[j]*W2[j];
+  return {h, pred};
+}
+
+function computeLoss(){
+  let loss = 0;
+  for(let i=0;i<xs.length;i++){
+    const {pred} = forward(xs[i]);
+    loss += (pred - ys[i])*(pred - ys[i]);
+  }
+  return loss / xs.length;
+}
+
+function trainStep(lr){
+  const gW1 = new Array(H).fill(0);
+  const gb1 = new Array(H).fill(0);
+  const gW2 = new Array(H).fill(0);
+  let gb2 = 0;
+  const n = xs.length;
+
+  for(let i=0;i<n;i++){
+    const x = xs[i], y = ys[i];
+    const {h, pred} = forward(x);
+    const error = pred - y;
+    gb2 += error;
+    for(let j=0;j<H;j++){
+      gW2[j] += error * h[j];
+      const dh = error * W2[j] * (1 - h[j]*h[j]);
+      gW1[j] += dh * x;
+      gb1[j] += dh;
+    }
+  }
+
+  for(let j=0;j<H;j++){
+    W1[j] -= lr * gW1[j] / n;
+    b1[j] -= lr * gb1[j] / n;
+    W2[j] -= lr * gW2[j] / n;
+  }
+  b2 -= lr * gb2 / n;
+  epoch++;
+}
+
+let chart2;
+function buildCurve(){
+  const pts = [];
+  for(let i=0;i<=60;i++){
+    const x = -3.2 + (6.4*i/60);
+    pts.push({x, y: forward(x).pred});
+  }
+  return pts;
+}
+
+function initChart(){
+  const ctx = document.getElementById('regChart');
+  chart2 = new Chart(ctx, {
+    data: {
+      datasets: [
+        {
+          type: 'scatter',
+          data: xs.map((x,i) => ({x, y: ys[i]})),
+          backgroundColor: '#5DCAA5',
+          pointRadius: 4,
+          showLine: false
+        },
+        {
+          type: 'line',
+          data: buildCurve(),
+          borderColor: '#378ADD',
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false,
+          tension: 0.2
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { type: 'linear', min: -3.3, max: 3.3, grid: { color: '#e1e0d9' }, ticks: { color: '#898781' } },
+        y: { min: -3, max: 3, grid: { color: '#e1e0d9' }, ticks: { color: '#898781' } }
+      }
+    }
+  });
+}
+
+function updateAll(){
+  document.getElementById('epochOut2').textContent = epoch;
+  document.getElementById('lossOut2').textContent = computeLoss().toFixed(4);
+  chart2.data.datasets[1].data = buildCurve();
+  chart2.update('none');
+}
+
+function step(){
+  const lr = parseFloat(document.getElementById('lr2').value);
+  trainStep(lr);
+  updateAll();
+}
+
+function stopPlaying(){
+  playing2 = false;
+  clearInterval(timer2);
+  document.getElementById('btnPlay2').innerHTML = '<i class="ti ti-player-play" style="font-size:16px; vertical-align:-3px; margin-right:4px;" aria-hidden="true"></i>Abspielen';
+}
+
+document.getElementById('btnStep2').addEventListener('click', () => { stopPlaying(); step(); });
+
+document.getElementById('btnPlay2').addEventListener('click', () => {
+  if(playing2){
+    stopPlaying();
+  } else {
+    playing2 = true;
+    document.getElementById('btnPlay2').innerHTML = '<i class="ti ti-player-pause" style="font-size:16px; vertical-align:-3px; margin-right:4px;" aria-hidden="true"></i>Pause';
+    timer2 = setInterval(step, 60);
+  }
+});
+
+document.getElementById('btnReset2').addEventListener('click', () => {
+  stopPlaying();
+  const d = generateData();
+  xs = d.xa; ys = d.ya;
+  initNet();
+  chart2.data.datasets[0].data = xs.map((x,i) => ({x, y: ys[i]}));
+  updateAll();
+});
+
+document.getElementById('lr2').addEventListener('input', (e) => {
+  document.getElementById('lrOut2').textContent = parseFloat(e.target.value).toFixed(2);
+});
+
+const d0 = generateData();
+xs = d0.xa; ys = d0.ya;
+initNet();
+initChart();
+updateAll();
+</script>
+</section>
+</main>
+</body>
+</html>
