@@ -16,8 +16,7 @@ permalink: /ki2.html
 ## Fehlvorstellungen
 - Unterschied zwischen "Steckbriefaufgaben" und Regression beachten:
     - Bei Steckbriefaufgaben liefert jeder Datenpunkt (durch Einsetzen) eine Gleichung im LGS; die Anzahl der Gleichungen entspricht also der Anzahl der Datenpunkte.
-    - Bei der Regression entspricht dagegen **nicht** ein Datenpunkt einer Gleichung im LGS. Stattdessen bestimmt die Anzahl der Funktionsparameter (z. B. bei linearer, quadratischer Regression) die Anzahl der Gleichungen im sogenannten *Normalgleichungssystem* $X^TXw=X^Ty$, dies ist unabhängig von der Anzahl $n$ der Datenpunkte.
-    - Konsequenz: Ist $n$ kleiner als die Anzahl der Parameter, ist $X^TX$ nicht invertierbar und das Normalgleichungssystem nicht eindeutig lösbar:
+    - Bei der Regression entspricht dagegen **nicht** ein Datenpunkt einer Gleichung im LGS. Stattdessen bestimmt die Anzahl der Funktionsparameter (z. B. bei linearer, quadratischer Regression) die Anzahl der Gleichungen im sogenannten *Normalgleichungssystem* $X^TXw=X^Ty$ (siehe unten), dies ist unabhängig von der Anzahl $n$ der Datenpunkte.
         - 1 Datenpunkt bei einer affin-linearen Regression $\mathbb{R}\to\mathbb{R}$ (2 Parameter $m,b$) führt zu 2 Gleichungen mit 2 Unbekannten, diese sind aber linear abhängig (durch einen Punkt gehen unendlich viele Geraden).
         - Ähnlich führen 2 Datenpunkte bei einer affin-linearen Regression $\mathbb{R}^2\to\mathbb{R}$ (3 Parameter $w_1,w_2,b$) zu 3 Gleichungen mit 3 Unbekannten, die wiederum linear abhängig sind (durch 2 Punkte gehen unendlich viele Ebenen).
         
