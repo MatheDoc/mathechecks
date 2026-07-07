@@ -204,9 +204,9 @@ Update: $b_1^{neu}=0-1\cdot(-0{,}0241)\approx0{,}0241$
 - altes Netz: $E_{alt}\approx0{,}1788$
 - neues Netz: $E_{neu}\approx0{,}1268$
 
-Da $E_{neu}<E_{alt}$, ist das neue Netz besser trainiert. (Zwischenwerte gerundet; Rechnung mit GTR/Software empfohlen.)
+Da $E_{neu}<E_{alt}$, ist das neue Netz besser trainiert.
 
-**Didaktischer Zusatz:** Man kann den Fehler auch nach jedem einzelnen der vier Schritte (nicht erst am Ende) berechnen lassen und beobachten, dass er nach jedem Schritt kleiner wird. Das macht den "Abstieg" im Koordinatenabstieg sichtbar. Zusätzlich lässt sich diskutieren, warum echtes Gradient Descent (gleichzeitige Anpassung aller Gewichte über den Gradientenvektor) eigentlich die bessere/schnellere Variante wäre.
+Man kann den Fehler auch nach jedem einzelnen der vier Schritte (nicht erst am Ende) berechnen lassen und beobachten, dass er nach jedem Schritt kleiner wird. Das macht den "Abstieg" im Koordinatenabstieg sichtbar. Zusätzlich lässt sich diskutieren, warum echtes Gradient Descent (gleichzeitige Anpassung aller Gewichte über den Gradientenvektor) eigentlich die bessere/schnellere Variante wäre.
 
 
 
