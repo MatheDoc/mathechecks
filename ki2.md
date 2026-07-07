@@ -100,9 +100,8 @@ Die folgenden Punkte konkretisieren die Bildungsplan-Vorgaben zu neuronalen Netz
 
 ### Allgemeines
 - Analogie zu mehrstufigen Produktionsprozessen (z. B. verborgene Schicht = Zwischenprodukte) betonen.
-- Aktivierungsfunktion diskutieren: Sollte man überhaupt nichtlineare Aktivierungsfunktionen betrachten? Schüler kennen aktuell weder tanh noch Sigmoid o. Ä. aus dem Unterricht.
 - Input und Output stets als Spaltenvektor notieren (anschlussfähig an bestehende Vektor-/Matrizenschreibweise aus der linearen Algebra).
-
+- Aktivierungsfunktion diskutieren: Sollte man überhaupt nichtlineare Aktivierungsfunktionen betrachten? Schüler kennen aktuell weder tanh noch Sigmoid o. Ä. aus dem Unterricht.
 
 ### Mögliche Aufgabentypen
 - Output-Vektor aus gegebenem Input-Vektor, Gewichtsmatrix und Bias berechnen (ohne Aktivierungsfunktion).
@@ -110,7 +109,7 @@ Die folgenden Punkte konkretisieren die Bildungsplan-Vorgaben zu neuronalen Netz
 - Heaviside- und Sigmoid-Aktivierung am selben Beispiel vergleichen (harter Schwellenwert vs. weicher Übergang).
 - Aus einem Netzdiagramm die zugehörige Gewichtsmatrix aufstellen (und umgekehrt).
 - Umkehrproblem bei Identitätsaktivierung: Gegebener Output-Vektor und (quadratische, invertierbare) Gewichtsmatrix, gesuchten Input-Vektor durch Lösen des LGS bestimmen. Kontrastiert "Netz vorwärts anwenden" mit "Netz invertieren" (in der Praxis meist nicht möglich, da Gewichtsmatrizen i. Allg. nicht quadratisch/invertierbar sind).
-- Entscheidungsgrenze bei einem Neuron mit zwei Inputs und Heaviside-Aktivierung: Aus $w_1x_1+w_2x_2+b=0$ die Geradengleichung in der $x_1$-$x_2$-Ebene bestimmen und ins Streudiagramm einzeichnen (Anschluss an Geradengleichungen/Halbebenen aus der analytischen Geometrie).
+- Entscheidungsgrenze bei einem Neuron mit zwei Inputs und Heaviside-Aktivierung: Aus $w_1x_1+w_2x_2+b=0$ die Geradengleichung in der $x_1$-$x_2$-Ebene bestimmen und ins Streudiagramm einzeichnen.
 
 
 ## Training
