@@ -13,7 +13,6 @@ permalink: /ki2.html
 
 [Dieses Widget](training_als_schrittweise_regression.html)  veranschaulicht die Grundidee des Trainings eines kleinen neuronalen Netzes durch Gradientenabstieg: Das Netz berechnet Vorhersagen, bestimmt den Fehler und passt seine Gewichte schrittweise so an, dass der mittlere quadratische Fehler kleiner wird.
 
-
 ## Fehlvorstellungen
 - Unterschied zwischen "Steckbriefaufgaben" und Regression beachten:
     - Bei Steckbriefaufgaben liefert jeder Datenpunkt (durch Einsetzen) eine Gleichung im LGS; die Anzahl der Gleichungen entspricht also der Anzahl der Datenpunkte.
@@ -21,20 +20,22 @@ permalink: /ki2.html
     - Konsequenz: Ist $n$ kleiner als die Anzahl der Parameter, ist $X^TX$ nicht invertierbar und das Normalgleichungssystem nicht eindeutig lösbar:
         - 1 Datenpunkt bei einer affin-linearen Regression $\mathbb{R}\to\mathbb{R}$ (2 Parameter $m,b$) führt zu 2 Gleichungen mit 2 Unbekannten, diese sind aber linear abhängig (durch einen Punkt gehen unendlich viele Geraden).
         - Ähnlich führen 2 Datenpunkte bei einer affin-linearen Regression $\mathbb{R}^2\to\mathbb{R}$ (3 Parameter $w_1,w_2,b$) zu 3 Gleichungen mit 3 Unbekannten, die wiederum linear abhängig sind (durch 2 Punkte gehen unendlich viele Ebenen).
-        - Allgemein gilt: $X^TX$ ist nur invertierbar, wenn $n$ mindestens so groß wie die Anzahl der Parameter ist und die Datenpunkte "in allgemeiner Lage" sind (d. h. $X$ hat vollen Spaltenrang).
+        
 
 
 ## Multiple lineare Regression
 - Setting: Aus $n$ Datenpunkten die lineare Regressionsfunktion $\mathbb{R}^m\to\mathbb{R}$ finden. Z. B.: $n=4$ und $m=2$
     - Gegeben: $((x_{11},x_{12}) \mid y_1)$, $((x_{21},x_{22}) \mid y_2)$, $((x_{31},x_{32}) \mid y_3)$, $((x_{41},x_{42}) \mid y_4)$
-    - Gesucht: fehlerquadrat-minimierende Funktion $w=(w_1,w_2,b):\mathbb{R}^2\to\mathbb{R}$, $\quad$ $(x_1,x_2) \mapsto w_1x_1+w_2x_2+b$    
+    - Gesucht: fehlerquadrat-minimierende Funktion $f:\mathbb{R}^2\to\mathbb{R}$ mit Parametervektor $w=(w_1,w_2,b)$, $\quad$ $(x_1,x_2) \mapsto w_1x_1+w_2x_2+b$    
     - Dann ist $w=(X^TX)^{-1}X^Ty$, wobei
 
     $$
     X=\begin{pmatrix} x_{11} & x_{12} & 1 \\ x_{21} & x_{22} & 1 \\ x_{31} & x_{32} & 1 \\ x_{41} & x_{42} & 1 \end{pmatrix}, \qquad y=\begin{pmatrix} y_1\\y_2\\y_3\\y_4 \end{pmatrix}
     $$
 
-- Hinweis: keine geschlossene Formel für nicht-lineare Regression
+    - Allgemein gilt: $X^TX$ ist nur invertierbar, wenn $n$ mindestens so groß wie die Anzahl der Parameter ist und die Datenpunkte "in allgemeiner Lage" sind (d. h. $X$ hat vollen Spaltenrang).
+
+- Hinweis: Eine geschlossene Formel existiert nur, wenn die Regressionsfunktion linear in den Parametern ist (das schließt z. B. Polynomregression ein). Für Parameter innerhalb nichtlinearer Funktionen (z. B. Sigmoid) gibt es keine geschlossene Lösung, hier wären iterative Verfahren wie der Gradientenabstieg nötig.
 
 ### Spezialfall: n=2, m=1
 
@@ -85,16 +86,14 @@ mit $\bar x=\frac1n\sum_{i=1}^n x_i$ und $\bar y=\frac1n\sum_{i=1}^n y_i$.
 <!--# Vorläufiger Bildungsplan
 Sie nutzen das arithmetische Mittel zum Clustern von Daten mit einer Veränderlichen und verwenden dabei auch den k-Means Algorithmus (Z 5). Bei Daten mit zwei Veränderlichen visualisieren sie Cluster in Streudiagrammen (Z 6). Sie identifizieren die Bedeutung von Cluster-Algorithmen in privaten und beruflichen Kontexten (Z 7).
 
-Zur Erstellung von Regressionsfunktionen aus funktionalen Zusammenhängen mit einer oder zwei veränderlichen verwenden sie die Methode der kleinsten Fehlerquadrate, Ableitungen nach Parametern und lineare Gleichungssysteme(Z 4). Sie ordnen die lineare Regression in den Bereich maschinellen Lernens als Teilbereich Künstlicher Intelligenz ein und treffen auf der Basis der Regressionsfunktionen Prognosen (Z 5).
+Zur Erstellung von Regressionsfunktionen aus funktionalen Zusammenhängen mit einer oder zwei Veränderlichen verwenden sie die Methode der kleinsten Fehlerquadrate, Ableitungen nach Parametern und lineare Gleichungssysteme(Z 4). Sie ordnen die lineare Regression in den Bereich maschinellen Lernens als Teilbereich Künstlicher Intelligenz ein und treffen auf der Basis der Regressionsfunktionen Prognosen (Z 5).
 
 Im Rahmen betrieblicher Abläufe nutzen sie die Grundlagen neuronaler Netze für Klassifizierungsprobleme und beurteilen die gesellschaftliche Bedeutung automatisierter Prozesse.
 
 Sie nutzen neuronale Netze mit höchstens einer verborgenen Schicht für Klassifizierungen (Z 5). Sie verwenden Gewichtsmatrizen und Aktivierungsfunktionen (z. B. Identitäts-Funktion, Heaviside-Funktion, Sigmoid-Funktion) zur Berechnung von Outputvektoren aus vorgegebenen Inputvektoren mit Bias (Z 6). Sie beurteilen die Eignung von gegebenen Gewichtsmatrizen mit Hilfe der Fehlerfunktion (Summe der Fehlerquadrate) (Z 7).-->
 
 
-# Mögliche Unterrichtsthemen
-
-Die folgenden Punkte konkretisieren die Bildungsplan-Vorgaben zu neuronalen Netzen für den Unterricht (ohne Clustering).
+# Mögliche Unterrichtsthemen (ohne Clustering)
 
 ## Input-Output-Beziehung
 
@@ -102,6 +101,7 @@ Die folgenden Punkte konkretisieren die Bildungsplan-Vorgaben zu neuronalen Netz
 - Analogie zu mehrstufigen Produktionsprozessen (z. B. verborgene Schicht = Zwischenprodukte) betonen.
 - Input und Output stets als Spaltenvektor notieren (anschlussfähig an bestehende Vektor-/Matrizenschreibweise aus der linearen Algebra).
 - Aktivierungsfunktion diskutieren: Sollte man überhaupt nichtlineare Aktivierungsfunktionen betrachten? Schüler kennen aktuell weder tanh noch Sigmoid o. Ä. aus dem Unterricht.
+- Zentral ist jedoch: Ohne nichtlineare Aktivierung kollabiert jedes mehrschichtige Netz zu einer einzigen affinen Abbildung. 
 
 ### Mögliche Aufgabentypen
 - Output-Vektor aus gegebenem Input-Vektor, Gewichtsmatrix und Bias berechnen (ohne Aktivierungsfunktion).
@@ -207,6 +207,7 @@ Da $E_{neu}<E_{alt}$, ist das neue Netz besser trainiert.
 
 Man kann den Fehler auch nach jedem einzelnen der vier Schritte (nicht erst am Ende) berechnen lassen und beobachten, dass er nach jedem Schritt kleiner wird. Das macht den "Abstieg" im Koordinatenabstieg sichtbar. Zusätzlich lässt sich diskutieren, warum echtes Gradient Descent (gleichzeitige Anpassung aller Gewichte über den Gradientenvektor) eigentlich die bessere/schnellere Variante wäre.
 
+Fazit: Tendenziell zu schwer.
 
 
 # Sonstiges:
@@ -218,5 +219,14 @@ Man kann den Fehler auch nach jedem einzelnen der vier Schritte (nicht erst am E
 - Diskutiert man Skalierungsfragen im Unterricht, und wenn ja, mit welchen Mitteln (Landau-Symbole o. Ä.)?
 - Bewusst sein: Der entscheidende theoretische Fortschritt der letzten Jahre (neben Skalierungsfragen, Rechnerleistung, Big Data) ist die Transformer-Architektur ("Attention Is All You Need", 2017). Diese Thematik lässt sich in der Schulmathematik wohl nicht darstellen.
 - Will man überhaupt mehrere Input-Vektoren zu einer Input-Matrix zusammenfassen (Batch-Verarbeitung), oder bleibt es bei einzelnen Input-Vektoren?
-- Allgemein: Um welches Verständnis geht es überhaupt? Die Schüler lernen die Grundidee eines neuronalen Netzes kennen, aber keine grundsätzlich neuen mathematischen Konzepte – höchstens neue, zunächst kontextlose Begriffe wie tanh, Sigmoid etc.
+- Allgemein: Um welches Verständnis geht es überhaupt? Die Schüler lernen die Grundidee eines neuronalen Netzes kennen, aber keine grundsätzlich neuen mathematischen Konzepte (höchstens neue, zunächst kontextlose Begriffe wie tanh, Sigmoid etc).
 - Bezug zu bereits vorhandenen Sek-II-Themen herstellen (Matrizen/LGS aus der analytischen Geometrie, Ableitungen aus der Analysis): Wie viel ist Wiederholung/Transfer, wie viel ist wirklich neuer Stoff?
+
+
+# Schlussüberlegungen
+- Lineare Algebra zur Funktionsbeschreibung trainierter neuronaler Netze verwenden, dabei die Analogie zu mehrstufigen Produktionsprozessen betonen. Aktivierungsfunktion und Fehlerfunktion anwenden, um den Output zu berechnen und die Güte des Netzes zu beurteilen.
+- In der Analysis nur die eindimensionale Regression $\mathbb{R}\to\mathbb{R}$ diskutieren, ggf. völlig unabhängig von neuronalen Netzen. 
+    - Linear Regression exakt lösen, eventuell $m$ bzw. $b$ fixieren und nur nach $b$ bzw. $m$ ableiten.
+    - Nicht-lineare Regression, z. B. lineare Transformationen von $\sigma(x)=\frac{1}{1+e^{-x}}$ oder $\tanh(x)=1-\frac{2}{e^{2x}+1}$, mit Hilfe des Gradientenabstieg.
+    - Zuvor: Gradientenabstieg prinzipiell erläutern, und zwar für eine lineare Regression mit einem Ist-Soll-Wert-Paar $(x\mid y)$, einer gegebenen Startfunktion, fixiertem $m$ oder $b$ und Lernrate $\eta$.
+    - Eigentlich: Gradientenabstieg unabhängig von Regression diskutieren.
