@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260614-expression-curves-b";
+import { renderTask } from "../runtime/task-render.js?v=20260711-speech-textarea-fix";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

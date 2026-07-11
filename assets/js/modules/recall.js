@@ -5,7 +5,7 @@ import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabas
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260513-task-check-b";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260711-speech-textarea-fix";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260701-recall-quote-popup";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
@@ -195,7 +195,7 @@ function renderCueItemsMarkup(items, cardAnchorId) {
         <div class="recall-cue-item" data-recall-cue-item data-cue="${escapeHtml(item.cue)}" data-response="${escapeHtml(item.response)}">
           <label class="recall-cue-item__label" for="${inputId}">${label}</label>
           <div class="recall-response-cell">
-            <input class="recall-input-slot answer-input" id="${inputId}" type="text" maxlength="240" data-recall-slot="${index}" placeholder="Deine Antwort ...">
+            <textarea class="recall-input-slot answer-input" id="${inputId}" rows="1" maxlength="240" data-recall-slot="${index}" placeholder="Deine Antwort ..."></textarea>
             <div class="task-feedback recall-inline-feedback" data-recall-feedback hidden></div>
             <div class="solution recall-inline-solution" data-recall-solution hidden><span class="solution-badge">${solutionText}</span></div>
             <button class="answer-reveal-request" type="button" data-recall-show-solution hidden>Lösung anzeigen</button>
@@ -295,7 +295,7 @@ function renderCard(check) {
         <div class="recall-cue-item" data-recall-cue-item data-cue="" data-response="">
           <span class="recall-cue-item__label">Punkt 1</span>
           <div class="recall-response-cell">
-            <input class="recall-input-slot answer-input" type="text" maxlength="240" data-recall-slot="0" placeholder="Was fällt dir ein?">
+            <textarea class="recall-input-slot answer-input" rows="1" maxlength="240" data-recall-slot="0" placeholder="Was fällt dir ein?"></textarea>
           </div>
         </div>
       `;

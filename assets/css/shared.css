@@ -2,12 +2,12 @@
    MatheChecks – Shared Design System
    ═══════════════════════════════════════════════════════════════ */
 
-@import "../../../aufgaben/runtime/task-render.css?v=20260609-answer-lines";
+@import "../../../aufgaben/runtime/task-render.css?v=20260711-speech-textarea-fix";
 @import "./task-completion.css?v=20260609-void-revealed";
 @import "./cards.css";
 @import "./dashboard.css?v=20260521-target-warning";
 @import "./einstieg.css";
-@import "./speech-input.css";
+@import "./speech-input.css?v=20260711-speech-textarea-fix";
 
 /* ─────────────────────── Global scrollbar ──────────────────── */
 *,
@@ -2786,10 +2786,14 @@ html.light .recall-list--user .recall-list__item {
   padding: 10px 14px;
   font-family: "Inter", sans-serif;
   font-size: .88rem;
+  line-height: 1.35;
+  min-height: 42px;
   color: var(--text);
   outline: none;
   transition: border-color 200ms, box-shadow 200ms;
   -webkit-text-fill-color: var(--text);
+  resize: none;
+  overflow: hidden;
 }
 
 .recall-input-slot:focus {
