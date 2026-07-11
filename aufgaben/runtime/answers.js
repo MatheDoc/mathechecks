@@ -277,19 +277,19 @@ export function replaceAnswerPlaceholders(answerText, renderPlaceholder) {
 export function answerToPreview(answerText) {
     return replaceAnswerPlaceholders(answerText, (kind, raw, meta) => {
         if (kind === "ANALYSIS_BOUND") {
-            return `<input class="answer-input" data-answer-part="${meta.placeholderIndex}" type="text" placeholder="Antwort" />`;
+            return `<textarea class="answer-input" data-answer-part="${meta.placeholderIndex}" rows="1" placeholder="Antwort"></textarea>`;
         }
 
         if (kind === "NUMERICAL_OPT") {
-            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="NUMERICAL_OPT" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
+            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="NUMERICAL_OPT" data-raw="${escapeHtmlAttribute(raw)}"><textarea class="answer-numopt-input" rows="1" placeholder="Antwort"></textarea><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
         }
 
         if (kind === "INTERVAL_BOUND") {
-            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="INTERVAL_BOUND" data-raw="${escapeHtmlAttribute(raw)}"><input class="answer-numopt-input" type="text" placeholder="Antwort" /><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
+            return `<span class="answer-numopt-group" data-answer-part="${meta.placeholderIndex}" data-kind="INTERVAL_BOUND" data-raw="${escapeHtmlAttribute(raw)}"><textarea class="answer-numopt-input" rows="1" placeholder="Antwort"></textarea><label class="answer-numopt-label" title="keine Lösung"><input type="checkbox" class="answer-numopt-none" /> 🚫</label></span>`;
         }
 
         if (kind === "NUMERICAL") {
-            return `<input class="answer-input" data-answer-part="${meta.placeholderIndex}" type="text" placeholder="Antwort" />`;
+            return `<textarea class="answer-input" data-answer-part="${meta.placeholderIndex}" rows="1" placeholder="Antwort"></textarea>`;
         }
 
         const options = parseMcOptions(raw)

@@ -4,16 +4,33 @@
 
 /* ── Wrapper for standalone inputs (recall etc.) ──────────── */
 .speech-input-wrap {
+    --speech-mic-space: 35px;
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
+    max-width: 100%;
 }
 
 .speech-input-wrap>input {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
-    padding-right: 34px;
+    padding-right: var(--speech-mic-space);
+}
+
+.speech-input-wrap>textarea {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding-right: var(--speech-mic-space);
+    resize: none;
+    overflow: hidden;
+}
+
+.task .speech-input-wrap>input,
+.task .speech-input-wrap>textarea,
+.check-card__runtime-task .speech-input-wrap>input,
+.check-card__runtime-task .speech-input-wrap>textarea {
+    padding-right: var(--speech-mic-space);
 }
 
 /* ── Mic button (shared by both wrapper & field-group) ──────── */
@@ -89,6 +106,8 @@
     display: inline-flex;
     align-items: center;
     width: auto;
+    max-width: 100%;
+    min-width: 0;
 }
 
 /* ── Light-mode adjustments ─────────────────────────────────── */

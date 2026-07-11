@@ -2880,19 +2880,19 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
 
   const remainingSteps = getRemainingSelectedSessionActivityCount(context, selectedCheckIds, selectedLernbereichIds);
 
-  if (dayDelta < 0) {
-    return {
-      targetLabel,
-      assessmentLabel: "Überfällig",
-      assessmentTone: "error",
-    };
-  }
-
   if (remainingSteps <= 0) {
     return {
       targetLabel,
       assessmentLabel: "Fertig",
       assessmentTone: "success",
+    };
+  }
+
+  if (dayDelta < 0) {
+    return {
+      targetLabel,
+      assessmentLabel: "Überfällig",
+      assessmentTone: "error",
     };
   }
 

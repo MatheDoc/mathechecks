@@ -14,6 +14,7 @@ const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecogni
 const SUPPORTED = Boolean(SpeechRecognition);
 
 const ENHANCED_ATTR = "data-speech-enhanced";
+const AUTOGROW_ATTR = "data-speech-autogrow";
 const AUTO_STOP_DELAY_MS = 4000;
 const TASK_CHECK_REQUEST_EVENT = "task:check-request";
 
@@ -336,6 +337,26 @@ function createMicButton() {
     return btn;
 }
 
+function resizeSpeechTextarea(field) {
+    if (!(field instanceof HTMLTextAreaElement)) return;
+    const styles = window.getComputedStyle(field);
+    const borderHeight = (parseFloat(styles.borderTopWidth) || 0) + (parseFloat(styles.borderBottomWidth) || 0);
+    field.style.height = "auto";
+    field.style.height = `${field.scrollHeight + borderHeight}px`;
+}
+
+function setupSpeechTextarea(field) {
+    if (!(field instanceof HTMLTextAreaElement)) return;
+    if (field.hasAttribute(AUTOGROW_ATTR)) return;
+    field.setAttribute(AUTOGROW_ATTR, "");
+    if (!field.hasAttribute("rows")) {
+        field.setAttribute("rows", "1");
+    }
+    field.addEventListener("input", () => resizeSpeechTextarea(field));
+    field.addEventListener("change", () => resizeSpeechTextarea(field));
+    requestAnimationFrame(() => resizeSpeechTextarea(field));
+}
+
 function bindMic(btn, input) {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -439,14 +460,16 @@ function bindMic(btn, input) {
  * @param {string}      [selector] CSS selector for target inputs.
  */
 export function enhanceSpeechInputs(root, selector) {
-    if (!SUPPORTED || !root) return;
+    if (!root) return;
 
-    const sel = selector || 'input[type="text"], input:not([type])';
+    const sel = selector || 'input[type="text"], input:not([type]), textarea';
     const inputs = Array.from(root.querySelectorAll(sel));
 
     inputs.forEach((input) => {
-        if (input.hasAttribute(ENHANCED_ATTR)) return;
-        if (input.type === "checkbox" || input.type === "radio" || input.type === "hidden") return;
+        if (input instanceof HTMLInputElement && ["checkbox", "radio", "hidden"].includes(input.type)) return;
+
+        setupSpeechTextarea(input);
+        if (!SUPPORTED || input.hasAttribute(ENHANCED_ATTR)) return;
 
         input.setAttribute(ENHANCED_ATTR, "");
 

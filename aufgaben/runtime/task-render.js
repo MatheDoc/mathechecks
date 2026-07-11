@@ -1,6 +1,6 @@
-import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260504-global-extrema-a";
+import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "./task-visuals.js?v=20260614-expression-curves-b";
-import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260513-task-check-b";
+import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260711-speech-textarea-fix";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -60,11 +60,14 @@ function attachQuestionCheckShortcuts(answerPreview, onCheck) {
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
 
         const target = event.target;
-        if (!(target instanceof HTMLInputElement)) return;
+        const isTextInput = target instanceof HTMLInputElement;
+        if (!isTextInput && !(target instanceof HTMLTextAreaElement)) return;
 
-        const type = String(target.type || "text").toLowerCase();
-        if (["checkbox", "radio", "button", "submit", "reset", "file"].includes(type)) {
-            return;
+        if (isTextInput) {
+            const type = String(target.type || "text").toLowerCase();
+            if (["checkbox", "radio", "button", "submit", "reset", "file"].includes(type)) {
+                return;
+            }
         }
 
         event.preventDefault();
@@ -97,6 +100,10 @@ function readFieldUiState(field) {
         return { tag: "input", type: field.type || "text", value: field.value ?? "" };
     }
 
+    if (field instanceof HTMLTextAreaElement) {
+        return { tag: "textarea", value: field.value ?? "" };
+    }
+
     return { tag: "other", value: field.value ?? "" };
 }
 
@@ -125,6 +132,11 @@ function applyFieldUiState(field, state) {
             return;
         }
 
+        if (typeof state.value === "string") field.value = state.value;
+        return;
+    }
+
+    if (field instanceof HTMLTextAreaElement) {
         if (typeof state.value === "string") field.value = state.value;
         return;
     }
@@ -712,7 +724,10 @@ export function renderTask(task, options = {}) {
                     if (numoptNone && numoptInput) {
                         numoptNone.addEventListener("change", () => {
                             numoptInput.disabled = numoptNone.checked;
-                            if (numoptNone.checked) numoptInput.value = "";
+                            if (numoptNone.checked) {
+                                numoptInput.value = "";
+                                numoptInput.dispatchEvent(new Event("input", { bubbles: true }));
+                            }
                         });
                     }
 
