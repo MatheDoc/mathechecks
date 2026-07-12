@@ -4,7 +4,7 @@ import { recordUserActivity } from "../platform/progress-client.js?v=20260604-ac
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { initSkriptVisuals } from "./skript-visuals.js";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
@@ -948,6 +948,7 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   if (selectedSection) {
     attachFeynmanFeedShell(selectedSection, activityContext, { lernbereich });
     if (activityContext?.mode === "feed") {
+      applyFeedFocusScope(root, selectedSection);
       setJumpNavActive(navNode, selectedCheckId);
       scrollModMainToEl(selectedSection);
     }

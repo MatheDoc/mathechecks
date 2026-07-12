@@ -2,7 +2,7 @@ import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks
 import { completeKompetenzlisteFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, renderCardMenuLinkMarkup, initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { applyFeedFocusScope, attachFeedCardControls, leaveFeedContext, navigateFromFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 
 const KOMPETENZLISTE_FEED_STEP_KEY = "kompetenzliste_gate";
 
@@ -190,6 +190,7 @@ function attachKompetenzlisteFeedShell(root, { preferredCheckId = "", activityCo
         stepLabel: "Kompetenz",
     });
     if (!controls) return;
+    applyFeedFocusScope(root, targetCard);
 
     let busy = false;
     let completed = false;

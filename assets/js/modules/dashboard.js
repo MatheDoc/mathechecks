@@ -27,10 +27,10 @@ const RETENTION_LOAD_ERROR_MESSAGE = "Der Wiederholungsstand konnte gerade nicht
 const ACTIVITY_SUMMARY_EMPTY = "Sobald du Training, Recall, Feynman oder Flashcards abschließt, erscheinen sie hier accountgebunden.";
 const ACTIVITY_UNAVAILABLE_MESSAGE = "Die Aktivitätsstatistik ist gerade nicht verfügbar.";
 const ACTIVITY_LOAD_ERROR_MESSAGE = "Die Aktivitätsstatistik konnte gerade nicht geladen werden.";
-const ACTIVITY_MAP_SUMMARY_COPY = "Verlauf der letzten 12 Wochen";
-const ACTIVITY_MAP_EMPTY_SUMMARY = "Letzte 12 Wochen bis heute. Sobald Aktivitäten erfasst werden, füllt sich die Karte automatisch.";
-const ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY = "In den letzten 12 Wochen wurden noch keine Aktivitäten erfasst.";
-const ACTIVITY_MAP_DEFAULT_WEEKS = 12;
+const ACTIVITY_MAP_SUMMARY_COPY = "Aktivitätskalender dieses Monats";
+const ACTIVITY_MAP_EMPTY_SUMMARY = "Dieser Monat erscheint hier als Kalender. Sobald Aktivitäten erfasst werden, füllt sich die Karte automatisch.";
+const ACTIVITY_MAP_EMPTY_WINDOW_SUMMARY = "In diesem Kalenderfenster wurden noch keine Aktivitäten erfasst.";
+const ACTIVITY_MAP_DEFAULT_WEEKS = 6;
 const ACTIVITY_MAP_DAY_LABELS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
 const GREETING_TIME_VARIANTS = [
   {
@@ -158,6 +158,28 @@ const GREETING_BUSY_YESTERDAY_THRESHOLD = 5;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 const GREETING_ROTATION_STEP_HOURS = 3;
 const GREETING_STORAGE_PREFIX = "mathechecks:greeting-first-seen";
+const WORKLIST_SESSION_ONLY_STORAGE_KEY = "mathechecks:dashboard-worklist-session-only";
+
+function readWorklistSessionOnlyPreference() {
+  if (typeof window === "undefined" || !window.localStorage) return true;
+  try {
+    const storedValue = window.localStorage.getItem(WORKLIST_SESSION_ONLY_STORAGE_KEY);
+    if (storedValue === "false") return false;
+    if (storedValue === "true") return true;
+  } catch {
+    // Ignore storage failures and keep the default behavior.
+  }
+  return true;
+}
+
+function writeWorklistSessionOnlyPreference(sessionOnly) {
+  if (typeof window === "undefined" || !window.localStorage) return;
+  try {
+    window.localStorage.setItem(WORKLIST_SESSION_ONLY_STORAGE_KEY, sessionOnly ? "true" : "false");
+  } catch {
+    // Ignore storage failures; the in-memory toggle still works.
+  }
+}
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -1169,16 +1191,26 @@ function startOfWeekMonday(date) {
   return normalized;
 }
 
-function buildEmptyActivityMapData(weeks = ACTIVITY_MAP_DEFAULT_WEEKS) {
+function getActivityMapMonthKey(date) {
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function formatActivityMapCalendarLabel(value) {
+  const date = parseDateOnlyValue(value);
+  if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("de-DE", { month: "long", year: "numeric" }).format(date);
+}
+
+function buildEmptyActivityMapData(weeks = ACTIVITY_MAP_DEFAULT_WEEKS, anchorDateValue = "") {
   const normalizedWeeks = Math.max(1, Number(weeks) || ACTIVITY_MAP_DEFAULT_WEEKS);
-  const today = new Date();
+  const today = parseDateOnlyValue(anchorDateValue) || new Date();
   today.setHours(0, 0, 0, 0);
 
-  const currentWeekStart = startOfWeekMonday(today);
-  const startDate = new Date(currentWeekStart);
-  startDate.setDate(currentWeekStart.getDate() - ((normalizedWeeks - 1) * 7));
-  const endDate = new Date(currentWeekStart);
-  endDate.setDate(currentWeekStart.getDate() + 6);
+  const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+  const startDate = startOfWeekMonday(monthStart);
+  const endDate = new Date(startDate);
+  endDate.setDate(startDate.getDate() + (normalizedWeeks * 7) - 1);
 
   const days = [];
   const cursor = new Date(startDate);
@@ -1193,6 +1225,8 @@ function buildEmptyActivityMapData(weeks = ACTIVITY_MAP_DEFAULT_WEEKS) {
   return {
     weeks: normalizedWeeks,
     todayDate: toDateOnlyValue(today),
+    currentMonth: getActivityMapMonthKey(today),
+    monthLabel: formatActivityMapCalendarLabel(toDateOnlyValue(today)),
     startDate: toDateOnlyValue(startDate),
     endDate: toDateOnlyValue(endDate),
     days,
@@ -1203,16 +1237,8 @@ function normalizeActivityMap(overview) {
   const rawMap = overview?.activityMap && typeof overview.activityMap === "object"
     ? overview.activityMap
     : {};
-  const normalizedWeeks = Math.max(1, Number(rawMap?.weeks) || ACTIVITY_MAP_DEFAULT_WEEKS);
-  const fallback = buildEmptyActivityMapData(normalizedWeeks);
-  const startDate = normalizeDateOnlyValue(rawMap?.startDate) || fallback.startDate;
-  const endDate = normalizeDateOnlyValue(rawMap?.endDate) || fallback.endDate;
-  const todayDate = normalizeDateOnlyValue(rawMap?.todayDate) || fallback.todayDate;
-  const start = parseDateOnlyValue(startDate);
-  const end = parseDateOnlyValue(endDate);
-  if (!(start instanceof Date) || Number.isNaN(start.getTime()) || !(end instanceof Date) || Number.isNaN(end.getTime())) {
-    return fallback;
-  }
+  const todayDate = normalizeDateOnlyValue(rawMap?.todayDate) || toDateOnlyValue(new Date());
+  const fallback = buildEmptyActivityMapData(ACTIVITY_MAP_DEFAULT_WEEKS, todayDate);
 
   const rawDays = Array.isArray(rawMap?.days) ? rawMap.days : [];
   const countByDate = new Map();
@@ -1223,6 +1249,8 @@ function normalizeActivityMap(overview) {
   });
 
   const days = [];
+  const start = parseDateOnlyValue(fallback.startDate);
+  const end = parseDateOnlyValue(fallback.endDate);
   const cursor = new Date(start);
   while (cursor <= end) {
     const dateValue = toDateOnlyValue(cursor);
@@ -1233,15 +1261,17 @@ function normalizeActivityMap(overview) {
     cursor.setDate(cursor.getDate() + 1);
   }
 
-  if (days.length !== normalizedWeeks * 7) {
+  if (days.length !== fallback.weeks * 7) {
     return fallback;
   }
 
   return {
-    weeks: normalizedWeeks,
-    todayDate,
-    startDate,
-    endDate,
+    weeks: fallback.weeks,
+    todayDate: fallback.todayDate,
+    currentMonth: fallback.currentMonth,
+    monthLabel: fallback.monthLabel,
+    startDate: fallback.startDate,
+    endDate: fallback.endDate,
     days,
   };
 }
@@ -1303,16 +1333,19 @@ function formatActivityMapMonthLabel(value) {
   return new Intl.DateTimeFormat("de-DE", { month: "short" }).format(date).replace(/\.$/, "");
 }
 
-function buildActivityMapCellLabel(dateValue, count, state) {
+function buildActivityMapCellLabel(dateValue, count, state, { isTargetDate = false } = {}) {
   const dateLabel = formatActivityMapTooltipDate(dateValue);
   if (!dateLabel) return "";
+  let label = "";
   if (state === "future") {
-    return `Noch nicht erreicht · ${dateLabel}`;
+    label = `${dateLabel}`;
+  } else if (count <= 0) {
+    label = `Keine Aktivität · ${dateLabel}`;
+  } else {
+    label = `${formatActivityCount(count)} Aktivität${count === 1 ? "" : "en"} · ${dateLabel}`;
   }
-  if (count <= 0) {
-    return `Keine Aktivität · ${dateLabel}`;
-  }
-  return `${formatActivityCount(count)} Aktivität${count === 1 ? "" : "en"} · ${dateLabel}`;
+
+  return isTargetDate ? `${label} · Zieldatum` : label;
 }
 
 function setActiveActivityMapCell(context, nextCell = null) {
@@ -1438,40 +1471,41 @@ function bindActivityMapTooltip(context) {
   });
 }
 
-function renderActivityMapBoard(container, overview) {
+function renderActivityMapBoard(container, overview, targetDate = "") {
   if (!container) return buildEmptyActivityMapData();
 
   const mapData = normalizeActivityMap(overview);
   const firstActivityDate = normalizeDateOnlyValue(overview?.firstActivityDate) || "";
+  const normalizedTargetDate = normalizeDateOnlyValue(targetDate);
   container.style.setProperty("--activity-map-weeks", String(mapData.weeks));
 
-  const monthCells = [];
-  let previousMonthKey = "";
-  for (let weekIndex = 0; weekIndex < mapData.weeks; weekIndex += 1) {
-    const entry = mapData.days[weekIndex * 7] || null;
-    const date = parseDateOnlyValue(entry?.date);
-    const monthKey = date instanceof Date && !Number.isNaN(date.getTime())
-      ? `${date.getFullYear()}-${date.getMonth()}`
-      : `week-${weekIndex}`;
-    const label = monthKey !== previousMonthKey ? formatActivityMapMonthLabel(entry?.date) : "";
-    previousMonthKey = monthKey;
-
-    monthCells.push(`
-      <div class="dashboard-activity-map__month" style="grid-column:${weekIndex + 2};grid-row:1;">${escapeHtml(label)}</div>
-    `);
-  }
-
   const dayLabels = ACTIVITY_MAP_DAY_LABELS.map((label, dayIndex) => `
-    <div class="dashboard-activity-map__day-label" style="grid-column:1;grid-row:${dayIndex + 2};">${escapeHtml(label)}</div>
+    <div class="dashboard-activity-map__day-label" style="grid-column:${dayIndex + 1};grid-row:2;">${escapeHtml(label)}</div>
   `);
+
+  const calendarTitle = `
+    <div class="dashboard-activity-map__calendar-title" style="grid-column:1 / -1;grid-row:1;">${escapeHtml(mapData.monthLabel || "Aktivitätskalender")}</div>
+  `;
 
   const dayCells = mapData.days.map((entry, index) => {
     const dateValue = normalizeDateOnlyValue(entry?.date) || "";
     const count = Math.max(0, Number(entry?.count) || 0);
     const weekIndex = Math.floor(index / 7);
     const dayIndex = index % 7;
+    const date = parseDateOnlyValue(dateValue);
+    const dayNumber = date instanceof Date && !Number.isNaN(date.getTime()) ? String(date.getDate()) : "";
+    const monthKey = getActivityMapMonthKey(date);
+    const isTargetDate = Boolean(normalizedTargetDate && dateValue === normalizedTargetDate);
     let state = "tracked";
     const classes = ["dashboard-activity-map__cell"];
+
+    if (isTargetDate) {
+      classes.push("is-target-date");
+    }
+
+    if (monthKey && mapData.currentMonth && monthKey !== mapData.currentMonth) {
+      classes.push("is-outside-month");
+    }
 
     if (dateValue && mapData.todayDate && dateValue > mapData.todayDate) {
       state = "future";
@@ -1487,20 +1521,23 @@ function renderActivityMapBoard(container, overview) {
       classes.push("is-today");
     }
 
-    const label = buildActivityMapCellLabel(dateValue, count, state);
+    const label = buildActivityMapCellLabel(dateValue, count, state, { isTargetDate });
     return `
-      <span class="${classes.join(" ")}" style="grid-column:${weekIndex + 2};grid-row:${dayIndex + 2};" data-tooltip="${escapeHtml(label)}" data-date="${escapeHtml(dateValue)}" data-count="${escapeHtml(String(count))}" data-state="${escapeHtml(state)}" aria-label="${escapeHtml(label)}"></span>
+      <span class="${classes.join(" ")}" style="grid-column:${dayIndex + 1};grid-row:${weekIndex + 3};" data-tooltip="${escapeHtml(label)}" data-date="${escapeHtml(dateValue)}" data-count="${escapeHtml(String(count))}" data-state="${escapeHtml(state)}" aria-label="${escapeHtml(label)}">
+        <span class="dashboard-activity-map__date-number" aria-hidden="true">${escapeHtml(dayNumber)}</span>
+      </span>
     `;
   });
 
-  container.innerHTML = `${monthCells.join("")}${dayLabels.join("")}${dayCells.join("")}`;
+  container.innerHTML = `${calendarTitle}${dayLabels.join("")}${dayCells.join("")}`;
   return mapData;
 }
 
 function applyActivityMap(context, overview = null) {
   const summaryNode = context.elements.activityMapSummary;
   const targetNode = context.elements.activityMapTarget;
-  const mapData = renderActivityMapBoard(context.elements.activityMapBoard, overview);
+  const targetDate = normalizeDateOnlyValue(context.activeSession?.target_date);
+  const mapData = renderActivityMapBoard(context.elements.activityMapBoard, overview, targetDate);
   hideActivityMapTooltip(context);
   bindActivityMapTooltip(context);
   const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
@@ -1517,7 +1554,6 @@ function applyActivityMap(context, overview = null) {
   }
 
   if (targetNode) {
-    const targetDate = normalizeDateOnlyValue(context.activeSession?.target_date);
     if (targetDate) {
       targetNode.hidden = false;
       targetNode.textContent = `Ziel: ${formatDateOnlyLabel(targetDate)}`;
@@ -1766,10 +1802,10 @@ function applyProficiencyWorklist(context, overview = null) {
 
 function syncWorklistSessionToggle(context) {
   const toggle = context.elements.worklistSessionToggle;
-  const icon = context.elements.worklistSessionIcon;
   const sessionOnly = context.worklistSessionOnly !== false;
-  if (toggle) toggle.setAttribute("aria-checked", sessionOnly ? "true" : "false");
-  if (icon) icon.textContent = sessionOnly ? "✓" : "";
+  if (!toggle) return;
+  toggle.setAttribute("aria-checked", sessionOnly ? "true" : "false");
+  toggle.classList.toggle("is-active", sessionOnly);
 }
 
 function setupWorklistSessionToggle(context) {
@@ -1777,6 +1813,7 @@ function setupWorklistSessionToggle(context) {
   if (!toggle) return;
   toggle.addEventListener("click", () => {
     context.worklistSessionOnly = context.worklistSessionOnly === false;
+    writeWorklistSessionOnlyPreference(context.worklistSessionOnly !== false);
     applyProficiencyWorklist(context, context.activityOverview);
   });
   syncWorklistSessionToggle(context);
@@ -3915,7 +3952,6 @@ function createContext(root, lernbereiche) {
     worklistSummary: root.querySelector("[data-dashboard-worklist-summary]"),
     worklistList: root.querySelector("[data-dashboard-worklist-list]"),
     worklistSessionToggle: root.querySelector("[data-dashboard-worklist-session-toggle]"),
-    worklistSessionIcon: root.querySelector("[data-dashboard-worklist-session-icon]"),
     worklistStatusNode: document.getElementById("worklistStatus"),
     activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
     activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),
@@ -3950,7 +3986,7 @@ function createContext(root, lernbereiche) {
     retentionPersistedDraft: {},
     retentionIsSaving: false,
     hasRetentionEntries: false,
-    worklistSessionOnly: true,
+    worklistSessionOnly: readWorklistSessionOnlyPreference(),
     elements,
   };
 }
