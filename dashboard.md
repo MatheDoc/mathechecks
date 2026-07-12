@@ -5,10 +5,10 @@ description: Dashboard mit gemeinsamer Feed-Projektion fuer Session- und Wiederh
 page_context: Dashboard
 nav: dashboard
 body_class: page-dashboard
-page_css: /assets/css/dashboard.css?v=20260609-dashboard-columns
+page_css: /assets/css/dashboard.css?v=20260712-activity-quotes-two-col
 published: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260624-target-start-of-day
+module_script: /assets/js/modules/dashboard.js?v=20260712-activity-target-ring
 ---
 
 {% include dashboard/content.html %}

@@ -3,7 +3,7 @@ import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-
 import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate } from "../platform/progress-client.js?v=20260701-recall-quote-ui";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260711-speech-textarea-fix";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260701-recall-quote-popup";
@@ -1174,6 +1174,9 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
     });
   });
   enhanceSpeechInputs(root, ".recall-input-slot");
+  if (activityContext?.mode === "feed" && selectedSection) {
+    applyFeedFocusScope(root, selectedSection);
+  }
   bindCheckPositionPersistence(root, lernbereich, state);
   await renderMath(root);
 }

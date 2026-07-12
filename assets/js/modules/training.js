@@ -19,7 +19,7 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260711-speech-textarea-fix";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
@@ -1942,6 +1942,14 @@ export async function initTrainingModule({
       shell.taskHost.querySelectorAll(".check-viewport-item[data-check-id]")
     );
     finalizeTaskRender(shell.taskHost);
+
+    if (activityContext?.mode === "feed" && activeCheckId) {
+      const targetCard = Array.from(shell.taskHost.querySelectorAll(".check-viewport-item[data-check-id]"))
+        .find((card) => card.dataset.checkId === activeCheckId);
+      if (targetCard) {
+        applyFeedFocusScope(shell.taskHost, targetCard);
+      }
+    }
   }
 
   const preferredIdForBrowse =

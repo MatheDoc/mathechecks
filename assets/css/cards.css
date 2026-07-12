@@ -351,7 +351,7 @@ html.light .check-card {
     padding: 0;
     border: 0;
     background: transparent;
-    color: var(--teal);
+    color: var(--text-dim);
     box-shadow: none;
     border-radius: 999px;
 }
@@ -372,11 +372,11 @@ html.light .check-card {
 .feed-card-menu__trigger:disabled:focus-visible {
     background: transparent;
     box-shadow: none;
-    color: var(--teal);
+    color: var(--text-dim);
 }
 
 .feed-card-menu__trigger:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--teal) 70%, transparent);
+    outline: 2px solid color-mix(in srgb, var(--dcc-accent, var(--text)) 70%, transparent);
     outline-offset: 2px;
 }
 
@@ -399,13 +399,13 @@ html.light .check-card {
 }
 
 .feed-card-menu[data-feed-ready="true"] .feed-card-menu__svg {
-    color: var(--green);
-    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--green) 48%, transparent));
+    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--dcc-accent, var(--text)) 48%, transparent));
     animation: feed-icon-ready-pulse 900ms ease-in-out infinite;
 }
 
 .feed-card-menu[data-feed-ready="true"] .feed-card-menu__trigger {
     cursor: pointer;
+    color: var(--dcc-accent, var(--text));
 }
 
 .feed-card-menu[data-feed-ready="true"] .feed-card-menu__icon::after {
@@ -413,7 +413,7 @@ html.light .check-card {
     position: absolute;
     inset: -3px;
     border-radius: 999px;
-    border: 2px solid var(--green);
+    border: 2px solid var(--dcc-accent, var(--text));
     opacity: 0.5;
     animation: feed-icon-ready-ring 900ms ease-out infinite;
 }
@@ -451,7 +451,7 @@ html.light .check-card {
 }
 
 .card-complete-menu__trigger:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--green) 70%, transparent);
+    outline: 2px solid color-mix(in srgb, var(--dcc-accent, var(--text)) 70%, transparent);
     outline-offset: 2px;
 }
 
@@ -475,11 +475,11 @@ html.light .check-card {
 
 .card-complete-menu[data-complete-ready="true"] .card-complete-menu__trigger {
     cursor: pointer;
-    color: var(--green);
+    color: var(--dcc-accent, var(--text));
 }
 
 .card-complete-menu[data-complete-ready="true"] .card-complete-menu__svg {
-    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--green) 48%, transparent));
+    filter: drop-shadow(0 0 7px color-mix(in srgb, var(--dcc-accent, var(--text)) 48%, transparent));
     animation: feed-icon-ready-pulse 900ms ease-in-out infinite;
 }
 
@@ -488,7 +488,7 @@ html.light .check-card {
     position: absolute;
     inset: -3px;
     border-radius: 999px;
-    border: 2px solid var(--green);
+    border: 2px solid var(--dcc-accent, var(--text));
     opacity: 0.5;
     animation: feed-icon-ready-ring 900ms ease-out infinite;
 }
@@ -680,10 +680,53 @@ html.light .check-card {
     }
 }
 
+.check-card--feed-active {
+    border-color: color-mix(in srgb, var(--dcc-accent) 56%, var(--dcc-border));
+    box-shadow: var(--shadow-card, none), 0 0 0 2px color-mix(in srgb, var(--dcc-accent) 24%, transparent), 0 0 30px color-mix(in srgb, var(--dcc-accent) 14%, transparent);
+}
+
+.check-card--feed-active:hover {
+    border-color: color-mix(in srgb, var(--dcc-accent) 68%, var(--dcc-border));
+    box-shadow: var(--shadow-card, none), 0 0 0 2px color-mix(in srgb, var(--dcc-accent) 30%, transparent), 0 0 34px color-mix(in srgb, var(--dcc-accent) 18%, transparent);
+}
+
 .check-card--feed-active .self-check-actions,
 .check-card--feed-active .recall-prompt--self-check,
 .check-card--feed-active .module-flow-prompt--self-check {
     display: none;
+}
+
+[data-feed-readonly="true"].check-card,
+[data-feed-readonly="true"] .check-card {
+    --dcc-readonly-overlay: color-mix(in srgb, var(--bg) 38%, transparent);
+    filter: grayscale(0.18) saturate(0.82);
+}
+
+[data-feed-readonly="true"].check-card:hover,
+[data-feed-readonly="true"] .check-card:hover {
+    border-color: color-mix(in srgb, var(--dcc-border) 86%, var(--border));
+    box-shadow: var(--shadow-card, none);
+}
+
+[data-feed-readonly="true"].check-card::after,
+[data-feed-readonly="true"] .check-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    background: var(--dcc-readonly-overlay);
+    pointer-events: none;
+}
+
+html.light [data-feed-readonly="true"].check-card,
+html.light [data-feed-readonly="true"] .check-card {
+    --dcc-readonly-overlay: color-mix(in srgb, white 48%, transparent);
+}
+
+[data-feed-readonly="true"].check-card :is(button, input, textarea, select, summary, [role="button"], [contenteditable="true"]),
+[data-feed-readonly="true"] .check-card :is(button, input, textarea, select, summary, [role="button"], [contenteditable="true"]) {
+    cursor: default;
 }
 
 .check-card__actions-item--disabled,
@@ -774,6 +817,8 @@ html.light .check-card {
 @media (prefers-reduced-motion: reduce) {
     .feed-card-menu[data-feed-ready="true"] .feed-card-menu__svg,
     .feed-card-menu[data-feed-ready="true"] .feed-card-menu__icon::after,
+    .card-complete-menu[data-complete-ready="true"] .card-complete-menu__svg,
+    .card-complete-menu[data-complete-ready="true"] .card-complete-menu__icon::after,
     .check-card__actions-item--pending .check-card__actions-icon,
     .check-card__actions-item--icon-pulse .check-card__actions-icon {
         animation: none;
