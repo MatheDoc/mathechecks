@@ -398,6 +398,88 @@ body.page-dashboard .dashboard-panel__title {
   letter-spacing: 0.01em;
 }
 
+body.page-dashboard .dashboard-panel:has(.dashboard-panel__help[open]) {
+  z-index: 92;
+}
+
+body.page-dashboard .dashboard-panel__help {
+  position: relative;
+  display: inline-block;
+}
+
+body.page-dashboard .dashboard-panel__help-trigger {
+  list-style: none;
+  display: inline-grid;
+  place-items: center;
+  width: var(--dcc-header-action-size);
+  height: var(--dcc-header-action-size);
+  border: 0;
+  border-radius: 12px;
+  padding: 0;
+  background: transparent;
+  color: var(--dcc-accent, var(--dashboard-accent));
+  cursor: pointer;
+  transition: color 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
+}
+
+body.page-dashboard .dashboard-panel__help-trigger::-webkit-details-marker {
+  display: none;
+}
+
+body.page-dashboard .dashboard-panel__help-trigger:hover,
+body.page-dashboard .dashboard-panel__help-trigger:focus-visible,
+body.page-dashboard .dashboard-panel__help[open] .dashboard-panel__help-trigger {
+  outline: none;
+  color: var(--dashboard-accent);
+  background: color-mix(in srgb, var(--dashboard-accent) 12%, var(--surface-hi));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--dashboard-accent) 12%, transparent);
+}
+
+body.page-dashboard .dashboard-panel__help-trigger:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dashboard-accent) 18%, transparent);
+}
+
+body.page-dashboard .dashboard-panel__help-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  font-style: normal;
+  line-height: 1;
+}
+
+body.page-dashboard .dashboard-panel__help-popover {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  inline-size: min(280px, calc(100vw - 48px));
+  z-index: 96;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--dashboard-accent) 20%, var(--border));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--panel-solid) 94%, var(--dashboard-accent-soft));
+  color: var(--text-body);
+  box-shadow: 0 18px 42px color-mix(in srgb, black 24%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+body.page-dashboard .dashboard-panel__help-popover p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+html.light body.page-dashboard .dashboard-panel__help-popover {
+  background: color-mix(in srgb, white 96%, var(--dashboard-accent-soft));
+  border-color: color-mix(in srgb, var(--dashboard-accent) 20%, var(--border));
+  box-shadow: 0 16px 32px color-mix(in srgb, black 12%, transparent);
+}
+
 body.page-dashboard .dashboard-panel__summary {
   margin: 0;
   color: var(--text-dim);
