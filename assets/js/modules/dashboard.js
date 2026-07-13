@@ -3991,6 +3991,49 @@ function createContext(root, lernbereiche) {
   };
 }
 
+function initDashboardPanelHelp(root) {
+  if (!root) return;
+
+  const helpPanels = Array.from(root.querySelectorAll(".dashboard-panel__help"));
+  if (!helpPanels.length) return;
+
+  helpPanels.forEach((helpPanel) => {
+    helpPanel.addEventListener("toggle", () => {
+      if (!helpPanel.open) return;
+
+      helpPanels.forEach((otherPanel) => {
+        if (otherPanel !== helpPanel) {
+          otherPanel.removeAttribute("open");
+        }
+      });
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+
+    helpPanels.forEach((helpPanel) => {
+      if (helpPanel.open && !helpPanel.contains(target)) {
+        helpPanel.removeAttribute("open");
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+
+    const openHelpPanels = helpPanels.filter((helpPanel) => helpPanel.open);
+    if (!openHelpPanels.length) return;
+
+    event.preventDefault();
+    openHelpPanels.forEach((helpPanel) => {
+      helpPanel.removeAttribute("open");
+    });
+    openHelpPanels[0]?.querySelector("summary")?.focus();
+  });
+}
+
 export async function initDashboardModule() {
   const root = document.querySelector("[data-dashboard-root]");
   if (!root) return;
@@ -4003,6 +4046,7 @@ export async function initDashboardModule() {
   bindActionCardList(root.querySelector("[data-dashboard-session-list]"));
   bindActionCardList(root.querySelector("[data-dashboard-retention-list]"));
   initCardMenuDismiss(root);
+  initDashboardPanelHelp(root);
 
   const gebiete = parseJsonScript("gebiete-dashboard-data", []);
   const lernbereicheSource = parseJsonScript("lernbereiche-dashboard-data", []);
