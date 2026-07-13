@@ -2515,15 +2515,15 @@
         "Tipps": [
             {
                 "cue": "1. notwendige Bedingung",
-                "response": "$f'(x_0)=0$"
+                "response": "$f'(x)=0$"
             },
             {
                 "cue": "2. hinreichende Bedingung",
-                "response": "$f''(x_0)>0$ Tiefpunkt, $f''(x_0)<0$ Hochpunkt"
+                "response": "$f''(x)>0$ Tiefpunkt, $f''(x)<0$ Hochpunkt"
             },
             {
                 "cue": "3. $y$-Wert",
-                "response": "Extremstellen in $f$ einsetzen, $y_0=f(x_0)$"
+                "response": "Extremstellen in $f$ einsetzen, $y=f(x)$"
             }
         ]
     },
@@ -2574,7 +2574,7 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "falls $f'(x_0)=0$ und $f''(x_0)=0$",
+                "cue": "falls $f'(x)=0$ und $f''(x)=0$",
                 "response": "keine Entscheidung bzgl. Extremstellen möglich"
             },
             {
@@ -2607,15 +2607,15 @@
         "Tipps": [
             {
                 "cue": "1. notwendige Bedingung",
-                "response": "$f''(x_0)=0$"
+                "response": "$f''(x)=0$"
             },
             {
                 "cue": "2. hinreichende Bedingung",
-                "response": "$f'''(x_0)>0$ min. Steigung, $f'''(x_0)<0$ max. Steigung"
+                "response": "$f'''(x)>0$ min. Steigung, $f'''(x)<0$ max. Steigung"
             },
             {
                 "cue": "3. $y$-Wert",
-                "response": "Extremstellen in $f$ einsetzen, $y_0=f(x_0)$"
+                "response": "Extremstellen in $f$ einsetzen, $y=f(x)$"
             }
         ]
     },
@@ -2666,7 +2666,7 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "falls $f''(x_0)=0$ und $f'''(x_0)=0$",
+                "cue": "falls $f''(x)=0$ und $f'''(x)=0$",
                 "response": "keine Entscheidung bzgl. Wendestellen möglich"
             },
             {
@@ -3718,7 +3718,7 @@
                 "response": "$x_0$ in Funktionsgleichung einsetzen"
             },
             {
-                "cue": "falls $f(x_0) = y_0$",
+                "cue": "falls $y_0 = f(x_0)$",
                 "response": "Punkt liegt auf dem Graphen"
             },
             {
@@ -3746,11 +3746,11 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Funktionswert",
+                "cue": "Funktionswert berechnen, $x_0$ gegeben",
                 "response": "$x_0$ in $f(x) = mx + b$ einsetzen"
             },
             {
-                "cue": "Umkehrwert",
+                "cue": "Umkehrwert berechnen, $y_0$ gegeben",
                 "response": "$f(x) = y_0$ setzen und nach $x$ auflösen"
             }
         ]
@@ -4058,11 +4058,11 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Funktionswert",
-                "response": "$x_0$ einsetzen und berechnen"
+                "cue": "Funktionswert berechnen, $x_0$ gegeben",
+                "response": "$x_0$ in $f(x)$ einsetzen und berechnen"
             },
             {
-                "cue": "Umkehrwert",
+                "cue": "Umkehrwert berechnen, $y_0$ gegeben",
                 "response": "$f(x) = y_0$ setzen und nach $x$ auflösen"
             },
             {
