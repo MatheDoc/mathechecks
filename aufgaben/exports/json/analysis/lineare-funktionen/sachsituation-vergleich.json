@@ -1,342 +1,302 @@
 [
   {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 100 € und laufende Betriebskosten von 2 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 5 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n</ul>",
+    "einleitung": "Ein Streamingdienst stellt zwei Download-Abos zur Wahl:\n\n<ul>\n<li>Abo Basis kostet 12 € im Monat und 4 € pro heruntergeladenem Film.</li>\n<li>Beim Abo Premium ist die monatliche Grundgebühr um 16 € höher als beim Abo Basis, jeder Film kostet dafür 2 € weniger.</li>\n</ul>",
     "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 95 Betriebsstunden ist günstiger:",
-      "Bei mehr als 95 Betriebsstunden ist günstiger:"
+      "Bestimmen Sie die Gleichung der Funktion $K_B(x)$, die die monatlichen Kosten im Abo Basis in Euro in Abhängigkeit von der Anzahl $x$ heruntergeladener Filme pro Monat angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die monatlichen Kosten im Abo Premium in Euro in Abhängigkeit von der Anzahl $x$ heruntergeladener Filme pro Monat angibt.",
+      "Bestimmen Sie die Filmzahl, bei der beide Abos gleich teuer sind.",
+      "In einem Monat werden 12 Filme heruntergeladen. Entscheiden Sie, welches Abo günstiger ist."
     ],
     "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=5,00:0,01}",
-      "$ t = ${1:NUMERICAL:=95,00:0,01}",
-      "{1:MC:~A~=B}",
-      "{1:MC:~=A~B}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 50 € und 8 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 5 € und 10 € pro Kursbesuch.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für FitActive",
-      "Gleichung für SportPlus",
-      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
-      "Bei weniger als 22,5 Kursbesuchen ist günstiger:",
-      "Bei mehr als 22,5 Kursbesuchen ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_F(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot x + ${1:NUMERICAL:=5,00:0,01}",
-      "$ x = ${1:NUMERICAL:=22,50:0,01}",
-      "{1:MC:~FitActive~=SportPlus}",
-      "{1:MC:~=FitActive~SportPlus}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 0 € und 1,5 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 15 € und 1 Cent pro verbrauchter kWh.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für GrünStrom",
-      "Gleichung für StadtEnergie",
-      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
-      "Bei einem Verbrauch unter 30 kWh ist günstiger:",
-      "Bei einem Verbrauch über 30 kWh ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_G(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=0,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=1,00:0,01}$ \\cdot x + ${1:NUMERICAL:=15,00:0,01}",
-      "$ x = ${1:NUMERICAL:=30,00:0,01}",
-      "{1:MC:~=GrünStrom~StadtEnergie}",
-      "{1:MC:~GrünStrom~=StadtEnergie}"
-    ]
-  },
-  {
-    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 20 € und 8 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 80 € und 6 € pro heruntergeladenem Film.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für Basis",
-      "Gleichung für Premium",
-      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
-      "Bei weniger als 30 Filmen ist günstiger:",
-      "Bei mehr als 30 Filmen ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_B(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
-      "$ x = ${1:NUMERICAL:=30,00:0,01}",
-      "{1:MC:~=Basis~Premium}",
+      "$ K_B(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=12,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=28,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
       "{1:MC:~Basis~=Premium}"
     ]
   },
   {
-    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 40 € und 4 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 50 € und 3 € pro Kursbesuch.</li>\n</ul>",
+    "einleitung": "Ein Betrieb vergleicht zwei Maschinen für eine geplante Produktion:\n\n<ul>\n<li>Maschine A kostet in der Anschaffung 120 € und verursacht 9 € Betriebskosten pro Stunde.</li>\n<li>Maschine B kostet in der Anschaffung 220 € und verursacht 4 € Betriebskosten pro Stunde.</li>\n</ul>",
     "fragen": [
-      "Gleichung für FitActive",
-      "Gleichung für SportPlus",
-      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
-      "Bei weniger als 10 Kursbesuchen ist günstiger:",
-      "Bei mehr als 10 Kursbesuchen ist günstiger:"
+      "Bestimmen Sie die Gleichung der Funktion $K_A(t)$, die die Gesamtkosten von Maschine A in Euro in Abhängigkeit von der Nutzungsdauer $t$ in Betriebsstunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_B(t)$, die die Gesamtkosten von Maschine B in Euro in Abhängigkeit von der Nutzungsdauer $t$ in Betriebsstunden angibt.",
+      "Bestimmen Sie die Nutzungsdauer, bei der beide Maschinen gleich hohe Gesamtkosten haben.",
+      "Die Maschine soll 30 h laufen. Entscheiden Sie, welche Maschine kostengünstiger ist."
     ],
     "antworten": [
-      "$ K_F(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ x = ${1:NUMERICAL:=10,00:0,01}",
-      "{1:MC:~=FitActive~SportPlus}",
-      "{1:MC:~FitActive~=SportPlus}"
+      "$ K_A(t) = ${1:NUMERICAL:=9,00:0,01}$ \\cdot t + ${1:NUMERICAL:=120,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot t + ${1:NUMERICAL:=220,00:0,01}",
+      "$ t = ${1:NUMERICAL:=20,00:0,01}",
+      "{1:MC:~Maschine A~=Maschine B}"
     ]
   },
   {
-    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 10 € und 5 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 80 € und 2,5 € pro 100 Flyer.</li>\n</ul>",
+    "einleitung": "Zwei Fahrradverleihe bieten Preise für Ausflüge an:\n\n<ul>\n<li>RadPunkt verlangt 4 € Servicepauschale und 6 € pro Stunde.</li>\n<li>BikeHafen verlangt 12 € Servicepauschale und 4 € pro Stunde.</li>\n</ul>",
     "fragen": [
-      "Gleichung für DruckExpress",
-      "Gleichung für PrintProfi",
-      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
-      "Bei weniger als 28 Bestelleinheiten ist günstiger:",
-      "Bei mehr als 28 Bestelleinheiten ist günstiger:"
+      "Bestimmen Sie die Gleichung der Funktion $K_R(t)$, die die Ausleihkosten bei RadPunkt in Euro in Abhängigkeit von der Ausleihdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_B(t)$, die die Ausleihkosten bei BikeHafen in Euro in Abhängigkeit von der Ausleihdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Ausleihdauer, bei der beide Fahrradverleihe gleich teuer sind.",
+      "Ein Fahrrad wird für 6 h ausgeliehen. Entscheiden Sie, welcher Verleih günstiger ist."
     ],
     "antworten": [
-      "$ K_D(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
-      "$ x = ${1:NUMERICAL:=28,00:0,01}",
-      "{1:MC:~=DruckExpress~PrintProfi}",
-      "{1:MC:~DruckExpress~=PrintProfi}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 0 € und 10 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 30 € und 5 € pro 100 Flyer.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für DruckExpress",
-      "Gleichung für PrintProfi",
-      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
-      "Bei weniger als 6 Bestelleinheiten ist günstiger:",
-      "Bei mehr als 6 Bestelleinheiten ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_D(x) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot x + ${1:NUMERICAL:=0,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=30,00:0,01}",
-      "$ x = ${1:NUMERICAL:=6,00:0,01}",
-      "{1:MC:~=DruckExpress~PrintProfi}",
-      "{1:MC:~DruckExpress~=PrintProfi}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 50 € und 2,5 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 80 € und 1 Cent pro verbrauchter kWh.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für GrünStrom",
-      "Gleichung für StadtEnergie",
-      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
-      "Bei einem Verbrauch unter 20 kWh ist günstiger:",
-      "Bei einem Verbrauch über 20 kWh ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_G(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=1,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
-      "$ x = ${1:NUMERICAL:=20,00:0,01}",
-      "{1:MC:~=GrünStrom~StadtEnergie}",
-      "{1:MC:~GrünStrom~=StadtEnergie}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Druckereien bieten Angebote für den Druck von Flyern an:\n\n<ul>\n<li>DruckExpress: Einrichtungspauschale 50 € und 2 € pro 100 Flyer.</li>\n<li>PrintProfi: Einrichtungspauschale 30 € und 4 € pro 100 Flyer.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für DruckExpress",
-      "Gleichung für PrintProfi",
-      "Ab welcher Bestellmenge (in 100 Flyer) sind die Kosten beider Druckereien gleich hoch?",
-      "Bei weniger als 10 Bestelleinheiten ist günstiger:",
-      "Bei mehr als 10 Bestelleinheiten ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_D(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=30,00:0,01}",
-      "$ x = ${1:NUMERICAL:=10,00:0,01}",
-      "{1:MC:~DruckExpress~=PrintProfi}",
-      "{1:MC:~=DruckExpress~PrintProfi}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 50 € und 4 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 10 € und 5 Cent pro verbrauchter kWh.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für GrünStrom",
-      "Gleichung für StadtEnergie",
-      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
-      "Bei einem Verbrauch unter 40 kWh ist günstiger:",
-      "Bei einem Verbrauch über 40 kWh ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_G(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
-      "$ x = ${1:NUMERICAL:=40,00:0,01}",
-      "{1:MC:~GrünStrom~=StadtEnergie}",
-      "{1:MC:~=GrünStrom~StadtEnergie}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Energieversorger bieten Stromtarife mit unterschiedlicher Preisstruktur an:\n\n<ul>\n<li>GrünStrom: monatlicher Grundpreis 80 € und 2 Cent pro verbrauchter kWh.</li>\n<li>StadtEnergie: monatlicher Grundpreis 40 € und 3 Cent pro verbrauchter kWh.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für GrünStrom",
-      "Gleichung für StadtEnergie",
-      "Ab wie vielen kWh sind die monatlichen Kosten beider Tarife gleich hoch?",
-      "Bei einem Verbrauch unter 40 kWh ist günstiger:",
-      "Bei einem Verbrauch über 40 kWh ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_G(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
-      "$ x = ${1:NUMERICAL:=40,00:0,01}",
-      "{1:MC:~GrünStrom~=StadtEnergie}",
-      "{1:MC:~=GrünStrom~StadtEnergie}"
-    ]
-  },
-  {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 30 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 100 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 35 Betriebsstunden ist günstiger:",
-      "Bei mehr als 35 Betriebsstunden ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
-      "$ t = ${1:NUMERICAL:=35,00:0,01}",
-      "{1:MC:~=A~B}",
-      "{1:MC:~A~=B}"
-    ]
-  },
-  {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 100 € und laufende Betriebskosten von 3 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 10 € und laufende Betriebskosten von 4 € pro Stunde.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 90 Betriebsstunden ist günstiger:",
-      "Bei mehr als 90 Betriebsstunden ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
-      "$ t = ${1:NUMERICAL:=90,00:0,01}",
-      "{1:MC:~A~=B}",
-      "{1:MC:~=A~B}"
-    ]
-  },
-  {
-    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 20 € und 2,5 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 40 € und 2 € pro heruntergeladenem Film.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für Basis",
-      "Gleichung für Premium",
-      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
-      "Bei weniger als 40 Filmen ist günstiger:",
-      "Bei mehr als 40 Filmen ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_B(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
-      "$ x = ${1:NUMERICAL:=40,00:0,01}",
-      "{1:MC:~=Basis~Premium}",
-      "{1:MC:~Basis~=Premium}"
-    ]
-  },
-  {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 40 € und laufende Betriebskosten von 2 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 10 € und laufende Betriebskosten von 6 € pro Stunde.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 7,5 Betriebsstunden ist günstiger:",
-      "Bei mehr als 7,5 Betriebsstunden ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot t + ${1:NUMERICAL:=40,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
-      "$ t = ${1:NUMERICAL:=7,50:0,01}",
-      "{1:MC:~A~=B}",
-      "{1:MC:~=A~B}"
-    ]
-  },
-  {
-    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 5 € und 4 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 10 € und 2 € pro Kursbesuch.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für FitActive",
-      "Gleichung für SportPlus",
-      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
-      "Bei weniger als 2,5 Kursbesuchen ist günstiger:",
-      "Bei mehr als 2,5 Kursbesuchen ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_F(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=5,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
-      "$ x = ${1:NUMERICAL:=2,50:0,01}",
-      "{1:MC:~=FitActive~SportPlus}",
-      "{1:MC:~FitActive~=SportPlus}"
-    ]
-  },
-  {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 30 € und laufende Betriebskosten von 6 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 40 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 10 Betriebsstunden ist günstiger:",
-      "Bei mehr als 10 Betriebsstunden ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=40,00:0,01}",
-      "$ t = ${1:NUMERICAL:=10,00:0,01}",
-      "{1:MC:~=A~B}",
-      "{1:MC:~A~=B}"
-    ]
-  },
-  {
-    "einleitung": "Für einen Streaming-Dienst stehen zwei Abomodelle zur Auswahl:\n\n<ul>\n<li>Abo Basis: monatliche Grundgebühr 40 € und 8 € pro heruntergeladenem Film.</li>\n<li>Abo Premium: monatliche Grundgebühr 50 € und 4 € pro heruntergeladenem Film.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für Basis",
-      "Gleichung für Premium",
-      "Ab wie vielen Filmen sind die monatlichen Kosten beider Abos gleich hoch?",
-      "Bei weniger als 2,5 Filmen ist günstiger:",
-      "Bei mehr als 2,5 Filmen ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_B(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
-      "$ K_P(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ x = ${1:NUMERICAL:=2,50:0,01}",
-      "{1:MC:~=Basis~Premium}",
-      "{1:MC:~Basis~=Premium}"
-    ]
-  },
-  {
-    "einleitung": "Ein Betrieb vergleicht die Gesamtkosten zweier Maschinen über ihre Nutzungsdauer:\n\n<ul>\n<li>Maschine A: Anschaffungskosten 80 € und laufende Betriebskosten von 10 € pro Stunde.</li>\n<li>Maschine B: Anschaffungskosten 100 € und laufende Betriebskosten von 5 € pro Stunde.</li>\n</ul>",
-    "fragen": [
-      "Gleichung für A",
-      "Gleichung für B",
-      "Nach wie vielen Betriebsstunden sind die Gesamtkosten beider Maschinen gleich hoch?",
-      "Bei weniger als 4 Betriebsstunden ist günstiger:",
-      "Bei mehr als 4 Betriebsstunden ist günstiger:"
-    ],
-    "antworten": [
-      "$ K_A(t) = ${1:NUMERICAL:=10,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
-      "$ K_B(t) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot t + ${1:NUMERICAL:=100,00:0,01}",
+      "$ K_R(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=4,00:0,01}",
+      "$ K_B(t) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot t + ${1:NUMERICAL:=12,00:0,01}",
       "$ t = ${1:NUMERICAL:=4,00:0,01}",
-      "{1:MC:~=A~B}",
-      "{1:MC:~A~=B}"
+      "{1:MC:~RadPunkt~=BikeHafen}"
     ]
   },
   {
-    "einleitung": "Zwei Fitnessstudios werben mit unterschiedlichen Mitgliedschaftsmodellen:\n\n<ul>\n<li>FitActive: monatliche Grundgebühr 15 € und 2,5 € pro Kursbesuch.</li>\n<li>SportPlus: monatliche Grundgebühr 50 € und 1,5 € pro Kursbesuch.</li>\n</ul>",
+    "einleitung": "Zwei Energieversorger bieten Tarife für Privathaushalte an:\n\n<ul>\n<li>GrünStrom verlangt 6 € Grundpreis pro Monat und 36 Cent pro kWh.</li>\n<li>Bei StadtEnergie ist der monatliche Grundpreis um 12 € höher als bei GrünStrom, der Arbeitspreis dafür um 6 Cent niedriger.</li>\n</ul>",
     "fragen": [
-      "Gleichung für FitActive",
-      "Gleichung für SportPlus",
-      "Ab wie vielen Kursbesuchen sind die monatlichen Kosten beider Studios gleich hoch?",
-      "Bei weniger als 35 Kursbesuchen ist günstiger:",
-      "Bei mehr als 35 Kursbesuchen ist günstiger:"
+      "Bestimmen Sie die Gleichung der Funktion $K_G(x)$, die die monatlichen Stromkosten bei GrünStrom in Euro in Abhängigkeit von dem monatlichen Stromverbrauch $x$ in Kilowattstunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die monatlichen Stromkosten bei StadtEnergie in Euro in Abhängigkeit von dem monatlichen Stromverbrauch $x$ in Kilowattstunden angibt.",
+      "Bestimmen Sie den Stromverbrauch, bei dem beide Tarife gleich hohe monatliche Kosten verursachen.",
+      "Ein Haushalt verbraucht monatlich 300 kWh. Entscheiden Sie, welcher Tarif günstiger ist."
     ],
     "antworten": [
-      "$ K_F(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=15,00:0,01}",
-      "$ K_S(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
-      "$ x = ${1:NUMERICAL:=35,00:0,01}",
-      "{1:MC:~=FitActive~SportPlus}",
+      "$ K_G(x) = ${1:NUMERICAL:=0,36:0,01}$ \\cdot x + ${1:NUMERICAL:=6,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=0,30:0,01}$ \\cdot x + ${1:NUMERICAL:=18,00:0,01}",
+      "$ x = ${1:NUMERICAL:=200,00:0,01}",
+      "{1:MC:~GrünStrom~=StadtEnergie}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Copyshops bieten Tarife für Farbkopien an:\n\n<ul>\n<li>Copy Schnell verlangt 2 € Auftragspauschale und 0,18 € pro Farbkopie.</li>\n<li>Copy Groß verlangt 10 € Auftragspauschale und 0,1 € pro Farbkopie.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die Kopierkosten bei Copy Schnell in Euro in Abhängigkeit von der Anzahl $x$ angefertigter Farbkopien angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_G(x)$, die die Kopierkosten bei Copy Groß in Euro in Abhängigkeit von der Anzahl $x$ angefertigter Farbkopien angibt.",
+      "Bestimmen Sie die Kopienzahl, bei der beide Copyshops gleich teuer sind.",
+      "Ein Auftrag umfasst 150 Farbkopien. Entscheiden Sie, welcher Copyshop günstiger ist."
+    ],
+    "antworten": [
+      "$ K_S(x) = ${1:NUMERICAL:=0,18:0,01}$ \\cdot x + ${1:NUMERICAL:=2,00:0,01}",
+      "$ K_G(x) = ${1:NUMERICAL:=0,10:0,01}$ \\cdot x + ${1:NUMERICAL:=10,00:0,01}",
+      "$ x = ${1:NUMERICAL:=100,00:0,01}",
+      "{1:MC:~Copy Schnell~=Copy Groß}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Lieferdienste bieten Mitgliedschaften für Essensbestellungen an:\n\n<ul>\n<li>MealBasic verlangt 4 € Monatsgebühr und 3 € Lieferkosten pro Bestellung.</li>\n<li>Die Monatsgebühr bei MealPlus ist um 14 € höher als bei MealBasic, pro Bestellung fallen dafür 2 € weniger an.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_B(x)$, die die monatlichen Kosten bei MealBasic in Euro in Abhängigkeit von der Anzahl $x$ Bestellungen pro Monat angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die monatlichen Kosten bei MealPlus in Euro in Abhängigkeit von der Anzahl $x$ Bestellungen pro Monat angibt.",
+      "Bestimmen Sie die Bestellanzahl, bei der beide Lieferdienstmodelle gleich teuer sind.",
+      "In einem Monat werden 10 Bestellungen aufgegeben. Entscheiden Sie, welches Modell günstiger ist."
+    ],
+    "antworten": [
+      "$ K_B(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=4,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=1,00:0,01}$ \\cdot x + ${1:NUMERICAL:=18,00:0,01}",
+      "$ x = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:MC:~MealBasic~=MealPlus}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Umzugsunternehmen geben Angebote für einen Transport ab:\n\n<ul>\n<li>MoveDirekt verlangt 60 € Bereitstellungspauschale und 2,2 € pro Kilometer.</li>\n<li>Bei StadtUmzug ist die Bereitstellungspauschale um 80 € höher als bei MoveDirekt, der Kilometerpreis dafür um 0,8 € niedriger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_M(x)$, die die Umzugskosten bei MoveDirekt in Euro in Abhängigkeit von der Transportstrecke $x$ in Kilometern angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die Umzugskosten bei StadtUmzug in Euro in Abhängigkeit von der Transportstrecke $x$ in Kilometern angibt.",
+      "Bestimmen Sie die Transportstrecke, bei der beide Umzugsunternehmen gleich teuer sind.",
+      "Der Transportweg beträgt 50 km. Entscheiden Sie, welches Unternehmen günstiger ist."
+    ],
+    "antworten": [
+      "$ K_M(x) = ${1:NUMERICAL:=2,20:0,01}$ \\cdot x + ${1:NUMERICAL:=60,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=1,40:0,01}$ \\cdot x + ${1:NUMERICAL:=140,00:0,01}",
+      "$ x = ${1:NUMERICAL:=100,00:0,01}",
+      "{1:MC:~=MoveDirekt~StadtUmzug}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Schwimmbadpumpen können ein Becken mit Wasser füllen:\n\n<ul>\n<li>Pumpe A ist bereits mit 20 m³ Vorfüllung verbunden und fördert 8 m³ pro Stunde.</li>\n<li>Pumpe B startet bei 0 m³ Vorfüllung und fördert 12 m³ pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $W_A(t)$, die das erreichte Wasservolumen mit Pumpe A in Kubikmetern in Abhängigkeit von der Füllzeit $t$ in Stunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $W_B(t)$, die das erreichte Wasservolumen mit Pumpe B in Kubikmetern in Abhängigkeit von der Füllzeit $t$ in Stunden angibt.",
+      "Bestimmen Sie die Füllzeit, nach der beide Pumpenmodelle dasselbe Wasservolumen ergeben.",
+      "Das Becken soll nach 3 h möglichst viel Wasser enthalten. Entscheiden Sie, welche Pumpe vorteilhafter ist."
+    ],
+    "antworten": [
+      "$ W_A(t) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=20,00:0,01}",
+      "$ W_B(t) = ${1:NUMERICAL:=12,00:0,01}$ \\cdot t + ${1:NUMERICAL:=0,00:0,01}",
+      "$ t = ${1:NUMERICAL:=5,00:0,01}",
+      "{1:MC:~Pumpe A~=Pumpe B}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Parkhäuser in der Innenstadt verwenden unterschiedliche Preisstrukturen:\n\n<ul>\n<li>Parkhaus Mitte berechnet 2 € beim Einfahren und 3 € pro Stunde.</li>\n<li>Parkhaus Galerie berechnet 8 € beim Einfahren und 2 € pro Stunde.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_M(t)$, die die Parkkosten im Parkhaus Mitte in Euro in Abhängigkeit von der Parkdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_G(t)$, die die Parkkosten im Parkhaus Galerie in Euro in Abhängigkeit von der Parkdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Parkdauer, bei der beide Parkhäuser gleich teuer sind.",
+      "Ein Auto soll 3 h geparkt werden. Entscheiden Sie, welches Parkhaus günstiger ist."
+    ],
+    "antworten": [
+      "$ K_M(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=2,00:0,01}",
+      "$ K_G(t) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot t + ${1:NUMERICAL:=8,00:0,01}",
+      "$ t = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:MC:~=Parkhaus Mitte~Parkhaus Galerie}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Nachhilfeangebote unterscheiden sich bei Anfahrt und Stundenpreis:\n\n<ul>\n<li>LernMobil verlangt 10 € Anfahrtspauschale und 28 € pro Unterrichtsstunde.</li>\n<li>LernStudio verlangt 40 € Anfahrtspauschale und 22 € pro Unterrichtsstunde.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_M(t)$, die die Kosten bei LernMobil in Euro in Abhängigkeit von der Unterrichtszeit $t$ in Stunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die Kosten bei LernStudio in Euro in Abhängigkeit von der Unterrichtszeit $t$ in Stunden angibt.",
+      "Bestimmen Sie die Unterrichtszeit, bei der beide Nachhilfeangebote gleich teuer sind.",
+      "Geplant sind 8 h Nachhilfe. Entscheiden Sie, welches Angebot günstiger ist."
+    ],
+    "antworten": [
+      "$ K_M(t) = ${1:NUMERICAL:=28,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
+      "$ K_S(t) = ${1:NUMERICAL:=22,00:0,01}$ \\cdot t + ${1:NUMERICAL:=40,00:0,01}",
+      "$ t = ${1:NUMERICAL:=5,00:0,01}",
+      "{1:MC:~LernMobil~=LernStudio}"
+    ]
+  },
+  {
+    "einleitung": "Für regelmäßige Bahnfahrten werden zwei Ticketmodelle betrachtet:\n\n<ul>\n<li>Einzelticket-Modell: keine Monatsgebühr und 4 € pro Fahrt.</li>\n<li>Pendlerkarte: 50 € Monatsgebühr, dafür kostet jede Fahrt 2,5 € weniger als im Einzelticket-Modell.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_E(x)$, die die monatlichen Kosten beim Einzelticket-Modell in Euro in Abhängigkeit von der Anzahl $x$ Fahrten pro Monat angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die monatlichen Kosten mit Pendlerkarte in Euro in Abhängigkeit von der Anzahl $x$ Fahrten pro Monat angibt.",
+      "Bestimmen Sie die Fahrtenzahl, bei der beide Ticketmodelle gleich teuer sind.",
+      "Eine Person fährt monatlich 12 Fahrten. Entscheiden Sie, welches Ticketmodell günstiger ist."
+    ],
+    "antworten": [
+      "$ K_E(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=0,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=50,00:0,01}",
+      "$ x = ${1:NUMERICAL:=20,00:0,01}",
+      "{1:MC:~=Einzeltickets~Pendlerkarte}"
+    ]
+  },
+  {
+    "einleitung": "Für ein Schulfest werden zwei Cateringangebote verglichen:\n\n<ul>\n<li>Catering Klassik verlangt 120 € Organisationspauschale und 8 € pro Person.</li>\n<li>Catering Direkt verlangt 30 € Organisationspauschale und 11 € pro Person.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_K(x)$, die die Cateringkosten bei Catering Klassik in Euro in Abhängigkeit von der Anzahl $x$ angemeldeter Personen angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_D(x)$, die die Cateringkosten bei Catering Direkt in Euro in Abhängigkeit von der Anzahl $x$ angemeldeter Personen angibt.",
+      "Bestimmen Sie die Personenzahl, bei der beide Caterer gleich teuer sind.",
+      "Zum Schulfest werden 20 Personen erwartet. Entscheiden Sie, welches Cateringangebot günstiger ist."
+    ],
+    "antworten": [
+      "$ K_K(x) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot x + ${1:NUMERICAL:=120,00:0,01}",
+      "$ K_D(x) = ${1:NUMERICAL:=11,00:0,01}$ \\cdot x + ${1:NUMERICAL:=30,00:0,01}",
+      "$ x = ${1:NUMERICAL:=30,00:0,01}",
+      "{1:MC:~Catering Klassik~=Catering Direkt}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Fitnessstudios bieten Monatsmodelle für Kurse an:\n\n<ul>\n<li>FitActive verlangt 20 € Monatsbeitrag und 5 € pro Kursbesuch.</li>\n<li>Der Monatsbeitrag bei SportPlus ist um 20 € höher als bei FitActive, ein Kursbesuch kostet dafür 2,5 € weniger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_F(x)$, die die monatlichen Kosten bei FitActive in Euro in Abhängigkeit von der Anzahl $x$ besuchter Kurse pro Monat angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die monatlichen Kosten bei SportPlus in Euro in Abhängigkeit von der Anzahl $x$ besuchter Kurse pro Monat angibt.",
+      "Bestimmen Sie die Kursanzahl, bei der beide Studios gleich teuer sind.",
+      "Eine Person besucht monatlich 12 Kurse. Entscheiden Sie, welches Studio günstiger ist."
+    ],
+    "antworten": [
+      "$ K_F(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
+      "$ K_S(x) = ${1:NUMERICAL:=2,50:0,01}$ \\cdot x + ${1:NUMERICAL:=40,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
       "{1:MC:~FitActive~=SportPlus}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Softwarelizenzen werden für ein Team verglichen:\n\n<ul>\n<li>Team Basic kostet 20 € Grundgebühr und 14 € pro Nutzerlizenz.</li>\n<li>Bei Team Pro ist die Grundgebühr um 50 € höher als bei Team Basic, jede Nutzerlizenz kostet dafür 5 € weniger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_B(x)$, die die monatlichen Lizenzkosten für Team Basic in Euro in Abhängigkeit von der Anzahl $x$ benötigter Nutzerlizenzen angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die monatlichen Lizenzkosten für Team Pro in Euro in Abhängigkeit von der Anzahl $x$ benötigter Nutzerlizenzen angibt.",
+      "Bestimmen Sie die Nutzerzahl, bei der beide Softwarelizenzen gleich teuer sind.",
+      "Das Team benötigt 15 Lizenzen. Entscheiden Sie, welche Lizenz günstiger ist."
+    ],
+    "antworten": [
+      "$ K_B(x) = ${1:NUMERICAL:=14,00:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=9,00:0,01}$ \\cdot x + ${1:NUMERICAL:=70,00:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:MC:~Team Basic~=Team Pro}"
+    ]
+  },
+  {
+    "einleitung": "Für einen Tagesausflug werden zwei Mietwagenangebote verglichen:\n\n<ul>\n<li>CityCar verlangt 35 € Tagespauschale und 0,45 € pro gefahrenem Kilometer.</li>\n<li>Bei TourMobil ist die Tagespauschale um 20 € höher als bei CityCar, der Kilometerpreis dafür um 0,2 € niedriger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_C(x)$, die die Mietkosten bei CityCar in Euro in Abhängigkeit von der gefahrenen Strecke $x$ in Kilometern angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_T(x)$, die die Mietkosten bei TourMobil in Euro in Abhängigkeit von der gefahrenen Strecke $x$ in Kilometern angibt.",
+      "Bestimmen Sie die Fahrtstrecke, bei der beide Mietwagenangebote gleich teuer sind.",
+      "Die geplante Route ist 60 km lang. Entscheiden Sie, welches Mietwagenangebot günstiger ist."
+    ],
+    "antworten": [
+      "$ K_C(x) = ${1:NUMERICAL:=0,45:0,01}$ \\cdot x + ${1:NUMERICAL:=35,00:0,01}",
+      "$ K_T(x) = ${1:NUMERICAL:=0,25:0,01}$ \\cdot x + ${1:NUMERICAL:=55,00:0,01}",
+      "$ x = ${1:NUMERICAL:=100,00:0,01}",
+      "{1:MC:~=CityCar~TourMobil}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Veranstaltungsräume stehen für eine Feier zur Auswahl:\n\n<ul>\n<li>Raum Loft kostet 80 € Grundmiete und 45 € pro Nutzungsstunde.</li>\n<li>Raum Saal kostet 170 € Grundmiete und 30 € pro Nutzungsstunde.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_L(t)$, die die Mietkosten für Raum Loft in Euro in Abhängigkeit von der Mietdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die Mietkosten für Raum Saal in Euro in Abhängigkeit von der Mietdauer $t$ in Stunden angibt.",
+      "Bestimmen Sie die Mietdauer, bei der beide Räume gleich teuer sind.",
+      "Die Feier dauert 8 h. Entscheiden Sie, welcher Raum günstiger ist."
+    ],
+    "antworten": [
+      "$ K_L(t) = ${1:NUMERICAL:=45,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
+      "$ K_S(t) = ${1:NUMERICAL:=30,00:0,01}$ \\cdot t + ${1:NUMERICAL:=170,00:0,01}",
+      "$ t = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:MC:~Raum Loft~=Raum Saal}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Mobilfunkanbieter werben mit unterschiedlichen Datentarifen:\n\n<ul>\n<li>Connect S kostet 8 € Grundgebühr und 4 € pro Gigabyte.</li>\n<li>Bei Connect L ist die Grundgebühr um 20 € höher als bei Connect S, jedes Gigabyte kostet dafür 2,5 € weniger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die monatlichen Kosten bei Connect S in Euro in Abhängigkeit von der Datenmenge $x$ in Gigabyte angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_L(x)$, die die monatlichen Kosten bei Connect L in Euro in Abhängigkeit von der Datenmenge $x$ in Gigabyte angibt.",
+      "Bestimmen Sie die Datenmenge, bei der beide Mobilfunktarife gleich teuer sind.",
+      "Ein Kunde benötigt monatlich 12 GB Datenvolumen. Entscheiden Sie, welcher Tarif für ihn günstiger ist."
+    ],
+    "antworten": [
+      "$ K_S(x) = ${1:NUMERICAL:=4,00:0,01}$ \\cdot x + ${1:NUMERICAL:=8,00:0,01}",
+      "$ K_L(x) = ${1:NUMERICAL:=1,50:0,01}$ \\cdot x + ${1:NUMERICAL:=28,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:MC:~Connect S~=Connect L}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Cloudspeicher-Anbieter rechnen Speicherplatz unterschiedlich ab:\n\n<ul>\n<li>CloudStart verlangt 4 € Grundpreis und 5 € pro 100 GB Speicherplatz.</li>\n<li>CloudPro verlangt 28 € Grundpreis und 2 € pro 100 GB Speicherplatz.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_S(x)$, die die monatlichen Kosten bei CloudStart in Euro in Abhängigkeit von dem gebuchten Speicherplatz $x$ in Blöcken zu je 100 GB angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die monatlichen Kosten bei CloudPro in Euro in Abhängigkeit von dem gebuchten Speicherplatz $x$ in Blöcken zu je 100 GB angibt.",
+      "Bestimmen Sie die Speichermenge, bei der beide Cloudtarife gleich teuer sind.",
+      "Ein Softwareprojekt belegt 12 Blöcke à 100 GB. Entscheiden Sie, welcher Cloudtarif günstiger ist."
+    ],
+    "antworten": [
+      "$ K_S(x) = ${1:NUMERICAL:=5,00:0,01}$ \\cdot x + ${1:NUMERICAL:=4,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=2,00:0,01}$ \\cdot x + ${1:NUMERICAL:=28,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:MC:~CloudStart~=CloudPro}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Druckereien erstellen Flyer für eine Schulveranstaltung:\n\n<ul>\n<li>DruckExpress berechnet 20 € Einrichtungspauschale und 6 € pro 100 Flyer.</li>\n<li>PrintProfi berechnet 80 € Einrichtungspauschale und 3 € pro 100 Flyer.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_D(x)$, die die Druckkosten bei DruckExpress in Euro in Abhängigkeit von der Bestellmenge $x$ in Einheiten zu je 100 Flyern angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_P(x)$, die die Druckkosten bei PrintProfi in Euro in Abhängigkeit von der Bestellmenge $x$ in Einheiten zu je 100 Flyern angibt.",
+      "Bestimmen Sie die Bestellmenge, bei der beide Druckereien gleich teuer sind.",
+      "Die Schule bestellt 30 Hunderterpakete. Entscheiden Sie, welche Druckerei günstiger ist."
+    ],
+    "antworten": [
+      "$ K_D(x) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot x + ${1:NUMERICAL:=20,00:0,01}",
+      "$ K_P(x) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot x + ${1:NUMERICAL:=80,00:0,01}",
+      "$ x = ${1:NUMERICAL:=20,00:0,01}",
+      "{1:MC:~DruckExpress~=PrintProfi}"
+    ]
+  },
+  {
+    "einleitung": "Zwei Wartungsverträge für eine Heizungsanlage werden verglichen:\n\n<ul>\n<li>Vertrag Standard kostet 30 € Grundpauschale und 55 € pro Einsatzstunde.</li>\n<li>Beim Vertrag Komfort ist die Grundpauschale um 80 € höher als beim Vertrag Standard, jede Einsatzstunde kostet dafür 20 € weniger.</li>\n</ul>",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die jährlichen Wartungskosten im Vertrag Standard in Euro in Abhängigkeit von der Einsatzzeit $t$ in Stunden pro Jahr angibt.",
+      "Bestimmen Sie die Gleichung der Funktion $K_K(t)$, die die jährlichen Wartungskosten im Vertrag Komfort in Euro in Abhängigkeit von der Einsatzzeit $t$ in Stunden pro Jahr angibt.",
+      "Bestimmen Sie die Einsatzzeit, bei der beide Wartungsverträge gleich teuer sind.",
+      "Im Jahr werden 2 h Einsatzzeit erwartet. Entscheiden Sie, welcher Vertrag günstiger ist."
+    ],
+    "antworten": [
+      "$ K_S(t) = ${1:NUMERICAL:=55,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",
+      "$ K_K(t) = ${1:NUMERICAL:=35,00:0,01}$ \\cdot t + ${1:NUMERICAL:=110,00:0,01}",
+      "$ t = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:MC:~=Standard~Komfort}"
     ]
   }
 ]

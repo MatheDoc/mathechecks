@@ -406,7 +406,7 @@ $$
 \mu-d \leq X \leq \mu+d.
 $$
 
-Da $X$ nur ganzzahlige Werte annehmen kann, müssen die Intervallgrenzen danach gegebenfalls noch passend auf ganze Trefferzahlen übertragen werden.
+Da $X$ nur ganzzahlige Werte annehmen kann, müssen die Intervallgrenzen danach gegebenfalls noch passend auf ganze Trefferzahlen gerundet werden. Außerdem müssen wir beachten, ob nach Werten **innerhalb** oder **außerhalb** der Umgebung gefragt ist.
 
 {% include check-anker.html nummer=16 %}
 
@@ -428,7 +428,7 @@ $$
 \mu-c\sigma \leq X \leq \mu+c\sigma,
 $$
 
-wobei $c$ festlegt, wie breit die Umgebung ist. Auch hier ist anschließend wichtig, ob nach Werten **innerhalb** oder **außerhalb** dieser Umgebung gefragt ist.
+wobei $c$ festlegt, wie breit die Umgebung ist. 
 
 {% include check-anker.html nummer=18 %}
 
