@@ -20,7 +20,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_A(t)$, die die Gesamtkosten von Maschine A in Euro in Abhängigkeit von der Nutzungsdauer $t$ in Betriebsstunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_B(t)$, die die Gesamtkosten von Maschine B in Euro in Abhängigkeit von der Nutzungsdauer $t$ in Betriebsstunden angibt.",
       "Bestimmen Sie die Nutzungsdauer, bei der beide Maschinen gleich hohe Gesamtkosten haben.",
-      "Die Maschine soll 30 h laufen. Entscheiden Sie, welche Maschine kostengünstiger ist."
+      "Die Maschine soll 30 Stunden laufen. Entscheiden Sie, welche Maschine kostengünstiger ist."
     ],
     "antworten": [
       "$ K_A(t) = ${1:NUMERICAL:=9,00:0,01}$ \\cdot t + ${1:NUMERICAL:=120,00:0,01}",
@@ -35,7 +35,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_R(t)$, die die Ausleihkosten bei RadPunkt in Euro in Abhängigkeit von der Ausleihdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_B(t)$, die die Ausleihkosten bei BikeHafen in Euro in Abhängigkeit von der Ausleihdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Ausleihdauer, bei der beide Fahrradverleihe gleich teuer sind.",
-      "Ein Fahrrad wird für 6 h ausgeliehen. Entscheiden Sie, welcher Verleih günstiger ist."
+      "Ein Fahrrad wird für 6 Stunden ausgeliehen. Entscheiden Sie, welcher Verleih günstiger ist."
     ],
     "antworten": [
       "$ K_R(t) = ${1:NUMERICAL:=6,00:0,01}$ \\cdot t + ${1:NUMERICAL:=4,00:0,01}",
@@ -110,7 +110,7 @@
       "Bestimmen Sie die Gleichung der Funktion $W_A(t)$, die das erreichte Wasservolumen mit Pumpe A in Kubikmetern in Abhängigkeit von der Füllzeit $t$ in Stunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $W_B(t)$, die das erreichte Wasservolumen mit Pumpe B in Kubikmetern in Abhängigkeit von der Füllzeit $t$ in Stunden angibt.",
       "Bestimmen Sie die Füllzeit, nach der beide Pumpenmodelle dasselbe Wasservolumen ergeben.",
-      "Das Becken soll nach 3 h möglichst viel Wasser enthalten. Entscheiden Sie, welche Pumpe vorteilhafter ist."
+      "Das Becken soll nach 3 Stunden möglichst viel Wasser enthalten. Entscheiden Sie, welche Pumpe vorteilhafter ist."
     ],
     "antworten": [
       "$ W_A(t) = ${1:NUMERICAL:=8,00:0,01}$ \\cdot t + ${1:NUMERICAL:=20,00:0,01}",
@@ -125,7 +125,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_M(t)$, die die Parkkosten im Parkhaus Mitte in Euro in Abhängigkeit von der Parkdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_G(t)$, die die Parkkosten im Parkhaus Galerie in Euro in Abhängigkeit von der Parkdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Parkdauer, bei der beide Parkhäuser gleich teuer sind.",
-      "Ein Auto soll 3 h geparkt werden. Entscheiden Sie, welches Parkhaus günstiger ist."
+      "Ein Auto soll 3 Stunden geparkt werden. Entscheiden Sie, welches Parkhaus günstiger ist."
     ],
     "antworten": [
       "$ K_M(t) = ${1:NUMERICAL:=3,00:0,01}$ \\cdot t + ${1:NUMERICAL:=2,00:0,01}",
@@ -140,7 +140,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_M(t)$, die die Kosten bei LernMobil in Euro in Abhängigkeit von der Unterrichtszeit $t$ in Stunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die Kosten bei LernStudio in Euro in Abhängigkeit von der Unterrichtszeit $t$ in Stunden angibt.",
       "Bestimmen Sie die Unterrichtszeit, bei der beide Nachhilfeangebote gleich teuer sind.",
-      "Geplant sind 8 h Nachhilfe. Entscheiden Sie, welches Angebot günstiger ist."
+      "Geplant sind 8 Stunden Nachhilfe. Entscheiden Sie, welches Angebot günstiger ist."
     ],
     "antworten": [
       "$ K_M(t) = ${1:NUMERICAL:=28,00:0,01}$ \\cdot t + ${1:NUMERICAL:=10,00:0,01}",
@@ -230,7 +230,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_L(t)$, die die Mietkosten für Raum Loft in Euro in Abhängigkeit von der Mietdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die Mietkosten für Raum Saal in Euro in Abhängigkeit von der Mietdauer $t$ in Stunden angibt.",
       "Bestimmen Sie die Mietdauer, bei der beide Räume gleich teuer sind.",
-      "Die Feier dauert 8 h. Entscheiden Sie, welcher Raum günstiger ist."
+      "Die Feier dauert 8 Stunden. Entscheiden Sie, welcher Raum günstiger ist."
     ],
     "antworten": [
       "$ K_L(t) = ${1:NUMERICAL:=45,00:0,01}$ \\cdot t + ${1:NUMERICAL:=80,00:0,01}",
@@ -290,7 +290,7 @@
       "Bestimmen Sie die Gleichung der Funktion $K_S(t)$, die die jährlichen Wartungskosten im Vertrag Standard in Euro in Abhängigkeit von der Einsatzzeit $t$ in Stunden pro Jahr angibt.",
       "Bestimmen Sie die Gleichung der Funktion $K_K(t)$, die die jährlichen Wartungskosten im Vertrag Komfort in Euro in Abhängigkeit von der Einsatzzeit $t$ in Stunden pro Jahr angibt.",
       "Bestimmen Sie die Einsatzzeit, bei der beide Wartungsverträge gleich teuer sind.",
-      "Im Jahr werden 2 h Einsatzzeit erwartet. Entscheiden Sie, welcher Vertrag günstiger ist."
+      "Im Jahr werden 2 Stunden Einsatzzeit erwartet. Entscheiden Sie, welcher Vertrag günstiger ist."
     ],
     "antworten": [
       "$ K_S(t) = ${1:NUMERICAL:=55,00:0,01}$ \\cdot t + ${1:NUMERICAL:=30,00:0,01}",

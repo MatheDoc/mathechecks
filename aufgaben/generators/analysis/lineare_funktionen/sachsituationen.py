@@ -26,7 +26,20 @@ def _fmt_dez(value: float) -> str:
     return f"{value:.2f}".rstrip("0").rstrip(".").replace(".", ",")
 
 
+# Einheiten-Kürzel, die in Fließtext ausgeschrieben werden (Singular, Plural).
+_UNIT_LANGFORM = {
+    "h": ("Stunde", "Stunden"),
+    "t": ("Tonne", "Tonnen"),
+    "$": ("US-Dollar", "US-Dollar"),
+}
+
+
 def _fmt_wert(value: float, unit: str) -> str:
+    # In Fließtext unschöne Einheiten-Kürzel ausschreiben; konventionelle
+    # Einheiten (km, kg, cm, m³, kWh, GB, %, °C, °F, €) bleiben unverändert.
+    if unit in _UNIT_LANGFORM:
+        singular, plural = _UNIT_LANGFORM[unit]
+        unit = singular if value == 1 else plural
     return f"{_fmt_dez(value)} {unit}".strip()
 
 
