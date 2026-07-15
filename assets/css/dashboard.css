@@ -2,7 +2,7 @@ body.page-dashboard {
   --dashboard-accent: color-mix(in srgb, var(--blue) 60%, var(--teal) 40%);
   --dashboard-accent-soft: color-mix(in srgb, var(--blue-soft) 72%, var(--teal-soft) 28%);
   --dashboard-border: color-mix(in srgb, var(--dashboard-accent) 18%, var(--border));
-  --dashboard-action-status-size: 44px;
+  --dashboard-action-status-size: 52px;
   --activity-map-hover-border: color-mix(in srgb, var(--dashboard-accent) 42%, transparent);
   --activity-map-hover-ring: color-mix(in srgb, var(--dashboard-accent) 16%, transparent);
   --dashboard-panel-bg: linear-gradient(
@@ -387,6 +387,18 @@ body.page-dashboard .dashboard-worklist__ring-text {
   color: var(--dashboard-accent);
   line-height: 1;
   text-align: center;
+}
+
+body.page-dashboard .dashboard-worklist__review-badge {
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  min-height: 24px;
+  color: var(--amber);
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 0 1px 2px color-mix(in srgb, var(--amber) 24%, transparent);
 }
 
 body.page-dashboard .dashboard-panel__body {
@@ -1482,7 +1494,7 @@ html.light .lb-field__input {
   }
 
   body.page-dashboard {
-    --dashboard-action-status-size: 40px;
+    --dashboard-action-status-size: 48px;
   }
 
   body.page-dashboard .dashboard-panel__body {
@@ -1508,6 +1520,12 @@ html.light .lb-field__input {
 
   body.page-dashboard .dashboard-panel__action-status--progress .dashboard-panel__action-status-value {
     font-size: 0.74rem;
+  }
+
+  body.page-dashboard .dashboard-worklist__review-badge {
+    min-width: 17px;
+    min-height: 24px;
+    font-size: 1.05rem;
   }
 
   body.page-dashboard .dashboard-activity__quotes {
