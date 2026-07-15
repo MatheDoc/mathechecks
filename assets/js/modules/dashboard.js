@@ -1736,8 +1736,18 @@ function applyProficiencyWorklist(context, overview = null) {
     metaRow.className = "action-badges dashboard-panel__action-meta";
     metaRow.appendChild(activitySpan);
 
+    if (check?.reviewIsDue === true) {
+      const reviewBadge = document.createElement("span");
+      reviewBadge.className = "dashboard-worklist__review-badge";
+      reviewBadge.setAttribute("role", "img");
+      reviewBadge.setAttribute("aria-label", "Wiederholung fällig");
+      reviewBadge.title = "Wiederholung fällig";
+      reviewBadge.textContent = "↻";
+      metaRow.appendChild(reviewBadge);
+    }
+
     // SVG-Fortschrittsring
-    const ringSize = 44;
+    const ringSize = 52;
     const ringStroke = 3.5;
     const ringR = (ringSize - ringStroke) / 2;
     const ringCirc = 2 * Math.PI * ringR;
