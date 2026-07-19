@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260711-speech-textarea-fix";
+import { renderTask } from "../runtime/task-render.js?v=20260719-speech-cursor-insert";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

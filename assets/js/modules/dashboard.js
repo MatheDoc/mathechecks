@@ -1,5 +1,5 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { getUserRecallProficiency } from "../platform/progress-client.js?v=20260701-recall-quote-ui";
+import { getUserRecallProficiency, getUserFeynmanProficiency } from "../platform/progress-client.js?v=20260719-feynman-graph-fix";
 import {
   FEED_STEP_ORDER,
   buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,
@@ -60,7 +60,7 @@ const GREETING_TIME_VARIANTS = [
     variants: [
       "Guten Abend {name}.",
       "Hey {name}, Mathe am Abend? Gute Wahl.",
-      "Hallo {name}, heute Abend Mathe checken?",
+      "Heute Abend Mathe checken, {name}?",
     ],
   },
   {
@@ -1574,6 +1574,7 @@ function applyActivityOverview(context, overview = null) {
   const averageNode = context.elements.activityAverage;
   const trainingSuccessNode = context.elements.activityTrainingSuccess;
   const recallSuccessNode = context.elements.activityRecallSuccess;
+  const feynmanSuccessNode = context.elements.activityFeynmanSuccess;
   const trainingNode = context.elements.activityTraining;
   const recallNode = context.elements.activityRecall;
   const feynmanNode = context.elements.activityFeynman;
@@ -1585,6 +1586,7 @@ function applyActivityOverview(context, overview = null) {
   const firstActivityDate = String(overview?.firstActivityDate || "").trim();
   const trainingSuccessRate = overview?.trainingSuccess?.rate;
   const recallSuccessRate = overview?.recallProficiency?.overall?.rate;
+  const feynmanSuccessRate = overview?.feynmanProficiency?.overall?.rate;
 
   if (summaryNode) {
     summaryNode.textContent = totalCount > 0
@@ -1610,6 +1612,12 @@ function applyActivityOverview(context, overview = null) {
     recallSuccessNode.title = Number.isFinite(Number(recallSuccessRate))
       ? "Quote aus den jüngsten Recall-Durchgängen je Check, zusammengesetzt über alle abgefragten Checks."
       : "Die Quote erscheint, sobald Recall-Durchgänge erfasst wurden.";
+  }
+  if (feynmanSuccessNode) {
+    feynmanSuccessNode.textContent = formatActivityPercent(Math.round(feynmanSuccessRate));
+    feynmanSuccessNode.title = Number.isFinite(Number(feynmanSuccessRate))
+      ? "Quote aus den jüngsten Feynman-Durchgängen je Check, zusammengesetzt über alle erklärten Checks."
+      : "Die Quote erscheint, sobald Feynman-Durchgänge erfasst wurden.";
   }
   if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
   if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
@@ -1639,13 +1647,20 @@ function buildCheckRecallHref(checkMeta) {
   return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/recall.html#recall-check-${toDomIdFragment(checkMeta.checkId) || "item"}`;
 }
 
+function buildCheckFeynmanHref(checkMeta) {
+  if (!checkMeta?.gebietKey || !checkMeta?.lernbereichId || !checkMeta?.checkId) return "";
+  return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/feynman.html#fy-check-${toDomIdFragment(checkMeta.checkId) || "item"}`;
+}
+
 function buildProficiencyWorklistEntries(overview = null) {
   const trainingChecks = Array.isArray(overview?.proficiency?.checks) ? overview.proficiency.checks : [];
   const recallChecks = Array.isArray(overview?.recallProficiency?.checks) ? overview.recallProficiency.checks : [];
+  const feynmanChecks = Array.isArray(overview?.feynmanProficiency?.checks) ? overview.feynmanProficiency.checks : [];
 
   return [
     ...trainingChecks.map((check) => ({ ...check, activityType: "training", activityLabel: "Training" })),
     ...recallChecks.map((check) => ({ ...check, activityType: "recall", activityLabel: "Recall" })),
+    ...feynmanChecks.map((check) => ({ ...check, activityType: "feynman", activityLabel: "Feynman" })),
   ].sort((left, right) => {
     const leftRate = Number(left?.rate);
     const rightRate = Number(right?.rate);
@@ -1670,7 +1685,7 @@ function applyProficiencyWorklist(context, overview = null) {
 
   if (!allChecks.length) {
     if (summaryNode) {
-      summaryNode.textContent = "Sobald du Training oder Recall abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
+      summaryNode.textContent = "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
     }
     return;
   }
@@ -1685,8 +1700,8 @@ function applyProficiencyWorklist(context, overview = null) {
   if (!checks.length) {
     if (summaryNode) {
       summaryNode.textContent = sessionOnly
-        ? "Noch keine Training- oder Recall-Quoten aus deiner aktiven Session. Schalte den Session-Filter im Menü aus, um alle Checks zu sehen."
-        : "Sobald du Training oder Recall abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
+        ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deiner aktiven Session. Schalte den Session-Filter im Menü aus, um alle Checks zu sehen."
+        : "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
     }
     return;
   }
@@ -1709,7 +1724,9 @@ function applyProficiencyWorklist(context, overview = null) {
     const activityLabel = String(check?.activityLabel || "Training").trim();
     const href = activityType === "recall"
       ? buildCheckRecallHref(meta ? { ...meta, checkId } : null)
-      : buildCheckTrainingHref(meta ? { ...meta, checkId } : null);
+      : activityType === "feynman"
+        ? buildCheckFeynmanHref(meta ? { ...meta, checkId } : null)
+        : buildCheckTrainingHref(meta ? { ...meta, checkId } : null);
 
     const label = meta?.shortTitle || meta?.label || `Check ${checkId}`;
 
@@ -1841,15 +1858,19 @@ async function refreshActivityOverview(context) {
   }
 
   try {
-    const [{ data, error }, recallProficiency] = await Promise.all([
+    const [{ data, error }, recallProficiency, feynmanProficiency] = await Promise.all([
       context.supabase.rpc("get_user_activity_overview"),
       getUserRecallProficiency(),
+      getUserFeynmanProficiency(),
     ]);
     if (error) throw error;
 
     const overview = data && typeof data === "object" ? { ...data } : {};
     if (recallProficiency.ok && recallProficiency.data) {
       overview.recallProficiency = recallProficiency.data;
+    }
+    if (feynmanProficiency.ok && feynmanProficiency.data) {
+      overview.feynmanProficiency = feynmanProficiency.data;
     }
 
     context.activityOverview = overview;
@@ -3953,6 +3974,7 @@ function createContext(root, lernbereiche) {
     activityAverage: root.querySelector("[data-dashboard-activity-average]"),
     activityTrainingSuccess: root.querySelector("[data-dashboard-activity-training-success]"),
     activityRecallSuccess: root.querySelector("[data-dashboard-activity-recall-success]"),
+    activityFeynmanSuccess: root.querySelector("[data-dashboard-activity-feynman-success]"),
     activityTraining: root.querySelector("[data-dashboard-activity-training]"),
     activityRecall: root.querySelector("[data-dashboard-activity-recall]"),
     activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),

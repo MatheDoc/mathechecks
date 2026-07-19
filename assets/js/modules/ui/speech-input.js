@@ -357,6 +357,40 @@ function setupSpeechTextarea(field) {
     requestAnimationFrame(() => resizeSpeechTextarea(field));
 }
 
+function shouldInsertSpaceBetween(left, right) {
+    if (!left || !right) return false;
+    if (/\s$/.test(left) || /^\s/.test(right)) return false;
+    if (/[([{„"']$/.test(left) || /^[,.;:!?\])}"']/.test(right)) return false;
+    if (/[\d,.\-+*/=]$/.test(left) && /^[\d,.\-+*/=]/.test(right)) return false;
+    return true;
+}
+
+function insertSpeechTextAtCursor(input, text) {
+    const cleaned = String(text || "").trim();
+    if (!cleaned) return false;
+
+    const current = String(input.value || "");
+    const rawStart = Number(input.selectionStart);
+    const rawEnd = Number(input.selectionEnd);
+    const hasSelectionRange = Number.isFinite(rawStart) && Number.isFinite(rawEnd);
+    const start = hasSelectionRange ? Math.max(0, Math.min(current.length, rawStart)) : current.length;
+    const end = hasSelectionRange ? Math.max(start, Math.min(current.length, rawEnd)) : current.length;
+    const before = current.slice(0, start);
+    const after = current.slice(end);
+
+    const prefix = shouldInsertSpaceBetween(before, cleaned) ? " " : "";
+    const suffix = shouldInsertSpaceBetween(cleaned, after) ? " " : "";
+    const insertion = `${prefix}${cleaned}${suffix}`;
+
+    input.value = `${before}${insertion}${after}`;
+    const cursorPosition = before.length + prefix.length + cleaned.length;
+    if (typeof input.setSelectionRange === "function") {
+        try { input.setSelectionRange(cursorPosition, cursorPosition); } catch { /* ignore unsupported input types */ }
+    }
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    return true;
+}
+
 function bindMic(btn, input) {
     btn.addEventListener("click", (e) => {
         e.preventDefault();
@@ -368,11 +402,6 @@ function bindMic(btn, input) {
         }
 
         stopActiveRecognition();
-
-        if (input.value) {
-            input.value = "";
-            input.dispatchEvent(new Event("input", { bubbles: true }));
-        }
 
         const recognition = new SpeechRecognition();
         recognition.lang = "de-DE";
@@ -425,14 +454,7 @@ function bindMic(btn, input) {
 
             const cleaned = normalizeSpeechTranscript(spokenText);
             if (cleaned) {
-                const current = input.value;
-                if (current && !current.endsWith(" ")) {
-                    input.value = current + " " + cleaned;
-                } else {
-                    input.value = current + cleaned;
-                }
-
-                input.dispatchEvent(new Event("input", { bubbles: true }));
+                insertSpeechTextAtCursor(input, cleaned);
             }
 
             if (shouldCheck) {

@@ -863,7 +863,7 @@ body.page-dashboard .dashboard-activity__bar-label {
 
 body.page-dashboard .dashboard-activity__quotes {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
   gap: 10px;
 }
 
@@ -1169,7 +1169,7 @@ body.page-dashboard .dashboard-activity-map__cell.level-10 .dashboard-activity-m
   body.page-dashboard .dashboard-panel--activity  { order: 4; }
 
   body.page-dashboard .dashboard-activity__quotes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
   }
 
   body.page-dashboard .dashboard-activity-map__board {
@@ -1529,7 +1529,7 @@ html.light .lb-field__input {
   }
 
   body.page-dashboard .dashboard-activity__quotes {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
   }
 
   body.page-dashboard .dashboard-activity__bars {

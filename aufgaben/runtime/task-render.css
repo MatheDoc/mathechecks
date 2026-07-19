@@ -329,20 +329,48 @@
     margin-top: 10px;
 }
 
+.task,
+.check-card__runtime-task {
+    --mc-answer-field-width: 104px;
+    --mc-answer-field-radius: 10px;
+    --mc-answer-placeholder-color: color-mix(in srgb, var(--text-muted, #6b7280) 78%, var(--text, #253043) 22%);
+    --mc-answer-placeholder-opacity: .78;
+}
+
+.task {
+    --mc-answer-field-padding: 6px 8px;
+    --mc-answer-field-font-size: 0.95em;
+    --mc-answer-field-line-height: 1.3;
+    --mc-answer-field-min-height: 32px;
+}
+
+.check-card__runtime-task {
+    --mc-answer-field-padding: 10px 14px;
+    --mc-answer-field-font-size: .88rem;
+    --mc-answer-field-line-height: 1.35;
+    --mc-answer-field-min-height: 42px;
+}
+
 .task .answer-input,
 .task .answer-select {
     min-width: 0;
-    width: min(100px, 100%);
+    width: min(var(--mc-answer-field-width), 100%);
     max-width: 100%;
-    padding: 6px 8px;
+    padding: var(--mc-answer-field-padding);
     font-family: inherit;
-    font-size: 0.95em;
-    line-height: 1.3;
-    min-height: 32px;
+    font-size: var(--mc-answer-field-font-size);
+    line-height: var(--mc-answer-field-line-height);
+    min-height: var(--mc-answer-field-min-height);
     border: 1px solid #cfd6e4;
-    border-radius: 8px;
+    border-radius: var(--mc-answer-field-radius);
     background: #fff;
     box-sizing: border-box;
+}
+
+.task .answer-input::placeholder {
+    color: var(--mc-answer-placeholder-color);
+    font-weight: 400;
+    opacity: var(--mc-answer-placeholder-opacity);
 }
 
 .task .answer-select {
@@ -400,7 +428,7 @@
 
 .task .answer-field-group.answer-field-group--input .answer-input,
 .check-card__runtime-task .answer-field-group.answer-field-group--input .answer-input {
-    width: 100px;
+    width: var(--mc-answer-field-width);
     flex: 0 0 auto;
 }
 
@@ -426,15 +454,15 @@
 
 .task .answer-numopt-input {
     min-width: 0;
-    width: 100px;
+    width: var(--mc-answer-field-width);
     max-width: 100%;
-    padding: 6px 8px;
+    padding: var(--mc-answer-field-padding);
     font-family: inherit;
-    font-size: 0.95em;
-    line-height: 1.3;
-    min-height: 32px;
+    font-size: var(--mc-answer-field-font-size);
+    line-height: var(--mc-answer-field-line-height);
+    min-height: var(--mc-answer-field-min-height);
     border: 1px solid #cfd6e4;
-    border-radius: 8px;
+    border-radius: var(--mc-answer-field-radius);
     background: #fff;
     box-sizing: border-box;
 }
@@ -490,17 +518,24 @@
 
 .task .answer-field-group.answer-field-group--select2 .select2-container,
 .check-card__runtime-task .answer-field-group.answer-field-group--select2 .select2-container {
-    width: var(--mc-select-width, 100px) !important;
+    width: var(--mc-select-width, var(--mc-answer-field-width)) !important;
     max-width: 100%;
-    min-width: 0;
+    min-width: var(--mc-answer-field-width);
     flex: 0 1 auto;
 }
 
 .task .answer-field-group .select2-container .select2-selection,
 .check-card__runtime-task .answer-field-group .select2-container .select2-selection {
-    min-height: 34px;
+    min-height: var(--mc-answer-field-min-height);
     height: auto;
     box-sizing: border-box;
+    border-radius: var(--mc-answer-field-radius);
+}
+
+.task .answer-field-group .select2-container .select2-selection--single,
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection--single {
+    display: flex;
+    align-items: center;
 }
 
 .check-card__runtime-task .answer-field-group .select2-container .select2-selection {
@@ -511,12 +546,27 @@
 
 .task .answer-field-group .select2-container .select2-selection__rendered,
 .check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
+    flex: 1 1 auto;
+    min-width: 0;
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
-    line-height: 1.25;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    line-height: var(--mc-answer-field-line-height);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.task .answer-field-group .select2-container .select2-selection--single .select2-selection__arrow,
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection--single .select2-selection__arrow {
+    height: 100%;
+    top: 0;
+}
+
+.task .answer-field-group .select2-container .select2-selection__placeholder,
+.check-card__runtime-task .answer-field-group .select2-container .select2-selection__placeholder {
+    color: var(--mc-answer-placeholder-color);
+    font-weight: 400;
+    opacity: var(--mc-answer-placeholder-opacity);
 }
 
 .check-card__runtime-task .answer-field-group .select2-container .select2-selection__rendered {
@@ -792,6 +842,10 @@ html.light .check-card__runtime-task {
     justify-content: center;
 }
 
+.check-card__runtime-task .fy-question-item[data-fy-question-nr]::before {
+    content: attr(data-fy-question-nr);
+}
+
 .check-card__runtime-task .qa-item:hover {
     background:
         radial-gradient(ellipse 120% 78% at 14% 22%, color-mix(in srgb, var(--qa-item-accent) var(--qa-item-hover-glow-1), transparent), transparent 56%),
@@ -818,14 +872,14 @@ html.light .check-card__runtime-task {
 .check-card__runtime-task .answer-input,
 .check-card__runtime-task .answer-select {
     min-width: 0;
-    width: min(100px, 100%);
+    width: min(var(--mc-answer-field-width), 100%);
     max-width: 100%;
-    padding: 6px 8px;
+    padding: var(--mc-answer-field-padding);
     font-family: inherit;
-    font-size: 0.95em;
-    line-height: 1.3;
-    min-height: 32px;
-    border-radius: 4px;
+    font-size: var(--mc-answer-field-font-size);
+    line-height: var(--mc-answer-field-line-height);
+    min-height: var(--mc-answer-field-min-height);
+    border-radius: var(--mc-answer-field-radius);
     border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 26%, var(--border));
     background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--dcc-accent-soft, var(--mt-training-soft, var(--accent-soft))) 10%);
     color: var(--text);
@@ -840,8 +894,9 @@ html.light .check-card__runtime-task {
 }
 
 .check-card__runtime-task .answer-input::placeholder {
-    color: var(--text-muted);
-    opacity: .55;
+    color: var(--mc-answer-placeholder-color);
+    font-weight: 400;
+    opacity: var(--mc-answer-placeholder-opacity);
 }
 
 .check-card__runtime-task .answer-select {
@@ -893,14 +948,14 @@ html.light .check-card__runtime-task {
 
 .check-card__runtime-task .answer-numopt-input {
     min-width: 0;
-    width: 100px;
+    width: var(--mc-answer-field-width);
     max-width: 100%;
-    padding: 6px 8px;
+    padding: var(--mc-answer-field-padding);
     font-family: inherit;
-    font-size: 0.95em;
-    line-height: 1.3;
-    min-height: 32px;
-    border-radius: 4px;
+    font-size: var(--mc-answer-field-font-size);
+    line-height: var(--mc-answer-field-line-height);
+    min-height: var(--mc-answer-field-min-height);
+    border-radius: var(--mc-answer-field-radius);
     border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-training, var(--accent))) 26%, var(--border));
     background: color-mix(in srgb, var(--card-surface-2, #181824) 90%, var(--dcc-accent-soft, var(--mt-training-soft, var(--accent-soft))) 10%);
     color: var(--text);

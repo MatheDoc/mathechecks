@@ -10,7 +10,7 @@ Diese Datei ist die kanonische Spezifikation für die check-, lernbereichs- und 
 
 ## Zielbild
 
-Die Quote ist ein didaktisches Instrument für Kompetenzerleben, keine Zeugnisnote. Sie ist fortschritts-, nicht defizitorientiert: Auch nach anfänglichen Fehlern kann ein Nutzer realistisch wieder auf 100 % kommen. Sie wird ausschließlich aus `training`-Versuchen gebildet; `recall` und `feynman` bleiben reine Selbsteinschätzung und tragen nicht zu **dieser** Quote bei. `recall` speist stattdessen ein eigenes, separates Read-Model, siehe [Recall-Quote](#recall-quote-separates-paralleles-read-model) am Ende dieses Dokuments; `feynman` bleibt vollständig quotenfrei.
+Die Quote ist ein didaktisches Instrument für Kompetenzerleben, keine Zeugnisnote. Sie ist fortschritts-, nicht defizitorientiert: Auch nach anfänglichen Fehlern kann ein Nutzer realistisch wieder auf 100 % kommen. Die Trainingsquote wird ausschließlich aus `training`-Versuchen gebildet; `recall` und `feynman` tragen nicht zu **dieser** Quote bei. Stattdessen speisen `recall` und `feynman` jeweils ein eigenes, separates Read-Model, siehe [Recall-Quote](#recall-quote-separates-paralleles-read-model) und [Feynman-Quote](#feynman-quote-separates-paralleles-read-model).
 
 ## Grundprinzipien
 
@@ -97,7 +97,7 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 ### Abschluss-Controls
 
 - **Feed-Kontext:** Das pulsierende Feed-Icon mit Entscheidungsdialog (`jetzt wiederholen`, `später`, `abschließen`) bleibt unverändert für `training`, `recall`, `feynman`, `kompetenzliste_gate`, `start` und `flashcards`. Es ist das visuelle Signal „du bist in einer Feed-Aktivität" und steuert den Cursor.
-- **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen geprüft; `recall`/`feynman`: Selbsteinschätzung sichtbar) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
+- **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen geprüft; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
 
 ### Abschluss-Popup
 
@@ -105,8 +105,8 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 - Trainings-Abschluss zeigt das **Quotendelta** des Checks in allen drei Trainings-Modi: Feed-Training eines Session-Checks, freies Training eines Session-Checks, freies Training eines Nicht-Session-Checks.
 - Aufwärts-Delta (z. B. 60 % → 80 %) wird motivierend animiert dargestellt.
 - Abwärts-Delta wird sachlich und ohne Demotivation dargestellt.
-- Folge-Optionen sind ausschließlich `Wiederholen` und `Zum Dashboard`. `Wiederholen` lädt im Training eine neue Variante (neuer Taskscore); bei `recall`/`feynman` ist es erneutes Durcharbeiten ohne Quote. `Zum Dashboard` ist im freien Kontext reine Navigation und verändert den Feed nicht.
-- `recall`/`feynman` zeigen kein Quotendelta.
+- Folge-Optionen sind ausschließlich `Wiederholen` und `Zum Dashboard`. `Wiederholen` lädt im Training eine neue Variante (neuer Taskscore); bei `recall` und `feynman` startet es einen neuen Durchgang. `Zum Dashboard` ist im freien Kontext reine Navigation und verändert den Feed nicht.
+- `recall` und `feynman` zeigen ihr eigenes Quotendelta, aber verändern die Trainingsquote nicht.
 - **Ungewerteter Durchgang:** Wurde die globale Aktion „alle Lösungen anzeigen" (Drei-Punkte-/Toolbar-Menü der Aufgabe) genutzt, zählt der **ganze Versuch nicht**. Es wird kein Trainings-Event geschrieben, die Quote bleibt unverändert, und statt des Quotendeltas erscheint ein kurzer Hinweis im Popup. Das gilt in Feed- wie freiem Training.
 
 ### Per-Frage-Fluss im Training
@@ -150,7 +150,7 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 6. Freies Training eines Session-Checks hebt die Session-Quote, ohne den Feed-Cursor zu verändern.
 7. Die Lernbereichs-Quote berücksichtigt nur trainierte Checks.
 8. Das Abschluss-Popup zeigt in allen drei Trainings-Modi ein Quotendelta; aufwärts motivierend, abwärts sachlich.
-9. `recall`/`feynman` erzeugen keine Quote und kein Delta **in diesem Training-Quote-Modell**. `recall` hat ein eigenes, separates Recall-Quote-Read-Model (siehe unten); dieses zeigt kein Delta und ändert nichts am Training-Quote-Verhalten. `feynman` bleibt vollständig quotenfrei.
+9. `recall`/`feynman` erzeugen keine Quote und kein Delta **in diesem Training-Quote-Modell**. Beide haben eigene, separate Read-Models und ändern nichts am Training-Quote-Verhalten.
 10. Das automatische Einblenden der Einzellösung nach korrekter Antwort verändert die Wertung nicht.
 
 ## Konkrete nächste Schritte
@@ -192,5 +192,40 @@ mit eigenen Parametern `recall_proficiency.window_size` (Default `3`), `recall_p
 
 ### UI
 
-Die Bewertung erscheint inline am jeweiligen Response-Feld: gemeinsame Trainingsklassen `answer-input`, `is-correct`/`is-incorrect`, zusätzlich `is-partial` für orange, KI-Hinweis direkt unter dem Feld. Bei korrekten Antworten wird die hinterlegte Response direkt angezeigt; bei teilweise/falsch erscheint ein Button „Lösung anzeigen“. Das Header-Abschluss-Icon pulsiert und wird erst klickbar, wenn alle Items korrekt oder aufgelöst sind. `feynman` bleibt unverändert reine Selbsteinschätzung ohne KI-Bewertung und ohne Recall-Quote.
+Die Bewertung erscheint inline am jeweiligen Response-Feld: gemeinsame Trainingsklassen `answer-input`, `is-correct`/`is-incorrect`, zusätzlich `is-partial` für orange, KI-Hinweis direkt unter dem Feld. Bei korrekten Antworten wird die hinterlegte Response direkt angezeigt; bei teilweise/falsch erscheint ein Button „Lösung anzeigen“. Das Header-Abschluss-Icon pulsiert und wird erst klickbar, wenn alle Items korrekt oder aufgelöst sind.
+
+## Feynman-Quote (separates, paralleles Read-Model)
+
+Die Feynman-Quote ist **kein Teil** der Trainingsquote und beeinflusst sie nicht. Sie misst, ob Schülererklärungen zu konkreten Aufgaben den fachlichen Lösungsweg verständlich und tragfähig beschreiben. Grundlage sind zufällig gezogene Aufgaben aus derselben Sammlung wie im Training; statt numerischer Antwortfelder gibt es freie Erklärungstextfelder.
+
+### Bewertung
+
+Ein serverseitiger Proxy (`supabase/functions/feynman-evaluate`) hält den Gemini-API-Key und bewertet alle Teilfragen eines Durchgangs gebündelt. Die KI erhält Check-Kontext, Kompetenz, Tipps, Aufgabenstellung, Visual-Kontext, interne Zielantworten, ggf. Referenzbeispiel und die Schülerantworten. Ein vollständiges Ausrechnen bis zum Endwert ist nicht zwingend erforderlich, wenn der Lösungsweg fachlich korrekt erklärt ist.
+
+Score-Skala:
+
+- `1.0`: sehr gut erklärt; zentrale Schritte, Begriffe und Begründung sind korrekt
+- `0.8`: im Kern gut; kleine Ungenauigkeit oder Lücke
+- `0.5`: teilweise brauchbar; ein zentraler Schritt, Begriff oder Zusammenhang fehlt
+- `0.0`: fachlich falsch, kaum verwertbar oder leer
+
+### Taskscore und Aggregation
+
+`task_score = Summe der Item-Scores / checkableCount`. Wiederholte Auswertungsversuche werden mit `feynman_proficiency.retry_penalty` analog zu Training/Recall abgezogen. Eine spätere optionale Anzeige einer KI-Erklärung kann über `itemRevealed` als aufgelöst und damit `0` gewertet werden; im MVP gibt es zunächst nur Feedback, keine Musterlösung.
+
+Die Check-Feynman-Quote ist das recency-gewichtete Mittel der letzten `N` Taskscores:
+
+```
+feynman_quote = Σ_i ( d^alter_i * task_score_i ) / Σ_i ( d^alter_i )
+```
+
+mit eigenen Parametern `feynman_proficiency.window_size` (Default `3`), `feynman_proficiency.recency_decay` (Default `0.5`) und `feynman_proficiency.retry_penalty` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*` und `recall_proficiency.*`.
+
+### Erfassung und Projektion
+
+`record_user_activity('feynman', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount`, `details.itemScores`, `selfOutcome`, `taskIndex` und `model`. `public._compute_feynman_task_score(details, p)` berechnet daraus den Taskscore; `public.get_user_feynman_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu Recall.
+
+### UI
+
+Feynman-Karten nutzen das breite Aufgabenlayout aus dem Training: links Einleitung/Visualisierung, rechts Teilfragen mit freien Erklärungstextfeldern und Mikrofon. Die Bewertung erscheint inline am jeweiligen Feld: grün `gut erklärt`, orange `nachbessern`, rot `noch unklar`. Der freie Abschluss und der Feed-Abschluss werden erst nach einer vollständigen KI-Auswertung aktiv. Dashboard und Kartenheader zeigen die Feynman-Quote als dritte eigenständige Quote neben Training und Recall.
 
