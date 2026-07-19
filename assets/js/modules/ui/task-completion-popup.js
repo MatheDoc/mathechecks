@@ -143,7 +143,11 @@ export function showTaskCompletionPopup({
 
   if (showQuote && !quoteUnchanged) {
     popup.appendChild(buildQuoteDelta(previousRate, newRate, {
-      labelText: mode === "recall" ? "Deine Recall-Quote für diesen Check" : "Deine Quote für diesen Check",
+      labelText: mode === "recall"
+        ? "Deine Recall-Quote für diesen Check"
+        : mode === "feynman"
+          ? "Deine Feynman-Quote für diesen Check"
+          : "Deine Quote für diesen Check",
     }));
   }
 

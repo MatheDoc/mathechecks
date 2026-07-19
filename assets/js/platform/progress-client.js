@@ -536,6 +536,25 @@ export async function getUserRecallProficiency() {
   }
 }
 
+export async function getUserFeynmanProficiency() {
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("get_user_feynman_proficiency");
+
+    if (error) {
+      console.warn("MatheChecks: Feynman-Quoten konnten nicht geladen werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: data && typeof data === "object" ? data : null };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Laden der Feynman-Quoten.", error);
+    return { ok: false, error };
+  }
+}
+
 function extractProficiencyRate(proficiency, checkId) {
   const normalizedCheckId = normalizeText(checkId);
   if (!proficiency || typeof proficiency !== "object" || !normalizedCheckId) return null;
@@ -551,5 +570,9 @@ export function extractCheckProficiencyRate(proficiency, checkId) {
 }
 
 export function extractRecallProficiencyRate(proficiency, checkId) {
+  return extractProficiencyRate(proficiency, checkId);
+}
+
+export function extractFeynmanProficiencyRate(proficiency, checkId) {
   return extractProficiencyRate(proficiency, checkId);
 }

@@ -1,6 +1,6 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "./task-visuals.js?v=20260614-expression-curves-b";
-import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260711-speech-textarea-fix";
+import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260719-speech-cursor-insert";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -230,6 +230,8 @@ function measureTextWidthPx(text, font) {
     return width;
 }
 
+const ANSWER_FIELD_BASE_WIDTH_PX = 104;
+
 function getSelect2AvailableWidthPx(selectNode) {
     const fieldGroup = selectNode?.closest?.(".answer-field-group");
     if (!fieldGroup) return 260;
@@ -241,11 +243,11 @@ function getSelect2AvailableWidthPx(selectNode) {
     const groupRect = fieldGroup.getBoundingClientRect();
     const previewRect = answerPreview.getBoundingClientRect();
     const remaining = previewRect.right - groupRect.left - 30;
-    return Math.max(100, Math.min(rowWidth, remaining));
+    return Math.max(ANSWER_FIELD_BASE_WIDTH_PX, Math.min(rowWidth, remaining));
 }
 
 function computeSelect2DesiredWidthPx(selectNode) {
-    if (!selectNode) return 100;
+    if (!selectNode) return ANSWER_FIELD_BASE_WIDTH_PX;
 
     const selectionRendered = selectNode
         .closest(".answer-field-group")
@@ -262,7 +264,7 @@ function computeSelect2DesiredWidthPx(selectNode) {
 
     const contentWidth = maxOptionWidth + 50;
     const availableWidth = getSelect2AvailableWidthPx(selectNode);
-    return Math.max(100, Math.min(contentWidth, availableWidth));
+    return Math.max(ANSWER_FIELD_BASE_WIDTH_PX, Math.min(contentWidth, availableWidth));
 }
 
 function measureRenderedDropdownWidthPx() {
@@ -291,7 +293,7 @@ function initializeSelect2ForDropdowns(rootNode) {
         }
 
         // Start compact and grow to the required width after interaction.
-        applySelect2WidthPx(selectNode, 100);
+        applySelect2WidthPx(selectNode, ANSWER_FIELD_BASE_WIDTH_PX);
 
         const $select = $(selectNode);
         if ($select.data("select2")) {

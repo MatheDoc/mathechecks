@@ -2,7 +2,7 @@
    MatheChecks – Shared Design System
    ═══════════════════════════════════════════════════════════════ */
 
-@import "../../../aufgaben/runtime/task-render.css?v=20260711-speech-textarea-fix";
+@import "../../../aufgaben/runtime/task-render.css?v=20260719-feynman-scorable-tolerant";
 @import "./task-completion.css?v=20260609-void-revealed";
 @import "./cards.css?v=20260712-feed-readonly-overlay";
 @import "./dashboard.css?v=20260712-activity-quotes-two-col";
@@ -1972,7 +1972,8 @@ html.light .mod-start-content {
 }
 
 .page-shell--fluid #training-root,
-.page-shell--fluid #training-task {
+.page-shell--fluid #training-task,
+.page-shell--fluid #feynman-root {
   width: 100%;
   min-width: 0;
 }
@@ -2802,9 +2803,9 @@ html.light .recall-list--user .recall-list__item {
 }
 
 .recall-input-slot::placeholder {
-  color: var(--text-muted);
+  color: color-mix(in srgb, var(--text-muted) 78%, var(--text) 22%);
   font-weight: 400;
-  opacity: .55;
+  opacity: .78;
 }
 
 .fy-reveal-btn {
@@ -3013,6 +3014,32 @@ html.light .recall-list--user .recall-list__item {
   font-size: .82rem;
   color: var(--text-muted);
   margin: 0 0 10px;
+}
+
+.check-card--feynman .fy-response-cell {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.check-card--feynman .fy-explain-input.answer-input {
+  width: 100%;
+}
+
+.check-card--feynman .fy-explain-input.is-partial,
+.check-card--feynman .fy-explain-input--partial {
+  border-color: var(--amber) !important;
+  background: color-mix(in srgb, var(--amber-soft) 78%, transparent) !important;
+}
+
+.check-card--feynman .fy-explain-input--unchecked {
+  border-color: rgba(148, 163, 184, .42) !important;
+  background: rgba(148, 163, 184, .08) !important;
+}
+
+.check-card--feynman .task-feedback.is-partial,
+.check-card--feynman .fy-inline-feedback.is-partial {
+  color: var(--amber);
 }
 
 /* success / cooldown (shared by recall + feynman) */

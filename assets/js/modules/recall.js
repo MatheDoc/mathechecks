@@ -5,7 +5,7 @@ import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabas
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260711-speech-textarea-fix";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260719-speech-cursor-insert";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260701-recall-quote-popup";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
