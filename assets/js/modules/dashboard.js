@@ -136,9 +136,9 @@ const GREETING_PROGRESS_VARIANTS = {
     "Heute wäre ein guter Tag für ein paar Aktivitäten.",
   ],
   sessionSmooth: [
-    "Alles läuft, {name}. Einfach weitermachen.",
+    "Läuft gut bei dir, {name}.",
     "Gut im Plan, {name}. Weiter so.",
-    "Respekt {name}, du bist gut in der Zeit.",
+    "Du bist gut in der Zeit, {name}.",
   ],
   sessionDone: [
     "Glückwunsch {name}, Session abgeschlossen.",
