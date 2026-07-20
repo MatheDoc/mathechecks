@@ -445,7 +445,7 @@ function buildTaskVisualContext(task) {
 
   try {
     const readableContext = spec.type === "ab-tree" ? buildAbTreeVisualContext(spec) : "";
-    const rawContext = truncateText(JSON.stringify(spec), 2200);
+    const rawContext = truncateText(JSON.stringify(spec), 6000);
     return [readableContext, rawContext ? `Rohdaten: ${rawContext}` : ""].filter(Boolean).join("\n\n");
   } catch {
     return "";
@@ -512,11 +512,11 @@ function buildFeynmanEvaluationPayload({ check, task, itemEls, beispielHtml = ""
       tipps: tipps.map((tipp) => convertJsonLatexToMarkdown(normalizeTippForPrompt(tipp))).filter(Boolean),
     },
     task: {
-      einleitung: convertJsonLatexToMarkdown(truncateText(htmlToPlainText(task?.einleitung || ""), 2200)),
+      einleitung: convertJsonLatexToMarkdown(truncateText(htmlToPlainText(task?.einleitung || ""), 6000)),
       visualContext: buildTaskVisualContext(task),
       fragen: scorableItems.map((item) => convertJsonLatexToMarkdown(truncateText(item.questionText, 900))),
       zielantworten: scorableItems.map((item) => convertJsonLatexToMarkdown(truncateText(item.targetText, 900))),
-      beispiel: beispielHtml ? convertJsonLatexToMarkdown(truncateText(htmlToPlainText(beispielHtml), 2200)) : "",
+      beispiel: beispielHtml ? convertJsonLatexToMarkdown(truncateText(htmlToPlainText(beispielHtml), 6000)) : "",
     },
     items: Array.from(itemEls || []).map((el, index) => ({
       nr: index + 1,
@@ -1064,6 +1064,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
           effectiveScore: null,
           reason: "",
           model: "",
+          revealed: false,
         });
       }
       return itemStates;
@@ -1076,17 +1077,17 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         .map((el, stateIndex) => ({ el, state: states[stateIndex] }))
         .filter(({ el }) => String(el.dataset.answer || "").trim());
 
-      const ready = scorable.length > 0 && scorable.every(({ state }) => hasFeynmanEvaluationScore(state?.rawScore));
+      const ready = scorable.length > 0 && scorable.every(({ state }) => hasFeynmanEvaluationScore(state?.rawScore) || state?.revealed);
 
       return {
         ready,
         taskIndex: Number(section?.dataset?.taskIndex) || Number(entry?.taskIndex) || 0,
         checkableCount: scorable.length,
-        revealedCount: 0,
+        revealedCount: scorable.filter(({ state }) => Boolean(state?.revealed)).length,
         rawItemScores: scorable.map(({ state }) => hasFeynmanEvaluationScore(state?.rawScore) ? Number(state.rawScore) : 0),
         itemAttempts: scorable.map(({ state }) => Math.max(0, Number(state?.attempts) || 0)),
-        itemRevealed: scorable.map(() => false),
-        itemScores: scorable.map(({ state }) => computeFeynmanAttemptScore(state?.rawScore, state?.attempts)),
+        itemRevealed: scorable.map(({ state }) => Boolean(state?.revealed)),
+        itemScores: scorable.map(({ state }) => state?.revealed ? 0 : computeFeynmanAttemptScore(state?.rawScore, state?.attempts)),
         model: scorable.find(({ state }) => state?.model)?.state?.model || "",
       };
     }
@@ -1210,16 +1211,33 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       runEvaluationButton.textContent = originalLabel;
 
       if (!evalData?.results) {
-        const message = evalData?.error === "not-authenticated"
-          ? "Melde dich an, um Feynman-Erklärungen automatisch auswerten zu lassen."
-          : evalData?.error === "rate-limited"
-            ? "Das Tageslimit für KI-Auswertungen ist erreicht."
-            : evalData?.error === "invalid-items"
-              ? `Diese Aufgabe hat zu viele Teilfragen für eine automatische Feynman-Auswertung${evalData?.maxItems ? ` (maximal ${evalData.maxItems})` : ""}.`
-              : evalData?.error === "timeout"
-                ? "Die automatische Bewertung hat zu lange gedauert. Versuche es gleich noch einmal."
-                : "Automatische Bewertung war gerade nicht möglich.";
+        if (evalData?.error === "not-authenticated" || evalData?.error === "invalid-items") {
+          const message = evalData?.error === "not-authenticated"
+            ? "Melde dich an, um Feynman-Erklärungen automatisch auswerten zu lassen."
+            : `Diese Aufgabe hat zu viele Teilfragen für eine automatische Feynman-Auswertung${evalData?.maxItems ? ` (maximal ${evalData.maxItems})` : ""}.`;
+          if (evalStatusEl) evalStatusEl.innerHTML = `<p class="recall-eval-note">${escapeHtml(message)}</p>`;
+          publishCompletionState();
+          return;
+        }
+
+        // Fallback wie im Recall: Wenn die KI nicht erreichbar ist (Timeout,
+        // Tageslimit, Gemini-Störung), bleibt der Durchgang abschließbar und
+        // zählt ohne Bewertung (Itemscore 0). Ein erneuter Versuch bleibt möglich.
+        const message = evalData?.error === "rate-limited"
+          ? "Das Tageslimit für KI-Auswertungen ist erreicht. Du kannst den Durchgang ohne Bewertung abschließen."
+          : evalData?.error === "timeout"
+            ? "Die automatische Bewertung hat zu lange gedauert. Versuche es erneut oder schließe den Durchgang ohne Bewertung ab."
+            : "Automatische Bewertung war gerade nicht möglich. Versuche es erneut oder schließe den Durchgang ohne Bewertung ab.";
         if (evalStatusEl) evalStatusEl.innerHTML = `<p class="recall-eval-note">${escapeHtml(message)}</p>`;
+
+        const fallbackItems = itemEls.map((itemEl, itemIndex) => {
+          const state = states[itemIndex];
+          state.revealed = true;
+          state.effectiveScore = 0;
+          state.reason = "Automatische Bewertung war nicht möglich; der Durchgang zählt ungewertet.";
+          return { unchecked: true };
+        });
+        applyFeynmanInputEvaluations(itemEls, fallbackItems);
         publishCompletionState();
         return;
       }
@@ -1228,6 +1246,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         const result = evalData.results[itemIndex] || {};
         const state = states[itemIndex];
         state.attempts += 1;
+        state.revealed = false;
         state.rawScore = Number.isFinite(Number(result.score)) ? Math.max(0, Math.min(1, Number(result.score))) : 0;
         state.effectiveScore = computeFeynmanAttemptScore(state.rawScore, state.attempts);
         state.reason = result.reason || "";
@@ -1253,6 +1272,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         state.rawScore = null;
         state.effectiveScore = null;
         state.reason = "";
+        state.revealed = false;
         completionRecordPromise = null;
         latestRates = null;
         input.classList.remove(...FEYNMAN_INPUT_STATE_CLASSES);
