@@ -87,7 +87,7 @@ const GREETING_EVENT_VARIANTS = {
   ],
   streak7: [
     "Eine Woche, {name}. Aus Vorsatz wird Gewohnheit.",
-    "7 Tage am Stück, {name}. Guter Drive.",
+    "7 Tage am Stück, {name}. Respekt.",
     "Eine volle Woche dran geblieben. Sauber.",
   ],
   streak14: [
@@ -152,7 +152,7 @@ const GREETING_FALLBACK_VARIANTS = [
   "Hey {name}!",
   "Hallo {name}.",
 ];
-const GREETING_STREAK_MILESTONES = [100, 30, 14, 7, 3, 1];
+const GREETING_STREAK_MILESTONES = [100, 30, 14, 7];
 const GREETING_LONG_PAUSE_DAYS = 7;
 const GREETING_BUSY_YESTERDAY_THRESHOLD = 5;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
@@ -1683,6 +1683,57 @@ function buildProficiencyWorklistEntries(overview = null) {
   });
 }
 
+function collectProficiencyWorklistGroups(context, checks) {
+  const gebiete = new Map();
+
+  checks.forEach((check) => {
+    const checkId = String(check?.checkId || "").trim();
+    const meta = context.checkMetaById?.get(checkId) || null;
+    const group = context.lernbereiche.find((candidate) => {
+      return candidate.items.some((lernbereich) => lernbereich.id === meta?.lernbereichId);
+    }) || null;
+    const lernbereich = group?.items.find((candidate) => candidate.id === meta?.lernbereichId) || null;
+    const gebietKey = String(meta?.gebietKey || "other").trim() || "other";
+    const lernbereichId = String(meta?.lernbereichId || checkId || "other").trim() || "other";
+
+    if (!gebiete.has(gebietKey)) {
+      gebiete.set(gebietKey, {
+        name: group?.group || meta?.groupName || "Weitere Checks",
+        order: Number.isFinite(Number(group?.order)) ? Number(group.order) : 999,
+        lernbereiche: new Map(),
+      });
+    }
+
+    const gebiet = gebiete.get(gebietKey);
+    if (!gebiet.lernbereiche.has(lernbereichId)) {
+      gebiet.lernbereiche.set(lernbereichId, {
+        name: lernbereich?.name || meta?.lernbereichName || "Weitere Checks",
+        order: Number.isFinite(Number(lernbereich?.didacticOrder)) ? Number(lernbereich.didacticOrder) : 999,
+        checks: [],
+      });
+    }
+
+    gebiet.lernbereiche.get(lernbereichId).checks.push(check);
+  });
+
+  return Array.from(gebiete.values())
+    .map((gebiet) => ({
+      ...gebiet,
+      lernbereiche: Array.from(gebiet.lernbereiche.values())
+        .map((lernbereich) => ({
+          ...lernbereich,
+          checks: [...lernbereich.checks].sort((left, right) => {
+            const leftRate = Number.isFinite(Number(left?.rate)) ? Number(left.rate) : Number.POSITIVE_INFINITY;
+            const rightRate = Number.isFinite(Number(right?.rate)) ? Number(right.rate) : Number.POSITIVE_INFINITY;
+            if (leftRate !== rightRate) return leftRate - rightRate;
+            return String(left?.checkId || "").localeCompare(String(right?.checkId || ""), "de");
+          }),
+        }))
+        .sort((left, right) => left.order - right.order || left.name.localeCompare(right.name, "de")),
+    }))
+    .sort((left, right) => left.order - right.order || left.name.localeCompare(right.name, "de"));
+}
+
 function applyProficiencyWorklist(context, overview = null) {
   const listNode = context.elements.worklistList;
   const summaryNode = context.elements.worklistSummary;
@@ -1721,11 +1772,43 @@ function applyProficiencyWorklist(context, overview = null) {
 
   if (summaryNode) {
     summaryNode.textContent = sessionOnly
-      ? "Checks deiner Session, nach Quote sortiert – schwächste zuerst."
-      : "Alle erfassten Training- und Recall-Quoten, schwächste zuerst.";
+      ? "Checks deiner Session, nach Gebiet und Lernbereich geordnet."
+      : "Alle erfassten Quoten, nach Gebiet und Lernbereich geordnet.";
   }
 
-  checks.forEach((check) => {
+  const groupedChecks = collectProficiencyWorklistGroups(context, checks);
+  const worklistEntries = [];
+  groupedChecks.forEach((gebiet) => {
+    const gebietItem = document.createElement("li");
+    gebietItem.className = "dashboard-worklist__gebiet";
+    const heading = document.createElement("h3");
+    heading.className = "dashboard-worklist__gebiet-heading";
+    heading.textContent = gebiet.name;
+    const lernbereichList = document.createElement("ul");
+    lernbereichList.className = "dashboard-worklist__lernbereiche";
+
+    gebiet.lernbereiche.forEach((lernbereich) => {
+      const lernbereichItem = document.createElement("li");
+      const details = document.createElement("details");
+      details.className = "dashboard-worklist__lernbereich";
+      details.open = sessionOnly;
+      const summary = document.createElement("summary");
+      summary.innerHTML = `<span>${escapeHtml(lernbereich.name)}</span><span>${lernbereich.checks.length} ${lernbereich.checks.length === 1 ? "Check" : "Checks"}</span>`;
+      const checkList = document.createElement("ul");
+      checkList.className = "dashboard-worklist__checks";
+      details.append(summary, checkList);
+      lernbereichItem.appendChild(details);
+      lernbereichList.appendChild(lernbereichItem);
+      lernbereich.checks.forEach((check) => {
+        worklistEntries.push({ check, checkList });
+      });
+    });
+
+    gebietItem.append(heading, lernbereichList);
+    listNode.appendChild(gebietItem);
+  });
+
+  worklistEntries.forEach(({ check, checkList }) => {
     const checkId = String(check?.checkId || "").trim();
     if (!checkId) return;
 
@@ -1759,21 +1842,21 @@ function applyProficiencyWorklist(context, overview = null) {
     titleRow.appendChild(nameSpan);
 
     const activitySpan = document.createElement("span");
-    activitySpan.className = `action-badge dashboard-worklist__activity-badge dashboard-worklist__activity-badge--${activityType}`;
+    activitySpan.className = `action-badge dashboard-worklist__activity-badge dashboard-module-badge--${activityType}`;
     activitySpan.textContent = activityLabel;
 
     const metaRow = document.createElement("div");
     metaRow.className = "action-badges dashboard-panel__action-meta";
     metaRow.appendChild(activitySpan);
 
+    let reviewBadge = null;
     if (check?.reviewIsDue === true) {
-      const reviewBadge = document.createElement("span");
+      reviewBadge = document.createElement("span");
       reviewBadge.className = "dashboard-worklist__review-badge";
       reviewBadge.setAttribute("role", "img");
       reviewBadge.setAttribute("aria-label", "Wiederholung fällig");
       reviewBadge.title = "Wiederholung fällig";
       reviewBadge.textContent = "↻";
-      metaRow.appendChild(reviewBadge);
     }
 
     // SVG-Fortschrittsring
@@ -1817,6 +1900,9 @@ function applyProficiencyWorklist(context, overview = null) {
     ringText.textContent = ringLabel;
     ringWrap.appendChild(ringSvg);
     ringWrap.appendChild(ringText);
+    if (reviewBadge) {
+      ringWrap.appendChild(reviewBadge);
+    }
 
     const body = document.createElement("span");
     body.className = "action-body";
@@ -1836,7 +1922,7 @@ function applyProficiencyWorklist(context, overview = null) {
     }
 
     item.appendChild(button);
-    listNode.appendChild(item);
+    checkList.appendChild(item);
   });
 }
 
@@ -1943,6 +2029,7 @@ function applyPrimaryFeedButtonState(context, {
   moduleLabel = "Feed",
   type = "feed",
   accessibleLabel = "Nächste Aktion",
+  waiting = false,
   disabled = false,
 } = {}) {
   const { elements } = context;
@@ -1953,6 +2040,7 @@ function applyPrimaryFeedButtonState(context, {
   const normalizedModuleLabel = String(moduleLabel || "").trim();
   button.dataset.actionHref = normalizedHref;
   button.dataset.type = type || "feed";
+  button.classList.toggle("is-waiting", waiting);
   button.setAttribute("aria-disabled", disabled || !normalizedHref ? "true" : "false");
   button.setAttribute("aria-label", accessibleLabel || "Nächste Aktion");
   button.title = accessibleLabel || "Nächste Aktion";
@@ -1964,6 +2052,7 @@ function applyPrimaryFeedButtonState(context, {
   }
   if (elements.primaryFeedModule) {
     const moduleBadgeList = elements.primaryFeedModule.closest(".action-badges");
+    elements.primaryFeedModule.className = `action-badge dashboard-next-action-card__module dashboard-module-badge--${type || "feed"}`;
     elements.primaryFeedModule.textContent = normalizedModuleLabel || "Feed";
     elements.primaryFeedModule.hidden = !normalizedModuleLabel;
     if (moduleBadgeList) {
@@ -1997,13 +2086,14 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
 
   applyPrimaryFeedButtonState(context, {
     title: nextLabel
-      ? `Nächste Aktion wird ab ${nextLabel} freigeschaltet.`
+      ? `Nächste Aktion ab ${nextLabel} verfügbar. Du kannst in der Zwischenzeit Deine Erfolgsquoten verbessern.`
       : "Nächste Aktion wird später freigeschaltet.",
     moduleLabel: "",
     type: "feed",
     accessibleLabel: nextLabel
       ? "Wartend"
       : "Wartend",
+    waiting: true,
     disabled: true,
   });
 }
