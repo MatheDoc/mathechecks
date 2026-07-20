@@ -184,6 +184,7 @@ async function buildFeynmanCardEntries(checks) {
         task: selected.task,
         taskIndex: selected.index,
         totalTasks,
+        scorableTasks,
         error: "",
       };
     } catch (error) {
@@ -192,6 +193,7 @@ async function buildFeynmanCardEntries(checks) {
         task: null,
         taskIndex: 0,
         totalTasks: 0,
+        scorableTasks: [],
         error: error?.message || "Aufgabe konnte nicht geladen werden.",
       };
     }
@@ -1043,7 +1045,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
   cards.forEach((card, index) => {
     const entry = cardEntries[index] || null;
     const check = entry?.check || null;
-    const task = entry?.task || null;
+    let task = entry?.task || null;
     const checkId = check ? getCheckId(check) : "";
     const section = card.closest("[data-fy-check-viewport]");
     const evaluateStage = card.querySelector('[data-fy-stage="evaluate"]');
@@ -1104,12 +1106,41 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       return evalState;
     }
 
+    function loadNewRandomTask() {
+      const pool = Array.isArray(entry?.scorableTasks) ? entry.scorableTasks : [];
+      if (pool.length <= 1) return;
+
+      const currentIndex = Number(entry?.taskIndex);
+      const candidates = pool.filter(({ index: poolIndex }) => poolIndex !== currentIndex);
+      const next = candidates[Math.floor(Math.random() * candidates.length)];
+      if (!next) return;
+
+      entry.task = next.task;
+      entry.taskIndex = next.index;
+      task = next.task;
+      if (section) section.dataset.taskIndex = String(next.index);
+
+      const taskNode = card.querySelector("[data-fy-task]");
+      if (!taskNode) return;
+      taskNode.outerHTML = renderFeynmanTaskMarkup(entry, section?.id || checkId || "fy-card");
+
+      const introColumn = card.querySelector("[data-fy-task-intro-column]");
+      if (introColumn && entry.task) {
+        renderVisual(entry.task, introColumn);
+        requestAnimationFrame(() => resizePlotlyInNode(introColumn));
+      }
+      bindQuestionItemListeners();
+      enhanceSpeechInputs(card, ".fy-explain-input");
+      void renderMath(card);
+    }
+
     function resetFeynmanCard() {
       if (freeCompletionControl) freeCompletionControl.setReady(false);
       completionRecordPromise = null;
       latestRates = null;
       itemStates = [];
       cardEvalState.delete(card);
+      loadNewRandomTask();
       card.querySelectorAll(".fy-explain-input").forEach((input) => { input.value = ""; });
       card.querySelectorAll("[data-fy-question-item]").forEach((itemEl) => {
         const input = itemEl.querySelector(".fy-explain-input");
@@ -1263,29 +1294,33 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       void renderMath(evaluateStage);
     });
 
-    card.querySelectorAll("[data-fy-question-item]").forEach((itemEl, itemIndex) => {
-      const input = itemEl.querySelector(".fy-explain-input");
-      input?.addEventListener("input", () => {
-        const states = ensureItemStates();
-        const state = states[itemIndex];
-        if (!state) return;
-        state.rawScore = null;
-        state.effectiveScore = null;
-        state.reason = "";
-        state.revealed = false;
-        completionRecordPromise = null;
-        latestRates = null;
-        input.classList.remove(...FEYNMAN_INPUT_STATE_CLASSES);
-        input.removeAttribute("data-fy-evaluation");
-        const feedback = itemEl.querySelector("[data-fy-feedback]");
-        if (feedback) {
-          feedback.textContent = "";
-          feedback.hidden = true;
-          feedback.classList.remove("is-correct", "is-incorrect", "is-neutral", "is-partial");
-        }
-        publishCompletionState();
+    function bindQuestionItemListeners() {
+      card.querySelectorAll("[data-fy-question-item]").forEach((itemEl, itemIndex) => {
+        const input = itemEl.querySelector(".fy-explain-input");
+        input?.addEventListener("input", () => {
+          const states = ensureItemStates();
+          const state = states[itemIndex];
+          if (!state) return;
+          state.rawScore = null;
+          state.effectiveScore = null;
+          state.reason = "";
+          state.revealed = false;
+          completionRecordPromise = null;
+          latestRates = null;
+          input.classList.remove(...FEYNMAN_INPUT_STATE_CLASSES);
+          input.removeAttribute("data-fy-evaluation");
+          const feedback = itemEl.querySelector("[data-fy-feedback]");
+          if (feedback) {
+            feedback.textContent = "";
+            feedback.hidden = true;
+            feedback.classList.remove("is-correct", "is-incorrect", "is-neutral", "is-partial");
+          }
+          publishCompletionState();
+        });
       });
-    });
+    }
+
+    bindQuestionItemListeners();
 
     section?.addEventListener("feynman:reset-request", resetFeynmanCard);
 

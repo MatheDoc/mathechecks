@@ -81,7 +81,7 @@ Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigene
 Beispiel A, Score 1.0: Teilfrage verlangt einen Tiefpunkt. Erklärung: "Ich setze die erste Ableitung gleich null und löse nach x auf. Dann prüfe ich mit der zweiten Ableitung: ist sie dort positiv, liegt ein Tiefpunkt vor. Den y-Wert bekommt man durch Einsetzen in f." Kein Endwert genannt, aber der Weg ist vollständig, korrekt und verständlich.
 Beispiel B, Score 0.8: Teilfrage verlangt eine mittlere Änderungsrate. Erklärung: "Man rechnet die Differenz der Funktionswerte durch die Differenz der x-Werte." Kernidee korrekt, aber es fehlt der kleine Hinweis, welche Stellen eingesetzt werden.
 Beispiel C, Score 0.5: Teilfrage verlangt eine Pfadwahrscheinlichkeit aus einem Baumdiagramm. Erklärung: "Man multipliziert einfach die Wahrscheinlichkeiten." Richtiger Kerngedanke, aber es fehlt, welche Äste gemeint sind und warum multipliziert wird.
-Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f'(x)=0 setzen, und wenn f''(x)>0 ist, ist es ein Hochpunkt." Die Bedingung ist fachlich falsch (Vorzeichen vertauscht).
+Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f''(x)=0 setzen, und wenn f'''(x)>0 ist, ist es ein Hochpunkt." Die Bedingung ist fachlich falsch (erste und zweite Ableitung verwechselt).
 
 # Check
 Schlagwort: ${context.check.schlagwort}
