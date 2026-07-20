@@ -122,6 +122,20 @@
 
             <div class="check-card__body dashboard-panel__body">
                 <p class="dashboard-panel__summary" data-dashboard-plan-summary></p>
+                                <div class="dashboard-activity__quotes dashboard-plan__quotes" data-dashboard-plan-quotes hidden>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-plan-training-success>–</div>
+                        <div class="dashboard-activity__metric-label">Training</div>
+                    </div>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-plan-recall-success>–</div>
+                        <div class="dashboard-activity__metric-label">Recall</div>
+                    </div>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-plan-feynman-success>–</div>
+                        <div class="dashboard-activity__metric-label">Feynman</div>
+                    </div>
+                </div>
                 <div class="dashboard-plan__progress" data-dashboard-plan-progress hidden>
                     <div class="dashboard-plan__progress-bar-row">
                         <div class="skill-track dashboard-plan__progress-track" data-dashboard-plan-progress-bar role="progressbar" aria-label="Fortschritt der aktuellen Session" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 Prozent der aktuellen Session abgeschlossen">
@@ -134,6 +148,7 @@
                     <span data-dashboard-plan-target-label>Zieldatum: nicht gesetzt.</span>
                     <span class="dashboard-plan__assessment" data-dashboard-plan-assessment hidden></span>
                 </p>
+
                 <ul class="action-list dashboard-panel__list" data-dashboard-session-list hidden aria-hidden="true"></ul>
                 <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
             </div>
@@ -201,6 +216,20 @@
 
             <div class="check-card__body dashboard-panel__body dashboard-activity">
                 <p class="dashboard-panel__summary" data-dashboard-activity-summary></p>
+                             <div class="dashboard-activity__quotes">
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-activity-training-success>–</div>
+                        <div class="dashboard-activity__metric-label">Training</div>
+                    </div>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-activity-recall-success>–</div>
+                        <div class="dashboard-activity__metric-label">Recall</div>
+                    </div>
+                    <div class="dashboard-activity__metric">
+                        <div class="dashboard-activity__metric-value" data-dashboard-activity-feynman-success>–</div>
+                        <div class="dashboard-activity__metric-label">Feynman</div>
+                    </div>
+                </div>
                 <div class="dashboard-activity__hero-row">
                     <div class="dashboard-activity__hero-copy">
                         <div class="dashboard-activity__hero-value" data-dashboard-activity-total>0</div>
@@ -218,20 +247,7 @@
                     <div class="dashboard-activity__spark-title">letzte 7 Tage</div>
                     <div class="dashboard-activity__bars" data-dashboard-activity-bars></div>
                 </div>
-                <div class="dashboard-activity__quotes">
-                    <div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-training-success>–</div>
-                        <div class="dashboard-activity__metric-label">Trainingsquote</div>
-                    </div>
-                    <div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-recall-success>–</div>
-                        <div class="dashboard-activity__metric-label">Recall-Quote</div>
-                    </div>
-                    <div class="dashboard-activity__metric">
-                        <div class="dashboard-activity__metric-value" data-dashboard-activity-feynman-success>–</div>
-                        <div class="dashboard-activity__metric-label">Feynman-Quote</div>
-                    </div>
-                </div>
+   
                 <div class="dashboard-activity__types">
                     <div class="dashboard-activity__type-pill"><span>Training</span><strong data-dashboard-activity-training>0</strong></div>
                     <div class="dashboard-activity__type-pill"><span>Recall</span><strong data-dashboard-activity-recall>0</strong></div>
