@@ -11,7 +11,7 @@ const RATE_LIMIT_SCOPE = "feynman_evaluate";
 const MAX_ITEMS = 24;
 const GEMINI_BATCH_SIZE = 6;
 const MAX_FIELD_LENGTH = 1200;
-const MAX_CONTEXT_LENGTH = 2400;
+const MAX_CONTEXT_LENGTH = 6400;
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -60,18 +60,28 @@ function normalizeStringArray(value: unknown, maxLength: number): string[] {
 }
 
 function buildPrompt(context: PromptContext): string {
-  return `Du bewertest Schuelererklärungen in einer Mathematik-Feynman-Uebung.
+  return `Du bewertest Schülererklärungen in einer Mathematik-Feynman-Übung.
 
-Kontext: Die Schueler bekommen eine konkrete Aufgabe und sollen nicht nur Endergebnisse nennen, sondern in eigenen Worten erklaeren, wie man die Teilfrage loest. Es ist NICHT immer erforderlich, die Aufgabe vollstaendig bis zum Zahlenwert durchzurechnen. Entscheidend ist, ob der Rechenweg, die relevanten Begriffe, Bedingungen und Begruendungen fachlich tragfaehig und verstaendlich sind. Sprach- oder Diktierfehler sind moeglich.
+# Ziel der Übung
+Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigenen Worten erklären, WIE man die Teilfrage löst. Im Mittelpunkt steht der Rechenweg: die zentralen Schritte, Begriffe, Bedingungen und Begründungen. Ein konkretes Endergebnis ist bei einfachen Aufgaben wünschenswert, aber nicht generell erforderlich; eine Erklärung ohne Endwert kann die volle Punktzahl erreichen, wenn der Weg klar und fachlich korrekt ist. Die Texte entstehen oft per Diktat: Sprach-, Tipp- oder Diktierfehler sind möglich und zählen nicht als fachliche Fehler.
 
-Wichtige Bewertungsgrundsaetze:
-- Die interne Zielorientierung ist nur eine fachliche Orientierung, kein zwingendes Antwortformat. Massgeblich ist die sichtbare Aufgabenstellung.
-- Akzeptiere mathematisch aequivalente Darstellungen, wenn die Aufgabe keine bestimmte Form verlangt, z. B. Normalform, Produktform, Scheitelpunktform, aequivalente Terme oder aequivalente Wahrscheinlichkeitsausdruecke.
-- Akzeptiere aequivalente Verfahren, wenn die Aufgabe kein bestimmtes Verfahren verlangt, z. B. Scheitelpunkt statt Ableitungsbedingung, Ableitungsweg statt Scheitelpunktform, grafische Begruendung oder sinnvoll umgestellte Standardformeln.
-- Akzeptiere konsistent vertauschte Differenzen in Quotienten, z. B. bei mittleren Aenderungsraten oder Steigungen: (f(a)-f(b))/(a-b) ist aequivalent zu (f(b)-f(a))/(b-a). Werte nicht als Vorzeichenfehler, wenn Zaehler und Nenner gemeinsam umgekehrt wurden.
-- Akzeptiere auch rueckwaerts verwendete Beziehungen, z. B. die Pfadmultiplikationsregel in einem Baumdiagramm durch Division nach einer fehlenden Astwahrscheinlichkeit umzustellen.
-- Wenn Lernende sichtbare Nummern, Punkte, Aeste oder Tabellenfelder aus Graphen, Baumdiagrammen oder Vierfeldertafeln nennen, interpretiere diese mithilfe von Einleitung, Visualisierung und Generator-Kontext. Werte nicht allein deshalb ab, weil ein formaler Name fehlt.
-- Verlange eine bestimmte Form oder Methode nur, wenn sie in Einleitung oder Teilfrage ausdruecklich gefordert ist.
+# Bewertungsgrundsätze
+1. Maßgeblich ist die sichtbare Aufgabenstellung. Für Form, Darstellung und Lösungsweg ist die interne Zielantwort nur eine fachliche Orientierung, kein zwingendes Antwortformat.
+2. Nennt die Erklärung einen konkreten numerischen Wert, gleiche ihn mit der internen Zielantwort ab. Dezimalkomma und Dezimalpunkt sind gleichwertig; sinnvolle Rundungen gelten als korrekt. Ein Wert, der der internen Zielantwort entspricht, darf niemals als falsch bezeichnet werden. Weicht ein genannter Wert von der Zielantwort ab, weise knapp darauf hin.
+3. Erfinde keine eigenen Vergleichswerte: Jede Zahl, die du in deiner Begründung als richtig oder falsch einstufst, muss aus Zielantwort, Einleitung, Visualisierung oder Referenzbeispiel stammen. Rechne keine eigene "richtige Lösung" aus, die diesen Daten widerspricht.
+4. Akzeptiere mathematisch äquivalente Darstellungen, wenn die Aufgabe keine bestimmte Form verlangt, z. B. Normalform, Produktform, Scheitelpunktform, äquivalente Terme oder äquivalente Wahrscheinlichkeitsausdrücke.
+5. Akzeptiere äquivalente Verfahren, wenn die Aufgabe kein bestimmtes Verfahren verlangt, z. B. Scheitelpunkt statt Ableitungsbedingung, Ableitungsweg statt Scheitelpunktform, grafische Begründung oder sinnvoll umgestellte Standardformeln.
+6. Akzeptiere konsistent vertauschte Differenzen in Quotienten, z. B. bei mittleren Änderungsraten oder Steigungen: (f(a)-f(b))/(a-b) ist äquivalent zu (f(b)-f(a))/(b-a). Werte nicht als Vorzeichenfehler, wenn Zähler und Nenner gemeinsam umgekehrt wurden.
+7. Akzeptiere rückwärts verwendete Beziehungen, z. B. die Pfadmultiplikationsregel in einem Baumdiagramm durch Division nach einer fehlenden Astwahrscheinlichkeit umzustellen.
+8. Wenn Lernende sichtbare Nummern, Punkte, Äste oder Tabellenfelder aus Graphen, Baumdiagrammen oder Vierfeldertafeln nennen, interpretiere diese mithilfe von Einleitung, Visualisierung und Generator-Kontext. Werte nicht allein deshalb ab, weil ein formaler Name fehlt.
+9. Das Referenzbeispiel dient nur der Orientierung: Die tatsächliche Aufgabe hat andere Zahlenwerte und gegebenenfalls ein anderes Szenario. Bewerte niemals gegen die Zahlen oder das Szenario des Referenzbeispiels. Akzeptiere auch Lösungswege, die vom Referenzbeispiel abweichen, solange sie fachlich korrekt zur gestellten Aufgabe passen.
+10. Verlange eine bestimmte Form oder Methode nur, wenn sie in Einleitung oder Teilfrage ausdrücklich gefordert ist.
+
+# Kalibrierungsbeispiele (unabhängig von der aktuellen Aufgabe)
+Beispiel A, Score 1.0: Teilfrage verlangt einen Tiefpunkt. Erklärung: "Ich setze die erste Ableitung gleich null und löse nach x auf. Dann prüfe ich mit der zweiten Ableitung: ist sie dort positiv, liegt ein Tiefpunkt vor. Den y-Wert bekommt man durch Einsetzen in f." Kein Endwert genannt, aber der Weg ist vollständig, korrekt und verständlich.
+Beispiel B, Score 0.8: Teilfrage verlangt eine mittlere Änderungsrate. Erklärung: "Man rechnet die Differenz der Funktionswerte durch die Differenz der x-Werte." Kernidee korrekt, aber es fehlt der kleine Hinweis, welche Stellen eingesetzt werden.
+Beispiel C, Score 0.5: Teilfrage verlangt eine Pfadwahrscheinlichkeit aus einem Baumdiagramm. Erklärung: "Man multipliziert einfach die Wahrscheinlichkeiten." Richtiger Kerngedanke, aber es fehlt, welche Äste gemeint sind und warum multipliziert wird.
+Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f'(x)=0 setzen, und wenn f''(x)>0 ist, ist es ein Hochpunkt." Die Bedingung ist fachlich falsch (Vorzeichen vertauscht).
 
 # Check
 Schlagwort: ${context.check.schlagwort}
@@ -88,22 +98,25 @@ ${context.task.einleitung || "(keine Einleitung)"}
 Visualisierung / Generator-Kontext:
 ${context.task.visualContext || "(keine Visualisierung)"}
 
-Referenzbeispiel / weiterer Kontext:
+Referenzbeispiel (nur Orientierung, andere Zahlen/Szenario möglich):
 ${context.task.beispiel || "(kein Referenzbeispiel)"}
 
 # Teilfragen und interne Zielantworten
-${context.items.map((item) => `Teilfrage ${item.nr}: ${item.frage}\nInterne Zielorientierung: ${item.zielantwort || "(keine Zielantwort)"}\nSchuelererklärung: ${item.schueler_antwort || "(leer)"}`).join("\n\n")}
+${context.items.map((item) => `Teilfrage ${item.nr}: ${item.frage}\nInterne Zielantwort: ${item.zielantwort || "(keine Zielantwort)"}\nSchülererklärung: ${item.schueler_antwort || "(leer)"}`).join("\n\n")}
 
-Bewerte jede Schuelererklärung danach, ob sie den Loesungsweg im Feynman-Stil fachlich sinnvoll erklaert. Nutze diese Score-Skala als Anker:
-- 1.0: sehr gut erklaert; zentrale Schritte, Begriffe und Begruendung sind korrekt
-- 0.8: im Kern gut; kleine Ungenauigkeit oder eine kleine Luecke
+# Bewertung
+Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil fachlich sinnvoll erklärt. Nutze diese Score-Skala als Anker:
+- 1.0: sehr gut erklärt; zentrale Schritte, Begriffe und Begründung sind korrekt
+- 0.8: im Kern gut; kleine Ungenauigkeit oder eine kleine Lücke
 - 0.5: teilweise brauchbar; ein zentraler Schritt, Begriff oder Zusammenhang fehlt
 - 0.0: fachlich falsch, kaum verwertbar oder leer
 
-Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Sei fair, wenn kein Endergebnis genannt wird, aber der Weg klar und korrekt erklaert ist. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklaerung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
+Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Sei fair, wenn kein Endergebnis genannt wird, aber der Weg klar und korrekt erklärt ist. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
+
+Prüfe vor dem Antworten jede Begründung: Nennt sie einen Zahlenwert, muss dieser mit der internen Zielantwort oder den Kontextdaten übereinstimmen. Widerspricht deine Begründung der internen Zielantwort, verwirf sie und bewerte neu.
 
 Antworte NUR mit einem JSON-Array:
-[{"nr": 1, "score": 0.0, "reason": "kurzer deutscher Hinweis, max 18 Woerter"}]`;
+[{"nr": 1, "score": 0.0, "reason": "kurzer deutscher Hinweis, höchstens 18 Wörter"}]`;
 }
 
 class GeminiHttpError extends Error {
@@ -164,7 +177,7 @@ async function callGemini(apiKey: string, model: string, context: PromptContext)
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 1200 },
+      generationConfig: { temperature: 0.1, maxOutputTokens: 1200, responseMimeType: "application/json" },
     }),
   });
 
