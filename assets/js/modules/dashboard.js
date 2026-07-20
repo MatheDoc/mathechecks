@@ -1285,32 +1285,6 @@ function getActivityTypeCount(overview, type) {
   return Math.max(0, Number(overview?.byType?.[type]) || 0);
 }
 
-function renderActivityBars(container, overview) {
-  if (!container) return;
-
-  const entries = normalizeActivityOverviewDays(overview);
-  const maxCount = Math.max(1, ...entries.map((entry) => Math.max(0, Number(entry?.count) || 0)));
-  const todayKey = toDateOnlyValue(new Date());
-
-  container.innerHTML = entries.map((entry) => {
-    const count = Math.max(0, Number(entry?.count) || 0);
-    const date = parseDateOnlyValue(entry?.date) || new Date();
-    const label = new Intl.DateTimeFormat("de-DE", { weekday: "short" }).format(date).replace(".", "");
-    const heightPercent = count > 0 ? Math.max(10, Math.round((count / maxCount) * 100)) : 8;
-    const todayClass = String(entry?.date || "") === todayKey ? " is-today" : "";
-
-    return `
-      <div class="dashboard-activity__bar-col" aria-label="${escapeHtml(label)}: ${escapeHtml(String(count))} Aktivitäten">
-        <span class="dashboard-activity__bar-count">${escapeHtml(formatActivityCount(count))}</span>
-        <div class="dashboard-activity__bar-track">
-          <div class="dashboard-activity__bar${todayClass}" style="height:${heightPercent}%"></div>
-        </div>
-        <span class="dashboard-activity__bar-label">${escapeHtml(label)}</span>
-      </div>
-    `;
-  }).join("");
-}
-
 function getActivityMapLevel(count) {
   const normalizedCount = Math.max(0, Number(count) || 0);
   if (normalizedCount <= 0) return 0;
@@ -1572,9 +1546,6 @@ function applyActivityOverview(context, overview = null) {
   const metaNode = context.elements.activityMeta;
   const activeDaysNode = context.elements.activityActiveDays;
   const averageNode = context.elements.activityAverage;
-  const trainingSuccessNode = context.elements.activityTrainingSuccess;
-  const recallSuccessNode = context.elements.activityRecallSuccess;
-  const feynmanSuccessNode = context.elements.activityFeynmanSuccess;
   const trainingNode = context.elements.activityTraining;
   const recallNode = context.elements.activityRecall;
   const feynmanNode = context.elements.activityFeynman;
@@ -1584,9 +1555,6 @@ function applyActivityOverview(context, overview = null) {
   const activeDays = Math.max(0, Number(overview?.activeDays) || 0);
   const averagePerActiveDay = Number(overview?.averagePerActiveDay) || 0;
   const firstActivityDate = String(overview?.firstActivityDate || "").trim();
-  const trainingSuccessRate = overview?.trainingSuccess?.rate;
-  const recallSuccessRate = overview?.recallProficiency?.overall?.rate;
-  const feynmanSuccessRate = overview?.feynmanProficiency?.overall?.rate;
 
   if (summaryNode) {
     summaryNode.textContent = totalCount > 0
@@ -1601,32 +1569,12 @@ function applyActivityOverview(context, overview = null) {
   }
   if (activeDaysNode) activeDaysNode.textContent = formatActivityCount(activeDays);
   if (averageNode) averageNode.textContent = formatActivityAverage(averagePerActiveDay);
-  if (trainingSuccessNode) {
-    trainingSuccessNode.textContent = formatActivityPercent(Math.round(trainingSuccessRate));
-    trainingSuccessNode.title = Number.isFinite(Number(trainingSuccessRate))
-      ? "Quote aus den jüngsten Trainingsdurchgängen je Check, zusammengesetzt über alle trainierten Checks."
-      : "Die Quote erscheint, sobald Trainingsaufgaben erfasst wurden.";
-  }
-  if (recallSuccessNode) {
-    recallSuccessNode.textContent = formatActivityPercent(Math.round(recallSuccessRate));
-    recallSuccessNode.title = Number.isFinite(Number(recallSuccessRate))
-      ? "Quote aus den jüngsten Recall-Durchgängen je Check, zusammengesetzt über alle abgefragten Checks."
-      : "Die Quote erscheint, sobald Recall-Durchgänge erfasst wurden.";
-  }
-  if (feynmanSuccessNode) {
-    feynmanSuccessNode.textContent = formatActivityPercent(Math.round(feynmanSuccessRate));
-    feynmanSuccessNode.title = Number.isFinite(Number(feynmanSuccessRate))
-      ? "Quote aus den jüngsten Feynman-Durchgängen je Check, zusammengesetzt über alle erklärten Checks."
-      : "Die Quote erscheint, sobald Feynman-Durchgänge erfasst wurden.";
-  }
   if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
   if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
   if (feynmanNode) feynmanNode.textContent = formatActivityCount(getActivityTypeCount(overview, "feynman"));
   if (flashcardsNode) flashcardsNode.textContent = formatActivityCount(getActivityTypeCount(overview, "flashcards"));
 
-  renderActivityBars(context.elements.activityBars, overview);
   applyProficiencyWorklist(context, overview);
-  updateSessionQuotes(context);
   setStatusNode(context.elements.activityStatusNode, "");
 }
 
@@ -1642,30 +1590,55 @@ function computeSessionActivityRate(checks, selectedCheckIdSet) {
   return rates.reduce((sum, rate) => sum + rate, 0) / rates.length;
 }
 
-function updateSessionQuotes(context) {
-  const quotesNode = context.elements.planQuotes;
-  if (!quotesNode) return;
+function computeLifetimeActivityRate(rateEntry) {
+  const rate = Number(rateEntry?.rate);
+  return Number.isFinite(rate) ? rate : null;
+}
 
-  const trainingNode = context.elements.planTrainingSuccess;
-  const recallNode = context.elements.planRecallSuccess;
-  const feynmanNode = context.elements.planFeynmanSuccess;
+function updateWorklistQuotes(context) {
+  const trainingSuccessNode = context.elements.worklistTrainingSuccess;
+  const recallSuccessNode = context.elements.worklistRecallSuccess;
+  const feynmanSuccessNode = context.elements.worklistFeynmanSuccess;
+  if (!trainingSuccessNode && !recallSuccessNode && !feynmanSuccessNode) return;
 
-  const { selectedCheckIds } = summarizeActivePlan(context);
-  if (!context.activeSession || !selectedCheckIds.length) {
-    quotesNode.hidden = true;
-    return;
+  const overview = context.activityOverview;
+  const sessionOnly = context.worklistSessionOnly !== false;
+
+  let trainingRate;
+  let recallRate;
+  let feynmanRate;
+
+  if (sessionOnly) {
+    const { selectedCheckIds } = summarizeActivePlan(context);
+    const selectedCheckIdSet = new Set(selectedCheckIds.map((checkId) => String(checkId || "").trim()));
+    trainingRate = computeSessionActivityRate(overview?.proficiency?.checks, selectedCheckIdSet);
+    recallRate = computeSessionActivityRate(overview?.recallProficiency?.checks, selectedCheckIdSet);
+    feynmanRate = computeSessionActivityRate(overview?.feynmanProficiency?.checks, selectedCheckIdSet);
+  } else {
+    trainingRate = computeLifetimeActivityRate(overview?.trainingSuccess);
+    recallRate = computeLifetimeActivityRate(overview?.recallProficiency?.overall);
+    feynmanRate = computeLifetimeActivityRate(overview?.feynmanProficiency?.overall);
   }
 
-  const selectedCheckIdSet = new Set(selectedCheckIds.map((checkId) => String(checkId || "").trim()));
-  const overview = context.activityOverview;
-  const trainingRate = computeSessionActivityRate(overview?.proficiency?.checks, selectedCheckIdSet);
-  const recallRate = computeSessionActivityRate(overview?.recallProficiency?.checks, selectedCheckIdSet);
-  const feynmanRate = computeSessionActivityRate(overview?.feynmanProficiency?.checks, selectedCheckIdSet);
-
-  quotesNode.hidden = false;
-  if (trainingNode) trainingNode.textContent = formatActivityPercent(Number.isFinite(trainingRate) ? Math.round(trainingRate) : NaN);
-  if (recallNode) recallNode.textContent = formatActivityPercent(Number.isFinite(recallRate) ? Math.round(recallRate) : NaN);
-  if (feynmanNode) feynmanNode.textContent = formatActivityPercent(Number.isFinite(feynmanRate) ? Math.round(feynmanRate) : NaN);
+  const scopeLabel = sessionOnly ? "deiner Session-Checks" : "aller erfassten Checks";
+  if (trainingSuccessNode) {
+    trainingSuccessNode.textContent = formatActivityPercent(Number.isFinite(trainingRate) ? Math.round(trainingRate) : NaN);
+    trainingSuccessNode.title = Number.isFinite(trainingRate)
+      ? `Trainingsquote ${scopeLabel}, zusammengesetzt aus den jüngsten Durchgängen je Check.`
+      : "Die Quote erscheint, sobald Trainingsaufgaben erfasst wurden.";
+  }
+  if (recallSuccessNode) {
+    recallSuccessNode.textContent = formatActivityPercent(Number.isFinite(recallRate) ? Math.round(recallRate) : NaN);
+    recallSuccessNode.title = Number.isFinite(recallRate)
+      ? `Recall-Quote ${scopeLabel}, zusammengesetzt aus den jüngsten Durchgängen je Check.`
+      : "Die Quote erscheint, sobald Recall-Durchgänge erfasst wurden.";
+  }
+  if (feynmanSuccessNode) {
+    feynmanSuccessNode.textContent = formatActivityPercent(Number.isFinite(feynmanRate) ? Math.round(feynmanRate) : NaN);
+    feynmanSuccessNode.title = Number.isFinite(feynmanRate)
+      ? `Feynman-Quote ${scopeLabel}, zusammengesetzt aus den jüngsten Durchgängen je Check.`
+      : "Die Quote erscheint, sobald Feynman-Durchgänge erfasst wurden.";
+  }
 }
 
 function buildCheckTrainingHref(checkMeta) {
@@ -1717,6 +1690,7 @@ function applyProficiencyWorklist(context, overview = null) {
 
   context.activityOverview = overview ?? context.activityOverview ?? null;
   syncWorklistSessionToggle(context);
+  updateWorklistQuotes(context);
 
   const effectiveOverview = context.activityOverview;
   const allChecks = buildProficiencyWorklistEntries(effectiveOverview);
@@ -2023,13 +1997,13 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
 
   applyPrimaryFeedButtonState(context, {
     title: nextLabel
-      ? `Nächste Aktion wird ab ${nextLabel} freigeschaltet`
-      : "Nächste Aktion wird später freigeschaltet",
+      ? `Nächste Aktion wird ab ${nextLabel} freigeschaltet.`
+      : "Nächste Aktion wird später freigeschaltet.",
     moduleLabel: "",
     type: "feed",
     accessibleLabel: nextLabel
-      ? `Nächste Aktion ab ${nextLabel}`
-      : "Nächste Aktion später verfügbar",
+      ? "Wartend"
+      : "Wartend",
     disabled: true,
   });
 }
@@ -2135,6 +2109,7 @@ function buildDashboardClockStatusMarkup(label, tone = "available") {
   return `
     <span class="dashboard-panel__action-status dashboard-panel__action-status--icon" data-tone="${escapeHtml(normalizedTone)}" role="img" aria-label="${escapeHtml(accessibleLabel)}" title="${escapeHtml(accessibleLabel)}">
       <span class="dashboard-panel__status-clock" aria-hidden="true"></span>
+      <span class="dashboard-panel__status-clock-label" aria-hidden="true">${escapeHtml(accessibleLabel)}</span>
     </span>
   `;
 }
@@ -3069,7 +3044,6 @@ function updatePlanSummary(context) {
   if (!context.activeSession || !activeEntries.length) {
     node.textContent = SESSION_EMPTY_SUMMARY;
     updatePlanProgress(context);
-    updateSessionQuotes(context);
     if (targetNode) {
       targetNode.hidden = true;
     }
@@ -3086,7 +3060,6 @@ function updatePlanSummary(context) {
   const { selectedCheckIds, activeLernbereichIds } = summarizeActivePlan(context);
   node.textContent = buildActiveLernbereichSummary(activeEntries, SESSION_EMPTY_SUMMARY);
   updatePlanProgress(context);
-  updateSessionQuotes(context);
 
   if (targetNode) {
     const assessment = buildTargetDateAssessment(context, selectedCheckIds, activeLernbereichIds);
@@ -3989,10 +3962,6 @@ function createContext(root, lernbereiche) {
     planTarget: root.querySelector("[data-dashboard-plan-target]"),
     planTargetLabel: root.querySelector("[data-dashboard-plan-target-label]"),
     planAssessment: root.querySelector("[data-dashboard-plan-assessment]"),
-    planQuotes: root.querySelector("[data-dashboard-plan-quotes]"),
-    planTrainingSuccess: root.querySelector("[data-dashboard-plan-training-success]"),
-    planRecallSuccess: root.querySelector("[data-dashboard-plan-recall-success]"),
-    planFeynmanSuccess: root.querySelector("[data-dashboard-plan-feynman-success]"),
     primaryFeedButton: root.querySelector("[data-dashboard-primary-feed-button]"),
     primaryFeedTitle: root.querySelector("[data-dashboard-primary-feed-title]"),
     primaryFeedModule: root.querySelector("[data-dashboard-primary-feed-module]"),
@@ -4014,12 +3983,8 @@ function createContext(root, lernbereiche) {
     activitySummary: root.querySelector("[data-dashboard-activity-summary]"),
     activityTotal: root.querySelector("[data-dashboard-activity-total]"),
     activityMeta: root.querySelector("[data-dashboard-activity-meta]"),
-    activityBars: root.querySelector("[data-dashboard-activity-bars]"),
     activityActiveDays: root.querySelector("[data-dashboard-activity-active-days]"),
     activityAverage: root.querySelector("[data-dashboard-activity-average]"),
-    activityTrainingSuccess: root.querySelector("[data-dashboard-activity-training-success]"),
-    activityRecallSuccess: root.querySelector("[data-dashboard-activity-recall-success]"),
-    activityFeynmanSuccess: root.querySelector("[data-dashboard-activity-feynman-success]"),
     activityTraining: root.querySelector("[data-dashboard-activity-training]"),
     activityRecall: root.querySelector("[data-dashboard-activity-recall]"),
     activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),
@@ -4029,6 +3994,9 @@ function createContext(root, lernbereiche) {
     worklistSummary: root.querySelector("[data-dashboard-worklist-summary]"),
     worklistList: root.querySelector("[data-dashboard-worklist-list]"),
     worklistSessionToggle: root.querySelector("[data-dashboard-worklist-session-toggle]"),
+    worklistTrainingSuccess: root.querySelector("[data-dashboard-worklist-training-success]"),
+    worklistRecallSuccess: root.querySelector("[data-dashboard-worklist-recall-success]"),
+    worklistFeynmanSuccess: root.querySelector("[data-dashboard-worklist-feynman-success]"),
     worklistStatusNode: document.getElementById("worklistStatus"),
     activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
     activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),
