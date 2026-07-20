@@ -1,6 +1,6 @@
 import { initTrainingModule } from "./modules/training.js?v=20260719-speech-cursor-insert";
 import { initRecallModule } from "./modules/recall.js?v=20260719-speech-cursor-insert";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260720-feynman-context-limits";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260720-feynman-repeat-new-task";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260701-shared-client";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260719-speech-cursor-insert";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260702-recall-tips-shared";
