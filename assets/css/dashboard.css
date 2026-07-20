@@ -812,7 +812,7 @@ body.page-dashboard .dashboard-activity__hero-meta {
 
 body.page-dashboard .dashboard-activity__quotes {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 10px;
 }
 
@@ -1116,10 +1116,6 @@ body.page-dashboard .dashboard-activity-map__cell.level-10 .dashboard-activity-m
   body.page-dashboard .dashboard-panel--plan     { order: 2; }
   body.page-dashboard .dashboard-panel--completed { order: 3; }
   body.page-dashboard .dashboard-panel--activity  { order: 4; }
-
-  body.page-dashboard .dashboard-activity__quotes {
-    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
-  }
 
   body.page-dashboard .dashboard-activity-map__board {
     gap: 4px;
@@ -1475,10 +1471,6 @@ html.light .lb-field__input {
     min-width: 17px;
     min-height: 24px;
     font-size: 1.05rem;
-  }
-
-  body.page-dashboard .dashboard-activity__quotes {
-    grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
   }
 
   body.page-dashboard .dashboard-activity-map__board {
