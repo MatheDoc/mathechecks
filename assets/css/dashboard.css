@@ -242,10 +242,10 @@ body.page-dashboard .dashboard-panel__action-status {
 }
 
 body.page-dashboard .dashboard-panel__action-status--icon {
-  width: var(--dashboard-action-status-size);
+  width: auto;
   min-width: var(--dashboard-action-status-size);
-  height: var(--dashboard-action-status-size);
-  padding: 0;
+  height: auto;
+  padding: 2px 2px;
 }
 
 body.page-dashboard .dashboard-panel__action-status--count {
@@ -344,6 +344,16 @@ body.page-dashboard .dashboard-panel__status-clock::after {
   height: 8px;
   transform-origin: center 1px;
   transform: translate(-50%, -50%) rotate(55deg);
+}
+
+body.page-dashboard .dashboard-panel__status-clock-label {
+  color: var(--dashboard-status-accent);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 /* Fortschrittsring */
@@ -564,10 +574,6 @@ body.page-dashboard .dashboard-plan__target[hidden] {
   display: none;
 }
 
-body.page-dashboard .dashboard-plan__quotes[hidden] {
-  display: none;
-}
-
 body.page-dashboard .dashboard-plan__assessment {
   display: inline-flex;
   align-items: center;
@@ -724,7 +730,6 @@ body.page-dashboard .dashboard-activity {
 }*/
 
 body.page-dashboard .dashboard-activity__hero-copy,
-body.page-dashboard .dashboard-activity__spark,
 body.page-dashboard .dashboard-activity__hero-average,
 body.page-dashboard .dashboard-activity__metric,
 body.page-dashboard .dashboard-activity__type-pill {
@@ -803,66 +808,6 @@ body.page-dashboard .dashboard-activity__hero-meta {
   color: var(--text-dim);
   font-size: 0.78rem;
   line-height: 1.4;
-}
-
-body.page-dashboard .dashboard-activity__spark {
-  padding: 16px 16px 12px;
-  display: grid;
-  gap: 10px;
-}
-
-body.page-dashboard .dashboard-activity__spark-title {
-  color: var(--text-dim);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-body.page-dashboard .dashboard-activity__bars {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: 8px;
-  align-items: end;
-  min-height: 118px;
-}
-
-body.page-dashboard .dashboard-activity__bar-col {
-  display: grid;
-  gap: 8px;
-  justify-items: center;
-  align-content: end;
-  min-height: 118px;
-}
-
-body.page-dashboard .dashboard-activity__bar-track {
-  width: 100%;
-  min-height: 86px;
-  display: flex;
-  align-items: end;
-}
-
-body.page-dashboard .dashboard-activity__bar {
-  width: 100%;
-  border-radius: 999px 999px 10px 10px;
-  background: linear-gradient(180deg, color-mix(in srgb, var(--dashboard-accent) 78%, white 12%), var(--dashboard-accent));
-  box-shadow: inset 0 1px 0 color-mix(in srgb, white 18%, transparent);
-}
-
-body.page-dashboard .dashboard-activity__bar.is-today {
-  background: linear-gradient(180deg, color-mix(in srgb, var(--teal) 74%, white 18%), var(--teal));
-}
-
-body.page-dashboard .dashboard-activity__bar-count {
-  color: var(--text);
-  font-size: 0.74rem;
-  font-weight: 700;
-}
-
-body.page-dashboard .dashboard-activity__bar-label {
-  color: var(--text-dim);
-  font-size: 0.7rem;
-  font-weight: 700;
 }
 
 body.page-dashboard .dashboard-activity__quotes {
@@ -1534,10 +1479,6 @@ html.light .lb-field__input {
 
   body.page-dashboard .dashboard-activity__quotes {
     grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
-  }
-
-  body.page-dashboard .dashboard-activity__bars {
-    gap: 6px;
   }
 
   body.page-dashboard .dashboard-activity-map__board {

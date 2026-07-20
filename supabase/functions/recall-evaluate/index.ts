@@ -37,24 +37,37 @@ function truncate(value: unknown, maxLength: number): string {
 type PromptItem = { nr: number; cue: string; erwartete_antwort: string; schueler_antwort: string };
 
 function buildPrompt(payload: PromptItem[]): string {
-  return `Du bewertest Schuelerantworten in einer Mathematik-Recall-Uebung.
+  return `Du bewertest Schülerantworten in einer Mathematik-Recall-Übung.
 
-Kontext: Den Schuelern wurde ein Hinweis gezeigt, z.B. ein Symbol, eine Formel oder ein Schritt eines Prozesses. Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedaechtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schuelerantwort, sondern natuerlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z.B. "f Strich von x Null gleich Null" fuer f'(x_0)=0, oder "p mal eins minus p" fuer p(1-p)).
+Kontext: Den Schülern wurde ein Hinweis gezeigt, z. B. ein Symbol, eine Formel oder ein Schritt eines Prozesses. Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedächtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schülerantwort, sondern natürlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z. B. "f Strich von x Null gleich Null" für f'(x_0)=0, oder "p mal eins minus p" für p(1-p)).
 
-Bewerte fuer jedes Item, ob die Schuelerantwort die fachliche Kernaussage der erwarteten Antwort trifft. Nutze diese Score-Skala als Anker:
-- 1.0: fachlich korrekt und vollstaendig
-- 0.8: im Kern richtig, kleine Ungenauigkeit oder Luecke
+Bewerte für jedes Item, ob die Schülerantwort die fachliche Kernaussage der erwarteten Antwort trifft. Nutze diese Score-Skala als Anker:
+- 1.0: fachlich korrekt und vollständig, gemessen an der erwarteten Antwort
+- 0.8: im Kern richtig, kleine Ungenauigkeit oder Lücke
 - 0.5: teilweise richtig, ein wichtiger Teil fehlt oder ist ungenau
 - 0.0: falsch, keine Aussage erkennbar, oder keine Antwort
 
-Toleriere umgangssprachliche Schreibweise, Fehler, die offensichtlich durch fehlerhafte Spracherkennung entstanden sind, und andere Variablennamen bei gleicher Struktur. Bewerte STRENG bei fehlenden zentralen Bestandteilen oder Verwechslung von Symbolen/Bedingungen.
-Schreibe "reason" als vollstaendigen, kurzen deutschen Satz. Bei score < 0.8 soll "reason" ein hilfreicher Hinweis sein, aber NICHT die erwartete Antwort verraten. Zitiere die erwartete Antwort nicht. Nenne stattdessen knapp, welche Art von Bestandteil fehlt oder in welche Richtung der Schueler denken soll.
+Wichtige Bewertungsgrundsätze:
+- Die erwartete Antwort definiert den Maßstab für Umfang und Detailtiefe. Verlange niemals mehr Detail, als die erwartete Antwort selbst enthält. Ist die erwartete Antwort nur ein Stichwort oder der Name einer Formel (z. B. "Erwartungswert-Formel"), genügt es vollständig, wenn die Schülerantwort dieses Stichwort sinngemäß nennt.
+- Enthält die erwartete Antwort Alternativen (z. B. "Gleichsetzungs- oder Einsetzungsverfahren"), genügt es vollständig, EINE davon zu nennen.
+- Sinngemäße Formulierungen und Synonyme zählen als Treffer (z. B. "lösen" statt "berechnen", "ausrechnen" statt "bestimmen"). Bestandteile, die durch den gezeigten Hinweis (Cue) oder den Satzzusammenhang offensichtlich impliziert sind, gelten als abgedeckt und dürfen nicht als fehlend gewertet werden.
+- Zusätzliche Angaben, die fachlich korrekt oder neutral sind (z. B. ein Bezug zum Aufgabenkontext), werten die Antwort NICHT ab. Nur fachlich falsche Zusätze senken den Score.
+- Toleriere umgangssprachliche Schreibweise, Diktier- und Spracherkennungsfehler sowie andere Variablennamen bei gleicher Struktur.
+- Bewerte streng bei fehlenden zentralen Bestandteilen der erwarteten Antwort oder bei Verwechslung von Symbolen/Bedingungen.
+
+Kalibrierungsbeispiele (unabhängig von den aktuellen Items):
+- Erwartet: "fehlende Werte mit Gleichsetzungs- oder Einsetzungsverfahren berechnen". Schüler: "die zwei Gleichungen kann man mit dem Einsetzungsverfahren lösen". Score 1.0: eine Alternative genannt, "lösen" ist sinngemäß "berechnen", der Rest ist durch den Cue impliziert.
+- Erwartet: "Summe aller Wahrscheinlichkeiten = 1". Schüler: "Summe aller Wahrscheinlichkeiten ergibt 1, mit 2 Unbekannten". Score 1.0: Kernaussage exakt getroffen, der Zusatz ist korrekt und wertet nicht ab.
+- Erwartet: "f'(x_0) = 0 und f''(x_0) < 0". Schüler: "erste Ableitung gleich null setzen". Score 0.5: die zweite Bedingung fehlt vollständig.
+- Erwartet: "f'(x_0) = 0 und f''(x_0) < 0". Schüler: "f zwei Strich gleich null und f drei Strich größer null". Score 0.0: die Bedingung ist fachlich falsch.
+
+Schreibe "reason" als vollständigen, kurzen deutschen Satz. Bei score < 0.8 soll "reason" ein hilfreicher Hinweis sein, aber NICHT die erwartete Antwort verraten. Zitiere die erwartete Antwort nicht. Nenne stattdessen knapp, welche Art von Bestandteil fehlt oder in welche Richtung der Schüler denken soll.
 
 Eingabedaten:
 ${JSON.stringify(payload, null, 2)}
 
 Antworte NUR mit einem JSON-Array:
-[{"nr": 1, "score": 0.0, "reason": "vollstaendiger Hinweis, max 18 Woerter"}]`;
+[{"nr": 1, "score": 0.0, "reason": "vollständiger Hinweis, höchstens 18 Wörter"}]`;
 }
 
 class GeminiHttpError extends Error {
@@ -83,7 +96,7 @@ async function callGemini(apiKey: string, model: string, payload: PromptItem[]):
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 1024 },
+      generationConfig: { temperature: 0.1, maxOutputTokens: 1024, responseMimeType: "application/json" },
     }),
   });
 
