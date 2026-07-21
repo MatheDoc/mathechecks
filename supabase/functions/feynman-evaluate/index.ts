@@ -63,7 +63,7 @@ function buildPrompt(context: PromptContext): string {
   return `Du bewertest Schülererklärungen in einer Mathematik-Feynman-Übung.
 
 # Ziel der Übung
-Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigenen Worten erklären, WIE man die Teilfrage löst. Im Mittelpunkt steht der Rechenweg: die zentralen Schritte, Begriffe, Bedingungen und Begründungen. Ein konkretes Endergebnis ist bei einfachen Aufgaben wünschenswert, aber nicht generell erforderlich; eine Erklärung ohne Endwert kann die volle Punktzahl erreichen, wenn der Weg klar und fachlich korrekt ist. Die Texte entstehen oft per Diktat: Sprach-, Tipp- oder Diktierfehler sind möglich und zählen nicht als fachliche Fehler.
+Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigenen Worten erklären, WIE man die Teilfrage löst. Im Mittelpunkt steht der Rechenweg: die zentralen Schritte, Begriffe, Bedingungen und Begründungen. Ein konkretes Endergebnis darf genannt werden, ist aber nicht erforderlich und darf bei einem vollständigen, korrekten Lösungsweg niemals zu einem Punktabzug führen. Eine Erklärung ohne Endwert kann die volle Punktzahl erreichen. Die Texte entstehen oft per Diktat: Sprach-, Tipp- oder Diktierfehler sind möglich und zählen nicht als fachliche Fehler.
 
 # Bewertungsgrundsätze
 1. Maßgeblich ist die sichtbare Aufgabenstellung. Für Form, Darstellung und Lösungsweg ist die interne Zielantwort nur eine fachliche Orientierung, kein zwingendes Antwortformat.
@@ -82,6 +82,7 @@ Beispiel A, Score 1.0: Teilfrage verlangt einen Tiefpunkt. Erklärung: "Ich setz
 Beispiel B, Score 0.8: Teilfrage verlangt eine mittlere Änderungsrate. Erklärung: "Man rechnet die Differenz der Funktionswerte durch die Differenz der x-Werte." Kernidee korrekt, aber es fehlt der kleine Hinweis, welche Stellen eingesetzt werden.
 Beispiel C, Score 0.5: Teilfrage verlangt eine Pfadwahrscheinlichkeit aus einem Baumdiagramm. Erklärung: "Man multipliziert einfach die Wahrscheinlichkeiten." Richtiger Kerngedanke, aber es fehlt, welche Äste gemeint sind und warum multipliziert wird.
 Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f''(x)=0 setzen, und wenn f'''(x)>0 ist, ist es ein Hochpunkt." Die Bedingung ist fachlich falsch (erste und zweite Ableitung verwechselt).
+Beispiel E, Score 1.0: Teilfrage verlangt einen Angebots- oder Nachfrageüberschuss. Erklärung: "Den festgelegten Preis in Angebots- und Nachfragefunktion einsetzen, die Mengen vergleichen und die Differenz bilden. Ist die Nachfrage größer, liegt ein Nachfrageüberschuss vor, sonst ein Angebotsüberschuss." Kein Zahlenwert genannt, aber Rechenweg, Vergleich und Deutung sind vollständig.
 
 # Check
 Schlagwort: ${context.check.schlagwort}
@@ -111,7 +112,7 @@ Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil f
 - 0.5: teilweise brauchbar; ein zentraler Schritt, Begriff oder Zusammenhang fehlt
 - 0.0: fachlich falsch, kaum verwertbar oder leer
 
-Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Sei fair, wenn kein Endergebnis genannt wird, aber der Weg klar und korrekt erklärt ist. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
+Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Ein fehlendes Endergebnis oder ein fehlender konkreter Zahlenwert ist KEINE Lücke und darf bei vollständig beschriebenem, korrektem Rechenweg nicht zu einem Score unter 1.0 führen. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
 
 Prüfe vor dem Antworten jede Begründung: Nennt sie einen Zahlenwert, muss dieser mit der internen Zielantwort oder den Kontextdaten übereinstimmen. Widerspricht deine Begründung der internen Zielantwort, verwirf sie und bewerte neu.
 
