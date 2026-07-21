@@ -104,8 +104,8 @@ const GREETING_EVENT_VARIANTS = {
     "Hallo {name}, 100 Tage. Wir müssen reden, über deine Zukunft als Mathematiker.",
   ],
   missedYesterday: [
-    "Da bist du wieder, {name}. Weiter geht´s.",
-    "Hey {name}, gestern war Pause. Heute geht's weiter.",
+    "Wieder am Start, {name}?",
+    "Hey {name}, heute geht´s weiter.",
     "Hi {name}, es ist wieder Zeit, Mathe zu checken.",
   ],
   longPause: [
@@ -115,7 +115,7 @@ const GREETING_EVENT_VARIANTS = {
   ],
   streakAtRisk: [
     "Hey {name}, halte den Streak am Laufen.",
-    "Der Tag läuft, der Streak auch. Noch zumindest.",
+    "Noch läuft der Streak, {name}.",
     "Heute noch eine Aktivität, {name}, und der Streak lebt weiter.",
   ],
 };
@@ -1793,7 +1793,7 @@ function applyProficiencyWorklist(context, overview = null) {
       details.className = "dashboard-worklist__lernbereich";
       details.open = sessionOnly;
       const summary = document.createElement("summary");
-      summary.innerHTML = `<span>${escapeHtml(lernbereich.name)}</span><span>${lernbereich.checks.length} ${lernbereich.checks.length === 1 ? "Check" : "Checks"}</span>`;
+      summary.innerHTML = `<span>${escapeHtml(lernbereich.name)}</span><span>${lernbereich.checks.length} ${lernbereich.checks.length === 1 ? "Aktivität" : "Aktivitäten"}</span>`;
       const checkList = document.createElement("ul");
       checkList.className = "dashboard-worklist__checks";
       details.append(summary, checkList);
@@ -2086,7 +2086,7 @@ function applyPrimaryFeedWaitingState(context, waiting = null) {
 
   applyPrimaryFeedButtonState(context, {
     title: nextLabel
-      ? `Nächste Aktion ab ${nextLabel} verfügbar. Du kannst in der Zwischenzeit Deine Erfolgsquoten verbessern.`
+      ? `Nächste Aktion ab ${nextLabel} verfügbar. In der Zwischenzeit kannst du deine Erfolgsquoten verbessern.`
       : "Nächste Aktion wird später freigeschaltet.",
     moduleLabel: "",
     type: "feed",
