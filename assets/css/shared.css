@@ -2728,7 +2728,7 @@ html.light .mod-start-content {
   display: block;
   background: rgba(255, 255, 255, .03);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 10px 14px 10px 28px;
   font-size: .88rem;
   color: var(--text);
@@ -2754,19 +2754,15 @@ html.light .mod-start-content {
 }
 
 .recall-list--tips .recall-list__item {
-  border-color: color-mix(in srgb, var(--mt-recall, var(--amber)) 20%, var(--border));
-  background: color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  border-color: var(--dcc-inner-border, color-mix(in srgb, var(--mt-recall, var(--amber)) 22%, var(--border)));
+  background: var(--dcc-inner-surface, color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%));
+  box-shadow: var(--dcc-inner-shadow, inset 0 1px 0 rgba(255, 255, 255, .04));
 }
 
 .recall-list--user .recall-list__item {
   border-color: color-mix(in srgb, var(--mt-recall, var(--amber)) 24%, var(--border));
   background: color-mix(in srgb, var(--surface-hi) 78%, var(--mt-recall, var(--amber)) 22%);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
-}
-
-html.light .recall-list--tips .recall-list__item {
-  background: color-mix(in srgb, white 92%, var(--mt-recall, var(--amber)) 8%);
 }
 
 html.light .recall-list--user .recall-list__item {
@@ -3028,10 +3024,10 @@ html.light .recall-list--user .recall-list__item {
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 6px;
-  border: 1px solid color-mix(in srgb, var(--mt-recall, var(--amber)) 20%, var(--border));
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  border: 1px solid var(--dcc-inner-border, color-mix(in srgb, var(--mt-recall, var(--amber)) 22%, var(--border)));
+  border-radius: 12px;
+  background: var(--dcc-inner-surface, color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%));
+  box-shadow: var(--dcc-inner-shadow, inset 0 1px 0 rgba(255, 255, 255, .04));
   padding: 10px 14px 12px 28px;
 }
 
@@ -3045,10 +3041,6 @@ html.light .recall-list--user .recall-list__item {
   border-radius: 50%;
   background: var(--mt-recall, var(--amber));
   transform: translateY(-50%);
-}
-
-html.light .recall-cue-item {
-  background: color-mix(in srgb, white 92%, var(--mt-recall, var(--amber)) 8%);
 }
 
 .recall-cue-item__label {
