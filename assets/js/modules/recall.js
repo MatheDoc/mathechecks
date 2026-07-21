@@ -172,15 +172,15 @@ function getQueryTipps(check) {
   return order === "fixed" ? tipps : shuffleArray(tipps);
 }
 
-function renderTippLine(item) {
-  const responseHtml = escapeHtml(item.response);
-  return item.cue ? `<strong>${escapeHtml(item.cue)}:</strong> ${responseHtml}` : responseHtml;
-}
-
 function renderTippListMarkup(items) {
   return `
-    <ul class="recall-list recall-list--tips">
-      ${items.map((item) => `<li class="recall-list__item">${renderTippLine(item)}</li>`).join("")}
+    <ul class="recall-list recall-list--tips recall-list--stepped">
+      ${items
+      .map((item) => {
+        const cueMarkup = item.cue ? `<span class="recall-tipp__cue">${escapeHtml(item.cue)}</span>` : "";
+        return `<li class="recall-list__item recall-tipp" data-recall-tipp>${cueMarkup}<span class="recall-tipp__response">${escapeHtml(item.response)}</span></li>`;
+      })
+      .join("")}
     </ul>
   `;
 }
@@ -192,8 +192,8 @@ function renderCueItemsMarkup(items, cardAnchorId) {
       const label = item.cue ? escapeHtml(item.cue) : `Punkt ${index + 1}`;
       const solutionText = escapeHtml(item.response);
       return `
-        <div class="recall-cue-item" data-recall-cue-item data-cue="${escapeHtml(item.cue)}" data-response="${escapeHtml(item.response)}">
-          <label class="recall-cue-item__label" for="${inputId}">${label}</label>
+        <div class="recall-cue-item recall-tipp" data-recall-cue-item data-cue="${escapeHtml(item.cue)}" data-response="${escapeHtml(item.response)}">
+          <label class="recall-cue-item__label recall-tipp__cue" for="${inputId}">${label}</label>
           <div class="recall-response-cell">
             <textarea class="recall-input-slot answer-input" id="${inputId}" rows="1" maxlength="240" data-recall-slot="${index}" placeholder="Deine Antwort ..."></textarea>
             <div class="task-feedback recall-inline-feedback" data-recall-feedback hidden></div>
@@ -276,8 +276,10 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-const RECALL_DELAY_MS = 1000;
+const RECALL_DELAY_MS = 5000;
 const RECALL_MEMORIZE_DELAY_MS = 1000;
+const RECALL_TIPP_CUE_REVEAL_MS = 2000;
+const RECALL_TIPP_NEXT_REVEAL_MS = 4000;
 
 function renderCard(check) {
   const begriff = check?.recall?.begriff || check.Schlagwort || `Check ${check.Nummer}`;
@@ -292,8 +294,8 @@ function renderCard(check) {
   const cueItemsMarkup = queryTipps.length
     ? renderCueItemsMarkup(queryTipps, cardAnchorId)
     : `
-        <div class="recall-cue-item" data-recall-cue-item data-cue="" data-response="">
-          <span class="recall-cue-item__label">Punkt 1</span>
+        <div class="recall-cue-item recall-tipp" data-recall-cue-item data-cue="" data-response="">
+          <span class="recall-cue-item__label recall-tipp__cue">Punkt 1</span>
           <div class="recall-response-cell">
             <textarea class="recall-input-slot answer-input" rows="1" maxlength="240" data-recall-slot="0" placeholder="Was fällt dir ein?"></textarea>
           </div>
@@ -891,10 +893,54 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       });
     }
 
+    const memorizeRevealTimeouts = [];
+
+    function clearMemorizeReveal() {
+      memorizeRevealTimeouts.forEach((id) => window.clearTimeout(id));
+      memorizeRevealTimeouts.length = 0;
+    }
+
+    function runMemorizeReveal() {
+      clearMemorizeReveal();
+      const tippEls = Array.from(stageEls.memorize?.querySelectorAll("[data-recall-tipp]") || []);
+      tippEls.forEach((el) => el.classList.remove("recall-tipp--cue-visible", "recall-tipp--response-visible"));
+
+      if (tippEls.length === 0) {
+        startTimerBar("memorize", RECALL_MEMORIZE_DELAY_MS, toRetrieveBtn);
+        return;
+      }
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (reduceMotion) {
+        tippEls.forEach((el) => el.classList.add("recall-tipp--cue-visible", "recall-tipp--response-visible"));
+        startTimerBar("memorize", RECALL_MEMORIZE_DELAY_MS, toRetrieveBtn, tippEls.length);
+        return;
+      }
+
+      let at = 0;
+      tippEls.forEach((el) => {
+        const hasCue = Boolean(el.querySelector(".recall-tipp__cue"));
+        const revealCueAt = at;
+        memorizeRevealTimeouts.push(window.setTimeout(() => {
+          el.classList.add("recall-tipp--cue-visible");
+          if (!hasCue) el.classList.add("recall-tipp--response-visible");
+        }, revealCueAt));
+        if (hasCue) {
+          memorizeRevealTimeouts.push(window.setTimeout(() => {
+            el.classList.add("recall-tipp--response-visible");
+          }, revealCueAt + RECALL_TIPP_CUE_REVEAL_MS));
+          at = revealCueAt + RECALL_TIPP_CUE_REVEAL_MS + RECALL_TIPP_NEXT_REVEAL_MS;
+        } else {
+          at = revealCueAt + RECALL_TIPP_NEXT_REVEAL_MS;
+        }
+      });
+
+      startTimerBar("memorize", at, toRetrieveBtn, tippEls.length);
+    }
+
     function goToMemorizeStage() {
       setStage("memorize");
-      const memDuration = RECALL_MEMORIZE_DELAY_MS;
-      startTimerBar("memorize", memDuration, toRetrieveBtn);
+      runMemorizeReveal();
       void renderMath(stageEls.memorize);
     }
 
@@ -933,7 +979,17 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
     ensureFreeCompletionControl(false);
 
-    function startTimerBar(scope, durationMs, btn) {
+    function startTimerBar(scope, durationMs, btn, segments = 0) {
+      const bar = card.querySelector(`[data-recall-timer-bar="${scope}"]`);
+      if (bar) {
+        if (segments > 1) {
+          bar.classList.add("recall-timer-bar--segmented");
+          bar.style.setProperty("--recall-segments", String(segments));
+        } else {
+          bar.classList.remove("recall-timer-bar--segmented");
+          bar.style.removeProperty("--recall-segments");
+        }
+      }
       const fill = card.querySelector(`[data-recall-timer-fill="${scope}"]`);
       if (fill) {
         fill.style.transition = "none";
@@ -967,6 +1023,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
     // Phase 2 → 3
     toRetrieveBtn?.addEventListener("click", () => {
+      clearMemorizeReveal();
       if (cueList) {
         cueList.querySelectorAll(".recall-input-slot").forEach((el) => { el.value = ""; });
         resetRecallInputEvaluation(cueList);
