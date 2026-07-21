@@ -67,14 +67,16 @@ function normalizeTipp(raw) {
 
 function appendTippLine(li, item) {
     if (item.cue) {
-        const strong = document.createElement("strong");
-        strong.textContent = `${item.cue}:`;
-        li.appendChild(strong);
-        li.append(` ${item.response}`);
-        return;
+        const cue = document.createElement("span");
+        cue.className = "recall-tipp__cue";
+        cue.textContent = item.cue;
+        li.appendChild(cue);
     }
 
-    li.textContent = item.response;
+    const response = document.createElement("span");
+    response.className = "recall-tipp__response";
+    response.textContent = item.response;
+    li.appendChild(response);
 }
 
 function renderTipps(container, check) {

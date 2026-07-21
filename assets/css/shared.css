@@ -2513,7 +2513,7 @@ html.light .mod-start-content {
   position: relative;
   display: grid;
   gap: 8px;
-  padding: 2px 0 2px 18px;
+  padding: 2px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -2544,20 +2544,6 @@ html.light .mod-start-content {
   letter-spacing: .08em;
   line-height: 1;
   text-transform: uppercase;
-}
-
-.recall-prompt::after,
-.module-flow-prompt::after {
-  content: "";
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 0;
-  width: 3px;
-  border-radius: 0 999px 999px 0;
-  background: linear-gradient(180deg,
-      color-mix(in srgb, var(--module-prompt-accent) 76%, white),
-      var(--module-prompt-accent));
 }
 
 .module-action-button {
@@ -2708,6 +2694,20 @@ html.light .mod-start-content {
   box-shadow: 0 0 14px color-mix(in srgb, var(--dcc-accent, var(--mt-recall, var(--amber))) 20%, transparent);
 }
 
+/* Segment-Marker pro Tipp im Memorize-Timer */
+.recall-timer-bar--segmented::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg,
+      transparent 0,
+      transparent calc(100% / var(--recall-segments, 1) - 2px),
+      color-mix(in srgb, var(--bg) 88%, transparent) calc(100% / var(--recall-segments, 1) - 2px),
+      color-mix(in srgb, var(--bg) 88%, transparent) calc(100% / var(--recall-segments, 1)));
+}
+
 .recall-no-refs {
   font-size: .82rem;
   color: var(--text-muted);
@@ -2744,7 +2744,7 @@ html.light .mod-start-content {
 .recall-list__item::before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: calc(10px + .72em);
   left: 14px;
   width: 6px;
   height: 6px;
@@ -2771,6 +2771,66 @@ html.light .recall-list--tips .recall-list__item {
 
 html.light .recall-list--user .recall-list__item {
   background: color-mix(in srgb, white 88%, var(--mt-recall, var(--amber)) 12%);
+}
+
+/* ── Tipp-Item: Cue und Response als getrennte Zeilen ── */
+
+.recall-tipp__cue {
+  display: block;
+  font-weight: 700;
+  color: var(--dcc-accent, var(--mt-recall, var(--amber)));
+  margin-bottom: 2px;
+}
+
+.recall-tipp__response {
+  display: block;
+}
+
+/* Skript/Check-Anker: ab 680px Cue und Response in einer Zeile */
+@media (min-width: 680px) {
+
+  .check-anker__tipps .recall-tipp__cue,
+  .check-anker__tipps .recall-tipp__response {
+    display: inline;
+  }
+
+  .check-anker__tipps .recall-tipp__cue {
+    margin-bottom: 0;
+  }
+
+  .check-anker__tipps .recall-tipp__cue::after {
+    content: ": ";
+  }
+}
+
+/* Schrittweises Einblenden der Tipps im Memorize-Schritt */
+.recall-list--stepped .recall-tipp {
+  animation: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.recall-list--stepped .recall-tipp--cue-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.recall-list--stepped .recall-tipp .recall-tipp__response {
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.recall-list--stepped .recall-tipp--response-visible .recall-tipp__response {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .recall-list--stepped .recall-tipp,
+  .recall-list--stepped .recall-tipp .recall-tipp__response {
+    transition: none;
+  }
 }
 
 .recall-input-slots {
@@ -2865,7 +2925,7 @@ html.light .recall-list--user .recall-list__item {
 
   .recall-prompt,
   .module-flow-prompt {
-    padding: 2px 0 2px 16px;
+    padding: 2px 0;
     font-size: .92rem;
   }
 }
@@ -2963,16 +3023,39 @@ html.light .recall-list--user .recall-list__item {
 }
 
 .recall-cue-item {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-items: start;
   gap: 6px;
+  border: 1px solid color-mix(in srgb, var(--mt-recall, var(--amber)) 20%, var(--border));
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--surface-hi) 86%, var(--mt-recall, var(--amber)) 14%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+  padding: 10px 14px 12px 28px;
+}
+
+.recall-cue-item::before {
+  content: "";
+  position: absolute;
+  top: calc(10px + .72em);
+  left: 14px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--mt-recall, var(--amber));
+  transform: translateY(-50%);
+}
+
+html.light .recall-cue-item {
+  background: color-mix(in srgb, white 92%, var(--mt-recall, var(--amber)) 8%);
 }
 
 .recall-cue-item__label {
-  font-size: .8rem;
-  font-weight: 600;
-  color: var(--text-dim);
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--dcc-accent, var(--mt-recall, var(--amber)));
+  line-height: 1.45;
 }
 
 .recall-response-cell {
