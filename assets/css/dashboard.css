@@ -1387,6 +1387,10 @@ html.light .lb-overlay {
   font: inherit;
 }
 
+.lb-field__input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
 .lb-field__input:focus {
   outline: none;
   border-color: color-mix(in srgb, var(--dashboard-accent, var(--blue)) 46%, var(--border));
