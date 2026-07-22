@@ -821,6 +821,11 @@ function resolveGreetingFallbackCandidate() {
 }
 
 function resolveGreetingEvent(context, snapshot) {
+  const sessionDoneCandidate = resolveGreetingProgressCandidate(snapshot);
+  if (sessionDoneCandidate?.key === "sessionDone") {
+    return buildGreetingSelection(context, snapshot, sessionDoneCandidate.key, sessionDoneCandidate.variants);
+  }
+
   const streakCandidate = resolveGreetingStreakCandidate(snapshot);
   if (streakCandidate) {
     return buildGreetingSelection(context, snapshot, streakCandidate.key, streakCandidate.variants);
@@ -2073,10 +2078,10 @@ function applyPrimaryFeedLoadingState(context) {
 
 function applyPrimaryFeedEmptyState(context) {
   applyPrimaryFeedButtonState(context, {
-    title: "Gerade keine Empfehlung",
+    title: "Session abgeschlossen",
     moduleLabel: "Feed",
     type: "feed",
-    accessibleLabel: "Gerade keine nächste Aktion verfügbar",
+    accessibleLabel: "---",
     disabled: true,
   });
 }
