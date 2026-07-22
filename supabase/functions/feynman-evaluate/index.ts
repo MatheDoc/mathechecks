@@ -182,7 +182,7 @@ async function callGemini(apiKey: string, model: string, context: PromptContext)
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 1200, responseMimeType: "application/json" },
+      generationConfig: { temperature: 0.1, maxOutputTokens: 3072, responseMimeType: "application/json" },
     }),
   });
 
@@ -222,10 +222,10 @@ async function evaluateWithFallback(
     } catch (error) {
       lastError = error;
       const status = error instanceof GeminiHttpError ? error.status : 0;
-      if (status === 503 || status === 404) {
-        continue;
+      if (status === 429) {
+        break;
       }
-      break;
+      continue;
     }
   }
 
