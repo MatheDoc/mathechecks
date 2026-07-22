@@ -100,7 +100,7 @@ async function callGemini(apiKey: string, model: string, payload: PromptItem[]):
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.1, maxOutputTokens: 1024, responseMimeType: "application/json" },
+      generationConfig: { temperature: 0.1, maxOutputTokens: 2048, responseMimeType: "application/json" },
     }),
   });
 
@@ -161,10 +161,10 @@ Deno.serve(async (req: Request) => {
     } catch (error) {
       lastError = error;
       const status = error instanceof GeminiHttpError ? error.status : 0;
-      if (status === 503 || status === 404) {
-        continue;
+      if (status === 429) {
+        break;
       }
-      break;
+      continue;
     }
   }
 
