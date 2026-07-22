@@ -1,30 +1,34 @@
-Gemini-Modelle fuer Recall wechseln
-===================================
+Gemini-Modelle der KI-Bewertungen wechseln
+===========================================
 
 Ziel
 ----
-Die produktive Recall-Bewertung laeuft nicht ueber die Standalone-Test-HTML,
-sondern ueber die Supabase Edge Function:
+Die produktiven KI-Bewertungen laufen ueber diese Supabase Edge Functions:
 
 supabase/functions/recall-evaluate/index.ts
+supabase/functions/feynman-evaluate/index.ts
 
-Wenn du dort die Modellnamen aenderst, wirkt das im Projekt erst nach einem
-Deploy der Edge Function.
+Wenn du dort die Modellliste aenderst, wirkt das im Projekt erst nach einem
+Deploy der jeweiligen Edge Function.
 
 
-1. Modellnamen in der Edge Function aendern
--------------------------------------------
-Oeffne:
+1. Modellliste in den Edge Functions aendern
+---------------------------------------------
+Oeffne bei Bedarf eine oder beide Dateien:
 
 supabase/functions/recall-evaluate/index.ts
+supabase/functions/feynman-evaluate/index.ts
 
-Aendere oben diese beiden Konstanten:
+Passe oben die geordnete Modellliste an:
 
-const MODEL_PRIMARY = "gemini-3.1-flash-lite";
-const MODEL_FALLBACK = "gemini-3.5-flash";
+const MODELS = [
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash",
+] as const;
 
-MODEL_PRIMARY ist das Standardmodell. MODEL_FALLBACK wird nur versucht, wenn
-das Primaermodell mit 503/Servicefehler scheitert.
+Das erste Modell ist das Standardmodell. Jedes weitere Modell wird der Reihe
+nach als Fallback versucht, wenn das vorherige Modell mit 503/Servicefehler
+scheitert. Weitere Fallbacks einfach als weitere Zeilen in MODELS ergaenzen.
 
 Wichtig: 429/Quota-Fehler duerfen nicht auf das Fallback-Modell weitergereicht
 werden, sonst kann ein einziger Recall-Klick mehrere Modellquoten belasten.
@@ -40,7 +44,7 @@ break;
 ---------------------
 Im Terminal im Repo-Wurzelverzeichnis ausfuehren:
 
-Select-String -Path "supabase\functions\recall-evaluate\index.ts" -Pattern "MODEL_PRIMARY|MODEL_FALLBACK|gemini-"
+Select-String -Path "supabase\functions\recall-evaluate\index.ts","supabase\functions\feynman-evaluate\index.ts" -Pattern "MODELS|gemini-"
 
 Erwartung: Es erscheinen nur die gewuenschten Modellnamen.
 
@@ -54,22 +58,23 @@ korrekt ist. Die Supabase Edge Runtime stellt Deno bereit.
 Im Terminal im Repo-Wurzelverzeichnis ausfuehren:
 
 & "C:\Users\fue\bin\supabase.exe" functions deploy recall-evaluate --project-ref ysqpmtreljfdwtlvjzis
+& "C:\Users\fue\bin\supabase.exe" functions deploy feynman-evaluate --project-ref ysqpmtreljfdwtlvjzis
 
 Die Warnung "Docker is not running" ist bei diesem Remote-Deploy normal und kein
 Problem, solange danach etwa Folgendes erscheint:
 
 Deployed Functions on project ysqpmtreljfdwtlvjzis: recall-evaluate
+Deployed Functions on project ysqpmtreljfdwtlvjzis: feynman-evaluate
 
 
 4. Danach testen
 ----------------
-Im Projekt eine Recall-Karte oeffnen, hart neu laden und "Antworten pruefen"
-klicken.
+Im Projekt eine Recall-Karte oder eine Feynman-Uebung oeffnen, hart neu laden
+und die Bewertung starten.
 
-Wenn die Bewertung klappt, nutzt die produktive Edge Function die neuen Modelle.
-Wenn die Bewertung nicht klappt und die Loesungen automatisch angezeigt werden,
-ist die Frontend-Fallback-Logik aktiv; dann die Supabase Function Logs und die
-Google-AI-Studio-Quota pruefen.
+Wenn die Bewertung klappt, nutzt die jeweilige produktive Edge Function die
+neuen Modelle. Bei einem Fehler die Supabase Function Logs und die Google-AI-
+Studio-Quota pruefen.
 
 
 5. Wichtige Stolperfallen
@@ -90,7 +95,6 @@ Google-AI-Studio-Quota pruefen.
 -----------
 Wenn ein neues Modell im Projekt nicht funktioniert:
 
-1. MODEL_PRIMARY und MODEL_FALLBACK wieder auf die vorherigen funktionierenden
-   Modellnamen setzen.
-2. Den Deploy-Befehl aus Schritt 3 erneut ausfuehren.
-3. Recall im Projekt erneut testen.
+1. MODELS wieder auf die vorherige funktionierende Reihenfolge setzen.
+2. Den jeweiligen Deploy-Befehl aus Schritt 3 erneut ausfuehren.
+3. Die betroffene Bewertung im Projekt erneut testen.
