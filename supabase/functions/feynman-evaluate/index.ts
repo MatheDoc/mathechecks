@@ -116,9 +116,9 @@ Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil f
 - 0.5: teilweise brauchbar; ein zentraler Schritt, Begriff oder Zusammenhang fehlt
 - 0.0: fachlich falsch, kaum verwertbar oder leer
 
-Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Ein fehlendes Endergebnis oder ein fehlender konkreter Zahlenwert ist KEINE Lücke und darf bei vollständig beschriebenem, korrektem Rechenweg nicht zu einem Score unter 1.0 führen. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
+Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Ein fehlendes Endergebnis oder ein fehlender konkreter Zahlenwert ist keine Lücke und darf bei vollständig beschriebenem, korrektem Rechenweg nicht zu einer Reduzierung des Scores führen. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
 
-Prüfe vor dem Antworten jede Begründung: Nennt sie einen Zahlenwert, muss dieser mit der internen Zielantwort oder den Kontextdaten übereinstimmen. Widerspricht deine Begründung der internen Zielantwort, verwirf sie und bewerte neu.
+Prüfe vor dem Antworten jede Begründung: Nennt sie einen Zahlenwert, sollte dieser mit der internen Zielantwort oder den Kontextdaten übereinstimmen. Widerspricht deine Begründung der internen Zielantwort, verwirf sie und bewerte neu.
 
 Antworte NUR mit einem JSON-Array:
 [{"nr": 1, "score": 0.0, "reason": "kurzer deutscher Hinweis, höchstens 18 Wörter"}]`;
