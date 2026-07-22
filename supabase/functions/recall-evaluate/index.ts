@@ -17,7 +17,6 @@ const MODELS = [
   "gemini-3.5-flash",
   "gemini-3.5-flash-lite",
   "gemini-3.1-flash-lite",
-  ,
 ] as const;
 const MAX_ITEMS = 12;
 const MAX_FIELD_LENGTH = 400;
@@ -162,7 +161,7 @@ Deno.serve(async (req: Request) => {
     } catch (error) {
       lastError = error;
       const status = error instanceof GeminiHttpError ? error.status : 0;
-      if (status === 503) {
+      if (status === 503 || status === 404) {
         continue;
       }
       break;

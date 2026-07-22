@@ -222,7 +222,7 @@ async function evaluateWithFallback(
     } catch (error) {
       lastError = error;
       const status = error instanceof GeminiHttpError ? error.status : 0;
-      if (status === 503) {
+      if (status === 503 || status === 404) {
         continue;
       }
       break;
