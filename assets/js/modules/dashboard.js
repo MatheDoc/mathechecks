@@ -50,7 +50,7 @@ const GREETING_TIME_VARIANTS = [
     variants: [
       "Hi {name}, eine Runde Mathe checken?",
       "Guten Tag {name}.",
-      "Check am Nachmittag? Gute Idee, {name}.",
+      "Check am Nachmittag, {name}?",
     ],
   },
   {
@@ -59,7 +59,7 @@ const GREETING_TIME_VARIANTS = [
     endHour: 23,
     variants: [
       "Guten Abend {name}.",
-      "Hey {name}, Mathe am Abend? Gute Wahl.",
+      "Hey {name}, Mathe am Abend?",
       "Heute Abend Mathe checken, {name}?",
     ],
   },
@@ -69,7 +69,7 @@ const GREETING_TIME_VARIANTS = [
     endHour: 4,
     variants: [
       "Die Nachteule {name} ist aktiv.",
-      "Zu später Stunde noch aktiv, {name}? Respekt.",
+      "Nachts Mathe checken, {name}? Respekt.",
       "Mathematische Träume, {name}?",
     ],
   },
@@ -101,7 +101,7 @@ const GREETING_EVENT_VARIANTS = {
     "30 Tage in Folge {name}, klasse!",
   ],
   streak100: [
-    "Hallo {name}, 100 Tage. Wir müssen reden, über deine Zukunft als Mathematiker.",
+    "Hallo {name}, 100 Tage am Stück. Wir müssen reden, über deine Zukunft als Mathematiker.",
   ],
   missedYesterday: [
     "Wieder am Start, {name}?",

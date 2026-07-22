@@ -12,8 +12,13 @@
 // Quota-Fehler (429) werden nicht auf das naechste Modell durchgereicht, damit
 // ein einzelner Recall-Klick nicht mehrere Modellquoten belastet.
 
-const MODEL_PRIMARY = "gemini-3.1-flash-lite";
-const MODEL_FALLBACK = "gemini-3.5-flash";
+const MODELS = [
+  "gemini-3.6-flash",
+  "gemini-3.5-flash",
+  "gemini-3.5-flash-lite",
+  "gemini-3.1-flash-lite",
+  ,
+] as const;
 const MAX_ITEMS = 12;
 const MAX_FIELD_LENGTH = 400;
 
@@ -146,10 +151,10 @@ Deno.serve(async (req: Request) => {
   }
 
   let results: unknown = null;
-  let modelUsed = MODEL_PRIMARY;
+  let modelUsed: string = MODELS[0];
   let lastError: unknown = null;
 
-  for (const model of [MODEL_PRIMARY, MODEL_FALLBACK]) {
+  for (const model of MODELS) {
     try {
       results = await callGemini(apiKey, model, payload);
       modelUsed = model;

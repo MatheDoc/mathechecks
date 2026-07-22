@@ -5,8 +5,12 @@
 // Loesungsweg tragfaehig beschreiben. Die Function wird nur mit gueltigem
 // Supabase-Session-JWT aufgerufen.
 
-const MODEL_PRIMARY = "gemini-3.1-flash-lite";
-const MODEL_FALLBACK = "gemini-3.5-flash";
+const MODELS = [
+  "gemini-3.6-flash",
+  "gemini-3.5-flash",
+  "gemini-3.5-flash-lite",
+  "gemini-3.1-flash-lite",
+] as const;
 const RATE_LIMIT_SCOPE = "feynman_evaluate";
 const MAX_ITEMS = 24;
 const GEMINI_BATCH_SIZE = 6;
@@ -207,10 +211,10 @@ async function evaluateWithFallback(
   context: PromptContext,
 ): Promise<{ results: unknown; modelUsed: string; lastError: unknown }> {
   let results: unknown = null;
-  let modelUsed = MODEL_PRIMARY;
+  let modelUsed: string = MODELS[0];
   let lastError: unknown = null;
 
-  for (const model of [MODEL_PRIMARY, MODEL_FALLBACK]) {
+  for (const model of MODELS) {
     try {
       results = await callGemini(apiKey, model, context);
       modelUsed = model;
@@ -321,5 +325,5 @@ Deno.serve(async (req: Request) => {
     normalized.push(...normalizeBatchResults(items, results as Record<string, unknown>[]));
   }
 
-  return jsonResponse({ results: normalized, model: Array.from(usedModels).join(",") || MODEL_PRIMARY });
+  return jsonResponse({ results: normalized, model: Array.from(usedModels).join(",") || MODELS[0] });
 });
