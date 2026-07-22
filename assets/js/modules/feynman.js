@@ -647,7 +647,8 @@ function applyFeynmanInputEvaluations(itemEls, finalItems) {
 
     if (feedback) {
       const reason = item.reason || verdict.label;
-      feedback.textContent = `${verdict.label}: ${reason}`;
+      //feedback.textContent = `${verdict.label}: ${reason}`;
+      feedback.textContent = reason;
       feedback.classList.add(verdict.cls === "correct" ? "is-correct" : verdict.cls === "partial" ? "is-partial" : "is-incorrect");
       feedback.hidden = false;
     }
