@@ -158,28 +158,6 @@ const GREETING_BUSY_YESTERDAY_THRESHOLD = 5;
 const GREETING_CONFIDENT_PROGRESS_PERCENT = 35;
 const GREETING_ROTATION_STEP_HOURS = 3;
 const GREETING_STORAGE_PREFIX = "mathechecks:greeting-first-seen";
-const WORKLIST_SESSION_ONLY_STORAGE_KEY = "mathechecks:dashboard-worklist-session-only";
-
-function readWorklistSessionOnlyPreference() {
-  if (typeof window === "undefined" || !window.localStorage) return true;
-  try {
-    const storedValue = window.localStorage.getItem(WORKLIST_SESSION_ONLY_STORAGE_KEY);
-    if (storedValue === "false") return false;
-    if (storedValue === "true") return true;
-  } catch {
-    // Ignore storage failures and keep the default behavior.
-  }
-  return true;
-}
-
-function writeWorklistSessionOnlyPreference(sessionOnly) {
-  if (typeof window === "undefined" || !window.localStorage) return;
-  try {
-    window.localStorage.setItem(WORKLIST_SESSION_ONLY_STORAGE_KEY, sessionOnly ? "true" : "false");
-  } catch {
-    // Ignore storage failures; the in-memory toggle still works.
-  }
-}
 
 function notifyFeedBadgeRefresh() {
   if (typeof window === "undefined" || typeof CustomEvent !== "function") return;
@@ -1583,7 +1561,7 @@ function applyActivityOverview(context, overview = null) {
   setStatusNode(context.elements.activityStatusNode, "");
 }
 
-function computeSessionActivityRate(checks, selectedCheckIdSet) {
+function computeScopedActivityRate(checks, selectedCheckIdSet) {
   if (!Array.isArray(checks) || !checks.length || !selectedCheckIdSet.size) return null;
 
   const rates = checks
@@ -1607,25 +1585,34 @@ function updateWorklistQuotes(context) {
   if (!trainingSuccessNode && !recallSuccessNode && !feynmanSuccessNode) return;
 
   const overview = context.activityOverview;
-  const sessionOnly = context.worklistSessionOnly !== false;
+  const filter = context.worklistFilter;
+  const selectedCheckIds = filter === "session"
+    ? summarizeActivePlan(context).selectedCheckIds
+    : filter === "retention"
+      ? Array.from(context.retentionCheckIds)
+      : [];
+  const selectedCheckIdSet = new Set(selectedCheckIds.map((checkId) => String(checkId || "").trim()));
+  const isScoped = filter !== "all";
 
   let trainingRate;
   let recallRate;
   let feynmanRate;
 
-  if (sessionOnly) {
-    const { selectedCheckIds } = summarizeActivePlan(context);
-    const selectedCheckIdSet = new Set(selectedCheckIds.map((checkId) => String(checkId || "").trim()));
-    trainingRate = computeSessionActivityRate(overview?.proficiency?.checks, selectedCheckIdSet);
-    recallRate = computeSessionActivityRate(overview?.recallProficiency?.checks, selectedCheckIdSet);
-    feynmanRate = computeSessionActivityRate(overview?.feynmanProficiency?.checks, selectedCheckIdSet);
+  if (isScoped) {
+    trainingRate = computeScopedActivityRate(overview?.proficiency?.checks, selectedCheckIdSet);
+    recallRate = computeScopedActivityRate(overview?.recallProficiency?.checks, selectedCheckIdSet);
+    feynmanRate = computeScopedActivityRate(overview?.feynmanProficiency?.checks, selectedCheckIdSet);
   } else {
     trainingRate = computeLifetimeActivityRate(overview?.trainingSuccess);
     recallRate = computeLifetimeActivityRate(overview?.recallProficiency?.overall);
     feynmanRate = computeLifetimeActivityRate(overview?.feynmanProficiency?.overall);
   }
 
-  const scopeLabel = sessionOnly ? "deiner Session-Checks" : "aller erfassten Checks";
+  const scopeLabel = filter === "session"
+    ? "deiner Session-Checks"
+    : filter === "retention"
+      ? "deiner Auffrischungs-Checks"
+      : "aller erfassten Checks";
   if (trainingSuccessNode) {
     trainingSuccessNode.textContent = formatActivityPercent(Number.isFinite(trainingRate) ? Math.round(trainingRate) : NaN);
     trainingSuccessNode.title = Number.isFinite(trainingRate)
@@ -1745,7 +1732,7 @@ function applyProficiencyWorklist(context, overview = null) {
   if (!listNode) return;
 
   context.activityOverview = overview ?? context.activityOverview ?? null;
-  syncWorklistSessionToggle(context);
+  syncWorklistFilters(context);
   updateWorklistQuotes(context);
 
   const effectiveOverview = context.activityOverview;
@@ -1759,26 +1746,33 @@ function applyProficiencyWorklist(context, overview = null) {
     return;
   }
 
-  const sessionOnly = context.worklistSessionOnly !== false;
+  const filter = context.worklistFilter;
   let checks = allChecks;
-  if (sessionOnly) {
-    const sessionCheckIds = new Set(summarizeActivePlan(context).selectedCheckIds);
-    checks = allChecks.filter((check) => sessionCheckIds.has(String(check?.checkId || "").trim()));
+  if (filter !== "all") {
+    const selectedCheckIds = filter === "session"
+      ? summarizeActivePlan(context).selectedCheckIds
+      : Array.from(context.retentionCheckIds);
+    const selectedCheckIdSet = new Set(selectedCheckIds.map((checkId) => String(checkId || "").trim()));
+    checks = allChecks.filter((check) => selectedCheckIdSet.has(String(check?.checkId || "").trim()));
   }
 
   if (!checks.length) {
     if (summaryNode) {
-      summaryNode.textContent = sessionOnly
-        ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deiner aktiven Session. Schalte den Session-Filter im Menü aus, um alle Checks zu sehen."
-        : "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
+      summaryNode.textContent = filter === "session"
+        ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deiner aktiven Session."
+        : filter === "retention"
+          ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deinen Auffrischungs-Checks."
+          : "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
     }
     return;
   }
 
   if (summaryNode) {
-    summaryNode.textContent = sessionOnly
+    summaryNode.textContent = filter === "session"
       ? "Checks deiner Session, nach Gebiet und Lernbereich geordnet."
-      : "Alle erfassten Quoten, nach Gebiet und Lernbereich geordnet.";
+      : filter === "retention"
+        ? "Checks zum Auffrischen, nach Gebiet und Lernbereich geordnet."
+        : "Alle erfassten Quoten, nach Gebiet und Lernbereich geordnet.";
   }
 
   const groupedChecks = collectProficiencyWorklistGroups(context, checks);
@@ -1796,7 +1790,7 @@ function applyProficiencyWorklist(context, overview = null) {
       const lernbereichItem = document.createElement("li");
       const details = document.createElement("details");
       details.className = "dashboard-worklist__lernbereich";
-      details.open = sessionOnly;
+      details.open = filter !== "all";
       const summary = document.createElement("summary");
       summary.innerHTML = `<span>${escapeHtml(lernbereich.name)}</span><span>${lernbereich.checks.length} ${lernbereich.checks.length === 1 ? "Aktivität" : "Aktivitäten"}</span>`;
       const checkList = document.createElement("ul");
@@ -1931,23 +1925,70 @@ function applyProficiencyWorklist(context, overview = null) {
   });
 }
 
-function syncWorklistSessionToggle(context) {
-  const toggle = context.elements.worklistSessionToggle;
-  const sessionOnly = context.worklistSessionOnly !== false;
-  if (!toggle) return;
-  toggle.setAttribute("aria-checked", sessionOnly ? "true" : "false");
-  toggle.classList.toggle("is-active", sessionOnly);
+function syncWorklistFilters(context) {
+  context.elements.worklistFilters.forEach((filterButton) => {
+    const isActive = filterButton.dataset.dashboardWorklistFilter === context.worklistFilter;
+    filterButton.setAttribute("aria-checked", isActive ? "true" : "false");
+    filterButton.classList.toggle("is-active", isActive);
+  });
 }
 
-function setupWorklistSessionToggle(context) {
-  const toggle = context.elements.worklistSessionToggle;
-  if (!toggle) return;
-  toggle.addEventListener("click", () => {
-    context.worklistSessionOnly = context.worklistSessionOnly === false;
-    writeWorklistSessionOnlyPreference(context.worklistSessionOnly !== false);
-    applyProficiencyWorklist(context, context.activityOverview);
+function setupWorklistFilters(context) {
+  context.elements.worklistFilters.forEach((filterButton) => {
+    filterButton.addEventListener("click", () => {
+      const filter = String(filterButton.dataset.dashboardWorklistFilter || "").trim();
+      if (!["session", "retention", "all"].includes(filter) || filter === context.worklistFilter) return;
+      context.worklistFilter = filter;
+      applyProficiencyWorklist(context, context.activityOverview);
+    });
   });
-  syncWorklistSessionToggle(context);
+  syncWorklistFilters(context);
+}
+
+async function loadRetentionCheckIds(context) {
+  if (!context.supabase) return new Set();
+
+  const [{ data: scopeRows, error: scopeError }, { data: exclusionRows, error: exclusionError }] = await Promise.all([
+    context.supabase
+      .from("user_retention_scopes")
+      .select("lernbereich_slug")
+      .eq("activity_type", "flashcards")
+      .eq("scope_type", "lernbereich")
+      .eq("status", "active"),
+    context.supabase
+      .from("user_retention_check_exclusions")
+      .select("lernbereich_slug, check_id"),
+  ]);
+
+  if (scopeError) throw scopeError;
+  if (exclusionError) throw exclusionError;
+
+  const activeLernbereichIds = new Set(
+    (Array.isArray(scopeRows) ? scopeRows : [])
+      .map((row) => String(row?.lernbereich_slug || "").trim())
+      .filter(Boolean),
+  );
+  const exclusionsByLernbereichId = new Map();
+  (Array.isArray(exclusionRows) ? exclusionRows : []).forEach((row) => {
+    const lernbereichId = String(row?.lernbereich_slug || "").trim();
+    const checkId = String(row?.check_id || "").trim();
+    if (!lernbereichId || !checkId) return;
+    if (!exclusionsByLernbereichId.has(lernbereichId)) exclusionsByLernbereichId.set(lernbereichId, new Set());
+    exclusionsByLernbereichId.get(lernbereichId).add(checkId);
+  });
+
+  const checkIds = new Set();
+  context.lernbereiche.forEach((group) => {
+    group.items.forEach((lernbereich) => {
+      if (!activeLernbereichIds.has(lernbereich.id)) return;
+      const excludedCheckIds = exclusionsByLernbereichId.get(lernbereich.id) || new Set();
+      lernbereich.checks.forEach((check) => {
+        if (!excludedCheckIds.has(check.id)) checkIds.add(check.id);
+      });
+    });
+  });
+
+  return checkIds;
 }
 
 async function refreshActivityOverview(context) {
@@ -4099,7 +4140,7 @@ function createContext(root, lernbereiche) {
     worklistPanel: root.querySelector("[data-dashboard-worklist-panel]"),
     worklistSummary: root.querySelector("[data-dashboard-worklist-summary]"),
     worklistList: root.querySelector("[data-dashboard-worklist-list]"),
-    worklistSessionToggle: root.querySelector("[data-dashboard-worklist-session-toggle]"),
+    worklistFilters: Array.from(root.querySelectorAll("[data-dashboard-worklist-filter]")),
     worklistTrainingSuccess: root.querySelector("[data-dashboard-worklist-training-success]"),
     worklistRecallSuccess: root.querySelector("[data-dashboard-worklist-recall-success]"),
     worklistFeynmanSuccess: root.querySelector("[data-dashboard-worklist-feynman-success]"),
@@ -4137,7 +4178,8 @@ function createContext(root, lernbereiche) {
     retentionPersistedDraft: {},
     retentionIsSaving: false,
     hasRetentionEntries: false,
-    worklistSessionOnly: readWorklistSessionOnlyPreference(),
+    worklistFilter: "session",
+    retentionCheckIds: new Set(),
     elements,
   };
 }
@@ -4219,7 +4261,7 @@ export async function initDashboardModule() {
   setGreetingDate();
   updateGreetingHeading(context);
   bindEvents(context);
-  setupWorklistSessionToggle(context);
+  setupWorklistFilters(context);
   updatePlanSummary(context);
   updateSessionList(context);
   updateRetentionSummary(context);
@@ -4274,6 +4316,7 @@ export async function initDashboardModule() {
     context.activeSession = persisted.session;
     context.sessionCheckStates = persisted.checkStates;
     context.sessionActivityStates = persisted.activityStates;
+    context.retentionCheckIds = await loadRetentionCheckIds(context);
     updatePlanSummary(context);
     updateSessionList(context);
     await Promise.all([
