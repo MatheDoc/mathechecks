@@ -20,6 +20,19 @@ html.light body.page-dashboard {
   --activity-map-hover-ring: color-mix(in srgb, var(--dashboard-accent) 10%, transparent);
 }
 
+/* Drei unabhängige Spalten in der verfügbaren Dashboard-Höhe. */
+body.page-dashboard .bento {
+  --dashboard-bento-h: calc(
+    100dvh
+    - var(--sticky-topbar-h)
+    - var(--page-pad-top)
+    - 100px
+  );
+  grid-template-rows: minmax(0, 1fr);
+  height: var(--dashboard-bento-h);
+  align-items: start;
+}
+
 body.page-dashboard .dashboard-panel {
   grid-column: 1 / -1;
   --dcc-accent: var(--dashboard-accent);
@@ -54,23 +67,29 @@ body.page-dashboard .dashboard-panel .check-card__body::-webkit-scrollbar-track 
   background: transparent;
 }
 
-/* Spalte-1-Wrapper: Nächste Aktion + Erfolgsquoten */
+body.page-dashboard .dashboard-col--left,
+body.page-dashboard .dashboard-col--middle,
+body.page-dashboard .dashboard-col--right {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+}
+
+/* Erste Spalte: Feed oben, Session und Wiederholungen darunter. */
 body.page-dashboard .dashboard-col--left {
   grid-column: 1 / span 4;
-  grid-row: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: 16px;
   min-height: 0;
 }
 
-body.page-dashboard .dashboard-panel--feed {
-  flex: 0 0 auto;
+body.page-dashboard .dashboard-col--middle {
+  grid-column: 5 / span 4;
 }
 
-body.page-dashboard .dashboard-panel--feed .check-card__body {
-  flex: 0 0 auto;
-  overflow: visible;
+body.page-dashboard .dashboard-col--right {
+  grid-column: 9 / -1;
 }
 
 body.page-dashboard .dashboard-next-action-card {
@@ -102,17 +121,16 @@ body.page-dashboard .dashboard-next-action-card__copy {
 }
 
 body.page-dashboard .dashboard-next-action-card__title {
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: 0.94rem;
 }
 
 body.page-dashboard .dashboard-next-action-card__title .dashboard-panel__action-name {
-  overflow: visible;
-  text-overflow: clip;
-  white-space: normal;
-  overflow-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 body.page-dashboard .dashboard-next-action-card__button.is-waiting .dashboard-next-action-card__title {
@@ -137,13 +155,11 @@ body.page-dashboard .dashboard-next-action-card__status {
 }
 
 body.page-dashboard .dashboard-panel--plan {
-  grid-column: 5 / span 4;
-  grid-row: 1 / span 2;
+  flex: 2.1 1 0;
 }
 
 body.page-dashboard .dashboard-panel--completed {
-  grid-column: 5 / span 4;
-  grid-row: 3;
+  flex: 1 1 0;
 }
 
 body.page-dashboard .dashboard-panel--worklist {
@@ -152,8 +168,7 @@ body.page-dashboard .dashboard-panel--worklist {
 }
 
 body.page-dashboard .dashboard-panel--activity {
-  grid-column: 9 / -1;
-  grid-row: 1 / -1;
+  flex: 1 1 0;
 }
 
 body.page-dashboard .dashboard-worklist__list {
@@ -806,6 +821,66 @@ body.page-dashboard .dashboard-panel .action-card:focus-visible {
   outline-offset: 2px;
 }
 
+/* Lernbereiche sind Navigationseinträge, keine Aktionskarten. */
+body.page-dashboard .dashboard-panel--plan .action-list,
+body.page-dashboard .dashboard-panel--completed .action-list {
+  display: block;
+}
+
+body.page-dashboard .dashboard-panel--plan .dashboard-panel__list-row,
+body.page-dashboard .dashboard-panel--completed .dashboard-panel__list-row {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 13px 4px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+}
+
+body.page-dashboard .dashboard-panel--plan .dashboard-panel__list-row:last-child,
+body.page-dashboard .dashboard-panel--completed .dashboard-panel__list-row:last-child {
+  border-bottom: 0;
+}
+
+body.page-dashboard .dashboard-panel--plan .dashboard-panel__list-row:hover,
+body.page-dashboard .dashboard-panel--completed .dashboard-panel__list-row:hover {
+  transform: none;
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--dashboard-accent) 6%, transparent);
+}
+
+body.page-dashboard .dashboard-panel__list-row-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+body.page-dashboard .dashboard-panel__list-row-meta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+body.page-dashboard .dashboard-panel__list-row-chevron {
+  color: var(--text-dim);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
 body.page-dashboard .dashboard-panel__menu .check-card__actions-popover {
   min-width: 238px;
 }
@@ -1219,24 +1294,24 @@ body.page-dashboard .dashboard-activity-map__cell.level-10 .dashboard-activity-m
     height: auto;
   }
 
-  body.page-dashboard .dashboard-col--left {
+  body.page-dashboard .dashboard-col--left,
+  body.page-dashboard .dashboard-col--middle,
+  body.page-dashboard .dashboard-col--right {
     grid-column: 1 / -1;
     grid-row: auto;
-    order: 1;
     height: auto;
   }
 
-  /* Worklist: natürliche Höhe statt flex-grow */
-  body.page-dashboard .dashboard-panel--worklist {
-    flex: 0 0 auto;
-    min-height: 0;
+  body.page-dashboard .dashboard-col--left {
+    order: 1;
   }
 
-  body.page-dashboard .dashboard-panel--plan,
-  body.page-dashboard .dashboard-panel--completed,
-  body.page-dashboard .dashboard-panel--activity {
-    grid-column: 1 / -1;
-    grid-row: auto;
+  body.page-dashboard .dashboard-col--middle {
+    order: 2;
+  }
+
+  body.page-dashboard .dashboard-col--right {
+    order: 3;
   }
 
   /* Alle Panels: kein Clipping, kein max-height */
@@ -1253,9 +1328,12 @@ body.page-dashboard .dashboard-activity-map__cell.level-10 .dashboard-activity-m
     overflow: visible;
   }
 
-  body.page-dashboard .dashboard-panel--plan     { order: 2; }
-  body.page-dashboard .dashboard-panel--completed { order: 3; }
-  body.page-dashboard .dashboard-panel--activity  { order: 4; }
+  body.page-dashboard .dashboard-panel--plan,
+  body.page-dashboard .dashboard-panel--completed,
+  body.page-dashboard .dashboard-panel--worklist,
+  body.page-dashboard .dashboard-panel--activity {
+    flex: 0 0 auto;
+  }
 
   body.page-dashboard .dashboard-activity-map__board {
     gap: 4px;

@@ -868,23 +868,6 @@ body.page-shell .shell {
   grid-auto-rows: minmax(0, auto);
 }
 
-/* Dashboard-Bento: 3 gleichmäßige Zeilen → alle 3 Spalten bündig abschließen.
-   Höhe = Viewport minus Topbar, Seiten-Padding, Greeting-Block und Lücken.
-   Greeting: margin-top 12px + h2 ~38px + margin-bottom 4px + p ~22px + margin-bottom 24px ≈ 100px
-   2 row-gaps: 2 × 16px = 32px */
-body.page-dashboard .bento {
-  --dashboard-bento-h: calc(
-    100dvh
-    - var(--sticky-topbar-h)
-    - var(--page-pad-top)
-    - 100px
-    
-  );
-  /* Zeile 1 (feed-Bereich) : Zeile 3 (activity-map) = 1 : 2 */
-  grid-template-rows: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 2fr);
-  height: var(--dashboard-bento-h);
-}
-
 /* ─────────────────────── Card Base ─────────────────────── */
 .card {
   background: var(--surface);
