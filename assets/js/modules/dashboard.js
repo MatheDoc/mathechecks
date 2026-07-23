@@ -2259,6 +2259,22 @@ function buildDashboardLernbereichStatusMarkup(entry) {
   return "";
 }
 
+function buildDashboardLernbereichListCount(entry) {
+  const statusKind = String(entry?.statusKind || "").trim();
+
+  if (statusKind === "session-progress") {
+    const totalStepCount = Math.max(0, Number(entry?.sessionProgress?.totalStepCount) || 0);
+    const completedStepCount = Math.max(0, Math.min(totalStepCount, Number(entry?.sessionProgress?.completedStepCount) || 0));
+    return totalStepCount > 0 ? `${formatActivityCount(completedStepCount)}/${formatActivityCount(totalStepCount)}` : "";
+  }
+
+  if (statusKind === "flashcard-count") {
+    return formatActivityCount(Math.max(0, Number(entry?.completedFlashcardCount) || 0));
+  }
+
+  return "";
+}
+
 function buildPrimaryFeedStatusMarkup(item) {
   const statusBadge = (Array.isArray(item?.badges) ? item.badges : []).find((badge) => {
     const badgeType = String(badge?.type || "").trim();
@@ -2541,20 +2557,15 @@ function renderDashboardLernbereichCard(entry) {
   const linkAttributes = href
     ? ` data-action-href="${escapeHtml(href)}" role="link" tabindex="0"`
     : "";
-  const badgeMarkup = entry?.groupName
-    ? `<div class="action-badges dashboard-panel__action-meta">${createBadgeMarkup(entry.groupName)}</div>`
-    : "";
-  const statusMarkup = buildDashboardLernbereichStatusMarkup(entry);
+  const count = buildDashboardLernbereichListCount(entry);
 
   return `
-    <li class="action-card dashboard-panel__action-card" data-type="dashboard"${linkAttributes}>
-      <div class="action-body">
-        <div class="action-title dashboard-panel__action-title">
-          <span class="dashboard-panel__action-name">${escapeHtml(entry.lernbereichName)}</span>
-        </div>
-        ${badgeMarkup}
-      </div>
-      ${statusMarkup}
+    <li class="action-card dashboard-panel__action-card dashboard-panel__list-row" data-type="dashboard"${linkAttributes}>
+      <span class="dashboard-panel__list-row-name">${escapeHtml(entry.lernbereichName)}</span>
+      <span class="dashboard-panel__list-row-meta">
+        ${count ? `<span>${escapeHtml(count)}</span>` : ""}
+        <span class="dashboard-panel__list-row-chevron" aria-hidden="true">›</span>
+      </span>
     </li>
   `;
 }

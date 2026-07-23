@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MatheChecks Dashboard – Mockup</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --panel: #10151f;
+    --panel-border: #1c2433;
+    --box-raised: #161d2c;
+    --box-flat: #10151f;
+    --text-primary: #eef1f6;
+    --text-secondary: #8b93a3;
+    --text-muted: #5a6376;
+    --accent: #4fd1e8;
+    --accent-dim: #2a5f6b;
+    --purple: #8b7ff0;
+    --orange: #f0a04f;
+    --green: #4fd88a;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: 32px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    margin: 0 0 6px 0;
+  }
+  .header h1 .name { color: var(--accent); }
+  .header .sub {
+    color: var(--text-secondary);
+    font-size: 15px;
+  }
+
+  .board {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--panel-border);
+  }
+  .panel-header h2 {
+    font-size: 18px;
+    color: var(--accent);
+    margin: 0;
+    font-weight: 700;
+  }
+  .panel-header .icons {
+    display: flex;
+    gap: 10px;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* ---------- AKTIONS-BOXEN (Feed, Erfolgsquoten-Items) ---------- */
+  .action-box {
+    background: var(--box-raised);
+    border: 1px solid #232c3f;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .action-box:last-child { margin-bottom: 0; }
+  .action-box .title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .badge.training { background: #1f3a52; color: #7cc6f0; }
+  .badge.recall { background: #352a52; color: var(--purple); }
+
+  .status-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: var(--orange);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .status-icon .ring-icon { font-size: 22px; }
+
+  .ring {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    border: 3px solid var(--accent);
+    position: relative;
+  }
+  .ring.full { border-color: var(--accent); }
+
+  /* ---------- FLACHE LISTENZEILEN (Session, Wiederholungen) ---------- */
+  .flat-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .flat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--panel-border);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .flat-row:last-child { border-bottom: none; }
+  .flat-row:active { background: #161d2c; }
+
+  .flat-row .left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .flat-row .name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .flat-row .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .flat-row .count {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 20px;
+    text-align: right;
+  }
+  .mini-progress {
+    width: 54px;
+    height: 4px;
+    background: #232c3f;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .mini-progress .fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .chevron {
+    color: var(--text-muted);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  /* ---------- STATISTIK-STIL KACHELN (info, nicht klickbar) ---------- */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .stat-tile {
+    background: var(--box-flat);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .stat-tile .num {
+    font-size: 22px;
+    font-weight: 800;
+  }
+  .stat-tile .lbl {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 18px 0 8px 2px;
+    font-weight: 700;
+  }
+
+  .quote-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .quote-tile {
+    background: var(--box-flat);
+    border: 1px solid var(--panel-border);
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .quote-tile .pct {
+    font-size: 20px;
+    font-weight: 800;
+  }
+  .quote-tile .lbl {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+
+  .note {
+    margin-top: 28px;
+    padding: 14px 16px;
+    background: var(--box-flat);
+    border: 1px dashed #2a3348;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .note b { color: var(--text-primary); }
+
+  @media (max-width: 900px) {
+    .board { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Hey <span class="name">Sven</span>, gestern war stark!</h1>
+  <div class="sub">Donnerstag, 23. Juli 2026 · 🔥 5</div>
+</div>
+
+<div class="board">
+
+  <!-- LINKE SPALTE: Erfolgsquoten (volle Aktions-Spalte) -->
+<div style="display:flex; flex-direction:column; gap:20px;">
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Feed</h2>
+        <div class="icons">ⓘ</div>
+      </div>
+
+      <div class="action-box">
+        <div>
+          <div class="title">Eigenschaften Binomialverteilung</div>
+          <span class="badge training">Training</span>
+        </div>
+        <div class="status-icon">
+          <span class="ring-icon">⏱</span>
+          Fällig
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Session</h2>
+        <div class="icons">ⓘ ⋮</div>
+      </div>
+      <div style="color:var(--text-secondary); font-size:13px; margin-bottom:10px;">
+        Zieldatum: 17. August 2026 · <span style="color:var(--green); font-weight:600;">Realistisch</span>
+      </div>
+
+      <div class="flat-list">
+        <div class="flat-row">
+          <div class="left">
+            <span class="name">Binomialverteilung</span>
+          </div>
+          <div class="right">
+            <span class="count">1/73</span>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Wiederholungen</h2>
+        <div class="icons">ⓘ ⋮</div>
+      </div>
+
+      <div class="flat-list">
+        <div class="flat-row">
+          <div class="left"><span class="name">Zufallsgrößen</span></div>
+          <div class="right">
+            <span class="count">1</span>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+        <div class="flat-row">
+          <div class="left"><span class="name">Lineare Funktionen</span></div>
+          <div class="right">
+            <span class="count">3</span>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+        <div class="flat-row">
+          <div class="left"><span class="name">Binomialverteilung</span></div>
+          <div class="right">
+            <span class="count">2</span>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MITTLERE SPALTE: Feed -> Session -> Wiederholungen -->
+     <div class="panel">
+    <div class="panel-header">
+      <h2>Erfolgsquoten</h2>
+      <div class="icons">ⓘ ⋮</div>
+    </div>
+
+    <div class="quote-row">
+      <div class="quote-tile"><div class="pct">–</div><div class="lbl">Training</div></div>
+      <div class="quote-tile"><div class="pct">85%</div><div class="lbl">Recall</div></div>
+      <div class="quote-tile"><div class="pct">–</div><div class="lbl">Feynman</div></div>
+    </div>
+
+    <div class="section-label">Stochastik · Binomialverteilung</div>
+
+    <div class="action-box">
+      <div>
+        <div class="title">Bernoulli-Parameter</div>
+        <span class="badge recall">Recall</span>
+      </div>
+      <div class="ring full">69%</div>
+    </div>
+
+    <div class="action-box">
+      <div>
+        <div class="title">Histogramm Einzel-Wkt</div>
+        <span class="badge recall">Recall</span>
+      </div>
+      <div class="ring full">100%</div>
+    </div>
+
+  </div>
+
+  
+
+  <!-- RECHTE SPALTE: Statistik (unverändert) -->
+  <div class="panel">
+    <div class="panel-header">
+      <h2>Statistik</h2>
+      <div class="icons">ⓘ</div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-tile">
+        <div class="num">151</div>
+        <div class="lbl">Aktivitäten<br>seit 5. Juni 2026 · 28 aktive Tage</div>
+      </div>
+      <div class="stat-tile">
+        <div class="num">5,4</div>
+        <div class="lbl">Ø / Tag</div>
+      </div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-tile"><div class="lbl" style="margin:0;">Training <b style="color:var(--text-primary); font-size:16px;">62</b></div></div>
+      <div class="stat-tile"><div class="lbl" style="margin:0;">Recall <b style="color:var(--text-primary); font-size:16px;">47</b></div></div>
+      <div class="stat-tile"><div class="lbl" style="margin:0;">Feynman <b style="color:var(--text-primary); font-size:16px;">29</b></div></div>
+      <div class="stat-tile"><div class="lbl" style="margin:0;">Flashcards <b style="color:var(--text-primary); font-size:16px;">13</b></div></div>
+    </div>
+
+    <div class="section-label">Juli 2026</div>
+    <div style="color: var(--text-muted); font-size: 13px;">(Kalender wie gehabt)</div>
+  </div>
+
+</div>
+
+<div class="note">
+  <b>Was sich geändert hat:</b> Erfolgsquoten hat jetzt die gesamte linke Spalte (weiterhin scrollbar bei mehr Einträgen).
+  Die mittlere Spalte zeigt Feed oben, darunter Session und Wiederholungen als seine Quellen.
+  Session/Wiederholungen-Einträge sind jetzt flache Listenzeilen (Name, Mini-Anzeige rechts, Chevron ›) statt Karten mit Badge –
+  das grenzt sie optisch klar von den „echten" Aktions-Boxen (Ring/Icon, Tiefe, Schatten) links ab.
+</div>
+
+</body>
+</html>

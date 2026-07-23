@@ -12,38 +12,122 @@
 
     <div class="bento">
         <div class="dashboard-col--left">
-        <article class="check-card dashboard-panel dashboard-panel--feed" data-dashboard-feed-panel>
+        <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Feed</span>
+                    <span class="check-card__title dashboard-panel__title">Session</span>
                 </div>
                 <div class="check-card__header-actions">
                     <details class="dashboard-panel__help">
-                        <summary class="dashboard-panel__help-trigger" aria-label="Erklärung zu Nächste Aktion">
+                        <summary class="dashboard-panel__help-trigger" aria-label="Erklärung zur Session">
                             <span class="dashboard-panel__help-icon" aria-hidden="true">i</span>
                         </summary>
                         <div class="dashboard-panel__help-popover" role="note">
-                            <p>Zeigt dir den nächsten Schritt aus deiner Session oder Flashcards zur Wiederholung an. Wenn nichts offen ist, kannst du deine Erfolgsquoten verbessern.</p>
+                            <p>Zeigt den Fortschritt deiner Session, die nächste passende Aktion und die ausgewählten Lernbereiche. Über Bearbeiten kannst du Checks hinzufügen und entfernen sowie das Zieldatum ändern.</p>
+                        </div>
+                    </details>
+                    <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-session-menu>
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zur Session">
+                            <span class="check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zur Session">
+                            <button class="check-card__actions-item" type="button" id="lbOpenBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
+                                <span>Bearbeiten</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="lbDeleteBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
+                                <span>Löschen</span>
+                            </button>
                         </div>
                     </details>
                 </div>
             </div>
 
-            <div class="check-card__body dashboard-panel__body dashboard-next-action-card">
-                <button class="action-card dashboard-panel__action-card dashboard-next-action-card__button" type="button" data-type="feed" data-dashboard-primary-feed-button aria-disabled="true">
-                    <span class="action-body dashboard-next-action-card__copy">
-                        <span class="action-title dashboard-panel__action-title dashboard-next-action-card__title">
-                            <span class="dashboard-panel__action-name" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</span>
+            <div class="check-card__body dashboard-panel__body">
+                <p class="dashboard-panel__summary" data-dashboard-plan-summary></p>
+                <div class="dashboard-plan__progress" data-dashboard-plan-progress hidden>
+                    <div class="dashboard-plan__progress-bar-row">
+                        <div class="skill-track dashboard-plan__progress-track" data-dashboard-plan-progress-bar role="progressbar" aria-label="Fortschritt der aktuellen Session" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 Prozent der aktuellen Session abgeschlossen">
+                            <div class="skill-fill dashboard-plan__progress-fill" data-dashboard-plan-progress-fill data-progress="0"></div>
+                        </div>
+                        <span class="dashboard-plan__progress-percent" data-dashboard-plan-progress-percent>0%</span>
+                    </div>
+                </div>
+                <p class="dashboard-plan__target" data-dashboard-plan-target hidden>
+                    <span data-dashboard-plan-target-label>Zieldatum: nicht gesetzt.</span>
+                    <span class="dashboard-plan__assessment" data-dashboard-plan-assessment hidden></span>
+                </p>
+
+                <div class="dashboard-next-action-card dashboard-plan__feed-action">
+                    <button class="action-card dashboard-panel__action-card dashboard-next-action-card__button" type="button" data-type="feed" data-dashboard-primary-feed-button aria-disabled="true">
+                        <span class="action-body dashboard-next-action-card__copy">
+                            <span class="action-title dashboard-panel__action-title dashboard-next-action-card__title">
+                                <span class="dashboard-panel__action-name" data-dashboard-primary-feed-title>Nächste Aktion wird geladen</span>
+                            </span>
+                            <span class="action-badges dashboard-panel__action-meta">
+                                <span class="action-badge dashboard-next-action-card__module" data-dashboard-primary-feed-module>Feed</span>
+                            </span>
                         </span>
-                        <span class="action-badges dashboard-panel__action-meta">
-                            <span class="action-badge dashboard-next-action-card__module" data-dashboard-primary-feed-module>Feed</span>
-                        </span>
-                    </span>
-                    <span class="dashboard-next-action-card__status" data-dashboard-primary-feed-status></span>
-                </button>
+                        <span class="dashboard-next-action-card__status" data-dashboard-primary-feed-status></span>
+                    </button>
+                </div>
+
+                <ul class="action-list dashboard-panel__list" data-dashboard-session-list hidden aria-hidden="true"></ul>
+                <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
             </div>
         </article>
 
+        <article class="check-card dashboard-panel dashboard-panel--completed" data-dashboard-completed-panel>
+            <div class="check-card__header">
+                <div class="check-card__header-left">
+                    <span class="check-card__title dashboard-panel__title">Wiederholungen</span>
+                </div>
+                <div class="check-card__header-actions">
+                    <details class="dashboard-panel__help">
+                        <summary class="dashboard-panel__help-trigger" aria-label="Erklärung zu Wiederholungen">
+                            <span class="dashboard-panel__help-icon" aria-hidden="true">i</span>
+                        </summary>
+                        <div class="dashboard-panel__help-popover" role="note">
+                            <p>Zeigt dir Lernbereiche an, die du von Zeit zu Zeit wiederholen möchtest. Die Lernbereich-Checks werden als Flashcards unter den Feed gemischt. Über Bearbeiten kannst du Checks hinzufügen und entfernen.</p>
+                        </div>
+                    </details>
+                    <details class="check-card__actions-menu" data-dashboard-retention-menu>
+                        <summary class="check-card__actions-trigger" aria-label="Aktionen zu Wiederholungen">
+                            <span class="check-card__actions-dots" aria-hidden="true">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </span>
+                        </summary>
+                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zu Wiederholungen">
+                            <button class="check-card__actions-item" type="button" id="retentionOpenBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
+                                <span>Bearbeiten</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="retentionDeleteBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
+                                <span>Löschen</span>
+                            </button>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <div class="check-card__body dashboard-panel__body">
+                <p class="dashboard-panel__summary" data-dashboard-retention-summary></p>
+                <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
+                <ul class="action-list dashboard-panel__list" data-dashboard-retention-list></ul>
+            </div>
+        </article>
+
+        </div><!-- /.dashboard-col--left -->
+
+        <div class="dashboard-col--middle">
         <article class="check-card dashboard-panel dashboard-panel--worklist" data-dashboard-worklist-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
@@ -95,108 +179,9 @@
                 <p class="dashboard-panel__status" id="worklistStatus" aria-live="polite" hidden></p>
             </div>
         </article>
+        </div><!-- /.dashboard-col--middle -->
 
-        </div><!-- /.dashboard-col--left -->
-
-        <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Session</span>
-                </div>
-                <div class="check-card__header-actions">
-                    <details class="dashboard-panel__help">
-                        <summary class="dashboard-panel__help-trigger" aria-label="Erklärung zur Session">
-                            <span class="dashboard-panel__help-icon" aria-hidden="true">i</span>
-                        </summary>
-                        <div class="dashboard-panel__help-popover" role="note">
-                            <p>Zeigt dir deine aktuelle Auswahl an Checks und deinen Fortschritt an. Über Bearbeiten kannst du Checks hinzufügen und entfernen sowie das Zieldatum ändern.</p>
-                        </div>
-                    </details>
-                    <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-session-menu>
-                        <summary class="check-card__actions-trigger" aria-label="Aktionen zur Session">
-                            <span class="check-card__actions-dots" aria-hidden="true">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                            </span>
-                        </summary>
-                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zur Session">
-                            <button class="check-card__actions-item" type="button" id="lbOpenBtn" role="menuitem">
-                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
-                                <span>Bearbeiten</span>
-                            </button>
-                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="lbDeleteBtn" role="menuitem">
-                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
-                                <span>Löschen</span>
-                            </button>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-panel__summary" data-dashboard-plan-summary></p>
-                <div class="dashboard-plan__progress" data-dashboard-plan-progress hidden>
-                    <div class="dashboard-plan__progress-bar-row">
-                        <div class="skill-track dashboard-plan__progress-track" data-dashboard-plan-progress-bar role="progressbar" aria-label="Fortschritt der aktuellen Session" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0 Prozent der aktuellen Session abgeschlossen">
-                            <div class="skill-fill dashboard-plan__progress-fill" data-dashboard-plan-progress-fill data-progress="0"></div>
-                        </div>
-                        <span class="dashboard-plan__progress-percent" data-dashboard-plan-progress-percent>0%</span>
-                    </div>
-                </div>
-                <p class="dashboard-plan__target" data-dashboard-plan-target hidden>
-                    <span data-dashboard-plan-target-label>Zieldatum: nicht gesetzt.</span>
-                    <span class="dashboard-plan__assessment" data-dashboard-plan-assessment hidden></span>
-                </p>
-
-                <ul class="action-list dashboard-panel__list" data-dashboard-session-list hidden aria-hidden="true"></ul>
-                <p class="dashboard-panel__status" id="lbSessionStatus" aria-live="polite" hidden></p>
-            </div>
-        </article>
-
-        <article class="check-card dashboard-panel dashboard-panel--completed" data-dashboard-completed-panel>
-            <div class="check-card__header">
-                <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Wiederholungen</span>
-                </div>
-                <div class="check-card__header-actions">
-                    <details class="dashboard-panel__help">
-                        <summary class="dashboard-panel__help-trigger" aria-label="Erklärung zu Wiederholungen">
-                            <span class="dashboard-panel__help-icon" aria-hidden="true">i</span>
-                        </summary>
-                        <div class="dashboard-panel__help-popover" role="note">
-                            <p>Zeigt dir Lernbereiche an, die du von Zeit zu Zeit wiederholen möchtest. Die Lernbereich-Checks werden als Flashcards unter den Feed gemischt. Über Bearbeiten kannst du Checks hinzufügen und entfernen.</p>
-                        </div>
-                    </details>
-                    <details class="check-card__actions-menu" data-dashboard-retention-menu>
-                        <summary class="check-card__actions-trigger" aria-label="Aktionen zu Wiederholungen">
-                            <span class="check-card__actions-dots" aria-hidden="true">
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                                <span class="dot"></span>
-                            </span>
-                        </summary>
-                        <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zu Wiederholungen">
-                            <button class="check-card__actions-item" type="button" id="retentionOpenBtn" role="menuitem">
-                                <span class="check-card__actions-icon" aria-hidden="true">✎</span>
-                                <span>Bearbeiten</span>
-                            </button>
-                            <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="retentionDeleteBtn" role="menuitem">
-                                <span class="check-card__actions-icon" aria-hidden="true">✕</span>
-                                <span>Löschen</span>
-                            </button>
-                        </div>
-                    </details>
-                </div>
-            </div>
-
-            <div class="check-card__body dashboard-panel__body">
-                <p class="dashboard-panel__summary" data-dashboard-retention-summary></p>
-                <p class="dashboard-panel__status" id="retentionStatus" aria-live="polite" hidden></p>
-                <ul class="action-list dashboard-panel__list" data-dashboard-retention-list></ul>
-            </div>
-        </article>
-
+        <div class="dashboard-col--right">
         <article class="check-card dashboard-panel dashboard-panel--activity" data-dashboard-activity-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
@@ -248,6 +233,7 @@
                 </div>
             </div>
         </article>
+        </div><!-- /.dashboard-col--right -->
 
         <!--<article class="card skills-area">
             <div class="card-header">
