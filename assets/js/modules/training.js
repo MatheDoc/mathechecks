@@ -1445,7 +1445,7 @@ function createTaskCardNode(
 
   if (runtimeReloadBtn) {
     const reloadItem = createCardMenuItem({
-      emoji: "🔄",
+      emoji: "🔀",
       label: "Neue Aufgabe",
       onClick: () => runtimeReloadBtn.click(),
     });

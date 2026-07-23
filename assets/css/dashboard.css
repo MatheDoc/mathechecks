@@ -268,13 +268,13 @@ body.page-dashboard .dashboard-worklist__checks {
   padding-top: 2px;
 }
 
-body.page-dashboard .dashboard-worklist__session-toggle.is-active {
+body.page-dashboard .dashboard-worklist__filter.is-active {
   background: var(--surface-hi);
   color: var(--text);
 }
 
-body.page-dashboard .dashboard-worklist__session-toggle.is-active:hover,
-body.page-dashboard .dashboard-worklist__session-toggle.is-active:focus-visible {
+body.page-dashboard .dashboard-worklist__filter.is-active:hover,
+body.page-dashboard .dashboard-worklist__filter.is-active:focus-visible {
   background: var(--surface-hi);
 }
 
@@ -879,10 +879,6 @@ body.page-dashboard .dashboard-panel__list-row-chevron {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1;
-}
-
-body.page-dashboard .dashboard-panel__menu .check-card__actions-popover {
-  min-width: 238px;
 }
 
 body.page-dashboard .dashboard-panel__menu-item--danger {

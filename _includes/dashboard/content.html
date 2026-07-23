@@ -151,8 +151,17 @@
                             </span>
                         </summary>
                         <div class="check-card__actions-popover" role="menu" aria-label="Aktionen zu Erfolgsquoten">
-                            <button class="check-card__actions-item dashboard-worklist__session-toggle" type="button" role="menuitemcheckbox" aria-checked="true" data-dashboard-worklist-session-toggle>
-                                <span>🎯 Session-Checks</span>
+                            <button class="check-card__actions-item dashboard-worklist__filter is-active" type="button" role="menuitemradio" aria-checked="true" data-dashboard-worklist-filter="session">
+                                <span class="check-card__actions-icon" aria-hidden="true">🎯</span>
+                                <span>Session</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-worklist__filter" type="button" role="menuitemradio" aria-checked="false" data-dashboard-worklist-filter="retention">
+                                <span class="check-card__actions-icon" aria-hidden="true">🔄</span>
+                                <span>Auffrischen</span>
+                            </button>
+                            <button class="check-card__actions-item dashboard-worklist__filter" type="button" role="menuitemradio" aria-checked="false" data-dashboard-worklist-filter="all">
+                                <span class="check-card__actions-icon" aria-hidden="true">📊</span>
+                                <span>Gesamt</span>
                             </button>
                         </div>
                     </details>
