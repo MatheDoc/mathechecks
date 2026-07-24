@@ -107,14 +107,14 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 - Abwärts-Delta wird sachlich und ohne Demotivation dargestellt.
 - Folge-Optionen sind ausschließlich `Wiederholen` und `Zum Dashboard`. `Wiederholen` lädt im Training eine neue Variante (neuer Taskscore); bei `recall` und `feynman` startet es einen neuen Durchgang. `Zum Dashboard` ist im freien Kontext reine Navigation und verändert den Feed nicht.
 - `recall` und `feynman` zeigen ihr eigenes Quotendelta, aber verändern die Trainingsquote nicht.
-- **Ungewerteter Durchgang:** Wurde die globale Aktion „alle Lösungen anzeigen" (Drei-Punkte-/Toolbar-Menü der Aufgabe) genutzt, zählt der **ganze Versuch nicht**. Es wird kein Trainings-Event geschrieben, die Quote bleibt unverändert, und statt des Quotendeltas erscheint ein kurzer Hinweis im Popup. Das gilt in Feed- wie freiem Training.
+- **Ungewerteter Durchgang:** Wurde die globale Aktion „alle Lösungen einblenden" (Drei-Punkte-/Toolbar-Menü der Aufgabe) genutzt, zählt der **ganze Versuch nicht**. Es wird kein Trainings-Event geschrieben, die Quote bleibt unverändert, und statt des Quotendeltas erscheint ein kurzer Hinweis im Popup. Das gilt in Feed- wie freiem Training.
 
 ### Per-Frage-Fluss im Training
 
 1. Frage ungeprüft.
 2. Geprüft und korrekt: Einzellösung wird automatisch eingeblendet (exakter Wert, vermeidet Folgefehler), Frage ist gewertet.
 3. Geprüft und falsch: Der Nutzer kann weiterprobieren (`n` erhöht sich) oder die Lösung einzeln anzeigen (Fragescore `0`).
-4. Globale Aktion „alle Lösungen anzeigen": macht den gesamten Durchgang ungewertet (siehe Abschluss-Popup). Per-Frage-Lösungen aus Schritt 3 bleiben davon unberührt und zählen weiterhin als Fragescore `0`.
+4. Globale Aktion „alle Lösungen einblenden": macht den gesamten Durchgang ungewertet (siehe Abschluss-Popup). Per-Frage-Lösungen aus Schritt 3 bleiben davon unberührt und zählen weiterhin als Fragescore `0`.
 
 ### Dashboard-Worklist
 

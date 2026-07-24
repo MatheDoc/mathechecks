@@ -1432,11 +1432,11 @@ function createTaskCardNode(
 
     const solutionItem = createCardMenuItem({
       emoji: "👁️",
-      label: isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen",
+      label: isHidden() ? "Lösungen ausblenden" : "Lösungen einblenden",
       onClick: () => {
         runtimeSolutionBtn.click();
         const labelSpan = solutionItem.querySelector("span:last-child");
-        if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen";
+        if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen einblenden";
       },
     });
     solutionItem.dataset.trainingFeedControlled = "true";
@@ -1874,7 +1874,7 @@ export async function initTrainingModule({
               const before = await getUserCheckProficiency();
               const previousRate = before.ok ? extractCheckProficiencyRate(before.data, completedCheckId) : null;
 
-              // Globale "alle Lösungen anzeigen"-Aktion: Versuch wird nicht gewertet,
+              // Globale "alle Lösungen einblenden"-Aktion: Versuch wird nicht gewertet,
               // Quote bleibt unverändert.
               if (solutionsRevealedGlobally) {
                 return { previousRate, newRate: previousRate, quoteUnchanged: true };
