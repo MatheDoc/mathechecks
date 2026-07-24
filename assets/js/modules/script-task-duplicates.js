@@ -288,11 +288,11 @@ function createTaskCard(
 
         const solutionItem = createCardMenuItem({
             emoji: "👁️",
-            label: isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen",
+            label: isHidden() ? "Lösungen ausblenden" : "Lösungen einblenden",
             onClick: () => {
                 runtimeSolutionBtn.click();
                 const labelSpan = solutionItem.querySelector("span:last-child");
-                if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen anzeigen";
+                if (labelSpan) labelSpan.textContent = isHidden() ? "Lösungen ausblenden" : "Lösungen einblenden";
             },
         });
         solutionItem.dataset.trainingFeedControlled = "true";

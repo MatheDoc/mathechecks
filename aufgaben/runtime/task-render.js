@@ -560,7 +560,7 @@ export function renderTask(task, options = {}) {
     };
     let showSolutionsNow =
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
-    // Wurde die globale "alle Lösungen anzeigen"-Aktion genutzt, gilt der ganze
+    // Wurde die globale "alle Lösungen einblenden"-Aktion genutzt, gilt der ganze
     // Versuch als ungewertet (Quote bleibt unverändert). Per-Frage-Lösungen zählen
     // weiterhin als Fragescore 0.
     let globalSolutionsRevealed = Boolean(persistedState?.globalSolutionsRevealed);

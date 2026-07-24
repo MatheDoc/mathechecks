@@ -38,9 +38,9 @@ const GREETING_TIME_VARIANTS = [
     startHour: 4,
     endHour: 12,
     variants: [
-      "Hey {name}, so früh schon am Werk?",
-      "Guten Morgen {name}.",
-      "Hi {name}, was steht heute an?",
+      "Hey, Frühaufsteher!",
+      "Guten Morgen, {name}.",
+      "Was steht heute an, {name}?",
     ],
   },
   {
@@ -48,9 +48,9 @@ const GREETING_TIME_VARIANTS = [
     startHour: 12,
     endHour: 18,
     variants: [
-      "Hi {name}, eine Runde Mathe checken?",
-      "Guten Tag {name}.",
-      "Check am Nachmittag, {name}?",
+      "Eine Runde Mathe checken, {name}?",
+      "Guten Tag, {name}.",
+      "Zeit für den nächsten Schritt.",
     ],
   },
   {
@@ -58,8 +58,8 @@ const GREETING_TIME_VARIANTS = [
     startHour: 18,
     endHour: 23,
     variants: [
-      "Guten Abend {name}.",
-      "Hey {name}, Mathe am Abend?",
+      "Guten Abend, {name}.",
+      "Mathe am Abend, {name}?",
       "Heute Abend Mathe checken, {name}?",
     ],
   },
@@ -68,72 +68,72 @@ const GREETING_TIME_VARIANTS = [
     startHour: 23,
     endHour: 4,
     variants: [
-      "Die Nachteule {name} ist aktiv.",
+      "Die Nachteule ist unterwegs.",
       "Nachts Mathe checken, {name}? Respekt.",
-      "Mathematische Träume, {name}?",
+      "Spätschicht, {name}?",
     ],
   },
 ];
 const GREETING_EVENT_VARIANTS = {
   streak1: [
-    "Hey {name}, los geht's.",
-    "Hey {name}, der Anfang ist gemacht!",
-    "Hi {name}, ab jetzt wird Mathe gecheckt.",
+    "Hey, {name}, los geht's.",
+    "Hey, {name}, der Anfang ist gemacht!",
+    "Hi, {name}, ab jetzt wird Mathe gecheckt.",
   ],
   streak3: [
-    "Drei Tage am Stück, {name}. Das ist kein Zufall mehr.",
-    "Drei Tage in Folge. Weiter so.",
-    "Hi {name}, drei Tage nacheinander. Läuft.",
+    "Drei, Tage am Stück, {name}. Das ist kein Zufall mehr.",
+    "Drei, Tage in Folge. Weiter so.",
+    "Hi, {name}, drei Tage nacheinander. Läuft.",
   ],
   streak7: [
-    "Eine Woche, {name}. Aus Vorsatz wird Gewohnheit.",
+    "Eine Woche Mathe gecheckt, {name}. Läuft.",
     "7 Tage am Stück, {name}. Respekt.",
-    "Eine volle Woche dran geblieben. Sauber.",
+    "Eine Woche drangeblieben. Sauber.",
   ],
   streak14: [
-    "Zwei Wochen, {name}. Du machst das ernsthaft.",
+    "Beeindruckend, {name}, zwei Wochen ohne Pause.",
     "14 Tage am Stück. Das nennt man Routine.",
-    "Hey {name}, zwei Wochen drangeblieben. Sehr gut.",
+    "Zwei Wochen drangeblieben, {name}. Sehr gut!",
   ],
   streak30: [
     "30 Tage am Stück. Du meinst es wirklich ernst.",
     "Ein Monat Streak, {name}. Schwer, das noch Zufall zu nennen.",
-    "30 Tage in Folge {name}, klasse!",
+    "30 Tage in Folge, {name}, klasse!",
   ],
   streak100: [
-    "Hallo {name}, 100 Tage am Stück. Wir müssen reden, über deine Zukunft als Mathematiker.",
+    "100 Tage am Stück, {name}. Wir müssen reden, über deine Zukunft als Mathematiker.",
   ],
   missedYesterday: [
     "Wieder am Start, {name}?",
-    "Hey {name}, heute geht´s weiter.",
-    "Hi {name}, es ist wieder Zeit, Mathe zu checken.",
+    "Schön, dass du wieder da bist, {name}.",
+    "Heute geht's weiter.",
   ],
   longPause: [
-    "Hallo {name}, schön dich wiederzusehen.",
+    "Schön dich wiederzusehen, {name}.",
     "Willkommen zurück, {name}.",
     "{name} ist wieder da!",
   ],
   streakAtRisk: [
-    "Hey {name}, halte den Streak am Laufen.",
-    "Noch läuft der Streak, {name}.",
-    "Heute noch eine Aktivität, {name}, und der Streak lebt weiter.",
+    "Auf geht's, {name}.",
+    "Noch läuft der Streak...",
+    "Auch heute Mathe checken, {name}?",
   ],
 };
 const GREETING_PROGRESS_VARIANTS = {
   yesterdayBusy: [
-    "Du warst gestern fleißig {name}, weiter so.",
-    "Hey {name}, gestern war stark!",
-    "Viel erledigt gestern. Ein kleiner Schritt heute hält den Takt.",
+    "Gestern war stark, {name}.",
+    "Du warst gestern fleißig, {name}. Weiter so.",
+    "Guter Lauf gestern. Heute geht's weiter.",
   ],
   sessionPressureHigh: [
-    "Hi {name}, dein Plan ist gerade recht ambitioniert.",
-    "Hallo {name}, das Zieldatum schaut gerade ziemlich ernst.",
-    "Heute wird Mathe gecheckt!",
+    "Dein Zieldatum wird knapp, {name}.",
+    "Dein Plan braucht heute Aufmerksamkeit.",
+    "Jetzt wird Mathe gecheckt, {name}!",
   ],
   sessionPressureMedium: [
-    "Dein Plan ist machbar, {name}, aber er wartet nicht.",
-    "Hey {name}, gerade ist es eher sportlich als gemütlich.",
-    "Heute wäre ein guter Tag für ein paar Aktivitäten.",
+    "Auf zur nächsten Aufgabe, {name}.",
+    "Weiter geht's mit der Session, {name}.",
+    "Ein paar Schritte heute helfen weiter.",
   ],
   sessionSmooth: [
     "Läuft gut bei dir, {name}.",
@@ -141,16 +141,16 @@ const GREETING_PROGRESS_VARIANTS = {
     "Du bist gut in der Zeit, {name}.",
   ],
   sessionDone: [
-    "Glückwunsch {name}, Session abgeschlossen.",
-    "Toll {name}, du hast die Session erfolgreich beendet.",
-    "Gut gemacht {name}, die Session ist finished.",
+    "Glückwunsch, {name}, Session abgeschlossen.",
+    "Toll, {name}, Session beendet!",
+    "Nice, {name}, die Session ist finished.",
   ],
 };
 const GREETING_FALLBACK_VARIANTS = [
   "Na, {name}. Bereit?",
   "Schön, dass du da bist, {name}.",
-  "Hey {name}!",
-  "Hallo {name}.",
+  "Hey, {name}!",
+  "Hallo, {name}.",
 ];
 const GREETING_STREAK_MILESTONES = [100, 30, 14, 7];
 const GREETING_LONG_PAUSE_DAYS = 7;
