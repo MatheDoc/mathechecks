@@ -8,9 +8,7 @@
 // Function ueberhaupt ausgefuehrt wird (kein `--no-verify-jwt` bei Deploy).
 //
 // Bewusst klein gehalten: kein Datenbankzugriff, kein eigener State, nur ein
-// gebuendelter Aufruf an die Gemini API mit Modell-Fallback bei Servicefehlern.
-// Quota-Fehler (429) werden nicht auf das naechste Modell durchgereicht, damit
-// ein einzelner Recall-Klick nicht mehrere Modellquoten belastet.
+// gebuendelter Aufruf an die Gemini API mit Modell-Fallback bei Fehlern.
 
 const MODELS = [
   "gemini-3.6-flash",
@@ -160,10 +158,6 @@ Deno.serve(async (req: Request) => {
       break;
     } catch (error) {
       lastError = error;
-      const status = error instanceof GeminiHttpError ? error.status : 0;
-      if (status === 429) {
-        break;
-      }
       continue;
     }
   }
