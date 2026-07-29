@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
   [string]$SupabaseExe = (Join-Path $env:USERPROFILE "bin\supabase.exe"),
+  [string[]]$FunctionNames = @("recall-evaluate", "feynman-evaluate"),
   [Parameter(ValueFromRemainingArguments = $true)]
   [string[]]$DbPushArgs
 )
@@ -19,6 +20,14 @@ try {
   & $SupabaseExe db push @DbPushArgs
   if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
+  }
+
+  foreach ($functionName in $FunctionNames) {
+    Write-Host "Deploye Edge Function: $functionName"
+    & $SupabaseExe functions deploy $functionName
+    if ($LASTEXITCODE -ne 0) {
+      exit $LASTEXITCODE
+    }
   }
 }
 finally {
