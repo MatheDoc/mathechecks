@@ -84,11 +84,14 @@ Windows-Hinweis für dieses Repo:
 - Auf diesem Rechner liegt die CLI aktuell unter `C:\Users\fue\bin\supabase.exe` und nicht im globalen `PATH`.
 - Für verlässliche Remote-Deploys gibt es deshalb zusätzlich das Repo-Skript `supabase/deploy-remote.ps1`.
 - Typischer Aufruf: `& .\supabase\deploy-remote.ps1`
+- Das Skript spielt zuerst offene Datenbankmigrationen ein und deployt danach die Edge Functions `recall-evaluate` und `feynman-evaluate`.
+- Liegt die CLI nicht unter dem Standardpfad des angemeldeten Windows-Benutzers, wird sie explizit angegeben: `& .\supabase\deploy-remote.ps1 -SupabaseExe "C:\Pfad\zu\supabase.exe"`.
 
 Wichtig:
 
 - `db push` sollte erst nach lokalem Test mit `supabase start` und `supabase db reset` verwendet werden.
 - Vor `db push` sollte das Repo per `supabase link` mit dem richtigen Remote-Projekt verbunden sein.
+- `db push` ordnet Migrationen über ihren Zeitstempel-Präfix und den Remote-Migrationsverlauf zu. Bereits angewendete Migrationen werden nicht erneut ausgeführt; für jede Änderung wird eine neue SQL-Datei angelegt, bestehende Migrationen werden nicht nachträglich verändert.
 
 ## Empfohlene Reihenfolge für einen lokalen-first Workflow
 
@@ -168,7 +171,7 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 - Der publishable anon key ist in `_config.yml` verdrahtet.
 - Der Project Ref ist lokal per `supabase link` hinterlegt.
 - Die bisherigen Datenbankmigrationen bis einschließlich `20260518170000_fix_save_active_learning_session_lernbereich_slug_ambiguity.sql` sind bereits im Remote-Projekt aktiv.
-- Für weitere Remote-Deploys kann auf diesem Rechner direkt `& .\supabase\deploy-remote.ps1` verwendet werden; das Skript ruft die vorhandene CLI unter `C:\Users\fue\bin\supabase.exe` auf.
+- Für weitere Remote-Deploys kann direkt `& .\supabase\deploy-remote.ps1` verwendet werden; das Skript führt Datenbankmigrationen und die beiden Edge-Function-Deploys aus. Falls nötig wird die CLI über `-SupabaseExe` explizit angegeben.
 - Das SMTP-Setup für das gehostete Projekt wird im Supabase-Dashboard gepflegt.
 
 Hinweis:
