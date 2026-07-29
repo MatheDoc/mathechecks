@@ -67,7 +67,11 @@ function buildPrompt(context: PromptContext): string {
   return `Du bewertest Schülererklärungen in einer Mathematik-Feynman-Übung.
 
 # Ziel der Übung
-Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigenen Worten erklären, WIE man die Teilfrage löst. Im Mittelpunkt steht der Rechenweg: die zentralen Schritte, Begriffe, Bedingungen und Begründungen. Ein konkretes Endergebnis darf genannt werden, ist aber nicht erforderlich und darf bei einem vollständigen, korrekten Lösungsweg niemals zu einem Punktabzug führen. Eine Erklärung ohne Endwert kann die volle Punktzahl erreichen. Die Texte entstehen oft per Diktat: Sprach-, Tipp- oder Diktierfehler sind möglich und zählen nicht als fachliche Fehler.
+Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigenen Worten erklären, WIE man die Teilfrage löst. Im Mittelpunkt steht der Lösungsweg: die fachlich notwendigen Denk- und Rechenschritte, die zentralen Begriffe, Bedingungen und Begründungen. Eine gute Erklärung beschreibt nicht nur, welche Formel oder welches Verfahren verwendet wird, sondern auch, welche konkreten Schritte durchgeführt werden und warum diese zum Ziel führen, sofern dies für die Teilfrage wesentlich ist.
+
+Bewertet wird, ob der Schüler den mathematischen Gedankengang verstanden hat, nicht ob seine Erklärung der internen Zielantwort möglichst ähnlich formuliert ist. Eine bloße richtige Endantwort ist keine Erklärung und erhält keine Punkte. Ein konkretes Endergebnis darf genannt werden, ist aber nicht erforderlich und darf bei einem vollständigen, korrekten Lösungsweg niemals zu einem Punktabzug führen. Eine Erklärung ohne Endwert kann die volle Punktzahl erreichen.
+
+Die Texte entstehen oft per Diktat: Sprach-, Tipp- oder Diktierfehler sind möglich und zählen nicht als fachliche Fehler.
 
 # Bewertungsgrundsätze
 1. Maßgeblich ist die sichtbare Aufgabenstellung. Für Form, Darstellung und Lösungsweg ist die interne Zielantwort nur eine fachliche Orientierung, kein zwingendes Antwortformat.
@@ -80,13 +84,30 @@ Die Schüler bekommen eine konkrete Aufgabe und sollen im Feynman-Stil in eigene
 8. Wenn Lernende sichtbare Nummern, Punkte, Äste oder Tabellenfelder aus Graphen, Baumdiagrammen oder Vierfeldertafeln nennen, interpretiere diese mithilfe von Einleitung, Visualisierung und Generator-Kontext. Werte nicht allein deshalb ab, weil ein formaler Name fehlt.
 9. Das Referenzbeispiel dient nur der Orientierung: Die tatsächliche Aufgabe hat andere Zahlenwerte und gegebenenfalls ein anderes Szenario. Bewerte niemals gegen die Zahlen oder das Szenario des Referenzbeispiels. Akzeptiere auch Lösungswege, die vom Referenzbeispiel abweichen, solange sie fachlich korrekt zur gestellten Aufgabe passen.
 10. Verlange eine bestimmte Form oder Methode nur, wenn sie in Einleitung oder Teilfrage ausdrücklich gefordert ist.
+11. Vergib keine Punkte allein für eine richtige Zahl, einen Term, einen Fachbegriff oder ein bloßes "ja" bzw. "nein". Das gilt auch dann, wenn die Antwort offensichtlich der Zielantwort entspricht. Fordere stattdessen knapp eine Begründung anhand der Aufgabe ein.
+12. Für eine hohe Bewertung muss mindestens die fachliche Kernidee des Lösungswegs genannt werden, sofern nach Regel 13 überhaupt ein Lösungsweg erforderlich ist. Allgemeine Aussagen wie „ich rechne das aus“, „ich setze etwas ein“, „ich benutze die Formel“ oder bloße Fachbegriffe ohne Erläuterung reichen nicht aus.
+13. Ein vollständiger Rechenweg ist nicht erforderlich, wenn sich die Antwort unmittelbar und ohne Zwischenschritt aus einer gegebenen Darstellung ergibt, z. B. ein Parameter, der in der gegebenen Funktionsform bereits sichtbar ist, ein Wert, der direkt aus Graph, Tabelle, Baumdiagramm oder Vierfeldertafel abgelesen werden kann oder eine Angabe, die wörtlich im Aufgabentext steht. In diesem Fall genügt es, dass der Schüler kurz erklärt, woraus der Wert unmittelbar entnommen wird oder warum kein weiterer Schritt erforderlich ist. In diesem Fall besteht die nach Regel 12 geforderte Kernidee bereits aus diesem knappen Quellenbezug; ein bloßer Zahlenwert oder das bloße Abschreiben einer Aufgabenangabe ohne jeden Bezug zur Quelle bleibt unzureichend.
+14. Fachlich falsche Zusatzbehauptungen zum Lösungsweg selbst (z. B. falsche Bedingungen, falsche Regeln, falsche Begriffe) mindern den Score auch dann, wenn andere Teile der Erklärung korrekt sind. Eine ansonsten korrekte Erklärung erhält keine volle Punktzahl, wenn sie zusätzlich wesentliche fachliche Fehler enthält. Ein rein rechnerischer Fehler im genannten Endergebnis bei sonst korrekt beschriebenem Weg fällt nicht darunter (siehe Regel 2 und die Hinweise zum Endergebnis oben).
+15. Eine weitere Ausnahme ist nur zulässig, wenn die sichtbare Teilfrage ausdrücklich eine reine Kurzantwort verlangt und diese Antwort die Teilfrage ohne jeden möglichen Erklärschritt vollständig und unmissverständlich beantwortet. Im Zweifel ist keine Ausnahme anzunehmen.
 
 # Kalibrierungsbeispiele (unabhängig von der aktuellen Aufgabe)
 Beispiel A, Score 1.0: Teilfrage verlangt einen Tiefpunkt. Erklärung: "Ich setze die erste Ableitung gleich null und löse nach x auf. Dann prüfe ich mit der zweiten Ableitung: ist sie dort positiv, liegt ein Tiefpunkt vor. Den y-Wert bekommt man durch Einsetzen in f." Kein Endwert genannt, aber der Weg ist vollständig, korrekt und verständlich.
-Beispiel B, Score 0.8: Teilfrage verlangt eine mittlere Änderungsrate. Erklärung: "Man rechnet die Differenz der Funktionswerte durch die Differenz der x-Werte." Kernidee korrekt, aber es fehlt der kleine Hinweis, welche Stellen eingesetzt werden.
+
+Beispiel B, Score 0.8: Teilfrage verlangt eine mittlere Änderungsrate. Erklärung: "Man rechnet die Differenz der Funktionswerte durch die Differenz der x-Werte." Kernidee korrekt, aber es fehlt der Hinweis, welche Stellen verwendet werden.
+
 Beispiel C, Score 0.5: Teilfrage verlangt eine Pfadwahrscheinlichkeit aus einem Baumdiagramm. Erklärung: "Man multipliziert einfach die Wahrscheinlichkeiten." Richtiger Kerngedanke, aber es fehlt, welche Äste gemeint sind und warum multipliziert wird.
-Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f''(x)=0 setzen, und wenn f'''(x)>0 ist, ist es ein Hochpunkt." Die Bedingung ist fachlich falsch (erste und zweite Ableitung verwechselt).
+
+Beispiel D, Score 0.0: Teilfrage verlangt einen Hochpunkt. Erklärung: "f''(x)=0 setzen, und wenn f'''(x)>0 ist, ist es ein Hochpunkt." Die mathematischen Bedingungen sind falsch.
+
 Beispiel E, Score 1.0: Teilfrage verlangt einen Angebots- oder Nachfrageüberschuss. Erklärung: "Den festgelegten Preis in Angebots- und Nachfragefunktion einsetzen, die Mengen vergleichen und die Differenz bilden. Ist die Nachfrage größer, liegt ein Nachfrageüberschuss vor, sonst ein Angebotsüberschuss." Kein Zahlenwert genannt, aber Rechenweg, Vergleich und Deutung sind vollständig.
+
+Beispiel F, Score 0.0: Teilfrage fragt, ob eine Zufallsgröße binomialverteilt ist. Erklärung: "Ja." Die Antwort kann richtig sein, erklärt aber keine der erforderlichen Bedingungen.
+
+Beispiel G, Score 1.0: Teilfrage verlangt den y-Achsenabschnitt von f(x)=2x+5. Erklärung: "Die Funktion steht schon in der Form y=mx+b da, der y-Achsenabschnitt ist die Zahl ohne x, also b. Das kann ich direkt ablesen." Kein Rechenweg nötig, da der Wert unmittelbar aus der gegebenen Form entnommen werden kann und der Bezug erklärt wird.
+
+Beispiel H, Score 0.0: Gleiche Teilfrage wie in Beispiel G. Erklärung: "5." Der Wert ist zwar korrekt, aber es fehlt jeder Bezug dazu, warum dieser Wert direkt übernommen werden kann.
+
+Beispiel I, Score 0.8: Teilfrage verlangt einen Hochpunkt. Erklärung: "Ich setze die erste Ableitung gleich null und prüfe mit der zweiten Ableitung, ob sie negativ ist – dann liegt ein Hochpunkt vor. Außerdem muss die Funktion dafür immer monoton steigend sein." Der Grundweg ist korrekt, aber die angehängte Zusatzbedingung zur Monotonie ist fachlich falsch und mindert den Score trotz sonst richtigem Kerngedanken.
 
 # Check
 Schlagwort: ${context.check.schlagwort}
@@ -107,21 +128,33 @@ Referenzbeispiel (nur Orientierung, andere Zahlen/Szenario möglich):
 ${context.task.beispiel || "(kein Referenzbeispiel)"}
 
 # Teilfragen und interne Zielantworten
-${context.items.map((item) => `Teilfrage ${item.nr}: ${item.frage}\nInterne Zielantwort: ${item.zielantwort || "(keine Zielantwort)"}\nSchülererklärung: ${item.schueler_antwort || "(leer)"}`).join("\n\n")}
+${context.items
+  .map(
+    (item) =>
+      `Teilfrage ${item.nr}: ${item.frage}\nInterne Zielantwort: ${item.zielantwort || "(keine Zielantwort)"}\nSchülererklärung: ${item.schueler_antwort || "(leer)"}`
+  )
+  .join("\n\n")}
 
 # Bewertung
-Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil fachlich sinnvoll erklärt. Nutze diese Score-Skala als Anker:
-- 1.0: sehr gut erklärt; zentrale Schritte, Begriffe und Begründung sind korrekt
+Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil fachlich sinnvoll erklärt oder – falls kein Rechenweg nötig ist – ob sie den direkten Bezug zur Quelle des Werts nennt (siehe Regel 13).
+
+Nutze diese Score-Skala als Anker; auch passende Zwischenwerte sind ausdrücklich erlaubt. Verwende Zwischenwerte (z. B. 0.2, 0.3, 0.6 oder 0.9), wenn sie die Qualität der Erklärung besser treffen als die vier Ankerwerte.
+
+- 1.0: sehr gut erklärt; zentrale Schritte, Begriffe und Begründung sind korrekt (oder: Wert korrekt direkt abgelesen mit benanntem Bezug zur Quelle, wenn kein Rechenweg nötig ist)
 - 0.8: im Kern gut; kleine Ungenauigkeit oder eine kleine Lücke
 - 0.5: teilweise brauchbar; ein zentraler Schritt, Begriff oder Zusammenhang fehlt
 - 0.0: fachlich falsch, kaum verwertbar oder leer
 
-Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Ein fehlendes Endergebnis oder ein fehlender konkreter Zahlenwert ist keine Lücke und darf bei vollständig beschriebenem, korrektem Rechenweg nicht zu einer Reduzierung des Scores führen. Sei ebenfalls fair, wenn eine kurze oder alltagssprachliche Erklärung durch den Aufgaben- und Visualisierungskontext eindeutig rekonstruierbar ist. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
+Sei streng bei falschen mathematischen Bedingungen, vertauschten Begriffen, falschen Formeln oder fehlendem Kernschritt. Eine kurze oder alltagssprachliche Erklärung ist nur dann ausreichend, wenn sie mindestens einen konkreten Lösungs-, Begründungs- oder Bedingungsschritt enthält oder – gemäß Regel 13 – knapp erklärt, woraus ein Wert unmittelbar entnommen wird. Der Aufgaben- und Visualisierungskontext darf einen fehlenden Erklärschritt nicht ersetzen.
+
+Bewerte nicht die Anzahl genannter Fachbegriffe oder Einzelschritte, sondern ob die Erklärung den mathematischen Gedankengang verständlich macht. Teilweise richtige Erklärungen sollen entsprechend ihres fachlichen Gehalts bewertet werden. Allgemeine Aussagen ohne mathematischen Inhalt genügen nicht.
+
+Ein fehlendes Endergebnis oder ein fehlender konkreter Zahlenwert ist keine Lücke und darf bei vollständig beschriebenem, korrektem Lösungsweg nicht zu einer Reduzierung des Scores führen. Verrate bei schwachen Antworten nicht die komplette Zielantwort, sondern gib einen kurzen Hinweis, was nachgebessert werden sollte. Nutze exakt die angegebenen Teilfragenummern.
 
 Prüfe vor dem Antworten jede Begründung: Nennt sie einen Zahlenwert, sollte dieser mit der internen Zielantwort oder den Kontextdaten übereinstimmen. Widerspricht deine Begründung der internen Zielantwort, verwirf sie und bewerte neu.
 
 Antworte NUR mit einem JSON-Array:
-[{"nr": 1, "score": 0.0, "reason": "kurzer deutscher Hinweis, höchstens 18 Wörter"}]`;
+[{"nr":1,"score":0.0,"reason":"kurzer deutscher Hinweis, höchstens 18 Wörter"}]`;
 }
 
 class GeminiHttpError extends Error {
