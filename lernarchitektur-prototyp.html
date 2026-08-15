@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Lernarchitektur – Interaktiver Prototyp</title>
+<style>
+  :root {
+    --ink: #111318;
+    --sub: #6b7280;
+    --line: #e6e7eb;
+    --bg: #ffffff;
+    --panel: #fafafa;
+    --training: #f5943d;   /* orange */
+    --recall: #3d7bf5;     /* blau */
+    --feynman: #8b5cf6;    /* violett */
+    --kompetenz: #22a06b;  /* grün */
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 48px 20px 100px;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; }
+
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+  p.sub {
+    color: var(--sub);
+    font-size: 14.5px;
+    margin: 0 0 44px;
+    max-width: 640px;
+    line-height: 1.5;
+  }
+
+  section {
+    margin-bottom: 56px;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  p.section-sub {
+    color: var(--sub);
+    font-size: 13.5px;
+    margin: 0 0 24px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  /* ---------- Section A: Kette ---------- */
+  .chain-panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+
+  .chain-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  button.play {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 18px;
+    border-radius: 20px;
+    border: none;
+    background: var(--ink);
+    color: #fff;
+    cursor: pointer;
+  }
+  button.play:hover { opacity: 0.85; }
+  button.play:disabled { opacity: 0.4; cursor: default; }
+
+  .speed-label {
+    font-size: 12.5px;
+    color: var(--sub);
+  }
+
+  .path-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .path-line {
+    fill: none;
+    stroke: #d5d7dd;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .path-line.drawn {
+    stroke: #b9bcc4;
+  }
+
+  .node-circle {
+    fill: #fff;
+    stroke: var(--line);
+    stroke-width: 2;
+    transition: fill .35s ease, stroke .35s ease;
+  }
+  .node-circle.active.type-training { fill: var(--training); stroke: var(--training); }
+  .node-circle.active.type-recall   { fill: var(--recall);   stroke: var(--recall); }
+  .node-circle.active.type-feynman  { fill: var(--feynman);  stroke: var(--feynman); }
+  .node-circle.active.type-kompetenz{ fill: var(--kompetenz);stroke: var(--kompetenz); }
+
+  .node-label {
+    font-size: 13px;
+    font-weight: 700;
+    fill: #b7bac2;
+    transition: fill .35s ease;
+  }
+  .node-label.active { fill: #fff; }
+
+  .check-tag {
+    font-size: 10.5px;
+    fill: var(--sub);
+    font-weight: 600;
+  }
+
+  .legend-row {
+    display: flex;
+    gap: 18px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--sub);
+  }
+  .dot { width: 9px; height: 9px; border-radius: 50%; }
+  .dot.training { background: var(--training); }
+  .dot.recall { background: var(--recall); }
+  .dot.feynman { background: var(--feynman); }
+  .dot.kompetenz { background: var(--kompetenz); }
+
+  .note {
+    font-size: 12.5px;
+    color: var(--sub);
+    margin-top: 18px;
+    line-height: 1.5;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+
+  /* ---------- Section B: Erfolgsquote ---------- */
+  .quote-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+  }
+  .quote-card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .quote-card .check-name {
+    font-size: 12px;
+    color: var(--sub);
+    align-self: flex-start;
+    font-weight: 600;
+  }
+  .ring-wrap {
+    position: relative;
+    width: 96px;
+    height: 96px;
+  }
+  .ring-wrap svg { transform: rotate(-90deg); }
+  .ring-bg { fill: none; stroke: var(--line); stroke-width: 8; }
+  .ring-fg { fill: none; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset .6s ease; }
+  .ring-fg.training { stroke: var(--training); }
+  .ring-fg.recall { stroke: var(--recall); }
+  .ring-fg.feynman { stroke: var(--feynman); }
+  .ring-pct {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  .activity-name {
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .improve-btn {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 14px;
+    border-radius: 16px;
+    border: 1.5px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .improve-btn:hover { border-color: #bbb; }
+  .improve-btn:active { transform: scale(0.97); }
+
+  .position-note {
+    font-size: 12.5px;
+    color: var(--sub);
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+  .position-note strong { color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Wie MatheChecks Fortschritt versteht</h1>
+  <p class="sub">Zwei Achsen in einer Grafik: horizontal die Check-Kette (wann etwas ansteht), senkrecht davon abgezogen die Erfolgsquote (wie gut du darin bist) – unabhängig von der Position in der Kette.</p>
+
+  <section>
+    <h2>Kettenverlauf &amp; Erfolgsquote</h2>
+    <p class="section-sub">Jede Zeile ist die Kette eines Checks. Von drei beispielhaften Knoten – bewusst aus unterschiedlichen Checks und Aktivitätstypen – führt eine dünne Linie senkrecht nach unten zur jeweiligen Erfolgsquote.</p>
+
+    <div class="chain-panel">
+      <div class="chain-controls">
+        <button class="play" id="playBtn">▶ Ablauf abspielen</button>
+        <span class="speed-label" id="statusLabel">bereit</span>
+      </div>
+
+      <svg class="path-svg" id="pathSvg" viewBox="0 0 640 560"></svg>
+
+      <div class="legend-row">
+        <div class="legend-item"><span class="dot training"></span> Training</div>
+        <div class="legend-item"><span class="dot recall"></span> Recall</div>
+        <div class="legend-item"><span class="dot feynman"></span> Feynman</div>
+        <div class="legend-item"><span class="dot kompetenz"></span> Kompetenzliste</div>
+      </div>
+
+      <div class="note">Oben: die Kette selbst, zeitlich versetzt über drei Checks. Unten: drei Erfolgsquoten, jede an ihren Ursprungsknoten angebunden – klick auf einen Ring, um „nochmal zu üben". Die Quote reagiert unabhängig davon, wie weit die Kette oben schon ist.</div>
+    </div>
+  </section>
+</div>
+
+<script>
+  // ---------- offset rows, each row = one check's chain ----------
+  // Row = Check (Training -> Recall -> Feynman -> Kompetenzliste), connected by a line.
+  // Rows 2 and 3 are shifted right by less than one column-width, so read
+  // horizontally: Training 3 sits before Recall 1, Recall 3 before Feynman 1, etc.
+  const ACTS = [
+    { type: 'training',  short: 'T' },
+    { type: 'recall',    short: 'R' },
+    { type: 'feynman',   short: 'F' },
+    { type: 'kompetenz', short: 'K' },
+  ];
+  const LABEL_W = 96;
+  const COL_W = 150;
+  const ROW_DX = 65;   // horizontal shift per row (< COL_W, creates the interleave)
+  const ROW_DY = 128;  // vertical distance between rows
+  const R = 20;
+  const TOP_PAD = 66;
+
+  const rows = [1, 2, 3].map((checkNum, rowIndex) => {
+    const rowOffsetX = LABEL_W + rowIndex * ROW_DX;
+    const y = TOP_PAD + rowIndex * ROW_DY;
+    const nodes = ACTS.map((a, colIndex) => ({
+      type: a.type, short: a.short, check: checkNum,
+      x: rowOffsetX + colIndex * COL_W, y
+    }));
+    return { checkNum, y, nodes };
+  });
+
+  const maxX = Math.max(...rows.flatMap(r => r.nodes.map(n => n.x))) + R + 30;
+  const chainMaxY = Math.max(...rows.map(r => r.y)) + R;
+
+  // ---------- exemplary nodes -> success-rate rings (orthogonal to the chain) ----------
+  const RING_R = 34;
+  const RING_STROKE = 7;
+  const RING_GAP = 175;       // vertical distance from chain area down to ring centers
+  const ringY = chainMaxY + RING_GAP;
+  const ringCirc = 2 * Math.PI * RING_R;
+
+  function findNode(check, type) {
+    const row = rows.find(r => r.checkNum === check);
+    return row.nodes.find(n => n.type === type);
+  }
+
+  const examples = [
+    { check: 2, type: 'training', label: 'Training · Check 2', value: 45 },
+    { check: 1, type: 'recall',   label: 'Recall · Check 1',   value: 68 },
+    { check: 3, type: 'feynman',  label: 'Feynman · Check 3',  value: 30 },
+  ].map(ex => ({ ...ex, node: findNode(ex.check, ex.type) }));
+
+  const maxY = ringY + RING_R + 46;
+
+  const svg = document.getElementById('pathSvg');
+  svg.setAttribute('viewBox', `0 0 ${maxX} ${maxY}`);
+  const svgNS = 'http://www.w3.org/2000/svg';
+
+  function makeEl(tag, attrs) {
+    const el = document.createElementNS(svgNS, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    return el;
+  }
+
+  // connectors first, so row nodes visually sit on top where they cross
+  examples.forEach(ex => {
+    const connector = makeEl('line', {
+      x1: ex.node.x, y1: ex.node.y + R,
+      x2: ex.node.x, y2: ringY - RING_R - 6,
+      stroke: '#d5d7dd', 'stroke-width': 1.5, 'stroke-dasharray': '3 5'
+    });
+    svg.appendChild(connector);
+  });
+
+  // vertical "same moment in time" guideline
+  const playhead = makeEl('line', {
+    x1: 0, y1: 10, x2: 0, y2: maxY - 10,
+    stroke: '#d5d7dd', 'stroke-width': 1.5, 'stroke-dasharray': '4 4', opacity: 0
+  });
+  svg.appendChild(playhead);
+
+  const rowData = rows.map(row => {
+    // row label
+    const label = makeEl('text', { x: 4, y: row.y + 4, class: 'check-tag' });
+    label.textContent = 'Check ' + row.checkNum;
+    svg.appendChild(label);
+
+    // connecting line for this row
+    const d = row.nodes.map((n, i) => (i === 0 ? 'M' : 'L') + n.x + ' ' + n.y).join(' ');
+    const path = makeEl('path', { d, class: 'path-line' });
+    svg.appendChild(path);
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+
+    const startX = row.nodes[0].x;
+    const endX = row.nodes[row.nodes.length - 1].x;
+
+    const circleEls = row.nodes.map(n => {
+      const circle = makeEl('circle', { cx: n.x, cy: n.y, r: R, class: 'node-circle type-' + n.type });
+      svg.appendChild(circle);
+      const txt = makeEl('text', { x: n.x, y: n.y + 4, 'text-anchor': 'middle', class: 'node-label' });
+      txt.textContent = n.short;
+      svg.appendChild(txt);
+      return { circle, label: txt, x: n.x, type: n.type };
+    });
+
+    return { path, len, startX, endX, circleEls };
+  });
+
+  const playBtn = document.getElementById('playBtn');
+  const statusLabel = document.getElementById('statusLabel');
+  const DURATION_MS = 3400;
+
+  function resetChain() {
+    playhead.setAttribute('opacity', 0);
+    rowData.forEach(rd => {
+      rd.path.style.strokeDashoffset = rd.len;
+      rd.circleEls.forEach(c => { c.circle.classList.remove('active'); c.label.classList.remove('active'); });
+    });
+  }
+
+  function playChain() {
+    resetChain();
+    playBtn.disabled = true;
+    statusLabel.textContent = 'läuft…';
+    playhead.setAttribute('opacity', 1);
+
+    const start = performance.now();
+
+    function frame(now) {
+      const t = Math.min(1, (now - start) / DURATION_MS);
+      const playheadX = t * maxX;
+      playhead.setAttribute('x1', playheadX);
+      playhead.setAttribute('x2', playheadX);
+
+      rowData.forEach(rd => {
+        const frac = Math.min(1, Math.max(0, (playheadX - rd.startX) / (rd.endX - rd.startX)));
+        rd.path.style.strokeDashoffset = (1 - frac) * rd.len;
+        rd.circleEls.forEach(c => {
+          if (playheadX >= c.x) {
+            c.circle.classList.add('active');
+            c.label.classList.add('active');
+          }
+        });
+      });
+
+      if (t < 1) {
+        requestAnimationFrame(frame);
+      } else {
+        playhead.setAttribute('opacity', 0);
+        statusLabel.textContent = 'fertig – noch einmal ansehen?';
+        playBtn.disabled = false;
+      }
+    }
+    requestAnimationFrame(frame);
+  }
+
+  playBtn.addEventListener('click', playChain);
+
+  // ---------- render the rings themselves, on top of everything ----------
+  examples.forEach(ex => {
+    const cx = ex.node.x, cy = ringY;
+
+    const bg = makeEl('circle', {
+      cx, cy, r: RING_R, class: 'node-circle',
+      style: `fill:none; stroke:${'#e6e7eb'}; stroke-width:${RING_STROKE}`
+    });
+    svg.appendChild(bg);
+
+    const fg = makeEl('circle', {
+      cx, cy, r: RING_R,
+      transform: `rotate(-90 ${cx} ${cy})`,
+      style: `fill:none; stroke-width:${RING_STROKE}; stroke-linecap:round; transition: stroke-dashoffset .5s ease;`,
+      'stroke-dasharray': ringCirc,
+      'stroke-dashoffset': ringCirc
+    });
+    fg.classList.add('ring-fg-' + ex.type);
+    svg.appendChild(fg);
+
+    const pct = makeEl('text', {
+      x: cx, y: cy + 5, 'text-anchor': 'middle',
+      style: 'font-size:15px; font-weight:700; fill:#111318;'
+    });
+    svg.appendChild(pct);
+
+    const label = makeEl('text', {
+      x: cx, y: cy + RING_R + 20, 'text-anchor': 'middle', class: 'check-tag'
+    });
+    label.textContent = ex.label;
+    svg.appendChild(label);
+
+    const hint = makeEl('text', {
+      x: cx, y: cy + RING_R + 38, 'text-anchor': 'middle',
+      style: 'font-size:11px; fill:#9aa0ab; cursor:pointer; text-decoration: underline;'
+    });
+    hint.textContent = 'Nochmal üben ↻';
+    svg.appendChild(hint);
+
+    function update() {
+      const offset = ringCirc - (ex.value / 100) * ringCirc;
+      fg.setAttribute('stroke-dashoffset', offset);
+      pct.textContent = ex.value + '%';
+    }
+    update();
+
+    // color the ring foreground to match its activity type
+    const colorMap = { training: 'var(--training)', recall: 'var(--recall)', feynman: 'var(--feynman)' };
+    fg.style.stroke = colorMap[ex.type];
+
+    function improve() {
+      if (ex.value >= 100) return;
+      const gain = 8 + Math.floor(Math.random() * 10);
+      ex.value = Math.min(100, ex.value + gain);
+      update();
+      if (ex.value >= 100) {
+        hint.textContent = 'Gemeistert';
+        hint.style.cursor = 'default';
+        hint.style.textDecoration = 'none';
+      }
+    }
+    hint.addEventListener('click', improve);
+    fg.style.cursor = 'pointer';
+    bg.style.cursor = 'pointer';
+    fg.addEventListener('click', improve);
+    bg.addEventListener('click', improve);
+  });
+</script>
+</body>
+</html>
