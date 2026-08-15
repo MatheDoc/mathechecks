@@ -1,262 +1,382 @@
 [
   {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-2x^2+20x-44 $$",
+    "einleitung": "Ein Foodtruck verkauft mittags ein Wochengericht. Der Betreiber hat notiert, wie viele Portionen bei verschiedenen Preisen verkauft wurden, und daraus den Tagesgewinn berechnet:\n\nBei einem Preis von 3 € beträgt der Tagesgewinn 105 €, bei 4 € sind es 180 € und bei 9 € ergeben sich 105 €.",
     "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Tagesgewinn in Euro in Abhängigkeit von dem Portionspreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Portionspreis, bei dem der Tagesgewinn am größten ist.",
+      "Bestimmen Sie den maximalen Tagesgewinn.",
+      "Bestimmen Sie die beiden Portionspreise, bei denen der Tagesgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Tagesgewinn bei einem Portionspreis von 9,5 €.",
+      "Bestimmen Sie den weiteren Portionspreis, bei dem der Tagesgewinn ebenfalls 56,25 € beträgt."
     ],
     "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=5,00:0,01}",
+      "$ G(p)= ${1:NUMERICAL:=-15,00:0,01}$ p^2+ ${1:NUMERICAL:=180,00:0,01}$ p+ ${1:NUMERICAL:=-300,00:0,01}",
+      "$ p = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=240,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=2,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=56,25:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Bäckerei überlegt, welchen Preis sie für ihr Sauerteigbrot verlangen soll. Testwochen mit drei verschiedenen Preisen ergaben folgende Tagesgewinne:\n\nBei einem Brotpreis von 4 € beträgt der Tagesgewinn 200 €, bei 6 € sind es 200 € und bei 7 € ergeben sich 125 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Tagesgewinn in Euro in Abhängigkeit von dem Brotpreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Brotpreis, bei dem der Tagesgewinn am größten ist.",
+      "Bestimmen Sie den maximalen Tagesgewinn.",
+      "Bestimmen Sie die beiden Brotpreise, bei denen der Tagesgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Tagesgewinn bei einem Brotpreis von 7,5 €.",
+      "Bestimmen Sie den weiteren Brotpreis, bei dem der Tagesgewinn ebenfalls 68,75 € beträgt."
+    ],
+    "antworten": [
+      "$ G(p)= ${1:NUMERICAL:=-25,00:0,01}$ p^2+ ${1:NUMERICAL:=250,00:0,01}$ p+ ${1:NUMERICAL:=-400,00:0,01}",
+      "$ p = ${1:NUMERICAL:=5,00:0,01}",
+      "{1:NUMERICAL:=225,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=2,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=68,75:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Auf einem Stadtfest verkauft ein Stand Crêpes. Der Betreiber hat an drei Tagen unterschiedliche Preise verlangt und jeweils den Tagesgewinn notiert:\n\nBei einem Preis von 6 € ergab sich ein Tagesgewinn von 160 €, bei 8 € waren es 160 € und bei 9 € noch 100 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Tagesgewinn in Euro in Abhängigkeit von dem Crêpes-Preis $p$ in Euro angibt.",
+      "Bestimmen Sie den Preis, bei dem der Tagesgewinn maximal wird.",
+      "Bestimmen Sie den maximalen Tagesgewinn.",
+      "Bestimmen Sie die beiden Preise, bei denen der Tagesgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Tagesgewinn bei einem Crêpes-Preis von 7,5 €.",
+      "Bestimmen Sie den weiteren Crêpes-Preis, bei dem der Tagesgewinn ebenfalls 175 € beträgt."
+    ],
+    "antworten": [
+      "$ G(p)= ${1:NUMERICAL:=-20,00:0,01}$ p^2+ ${1:NUMERICAL:=280,00:0,01}$ p+ ${1:NUMERICAL:=-800,00:0,01}",
+      "$ p = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=180,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=4,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=175,00:0,01}",
+      "{1:NUMERICAL:=6,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Konzertveranstalterin plant die Ticketpreise für eine Hallentour. Die Kalkulation ergibt für drei Preise folgende Gewinne pro Abend:\n\nBei einem Ticketpreis von 4 € liegt der Gewinn bei 180 €, bei 7 € bei 480 € und bei 12 € bei 180 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Gewinn pro Abend in Euro in Abhängigkeit von dem Ticketpreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Ticketpreis, bei dem der Gewinn pro Abend maximal wird.",
+      "Bestimmen Sie den maximalen Gewinn pro Abend.",
+      "Bestimmen Sie die beiden Ticketpreise, bei denen der Gewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Gewinn pro Abend bei einem Ticketpreis von 12,5 €.",
+      "Bestimmen Sie den weiteren Ticketpreis, bei dem der Gewinn pro Abend ebenfalls 95 € beträgt."
+    ],
+    "antworten": [
+      "$ G(p)= ${1:NUMERICAL:=-20,00:0,01}$ p^2+ ${1:NUMERICAL:=320,00:0,01}$ p+ ${1:NUMERICAL:=-780,00:0,01}",
+      "$ p = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=500,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=3,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=13,00:0,01}",
+      "{1:NUMERICAL:=95,00:0,01}",
+      "{1:NUMERICAL:=3,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Straße führt durch eine Unterführung unter einer Bahnlinie hindurch. Die Fahrbahnhöhe relativ zum normalen Straßenniveau lässt sich quadratisch beschreiben; $x$ ist der Abstand vom Beginn der Absenkung:\n\nIn 9 m Abstand liegt die Fahrbahnhöhe relativ zum Normalniveau bei -4,95 m, in 13 m Abstand bei -4,55 m und in 18 m Abstand bei -1,8 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Fahrbahnhöhe relativ zum Normalniveau in Metern in Abhängigkeit von dem Abstand $x$ vom Beginn der Absenkung in Metern angibt.",
+      "Bestimmen Sie den Abstand, in dem die Fahrbahn am tiefsten liegt.",
+      "Bestimmen Sie die niedrigste Fahrbahnhöhe relativ zum Normalniveau.",
+      "Bestimmen Sie die beiden Stellen, an denen die Fahrbahn genau auf Normalniveau liegt.",
+      "Bestimmen Sie die Fahrbahnhöhe relativ zum Normalniveau in 14,5 m Abstand vom Beginn der Absenkung.",
+      "Bestimmen Sie den weiteren Abstand vom Beginn der Absenkung, in dem die Fahrbahnhöhe ebenfalls -3,99 m relativ zum Normalniveau beträgt."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=0,05:0,01}$ x^2+ ${1:NUMERICAL:=-1,00:0,01}$ x+ ${1:NUMERICAL:=0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=-5,00:0,01}",
+      "$ x_1 = ${1:NUMERICAL:=0,00:0,01}$ \\quad x_2 = ${1:NUMERICAL:=20,00:0,01}",
+      "{1:NUMERICAL:=-3,99:0,01}",
+      "{1:NUMERICAL:=5,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Freibad untersucht, wie die tägliche Besucherzahl vom Eintrittspreis abhängt. Drei Beobachtungen aus den letzten Sommern liegen vor:\n\nBei einem Eintrittspreis von 2 € kommen 140 Gäste, bei 6 € sind es 300 Gäste und bei 8 € nur noch 140 Gäste.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ B(p) = ap^2 + bp + c $, die die tägliche Besucherzahl in Abhängigkeit von dem Eintrittspreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Eintrittspreis, bei dem die Besucherzahl am größten ist.",
+      "Bestimmen Sie die maximale Besucherzahl.",
+      "Bestimmen Sie die beiden Eintrittspreise, bei denen die Besucherzahl auf 0 sinken würde.",
+      "Bestimmen Sie die erwartete Besucherzahl bei einem Eintrittspreis von 7 €.",
+      "Bestimmen Sie den weiteren Eintrittspreis, bei dem ebenfalls 240 Gäste erwartet werden."
+    ],
+    "antworten": [
+      "$ B(p)= ${1:NUMERICAL:=-20,00:0,01}$ p^2+ ${1:NUMERICAL:=200,00:0,01}$ p+ ${1:NUMERICAL:=-180,00:0,01}",
+      "$ p = ${1:NUMERICAL:=5,00:0,01}",
+      "{1:NUMERICAL:=320,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=1,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=9,00:0,01}",
+      "{1:NUMERICAL:=240,00:0,01}",
+      "{1:NUMERICAL:=3,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "An einem Messpfahl im Wattenmeer wird der Wasserstand relativ zum Normalwert erfasst. Rund um die Ebbe lässt sich der Verlauf quadratisch modellieren; $t$ ist die Zeit in Stunden seit Messbeginn:\n\nZum Zeitpunkt $t = 5$ liegt der Wasserstand bei -120 cm, zum Zeitpunkt $t = 8$ bei -150 cm und zum Zeitpunkt $t = 9$ bei -120 cm.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ P(t) = at^2 + bt + c $, die den Wasserstand relativ zum Normalwert in Zentimetern in Abhängigkeit von der Zeit $t$ in Stunden seit Messbeginn angibt.",
+      "Bestimmen Sie den Zeitpunkt des niedrigsten Wasserstands.",
+      "Bestimmen Sie den niedrigsten Wasserstand.",
+      "Bestimmen Sie die beiden Zeitpunkte, zu denen der Wasserstand genau dem Normalwert entspricht.",
+      "Bestimmen Sie den Wasserstand zum Zeitpunkt $t = 4{,}5$.",
+      "Bestimmen Sie den weiteren Zeitpunkt, zu dem der Wasserstand ebenfalls -97,5 cm beträgt."
+    ],
+    "antworten": [
+      "$ P(t)= ${1:NUMERICAL:=10,00:0,01}$ t^2+ ${1:NUMERICAL:=-140,00:0,01}$ t+ ${1:NUMERICAL:=330,00:0,01}",
+      "$ t = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=-160,00:0,01}",
+      "$ t_1 = ${1:NUMERICAL:=3,00:0,01}$ \\quad t_2 = ${1:NUMERICAL:=11,00:0,01}",
+      "{1:NUMERICAL:=-97,50:0,01}",
+      "{1:NUMERICAL:=9,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Sportverein wertet seinen Kontostand im Jahresverlauf aus: Zu Jahresbeginn und am Jahresende ist das Konto gut gefüllt, in der Saisonmitte wird es durch große Ausgaben knapp. Drei Kontostände relativ zum Jahresanfangswert liegen vor; $m$ ist der Monat:\n\nIm Monat $m = 4$ liegt der Kontostand relativ zum Anfangswert bei -350 €, im Monat $m = 8$ bei -750 € und im Monat $m = 10$ wieder bei -350 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ K(m) = am^2 + bm + c $, die den Kontostand relativ zum Jahresanfangswert in Euro in Abhängigkeit von dem Monat $m$ angibt.",
+      "Bestimmen Sie den Monat, in dem der Kontostand am niedrigsten ist.",
+      "Bestimmen Sie den niedrigsten Kontostand relativ zum Anfangswert.",
+      "Bestimmen Sie die beiden Monate, in denen der Kontostand genau dem Anfangswert entspricht.",
+      "Bestimmen Sie den Kontostand relativ zum Anfangswert im Monat $m = 5$.",
+      "Bestimmen Sie den weiteren Monat, in dem der Kontostand ebenfalls -600 € relativ zum Anfangswert beträgt."
+    ],
+    "antworten": [
+      "$ K(m)= ${1:NUMERICAL:=50,00:0,01}$ m^2+ ${1:NUMERICAL:=-700,00:0,01}$ m+ ${1:NUMERICAL:=1650,00:0,01}",
+      "$ m = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=-800,00:0,01}",
+      "$ m_1 = ${1:NUMERICAL:=3,00:0,01}$ \\quad m_2 = ${1:NUMERICAL:=11,00:0,01}",
+      "{1:NUMERICAL:=-600,00:0,01}",
+      "{1:NUMERICAL:=9,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Gartenbesitzer möchte mit einer festen Zaunlänge eine rechteckige Gemüsefläche an einer Mauer abstecken. Für drei verschiedene Seitenlängen wurde die eingezäunte Fläche berechnet:\n\nBei einer Seitenlänge von 2 m ergibt sich eine Fläche von 28 m², bei 7 m sind es 63 m² und bei 11 m ergeben sich 55 m².",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ A(x) = ax^2 + bx + c $, die die eingezäunte Fläche in Quadratmetern in Abhängigkeit von der Seitenlänge $x$ in Metern angibt.",
+      "Bestimmen Sie die Seitenlänge, bei der die Fläche maximal wird.",
+      "Bestimmen Sie die maximale Fläche.",
+      "Bestimmen Sie die beiden Seitenlängen, bei denen die Fläche 0 m² beträgt.",
+      "Bestimmen Sie die eingezäunte Fläche bei einer Seitenlänge von 11,5 m.",
+      "Bestimmen Sie die weitere Seitenlänge, bei der die eingezäunte Fläche ebenfalls 51,75 m² beträgt."
+    ],
+    "antworten": [
+      "$ A(x)= ${1:NUMERICAL:=-1,00:0,01}$ x^2+ ${1:NUMERICAL:=16,00:0,01}$ x+ ${1:NUMERICAL:=0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=64,00:0,01}",
+      "$ x_1 = ${1:NUMERICAL:=0,00:0,01}$ \\quad x_2 = ${1:NUMERICAL:=16,00:0,01}",
+      "{1:NUMERICAL:=51,75:0,01}",
+      "{1:NUMERICAL:=4,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Theatergruppe plant die Ticketpreise für ihre neue Produktion. Aus den letzten Spielzeiten sind die Einnahmen pro Vorstellung bei drei Preisen bekannt:\n\nBei einem Ticketpreis von 7 € lagen die Einnahmen bei 125 €, bei 10 € bei 200 € und bei 11 € bei 125 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ E(p) = ap^2 + bp + c $, die die Einnahmen pro Vorstellung in Euro in Abhängigkeit von dem Ticketpreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Ticketpreis, bei dem die Einnahmen maximal werden.",
+      "Bestimmen Sie die maximalen Einnahmen pro Vorstellung.",
+      "Bestimmen Sie die beiden Ticketpreise, bei denen die Einnahmen rechnerisch 0 € betragen.",
+      "Bestimmen Sie die Einnahmen pro Vorstellung bei einem Ticketpreis von 6,5 €.",
+      "Bestimmen Sie den weiteren Ticketpreis, bei dem die Einnahmen pro Vorstellung ebenfalls 68,75 € betragen."
+    ],
+    "antworten": [
+      "$ E(p)= ${1:NUMERICAL:=-25,00:0,01}$ p^2+ ${1:NUMERICAL:=450,00:0,01}$ p+ ${1:NUMERICAL:=-1800,00:0,01}",
+      "$ p = ${1:NUMERICAL:=9,00:0,01}",
+      "{1:NUMERICAL:=225,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=6,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=12,00:0,01}",
+      "{1:NUMERICAL:=68,75:0,01}",
+      "{1:NUMERICAL:=11,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Hofladen verkauft im Juni Erdbeerkörbe. Die Betreiberin hat in drei Wochen unterschiedliche Preise getestet und jeweils den Wochengewinn bestimmt:\n\nBei einem Korbpreis von 4 € ergab sich ein Wochengewinn von 150 €, bei 7 € waren es 240 € und bei 8 € noch 150 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Wochengewinn in Euro in Abhängigkeit von dem Korbpreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Korbpreis, bei dem der Wochengewinn maximal wird.",
+      "Bestimmen Sie den maximalen Wochengewinn.",
+      "Bestimmen Sie die beiden Korbpreise, bei denen der Wochengewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Wochengewinn bei einem Korbpreis von 5,5 €.",
+      "Bestimmen Sie den weiteren Korbpreis, bei dem der Wochengewinn ebenfalls 262,5 € beträgt."
+    ],
+    "antworten": [
+      "$ G(p)= ${1:NUMERICAL:=-30,00:0,01}$ p^2+ ${1:NUMERICAL:=360,00:0,01}$ p+ ${1:NUMERICAL:=-810,00:0,01}",
+      "$ p = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=270,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=3,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=9,00:0,01}",
+      "{1:NUMERICAL:=262,50:0,01}",
+      "{1:NUMERICAL:=6,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Hausverwaltung analysiert, wie die monatlichen Mieteinnahmen eines Wohnblocks vom Mietpreis pro Quadratmeter abhängen: Bei zu hohen Mieten stehen Wohnungen leer. Drei Auswertungen liegen vor:\n\nBei 7 € pro Quadratmeter betragen die Einnahmen 400 €, bei 9 € sind es 400 € und bei 10 € noch 250 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ M(p) = ap^2 + bp + c $, die die monatlichen Mieteinnahmen in Euro in Abhängigkeit von dem Mietpreis $p$ in Euro pro Quadratmeter angibt.",
+      "Bestimmen Sie den Mietpreis, bei dem die Einnahmen maximal werden.",
+      "Bestimmen Sie die maximalen monatlichen Einnahmen.",
+      "Bestimmen Sie die beiden Mietpreise, bei denen die Einnahmen rechnerisch 0 € betragen.",
+      "Bestimmen Sie die monatlichen Einnahmen bei einem Mietpreis von 7,5 € pro Quadratmeter.",
+      "Bestimmen Sie den weiteren Mietpreis pro Quadratmeter, bei dem die monatlichen Einnahmen ebenfalls 437,5 € betragen."
+    ],
+    "antworten": [
+      "$ M(p)= ${1:NUMERICAL:=-50,00:0,01}$ p^2+ ${1:NUMERICAL:=800,00:0,01}$ p+ ${1:NUMERICAL:=-2750,00:0,01}",
+      "$ p = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=450,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=5,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=11,00:0,01}",
+      "{1:NUMERICAL:=437,50:0,01}",
+      "{1:NUMERICAL:=8,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Fitnessstudio untersucht, wie die Zahl der Neuanmeldungen pro Monat vom Monatsbeitrag abhängt. Drei Auswertungen aus Aktionsmonaten liegen vor:\n\nBei einem Monatsbeitrag von 7 € gab es 150 Neuanmeldungen, bei 9 € waren es 150 und bei 10 € nur 120.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ N(p) = ap^2 + bp + c $, die die Zahl der Neuanmeldungen pro Monat in Abhängigkeit von dem Monatsbeitrag $p$ in Euro angibt.",
+      "Bestimmen Sie den Monatsbeitrag, bei dem die Zahl der Neuanmeldungen maximal wird.",
+      "Bestimmen Sie die maximale Zahl der Neuanmeldungen.",
+      "Bestimmen Sie die beiden Monatsbeiträge, bei denen die Zahl der Neuanmeldungen rechnerisch auf 0 fällt.",
+      "Bestimmen Sie die erwartete Zahl der Neuanmeldungen bei einem Monatsbeitrag von 11 €.",
+      "Bestimmen Sie den weiteren Monatsbeitrag, bei dem ebenfalls 70 Neuanmeldungen erwartet werden."
+    ],
+    "antworten": [
+      "$ N(p)= ${1:NUMERICAL:=-10,00:0,01}$ p^2+ ${1:NUMERICAL:=160,00:0,01}$ p+ ${1:NUMERICAL:=-480,00:0,01}",
+      "$ p = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=160,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=4,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=12,00:0,01}",
+      "{1:NUMERICAL:=70,00:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein kleiner Verlag kalkuliert den Verkaufspreis eines neuen Romans. Die Marktanalyse liefert den erwarteten Monatsgewinn für drei Preise:\n\nBei einem Verkaufspreis von 7 € wird ein Monatsgewinn von 70 € erwartet, bei 11 € sind es 150 € und bei 12 € noch 120 €.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den erwarteten Monatsgewinn in Euro in Abhängigkeit von dem Verkaufspreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Verkaufspreis, bei dem der Monatsgewinn maximal wird.",
+      "Bestimmen Sie den maximalen Monatsgewinn.",
+      "Bestimmen Sie die beiden Verkaufspreise, bei denen der Monatsgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den erwarteten Monatsgewinn bei einem Verkaufspreis von 9,5 €.",
+      "Bestimmen Sie den weiteren Verkaufspreis, bei dem der Monatsgewinn ebenfalls 157,5 € beträgt."
+    ],
+    "antworten": [
+      "$ G(p)= ${1:NUMERICAL:=-10,00:0,01}$ p^2+ ${1:NUMERICAL:=200,00:0,01}$ p+ ${1:NUMERICAL:=-840,00:0,01}",
+      "$ p = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=160,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=6,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=14,00:0,01}",
+      "{1:NUMERICAL:=157,50:0,01}",
+      "{1:NUMERICAL:=10,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Obsthof untersucht, wie viele Apfelbäume pro Reihe den größten Ernteertrag liefern: Stehen die Bäume zu dicht, nehmen sie sich gegenseitig Licht und Wasser. Drei Versuchsreihen ergaben:\n\nMit 7 Bäumen pro Reihe liegt der Ertrag bei 120 Kisten, mit 8 Bäumen bei 150 Kisten und mit 10 Bäumen bei 150 Kisten.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ E(x) = ax^2 + bx + c $, die den Ernteertrag in Kisten in Abhängigkeit von der Anzahl $x$ der Bäume pro Reihe angibt.",
+      "Bestimmen Sie die Baumanzahl pro Reihe, bei der der Ertrag maximal wird.",
+      "Bestimmen Sie den maximalen Ertrag.",
+      "Bestimmen Sie die beiden Baumanzahlen, bei denen der Ertrag rechnerisch auf 0 Kisten fällt.",
+      "Bestimmen Sie den rechnerischen Ertrag bei 12 Bäumen pro Reihe.",
+      "Bestimmen Sie die weitere Baumanzahl pro Reihe, bei der der Ertrag ebenfalls 70 Kisten beträgt."
+    ],
+    "antworten": [
+      "$ E(x)= ${1:NUMERICAL:=-10,00:0,01}$ x^2+ ${1:NUMERICAL:=180,00:0,01}$ x+ ${1:NUMERICAL:=-650,00:0,01}",
+      "$ x = ${1:NUMERICAL:=9,00:0,01}",
+      "{1:NUMERICAL:=160,00:0,01}",
+      "$ x_1 = ${1:NUMERICAL:=5,00:0,01}$ \\quad x_2 = ${1:NUMERICAL:=13,00:0,01}",
+      "{1:NUMERICAL:=70,00:0,01}",
       "{1:NUMERICAL:=6,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-x^2+4x+10 $$",
+    "einleitung": "Ein Kino kalkuliert den Ticketpreis für den Samstagabend neu. Aus früheren Preisaktionen ist der Tagesgewinn bei drei verschiedenen Preisen bekannt:\n\nBei einem Ticketpreis von 8 € beträgt der Tagesgewinn 150 €, bei 9 € sind es 240 € und bei 11 € ergeben sich 240 €.",
     "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Tagesgewinn in Euro in Abhängigkeit von dem Ticketpreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Ticketpreis, bei dem der Tagesgewinn maximal wird.",
+      "Bestimmen Sie den maximalen Tagesgewinn.",
+      "Bestimmen Sie die beiden Ticketpreise, bei denen der Tagesgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Tagesgewinn bei einem Ticketpreis von 8,5 €.",
+      "Bestimmen Sie den weiteren Ticketpreis, bei dem der Tagesgewinn ebenfalls 202,5 € beträgt."
     ],
     "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=2,00:0,01}",
-      "{1:NUMERICAL:=14,00:0,01}"
+      "$ G(p)= ${1:NUMERICAL:=-30,00:0,01}$ p^2+ ${1:NUMERICAL:=600,00:0,01}$ p+ ${1:NUMERICAL:=-2730,00:0,01}",
+      "$ p = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=270,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=7,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=13,00:0,01}",
+      "{1:NUMERICAL:=202,50:0,01}",
+      "{1:NUMERICAL:=11,50:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-2p^2+24p-48 $$",
+    "einleitung": "Ein Webshop testet Rabattaktionen: Kleine Rabatte locken kaum Kundschaft, sehr große Rabatte drücken den Erlös. Für drei Rabattsätze wurde der zusätzliche Tagesumsatz gemessen:\n\nBei 6 % Rabatt beträgt der zusätzliche Umsatz 250 €, bei 7 % sind es 400 € und bei 10 % noch 250 €.",
     "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
+      "Bestimmen Sie die Gleichung der Funktion $ U(r) = ar^2 + br + c $, die den zusätzlichen Tagesumsatz in Euro in Abhängigkeit von dem Rabattsatz $r$ in Prozent angibt.",
+      "Bestimmen Sie den Rabattsatz, bei dem der zusätzliche Umsatz maximal wird.",
+      "Bestimmen Sie den maximalen zusätzlichen Umsatz.",
+      "Bestimmen Sie die beiden Rabattsätze, bei denen der zusätzliche Umsatz 0 € beträgt.",
+      "Bestimmen Sie den zusätzlichen Tagesumsatz bei einem Rabattsatz von 5,5 %.",
+      "Bestimmen Sie den weiteren Rabattsatz, bei dem der zusätzliche Tagesumsatz ebenfalls 137,5 € beträgt."
     ],
     "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=24,00:0,01}"
+      "$ U(r)= ${1:NUMERICAL:=-50,00:0,01}$ r^2+ ${1:NUMERICAL:=800,00:0,01}$ r+ ${1:NUMERICAL:=-2750,00:0,01}",
+      "$ r = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=450,00:0,01}",
+      "$ r_1 = ${1:NUMERICAL:=5,00:0,01}$ \\quad r_2 = ${1:NUMERICAL:=11,00:0,01}",
+      "{1:NUMERICAL:=137,50:0,01}",
+      "{1:NUMERICAL:=10,50:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-p^2+4p+15 $$",
+    "einleitung": "Ein Streetfood-Stand testet verschiedene Verkaufspreise für sein beliebtestes Gericht. Über mehrere Wochen wurde der Tagesgewinn bei drei Preisen ermittelt:\n\nBei einem Preis von 8 € ergibt sich ein Tagesgewinn von 450 €, bei 9 € sind es 360 € und bei 10 € noch 210 €.",
     "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
+      "Bestimmen Sie die Gleichung der Funktion $ G(p) = ap^2 + bp + c $, die den Tagesgewinn in Euro in Abhängigkeit von dem Verkaufspreis $p$ in Euro angibt.",
+      "Bestimmen Sie den Verkaufspreis, bei dem der Tagesgewinn am größten ist.",
+      "Bestimmen Sie den maximalen Tagesgewinn.",
+      "Bestimmen Sie die beiden Preise, bei denen der Tagesgewinn genau 0 € beträgt.",
+      "Bestimmen Sie den Tagesgewinn bei einem Verkaufspreis von 9,5 €.",
+      "Bestimmen Sie den weiteren Verkaufspreis, bei dem der Tagesgewinn ebenfalls 292,5 € beträgt."
     ],
     "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=2,00:0,01}",
-      "{1:NUMERICAL:=19,00:0,01}"
+      "$ G(p)= ${1:NUMERICAL:=-30,00:0,01}$ p^2+ ${1:NUMERICAL:=420,00:0,01}$ p+ ${1:NUMERICAL:=-990,00:0,01}",
+      "$ p = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=480,00:0,01}",
+      "$ p_1 = ${1:NUMERICAL:=3,00:0,01}$ \\quad p_2 = ${1:NUMERICAL:=11,00:0,01}",
+      "{1:NUMERICAL:=292,50:0,01}",
+      "{1:NUMERICAL:=4,50:0,01}"
     ]
   },
   {
-    "einleitung": "Die Produktionskosten eines Betriebs hängen von der Produktionsmenge $ x $ (in Tausend Stück) ab:$$ K(x)=2x^2-16x+45 $$",
+    "einleitung": "Ein Kleingärtner testet, wie viel Dünger sein Gemüsebeet vertragen kann: Zu wenig bringt kaum Wirkung, zu viel schadet den Pflanzen. Drei Versuche ergaben folgende Erträge:\n\nMit 3 kg Dünger liegt der Ertrag bei 18 kg Gemüse, mit 9 kg bei 42 kg und mit 11 kg bei 18 kg.",
     "fragen": [
-      "Hat $ K $ ein Maximum oder Minimum?",
-      "Bei welcher Menge sind die Kosten minimal?",
-      "Wie hoch sind die minimalen Kosten?"
+      "Bestimmen Sie die Gleichung der Funktion $ E(x) = ax^2 + bx + c $, die den Ernteertrag in Kilogramm in Abhängigkeit von der Düngermenge $x$ in Kilogramm angibt.",
+      "Bestimmen Sie die Düngermenge, bei der der Ertrag maximal wird.",
+      "Bestimmen Sie den maximalen Ertrag.",
+      "Bestimmen Sie die beiden Düngermengen, bei denen der Ertrag rechnerisch auf 0 kg fällt.",
+      "Bestimmen Sie den rechnerischen Ertrag bei einer Düngermenge von 9,5 kg.",
+      "Bestimmen Sie die weitere Düngermenge, bei der der Ertrag ebenfalls 37,5 kg beträgt."
     ],
     "antworten": [
-      "{1:MC:~Maximum~=Minimum}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=13,00:0,01}"
+      "$ E(x)= ${1:NUMERICAL:=-2,00:0,01}$ x^2+ ${1:NUMERICAL:=28,00:0,01}$ x+ ${1:NUMERICAL:=-48,00:0,01}",
+      "$ x = ${1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=50,00:0,01}",
+      "$ x_1 = ${1:NUMERICAL:=2,00:0,01}$ \\quad x_2 = ${1:NUMERICAL:=12,00:0,01}",
+      "{1:NUMERICAL:=37,50:0,01}",
+      "{1:NUMERICAL:=4,50:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-p^2+14p-35 $$",
+    "einleitung": "In einer klaren Winternacht wird die Lufttemperatur an einer Wetterstation aufgezeichnet. Zwischen dem Abend und dem nächsten Vormittag lässt sich der Verlauf gut quadratisch beschreiben; $t$ ist die Zeit in Stunden seit 18 Uhr:\n\nZum Zeitpunkt $t = 3$ werden -3,5 °C gemessen, zum Zeitpunkt $t = 7$ sind es -7,5 °C und zum Zeitpunkt $t = 9$ wieder -3,5 °C.",
     "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
+      "Bestimmen Sie die Gleichung der Funktion $ T(t) = at^2 + bt + c $, die die Temperatur in Grad Celsius in Abhängigkeit von der Zeit $t$ in Stunden seit 18 Uhr angibt.",
+      "Bestimmen Sie den Zeitpunkt, zu dem die Temperatur am niedrigsten ist.",
+      "Bestimmen Sie die tiefste Temperatur.",
+      "Bestimmen Sie die beiden Zeitpunkte, zu denen die Temperatur genau 0 °C beträgt.",
+      "Bestimmen Sie die Temperatur zum Zeitpunkt $t = 9{,}5$.",
+      "Bestimmen Sie den weiteren Zeitpunkt, zu dem die Temperatur ebenfalls -1,88 °C beträgt."
     ],
     "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=7,00:0,01}",
-      "{1:NUMERICAL:=14,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-x^2+14x-19 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=7,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Die Besucherzahl eines Freizeitparks hängt vom Eintrittspreis $ p $ (in Euro) ab:$$ B(p)=-2p^2+20p-42 $$",
-    "fragen": [
-      "Hat $ B $ ein Maximum oder Minimum?",
-      "Bei welchem Eintrittspreis ist die Besucherzahl maximal?",
-      "Wie hoch ist die maximale Besucherzahl?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=8,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-2x^2+20x-20 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Die Besucherzahl eines Freizeitparks hängt vom Eintrittspreis $ p $ (in Euro) ab:$$ B(p)=-p^2+8p+14 $$",
-    "fragen": [
-      "Hat $ B $ ein Maximum oder Minimum?",
-      "Bei welchem Eintrittspreis ist die Besucherzahl maximal?",
-      "Wie hoch ist die maximale Besucherzahl?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Die Besucherzahl eines Freizeitparks hängt vom Eintrittspreis $ p $ (in Euro) ab:$$ B(p)=-2p^2+20p-39 $$",
-    "fragen": [
-      "Hat $ B $ ein Maximum oder Minimum?",
-      "Bei welchem Eintrittspreis ist die Besucherzahl maximal?",
-      "Wie hoch ist die maximale Besucherzahl?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=11,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-p^2+8p-8 $$",
-    "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=8,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-2p^2+12p-3 $$",
-    "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=3,00:0,01}",
-      "{1:NUMERICAL:=15,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-2x^2+12x+12 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=3,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-p^2+12p-14 $$",
-    "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=22,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-x^2+6x+11 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=3,00:0,01}",
-      "{1:NUMERICAL:=20,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Die Besucherzahl eines Freizeitparks hängt vom Eintrittspreis $ p $ (in Euro) ab:$$ B(p)=-2p^2+16p-2 $$",
-    "fragen": [
-      "Hat $ B $ ein Maximum oder Minimum?",
-      "Bei welchem Eintrittspreis ist die Besucherzahl maximal?",
-      "Wie hoch ist die maximale Besucherzahl?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Unternehmen verkauft ein Produkt zum Preis von $ p $ Euro. Der Gewinn in Abhängigkeit vom Verkaufspreis wird beschrieben durch:$$ G(p)=-p^2+16p-38 $$",
-    "fragen": [
-      "Hat $ G $ ein Maximum oder Minimum?",
-      "Bei welchem Preis wird der Gewinn maximal?",
-      "Wie hoch ist der maximale Gewinn?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=26,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-2x^2+24x-52 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=20,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Landwirt möchte eine rechteckige Fläche mit einem Zaun einzäunen. Der Umfang ist fest, die Fläche $ A $ hängt von der Seitenlänge $ x $ ab:$$ A(x)=-x^2+14x-29 $$",
-    "fragen": [
-      "Hat $ A $ ein Maximum oder Minimum?",
-      "Welche Seitenlänge maximiert die Fläche?",
-      "Wie groß ist die maximale Fläche?"
-    ],
-    "antworten": [
-      "{1:MC:~=Maximum~Minimum}",
-      "{1:NUMERICAL:=7,00:0,01}",
-      "{1:NUMERICAL:=20,00:0,01}"
+      "$ T(t)= ${1:NUMERICAL:=0,50:0,01}$ t^2+ ${1:NUMERICAL:=-6,00:0,01}$ t+ ${1:NUMERICAL:=10,00:0,01}",
+      "$ t = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=-8,00:0,01}",
+      "$ t_1 = ${1:NUMERICAL:=2,00:0,01}$ \\quad t_2 = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=-1,88:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}"
     ]
   }
 ]

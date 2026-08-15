@@ -26,7 +26,7 @@ import {
     updateCheckRateBadge,
     copyTrainingPromptToClipboard,
     fetchTrainingBeispielHtml,
-} from "./training.js?v=20260614-expression-curves-b";
+} from "./training.js?v=20260815-rate-badge-reload";
 
 async function renderMath(targetNode, retries = 4) {
     if (!targetNode) return;
@@ -444,6 +444,10 @@ async function renderCheckTaskInHost(host, check, {
         saveCurrentShuffleNonce(shuffleNonce);
 
         const renderTaskCardForIndex = async (nextTaskIndex) => {
+            const currentRateBadge = host.querySelector(".check-card__rate-badge");
+            const displayedRate = currentRateBadge?.dataset.hasRate === "true"
+                ? Number.parseFloat(currentRateBadge.textContent)
+                : null;
             const normalizedTaskIndex = Number.isInteger(nextTaskIndex) ? nextTaskIndex : 0;
             taskIndex = normalizedTaskIndex;
             const aufgabe = Array.isArray(sammlung) ? sammlung[normalizedTaskIndex] || null : null;
@@ -467,6 +471,7 @@ async function renderCheckTaskInHost(host, check, {
                 `${taskUiStateKey}::${shuffleNonce}`
             );
             host.appendChild(card);
+            updateCheckRateBadge(card.querySelector(".check-card__rate-badge"), displayedRate);
 
             const runtimeRoot = host.querySelector(".check-card__runtime-task");
             if (runtimeRoot) {

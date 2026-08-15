@@ -1559,6 +1559,10 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
   };
 
   const reloadCurrentTask = () => {
+    const currentRateBadge = cardNode?.querySelector(".check-card__rate-badge");
+    const displayedRate = currentRateBadge?.dataset.hasRate === "true"
+      ? Number.parseFloat(currentRateBadge.textContent)
+      : null;
     taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
     shuffleNonce = String(Date.now());
     taskCompletionTracked = false;
@@ -1572,6 +1576,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     const nextCard = renderCurrentCard(false);
     cardNode.replaceWith(nextCard);
     cardNode = nextCard;
+    updateCheckRateBadge(cardNode.querySelector(".check-card__rate-badge"), displayedRate);
     finalizeTaskRender(viewportNode);
     attachFreeCompleteControl();
     viewportNode.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));

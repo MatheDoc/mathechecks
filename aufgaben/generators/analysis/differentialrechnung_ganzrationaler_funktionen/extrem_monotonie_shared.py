@@ -159,7 +159,7 @@ def build_interval_input_note() -> str:
 
 def build_simple_function_intro(case: SimpleExtremMonotonicityCase) -> str:
     return (
-        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')} $$. "
+        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')}. $$ "
         "Mehrere Antworten geben Sie in aufsteigender bzw. von links nach rechts an. "
         "Nicht benötigte Felder setzen Sie auf 'keine Lösung'."
     )
@@ -167,7 +167,7 @@ def build_simple_function_intro(case: SimpleExtremMonotonicityCase) -> str:
 
 def build_inflection_function_intro(case: SimpleInflectionCurvatureCase) -> str:
     return (
-        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')} $$. "
+        f"Gegeben ist die Funktion $$ {case.polynomial_text(name='f')}. $$ "
         "Mehrere Antworten geben Sie in aufsteigender bzw. von links nach rechts an. "
         "Nicht benötigte Felder setzen Sie auf 'keine Lösung'."
     )

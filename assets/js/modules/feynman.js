@@ -897,7 +897,9 @@ function renderCard(entry) {
   const feynmanTaskMarkup = renderFeynmanTaskMarkup(entry, cardAnchorId);
 
   const kiMenuItem = `<button type="button" class="check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner kopieren</span></button>`;
-  const actionsMenu = renderCardActionsMenuMarkup(kiMenuItem);
+  const hasAlternativeTask = Array.isArray(entry?.scorableTasks) && entry.scorableTasks.length > 1;
+  const newTaskMenuItem = `<button type="button" class="check-card__actions-item" role="menuitem" data-fy-new-task${hasAlternativeTask ? "" : " disabled"}><span class="check-card__actions-icon" aria-hidden="true">🔀</span><span>Neue Aufgabe</span></button>`;
+  const actionsMenu = renderCardActionsMenuMarkup(`${kiMenuItem}${newTaskMenuItem}`);
 
   return `
     <section id="${escapeHtml(cardAnchorId)}" class="check-viewport-item check-viewport-item--scroll-card" data-fy-check-viewport data-check-id="${escapeHtml(
@@ -1342,6 +1344,11 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         });
       });
     }
+
+    const newTaskButton = card.querySelector("[data-fy-new-task]");
+    newTaskButton?.addEventListener("click", () => {
+      resetFeynmanCard();
+    });
   });
 }
 

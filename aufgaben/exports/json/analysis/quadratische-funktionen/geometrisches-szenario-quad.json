@@ -1,302 +1,382 @@
 [
   {
-    "einleitung": "Ein Speerwurf wird modelliert durch $ h(x) = h(x)=-2x^2+24x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Flughöhe in Metern ist. Der Speer wird aus $ 0 $ m Höhe geworfen.",
+    "einleitung": "Ein Rasensprenger wirft einen Wasserstrahl in einem Bogen über ein Beet. Der Strahlverlauf wurde an drei Stellen gemessen:\n\nAn der Austrittsöffnung (Entfernung 0 m) liegt der Strahl 1 m über dem Boden, in 1 m Entfernung beträgt die Höhe 1,6 m und in 3 m Entfernung 1,6 m.",
     "fragen": [
-      "Welche maximale Höhe erreicht der Speer?",
-      "In welcher Entfernung erreicht der Speer die maximale Höhe?",
-      "Wie weit fliegt der Speer insgesamt?",
-      "Welche Höhe hat der Speer bei einer Entfernung von $ 5 $ m?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Wasserstrahls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Strahl seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Strahls.",
+      "Bestimmen Sie die Reichweite des Sprengers, also die Entfernung, in der der Strahl auf dem Boden auftrifft.",
+      "Bestimmen Sie die Höhe des Strahls in 2,5 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Strahl ebenfalls 1,75 m über dem Boden liegt."
     ],
     "antworten": [
-      "{1:NUMERICAL:=72,00:0,01}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}",
-      "{1:NUMERICAL:=70,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Fußball wird aus einer Höhe von 0 m mit einem Schuss abgefeuert. Die Flughöhe des Balls wird durch die Funktion $ h(x) = h(x)=-x^2+10x $ beschrieben, wobei $ x $ die horizontale Entfernung in Metern ist.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Ball?",
-      "In welcher Entfernung erreicht der Ball die maximale Höhe?",
-      "Wie weit fliegt der Ball insgesamt?",
-      "Welche Höhe hat der Ball bei einer Entfernung von $ 7 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,20:0,01}$ x^2+ ${1:NUMERICAL:=0,80:0,01}$ x+ ${1:NUMERICAL:=1,00:0,01}",
+      "$ x = ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=1,80:0,01}",
       "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=21,00:0,01}"
+      "{1:NUMERICAL:=1,75:0,01}",
+      "{1:NUMERICAL:=1,50:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-x^2+8x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
+    "einleitung": "Die Fontäne eines Springbrunnens tritt schräg aus einer Düse aus und beschreibt einen Bogen über das Wasserbecken. Drei Messwerte liegen vor:\n\nAn der Düse (Entfernung 0 m) liegt der Strahl 1 m über der Wasseroberfläche, in 3 m Entfernung beträgt die Höhe 1,6 m und in 4 m Entfernung 1 m.",
     "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 1 $?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Wasserstrahls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Strahl seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Wasserstrahls.",
+      "Bestimmen Sie, in welcher Entfernung der Strahl auf die Wasseroberfläche trifft.",
+      "Bestimmen Sie die Höhe des Strahls in 1,5 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Strahl ebenfalls 1,75 m über der Wasseroberfläche liegt."
     ],
     "antworten": [
-      "{1:NUMERICAL:=16,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,20:0,01}$ x^2+ ${1:NUMERICAL:=0,80:0,01}$ x+ ${1:NUMERICAL:=1,00:0,01}",
+      "$ x = ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=1,80:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}",
+      "{1:NUMERICAL:=1,75:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei einem Abstoß schlägt ein Torwart den Fußball weit in die gegnerische Hälfte. Eine Videoanalyse liefert drei Messwerte der Flugbahn:\n\nBeim Abschlagpunkt (Entfernung 0 m) liegt der Ball 2 m über dem Boden, in 2 m Entfernung beträgt die Höhe 3,2 m und in 7 m Entfernung noch 2,7 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Balls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Ball seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Balls.",
+      "Bestimmen Sie, in welcher Entfernung der Ball auf dem Boden aufkommt.",
+      "Bestimmen Sie die Höhe des Balls in 3 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Ball ebenfalls 3,5 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=0,80:0,01}$ x+ ${1:NUMERICAL:=2,00:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:NUMERICAL:=3,60:0,01}",
+      "{1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=3,50:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Folien-Gewächshaus hat einen parabelförmigen Querschnitt. Für den Zuschnitt der Folie wurden drei Höhen gemessen:\n\nIn 1 m Abstand vom linken Bodenrand beträgt die Höhe 1,75 m, in 3 m Abstand 3,75 m und in 5 m Abstand 3,75 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Gewächshauses in Metern in Abhängigkeit von dem Abstand $x$ vom linken Bodenrand in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Rand das Gewächshaus am höchsten ist.",
+      "Bestimmen Sie die maximale Höhe des Gewächshauses.",
+      "Bestimmen Sie die Breite des Gewächshauses am Boden.",
+      "Bestimmen Sie die Höhe in 6 m Abstand vom linken Rand.",
+      "Bestimmen Sie den weiteren Abstand vom linken Rand, in dem das Gewächshaus ebenfalls 3 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,25:0,01}$ x^2+ ${1:NUMERICAL:=2,00:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}",
       "{1:NUMERICAL:=4,00:0,01}",
       "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=7,00:0,01}"
+      "{1:NUMERICAL:=3,00:0,01}",
+      "{1:NUMERICAL:=2,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-x^2+10x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
+    "einleitung": "Beim Training wirft eine Basketballspielerin den Ball aus dem Stand in Richtung Korb. Drei Punkte der Flugbahn wurden vermessen:\n\nBeim Abwurf (Entfernung 0 m) befindet sich der Ball 1,75 m über dem Boden, nach 4 m beträgt die Höhe 3,75 m und nach 6 m sind es 1,75 m.",
     "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 2 $?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Balls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Ball den höchsten Punkt erreicht.",
+      "Bestimmen Sie die maximale Höhe des Balls.",
+      "Bestimmen Sie, in welcher Entfernung der Ball auf dem Boden aufkommen würde.",
+      "Bestimmen Sie die Höhe des Balls in 1 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Ball ebenfalls 3 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,25:0,01}$ x^2+ ${1:NUMERICAL:=1,50:0,01}$ x+ ${1:NUMERICAL:=1,75:0,01}",
+      "$ x = ${1:NUMERICAL:=3,00:0,01}",
+      "{1:NUMERICAL:=4,00:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=3,00:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Beim Handballtraining wirft ein Spieler den Ball aus dem Sprung auf das Tor. Die Flugbahn wurde an drei Stellen vermessen:\n\nBeim Abwurf (Entfernung 0 m) befindet sich der Ball 2,1 m über dem Hallenboden, nach 4 m beträgt die Höhe 2,1 m und nach 5 m sind es 1,6 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Balls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Ball am höchsten fliegt.",
+      "Bestimmen Sie die maximale Höhe des Balls.",
+      "Bestimmen Sie, in welcher Entfernung der Ball ohne Hindernis auf dem Boden aufkommen würde.",
+      "Bestimmen Sie die Höhe des Balls in 3 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Ball ebenfalls 2,4 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=0,40:0,01}$ x+ ${1:NUMERICAL:=2,10:0,01}",
+      "$ x = ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=2,40:0,01}",
+      "{1:NUMERICAL:=1,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Das Portal eines Eisenbahntunnels hat die Form einer nach unten geöffneten Parabel. Drei Messungen der Portalhöhe liegen vor:\n\nIn 1 m Abstand vom linken Portalrand beträgt die Höhe 1,8 m, in 3 m Abstand 4,2 m und in 9 m Abstand 1,8 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Tunnelportals in Metern in Abhängigkeit von dem Abstand $x$ vom linken Portalrand in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Rand das Portal seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Portals.",
+      "Bestimmen Sie die Breite des Portals am Boden.",
+      "Bestimmen Sie die Portalhöhe in 6 m Abstand vom linken Rand.",
+      "Bestimmen Sie den weiteren Abstand vom linken Rand, in dem das Portal ebenfalls 4,8 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,20:0,01}$ x^2+ ${1:NUMERICAL:=2,00:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=5,00:0,01}",
       "{1:NUMERICAL:=5,00:0,01}",
       "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=16,00:0,01}"
+      "{1:NUMERICAL:=4,80:0,01}",
+      "{1:NUMERICAL:=4,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-2x^2+12x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
+    "einleitung": "Ein Abschnitt einer Achterbahn führt über einen parabelförmigen Hügel. Die Schienenhöhe über dem Boden wurde an drei Stellen erfasst:\n\nIn 1 m Abstand vom Hügelanfang beträgt die Schienenhöhe 1,5 m, in 4 m Abstand 4,8 m und in 5 m Abstand 5,5 m.",
     "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 5 $?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Schienenhöhe in Metern in Abhängigkeit von dem Abstand $x$ vom Hügelanfang in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom Hügelanfang die Schiene am höchsten liegt.",
+      "Bestimmen Sie die maximale Schienenhöhe.",
+      "Bestimmen Sie die Länge des Hügels am Boden, also den Abstand zwischen Anfang und Ende.",
+      "Bestimmen Sie die Schienenhöhe in 6 m Abstand vom Hügelanfang.",
+      "Bestimmen Sie den weiteren Abstand vom Hügelanfang, in dem die Schiene ebenfalls 6 m hoch liegt."
     ],
     "antworten": [
-      "{1:NUMERICAL:=18,00:0,01}",
-      "{1:NUMERICAL:=3,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=1,60:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=6,40:0,01}",
+      "{1:NUMERICAL:=16,00:0,01}",
       "{1:NUMERICAL:=6,00:0,01}",
       "{1:NUMERICAL:=10,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-x^2+12x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
+    "einleitung": "Eine alte Steinbrücke überspannt einen Fluss mit einem parabelförmigen Bogen. Bei einer Vermessung wurden drei Höhen über der Wasseroberfläche bestimmt:\n\nIn 1 m Abstand vom linken Bogenansatz beträgt die Höhe 3 m, in 4 m Abstand 9,6 m und in 5 m Abstand 11 m.",
     "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 3 $?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Brückenbogens in Metern in Abhängigkeit von dem Abstand $x$ vom linken Bogenansatz in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Ansatz der Bogen seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Bogens.",
+      "Bestimmen Sie die Spannweite des Bogens, also den Abstand zwischen den beiden Bogenansätzen.",
+      "Bestimmen Sie die Höhe des Bogens in 0,5 m Abstand vom linken Ansatz.",
+      "Bestimmen Sie den weiteren Abstand vom linken Ansatz, in dem der Bogen ebenfalls 1,55 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=36,00:0,01}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}",
-      "{1:NUMERICAL:=27,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Fußball wird aus einer Höhe von 0 m mit einem Schuss abgefeuert. Die Flughöhe des Balls wird durch die Funktion $ h(x) = h(x)=-x^2+10x $ beschrieben, wobei $ x $ die horizontale Entfernung in Metern ist.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Ball?",
-      "In welcher Entfernung erreicht der Ball die maximale Höhe?",
-      "Wie weit fliegt der Ball insgesamt?",
-      "Welche Höhe hat der Ball bei einer Entfernung von $ 7 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=21,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Speerwurf wird modelliert durch $ h(x) = h(x)=-x^2+8x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Flughöhe in Metern ist. Der Speer wird aus $ 0 $ m Höhe geworfen.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Speer?",
-      "In welcher Entfernung erreicht der Speer die maximale Höhe?",
-      "Wie weit fliegt der Speer insgesamt?",
-      "Welche Höhe hat der Speer bei einer Entfernung von $ 3 $ m?"
-    ],
-    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,20:0,01}$ x^2+ ${1:NUMERICAL:=3,20:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=12,80:0,01}",
       "{1:NUMERICAL:=16,00:0,01}",
+      "{1:NUMERICAL:=1,55:0,01}",
+      "{1:NUMERICAL:=15,50:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Das historische Stadttor besitzt einen parabelförmigen Torbogen. Für eine Restaurierung wurden drei Höhen des Bogens gemessen:\n\nIn 3 m Abstand vom linken Rand beträgt die Höhe 7,5 m, in 5 m Abstand 7,5 m und in 7 m Abstand 3,5 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Torbogens in Metern in Abhängigkeit von dem Abstand $x$ vom linken Rand in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Rand der Torbogen am höchsten ist.",
+      "Bestimmen Sie die maximale Höhe des Torbogens.",
+      "Bestimmen Sie die Breite des Torbogens am Boden.",
+      "Bestimmen Sie die Höhe des Bogens in 2 m Abstand vom linken Rand.",
+      "Bestimmen Sie den weiteren Abstand vom linken Rand, in dem der Torbogen ebenfalls 6 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,50:0,01}$ x^2+ ${1:NUMERICAL:=4,00:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=8,00:0,01}",
+      "{1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=6,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Festzelt hat einen parabelförmigen Querschnitt. Für die Statikprüfung wurden drei Zelthöhen bestimmt:\n\nIn 3 m Abstand vom linken Zeltrand beträgt die Höhe 3,75 m, in 5 m Abstand 3,75 m und in 6 m Abstand 3 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Zeltdachs in Metern in Abhängigkeit von dem Abstand $x$ vom linken Zeltrand in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Rand das Zelt am höchsten ist.",
+      "Bestimmen Sie die maximale Zelthöhe.",
+      "Bestimmen Sie die Breite des Zelts am Boden.",
+      "Bestimmen Sie die Zelthöhe in 7 m Abstand vom linken Rand.",
+      "Bestimmen Sie den weiteren Abstand vom linken Rand, in dem das Zeltdach ebenfalls 1,75 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,25:0,01}$ x^2+ ${1:NUMERICAL:=2,00:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}",
       "{1:NUMERICAL:=4,00:0,01}",
       "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=15,00:0,01}"
+      "{1:NUMERICAL:=1,75:0,01}",
+      "{1:NUMERICAL:=1,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Speerwurf wird modelliert durch $ h(x) = h(x)=-x^2+8x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Flughöhe in Metern ist. Der Speer wird aus $ 0 $ m Höhe geworfen.",
+    "einleitung": "Auf einem Volksfest schießt eine Konfettikanone ihre Ladung schräg über den Platz. Die Bahn des Schwerpunkts wurde vermessen:\n\nAn der Mündung (Entfernung 0 m) liegt die Ladung 1,75 m über dem Boden, in 2 m Entfernung beträgt die Höhe 3,75 m und in 4 m Entfernung 3,75 m.",
     "fragen": [
-      "Welche maximale Höhe erreicht der Speer?",
-      "In welcher Entfernung erreicht der Speer die maximale Höhe?",
-      "Wie weit fliegt der Speer insgesamt?",
-      "Welche Höhe hat der Speer bei einer Entfernung von $ 5 $ m?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe der Konfettiladung in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der die Ladung ihre größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe der Ladung.",
+      "Bestimmen Sie, in welcher Entfernung die Ladung auf dem Boden landet.",
+      "Bestimmen Sie die Höhe der Ladung in 5 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung die Ladung ebenfalls 3 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=16,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,25:0,01}$ x^2+ ${1:NUMERICAL:=1,50:0,01}$ x+ ${1:NUMERICAL:=1,75:0,01}",
+      "$ x = ${1:NUMERICAL:=3,00:0,01}",
       "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=15,00:0,01}"
+      "{1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=3,00:0,01}",
+      "{1:NUMERICAL:=1,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Wasserstrahl aus einem Springbrunnen folgt der Bahn $ h(x) = h(x)=-x^2+12x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Höhe in Metern ist.",
+    "einleitung": "Beim Beachvolleyball spielt eine Spielerin einen hohen Ball über das Netz. Drei Punkte der Flugbahn sind bekannt:\n\nBeim Abschlag (Entfernung 0 m) befindet sich der Ball 2,1 m über dem Sand, nach 4 m beträgt die Höhe 2,1 m und nach 6 m sind es 0,9 m.",
     "fragen": [
-      "Welche maximale Höhe erreicht der Wasserstrahl?",
-      "In welcher Entfernung erreicht der Strahl die maximale Höhe?",
-      "In welcher Entfernung trifft der Strahl wieder auf dem Boden auf?",
-      "Welche Höhe hat der Strahl bei einer Entfernung von $ 4 $ m?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Balls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Ball am höchsten fliegt.",
+      "Bestimmen Sie die maximale Höhe des Balls.",
+      "Bestimmen Sie, in welcher Entfernung der Ball im Sand landet.",
+      "Bestimmen Sie die Höhe des Balls in 1 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Ball ebenfalls 2,4 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=36,00:0,01}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}",
-      "{1:NUMERICAL:=32,00:0,01}"
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=0,40:0,01}$ x+ ${1:NUMERICAL:=2,10:0,01}",
+      "$ x = ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=2,50:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}",
+      "{1:NUMERICAL:=2,40:0,01}",
+      "{1:NUMERICAL:=3,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-2x^2+20x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
+    "einleitung": "Bei einer Motocross-Show springt ein Fahrer über eine Rampe. Sensoren erfassen die Flughöhe des Motorrads an drei Stellen:\n\nAn der Rampenkante (Entfernung 0 m) liegt das Motorrad 2 m über dem Boden, nach 1 m beträgt die Höhe 2,7 m und nach 6 m noch 3,2 m.",
     "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 1 $?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Motorrads in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der das Motorrad seinen höchsten Punkt erreicht.",
+      "Bestimmen Sie die maximale Flughöhe des Motorrads.",
+      "Bestimmen Sie, in welcher Entfernung das Motorrad wieder auf dem Boden aufsetzt.",
+      "Bestimmen Sie die Flughöhe in 3 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung das Motorrad ebenfalls 3,5 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=50,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=0,80:0,01}$ x+ ${1:NUMERICAL:=2,00:0,01}",
+      "$ x = ${1:NUMERICAL:=4,00:0,01}",
+      "{1:NUMERICAL:=3,60:0,01}",
       "{1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=3,50:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Golfball wird vom Abschlagpunkt über eine leichte Anhöhe geschlagen. Ein Tracking-System zeichnet drei Bahnpunkte auf:\n\nBeim Abschlag (Entfernung 0 m) liegt der Ball 1,75 m über der Ebene, nach 3 m beträgt die Höhe 2,56 m und nach 18 m noch 3,91 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Balls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Ball den höchsten Punkt seiner Flugbahn erreicht.",
+      "Bestimmen Sie die maximale Höhe des Balls.",
+      "Bestimmen Sie, in welcher Entfernung der Ball auf der Ebene aufkommt.",
+      "Bestimmen Sie die Höhe des Balls in 13 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Ball ebenfalls 3,96 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,01:0,01}$ x^2+ ${1:NUMERICAL:=0,30:0,01}$ x+ ${1:NUMERICAL:=1,75:0,01}",
+      "$ x = ${1:NUMERICAL:=15,00:0,01}",
+      "{1:NUMERICAL:=4,00:0,01}",
+      "{1:NUMERICAL:=35,00:0,01}",
+      "{1:NUMERICAL:=3,96:0,01}",
+      "{1:NUMERICAL:=17,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei einer Zirkusvorstellung wird ein Artist aus einer Kanone in ein Fangnetz geschossen. Die Flugbahn wurde an drei Punkten dokumentiert:\n\nAn der Kanonenmündung (Entfernung 0 m) befindet sich der Artist 2,8 m über dem Boden, nach 2 m beträgt die Höhe 4,8 m und nach 10 m sind es 4,8 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Artisten in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Artist den höchsten Punkt erreicht.",
+      "Bestimmen Sie die maximale Höhe des Artisten.",
+      "Bestimmen Sie, in welcher Entfernung der Artist auf Bodenhöhe ankommen würde.",
+      "Bestimmen Sie die Höhe des Artisten in 7 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Artist ebenfalls 6,3 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=1,20:0,01}$ x+ ${1:NUMERICAL:=2,80:0,01}",
+      "$ x = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=6,40:0,01}",
+      "{1:NUMERICAL:=14,00:0,01}",
+      "{1:NUMERICAL:=6,30:0,01}",
+      "{1:NUMERICAL:=5,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei einer Übung richtet die Feuerwehr einen Löschstrahl auf ein brennendes Objekt. Der Verlauf des Strahls wurde an drei Stellen erfasst:\n\nAm Strahlrohr (Entfernung 0 m) liegt der Strahl 1,4 m über dem Boden, in 9 m Entfernung beträgt die Höhe 2,75 m und in 12 m Entfernung 1,4 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Löschstrahls in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Löschstrahl seinen höchsten Punkt erreicht.",
+      "Bestimmen Sie die maximale Höhe des Löschstrahls.",
+      "Bestimmen Sie, in welcher Entfernung der Strahl auf dem Boden auftrifft.",
+      "Bestimmen Sie die Höhe des Strahls in 5 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Strahl ebenfalls 3,15 m über dem Boden liegt."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,05:0,01}$ x^2+ ${1:NUMERICAL:=0,60:0,01}$ x+ ${1:NUMERICAL:=1,40:0,01}",
+      "$ x = ${1:NUMERICAL:=6,00:0,01}",
+      "{1:NUMERICAL:=3,20:0,01}",
+      "{1:NUMERICAL:=14,00:0,01}",
+      "{1:NUMERICAL:=3,15:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Viadukt einer stillgelegten Bahnstrecke ruht auf einem großen parabelförmigen Bogen. Drei Höhenmessungen über dem Talboden liegen vor:\n\nIn 4 m Abstand vom linken Bogenansatz beträgt die Höhe 6,4 m, in 9 m Abstand 9,9 m und in 13 m Abstand 9,1 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Bogens in Metern in Abhängigkeit von dem Abstand $x$ vom linken Bogenansatz in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Ansatz der Bogen seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Bogens.",
+      "Bestimmen Sie die Spannweite des Bogens.",
+      "Bestimmen Sie die Bogenhöhe in 6 m Abstand vom linken Ansatz.",
+      "Bestimmen Sie den weiteren Abstand vom linken Ansatz, in dem der Bogen ebenfalls 8,4 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,10:0,01}$ x^2+ ${1:NUMERICAL:=2,00:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=20,00:0,01}",
+      "{1:NUMERICAL:=8,40:0,01}",
+      "{1:NUMERICAL:=14,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei einem Leichtathletik-Wettkampf wird die Flugbahn eines Speers mit einer Kamera erfasst. Die Auswertung ergibt folgende Werte:\n\nBeim Abwurf (Entfernung 0 m) liegt der Speer 2,2 m über dem Boden, in 8 m Entfernung beträgt die Höhe 7 m und in 14 m Entfernung 6,4 m.",
+    "fragen": [
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Speers in Metern in Abhängigkeit von der horizontalen Entfernung $x$ in Metern angibt.",
+      "Bestimmen Sie die Entfernung, in der der Speer seine größte Höhe erreicht.",
+      "Bestimmen Sie die maximale Höhe des Speers.",
+      "Bestimmen Sie die Wurfweite, also die Entfernung, in der der Speer im Boden landet.",
+      "Bestimmen Sie die Höhe des Speers in 2 m Entfernung.",
+      "Bestimmen Sie, in welcher weiteren Entfernung der Speer ebenfalls 4 m hoch ist."
+    ],
+    "antworten": [
+      "$ h(x)= ${1:NUMERICAL:=-0,05:0,01}$ x^2+ ${1:NUMERICAL:=1,00:0,01}$ x+ ${1:NUMERICAL:=2,20:0,01}",
+      "$ x = ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=7,20:0,01}",
+      "{1:NUMERICAL:=22,00:0,01}",
+      "{1:NUMERICAL:=4,00:0,01}",
       "{1:NUMERICAL:=18,00:0,01}"
     ]
   },
   {
-    "einleitung": "Ein Wasserstrahl aus einem Springbrunnen folgt der Bahn $ h(x) = h(x)=-x^2+10x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Höhe in Metern ist.",
+    "einleitung": "Das Dach einer Sporthalle ist im Querschnitt parabelförmig gewölbt. Aus den Bauplänen sind drei Höhenangaben bekannt:\n\nIn 19 m Abstand vom linken Auflager beträgt die Dachhöhe 10,45 m, in 22 m Abstand 8,8 m und in 27 m Abstand 4,05 m.",
     "fragen": [
-      "Welche maximale Höhe erreicht der Wasserstrahl?",
-      "In welcher Entfernung erreicht der Strahl die maximale Höhe?",
-      "In welcher Entfernung trifft der Strahl wieder auf dem Boden auf?",
-      "Welche Höhe hat der Strahl bei einer Entfernung von $ 4 $ m?"
+      "Bestimmen Sie die Gleichung der Funktion $ h(x) = ax^2 + bx + c $, die die Höhe des Dachs in Metern in Abhängigkeit von dem Abstand $x$ vom linken Auflager in Metern angibt.",
+      "Bestimmen Sie, in welchem Abstand vom linken Auflager das Dach am höchsten ist.",
+      "Bestimmen Sie die maximale Höhe des Dachs.",
+      "Bestimmen Sie die Spannweite des Dachs zwischen den beiden Auflagern.",
+      "Bestimmen Sie die Dachhöhe in 23 m Abstand vom linken Auflager.",
+      "Bestimmen Sie den weiteren Abstand vom linken Auflager, in dem das Dach ebenfalls 8,05 m hoch ist."
     ],
     "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=24,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Speerwurf wird modelliert durch $ h(x) = h(x)=-x^2+8x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Flughöhe in Metern ist. Der Speer wird aus $ 0 $ m Höhe geworfen.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Speer?",
-      "In welcher Entfernung erreicht der Speer die maximale Höhe?",
-      "Wie weit fliegt der Speer insgesamt?",
-      "Welche Höhe hat der Speer bei einer Entfernung von $ 2 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=16,00:0,01}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Speerwurf wird modelliert durch $ h(x) = h(x)=-2x^2+16x $, wobei $ x $ die horizontale Entfernung in Metern und $ h(x) $ die Flughöhe in Metern ist. Der Speer wird aus $ 0 $ m Höhe geworfen.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Speer?",
-      "In welcher Entfernung erreicht der Speer die maximale Höhe?",
-      "Wie weit fliegt der Speer insgesamt?",
-      "Welche Höhe hat der Speer bei einer Entfernung von $ 3 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=32,00:0,01}",
-      "{1:NUMERICAL:=4,00:0,01}",
-      "{1:NUMERICAL:=8,00:0,01}",
-      "{1:NUMERICAL:=30,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-2x^2+20x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
-    "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 7 $?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=50,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=42,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Fußball wird aus einer Höhe von 0 m mit einem Schuss abgefeuert. Die Flughöhe des Balls wird durch die Funktion $ h(x) = h(x)=-x^2+10x $ beschrieben, wobei $ x $ die horizontale Entfernung in Metern ist.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Ball?",
-      "In welcher Entfernung erreicht der Ball die maximale Höhe?",
-      "Wie weit fliegt der Ball insgesamt?",
-      "Welche Höhe hat der Ball bei einer Entfernung von $ 1 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=9,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Fußball wird aus einer Höhe von 0 m mit einem Schuss abgefeuert. Die Flughöhe des Balls wird durch die Funktion $ h(x) = h(x)=-x^2+10x $ beschrieben, wobei $ x $ die horizontale Entfernung in Metern ist.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Ball?",
-      "In welcher Entfernung erreicht der Ball die maximale Höhe?",
-      "Wie weit fliegt der Ball insgesamt?",
-      "Welche Höhe hat der Ball bei einer Entfernung von $ 8 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=25,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=16,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-2x^2+20x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
-    "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 4 $?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=50,00:0,01}",
-      "{1:NUMERICAL:=5,00:0,01}",
-      "{1:NUMERICAL:=10,00:0,01}",
-      "{1:NUMERICAL:=48,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Brückenbogen kann durch die Funktion $ h(x) = h(x)=-x^2+12x $ modelliert werden, wobei $ x $ die horizontale Position in Metern und $ h(x) $ die Höhe in Metern über dem Boden angibt.",
-    "fragen": [
-      "Wie hoch ist der Brückenbogen an seiner höchsten Stelle?",
-      "An welcher Stelle erreicht der Bogen die größte Höhe?",
-      "Wie breit ist der Brückenbogen?",
-      "Wie hoch ist der Bogen an der Stelle $ x = 8 $?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=36,00:0,01}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}",
-      "{1:NUMERICAL:=32,00:0,01}"
-    ]
-  },
-  {
-    "einleitung": "Ein Fußball wird aus einer Höhe von 0 m mit einem Schuss abgefeuert. Die Flughöhe des Balls wird durch die Funktion $ h(x) = h(x)=-x^2+12x $ beschrieben, wobei $ x $ die horizontale Entfernung in Metern ist.",
-    "fragen": [
-      "Welche maximale Höhe erreicht der Ball?",
-      "In welcher Entfernung erreicht der Ball die maximale Höhe?",
-      "Wie weit fliegt der Ball insgesamt?",
-      "Welche Höhe hat der Ball bei einer Entfernung von $ 3 $ m?"
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=36,00:0,01}",
-      "{1:NUMERICAL:=6,00:0,01}",
-      "{1:NUMERICAL:=12,00:0,01}",
-      "{1:NUMERICAL:=27,00:0,01}"
+      "$ h(x)= ${1:NUMERICAL:=-0,05:0,01}$ x^2+ ${1:NUMERICAL:=1,50:0,01}$ x+ ${1:NUMERICAL:=-0,00:0,01}",
+      "$ x = ${1:NUMERICAL:=15,00:0,01}",
+      "{1:NUMERICAL:=11,25:0,01}",
+      "{1:NUMERICAL:=30,00:0,01}",
+      "{1:NUMERICAL:=8,05:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}"
     ]
   }
 ]
