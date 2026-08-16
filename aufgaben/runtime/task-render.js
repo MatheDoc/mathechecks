@@ -1,6 +1,6 @@
 import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "./task-visuals.js?v=20260614-expression-curves-b";
-import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260719-speech-cursor-insert";
+import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260816-mobile-restart";
 
 const TASK_UI_STATE_PREFIX = "task-ui-state-v1::";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";

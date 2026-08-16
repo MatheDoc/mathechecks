@@ -17,6 +17,9 @@
         <main class="shell-main">
             {{ content }}
         </main>
+        {% if page.show_footer %}
+        {% include site-footer.html %}
+        {% endif %}
     </div>
     {% include calculator.html %}
     <script src="https://cdn.plot.ly/plotly-3.0.1.min.js"></script>

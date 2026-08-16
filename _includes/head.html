@@ -1,6 +1,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ page.title | default: "MatheChecks" }} – MatheChecks</title>
+{% if page.description %}
+<meta name="description" content="{{ page.description | strip_newlines | escape }}">
+{% endif %}
 <link rel="icon" href="{{ '/assets/img/icon-source.svg?v=20260518-dark-favicon' | relative_url }}" type="image/svg+xml" sizes="any" />
 <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" type="image/x-icon" />
 <link rel="icon" href="{{ '/assets/img/icon-192.png' | relative_url }}" type="image/png" sizes="192x192" />

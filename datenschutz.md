@@ -4,6 +4,7 @@ title: ""
 description: "Datenschutzerklärung von mathechecks.de"
 permalink: /datenschutz.html
 body_class: page-legal
+show_footer: true
 ---
 
 ## Datenschutzerklärung

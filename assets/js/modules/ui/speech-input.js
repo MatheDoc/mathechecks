@@ -16,6 +16,7 @@ const SUPPORTED = Boolean(SpeechRecognition);
 const ENHANCED_ATTR = "data-speech-enhanced";
 const AUTOGROW_ATTR = "data-speech-autogrow";
 const AUTO_STOP_DELAY_MS = 10000;
+const MOBILE_RESTART_DELAY_MS = 200;
 const TASK_CHECK_REQUEST_EVENT = "task:check-request";
 
 let activeRecognition = null;
@@ -425,11 +426,16 @@ function bindMic(btn, input) {
 
         recognition.onend = () => {
             clearActiveRecognitionTimer();
-            btn.classList.remove("speech-mic--active");
-            if (activeBtn === btn) {
-                activeRecognition = null;
-                activeBtn = null;
-            }
+            if (activeRecognition !== recognition || activeBtn !== btn) return;
+
+            window.setTimeout(() => {
+                if (activeRecognition !== recognition || activeBtn !== btn) return;
+                try {
+                    recognition.start();
+                } catch {
+                    stopActiveRecognition();
+                }
+            }, MOBILE_RESTART_DELAY_MS);
         };
 
         recognition.onerror = () => {
