@@ -1,0 +1,273 @@
+/* ─────────────────────────────────────────────────────────────
+   Statische Infoseiten: Konzept & Über mich
+   Ergänzt die page-legal-Typografie aus shared.css.
+   ───────────────────────────────────────────────────────────── */
+
+body.page-legal.page-static-narrow .shell-main h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.5rem;
+  color: var(--text);
+}
+
+/* h2 auf diesen Seiten als Abschnittstitel (nicht als Seitentitel wie auf Legal-Seiten) */
+body.page-legal.page-static-narrow .shell-main h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 2.4rem 0 0.6rem;
+}
+
+/* ─────────────── Konzept: Grafik-Panel ─────────────── */
+
+.konzept-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 22px 20px 18px;
+  width: min(100%, 720px);
+  margin: 1.4rem auto 1.6rem;
+}
+
+.konzept-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.konzept-play {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 160ms;
+}
+
+.konzept-play:hover {
+  opacity: 0.85;
+}
+
+.konzept-play:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.konzept-status {
+  font-size: 0.76rem;
+  color: var(--text-dim);
+}
+
+.konzept-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.konzept-svg {
+  display: block;
+  width: 100%;
+  max-width: 660px;
+  margin: 0 auto;
+  height: auto;
+  min-width: 620px;
+}
+
+/* SVG-Elemente */
+.kg-line {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-dim) 45%, transparent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.kg-connector {
+  stroke: color-mix(in srgb, var(--text-dim) 40%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 5;
+}
+
+.kg-playhead {
+  stroke: color-mix(in srgb, var(--text-dim) 55%, transparent);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.kg-node {
+  fill: var(--bg);
+  stroke: color-mix(in srgb, var(--text-dim) 40%, transparent);
+  stroke-width: 2;
+  transition: fill 350ms ease, stroke 350ms ease;
+}
+
+.kg-node.active.type-training {
+  fill: var(--mt-training, #2f7fe6);
+  stroke: var(--mt-training, #2f7fe6);
+}
+
+.kg-node.active.type-recall {
+  fill: var(--mt-recall, #a78bfa);
+  stroke: var(--mt-recall, #a78bfa);
+}
+
+.kg-node.active.type-feynman {
+  fill: var(--mt-feynman, #31cda8);
+  stroke: var(--mt-feynman, #31cda8);
+}
+
+.kg-node.active.type-kompetenz {
+  fill: var(--mt-kompetenzliste, #378ea3);
+  stroke: var(--mt-kompetenzliste, #378ea3);
+}
+
+.kg-node-label {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--text-muted);
+  transition: fill 350ms ease;
+  pointer-events: none;
+}
+
+.kg-node-label.active {
+  fill: #fff;
+}
+
+.kg-check-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  fill: var(--text-dim);
+}
+
+.kg-axis {
+  font-size: 11px;
+  fill: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+.kg-ring-bg {
+  fill: none;
+  stroke: color-mix(in srgb, var(--text-dim) 22%, transparent);
+  cursor: pointer;
+}
+
+.kg-ring-fg {
+  fill: none;
+  stroke-linecap: round;
+  cursor: pointer;
+  transition: stroke-dashoffset 500ms ease;
+}
+
+.kg-ring-fg.type-training {
+  stroke: var(--mt-training, #2f7fe6);
+}
+
+.kg-ring-fg.type-recall {
+  stroke: var(--mt-recall, #a78bfa);
+}
+
+.kg-ring-fg.type-feynman {
+  stroke: var(--mt-feynman, #31cda8);
+}
+
+.kg-ring-pct {
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--text);
+  pointer-events: none;
+}
+
+.kg-ring-hint {
+  font-size: 11px;
+  fill: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.kg-ring-hint.is-done {
+  text-decoration: none;
+  cursor: default;
+  fill: var(--text-dim);
+}
+
+/* Legende & Hinweis */
+.konzept-legend {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.konzept-legend__item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+}
+
+.konzept-legend__dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.konzept-legend__dot--training {
+  background: var(--mt-training, #2f7fe6);
+}
+
+.konzept-legend__dot--recall {
+  background: var(--mt-recall, #a78bfa);
+}
+
+.konzept-legend__dot--feynman {
+  background: var(--mt-feynman, #31cda8);
+}
+
+.konzept-legend__dot--kompetenz {
+  background: var(--mt-kompetenzliste, #378ea3);
+}
+
+body.page-legal .shell-main p.konzept-note {
+  font-size: 0.78rem;
+  margin: 16px 0 0;
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+/* ─────────────── Konzept: Aktivitäten-Karten ─────────────── */
+
+.konzept-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+  margin: 1.3rem 0 1.5rem;
+}
+
+.konzept-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--kc-color, var(--accent));
+  border-radius: var(--r);
+  padding: 15px 17px;
+}
+
+body.page-legal .shell-main .konzept-card h3 {
+  margin: 0 0 6px;
+  font-size: 0.92rem;
+  color: var(--kc-color, var(--text));
+}
+
+body.page-legal .shell-main .konzept-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}

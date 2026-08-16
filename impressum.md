@@ -4,6 +4,7 @@ title: ""
 description: "Impressum von mathechecks.de"
 permalink: /impressum.html
 body_class: page-legal
+show_footer: true
 ---
 
 ## Impressum

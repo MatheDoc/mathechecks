@@ -10,7 +10,7 @@ import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js"
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260719-speech-cursor-insert";
+import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260719-feynman-quote";
 
 const FY_BEISPIEL_CACHE = new Map();

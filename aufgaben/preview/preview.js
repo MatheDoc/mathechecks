@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260719-speech-cursor-insert";
+import { renderTask } from "../runtime/task-render.js?v=20260816-mobile-speech-restart";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');
