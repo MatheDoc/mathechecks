@@ -141,7 +141,7 @@ function renderRecallListMarkup(items, { user = false } = {}) {
 }
 
 const RECALL_SCORE_THRESHOLDS = { correct: 0.82, partial: 0.65 };
-const RECALL_RETRY_PENALTY = 0.5;
+const RECALL_IMPROVEMENT_WEIGHT = 0.5;
 
 function shuffleArray(items) {
   const arr = items.slice();
@@ -212,7 +212,11 @@ function classifyRecallScore(score) {
   return { label: "nicht erkannt", cls: "wrong" };
 }
 
-async function evaluateRecallItems(items) {
+function hasRecallEvaluationScore(value) {
+  return value !== null && value !== undefined && value !== "" && Number.isFinite(Number(value));
+}
+
+async function evaluateRecallItems(items, evaluateNrs) {
   let timeoutId = null;
   try {
     const config = getSupabaseRuntimeConfig();
@@ -244,6 +248,7 @@ async function evaluateRecallItems(items) {
       },
       body: JSON.stringify({
         items: items.map((item) => ({ cue: item.cue, response: item.response, student: item.student })),
+        evaluateNrs: Array.from(evaluateNrs || []).map(Number).filter(Number.isFinite),
       }),
       signal: controller?.signal,
     });
@@ -496,12 +501,13 @@ function revealComparePanel(comparePanel) {
   }
 }
 
-function computeRecallAttemptScore(rawScore, attempts) {
-  const score = Number(rawScore);
-  if (!Number.isFinite(score)) return 0;
-  const attemptCount = Math.max(1, Number(attempts) || 1);
-  const factor = Math.max(0, 1 - (attemptCount - 1) * RECALL_RETRY_PENALTY);
-  return Math.max(0, Math.min(1, score)) * factor;
+function computeRecallImprovementScore(firstScore, bestScore) {
+  const first = Number(firstScore);
+  const best = Number(bestScore);
+  if (!Number.isFinite(first) || !Number.isFinite(best)) return 0;
+  const boundedFirst = Math.max(0, Math.min(1, first));
+  const boundedBest = Math.max(boundedFirst, Math.min(1, best));
+  return boundedFirst + (boundedBest - boundedFirst) * RECALL_IMPROVEMENT_WEIGHT;
 }
 
 const RECALL_INPUT_STATE_CLASSES = [
@@ -608,6 +614,8 @@ function buildRecallCompletionDetails(evalState, source = "complete") {
     selfOutcome: source,
     ...(itemScores.length ? { itemScores } : {}),
     ...(Array.isArray(evalState?.rawItemScores) ? { rawItemScores: evalState.rawItemScores } : {}),
+    ...(Array.isArray(evalState?.firstItemScores) ? { firstItemScores: evalState.firstItemScores } : {}),
+    ...(Array.isArray(evalState?.bestItemScores) ? { bestItemScores: evalState.bestItemScores } : {}),
     ...(Array.isArray(evalState?.itemAttempts) ? { itemAttempts: evalState.itemAttempts } : {}),
     ...(Array.isArray(evalState?.itemRevealed) ? { itemRevealed: evalState.itemRevealed } : {}),
     ...(Number.isFinite(Number(evalState?.checkableCount)) ? { checkableCount: Number(evalState.checkableCount) } : {}),
@@ -802,10 +810,13 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
         itemStates = cueItemEls.map((_, index) => itemStates[index] || {
           attempts: 0,
           rawScore: null,
+          firstScore: null,
+          bestScore: null,
           effectiveScore: null,
           reason: "",
           model: "",
           revealed: false,
+          lastEvaluatedText: null,
         });
       }
       return itemStates;
@@ -826,12 +837,14 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
         ready,
         checkableCount: scorable.length,
         revealedCount: scorable.filter(({ state }) => Boolean(state?.revealed)).length,
-        rawItemScores: scorable.map(({ state }) => Number.isFinite(Number(state?.rawScore)) ? Number(state.rawScore) : 0),
+        rawItemScores: scorable.map(({ state }) => hasRecallEvaluationScore(state?.rawScore) ? Number(state.rawScore) : 0),
+        firstItemScores: scorable.map(({ state }) => hasRecallEvaluationScore(state?.firstScore) ? Number(state.firstScore) : 0),
+        bestItemScores: scorable.map(({ state }) => hasRecallEvaluationScore(state?.bestScore) ? Number(state.bestScore) : 0),
         itemAttempts: scorable.map(({ state }) => Math.max(0, Number(state?.attempts) || 0)),
         itemRevealed: scorable.map(({ state }) => Boolean(state?.revealed)),
         itemScores: scorable.map(({ state }) => {
           if (state?.revealed) return 0;
-          return computeRecallAttemptScore(state?.rawScore, state?.attempts);
+          return computeRecallImprovementScore(state?.firstScore, state?.bestScore);
         }),
         model: scorable.find(({ state }) => state?.model)?.state?.model || "",
       };
@@ -1058,7 +1071,8 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
         .filter(({ item, index }) => {
           const state = states[index];
           if (!item.response || state?.revealed) return false;
-          return Number(state?.rawScore) < RECALL_SCORE_THRESHOLDS.correct;
+          if (Number(state?.rawScore) >= RECALL_SCORE_THRESHOLDS.correct) return false;
+          return !hasRecallEvaluationScore(state?.rawScore) || state?.lastEvaluatedText !== item.student;
         });
       const hasScorableItems = allItems.some((item) => item.response);
 
@@ -1068,26 +1082,35 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
     
       let finalItems = allItems.map((item, index) => ({
         ...item,
-        score: Number.isFinite(Number(states[index]?.rawScore)) ? Number(states[index].rawScore) : 0,
+        score: hasRecallEvaluationScore(states[index]?.rawScore) ? Number(states[index].rawScore) : 0,
         reason: states[index]?.reason || "",
-        unchecked: !Number.isFinite(Number(states[index]?.rawScore)) && !states[index]?.revealed,
+        unchecked: !hasRecallEvaluationScore(states[index]?.rawScore) && !states[index]?.revealed,
       }));
       let evaluationOk = false;
 
       if (evaluationTargets.length) {
-        const evalData = await evaluateRecallItems(evaluationTargets.map(({ item }) => item));
+        const evalData = await evaluateRecallItems(
+          allItems,
+          evaluationTargets.map(({ index }) => index + 1)
+        );
         if (evalData?.results) {
           evaluationTargets.forEach(({ item, index }, targetPos) => {
-            const result = evalData.results[targetPos] || {};
+            const result = evalData.results.find((candidate) => Number(candidate?.nr) === index + 1)
+              || evalData.results[targetPos]
+              || {};
             const state = states[index];
+            const score = typeof result.score === "number" ? Math.max(0, Math.min(1, result.score)) : 0;
             state.attempts += 1;
-            state.rawScore = typeof result.score === "number" ? result.score : 0;
-            state.effectiveScore = computeRecallAttemptScore(state.rawScore, state.attempts);
+            state.rawScore = score;
+            if (!hasRecallEvaluationScore(state.firstScore)) state.firstScore = score;
+            state.bestScore = hasRecallEvaluationScore(state.bestScore) ? Math.max(Number(state.bestScore), score) : score;
+            state.effectiveScore = computeRecallImprovementScore(state.firstScore, state.bestScore);
             state.reason = result.reason || "";
             state.model = evalData.model || "";
+            state.lastEvaluatedText = item.student;
             finalItems[index] = {
               ...item,
-              score: typeof result.score === "number" ? result.score : 0,
+              score,
               reason: result.reason || "",
               unchecked: Boolean(result.unchecked),
             };
@@ -1117,7 +1140,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
             const state = states[index];
             if (!state) return;
             state.revealed = true;
-            state.rawScore = Number.isFinite(Number(state.rawScore)) ? Number(state.rawScore) : 0;
+            state.rawScore = hasRecallEvaluationScore(state.rawScore) ? Number(state.rawScore) : 0;
             state.effectiveScore = 0;
             state.reason = "Automatische Bewertung war nicht möglich; die Lösung ist eingeblendet.";
             finalItems[index] = {

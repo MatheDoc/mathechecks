@@ -56,6 +56,7 @@ type PromptContext = {
     beispiel: string;
   };
   items: PromptItem[];
+  evaluateNrs: number[];
 };
 
 function normalizeStringArray(value: unknown, maxLength: number): string[] {
@@ -130,12 +131,16 @@ ${context.task.beispiel || "(kein Referenzbeispiel)"}
 ${context.items
   .map(
     (item) =>
-      `Teilfrage ${item.nr}: ${item.frage}\nInterne Zielantwort: ${item.zielantwort || "(keine Zielantwort)"}\nSchülererklärung: ${item.schueler_antwort || "(leer)"}`
+      `Teilfrage ${item.nr}${context.evaluateNrs.includes(item.nr) ? " [BEWERTEN]" : " [NUR KONTEXT]"}: ${item.frage}\nInterne Zielantwort: ${item.zielantwort || "(keine Zielantwort)"}\nSchülererklärung: ${item.schueler_antwort || "(leer)"}`
   )
   .join("\n\n")}
 
 # Bewertung
-Bewerte jede Schülererklärung danach, ob sie den Lösungsweg im Feynman-Stil fachlich sinnvoll erklärt oder – falls kein Rechenweg nötig ist – ob sie den direkten Bezug zur Quelle des Werts nennt (siehe Regel 13).
+Bewerte ausschließlich die mit [BEWERTEN] markierten Schülererklärungen. Die übrigen Erklärungen dienen nur als Kontext, damit Zusammenhänge zwischen Teilfragen berücksichtigt werden können. Gib für [NUR KONTEXT] markierte Teilfragen kein Ergebnis aus.
+
+Zu bewertende Teilfragen: ${context.evaluateNrs.join(", ")}
+
+Bewerte diese Schülererklärungen danach, ob sie den Lösungsweg im Feynman-Stil fachlich sinnvoll erklären oder – falls kein Rechenweg nötig ist – ob sie den direkten Bezug zur Quelle des Werts nennen (siehe Regel 13).
 
 Nutze diese Score-Skala als Anker; auch passende Zwischenwerte sind ausdrücklich erlaubt. Verwende Zwischenwerte (z. B. 0.2, 0.3, 0.6 oder 0.9), wenn sie die Qualität der Erklärung besser treffen als die vier Ankerwerte.
 
@@ -302,6 +307,15 @@ Deno.serve(async (req: Request) => {
     return jsonResponse({ error: "invalid-items", maxItems: MAX_ITEMS }, 400);
   }
 
+  const availableNrs = new Set(rawItems.map((_, index) => index + 1));
+  const requestedNrs = Array.isArray(body?.evaluateNrs)
+    ? body.evaluateNrs.map(Number).filter((nr) => Number.isInteger(nr) && availableNrs.has(nr))
+    : Array.from(availableNrs);
+  const evaluateNrs = Array.from(new Set(requestedNrs));
+  if (evaluateNrs.length === 0) {
+    return jsonResponse({ error: "invalid-items", maxItems: MAX_ITEMS }, 400);
+  }
+
   const checkRaw = body?.check && typeof body.check === "object" ? body.check as Record<string, unknown> : {};
   const taskRaw = body?.task && typeof body.task === "object" ? body.task as Record<string, unknown> : {};
 
@@ -325,6 +339,7 @@ Deno.serve(async (req: Request) => {
       zielantwort: truncate(item?.zielantwort, MAX_FIELD_LENGTH),
       schueler_antwort: truncate(item?.schueler_antwort, MAX_FIELD_LENGTH),
     })),
+    evaluateNrs,
   };
 
   const rateLimit = await consumeRateLimit(req);
@@ -340,8 +355,9 @@ Deno.serve(async (req: Request) => {
   const normalized: Record<string, unknown>[] = [];
   const usedModels = new Set<string>();
 
-  for (const items of chunkItems(context.items, GEMINI_BATCH_SIZE)) {
-    const batchContext = { ...context, items };
+  const evaluationItems = context.items.filter((item) => evaluateNrs.includes(item.nr));
+  for (const items of chunkItems(evaluationItems, GEMINI_BATCH_SIZE)) {
+    const batchContext = { ...context, evaluateNrs: items.map((item) => item.nr) };
     const { results, modelUsed, lastError } = await evaluateWithFallback(apiKey, batchContext);
 
     if (!Array.isArray(results)) {

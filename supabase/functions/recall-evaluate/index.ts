@@ -38,12 +38,14 @@ function truncate(value: unknown, maxLength: number): string {
 
 type PromptItem = { nr: number; cue: string; erwartete_antwort: string; schueler_antwort: string };
 
-function buildPrompt(payload: PromptItem[]): string {
+function buildPrompt(payload: PromptItem[], evaluateNrs: number[]): string {
   return `Du bewertest Schülerantworten in einer Mathematik-Recall-Übung.
 
 Kontext: Den Schülern wurde ein Hinweis gezeigt, z. B. ein Symbol, eine Formel oder ein Schritt eines Prozesses. Sie sollen dazu die passende Bedeutung/Bedingung/Aussage aus dem Gedächtnis in ein Textfeld eingeben - teilweise per Spracheingabe diktiert. Erwarte daher KEINE LaTeX-Syntax in der Schülerantwort, sondern natürlichsprachliche oder umgangssprachlich-mathematische Formulierungen (z. B. "f Strich von x Null gleich Null" für f'(x_0)=0, oder "p mal eins minus p" für p(1-p)).
 
-Bewerte für jedes Item, ob die Schülerantwort die fachliche Kernaussage der erwarteten Antwort trifft. Nutze diese Score-Skala als Anker:
+Bewerte ausschließlich die mit [BEWERTEN] markierten Items. Die übrigen Items dienen nur als Kontext, damit Zusammenhänge berücksichtigt werden können. Gib für [NUR KONTEXT] markierte Items kein Ergebnis aus.
+
+Bewerte für jedes markierte Item, ob die Schülerantwort die fachliche Kernaussage der erwarteten Antwort trifft. Nutze diese Score-Skala als Anker:
 - 1.0: fachlich korrekt und vollständig, gemessen an der erwarteten Antwort
 - 0.8: im Kern richtig, kleine Ungenauigkeit oder Lücke
 - 0.5: teilweise richtig, ein wichtiger Teil fehlt oder ist ungenau
@@ -66,7 +68,12 @@ Kalibrierungsbeispiele (unabhängig von den aktuellen Items):
 Schreibe "reason" als vollständigen, kurzen deutschen Satz. Bei score < 0.8 soll "reason" ein hilfreicher Hinweis sein, aber NICHT die erwartete Antwort verraten. Zitiere die erwartete Antwort nicht. Nenne stattdessen knapp, welche Art von Bestandteil fehlt oder in welche Richtung der Schüler denken soll.
 
 Eingabedaten:
-${JSON.stringify(payload, null, 2)}
+${JSON.stringify(payload.map((item) => ({
+    ...item,
+    status: evaluateNrs.includes(item.nr) ? "[BEWERTEN]" : "[NUR KONTEXT]",
+  })), null, 2)}
+
+Zu bewertende Itemnummern: ${evaluateNrs.join(", ")}
 
 Antworte NUR mit einem JSON-Array:
 [{"nr": 1, "score": 0.0, "reason": "vollständiger Hinweis, höchstens 18 Wörter"}]`;
@@ -89,8 +96,8 @@ function publicGeminiError(error: unknown): { error: string; status?: number } {
   return { error: "evaluation-failed" };
 }
 
-async function callGemini(apiKey: string, model: string, payload: PromptItem[]): Promise<unknown> {
-  const prompt = buildPrompt(payload);
+async function callGemini(apiKey: string, model: string, payload: PromptItem[], evaluateNrs: number[]): Promise<unknown> {
+  const prompt = buildPrompt(payload, evaluateNrs);
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
 
   const response = await fetch(url, {
@@ -135,6 +142,15 @@ Deno.serve(async (req: Request) => {
     return jsonResponse({ error: "invalid-items" }, 400);
   }
 
+  const availableNrs = new Set(rawItems.map((_, index) => index + 1));
+  const requestedNrs = Array.isArray(body?.evaluateNrs)
+    ? body.evaluateNrs.map(Number).filter((nr) => Number.isInteger(nr) && availableNrs.has(nr))
+    : Array.from(availableNrs);
+  const evaluateNrs = Array.from(new Set(requestedNrs));
+  if (evaluateNrs.length === 0) {
+    return jsonResponse({ error: "invalid-items" }, 400);
+  }
+
   const payload: PromptItem[] = rawItems.map((item: Record<string, unknown>, index: number) => ({
     nr: index + 1,
     cue: truncate(item?.cue, MAX_FIELD_LENGTH),
@@ -153,7 +169,7 @@ Deno.serve(async (req: Request) => {
 
   for (const model of MODELS) {
     try {
-      results = await callGemini(apiKey, model, payload);
+      results = await callGemini(apiKey, model, payload, evaluateNrs);
       modelUsed = model;
       break;
     } catch (error) {
@@ -173,7 +189,7 @@ Deno.serve(async (req: Request) => {
     if (Number.isFinite(nr)) byNr.set(nr, entry);
   }
 
-  const normalized = payload.map((item) => {
+  const normalized = payload.filter((item) => evaluateNrs.includes(item.nr)).map((item) => {
     const entry = byNr.get(item.nr);
     const scoreRaw = Number(entry?.score);
     const score = Number.isFinite(scoreRaw) ? Math.max(0, Math.min(1, scoreRaw)) : 0;

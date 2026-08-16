@@ -20,7 +20,7 @@ const feynmanJumpNavScrollCleanup = new WeakMap();
 const FEYNMAN_FEED_STEP_KEY = "feynman";
 const FEYNMAN_EVALUATION_TIMEOUT_MS = 75000;
 const FEYNMAN_SCORE_THRESHOLDS = { good: 0.8, partial: 0.5 };
-const FEYNMAN_RETRY_PENALTY = 0.5;
+const FEYNMAN_IMPROVEMENT_WEIGHT = 0.5;
 
 function scrollModMainToEl(el) {
   const container = document.querySelector(".mod-main");
@@ -502,7 +502,7 @@ function hydrateFeynmanTaskVisuals(root, cardEntries) {
   });
 }
 
-function buildFeynmanEvaluationPayload({ check, task, itemEls, beispielHtml = "" }) {
+function buildFeynmanEvaluationPayload({ check, task, itemEls, evaluateNrs, beispielHtml = "" }) {
   const tipps = Array.isArray(check?.Tipps) ? check.Tipps : [];
   const scorableItems = getFeynmanScorableItems(task);
 
@@ -526,6 +526,7 @@ function buildFeynmanEvaluationPayload({ check, task, itemEls, beispielHtml = ""
       zielantwort: el.dataset.answer || "",
       schueler_antwort: el.querySelector(".fy-explain-input")?.value.trim() || "",
     })),
+    evaluateNrs: Array.from(evaluateNrs || []).map(Number).filter(Number.isFinite),
   };
 }
 
@@ -583,12 +584,13 @@ async function evaluateFeynmanItems(payload) {
   }
 }
 
-function computeFeynmanAttemptScore(rawScore, attempts) {
-  const score = Number(rawScore);
-  if (!Number.isFinite(score)) return 0;
-  const attemptCount = Math.max(1, Number(attempts) || 1);
-  const factor = Math.max(0, 1 - (attemptCount - 1) * FEYNMAN_RETRY_PENALTY);
-  return Math.max(0, Math.min(1, score)) * factor;
+function computeFeynmanImprovementScore(firstScore, bestScore) {
+  const first = Number(firstScore);
+  const best = Number(bestScore);
+  if (!Number.isFinite(first) || !Number.isFinite(best)) return 0;
+  const boundedFirst = Math.max(0, Math.min(1, first));
+  const boundedBest = Math.max(boundedFirst, Math.min(1, best));
+  return boundedFirst + (boundedBest - boundedFirst) * FEYNMAN_IMPROVEMENT_WEIGHT;
 }
 
 function classifyFeynmanScore(score) {
@@ -664,6 +666,8 @@ function buildFeynmanCompletionDetails(evalState, source = "complete") {
     ...(Number.isFinite(Number(evalState?.taskIndex)) ? { taskIndex: Number(evalState.taskIndex) } : {}),
     ...(itemScores.length ? { itemScores } : {}),
     ...(Array.isArray(evalState?.rawItemScores) ? { rawItemScores: evalState.rawItemScores } : {}),
+    ...(Array.isArray(evalState?.firstItemScores) ? { firstItemScores: evalState.firstItemScores } : {}),
+    ...(Array.isArray(evalState?.bestItemScores) ? { bestItemScores: evalState.bestItemScores } : {}),
     ...(Array.isArray(evalState?.itemAttempts) ? { itemAttempts: evalState.itemAttempts } : {}),
     ...(Array.isArray(evalState?.itemRevealed) ? { itemRevealed: evalState.itemRevealed } : {}),
     ...(Number.isFinite(Number(evalState?.checkableCount)) ? { checkableCount: Number(evalState.checkableCount) } : {}),
@@ -1066,10 +1070,13 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         itemStates = itemEls.map((_, stateIndex) => itemStates[stateIndex] || {
           attempts: 0,
           rawScore: null,
+          firstScore: null,
+          bestScore: null,
           effectiveScore: null,
           reason: "",
           model: "",
           revealed: false,
+          lastEvaluatedText: null,
         });
       }
       return itemStates;
@@ -1090,9 +1097,11 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         checkableCount: scorable.length,
         revealedCount: scorable.filter(({ state }) => Boolean(state?.revealed)).length,
         rawItemScores: scorable.map(({ state }) => hasFeynmanEvaluationScore(state?.rawScore) ? Number(state.rawScore) : 0),
+        firstItemScores: scorable.map(({ state }) => hasFeynmanEvaluationScore(state?.firstScore) ? Number(state.firstScore) : 0),
+        bestItemScores: scorable.map(({ state }) => hasFeynmanEvaluationScore(state?.bestScore) ? Number(state.bestScore) : 0),
         itemAttempts: scorable.map(({ state }) => Math.max(0, Number(state?.attempts) || 0)),
         itemRevealed: scorable.map(({ state }) => Boolean(state?.revealed)),
-        itemScores: scorable.map(({ state }) => state?.revealed ? 0 : computeFeynmanAttemptScore(state?.rawScore, state?.attempts)),
+        itemScores: scorable.map(({ state }) => state?.revealed ? 0 : computeFeynmanImprovementScore(state?.firstScore, state?.bestScore)),
         model: scorable.find(({ state }) => state?.model)?.state?.model || "",
       };
     }
@@ -1237,8 +1246,32 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       runEvaluationButton.textContent = "MatheChecks prüft ...";
       if (evalStatusEl) evalStatusEl.innerHTML = "";
 
+      const evaluationTargets = itemEls
+        .map((itemEl, itemIndex) => ({
+          itemEl,
+          itemIndex,
+          student: itemEl.querySelector(".fy-explain-input")?.value.trim() || "",
+        }))
+        .filter(({ itemIndex, student }) => {
+          const state = states[itemIndex];
+          return !hasFeynmanEvaluationScore(state?.rawScore) || state?.lastEvaluatedText !== student;
+        });
+
+      if (evaluationTargets.length === 0) {
+        runEvaluationButton.disabled = false;
+        runEvaluationButton.textContent = originalLabel;
+        publishCompletionState();
+        return;
+      }
+
       const beispielHtml = check ? await fetchBeispielHtml(check) : "";
-      const payload = buildFeynmanEvaluationPayload({ check, task, itemEls, beispielHtml });
+      const payload = buildFeynmanEvaluationPayload({
+        check,
+        task,
+        itemEls,
+        evaluateNrs: evaluationTargets.map(({ itemIndex }) => itemIndex + 1),
+        beispielHtml,
+      });
       const evalData = await evaluateFeynmanItems(payload);
 
       runEvaluationButton.disabled = false;
@@ -1264,29 +1297,44 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
             : "Automatische Bewertung war gerade nicht möglich. Versuche es erneut oder schließe den Durchgang ohne Bewertung ab.";
         if (evalStatusEl) evalStatusEl.innerHTML = `<p class="recall-eval-note">${escapeHtml(message)}</p>`;
 
-        const fallbackItems = itemEls.map((itemEl, itemIndex) => {
+        const fallbackItems = itemEls.map((itemEl, itemIndex) => ({
+          score: hasFeynmanEvaluationScore(states[itemIndex]?.rawScore) ? Number(states[itemIndex].rawScore) : 0,
+          reason: states[itemIndex]?.reason || "",
+          unchecked: !hasFeynmanEvaluationScore(states[itemIndex]?.rawScore),
+        }));
+        evaluationTargets.forEach(({ itemIndex }) => {
           const state = states[itemIndex];
           state.revealed = true;
           state.effectiveScore = 0;
           state.reason = "Automatische Bewertung war nicht möglich; der Durchgang zählt ungewertet.";
-          return { unchecked: true };
+          fallbackItems[itemIndex] = { unchecked: true };
         });
         applyFeynmanInputEvaluations(itemEls, fallbackItems);
         publishCompletionState();
         return;
       }
 
-      const finalItems = itemEls.map((itemEl, itemIndex) => {
-        const result = evalData.results[itemIndex] || {};
+      const finalItems = itemEls.map((itemEl, itemIndex) => ({
+        score: hasFeynmanEvaluationScore(states[itemIndex]?.rawScore) ? Number(states[itemIndex].rawScore) : 0,
+        reason: states[itemIndex]?.reason || "",
+        unchecked: !hasFeynmanEvaluationScore(states[itemIndex]?.rawScore),
+      }));
+      const resultsByNr = new Map(evalData.results.map((result) => [Number(result?.nr), result]));
+      evaluationTargets.forEach(({ itemIndex, student }) => {
+        const result = resultsByNr.get(itemIndex + 1) || {};
         const state = states[itemIndex];
+        const score = Number.isFinite(Number(result.score)) ? Math.max(0, Math.min(1, Number(result.score))) : 0;
         state.attempts += 1;
         state.revealed = false;
-        state.rawScore = Number.isFinite(Number(result.score)) ? Math.max(0, Math.min(1, Number(result.score))) : 0;
-        state.effectiveScore = computeFeynmanAttemptScore(state.rawScore, state.attempts);
+        state.rawScore = score;
+        if (!hasFeynmanEvaluationScore(state.firstScore)) state.firstScore = score;
+        state.bestScore = hasFeynmanEvaluationScore(state.bestScore) ? Math.max(Number(state.bestScore), score) : score;
+        state.effectiveScore = computeFeynmanImprovementScore(state.firstScore, state.bestScore);
         state.reason = result.reason || "";
         state.model = evalData.model || "";
-        return {
-          score: state.rawScore,
+        state.lastEvaluatedText = student;
+        finalItems[itemIndex] = {
+          score,
           reason: state.reason,
           unchecked: Boolean(result.unchecked),
         };
