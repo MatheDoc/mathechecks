@@ -4,8 +4,6 @@ from aufgaben.core.models import Task
 from aufgaben.core.placeholders import numerical, numerical_analysis_calc, numerical_stochastik_calc
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.stochastik.binomialverteilung.shared import (
-    max_successes_for_min_failure_percent,
-    min_successes_for_max_failure_percent,
     percent_to_threshold_ceil,
     percent_to_threshold_floor,
     prob_at_least,
@@ -46,90 +44,78 @@ class BinomialBereichswahrscheinlichkeitenBerechnungGenerator(TaskGenerator):
 
         for index in range(count):
             scenario = SCENARIOS[index % len(SCENARIOS)]
+            question_successes = [rng.choice([True, False]) for _ in range(7)]
+            if all(question_successes) or not any(question_successes):
+                question_successes[rng.randrange(7)] = not question_successes[0]
+
+            outcomes = [
+                scenario.success_plural if is_success else scenario.failure_plural
+                for is_success in question_successes
+            ]
             for _ in range(200):
                 n, p = _sample_parameters(rng)
                 q = 1.0 - p
                 p_pct = _round_rate_to_percent(p)
 
-                exact_k = _bounded_int(rng, int(n * p * 0.75), int(n * p * 1.25))
-                at_least_k = _bounded_int(rng, int(n * p * 0.8), int(n * p * 1.05))
-                less_than_k = _bounded_int(rng, int(n * p * 0.95), int(n * p * 1.25))
+                rates = [p if is_success else q for is_success in question_successes]
+                exact_k = _bounded_int(rng, int(n * rates[0] * 0.75), int(n * rates[0] * 1.25))
+                at_least_k = _bounded_int(rng, int(n * rates[1] * 0.8), int(n * rates[1] * 1.05))
+                less_than_k = _bounded_int(rng, int(n * rates[2] * 0.95), int(n * rates[2] * 1.25))
 
-                lower_open = _bounded_int(rng, int(n * p * 0.6), int(n * p * 0.95))
+                lower_open = _bounded_int(rng, int(n * rates[3] * 0.6), int(n * rates[3] * 0.95))
                 upper_closed = _bounded_int(
                     rng,
-                    max(lower_open + 2, int(n * p * 1.05)),
-                    int(n * p * 1.35),
+                    max(lower_open + 2, int(n * rates[3] * 1.05)),
+                    int(n * rates[3] * 1.35),
                 )
                 upper_closed = min(upper_closed, n)
 
-                percent_mode_success = rng.choice([True, False])
                 percent_direction_at_most = rng.choice([True, False])
                 percent_value = _bounded_int(rng, 35, 72)
 
-                if percent_mode_success:
-                    if percent_direction_at_most:
-                        percent_question = (
-                            f"Von den {scenario.group_dative_plural} sind höchstens {percent_value}% "
-                            f"{scenario.success_plural}."
-                        )
-                        percent_threshold = percent_to_threshold_floor(n=n, percent_value=percent_value)
-                        percent_probability = prob_less_than(n=n, p=p, k=percent_threshold + 1)
-                    else:
-                        percent_question = (
-                            f"Von den {scenario.group_dative_plural} sind mindestens {percent_value}% "
-                            f"{scenario.success_plural}."
-                        )
-                        percent_threshold = percent_to_threshold_ceil(n=n, percent_value=percent_value)
-                        percent_probability = prob_at_least(n=n, p=p, k=percent_threshold)
+                if percent_direction_at_most:
+                    percent_question = (
+                        f"Von den {scenario.group_dative_plural} sind höchstens {percent_value}% "
+                        f"{outcomes[4]}."
+                    )
+                    percent_threshold = percent_to_threshold_floor(n=n, percent_value=percent_value)
+                    percent_probability = prob_less_than(n=n, p=rates[4], k=percent_threshold + 1)
                 else:
-                    if percent_direction_at_most:
-                        percent_question = (
-                            f"Von den {scenario.group_dative_plural} sind höchstens {percent_value}% "
-                            f"{scenario.failure_plural}."
-                        )
-                        success_threshold = min_successes_for_max_failure_percent(
-                            n=n,
-                            percent_value=percent_value,
-                        )
-                        percent_probability = prob_at_least(n=n, p=p, k=success_threshold)
-                    else:
-                        percent_question = (
-                            f"Von den {scenario.group_dative_plural} sind mindestens {percent_value}% "
-                            f"{scenario.failure_plural}."
-                        )
-                        success_threshold = max_successes_for_min_failure_percent(
-                            n=n,
-                            percent_value=percent_value,
-                        )
-                        percent_probability = prob_less_than(n=n, p=p, k=success_threshold + 1)
+                    percent_question = (
+                        f"Von den {scenario.group_dative_plural} sind mindestens {percent_value}% "
+                        f"{outcomes[4]}."
+                    )
+                    percent_threshold = percent_to_threshold_ceil(n=n, percent_value=percent_value)
+                    percent_probability = prob_at_least(n=n, p=rates[4], k=percent_threshold)
 
-                union_left = _bounded_int(rng, int(n * p * 0.45), int(n * p * 0.85))
-                union_right = _bounded_int(rng, max(union_left + 4, int(n * p * 1.1)), int(n * p * 1.45))
+                union_left = _bounded_int(rng, int(n * rates[5] * 0.45), int(n * rates[5] * 0.85))
+                union_right = _bounded_int(
+                    rng,
+                    max(union_left + 4, int(n * rates[5] * 1.1)),
+                    int(n * rates[5] * 1.45),
+                )
                 union_right = min(union_right, n)
 
                 edge_count = _bounded_int(rng, 2, 5)
                 edge_is_first = rng.choice([True, False])
-                edge_success = rng.choice([True, False])
                 edge_word = "ersten" if edge_is_first else "letzten"
-                edge_outcome = scenario.success_plural if edge_success else scenario.failure_plural
 
-                exact_probability = prob_exactly(n=n, p=p, k=exact_k)
-                at_least_probability = prob_at_least(n=n, p=p, k=at_least_k)
-                less_than_probability = prob_less_than(n=n, p=p, k=less_than_k)
+                exact_probability = prob_exactly(n=n, p=rates[0], k=exact_k)
+                at_least_probability = prob_at_least(n=n, p=rates[1], k=at_least_k)
+                less_than_probability = prob_less_than(n=n, p=rates[2], k=less_than_k)
                 interval_probability = prob_between_open_closed(
                     n=n,
-                    p=p,
+                    p=rates[3],
                     lower_open=lower_open,
                     upper_closed=upper_closed,
                 )
                 union_probability = prob_at_most_or_at_least(
                     n=n,
-                    p=p,
+                    p=rates[5],
                     at_most=union_left,
                     at_least=union_right,
                 )
-                edge_probability = (p if edge_success else q) ** edge_count
+                edge_probability = rates[6] ** edge_count
 
                 probabilities = [
                     exact_probability,
@@ -157,21 +143,21 @@ class BinomialBereichswahrscheinlichkeitenBerechnungGenerator(TaskGenerator):
             )
 
             questions = [
-                f"Von den {scenario.group_dative_plural} sind genau {exact_k} {scenario.success_plural}.",
-                f"Von den {scenario.group_dative_plural} sind mindestens {at_least_k} {scenario.success_plural}.",
-                f"Von den {scenario.group_dative_plural} sind weniger als {less_than_k} {scenario.success_plural}.",
+                f"Von den {scenario.group_dative_plural} sind genau {exact_k} {outcomes[0]}.",
+                f"Von den {scenario.group_dative_plural} sind mindestens {at_least_k} {outcomes[1]}.",
+                f"Von den {scenario.group_dative_plural} sind weniger als {less_than_k} {outcomes[2]}.",
                 (
                     f"Von den {scenario.group_dative_plural} sind mehr als {lower_open} und höchstens "
-                    f"{upper_closed} {scenario.success_plural}."
+                    f"{upper_closed} {outcomes[3]}."
                 ),
                 percent_question,
                 (
                     f"Von den {scenario.group_dative_plural} sind höchstens {union_left} oder mindestens "
-                    f"{union_right} {scenario.success_plural}."
+                    f"{union_right} {outcomes[5]}."
                 ),
                 (
                     f"Von den {scenario.group_dative_plural} sind die {edge_word} {edge_count} "
-                    f"{edge_outcome}."
+                    f"{outcomes[6]}."
                 ),
             ]
 
