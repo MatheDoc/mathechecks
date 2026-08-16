@@ -172,11 +172,11 @@ Die Recall-Quote ist **kein Teil** der obigen Trainings-Quote und beeinflusst si
 
 ### Bewertung
 
-Beim Abruf (Retrieve-Stage) tippt der Nutzer je Kernpunkt eine Antwort. Ein minimaler serverseitiger Proxy (`supabase/functions/recall-evaluate`) hält den Gemini-API-Key und bewertet alle noch offenen Items eines Durchgangs gebündelt (Score `0.0–1.0` je Item, kurzer Hinweis). Nach jeder Prüfung werden die Response-Felder direkt eingefärbt. Teilweise/falsche Antworten können im selben Feld beliebig oft nachgebessert und erneut geprüft werden; angezeigte Lösungen zählen wie im Training als aufgelöst. Schlägt die KI-Bewertung fehl (Netzwerk, Rate-Limit, Parsing), werden die Lösungen der noch offenen Items eingeblendet; damit ist der Durchgang abschließbar, diese Items zählen aber als aufgelöst.
+Beim Abruf (Retrieve-Stage) tippt der Nutzer je Kernpunkt eine Antwort. Ein minimaler serverseitiger Proxy (`supabase/functions/recall-evaluate`) hält den Gemini-API-Key und bewertet alle geänderten, noch offenen Items eines Durchgangs gebündelt (Score `0.0–1.0` je Item, kurzer Hinweis). Die KI erhält dabei alle aktuellen Antworten als Kontext, gibt aber nur für die markierten offenen Items neue Bewertungen aus. Bereits korrekte, unveränderte Items werden nicht erneut bewertet. Ein erneuter Klick ohne Textänderung erzeugt weder eine KI-Anfrage noch einen weiteren Versuch. Nach jeder Prüfung werden die Response-Felder direkt eingefärbt. Teilweise/falsche Antworten können im selben Feld beliebig oft nachgebessert und erneut geprüft werden; angezeigte Lösungen zählen wie im Training als aufgelöst. Schlägt die KI-Bewertung fehl (Netzwerk, Rate-Limit, Parsing), werden die Lösungen der noch offenen Items eingeblendet; damit ist der Durchgang abschließbar, diese Items zählen aber als aufgelöst.
 
 ### Taskscore und Aggregation
 
-`task_score = Summe der Item-Scores / checkableCount`. Korrekte Items verwenden den KI-Score mit einem Versuchsabzug analog Training: `max(0, rawScore · (1 - (n - 1) · p))`; aufgelöste Items zählen als `0`. Ein Durchgang wird erst abschließbar, wenn alle Items entweder korrekt bewertet wurden oder die Lösung angezeigt wurde.
+`task_score = Summe der Item-Scores / checkableCount`. Für ein nicht aufgelöstes Item werden der Score der ersten Bewertung `s_1` und der beste Score aller späteren Bewertungen `s_best` gespeichert. Der Item-Score ist `s = s_1 + (s_best - s_1) · w` mit `w = 0,5`. Eine Verbesserung erhöht damit den Score, ersetzt den Erstversuch aber nicht vollständig und kann den Score niemals verschlechtern. Aufgelöste Items zählen als `0`. Ein Durchgang wird erst abschließbar, wenn alle Items entweder aktuell korrekt bewertet wurden oder die Lösung angezeigt wurde.
 
 Die Check-Recall-Quote ist wie bei Training das recency-gewichtete Mittel der letzten `N` Taskscores:
 
@@ -184,11 +184,11 @@ Die Check-Recall-Quote ist wie bei Training das recency-gewichtete Mittel der le
 recall_quote = Σ_i ( d^alter_i * task_score_i ) / Σ_i ( d^alter_i )
 ```
 
-mit eigenen Parametern `recall_proficiency.window_size` (Default `3`), `recall_proficiency.recency_decay` (Default `0.5`) und `recall_proficiency.retry_penalty` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*`.
+mit eigenen Parametern `recall_proficiency.window_size` (Default `3`), `recall_proficiency.recency_decay` (Default `0.5`) und dem aus Kompatibilitätsgründen weiter so benannten `recall_proficiency.retry_penalty` als Verbesserungsgewicht `w` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*`.
 
 ### Erfassung und Projektion
 
-`record_user_activity('recall', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount` plus den kompatiblen `details.itemScores`-Snapshot, `selfOutcome` und `model`. `public._compute_recall_task_score(details, p)` berechnet daraus den Taskscore; Legacy-Events mit nur `itemScores` bleiben lesbar. `public.get_user_recall_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu `get_user_check_proficiency()`; `get_user_activity_overview()` liefert sie zusätzlich unter `recallProficiency`.
+`record_user_activity('recall', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.firstItemScores`, `details.bestItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount` plus den kompatiblen `details.itemScores`-Snapshot, `selfOutcome` und `model`. `public._compute_recall_task_score(details, w)` berechnet daraus den Taskscore; Legacy-Events ohne Erst-/Bestscore behalten ihre bisherige Retry-Berechnung. `public.get_user_recall_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu `get_user_check_proficiency()`; `get_user_activity_overview()` liefert sie zusätzlich unter `recallProficiency`.
 
 ### UI
 
@@ -200,7 +200,7 @@ Die Feynman-Quote ist **kein Teil** der Trainingsquote und beeinflusst sie nicht
 
 ### Bewertung
 
-Ein serverseitiger Proxy (`supabase/functions/feynman-evaluate`) hält den Gemini-API-Key und bewertet alle Teilfragen eines Durchgangs gebündelt. Die KI erhält Check-Kontext, Kompetenz, Tipps, Aufgabenstellung, Visual-Kontext, interne Zielantworten, ggf. Referenzbeispiel und die Schülerantworten. Ein vollständiges Ausrechnen bis zum Endwert ist nicht zwingend erforderlich, wenn der Lösungsweg fachlich korrekt erklärt ist.
+Ein serverseitiger Proxy (`supabase/functions/feynman-evaluate`) hält den Gemini-API-Key und bewertet beim ersten Prüfen alle Teilfragen eines Durchgangs gebündelt. Bei späteren Prüfungen erhält die KI weiterhin Check-Kontext, Kompetenz, Tipps, Aufgabenstellung, Visual-Kontext, interne Zielantworten, ggf. Referenzbeispiel und alle aktuellen Schülerantworten, bewertet aber ausschließlich die seit ihrer letzten Bewertung geänderten Teilantworten. Ein erneuter Klick ohne Textänderung erzeugt weder eine KI-Anfrage noch einen weiteren Versuch. Ein vollständiges Ausrechnen bis zum Endwert ist nicht zwingend erforderlich, wenn der Lösungsweg fachlich korrekt erklärt ist.
 
 Score-Skala:
 
@@ -211,7 +211,7 @@ Score-Skala:
 
 ### Taskscore und Aggregation
 
-`task_score = Summe der Item-Scores / checkableCount`. Wiederholte Auswertungsversuche werden mit `feynman_proficiency.retry_penalty` analog zu Training/Recall abgezogen. Eine spätere optionale Anzeige einer KI-Erklärung kann über `itemRevealed` als aufgelöst und damit `0` gewertet werden; im MVP gibt es zunächst nur Feedback, keine Musterlösung.
+`task_score = Summe der Item-Scores / checkableCount`. Für jedes Item gilt wie bei Recall `s = s_1 + (s_best - s_1) · w` mit `w = 0,5`. Eine spätere optionale Anzeige einer KI-Erklärung kann über `itemRevealed` als aufgelöst und damit `0` gewertet werden; im MVP gibt es zunächst nur Feedback, keine Musterlösung.
 
 Die Check-Feynman-Quote ist das recency-gewichtete Mittel der letzten `N` Taskscores:
 
@@ -219,11 +219,11 @@ Die Check-Feynman-Quote ist das recency-gewichtete Mittel der letzten `N` Tasksc
 feynman_quote = Σ_i ( d^alter_i * task_score_i ) / Σ_i ( d^alter_i )
 ```
 
-mit eigenen Parametern `feynman_proficiency.window_size` (Default `3`), `feynman_proficiency.recency_decay` (Default `0.5`) und `feynman_proficiency.retry_penalty` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*` und `recall_proficiency.*`.
+mit eigenen Parametern `feynman_proficiency.window_size` (Default `3`), `feynman_proficiency.recency_decay` (Default `0.5`) und dem aus Kompatibilitätsgründen weiter so benannten `feynman_proficiency.retry_penalty` als Verbesserungsgewicht `w` (Default `0.5`) in `system_settings` — unabhängig von `proficiency.*` und `recall_proficiency.*`.
 
 ### Erfassung und Projektion
 
-`record_user_activity('feynman', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount`, `details.itemScores`, `selfOutcome`, `taskIndex` und `model`. `public._compute_feynman_task_score(details, p)` berechnet daraus den Taskscore; `public.get_user_feynman_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu Recall.
+`record_user_activity('feynman', ...)` schreibt pro abgeschlossenem Durchgang `details.rawItemScores`, `details.firstItemScores`, `details.bestItemScores`, `details.itemAttempts`, `details.itemRevealed`, `details.checkableCount`, `details.revealedCount`, `details.itemScores`, `selfOutcome`, `taskIndex` und `model`. `public._compute_feynman_task_score(details, w)` berechnet daraus den Taskscore; Legacy-Events ohne Erst-/Bestscore behalten ihre bisherige Retry-Berechnung. `public.get_user_feynman_proficiency()` liefert `overall`/`checks[]`/`byLernbereich` analog zu Recall.
 
 ### UI
 

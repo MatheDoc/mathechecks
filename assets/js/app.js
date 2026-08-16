@@ -1,6 +1,6 @@
 import { initTrainingModule } from "./modules/training.js?v=20260816-mobile-speech-restart";
-import { initRecallModule } from "./modules/recall.js?v=20260816-mobile-speech-restart";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260816-mobile-speech-restart";
+import { initRecallModule } from "./modules/recall.js?v=20260816-improvement-scores";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260816-improvement-scores";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260701-shared-client";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260816-mobile-speech-restart";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260721-recall-stepped-tips";
