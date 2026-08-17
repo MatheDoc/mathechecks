@@ -1,0 +1,498 @@
+MATHECHECKS.DE - SICHTBARKEITSSTRATEGIE (COPILOT-BEWERTUNG)
+Stand: 17.08.2026
+Status: Diskussionsgrundlage, keine Implementierung
+
+KURZFAZIT
+
+Die Vorüberlegungen in mathechecks-schema-final.txt erkennen wichtige Punkte:
+strukturierte Daten, zentrale Metadaten und sichtbar ausgelieferter Fachinhalt.
+Die vorgeschlagene Architektur sollte aber nicht unverändert implementiert
+werden.
+
+Der wichtigste Sichtbarkeitshebel ist derzeit nicht Schema.org, sondern:
+
+- fachlicher Kerninhalt bereits im von Jekyll erzeugten HTML,
+- eindeutige Suchintention pro indexierbarer Seite,
+- technisch zuverlässige Indexierung,
+- nachvollziehbare interne Verlinkung,
+- fachliche Autorität und transparente redaktionelle Qualität,
+- gute Performance und Zugänglichkeit.
+
+Schema.org ist danach eine maschinenlesbare Beschreibung dieses Inhalts. Es
+kann Suchmaschinen und Antwortsystemen beim Verständnis helfen, ersetzt aber
+weder sichtbaren Inhalt noch garantiert es Rich Results oder Rankings.
+
+
+1. FESTGESTELLTER IST-ZUSTAND
+
+1.1 Clientseitig erzeugte Fachinhalte
+
+Die Recall-Seite enthält im initialen HTML im Wesentlichen nur einen leeren
+Container. Kompetenzen und Karten werden erst per JavaScript aus checks.json
+erzeugt. Google kann JavaScript rendern, jedoch später und mit zusätzlichem
+Aufwand. Andere Suchmaschinen und AI-Crawler sind darin unterschiedlich
+zuverlässig.
+
+Zielregel:
+
+  Jekyll liefert den fachlichen Kern als HTML aus. JavaScript erweitert ihn um
+  Interaktion, Bewertung, Personalisierung und Zustände.
+
+Das verbessert zugleich SEO, GEO, Barrierefreiheit, Robustheit und Nutzbarkeit
+bei Lade- oder Skriptfehlern.
+
+1.2 Technische SEO-Signale
+
+Im untersuchten Build fehlen derzeit:
+
+- Canonical-Links,
+- sitemap.xml,
+- robots.txt,
+- strukturierte Daten,
+- Open-Graph- und weitere Vorschaumetadaten.
+
+jekyll-seo-tag ist konfiguriert, wird im untersuchten Head aber nicht mit einem
+seo-Tag aufgerufen. Die bloße Konfiguration erzeugt daher keine Ausgabe.
+
+Meta-Descriptions wie "Lernbereich Binomialverteilung, Modul Recall." sind zu
+generisch. Sie nennen weder konkrete Inhalte noch einen Nutzen und grenzen die
+Seite kaum von anderen Modulen ab.
+
+1.3 Überschriftenstruktur
+
+Die Topbar verwendet "MatheChecks" als h1. Lernbereichs-Startseiten enthalten
+zusätzlich eine fachliche h1; andere Modulseiten besitzen im statischen HTML
+teilweise keine fachliche Hauptüberschrift. Jede Seite sollte eine eindeutige,
+inhaltliche Hauptüberschrift besitzen. Der Markenname in der Topbar sollte sie
+nicht ersetzen.
+
+1.4 Performance
+
+Das allgemeine Modul-Layout lädt Plotly, MathJS, jQuery und Select2 unabhängig
+davon, ob das konkrete Modul diese Bibliotheken benötigt. Später sollte pro
+Seitentyp beziehungsweise Bedarf geladen werden.
+
+1.5 Aktuelle Datenquellen
+
+Der in mathechecks-schema-final.txt beschriebene Zielzustand existiert noch
+nicht. Aktuell liegen Lernbereichsdaten mindestens in:
+
+- _data/lernbereiche.yml: Name, Gebiet, Reihenfolge und Szenario,
+- _data/start/<slug>.yml: Beschreibung und Vorkenntnisse,
+- checks.json: Check- und Kompetenzdaten für den Client.
+
+Topbar, Dashboard, Materialseite und Start-Include erwarten die flache
+lernbereiche-Liste als Array. Die Umstellung auf
+_data/lernbereiche/<slug>.yml ist daher eine echte Migration.
+
+
+2. BEWERTUNG DES SCHEMA-ENTWURFS
+
+2.1 Gute Ansätze
+
+Beibehalten werden sollten:
+
+- JSON-LD als Format,
+- konsequentes jsonify für Texte und Werte,
+- stabile absolute URLs und @id-Werte,
+- Course als mögliche Dachentität eines Lernbereichs,
+- Wiederverwendung der Kompetenzen aus den Check-Daten,
+- Übereinstimmung von sichtbarem Inhalt und Markup,
+- zentrale Erzeugung über Jekyll-Includes.
+
+2.2 Course ist plausibel, aber kein garantierter Suchvorteil
+
+Ein Lernbereich wie "Binomialverteilung" kann plausibel als Course modelliert
+werden. Course-Markup ist trotzdem kein eigenständiger Rankinghebel und
+garantiert kein Rich Result. Schema.org-Vokabular und konkret von Google
+unterstützte Rich-Result-Typen müssen getrennt betrachtet werden.
+
+2.3 Syllabus und assesses sind semantisch falsch verbunden
+
+Der Entwurf lässt Module mit einem gesamten Syllabus verknüpfen:
+
+  "assesses": { "@id": "...kompetenzliste.html#syllabus" }
+
+Schema.org erwartet bei assesses eine Kompetenz als DefinedTerm oder Text,
+nicht einen vollständigen Lehrplan. syllabusSections ist zudem eine
+Eigenschaft von Course und erwartet Syllabus-Objekte. Eine Liste von
+DefinedTerm-Kompetenzen sollte nicht unter diesem Namen in ein Syllabus-Objekt
+geschrieben werden.
+
+Besseres Modell:
+
+- Jede Kompetenz wird ein DefinedTerm mit stabiler @id aus check_id.
+- Course verweist mit teaches auf diese Kompetenzen.
+- Training, Recall, Feynman und gegebenenfalls Flashcards verweisen mit
+  assesses auf genau die Kompetenzen, die sie tatsächlich prüfen.
+- Course.hasPart verbindet die konkreten Lernressourcen.
+- WebPage beschreibt die URL; LearningResource, Article oder Quiz beschreibt
+  den eigentlichen Inhalt.
+
+2.4 Quiz nur bei tatsächlichem Quiz-Inhalt
+
+Recall sollte nicht allein wegen seines Namens pauschal als Quiz markiert
+werden. Das Markup muss den sichtbar vorhandenen Fragen und Antworten
+entsprechen.
+
+Für Googles Education-Q&A-Markup gelten enge Anforderungen, etwa sichtbare
+Question- und Answer-Inhalte sowie bei Flashcards eduQuestionType "Flashcard".
+Das entsprechende Google-Suchergebnis wird nach aktuellem Dokumentationsstand
+nicht für Deutsch angeboten. Semantisches Markup kann dennoch sinnvoll sein;
+ein deutsches Rich Result darf aber nicht als erwarteter Nutzen gelten.
+
+2.5 Empfohlenes Schema-Grundmodell
+
+Site-Ebene:
+
+- WebSite für MatheChecks,
+- Organization für Plattform und Anbieter,
+- Person für Dr. Sven Führing als Autor und fachlich Verantwortlichen.
+
+Lernbereichsebene:
+
+- Course als Lernbereich,
+- about für das mathematische Thema,
+- educationalLevel für Sekundarstufe II beziehungsweise berufliches Gymnasium,
+- provider und author,
+- isAccessibleForFree, sofern zutreffend,
+- teaches mit stabilen DefinedTerm-Kompetenzen,
+- hasPart mit den tatsächlich indexierbaren Modulen,
+- coursePrerequisites als Text oder verknüpfte Course-Entitäten.
+
+Seitenebene:
+
+- WebPage mit URL, Name, Beschreibung und Breadcrumbs,
+- mainEntity als passende Lernressource,
+- Article für ausführliche Skripte nur bei artikelartigem Inhalt,
+- LearningResource für Übungen, Überblick und Selbsterklärung,
+- Quiz nur bei real vorhandenen Fragen/Antworten,
+- assesses als Liste konkreter Kompetenz-DefinedTerms.
+
+Ergänzend:
+
+- BreadcrumbList für Gebiet > Lernbereich > Modul,
+- VideoObject oder AudioObject nur für tatsächlich vorhandene, öffentlich
+  sichtbare Medien mit vollständigen Metadaten.
+
+Weniger, vollständiges und korrektes Markup ist besser als viele ungenaue
+Eigenschaften.
+
+
+3. SICHTBARER CONTENT UND SEITENINTENTION
+
+Ein zentrales module-intro-Include ist technisch sinnvoll. Ein Standardsatz wie
+"Übe hier typische Aufgaben zu Binomialverteilung" ist aber noch kein
+substanzieller Fachinhalt.
+
+Jede indexierbare Seite braucht einen eigenen Zweck:
+
+- Start: Thema, Voraussetzungen, Lernziele und Lernpfad,
+- Kompetenzliste: konkrete überprüfbare Lernziele,
+- Skript: Erklärungen, Definitionen, Verfahren, Beispiele und typische Fehler,
+- Training: konkrete Aufgabentypen und zugehörige Kompetenzen,
+- Recall: abzurufende Kernideen und sichtbare Recall-Impulse,
+- Feynman: konkrete Erkläraufträge und Qualitätskriterien,
+- Flashcards: sichtbare Fragen und Antworten zu Begriffen und Verfahren.
+
+Für Binomialverteilung sind beispielsweise relevant:
+
+- Wann liegt eine binomialverteilte Zufallsgröße vor?
+- Welche Bedeutung haben n, p, k und X?
+- Wie berechnet man P(X = k)?
+- Wie werden Intervallwahrscheinlichkeiten formuliert und berechnet?
+- Wie hängen Erwartungswert und Standardabweichung mit n und p zusammen?
+- Welche typischen Modellierungs- und Intervallfehler treten auf?
+
+Diese Fragen sollten sinnvoll auf die Module verteilt werden.
+
+Empfohlen ist Progressive Enhancement:
+
+1. Jekyll rendert Kompetenzen, Fragen, Überschriften und wichtige Antworten.
+2. JavaScript übernimmt Eingaben, Zufallsauswahl, KI-Bewertung und Fortschritt.
+3. JSON-LD beschreibt exakt den bereits sichtbaren Inhalt.
+
+
+4. BEDEUTUNG DES PLATTFORMKONZEPTS
+
+konzept.md enthält starke Vertrauens- und Differenzierungssignale:
+
+- aktive Auseinandersetzung statt rein passivem Lesen,
+- formatives Feedback,
+- Spaced Repetition und zeitversetzte Check-Ketten,
+- Recall und Erklären nach der Feynman-Methode,
+- vorbereiteter fachlicher Kontext für KI-Rückmeldungen,
+- Kompetenzentwicklung statt bloßer Aufgabensammlung,
+- Schwerpunkt berufliches Gymnasium NRW, Wirtschaft und Verwaltung.
+
+Diese Aussagen sollten sichtbar, präzise und belegbar sein. Zusätzlich sinnvoll:
+
+- klar sichtbare Autorenschaft und Qualifikation,
+- Autorenseite für Dr. Sven Führing,
+- redaktionelle und fachliche Grundsätze,
+- Erläuterung der Prüfung von Inhalten und KI-Kontexten,
+- Quellen für lernpsychologische und curriculare Aussagen,
+- Datum fachlicher Überprüfung beziehungsweise Aktualisierung,
+- klare Zielgruppe und curriculare Einordnung.
+
+Aussagen wie "gut belegte Erkenntnisse" sollten mit seriösen Quellen oder einer
+kurzen Literaturbasis gestützt werden.
+
+
+5. SEO, GEO UND WEITERE SICHTBARKEITSFAKTOREN
+
+5.1 Technische SEO
+
+- Canonical-URL auf jeder indexierbaren Seite,
+- XML-Sitemap nur mit kanonischen, indexierbaren URLs,
+- robots.txt mit Sitemap-Verweis,
+- korrekte Statuscodes und Weiterleitungen,
+- eindeutige Title-Tags und Meta-Descriptions,
+- fachliche h1 und geordnete Überschriftenhierarchie,
+- mobile Nutzbarkeit,
+- keine wichtigen Inhalte nur hinter Anmeldung oder JavaScript,
+- Kontrolle von Duplikaten und Thin Content.
+
+5.2 Informationsarchitektur
+
+Die fachliche Struktur sollte auch in Links erkennbar sein:
+
+  Gebiet > Lernbereich > Kompetenz > Erklärung/Aufgabe
+
+Voraussetzungen, verwandte Themen und Folgethemen sollten als normale
+HTML-Links vorhanden sein.
+
+5.3 On-Page-Qualität
+
+- Nutzerfragen natürlich beantworten,
+- präzise Definitionen und nachvollziehbare Rechenwege,
+- Beispiele, Gegenbeispiele und typische Fehler,
+- sprechende Zwischenüberschriften und stabile Fragmentanker,
+- Bildbeschreibungen und Transkripte,
+- keine künstlichen Keyword-Wiederholungen,
+- keine massenhaft nahezu identischen Modulseiten.
+
+5.4 Performance und Core Web Vitals
+
+- Bibliotheken nur bei Bedarf laden,
+- JavaScript und CSS pro Seitentyp begrenzen,
+- feste Bild- und Widget-Dimensionen,
+- sichtbaren Erstinhalt nicht durch große Skripte blockieren,
+- reale Messung mit PageSpeed Insights und Felddaten.
+
+5.5 Vertrauenssignale
+
+- Autor, Qualifikation und Verantwortlichkeit,
+- Impressum und Datenschutz,
+- fachliche Prüf- und Aktualisierungsprozesse,
+- Quellen und curriculare Bezüge,
+- Grenzen der KI-Bewertung,
+- Kontakt- und Korrekturmöglichkeit.
+
+5.6 GEO / generative Antwortsysteme
+
+Für GEO gibt es kein verlässlich wirksames Spezial-Markup. Zukunftsfähig sind:
+
+- statisch zugänglicher Text,
+- direkte und fachlich eindeutige Antworten,
+- kurze Definitionen neben ausführlichen Herleitungen,
+- klar benannte Entitäten und Begriffe,
+- stabile URLs und Anker,
+- Quellen und Autorenschaft,
+- konsistente Daten zwischen Inhalt und JSON-LD,
+- gute interne Vernetzung,
+- zitierbare Abschnitte ohne erforderliche Client-Interaktion.
+
+Eine llms.txt kann später experimentell untersucht werden. Sie ist kein Ersatz
+für robots.txt, Sitemap, Informationsarchitektur oder sichtbaren Inhalt.
+
+
+6. DATENARCHITEKTUR
+
+Langfristig ist eine Quelle pro Lernbereich sinnvoll. Die Konsolidierung sollte
+aber als eigene Architektur-Migration geplant werden.
+
+Möglicher Zielzustand:
+
+  _data/lernbereiche/<slug>.yml
+
+mit slug, name, gebiet, didactic_order, worum_geht_es, vorkenntnisse sowie
+optional curricularer Einordnung und fachlichem Prüfstand.
+
+Vor der Umstellung müssen alle Verbraucher gemeinsam angepasst werden. Der
+bisherige Entwurf ist intern widersprüchlich, weil er eine einzige Quelle
+fordert, später aber noch lernbereiche_liste verwendet.
+
+Auch für Checks sollte genau eine kanonische Quelle gelten. Robuster Zielzustand:
+
+- _data/checks.json als Build-Zeit-Quelle,
+- /checks.json wird automatisch daraus für den Client erzeugt,
+- sichtbares HTML, JSON-LD und JavaScript nutzen dieselben Daten.
+
+Eine manuelle Kopie ist nur als kurzer Übergang mit automatischer
+Gleichheitsprüfung vertretbar. Die Datenmigration sollte nicht unnötig mit dem
+ersten SEO-Rollout gekoppelt werden.
+
+
+7. INDEXIERUNGSSTRATEGIE
+
+Nicht jede funktionale Seite muss indexiert werden. Pro Seitentyp ist zu klären:
+
+- Welche eigenständige Suchintention erfüllt die Seite?
+- Enthält sie ohne Anmeldung substanziellen statischen Inhalt?
+- Unterscheidet sie sich ausreichend von Schwesterseiten?
+- Gibt es eine bessere kanonische Zielseite für dieselbe Anfrage?
+
+Arbeitshypothese:
+
+- Startseiten und Skripte sind primäre organische Landingpages.
+- Kompetenzlisten können mit klaren Lernzielen eigenständig wertvoll sein.
+- Training, Recall, Feynman und Flashcards sind indexierbar, wenn wesentliche
+  Inhalte statisch sichtbar und fachlich eigenständig sind.
+- Konto, Feed und Dashboard gehören in der Regel nicht in den Suchindex.
+
+Die Entscheidung sollte anhand der Inhalte und Search-Console-Daten erfolgen.
+
+
+8. EMPFOHLENE REIHENFOLGE
+
+Phase 0 - Messbasis und Inventar
+
+- Search Console und Bing Webmaster Tools prüfen/einrichten.
+- indexierte URLs, Impressionen, Suchanfragen und Landingpages sichern.
+- URL-Inventar nach Seitentyp erstellen.
+- Indexierungsentscheidung pro Seitentyp dokumentieren.
+
+Phase 1 - Technische Grundlage
+
+- Canonicals, Sitemap und robots.txt ergänzen.
+- eindeutige Titles, Beschreibungen und fachliche h1 sicherstellen.
+- persönliche oder dünne Seiten bewusst steuern.
+- Statuscodes, Weiterleitungen und www-/https-Variante prüfen.
+- Social-Metadaten ergänzen.
+
+Phase 2 - Statischer fachlicher Kern
+
+- einen Pilot-Lernbereich wählen, beispielsweise Binomialverteilung.
+- Kompetenzen und zentrale Inhalte serverseitig ausgeben.
+- JavaScript auf Progressive Enhancement umstellen.
+- Suchintention jedes Moduls schärfen.
+- Links zu Voraussetzungen und verwandten Themen ergänzen.
+
+Phase 3 - Kleines, korrektes Schema
+
+- WebSite, Organization/Person und BreadcrumbList,
+- Course für den Lernbereich,
+- WebPage plus passende Hauptentität pro Modul,
+- Kompetenzen als DefinedTerm,
+- teaches und assesses korrekt verbinden.
+
+Phase 4 - Vertrauens- und Fachsignale
+
+- Autorenseite und Qualifikation,
+- redaktionelle/fachliche Grundsätze,
+- Quellen zur Lernarchitektur,
+- Aktualisierungs- und Prüfhinweise,
+- transparente Beschreibung der KI-Rückmeldung.
+
+Phase 5 - Datenkonsolidierung
+
+- Lernbereichsdaten zusammenführen,
+- Checks als einzige Build- und Client-Quelle organisieren,
+- Build-Prüfungen für Referenzen, IDs und JSON-LD ergänzen.
+
+Phase 6 - Performance und Skalierung
+
+- große Bibliotheken bedarfsgerecht laden,
+- Core Web Vitals messen und optimieren,
+- Pilot anhand der Ergebnisse auf weitere Lernbereiche übertragen.
+
+
+9. VALIDIERUNG UND ERFOLGSMESSUNG
+
+Technische Prüfungen:
+
+- bundle exec jekyll build,
+- erzeugtes HTML ohne JavaScript untersuchen,
+- JSON.parse für jeden JSON-LD-Block,
+- Schema.org Validator,
+- Google Rich Results Test für unterstützte Typen,
+- URL-Prüfung in Search Console,
+- Sitemap- und Canonical-Konsistenz,
+- mobile und Desktop-Performance.
+
+Inhaltliche Prüfungen:
+
+- sichtbarer Inhalt und Markup stimmen überein,
+- jede Behauptung ist fachlich korrekt,
+- jede indexierbare Seite besitzt eigenständigen Nutzen,
+- Kompetenzen und Check-IDs sind konsistent,
+- keine automatisch erzeugten leeren oder nahezu identischen Seiten.
+
+Messgrößen:
+
+- gültig indexierte kanonische URLs,
+- Impressionen und Klicks je Seitentyp,
+- Position nur im Kontext konkreter Suchanfragen,
+- Klickrate bei vergleichbarer Position,
+- gecrawlte, aber nicht indexierte Seiten,
+- Core Web Vitals,
+- organische Einstiegsseiten und anschließende Lerninteraktion.
+
+
+10. OFFENE ENTSCHEIDUNGEN
+
+1. Welche Modultypen sollen organische Landingpages sein?
+2. Passt Course zum sichtbaren Angebot besser als LearningResource?
+3. Welche Inhalte können ohne Anmeldung vollständig sichtbar sein?
+4. Wie werden Autorenschaft, Quellen und fachliche Prüfung sichtbar gemacht?
+5. Welche Quelle wird kanonisch für Lernbereiche und Checks?
+6. Welche curriculare Genauigkeit ist sinnvoll: Sekundarstufe II allgemein,
+   berufliches Gymnasium NRW oder konkrete Lehrplanbezüge?
+7. Welche Pilotseiten besitzen genug Suchnachfrage und Inhalt zur Messung?
+8. Welche persönlichen oder app-internen Seiten werden ausgeschlossen?
+
+
+11. GESAMTEMPFEHLUNG
+
+Nicht mit einer vollständigen Schema- und Datenmigration beginnen. Zuerst einen
+kleinen vertikalen Pilot umsetzen:
+
+- ein Lernbereich,
+- technisch sauber indexierbar,
+- fachlicher Kern vollständig im initialen HTML,
+- klare Seitentitel, Beschreibungen, h1 und interne Links,
+- anschließend ein kleines semantisch korrektes JSON-LD-Modell.
+
+Wenn Build, Validierung, Indexierung und Nutzererfahrung stimmen, kann das
+Muster auf weitere Lernbereiche übertragen werden. Diese Reihenfolge bleibt
+auch bei Änderungen einzelner Suchmaschinen und AI-Plattformen wertvoll: gute
+Inhalte, klare Beziehungen, sauberes HTML und überprüfbare Fachqualität.
+
+
+12. HERANGEZOGENE GRUNDLAGEN
+
+Lokaler Projektkontext:
+
+- mathechecks-schema-final.txt
+- konzept.md
+- _layouts/module.html
+- _includes/head.html
+- _includes/module/start-content.html
+- _includes/module/recall-content.html
+- _data/lernbereiche.yml
+- _data/start/binomialverteilung.yml
+- checks.json
+- erzeugte Seiten unter _site
+
+Externe Referenzpunkte:
+
+- Google Search Central: Structured Data Introduction
+- Google Search Central: Course List Structured Data
+- Google Search Central: Education Q&A Structured Data
+- Schema.org: Course, Syllabus, assesses, educationalLevel
+- Schema Markup Validator
+- Google Rich Results Test
+
+Diese Datei hält Analyse und Empfehlungen fest. Sie ist keine Garantie für
+Rankings, Rich Results oder Zitierungen durch generative Systeme.

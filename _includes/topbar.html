@@ -10,7 +10,7 @@
             <a class="logo" href="{{ '/index.html' | relative_url }}" aria-label="Startseite"
                 style="--logo-mask-url: url('{{ '/assets/img/logo-dark-mode.svg' | relative_url }}');"></a>
             <div class="brand-text">
-                <h1>MatheChecks</h1>
+                <span class="brand-title">MatheChecks</span>
                 {% if header_context != "" %}
                 <p class="brand-context">
                     {{ header_context }}{% if show_header_status %}<span class="brand-status" data-konto-header-status data-tone="neutral" hidden></span>{% endif %}
