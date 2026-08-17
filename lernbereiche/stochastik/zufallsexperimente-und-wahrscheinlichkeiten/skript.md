@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Zufallsexperimente und Wahrscheinlichkeiten - Skript
-description: Lernbereich Zufallsexperimente und Wahrscheinlichkeiten, Modul Skript.
+title: "Zufallsexperimente und Wahrscheinlichkeiten erklärt – mit Beispielen"
+description: "Zufallsexperimente und Wahrscheinlichkeiten erklärt: Laplace-Experimente, relative Häufigkeiten, Axiome von Kolmogorov und Venn-Diagramme."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: zufallsexperimente-und-wahrscheinlichkeiten
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/skript.html
 ---
+
+# Zufallsexperimente und Wahrscheinlichkeiten: von Laplace bis Kolmogorov
 
 ## Einführung
 

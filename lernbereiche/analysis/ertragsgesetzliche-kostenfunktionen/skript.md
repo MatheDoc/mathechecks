@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Ertragsgesetzliche Kostenfunktionen - Skript
-description: Lernbereich Ertragsgesetzliche Kostenfunktionen, Modul Skript.
+title: "Ertragsgesetzliche Kostenfunktionen erklärt – Nachweis und Kennzahlen"
+description: "Ertragsgesetzliche Kostenfunktionen erklärt: rechnerischer Nachweis, wichtige Kennzahlen, graphische Darstellung und Steckbriefaufgaben – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
 permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/skript.html
 ---
+
+# Ertragsgesetzliche Kostenfunktionen: Nachweis, Kennzahlen und Berechnungen
 
 ## Einführung
 

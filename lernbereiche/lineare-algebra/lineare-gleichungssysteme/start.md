@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Lineare Gleichungssysteme - Start
-description: Lernbereich Lineare Gleichungssysteme, Modul Start.
+title: "Lineare Gleichungssysteme üben – Aufgaben mit Lösungen"
+description: "Lineare Gleichungssysteme üben: Aufgaben mit Lösungen zu Lösungsverfahren und Lösungsarten – kostenlos üben mit direktem Feedback."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

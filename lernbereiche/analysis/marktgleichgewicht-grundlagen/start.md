@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Marktgleichgewicht - Grundlagen - Start
-description: Lernbereich Marktgleichgewicht - Grundlagen, Modul Start.
+title: "Marktgleichgewicht üben – Aufgaben zu Angebot und Nachfrage"
+description: "Marktgleichgewicht üben: Aufgaben mit Lösungen zu Gleichgewichtspreis, Angebot und Nachfrage – kostenlos fürs berufliche Gymnasium."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Hypothesentests - Skript
-description: Lernbereich Hypothesentests, Modul Skript.
+title: "Hypothesentests erklärt – Entscheidungsregel und Fehlerwahrscheinlichkeiten"
+description: "Hypothesentests erklärt: Grundbegriffe, Entscheidungsregel herleiten, Testparameter aus Fehlerwahrscheinlichkeiten rekonstruieren – Schritt für Schritt."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: hypothesentests
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/hypothesentests/skript.html
 ---
+
+# Hypothesentests: Grundbegriffe, Entscheidungsregel und Fehlerwahrscheinlichkeiten
 
 ## Einführung
 

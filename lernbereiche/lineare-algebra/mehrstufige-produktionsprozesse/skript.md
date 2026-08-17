@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Mehrstufige Produktionsprozesse - Skript
-description: Lernbereich Mehrstufige Produktionsprozesse, Modul Skript.
+title: "Mehrstufige Produktionsprozesse erklärt – Produktionsmatrizen und Mengen"
+description: "Mehrstufige Produktionsprozesse erklärt: Produktionsmatrizen aufstellen, Input- und Output-Mengen berechnen, Kosten, Erlöse und Gewinn – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: mehrstufige-produktionsprozesse
 gebiet: lineare-algebra
 permalink: /lernbereiche/lineare-algebra/mehrstufige-produktionsprozesse/skript.html
 ---
+
+# Mehrstufige Produktionsprozesse: Produktionsmatrizen und Mengenberechnungen
 
 ## Einführung
 

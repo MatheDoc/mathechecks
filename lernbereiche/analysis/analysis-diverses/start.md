@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Analysis - Diverses - Start
-description: Lernbereich Analysis - Diverses, Modul Start.
+title: "Analysis-Aufgaben üben – Funktionstypen und Regression"
+description: "Vermischte Analysis-Aufgaben für die Oberstufe: Funktionstypen erkennen und Daten modellieren – interaktive Übungen mit direktem Feedback, kostenlos."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

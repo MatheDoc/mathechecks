@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Ganzrationale ökonomische Funktionen - Skript
-description: Lernbereich Ganzrationale ökonomische Funktionen, Modul Skript.
+title: "Ganzrationale ökonomische Funktionen erklärt – Kennzahlen und Berechnungen"
+description: "Ganzrationale ökonomische Funktionen erklärt: Kennzahlen, graphische Darstellungen und Berechnungen im Sachzusammenhang – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: ganzrationale-oekonomische-funktionen
 gebiet: analysis
 permalink: /lernbereiche/analysis/ganzrationale-oekonomische-funktionen/skript.html
 ---
+
+# Ganzrationale ökonomische Funktionen: Kennzahlen, Graphen und Berechnungen
 
 ## Einführung
 

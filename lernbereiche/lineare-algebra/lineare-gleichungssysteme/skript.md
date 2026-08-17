@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Lineare Gleichungssysteme - Skript
-description: Lernbereich Lineare Gleichungssysteme, Modul Skript.
+title: "Lineare Gleichungssysteme erklärt – Lösungsverfahren und Lösungsarten"
+description: "Lineare Gleichungssysteme erklärt: Lösungsverfahren Schritt für Schritt, Lösungsarten, allgemeine Systeme und das Rangkriterium – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
 permalink: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/skript.html
 ---
+
+# Lineare Gleichungssysteme: Lösungsverfahren, Lösungsarten und Rangkriterium
 
 ## Einführung
 

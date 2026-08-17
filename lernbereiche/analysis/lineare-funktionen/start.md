@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Lineare Funktionen - Start
-description: Lernbereich Lineare Funktionen, Modul Start.
+title: "Lineare Funktionen üben – Aufgaben mit Lösungen"
+description: "Lineare Funktionen üben: Aufgaben mit Lösungen zu Geradengleichung, Steigung und Anwendungen – kostenlos üben mit direktem Feedback."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

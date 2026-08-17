@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Marktgleichgewicht - Grundlagen - Skript
-description: Lernbereich Marktgleichgewicht - Grundlagen, Modul Skript.
+title: "Marktgleichgewicht erklärt – Gleichgewichtspreis und -menge berechnen"
+description: "Marktgleichgewicht erklärt: Angebots- und Nachfragefunktion, Gleichgewichtspreis und -menge berechnen, Marktsituationen deuten – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: marktgleichgewicht-grundlagen
 gebiet: analysis
 permalink: /lernbereiche/analysis/marktgleichgewicht-grundlagen/skript.html
 ---
+
+# Marktgleichgewicht: Angebot, Nachfrage und Gleichgewichtspreis
 
 ## Einführung
 

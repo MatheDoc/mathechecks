@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Bedingte Wahrscheinlichkeiten - Skript
-description: Lernbereich Bedingte Wahrscheinlichkeiten, Modul Skript.
+title: "Bedingte Wahrscheinlichkeiten erklärt – Baumdiagramme und Vier-Felder-Tafeln"
+description: "Bedingte Wahrscheinlichkeiten erklärt: Berechnung mit Baumdiagrammen und Vier-Felder-Tafeln, stochastische Unabhängigkeit und Venn-Diagramme."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: bedingte-wahrscheinlichkeiten
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/skript.html
 ---
+
+# Bedingte Wahrscheinlichkeiten: Baumdiagramme, Vier-Felder-Tafeln und Unabhängigkeit
 
 ## Einführung
 

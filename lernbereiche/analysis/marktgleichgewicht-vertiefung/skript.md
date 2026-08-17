@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Marktgleichgewicht - Vertiefung - Skript
-description: Lernbereich Marktgleichgewicht - Vertiefung, Modul Skript.
+title: "Konsumentenrente und Produzentenrente erklärt – mit Beispielen"
+description: "Konsumentenrente und Produzentenrente erklärt: Berechnung und grafische Deutung am Marktgleichgewicht, Abschöpfung der Konsumentenrente – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: marktgleichgewicht-vertiefung
 gebiet: analysis
 permalink: /lernbereiche/analysis/marktgleichgewicht-vertiefung/skript.html
 ---
+
+# Konsumentenrente und Produzentenrente am Marktgleichgewicht
 
 ## Wiederholung
 

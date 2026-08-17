@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Produktlebenszyklus - Skript
-description: Lernbereich Produktlebenszyklus, Modul Skript.
+title: "Produktlebenszyklus erklärt – Kennzahlen mit und ohne Integration"
+description: "Produktlebenszyklus mathematisch erklärt: Kennzahlen graphisch und rechnerisch bestimmen, mit und ohne Integration – inklusive EKG-Zyklus."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: produktlebenszyklus
 gebiet: analysis
 permalink: /lernbereiche/analysis/produktlebenszyklus/skript.html
 ---
+
+# Produktlebenszyklus: Kennzahlen graphisch und rechnerisch bestimmen
 
 ## Einführung
 

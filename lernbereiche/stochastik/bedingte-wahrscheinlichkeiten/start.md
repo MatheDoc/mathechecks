@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Bedingte Wahrscheinlichkeiten - Start
-description: Lernbereich Bedingte Wahrscheinlichkeiten, Modul Start.
+title: "Bedingte Wahrscheinlichkeiten üben – Aufgaben mit Lösungen"
+description: "Bedingte Wahrscheinlichkeiten üben: Aufgaben mit Lösungen zu Vier-Felder-Tafeln, Baumdiagrammen und Unabhängigkeit – kostenlos für die Oberstufe."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
