@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Binomialverteilung - Skript
-description: Lernbereich Binomialverteilung, Modul Skript.
+title: "Binomialverteilung erklärt – Bernoulli-Formel, Erwartungswert, Beispiele"
+description: "Binomialverteilung verständlich erklärt: Bernoulli-Formel mit Herleitung, Intervallwahrscheinlichkeiten, Histogramme, Bestimmung von n, p und k sowie Erwartungswert und Standardabweichung – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: binomialverteilung
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/binomialverteilung/skript.html
 ---
+
+# Binomialverteilung: Erklärung, Bernoulli-Formel und Beispiele
 
 ## Einführung
 
