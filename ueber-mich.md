@@ -32,7 +32,7 @@ Im Unterricht erlebe ich immer wieder, wie viel möglich ist, wenn Lernende akti
 
 Die empirische Bildungsforschung erklärt beides gut: Wissen verankert sich durch aktives Abrufen statt passives Lesen und durch systematisches Üben. Ich wollte ein Werkzeug haben, das diese Prinzipien konsequent umsetzt und das ich meinen eigenen Kursen guten Gewissens in die Hand geben kann.
 
-Digitale Lernangebote gibt es viele. Plattformen wie Moodle oder die Apps aus dem Microsoft-Kosmos sind stark in Verwaltung und Kommunikation. Auf komplexe Lernprozesse sind sie dagegen kaum ausgerichtet. Dateien werden bloß abgelegt, vielschichtige Interaktivität kommt selten vor, und konkrete Lerntechniken sind nicht implementiert. Hinzu kommen praktische Schwächen: Mathematische Formeln werden nicht sauber gesetzt, viele Darstellungen sind nicht responsiv, und einer generischen KI fehlt häufig das fachliche und pädagogische Kontextwissen für verlässliche Rückmeldungen.
+Digitale Lernangebote gibt es viele. Plattformen wie Moodle oder die Apps aus dem Microsoft-Kosmos sind stark in Verwaltung und Kommunikation. Auf komplexe Lernprozesse sind sie dagegen selten ausgerichtet. Dateien werden bloß abgelegt, vielschichtige Interaktivität kommt kaum vor, und konkrete Lerntechniken sind nicht implementiert. Hinzu kommen praktische Schwächen: Mathematische Formeln werden nicht sauber gesetzt, viele Darstellungen sind nicht responsiv, und einer generischen KI fehlt häufig das fachliche und pädagogische Kontextwissen für verlässliche Rückmeldungen.
 
 Genau das will ich mit MatheChecks anders machen. Wie das im Einzelnen funktioniert, steht auf der [Konzeptseite]({{ '/konzept.html' | relative_url }}).
 
