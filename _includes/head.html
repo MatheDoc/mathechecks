@@ -1,9 +1,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ page.title | default: "MatheChecks" }} – MatheChecks</title>
-{% if page.description %}
-<meta name="description" content="{{ page.description | strip_newlines | escape }}">
+{% comment %} SEO: Canonical der App-Module zeigt auf die Lernbereich-Startseite (Landingpages: start + skript) {% endcomment %}
+{% assign app_modules = "warmup,kompetenzliste,training,recall,feynman,flashcards" | split: "," %}
+{% if page.module_key and app_modules contains page.module_key %}
+{% assign canonical_url = site.url | append: "/lernbereiche/" | append: page.gebiet | append: "/" | append: page.lernbereich | append: "/start.html" %}
+{% else %}
+{% assign canonical_url = page.url | replace: "index.html", "" | prepend: site.url %}
 {% endif %}
+{% assign meta_description = page.description | default: site.description %}
+{% if page.url == "/" or page.url == "/index.html" %}
+<title>MatheChecks – Mathe üben für die Oberstufe: Analysis, Stochastik, Lineare Algebra</title>
+{% else %}
+<title>{{ page.title | default: "MatheChecks" }} – MatheChecks</title>
+{% endif %}
+<meta name="description" content="{{ meta_description | strip_newlines | strip | escape }}">
+{% if page.noindex %}
+<meta name="robots" content="noindex, follow">
+{% endif %}
+<link rel="canonical" href="{{ canonical_url }}">
+<meta property="og:site_name" content="MatheChecks">
+<meta property="og:title" content="{{ page.title | default: 'MatheChecks' | escape }}">
+<meta property="og:description" content="{{ meta_description | strip_newlines | strip | escape }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ site.url }}/assets/img/icon-512.png">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary">
 <link rel="icon" href="{{ '/assets/img/icon-source.svg?v=20260518-dark-favicon' | relative_url }}" type="image/svg+xml" sizes="any" />
 <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" type="image/x-icon" />
 <link rel="icon" href="{{ '/assets/img/icon-192.png' | relative_url }}" type="image/png" sizes="192x192" />

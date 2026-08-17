@@ -1,7 +1,7 @@
 ﻿---
 layout: shell
 title: MatheChecks
-description: Startseite der MatheChecks-Lernplattform.
+description: "Kostenlos Mathe üben für die Oberstufe: interaktive Aufgaben mit direktem Feedback, Erklärungen und Karteikarten zu Analysis, Stochastik und Linearer Algebra."
 page_context: Start
 nav: home
 body_class: page-home

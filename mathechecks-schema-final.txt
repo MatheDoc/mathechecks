@@ -1,0 +1,349 @@
+# MatheChecks — Finale Architektur: Schema.org + sichtbarer Content
+
+Diese Version ersetzt die vorherigen Entwürfe. Wichtigste Änderungen gegenüber
+den früheren Zwischenständen:
+
+- **Eine einzige Quelle pro Lernbereich**: keine separate flache Liste mehr,
+  sondern ausschließlich `_data/lernbereiche/<slug>.yml` mit allen Feldern
+  (`gebiet`, `didactic_order`, `name`, `slug`, `worum_geht_es`, `vorkenntnisse`).
+  Zugriff überall per direktem Hash-Lookup: `site.data.lernbereiche[page.lernbereich]`
+- **Für Navigation/Dropdown**: Jekylls `sort`/`where`/`group_by`-Filter sind
+  Jekyll-eigene Erweiterungen (nicht Standard-Liquid) und funktionieren auch
+  direkt auf einem Hash wie `site.data.lernbereiche` — sie greifen dann intern
+  auf `.values` zurück. Das `slug`-Feld muss dafür redundant zum Dateinamen in
+  jeder Datei stehen, da der Dateiname selbst beim Sortieren/Gruppieren nicht
+  automatisch mitgeliefert wird. Vor dem Rollout kurz gegentesten
+  (`{% assign x = site.data.lernbereiche | sort: "didactic_order" %}`), falls
+  eure Jekyll-Version davon abweicht
+- Kompetenzen kommen **nicht** aus einem manuell gepflegten YAML-Feld, sondern
+  direkt aus `checks.json` (`"Ich kann"`-Feld) — keine doppelte Pflege
+- `szenario*`-Felder werden überall ignoriert
+- Alle Texte, die in JSON-LD landen, laufen durch den `jsonify`-Filter statt
+  durch `{{ }}`-Interpolation — sonst bricht das JSON, sobald ein Text
+  Anführungszeichen oder LaTeX-Backslashes enthält (bei dir sehr wahrscheinlich,
+  siehe deine `Tipps`-Einträge mit `\\(n\\)`)
+
+---
+
+## Architekturüberblick
+
+```
+_data/lernbereiche/<slug>.yml  → gebiet, didactic_order, name, slug, worum_geht_es, vorkenntnisse
+_data/checks.json               → Kopie von checks.json, für Build-Zeit-Zugriff
+_data/gebiete.yml                → vermutlich schon vorhanden (aus gebiete-data)
+_data/moduletypen.yml            → vermutlich schon vorhanden (aus moduletypen-data)
+
+_includes/schema-course.html   → Kopf, Dach-Entity (Course), identisch auf allen 7 Seiten
+_includes/schema-page.html     → Kopf, seitenspezifisches WebPage + mainEntity
+_includes/module-intro.html    → Body, sichtbarer Einleitungstext, einmal im Layout
+
+_layouts/module.html      → bindet alle drei Includes ein + Meta-Description-Fix
+```
+
+---
+
+## 1. `_data/lernbereiche/binomialverteilung.yml`
+
+Einzige Quelle für diesen Lernbereich. `slug` ergänzt (redundant zum
+Dateinamen, aber nötig für sortierte/gruppierte Listen wie das Dropdown-Menü).
+`gebiet`, `didactic_order`, `name` aus der bisherigen flachen Liste hierher
+verschoben.
+
+```yaml
+gebiet: stochastik
+slug: binomialverteilung
+didactic_order: 5
+name: Binomialverteilung
+
+worum_geht_es: >
+  Binomialverteilten Zufallsgrößen liegen mehrstufige Zufallsexperimente zugrunde,
+  bei denen es auf jeder Stufe nur zwei mögliche Ergebnisse mit jeweils festen
+  Wahrscheinlichkeiten gibt. Aufgrund dieser klaren Struktur lassen sich viele
+  Aufgaben systematisch lösen.
+
+vorkenntnisse:
+  - slug: zufallsexperimente-und-wahrscheinlichkeiten
+    name: Zufallsexperimente und Wahrscheinlichkeiten
+  - slug: mehrstufige-zufallsexperimente
+    name: Mehrstufige Zufallsexperimente
+  - slug: zufallsgroessen
+    name: Zufallsgrößen
+
+# szenario, szenario_einstieg, szenario_abschluss, szenario_bild: ignorieren
+```
+
+## 2. Navigation/Dropdown ohne flache Liste
+
+Falls dein bestehendes Dropdown-Menü (die `<select class="lb-switch">` aus
+deinem Recall-Quelltext) aktuell aus der flachen `lernbereiche.yml` gespeist
+wird, ersetzt du das durch:
+
+```liquid
+{% assign alle_lernbereiche = site.data.lernbereiche | sort: "didactic_order" %}
+{% assign gruppen = alle_lernbereiche | group_by: "gebiet" %}
+
+{% for gruppe in gruppen %}
+  <optgroup label="{{ gruppe.name }}">
+    {% for lb in gruppe.items %}
+      <option value="/lernbereiche/{{ lb.gebiet }}/{{ lb.slug }}/start.html" data-gebiet="{{ lb.gebiet }}">
+        {{ lb.name }}
+      </option>
+    {% endfor %}
+  </optgroup>
+{% endfor %}
+```
+
+Falls das bei deiner Jekyll-Version nicht wie erwartet funktioniert (Hash als
+Filter-Input ist ein Sonderfall, der sich zwischen Jekyll-Versionen leicht
+unterscheiden kann), ist die robuste Alternative, `alle_lernbereiche` erst
+explizit in ein Array umzuwandeln:
+
+```liquid
+{% assign alle_lernbereiche = "" | split: "" %}
+{% for pair in site.data.lernbereiche %}
+  {% assign alle_lernbereiche = alle_lernbereiche | push: pair[1] %}
+{% endfor %}
+{% assign alle_lernbereiche = alle_lernbereiche | sort: "didactic_order" %}
+```
+
+(`push` ist ein Jekyll-Array-Filter, seit einigen Jekyll-Versionen verfügbar —
+falls nicht, tut's notfalls auch eine `capture`-basierte Krücke, aber das
+wird selten nötig sein.)
+
+---
+
+## 2. `_data/checks.json`
+
+Kopie deiner bestehenden `checks.json` (die weiterhin zusätzlich als statische
+Datei für den Client-Fetch im Root/`assets` liegen bleibt). Struktur wie von
+dir gezeigt — relevant sind hier vor allem `Lernbereich`, `Nummer`,
+`"Ich kann"`, `Schlagwort`, `check_id`.
+
+Falls du das Duplizieren später vermeiden willst: `checks.json` im Root kann
+über Jekyll-Front-Matter selbst generiert werden (`---\n---\n{{ site.data.checks | jsonify }}`),
+sodass es nur noch eine Quelle gibt. Für den Start reicht die einfache Kopie.
+
+---
+
+## 3. `_includes/schema-course.html`
+
+Dach-Entity, identisch auf allen 7 Modulseiten. `lb` kommt jetzt per direktem
+Hash-Zugriff aus dem Ordner `_data/lernbereiche/`; `lb_meta` liefert
+`name`/`gebiet` aus der umbenannten Listendatei.
+
+```liquid
+{% assign lb = site.data.lernbereiche[page.lernbereich] %}
+{% assign lb_meta = site.data.lernbereiche_liste | where: "slug", page.lernbereich | first %}
+{% assign gebiet_info = site.data.gebiete | where: "key", page.gebiet | first %}
+{% assign base_url = site.url | append: "/lernbereiche/" | append: page.gebiet | append: "/" | append: page.lernbereich | append: "/" %}
+{% assign modules = "start,kompetenzliste,training,recall,feynman,skript,flashcards" | split: "," %}
+{% assign prereq_names = lb.vorkenntnisse | map: "name" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "@id": "{{ base_url }}#course",
+  "name": {{ lb_meta.name | jsonify }},
+  "description": {{ lb.worum_geht_es | jsonify }},
+  "about": {{ lb_meta.name | jsonify }},
+  "inLanguage": "de",
+  "provider": {
+    "@type": "Organization",
+    "name": "MatheChecks",
+    "url": "{{ site.url }}"
+  },
+  "educationalLevel": "Sekundarstufe II / Abitur",
+  "isPartOf": {
+    "@type": "Course",
+    "name": {{ gebiet_info.name | jsonify }}
+  },
+  "coursePrerequisites": [
+    {% for p in prereq_names %}{{ p | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}
+  ],
+  "hasPart": [
+    {% for m in modules %}{ "@id": "{{ base_url }}{{ m }}.html#page" }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+```
+
+**Optionale Ausbaustufe:** Da `vorkenntnisse` bereits `slug` mitliefert, ließe
+sich `coursePrerequisites` später statt als reine Namensliste auch als Liste
+verlinkter `Course`-Objekte mit `@id` auf die jeweilige `#course`-Verankerung
+der Vorkenntnis-Lernbereiche aufbauen — dafür müsste zusätzlich deren `gebiet`
+bekannt sein (Lookup über `lernbereiche_liste`). Für den Start reicht die
+einfache Namensliste.
+
+---
+
+## 4. `_includes/schema-page.html`
+
+Seitenspezifisch. Kompetenzen für `kompetenzliste` und `assesses`-Referenzen
+für die anderen Module kommen jetzt aus `checks.json`.
+
+```liquid
+{% assign lb = site.data.lernbereiche[page.lernbereich] %}
+{% assign base_url = site.url | append: "/lernbereiche/" | append: page.gebiet | append: "/" | append: page.lernbereich | append: "/" %}
+{% assign page_url = base_url | append: page.module_key | append: ".html" %}
+{% assign checks = site.data.checks | where: "Lernbereich", page.lernbereich | sort: "Nummer" %}
+
+{% case page.module_key %}
+  {% when "start" %}
+    {% assign entity_type = "LearningResource" %}
+    {% assign resource_type = "overview" %}
+  {% when "kompetenzliste" %}
+    {% assign entity_type = "Syllabus" %}
+  {% when "training" %}
+    {% assign entity_type = "LearningResource" %}
+    {% assign resource_type = "practice problems" %}
+  {% when "recall" %}
+    {% assign entity_type = "Quiz" %}
+    {% assign resource_type = "assessment" %}
+  {% when "feynman" %}
+    {% assign entity_type = "LearningResource" %}
+    {% assign resource_type = "self-explanation exercise" %}
+  {% when "skript" %}
+    {% assign entity_type = "Article" %}
+  {% when "flashcards" %}
+    {% assign entity_type = "LearningResource" %}
+    {% assign resource_type = "flashcards" %}
+{% endcase %}
+
+{% assign assesses_modules = "training,recall,feynman,flashcards" | split: "," %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ page_url }}#page",
+  "url": "{{ page_url }}",
+  "name": {{ page.title | jsonify }},
+  "description": {{ lb.worum_geht_es | jsonify }},
+  "isPartOf": { "@id": "{{ base_url }}#course" },
+  "mainEntity": {
+    "@type": "{{ entity_type }}"
+    {% if resource_type %},"learningResourceType": "{{ resource_type }}"{% endif %}
+    ,"name": {{ page.title | jsonify }}
+    {% if page.module_key == "kompetenzliste" %}
+    ,"@id": "{{ base_url }}kompetenzliste.html#syllabus"
+    ,"syllabusSections": [
+      {% for c in checks %}
+      {
+        "@type": "DefinedTerm",
+        "name": {{ c["Ich kann"] | jsonify }},
+        "termCode": {{ c.check_id | jsonify }}
+      }{% unless forloop.last %},{% endunless %}
+      {% endfor %}
+    ]
+    {% endif %}
+    {% if assesses_modules contains page.module_key %}
+    ,"assesses": { "@id": "{{ base_url }}kompetenzliste.html#syllabus" }
+    {% endif %}
+  }
+}
+</script>
+```
+
+---
+
+## 5. `_includes/module-intro.html`
+
+Sichtbarer Text, einmal zentral im Layout eingebunden (nicht pro `.md`-Datei).
+Nutzt dieselbe `lb.description` wie das Schema (Konsistenz) plus konkrete
+Kompetenzformulierungen aus `checks.json`.
+
+```liquid
+{% assign lb = site.data.lernbereiche[page.lernbereich] %}
+{% assign lb_meta = site.data.lernbereiche_liste | where: "slug", page.lernbereich | first %}
+{% assign checks = site.data.checks | where: "Lernbereich", page.lernbereich | sort: "Nummer" %}
+
+{% case page.module_key %}
+
+  {% when "start" %}
+    <p class="module-intro-text">{{ lb.worum_geht_es }}</p>
+    {% comment %} Vorkenntnisse-Links werden auf der Start-Seite bereits an anderer Stelle gerendert — hier nicht doppeln. {% endcomment %}
+
+  {% when "kompetenzliste" %}
+    <p class="module-intro-text">
+      Alle Kompetenzen zu {{ lb_meta.name }} im Überblick — {{ checks | size }} insgesamt.
+    </p>
+
+  {% when "training" %}
+    <p class="module-intro-text">
+      Übe hier typische Aufgaben zu {{ lb_meta.name }}, u. a.:
+      {% for c in checks limit: 3 %}{{ c.Schlagwort }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+    </p>
+
+  {% when "recall" %}
+    <p class="module-intro-text">Hier rufst du die Kernideen zu {{ lb_meta.name }} gezielt ab:</p>
+    <ul class="module-intro-competencies">
+      {% for c in checks %}
+        <li>{{ c.Schlagwort }}: {{ c["Ich kann"] }}</li>
+      {% endfor %}
+    </ul>
+
+  {% when "feynman" %}
+    <p class="module-intro-text">
+      Erkläre {{ lb_meta.name }} in eigenen Worten und finde deine Denkfehler —
+      unter anderem zu: {% for c in checks limit: 3 %}{{ c.Schlagwort }}{% unless forloop.last %}, {% endunless %}{% endfor %}.
+    </p>
+
+  {% when "skript" %}
+    <p class="module-intro-text">{{ lb.worum_geht_es }}</p>
+
+  {% when "flashcards" %}
+    <p class="module-intro-text">
+      Wiederhole zentrale Begriffe und Verfahren zu {{ lb_meta.name }} mit Karteikarten.
+    </p>
+
+{% endcase %}
+```
+
+**Hinweis:** Bei `recall` wird hier die vollständige Kompetenzliste als
+sichtbare `<ul>` ausgegeben — das ist bewusst der stärkste Content-Zuwachs,
+da er die leere Seite von vorhin direkt mit echtem, fachlich präzisem Text
+füllt. Optisch dezent stylen (`.module-intro-competencies`), falls das UI-mäßig
+nicht dominant wirken soll — für Crawler zählt nur die Präsenz im HTML.
+
+---
+
+## 6. Einbindung in `_layouts/module.html`
+
+Im `<head>`:
+
+```liquid
+<head>
+  ...
+  {% assign lb = site.data.lernbereiche[page.lernbereich] %}
+  <meta name="description" content="{{ page.description | default: lb.worum_geht_es }}">
+  {% include schema-course.html %}
+  {% include schema-page.html %}
+</head>
+```
+
+Im Body, an der Stelle, wo aktuell dein Modul-Content (`{% include module/recall-content.html %}` etc.) eingebunden wird:
+
+```liquid
+<main class="mod-content mod-content-stage">
+  {% include module-intro.html %}
+  {{ content }}
+</main>
+```
+
+Da `page.description` in deinen `.md`-Dateien schon existiert (siehe dein
+Front Matter), greift der `default`-Fallback auf `lb.worum_geht_es` nur, falls
+es dort mal fehlt — ansonsten bleibt die seitenspezifische Beschreibung
+erhalten.
+
+---
+
+## Vor dem Rollout prüfen
+
+1. `bundle exec jekyll build`, dann eine erzeugte Datei aus `_site/` öffnen
+   und den JSON-LD-Block manuell auf Validität prüfen (besonders bei
+   Kompetenzformulierungen mit Sonderzeichen oder LaTeX)
+2. [Schema Markup Validator](https://validator.schema.org/)
+3. [Rich Results Test](https://search.google.com/test/rich-results)
+4. Stichprobe: "Seitenquelltext anzeigen" auf `recall.html` — jetzt sollte
+   dort die `<ul class="module-intro-competencies">` mit echtem Text stehen

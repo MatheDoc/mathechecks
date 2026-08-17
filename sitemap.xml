@@ -1,0 +1,28 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- comment -%}
+Bewusst kuratierte Sitemap (statt jekyll-sitemap):
+nur Landingpages (start + skript je Lernbereich) und zentrale Seiten.
+App-Module (training, recall, feynman, flashcards, kompetenzliste, warmup)
+haben Canonical auf start und gehören nicht hierher.
+{%- endcomment -%}
+{%- assign root_pages = "/,/index.html,/material.html,/konzept.html,/ueber-mich.html,/impressum.html,/datenschutz.html" | split: "," -%}
+{%- for p in site.pages -%}
+{%- if p.noindex -%}{%- continue -%}{%- endif -%}
+{%- assign include_page = false -%}
+{%- if root_pages contains p.url -%}
+{%- assign include_page = true -%}
+{%- elsif p.module_key == "start" or p.module_key == "skript" -%}
+{%- assign include_page = true -%}
+{%- endif -%}
+{%- if include_page %}
+  <url>
+    <loc>{{ p.url | replace: "index.html", "" | prepend: site.url }}</loc>
+  </url>
+{%- endif -%}
+{%- endfor %}
+</urlset>

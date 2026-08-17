@@ -20,7 +20,22 @@ MatheChecks deckt aktuell Teile des Mathematikstoffs der Sekundarstufe II ab, vo
 
 Die Inhalte gliedern sich in [Lernbereiche]({{ '/material.html' | relative_url }}). Ein Lernbereich besteht aus mehreren Checks, die didaktisch sinnvoll aufeinander aufbauen. Zu jedem Check gehören Aktivitäten, die unterschiedliche kognitive Prozesse ansprechen: Aufgaben rechnen, Kernpunkte aus dem Gedächtnis abrufen und Zusammenhänge mit eigenen Worten erklären.
 
-Zu jedem Lernbereich gibt es außerdem ein Skript, das sämtliche Inhalte zusammenfasst und vertieft. Interaktive Widgets laden dort zum Ausprobieren ein, und Flashcards helfen dabei, das Gelernte langfristig zu behalten.
+Ergänzend zu den Check-Aktivitäten begleiten drei weitere Module jeden Lernbereich:
+
+<div class="konzept-cards">
+    <article class="konzept-card" style="--kc-color: var(--mt-start, #245f43)">
+        <h3>Start</h3>
+        <p>Ziele, Voraussetzungen und der empfohlene Lernpfad geben Orientierung für den Einstieg in den Lernbereich.</p>
+    </article>
+    <article class="konzept-card" style="--kc-color: var(--mt-skript, #4ade80)">
+        <h3>Skript</h3>
+        <p>Die Inhalte des Lernbereichs zusammengefasst und vertieft, mit Beispielen und interaktiven Widgets zum Ausprobieren.</p>
+    </article>
+    <article class="konzept-card" style="--kc-color: var(--mt-flashcards, #f472b6)">
+        <h3>Flashcards</h3>
+        <p>Zentrale Begriffe und Verfahren gezielt wiederholen, damit das Gelernte langfristig im Gedächtnis bleibt.</p>
+    </article>
+</div>
 
 Ich baue MatheChecks so, wie ich es mir für meine eigenen Kurse wünsche. Dadurch liegt ein Schwerpunkt aktuell auf dem beruflichen Gymnasium in NRW, Fachbereich Wirtschaft und Verwaltung.
 
