@@ -4,7 +4,7 @@ title: "Über mich"
 description: "Wer hinter MatheChecks steht: Mathematiklehrer am Beruflichen Gymnasium, promoviert, in der Lehrerfortbildung tätig – und Entwickler der Plattform."
 permalink: /ueber-mich.html
 body_class: page-legal page-static-narrow
-page_css: /assets/css/info-pages.css?v=20260817-portrait
+page_css: /assets/css/info-pages.css?v=20260817-h1-margin
 show_footer: true
 ---
 
