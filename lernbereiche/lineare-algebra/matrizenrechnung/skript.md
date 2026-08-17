@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Matrizenrechnung - Skript
-description: Lernbereich Matrizenrechnung, Modul Skript.
+title: "Matrizenrechnung erklärt – Multiplikation, Inverse, Determinante"
+description: "Matrizenrechnung erklärt: Addition, Skalar- und Matrizenmultiplikation, inverse Matrix, Transponierte und Determinante – Schritt für Schritt mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: matrizenrechnung
 gebiet: lineare-algebra
 permalink: /lernbereiche/lineare-algebra/matrizenrechnung/skript.html
 ---
+
+# Matrizenrechnung: von der Addition bis zur Determinante
 
 ## Was ist eine Matrix?
 

@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Analysis - Diverses - Skript
-description: Lernbereich Analysis - Diverses, Modul Skript.
+title: "Regression erklärt – passende Funktionen zu Daten finden"
+description: "Regression Schritt für Schritt erklärt: passende Funktionstypen zu Daten finden – lineare, quadratische und exponentielle Regression, mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: analysis-diverses
 gebiet: analysis
 permalink: /lernbereiche/analysis/analysis-diverses/skript.html
 ---
+
+# Regression: passende Funktionen zu Daten finden
 
 ## Regression
 

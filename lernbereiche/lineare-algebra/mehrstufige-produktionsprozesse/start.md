@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Mehrstufige Produktionsprozesse - Start
-description: Lernbereich Mehrstufige Produktionsprozesse, Modul Start.
+title: "Mehrstufige Produktionsprozesse üben – Aufgaben zu Matrizen"
+description: "Mehrstufige Produktionsprozesse üben: Aufgaben mit Lösungen zu Produktionsmatrizen und Mengenberechnungen – kostenlos fürs berufliche Gymnasium."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

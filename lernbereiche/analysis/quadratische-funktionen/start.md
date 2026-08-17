@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Quadratische Funktionen - Start
-description: Lernbereich Quadratische Funktionen, Modul Start.
+title: "Quadratische Funktionen üben – Aufgaben zu Nullstellen und Parabeln"
+description: "Quadratische Funktionen üben: Aufgaben mit Lösungen zu Nullstellen, Parabeln und Schnittpunkten – kostenlos üben mit direktem Feedback."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

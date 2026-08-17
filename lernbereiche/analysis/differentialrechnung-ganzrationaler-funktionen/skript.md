@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Differentialrechnung ganzrationaler Funktionen - Skript
-description: Lernbereich Differentialrechnung ganzrationaler Funktionen, Modul Skript.
+title: "Differentialrechnung erklärt – Ableitung, Extrempunkte, Wendepunkte"
+description: "Differentialrechnung ganzrationaler Funktionen: Änderungsrate, Ableitungsgraph, Extrem- und Wendepunkte, Monotonie und Steckbriefaufgaben – anschaulich erklärt."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: differentialrechnung-ganzrationaler-funktionen
 gebiet: analysis
 permalink: /lernbereiche/analysis/differentialrechnung-ganzrationaler-funktionen/skript.html
 ---
+
+# Differentialrechnung ganzrationaler Funktionen: Ableitung, Extrem- und Wendepunkte
 
 ## E-Scooter-Fahrt durch die Stadt
 

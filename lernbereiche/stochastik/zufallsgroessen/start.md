@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Zufallsgrößen - Start
-description: Lernbereich Zufallsgrößen, Modul Start.
+title: "Zufallsgrößen üben – Aufgaben zu Erwartungswert und Standardabweichung"
+description: "Zufallsgrößen üben: Aufgaben mit Lösungen zu Erwartungswert, Standardabweichung und Verteilungen – kostenlos üben mit direktem Feedback."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

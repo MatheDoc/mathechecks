@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Differentialrechnung ganzrationaler Funktionen - Start
-description: Lernbereich Differentialrechnung ganzrationaler Funktionen, Modul Start.
+title: "Ableitung üben – Aufgaben zu Extrempunkten und Wendepunkten"
+description: "Ableitungen ganzrationaler Funktionen üben: Aufgaben mit Lösungen zu Extrempunkten, Wendepunkten und Monotonie – kostenlos für die Oberstufe."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

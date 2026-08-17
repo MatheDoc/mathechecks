@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Zufallsgrößen - Skript
-description: Lernbereich Zufallsgrößen, Modul Skript.
+title: "Zufallsgrößen erklärt – Erwartungswert, Standardabweichung, Verteilungen"
+description: "Zufallsgrößen erklärt: Wahrscheinlichkeitsverteilungen aufstellen, Erwartungswert und Standardabweichung berechnen und interpretieren – mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: zufallsgroessen
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/zufallsgroessen/skript.html
 ---
+
+# Zufallsgrößen: Verteilungen, Erwartungswert und Standardabweichung
 
 ## Einführung
 

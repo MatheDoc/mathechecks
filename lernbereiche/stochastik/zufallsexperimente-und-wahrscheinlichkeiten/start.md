@@ -1,7 +1,7 @@
 ---
 layout: module
-title: Zufallsexperimente und Wahrscheinlichkeiten - Start
-description: Lernbereich Zufallsexperimente und Wahrscheinlichkeiten, Modul Start.
+title: "Wahrscheinlichkeiten üben – Aufgaben zu Zufallsexperimenten"
+description: "Wahrscheinlichkeiten üben: Aufgaben mit Lösungen zu Zufallsexperimenten, Laplace-Experimenten und relativen Häufigkeiten – kostenlos für die Oberstufe."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module

@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Mehrstufige Zufallsexperimente - Skript
-description: Lernbereich Mehrstufige Zufallsexperimente, Modul Skript.
+title: "Mehrstufige Zufallsexperimente erklärt – Baumdiagramme und Pfadregeln"
+description: "Mehrstufige Zufallsexperimente erklärt: Baumdiagramme aufstellen, vervollständigen und interpretieren – mit Beispielen und Pfadregeln."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: mehrstufige-zufallsexperimente
 gebiet: stochastik
 permalink: /lernbereiche/stochastik/mehrstufige-zufallsexperimente/skript.html
 ---
+
+# Mehrstufige Zufallsexperimente: Baumdiagramme und Pfadregeln
 
 ## Einführung
 

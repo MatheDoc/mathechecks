@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Lineare Funktionen - Skript
-description: Lernbereich Lineare Funktionen, Modul Skript.
+title: "Lineare Funktionen erklärt – Geradengleichung, Steigung, Anwendungen"
+description: "Lineare Funktionen erklärt: Darstellungsformen, Rechnen mit Geradengleichungen und Anwendungen – Schritt für Schritt mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: lineare-funktionen
 gebiet: analysis
 permalink: /lernbereiche/analysis/lineare-funktionen/skript.html
 ---
+
+# Lineare Funktionen: Darstellungsformen, Rechnen und Anwendungen
 
 ## Einführung
 

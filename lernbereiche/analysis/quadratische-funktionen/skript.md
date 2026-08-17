@@ -1,7 +1,7 @@
 ﻿---
 layout: module
-title: Quadratische Funktionen - Skript
-description: Lernbereich Quadratische Funktionen, Modul Skript.
+title: "Quadratische Funktionen erklärt – Darstellungsformen, Nullstellen, Schnittpunkte"
+description: "Quadratische Funktionen erklärt: Darstellungsformen, Nullstellen, Schnittpunkte, Gleichungen aufstellen und Anwendungen – Schritt für Schritt mit Beispielen."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
@@ -11,6 +11,8 @@ lernbereich: quadratische-funktionen
 gebiet: analysis
 permalink: /lernbereiche/analysis/quadratische-funktionen/skript.html
 ---
+
+# Quadratische Funktionen: Darstellungsformen, Nullstellen und Anwendungen
 
 <!--## Ein Brückenbogen als Parabel
 
