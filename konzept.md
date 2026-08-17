@@ -4,7 +4,7 @@ title: "Konzept"
 description: "Die Lernarchitektur von MatheChecks: Check-Ketten aus Training, Recall, Feynman und Kompetenzliste, Erfolgsquoten, KI-Rückmeldung mit vorbereitetem Kontext und Spaced Repetition."
 permalink: /konzept.html
 body_class: page-legal page-static-narrow page-konzept
-page_css: /assets/css/info-pages.css?v=20260816-panel-smaller
+page_css: /assets/css/info-pages.css?v=20260817-h1-margin
 show_footer: true
 ---
 
