@@ -54,6 +54,19 @@
 
     {% endif %}
 
+    {% assign lb_checks = site.data.checks | where: "Lernbereich", page.lernbereich | sort: "Nummer" %}
+    {% if lb_checks.size > 0 %}
+
+    <h2>Das lernst du hier</h2>
+    <p>Der Lernbereich {{ lb_info.name | default: page.lernbereich }} umfasst {{ lb_checks.size }} Kompetenzen. Nach dem Durcharbeiten kannst du:</p>
+    <ul class="s-kompetenzen">
+        {% for c in lb_checks %}
+        <li><strong>{{ c.Schlagwort }}:</strong> {{ c["Ich kann"] }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
     {% if show_podcast %}
     <h2>Podcast</h2>
     <section class="s-podcast">
