@@ -26,6 +26,10 @@
 <meta property="og:image" content="{{ site.url }}/assets/img/icon-512.png">
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary">
+{% include schema-site.html %}
+{% if page.module_key == "start" or page.module_key == "skript" %}
+{% include schema-lernbereich.html %}
+{% endif %}
 <link rel="icon" href="{{ '/assets/img/icon-source.svg?v=20260518-dark-favicon' | relative_url }}" type="image/svg+xml" sizes="any" />
 <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}" type="image/x-icon" />
 <link rel="icon" href="{{ '/assets/img/icon-192.png' | relative_url }}" type="image/png" sizes="192x192" />

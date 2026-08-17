@@ -1,0 +1,36 @@
+{% comment %} Globales Schema: WebSite, Organization, Person (E-E-A-T). Auf allen Seiten eingebunden. {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "url": "{{ site.url }}/",
+      "name": "MatheChecks",
+      "description": {{ site.description | jsonify }},
+      "inLanguage": "de",
+      "publisher": { "@id": "{{ site.url }}/#organization" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "MatheChecks",
+      "url": "{{ site.url }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/assets/img/icon-512.png"
+      },
+      "founder": { "@id": "{{ site.url }}/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ site.url }}/#person",
+      "name": "Dr. Sven Führing",
+      "url": "{{ site.url }}/ueber-mich.html",
+      "jobTitle": "Mathematiklehrer",
+      "worksFor": { "@id": "{{ site.url }}/#organization" }
+    }
+  ]
+}
+</script>

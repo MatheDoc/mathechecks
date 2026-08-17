@@ -1,0 +1,108 @@
+{% comment %}
+Schema für Lernbereich-Landingpages (nur module_key start + skript).
+Course-Entity ist auf start.html#course verankert und wird von beiden Seiten
+referenziert. Kompetenzen (teaches) kommen als DefinedTerm aus _data/checks.json
+und sind deckungsgleich mit dem sichtbaren "Das lernst du hier"-Block.
+{% endcomment %}
+{% assign lb_info = site.data.lernbereiche | where: "slug", page.lernbereich | first %}
+{% assign gebiet_info = site.data.gebiete | where: "key", page.gebiet | first %}
+{% assign sd = site.data.start[page.lernbereich] %}
+{% assign lb_checks = site.data.checks | where: "Lernbereich", page.lernbereich | sort: "Nummer" %}
+{% assign base_url = site.url | append: "/lernbereiche/" | append: page.gebiet | append: "/" | append: page.lernbereich | append: "/" %}
+{% assign course_id = base_url | append: "start.html#course" %}
+{% assign page_url = base_url | append: page.module_key | append: ".html" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Course",
+      "@id": "{{ course_id }}",
+      "name": {{ lb_info.name | jsonify }},
+      "description": {{ sd.worum_geht_es | strip | jsonify }},
+      "about": {{ gebiet_info.name | append: " – " | append: lb_info.name | jsonify }},
+      "inLanguage": "de",
+      "isAccessibleForFree": true,
+      "educationalLevel": "Sekundarstufe II",
+      "provider": { "@id": "{{ site.url }}/#organization" },
+      "author": { "@id": "{{ site.url }}/#person" },
+      "hasPart": [
+        { "@id": "{{ base_url }}start.html#webpage" },
+        { "@id": "{{ base_url }}skript.html#webpage" }
+      ]{% if lb_checks.size > 0 %},
+      "teaches": [
+        {% for c in lb_checks %}
+        {
+          "@type": "DefinedTerm",
+          "name": {{ c["Ich kann"] | jsonify }},
+          "termCode": {{ c.check_id | jsonify }}
+        }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]{% endif %}{% if sd.vorkenntnisse and sd.vorkenntnisse.size > 0 %},
+      "coursePrerequisites": [
+        {% for vk in sd.vorkenntnisse %}{{ vk.name | jsonify }}{% unless forloop.last %},{% endunless %}{% endfor %}
+      ]{% endif %}
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ page_url }}#webpage",
+      "url": "{{ page_url }}",
+      "name": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "de",
+      "isPartOf": { "@id": "{{ site.url }}/#website" },
+      "breadcrumb": { "@id": "{{ page_url }}#breadcrumb" },
+      {% if page.module_key == "skript" %}
+      "mainEntity": { "@id": "{{ page_url }}#article" }
+      {% else %}
+      "mainEntity": { "@id": "{{ course_id }}" }
+      {% endif %}
+    },
+    {% if page.module_key == "skript" %}
+    {
+      "@type": ["Article", "LearningResource"],
+      "@id": "{{ page_url }}#article",
+      "headline": {{ page.title | jsonify }},
+      "description": {{ page.description | jsonify }},
+      "inLanguage": "de",
+      "isAccessibleForFree": true,
+      "learningResourceType": "Lehrtext",
+      "educationalLevel": "Sekundarstufe II",
+      "author": { "@id": "{{ site.url }}/#person" },
+      "publisher": { "@id": "{{ site.url }}/#organization" },
+      "isPartOf": { "@id": "{{ course_id }}" }
+    },
+    {% endif %}
+    {
+      "@type": "BreadcrumbList",
+      "@id": "{{ page_url }}#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Startseite",
+          "item": "{{ site.url }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Lernbereiche",
+          "item": "{{ site.url }}/material.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ lb_info.name | jsonify }},
+          "item": "{{ base_url }}start.html"
+        }{% if page.module_key == "skript" %},
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Skript",
+          "item": "{{ base_url }}skript.html"
+        }{% endif %}
+      ]
+    }
+  ]
+}
+</script>
