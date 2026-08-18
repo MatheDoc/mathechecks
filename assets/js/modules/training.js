@@ -23,7 +23,7 @@ import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionContro
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
@@ -1555,6 +1555,10 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       newRate: rates.newRate,
       onRepeat: () => reloadCurrentTask(),
       onDashboard: () => window.location.assign("/dashboard.html"),
+      onStay: () => {
+        freeCompleteReady = false;
+        if (freeCompleteControl) freeCompleteControl.setReady(false);
+      },
     });
   };
 

@@ -186,6 +186,18 @@
     background: color-mix(in srgb, var(--rose) 8%, transparent);
 }
 
+.task-completion-popup__button--tertiary {
+    grid-column: 1 / -1;
+    justify-content: center;
+    min-height: 44px;
+    color: var(--text-dim, #a5a5b5);
+}
+
+.task-completion-popup__button--tertiary:hover,
+.task-completion-popup__button--tertiary:focus-visible {
+    color: var(--text);
+}
+
 .task-completion-popup__button-icon {
     flex: 0 0 auto;
     margin-top: 2px;
