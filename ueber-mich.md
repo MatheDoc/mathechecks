@@ -12,7 +12,7 @@ show_footer: true
 
 <div class="ueber-mich-intro">
     <img class="ueber-mich-portrait" src="{{ '/assets/img/sven.jpeg' | relative_url }}" alt="Porträtfoto von Sven Führing" width="128" height="128" loading="lazy">
-    <p>Hi, ich bin Sven, der Entwickler von MatheChecks.</p>
+    <p>Hi, ich bin Sven, der Kopf hinter MatheChecks.</p>
 </div>
 
 ## Was ich mache
@@ -39,6 +39,6 @@ Genau das will ich mit MatheChecks anders machen. Wie das im Einzelnen funktioni
 
 ## Kontakt
 
-Über Rückmeldungen jeder Art freue ich mich sehr: fachliche Fehler, fehlende Inhalte oder technische Macken. MatheChecks wird laufend weiterentwickelt, und solche Rückmeldungen fließen in der Regel direkt ein. Schreib mir per Mail an [sven.fuehring@gmail.com](mailto:sven.fuehring@gmail.com) oder auf [LinkedIn](https://www.linkedin.com/in/dr-sven-f%C3%BChring-a98773404/).
+Über Rückmeldungen jeder Art freue ich mich sehr: fachliche Fehler, fehlende Inhalte oder technische Macken. MatheChecks wird laufend weiterentwickelt, und solche Rückmeldungen fließen in der Regel direkt ein. Schreib mir eine [Mail](mailto:webmaster@mathechecks.de) oder auf [LinkedIn](https://www.linkedin.com/in/dr-sven-f%C3%BChring-a98773404/).
 
 

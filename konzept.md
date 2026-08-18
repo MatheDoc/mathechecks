@@ -16,7 +16,7 @@ Mit MatheChecks entwickle ich eine moderne Lernplattform, die digitale Möglichk
 
 # Inhalt
 
-MatheChecks deckt aktuell Teile des Mathematikstoffs der Sekundarstufe II ab, von der Analysis über die Stochastik bis zur Linearen Algebra.
+MatheChecks deckt aktuell Teile des klassischen Mathematikstoffs der Sekundarstufe II ab, von der Analysis über die Stochastik bis zur Linearen Algebra. Dazu kommen Inhalte mit wirtschaftlichem Anwendungsbezug.
 
 Die Inhalte gliedern sich in [Lernbereiche]({{ '/material.html' | relative_url }}). Ein Lernbereich besteht aus mehreren Checks, die didaktisch sinnvoll aufeinander aufbauen. Zu jedem Check gehören Aktivitäten, die unterschiedliche kognitive Prozesse ansprechen: Aufgaben rechnen, Kernpunkte aus dem Gedächtnis abrufen und Zusammenhänge mit eigenen Worten erklären.
 
@@ -36,8 +36,6 @@ Drei weitere Aktivitäten ergänzen die Checks in jedem Lernbereich:
         <p>Zentrale Begriffe und Verfahren gezielt wiederholen, damit das Gelernte langfristig im Gedächtnis bleibt.</p>
     </article>
 </div>
-
-Ich baue MatheChecks so, wie ich es mir für meine eigenen Kurse wünsche. Dadurch liegt ein Schwerpunkt aktuell auf dem beruflichen Gymnasium in NRW, Fachbereich Wirtschaft und Verwaltung.
 
 
 # Feed
@@ -67,7 +65,7 @@ Jeder Check durchläuft eine Kette aus vier Aktivitäten: Training, Recall, Feyn
     </article>
 </div>
 
-Bei Recall und Feynman bewertet eine KI die Antworten. Sie erhält zu jedem Check gezielt vorbereitetes Kontextwissen, damit die Rückmeldungen fachlich verlässlich sind.
+Bei Recall und Feynman bewertet eine KI die Antworten. Sie erhält zu jedem Check gezielt vorbereitetes Kontextwissen, damit die Rückmeldungen fachlich und pädagogisch fundiert sind.
 
 
 ## Quantitativer Fortschritt
