@@ -18,8 +18,8 @@ show_footer: true
 ## Was ich mache
 
 - Ich unterrichte Mathematik und Physik am Hanse-Berufskolleg in Lemgo (NRW).
-- Als Moderator bin ich in der Lehrerfortbildung tätig. Dort geht es unter anderem um die Frage, was guten Mathematikunterricht ausmacht, aber auch darum, wie KI den Unterricht bereichern kann und welche technischen KI-Inhalte Schülerinnen und Schüler heute lernen sollten.
-- Ich administriere Moodle- und Microsoft-Umgebungen, um Schulen sowohl pädagogisch als auch in der Verwaltung zu unterstützen.
+- Als Moderator bin ich in der Lehrerfortbildung tätig. Dort gehe ich unter anderem der Frage nach, was guten Mathematikunterricht ausmacht, aber auch, wie KI den Unterricht bereichern kann und welche technischen KI-Inhalte Schülerinnen und Schüler heute lernen sollten.
+- Ich administriere Moodle- und Microsoft-Umgebungen und sorge dafür, dass digitale Werkzeuge sowohl im Unterricht als auch in der Verwaltung reibungslos funktionieren.
 - Vor meiner pädagogischen Laufbahn habe ich wissenschaftlich gearbeitet und in Mathematik über ein Thema an der Schnittstelle von Differentialgeometrie und Topologie [promoviert](https://opus.bibliothek.uni-augsburg.de/opus4/frontdoor/deliver/index/docId/2446/file/Sven_Fuehring_Dissertation.pdf).
 
 
@@ -28,11 +28,11 @@ show_footer: true
 
 MatheChecks ist aus diesen Tätigkeiten heraus entstanden.
 
-Im Unterricht erlebe ich immer wieder, wie viel möglich ist, wenn Lernende aktiv üben, sofort Rückmeldung bekommen und ihre eigenen Fortschritte sehen. Allerdings sehe ich auch, dass dieser Effekt nicht nachhaltig ist, sobald das Lernen ohne Struktur und ohne Feedback weitergeht.
+Im Unterricht erlebe ich, wie viel möglich ist, wenn Lernende aktiv üben, individuelle Rückmeldungen bekommen und ihre eigenen Fortschritte sehen. Allerdings sehe ich auch, dass dieser Effekt nicht nachhaltig ist, sobald das Lernen ohne Struktur und ohne Feedback weitergeht.
 
-Die empirische Bildungsforschung erklärt beides gut: Wissen verankert sich durch aktives Abrufen statt passives Lesen und durch systematisches Üben. Ich wollte ein Werkzeug haben, das diese Prinzipien konsequent umsetzt und das ich meinen eigenen Kursen guten Gewissens in die Hand geben kann.
+Die empirische Bildungsforschung erklärt beides gut: Wissen verankert sich durch aktives Abrufen statt passives Lesen und durch systematisches Üben. Ich wollte ein Werkzeug haben, das diese Prinzipien konsequent umsetzt und das ich meinen Lernenden guten Gewissens an die Hand geben kann.
 
-Digitale Lernangebote gibt es viele. Plattformen wie Moodle oder die Apps aus dem Microsoft-Kosmos sind stark in Verwaltung und Kommunikation. Auf komplexe Lernprozesse sind sie dagegen selten ausgerichtet. Dateien werden bloß abgelegt, vielschichtige Interaktivität kommt kaum vor, und konkrete Lerntechniken sind nicht implementiert. Hinzu kommen praktische Schwächen: Mathematische Formeln werden nicht sauber gesetzt, viele Darstellungen sind nicht responsiv, und einer generischen KI fehlt häufig das fachliche und pädagogische Kontextwissen für verlässliche Rückmeldungen.
+Digitale Lernangebote gibt es viele. Die meisten Plattformen sind stark in Verwaltung, Kommunikation oder Content. Auf komplexe Lernprozesse sind sie dagegen selten ausgerichtet. Dateien werden bloß abgelegt, vielschichtige Interaktivität kommt kaum vor, und konkrete Lerntechniken sind nicht implementiert. Hinzu kommen praktische Schwächen: Mathematische Formeln werden nicht sauber gesetzt, viele Darstellungen sind nicht responsiv, und einer generischen KI fehlt häufig das fachliche und pädagogische Kontextwissen für verlässliche Rückmeldungen.
 
 Genau das will ich mit MatheChecks anders machen. Wie das im Einzelnen funktioniert, steht auf der [Konzeptseite]({{ '/konzept.html' | relative_url }}).
 

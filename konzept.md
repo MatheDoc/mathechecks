@@ -10,7 +10,7 @@ show_footer: true
 
 # Idee
 
-Mit MatheChecks entwickle ich eine moderne Lernplattform, die digitale Möglichkeiten gezielt für den Lernprozess nutzt. Die Plattform stützt sich auf gut belegte Erkenntnisse der Lernpsychologie: Lernen gelingt besser durch aktive Auseinandersetzung statt passives Lesen, durch formatives Feedback, durch Wiederholung in wachsenden Abständen und durch das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
+Mit MatheChecks entwickle ich eine moderne Lernplattform, die digitale Möglichkeiten gezielt für den Lernprozess nutzt. die digitale Möglichkeiten gezielt für den Lernprozess nutzt. Die Plattform stützt sich auf gut belegte Erkenntnisse der Lernpsychologie: Lernen gelingt besser durch aktive Auseinandersetzung statt passives Lesen, durch formatives Feedback und durch zeitlich versetzte Wiederholungen (Spaced Repetition); Motivation entsteht durch Autonomie und das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
 
 
 
@@ -20,16 +20,16 @@ MatheChecks deckt aktuell Teile des Mathematikstoffs der Sekundarstufe II ab, vo
 
 Die Inhalte gliedern sich in [Lernbereiche]({{ '/material.html' | relative_url }}). Ein Lernbereich besteht aus mehreren Checks, die didaktisch sinnvoll aufeinander aufbauen. Zu jedem Check gehören Aktivitäten, die unterschiedliche kognitive Prozesse ansprechen: Aufgaben rechnen, Kernpunkte aus dem Gedächtnis abrufen und Zusammenhänge mit eigenen Worten erklären.
 
-Ergänzend zu den Check-Aktivitäten begleiten drei weitere Module jeden Lernbereich:
+Drei weitere Aktivitäten ergänzen die Checks in jedem Lernbereich:
 
 <div class="konzept-cards">
     <article class="konzept-card" style="--kc-color: var(--mt-start, #245f43)">
         <h3>Start</h3>
-        <p>Ziele, Voraussetzungen und der empfohlene Lernpfad geben Orientierung für den Einstieg in den Lernbereich.</p>
+        <p>Ziele, Voraussetzungen und ein Podcast geben Orientierung für den Einstieg in den Lernbereich.</p>
     </article>
     <article class="konzept-card" style="--kc-color: var(--mt-skript, #4ade80)">
         <h3>Skript</h3>
-        <p>Die Inhalte des Lernbereichs zusammengefasst und vertieft, mit Beispielen und interaktiven Widgets zum Ausprobieren.</p>
+        <p>Sämtliche Inhalte des Lernbereichs zusammengefasst, mit Beispielen und interaktiven Widgets zum Ausprobieren.</p>
     </article>
     <article class="konzept-card" style="--kc-color: var(--mt-flashcards, #f472b6)">
         <h3>Flashcards</h3>
@@ -78,7 +78,7 @@ Die Ketten mehrerer Checks laufen zeitlich leicht versetzt und überlappen sich.
 
 ## Qualitativer Fortschritt
 
-Bei jeder Aktivität entsteht eine Erfolgsquote. Sie wird übersichtlich im Dashboard dargestellt und lässt sich jederzeit und unabhängig vom Feed verbessern. Auch hier gibt MatheChecks Hinweise, wann sich eine Wiederholung lohnt.
+Bei Training, Recall und Feynman entsteht jeweils eine Erfolgsquote. Sie wird übersichtlich im Dashboard dargestellt und lässt sich jederzeit und unabhängig vom Feed verbessern. Auch hier gibt MatheChecks Hinweise, wann sich eine Wiederholung lohnt.
 
 ## Übersicht
 
