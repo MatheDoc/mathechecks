@@ -11,7 +11,7 @@ import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedba
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260719-feynman-quote";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
@@ -1225,6 +1225,9 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         newRate: rates.newRate,
         onRepeat: resetFeynmanCard,
         onDashboard: () => window.location.assign("/dashboard.html"),
+        onStay: () => {
+          if (freeCompletionControl) freeCompletionControl.setReady(false);
+        },
       });
     }
 

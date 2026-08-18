@@ -6,7 +6,7 @@ import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js"
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260701-recall-quote-popup";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -903,6 +903,9 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
         newRate: rates.newRate,
         onRepeat: resetRecallCard,
         onDashboard: () => window.location.assign("/dashboard.html"),
+        onStay: () => {
+          if (freeCompletionControl) freeCompletionControl.setReady(false);
+        },
       });
     }
 

@@ -107,6 +107,7 @@ function buildDialogButton({ variant = "primary", icon = "", label = "", detail 
  * @param {number|null} options.newRate
  * @param {function} options.onRepeat   Callback fuer "Wiederholen".
  * @param {function} options.onDashboard Callback fuer "Zum Dashboard".
+ * @param {function} options.onStay     Callback fuer "Auf Seite bleiben" (Popup schliessen, Zustand behalten).
  */
 export function showTaskCompletionPopup({
   mode = "training",
@@ -116,6 +117,7 @@ export function showTaskCompletionPopup({
   newRate = null,
   onRepeat = null,
   onDashboard = null,
+  onStay = null,
 } = {}) {
   closeExistingPopups();
 
@@ -191,6 +193,20 @@ export function showTaskCompletionPopup({
     window.location.assign("/dashboard.html");
   });
   actions.appendChild(dashboardBtn);
+
+  if (typeof onStay === "function") {
+    const stayBtn = buildDialogButton({
+      variant: "tertiary",
+      icon: "\u2713",
+      label: "Auf Seite bleiben",
+      detail: "Antworten ansehen",
+    });
+    stayBtn.addEventListener("click", () => {
+      close();
+      onStay();
+    });
+    actions.appendChild(stayBtn);
+  }
 
   popup.appendChild(actions);
   overlay.appendChild(popup);
