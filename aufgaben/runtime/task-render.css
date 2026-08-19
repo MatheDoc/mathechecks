@@ -97,17 +97,8 @@
     overflow: hidden;
 }
 
+/* Auf der Plattform: gleiche Surface-Tokens wie Markdown-Tabellen (shared.css). */
 .check-card__runtime-task table {
-    --task-table-bg: color-mix(in srgb, var(--card-surface-2, #181824) 96%, white 4%);
-    --task-table-bg-muted: color-mix(in srgb, white 10%, transparent);
-    --task-table-vft-bg-muted: color-mix(in srgb, white 15%, transparent);
-    --task-table-border: color-mix(in srgb, white 10%, var(--border));
-    --task-table-border-strong: color-mix(in srgb, var(--task-table-heading) 36%, var(--task-table-border));
-    --task-table-text: var(--text-body);
-    --task-table-heading: var(--text);
-}
-
-.check-card__runtime-task .vft-table {
     --task-table-bg: var(--surface, rgba(255, 255, 255, 0.04));
     --task-table-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 42%, var(--surface, rgba(255, 255, 255, 0.04)));
     --task-table-vft-bg-muted: color-mix(in srgb, var(--surface-hi, rgba(0, 0, 0, 0.06)) 54%, var(--surface, rgba(255, 255, 255, 0.04)));

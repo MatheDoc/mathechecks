@@ -1,15 +1,15 @@
 ﻿---
 layout: module
-title: Analysis - Diverses - Flashcards
-description: Lernbereich Analysis - Diverses, Modul Flashcards.
+title: Regression - Flashcards
+description: Lernbereich Regression, Modul Flashcards.
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: flashcards
 published: true
-lernbereich: analysis-diverses
+lernbereich: regression
 gebiet: analysis
-permalink: /lernbereiche/analysis/analysis-diverses/flashcards.html
+permalink: /lernbereiche/analysis/regression/flashcards.html
 ---
 
 {% include module/flashcards-content.html %}

@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/analysis/regression/beispiele/04-regression.html
+permalink: /lernbereiche/analysis/regression/beispiele/01-regression.html
 ---
 Gegeben sind folgende Werte:
 
@@ -16,5 +16,5 @@ Es soll eine exponentielle Regression durchgeführt werden.
 - evtl.: Regressionsfunktion präzisieren (hier: $ae^{bx}$)
 - im Anschluss werden die Parameter der Regressionsfunktion angezeigt (hier $a=5{,}43$ und $b=0{,}70$)
 - DRAW zeigt die Datenpunkte und den Graphen der Regressionsfunktion an
-- Die Regressionsfunktion lautet also $f(x)=5{,}43\cdot e^{0{,}70x}$.
+- Die Regressionsfunktion lautet also $f(x)=5{,}43x\cdot e^{0{,}70x}$.
 - Das Bestimmtheitsmaß lautet $R^2=0{,}999$. Dieser Wert liegt sehr nah an $1$, die exponentielle Regression ist also gut geeignet, um den Zusammenhang zwischen den beiden Größen zu beschreiben.

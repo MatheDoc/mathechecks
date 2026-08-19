@@ -2317,16 +2317,100 @@
     },
     {
         "Gebiet": "analysis",
-        "Lernbereich": "analysis-diverses",
-        "LernbereichAnzeigename": "Analysis - Diverses",
+        "Lernbereich": "regression",
+        "LernbereichAnzeigename": "Regression",
         "Nummer": 1,
-        "check_id": "analysis__analysis-diverses__01",
-        "Ich kann": "eine lineare, quadratische, kubische und exponentielle Regression durchführen und das Bestimmheitsmaß bestimmen.",
-        "Sammlung": "regression",
-        "Schlagwort": "Regressionfunktion + R²",
+        "check_id": "analysis__regression__01",
+        "Ich kann": "die Gleichung einer linearen Regressionsfunktion mit den Regressionsformeln berechnen.",
+        "Sammlung": "lineare-regression-formeln",
+        "Schlagwort": "Regressionsgerade rechnerisch",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-analysis-analysis-diverses-01",
-        "questionOrder": "shuffle",
+        "skript_anchor": "check-analysis-regression-01",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Steigung",
+                "response": "$m=\\frac{\\sum (x_i-\\bar{x})(y_i-\\bar{y})}{\\sum (x_i-\\bar{x})^2}$"
+            },
+            {
+                "cue": "y-Abschnitt",
+                "response": "$b=\\bar{y}-m\\cdot\\bar{x}$"
+            },
+            {
+                "cue": "Kontrolle",
+                "response": "Regressionsgerade läuft durch den Schwerpunkt $(\\bar{x} \\mid \\bar{y})$"
+            }
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "regression",
+        "LernbereichAnzeigename": "Regression",
+        "Nummer": 2,
+        "check_id": "analysis__regression__02",
+        "Ich kann": "Regressionsfunktionen durch Aufstellen und Lösen eines linearen Gleichungssystems bestimmen.",
+        "Sammlung": "regression-lgs",
+        "Schlagwort": "Regression via LGS",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-regression-02",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Ansatz",
+                "response": "Funktionstyp mit unbekannten Koeffizienten ansetzen, z. B. $f(x)=ax^2+bx+c$"
+            },
+            {
+                "cue": "Gleichungen",
+                "response": "Ableitung der Abweichungssumme nach jedem Koeffizienten gleich null: eine Gleichung pro Koeffizient"
+            },
+            {
+                "cue": "LGS-Lösung",
+                "response": "mit GTR oder Gauß-Algorithmus"
+            }
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "regression",
+        "LernbereichAnzeigename": "Regression",
+        "Nummer": 3,
+        "check_id": "analysis__regression__03",
+        "Ich kann": "Regressionsfunktionen im Sachzusammenhang bestimmen und für Prognosen nutzen.",
+        "Sammlung": "regression-anwendung",
+        "Schlagwort": "Regression im Sachkontext",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-regression-03",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Reihenfolge",
+                "response": "erst Regressionsfunktion bestimmen, dann Sachfragen beantworten"
+            },
+            {
+                "cue": "Prognose",
+                "response": "$x$-Wert einsetzen liefert $y$-Wert"
+            },
+            {
+                "cue": "Rückwärtsfrage",
+                "response": "Gleichung $f(x)=y$ lösen, Lösung im Sachkontext prüfen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "analysis",
+        "Lernbereich": "regression",
+        "LernbereichAnzeigename": "Regression",
+        "Nummer": 4,
+        "check_id": "analysis__regression__04",
+        "Ich kann": "eine lineare, quadratische, kubische und exponentielle Regression mit dem GTR durchführen und das Bestimmtheitsmaß bestimmen.",
+        "Sammlung": "regression",
+        "Schlagwort": "Regression + R² mit GTR",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-analysis-regression-04",
+        "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
             {

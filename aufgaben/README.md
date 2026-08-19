@@ -50,7 +50,7 @@ Jeder Job verknüpft einen Generator mit einem oder mehreren Ausgabezielen (`tar
       "targets": [
         {
           "gebiet": "analysis",
-          "lernbereich": "analysis-diverses",
+          "lernbereich": "regression",
           "sammlung": "regression",
           "questionOrder": "shuffle"
         }
@@ -96,7 +96,7 @@ checks.json  →  Sammlung: "regression"
                          ↓
 project_config.json  →  targets[].sammlung: "regression"
                          ↓
-aufgaben/exports/json/analysis/analysis-diverses/regression.json
+aufgaben/exports/json/analysis/regression/regression.json
 ```
 
 `checks.json` bestimmt, welche Sammlungen die Website verwendet.  

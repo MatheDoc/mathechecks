@@ -2,7 +2,7 @@
    MatheChecks – Shared Design System
    ═══════════════════════════════════════════════════════════════ */
 
-@import "../../../aufgaben/runtime/task-render.css?v=20260719-feynman-scorable-tolerant";
+@import "../../../aufgaben/runtime/task-render.css?v=20260819-table-surface-align";
 @import "./task-completion.css?v=20260819-stay-on-page";
 @import "./cards.css?v=20260712-feed-readonly-overlay";
 @import "./dashboard.css?v=20260721-date-picker-cursor";
@@ -3898,7 +3898,8 @@ html.light .recall-list--user .recall-list__item {
 }
 
 .roulette-widget__actions,
-.ms-widget__actions {
+.ms-widget__actions,
+.widget-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -3907,7 +3908,7 @@ html.light .recall-list--user .recall-list__item {
 
 .roulette-widget__button,
 .ms-widget__button,
-.pr-widget__button {
+.widget-button {
   appearance: none;
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -3921,13 +3922,50 @@ html.light .recall-list--user .recall-list__item {
 
 .roulette-widget__button:hover,
 .ms-widget__button:hover,
-.pr-widget__button:hover {
+.widget-button:hover {
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   background: var(--accent-soft);
 }
 
 .pr-widget .diagramm {
   max-width: 760px;
+}
+
+/* ── Widget-specific: Regression Minimierung (Quadratsumme) ── */
+.rm-widget .diagramm {
+  max-width: 640px;
+}
+
+.rm-sse {
+  display: grid;
+  gap: 6px;
+}
+
+.rm-sse__label {
+  font-size: 0.92em;
+  color: var(--text-dim);
+}
+
+.rm-sse__bar {
+  height: 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.rm-sse__fill {
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 55%, var(--text)));
+  transition: width 80ms linear;
+}
+
+.rm-sse__value {
+  font-weight: 650;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
 }
 
 /* Gauß-Schritte-Widget */
@@ -4063,11 +4101,6 @@ html.light .recall-list--user .recall-list__item {
   content: "Regressionsfunktion wird gleich eingeblendet.";
   color: var(--text-dim);
   font-size: 0.92rem;
-}
-
-.pr-widget__actions {
-  display: flex;
-  justify-content: center;
 }
 
 .roulette-widget__event {
