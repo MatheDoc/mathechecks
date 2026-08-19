@@ -5,6 +5,7 @@ import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.
 import { buildGraphFigure } from "../visuals/graph.js?v=20260701c-graph-hilfslinien";
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
+import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, REGRESSION_MINIMIERUNG_PUNKTE } from "../visuals/regression-minimierung.js";
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
@@ -453,6 +454,101 @@ function initPunktwolkeRegressionWidgets(root) {
     });
 }
 
+/* ---- Regression: Minimierung der Quadratsumme ---- */
+function initRegressionMinimierungWidgets(root) {
+    root.querySelectorAll(".rm-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const mSlider = widget.querySelector(".rm-mSlider");
+        const bSlider = widget.querySelector(".rm-bSlider");
+        const mWert = widget.querySelector(".rm-mWert");
+        const bWert = widget.querySelector(".rm-bWert");
+        const eqDisplay = widget.querySelector(".rm-eqDisplay");
+        const sseValue = widget.querySelector(".rm-sse__value");
+        const sseFill = widget.querySelector(".rm-sse__fill");
+        const bestButton = widget.querySelector(".rm-bestButton");
+        const resetButton = widget.querySelector(".rm-resetButton");
+        const plotDiv = widget.querySelector(".rm-plot");
+
+        if (!mSlider || !bSlider || !plotDiv) return;
+
+        const points = REGRESSION_MINIMIERUNG_PUNKTE;
+        const best = leastSquaresFit(points);
+        const startM = parseFloat(mSlider.value);
+        const startB = parseFloat(bSlider.value);
+
+        // SSE is convex in (m, b), so the maximum over the slider box lies in a corner.
+        const sseRef = Math.max(
+            ...[parseFloat(mSlider.min), parseFloat(mSlider.max)].flatMap((m) =>
+                [parseFloat(bSlider.min), parseFloat(bSlider.max)].map((b) => sumSquaredErrors(points, m, b)),
+            ),
+        );
+
+        function fmt(n) {
+            const r = Math.round(n * 100) / 100;
+            return r % 1 === 0 ? String(r) : r.toFixed(2).replace(/0+$/, "").replace(/\.$/, "");
+        }
+        function fmtDe(n) { return fmt(n).replace(".", ","); }
+
+        function buildEquation(m, b) {
+            let term = "";
+            if (m === 1) term = "x";
+            else if (m === -1) term = "-x";
+            else term = fmtDe(m) + "x";
+            if (b !== 0) {
+                const sign = b > 0 ? "+" : "-";
+                term += " " + sign + " " + fmtDe(Math.abs(b));
+            }
+            return "$ f(x) = " + term + " $";
+        }
+
+        function snapToSlider(slider, value) {
+            const min = parseFloat(slider.min);
+            const max = parseFloat(slider.max);
+            const step = parseFloat(slider.step);
+            const snapped = min + Math.round((value - min) / step) * step;
+            return Math.min(max, Math.max(min, Math.round(snapped * 1e6) / 1e6));
+        }
+
+        function update() {
+            const m = parseFloat(mSlider.value);
+            const b = parseFloat(bSlider.value);
+
+            mWert.textContent = fmtDe(m);
+            bWert.textContent = fmtDe(b);
+
+            eqDisplay.innerHTML = buildEquation(m, b);
+            if (window.MathJax?.typesetPromise) MathJax.typesetPromise([eqDisplay]);
+
+            const sse = sumSquaredErrors(points, m, b);
+            sseValue.textContent = fmtDe(Math.round(sse * 100) / 100);
+            // Square-root scale keeps small values near the optimum visible.
+            const percent = Math.min(100, Math.sqrt(sse / sseRef) * 100);
+            sseFill.style.width = percent.toFixed(1) + "%";
+
+            const figure = buildRegressionMinimierungFigure({ points, m, b });
+            plotlyRender(plotDiv, figure.data, figure.layout);
+        }
+
+        bestButton?.addEventListener("click", () => {
+            mSlider.value = String(snapToSlider(mSlider, best.m));
+            bSlider.value = String(snapToSlider(bSlider, best.b));
+            update();
+        });
+
+        resetButton?.addEventListener("click", () => {
+            mSlider.value = String(startM);
+            bSlider.value = String(startB);
+            update();
+        });
+
+        mSlider.addEventListener("input", update);
+        bSlider.addEventListener("input", update);
+        update();
+    });
+}
+
 /* ---- Gauß-Schritte-Widget ---- */
 
 const GAUSS_ROW_NAMES = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
@@ -714,6 +810,7 @@ export function initSkriptVisuals(root) {
     if (!window.Plotly) return;
 
     initPunktwolkeRegressionWidgets(root);
+    initRegressionMinimierungWidgets(root);
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");

@@ -1,15 +1,15 @@
 ﻿---
 layout: module
-title: Analysis - Diverses - Feynman
-description: Lernbereich Analysis - Diverses, Modul Feynman.
+title: Regression - Feynman
+description: Lernbereich Regression, Modul Feynman.
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: feynman
 published: true
-lernbereich: analysis-diverses
+lernbereich: regression
 gebiet: analysis
-permalink: /lernbereiche/analysis/analysis-diverses/feynman.html
+permalink: /lernbereiche/analysis/regression/feynman.html
 ---
 
 {% include module/feynman-content.html %}

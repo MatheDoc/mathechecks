@@ -1,15 +1,15 @@
 ---
 layout: module
-title: Analysis - Diverses - Vertiefung
-description: Lernbereich Analysis - Diverses, Modul Vertiefung.
+title: Regression - Vertiefung
+description: Lernbereich Regression, Modul Vertiefung.
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: vertiefung
 published: true
-lernbereich: analysis-diverses
+lernbereich: regression
 gebiet: analysis
-permalink: /lernbereiche/analysis/analysis-diverses/vertiefung.html
+permalink: /lernbereiche/analysis/regression/vertiefung.html
 ---
 
 ## Worum es in der Vertiefung gehen kann

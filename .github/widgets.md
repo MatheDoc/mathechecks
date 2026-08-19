@@ -29,6 +29,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | Quadratische Funktionen | `widget-quadratische-funktionen.html` | `.qf-widget` | Graph + Wertetabelle + Formel |
 | Quadratische Funktionen Parameter | `widget-quadratische-funktionen-parameter.html` | `.qfp-widget` | Graph + Scheitel + Formel |
 | Regression erkennen | `widget-punktwolke-regression.html` | `.pr-widget` | Zufällige Punktewolke + verzögert eingeblendete Regressionsfunktion |
+| Regression Minimierung | `widget-regression-minimierung.html` | `.rm-widget` | Feste Punktwolke + verstellbare Gerade + Residuen-Quadrate + Quadratsumme (SSE) |
 
 
 ## HTML-Struktur

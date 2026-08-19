@@ -1,13 +1,13 @@
 ---
 layout: module
-title: "Analysis-Aufgaben üben – Funktionstypen und Regression"
-description: "Vermischte Analysis-Aufgaben für die Oberstufe: Funktionstypen erkennen und Daten modellieren – interaktive Übungen mit direktem Feedback, kostenlos."
+title: "Regression üben – Regressionsfunktionen rechnerisch und mit GTR bestimmen"
+description: "Regression für die Oberstufe: lineare, quadratische und kubische Regressionsfunktionen rechnerisch bestimmen und mit dem GTR prüfen – interaktive Übungen, kostenlos."
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: start
 published: true
-lernbereich: analysis-diverses
+lernbereich: regression
 gebiet: analysis
-permalink: /lernbereiche/analysis/analysis-diverses/start.html
+permalink: /lernbereiche/analysis/regression/start.html
 ---

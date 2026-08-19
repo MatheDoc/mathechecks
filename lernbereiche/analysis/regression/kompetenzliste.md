@@ -1,15 +1,15 @@
 ﻿---
 layout: module
-title: Analysis - Diverses - Kompetenzliste
-description: Lernbereich Analysis - Diverses, Modul Kompetenzliste.
+title: Regression - Kompetenzliste
+description: Lernbereich Regression, Modul Kompetenzliste.
 page_context: Lernbereich
 nav: dashboard
 body_class: page-module
 module_key: kompetenzliste
 published: true
-lernbereich: analysis-diverses
+lernbereich: regression
 gebiet: analysis
-permalink: /lernbereiche/analysis/analysis-diverses/kompetenzliste.html
+permalink: /lernbereiche/analysis/regression/kompetenzliste.html
 ---
 
 {% include module/kompetenzliste-content.html %}

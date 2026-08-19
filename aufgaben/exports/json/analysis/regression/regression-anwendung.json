@@ -1,0 +1,262 @@
+[
+  {
+    "einleitung": "Ein Streaming-Dienst wertet die Entwicklung seiner Nutzerzahlen aus. Für die ersten Monate nach dem Start liegen folgende Daten vor ($ t $: Monate seit Start, Nutzerzahl in Tausend):<table class=\"TabelleEinleitung\">\n    <tr><td>Monat $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td></tr>\n    <tr><td>Nutzer (Tsd.)</td><td>$ 121 $</td><td>$ 128 $</td><td>$ 141 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ N(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Nutzerzahl (in Tausend) im Monat 9.",
+      "In welchem Monat erreicht die Nutzerzahl nach dem Modell erstmals 240 Tausend?"
+    ],
+    "antworten": [
+      "$ N(t) = ${1:NUMERICAL:=10,00:0,01}$ \\,t + ${1:NUMERICAL:=120,00:0,01}",
+      "{1:NUMERICAL:=210,00:0,01}",
+      "{1:NUMERICAL:=12,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Fahrradhändler erfasst die jährlichen E-Bike-Verkäufe ($ t $: Jahre seit 2020, Verkäufe in Stück):<table class=\"TabelleEinleitung\">\n    <tr><td>Jahr $ t $</td><td>$ 0 $</td><td>$ 1 $</td></tr>\n    <tr><td>Verkäufe</td><td>$ 550 $</td><td>$ 640 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ V(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Verkaufszahl im Jahr $ t = 6 $.",
+      "In welchem Jahr $ t $ werden nach dem Modell erstmals 1360 E-Bikes verkauft?"
+    ],
+    "antworten": [
+      "$ V(t) = ${1:NUMERICAL:=90,00:0,01}$ \\,t + ${1:NUMERICAL:=550,00:0,01}",
+      "{1:NUMERICAL:=1090,00:0,01}",
+      "{1:NUMERICAL:=9,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Fitnessstudio dokumentiert seine Mitgliederzahlen ($ t $: Monate seit der Neueröffnung):<table class=\"TabelleEinleitung\">\n    <tr><td>Monat $ t $</td><td>$ 0 $</td><td>$ 1 $</td></tr>\n    <tr><td>Mitglieder</td><td>$ 280 $</td><td>$ 305 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ M(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Mitgliederzahl im Monat 9.",
+      "In welchem Monat erreicht das Studio nach dem Modell erstmals 580 Mitglieder?"
+    ],
+    "antworten": [
+      "$ M(t) = ${1:NUMERICAL:=25,00:0,01}$ \\,t + ${1:NUMERICAL:=280,00:0,01}",
+      "{1:NUMERICAL:=505,00:0,01}",
+      "{1:NUMERICAL:=12,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Eine Gemeinde senkt durch Sparmaßnahmen ihren Wasserverbrauch ($ t $: Jahre seit Beginn der Maßnahmen, Verbrauch in Tausend Kubikmetern):<table class=\"TabelleEinleitung\">\n    <tr><td>Jahr $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Verbrauch (Tsd. m³)</td><td>$ 119{,}5 $</td><td>$ 117 $</td><td>$ 111{,}5 $</td><td>$ 108 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ W(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell den Verbrauch (in Tausend Kubikmetern) im Jahr $ t = 8 $.",
+      "In welchem Jahr $ t $ sinkt der Verbrauch nach dem Modell erstmals auf 72 Tausend Kubikmeter?"
+    ],
+    "antworten": [
+      "$ W(t) = ${1:NUMERICAL:=-4,00:0,01}$ \\,t + ${1:NUMERICAL:=120,00:0,01}",
+      "{1:NUMERICAL:=88,00:0,01}",
+      "{1:NUMERICAL:=12,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Rechenzentrum misst den Jahresstromverbrauch in Abhängigkeit von der Anzahl der betriebenen Serverschränke ($ x $: Anzahl Serverschränke, Verbrauch in MWh):<table class=\"TabelleEinleitung\">\n    <tr><td>Schränke $ x $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Verbrauch (MWh)</td><td>$ 69 $</td><td>$ 112 $</td><td>$ 149 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ E(x) = m \\cdot x + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell den erwarteten Verbrauch (in MWh) bei 10 Serverschränken.",
+      "Bei wie vielen Serverschränken beträgt der Verbrauch nach dem Modell 470 MWh?"
+    ],
+    "antworten": [
+      "$ E(x) = ${1:NUMERICAL:=40,00:0,01}$ \\,x + ${1:NUMERICAL:=30,00:0,01}",
+      "{1:NUMERICAL:=430,00:0,01}",
+      "{1:NUMERICAL:=11,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "In einem Schulgarten wird die Wuchshöhe einer Sonnenblume in der Hauptwachstumsphase wöchentlich gemessen ($ t $: Woche, Höhe in cm):<table class=\"TabelleEinleitung\">\n    <tr><td>Woche $ t $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td></tr>\n    <tr><td>Höhe (cm)</td><td>$ 27 $</td><td>$ 48 $</td><td>$ 53 $</td><td>$ 72 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ h(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Höhe (in cm) in Woche 8.",
+      "In welcher Woche erreicht die Sonnenblume nach dem Modell erstmals eine Höhe von 155 cm?"
+    ],
+    "antworten": [
+      "$ h(t) = ${1:NUMERICAL:=14,00:0,01}$ \\,t + ${1:NUMERICAL:=15,00:0,01}",
+      "{1:NUMERICAL:=127,00:0,01}",
+      "{1:NUMERICAL:=10,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Podcast gewinnt seit dem Start kontinuierlich Abonnenten ($ t $: Monate seit Start, Abonnenten in Hundert):<table class=\"TabelleEinleitung\">\n    <tr><td>Monat $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Abonnenten (Hd.)</td><td>$ 40{,}5 $</td><td>$ 47 $</td><td>$ 56{,}5 $</td><td>$ 64 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ A(t) = m \\cdot t + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Abonnentenzahl (in Hundert) im Monat 8.",
+      "In welchem Monat erreicht der Podcast nach dem Modell erstmals 112 Hundert Abonnenten?"
+    ],
+    "antworten": [
+      "$ A(t) = ${1:NUMERICAL:=8,00:0,01}$ \\,t + ${1:NUMERICAL:=40,00:0,01}",
+      "{1:NUMERICAL:=104,00:0,01}",
+      "{1:NUMERICAL:=9,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Energieversorger untersucht, wie viel CO₂ durch Solaranlagen eingespart wird ($ x $: installierte Anlagen in Hundert, jährliche Einsparung in Tonnen):<table class=\"TabelleEinleitung\">\n    <tr><td>Anlagen (Hd.) $ x $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td></tr>\n    <tr><td>Einsparung (t)</td><td>$ 40 $</td><td>$ 78 $</td><td>$ 104 $</td><td>$ 148 $</td></tr>\n</table>Die Daten sollen durch eine lineare Regressionsfunktion mit dem Ansatz $ S(x) = m \\cdot x + b $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die lineare Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die jährliche Einsparung (in Tonnen) bei 8 Hundert Anlagen.",
+      "Bei wie vielen Hundert Anlagen beträgt die jährliche Einsparung nach dem Modell 215 Tonnen?"
+    ],
+    "antworten": [
+      "$ S(x) = ${1:NUMERICAL:=35,00:0,01}$ \\,x + ${1:NUMERICAL:=5,00:0,01}",
+      "{1:NUMERICAL:=285,00:0,01}",
+      "{1:NUMERICAL:=6,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei Bremstests wird der Anhalteweg eines Pkw bei verschiedenen Geschwindigkeiten gemessen ($ v $: Geschwindigkeit in km/h, Anhalteweg in m):<table class=\"TabelleEinleitung\">\n    <tr><td>Tempo $ v $ (km/h)</td><td>$ 20 $</td><td>$ 40 $</td><td>$ 60 $</td><td>$ 80 $</td></tr>\n    <tr><td>Anhalteweg (m)</td><td>$ 7{,}5 $</td><td>$ 25{,}5 $</td><td>$ 46{,}5 $</td><td>$ 80{,}5 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ s(v) = a v^2 + b v + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell den Anhalteweg (in m) bei 120 km/h.",
+      "Bei welcher Geschwindigkeit (in km/h) beträgt der Anhalteweg nach dem Modell 63 m?"
+    ],
+    "antworten": [
+      "$ s(v) = ${1:NUMERICAL:=0,01:0,01}$ \\,v^2 + ${1:NUMERICAL:=0,20:0,01}$ \\,v + ${1:NUMERICAL:=0,00:0,01}",
+      "{1:NUMERICAL:=168,00:0,01}",
+      "{1:NUMERICAL:=70,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Die kumulierten Downloads einer neuen App steigen immer schneller ($ t $: Monate seit Veröffentlichung, Downloads in Tausend):<table class=\"TabelleEinleitung\">\n    <tr><td>Monat $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Downloads (Tsd.)</td><td>$ 9{,}5 $</td><td>$ 15{,}5 $</td><td>$ 18{,}5 $</td><td>$ 28{,}5 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ D(t) = a t^2 + b t + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Downloadzahl (in Tausend) im Monat 7.",
+      "In welchem Monat erreicht die App nach dem Modell erstmals 118 Tausend Downloads?"
+    ],
+    "antworten": [
+      "$ D(t) = ${1:NUMERICAL:=1,00:0,01}$ \\,t^2 + ${1:NUMERICAL:=3,00:0,01}$ \\,t + ${1:NUMERICAL:=10,00:0,01}",
+      "{1:NUMERICAL:=80,00:0,01}",
+      "{1:NUMERICAL:=9,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "In einem Physikpraktikum wird die Fallstrecke einer Stahlkugel gemessen ($ t $: Zeit in Sekunden, Fallstrecke in m):<table class=\"TabelleEinleitung\">\n    <tr><td>Zeit $ t $ (s)</td><td>$ 0 $</td><td>$ 0{,}5 $</td><td>$ 1 $</td><td>$ 1{,}5 $</td></tr>\n    <tr><td>Strecke (m)</td><td>$ 0{,}5 $</td><td>$ 0{,}75 $</td><td>$ 8{,}5 $</td><td>$ 13{,}75 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ s(t) = a t^2 + b t + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die Fallstrecke (in m) nach 3,5 Sekunden.",
+      "Nach welcher Zeit (in Sekunden) hat die Kugel nach dem Modell eine Strecke von 28,6 m zurückgelegt?"
+    ],
+    "antworten": [
+      "$ s(t) = ${1:NUMERICAL:=5,00:0,01}$ \\,t^2 + ${1:NUMERICAL:=2,00:0,01}$ \\,t + ${1:NUMERICAL:=0,00:0,01}",
+      "{1:NUMERICAL:=68,25:0,01}",
+      "{1:NUMERICAL:=2,20:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Die kumulierte installierte Leistung eines wachsenden Solarparks entwickelt sich beschleunigt ($ t $: Jahre seit Baubeginn, Leistung in MW):<table class=\"TabelleEinleitung\">\n    <tr><td>Jahr $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td></tr>\n    <tr><td>Leistung (MW)</td><td>$ 2 $</td><td>$ 4{,}5 $</td><td>$ 8 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ P(t) = a t^2 + b t + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die installierte Leistung (in MW) im Jahr $ t = 8 $.",
+      "In welchem Jahr $ t $ erreicht der Solarpark nach dem Modell erstmals eine Leistung von 40,5 MW?"
+    ],
+    "antworten": [
+      "$ P(t) = ${1:NUMERICAL:=0,50:0,01}$ \\,t^2 + ${1:NUMERICAL:=2,00:0,01}$ \\,t + ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=50,00:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei einer Datenleitung nimmt die Zahl der Übertragungsfehler mit der Kabellänge überproportional zu ($ x $: Länge in 100 m, Fehler pro Stunde):<table class=\"TabelleEinleitung\">\n    <tr><td>Länge $ x $ (100 m)</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Fehler/h</td><td>$ 3{,}5 $</td><td>$ 5 $</td><td>$ 7{,}5 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ F(x) = a x^2 + b x + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die erwartete Fehlerzahl pro Stunde bei einer Länge von 8 mal 100 m.",
+      "Bei welcher Länge (in 100 m) treten nach dem Modell 27,5 Fehler pro Stunde auf?"
+    ],
+    "antworten": [
+      "$ F(x) = ${1:NUMERICAL:=0,50:0,01}$ \\,x^2 + ${1:NUMERICAL:=0,00:0,01}$ \\,x + ${1:NUMERICAL:=3,00:0,01}",
+      "{1:NUMERICAL:=35,00:0,01}",
+      "{1:NUMERICAL:=7,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein Hersteller kalkuliert die Kosten quadratischer Werbetafeln: Materialkosten wachsen mit der Fläche, Rahmenkosten mit dem Umfang ($ x $: Kantenlänge in m, Kosten in €):<table class=\"TabelleEinleitung\">\n    <tr><td>Kante $ x $ (m)</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td></tr>\n    <tr><td>Kosten (€)</td><td>$ 150 $</td><td>$ 365 $</td><td>$ 770 $</td><td>$ 1265 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ K(x) = a x^2 + b x + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die Kosten (in €) einer Tafel mit Kantenlänge 7 m.",
+      "Welche Kantenlänge (in m) hat nach dem Modell eine Tafel, die 4730 € kostet?"
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=70,00:0,01}$ \\,x^2 + ${1:NUMERICAL:=25,00:0,01}$ \\,x + ${1:NUMERICAL:=50,00:0,01}",
+      "{1:NUMERICAL:=3655,00:0,01}",
+      "{1:NUMERICAL:=8,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Ein neues Stadtviertel wächst zunehmend schneller ($ t $: Jahre seit Erschließung, Einwohner in Hundert):<table class=\"TabelleEinleitung\">\n    <tr><td>Jahr $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td></tr>\n    <tr><td>Einwohner (Hd.)</td><td>$ 70 $</td><td>$ 73 $</td><td>$ 78 $</td></tr>\n</table>Die Daten sollen durch eine quadratische Regressionsfunktion mit dem Ansatz $ E(t) = a t^2 + b t + c $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die quadratische Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell die Einwohnerzahl (in Hundert) im Jahr $ t = 10 $.",
+      "In welchem Jahr $ t $ erreicht das Viertel nach dem Modell erstmals 169 Hundert Einwohner?"
+    ],
+    "antworten": [
+      "$ E(t) = ${1:NUMERICAL:=1,00:0,01}$ \\,t^2 + ${1:NUMERICAL:=2,00:0,01}$ \\,t + ${1:NUMERICAL:=70,00:0,01}",
+      "{1:NUMERICAL:=190,00:0,01}",
+      "{1:NUMERICAL:=9,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Die abgegebene Leistung einer kleinen Windkraftanlage hängt stark von der Windgeschwindigkeit ab ($ v $: Windgeschwindigkeit in m/s, Leistung in kW):<table class=\"TabelleEinleitung\">\n    <tr><td>Wind $ v $ (m/s)</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td><td>$ 5 $</td></tr>\n    <tr><td>Leistung (kW)</td><td>$ 14 $</td><td>$ 39 $</td><td>$ 84 $</td><td>$ 155 $</td></tr>\n</table>Die Daten sollen durch eine kubische Regressionsfunktion mit dem Ansatz $ P(v) = a v^3 + b v^2 + c v + d $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die kubische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die Leistung (in kW) bei einer Windgeschwindigkeit von 8 m/s.",
+      "Berechnen Sie zum Vergleich die Leistung (in kW) bei 11 m/s."
+    ],
+    "antworten": [
+      "$ P(v) = ${1:NUMERICAL:=1,00:0,01}$ \\,v^3 + ${1:NUMERICAL:=1,00:0,01}$ \\,v^2 + ${1:NUMERICAL:=1,00:0,01}$ \\,v + ${1:NUMERICAL:=0,00:0,01}",
+      "{1:NUMERICAL:=584,00:0,01}",
+      "{1:NUMERICAL:=1463,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Für die Produktion eines Guts wird ein ertragsgesetzlicher Kostenverlauf vermutet ($ x $: Menge in ME, Kosten in GE):<table class=\"TabelleEinleitung\">\n    <tr><td>Menge $ x $ (ME)</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td></tr>\n    <tr><td>Kosten (GE)</td><td>$ 62 $</td><td>$ 82 $</td><td>$ 106 $</td><td>$ 140 $</td></tr>\n</table>Die Daten sollen durch eine kubische Regressionsfunktion mit dem Ansatz $ K(x) = a x^3 + b x^2 + c x + d $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die kubische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell die Kosten (in GE) bei einer Produktionsmenge von 8 ME.",
+      "Berechnen Sie zum Vergleich die Kosten (in GE) bei 10 ME."
+    ],
+    "antworten": [
+      "$ K(x) = ${1:NUMERICAL:=1,00:0,01}$ \\,x^3 + ${1:NUMERICAL:=-4,00:0,01}$ \\,x^2 + ${1:NUMERICAL:=25,00:0,01}$ \\,x + ${1:NUMERICAL:=40,00:0,01}",
+      "{1:NUMERICAL:=496,00:0,01}",
+      "{1:NUMERICAL:=890,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Bei Karpfen wächst das Gewicht näherungsweise mit der dritten Potenz der Körperlänge ($ L $: Länge in dm, Gewicht in kg):<table class=\"TabelleEinleitung\">\n    <tr><td>Länge $ L $ (dm)</td><td>$ 2 $</td><td>$ 3 $</td><td>$ 4 $</td><td>$ 5 $</td></tr>\n    <tr><td>Gewicht (kg)</td><td>$ 0{,}16 $</td><td>$ 0{,}54 $</td><td>$ 1{,}28 $</td><td>$ 2{,}5 $</td></tr>\n</table>Die Daten sollen durch eine kubische Regressionsfunktion mit dem Ansatz $ G(L) = a L^3 + b L^2 + c L + d $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die kubische Regressionsfunktion.",
+      "Berechnen Sie mit dem Modell das Gewicht (in kg) eines Karpfens mit einer Länge von 8 dm.",
+      "Berechnen Sie zum Vergleich das Gewicht (in kg) bei einer Länge von 9 dm."
+    ],
+    "antworten": [
+      "$ G(L) = ${1:NUMERICAL:=0,02:0,01}$ \\,L^3 + ${1:NUMERICAL:=0,00:0,01}$ \\,L^2 + ${1:NUMERICAL:=0,00:0,01}$ \\,L + ${1:NUMERICAL:=0,00:0,01}",
+      "{1:NUMERICAL:=10,24:0,01}",
+      "{1:NUMERICAL:=14,58:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Der Absatz eines Produkts folgt einem typischen Lebenszyklus: erst wachsend, später abflachend ($ t $: Quartale seit Markteinführung, Absatz in Hundert Stück):<table class=\"TabelleEinleitung\">\n    <tr><td>Quartal $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Absatz (Hd.)</td><td>$ 15 $</td><td>$ 24 $</td><td>$ 35 $</td><td>$ 42 $</td></tr>\n</table>Die Daten sollen durch eine kubische Regressionsfunktion mit dem Ansatz $ A(t) = a t^3 + b t^2 + c t + d $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die kubische Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell den Absatz (in Hundert Stück) im Quartal $ t = 4 $.",
+      "Prognostizieren Sie zum Vergleich den Absatz (in Hundert Stück) im Quartal $ t = 5 $."
+    ],
+    "antworten": [
+      "$ A(t) = ${1:NUMERICAL:=-1,00:0,01}$ \\,t^3 + ${1:NUMERICAL:=4,00:0,01}$ \\,t^2 + ${1:NUMERICAL:=6,00:0,01}$ \\,t + ${1:NUMERICAL:=15,00:0,01}",
+      "{1:NUMERICAL:=39,00:0,01}",
+      "{1:NUMERICAL:=20,00:0,01}"
+    ]
+  },
+  {
+    "einleitung": "Der Umsatz eines Start-ups wächst anfangs langsam und zieht dann deutlich an ($ t $: Jahre seit Gründung, Umsatz in 100 Tsd. €):<table class=\"TabelleEinleitung\">\n    <tr><td>Jahr $ t $</td><td>$ 0 $</td><td>$ 1 $</td><td>$ 2 $</td><td>$ 3 $</td></tr>\n    <tr><td>Umsatz (100 Tsd. €)</td><td>$ 2 $</td><td>$ 7 $</td><td>$ 22 $</td><td>$ 53 $</td></tr>\n</table>Die Daten sollen durch eine kubische Regressionsfunktion mit dem Ansatz $ U(t) = a t^3 + b t^2 + c t + d $ modelliert werden.",
+    "fragen": [
+      "Bestimmen Sie die kubische Regressionsfunktion.",
+      "Prognostizieren Sie mit dem Modell den Umsatz (in 100 Tsd. €) im Jahr $ t = 6 $.",
+      "Prognostizieren Sie zum Vergleich den Umsatz (in 100 Tsd. €) im Jahr $ t = 8 $."
+    ],
+    "antworten": [
+      "$ U(t) = ${1:NUMERICAL:=1,00:0,01}$ \\,t^3 + ${1:NUMERICAL:=2,00:0,01}$ \\,t^2 + ${1:NUMERICAL:=2,00:0,01}$ \\,t + ${1:NUMERICAL:=2,00:0,01}",
+      "{1:NUMERICAL:=302,00:0,01}",
+      "{1:NUMERICAL:=658,00:0,01}"
+    ]
+  }
+]

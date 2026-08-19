@@ -65,7 +65,11 @@ Jeder Check durchläuft eine Kette aus vier Aktivitäten: Training, Recall, Feyn
     </article>
 </div>
 
-Bei Recall und Feynman bewertet eine KI die Antworten. Sie erhält zu jedem Check gezielt vorbereitetes Kontextwissen, damit die Rückmeldungen fachlich und pädagogisch fundiert sind.
+Im Training werden die Eingaben mit hinterlegten Lösungen unter Berücksichtigung einer geeigneten Fehlertoleranz verglichen. Bei Recall und Feynman bewertet eine KI die Antworten.
+
+## KI mit vorbereitetem Kontext
+
+Die Bewertung stützt sich nicht auf allgemeines Modellwissen. Stattdessen erhält die KI zu jedem Check ein gezielt vorbereitetes Kontextpaket aus der Kompetenz, den zentralen Kernpunkten, einem durchgerechneten Beispiel und der konkreten Aufgabe samt Lösungen. So sind die Rückmeldungen fachlich und pädagogisch fundiert.
 
 
 ## Quantitativer Fortschritt
@@ -103,5 +107,7 @@ Bei Training, Recall und Feynman entsteht jeweils eine Erfolgsquote. Sie wird ü
 # Feed-unabhängiges Lernen
 
 Der Feed führt dich klug durch deine Session. Du kannst MatheChecks aber auch feed-unabhängig nutzen, zum Beispiel um gezielt einzelne Aufgaben zu bearbeiten oder im Skript etwas nachzulesen.
+
+Außerdem kannst du dir fertig vorbereitete KI-Lernpartner kopieren und in einen KI-Chat deiner Wahl einfügen. Bei den Trainingsaufgaben hilft dir die KI, die konkrete Aufgabe Schritt für Schritt bis zur Lösung durchzurechnen. Beim Feynman-Check ist sie dein Sparringspartner, dem du das Konzept möglichst genau und kleinschrittig erklärst. In beiden Rollen ist die KI mit dem pädagogischen und fachlichen Kontext des Checks ausgestattet.
 
 <script src="{{ '/assets/js/konzept-grafik.js?v=20260816-recall-check2' | relative_url }}" defer></script>
