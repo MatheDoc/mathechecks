@@ -61,15 +61,16 @@ Ab drei Datenpunkten liegen die Punkte in der Regel nicht mehr exakt auf einer g
 
 Die Abweichungssumme $S(m,b)$ hängt von den beiden Parametern $m$ und $b$ ab. Um ihr Minimum zu finden, verwenden wir die gewöhnlichen Methoden der Differentialrechnung. Da hier zwei Variablen $m$ und $b$ auftreten, betrachten wir einmal $S$ in Abhängigkeit von $b$ mit Parameter $m$, d.h. $S_m(b)$, und einmal $S$ in Abhängigkeit von $m$ mit Parameter $b$, d.h. $S_b(m)$. Die notwendige Bedingung für Extrema besagt, dass $S'_m(b)=0$ und $S'_b(m)=0$ sein muss. Diese beiden Gleichungen können nun nach den beiden Unbekannten $m$ und $b$ aufgelöst werden (auf die hinreichende Bedingung verzichten wir hier, man kann zeigen, dass die Lösungen der notwendigen Bedingung wirklich extremal sind).
 
-### Beispiel: Drei Punkte von Hand
+### Beispiel
 
 Gegeben sind die drei Datenpunkte $(1 \mid 1)$, $(2 \mid 3)$ und $(3 \mid 2)$. Die Abweichungssumme für eine Gerade $f(x)=m\cdot x+b$ lautet
 
-$$S(m,b)=\big(1-(m\cdot 1+b)\big)^2+\big(3-(m\cdot 2+b)\big)^2+\big(2-(m\cdot 3+b)\big)^2.$$
-
-Ausmultiplizieren und Zusammenfassen ergibt
-
-$$S(m,b)=14m^2+12mb+3b^2-26m-12b+14.$$
+$$
+\begin{align*}
+S(m,b)&=\big(1-(m\cdot 1+b)\big)^2+\big(3-(m\cdot 2+b)\big)^2+\big(2-(m\cdot 3+b)\big)^2\\
+&=14m^2+12mb+3b^2-26m-12b+14.
+\end{align*}
+$$
 
 Fasst man $m$ als Parameter auf und sortiert nach Potenzen von $b$, entsteht eine quadratische Funktion in $b$:
 
@@ -79,9 +80,13 @@ Ihre Ableitung nach $b$ wird null gesetzt:
 
 $$S'_m(b)=6b+12m-12=0$$
 
-Genauso wird $S$ nach Potenzen von $m$ sortiert (jetzt ist $b$ der Parameter) und nach $m$ abgeleitet:
+Genauso wird $S$ nach Potenzen von $m$ sortiert (jetzt ist $b$ der Parameter) 
 
-$$S_b(m)=14m^2+(12b-26)\cdot m+\big(3b^2-12b+14\big), \qquad S'_b(m)=28m+12b-26=0$$
+$$S_b(m)=14m^2+(12b-26)\cdot m+\big(3b^2-12b+14\big)$$
+
+und die Ableitung nach $m$ gleich null gesetzt
+
+$$S'_b(m)=28m+12b-26=0.$$
 
 Damit liegen zwei lineare Gleichungen für die beiden Unbekannten $m$ und $b$ vor. Die erste Gleichung liefert nach $b$ aufgelöst $b=2-2m$; eingesetzt in die zweite Gleichung:
 

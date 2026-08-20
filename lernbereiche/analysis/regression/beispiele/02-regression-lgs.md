@@ -18,7 +18,6 @@ S(a,b,c)=\;&\big(34-(a\cdot 0^2+b\cdot 0+c)\big)^2+\big(14-(a\cdot 1^2+b\cdot 1+
 +\;&\big(0-(a\cdot 2^2+b\cdot 2+c)\big)^2+\big(12-(a\cdot 3^2+b\cdot 3+c)\big)^2
 \end{aligned}$$
 
-Der Term muss nicht vereinfacht werden – er wird im nächsten Schritt nur abgeleitet.
 
 **Schritt 2: Ableitungen null setzen**
 
@@ -26,17 +25,21 @@ Gesucht ist das Minimum von $S$. Dazu wird $S$ nacheinander als Funktion jeweils
 
 $$S'_{b,c}(a)=0, \qquad S'_{a,c}(b)=0, \qquad S'_{a,b}(c)=0$$
 
-Diese Ableitungen müssen nicht von Hand berechnet werden – der GTR leitet direkt nach $a$, $b$ bzw. $c$ ab. Nullsetzen der drei Ableitungen führt auf das lineare Gleichungssystem
+Gleichwertig dazu ist die Schreibweise
 
-$$\begin{aligned}
+$$\frac{\partial S(a,b,c)}{\partial a}=0, \qquad \frac{\partial S(a,b,c)}{\partial b}=0, \qquad \frac{\partial S(a,b,c)}{\partial c}=0$$
+
+Hierbei handelt es sich um ein lineares Gleichungssystem mit 3 Gleichungen und 3 Unbekannten.
+
+<!--$$\begin{aligned}
 98a+36b+14c &= 122 \\
 36a+14b+6c &= 50 \\
 14a+6b+4c &= 60
-\end{aligned}$$
+\end{aligned}$$-->
 
 **Schritt 3: LGS lösen**
 
-Dieses LGS kann mit dem GTR oder dem Gauß-Algorithmus gelöst werden. Die Lösung lautet
+Das LGS kann mit dem GTR oder dem Gauß-Algorithmus gelöst werden. Die Lösung lautet
 
 $$a=8, \qquad b=-32, \qquad c=35.$$
 

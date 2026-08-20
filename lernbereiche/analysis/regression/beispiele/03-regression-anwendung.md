@@ -24,17 +24,15 @@ S(a,b,c)=\;&\big(0-(a\cdot 0^2+b\cdot 0+c)\big)^2+\big(28-(a\cdot 2^2+b\cdot 2+c
 +\;&\big(30-(a\cdot 4^2+b\cdot 4+c)\big)^2+\big(26-(a\cdot 6^2+b\cdot 6+c)\big)^2
 \end{aligned}$$
 
-Der Term muss nicht vereinfacht werden. Für das Minimum wird $S$ nacheinander als Funktion jeweils eines Koeffizienten aufgefasst, abgeleitet und die Ableitung gleich null gesetzt:
+Für das Minimum wird $S$ nacheinander als Funktion jeweils eines Koeffizienten aufgefasst, abgeleitet und die Ableitung gleich null gesetzt:
 
 $$S'_{b,c}(a)=0, \qquad S'_{a,c}(b)=0, \qquad S'_{a,b}(c)=0$$
 
-Die Ableitungen berechnet der GTR direkt. Nullsetzen führt auf das lineare Gleichungssystem
-
-$$\begin{aligned}
+<!--$$\begin{aligned}
 1568a+288b+56c &= 1528 \\
 288a+56b+12c &= 332 \\
 56a+12b+4c &= 84
-\end{aligned}$$
+\end{aligned}$$-->
 
 Dieses LGS kann mit dem GTR oder dem Gauß-Algorithmus gelöst werden. Die Lösung lautet $a=-2$, $b=16$ und $c=1$, also
 
