@@ -104,7 +104,7 @@ Mit $b=2-2\cdot 0{,}5=1$ lautet die beste Gerade also $f(x)=0{,}5x+1$.
 	ymax=4
 %}
 
-Beachte: Abgeleitet wird hier nach $m$ bzw. nach $b$ – nicht nach $x$. Die Datenwerte $x_i$ und $y_i$ sind feste Zahlen aus der Wertetabelle; die Variablen der Funktion $S$ sind die Parameter der gesuchten Geraden.
+Beachte: Abgeleitet wird hier nach $x$, sondern nach $m$ bzw. nach $b$. Die Datenwerte $x_i$ und $y_i$ sind feste Zahlen aus der Wertetabelle; die Variablen der Funktion $S$ sind die Parameter der gesuchten Geraden.
 
 Für den allgemeinen Fall betrachten wir $n$ Datenpunkte $(x_1 \mid y_1),\,(x_2 \mid y_2),\,\ldots,\,(x_n \mid y_n)$ und gehen genauso vor wie im Beispiel – nur mit Summenzeichen statt konkreter Zahlen: Die Abweichungssumme $S(m,b)$ wird einmal als Funktion $S_m(b)$ und einmal als Funktion $S_b(m)$ aufgefasst, beide Ableitungen werden null gesetzt, und das entstehende Gleichungssystem wird nach $m$ und $b$ aufgelöst.
 
@@ -156,29 +156,19 @@ Die gleiche Methode funktioniert auch für andere Funktionstypen. Beim quadratis
 
 $$S(a,b,c)=\sum_{i=1}^{n}\big(y_i-(a x_i^2+b x_i+c)\big)^2.$$
 
-Sie hängt jetzt von drei Koeffizienten ab. Das Rezept bleibt dasselbe: $S$ wird nacheinander als Funktion jeweils eines Koeffizienten betrachtet (die anderen beiden festgehalten), abgeleitet und die Ableitung gleich null gesetzt. Drei Koeffizienten liefern drei Gleichungen – die Normalengleichungen für den quadratischen Ansatz:
+Sie hängt jetzt von drei Koeffizienten ab. Das Rezept bleibt dasselbe: $S$ wird nacheinander als Funktion jeweils eines Koeffizienten betrachtet (die anderen beiden festgehalten), abgeleitet und die Ableitung gleich null gesetzt.
 
-$$\begin{aligned}
-a\cdot\sum x_i^4 + b\cdot\sum x_i^3 + c\cdot\sum x_i^2 &= \sum x_i^2\, y_i \\
-a\cdot\sum x_i^3 + b\cdot\sum x_i^2 + c\cdot\sum x_i &= \sum x_i\, y_i \\
-a\cdot\sum x_i^2 + b\cdot\sum x_i + c\cdot n &= \sum y_i
-\end{aligned}$$
+$$S'_{b,c}(a)=0 \qquad S'_{a,c}(b)=0 \qquad S'_{a,b}(c)=0$$
 
-Alle Summen sind konkrete Zahlen, die sich direkt aus der Wertetabelle berechnen lassen. Es entsteht also ein lineares 3×3-Gleichungssystem in den Unbekannten $a$, $b$ und $c$. Dieses LGS kann mit dem GTR oder dem Gauß-Algorithmus gelöst werden – von Hand muss hier niemand rechnen. Beim kubischen Ansatz $f(x)=ax^3+bx^2+cx+d$ läuft alles analog: vier Koeffizienten, vier Normalengleichungen, ein 4×4-LGS (mit Summen bis $\sum x_i^6$).
+Dies ist ein lineares 3×3-Gleichungssystem in den Unbekannten $a$, $b$ und $c$. Es kann mit dem GTR oder dem Gauß-Algorithmus gelöst werden. Analog der kubische Ansatz $f(x)=ax^3+bx^2+cx+d$: Hier entsteht ein 4×4-LGS mit den Unbekannten $a$, $b$, $c$ und $d$.
 
-Obwohl die Regressionsfunktionen quadratisch oder kubisch sind, entsteht beim Ableiten **immer ein lineares Gleichungssystem**. Der Grund: Die gesuchten Koeffizienten gehen linear in den Ansatz ein, sie werden nur mit festen Zahlen wie $x_i^2$ oder $x_i^3$ multipliziert und aufaddiert. Ob der Graph gekrümmt ist, spielt für die Struktur der Gleichungen keine Rolle.
-
-Im zugehörigen Check treten lineare, quadratische und kubische Ansätze gemischt auf. Beim linearen Ansatz hast du die Wahl: entweder direkt die Regressionsformeln aus dem vorigen Abschnitt anwenden oder das 2×2-LGS der beiden Normalengleichungen (siehe Exkurs) aufstellen und lösen.
+Obwohl die Regressionsfunktionen z.B. quadratisch oder kubisch sind, entsteht **immer ein lineares Gleichungssystem**, weil die gesuchten Koeffizienten linear in den Ansatz eingehen (sie werden nur mit festen Zahlen wie $x_i^2$ oder $x_i^3$ multipliziert und aufaddiert). Ob der Graph gekrümmt ist, spielt für die Struktur der Gleichungen keine Rolle.
 
 {% include check-anker.html nummer="2" %}
 
 ## Regression im Sachzusammenhang
 
-In Anwendungsaufgaben ist die Regressionsfunktion selten das Endziel – sie ist das Werkzeug, mit dem Sachfragen beantwortet werden. Typisch ist ein Dreischritt:
-
-1. **Regressionsfunktion bestimmen:** Zum vorgegebenen Funktionstyp die Koeffizienten berechnen – mit den Regressionsformeln oder über das LGS (das der GTR lösen darf).
-2. **Prognose:** Einen gegebenen x-Wert (z. B. einen zukünftigen Zeitpunkt) in die Regressionsfunktion einsetzen; der Funktionswert ist der prognostizierte y-Wert.
-3. **Umkehrfrage:** Gesucht ist der x-Wert, zu dem ein vorgegebener y-Wert gehört. Dazu wird die Gleichung $f(x)=y$ gelöst. Bei quadratischen Modellen entstehen dabei in der Regel zwei Lösungen – hier muss im Sachkontext entschieden werden, welche Lösung zur Frage passt (etwa: liegt der gesuchte Zeitpunkt in der steigenden oder in der fallenden Phase?).
+In Anwendungsaufgaben wird typischweise eine Regressionsfunktion ermittelt, um im Anschluss Sachfragen beantworteten zu können. Möchte man beispielsweise wissen, wie hoch die Bevölkerung eines Landes in 20 Jahren ist oder wann sie um 10% zugenommen hat, so könnten wir zunächst aus den historischen Daten eine Regressionsfunktion bestimmen um dann diese Fragen zu beantworten. 
 
 Hinweis: Eine Regressionsfunktion beschreibt die Daten in dem Bereich, in dem gemessen wurde. Je weiter eine Prognose diesen Datenbereich verlässt (sogenannte Extrapolation), desto unzuverlässiger wird sie. Ein Modell, das die ersten Monate gut beschreibt, weiß nichts über plötzliche Trendwechsel, Sättigungseffekte oder Ereignisse weit in der Zukunft. Es lohnt sich also immer zu fragen, ob ein prognostizierter Wert im Sachkontext überhaupt noch plausibel ist.
 
@@ -186,7 +176,7 @@ Hinweis: Eine Regressionsfunktion beschreibt die Daten in dem Bereich, in dem ge
 
 ## Regression mit dem GTR
 
-Alle bisherigen Rechenschritte erledigt auch der GTR auf Knopfdruck: Daten eingeben, Regressionsart wählen, Koeffizienten ablesen. Jetzt weißt du, was dabei intern passiert – der GTR bestimmt genau die Funktion, für die die Summe der Abweichungsquadrate minimal wird. Der GTR kann dabei sogar mehr als der LGS-Ansatz: Bei einer exponentiellen Regression mit dem Ansatz $f(x)=a\cdot e^{bx}$ geht der Parameter $b$ nicht linear in den Ansatz ein, deshalb führt das Ableiten hier auf kein lineares Gleichungssystem – die exponentielle Regression lässt sich also nicht direkt über ein LGS bestimmen, der GTR liefert trotzdem eine Lösung.
+Alle bisherigen Rechenschritte erledigt auch der GTR auf Knopfdruck: Daten eingeben, Regressionsart wählen, Koeffizienten ablesen. Der GTR führt im Hintergrund die oben erläuterten Rechnungen durch. Dabei können viele GTR auch die Regressionsfunktion bestimmen, wenn kein LGS vorliegt. Bei einer exponentiellen Regression mit dem Ansatz $f(x)=a\cdot e^{bx}$ geht beispielsweise der Parameter $b$ nicht linear in den Ansatz ein, deshalb führt das Ableiten hier auf kein lineares Gleichungssystem. Die exponentielle Regression lässt sich also nicht direkt über ein LGS bestimmen, der GTR liefert aber trotzdem eine Lösung.
 
 Zum Schluss stellt sich die Frage, wie gut die gefundene Funktion die Daten beschreibt. Dafür wird in der Regel das Bestimmtheitsmaß $R^2$ verwendet. Es nimmt Werte zwischen 0 und 1 an. Je näher $R^2$ an 1 liegt, desto besser passt die gewählte Funktion zu den Daten. Auch dieser Wert wird direkt vom GTR angegeben. Vereinfacht gesagt ist die Regression für
 
@@ -196,7 +186,7 @@ Zum Schluss stellt sich die Frage, wie gut die gefundene Funktion die Daten besc
 
 Im folgenden verwenden wir den [Casio fx-CG 20](https://www.casio-schulrechner.de/materialdatenbanken/data/Kurzanleitung_FX-CG20V2.pdf "Anleitung"). Andere Taschenrechner funktionieren ähnlich, z.B. der [Casio fx-CP400](https://www.casio-schulrechner.de/materialdatenbanken/data/Hilfekatalog%20Classpad%20400%20Sekundarstufe%20I.pdf "Anleitung").
 
-### Beispiel: Lineare Regression
+<!--### Beispiel: Lineare Regression
 
 Gegeben sind folgende Werte:
 
@@ -267,7 +257,7 @@ Wir vermuten, dass die Datenpunkte in etwa auf einer Parabel liegen, daher wird 
 - DRAW zeigt die Datenpunkte und den Graphen der Regressionsfunktion an
 - Die Regressionsfunktion lautet also $f(x)=-0{,}59x^2+3{,}20x+2{,}74$.
 - Das Bestimmtheitsmaß lautet $R^2=0{,}994$. Dieser Wert liegt sehr nah an $1$, die quadratische Regression ist also gut geeignet, um den Zusammenhang zwischen den beiden Größen zu beschreiben.
-
+-->
 
 
 {% include check-anker.html nummer="4" %}
