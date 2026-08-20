@@ -11,11 +11,12 @@
 // gebuendelter Aufruf an die Gemini API mit Modell-Fallback bei Fehlern.
 
 const MODELS = [
+  "gemini-3.7-flash",
   "gemini-3.6-flash",
-  "gemini-3.5-flash",
   "gemini-3.5-flash-lite",
   "gemini-3.1-flash-lite",
 ] as const;
+const RATE_LIMIT_SCOPE = "recall_evaluate";
 const MAX_ITEMS = 12;
 const MAX_FIELD_LENGTH = 400;
 
@@ -96,6 +97,40 @@ function publicGeminiError(error: unknown): { error: string; status?: number } {
   return { error: "evaluation-failed" };
 }
 
+// Bindet die Bewertung an einen eingeloggten Nutzer: der oeffentliche anonKey
+// ist selbst ein gueltiges JWT, daher reicht Supabases JWT-Check allein nicht.
+async function consumeRateLimit(req: Request): Promise<{ allowed: boolean; status?: number; error?: string }> {
+  const supabaseUrl = Deno.env.get("SUPABASE_URL")?.replace(/\/+$/, "") || "";
+  const apiKey = req.headers.get("apikey") || Deno.env.get("SUPABASE_ANON_KEY") || "";
+  const authorization = req.headers.get("authorization") || "";
+
+  if (!supabaseUrl || !apiKey || !authorization) {
+    return { allowed: false, status: 401, error: "not-authenticated" };
+  }
+
+  try {
+    const response = await fetch(`${supabaseUrl}/rest/v1/rpc/consume_ai_rate_limit`, {
+      method: "POST",
+      headers: {
+        Authorization: authorization,
+        apikey: apiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ p_scope: RATE_LIMIT_SCOPE }),
+    });
+
+    if (!response.ok) {
+      if (response.status >= 500) return { allowed: true };
+      return { allowed: false, status: response.status, error: "rate-limit-check-failed" };
+    }
+
+    const data = await response.json();
+    return { allowed: data?.allowed !== false, status: data?.allowed === false ? 429 : 200, error: "rate-limited" };
+  } catch {
+    return { allowed: true };
+  }
+}
+
 async function callGemini(apiKey: string, model: string, payload: PromptItem[], evaluateNrs: number[]): Promise<unknown> {
   const prompt = buildPrompt(payload, evaluateNrs);
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
@@ -158,6 +193,11 @@ Deno.serve(async (req: Request) => {
     schueler_antwort: truncate(item?.student, MAX_FIELD_LENGTH),
   }));
 
+  const rateLimit = await consumeRateLimit(req);
+  if (!rateLimit.allowed) {
+    return jsonResponse({ error: rateLimit.error || "rate-limited" }, rateLimit.status || 429);
+  }
+
   const apiKey = Deno.env.get("GEMINI_API_KEY");
   if (!apiKey) {
     return jsonResponse({ error: "not-configured" }, 500);
@@ -174,6 +214,8 @@ Deno.serve(async (req: Request) => {
       break;
     } catch (error) {
       lastError = error;
+      // 429 nicht auf weitere Modelle durchreichen, sonst belastet ein Klick mehrere Quoten.
+      if (error instanceof GeminiHttpError && error.status === 429) break;
       continue;
     }
   }

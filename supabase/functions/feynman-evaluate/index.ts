@@ -6,8 +6,8 @@
 // Supabase-Session-JWT aufgerufen.
 
 const MODELS = [
+  "gemini-3.7-flash",
   "gemini-3.6-flash",
-  "gemini-3.5-flash",
   "gemini-3.5-flash-lite",
   "gemini-3.1-flash-lite",
 ] as const;
@@ -258,6 +258,8 @@ async function evaluateWithFallback(
       break;
     } catch (error) {
       lastError = error;
+      // 429 nicht auf weitere Modelle durchreichen, sonst belastet ein Klick mehrere Quoten.
+      if (error instanceof GeminiHttpError && error.status === 429) break;
       continue;
     }
   }
@@ -356,7 +358,15 @@ Deno.serve(async (req: Request) => {
   const usedModels = new Set<string>();
 
   const evaluationItems = context.items.filter((item) => evaluateNrs.includes(item.nr));
-  for (const items of chunkItems(evaluationItems, GEMINI_BATCH_SIZE)) {
+  // Leere Antworten kosten keine Gemini-Tokens: direkt mit Score 0 beantworten.
+  const emptyItems = evaluationItems.filter((item) => !item.schueler_antwort.trim());
+  const geminiItems = evaluationItems.filter((item) => item.schueler_antwort.trim());
+
+  for (const item of emptyItems) {
+    normalized.push({ nr: item.nr, score: 0, reason: "Schreibe zuerst eine eigene Erklaerung.", unchecked: false });
+  }
+
+  for (const items of chunkItems(geminiItems, GEMINI_BATCH_SIZE)) {
     const batchContext = { ...context, evaluateNrs: items.map((item) => item.nr) };
     const { results, modelUsed, lastError } = await evaluateWithFallback(apiKey, batchContext);
 
@@ -368,6 +378,8 @@ Deno.serve(async (req: Request) => {
     usedModels.add(modelUsed);
     normalized.push(...normalizeBatchResults(items, results as Record<string, unknown>[]));
   }
+
+  normalized.sort((a, b) => Number(a.nr) - Number(b.nr));
 
   return jsonResponse({ results: normalized, model: Array.from(usedModels).join(",") || MODELS[0] });
 });
