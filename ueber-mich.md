@@ -11,7 +11,7 @@ show_footer: true
 # Über mich
 
 <div class="ueber-mich-intro">
-    <img class="ueber-mich-portrait" src="{{ '/assets/img/sven.jpeg' | relative_url }}" alt="Porträtfoto von Sven Führing" width="128" height="128" loading="lazy">
+    <img class="ueber-mich-portrait" src="{{ '/assets/img/sven.jpg' | relative_url }}" alt="Porträtfoto von Sven Führing" width="128" height="128" loading="lazy">
     <p>Hi, ich bin Sven, der Kopf hinter MatheChecks.</p>
 </div>
 
