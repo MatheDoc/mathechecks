@@ -10,14 +10,15 @@ show_footer: true
 
 # Idee
 
-Mit MatheChecks entwickle ich eine moderne Lernplattform. Die empirische Bildungsforschung zeigt, was Lernen nachhaltig macht:
+Mit MatheChecks entwickle ich eine Lernplattform für den systematischen Aufbau von Mathematik-Kompetenzen in der Sekundarstufe II. Dabei folge ich den Erkenntnissen der empirischen Bildungsforschung zum nachhaltigen Lernen:
 
-- **aktives Abrufen** statt passives Lesen,
-- **formatives Feedback**, das individuell unterstützt,
-- **Erklären in eigenen Worten**, das Verständnis vertieft und Lücken aufdeckt,
-- **zeitlich versetzte Wiederholungen** (Spaced Repetition).
+- **aktives Abrufen** (Retrieval Practice) statt passives Lesen,
+- **durchmischtes Üben** (Interleaving) statt Blocktraining,
+- **zeitlich versetzte Wiederholungen** (Spaced Repetition),
+- **Erklären in eigenen Worten** (Self-Explanation), das Verständnis vertieft und Lücken aufdeckt,
+- **prozessbezogene Rückmeldung** (formatives Feedback), die individuell unterstützt.
 
-Und sie zeigt, wie Motivation entsteht: durch Autonomie und das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
+Auch zur Motivation gibt es klare Befunde: Sie entsteht unter anderem durch Autonomie und das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
 
 
 
