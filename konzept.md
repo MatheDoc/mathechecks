@@ -10,7 +10,14 @@ show_footer: true
 
 # Idee
 
-Mit MatheChecks entwickle ich eine moderne Lernplattform, die digitale Möglichkeiten gezielt für den Lernprozess nutzt. Die Plattform stützt sich auf gut belegte Erkenntnisse der Lernpsychologie: Lernen gelingt besser durch aktive Auseinandersetzung statt passives Lesen, durch formatives Feedback und durch zeitlich versetzte Wiederholungen (Spaced Repetition); Motivation entsteht durch Autonomie und das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
+Mit MatheChecks entwickle ich eine moderne Lernplattform. Die empirische Bildungsforschung zeigt, was Lernen nachhaltig macht:
+
+- **aktives Abrufen** statt passives Lesen,
+- **formatives Feedback**, das individuell unterstützt,
+- **Erklären in eigenen Worten**, das Verständnis vertieft und Lücken aufdeckt,
+- **zeitlich versetzte Wiederholungen** (Spaced Repetition).
+
+Und sie zeigt, wie Motivation entsteht: durch Autonomie und das Erleben der eigenen Kompetenz. Diese Prinzipien sind bei MatheChecks nicht nachträglich aufgesetzt, sondern bestimmen den Aufbau der Plattform von Grund auf.
 
 
 
