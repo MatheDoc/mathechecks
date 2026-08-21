@@ -28,9 +28,7 @@ show_footer: true
 
 MatheChecks ist aus diesen Tätigkeiten heraus entstanden.
 
-Im Unterricht erlebe ich, wie viel möglich ist, wenn Lernende aktiv üben, individuelle Rückmeldungen bekommen und ihre eigenen Fortschritte sehen. Allerdings sehe ich auch, dass dieser Effekt nicht nachhaltig ist, sobald das Lernen ohne Struktur und ohne Feedback weitergeht.
-
-Die empirische Bildungsforschung erklärt beides gut: Wissen verankert sich durch aktives Abrufen statt passives Lesen und durch systematisches Üben. Ich wollte ein Werkzeug haben, das diese Prinzipien konsequent umsetzt und das ich meinen Lernenden guten Gewissens an die Hand geben kann.
+Im Unterricht erlebe ich, wie viel möglich ist, wenn Lernende kognitiv aktiv sind, Rückmeldungen bekommen und ihre Fortschritte sehen, aber auch, wie schnell dieser Effekt verpufft, sobald das Lernen ohne systematisches Üben weitergeht. Ich wollte ein Werkzeug, das an diesen Punkten ansetzt und das ich meinen Lernenden guten Gewissens an die Hand geben kann.
 
 Digitale Lernangebote gibt es viele. Die meisten Plattformen sind stark in Verwaltung, Kommunikation oder Content. Auf komplexe Lernprozesse sind sie dagegen selten ausgerichtet. Dateien werden bloß abgelegt, vielschichtige Interaktivität kommt kaum vor, und konkrete Lerntechniken sind nicht implementiert. Hinzu kommen praktische Schwächen: Mathematische Formeln werden nicht sauber gesetzt, viele Darstellungen sind nicht responsiv, und einer generischen KI fehlt häufig das fachliche und pädagogische Kontextwissen für verlässliche Rückmeldungen.
 
