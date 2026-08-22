@@ -38,7 +38,7 @@ const GREETING_TIME_VARIANTS = [
     startHour: 4,
     endHour: 12,
     variants: [
-      "Hey, Frühaufsteher!",
+      "Grüß dich, {name}!",
       "Guten Morgen, {name}.",
       "Was steht heute an, {name}?",
     ],
@@ -81,8 +81,8 @@ const GREETING_EVENT_VARIANTS = {
     "Hi, {name}, ab jetzt wird Mathe gecheckt.",
   ],
   streak3: [
-    "Drei, Tage am Stück, {name}. Das ist kein Zufall mehr.",
-    "Drei, Tage in Folge. Weiter so.",
+    "Drei Tage am Stück, {name}. Das ist kein Zufall mehr.",
+    "Drei Tage in Folge. Weiter so.",
     "Hi, {name}, drei Tage nacheinander. Läuft.",
   ],
   streak7: [
@@ -820,7 +820,10 @@ function resolveGreetingNonEvent(context, snapshot) {
   const selectionKey = `nonEvent-step-${stepIndex}`;
 
   const stored = getStoredGreetingSelection(context, snapshot.todayDateValue, selectionKey, snapshot.now);
-  if (stored) return stored;
+  // Gespeicherte Zeitfenster-Floskeln verwerfen, wenn das Zeitfenster inzwischen gewechselt hat.
+  const currentTimeWindowKey = `time-${getGreetingTimeWindow(snapshot.hour)?.key || ""}`;
+  const storedIsStaleTimeGreeting = Boolean(stored?.key?.startsWith("time-") && stored.key !== currentTimeWindowKey);
+  if (stored && !storedIsStaleTimeGreeting) return stored;
 
   const candidates = [
     resolveGreetingProgressCandidate(snapshot),
@@ -898,6 +901,7 @@ function scheduleGreetingRefresh(context, snapshot, greeting) {
   const candidates = (usesRotationOnlyRefresh
     ? [
       getNextGreetingMidnight(now),
+      getNextGreetingTimeBoundary(now),
       getNextGreetingRotationBoundary(context, snapshot?.todayDateValue, greeting?.variantCount, now, true),
     ]
     : [
