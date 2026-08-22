@@ -9,7 +9,7 @@ page_css: /assets/css/dashboard.css?v=20260723-dashboard-bento-cleanup
 published: true
 noindex: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260723-worklist-scope-filters
+module_script: /assets/js/modules/dashboard.js?v=20260822-greeting-time-window-fix
 ---
 
 {% include dashboard/content.html %}

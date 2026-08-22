@@ -184,5 +184,5 @@ Die Tabelle zeigt diese Wahrscheinlichkeiten für verschiedene Werte von $n$:
 | Anzahl $n$       |    1 |      5 |     10 |     20 |     50 |    100 |
 | $P(X \geq 1)$    | 0,05 | 0,2262 | 0,4013 | 0,6415 | 0,9231 | 0,9941 |
 
-Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die Nullhypothese zu verwerfen, bei über 64 %. Genau diesen Test könnte das Institut als Beleg für die Gefährdung der Meinungsfreiheit anführen, obwohl der wahre Anteil unverändert bei 25 % liegt und kein echter Effekt nachgewiesen wurde.
+Bereits nach 20 Tests liegt die Wahrscheinlichkeit, mindestens einmal fälschlicherweise die Nullhypothese zu verwerfen, bei über 64 %. Einen solchen Test könnte das Institut als Beleg für die Gefährdung der Meinungsfreiheit anführen, obwohl der wahre Anteil unverändert bei 25 % liegt und kein echter Effekt nachgewiesen wurde.
 
