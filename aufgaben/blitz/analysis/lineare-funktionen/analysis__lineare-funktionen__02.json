@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Graph steigt pro Einheit nach rechts um \\(2\\) Einheiten nach oben. Welche Steigung hat er?",
+            "antworten": ["\\(m=2\\)", "\\(m=-2\\)", "\\(m=1\\)", "\\(m=0\\)"],
+            "fehler": ["Vorzeichen der Steigung vertauscht", "Schrittweite nach rechts statt Höhenänderung verwendet", "Horizontale Gerade angenommen"]
+        },
+        {
+            "frage": "Ein Graph fällt pro Einheit nach rechts um \\(3\\) Einheiten nach unten. Welche Steigung hat er?",
+            "antworten": ["\\(m=-3\\)", "\\(m=3\\)", "\\(m=-1\\)", "\\(m=0\\)"],
+            "fehler": ["Betrag ohne negatives Vorzeichen verwendet", "Schrittweite nach rechts statt Höhenänderung verwendet", "Horizontale Gerade angenommen"]
+        },
+        {
+            "frage": "Ein Graph schneidet die y-Achse bei \\((0\\mid 4)\\). Wie groß ist \\(b\\)?",
+            "antworten": ["\\(b=4\\)", "\\(b=0\\)", "\\(b=-4\\)", "\\(b=1\\)"],
+            "fehler": ["x-Koordinate statt y-Koordinate verwendet", "Vorzeichen des Achsenabschnitts vertauscht", "Steigung \\(1\\) ohne Angabe angenommen"]
+        },
+        {
+            "frage": "Ein Graph schneidet die y-Achse bei \\((0\\mid -2)\\). Wie groß ist \\(b\\)?",
+            "antworten": ["\\(b=-2\\)", "\\(b=2\\)", "\\(b=0\\)", "\\(b=-1\\)"],
+            "fehler": ["Vorzeichen des Achsenabschnitts vertauscht", "x-Koordinate statt y-Koordinate verwendet", "Steigung mit y-Achsenabschnitt verwechselt"]
+        },
+        {
+            "frage": "Ein Graph schneidet die y-Achse bei \\(1\\) und steigt pro Einheit nach rechts um \\(3\\). Welche Gleichung gehört zum Graphen?",
+            "antworten": ["\\(f(x)=3x+1\\)", "\\(f(x)=x+3\\)", "\\(f(x)=-3x+1\\)", "\\(f(x)=3x-1\\)"],
+            "fehler": ["Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen der Steigung vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Ein Graph schneidet die y-Achse bei \\(5\\) und fällt pro Einheit nach rechts um \\(2\\). Welche Gleichung gehört zum Graphen?",
+            "antworten": ["\\(g(x)=-2x+5\\)", "\\(g(x)=2x+5\\)", "\\(g(x)=-5x+2\\)", "\\(g(x)=-2x-5\\)"],
+            "fehler": ["Steigung mit falschem Vorzeichen verwendet", "Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Ein horizontaler Graph verläuft durch \\((0\\mid 3)\\). Welche Gleichung gehört zum Graphen?",
+            "antworten": ["\\(h(x)=3\\)", "\\(h(x)=3x\\)", "\\(h(x)=x+3\\)", "\\(h(x)=-3\\)"],
+            "fehler": ["y-Achsenabschnitt als Steigung verwendet", "Steigung \\(1\\) statt \\(0\\) verwendet", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Ein Graph verläuft durch den Ursprung und fällt pro Einheit nach rechts um \\(4\\). Welche Gleichung gehört zum Graphen?",
+            "antworten": ["\\(k(x)=-4x\\)", "\\(k(x)=4x\\)", "\\(k(x)=-x+4\\)", "\\(k(x)=-4\\)"],
+            "fehler": ["Vorzeichen der Steigung vertauscht", "Steigung als y-Achsenabschnitt verwendet", "Konstante Funktion statt Gerade durch den Ursprung gewählt"]
+        },
+        {
+            "frage": "Ein Graph steigt pro Einheit nach rechts um \\(1\\) und schneidet die y-Achse bei \\(-3\\). Welche Werte haben \\(m\\) und \\(b\\)?",
+            "antworten": ["\\(m=1, b=-3\\)", "\\(m=-1, b=-3\\)", "\\(m=-3, b=1\\)", "\\(m=1, b=3\\)"],
+            "fehler": ["Vorzeichen der Steigung vertauscht", "Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Ein Graph fällt pro Einheit nach rechts um \\(1\\) und schneidet die y-Achse bei \\(2\\). Welche Werte haben \\(m\\) und \\(b\\)?",
+            "antworten": ["\\(m=-1, b=2\\)", "\\(m=1, b=2\\)", "\\(m=2, b=-1\\)", "\\(m=-1, b=-2\\)"],
+            "fehler": ["Betrag ohne negatives Vorzeichen verwendet", "Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        }
+    ]
+}

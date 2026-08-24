@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Der Graph von \\(f'\\) liegt bei \\(x=2\\) oberhalb der x-Achse. Welche Aussage über \\(f\\) gilt dort?",
+            "antworten": [
+                "\\(f\\) steigt bei \\(x=2\\).",
+                "\\(f\\) fällt bei \\(x=2\\).",
+                "\\(f\\) hat bei \\(x=2\\) eine waagrechte Tangente.",
+                "\\(f(2)\\) ist positiv."
+            ],
+            "fehler": [
+                "Positives Vorzeichen von \\(f'\\) als fallenden Verlauf gedeutet",
+                "Positive Ableitung mit einer Ableitung gleich null verwechselt",
+                "Vorzeichen der Ableitung auf den Funktionswert übertragen"
+            ]
+        },
+        {
+            "frage": "Der Graph von \\(f'\\) liegt bei \\(x=-1\\) unterhalb der x-Achse. Welche Aussage über \\(f\\) gilt dort?",
+            "antworten": [
+                "\\(f\\) fällt bei \\(x=-1\\).",
+                "\\(f\\) steigt bei \\(x=-1\\).",
+                "\\(f(-1)\\) ist negativ.",
+                "\\(f\\) hat bei \\(x=-1\\) eine waagrechte Tangente."
+            ],
+            "fehler": [
+                "Negatives Vorzeichen von \\(f'\\) als steigenden Verlauf gedeutet",
+                "Vorzeichen der Ableitung auf den Funktionswert übertragen",
+                "Negative Ableitung mit einer Ableitung gleich null verwechselt"
+            ]
+        },
+        {
+            "frage": "Der Graph von \\(f'\\) schneidet bei \\(x=3\\) die x-Achse. Was besitzt der Graph von \\(f\\) dort sicher?",
+            "antworten": [
+                "eine waagrechte Tangente",
+                "eine senkrechte Tangente",
+                "eine Nullstelle",
+                "die Steigung \\(3\\)"
+            ],
+            "fehler": [
+                "Ableitung gleich null fälschlich als senkrechte Tangente gedeutet",
+                "Nullstelle von \\(f'\\) mit Nullstelle von \\(f\\) verwechselt",
+                "x-Koordinate der Nullstelle als Steigungswert übernommen"
+            ]
+        },
+        {
+            "frage": "An welcher Stelle verläuft der Graph von \\(f\\) am steilsten?",
+            "antworten": [
+                "bei \\(x=4\\) mit \\(f'(4)=-5\\)",
+                "bei \\(x=1\\) mit \\(f'(1)=3\\)",
+                "bei \\(x=2\\) mit \\(f'(2)=-2\\)",
+                "bei \\(x=0\\) mit \\(f'(0)=0\\)"
+            ],
+            "fehler": [
+                "Nur die größte positive Ableitung statt des größten Betrags gewählt",
+                "Negative Steigung mit kleinerem Betrag gewählt",
+                "Waagrechte Tangente als besonders steil gedeutet"
+            ]
+        },
+        {
+            "frage": "Welche Aussage beschreibt \\(f'(x)=0\\) graphisch richtig?",
+            "antworten": [
+                "Der Graph von \\(f\\) hat bei \\(x\\) eine waagrechte Tangente.",
+                "Der Graph von \\(f\\) schneidet bei \\(x\\) die x-Achse.",
+                "Der Graph von \\(f\\) hat bei \\(x\\) die Steigung \\(1\\).",
+                "Der Graph von \\(f'\\) hat bei \\(x\\) einen Extrempunkt."
+            ],
+            "fehler": [
+                "Nullstelle der Ableitung mit Nullstelle der Funktion verwechselt",
+                "Ableitungswert null als Steigung eins gedeutet",
+                "Nullstelle von \\(f'\\) ohne Grundlage als Extrempunkt von \\(f'\\) gedeutet"
+            ]
+        },
+        {
+            "frage": "Der Graph von \\(f\\) steigt links von \\(x_0\\) und fällt rechts von \\(x_0\\). Wie wechselt das Vorzeichen von \\(f'\\)?",
+            "antworten": [
+                "von positiv nach negativ",
+                "von negativ nach positiv",
+                "von positiv nach positiv",
+                "von negativ nach negativ"
+            ],
+            "fehler": [
+                "Vorzeichenwechsel eines Tiefpunkts statt eines Hochpunkts gewählt",
+                "Den Wechsel vom Steigen zum Fallen übersehen",
+                "Steigen und Fallen beide als negative Ableitung gedeutet"
+            ]
+        },
+        {
+            "frage": "Der Graph von \\(f\\) fällt links von \\(x_0\\) und steigt rechts von \\(x_0\\). Wie wechselt das Vorzeichen von \\(f'\\)?",
+            "antworten": [
+                "von negativ nach positiv",
+                "von positiv nach negativ",
+                "von negativ nach negativ",
+                "von positiv nach positiv"
+            ],
+            "fehler": [
+                "Vorzeichenwechsel eines Hochpunkts statt eines Tiefpunkts gewählt",
+                "Den Wechsel vom Fallen zum Steigen übersehen",
+                "Fallen und Steigen beide als positive Ableitung gedeutet"
+            ]
+        },
+        {
+            "frage": "Welche Information liefert die Angabe \\(g(0)=1\\) beim Identifizieren eines Funktionsgraphen?",
+            "antworten": [
+                "Der Graph von \\(g\\) schneidet die y-Achse bei \\(1\\).",
+                "Der Graph von \\(g\\) schneidet die x-Achse bei \\(1\\).",
+                "Der Graph von \\(g\\) hat bei \\(x=0\\) die Steigung \\(1\\).",
+                "Der Graph von \\(g'\\) schneidet die y-Achse bei \\(1\\)."
+            ],
+            "fehler": [
+                "Funktionswert bei null als x-Achsenabschnitt gedeutet",
+                "Funktionswert mit Ableitungswert verwechselt",
+                "Angabe über \\(g\\) ohne Ableiten auf \\(g'\\) übertragen"
+            ]
+        },
+        {
+            "frage": "Der Graph einer ganzrationalen Funktion dritten Grades wird abgeleitet. Welche Graphenart hat die Ableitung?",
+            "antworten": [
+                "eine Parabel",
+                "eine Gerade",
+                "eine Funktion dritten Grades",
+                "eine Funktion vierten Grades"
+            ],
+            "fehler": [
+                "Grad beim Ableiten um zwei statt um eins verringert",
+                "Grad beim Ableiten unverändert gelassen",
+                "Grad beim Ableiten erhöht"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f'(a)=2\\) und \\(f'(b)=-4\\). Wo verläuft der Graph von \\(f\\) steiler?",
+            "antworten": [
+                "bei \\(b\\)",
+                "bei \\(a\\)",
+                "an beiden Stellen gleich steil",
+                "Das hängt von \\(f(a)\\) und \\(f(b)\\) ab."
+            ],
+            "fehler": [
+                "Positive Steigung ungeachtet ihres kleineren Betrags gewählt",
+                "Unterschiedliche Beträge der Ableitungswerte übersehen",
+                "Steilheit von Funktionswerten statt vom Betrag der Ableitung abhängig gemacht"
+            ]
+        }
+    ]
+}

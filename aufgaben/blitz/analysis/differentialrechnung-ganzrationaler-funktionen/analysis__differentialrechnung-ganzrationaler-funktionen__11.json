@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x_0)=0\\) und \\(f^{\\prime\\prime\\prime}(x_0)=0\\). Was ist als Nächstes zu prüfen?",
+            "antworten": ["der Vorzeichenwechsel von \\(f^{\\prime\\prime}\\) bei \\(x_0\\)", "der Vorzeichenwechsel von \\(f'\\) bei \\(x_0\\)", "ob \\(f(x_0)=0\\) gilt", "ob \\(f'(x_0)=0\\) gilt"],
+            "fehler": ["Extremstellenkriterium statt Wendestellenkriterium gewählt", "Wendestelle fälschlich an eine Nullstelle von \\(f\\) gebunden", "Wendestelle fälschlich an eine waagrechte Tangente gebunden"]
+        },
+        {
+            "frage": "Wann liegt im Spezialfall sicher eine Wendestelle bei \\(x_0\\) vor?",
+            "antworten": ["Wenn \\(f^{\\prime\\prime}\\) bei \\(x_0\\) das Vorzeichen wechselt.", "Wenn \\(f^{\\prime\\prime}(x_0)=0\\) gilt.", "Wenn \\(f^{\\prime\\prime\\prime}(x_0)=0\\) gilt.", "Wenn \\(f'(x_0)\\neq0\\) gilt."],
+            "fehler": ["Nur die notwendige Bedingung als hinreichend behandelt", "Unentscheidbaren dritten Ableitungstest als Bestätigung behandelt", "Nicht waagrechte Tangente fälschlich als Wendekriterium verwendet"]
+        },
+        {
+            "frage": "Links von \\(x_0\\) ist \\(f^{\\prime\\prime}<0\\), rechts davon \\(f^{\\prime\\prime}>0\\). Was folgt?",
+            "antworten": ["Bei \\(x_0\\) liegt eine Wendestelle vor.", "Bei \\(x_0\\) liegt keine Wendestelle vor.", "Bei \\(x_0\\) liegt sicher ein Hochpunkt vor.", "Bei \\(x_0\\) liegt sicher eine Nullstelle vor."],
+            "fehler": ["Vorzeichenwechsel der zweiten Ableitung nicht als Krümmungswechsel erkannt", "Krümmungswechsel mit Hochpunkt verwechselt", "Krümmungswechsel mit Nullstelle der Funktion verwechselt"]
+        },
+        {
+            "frage": "Auf beiden Seiten von \\(x_0\\) gilt \\(f^{\\prime\\prime}>0\\). Was folgt trotz \\(f^{\\prime\\prime}(x_0)=0\\)?",
+            "antworten": ["Bei \\(x_0\\) liegt keine Wendestelle vor.", "Bei \\(x_0\\) liegt eine Wendestelle vor.", "Bei \\(x_0\\) liegt sicher ein Tiefpunkt vor.", "Bei \\(x_0\\) liegt sicher eine Nullstelle vor."],
+            "fehler": ["Notwendige Bedingung ohne Krümmungswechsel als hinreichend behandelt", "Gleichbleibend positive zweite Ableitung fälschlich als Tiefpunktkriterium gedeutet", "Nullstelle von \\(f^{\\prime\\prime}\\) mit Nullstelle von \\(f\\) verwechselt"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=(x-1)^2\\). Ist \\(x=1\\) eine Wendestelle?",
+            "antworten": ["Nein, weil \\(f^{\\prime\\prime}\\) dort das Vorzeichen nicht wechselt.", "Ja, weil \\(f^{\\prime\\prime}(1)=0\\) gilt.", "Ja, weil die Nullstelle doppelt ist.", "Nein, weil \\(f^{\\prime\\prime}\\) links davon negativ ist."],
+            "fehler": ["Notwendige Bedingung allein als hinreichend behandelt", "Gerade Vielfachheit fälschlich als Zeichen für einen Vorzeichenwechsel gedeutet", "Quadrat links von \\(1\\) fälschlich als negativ bewertet"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=x^3\\). Ist \\(x=0\\) eine Wendestelle?",
+            "antworten": ["Ja, weil \\(f^{\\prime\\prime}\\) bei \\(0\\) das Vorzeichen wechselt.", "Nein, weil \\(f^{\\prime\\prime\\prime}(0)=0\\) gilt.", "Nein, weil \\(f^{\\prime\\prime}(0)=0\\) gilt.", "Ja, weil \\(f'(0)=0\\) gelten muss."],
+            "fehler": ["Unentscheidbaren dritten Ableitungstest fälschlich als Ausschluss verwendet", "Notwendige Wendebedingung fälschlich als Ausschluss verwendet", "Wendestelle ohne Grundlage an eine waagrechte Tangente gebunden"]
+        },
+        {
+            "frage": "Welche Nullstelle eines Polynoms führt typischerweise zu keinem Vorzeichenwechsel?",
+            "antworten": ["eine Nullstelle gerader Vielfachheit", "eine Nullstelle ungerader Vielfachheit", "jede einfache Nullstelle", "jede Nullstelle bei \\(x=0\\)"],
+            "fehler": ["Ungerade statt gerade Vielfachheit gewählt", "Einfache Nullstellen wechseln typischerweise das Vorzeichen", "Vorzeichenwechsel fälschlich von der Lage bei \\(0\\) abhängig gemacht"]
+        },
+        {
+            "frage": "Welche Nullstelle eines Polynoms führt typischerweise zu einem Vorzeichenwechsel?",
+            "antworten": ["eine Nullstelle ungerader Vielfachheit", "eine Nullstelle gerader Vielfachheit", "jede doppelte Nullstelle", "nur eine Nullstelle bei \\(x=0\\)"],
+            "fehler": ["Gerade statt ungerade Vielfachheit gewählt", "Doppelte Nullstellen wechseln typischerweise nicht das Vorzeichen", "Vorzeichenwechsel fälschlich auf die Stelle \\(0\\) beschränkt"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=x^2(x-2)\\). Welche Nullstelle ist eine Wendestelle?",
+            "antworten": ["nur \\(x=2\\)", "nur \\(x=0\\)", "\\(x=0\\) und \\(x=2\\)", "keine von beiden"],
+            "fehler": ["Doppelte Nullstelle \\(0\\) fälschlich als Vorzeichenwechsel gedeutet", "Bei beiden Nullstellen die Vielfachheit und den Vorzeichenwechsel nicht unterschieden", "Einfachen Vorzeichenwechsel bei \\(x=2\\) übersehen"]
+        },
+        {
+            "frage": "Links von \\(x_0\\) gilt \\(f^{\\prime\\prime}<0\\), rechts davon ebenfalls. Wie ändert sich die Krümmung?",
+            "antworten": ["Sie ändert sich nicht; der Graph bleibt rechtsgekrümmt.", "Sie wechselt von rechts- zu linksgekrümmt.", "Sie wechselt von links- zu rechtsgekrümmt.", "Sie ändert sich zu keiner Krümmung."],
+            "fehler": ["Gleichbleibend negatives Vorzeichen fälschlich als Wechsel zu positiver Krümmung gedeutet", "Negatives Vorzeichen links fälschlich als linkskrümmt gedeutet", "Nullstelle der zweiten Ableitung fälschlich als dauerhaft fehlende Krümmung gedeutet"]
+        }
+    ]
+}

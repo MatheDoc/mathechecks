@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Krümmung hat der Graph von \\(f\\), wenn \\(f^{\\prime\\prime}(x)>0\\) gilt?",
+            "antworten": ["linksgekrümmt und konvex", "rechtsgekrümmt und konkav", "streng steigend", "streng fallend"],
+            "fehler": ["Vorzeichen der zweiten Ableitung der falschen Krümmungsrichtung zugeordnet", "Krümmung mit Monotonie verwechselt", "Positive zweite Ableitung fälschlich als fallenden Verlauf gedeutet"]
+        },
+        {
+            "frage": "Welche Krümmung hat der Graph von \\(f\\), wenn \\(f^{\\prime\\prime}(x)<0\\) gilt?",
+            "antworten": ["rechtsgekrümmt und konkav", "linksgekrümmt und konvex", "streng fallend", "streng steigend"],
+            "fehler": ["Vorzeichen der zweiten Ableitung der falschen Krümmungsrichtung zugeordnet", "Krümmung mit Monotonie verwechselt", "Negative zweite Ableitung fälschlich als steigenden Verlauf gedeutet"]
+        },
+        {
+            "frage": "Wozu bestimmt man zuerst die Nullstellen von \\(f^{\\prime\\prime}\\)?",
+            "antworten": ["Sie zerlegen die Zahlengerade in mögliche Krümmungsintervalle.", "Sie sind immer Nullstellen von \\(f\\).", "Sie geben direkt die Funktionswerte an.", "Sie bestimmen das Vorzeichen von \\(f'\\)."],
+            "fehler": ["Nullstellen der zweiten Ableitung mit Nullstellen der Funktion verwechselt", "Stellen mit Funktionswerten verwechselt", "Krümmungsuntersuchung fälschlich auf das Vorzeichen der ersten Ableitung bezogen"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=2x\\). Wo ist \\(f\\) linksgekrümmt?",
+            "antworten": ["auf \\((0;\\infty)\\)", "auf \\(( -\\infty;0)\\)", "auf ganz \\(\\mathbb{R}\\)", "nirgends"],
+            "fehler": ["Negatives statt positives Vorzeichen von \\(2x\\) gewählt", "Vorzeichenwechsel bei \\(x=0\\) nicht berücksichtigt", "Den positiven Bereich von \\(2x\\) übersehen"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=-3x\\). Wo ist \\(f\\) rechtsgekrümmt?",
+            "antworten": ["auf \\((0;\\infty)\\)", "auf \\(( -\\infty;0)\\)", "auf ganz \\(\\mathbb{R}\\)", "nirgends"],
+            "fehler": ["Vorzeichen des Faktors \\(-3\\) nicht berücksichtigt", "Vorzeichenwechsel bei \\(x=0\\) nicht berücksichtigt", "Den negativen Bereich von \\(-3x\\) übersehen"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=(x-1)(x+1)\\). In welchem Intervall ist \\(f\\) rechtsgekrümmt?",
+            "antworten": ["\\((-1;1)\\)", "\\((1;\\infty)\\)", "\\(( -\\infty;-1)\\)", "\\(( -\\infty;1)\\)"],
+            "fehler": ["Intervall mit zwei positiven Faktoren statt negativem Produkt gewählt", "Intervall mit zwei negativen Faktoren statt negativem Produkt gewählt", "Vorzeichenwechsel an \\(x=-1\\) nicht berücksichtigt"]
+        },
+        {
+            "frage": "Was prüft ein Testwert innerhalb eines Krümmungsintervalls?",
+            "antworten": ["das Vorzeichen von \\(f^{\\prime\\prime}\\)", "das Vorzeichen von \\(f\\)", "den größten Funktionswert", "die Länge des Intervalls"],
+            "fehler": ["Vorzeichen der Funktion statt ihrer zweiten Ableitung geprüft", "Krümmungstest mit globaler Extremwertsuche verwechselt", "Testwert fälschlich zur Bestimmung der Intervalllänge verwendet"]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(x)=x-2\\). Welche Aussage ist richtig?",
+            "antworten": ["Für \\(x<2\\) ist \\(f\\) rechtsgekrümmt.", "Für \\(x<2\\) ist \\(f\\) linksgekrümmt.", "Für \\(x>2\\) ist \\(f\\) rechtsgekrümmt.", "Auf beiden Seiten von \\(2\\) ist die Krümmung gleich."],
+            "fehler": ["Negatives Vorzeichen von \\(x-2\\) links von \\(2\\) falsch zugeordnet", "Positives Vorzeichen von \\(x-2\\) rechts von \\(2\\) falsch zugeordnet", "Vorzeichenwechsel von \\(x-2\\) bei \\(2\\) übersehen"]
+        },
+        {
+            "frage": "Es gilt für alle \\(x\\): \\(f^{\\prime\\prime}(x)=4\\). Welche Aussage folgt?",
+            "antworten": ["\\(f\\) ist auf \\(\\mathbb{R}\\) linksgekrümmt.", "\\(f\\) ist auf \\(\\mathbb{R}\\) rechtsgekrümmt.", "\\(f\\) wechselt bei \\(x=4\\) die Krümmung.", "\\(f\\) besitzt keine Krümmung."],
+            "fehler": ["Positives Vorzeichen der zweiten Ableitung falsch zugeordnet", "Ableitungswert \\(4\\) als Stelle eines Krümmungswechsels gedeutet", "Konstante positive zweite Ableitung fälschlich als fehlende Krümmung gedeutet"]
+        },
+        {
+            "frage": "Welcher Schritt folgt direkt auf das Bestimmen der Nullstellen von \\(f^{\\prime\\prime}\\)?",
+            "antworten": ["Das Vorzeichen von \\(f^{\\prime\\prime}\\) in jedem Teilintervall prüfen.", "Die Nullstellen in \\(f'\\) einsetzen.", "Die Funktionswerte aller Nullstellen gleichsetzen.", "Nur die dritte Ableitung bilden."],
+            "fehler": ["Krümmung fälschlich über Werte der ersten Ableitung untersucht", "Statt einer Vorzeichenprüfung unnötig Funktionswerte gleichgesetzt", "Vorzeichenanalyse durch einen nicht allgemein nötigen Ableitungsschritt ersetzt"]
+        }
+    ]
+}

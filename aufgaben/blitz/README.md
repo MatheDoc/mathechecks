@@ -41,7 +41,7 @@ aufgaben/blitz/<gebiet>/<lernbereich>/<check_id>.json
   - Geeignet: „Welche Formel brauchst du zuerst, um m zu berechnen?" – oder bei bewusst trivialen Zahlen nur die Berechnung von m.
 - Keine künstliche Komplexität: keine unnötigen Informationen, komplizierten Zahlen oder Zusatzschritte. Im Mittelpunkt steht der schnelle Abruf, nicht die Rechenlast.
 - **Distraktoren:** möglichst konkrete, plausible typische Fehler oder Fehlvorstellungen (z. B. Vorzeichenfehler, vertauschte Formelteile), idealerweise aus der korrekten Lösung durch genau diesen Fehler entstehend. Allgemeine Fehlerantworten sind zulässig.
-- Umfang: ca. 8–10 verschiedene atomare Fragen pro Check; punktuell 2–3 Varianten einer Frage, wo Auswendiglernen der Antwort droht.
+- Umfang: 10 verschiedene atomare Fragen pro Check; punktuell mehrere Varianten einer Frage, wo Auswendiglernen der Antwort droht.
 - **Keine Grafiken:** Blitz-Fragen kommen ohne Abbildungen aus. Didaktisch oft wünschenswert, aber im Moodle-XML-Export nur mit Workarounds (Base64/Dateianhänge) machbar und im 10–20-s-Format kaum sinnvoll erfassbar.
 
 ## Fragenarten

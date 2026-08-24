@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Taxikosten werden durch \\(K(x)=2x+4\\) beschrieben, wobei \\(x\\) die gefahrenen Kilometer angibt. Was bedeutet \\(m=2\\)?",
+            "antworten": ["Jeder Kilometer kostet zusätzlich \\(2\\) €.", "Die Grundgebühr beträgt \\(2\\) €.", "Nach \\(2\\) km kostet die Fahrt \\(4\\) €.", "Die Fahrt kostet immer \\(2\\) €."],
+            "fehler": ["Steigung mit der Grundgebühr verwechselt", "Steigung als konkrete Kilometerzahl gedeutet", "Änderungsrate als konstanten Gesamtpreis gedeutet"]
+        },
+        {
+            "frage": "Taxikosten werden durch \\(K(x)=2x+4\\) beschrieben. Was bedeutet \\(b=4\\)?",
+            "antworten": ["Die Grundgebühr beträgt \\(4\\) €.", "Jeder Kilometer kostet \\(4\\) €.", "Nach \\(4\\) km ist die Fahrt kostenlos.", "Die Fahrtstrecke beträgt immer \\(4\\) km."],
+            "fehler": ["Y-Achsenabschnitt mit der Änderungsrate verwechselt", "Y-Achsenabschnitt als Nullstelle gedeutet", "Kostenwert als feste Eingabegröße gedeutet"]
+        },
+        {
+            "frage": "Ein Wasservorrat wird durch \\(V(t)=-5t+40\\) beschrieben. Was bedeutet \\(m=-5\\)?",
+            "antworten": ["Der Vorrat nimmt pro Stunde um \\(5\\) Liter ab.", "Zu Beginn sind \\(5\\) Liter vorhanden.", "Der Vorrat nimmt pro Stunde um \\(5\\) Liter zu.", "Nach \\(5\\) Stunden ist der Vorrat leer."],
+            "fehler": ["Steigung mit dem Anfangswert verwechselt", "Vorzeichen der Änderungsrate übersehen", "Änderungsrate als Zeitpunkt der Leerung gedeutet"]
+        },
+        {
+            "frage": "Ein Wasservorrat wird durch \\(V(t)=-5t+40\\) beschrieben. Was bedeutet \\(b=40\\)?",
+            "antworten": ["Zu Beginn sind \\(40\\) Liter vorhanden.", "Pro Stunde fließen \\(40\\) Liter ab.", "Nach \\(40\\) Stunden ist der Vorrat leer.", "Der Vorrat nimmt auf \\(40\\) Liter pro Stunde zu."],
+            "fehler": ["Anfangswert mit der Änderungsrate verwechselt", "Anfangswert als Zeitpunkt gedeutet", "Anfangswert als Änderungsrate gedeutet"]
+        },
+        {
+            "frage": "Eine Größe startet bei \\(3\\) und wächst pro Zeiteinheit um \\(2\\). Welches Modell passt?",
+            "antworten": ["\\(y=2x+3\\)", "\\(y=3x+2\\)", "\\(y=-2x+3\\)", "\\(y=2x-3\\)"],
+            "fehler": ["Startwert und Änderungsrate vertauscht", "Wachstum als Abnahme modelliert", "Positiven Startwert mit negativem Vorzeichen eingesetzt"]
+        },
+        {
+            "frage": "Ein Vorrat beträgt anfangs \\(20\\) Liter und sinkt pro Stunde um \\(4\\) Liter. Welches Modell passt?",
+            "antworten": ["\\(V(t)=-4t+20\\)", "\\(V(t)=4t+20\\)", "\\(V(t)=-20t+4\\)", "\\(V(t)=20t-4\\)"],
+            "fehler": ["Abnahme mit positiver Steigung modelliert", "Anfangswert und Änderungsrate vertauscht", "Anfangswert und Änderungsrate vertauscht und Vorzeichen falsch zugeordnet"]
+        },
+        {
+            "frage": "Ein Taxi verlangt \\(5\\) € Grundgebühr und \\(2\\) € pro Kilometer. Wie viel kosten \\(3\\) km?",
+            "antworten": ["\\(11\\) €", "\\(6\\) €", "\\(10\\) €", "\\(7\\) €"],
+            "fehler": ["Nur die Kilometerkosten berechnet", "Grundgebühr mit dem Kilometerpreis multipliziert", "Grundgebühr und Kilometerpreis nur einmal addiert"]
+        },
+        {
+            "frage": "Ein Wasservorrat wird durch \\(V(t)=-5t+30\\) beschrieben. Wie viele Liter sind nach \\(4\\) Stunden vorhanden?",
+            "antworten": ["\\(10\\) Liter", "\\(20\\) Liter", "\\(50\\) Liter", "\\(6\\) Liter"],
+            "fehler": ["Nur den Abfluss nach vier Stunden angegeben", "Vorzeichen der Abnahme vertauscht", "Anfangswert durch die Abnahmerate geteilt: \\(30:5=6\\)"]
+        },
+        {
+            "frage": "Die Kostenfunktion \\(K(x)=3x+6\\) verwendet \\(x\\) als Anzahl gekaufter Hefte. Wofür steht \\(x\\)?",
+            "antworten": ["Für die Anzahl der Hefte", "Für die Gesamtkosten in Euro", "Für den Preis pro Heft", "Für die Grundkosten"],
+            "fehler": ["Eingabegröße mit der Ausgabegröße verwechselt", "Eingabegröße mit der Steigung verwechselt", "Eingabegröße mit dem y-Achsenabschnitt verwechselt"]
+        },
+        {
+            "frage": "Eine Füllmenge wird durch \\(F(t)=3t+10\\) beschrieben. Wie groß ist \\(F(2)\\)?",
+            "antworten": ["\\(16\\)", "\\(13\\)", "\\(20\\)", "\\(8\\)"],
+            "fehler": ["Die Zeit nicht mit der Änderungsrate multipliziert", "Anfangswert mit der Zeit multipliziert und die Änderungsrate ignoriert: \\(10\\cdot2=20\\)", "Anfangswert von der Zunahme abgezogen"]
+        }
+    ]
+}

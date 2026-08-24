@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Eine Parabel hat den Scheitel \\(S(2\\mid -1)\\) und den Öffnungsfaktor \\(a=1\\). Welche Scheitelpunktform passt?",
+            "antworten": ["\\(f(x)=(x-2)^2-1\\)", "\\(f(x)=(x+2)^2-1\\)", "\\(f(x)=(x-2)^2+1\\)", "\\(f(x)=-(x-2)^2-1\\)"],
+            "fehler": ["Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Vorzeichen der Scheitelhöhe verwechselt", "Vorzeichen des Öffnungsfaktors verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel hat den Scheitel \\(S(-1\\mid 3)\\) und den Öffnungsfaktor \\(a=-1\\). Welche Scheitelpunktform passt?",
+            "antworten": ["\\(f(x)=-(x+1)^2+3\\)", "\\(f(x)=-(x-1)^2+3\\)", "\\(f(x)=(x+1)^2+3\\)", "\\(f(x)=-(x+1)^2-3\\)"],
+            "fehler": ["Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Vorzeichen des Öffnungsfaktors verwechselt", "Vorzeichen der Scheitelhöhe verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel hat die Nullstellen \\(-2\\) und \\(4\\) sowie \\(a=1\\). Welche faktorisierte Form passt?",
+            "antworten": ["\\(f(x)=(x+2)(x-4)\\)", "\\(f(x)=(x-2)(x+4)\\)", "\\(f(x)=-(x+2)(x-4)\\)", "\\(f(x)=(x+2)(x+4)\\)"],
+            "fehler": ["Vorzeichen beider Nullstellen in den Faktoren verwechselt", "Vorzeichen des Öffnungsfaktors verwechselt", "Beim Faktor zur Nullstelle \\(4\\) wurde das Vorzeichen verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel hat die Nullstellen \\(1\\) und \\(5\\) sowie \\(a=-1\\). Welche faktorisierte Form passt?",
+            "antworten": ["\\(f(x)=-(x-1)(x-5)\\)", "\\(f(x)=(x-1)(x-5)\\)", "\\(f(x)=-(x+1)(x+5)\\)", "\\(f(x)=-(x-1)(x+5)\\)"],
+            "fehler": ["Vorzeichen des Öffnungsfaktors vergessen", "Vorzeichen beider Nullstellen in den Faktoren verwechselt", "Beim Faktor zur Nullstelle \\(5\\) wurde das Vorzeichen verwechselt"]
+        },
+        {
+            "frage": "Ein Graph hat den Scheitel \\(S(3\\mid 2)\\). Welcher Ansatz ist richtig, solange \\(a\\) noch unbekannt ist?",
+            "antworten": ["\\(f(x)=a(x-3)^2+2\\)", "\\(f(x)=a(x+3)^2+2\\)", "\\(f(x)=a(x-2)^2+3\\)", "\\(f(x)=a(x-3)^2-2\\)"],
+            "fehler": ["Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Koordinaten des Scheitels vertauscht", "Vorzeichen der Scheitelhöhe verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel hat den Scheitel \\(S(1\\mid 2)\\) und geht durch \\((2\\mid 3)\\). Welche Gleichung bestimmt \\(a\\)?",
+            "antworten": ["\\(3=a\\cdot(2-1)^2+2\\)", "\\(2=a\\cdot(3-1)^2+2\\)", "\\(3=a\\cdot(2+1)^2+2\\)", "\\(3=a\\cdot(2-1)^2-2\\)"],
+            "fehler": ["Koordinaten des weiteren Punkts vertauscht", "Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Vorzeichen der Scheitelhöhe verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel hat den Scheitel \\(S(0\\mid 1)\\) und geht durch \\((1\\mid -1)\\). Wie groß ist \\(a\\)?",
+            "antworten": ["\\(a=-2\\)", "\\(a=2\\)", "\\(a=-1\\)", "\\(a=1\\)"],
+            "fehler": ["Vorzeichen beim Lösen von \\(-1=a+1\\) verwechselt", "Nur den Funktionswert des weiteren Punkts übernommen", "Scheitelhöhe statt des weiteren Punkts als \\(a\\) verwendet"]
+        },
+        {
+            "frage": "Eine Parabel hat die Nullstellen \\(0\\) und \\(2\\) und geht durch \\((1\\mid -1)\\). Wie groß ist \\(a\\)?",
+            "antworten": ["\\(a=1\\)", "\\(a=-1\\)", "\\(a=2\\)", "\\(a=-2\\)"],
+            "fehler": ["Vorzeichen des Produkts \\(1\\cdot(1-2)\\) übersehen", "Die zweite Nullstelle als Öffnungsfaktor übernommen", "Vorzeichen und zweite Nullstelle als Öffnungsfaktor übernommen"]
+        },
+        {
+            "frage": "Eine Parabel hat die Nullstellen \\(-1\\) und \\(1\\) und geht durch \\((0\\mid 2)\\). Wie groß ist \\(a\\)?",
+            "antworten": ["\\(a=-2\\)", "\\(a=2\\)", "\\(a=-1\\)", "\\(a=1\\)"],
+            "fehler": ["Vorzeichen des Produkts \\((0+1)(0-1)\\) übersehen", "Nur das Produkt der Faktoren angegeben", "Vorzeichen des Faktorenprodukts und Funktionswert nicht berücksichtigt"]
+        },
+        {
+            "frage": "Eine Parabel hat den Scheitel \\(S(2\\mid 0)\\) und geht durch \\((3\\mid 2)\\). Welche Gleichung passt?",
+            "antworten": ["\\(f(x)=2(x-2)^2\\)", "\\(f(x)=-2(x-2)^2\\)", "\\(f(x)=2(x+2)^2\\)", "\\(f(x)=(x-2)^2+2\\)"],
+            "fehler": ["Vorzeichen des bestimmten Öffnungsfaktors verwechselt", "Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Punktwert als Scheitelhöhe statt zur Bestimmung von \\(a\\) verwendet"]
+        }
+    ]
+}

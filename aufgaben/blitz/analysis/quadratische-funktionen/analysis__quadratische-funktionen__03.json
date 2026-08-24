@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Für \\(f(x)=x^2+2\\): Welcher Tabellenwert gehört zu \\(x=3\\)?",
+            "antworten": ["\\(f(3)=11\\)", "\\(f(3)=8\\)", "\\(f(3)=5\\)", "\\(f(3)=9\\)"],
+            "fehler": ["Beim Quadrieren und Addieren wurde \\(1\\) abgezogen", "\\(3^2\\) fälschlich als \\(3\\) berechnet", "Der Summand \\(2\\) wurde vergessen"]
+        },
+        {
+            "frage": "Für \\(f(x)=2x^2-1\\): Welcher Tabellenwert gehört zu \\(x=2\\)?",
+            "antworten": ["\\(f(2)=7\\)", "\\(f(2)=3\\)", "\\(f(2)=15\\)", "\\(f(2)=8\\)"],
+            "fehler": ["\\(2x^2\\) fälschlich als \\(2x\\) berechnet", "\\(2x^2\\) wurde fälschlich als \\((2x)^2\\) berechnet", "Der Summand \\(-1\\) wurde vergessen"]
+        },
+        {
+            "frage": "Für \\(f(x)=x^2-4x\\): Welcher Tabellenwert gehört zu \\(x=-1\\)?",
+            "antworten": ["\\(f(-1)=5\\)", "\\(f(-1)=-3\\)", "\\(f(-1)=-5\\)", "\\(f(-1)=3\\)"],
+            "fehler": ["Das Vorzeichen von \\(-4\\cdot(-1)\\) wurde falsch bestimmt", "Sowohl beim Quadrat als auch beim linearen Term entstand ein Vorzeichenfehler", "Das Quadrat von \\(-1\\) wurde als \\(-1\\) behandelt"]
+        },
+        {
+            "frage": "Für \\(f(x)=(x-1)^2-2\\): Welcher Tabellenwert gehört zu \\(x=1\\)?",
+            "antworten": ["\\(f(1)=-2\\)", "\\(f(1)=0\\)", "\\(f(1)=2\\)", "\\(f(1)=-1\\)"],
+            "fehler": ["Der Summand \\(-2\\) wurde vergessen", "Vorzeichen des Summanden außerhalb der Klammer verwechselt", "Die Verschiebung \\(-1\\) innerhalb der Klammer wurde weggelassen"]
+        },
+        {
+            "frage": "Für \\(f(x)=-x^2+4\\): Welcher Tabellenwert gehört zu \\(x=2\\)?",
+            "antworten": ["\\(f(2)=0\\)", "\\(f(2)=8\\)", "\\(f(2)=-8\\)", "\\(f(2)=2\\)"],
+            "fehler": ["Minus vor dem Quadrat als Plus gelesen", "Den Summanden \\(4\\) fälschlich subtrahiert", "\\(2^2\\) fälschlich als \\(2\\) berechnet"]
+        },
+        {
+            "frage": "Die Symmetrieachse einer Parabel ist \\(x=2\\). Zu welchem \\(x\\)-Wert ist \\(x=1\\) symmetrisch?",
+            "antworten": ["\\(x=3\\)", "\\(x=-1\\)", "\\(x=2\\)", "\\(x=4\\)"],
+            "fehler": ["An der \\(y\\)-Achse statt an \\(x=2\\) gespiegelt", "Die Symmetrieachse selbst statt des Spiegelwerts gewählt", "Den doppelten Achsenwert statt des Spiegelwerts gewählt"]
+        },
+        {
+            "frage": "Die Symmetrieachse einer Parabel ist \\(x=-1\\). Zu welchem \\(x\\)-Wert ist \\(x=-3\\) symmetrisch?",
+            "antworten": ["\\(x=1\\)", "\\(x=3\\)", "\\(x=-1\\)", "\\(x=-5\\)"],
+            "fehler": ["An der \\(y\\)-Achse statt an \\(x=-1\\) gespiegelt", "Die Symmetrieachse selbst statt des Spiegelwerts gewählt", "In gleicher Richtung weitergegangen statt zu spiegeln"]
+        },
+        {
+            "frage": "Für eine Parabel mit Symmetrieachse \\(x=1\\) gilt \\(f(-1)=7\\). Welcher weitere Wert folgt durch Symmetrie?",
+            "antworten": ["\\(f(3)=7\\)", "\\(f(1)=7\\)", "\\(f(2)=7\\)", "\\(f(-3)=7\\)"],
+            "fehler": ["Die Symmetrieachse selbst als Spiegelstelle gewählt", "Den Abstand \\(2\\) mit der Spiegelstelle verwechselt", "An der \\(y\\)-Achse statt an \\(x=1\\) gespiegelt"]
+        },
+        {
+            "frage": "In einer symmetrischen Wertetabelle gilt \\(f(0)=4\\) und \\(f(4)=4\\). Wo liegt die Symmetrieachse?",
+            "antworten": ["\\(x=2\\)", "\\(x=4\\)", "\\(x=0\\)", "\\(x=1\\)"],
+            "fehler": ["Den rechten Tabellenwert statt der Mitte gewählt", "Den linken Tabellenwert statt der Mitte gewählt", "Die Differenz halbiert, aber nicht vom linken Wert aus weitergezählt"]
+        },
+        {
+            "frage": "Eine Wertetabelle gehört zu einer Parabel mit Scheitelstelle \\(x=0\\). Es gilt \\(f(2)=6\\). Welcher Wert muss ebenfalls \\(6\\) sein?",
+            "antworten": ["\\(f(-2)\\)", "\\(f(0)\\)", "\\(f(4)\\)", "\\(f(-4)\\)"],
+            "fehler": ["Scheitelstelle statt symmetrischer Stelle gewählt", "Den Abstand verdoppelt statt an \\(x=0\\) zu spiegeln", "Gespiegelt und zugleich den Abstand verdoppelt"]
+        }
+    ]
+}

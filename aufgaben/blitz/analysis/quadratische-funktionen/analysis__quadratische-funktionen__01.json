@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Der Graph von \\(f(x)=2x^2-3\\) ist eine Parabel. In welche Richtung ist sie geöffnet?",
+            "antworten": ["nach oben", "nach unten", "nach rechts", "nach links"],
+            "fehler": ["Das positive Vorzeichen von \\(a\\) wurde als Öffnung nach unten gedeutet", "Eine quadratische Funktion wurde mit einer seitlich geöffneten Parabel verwechselt", "Eine quadratische Funktion wurde mit einer seitlich geöffneten Parabel verwechselt"]
+        },
+        {
+            "frage": "Der Graph von \\(f(x)=-3x^2+1\\) ist eine Parabel. In welche Richtung ist sie geöffnet?",
+            "antworten": ["nach unten", "nach oben", "nach rechts", "nach links"],
+            "fehler": ["Das negative Vorzeichen von \\(a\\) wurde als Öffnung nach oben gedeutet", "Eine quadratische Funktion wurde mit einer seitlich geöffneten Parabel verwechselt", "Eine quadratische Funktion wurde mit einer seitlich geöffneten Parabel verwechselt"]
+        },
+        {
+            "frage": "Welchen Scheitel hat die Parabel zu \\(f(x)=(x-2)^2-3\\)?",
+            "antworten": ["\\(S(2\\mid -3)\\)", "\\(S(-2\\mid -3)\\)", "\\(S(2\\mid 3)\\)", "\\(S(-3\\mid 2)\\)"],
+            "fehler": ["Vorzeichen der Scheitelstelle in der Klammer nicht umgekehrt", "Vorzeichen des Summanden außerhalb der Klammer verändert", "Koordinaten des Scheitels vertauscht"]
+        },
+        {
+            "frage": "Welchen Scheitel hat die Parabel zu \\(f(x)=-2(x+1)^2+4\\)?",
+            "antworten": ["\\(S(-1\\mid 4)\\)", "\\(S(1\\mid 4)\\)", "\\(S(-1\\mid -4)\\)", "\\(S(4\\mid -1)\\)"],
+            "fehler": ["Vorzeichen der Scheitelstelle in der Klammer nicht umgekehrt", "Das negative \\(a\\) wurde fälschlich auf die Scheitelhöhe übertragen", "Koordinaten des Scheitels vertauscht"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x-2)(x+3)\\)?",
+            "antworten": ["\\(x_1=2\\) und \\(x_2=-3\\)", "\\(x_1=-2\\) und \\(x_2=3\\)", "\\(x_1=2\\) und \\(x_2=3\\)", "\\(x_1=-2\\) und \\(x_2=-3\\)"],
+            "fehler": ["Bei beiden Faktoren wurden die Vorzeichen nicht umgekehrt", "Beim Faktor \\(x+3\\) wurde das Vorzeichen nicht umgekehrt", "Beim Faktor \\(x-2\\) wurde das Vorzeichen nicht umgekehrt"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=-(x+1)(x-4)\\)?",
+            "antworten": ["\\(x_1=-1\\) und \\(x_2=4\\)", "\\(x_1=1\\) und \\(x_2=-4\\)", "\\(x_1=-1\\) und \\(x_2=-4\\)", "\\(x_1=1\\) und \\(x_2=4\\)"],
+            "fehler": ["Bei beiden Faktoren wurden die Vorzeichen nicht umgekehrt", "Beim Faktor \\(x-4\\) wurde das Vorzeichen nicht umgekehrt", "Beim Faktor \\(x+1\\) wurde das Vorzeichen nicht umgekehrt"]
+        },
+        {
+            "frage": "Eine Parabel ist nach oben geöffnet und hat den Scheitel \\(S(1\\mid -2)\\). Welche Gleichung passt?",
+            "antworten": ["\\(f(x)=(x-1)^2-2\\)", "\\(f(x)=-(x-1)^2-2\\)", "\\(f(x)=(x+1)^2-2\\)", "\\(f(x)=(x-1)^2+2\\)"],
+            "fehler": ["Negatives \\(a\\) öffnet die Parabel nach unten", "Vorzeichen der Scheitelstelle in der Klammer verwechselt", "Vorzeichen der Scheitelhöhe verwechselt"]
+        },
+        {
+            "frage": "Eine Parabel ist nach unten geöffnet und hat die Nullstellen \\(-2\\) und \\(2\\). Welche Gleichung passt?",
+            "antworten": ["\\(f(x)=-(x+2)(x-2)\\)", "\\(f(x)=(x+2)(x-2)\\)", "\\(f(x)=-(x-2)^2\\)", "\\(f(x)=-(x+2)^2\\)"],
+            "fehler": ["Positives \\(a\\) öffnet die Parabel nach oben", "Die doppelte Nullstelle \\(2\\) statt der beiden gegebenen Nullstellen verwendet", "Die doppelte Nullstelle \\(-2\\) statt der beiden gegebenen Nullstellen verwendet"]
+        },
+        {
+            "frage": "Eine nach oben geöffnete Parabel berührt die \\(x\\)-Achse im Punkt \\((3\\mid 0)\\). Welche Gleichung passt?",
+            "antworten": ["\\(f(x)=(x-3)^2\\)", "\\(f(x)=-(x-3)^2\\)", "\\(f(x)=(x+3)^2\\)", "\\(f(x)=x^2-3\\)"],
+            "fehler": ["Negatives \\(a\\) öffnet die Parabel nach unten", "Vorzeichen der Berührstelle in der Klammer verwechselt", "Die Berührstelle wurde als Verschiebung nach unten gedeutet"]
+        },
+        {
+            "frage": "Eine Parabel ist nach oben geöffnet und hat die Nullstellen \\(-1\\) und \\(3\\). Welche Gleichung passt?",
+            "antworten": ["\\(f(x)=(x+1)(x-3)\\)", "\\(f(x)=-(x+1)(x-3)\\)", "\\(f(x)=(x-1)(x+3)\\)", "\\(f(x)=(x+1)(x+3)\\)"],
+            "fehler": ["Negatives \\(a\\) öffnet die Parabel nach unten", "Vorzeichen beider Nullstellen in den Faktoren verwechselt", "Beim Faktor zur Nullstelle \\(3\\) wurde das Vorzeichen verwechselt"]
+        }
+    ]
+}

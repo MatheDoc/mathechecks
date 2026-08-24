@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Preisfunktion beschreibt ein Angebotspolypol?",
+            "antworten": ["\\(p(x)=24\\)", "\\(p(x)=-2x+24\\)", "\\(p(x)=2x+24\\)", "\\(p(x)=24x\\)"],
+            "fehler": ["Fallende Preis-Absatz-Funktion eines Angebotsmonopols gewählt", "Steigende statt konstante Preisfunktion gewählt", "Mengenabhängigen statt konstanten Preis gewählt"]
+        },
+        {
+            "frage": "Im Angebotspolypol gilt \\(p(x)=18\\). Wie groß ist der Marktpreis?",
+            "antworten": ["\\(18\\) GE", "\\(0\\) GE", "\\(18x\\) GE", "\\(\\frac{18}{x}\\) GE"],
+            "fehler": ["Funktionswert bei \\(x=0\\) fälschlich als null angenommen", "Erlösfunktion statt konstanten Marktpreis angegeben", "Preis ohne Anlass durch die Menge geteilt"]
+        },
+        {
+            "frage": "Im Angebotspolypol gilt eine Kapazitätsgrenze von \\(12\\) ME. Welche Menge maximiert den Erlös?",
+            "antworten": ["\\(12\\) ME", "\\(0\\) ME", "\\(6\\) ME", "Der Erlös hat bei jeder Menge denselben Wert."],
+            "fehler": ["Produktionsbeginn statt Kapazitätsgrenze gewählt", "Kapazitätsgrenze ohne Grund halbiert", "Konstanten Preis mit konstantem Erlös verwechselt"]
+        },
+        {
+            "frage": "Es gilt \\(p=20\\) GE und \\(x_{Emax}=8\\) ME. Wie groß ist \\(E_{max}\\)?",
+            "antworten": ["\\(160\\) GE", "\\(28\\) GE", "\\(12\\) GE", "\\(2{,}5\\) GE"],
+            "fehler": ["Preis und Menge addiert statt multipliziert", "Menge vom Preis abgezogen", "Preis durch Menge geteilt"]
+        },
+        {
+            "frage": "Gegeben ist \\(K(x)=x^3-3x^2+7x+40\\). Wie hoch sind die Fixkosten?",
+            "antworten": ["\\(40\\) GE", "\\(7\\) GE", "\\(-3\\) GE", "\\(1\\) GE"],
+            "fehler": ["Linearen Koeffizienten statt konstanten Terms abgelesen", "Quadratischen Koeffizienten statt konstanten Terms abgelesen", "Kubischen Koeffizienten statt konstanten Terms abgelesen"]
+        },
+        {
+            "frage": "Für die Kostenfunktion gilt \\(K''(x)=4x-12\\). Bei welcher Menge liegt die Wendestelle?",
+            "antworten": ["\\(3\\) ME", "\\(-3\\) ME", "\\(4\\) ME", "\\(12\\) ME"],
+            "fehler": ["Vorzeichen beim Lösen von \\(4x-12=0\\) vertauscht", "Koeffizienten von \\(x\\) als Lösung übernommen", "Konstanten Term ohne Division durch \\(4\\) übernommen"]
+        },
+        {
+            "frage": "Die positiven Nullstellen von \\(G\\) sind \\(x=4\\) und \\(x=11\\). Wie groß ist die Gewinnschwelle?",
+            "antworten": ["\\(4\\) ME", "\\(11\\) ME", "\\(7\\) ME", "\\(15\\) ME"],
+            "fehler": ["Letzte statt erste positive Nullstelle gewählt", "Abstand der beiden Nullstellen gebildet", "Beide Nullstellen addiert"]
+        },
+        {
+            "frage": "Die positiven Nullstellen von \\(G\\) sind \\(x=4\\) und \\(x=11\\). Wie groß ist die Gewinngrenze?",
+            "antworten": ["\\(11\\) ME", "\\(4\\) ME", "\\(7\\) ME", "\\(15\\) ME"],
+            "fehler": ["Erste statt letzte positive Nullstelle gewählt", "Abstand der beiden Nullstellen gebildet", "Beide Nullstellen addiert"]
+        },
+        {
+            "frage": "Der Hochpunkt von \\(G\\) ist \\(H(7\\mid 45)\\). Wie groß ist die gewinnmaximale Menge?",
+            "antworten": ["\\(7\\) ME", "\\(45\\) ME", "\\(38\\) ME", "\\(52\\) ME"],
+            "fehler": ["y-Koordinate statt x-Koordinate des Hochpunkts abgelesen", "Koordinaten des Hochpunkts voneinander subtrahiert", "Koordinaten des Hochpunkts addiert"]
+        },
+        {
+            "frage": "Der Hochpunkt von \\(G\\) ist \\(H(7\\mid 45)\\). Wie groß ist der maximale Gewinn?",
+            "antworten": ["\\(45\\) GE", "\\(7\\) GE", "\\(38\\) GE", "\\(52\\) GE"],
+            "fehler": ["x-Koordinate statt y-Koordinate des Hochpunkts abgelesen", "Koordinaten des Hochpunkts voneinander subtrahiert", "Koordinaten des Hochpunkts addiert"]
+        }
+    ]
+}

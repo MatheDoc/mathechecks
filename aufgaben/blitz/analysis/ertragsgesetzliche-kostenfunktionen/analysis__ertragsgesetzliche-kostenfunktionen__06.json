@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher allgemeine Ansatz passt zu einer ertragsgesetzlichen Kostenfunktion dritten Grades?",
+            "antworten": [
+                "\\(K(x)=ax^3+bx^2+cx+d\\)",
+                "\\(K(x)=ax^2+bx+c\\)",
+                "\\(K(x)=ax^4+bx^3+cx^2+d\\)",
+                "\\(K(x)=a\\cdot b^x+c+d\\)"
+            ],
+            "fehler": [
+                "Quadratischen statt kubischen Ansatz gewählt",
+                "Ansatz vierten Grades statt dritten Grades gewählt",
+                "Exponentialfunktion statt ganzrationaler Funktion gewählt"
+            ]
+        },
+        {
+            "frage": "Welche Gleichung beschreibt die Fixkosten beim Ansatz \\(K(x)=ax^3+bx^2+cx+d\\)?",
+            "antworten": [
+                "\\(K(0)=d\\)",
+                "\\(K(1)=d\\)",
+                "\\(K'(0)=d\\)",
+                "\\(k_v(0)=d\\)"
+            ],
+            "fehler": [
+                "Kosten bei einer Mengeneinheit statt bei Produktion null verwendet",
+                "Grenzkosten bei null statt Fixkosten verwendet",
+                "Variable Stückkosten fälschlich mit Fixkosten gleichgesetzt"
+            ]
+        },
+        {
+            "frage": "Die Fixkosten betragen \\(48\\) GE. Welche LGS-Gleichung folgt direkt?",
+            "antworten": [
+                "\\(d=48\\)",
+                "\\(c=48\\)",
+                "\\(a+b+c+d=48\\)",
+                "\\(3a+2b+c=48\\)"
+            ],
+            "fehler": [
+                "Linearen Koeffizienten statt konstanten Terms als Fixkosten verwendet",
+                "Kosten bei \\(x=1\\) statt bei \\(x=0\\) angesetzt",
+                "Grenzkosten bei \\(x=1\\) statt Fixkosten angesetzt"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(K(2)=20\\). Welche Gleichung gehört in das LGS?",
+            "antworten": [
+                "\\(8a+4b+2c+d=20\\)",
+                "\\(6a+4b+c=20\\)",
+                "\\(4a+4b+2c+d=20\\)",
+                "\\(8a+4b+2c=20\\)"
+            ],
+            "fehler": [
+                "Statt \\(K(2)\\) fälschlich \\(K'(2)\\) eingesetzt",
+                "Kubischen Term beim Einsetzen fälschlich mit \\(2^2\\) statt \\(2^3\\) berechnet",
+                "Konstanten Term \\(d\\) beim Einsetzen in \\(K\\) weggelassen"
+            ]
+        },
+        {
+            "frage": "Wie lautet die variable Stückkostenfunktion zum Ansatz \\(K(x)=ax^3+bx^2+cx+d\\)?",
+            "antworten": [
+                "\\(k_v(x)=ax^2+bx+c\\)",
+                "\\(k_v(x)=ax^2+bx+c+\\frac{d}{x}\\)",
+                "\\(k_v(x)=3ax^2+2bx+c\\)",
+                "\\(k_v(x)=ax^3+bx^2+cx\\)"
+            ],
+            "fehler": [
+                "Fixkostenanteil fälschlich in die variablen Stückkosten übernommen",
+                "Grenzkosten statt variable Stückkosten gebildet",
+                "Variable Gesamtkosten nicht durch \\(x\\) geteilt"
+            ]
+        },
+        {
+            "frage": "Wie lautet die Ableitung von \\(k_v(x)=ax^2+bx+c\\)?",
+            "antworten": [
+                "\\(k_v'(x)=2ax+b\\)",
+                "\\(k_v'(x)=ax+b\\)",
+                "\\(k_v'(x)=2ax+b+c\\)",
+                "\\(k_v'(x)=3ax^2+2bx+c\\)"
+            ],
+            "fehler": [
+                "Faktor \\(2\\) beim Ableiten des quadratischen Terms vergessen",
+                "Konstanten Term beim Ableiten beibehalten",
+                "Grenzkostenfunktion statt Ableitung der variablen Stückkosten gebildet"
+            ]
+        },
+        {
+            "frage": "Das Betriebsminimum liegt bei \\(x=3\\). Welche LGS-Gleichung folgt aus \\(k_v'(x)=2ax+b\\)?",
+            "antworten": [
+                "\\(6a+b=0\\)",
+                "\\(3a+b=0\\)",
+                "\\(6a+b+c=0\\)",
+                "\\(27a+9b+3c+d=0\\)"
+            ],
+            "fehler": [
+                "Faktor \\(2\\) in \\(k_v'(3)\\) vergessen",
+                "Konstanten Term aus \\(k_v\\) beim Ableiten beibehalten",
+                "Betriebsminimum als Nullstelle von \\(K\\) statt Extremstelle von \\(k_v\\) behandelt"
+            ]
+        },
+        {
+            "frage": "Wie lautet die Grenzkostenfunktion zu \\(K(x)=ax^3+bx^2+cx+d\\)?",
+            "antworten": [
+                "\\(K'(x)=3ax^2+2bx+c\\)",
+                "\\(K'(x)=ax^2+bx+c\\)",
+                "\\(K'(x)=3ax^2+2bx+c+d\\)",
+                "\\(K'(x)=3ax^3+2bx^2+cx\\)"
+            ],
+            "fehler": [
+                "Variable Stückkosten statt Grenzkosten gebildet",
+                "Konstanten Term beim Ableiten beibehalten",
+                "Exponenten beim Ableiten nicht verringert"
+            ]
+        },
+        {
+            "frage": "Die Grenzkosten bei \\(x=2\\) betragen \\(11\\) GE/ME. Welche LGS-Gleichung folgt?",
+            "antworten": [
+                "\\(12a+4b+c=11\\)",
+                "\\(8a+4b+2c+d=11\\)",
+                "\\(6a+4b+c=11\\)",
+                "\\(12a+4b+c+d=11\\)"
+            ],
+            "fehler": [
+                "Kostenwert \\(K(2)\\) statt Grenzkostenwert \\(K'(2)\\) angesetzt",
+                "Quadrat \\(2^2\\) im Term \\(3a\\cdot 2^2\\) fälschlich als \\(2\\) berechnet",
+                "Konstanten Term \\(d\\) fälschlich in die Grenzkosten übernommen"
+            ]
+        },
+        {
+            "frage": "Der Kostenpunkt \\(P(3\\mid 25)\\) liegt auf dem Graphen von \\(K\\). Welche LGS-Gleichung folgt?",
+            "antworten": [
+                "\\(27a+9b+3c+d=25\\)",
+                "\\(9a+9b+3c+d=25\\)",
+                "\\(27a+9b+3c=25\\)",
+                "\\(27a+9b+3c+d=3\\)"
+            ],
+            "fehler": [
+                "Kubischen Term beim Einsetzen fälschlich mit \\(3^2\\) statt \\(3^3\\) berechnet",
+                "Konstanten Term \\(d\\) beim Einsetzen in \\(K\\) weggelassen",
+                "x-Koordinate statt y-Koordinate auf die rechte Seite gesetzt"
+            ]
+        }
+    ]
+}

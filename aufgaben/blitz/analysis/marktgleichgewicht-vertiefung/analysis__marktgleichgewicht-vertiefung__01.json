@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Der Graph von \\(p_N\\) verläuft gekrümmt und trifft die x-Achse bei \\(x=24\\). Welche Kennzahl beträgt \\(24\\) ME?",
+            "antworten": ["Sättigungsmenge", "Höchstpreis", "Mindestangebotspreis", "Gleichgewichtspreis"],
+            "fehler": ["y-Achsenabschnitt von \\(p_N\\) statt Nullstelle gewählt", "Kennzahl der Angebotsfunktion statt Nullstelle von \\(p_N\\) gewählt", "Preis am Schnittpunkt statt x-Koordinate der Nullstelle gewählt"]
+        },
+        {
+                "frage": "Nachfrage- und Angebotsgraph schneiden sich bei \\(12\\mid 20\\). Wie groß ist der Gleichgewichtspreis?",
+            "antworten": ["Höchstpreis", "Sättigungsmenge", "Mindestangebotspreis", "Gleichgewichtsmenge"],
+            "fehler": ["Nullstelle von \\(p_N\\) statt y-Achsenabschnitt gewählt", "y-Achsenabschnitt der Angebotsfunktion statt der Nachfragefunktion gewählt", "x-Koordinate des Gleichgewichtspunkts statt y-Achsenabschnitt gewählt"]
+        },
+        {
+            "frage": "Der gekrümmte Graph von \\(p_A\\) beginnt an der y-Achse bei \\(p=6\\) und steigt danach. Welche Kennzahl beträgt \\(6\\) GE?",
+            "antworten": ["Mindestangebotspreis", "Höchstpreis", "Sättigungsmenge", "Gleichgewichtspreis"],
+            "fehler": ["y-Achsenabschnitt von \\(p_N\\) statt von \\(p_A\\) gewählt", "Nullstelle von \\(p_N\\) statt y-Achsenabschnitt von \\(p_A\\) gewählt", "Preis am Schnittpunkt statt y-Achsenabschnitt von \\(p_A\\) gewählt"]
+        },
+        {
+            "frage": "Der fallende Graph von \\(p_N\\) und der steigende Graph von \\(p_A\\) schneiden sich bei \\((8\\mid 15)\\). Wie groß ist die Gleichgewichtsmenge?",
+            "antworten": ["\\(8\\) ME", "\\(15\\) ME", "\\(8\\) GE", "\\(15\\) GE"],
+            "fehler": ["y-Koordinate des Schnittpunkts als Menge verwendet", "x-Koordinate mit der Preiseinheit angegeben", "Gleichgewichtspreis statt Gleichgewichtsmenge angegeben"]
+        },
+        {
+            "frage": "Der fallende Graph von \\(p_N\\) und der steigende Graph von \\(p_A\\) schneiden sich bei \\((8\\mid 15)\\). Wie groß ist der Gleichgewichtspreis?",
+            "antworten": ["\\(15\\) GE", "\\(8\\) GE", "\\(15\\) ME", "\\(8\\) ME"],
+            "fehler": ["x-Koordinate des Schnittpunkts als Preis verwendet", "y-Koordinate mit der Mengeneinheit angegeben", "Gleichgewichtsmenge statt Gleichgewichtspreis angegeben"]
+        },
+        {
+            "frage": "Welche vollständig beschriebene Stelle zeigt die Sättigungsmenge?",
+            "antworten": ["Die Nullstelle des Nachfragegraphen \\(p_N\\)", "Der y-Achsenabschnitt des Nachfragegraphen \\(p_N\\)", "Der y-Achsenabschnitt des Angebotsgraphen \\(p_A\\)", "Der Schnittpunkt der Graphen von \\(p_N\\) und \\(p_A\\)"],
+            "fehler": ["Höchstpreis statt Sättigungsmenge gewählt", "Mindestangebotspreis statt Sättigungsmenge gewählt", "Gleichgewichtspunkt statt Sättigungsmenge gewählt"]
+        },
+        {
+            "frage": "Welche vollständig beschriebene Stelle zeigt den Höchstpreis?",
+            "antworten": ["Der y-Achsenabschnitt des Nachfragegraphen \\(p_N\\)", "Die Nullstelle des Nachfragegraphen \\(p_N\\)", "Der y-Achsenabschnitt des Angebotsgraphen \\(p_A\\)", "Der Schnittpunkt der Graphen von \\(p_N\\) und \\(p_A\\)"],
+            "fehler": ["Sättigungsmenge statt Höchstpreis gewählt", "Mindestangebotspreis statt Höchstpreis gewählt", "Gleichgewichtspunkt statt Höchstpreis gewählt"]
+        },
+        {
+            "frage": "Welche vollständig beschriebene Stelle zeigt den Mindestangebotspreis?",
+            "antworten": ["Der y-Achsenabschnitt des Angebotsgraphen \\(p_A\\)", "Der y-Achsenabschnitt des Nachfragegraphen \\(p_N\\)", "Die Nullstelle des Nachfragegraphen \\(p_N\\)", "Der Schnittpunkt der Graphen von \\(p_N\\) und \\(p_A\\)"],
+            "fehler": ["Höchstpreis statt Mindestangebotspreis gewählt", "Sättigungsmenge statt Mindestangebotspreis gewählt", "Gleichgewichtspunkt statt Mindestangebotspreis gewählt"]
+        },
+        {
+            "frage": "Welche vollständig beschriebene Stelle zeigt den Gleichgewichtspunkt?",
+            "antworten": ["Der Schnittpunkt der Graphen von \\(p_N\\) und \\(p_A\\)", "Die Nullstelle des Nachfragegraphen \\(p_N\\)", "Der y-Achsenabschnitt des Nachfragegraphen \\(p_N\\)", "Der y-Achsenabschnitt des Angebotsgraphen \\(p_A\\)"],
+            "fehler": ["Sättigungsmenge statt Gleichgewichtspunkt gewählt", "Höchstpreis statt Gleichgewichtspunkt gewählt", "Mindestangebotspreis statt Gleichgewichtspunkt gewählt"]
+        },
+        {
+            "frage": "Nachfrage- und Angebotsgraph schneiden sich bei \\((12\\mid 20)\\). Wie groß ist der Gleichgewichtspreis?",
+            "antworten": ["\\(20\\) GE", "\\(12\\) GE", "\\(36\\) GE", "\\(30\\) GE"],
+            "fehler": ["Gleichgewichtsmenge statt Gleichgewichtspreis gewählt", "Höchstpreis statt Gleichgewichtspreis gewählt", "Sättigungsmenge statt Gleichgewichtspreis gewählt"]
+        }
+    ]
+}

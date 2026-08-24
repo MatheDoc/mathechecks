@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welchen Grad hat eine ertragsgesetzliche Kostenfunktion?",
+            "antworten": [
+                "Grad \\(3\\)",
+                "Grad \\(2\\)",
+                "Grad \\(1\\)",
+                "Grad \\(4\\)"
+            ],
+            "fehler": [
+                "Ertragsgesetzliche Kostenfunktion mit ihrer quadratischen Grenzkostenfunktion verwechselt",
+                "Ertragsgesetzliche Kostenfunktion mit einer linearen Funktion verwechselt",
+                "Grad der Kostenfunktion um eins zu hoch angesetzt"
+            ]
+        },
+        {
+            "frage": "Welche Bedingung müssen die Fixkosten einer ertragsgesetzlichen Kostenfunktion erfüllen?",
+            "antworten": [
+                "\\(K(0)>0\\)",
+                "\\(K(0)=0\\)",
+                "\\(K(0)<0\\)",
+                "\\(K'(0)>0\\)"
+            ],
+            "fehler": [
+                "Fixkosten fälschlich als null angenommen",
+                "Negative Fixkosten zugelassen",
+                "Fixkosten mit den Grenzkosten bei Produktionsbeginn verwechselt"
+            ]
+        },
+        {
+            "frage": "Welche Bedingung an \\(K'\\) sichert einen monoton wachsenden Kostenverlauf?",
+            "antworten": [
+                "\\(K'(x)\\geq 0\\)",
+                "\\(K'(x)\\leq 0\\)",
+                "\\(K'(x)=0\\) für alle \\(x\\)",
+                "\\(K(x)\\geq 0\\)"
+            ],
+            "fehler": [
+                "Vorzeichenbedingung für Wachstum umgekehrt",
+                "Monotones Wachstum fälschlich mit konstanten Kosten gleichgesetzt",
+                "Positive Kostenwerte mit monotonem Wachstum verwechselt"
+            ]
+        },
+        {
+            "frage": "Wo muss die Wendestelle einer ertragsgesetzlichen Kostenfunktion liegen?",
+            "antworten": [
+                "bei einer positiven Produktionsmenge",
+                "bei einer negativen Produktionsmenge",
+                "genau bei \\(x=0\\)",
+                "auf der \\(y\\)-Achse oberhalb des Ursprungs"
+            ],
+            "fehler": [
+                "Vorzeichen der geforderten Wendestelle vertauscht",
+                "Positive Wendestelle fälschlich als Wendestelle im Ursprung gedeutet",
+                "Wendestelle mit positivem y-Achsenabschnitt verwechselt"
+            ]
+        },
+        {
+            "frage": "Warum ist \\(K(x)=2x^2+5x+8\\) nicht ertragsgesetzlich?",
+            "antworten": [
+                "\\(K\\) ist nicht dritten Grades.",
+                "\\(K(0)\\) ist negativ.",
+                "Der Leitkoeffizient ist negativ.",
+                "\\(K\\) besitzt zu viele Wendestellen."
+            ],
+            "fehler": [
+                "Positiven y-Achsenabschnitt \\(K(0)=8\\) falsch bewertet",
+                "Positiven Leitkoeffizienten \\(2\\) falsch bewertet",
+                "Fehlenden Grad drei fälschlich als mehrere Wendestellen gedeutet"
+            ]
+        },
+        {
+            "frage": "An welchem Kriterium scheitert \\(K(x)=x^3-3x^2+5x-4\\) sofort?",
+            "antworten": [
+                "positiver y-Achsenabschnitt",
+                "ganzrationale Funktion dritten Grades",
+                "positiver Leitkoeffizient",
+                "Existenz einer ersten Ableitung"
+            ],
+            "fehler": [
+                "Grad der Funktion trotz kubischem Term falsch bewertet",
+                "Leitkoeffizienten \\(1\\) fälschlich als negativ bewertet",
+                "Polynom fälschlich als nicht differenzierbar bewertet"
+            ]
+        },
+        {
+            "frage": "Für eine Kostenfunktion gilt \\(K'(2)=-1\\). Welches Kriterium ist damit verletzt?",
+            "antworten": [
+                "monoton wachsender Verlauf",
+                "positiver y-Achsenabschnitt",
+                "Grad drei",
+                "positive Wendestelle"
+            ],
+            "fehler": [
+                "Ableitungswert mit dem y-Achsenabschnitt verwechselt",
+                "Negativen Ableitungswert fälschlich als Aussage über den Grad gedeutet",
+                "Negativen Ableitungswert fälschlich als Lage der Wendestelle gedeutet"
+            ]
+        },
+        {
+            "frage": "Eine Kostenfunktion hat die Wendestelle \\(x_w=-2\\). Welches Kriterium ist verletzt?",
+            "antworten": [
+                "positive Wendestelle",
+                "positiver y-Achsenabschnitt",
+                "monoton wachsender Verlauf",
+                "Grad drei"
+            ],
+            "fehler": [
+                "Lage der Wendestelle mit dem y-Achsenabschnitt verwechselt",
+                "Negative Wendestelle ohne weitere Information als Monotonieverstoß gedeutet",
+                "Negative Wendestelle ohne weitere Information als falschen Grad gedeutet"
+            ]
+        },
+        {
+            "frage": "Bei \\(K(x)=ax^3+bx^2+cx+d\\) entspricht welcher Koeffizient dem y-Achsenabschnitt?",
+            "antworten": [
+                "\\(d\\)",
+                "\\(a\\)",
+                "\\(b\\)",
+                "\\(c\\)"
+            ],
+            "fehler": [
+                "Leitkoeffizienten mit dem y-Achsenabschnitt verwechselt",
+                "Koeffizienten des quadratischen Terms mit dem y-Achsenabschnitt verwechselt",
+                "Koeffizienten des linearen Terms mit dem y-Achsenabschnitt verwechselt"
+            ]
+        },
+        {
+            "frage": "Eine Funktion ist kubisch, hat positive Fixkosten, ist monoton wachsend und besitzt eine positive Wendestelle. Welche Aussage passt?",
+            "antworten": [
+                "Die Funktion hat einen ertragsgesetzlichen Kostenverlauf.",
+                "Die Funktion scheitert am Grad.",
+                "Die Funktion scheitert an den Fixkosten.",
+                "Die Funktion scheitert an der Wendestelle."
+            ],
+            "fehler": [
+                "Kubischen Grad trotz Angabe verneint",
+                "Positive Fixkosten trotz Angabe verneint",
+                "Positive Wendestelle trotz Angabe verneint"
+            ]
+        }
+    ]
+}

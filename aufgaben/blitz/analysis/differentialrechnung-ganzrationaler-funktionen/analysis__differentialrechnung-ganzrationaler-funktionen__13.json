@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Funktion wird untersucht, wenn die größte Steigung von \\(f\\) gesucht ist?",
+            "antworten": ["die Ableitungsfunktion \\(f'\\)", "die Funktion \\(f\\)", "die zweite Ableitung \\(f^{\\prime\\prime}\\) als Vergleichsgröße", "die Stammfunktion von \\(f\\)"],
+            "fehler": ["Funktionswerte statt Steigungswerte optimiert", "Zweite Ableitung mit der zu vergleichenden Steigung verwechselt", "Steigungsextremum fälschlich über eine Stammfunktion gesucht"]
+        },
+        {
+            "frage": "Welche Gleichung liefert innere Kandidaten für globale Steigungsextrema?",
+            "antworten": ["\\(f^{\\prime\\prime}(x)=0\\)", "\\(f'(x)=0\\)", "\\(f(x)=0\\)", "\\(f^{\\prime\\prime}(x)=1\\)"],
+            "fehler": ["Extremstellen von \\(f\\) statt von \\(f'\\) gesucht", "Nullstellen von \\(f\\) statt Extremstellen von \\(f'\\) gesucht", "Zweite Ableitung auf \\(1\\) statt auf \\(0\\) gesetzt"]
+        },
+        {
+            "frage": "Welche zusätzlichen Kandidaten sind auf \\([a;b]\\) für globale Steigungsextrema zu prüfen?",
+            "antworten": ["die Randpunkte \\(a\\) und \\(b\\)", "nur die Nullstellen von \\(f\\)", "nur die Stelle \\(x=0\\)", "alle Stellen mit \\(f'(x)=0\\) außerhalb des Intervalls"],
+            "fehler": ["Nullstellen der Funktion mit Randkandidaten verwechselt", "Randprüfung fälschlich auf \\(x=0\\) beschränkt", "Stellen außerhalb des betrachteten Intervalls einbezogen"]
+        },
+        {
+            "frage": "Welche Werte werden am Ende für globale Steigungsextrema verglichen?",
+            "antworten": ["die Werte von \\(f'\\) an allen Kandidaten", "die Werte von \\(f\\) an allen Kandidaten", "die Werte von \\(f^{\\prime\\prime}\\) an allen Kandidaten", "nur die x-Koordinaten der Kandidaten"],
+            "fehler": ["Funktionswerte statt Steigungswerte verglichen", "Zweite Ableitungswerte statt Steigungswerte verglichen", "Lage der Kandidaten statt ihrer Steigungswerte verglichen"]
+        },
+        {
+            "frage": "Es gilt \\(f'(x)=3x^2-6x\\) auf \\([0;3]\\). Wo ist die Steigung global maximal?",
+            "antworten": ["bei \\(x=3\\)", "bei \\(x=1\\)", "bei \\(x=0\\)", "bei \\(x=2\\)"],
+            "fehler": ["Inneres Minimum von \\(f'\\) mit dem Maximum verwechselt", "Randwert \\(0\\) statt des größeren Randwerts \\(9\\) gewählt", "Nullstelle von \\(f'\\) ohne Vergleich als Maximum gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(f'(x)=3x^2-6x\\) auf \\([0;3]\\). Wo ist die Steigung global minimal?",
+            "antworten": ["bei \\(x=1\\)", "bei \\(x=3\\)", "bei \\(x=0\\)", "bei \\(x=2\\)"],
+            "fehler": ["Globales Maximum von \\(f'\\) mit dem Minimum verwechselt", "Randwert \\(0\\) statt des kleineren Werts \\(-3\\) gewählt", "Nullstelle von \\(f'\\) ohne Vergleich als Minimum gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(f'(x)=2x+1\\) auf \\([0;2]\\). Wo ist die Steigung global maximal?",
+            "antworten": ["bei \\(x=2\\)", "bei \\(x=0\\)", "bei \\(x=1\\)", "bei \\(x=-1\\)"],
+            "fehler": ["Kleineren linken Randwert statt des größeren rechten Randwerts gewählt", "Intervallmitte ohne Wertevergleich gewählt", "Stelle außerhalb des Intervalls gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(f'(x)=-x+4\\) auf \\([1;3]\\). Wo ist die Steigung global minimal?",
+            "antworten": ["bei \\(x=3\\)", "bei \\(x=1\\)", "bei \\(x=2\\)", "bei \\(x=4\\)"],
+            "fehler": ["Größeren linken Randwert statt des kleineren rechten Randwerts gewählt", "Intervallmitte ohne Wertevergleich gewählt", "Nullstelle von \\(f'\\) außerhalb des Intervalls gewählt"]
+        },
+        {
+            "frage": "Im Inneren von \\([a;b]\\) hat \\(f^{\\prime\\prime}\\) keine Nullstelle. Wo können globale Steigungsextrema dennoch liegen?",
+            "antworten": ["an den Randpunkten", "nirgends", "nur an Nullstellen von \\(f\\)", "nur außerhalb des Intervalls"],
+            "fehler": ["Randkandidaten wegen fehlender innerer Kandidaten übersehen", "Nullstellen von \\(f\\) fälschlich als einzige Kandidaten verwendet", "Betrachtung fälschlich auf Stellen außerhalb des Intervalls verlagert"]
+        },
+        {
+            "frage": "Es gilt \\(f'(x)=x^2\\) auf \\(\\mathbb{R}\\). Welche globalen Steigungsextrema besitzt \\(f\\)?",
+            "antworten": ["eine minimale Steigung \\(0\\) bei \\(x=0\\), aber keine maximale Steigung", "eine maximale Steigung \\(0\\) bei \\(x=0\\), aber keine minimale Steigung", "minimale und maximale Steigung \\(0\\) bei \\(x=0\\)", "weder minimale noch maximale Steigung"],
+            "fehler": ["Minimum und Maximum der Steigungsfunktion \\(x^2\\) vertauscht", "Unbeschränktes Wachstum von \\(f'\\) fälschlich als Maximum bei \\(0\\) behandelt", "Angenommenes Minimum der Steigungsfunktion bei \\(0\\) übersehen"]
+        }
+    ]
+}

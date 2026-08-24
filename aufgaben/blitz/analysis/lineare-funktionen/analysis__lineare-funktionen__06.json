@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben ist \\(f(x)=2x+1\\). Wie groß ist \\(f(3)\\)?",
+            "antworten": ["\\(7\\)", "\\(6\\)", "\\(4\\)", "\\(9\\)"],
+            "fehler": ["Nur \\(2\\cdot 3\\) berechnet und den y-Achsenabschnitt vergessen", "\\(x\\)-Wert und y-Achsenabschnitt addiert", "Zuerst addiert und dann mit \\(2\\) multipliziert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=-x+4\\). Wie groß ist \\(f(6)\\)?",
+            "antworten": ["\\(-2\\)", "\\(2\\)", "\\(10\\)", "\\(-10\\)"],
+            "fehler": ["Vorzeichen des Ergebnisses vertauscht", "Minuszeichen vor \\(x\\) übersehen", "Beide Terme fälschlich negativ gerechnet"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=0{,}5x+2\\). Wie groß ist \\(f(4)\\)?",
+            "antworten": ["\\(4\\)", "\\(6\\)", "\\(2{,}5\\)", "\\(3\\)"],
+            "fehler": ["\\(0{,}5\\) und \\(4\\) addiert statt multipliziert", "Nur \\(0{,}5+2\\) gerechnet", "Den y-Achsenabschnitt nur halb berücksichtigt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=3x-2\\). Wie groß ist \\(f(0)\\)?",
+            "antworten": ["\\(-2\\)", "\\(0\\)", "\\(2\\)", "\\(3\\)"],
+            "fehler": ["Bei \\(x=0\\) den gesamten Funktionswert gleich null gesetzt", "Vorzeichen des y-Achsenabschnitts vertauscht", "Steigung statt Funktionswert bei \\(x=0\\) angegeben"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=2x+3\\). Für welches \\(x\\) gilt \\(f(x)=11\\)?",
+            "antworten": ["\\(4\\)", "\\(7\\)", "\\(5{,}5\\)", "\\(14\\)"],
+            "fehler": ["\\(3\\) subtrahiert, aber nicht durch \\(2\\) geteilt", "\\(11\\) nur durch \\(2\\) geteilt", "\\(11\\) und \\(3\\) addiert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=-x+5\\). Für welches \\(x\\) gilt \\(f(x)=2\\)?",
+            "antworten": ["\\(3\\)", "\\(-3\\)", "\\(7\\)", "\\(-7\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "\\(2\\) und \\(5\\) addiert", "Beim Addieren zusätzlich ein Minuszeichen gesetzt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=0{,}5x+1\\). Für welches \\(x\\) gilt \\(f(x)=3\\)?",
+            "antworten": ["\\(4\\)", "\\(2\\)", "\\(6\\)", "\\(1\\)"],
+            "fehler": ["Nach dem Subtrahieren von \\(1\\) nicht durch \\(0{,}5\\) geteilt", "Faktor \\(0{,}5\\) ignoriert und \\(4+2\\) gerechnet", "Nur \\(3-1\\) mit \\(0{,}5\\) multipliziert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=3x-6\\). Für welches \\(x\\) gilt \\(f(x)=0\\)?",
+            "antworten": ["\\(2\\)", "\\(-2\\)", "\\(6\\)", "\\(3\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Konstanten Term ohne Division durch \\(3\\) übernommen", "Koeffizienten von \\(x\\) als Lösung übernommen"]
+        },
+        {
+            "frage": "Ein \\(x\\)-Wert ist gegeben und \\(f(x)\\) gesucht. Was ist der passende erste Schritt?",
+            "antworten": ["Den \\(x\\)-Wert in die Funktionsgleichung einsetzen.", "\\(f(x)=0\\) setzen.", "Die Funktionsgleichung nach \\(x\\) auflösen.", "Nur den y-Achsenabschnitt ablesen."],
+            "fehler": ["Nullstellenberechnung statt Funktionswertberechnung gewählt", "Umkehrwertberechnung statt Funktionswertberechnung gewählt", "Steigungseinfluss auf den Funktionswert ignoriert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=2x-1\\), gesucht ist der Umkehrwert zu \\(y=7\\). Welcher Ansatz passt?",
+            "antworten": ["\\(2x-1=7\\)", "\\(2\\cdot 7-1=x\\)", "\\(2x-1=0\\)", "\\(2x=7\\)"],
+            "fehler": ["Den gegebenen y-Wert als x-Wert eingesetzt", "Nullstellenansatz statt Umkehrwertansatz gewählt", "Y-Achsenabschnitt im Ansatz weggelassen"]
+        }
+    ]
+}

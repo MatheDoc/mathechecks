@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz bestimmt das Betriebsminimum \\(x_{BM}\\) als Extremstelle?",
+            "antworten": [
+                "\\(k_v'(x)=0\\)",
+                "\\(k'(x)=0\\)",
+                "\\(k_v(x)=0\\)",
+                "\\(K''(x)=0\\)"
+            ],
+            "fehler": [
+                "Ansatz für das Betriebsoptimum statt für das Betriebsminimum gewählt",
+                "Minimum der variablen Stückkosten mit deren Nullstelle verwechselt",
+                "Wendestellenansatz der Kostenfunktion statt Extremstellenansatz von \\(k_v\\) gewählt"
+            ]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt das Betriebsoptimum \\(x_{BO}\\) als Extremstelle?",
+            "antworten": [
+                "\\(k'(x)=0\\)",
+                "\\(k_v'(x)=0\\)",
+                "\\(k(x)=0\\)",
+                "\\(K'(x)=0\\)"
+            ],
+            "fehler": [
+                "Ansatz für das Betriebsminimum statt für das Betriebsoptimum gewählt",
+                "Minimum der Stückkosten mit deren Nullstelle verwechselt",
+                "Extremstelle der Kostenfunktion statt Minimum der Stückkosten gesucht"
+            ]
+        },
+        {
+            "frage": "Das Betriebsminimum \\(x_{BM}\\) ist bekannt. Welcher Ansatz liefert die kurzfristige Preisuntergrenze?",
+            "antworten": [
+                "\\(KPU=k_v(x_{BM})\\)",
+                "\\(KPU=k(x_{BM})\\)",
+                "\\(KPU=K'(x_{BM})\\)",
+                "\\(KPU=k_v'(x_{BM})\\)"
+            ],
+            "fehler": [
+                "Gesamte Stückkosten statt variable Stückkosten eingesetzt",
+                "Grenzkosten statt variable Stückkosten berechnet",
+                "Extremstellenbedingung statt y-Wert der variablen Stückkosten verwendet"
+            ]
+        },
+        {
+            "frage": "Das Betriebsoptimum \\(x_{BO}\\) ist bekannt. Welcher Ansatz liefert die langfristige Preisuntergrenze?",
+            "antworten": [
+                "\\(LPU=k(x_{BO})\\)",
+                "\\(LPU=k_v(x_{BO})\\)",
+                "\\(LPU=K'(x_{BO})\\)",
+                "\\(LPU=k'(x_{BO})\\)"
+            ],
+            "fehler": [
+                "Variable Stückkosten statt gesamte Stückkosten eingesetzt",
+                "Grenzkosten statt Stückkosten berechnet",
+                "Extremstellenbedingung statt y-Wert der Stückkosten verwendet"
+            ]
+        },
+        {
+            "frage": "Welche notwendige Bedingung gehört zur Wendestelle \\(x_w\\) der Kostenfunktion?",
+            "antworten": [
+                "\\(K''(x_w)=0\\)",
+                "\\(K'(x_w)=0\\)",
+                "\\(K'''(x_w)=0\\)",
+                "\\(K(x_w)=0\\)"
+            ],
+            "fehler": [
+                "Extremstellenbedingung von \\(K\\) statt Wendestellenbedingung gewählt",
+                "Dritte Ableitung fälschlich als notwendige Gleichung null gesetzt",
+                "Wendestelle mit Nullstelle der Kostenfunktion verwechselt"
+            ]
+        },
+        {
+            "frage": "Welche Zusatzbedingung bestätigt bei einer kubischen Kostenfunktion die mit \\(K''(x_w)=0\\) gefundene Wendestelle?",
+            "antworten": [
+                "\\(K'''(x_w)\\neq 0\\)",
+                "\\(K'''(x_w)=0\\)",
+                "\\(K'(x_w)=0\\)",
+                "\\(K(x_w)=0\\)"
+            ],
+            "fehler": [
+                "Hinreichende Wendestellenbedingung mit Gleichheit null formuliert",
+                "Extremstellenbedingung von \\(K\\) statt Wendestellenprüfung gewählt",
+                "Wendestellenprüfung mit Nullstellenprüfung von \\(K\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Welcher Schnittpunktansatz liefert alternativ das Betriebsminimum?",
+            "antworten": [
+                "\\(K'(x)=k_v(x)\\)",
+                "\\(K'(x)=k(x)\\)",
+                "\\(K(x)=k_v(x)\\)",
+                "\\(k(x)=k_v(x)\\)"
+            ],
+            "fehler": [
+                "Schnittpunktansatz für das Betriebsoptimum gewählt",
+                "Gesamtkosten statt Grenzkosten mit variablen Stückkosten gleichgesetzt",
+                "Stückkosten und variable Stückkosten statt Grenzkosten gleichgesetzt"
+            ]
+        },
+        {
+            "frage": "Welcher Schnittpunktansatz liefert alternativ das Betriebsoptimum?",
+            "antworten": [
+                "\\(K'(x)=k(x)\\)",
+                "\\(K'(x)=k_v(x)\\)",
+                "\\(K(x)=k(x)\\)",
+                "\\(k'(x)=k(x)\\)"
+            ],
+            "fehler": [
+                "Schnittpunktansatz für das Betriebsminimum gewählt",
+                "Gesamtkosten statt Grenzkosten mit Stückkosten gleichgesetzt",
+                "Ableitung der Stückkosten statt Grenzkosten mit Stückkosten gleichgesetzt"
+            ]
+        },
+        {
+            "frage": "Welche Größe ist der y-Wert des Tiefpunkts von \\(k_v\\)?",
+            "antworten": [
+                "die kurzfristige Preisuntergrenze",
+                "das Betriebsminimum",
+                "die langfristige Preisuntergrenze",
+                "das Betriebsoptimum"
+            ],
+            "fehler": [
+                "y-Wert des Tiefpunkts mit dessen x-Wert verwechselt",
+                "Tiefpunkt von \\(k_v\\) dem Minimum von \\(k\\) zugeordnet",
+                "Tiefpunkt von \\(k_v\\) dem x-Wert des Minimums von \\(k\\) zugeordnet"
+            ]
+        },
+        {
+            "frage": "Welche Größe ist der y-Wert des Tiefpunkts von \\(k\\)?",
+            "antworten": [
+                "die langfristige Preisuntergrenze",
+                "das Betriebsoptimum",
+                "die kurzfristige Preisuntergrenze",
+                "das Betriebsminimum"
+            ],
+            "fehler": [
+                "y-Wert des Tiefpunkts mit dessen x-Wert verwechselt",
+                "Tiefpunkt von \\(k\\) dem Minimum von \\(k_v\\) zugeordnet",
+                "Tiefpunkt von \\(k\\) dem x-Wert des Minimums von \\(k_v\\) zugeordnet"
+            ]
+        }
+    ]
+}

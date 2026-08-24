@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel berechnet die Steigung aus \\(P_1(x_1\\mid y_1)\\) und \\(P_2(x_2\\mid y_2)\\)?",
+            "antworten": ["\\(m=\\frac{y_2-y_1}{x_2-x_1}\\)", "\\(m=\\frac{x_2-x_1}{y_2-y_1}\\)", "\\(m=\\frac{y_2+y_1}{x_2+x_1}\\)", "\\(m=y_2-y_1\\)"],
+            "fehler": ["Zähler und Nenner vertauscht", "Differenzen durch Summen ersetzt", "Änderung von \\(x\\) im Nenner weggelassen"]
+        },
+        {
+            "frage": "Für zwei Punkte gilt \\(y_2-y_1=6\\) und \\(x_2-x_1=3\\). Wie groß ist \\(m\\)?",
+            "antworten": ["\\(2\\)", "\\(3\\)", "\\(9\\)", "\\(-2\\)"],
+            "fehler": ["Nenner statt Quotient übernommen", "Differenzen addiert statt dividiert", "Vorzeichen ohne Anlass vertauscht"]
+        },
+        {
+            "frage": "Für zwei Punkte gilt \\(y_2-y_1=-8\\) und \\(x_2-x_1=4\\). Wie groß ist \\(m\\)?",
+            "antworten": ["\\(-2\\)", "\\(2\\)", "\\(-4\\)", "\\(-12\\)"],
+            "fehler": ["Negatives Vorzeichen des Zählers ignoriert", "Nur den Nenner mit negativem Vorzeichen übernommen", "Differenzen addiert statt dividiert"]
+        },
+        {
+            "frage": "Die Gerade geht durch \\(P(1\\mid 5)\\) und hat \\(m=2\\). Welcher Ansatz bestimmt \\(b\\)?",
+            "antworten": ["\\(b=5-2\\cdot 1\\)", "\\(b=5+2\\cdot 1\\)", "\\(b=2-5\\cdot 1\\)", "\\(b=5-1\\)"],
+            "fehler": ["Beim Umstellen \\(mx\\) addiert statt subtrahiert", "Steigung und y-Wert vertauscht", "Faktor \\(m\\) weggelassen"]
+        },
+        {
+            "frage": "Die Gerade geht durch \\(P(2\\mid 7)\\) und hat \\(m=3\\). Wie groß ist \\(b\\)?",
+            "antworten": ["\\(1\\)", "\\(13\\)", "\\(4\\)", "\\(-1\\)"],
+            "fehler": ["\\(mx\\) addiert statt subtrahiert", "Nur \\(y-m\\) gerechnet", "Reihenfolge der Subtraktion vertauscht"]
+        },
+        {
+            "frage": "Die Gerade geht durch \\(P(1\\mid -1)\\) und hat \\(m=-2\\). Wie groß ist \\(b\\)?",
+            "antworten": ["\\(1\\)", "\\(-3\\)", "\\(-1\\)", "\\(3\\)"],
+            "fehler": ["Negatives Produkt addiert statt subtrahiert", "x-Term weggelassen", "Vorzeichen der y-Koordinate vertauscht: \\(1-(-2)=3\\)"]
+        },
+        {
+            "frage": "Welche Gleichung gehört zur Geraden durch \\(P_1(0\\mid 2)\\) und \\(P_2(1\\mid 5)\\)?",
+            "antworten": ["\\(f(x)=3x+2\\)", "\\(f(x)=2x+3\\)", "\\(f(x)=-3x+2\\)", "\\(f(x)=3x-2\\)"],
+            "fehler": ["Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen der Steigung vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Welche Gleichung gehört zur Geraden durch \\(P_1(0\\mid -1)\\) und \\(P_2(1\\mid 1)\\)?",
+            "antworten": ["\\(g(x)=2x-1\\)", "\\(g(x)=x-1\\)", "\\(g(x)=-2x-1\\)", "\\(g(x)=2x+1\\)"],
+            "fehler": ["Änderung von \\(y\\) als \\(1\\) statt \\(2\\) gelesen", "Vorzeichen der Steigung vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Welche Gleichung gehört zur Geraden durch \\(P_1(0\\mid 4)\\) und \\(P_2(2\\mid 0)\\)?",
+            "antworten": ["\\(h(x)=-2x+4\\)", "\\(h(x)=2x+4\\)", "\\(h(x)=-4x+2\\)", "\\(h(x)=-2x-4\\)"],
+            "fehler": ["Vorzeichen der Steigung vertauscht", "Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        },
+        {
+            "frage": "Nach der Berechnung von \\(m\\) und \\(b\\) gilt \\(m=-1\\) und \\(b=3\\). Welche Funktionsgleichung folgt?",
+            "antworten": ["\\(k(x)=-x+3\\)", "\\(k(x)=x+3\\)", "\\(k(x)=-3x+1\\)", "\\(k(x)=-x-3\\)"],
+            "fehler": ["Vorzeichen der Steigung vertauscht", "Steigung und y-Achsenabschnitt vertauscht", "Vorzeichen des y-Achsenabschnitts vertauscht"]
+        }
+    ]
+}

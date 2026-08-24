@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die notwendige Bedingung für eine Extremstelle \\(x_0\\)?",
+            "antworten": [
+                "\\(f'(x_0)=0\\)",
+                "\\(f(x_0)=0\\)",
+                "\\(f''(x_0)=0\\)",
+                "\\(f'(x_0)=1\\)"
+            ],
+            "fehler": [
+                "Extremstelle mit Nullstelle der Funktion verwechselt",
+                "Notwendige Extremstellenbedingung mit einer Wendestellenbedingung verwechselt",
+                "Waagrechte Tangente fälschlich als Steigung eins beschrieben"
+            ]
+        },
+        {
+            "frage": "Was sind Lösungen der Gleichung \\(f'(x)=0\\) zunächst?",
+            "antworten": [
+                "Kandidaten für Extremstellen",
+                "sichere Hochpunkte",
+                "sichere Tiefpunkte",
+                "Nullstellen von \\(f\\)"
+            ],
+            "fehler": [
+                "Notwendige Bedingung ohne hinreichende Prüfung als Hochpunkt gewertet",
+                "Notwendige Bedingung ohne hinreichende Prüfung als Tiefpunkt gewertet",
+                "Nullstellen der Ableitung mit Nullstellen der Funktion verwechselt"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f'(x_0)=0\\) und \\(f''(x_0)>0\\). Welche Art von Extrempunkt liegt vor?",
+            "antworten": [
+                "ein Tiefpunkt",
+                "ein Hochpunkt",
+                "ein Wendepunkt",
+                "kein stationärer Punkt"
+            ],
+            "fehler": [
+                "Vorzeichenkriterium der zweiten Ableitung vertauscht",
+                "Positive zweite Ableitung als Wendepunktbedingung gedeutet",
+                "Die Bedingung \\(f'(x_0)=0\\) für einen stationären Punkt ignoriert"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f'(x_0)=0\\) und \\(f''(x_0)<0\\). Welche Art von Extrempunkt liegt vor?",
+            "antworten": [
+                "ein Hochpunkt",
+                "ein Tiefpunkt",
+                "ein Wendepunkt",
+                "kein stationärer Punkt"
+            ],
+            "fehler": [
+                "Vorzeichenkriterium der zweiten Ableitung vertauscht",
+                "Negative zweite Ableitung als Wendepunktbedingung gedeutet",
+                "Die Bedingung \\(f'(x_0)=0\\) für einen stationären Punkt ignoriert"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=2x-4\\). Welche Stelle erfüllt die notwendige Extremstellenbedingung?",
+            "antworten": [
+                "\\(x=2\\)",
+                "\\(x=-2\\)",
+                "\\(x=4\\)",
+                "\\(x=0\\)"
+            ],
+            "fehler": [
+                "Vorzeichen beim Lösen von \\(2x-4=0\\) vertauscht",
+                "Konstanten Term direkt als Lösung übernommen",
+                "Die Gleichung \\(f'(x)=0\\) nicht gelöst"
+            ]
+        },
+        {
+            "frage": "Für eine Kandidatenstelle \\(x=1\\) gilt \\(f''(1)=-6\\). Was folgt?",
+            "antworten": [
+                "Bei \\(x=1\\) liegt eine Hochstelle.",
+                "Bei \\(x=1\\) liegt eine Tiefstelle.",
+                "Bei \\(x=-6\\) liegt eine Hochstelle.",
+                "Bei \\(x=1\\) liegt eine Nullstelle von \\(f\\)."
+            ],
+            "fehler": [
+                "Negativen Wert der zweiten Ableitung als Tiefstelle gedeutet",
+                "Wert der zweiten Ableitung als x-Koordinate übernommen",
+                "Extremstellenprüfung mit Nullstellenprüfung von \\(f\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Für eine Kandidatenstelle \\(x=-2\\) gilt \\(f''(-2)=5\\). Was folgt?",
+            "antworten": [
+                "Bei \\(x=-2\\) liegt eine Tiefstelle.",
+                "Bei \\(x=-2\\) liegt eine Hochstelle.",
+                "Bei \\(x=5\\) liegt eine Tiefstelle.",
+                "Bei \\(x=-2\\) liegt eine Nullstelle von \\(f\\)."
+            ],
+            "fehler": [
+                "Positiven Wert der zweiten Ableitung als Hochstelle gedeutet",
+                "Wert der zweiten Ableitung als x-Koordinate übernommen",
+                "Extremstellenprüfung mit Nullstellenprüfung von \\(f\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Die Extremstelle \\(x_0\\) und ihre Art sind bekannt. Wie erhältst du die y-Koordinate des Extrempunkts?",
+            "antworten": [
+                "\\(x_0\\) in \\(f(x)\\) einsetzen",
+                "\\(x_0\\) in \\(f'(x)\\) einsetzen",
+                "\\(x_0\\) in \\(f''(x)\\) einsetzen",
+                "die Gleichung \\(f(x)=0\\) lösen"
+            ],
+            "fehler": [
+                "Erneut die Steigung statt des Funktionswerts berechnet",
+                "Krümmungswert statt der y-Koordinate berechnet",
+                "y-Koordinate eines Extrempunkts mit einer Nullstelle verwechselt"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f(2)=3\\), \\(f'(2)=0\\) und \\(f''(2)<0\\). Welcher Extrempunkt liegt vor?",
+            "antworten": [
+                "\\(H(2|3)\\)",
+                "\\(T(2|3)\\)",
+                "\\(H(3|2)\\)",
+                "\\(H(2|0)\\)"
+            ],
+            "fehler": [
+                "Negatives Vorzeichen der zweiten Ableitung als Tiefpunkt gedeutet",
+                "x- und y-Koordinate vertauscht",
+                "Ableitungswert null als y-Koordinate des Extrempunkts verwendet"
+            ]
+        },
+        {
+            "frage": "In welcher Reihenfolge bestimmst du einen einfachen Extrempunkt?",
+            "antworten": [
+                "\\(f'(x)=0\\) lösen, mit \\(f''\\) prüfen, y-Wert mit \\(f\\) berechnen",
+                "\\(f(x)=0\\) lösen, mit \\(f'\\) prüfen, y-Wert mit \\(f''\\) berechnen",
+                "y-Wert mit \\(f\\) berechnen, dann \\(f'(x)=0\\) lösen",
+                "\\(f''(x)=0\\) lösen, dann \\(f'(x)\\) als y-Wert verwenden"
+            ],
+            "fehler": [
+                "Nullstellenverfahren und Rollen der Ableitungen vertauscht",
+                "y-Wert vor der Bestimmung einer Kandidatenstelle berechnen wollen",
+                "Wendestellenansatz gewählt und Ableitungswert als y-Koordinate verwendet"
+            ]
+        }
+    ]
+}

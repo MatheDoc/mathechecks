@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Bei einem festen Preis ist die Nachfrage größer als das Angebot. Welche Situation liegt vor?",
+            "antworten": ["Nachfrageüberschuss", "Angebotsüberschuss", "Marktgleichgewicht", "Sättigung"],
+            "fehler": ["Richtung des Mengenvergleichs vertauscht", "Ungleiche Mengen als Marktgleichgewicht gedeutet", "Sättigungsmenge statt Marktsituation gewählt"]
+        },
+        {
+            "frage": "Bei einem festen Preis ist das Angebot größer als die Nachfrage. Welche Situation liegt vor?",
+            "antworten": ["Angebotsüberschuss", "Nachfrageüberschuss", "Marktgleichgewicht", "Höchstpreis"],
+            "fehler": ["Richtung des Mengenvergleichs vertauscht", "Ungleiche Mengen als Marktgleichgewicht gedeutet", "Preisbegriff statt Marktsituation gewählt"]
+        },
+        {
+            "frage": "Es werden \\(9\\) ME nachgefragt und \\(4\\) ME angeboten. Welcher Überschuss liegt vor?",
+            "antworten": ["Nachfrageüberschuss von \\(5\\) ME", "Angebotsüberschuss von \\(5\\) ME", "Nachfrageüberschuss von \\(13\\) ME", "Kein Überschuss"],
+            "fehler": ["Überschussart trotz größerer Nachfrage vertauscht", "Mengen addiert statt subtrahiert", "Ungleiche Mengen als Marktgleichgewicht gedeutet"]
+        },
+        {
+            "frage": "Es werden \\(3\\) ME nachgefragt und \\(8\\) ME angeboten. Welcher Überschuss liegt vor?",
+            "antworten": ["Angebotsüberschuss von \\(5\\) ME", "Nachfrageüberschuss von \\(5\\) ME", "Angebotsüberschuss von \\(11\\) ME", "Kein Überschuss"],
+            "fehler": ["Überschussart trotz größeren Angebots vertauscht", "Mengen addiert statt subtrahiert", "Ungleiche Mengen als Marktgleichgewicht gedeutet"]
+        },
+        {
+            "frage": "Nachfrage und Angebot betragen jeweils \\(6\\) ME. Welche Situation liegt vor?",
+            "antworten": ["Marktgleichgewicht", "Nachfrageüberschuss von \\(6\\) ME", "Angebotsüberschuss von \\(6\\) ME", "Überschuss von \\(12\\) ME"],
+            "fehler": ["Gleiche Mengen fälschlich als Nachfrageüberschuss gedeutet", "Gleiche Mengen fälschlich als Angebotsüberschuss gedeutet", "Mengen addiert, obwohl ihre Differenz null ist"]
+        },
+        {
+            "frage": "Die Nachfrage beträgt \\(12\\) ME, das Angebot \\(7\\) ME. Welche Rechnung liefert den Überschuss?",
+            "antworten": ["\\(12-7=5\\) ME", "\\(7-12=-5\\) ME", "\\(12+7=19\\) ME", "\\(12-5=7\\) ME"],
+            "fehler": ["Kleinere von größerer Menge abgezogen und negatives Ergebnis erhalten", "Mengen addiert statt ihre Differenz zu bilden", "Den bereits berechneten Überschuss von der Nachfrage abgezogen"]
+        },
+        {
+            "frage": "Die Nachfrage beträgt \\(5\\) ME, das Angebot \\(9\\) ME. Wie groß ist der Angebotsüberschuss?",
+            "antworten": ["\\(4\\) ME", "\\(-4\\) ME", "\\(5\\) ME", "\\(14\\) ME"],
+            "fehler": ["Nachfrage minus Angebot statt Angebot minus Nachfrage gerechnet", "Nachfragemenge statt Differenz angegeben", "Mengen addiert statt subtrahiert"]
+        },
+        {
+            "frage": "Bei einem Preis von \\(6\\) GE gilt \\(p_N(x)=-x+10\\); angeboten werden \\(2\\) ME. Welcher Überschuss liegt vor?",
+            "antworten": ["Nachfrageüberschuss von \\(2\\) ME", "Angebotsüberschuss von \\(2\\) ME", "Nachfrageüberschuss von \\(4\\) ME", "Kein Überschuss"],
+            "fehler": ["Überschussart vertauscht, obwohl \\(4\\) ME nachgefragt und \\(2\\) ME angeboten werden", "Nachfragemenge statt Differenz angegeben", "Die unterschiedlichen Mengen als Marktgleichgewicht gedeutet"]
+        },
+        {
+            "frage": "Bei einem Preis von \\(7\\) GE gilt \\(p_A(x)=x+3\\); nachgefragt werden \\(2\\) ME. Welcher Überschuss liegt vor?",
+            "antworten": ["Angebotsüberschuss von \\(2\\) ME", "Nachfrageüberschuss von \\(2\\) ME", "Angebotsüberschuss von \\(4\\) ME", "Kein Überschuss"],
+            "fehler": ["Überschussart vertauscht, obwohl \\(4\\) ME angeboten und \\(2\\) ME nachgefragt werden", "Angebotsmenge statt Differenz angegeben", "Die unterschiedlichen Mengen als Marktgleichgewicht gedeutet"]
+        },
+        {
+            "frage": "Bei einem Preis von \\(8\\) GE gilt \\(p_N(x)=-2x+12\\); angeboten wird \\(1\\) ME. Wie groß ist der Nachfrageüberschuss?",
+            "antworten": ["\\(1\\) ME", "\\(2\\) ME", "\\(3\\) ME", "\\(-1\\) ME"],
+            "fehler": ["Nachfragemenge statt Überschuss angegeben", "Nachfrage und Angebot addiert", "Angebot minus Nachfrage statt Nachfrage minus Angebot gerechnet"]
+        }
+    ]
+}

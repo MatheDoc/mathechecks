@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was bedeutet Abschöpfung der Konsumentenrente?",
+            "antworten": ["Ein Anbieter verlangt auf einem Teilmarkt einen Preis \\(p_2>p_G\\) und eignet sich dadurch einen Teil der Konsumentenrente an.", "Alle Nachfrager zahlen weniger als den Gleichgewichtspreis.", "Die Angebotsfunktion wird zur Nachfragefunktion.", "Die Gleichgewichtsmenge wird immer verdoppelt."],
+            "fehler": ["Abschöpfung mit einer allgemeinen Preissenkung verwechselt", "Abschöpfung fälschlich als Funktionswechsel gedeutet", "Abschöpfung fälschlich mit einer festen Mengenverdopplung verbunden"]
+        },
+        {
+            "frage": "Welche Gleichung bestimmt die Teilmarktmenge \\(x_2\\) bei gegebenem Preis \\(p_2\\)?",
+            "antworten": ["\\(p_N(x_2)=p_2\\)", "\\(p_A(x_2)=p_2\\)", "\\(p_N(p_2)=x_2\\)", "\\(p_N(x_G)=p_2\\)"],
+            "fehler": ["Angebotsfunktion statt Nachfragefunktion verwendet", "Argument und Funktionswert vertauscht", "Gleichgewichtsmenge statt Teilmarktmenge eingesetzt"]
+        },
+        {
+            "frage": "Welche Formel liefert den abgeschöpften Betrag \\(A\\)?",
+            "antworten": ["\\(A=x_2\\cdot(p_2-p_G)\\)", "\\(A=x_2\\cdot(p_G-p_2)\\)", "\\(A=x_G\\cdot(p_2-p_G)\\)", "\\(A=x_2+p_2-p_G\\)"],
+            "fehler": ["Preisdifferenz in falscher Reihenfolge gebildet", "Gleichgewichtsmenge statt Teilmarktmenge als Breite verwendet", "Kantenlängen addiert statt multipliziert"]
+        },
+        {
+            "frage": "Welche Größe ist die Breite des Abschöpfungsrechtecks?",
+            "antworten": ["\\(x_2\\)", "\\(x_G\\)", "\\(p_2\\)", "\\(p_2-p_G\\)"],
+            "fehler": ["Gesamte Gleichgewichtsmenge statt Teilmarktmenge gewählt", "Teilmarktpreis statt Mengenbreite gewählt", "Höhe des Rechtecks statt seiner Breite gewählt"]
+        },
+        {
+            "frage": "Welche Größe ist die Höhe des Abschöpfungsrechtecks?",
+            "antworten": ["\\(p_2-p_G\\)", "\\(p_G-p_2\\)", "\\(x_2\\)", "\\(p_2+p_G\\)"],
+            "fehler": ["Preisdifferenz in falscher Reihenfolge gebildet", "Breite des Rechtecks statt seiner Höhe gewählt", "Preise addiert statt ihre Differenz zu bilden"]
+        },
+        {
+            "frage": "Für den zweiten Teilmarkt gelten \\(x_2=4\\), \\(p_2=8\\) und \\(p_G=5\\). Welcher Ansatz passt?",
+            "antworten": ["\\(A=4\\cdot(8-5)\\)", "\\(A=4\\cdot(5-8)\\)", "\\(A=5\\cdot(8-4)\\)", "\\(A=4+8-5\\)"],
+            "fehler": ["Preisdifferenz in falscher Reihenfolge eingesetzt", "Gleichgewichtspreis als Breite und Menge in der Preisdifferenz verwendet", "Kantenlängen addiert statt multipliziert"]
+        },
+        {
+            "frage": "Wie groß ist \\(4\\cdot(8-5)\\)?",
+            "antworten": ["\\(12\\)", "\\(7\\)", "\\(20\\)", "\\(-12\\)"],
+            "fehler": ["Breite und Höhe addiert statt multipliziert: \\(4+(8-5)=7\\)", "Nur \\(4\\cdot5\\) berechnet", "Differenz in falscher Reihenfolge gebildet"]
+        },
+        {
+            "frage": "Es gilt \\(x_2=5\\), \\(p_2=9\\) und \\(p_G=7\\). Wie groß ist der abgeschöpfte Betrag?",
+            "antworten": ["\\(10\\) GE", "\\(2\\) GE", "\\(35\\) GE", "\\(80\\) GE"],
+            "fehler": ["Nur die Preisdifferenz angegeben", "Teilmarktmenge mit dem Gleichgewichtspreis multipliziert", "Teilmarktmenge mit der Summe der Preise multipliziert"]
+        },
+        {
+            "frage": "Gegeben sind \\(p_N(x)=10-x\\) und \\(p_2=8\\). Welcher Ansatz bestimmt \\(x_2\\)?",
+            "antworten": ["\\(10-x_2=8\\)", "\\(10-8=x_G\\)", "\\(10-x_G=8\\)", "\\(10+x_2=8\\)"],
+            "fehler": ["Gesuchte Teilmarktmenge fälschlich als Gleichgewichtsmenge bezeichnet", "Gleichgewichtsmenge statt Teilmarktmenge eingesetzt", "Minuszeichen der Nachfragefunktion beim Einsetzen verändert"]
+        },
+        {
+            "frage": "Der Gleichgewichtspreis \\(p_G\\) und der Teilmarktpreis \\(p_2\\) sind bekannt. Was wird vor der Abschöpfungsfläche noch benötigt?",
+            "antworten": ["die Teilmarktmenge \\(x_2\\)", "die Sättigungsmenge", "die Produzentenrente", "die Ableitung von \\(p_N\\)"],
+            "fehler": ["Sättigungsmenge statt Breite des Abschöpfungsrechtecks gewählt", "Produzentenrente ist kein Faktor der Abschöpfungsformel", "Ableitung ist für die Berechnung bei vorgegebenem Teilmarktpreis nicht erforderlich"]
+        }
+    ]
+}

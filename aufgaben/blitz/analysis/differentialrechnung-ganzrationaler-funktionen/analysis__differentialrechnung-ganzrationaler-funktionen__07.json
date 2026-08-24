@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Aussage folgt auf einem Intervall aus \\(f'(x)>0\\)?",
+            "antworten": [
+                "\\(f\\) ist dort streng monoton wachsend.",
+                "\\(f\\) ist dort streng monoton fallend.",
+                "\\(f\\) ist dort überall positiv.",
+                "\\(f\\) ist dort konstant."
+            ],
+            "fehler": [
+                "Positives Vorzeichen der Ableitung als fallenden Verlauf gedeutet",
+                "Vorzeichen der Ableitung auf die Funktionswerte übertragen",
+                "Positive Ableitung mit Ableitung null verwechselt"
+            ]
+        },
+        {
+            "frage": "Welche Aussage folgt auf einem Intervall aus \\(f'(x)<0\\)?",
+            "antworten": [
+                "\\(f\\) ist dort streng monoton fallend.",
+                "\\(f\\) ist dort streng monoton wachsend.",
+                "\\(f\\) ist dort überall negativ.",
+                "\\(f\\) ist dort konstant."
+            ],
+            "fehler": [
+                "Negatives Vorzeichen der Ableitung als steigenden Verlauf gedeutet",
+                "Vorzeichen der Ableitung auf die Funktionswerte übertragen",
+                "Negative Ableitung mit Ableitung null verwechselt"
+            ]
+        },
+        {
+            "frage": "Welche Stellen zerlegen die Zahlengerade für eine Monotonieuntersuchung in Prüfintervalle?",
+            "antworten": [
+                "die Nullstellen von \\(f'\\)",
+                "die Nullstellen von \\(f\\)",
+                "die Extremstellen von \\(f'\\)",
+                "der y-Achsenabschnitt von \\(f\\)"
+            ],
+            "fehler": [
+                "Nullstellen der Funktion statt mögliche Vorzeichenwechsel der Ableitung gewählt",
+                "Kriterium für Wendestellen statt Intervallgrenzen der Monotonie gewählt",
+                "y-Achsenabschnitt ohne Bezug zum Vorzeichen von \\(f'\\) gewählt"
+            ]
+        },
+        {
+            "frage": "Die Nullstellen von \\(f'\\) sind \\(x=-1\\) und \\(x=2\\). Welches ist ein vollständiges Prüfintervall?",
+            "antworten": [
+                "zwischen \\(-1\\) und \\(2\\)",
+                "zwischen \\(-2\\) und \\(1\\)",
+                "zwischen \\(0\\) und \\(1\\)",
+                "rechts von \\(x=-1\\)"
+            ],
+            "fehler": [
+                "Intervallgrenzen mit vertauschten Vorzeichen verwendet",
+                "Nur ein Teilintervall zwischen den Nullstellen gewählt",
+                "Eine Nullstelle als Intervallgrenze ausgelassen"
+            ]
+        },
+        {
+            "frage": "Für \\(x<0\\) gilt \\(f'(x)<0\\), für \\(x>0\\) gilt \\(f'(x)>0\\). Wie verläuft \\(f\\)?",
+            "antworten": [
+                "links fallend, rechts wachsend",
+                "links wachsend, rechts fallend",
+                "auf beiden Seiten wachsend",
+                "auf beiden Seiten fallend"
+            ],
+            "fehler": [
+                "Zuordnung der Vorzeichen zu Steigen und Fallen vollständig vertauscht",
+                "Negatives Vorzeichen links als wachsend gedeutet",
+                "Positives Vorzeichen rechts als fallend gedeutet"
+            ]
+        },
+        {
+            "frage": "Für \\(x<3\\) gilt \\(f'(x)>0\\), für \\(x>3\\) gilt \\(f'(x)<0\\). Wie verläuft \\(f\\)?",
+            "antworten": [
+                "links wachsend, rechts fallend",
+                "links fallend, rechts wachsend",
+                "auf beiden Seiten wachsend",
+                "auf beiden Seiten fallend"
+            ],
+            "fehler": [
+                "Zuordnung der Vorzeichen zu Steigen und Fallen vollständig vertauscht",
+                "Negatives Vorzeichen rechts als wachsend gedeutet",
+                "Positives Vorzeichen links als fallend gedeutet"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=(x-1)(x+2)\\). Welches Vorzeichen hat \\(f'\\) für \\(x>1\\)?",
+            "antworten": [
+                "positiv",
+                "negativ",
+                "null",
+                "Das Vorzeichen wechselt in diesem Intervall."
+            ],
+            "fehler": [
+                "Produkt zweier positiver Faktoren als negativ gedeutet",
+                "Nullstelle \\(x=1\\) auf das gesamte Intervall übertragen",
+                "Weitere Nullstelle rechts von \\(1\\) fälschlich angenommen"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=(x-1)(x+2)\\). Welches Vorzeichen hat \\(f'\\) zwischen \\(x=-2\\) und \\(x=1\\)?",
+            "antworten": [
+                "negativ",
+                "positiv",
+                "null",
+                "Das Vorzeichen ist nicht bestimmbar."
+            ],
+            "fehler": [
+                "Produkt eines negativen und eines positiven Faktors als positiv gedeutet",
+                "Randnullstellen auf das Innere des Intervalls übertragen",
+                "Vorzeichen trotz eindeutig verschiedener Faktorvorzeichen für unbestimmbar gehalten"
+            ]
+        },
+        {
+            "frage": "Ein Testwert liefert in einem Prüfintervall \\(f'(x)=-7\\). Welche Monotonie gilt dort?",
+            "antworten": [
+                "streng monoton fallend",
+                "streng monoton wachsend",
+                "konstant",
+                "nicht bestimmbar"
+            ],
+            "fehler": [
+                "Negativen Ableitungswert als wachsend gedeutet",
+                "Von einem von null verschiedenen Ableitungswert auf Konstanz geschlossen",
+                "Konstantes Vorzeichen innerhalb des Prüfintervalls nicht genutzt"
+            ]
+        },
+        {
+            "frage": "Was folgt aus dem Vorzeichenmuster \\(+|-|+\\) von \\(f'\\) in drei aufeinanderfolgenden Intervallen?",
+            "antworten": [
+                "\\(f\\) ist wachsend, dann fallend, dann wachsend.",
+                "\\(f\\) ist fallend, dann wachsend, dann fallend.",
+                "\\(f\\) ist in allen drei Intervallen wachsend.",
+                "\\(f\\) ist in allen drei Intervallen fallend."
+            ],
+            "fehler": [
+                "Zuordnung von Ableitungsvorzeichen und Monotonie vollständig vertauscht",
+                "Negative Ableitung im mittleren Intervall ignoriert",
+                "Positive Ableitung in den äußeren Intervallen ignoriert"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz bestimmt die Nullstelle einer linearen Funktion \\(f\\)?",
+            "antworten": ["\\(f(x)=0\\)", "\\(x=0\\)", "\\(f(x)=x\\)", "\\(f(0)=1\\)"],
+            "fehler": ["y-Achsenabschnitt statt Nullstelle betrachtet", "Schnittpunkt mit der Winkelhalbierenden gesucht", "Beliebigen Funktionswert statt null vorgegeben"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=2x-6\\). Wo liegt die Nullstelle?",
+            "antworten": ["\\(x_0=3\\)", "\\(x_0=-3\\)", "\\(x_0=6\\)", "\\(x_0=2\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Konstanten Term ohne Division durch \\(2\\) übernommen", "Steigung statt Nullstelle angegeben"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=-x+4\\). Wo liegt die Nullstelle?",
+            "antworten": ["\\(x_0=4\\)", "\\(x_0=-4\\)", "\\(x_0=1\\)", "\\(x_0=0\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Betrag der Steigung als Nullstelle angegeben", "\\(x=0\\) gesetzt und den y-Achsenabschnitt statt der Nullstelle betrachtet"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=0{,}5x+2\\). Wo liegt die Nullstelle?",
+            "antworten": ["\\(x_0=-4\\)", "\\(x_0=4\\)", "\\(x_0=-2\\)", "\\(x_0=2{,}5\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Nach \\(0{,}5x=-2\\) nicht durch \\(0{,}5\\) geteilt", "Koeffizient und y-Achsenabschnitt addiert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=3x+6\\). Wo liegt die Nullstelle?",
+            "antworten": ["\\(x_0=-2\\)", "\\(x_0=2\\)", "\\(x_0=-6\\)", "\\(x_0=3\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Konstanten Term ohne Division durch \\(3\\) übernommen", "Steigung statt Nullstelle angegeben"]
+        },
+        {
+            "frage": "Eine lineare Funktion hat \\(m>0\\) und die Nullstelle \\(x_0=2\\). Wo gilt \\(f(x)>0\\)?",
+            "antworten": ["Für \\(x>2\\)", "Für \\(x<2\\)", "Nur für \\(x=2\\)", "Für alle \\(x\\)"],
+            "fehler": ["Vorzeichenbereiche einer fallenden Funktion verwendet", "An der Nullstelle positiv statt gleich null angenommen", "Vorzeichenwechsel an der Nullstelle ignoriert"]
+        },
+        {
+            "frage": "Eine lineare Funktion hat \\(m>0\\) und die Nullstelle \\(x_0=2\\). Wo gilt \\(f(x)<0\\)?",
+            "antworten": ["Für \\(x<2\\)", "Für \\(x>2\\)", "Nur für \\(x=2\\)", "Nirgends"],
+            "fehler": ["Vorzeichenbereiche einer fallenden Funktion verwendet", "An der Nullstelle negativ statt gleich null angenommen", "Negativen Bereich links der Nullstelle übersehen"]
+        },
+        {
+            "frage": "Eine lineare Funktion hat \\(m<0\\) und die Nullstelle \\(x_0=-1\\). Wo gilt \\(f(x)>0\\)?",
+            "antworten": ["Für \\(x<-1\\)", "Für \\(x>-1\\)", "Nur für \\(x=-1\\)", "Für alle \\(x\\)"],
+            "fehler": ["Vorzeichenbereiche einer steigenden Funktion verwendet", "An der Nullstelle positiv statt gleich null angenommen", "Vorzeichenwechsel an der Nullstelle ignoriert"]
+        },
+        {
+            "frage": "Eine lineare Funktion hat \\(m<0\\) und die Nullstelle \\(x_0=-1\\). Wo gilt \\(f(x)<0\\)?",
+            "antworten": ["Für \\(x>-1\\)", "Für \\(x<-1\\)", "Nur für \\(x=-1\\)", "Nirgends"],
+            "fehler": ["Vorzeichenbereiche einer steigenden Funktion verwendet", "An der Nullstelle negativ statt gleich null angenommen", "Negativen Bereich rechts der Nullstelle übersehen"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=-2x+4\\). Für welchen Bereich gilt \\(f(x)>0\\)?",
+            "antworten": ["Für \\(x<2\\)", "Für \\(x>2\\)", "Für \\(x<4\\)", "Für \\(x>4\\)"],
+            "fehler": ["Vorzeichenbereiche einer steigenden Funktion verwendet", "Y-Achsenabschnitt statt Nullstelle als Grenze verwendet", "Y-Achsenabschnitt als Grenze verwendet und zusätzlich die Seite vertauscht"]
+        }
+    ]
+}

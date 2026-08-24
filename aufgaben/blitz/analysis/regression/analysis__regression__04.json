@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was muss vor der Regression mit dem GTR geschehen?",
+            "antworten": ["Die x- und y-Daten werden in Listen eingegeben.", "Alle y-Werte werden gleich null gesetzt.", "Die Regressionsfunktion wird vorher erraten.", "Das Bestimmtheitsmaß wird als Datenwert eingegeben."],
+            "fehler": ["Messdaten fälschlich verändert", "Berechnungsergebnis statt Datengrundlage vorausgesetzt", "Ausgabewert des GTR fälschlich als Eingabedatum behandelt"]
+        },
+        {
+            "frage": "Welche Funktionsform gehört zur linearen Regression?",
+            "antworten": ["\\(f(x)=mx+b\\)", "\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=a\\cdot e^{bx}\\)"],
+            "fehler": ["Quadratische statt lineare Form gewählt", "Kubische statt lineare Form gewählt", "Exponentielle statt lineare Form gewählt"]
+        },
+        {
+            "frage": "Welche Funktionsform gehört zur quadratischen Regression?",
+            "antworten": ["\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=mx+b\\)", "\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=a\\cdot e^{bx}\\)"],
+            "fehler": ["Lineare statt quadratische Form gewählt", "Kubische statt quadratische Form gewählt", "Exponentielle statt quadratische Form gewählt"]
+        },
+        {
+            "frage": "Welche Funktionsform gehört zur kubischen Regression?",
+            "antworten": ["\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=mx+b\\)", "\\(f(x)=a\\cdot e^{bx}\\)"],
+            "fehler": ["Quadratische statt kubische Form gewählt", "Lineare statt kubische Form gewählt", "Exponentielle statt kubische Form gewählt"]
+        },
+        {
+            "frage": "Welche Funktionsform gehört zur exponentiellen Regression?",
+            "antworten": ["\\(f(x)=a\\cdot e^{bx}\\)", "\\(f(x)=mx+b\\)", "\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=ax^3+bx^2+cx+d\\)"],
+            "fehler": ["Lineare statt exponentielle Form gewählt", "Quadratische statt exponentielle Form gewählt", "Kubische statt exponentielle Form gewählt"]
+        },
+        {
+            "frage": "Die y-Werte wachsen bei gleichen x-Schritten ungefähr immer um denselben Betrag. Welcher Regressionstyp ist naheliegend?",
+            "antworten": ["lineare Regression", "exponentielle Regression", "kubische Regression", "keine Regression"],
+            "fehler": ["Konstante absolute Zuwächse mit konstanten Faktoren verwechselt", "Ohne weiteren Hinweis ein unnötig komplexes Modell gewählt", "Trotz erkennbarer Struktur jede Modellierung ausgeschlossen"]
+        },
+        {
+            "frage": "Die y-Werte werden bei gleichen x-Schritten ungefähr immer mit demselben Faktor multipliziert. Welcher Regressionstyp ist naheliegend?",
+            "antworten": ["exponentielle Regression", "lineare Regression", "quadratische Regression", "keine Regression"],
+            "fehler": ["Konstante Faktoren mit konstanten absoluten Zuwächsen verwechselt", "Ohne Hinweis auf eine Parabelform ein quadratisches Modell gewählt", "Trotz erkennbarer Struktur jede Modellierung ausgeschlossen"]
+        },
+        {
+            "frage": "Was zeigt ein Bestimmtheitsmaß \\(R^2\\) nahe \\(1\\) an?",
+            "antworten": ["Das Regressionsmodell passt gut zu den Daten.", "Das Regressionsmodell passt sicher schlecht.", "Die Regressionsfunktion ist immer linear.", "Alle Messwerte sind gleich \\(1\\)."],
+            "fehler": ["Bedeutung eines hohen Bestimmtheitsmaßes umgekehrt", "Gütewert fälschlich als Festlegung des Funktionstyps gedeutet", "Bestimmtheitsmaß fälschlich als Messwert interpretiert"]
+        },
+        {
+            "frage": "Für denselben Datensatz hat Modell A \\(R^2=0{,}96\\), Modell B hat \\(R^2=0{,}82\\). Welches passt nach diesem Maß besser?",
+            "antworten": ["Modell A", "Modell B", "Beide gleich gut", "Das lässt sich trotz der Werte nicht vergleichen"],
+            "fehler": ["Den weiter von \\(1\\) entfernten Wert gewählt", "Unterschiedliche Bestimmtheitsmaße fälschlich als gleich bewertet", "Die direkte Vergleichbarkeit der beiden Gütewerte übersehen"]
+        },
+        {
+            "frage": "Welche Angabe sollte man nach einer Regression mit dem GTR neben der Funktionsgleichung notieren?",
+            "antworten": ["das Bestimmtheitsmaß \\(R^2\\)", "nur den größten x-Wert", "nur den ersten Messpunkt", "die Anzahl der Tastenanschläge"],
+            "fehler": ["Einzelnen Datenwert statt Gütemaß festgehalten", "Einzelnen Messpunkt statt Gütemaß festgehalten", "Bedienaufwand statt mathematisches Ergebnis dokumentiert"]
+        }
+    ]
+}
