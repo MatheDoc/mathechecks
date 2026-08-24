@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(f'(x_0)=0\\) und \\(f''(x_0)=0\\). Welche Aussage ist richtig?",
+            "antworten": [
+                "Der Test mit der zweiten Ableitung entscheidet nicht über eine Extremstelle.",
+                "Bei \\(x_0\\) liegt sicher ein Hochpunkt.",
+                "Bei \\(x_0\\) liegt sicher ein Tiefpunkt.",
+                "Bei \\(x_0\\) liegt keine waagrechte Tangente."
+            ],
+            "fehler": [
+                "Unentschiedenen Fall ohne weitere Prüfung als Hochpunkt gewertet",
+                "Unentschiedenen Fall ohne weitere Prüfung als Tiefpunkt gewertet",
+                "Aus \\(f'(x_0)=0\\) folgende waagrechte Tangente verneint"
+            ]
+        },
+        {
+            "frage": "Was prüfst du bei \\(f'(x_0)=0\\) und \\(f''(x_0)=0\\) als Nächstes?",
+            "antworten": [
+                "den Vorzeichenwechsel von \\(f'\\) bei \\(x_0\\)",
+                "das Vorzeichen von \\(f(x_0)\\)",
+                "ob \\(f(x_0)=0\\) gilt",
+                "nur den Wert \\(f''(x_0)\\) erneut"
+            ],
+            "fehler": [
+                "Vorzeichen des Funktionswerts statt des Ableitungsverlaufs geprüft",
+                "Extremstellenentscheidung mit Nullstellenprüfung von \\(f\\) verwechselt",
+                "Bereits unentschiedenen Zweite-Ableitung-Test ohne neue Information wiederholt"
+            ]
+        },
+        {
+            "frage": "Links von \\(x_0\\) ist \\(f'<0\\), rechts von \\(x_0\\) ist \\(f'>0\\). Was liegt bei \\(x_0\\) vor?",
+            "antworten": [
+                "eine Tiefstelle",
+                "eine Hochstelle",
+                "eine Sattelstelle",
+                "keine stationäre Stelle"
+            ],
+            "fehler": [
+                "Wechsel von negativ nach positiv als Hochstelle gedeutet",
+                "Vorzeichenwechsel von \\(f'\\) trotz Extremstelle als Sattelstelle gedeutet",
+                "Die durch \\(f'(x_0)=0\\) gegebene stationäre Stelle verneint"
+            ]
+        },
+        {
+            "frage": "Links von \\(x_0\\) ist \\(f'>0\\), rechts von \\(x_0\\) ist \\(f'<0\\). Was liegt bei \\(x_0\\) vor?",
+            "antworten": [
+                "eine Hochstelle",
+                "eine Tiefstelle",
+                "eine Sattelstelle",
+                "keine stationäre Stelle"
+            ],
+            "fehler": [
+                "Wechsel von positiv nach negativ als Tiefstelle gedeutet",
+                "Vorzeichenwechsel von \\(f'\\) trotz Extremstelle als Sattelstelle gedeutet",
+                "Die durch \\(f'(x_0)=0\\) gegebene stationäre Stelle verneint"
+            ]
+        },
+        {
+            "frage": "Links und rechts von \\(x_0\\) ist \\(f'>0\\), außerdem gilt \\(f'(x_0)=0\\). Was liegt im Spezialfall vor?",
+            "antworten": [
+                "eine Sattelstelle, aber keine Extremstelle",
+                "eine Hochstelle",
+                "eine Tiefstelle",
+                "eine Nullstelle von \\(f\\)"
+            ],
+            "fehler": [
+                "Steigen auf beiden Seiten als Hochstelle gedeutet",
+                "Steigen auf beiden Seiten als Tiefstelle gedeutet",
+                "Nullstelle von \\(f'\\) mit Nullstelle von \\(f\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Links und rechts von \\(x_0\\) ist \\(f'<0\\), außerdem gilt \\(f'(x_0)=0\\). Was liegt im Spezialfall vor?",
+            "antworten": [
+                "eine Sattelstelle, aber keine Extremstelle",
+                "eine Hochstelle",
+                "eine Tiefstelle",
+                "eine Nullstelle von \\(f\\)"
+            ],
+            "fehler": [
+                "Fallen auf beiden Seiten als Hochstelle gedeutet",
+                "Fallen auf beiden Seiten als Tiefstelle gedeutet",
+                "Nullstelle von \\(f'\\) mit Nullstelle von \\(f\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=(x-1)^2\\). Wie wechselt das Vorzeichen von \\(f'\\) bei \\(x=1\\)?",
+            "antworten": [
+                "Es gibt keinen Vorzeichenwechsel.",
+                "von negativ nach positiv",
+                "von positiv nach negativ",
+                "von null nach negativ"
+            ],
+            "fehler": [
+                "Quadrat links der Nullstelle fälschlich als negativ gedeutet",
+                "Quadrat rechts der Nullstelle fälschlich als negativ gedeutet",
+                "Wert an der Nullstelle mit dem Vorzeichen im rechten Intervall verwechselt"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=(x+2)^3\\). Wie wechselt das Vorzeichen von \\(f'\\) bei \\(x=-2\\)?",
+            "antworten": [
+                "von negativ nach positiv",
+                "von positiv nach negativ",
+                "Es gibt keinen Vorzeichenwechsel.",
+                "von null nach null"
+            ],
+            "fehler": [
+                "Vorzeichen einer ungeraden Potenz auf beiden Seiten vertauscht",
+                "Ungerade Vielfachheit fälschlich wie eine gerade Vielfachheit behandelt",
+                "Ableitungswert an der Stelle auf beide Nachbarintervalle übertragen"
+            ]
+        },
+        {
+            "frage": "Für \\(f'(x)=4(x+2)(x-1)^2\\): Was geschieht mit dem Vorzeichen von \\(f'\\) bei \\(x=1\\)?",
+            "antworten": [
+                "Es bleibt positiv.",
+                "Es wechselt von positiv nach negativ.",
+                "Es wechselt von negativ nach positiv.",
+                "Es bleibt negativ."
+            ],
+            "fehler": [
+                "Quadratischen Faktor fälschlich als Vorzeichenwechsel von positiv nach negativ gedeutet",
+                "Quadratischen Faktor fälschlich als Vorzeichenwechsel von negativ nach positiv gedeutet",
+                "Positiven Faktor \\(x+2\\) in der Umgebung von \\(1\\) als negativ gedeutet"
+            ]
+        },
+        {
+            "frage": "Bei \\(x=1\\) gilt \\(f'(1)=f''(1)=0\\), und \\(f'\\) ist auf beiden Seiten positiv. Wie verläuft \\(f\\) dort?",
+            "antworten": [
+                "\\(f\\) bleibt wachsend und hat bei \\(x=1\\) eine waagrechte Tangente.",
+                "\\(f\\) wechselt vom Wachsen zum Fallen.",
+                "\\(f\\) wechselt vom Fallen zum Wachsen.",
+                "\\(f\\) ist auf beiden Seiten konstant."
+            ],
+            "fehler": [
+                "Gleichbleibend positives Vorzeichen von \\(f'\\) als Hochstelle gedeutet",
+                "Gleichbleibend positives Vorzeichen von \\(f'\\) als Tiefstelle gedeutet",
+                "Ableitung nur an einer Stelle gleich null als Konstanz auf Intervallen gedeutet"
+            ]
+        }
+    ]
+}

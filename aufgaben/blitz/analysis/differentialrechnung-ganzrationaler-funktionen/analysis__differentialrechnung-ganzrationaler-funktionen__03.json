@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie berechnest du den Funktionswert von \\(f\\) an der Stelle \\(x=2\\)?",
+            "antworten": [
+                "\\(2\\) in \\(f(x)\\) einsetzen",
+                "\\(2\\) in \\(f'(x)\\) einsetzen",
+                "Die Gleichung \\(f(x)=2\\) lösen",
+                "Die Gleichung \\(f'(x)=2\\) lösen"
+            ],
+            "fehler": [
+                "Funktionswert mit Tangentensteigung verwechselt",
+                "Gegebene Stelle als gegebenen Funktionswert gedeutet",
+                "Gegebene Stelle als gegebene Steigung gedeutet"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2-3\\). Wie groß ist \\(f(2)\\)?",
+            "antworten": [
+                "\\(1\\)",
+                "\\(-1\\)",
+                "\\(4\\)",
+                "\\(7\\)"
+            ],
+            "fehler": [
+                "Vorzeichenfehler beim Subtrahieren von \\(3\\)",
+                "Konstanten Term \\(-3\\) nicht berücksichtigt",
+                "Minuszeichen vor \\(3\\) als Pluszeichen gelesen"
+            ]
+        },
+        {
+            "frage": "Welche Gleichung musst du lösen, um die Stellen mit dem Funktionswert \\(5\\) zu bestimmen?",
+            "antworten": [
+                "\\(f(x)=5\\)",
+                "\\(f'(x)=5\\)",
+                "\\(f(5)=x\\)",
+                "\\(f'(5)=x\\)"
+            ],
+            "fehler": [
+                "Funktionswert mit Steigung verwechselt",
+                "Gegebenen Funktionswert als einzusetzende Stelle gedeutet",
+                "Funktionswert mit Steigung verwechselt und zusätzlich falsch eingesetzt"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2\\). Welche Stellen haben den Funktionswert \\(4\\)?",
+            "antworten": [
+                "\\(x=-2\\) und \\(x=2\\)",
+                "nur \\(x=2\\)",
+                "\\(x=-4\\) und \\(x=4\\)",
+                "\\(x=16\\)"
+            ],
+            "fehler": [
+                "Negative Lösung einer quadratischen Gleichung vergessen",
+                "Funktionswert ohne Wurzelziehen als Stellen übernommen",
+                "Gegebenen Funktionswert quadriert statt die Gleichung zu lösen"
+            ]
+        },
+        {
+            "frage": "Welcher Ausdruck gibt die Tangentensteigung von \\(f\\) an der Stelle \\(x_0\\) an?",
+            "antworten": [
+                "\\(f'(x_0)\\)",
+                "\\(f(x_0)\\)",
+                "\\(f'(x)=x_0\\)",
+                "\\(f(x)=x_0\\)"
+            ],
+            "fehler": [
+                "Tangentensteigung mit Funktionswert verwechselt",
+                "Gegebene Stelle fälschlich als Steigung verwendet",
+                "Gegebene Stelle fälschlich als Funktionswert verwendet"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=3x-1\\). Wie groß ist die Tangentensteigung bei \\(x=2\\)?",
+            "antworten": [
+                "\\(5\\)",
+                "\\(6\\)",
+                "\\(4\\)",
+                "\\(2\\)"
+            ],
+            "fehler": [
+                "Konstanten Term \\(-1\\) nicht berücksichtigt",
+                "\\(-1\\) zweimal abgezogen",
+                "Stelle ohne Auswertung als Steigung übernommen"
+            ]
+        },
+        {
+            "frage": "Welche Gleichung musst du lösen, um die Stellen mit der Tangentensteigung \\(m\\) zu bestimmen?",
+            "antworten": [
+                "\\(f'(x)=m\\)",
+                "\\(f(x)=m\\)",
+                "\\(f'(m)=x\\)",
+                "\\(f(m)=x\\)"
+            ],
+            "fehler": [
+                "Steigung mit Funktionswert verwechselt",
+                "Gegebene Steigung als einzusetzende Stelle gedeutet",
+                "Steigung mit Funktionswert verwechselt und zusätzlich falsch eingesetzt"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f'(x)=2x+1\\). An welcher Stelle beträgt die Tangentensteigung \\(7\\)?",
+            "antworten": [
+                "\\(x=3\\)",
+                "\\(x=4\\)",
+                "\\(x=7\\)",
+                "\\(x=13\\)"
+            ],
+            "fehler": [
+                "Beim Lösen von \\(2x+1=7\\) die \\(1\\) addiert statt subtrahiert",
+                "Gegebene Steigung direkt als Stelle übernommen",
+                "Stelle \\(7\\) in \\(f'(x)\\) eingesetzt statt die Gleichung zu lösen"
+            ]
+        },
+        {
+            "frage": "Die Stelle \\(x=2\\) hat die gesuchte Tangentensteigung. Was brauchst du zusätzlich für den zugehörigen Punkt auf dem Graphen von \\(f\\)?",
+            "antworten": [
+                "den Funktionswert \\(f(2)\\)",
+                "den Ableitungswert \\(f'(2)\\)",
+                "die zweite Ableitung \\(f''(2)\\)",
+                "eine weitere Stelle mit derselben Steigung"
+            ],
+            "fehler": [
+                "Steigung erneut berechnet, statt die y-Koordinate zu bestimmen",
+                "Zweite Ableitung fälschlich zur Berechnung der y-Koordinate verwendet",
+                "Unnötig nach einer weiteren Stelle gesucht"
+            ]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=x^2+1\\) und \\(f'(x)=2x\\). Welche Aussage ist richtig?",
+            "antworten": [
+                "Bei \\(x=2\\) ist der Funktionswert \\(5\\) und die Tangentensteigung \\(4\\).",
+                "Bei \\(x=2\\) ist der Funktionswert \\(4\\) und die Tangentensteigung \\(5\\).",
+                "Bei \\(x=2\\) sind Funktionswert und Tangentensteigung beide \\(4\\).",
+                "Bei \\(x=2\\) sind Funktionswert und Tangentensteigung beide \\(5\\)."
+            ],
+            "fehler": [
+                "Funktionswert falsch berechnet und mit der Steigung vertauscht",
+                "Konstanten Term beim Funktionswert nicht berücksichtigt",
+                "Ableitungswert fälschlich mit dem Funktionswert gleichgesetzt"
+            ]
+        }
+    ]
+}

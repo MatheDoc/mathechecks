@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was geschieht bei einer Regressionsaufgabe im Sachzusammenhang zuerst?",
+            "antworten": ["Eine passende Regressionsfunktion wird bestimmt.", "Jeder Prognosewert wird verdoppelt.", "Alle Messwerte werden gleichgesetzt.", "Die gesuchte Sachgröße wird geschätzt, ohne das Modell zu nutzen."],
+            "fehler": ["Willkürliche Rechnung ohne Modellbezug begonnen", "Messwerte fälschlich miteinander gleichgesetzt", "Modellbestimmung übersprungen"]
+        },
+        {
+            "frage": "Wie erhält man mit einer Regressionsfunktion \\(f\\) eine Prognose für den x-Wert \\(x=6\\)?",
+            "antworten": ["\\(f(6)\\) berechnen", "\\(f(x)=6\\) lösen", "\\(f(0)\\) berechnen", "Den Koeffizienten \\(6\\) setzen"],
+            "fehler": ["Vorwärtsprognose mit einer Rückwärtsfrage verwechselt", "y-Achsenabschnitt statt Prognosewert berechnet", "x-Wert fälschlich als Koeffizienten gedeutet"]
+        },
+        {
+            "frage": "Gesucht ist der Zeitpunkt, zu dem das Modell den Wert \\(20\\) erreicht. Welcher Ansatz passt?",
+            "antworten": ["\\(f(x)=20\\) lösen", "\\(f(20)\\) berechnen", "\\(f(x)=0\\) lösen", "\\(20x=f(x)\\) lösen"],
+            "fehler": ["Zielwert als x-Wert eingesetzt statt als Funktionswert", "Nullstelle statt Erreichen des Zielwerts gesucht", "Zielwert fälschlich mit der Variablen multipliziert"]
+        },
+        {
+            "frage": "Ein Modell lautet \\(K(t)=2t+5\\). Welchen Wert prognostiziert es für \\(t=3\\)?",
+            "antworten": ["\\(11\\)", "\\(10\\)", "\\(8\\)", "\\(21\\)"],
+            "fehler": ["Die Multiplikation \\(2\\cdot3\\) fälschlich als Addition \\(2+3\\) ausgeführt", "Nur \\(t+5\\) berechnet und den Faktor \\(2\\) vergessen", "Zuerst \\(2+5\\) addiert und danach mit \\(3\\) multipliziert"]
+        },
+        {
+            "frage": "\\(K(t)\\) beschreibt eine Konzentration in mg/l. Welche Einheit hat der Wert \\(K(4)\\)?",
+            "antworten": ["mg/l", "Stunden", "mg", "Liter pro Stunde"],
+            "fehler": ["Einheit der Eingabegröße statt der Ausgabegröße gewählt", "Einheit der Konzentration unvollständig angegeben", "Eine Änderungsrate statt einer Konzentration angegeben"]
+        },
+        {
+            "frage": "Die Gleichung \\(K(t)=25\\) hat die Lösungen \\(t=2\\) und \\(t=6\\). Gesucht ist der Zeitpunkt, an dem die fallende Konzentration wieder \\(25\\) erreicht. Welche Lösung passt?",
+            "antworten": ["\\(t=6\\)", "\\(t=2\\)", "Beide Zeitpunkte gleichzeitig", "Keine der beiden Lösungen"],
+            "fehler": ["Lösung aus der steigenden Phase gewählt", "Die geforderte fallende Phase nicht zur Auswahl einer Lösung genutzt", "Beide mathematischen Lösungen trotz passender später Lösung verworfen"]
+        },
+        {
+            "frage": "Eine Prognose liegt innerhalb des Bereichs der gemessenen x-Werte. Wie heißt das?",
+            "antworten": ["Interpolation", "Extrapolation", "Regression ohne Daten", "Nullstellenbestimmung"],
+            "fehler": ["Prognose außerhalb des Datenbereichs gewählt", "Modellbildung ohne Messwerte angenommen", "Prognose mit einer Nullstellenfrage verwechselt"]
+        },
+        {
+            "frage": "Eine Prognose liegt weit außerhalb des Bereichs der gemessenen x-Werte. Welche Aussage ist richtig?",
+            "antworten": ["Die Prognose ist meist weniger zuverlässig.", "Die Prognose ist sicher exakt.", "Das Modell wird dadurch automatisch linear.", "Der prognostizierte Wert muss null sein."],
+            "fehler": ["Extrapolation fälschlich als exakte Vorhersage angesehen", "Datenbereich mit der Funktionsart verwechselt", "Ohne Begründung einen festen Prognosewert angenommen"]
+        },
+        {
+            "frage": "Ein Modell für eine Konzentration liefert \\(-3\\) mg/l. Wie ist dieser Wert im Sachkontext zu beurteilen?",
+            "antworten": ["Er ist für eine Konzentration unplausibel.", "Er ist immer eine besonders genaue Prognose.", "Er bedeutet \\(3\\) Stunden.", "Er beweist, dass keine Regression durchgeführt wurde."],
+            "fehler": ["Negatives Ergebnis fälschlich als Gütezeichen gedeutet", "Ausgabegröße und Eingabegröße verwechselt", "Unplausibles Modellergebnis fälschlich als Beweis gegen jede Regression gedeutet"]
+        },
+        {
+            "frage": "In einem Modell ist \\(t\\) die Zeit in Stunden nach Einnahme eines Medikaments. Was bedeutet \\(t=0\\)?",
+            "antworten": ["den Zeitpunkt der Einnahme", "eine Stunde nach der Einnahme", "das Ende der Wirkung", "eine Konzentration von null mg/l"],
+            "fehler": ["Zeitwert \\(0\\) fälschlich als eine Stunde gedeutet", "Ohne Modellinformation das Wirkungsende angenommen", "Eingabewert fälschlich als Konzentrationswert gedeutet"]
+        }
+    ]
+}

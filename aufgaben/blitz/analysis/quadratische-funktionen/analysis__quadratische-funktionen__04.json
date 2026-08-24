@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Auf welche Form muss eine quadratische Gleichung vor der Anwendung der \\(p\\)-\\(q\\)-Formel gebracht werden?",
+            "antworten": ["\\(x^2+px+q=0\\)", "\\(ax^2+bx+c=0\\)", "\\(x^2+px=q\\)", "\\(x+pq=0\\)"],
+            "fehler": ["Die allgemeine Form ist noch nicht auf den Leitkoeffizienten \\(1\\) normiert", "Der konstante Term wurde nicht auf die linke Seite gebracht", "Quadratischer und linearer Term wurden zu einem linearen Term verkürzt"]
+        },
+        {
+            "frage": "Wie wird \\(2x^2+4x-6=0\\) für die \\(p\\)-\\(q\\)-Formel normiert?",
+            "antworten": ["\\(x^2+2x-3=0\\)", "\\(x^2+4x-6=0\\)", "\\(x^2+2x-6=0\\)", "\\(2x^2+2x-3=0\\)"],
+            "fehler": ["Nur der Leitkoeffizient wurde durch \\(2\\) geteilt", "Der konstante Term wurde nicht durch \\(2\\) geteilt", "Nur die letzten beiden Terme wurden durch \\(2\\) geteilt"]
+        },
+        {
+            "frage": "In \\(x^2-6x+5=0\\): Welche Werte haben \\(p\\) und \\(q\\)?",
+            "antworten": ["\\(p=-6\\), \\(q=5\\)", "\\(p=6\\), \\(q=5\\)", "\\(p=-6\\), \\(q=-5\\)", "\\(p=1\\), \\(q=-6\\)"],
+            "fehler": ["Vorzeichen von \\(p\\) beim Ablesen verändert", "Vorzeichen von \\(q\\) beim Ablesen verändert", "Leitkoeffizient und linearer Koeffizient als \\(p\\) und \\(q\\) verwendet"]
+        },
+        {
+            "frage": "Welche \\(p\\)-\\(q\\)-Formel ist richtig?",
+            "antworten": ["\\(x_{1{,}2}=-\\frac{p}{2}\\pm\\sqrt{\\left(\\frac{p}{2}\\right)^2-q}\\)", "\\(x_{1{,}2}=\\frac{p}{2}\\pm\\sqrt{\\left(\\frac{p}{2}\\right)^2-q}\\)", "\\(x_{1{,}2}=-\\frac{p}{2}\\pm\\sqrt{\\left(\\frac{p}{2}\\right)^2+q}\\)", "\\(x_{1{,}2}=-p\\pm\\sqrt{p^2-q}\\)"],
+            "fehler": ["Minuszeichen vor \\(\\frac{p}{2}\\) vergessen", "Vorzeichen vor \\(q\\) unter der Wurzel verwechselt", "Die Halbierung von \\(p\\) wurde an beiden Stellen vergessen"]
+        },
+        {
+            "frage": "Wie lautet die Diskriminante bei der \\(p\\)-\\(q\\)-Formel?",
+            "antworten": ["\\(D=\\left(\\frac{p}{2}\\right)^2-q\\)", "\\(D=\\left(\\frac{p}{2}\\right)^2+q\\)", "\\(D=p^2-q\\)", "\\(D=-\\frac{p}{2}-q\\)"],
+            "fehler": ["Vorzeichen vor \\(q\\) verwechselt", "Die Halbierung von \\(p\\) vergessen", "Den Term außerhalb der Wurzel mit der Diskriminante vermischt"]
+        },
+        {
+            "frage": "Für eine quadratische Gleichung gilt \\(D=9\\). Wie viele verschiedene reelle Nullstellen hat sie?",
+            "antworten": ["zwei", "eine", "keine", "neun"],
+            "fehler": ["Eine positive Diskriminante wurde mit dem Fall \\(D=0\\) verwechselt", "Eine positive Diskriminante wurde als Fall ohne reelle Nullstellen gedeutet", "Den Wert der Diskriminante mit der Anzahl der Nullstellen verwechselt"]
+        },
+        {
+            "frage": "Für eine quadratische Gleichung gilt \\(D=0\\). Wie viele verschiedene reelle Nullstellen hat sie?",
+            "antworten": ["eine", "zwei", "keine", "unendlich viele"],
+            "fehler": ["Den Fall \\(D=0\\) mit einer positiven Diskriminante verwechselt", "Den Fall \\(D=0\\) als negative Diskriminante gedeutet", "Eine doppelte Nullstelle fälschlich als unendlich viele Lösungen gedeutet"]
+        },
+        {
+            "frage": "Für eine quadratische Gleichung gilt \\(D=-4\\). Wie viele reelle Nullstellen hat sie?",
+            "antworten": ["keine", "eine", "zwei", "vier"],
+            "fehler": ["Eine negative Diskriminante wurde mit dem Fall \\(D=0\\) verwechselt", "Eine negative Diskriminante wurde als positive Diskriminante gedeutet", "Den Betrag der Diskriminante mit der Anzahl der Nullstellen verwechselt"]
+        },
+        {
+            "frage": "Für \\(x^2-2x-3=0\\) wurde \\(D=4\\) berechnet. Welcher nächste Ausdruck ist richtig?",
+            "antworten": ["\\(x_{1{,}2}=1\\pm\\sqrt{4}\\)", "\\(x_{1{,}2}=-1\\pm\\sqrt{4}\\)", "\\(x_{1{,}2}=1\\pm4\\)", "\\(x_{1{,}2}=2\\pm\\sqrt{4}\\)"],
+            "fehler": ["Vorzeichen bei \\(-\\frac{p}{2}\\) mit \\(p=-2\\) verwechselt", "Die Wurzel aus der Diskriminante nicht gebildet", "\\(p\\) nicht halbiert"]
+        },
+        {
+            "frage": "Es gilt bereits \\(x_{1{,}2}=2\\pm3\\). Welche Nullstellen folgen?",
+            "antworten": ["\\(x_1=5\\) und \\(x_2=-1\\)", "\\(x_1=6\\) und \\(x_2=-1\\)", "\\(x_1=5\\) und \\(x_2=1\\)", "\\(x_1=2\\) und \\(x_2=3\\)"],
+            "fehler": ["Beim Plusfall fälschlich multipliziert", "Beim Minusfall das negative Ergebnis als positiv notiert", "Die beiden Zahlen ohne Plus- und Minusrechnung übernommen"]
+        }
+    ]
+}

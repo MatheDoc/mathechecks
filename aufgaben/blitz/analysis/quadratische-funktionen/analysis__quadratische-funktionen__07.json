@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2+2\\). Wie groß ist \\(f(3)\\)?",
+            "antworten": ["\\(11\\)", "\\(7\\)", "\\(5\\)", "\\(25\\)"],
+            "fehler": ["Konstanten Term \\(2\\) vom Quadrat abgezogen", "Nur \\(3+2\\) berechnet", "Zuerst \\(3+2\\) addiert und anschließend quadriert"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=2x^2-1\\). Wie groß ist \\(f(2)\\)?",
+            "antworten": ["\\(7\\)", "\\(3\\)", "\\(15\\)", "\\(8\\)"],
+            "fehler": ["Zuerst \\(2\\cdot2-1\\) gerechnet und das Quadrat übersehen", "Den gesamten Term \\(2\\cdot2\\) quadriert und danach \\(1\\) abgezogen", "Konstanten Term \\(-1\\) nicht berücksichtigt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=(x-1)^2\\). Wie groß ist \\(f(4)\\)?",
+            "antworten": ["\\(9\\)", "\\(15\\)", "\\(3\\)", "\\(11\\)"],
+            "fehler": ["Nur \\(4^2-1\\) gerechnet und die Klammer nicht quadriert", "Quadrat nicht ausgeführt", "Fälschlich \\(4^2-4-1\\) gerechnet"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2-4x\\). Wie groß ist \\(f(-1)\\)?",
+            "antworten": ["\\(5\\)", "\\(-3\\)", "\\(3\\)", "\\(-5\\)"],
+            "fehler": ["Beim Einsetzen in \\(-4x\\) das Vorzeichen von \\(x=-1\\) übersehen", "Quadrat einer negativen Zahl fälschlich negativ berechnet", "Beide Vorzeichenfehler gleichzeitig gemacht"]
+        },
+        {
+            "frage": "Für welche \\(x\\) gilt \\(x^2=9\\)?",
+            "antworten": ["\\(x=-3\\) oder \\(x=3\\)", "Nur \\(x=3\\)", "\\(x=-9\\) oder \\(x=9\\)", "Nur \\(x=-3\\)"],
+            "fehler": ["Negativen Wert beim Wurzelziehen übersehen", "Nicht die Wurzel aus \\(9\\), sondern \\(9\\) verwendet", "Positiven Wert beim Wurzelziehen übersehen"]
+        },
+        {
+            "frage": "Für welche \\(x\\) gilt \\((x-2)^2=4\\)?",
+            "antworten": ["\\(x=0\\) oder \\(x=4\\)", "\\(x=-2\\) oder \\(x=2\\)", "\\(x=-2\\) oder \\(x=6\\)", "Nur \\(x=4\\)"],
+            "fehler": ["Verschiebung um \\(2\\) nach dem Wurzelziehen nicht berücksichtigt", "Abstand \\(4\\) statt \\(\\sqrt{4}=2\\) verwendet", "Minus-Zweig nach dem Wurzelziehen übersehen"]
+        },
+        {
+            "frage": "Für welche \\(x\\) gilt \\(x(x-5)=0\\)?",
+            "antworten": ["\\(x=0\\) oder \\(x=5\\)", "\\(x=0\\) oder \\(x=-5\\)", "Nur \\(x=5\\)", "\\(x=1\\) oder \\(x=5\\)"],
+            "fehler": ["Vorzeichen beim Nullsetzen des Faktors \\(x-5\\) vertauscht", "Nullstelle des Faktors \\(x\\) übersehen", "Faktor \\(x\\) fälschlich bei \\(x=1\\) null gesetzt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2-1\\). Für welche \\(x\\) gilt \\(f(x)=0\\)?",
+            "antworten": ["\\(x=-1\\) oder \\(x=1\\)", "Nur \\(x=1\\)", "\\(x=-2\\) oder \\(x=2\\)", "Es gibt keine reelle Lösung."],
+            "fehler": ["Negativen Wert beim Wurzelziehen übersehen", "Aus \\(1\\) fälschlich die Wurzel \\(2\\) gezogen", "Gleichung \\(x^2=1\\) fälschlich als nicht lösbar angesehen"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=(x+1)(x-3)\\). Für welche \\(x\\) gilt \\(f(x)=0\\)?",
+            "antworten": ["\\(x=-1\\) oder \\(x=3\\)", "\\(x=1\\) oder \\(x=-3\\)", "\\(x=-1\\) oder \\(x=-3\\)", "\\(x=1\\) oder \\(x=3\\)"],
+            "fehler": ["Bei beiden Faktoren das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x-3\\) das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x+1\\) das Vorzeichen der Nullstelle nicht gewechselt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=x^2-4\\). Für welche \\(x\\) gilt \\(f(x)=5\\)?",
+            "antworten": ["\\(x=-3\\) oder \\(x=3\\)", "\\(x=-1\\) oder \\(x=1\\)", "\\(x=-9\\) oder \\(x=9\\)", "Nur \\(x=3\\)"],
+            "fehler": ["Beim Umstellen \\(-4\\) nicht auf die andere Seite gebracht", "Nicht die Wurzel aus \\(9\\), sondern \\(9\\) verwendet", "Negativen Wert beim Wurzelziehen übersehen"]
+        }
+    ]
+}

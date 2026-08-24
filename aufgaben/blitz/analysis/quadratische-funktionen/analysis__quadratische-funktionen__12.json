@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Eine Zielfunktion ist eine nach unten geöffnete Parabel. Welche Art von Extremwert liegt im Scheitel?",
+            "antworten": ["ein Maximum", "ein Minimum", "eine Nullstelle", "kein Extremwert"],
+            "fehler": ["Öffnungsrichtung dem falschen Extremwert zugeordnet", "Scheitel mit einer Nullstelle verwechselt", "Den Extremwert einer nach unten geöffneten Parabel übersehen"]
+        },
+        {
+            "frage": "Eine Zielfunktion ist eine nach oben geöffnete Parabel. Welche Art von Extremwert liegt im Scheitel?",
+            "antworten": ["ein Minimum", "ein Maximum", "eine Wendestelle", "kein Extremwert"],
+            "fehler": ["Öffnungsrichtung dem falschen Extremwert zugeordnet", "Scheitel einer Parabel mit einer Wendestelle verwechselt", "Den Extremwert einer nach oben geöffneten Parabel übersehen"]
+        },
+        {
+            "frage": "Der Gewinn \\(G(x)\\) hat den Scheitel \\(S(5\\mid20)\\), wobei \\(x\\) der Stückpreis ist. Was bedeutet die x-Koordinate?",
+            "antworten": ["Bei einem Stückpreis von \\(5\\) € ist der Gewinn extremal.", "Der größte Gewinn beträgt \\(5\\) €.", "Es werden genau \\(5\\) Stück verkauft.", "Die Fixkosten betragen \\(5\\) €."],
+            "fehler": ["x-Koordinate mit dem extremalen Gewinnwert verwechselt", "Stückpreis ohne Angabe als Verkaufsmenge gedeutet", "Stückpreis fälschlich als Fixkosten gedeutet"]
+        },
+        {
+            "frage": "Der Gewinn \\(G(x)\\) hat den Hochpunkt \\(S(5\\mid20)\\). Was bedeutet die y-Koordinate?",
+            "antworten": ["Der maximale Gewinn beträgt \\(20\\) €.", "Der optimale Stückpreis beträgt \\(20\\) €.", "Es werden \\(20\\) Stück verkauft.", "Der Gewinn ist bei \\(x=20\\) null."],
+            "fehler": ["Extremalen Gewinnwert mit dem optimalen Eingabewert verwechselt", "Gewinnwert ohne Angabe als Verkaufsmenge gedeutet", "y-Koordinate des Hochpunkts fälschlich als Nullstelle interpretiert"]
+        },
+        {
+            "frage": "Die Fläche ist \\(A(x)=-2(x-3)^2+18\\). Bei welchem \\(x\\) ist sie maximal?",
+            "antworten": ["bei \\(x=3\\)", "bei \\(x=-3\\)", "bei \\(x=18\\)", "bei \\(x=2\\)"],
+            "fehler": ["Vorzeichen in der Scheitelpunktform falsch abgelesen", "y-Koordinate des Scheitels als x-Stelle übernommen", "Betrag des Leitkoeffizienten als Scheitelstelle übernommen"]
+        },
+        {
+            "frage": "Die Fläche ist \\(A(x)=-2(x-3)^2+18\\). Wie groß ist ihr Maximum?",
+            "antworten": ["\\(18\\)", "\\(3\\)", "\\(-2\\)", "\\(15\\)"],
+            "fehler": ["x-Koordinate statt y-Koordinate des Scheitels abgelesen", "Leitkoeffizienten statt Scheitelwert übernommen", "Scheitelkoordinaten fälschlich voneinander subtrahiert"]
+        },
+        {
+            "frage": "Für \\(f(x)=-x^2+6x+1\\): Welche Rechnung bestimmt die Scheitelstelle \\(d\\)?",
+            "antworten": ["\\(d=-\\frac{6}{2\\cdot(-1)}\\)", "\\(d=\\frac{6}{2\\cdot(-1)}\\)", "\\(d=-\\frac{1}{2\\cdot6}\\)", "\\(d=-\\frac{-1}{2\\cdot6}\\)"],
+            "fehler": ["Minuszeichen in \\(d=-\\frac{b}{2a}\\) weggelassen", "Konstanten Term \\(c\\) statt des linearen Koeffizienten \\(b\\) in den Zähler eingesetzt", "Leitkoeffizienten und linearen Koeffizienten vertauscht"]
+        },
+        {
+            "frage": "Für \\(f(x)=-x^2+6x+1\\): Wie groß ist die Scheitelstelle \\(d\\)?",
+            "antworten": ["\\(3\\)", "\\(-3\\)", "\\(6\\)", "\\(1\\)"],
+            "fehler": ["Vorzeichen in \\(d=-\\frac{b}{2a}\\) falsch ausgewertet", "Linearen Koeffizienten ohne Division übernommen", "Konstanten Term als Scheitelstelle übernommen"]
+        },
+        {
+            "frage": "Die Kostenfunktion \\(K(x)=2(x-4)^2+10\\) besitzt ein Minimum. Welche Aussage ist richtig?",
+            "antworten": ["Die minimalen Kosten betragen \\(10\\) bei \\(x=4\\).", "Die minimalen Kosten betragen \\(4\\) bei \\(x=10\\).", "Die maximalen Kosten betragen \\(10\\) bei \\(x=4\\).", "Die minimalen Kosten betragen \\(2\\) bei \\(x=4\\)."],
+            "fehler": ["x- und y-Koordinate des Scheitels vertauscht", "Bei positiver Öffnung den Scheitel als Maximum gedeutet", "Leitkoeffizienten statt y-Koordinate des Scheitels als Minimum verwendet"]
+        },
+        {
+            "frage": "Welche Information brauchst du nach der Scheitelstelle \\(d\\), um den extremalen Wert einer Zielfunktion \\(Z\\) zu erhalten?",
+            "antworten": ["den Funktionswert \\(Z(d)\\)", "nur den Leitkoeffizienten \\(a\\)", "eine beliebige Nullstelle", "die Steigung einer Geraden"],
+            "fehler": ["Leitkoeffizienten allein mit dem extremalen Funktionswert verwechselt", "Eine Nullstelle statt der y-Koordinate des Scheitels gesucht", "Ein lineares Merkmal statt des Funktionswerts am Scheitel verwendet"]
+        }
+    ]
+}

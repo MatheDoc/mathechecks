@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz bestimmt den Schnittpunkt der Graphen von \\(f\\) und \\(g\\)?",
+            "antworten": ["\\(f(x)=g(x)\\)", "\\(f(x)=0\\)", "\\(g(x)=0\\)", "\\(f(0)=g(1)\\)"],
+            "fehler": ["Nullstelle von \\(f\\) statt Schnittpunkt gesucht", "Nullstelle von \\(g\\) statt Schnittpunkt gesucht", "Funktionswerte an verschiedenen Stellen verglichen"]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=x+1\\) und \\(g(x)=-x+5\\). Welche Gleichung liefert die x-Koordinate des Schnittpunkts?",
+            "antworten": ["\\(x+1=-x+5\\)", "\\(x+1=0\\)", "\\(-x+5=0\\)", "\\(x+1=x+5\\)"],
+            "fehler": ["Nur die Nullstelle von \\(f\\) angesetzt", "Nur die Nullstelle von \\(g\\) angesetzt", "Minuszeichen im Funktionsterm von \\(g\\) verloren"]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=x+1\\) und \\(g(x)=-x+5\\). Wie groß ist \\(x_S\\)?",
+            "antworten": ["\\(2\\)", "\\(-2\\)", "\\(3\\)", "\\(4\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Y-Koordinate des Schnittpunkts vermutet", "Differenz der y-Achsenabschnitte ohne Division durch \\(2\\) übernommen"]
+        },
+        {
+            "frage": "Für einen Schnittpunkt gilt \\(x_S=2\\) und \\(f(x)=x+1\\). Wie groß ist \\(y_S\\)?",
+            "antworten": ["\\(3\\)", "\\(2\\)", "\\(1\\)", "\\(4\\)"],
+            "fehler": ["x-Koordinate direkt als y-Koordinate übernommen", "Nur den y-Achsenabschnitt angegeben", "Zuerst addiert und dann nochmals \\(1\\) addiert"]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=2x\\) und \\(g(x)=x+3\\). Wie groß ist \\(x_S\\)?",
+            "antworten": ["\\(3\\)", "\\(-3\\)", "\\(1\\)", "\\(6\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Differenz der Steigungen als Schnittstelle angegeben", "Steigung \\(2\\) mit dem y-Achsenabschnitt \\(3\\) multipliziert"]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=x+4\\) und \\(g(x)=3x\\). Wie groß ist \\(x_S\\)?",
+            "antworten": ["\\(2\\)", "\\(-2\\)", "\\(4\\)", "\\(1\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Y-Achsenabschnitt ohne Division durch \\(2\\) übernommen", "Steigung von \\(f\\) als Schnittstelle angegeben"]
+        },
+        {
+            "frage": "Die Graphen von \\(f\\) und \\(g\\) schneiden sich bei \\(x_S=2\\). Es gilt \\(m_f=1\\) und \\(m_g=-1\\). Welche Aussage stimmt für \\(x>2\\)?",
+            "antworten": ["\\(f(x)>g(x)\\)", "\\(f(x)<g(x)\\)", "\\(f(x)=g(x)\\)", "Beide Funktionswerte sind negativ."],
+            "fehler": ["Steigungsreihenfolge rechts vom Schnittpunkt vertauscht", "Gleichheit fälschlich über den Schnittpunkt hinaus angenommen", "Aus den Steigungen ein Vorzeichen der Funktionswerte abgeleitet"]
+        },
+        {
+            "frage": "Die Graphen von \\(f\\) und \\(g\\) schneiden sich bei \\(x_S=2\\). Es gilt \\(m_f=1\\) und \\(m_g=-1\\). Welche Aussage stimmt für \\(x<2\\)?",
+            "antworten": ["\\(f(x)<g(x)\\)", "\\(f(x)>g(x)\\)", "\\(f(x)=g(x)\\)", "Beide Funktionswerte sind positiv."],
+            "fehler": ["Steigungsreihenfolge links vom Schnittpunkt vertauscht", "Gleichheit fälschlich über den Schnittpunkt hinaus angenommen", "Aus den Steigungen ein Vorzeichen der Funktionswerte abgeleitet"]
+        },
+        {
+            "frage": "Die Graphen von \\(f\\) und \\(g\\) schneiden sich bei \\(x_S=4\\). Es gilt \\(m_f=2\\) und \\(m_g=1\\). Wo gilt \\(f(x)>g(x)\\)?",
+            "antworten": ["Für \\(x>4\\)", "Für \\(x<4\\)", "Nur für \\(x=4\\)", "Für alle \\(x\\)"],
+            "fehler": ["Größere Steigung links statt rechts vom Schnittpunkt oben eingeordnet", "Am Schnittpunkt größer statt gleich angenommen", "Schnittpunkt und Seitenwechsel ignoriert"]
+        },
+        {
+            "frage": "Gegeben sind \\(f(x)=-2x+6\\) und \\(g(x)=-x+3\\). Beide Graphen schneiden sich bei \\(x_S=3\\). Wo gilt \\(f(x)>g(x)\\)?",
+            "antworten": ["Für \\(x<3\\)", "Für \\(x>3\\)", "Nur für \\(x=3\\)", "Für alle \\(x\\)"],
+            "fehler": ["Vergleichsbereiche der beiden fallenden Geraden vertauscht", "Am Schnittpunkt größer statt gleich angenommen", "Schnittpunkt und Seitenwechsel ignoriert"]
+        }
+    ]
+}

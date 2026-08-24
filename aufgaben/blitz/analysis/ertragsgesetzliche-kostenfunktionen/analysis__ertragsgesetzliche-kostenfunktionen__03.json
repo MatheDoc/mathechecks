@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Koordinate des Tiefpunkts von \\(k_v\\) ist das Betriebsminimum \\(BM\\)?",
+            "antworten": [
+                "die \\(x\\)-Koordinate",
+                "die \\(y\\)-Koordinate",
+                "beide Koordinaten zusammen",
+                "keine der beiden Koordinaten"
+            ],
+            "fehler": [
+                "Betriebsminimum mit kurzfristiger Preisuntergrenze verwechselt",
+                "Betriebsminimum fälschlich als vollständigen Tiefpunkt gedeutet",
+                "Mengenkoordinate des Tiefpunkts nicht als Betriebsminimum erkannt"
+            ]
+        },
+        {
+            "frage": "Welche Koordinate des Tiefpunkts von \\(k_v\\) ist die kurzfristige Preisuntergrenze \\(KPU\\)?",
+            "antworten": [
+                "die \\(y\\)-Koordinate",
+                "die \\(x\\)-Koordinate",
+                "beide Koordinaten zusammen",
+                "keine der beiden Koordinaten"
+            ],
+            "fehler": [
+                "Kurzfristige Preisuntergrenze mit Betriebsminimum verwechselt",
+                "Kurzfristige Preisuntergrenze fälschlich als vollständigen Tiefpunkt gedeutet",
+                "Kostenkoordinate des Tiefpunkts nicht als kurzfristige Preisuntergrenze erkannt"
+            ]
+        },
+        {
+            "frage": "Welche Koordinate des Tiefpunkts von \\(k\\) ist das Betriebsoptimum \\(BO\\)?",
+            "antworten": [
+                "die \\(x\\)-Koordinate",
+                "die \\(y\\)-Koordinate",
+                "beide Koordinaten zusammen",
+                "keine der beiden Koordinaten"
+            ],
+            "fehler": [
+                "Betriebsoptimum mit langfristiger Preisuntergrenze verwechselt",
+                "Betriebsoptimum fälschlich als vollständigen Tiefpunkt gedeutet",
+                "Mengenkoordinate des Tiefpunkts nicht als Betriebsoptimum erkannt"
+            ]
+        },
+        {
+            "frage": "Welche Koordinate des Tiefpunkts von \\(k\\) ist die langfristige Preisuntergrenze \\(LPU\\)?",
+            "antworten": [
+                "die \\(y\\)-Koordinate",
+                "die \\(x\\)-Koordinate",
+                "beide Koordinaten zusammen",
+                "keine der beiden Koordinaten"
+            ],
+            "fehler": [
+                "Langfristige Preisuntergrenze mit Betriebsoptimum verwechselt",
+                "Langfristige Preisuntergrenze fälschlich als vollständigen Tiefpunkt gedeutet",
+                "Kostenkoordinate des Tiefpunkts nicht als langfristige Preisuntergrenze erkannt"
+            ]
+        },
+        {
+            "frage": "Welche Mengenkennzahl liefert die x-Koordinate der Schnittstelle von \\(K'\\) und \\(k_v\\)?",
+            "antworten": [
+                "das Betriebsminimum \\(BM\\)",
+                "das Betriebsoptimum \\(BO\\)",
+                "die kurzfristige Preisuntergrenze \\(KPU\\)",
+                "die langfristige Preisuntergrenze \\(LPU\\)"
+            ],
+            "fehler": [
+                "Variable Stückkosten \\(k_v\\) mit Stückkosten \\(k\\) verwechselt",
+                "x-Koordinate der Schnittstelle mit dem zugehörigen y-Wert verwechselt",
+                "Schnittstelle mit \\(k_v\\) zugleich der falschen Preisuntergrenze zugeordnet"
+            ]
+        },
+        {
+            "frage": "Welche Mengenkennzahl liefert die x-Koordinate der Schnittstelle von \\(K'\\) und \\(k\\)?",
+            "antworten": [
+                "das Betriebsoptimum \\(BO\\)",
+                "das Betriebsminimum \\(BM\\)",
+                "die langfristige Preisuntergrenze \\(LPU\\)",
+                "die kurzfristige Preisuntergrenze \\(KPU\\)"
+            ],
+            "fehler": [
+                "Stückkosten \\(k\\) mit variablen Stückkosten \\(k_v\\) verwechselt",
+                "x-Koordinate der Schnittstelle mit dem zugehörigen y-Wert verwechselt",
+                "Schnittstelle mit \\(k\\) zugleich der falschen Preisuntergrenze zugeordnet"
+            ]
+        },
+        {
+            "frage": "Woran erkennt man den Übergang von degressivem zu progressivem Kostenwachstum am Graphen von \\(K'\\)?",
+            "antworten": [
+                "am Tiefpunkt von \\(K'\\)",
+                "am Hochpunkt von \\(K'\\)",
+                "am y-Achsenabschnitt von \\(K'\\)",
+                "an einer Nullstelle von \\(K\\)"
+            ],
+            "fehler": [
+                "Minimum der Grenzkosten mit einem Maximum verwechselt",
+                "Übergangsstelle mit den Grenzkosten bei Produktionsbeginn verwechselt",
+                "Wendestelle von \\(K\\) mit einer Nullstelle von \\(K\\) verwechselt"
+            ]
+        },
+        {
+            "frage": "Wie wachsen die Gesamtkosten vor der positiven Wendestelle?",
+            "antworten": [
+                "degressiv",
+                "progressiv",
+                "konstant",
+                "überall fallend"
+            ],
+            "fehler": [
+                "Kostenwachstum vor und nach der Wendestelle vertauscht",
+                "Abnehmenden Kostenzuwachs mit konstanten Gesamtkosten verwechselt",
+                "Degressives Wachstum fälschlich als fallende Gesamtkosten gedeutet"
+            ]
+        },
+        {
+            "frage": "Wie wachsen die Gesamtkosten nach der positiven Wendestelle?",
+            "antworten": [
+                "progressiv",
+                "degressiv",
+                "konstant",
+                "überall fallend"
+            ],
+            "fehler": [
+                "Kostenwachstum vor und nach der Wendestelle vertauscht",
+                "Zunehmenden Kostenzuwachs mit konstanten Gesamtkosten verwechselt",
+                "Progressives Wachstum fälschlich als fallende Gesamtkosten gedeutet"
+            ]
+        },
+        {
+            "frage": "Der Tiefpunkt von \\(k_v\\) ist \\(T(6\\mid12)\\). Wie groß ist die kurzfristige Preisuntergrenze?",
+            "antworten": [
+                "\\(KPU=12\\)",
+                "\\(KPU=6\\)",
+                "\\(BM=12\\)",
+                "\\(LPU=12\\)"
+            ],
+            "fehler": [
+                "x-Koordinate statt y-Koordinate als Preisuntergrenze abgelesen",
+                "y-Koordinate fälschlich als Betriebsminimum bezeichnet",
+                "Minimum von \\(k_v\\) der langfristigen statt der kurzfristigen Preisuntergrenze zugeordnet"
+            ]
+        }
+    ]
+}

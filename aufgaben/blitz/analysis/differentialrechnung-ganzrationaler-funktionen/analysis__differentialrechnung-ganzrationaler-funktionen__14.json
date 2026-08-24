@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet der allgemeine Ansatz für eine ganzrationale Funktion dritten Grades?",
+            "antworten": ["\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=ax^4+bx^3+cx^2+d\\)", "\\(f(x)=ax^3+b\\)"],
+            "fehler": ["Ansatz einer quadratischen statt einer kubischen Funktion gewählt", "Ansatz vierten Grades statt dritten Grades gewählt", "Allgemeinen kubischen Ansatz unzulässig auf zwei Terme verkürzt"]
+        },
+        {
+            "frage": "Wie lautet die erste Ableitung von \\(f(x)=ax^3+bx^2+cx+d\\)?",
+            "antworten": ["\\(f'(x)=3ax^2+2bx+c\\)", "\\(f'(x)=3ax^2+2bx+d\\)", "\\(f'(x)=ax^2+bx+c\\)", "\\(f'(x)=3ax^3+2bx^2+cx\\)"],
+            "fehler": ["Ableitung von \\(cx\\) mit dem konstanten Term \\(d\\) verwechselt", "Exponenten nicht als Faktoren übernommen", "Exponenten beim Ableiten nicht verringert"]
+        },
+        {
+            "frage": "Wie lautet die zweite Ableitung von \\(f(x)=ax^3+bx^2+cx+d\\)?",
+            "antworten": ["\\(f^{\\prime\\prime}(x)=6ax+2b\\)", "\\(f^{\\prime\\prime}(x)=3ax^2+2bx+c\\)", "\\(f^{\\prime\\prime}(x)=6ax+2c\\)", "\\(f^{\\prime\\prime}(x)=6a+2b\\)"],
+            "fehler": ["Erste statt zweite Ableitung angegeben", "Beim zweiten Ableiten \\(b\\) und \\(c\\) verwechselt", "Faktor \\(x\\) im abgeleiteten kubischen Term weggelassen"]
+        },
+        {
+            "frage": "Der Punkt \\(E(x_E\\mid y_E)\\) liegt auf dem Graphen von \\(f\\). Welche Gleichung folgt?",
+            "antworten": ["\\(f(x_E)=y_E\\)", "\\(f'(x_E)=y_E\\)", "\\(f(y_E)=x_E\\)", "\\(f^{\\prime\\prime}(x_E)=y_E\\)"],
+            "fehler": ["y-Koordinate fälschlich als Steigung gedeutet", "x- und y-Koordinate beim Einsetzen vertauscht", "y-Koordinate fälschlich als Wert der zweiten Ableitung gedeutet"]
+        },
+        {
+            "frage": "Welche Ableitungsbedingung gehört zum Extrempunkt \\(E(x_E\\mid y_E)\\)?",
+            "antworten": ["\\(f'(x_E)=0\\)", "\\(f^{\\prime\\prime}(x_E)=0\\)", "\\(f(x_E)=0\\)", "\\(f'(y_E)=0\\)"],
+            "fehler": ["Wendestellenbedingung statt Extremstellenbedingung gewählt", "Extrempunkt fälschlich als Nullstelle der Funktion behandelt", "y-Koordinate statt x-Koordinate in die Ableitung eingesetzt"]
+        },
+        {
+            "frage": "Der Punkt \\(W(x_W\\mid y_W)\\) liegt auf dem Graphen von \\(f\\). Welche Gleichung folgt?",
+            "antworten": ["\\(f(x_W)=y_W\\)", "\\(f'(x_W)=y_W\\)", "\\(f(y_W)=x_W\\)", "\\(f^{\\prime\\prime}(y_W)=x_W\\)"],
+            "fehler": ["y-Koordinate fälschlich als Steigung gedeutet", "x- und y-Koordinate beim Einsetzen vertauscht", "Koordinaten vertauscht und zusätzlich die zweite Ableitung verwendet"]
+        },
+        {
+            "frage": "Welche notwendige Bedingung gehört zum Wendepunkt \\(W(x_W\\mid y_W)\\)?",
+            "antworten": ["\\(f^{\\prime\\prime}(x_W)=0\\)", "\\(f'(x_W)=0\\)", "\\(f(x_W)=0\\)", "\\(f^{\\prime\\prime}(y_W)=0\\)"],
+            "fehler": ["Extremstellenbedingung statt Wendestellenbedingung gewählt", "Wendepunkt fälschlich als Nullstelle der Funktion behandelt", "y-Koordinate statt x-Koordinate in die zweite Ableitung eingesetzt"]
+        },
+        {
+            "frage": "Für \\(f(x)=ax^3+bx^2+cx+d\\) gilt \\(f(0)=3\\). Was folgt direkt?",
+            "antworten": ["\\(d=3\\)", "\\(c=3\\)", "\\(a=3\\)", "\\(b=3\\)"],
+            "fehler": ["Koeffizienten des linearen statt des konstanten Terms gewählt", "Leitkoeffizienten statt des konstanten Terms gewählt", "Koeffizienten des quadratischen statt des konstanten Terms gewählt"]
+        },
+        {
+            "frage": "Für \\(f(x)=ax^3+bx^2+cx+d\\) gilt \\(f'(0)=0\\). Was folgt direkt?",
+            "antworten": ["\\(c=0\\)", "\\(d=0\\)", "\\(a=0\\)", "\\(b=0\\)"],
+            "fehler": ["Konstanten Term der Funktion statt konstanten Term der ersten Ableitung gewählt", "Kubischen Koeffizienten statt konstanten Term der ersten Ableitung gewählt", "Quadratischen Koeffizienten statt konstanten Term der ersten Ableitung gewählt"]
+        },
+        {
+            "frage": "Für \\(f(x)=ax^3+bx^2+cx+d\\) gilt \\(f^{\\prime\\prime}(1)=0\\). Welche Gleichung folgt?",
+            "antworten": ["\\(6a+2b=0\\)", "\\(3a+2b+c=0\\)", "\\(a+b+c+d=0\\)", "\\(6a+2c=0\\)"],
+            "fehler": ["Erste statt zweite Ableitung bei \\(x=1\\) eingesetzt", "Funktion statt zweite Ableitung bei \\(x=1\\) eingesetzt", "In der zweiten Ableitung den Koeffizienten \\(b\\) mit \\(c\\) verwechselt"]
+        }
+    ]
+}

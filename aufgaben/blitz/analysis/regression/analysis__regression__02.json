@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz gehört zu einer quadratischen Regressionsfunktion?",
+            "antworten": ["\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=mx+b\\)", "\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=a\\cdot e^{bx}\\)"],
+            "fehler": ["Linearen statt quadratischen Ansatz gewählt", "Kubischen statt quadratischen Ansatz gewählt", "Exponentiellen statt quadratischen Ansatz gewählt"]
+        },
+        {
+            "frage": "Welcher Ansatz gehört zu einer kubischen Regressionsfunktion?",
+            "antworten": ["\\(f(x)=ax^3+bx^2+cx+d\\)", "\\(f(x)=ax^2+bx+c\\)", "\\(f(x)=mx+b\\)", "\\(f(x)=a\\cdot e^{bx}\\)"],
+            "fehler": ["Quadratischen statt kubischen Ansatz gewählt", "Linearen statt kubischen Ansatz gewählt", "Exponentiellen statt kubischen Ansatz gewählt"]
+        },
+        {
+            "frage": "Wie lautet die Abweichung eines Messpunkts \\((x_i\\mid y_i)\\) vom Modellwert?",
+            "antworten": ["\\(y_i-f(x_i)\\)", "\\(x_i-f(y_i)\\)", "\\(y_i+f(x_i)\\)", "\\(f(x_i)\\cdot y_i\\)"],
+            "fehler": ["x- und y-Rolle vertauscht", "Messwert und Modellwert addiert statt subtrahiert", "Messwert und Modellwert multipliziert statt subtrahiert"]
+        },
+        {
+            "frage": "Warum werden die Abweichungen bei der Methode der kleinsten Quadrate quadriert?",
+            "antworten": ["Damit sich positive und negative Abweichungen nicht aufheben.", "Damit jede Abweichung negativ wird.", "Damit alle Datenpunkte exakt auf dem Graphen liegen.", "Damit keine Koeffizienten mehr bestimmt werden müssen."],
+            "fehler": ["Quadrate fälschlich als negative Werte gedeutet", "Quadrieren mit einer exakten Interpolation verwechselt", "Die notwendige Parameterbestimmung fälschlich für überflüssig gehalten"]
+        },
+        {
+            "frage": "Welche Summe wird bei der Regression minimiert?",
+            "antworten": ["\\(S=\\sum (y_i-f(x_i))^2\\)", "\\(S=\\sum (y_i+f(x_i))\\)", "\\(S=\\sum (x_i-y_i)^2\\)", "\\(S=\\sum f(x_i)^2\\)"],
+            "fehler": ["Messwert und Modellwert addiert und nicht quadriert", "x- und y-Daten direkt verglichen statt Messwert und Modellwert", "Nur Modellwerte betrachtet und Messwerte weggelassen"]
+        },
+        {
+            "frage": "Wie viele Gleichungen entstehen beim quadratischen Ansatz für die Unbekannten \\(a,b,c\\)?",
+            "antworten": ["\\(3\\)", "\\(2\\)", "\\(4\\)", "\\(1\\)"],
+            "fehler": ["Anzahl der Gleichungen mit dem Grad verwechselt", "Eine Gleichung zu viel angesetzt", "Nur eine Gesamtgleichung statt je einer Bedingung pro Koeffizient angenommen"]
+        },
+        {
+            "frage": "Wie viele Gleichungen entstehen beim kubischen Ansatz für die Unbekannten \\(a,b,c,d\\)?",
+            "antworten": ["\\(4\\)", "\\(3\\)", "\\(2\\)", "\\(1\\)"],
+            "fehler": ["Nur den Grad statt der Anzahl der Koeffizienten verwendet", "Nur zwei Bedingungen angesetzt", "Nur eine Gesamtgleichung angesetzt"]
+        },
+        {
+            "frage": "Welche Bedingung wird für jeden unbekannten Koeffizienten der Abweichungssumme verwendet?",
+            "antworten": ["Die zugehörige Ableitung wird gleich null gesetzt.", "Der Koeffizient wird sofort gleich null gesetzt.", "Alle Messwerte werden gleich null gesetzt.", "Die Abweichungssumme wird gleich eins gesetzt."],
+            "fehler": ["Koeffizient statt Ableitung null gesetzt", "Datenwerte fälschlich verändert", "Willkürlichen Zielwert statt der Extremalbedingung verwendet"]
+        },
+        {
+            "frage": "Warum ist das Gleichungssystem bei einer quadratischen Regression linear in \\(a,b,c\\)?",
+            "antworten": ["Weil die gesuchten Koeffizienten im Ansatz nur linear auftreten.", "Weil der Graph der Funktion eine Gerade ist.", "Weil alle x-Werte gleich sind.", "Weil keine Quadrate vorkommen."],
+            "fehler": ["Linearität des LGS mit der Form des Funktionsgraphen verwechselt", "Eine nicht notwendige Eigenschaft der Daten angenommen", "Die Quadrate von x und der Abweichungen übersehen"]
+        },
+        {
+            "frage": "Das LGS liefert \\(a=2\\), \\(b=-3\\), \\(c=1\\). Wie lautet die quadratische Regressionsfunktion?",
+            "antworten": ["\\(f(x)=2x^2-3x+1\\)", "\\(f(x)=-3x^2+2x+1\\)", "\\(f(x)=2x^3-3x^2+x\\)", "\\(f(x)=2x^2+3x+1\\)"],
+            "fehler": ["Werte von \\(a\\) und \\(b\\) vertauscht", "Koeffizienten in einen kubischen Ansatz eingesetzt", "Vorzeichen von \\(b\\) vertauscht"]
+        }
+    ]
+}

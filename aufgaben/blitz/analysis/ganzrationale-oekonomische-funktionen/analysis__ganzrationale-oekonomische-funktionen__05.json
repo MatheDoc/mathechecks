@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz bestimmt die Sättigungsmenge \\(s_m\\)?",
+            "antworten": ["\\(p(x)=0\\) lösen", "\\(p(0)\\) berechnen", "\\(p'(x)=0\\) lösen", "\\(p''(x)=0\\) lösen"],
+            "fehler": ["y-Achsenabschnitt statt Nullstelle der Preis-Absatz-Funktion angesetzt", "Extremstelle statt Nullstelle der Preis-Absatz-Funktion angesetzt", "Wendestelle statt Nullstelle der Preis-Absatz-Funktion angesetzt"]
+        },
+        {
+            "frage": "Wie wird die Gewinnschwelle \\(x_{GS}\\) aus \\(G\\) bestimmt?",
+            "antworten": ["erste positive Nullstelle von \\(G\\)", "letzte positive Nullstelle von \\(G\\)", "Hochpunktstelle von \\(G\\)", "y-Achsenabschnitt von \\(G\\)"],
+            "fehler": ["Gewinngrenze statt Gewinnschwelle gewählt", "Gewinnmaximum statt Gewinnschwelle gewählt", "Anfangsgewinn statt Gewinnschwelle gewählt"]
+        },
+        {
+            "frage": "Welcher Ansatz liefert den Höchstpreis \\(p_H\\) im Angebotsmonopol?",
+            "antworten": ["\\(p(0)\\) berechnen", "\\(p(x)=0\\) lösen", "\\(p'(x)=0\\) lösen", "\\(E(0)\\) berechnen"],
+            "fehler": ["Sättigungsmenge statt Höchstpreis bestimmt", "Extremstellenansatz auf die lineare Preis-Absatz-Funktion angewendet", "y-Achsenabschnitt der Erlösfunktion statt der Preis-Absatz-Funktion verwendet"]
+        },
+        {
+            "frage": "Welcher Ansatz liefert die Fixkosten \\(K_f\\)?",
+            "antworten": ["\\(K(0)\\) berechnen", "\\(K(x)=0\\) lösen", "\\(K'(0)\\) berechnen", "\\(K''(0)\\) berechnen"],
+            "fehler": ["Nullstellen der Kostenfunktion statt ihres y-Achsenabschnitts gesucht", "Anfangsgrenzkosten statt Fixkosten berechnet", "Krümmung bei null statt Fixkosten berechnet"]
+        },
+        {
+            "frage": "Welche Bedingungen weisen eine gewinnmaximale Menge \\(x_{Gmax}\\) nach?",
+            "antworten": ["\\(G'(x)=0\\) und \\(G''(x)<0\\)", "\\(G(x)=0\\) und \\(G'(x)<0\\)", "\\(G'(x)=0\\) und \\(G''(x)>0\\)", "\\(G''(x)=0\\) und \\(G'''(x)\\neq 0\\)"],
+            "fehler": ["Nullstelle statt Hochpunkt von \\(G\\) geprüft", "Tiefpunkt statt Hochpunkt von \\(G\\) geprüft", "Wendestelle statt Hochpunkt von \\(G\\) geprüft"]
+        },
+        {
+            "frage": "Die erlösmaximale Menge \\(x_{Emax}\\) ist bekannt. Wie wird \\(E_{max}\\) bestimmt?",
+            "antworten": ["\\(E(x_{Emax})\\) berechnen", "\\(E(0)\\) berechnen", "\\(E(x)=0\\) lösen", "\\(E'(x_{Emax})\\) berechnen"],
+            "fehler": ["y-Achsenabschnitt statt maximalen Erlös berechnet", "Nullstellen statt y-Wert am Erlösmaximum gesucht", "Notwendige Bedingung liefert null, nicht den maximalen Erlös"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt den Übergang vom degressiven zum progressiven Kostenwachstum?",
+            "antworten": ["\\(K''(x)=0\\) lösen und \\(K'''(x)\\neq 0\\) prüfen", "\\(K'(x)=0\\) lösen und \\(K''(x)>0\\) prüfen", "\\(K(x)=0\\) lösen", "\\(K(0)\\) berechnen"],
+            "fehler": ["Tiefpunkt statt Wendestelle der Kostenfunktion angesetzt", "Nullstelle statt Wendestelle der Kostenfunktion angesetzt", "Fixkosten statt Wendestelle der Kostenfunktion bestimmt"]
+        },
+        {
+            "frage": "Welche Gleichung gehört zur Berechnung eines Break-even-Points?",
+            "antworten": ["\\(E(x)=K(x)\\)", "\\(E(x)=0\\)", "\\(K'(x)=0\\)", "\\(E'(x)=K'(x)\\)"],
+            "fehler": ["Erlösnullstelle statt Gleichheit von Erlös und Kosten angesetzt", "Kostenminimum statt Schnittpunkt von Erlös und Kosten angesetzt", "Gleiche Steigungen statt gleiche Funktionswerte gefordert"]
+        },
+        {
+            "frage": "Welche Koordinaten hat der Cournotsche Punkt?",
+            "antworten": ["\\(C(x_{Gmax}\\mid p(x_{Gmax}))\\)", "\\(C(x_{Emax}\\mid E(x_{Emax}))\\)", "\\(C(0\\mid p(0))\\)", "\\(C(x_{GS}\\mid 0)\\)"],
+            "fehler": ["Erlösmaximum statt gewinnmaximaler Menge und zugehörigem Preis verwendet", "Höchstpreis statt gewinnmaximalem Preis verwendet", "Gewinnschwelle statt gewinnmaximaler Menge verwendet"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt die erlösmaximale Menge im Angebotsmonopol?",
+            "antworten": ["\\(E'(x)=0\\) lösen und \\(E''(x)<0\\) prüfen", "\\(E(x)=0\\) lösen", "\\(E(0)\\) berechnen", "\\(E''(x)=0\\) lösen"],
+            "fehler": ["Erlösnullstelle statt Erlöshochpunkt bestimmt", "y-Achsenabschnitt statt Erlöshochpunkt bestimmt", "Wendestellenansatz statt Extremstellenansatz verwendet"]
+        }
+    ]
+}

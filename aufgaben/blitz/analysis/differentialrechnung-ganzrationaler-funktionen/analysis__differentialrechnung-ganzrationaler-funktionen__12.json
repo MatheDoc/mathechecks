@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Stellen sind auf einem abgeschlossenen Intervall Kandidaten für globale Extremwerte von \\(f\\)?",
+            "antworten": ["innere lokale Extremstellen und beide Randpunkte", "nur innere lokale Extremstellen", "nur die beiden Randpunkte", "alle Nullstellen von \\(f\\)"],
+            "fehler": ["Randpunkte beim globalen Vergleich weggelassen", "Innere lokale Extremstellen beim globalen Vergleich weggelassen", "Nullstellen mit Kandidaten für globale Extremwerte verwechselt"]
+        },
+        {
+            "frage": "Warum müssen Randpunkte eines abgeschlossenen Intervalls geprüft werden?",
+            "antworten": ["Dort kann ein globales Extremum angenommen werden.", "Dort gilt immer \\(f'(x)=0\\).", "Dort gilt immer \\(f(x)=0\\).", "Dort ist \\(f\\) immer nicht definiert."],
+            "fehler": ["Randpunkte fälschlich als stationäre Stellen behandelt", "Randpunkte fälschlich als Nullstellen behandelt", "Zum Definitionsintervall gehörende Randpunkte fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Welche Größen werden zur Bestimmung globaler Extremwerte von \\(f\\) verglichen?",
+            "antworten": ["die Funktionswerte aller Kandidaten", "die x-Koordinaten aller Kandidaten", "nur die Werte von \\(f'\\)", "nur die Werte von \\(f^{\\prime\\prime}\\)"],
+            "fehler": ["Lage der Kandidaten statt ihrer Funktionswerte verglichen", "Steigungen statt Funktionswerte verglichen", "Krümmungswerte statt Funktionswerte verglichen"]
+        },
+        {
+            "frage": "Wo nimmt \\(f(x)=x^2\\) auf \\([-1;2]\\) sein globales Maximum an?",
+            "antworten": ["bei \\(x=2\\)", "bei \\(x=-1\\)", "bei \\(x=0\\)", "bei \\(x=1\\)"],
+            "fehler": ["Linken Randwert \\(1\\) statt des größeren rechten Randwerts \\(4\\) gewählt", "Lokales und globales Minimum bei \\(0\\) mit dem Maximum verwechselt", "Gleiche Funktionswerte bei \\(1\\) und \\(-1\\) ohne Randvergleich gewählt"]
+        },
+        {
+            "frage": "Wo nimmt \\(f(x)=-x^2\\) auf \\([-2;1]\\) sein globales Minimum an?",
+            "antworten": ["bei \\(x=-2\\)", "bei \\(x=0\\)", "bei \\(x=1\\)", "bei \\(x=2\\)"],
+            "fehler": ["Globales Maximum bei \\(0\\) mit dem Minimum verwechselt", "Rechten Randwert \\(-1\\) statt des kleineren linken Randwerts \\(-4\\) gewählt", "Stelle außerhalb des vorgegebenen Intervalls gewählt"]
+        },
+        {
+            "frage": "Gegeben ist \\(f(x)=-x^2+2x+3\\) auf \\([-2;\\infty)\\). Welcher globale Extremwert existiert?",
+            "antworten": ["ein globales Maximum \\(4\\) bei \\(x=1\\)", "ein globales Minimum \\(-5\\) bei \\(x=-2\\)", "ein globales Maximum \\(-5\\) bei \\(x=-2\\)", "kein globaler Extremwert"],
+            "fehler": ["Randwert als globales Minimum behandelt, obwohl \\(f(x)\\to-\\infty\\) gilt", "Kleineren Randwert fälschlich als globales Maximum gewählt", "Vorhandenes Scheitelmaximum bei \\(x=1\\) übersehen"]
+        },
+        {
+            "frage": "Es gilt \\(f(x)\\to-\\infty\\) für \\(x\\to\\infty\\). Was folgt für ein globales Minimum?",
+            "antworten": ["Auf diesem unbeschränkten Weg wird kein globales Minimum angenommen.", "Der Grenzwert \\(-\\infty\\) ist das globale Minimum.", "Am linken Rand liegt immer das globale Minimum.", "Es existiert deshalb immer ein globales Maximum."],
+            "fehler": ["\\(-\\infty\\) fälschlich als angenommenen Funktionswert behandelt", "Unendlichkeitsverhalten ignoriert und den Rand pauschal gewählt", "Aus fehlender unterer Schranke ohne weitere Prüfung ein Maximum gefolgert"]
+        },
+        {
+            "frage": "Welche globalen Extrema besitzt \\(f(x)=x^2\\) auf \\(\\mathbb{R}\\)?",
+            "antworten": ["ein globales Minimum bei \\(x=0\\), aber kein globales Maximum", "ein globales Maximum bei \\(x=0\\), aber kein globales Minimum", "ein globales Minimum und Maximum bei \\(x=0\\)", "weder Minimum noch Maximum"],
+            "fehler": ["Minimum und Maximum der nach oben geöffneten Parabel vertauscht", "Unbeschränktes Wachstum fälschlich als angenommenes Maximum bei \\(0\\) behandelt", "Das angenommene Minimum bei \\(0\\) übersehen"]
+        },
+        {
+            "frage": "Welche globalen Extrema besitzt \\(f(x)=-x^2\\) auf \\(\\mathbb{R}\\)?",
+            "antworten": ["ein globales Maximum bei \\(x=0\\), aber kein globales Minimum", "ein globales Minimum bei \\(x=0\\), aber kein globales Maximum", "ein globales Minimum und Maximum bei \\(x=0\\)", "weder Minimum noch Maximum"],
+            "fehler": ["Maximum und Minimum der nach unten geöffneten Parabel vertauscht", "Unbeschränktes Fallen fälschlich als angenommenes Minimum bei \\(0\\) behandelt", "Das angenommene Maximum bei \\(0\\) übersehen"]
+        },
+        {
+            "frage": "Welche globalen Extrema besitzt \\(f(x)=x\\) auf dem offenen Intervall \\((0;1)\\)?",
+            "antworten": ["weder ein globales Minimum noch ein globales Maximum", "ein Minimum bei \\(0\\) und ein Maximum bei \\(1\\)", "nur ein globales Minimum bei \\(0\\)", "nur ein globales Maximum bei \\(1\\)"],
+            "fehler": ["Nicht zum offenen Intervall gehörende Randpunkte als Extrema verwendet", "Nicht enthaltenen linken Randpunkt als Minimum verwendet", "Nicht enthaltenen rechten Randpunkt als Maximum verwendet"]
+        }
+    ]
+}

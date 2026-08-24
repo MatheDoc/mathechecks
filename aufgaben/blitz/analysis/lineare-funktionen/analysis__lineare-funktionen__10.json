@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben sind \\(K_A(x)=2x+4\\) und \\(K_B(x)=x+8\\). Welcher Ansatz bestimmt den Break-Even-Punkt?",
+            "antworten": ["\\(2x+4=x+8\\)", "\\(2x+4=0\\)", "\\(x+8=0\\)", "\\(2x+x=4+8\\)"],
+            "fehler": ["Nullstelle von Option A statt Kosten-Gleichheit gesucht", "Nullstelle von Option B statt Kosten-Gleichheit gesucht", "Gleichartige Terme beider Modelle zusammengefasst statt die Kosten gleichzusetzen"]
+        },
+        {
+            "frage": "Für den Break-Even gilt \\(2x+4=x+8\\). Wie groß ist \\(x\\)?",
+            "antworten": ["\\(4\\)", "\\(-4\\)", "\\(12\\)", "\\(3\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Konstanten addiert statt ihre Differenz zu bilden", "Von \\(8-4\\) zusätzlich die Koeffizientendifferenz \\(2-1\\) abgezogen"]
+        },
+        {
+            "frage": "Die Modelle \\(K_A(x)=2x+4\\) und \\(K_B(x)=x+8\\) haben bei \\(x=4\\) ihren Break-Even-Punkt. Wie hoch sind dort die Kosten?",
+            "antworten": ["\\(12\\) €", "\\(4\\) €", "\\(8\\) €", "\\(16\\) €"],
+            "fehler": ["x-Koordinate als Kostenwert übernommen", "Nur den variablen Kostenanteil von A berechnet", "Bei \\(K_A\\) die Grundkosten \\(8\\) von Option B eingesetzt: \\(2\\cdot4+8=16\\)"]
+        },
+        {
+            "frage": "Für \\(K_A(x)=2x+4\\) und \\(K_B(x)=x+8\\) liegt der Break-Even bei \\(x=4\\). Welche Option ist für \\(x<4\\) günstiger?",
+            "antworten": ["Option A", "Option B", "Beide sind immer gleich teuer.", "Das lässt sich nicht entscheiden."],
+            "fehler": ["Die kleinere Steigung unabhängig von der Grundgebühr gewählt", "Gleichheit am Break-Even auf alle Werte übertragen", "Vergleichsbereich trotz gegebener Modelle und Schnittstelle nicht ausgewertet"]
+        },
+        {
+            "frage": "Für \\(K_A(x)=2x+4\\) und \\(K_B(x)=x+8\\) liegt der Break-Even bei \\(x=4\\). Welche Option ist für \\(x>4\\) günstiger?",
+            "antworten": ["Option B", "Option A", "Beide sind immer gleich teuer.", "Das lässt sich nicht entscheiden."],
+            "fehler": ["Die niedrigere Grundgebühr unabhängig von der größeren Steigung gewählt", "Gleichheit am Break-Even auf alle Werte übertragen", "Vergleichsbereich trotz gegebener Modelle und Schnittstelle nicht ausgewertet"]
+        },
+        {
+            "frage": "Für einen Vergleich gilt \\(K_A(x)=x+6\\) und \\(K_B(x)=2x+2\\). Bei welchem \\(x\\) sind die Kosten gleich?",
+            "antworten": ["\\(4\\)", "\\(-4\\)", "\\(8\\)", "\\(2\\)"],
+            "fehler": ["Vorzeichen beim Auflösen vertauscht", "Grundkosten addiert statt ihre Differenz zu bilden", "Y-Achsenabschnitt von B als Lösung übernommen"]
+        },
+        {
+            "frage": "Für \\(K_A(x)=x+6\\) und \\(K_B(x)=2x+2\\) liegt der Break-Even bei \\(x=4\\). Welche Option ist für \\(x<4\\) günstiger?",
+            "antworten": ["Option B", "Option A", "Beide sind immer gleich teuer.", "Keine der beiden Optionen"],
+            "fehler": ["Kleinere Steigung unabhängig von der höheren Grundgebühr gewählt", "Gleichheit am Break-Even auf alle Werte übertragen", "Vorhandene günstigere Option übersehen"]
+        },
+        {
+            "frage": "Für \\(K_A(x)=x+6\\) und \\(K_B(x)=2x+2\\) liegt der Break-Even bei \\(x=4\\). Welche Option ist für \\(x>4\\) günstiger?",
+            "antworten": ["Option A", "Option B", "Beide sind immer gleich teuer.", "Keine der beiden Optionen"],
+            "fehler": ["Niedrigere Grundgebühr unabhängig von der größeren Steigung gewählt", "Gleichheit am Break-Even auf alle Werte übertragen", "Vorhandene günstigere Option übersehen"]
+        },
+        {
+            "frage": "Bei \\(x=3\\) gilt \\(K_A(x)=x+6\\) und \\(K_B(x)=2x+2\\). Welche Option ist günstiger?",
+            "antworten": ["Option B mit \\(8\\) €", "Option A mit \\(9\\) €", "Beide mit \\(8\\) €", "Option B mit \\(9\\) €"],
+            "fehler": ["Zwar die Kosten von A richtig berechnet, aber die teurere Option gewählt", "Kosten von A und B fälschlich gleichgesetzt", "Kostenwert von A der Option B zugeordnet"]
+        },
+        {
+            "frage": "Was bedeutet der Break-Even-Punkt beim Vergleich zweier Kostenmodelle?",
+            "antworten": ["Beide Optionen verursachen dort gleich hohe Kosten.", "Beide Optionen haben dort keine Kosten.", "Eine Option hat dort ihre höchsten Kosten.", "Beide Optionen haben dort dieselbe Grundgebühr."],
+            "fehler": ["Break-Even mit gemeinsamen Nullkosten verwechselt", "Break-Even mit einem Kostenmaximum verwechselt", "Gleiche Gesamtkosten mit gleicher Grundgebühr verwechselt"]
+        }
+    ]
+}

@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel berechnet die mittlere Änderungsrate von \\(f\\) im Intervall \\([a;b]\\)?",
+            "antworten": [
+                "\\(\\frac{f(b)-f(a)}{b-a}\\)",
+                "\\(\\frac{b-a}{f(b)-f(a)}\\)",
+                "\\(\\frac{f(b)-f(a)}{b+a}\\)",
+                "\\(\\frac{f(b)+f(a)}{b-a}\\)"
+            ],
+            "fehler": [
+                "Änderung der Stelle und Änderung des Funktionswerts vertauscht",
+                "Intervalllänge als Summe statt als Differenz gebildet",
+                "Funktionswerte addiert statt ihre Änderung zu bilden"
+            ]
+        },
+        {
+            "frage": "Wofür steht der Zähler \\(f(b)-f(a)\\) beim Differenzenquotienten?",
+            "antworten": [
+                "für die Änderung des Funktionswerts",
+                "für die Länge des Intervalls",
+                "für den mittleren Funktionswert",
+                "für die Stelle in der Mitte des Intervalls"
+            ],
+            "fehler": [
+                "Zähler und Nenner verwechselt",
+                "Differenz mit Mittelwert verwechselt",
+                "Änderung des Funktionswerts mit Intervallmitte verwechselt"
+            ]
+        },
+        {
+            "frage": "Wie wird die Länge des Intervalls \\([a;b]\\) im Differenzenquotienten berechnet?",
+            "antworten": [
+                "\\(b-a\\)",
+                "\\(a-b\\)",
+                "\\(a+b\\)",
+                "\\(\\frac{a+b}{2}\\)"
+            ],
+            "fehler": [
+                "Reihenfolge der Intervallgrenzen vertauscht",
+                "Intervallgrenzen addiert",
+                "Intervalllänge mit Intervallmitte verwechselt"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f(1)=2\\) und \\(f(5)=10\\). Wie groß ist die mittlere Änderungsrate auf \\([1;5]\\)?",
+            "antworten": [
+                "\\(2\\)",
+                "\\(8\\)",
+                "\\(0{,}5\\)",
+                "\\(3\\)"
+            ],
+            "fehler": [
+                "Nur die Änderung der Funktionswerte berechnet",
+                "Änderung der Stelle durch Änderung des Funktionswerts geteilt",
+                "Summe der Funktionswerte durch die Intervalllänge geteilt"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f(-1)=5\\) und \\(f(2)=-1\\). Wie groß ist die mittlere Änderungsrate auf \\([-1;2]\\)?",
+            "antworten": [
+                "\\(-2\\)",
+                "\\(2\\)",
+                "\\(-6\\)",
+                "\\(-3\\)"
+            ],
+            "fehler": [
+                "Vorzeichen der Änderung des Funktionswerts vertauscht",
+                "Nur die Änderung der Funktionswerte berechnet",
+                "Intervalllänge wegen der negativen unteren Grenze falsch berechnet"
+            ]
+        },
+        {
+            "frage": "Wie groß ist die mittlere Änderungsrate von \\(f(x)=x^2\\) auf \\([1;3]\\)?",
+            "antworten": [
+                "\\(4\\)",
+                "\\(8\\)",
+                "\\(2\\)",
+                "\\(5\\)"
+            ],
+            "fehler": [
+                "Nur \\(f(3)-f(1)\\) berechnet",
+                "Intervalllänge durch Änderung der Funktionswerte geteilt",
+                "Mittelwert der beiden Funktionswerte gebildet"
+            ]
+        },
+        {
+            "frage": "Die mittlere Änderungsrate auf einem Intervall ist negativ. Welche Aussage folgt daraus?",
+            "antworten": [
+                "Der Funktionswert nimmt im Intervall insgesamt ab.",
+                "Der Funktionswert ist überall im Intervall negativ.",
+                "Der Graph fällt an jeder Stelle des Intervalls.",
+                "Die Intervallgrenzen sind beide negativ."
+            ],
+            "fehler": [
+                "Vorzeichen der Änderungsrate mit Vorzeichen der Funktionswerte verwechselt",
+                "Negative mittlere Änderung fälschlich als durchgehend fallenden Verlauf gedeutet",
+                "Vorzeichen der Änderungsrate auf die Intervallgrenzen übertragen"
+            ]
+        },
+        {
+            "frage": "Ein Weg wird durch \\(s(t)\\) beschrieben. Es gilt \\(s(2)=6\\,\\mathrm{m}\\) und \\(s(5)=18\\,\\mathrm{m}\\). Wie groß ist die durchschnittliche Geschwindigkeit?",
+            "antworten": [
+                "\\(4\\,\\mathrm{m/s}\\)",
+                "\\(12\\,\\mathrm{m/s}\\)",
+                "\\(3\\,\\mathrm{m/s}\\)",
+                "\\(6\\,\\mathrm{m/s}\\)"
+            ],
+            "fehler": [
+                "Nur die zurückgelegte Strecke berechnet",
+                "Nur die verstrichene Zeit berechnet",
+                "Endstrecke durch die verstrichene Zeit geteilt, ohne die Anfangsstrecke abzuziehen"
+            ]
+        },
+        {
+            "frage": "\\(f(x)\\) wird in Litern und \\(x\\) in Minuten gemessen. Welche Einheit hat die mittlere Änderungsrate?",
+            "antworten": [
+                "Liter pro Minute",
+                "Liter mal Minute",
+                "Minuten pro Liter",
+                "Liter"
+            ],
+            "fehler": [
+                "Einheiten multipliziert statt dividiert",
+                "Einheit des Nenners durch Einheit des Zählers geteilt",
+                "Einheit der unabhängigen Variablen nicht berücksichtigt"
+            ]
+        },
+        {
+            "frage": "Was beschreibt die mittlere Änderungsrate auf \\([a;b]\\)?",
+            "antworten": [
+                "die durchschnittliche Änderung von \\(f\\) pro Einheit in \\(x\\)",
+                "die Änderung von \\(f\\) genau an der Stelle \\(a\\)",
+                "den größten Funktionswert im Intervall",
+                "den Durchschnitt aller Funktionswerte im Intervall"
+            ],
+            "fehler": [
+                "Mittlere und momentane Änderungsrate verwechselt",
+                "Änderungsrate mit Maximum verwechselt",
+                "Mittlere Änderungsrate mit mittlerem Funktionswert verwechselt"
+            ]
+        }
+    ]
+}

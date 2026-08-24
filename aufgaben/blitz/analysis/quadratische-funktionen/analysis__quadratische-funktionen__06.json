@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wann besitzt \\(f(x)=a(x-d)^2+e\\) reelle Nullstellen?",
+            "antworten": ["Wenn \\(-\\frac{e}{a}\\geq 0\\) gilt.", "Wenn \\(-\\frac{e}{a}<0\\) gilt.", "Wenn \\(a=0\\) gilt.", "Wenn \\(d=0\\) gilt."],
+            "fehler": ["Existenzbedingung für die Wurzel ins Gegenteil verkehrt", "Quadratische Funktion durch \\(a=0\\) ausgeschlossen", "Lage der Symmetrieachse fälschlich als Existenzbedingung verwendet"]
+        },
+        {
+            "frage": "Welche Gleichung entsteht aus \\((x-2)^2-9=0\\)?",
+            "antworten": ["\\((x-2)^2=9\\)", "\\((x-2)^2=-9\\)", "\\((x-2)^2=0\\)", "\\((x+2)^2=9\\)"],
+            "fehler": ["Beim Addieren von \\(9\\) das Vorzeichen nicht gewechselt", "Konstanten Term fälschlich gestrichen", "Vorzeichen innerhalb der Klammer verändert"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x-2)^2-9\\)?",
+            "antworten": ["\\(x_1=5\\) und \\(x_2=-1\\)", "\\(x_1=3\\) und \\(x_2=-3\\)", "\\(x_1=11\\) und \\(x_2=-7\\)", "\\(x_1=5\\) und \\(x_2=1\\)"],
+            "fehler": ["Verschiebung \\(d=2\\) nach dem Wurzelziehen nicht berücksichtigt", "Nicht die Wurzel aus \\(9\\), sondern \\(9\\) addiert und subtrahiert", "Beim kleineren Wert \\(2-3\\) das Vorzeichen falsch berechnet"]
+        },
+        {
+            "frage": "Besitzt \\(f(x)=(x+1)^2+4\\) reelle Nullstellen?",
+            "antworten": ["Nein, denn \\((x+1)^2=-4\\) ist reell nicht lösbar.", "Ja, bei \\(x=-3\\) und \\(x=1\\).", "Ja, bei \\(x=-5\\) und \\(x=3\\).", "Ja, bei \\(x=-1\\)."],
+            "fehler": ["Trotz negativer rechter Seite die Wurzel aus \\(4\\) verwendet", "Konstanten Term \\(4\\) statt seiner Wurzel als Abstand verwendet", "Scheitelstelle trotz Funktionswert \\(4\\) als Nullstelle gedeutet"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x+3)^2-4\\)?",
+            "antworten": ["\\(x_1=-1\\) und \\(x_2=-5\\)", "\\(x_1=5\\) und \\(x_2=1\\)", "\\(x_1=-3\\) und \\(x_2=4\\)", "\\(x_1=1\\) und \\(x_2=-5\\)"],
+            "fehler": ["Scheitelverschiebung mit falschem Vorzeichen verwendet", "Scheitelstelle und Quadratwert statt der Nullstellen angegeben", "Beim größeren Wert \\(-3+2\\) das Vorzeichen falsch berechnet"]
+        },
+        {
+            "frage": "Welche rechte Seite erhält man aus \\(2(x-1)^2-8=0\\)?",
+            "antworten": ["\\((x-1)^2=4\\)", "\\((x-1)^2=8\\)", "\\((x-1)^2=-4\\)", "\\((x-1)^2=16\\)"],
+            "fehler": ["Nach dem Addieren von \\(8\\) nicht durch \\(2\\) geteilt", "Vorzeichen beim Umstellen vertauscht", "Mit \\(2\\) multipliziert statt durch \\(2\\) geteilt"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=2(x-1)^2-8\\)?",
+            "antworten": ["\\(x_1=3\\) und \\(x_2=-1\\)", "\\(x_1=5\\) und \\(x_2=-3\\)", "\\(x_1=2\\) und \\(x_2=0\\)", "\\(x_1=3\\) und \\(x_2=1\\)"],
+            "fehler": ["Aus \\((x-1)^2=4\\) den Abstand \\(4\\) statt \\(\\sqrt{4}=2\\) verwendet", "Aus \\(4\\) fälschlich die Wurzel \\(1\\) gezogen", "Die Nullstelle \\(x=3\\) wurde richtig bestimmt, aber statt des Minus-Zweigs wurde die Scheitelstelle \\(x=1\\) als zweite Nullstelle verwendet"]
+        },
+        {
+            "frage": "Wie viele reelle Nullstellen hat \\(f(x)=-2(x-4)^2\\)?",
+            "antworten": ["Genau eine bei \\(x=4\\)", "Zwei bei \\(x=2\\) und \\(x=6\\)", "Keine", "Genau eine bei \\(x=-4\\)"],
+            "fehler": ["Vorfaktor \\(-2\\) fälschlich als quadratischen Abstand verwendet", "Quadratgleichung mit rechter Seite \\(0\\) fälschlich als unlösbar angesehen", "Vorzeichen der Scheitelstelle vertauscht"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=-(x+2)^2+1\\)?",
+            "antworten": ["\\(x_1=-1\\) und \\(x_2=-3\\)", "\\(x_1=3\\) und \\(x_2=1\\)", "\\(x_1=-2\\) und \\(x_2=1\\)", "\\(x_1=-1\\) und \\(x_2=3\\)"],
+            "fehler": ["Scheitelverschiebung mit falschem Vorzeichen verwendet", "Scheitelstelle und Quadratwert statt der Nullstellen angegeben", "Beim zweiten Wert \\(-2-1\\) das Vorzeichen falsch berechnet"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=3(x-5)^2-27\\)?",
+            "antworten": ["\\(x_1=8\\) und \\(x_2=2\\)", "\\(x_1=14\\) und \\(x_2=-4\\)", "\\(x_1=6\\) und \\(x_2=4\\)", "\\(x_1=9\\) und \\(x_2=1\\)"],
+            "fehler": ["Aus \\((x-5)^2=9\\) den Abstand \\(9\\) statt \\(\\sqrt{9}=3\\) verwendet", "Aus \\(9\\) fälschlich die Wurzel \\(1\\) gezogen", "Aus \\(9\\) fälschlich die Wurzel \\(4\\) gezogen"]
+        }
+    ]
+}

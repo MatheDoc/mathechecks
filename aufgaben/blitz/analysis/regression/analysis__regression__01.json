@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel liefert die Steigung \\(m\\) einer linearen Regressionsgeraden?",
+            "antworten": ["\\(m=\\frac{\\sum (x_i-\\bar{x})(y_i-\\bar{y})}{\\sum (x_i-\\bar{x})^2}\\)", "\\(m=\\frac{\\sum (x_i-\\bar{x})^2}{\\sum (x_i-\\bar{x})(y_i-\\bar{y})}\\)", "\\(m=\\bar{y}-\\bar{x}\\)", "\\(m=\\frac{\\bar{x}}{\\bar{y}}\\)"],
+            "fehler": ["Zähler und Nenner der Regressionsformel vertauscht", "Nur die Differenz der Mittelwerte verwendet", "Quotient der Mittelwerte statt der Regressionsformel verwendet"]
+        },
+        {
+            "frage": "Welche Formel liefert den y-Achsenabschnitt \\(b\\), wenn \\(m\\), \\(\\bar{x}\\) und \\(\\bar{y}\\) bekannt sind?",
+            "antworten": ["\\(b=\\bar{y}-m\\cdot\\bar{x}\\)", "\\(b=\\bar{x}-m\\cdot\\bar{y}\\)", "\\(b=\\bar{y}+m\\cdot\\bar{x}\\)", "\\(b=m-\\bar{x}-\\bar{y}\\)"],
+            "fehler": ["x- und y-Mittelwert vertauscht", "Vorzeichen vor \\(m\\cdot\\bar{x}\\) vertauscht", "Größen ohne Bezug zur Schwerpunktgleichung subtrahiert"]
+        },
+        {
+            "frage": "Die x-Werte sind \\(1,3,5\\). Wie groß ist \\(\\bar{x}\\)?",
+            "antworten": ["\\(3\\)", "\\(9\\)", "\\(2\\)", "\\(5\\)"],
+            "fehler": ["Summe der x-Werte nicht durch ihre Anzahl geteilt", "Anzahl der Abstände statt Mittelwert verwendet", "Größten x-Wert als Mittelwert übernommen"]
+        },
+        {
+            "frage": "Die y-Werte sind \\(2,4,6,8\\). Wie groß ist \\(\\bar{y}\\)?",
+            "antworten": ["\\(5\\)", "\\(20\\)", "\\(4\\)", "\\(6\\)"],
+            "fehler": ["Summe der y-Werte nicht durch ihre Anzahl geteilt", "Anzahl der Werte als Mittelwert verwendet", "Einen mittleren Tabellenwert statt des Mittelwerts gewählt"]
+        },
+        {
+            "frage": "Für einen Datenpunkt gilt \\(x_i-\\bar{x}=-2\\) und \\(y_i-\\bar{y}=-3\\). Wie groß ist ihr Produkt?",
+            "antworten": ["\\(6\\)", "\\(-6\\)", "\\(5\\)", "\\(1\\)"],
+            "fehler": ["Vorzeichenregel beim Multiplizieren zweier negativer Zahlen missachtet", "Beträge addiert statt multipliziert", "Abweichungen voneinander subtrahiert"]
+        },
+        {
+            "frage": "Für einen Datenpunkt gilt \\(x_i-\\bar{x}=-2\\). Wie groß ist \\((x_i-\\bar{x})^2\\)?",
+            "antworten": ["\\(4\\)", "\\(-4\\)", "\\(2\\)", "\\(-2\\)"],
+            "fehler": ["Quadrat einer negativen Zahl fälschlich negativ berechnet", "Nur den Betrag der Abweichung gebildet statt quadriert", "Abweichung ohne Quadrieren übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(\\sum (x_i-\\bar{x})(y_i-\\bar{y})=8\\) und \\(\\sum (x_i-\\bar{x})^2=4\\). Wie groß ist \\(m\\)?",
+            "antworten": ["\\(2\\)", "\\(\\frac{1}{2}\\)", "\\(4\\)", "\\(12\\)"],
+            "fehler": ["Zähler und Nenner vertauscht", "Nur den Nenner als Steigung übernommen", "Zähler und Nenner addiert statt dividiert"]
+        },
+        {
+            "frage": "Gegeben sind \\(m=2\\), \\(\\bar{x}=3\\) und \\(\\bar{y}=7\\). Wie groß ist \\(b\\)?",
+            "antworten": ["\\(1\\)", "\\(11\\)", "\\(5\\)", "\\(-1\\)"],
+            "fehler": ["\\(m\\cdot\\bar{x}\\) zum y-Mittelwert addiert", "Nur \\(\\bar{y}-m\\) berechnet", "Subtraktionsreihenfolge vertauscht"]
+        },
+        {
+            "frage": "Durch welchen Punkt verläuft jede lineare Regressionsgerade der gegebenen Daten?",
+            "antworten": ["durch \\((\\bar{x}\\mid\\bar{y})\\)", "durch \\((0\\mid0)\\)", "durch den ersten Datenpunkt", "durch den letzten Datenpunkt"],
+            "fehler": ["Ursprung ohne Begründung als festen Punkt angenommen", "Einen einzelnen Messpunkt fälschlich als sicher getroffen angesehen", "Den letzten Messpunkt fälschlich als sicher getroffen angesehen"]
+        },
+        {
+            "frage": "Für die berechnete Regressionsgerade gilt \\(\\bar{x}=4\\) und \\(\\bar{y}=9\\). Welche Kontrolle muss stimmen?",
+            "antworten": ["\\(f(4)=9\\)", "\\(f(9)=4\\)", "\\(f(0)=9\\)", "\\(f(4)=0\\)"],
+            "fehler": ["x- und y-Koordinate des Schwerpunkts vertauscht", "y-Mittelwert fälschlich als y-Achsenabschnitt verwendet", "x-Mittelwert fälschlich als Nullstelle verwendet"]
+        }
+    ]
+}

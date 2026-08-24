@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Aussage ist der Satz vom Nullprodukt?",
+            "antworten": ["Ein Produkt ist null, wenn mindestens ein Faktor null ist.", "Ein Produkt ist null, wenn alle Faktoren gleich sind.", "Ein Produkt ist null, wenn die Faktoren addiert null ergeben.", "Ein Produkt ist null, wenn kein Faktor null ist."],
+            "fehler": ["Gleichheit der Faktoren fälschlich als Bedingung verwendet", "Summe statt Produkt betrachtet", "Bedingung des Satzes vom Nullprodukt ins Gegenteil verkehrt"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x-3)(x+2)\\)?",
+            "antworten": ["\\(x_1=3\\) und \\(x_2=-2\\)", "\\(x_1=-3\\) und \\(x_2=2\\)", "\\(x_1=3\\) und \\(x_2=2\\)", "\\(x_1=-3\\) und \\(x_2=-2\\)"],
+            "fehler": ["Bei beiden Faktoren das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x+2\\) das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x-3\\) das Vorzeichen der Nullstelle nicht gewechselt"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=4(x+1)(x-5)\\)?",
+            "antworten": ["\\(x_1=-1\\) und \\(x_2=5\\)", "\\(x_1=1\\) und \\(x_2=-5\\)", "\\(x_1=4\\) und \\(x_2=5\\)", "\\(x_1=-4\\) und \\(x_2=-1\\)"],
+            "fehler": ["Bei beiden Linearfaktoren das Vorzeichen der Nullstelle nicht gewechselt", "Vorfaktor \\(4\\) fälschlich als erste Nullstelle verwendet", "Der Vorfaktor \\(4\\) wurde mit falschem Vorzeichen als Nullstelle verwendet und die Nullstelle \\(5\\) übersehen"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=-2(x-4)(x-1)\\)?",
+            "antworten": ["\\(x_1=4\\) und \\(x_2=1\\)", "\\(x_1=-4\\) und \\(x_2=-1\\)", "\\(x_1=-2\\) und \\(x_2=4\\)", "\\(x_1=2\\) und \\(x_2=1\\)"],
+            "fehler": ["Bei beiden Linearfaktoren das Vorzeichen der Nullstelle nicht gewechselt", "Vorfaktor \\(-2\\) fälschlich als Nullstelle verwendet", "Betrag des Vorfaktors fälschlich als Nullstelle verwendet"]
+        },
+        {
+            "frage": "Welche Nullstelle gehört zum Faktor \\(x+7\\)?",
+            "antworten": ["\\(x=-7\\)", "\\(x=7\\)", "\\(x=0\\)", "\\(x=-1\\)"],
+            "fehler": ["Vorzeichen beim Nullsetzen des Faktors nicht gewechselt", "Variable fälschlich direkt null gesetzt", "Koeffizienten von \\(x\\) statt konstanten Term betrachtet"]
+        },
+        {
+            "frage": "Welche Nullstelle gehört zum Faktor \\(x-6\\)?",
+            "antworten": ["\\(x=6\\)", "\\(x=-6\\)", "\\(x=0\\)", "\\(x=1\\)"],
+            "fehler": ["Vorzeichen beim Nullsetzen des Faktors nicht gewechselt", "Variable fälschlich direkt null gesetzt", "Koeffizienten von \\(x\\) statt konstanten Term betrachtet"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x+3)(x+5)\\)?",
+            "antworten": ["\\(x_1=-3\\) und \\(x_2=-5\\)", "\\(x_1=3\\) und \\(x_2=5\\)", "\\(x_1=-3\\) und \\(x_2=5\\)", "\\(x_1=3\\) und \\(x_2=-5\\)"],
+            "fehler": ["Bei beiden Faktoren das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x+5\\) das Vorzeichen der Nullstelle nicht gewechselt", "Beim Faktor \\(x+3\\) das Vorzeichen der Nullstelle nicht gewechselt"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=3x(x-4)\\)?",
+            "antworten": ["\\(x_1=0\\) und \\(x_2=4\\)", "\\(x_1=3\\) und \\(x_2=4\\)", "\\(x_1=0\\) und \\(x_2=-4\\)", "\\(x_1=3\\) und \\(x_2=-4\\)"],
+            "fehler": ["Vorfaktor \\(3\\) statt Faktor \\(x\\) als Nullstelle gedeutet", "Beim Faktor \\(x-4\\) wurde das Vorzeichen beim Nullsetzen nicht gewechselt", "Vorfaktor als Nullstelle verwendet und zusätzlich das Vorzeichen der zweiten Nullstelle vertauscht"]
+        },
+        {
+            "frage": "Wie beeinflusst der Vorfaktor \\(5\\) in \\(f(x)=5(x-2)(x+4)\\) die Nullstellen?",
+            "antworten": ["Er verändert die Nullstellen nicht.", "Er verschiebt beide Nullstellen um \\(5\\).", "Er multipliziert beide Nullstellen mit \\(5\\).", "Er erzeugt die zusätzliche Nullstelle \\(x=5\\)."],
+            "fehler": ["Vorfaktor fälschlich als Verschiebung gedeutet", "Vorfaktor fälschlich auf die Nullstellen übertragen", "Vorfaktor fälschlich als weiterer Linearfaktor gedeutet"]
+        },
+        {
+            "frage": "Welche Nullstellen hat \\(f(x)=(x-2)^2\\)?",
+            "antworten": ["\\(x=2\\) ist eine doppelte Nullstelle.", "\\(x=-2\\) ist eine doppelte Nullstelle.", "\\(x=2\\) und \\(x=-2\\) sind Nullstellen.", "\\(x=0\\) ist die einzige Nullstelle."],
+            "fehler": ["Vorzeichen beim Nullsetzen des Faktors nicht gewechselt", "Quadrat fälschlich als Plus-minus-Zeichen vor der Nullstelle gedeutet", "Variable statt Faktor \\(x-2\\) null gesetzt"]
+        }
+    ]
+}

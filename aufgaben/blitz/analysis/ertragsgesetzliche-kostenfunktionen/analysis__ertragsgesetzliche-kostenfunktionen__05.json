@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben ist \\(K(x)=x^3-4x^2+6x+8\\). Wie lautet die variable Stückkostenfunktion?",
+            "antworten": [
+                "\\(k_v(x)=x^2-4x+6\\)",
+                "\\(k_v(x)=x^2-4x+6+\\frac{8}{x}\\)",
+                "\\(k_v(x)=3x^2-8x+6\\)",
+                "\\(k_v(x)=x^3-4x^2+6x\\)"
+            ],
+            "fehler": [
+                "Fixkostenanteil fälschlich in die variablen Stückkosten übernommen",
+                "Grenzkosten statt variable Stückkosten gebildet",
+                "Variable Gesamtkosten nicht durch \\(x\\) geteilt"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(k_v(x)=x^2-6x+12\\). Wie lautet \\(k_v'(x)\\)?",
+            "antworten": [
+                "\\(k_v'(x)=2x-6\\)",
+                "\\(k_v'(x)=x-6\\)",
+                "\\(k_v'(x)=2x+6\\)",
+                "\\(k_v'(x)=2x-6+12\\)"
+            ],
+            "fehler": [
+                "Faktor \\(2\\) beim Ableiten von \\(x^2\\) vergessen",
+                "Vorzeichen des linearen Terms beim Ableiten vertauscht",
+                "Konstanten Term beim Ableiten beibehalten"
+            ]
+        },
+        {
+            "frage": "Für das Betriebsminimum gilt \\(k_v'(x)=2x-6\\). Welche Menge ist \\(x_{BM}\\)?",
+            "antworten": [
+                "\\(3\\)",
+                "\\(-3\\)",
+                "\\(6\\)",
+                "\\(2\\)"
+            ],
+            "fehler": [
+                "Vorzeichen beim Lösen von \\(2x-6=0\\) vertauscht",
+                "Konstanten Term ohne Division durch \\(2\\) übernommen",
+                "Koeffizienten von \\(x\\) als Lösung übernommen"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(x_{BM}=3\\) und \\(k_v(x)=x^2-6x+12\\). Wie groß ist die kurzfristige Preisuntergrenze?",
+            "antworten": [
+                "\\(3\\)",
+                "\\(9\\)",
+                "\\(12\\)",
+                "\\(39\\)"
+            ],
+            "fehler": [
+                "Nur den quadratischen Term \\(3^2\\) berechnet",
+                "Konstanten Term als Ergebnis übernommen",
+                "Minuszeichen des linearen Terms beim Einsetzen als Pluszeichen gelesen"
+            ]
+        },
+        {
+            "frage": "Wie lautet die Ableitung von \\(f(x)=\\frac{1}{x}\\)?",
+            "antworten": [
+                "\\(f'(x)=-\\frac{1}{x^2}\\)",
+                "\\(f'(x)=\\frac{1}{x^2}\\)",
+                "\\(f'(x)=-\\frac{1}{x}\\)",
+                "\\(f'(x)=1\\)"
+            ],
+            "fehler": [
+                "Minuszeichen der Potenzregel vergessen",
+                "Exponent beim Ableiten nicht verändert",
+                "Kehrwertterm fälschlich wie \\(x\\) abgeleitet"
+            ]
+        },
+        {
+            "frage": "Wie lautet die Ableitung von \\(g(x)=\\frac{1}{x^2}\\)?",
+            "antworten": [
+                "\\(g'(x)=-\\frac{2}{x^3}\\)",
+                "\\(g'(x)=\\frac{2}{x^3}\\)",
+                "\\(g'(x)=-\\frac{1}{x^3}\\)",
+                "\\(g'(x)=-\\frac{2}{x}\\)"
+            ],
+            "fehler": [
+                "Minuszeichen der Potenzregel vergessen",
+                "Faktor \\(2\\) beim Ableiten vergessen",
+                "Exponent im Nenner beim Ableiten nicht erhöht"
+            ]
+        },
+        {
+            "frage": "Für die Wendestelle gilt \\(K''(x)=6x-12\\). Welche Menge ist \\(x_w\\)?",
+            "antworten": [
+                "\\(2\\)",
+                "\\(-2\\)",
+                "\\(12\\)",
+                "\\(6\\)"
+            ],
+            "fehler": [
+                "Vorzeichen beim Lösen von \\(6x-12=0\\) vertauscht",
+                "Konstanten Term ohne Division durch \\(6\\) übernommen",
+                "Koeffizienten von \\(x\\) als Lösung übernommen"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(K(x)=x^3-3x^2+5x+4\\). Wie lautet die Grenzkostenfunktion?",
+            "antworten": [
+                "\\(K'(x)=3x^2-6x+5\\)",
+                "\\(K'(x)=x^2-3x+5\\)",
+                "\\(K'(x)=3x^2+6x+5\\)",
+                "\\(K'(x)=3x^2-6x+5+4\\)"
+            ],
+            "fehler": [
+                "Exponenten ohne ihre Faktoren verringert",
+                "Vorzeichen beim Ableiten des quadratischen Terms vertauscht",
+                "Fixkosten beim Ableiten beibehalten"
+            ]
+        },
+        {
+            "frage": "Für das Betriebsoptimum gilt \\(k'(x)=2x-8\\). Welche Menge ist \\(x_{BO}\\)?",
+            "antworten": [
+                "\\(4\\)",
+                "\\(-4\\)",
+                "\\(8\\)",
+                "\\(2\\)"
+            ],
+            "fehler": [
+                "Vorzeichen beim Lösen von \\(2x-8=0\\) vertauscht",
+                "Konstanten Term ohne Division durch \\(2\\) übernommen",
+                "Koeffizienten von \\(x\\) als Lösung übernommen"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(x_{BO}=4\\) und \\(k(4)=7\\). Wie groß ist die langfristige Preisuntergrenze?",
+            "antworten": [
+                "\\(7\\)",
+                "\\(4\\)",
+                "\\(11\\)",
+                "\\(3\\)"
+            ],
+            "fehler": [
+                "Menge des Betriebsoptimums statt zugehörigen Stückkostenwert übernommen",
+                "Menge und Stückkostenwert addiert",
+                "Menge vom Stückkostenwert abgezogen"
+            ]
+        }
+    ]
+}

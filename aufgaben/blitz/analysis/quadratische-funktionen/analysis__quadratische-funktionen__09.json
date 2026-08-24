@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In welcher Form liegt \\(f(x)=2(x-3)^2+1\\) vor?",
+            "antworten": ["Scheitelpunktform", "Normalform", "faktorisierte Form", "lineare Form"],
+            "fehler": ["Die Klammerform mit einem Quadrat als Normalform eingeordnet", "Die Scheitelpunktform mit der Produktform aus Linearfaktoren verwechselt", "Eine quadratische Funktion fälschlich als lineare Funktion eingeordnet"]
+        },
+        {
+            "frage": "In welcher Form liegt \\(f(x)=-3(x+1)(x-4)\\) vor?",
+            "antworten": ["faktorisierte Form", "Scheitelpunktform", "Normalform", "Potenzform einer linearen Funktion"],
+            "fehler": ["Das Produkt zweier Linearfaktoren mit der Scheitelpunktform verwechselt", "Die nicht ausmultiplizierte Produktform als Normalform eingeordnet", "Das Produkt zweier Linearfaktoren fälschlich als lineare Funktion eingeordnet"]
+        },
+        {
+            "frage": "Welche Methode führt von \\(f(x)=x^2-6x+5\\) direkt zur Scheitelpunktform?",
+            "antworten": ["quadratische Ergänzung", "Nullprodukt", "Gleichsetzen", "lineare Regression"],
+            "fehler": ["Eine Methode zum Bestimmen von Nullstellen statt zum Bilden der Scheitelpunktform gewählt", "Eine Methode für Schnittpunkte statt für die Formumwandlung gewählt", "Ein statistisches Verfahren statt einer algebraischen Umformung gewählt"]
+        },
+        {
+            "frage": "Welche Methode führt von einer Scheitelpunktform zur Normalform?",
+            "antworten": ["Klammer ausmultiplizieren und zusammenfassen", "Nullstellen mit der p-q-Formel berechnen", "Den Funktionsterm gleich null setzen", "Drei Punkte in ein LGS einsetzen"],
+            "fehler": ["Eine Nullstellenmethode statt der direkten Formumwandlung gewählt", "Nur eine Gleichung für Nullstellen aufgestellt, ohne die Form umzuwandeln", "Ein unnötiges Verfahren zum Aufstellen einer Funktion statt zum Umformen gewählt"]
+        },
+        {
+            "frage": "Welche Normalform gehört zu \\(f(x)=(x-2)^2+1\\)?",
+            "antworten": ["\\(f(x)=x^2-4x+5\\)", "\\(f(x)=x^2-4x+3\\)", "\\(f(x)=x^2-2x+5\\)", "\\(f(x)=x^2+4x+5\\)"],
+            "fehler": ["Beim Ausmultiplizieren den konstanten Term \\(4\\) fälschlich um \\(1\\) vermindert", "Den mittleren Term von \\((x-2)^2\\) als \\(-2x\\) statt \\(-4x\\) gebildet", "Vorzeichen des mittleren Terms beim Quadrieren der Differenz vertauscht"]
+        },
+        {
+            "frage": "Welche Normalform gehört zu \\(f(x)=(x-1)(x+3)\\)?",
+            "antworten": ["\\(f(x)=x^2+2x-3\\)", "\\(f(x)=x^2+4x-3\\)", "\\(f(x)=x^2-2x-3\\)", "\\(f(x)=x^2+2x+3\\)"],
+            "fehler": ["Das Minuszeichen im Kreuzprodukt \\((-1)\\cdot x=-x\\) übersehen und daher \\(3x+x=4x\\) gerechnet", "Vorzeichen des linearen Terms vertauscht", "Vorzeichen des Produkts \\((-1)\\cdot3\\) vertauscht"]
+        },
+        {
+            "frage": "Welche Scheitelpunktform gehört zu \\(f(x)=x^2+4x+1\\)?",
+            "antworten": ["\\(f(x)=(x+2)^2-3\\)", "\\(f(x)=(x+2)^2+1\\)", "\\(f(x)=(x-2)^2-3\\)", "\\(f(x)=(x+4)^2-15\\)"],
+            "fehler": ["Die bei der quadratischen Ergänzung hinzugefügte \\(4\\) nicht wieder ausgeglichen", "Vorzeichen in der binomischen Klammer vertauscht", "Den linearen Koeffizienten nicht halbiert"]
+        },
+        {
+            "frage": "Welche Zahl ergänzt \\(x^2-6x\\) zu einem vollständigen Quadrat?",
+            "antworten": ["\\(9\\)", "\\(3\\)", "\\(6\\)", "\\(36\\)"],
+            "fehler": ["Den halbierten linearen Koeffizienten nicht quadriert", "Den Betrag des linearen Koeffizienten unverändert übernommen", "Den linearen Koeffizienten quadriert, ohne ihn vorher zu halbieren"]
+        },
+        {
+            "frage": "Welche faktorisierte Form gehört zu \\(f(x)=x^2-5x+6\\)?",
+            "antworten": ["\\(f(x)=(x-2)(x-3)\\)", "\\(f(x)=(x+2)(x+3)\\)", "\\(f(x)=(x-1)(x-6)\\)", "\\(f(x)=(x-2)(x+3)\\)"],
+            "fehler": ["Vorzeichen beider Nullstellenfaktoren vertauscht", "Zahlen mit passendem Produkt, aber falscher Summe gewählt", "Nur einen Faktor mit passendem Vorzeichen gewählt"]
+        },
+        {
+            "frage": "Wann lässt sich eine quadratische Normalform über reelle Nullstellen faktorisieren?",
+            "antworten": ["Wenn sie mindestens eine reelle Nullstelle besitzt.", "Nur wenn ihr Scheitel auf der y-Achse liegt.", "Nur wenn der Leitkoeffizient \\(1\\) ist.", "Wenn sie nach oben geöffnet ist."],
+            "fehler": ["Faktorisierbarkeit fälschlich an die Lage der Symmetrieachse gebunden", "Einen beliebigen Leitkoeffizienten in der faktorisierten Form ausgeschlossen", "Faktorisierbarkeit fälschlich an die Öffnungsrichtung gebunden"]
+        }
+    ]
+}

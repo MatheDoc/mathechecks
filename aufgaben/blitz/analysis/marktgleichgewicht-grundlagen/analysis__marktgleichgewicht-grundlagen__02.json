@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie wird der Höchstpreis aus der Nachfragefunktion \\(p_N\\) berechnet?",
+            "antworten": ["\\(p_N(0)\\)", "\\(p_N(x)=0\\)", "\\(p_N(x)=p_A(x)\\)", "\\(p_A(0)\\)"],
+            "fehler": ["Ansatz für die Sättigungsmenge gewählt", "Ansatz für die Gleichgewichtsmenge gewählt", "Ansatz für den Mindestangebotspreis gewählt"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_N(x)=-2x+20\\). Wie groß ist der Höchstpreis?",
+            "antworten": ["\\(20\\) GE", "\\(10\\) GE", "\\(-2\\) GE", "\\(0\\) GE"],
+            "fehler": ["Sättigungsmenge statt Höchstpreis berechnet", "Steigung statt y-Achsenabschnitt verwendet", "Bei \\(x=0\\) fälschlich den gesamten Term zu null gesetzt"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt die Sättigungsmenge?",
+            "antworten": ["\\(p_N(x)=0\\)", "\\(p_N(0)\\)", "\\(p_A(x)=0\\)", "\\(p_N(x)=p_A(x)\\)"],
+            "fehler": ["Höchstpreis statt Sättigungsmenge angesetzt", "Nullstelle der Angebotsfunktion statt der Nachfragefunktion gesucht", "Gleichgewichtsmenge statt Sättigungsmenge angesetzt"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_N(x)=-3x+18\\). Wie groß ist die Sättigungsmenge?",
+            "antworten": ["\\(6\\) ME", "\\(18\\) ME", "\\(3\\) ME", "\\(-6\\) ME"],
+            "fehler": ["y-Achsenabschnitt statt Nullstelle angegeben", "Nur den Betrag der Steigung verwendet", "Vorzeichen beim Lösen der Gleichung vertauscht"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_A(x)=2x+5\\). Wie groß ist der Mindestangebotspreis?",
+            "antworten": ["\\(5\\) GE", "\\(2\\) GE", "\\(7\\) GE", "\\(0\\) GE"],
+            "fehler": ["Steigung statt y-Achsenabschnitt verwendet", "Ohne Anlass \\(x=1\\) eingesetzt", "y-Achsenabschnitt der Angebotsfunktion übergangen"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt die Gleichgewichtsmenge?",
+            "antworten": ["\\(p_N(x)=p_A(x)\\)", "\\(p_N(x)=0\\)", "\\(p_A(x)=0\\)", "\\(p_N(0)=p_A(0)\\)"],
+            "fehler": ["Sättigungsmenge statt Gleichgewichtsmenge angesetzt", "Nullstelle der Angebotsfunktion statt Schnittpunkt gesucht", "Nur die y-Achsenabschnitte statt die Funktionswerte gleichgesetzt"]
+        },
+        {
+            "frage": "Es gilt \\(p_N(x)=-x+12\\) und \\(p_A(x)=x+4\\). Wie groß ist \\(x_G\\)?",
+            "antworten": ["\\(4\\) ME", "\\(8\\) ME", "\\(12\\) ME", "\\(16\\) ME"],
+            "fehler": ["Nur die Differenz der konstanten Terme berechnet", "Höchstpreis statt Gleichgewichtsmenge angegeben", "Konstante Terme addiert statt die Gleichung zu lösen"]
+        },
+        {
+            "frage": "Die Gleichgewichtsmenge ist \\(x_G=3\\) und \\(p_N(x)=-2x+14\\). Wie groß ist \\(p_G\\)?",
+            "antworten": ["\\(8\\) GE", "\\(11\\) GE", "\\(14\\) GE", "\\(20\\) GE"],
+            "fehler": ["Nur \\(14-3\\) statt \\(14-2\\cdot3\\) gerechnet", "Höchstpreis statt Gleichgewichtspreis angegeben", "Vorzeichen des x-Terms vertauscht"]
+        },
+        {
+            "frage": "Die Gleichgewichtsmenge ist \\(x_G=4\\) und \\(p_A(x)=2x+3\\). Wie groß ist \\(p_G\\)?",
+            "antworten": ["\\(11\\) GE", "\\(9\\) GE", "\\(8\\) GE", "\\(5\\) GE"],
+            "fehler": ["Nur \\(2+4+3\\) gerechnet", "Konstanten Term beim Einsetzen weggelassen", "Produkt \\(2\\cdot4\\) als \\(2\\) gerechnet"]
+        },
+        {
+            "frage": "Im Marktgleichgewicht gilt \\(x_G=5\\) ME und \\(p_G=6\\) GE. Wie groß ist der Umsatz \\(U_G\\)?",
+            "antworten": ["\\(30\\) GE", "\\(11\\) GE", "\\(1\\) GE", "\\(60\\) GE"],
+            "fehler": ["Gleichgewichtsmenge und Gleichgewichtspreis addiert", "Differenz statt Produkt berechnet", "Produkt ohne Anlass verdoppelt"]
+        }
+    ]
+}

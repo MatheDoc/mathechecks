@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Für \\(K_a(0)=a+4\\): Welche Bedingung sichert positive Fixkosten?",
+            "antworten": [
+                "\\(a>-4\\)",
+                "\\(a<-4\\)",
+                "\\(a>4\\)",
+                "\\(a\\geq -4\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Umstellen vertauscht",
+                "Vorzeichen der Konstante beim Umstellen nicht gewechselt",
+                "Null als Fixkosten zugelassen"
+            ]
+        },
+        {
+            "frage": "Die Wendestelle liegt bei \\(x_w=a-1\\). Für welche Parameter ist sie positiv?",
+            "antworten": [
+                "\\(a>1\\)",
+                "\\(a<1\\)",
+                "\\(a>-1\\)",
+                "\\(a\\geq 1\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Umstellen vertauscht",
+                "Vorzeichen der Konstante beim Umstellen nicht gewechselt",
+                "Wendestelle null fälschlich als positiv zugelassen"
+            ]
+        },
+        {
+            "frage": "Das Minimum von \\(K_a'\\) beträgt \\(a-6\\). Für welche Parameter gilt \\(K_a'(x)\\geq0\\) für alle \\(x\\)?",
+            "antworten": [
+                "\\(a\\geq6\\)",
+                "\\(a>6\\)",
+                "\\(a\\leq6\\)",
+                "\\(a\\geq-6\\)"
+            ],
+            "fehler": [
+                "Minimum null trotz erlaubter Bedingung \\(K_a'\\geq0\\) ausgeschlossen",
+                "Ungleichungsrichtung beim Umstellen vertauscht",
+                "Vorzeichen der Konstante beim Umstellen nicht gewechselt"
+            ]
+        },
+        {
+            "frage": "Für \\(K_a(x)=x^3-9x^2+ax+60\\) ist nur \\(9-\\frac{a}{3}\\leq0\\) zu lösen. Welcher Parameterbereich folgt?",
+            "antworten": [
+                "\\(a\\geq27\\)",
+                "\\(a\\leq27\\)",
+                "\\(a\\geq3\\)",
+                "\\(a\\leq3\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Umstellen vertauscht",
+                "Mit \\(3\\) statt mit \\(27\\) als Grenzwert gerechnet",
+                "Grenzwert und Ungleichungsrichtung falsch bestimmt"
+            ]
+        },
+        {
+            "frage": "Bei \\(K_t(x)=tx^3-3x^2+4x+5\\): Welche notwendige Bedingung gilt für den Leitkoeffizienten?",
+            "antworten": [
+                "\\(t>0\\)",
+                "\\(t<0\\)",
+                "\\(t=0\\)",
+                "\\(t\\leq0\\)"
+            ],
+            "fehler": [
+                "Negativen Leitkoeffizienten zugelassen",
+                "Kubischen Term durch \\(t=0\\) entfernt",
+                "Nicht positiven Leitkoeffizienten zugelassen"
+            ]
+        },
+        {
+            "frage": "Bei \\(K_t(x)=x^3-3x^2+4x+t-2\\): Für welche Parameter sind die Fixkosten positiv?",
+            "antworten": [
+                "\\(t>2\\)",
+                "\\(t<2\\)",
+                "\\(t>-2\\)",
+                "\\(t\\geq2\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Umstellen vertauscht",
+                "Vorzeichen der Konstante beim Umstellen nicht gewechselt",
+                "Fixkosten null fälschlich als positiv zugelassen"
+            ]
+        },
+        {
+            "frage": "Für positiven Leitkoeffizienten gilt: Eine positive Wendestelle erfordert \\(b<0\\). Hier ist \\(b=-t\\). Was folgt?",
+            "antworten": [
+                "\\(t>0\\)",
+                "\\(t<0\\)",
+                "\\(t=0\\)",
+                "\\(t\\leq0\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Multiplizieren mit \\(-1\\) nicht gewechselt",
+                "Strenge Bedingung fälschlich als Gleichung gedeutet",
+                "Negative und null als zulässige Parameterwerte übernommen"
+            ]
+        },
+        {
+            "frage": "Die Monotoniebedingung lautet bereits \\(9\\leq3t\\). Welcher Parameterbereich folgt?",
+            "antworten": [
+                "\\(t\\geq3\\)",
+                "\\(t\\leq3\\)",
+                "\\(t\\geq6\\)",
+                "\\(t\\geq9\\)"
+            ],
+            "fehler": [
+                "Ungleichungsrichtung beim Dividieren durch eine positive Zahl vertauscht",
+                "Durch einen falschen Faktor dividiert",
+                "Division durch \\(3\\) nicht ausgeführt"
+            ]
+        },
+        {
+            "frage": "In \\(K_t(x)=x^3-6x^2+tx+5\\) verändert \\(t\\) nur den linearen Term. Welches Kriterium kann dadurch betroffen sein?",
+            "antworten": [
+                "die Monotonie",
+                "der Grad",
+                "der y-Achsenabschnitt",
+                "die Lage der Wendestelle"
+            ],
+            "fehler": [
+                "Unveränderten kubischen Term fälschlich als parameterabhängig gedeutet",
+                "Unveränderten konstanten Term fälschlich als parameterabhängig gedeutet",
+                "Wendestelle einer kubischen Funktion fälschlich vom linearen Koeffizienten abhängig gemacht"
+            ]
+        },
+        {
+            "frage": "Für \\(K_a(x)=x^3-9x^2+ax+60\\) gilt: ertragsgesetzlich genau für \\(a\\geq27\\). Welcher Wert ist zulässig?",
+            "antworten": [
+                "\\(a=30\\)",
+                "\\(a=20\\)",
+                "\\(a=10\\)",
+                "\\(a=0\\)"
+            ],
+            "fehler": [
+                "Parameterwert unterhalb der Grenze \\(27\\) gewählt",
+                "Parameterwert unterhalb der Grenze \\(27\\) gewählt",
+                "Parameterwert unterhalb der Grenze \\(27\\) gewählt"
+            ]
+        }
+    ]
+}

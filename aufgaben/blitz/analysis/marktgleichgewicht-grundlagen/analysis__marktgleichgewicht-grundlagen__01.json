@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Stelle des Graphen von \\(p_N\\) zeigt die Sättigungsmenge?",
+            "antworten": ["Schnittpunkt mit der x-Achse", "Schnittpunkt mit der y-Achse", "Schnittpunkt von \\(p_N\\) und \\(p_A\\)", "Tiefster Punkt von \\(p_A\\)"],
+            "fehler": ["y-Achsenabschnitt mit der Nullstelle verwechselt", "Gleichgewichtspunkt statt Sättigungsmenge gewählt", "Merkmal der Angebotsfunktion statt Nullstelle von \\(p_N\\) gewählt"]
+        },
+        {
+            "frage": "Der Graph von \\(p_N\\) schneidet die x-Achse bei \\(x=18\\). Wie groß ist die Sättigungsmenge?",
+            "antworten": ["\\(18\\) ME", "\\(0\\) ME", "\\(18\\) GE", "Nicht bestimmbar"],
+            "fehler": ["Funktionswert an der Nullstelle statt x-Koordinate verwendet", "Einheit der Menge mit der Einheit des Preises verwechselt", "Ablesbare x-Koordinate der Nullstelle übersehen"]
+        },
+        {
+            "frage": "Welche Stelle des Graphen von \\(p_N\\) zeigt den Höchstpreis?",
+            "antworten": ["Schnittpunkt mit der y-Achse", "Schnittpunkt mit der x-Achse", "Schnittpunkt von \\(p_N\\) und \\(p_A\\)", "Höchster Punkt von \\(p_A\\)"],
+            "fehler": ["Nullstelle mit dem y-Achsenabschnitt verwechselt", "Gleichgewichtspunkt statt Höchstpreis gewählt", "Angebotsfunktion statt Nachfragefunktion betrachtet"]
+        },
+        {
+            "frage": "Der Graph von \\(p_N\\) schneidet die y-Achse bei \\(p=40\\). Wie groß ist der Höchstpreis?",
+            "antworten": ["\\(40\\) GE", "\\(0\\) GE", "\\(40\\) ME", "Nicht bestimmbar"],
+            "fehler": ["x-Koordinate des y-Achsenabschnitts statt Preis abgelesen", "Einheit des Preises mit der Einheit der Menge verwechselt", "Ablesbaren y-Achsenabschnitt von \\(p_N\\) übersehen"]
+        },
+        {
+            "frage": "Welche Stelle des Graphen von \\(p_A\\) zeigt den Mindestangebotspreis?",
+            "antworten": ["Schnittpunkt mit der y-Achse", "Schnittpunkt mit der x-Achse", "Schnittpunkt von \\(p_N\\) und \\(p_A\\)", "y-Achsenabschnitt von \\(p_N\\)"],
+            "fehler": ["Nullstelle von \\(p_A\\) statt y-Achsenabschnitt gewählt", "Gleichgewichtspunkt statt Mindestangebotspreis gewählt", "Höchstpreis der Nachfragefunktion gewählt"]
+        },
+        {
+            "frage": "Der Graph von \\(p_A\\) schneidet die y-Achse bei \\(p=12\\). Wie groß ist der Mindestangebotspreis?",
+            "antworten": ["\\(12\\) GE", "\\(0\\) GE", "\\(12\\) ME", "Nicht bestimmbar"],
+            "fehler": ["x-Koordinate des y-Achsenabschnitts statt Preis abgelesen", "Einheit des Preises mit der Einheit der Menge verwechselt", "Ablesbaren y-Achsenabschnitt von \\(p_A\\) übersehen"]
+        },
+        {
+            "frage": "Welche Stelle zeigt im gemeinsamen Diagramm den Gleichgewichtspunkt?",
+            "antworten": ["Schnittpunkt von \\(p_N\\) und \\(p_A\\)", "Nullstelle von \\(p_N\\)", "y-Achsenabschnitt von \\(p_N\\)", "y-Achsenabschnitt von \\(p_A\\)"],
+            "fehler": ["Sättigungsmenge statt Gleichgewichtspunkt gewählt", "Höchstpreis statt Gleichgewichtspunkt gewählt", "Mindestangebotspreis statt Gleichgewichtspunkt gewählt"]
+        },
+        {
+            "frage": "Die Graphen von \\(p_N\\) und \\(p_A\\) schneiden sich bei \\((6\\mid 22)\\). Wie groß ist \\(x_G\\)?",
+            "antworten": ["\\(6\\) ME", "\\(22\\) ME", "\\(6\\) GE", "\\(22\\) GE"],
+            "fehler": ["y-Koordinate statt x-Koordinate verwendet", "Richtige Zahl mit der Preiseinheit angegeben", "Gleichgewichtspreis statt Gleichgewichtsmenge angegeben"]
+        },
+        {
+            "frage": "Die Graphen von \\(p_N\\) und \\(p_A\\) schneiden sich bei \\((6\\mid 22)\\). Wie groß ist \\(p_G\\)?",
+            "antworten": ["\\(22\\) GE", "\\(6\\) GE", "\\(22\\) ME", "\\(6\\) ME"],
+            "fehler": ["x-Koordinate statt y-Koordinate verwendet", "Richtige Zahl mit der Mengeneinheit angegeben", "Gleichgewichtsmenge statt Gleichgewichtspreis angegeben"]
+        },
+        {
+            "frage": "Der fallende Nachfragegraph trifft die y-Achse bei \\(30\\), die x-Achse bei \\(15\\). Welche Zahl ist die Sättigungsmenge?",
+            "antworten": ["\\(15\\)", "\\(30\\)", "\\(0\\)", "\\(45\\)"],
+            "fehler": ["Höchstpreis am y-Achsenabschnitt gewählt", "Funktionswert an der Nullstelle gewählt", "Beide Achsenabschnitte addiert"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Zielfunktion beschreibt die Abschöpfung in Abhängigkeit von \\(x_2\\)?",
+            "antworten": ["\\(A(x_2)=x_2\\cdot(p_N(x_2)-p_G)\\)", "\\(A(x_2)=x_2\\cdot(p_G-p_N(x_2))\\)", "\\(A(x_2)=x_G\\cdot(p_N(x_2)-p_G)\\)", "\\(A(x_2)=x_2+p_N(x_2)-p_G\\)"],
+            "fehler": ["Preisdifferenz in falscher Reihenfolge gebildet", "Gleichgewichtsmenge statt Teilmarktmenge als Breite verwendet", "Breite und Höhe addiert statt multipliziert"]
+        },
+        {
+            "frage": "Warum wird in der Zielfunktion \\(p_2\\) durch \\(p_N(x_2)\\) ersetzt?",
+            "antworten": ["Damit \\(A\\) nur von \\(x_2\\) abhängt.", "Damit \\(A\\) nur von \\(x_G\\) abhängt.", "Damit die Angebotsfunktion entfällt.", "Damit \\(p_G=0\\) gesetzt werden kann."],
+            "fehler": ["Abhängigkeit fälschlich auf die Gleichgewichtsmenge verlagert", "Ersetzung ohne Bezug zur Nachfragefunktion gedeutet", "Ersetzung fälschlich mit einem Gleichgewichtspreis von null begründet"]
+        },
+        {
+            "frage": "Welche notwendige Bedingung muss eine innere Maximalstelle von \\(A\\) erfüllen?",
+            "antworten": ["\\(A'(x_2)=0\\)", "\\(A(x_2)=0\\)", "\\(A''(x_2)=0\\)", "\\(p_N(x_2)=0\\)"],
+            "fehler": ["Nullstelle der Zielfunktion statt stationäre Stelle gesucht", "Wendestellenbedingung statt notwendiger Extremstellenbedingung gewählt", "Sättigungsmenge statt Extremstelle der Abschöpfung bestimmt"]
+        },
+        {
+            "frage": "Welche Bedingung bestätigt an einer stationären Stelle ein Maximum von \\(A\\)?",
+            "antworten": ["\\(A''(x_2)<0\\)", "\\(A''(x_2)>0\\)", "\\(A'(x_2)>0\\)", "\\(A(x_2)=0\\)"],
+            "fehler": ["Tiefpunktbedingung statt Hochpunktbedingung gewählt", "Positive Steigung statt Krümmung an der stationären Stelle geprüft", "Nullstelle der Zielfunktion statt Maximum geprüft"]
+        },
+        {
+            "frage": "Wie muss \\(A'\\) an einer Maximalstelle das Vorzeichen wechseln?",
+            "antworten": ["von positiv zu negativ", "von negativ zu positiv", "von positiv zu positiv", "von null zu positiv"],
+            "fehler": ["Vorzeichenwechsel eines Minimums gewählt", "Keinen Vorzeichenwechsel und damit kein Maximum beschrieben", "Nur den Wert direkt an der Stelle statt den Wechsel betrachtet"]
+        },
+        {
+            "frage": "Es gilt \\(A'(3)=0\\) und \\(A''(3)=-4\\). Welche Aussage folgt?",
+            "antworten": ["Bei \\(x_2=3\\) liegt ein lokales Maximum von \\(A\\).", "Bei \\(x_2=3\\) liegt ein lokales Minimum von \\(A\\).", "Bei \\(x_2=-4\\) liegt ein lokales Maximum von \\(A\\).", "\\(A(3)=0\\)"],
+            "fehler": ["Negative zweite Ableitung als Tiefpunktbedingung gedeutet", "Wert der zweiten Ableitung als Teilmarktmenge verwendet", "Notwendige Bedingung mit dem Funktionswert null verwechselt"]
+        },
+        {
+            "frage": "Die optimale Teilmarktmenge \\(x_2\\) ist bestimmt. Wie erhält man danach den Teilmarktpreis?",
+            "antworten": ["\\(p_2=p_N(x_2)\\)", "\\(p_2=p_A(x_2)\\)", "\\(p_2=A(x_2)\\)", "\\(p_2=p_G-x_2\\)"],
+            "fehler": ["Angebotsfunktion statt Nachfragefunktion ausgewertet", "Abschöpfungsbetrag mit dem Teilmarktpreis verwechselt", "Teilmarktpreis ohne Nachfragefunktion aus Preis und Menge gebildet"]
+        },
+        {
+            "frage": "Es gilt \\(p_N(x)=12-x\\) und optimal ist \\(x_2=4\\). Wie groß ist \\(p_2\\)?",
+            "antworten": ["\\(8\\) GE pro ME", "\\(4\\) GE pro ME", "\\(16\\) GE pro ME", "\\(48\\) GE pro ME"],
+            "fehler": ["Nur die optimale Teilmarktmenge angegeben", "Subtraktion als Addition ausgeführt", "Achsenabschnitt mit der Teilmarktmenge multipliziert"]
+        },
+        {
+            "frage": "Gegeben sind \\(A(2)=10\\), \\(A(3)=12\\) und \\(A(4)=9\\). Welcher gegebene Wert ist am größten?",
+            "antworten": ["\\(A(3)=12\\)", "\\(A(2)=10\\)", "\\(A(4)=9\\)", "Alle drei Werte sind gleich groß."],
+            "fehler": ["Ersten statt größten gegebenen Funktionswert gewählt", "Größtes Argument statt größten Funktionswert gewählt", "Unterschiedliche Funktionswerte als gleich groß gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\(p_N(x_2)=10-x_2\\) und \\(p_G=4\\). Welche Zielfunktion entsteht durch Einsetzen?",
+            "antworten": ["\\(A(x_2)=x_2\\cdot(6-x_2)\\)", "\\(A(x_2)=x_2\\cdot(14-x_2)\\)", "\\(A(x_2)=x_2\\cdot(x_2-6)\\)", "\\(A(x_2)=6-x_2\\)"],
+            "fehler": ["Gleichgewichtspreis addiert statt subtrahiert", "Preisdifferenz in falscher Reihenfolge gebildet", "Faktor \\(x_2\\) aus der Flächenformel weggelassen"]
+        }
+    ]
+}

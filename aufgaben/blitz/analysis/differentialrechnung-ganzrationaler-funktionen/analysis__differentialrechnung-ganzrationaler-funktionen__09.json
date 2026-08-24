@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die notwendige Bedingung für eine Wendestelle bei \\(x_0\\)?",
+            "antworten": [
+                "\\(f^{\\prime\\prime}(x_0)=0\\)",
+                "\\(f'(x_0)=0\\)",
+                "\\(f(x_0)=0\\)",
+                "\\(f^{\\prime\\prime\\prime}(x_0)=0\\)"
+            ],
+            "fehler": [
+                "Bedingung für eine mögliche Extremstelle statt für eine Wendestelle gewählt",
+                "Wendestelle mit Nullstelle der Funktion verwechselt",
+                "Dritte statt zweite Ableitung als notwendige Bedingung verwendet"
+            ]
+        },
+        {
+            "frage": "Welche Bedingung bestätigt in einem einfachen Fall den Wendestellenkandidaten \\(x_0\\)?",
+            "antworten": [
+                "\\(f^{\\prime\\prime\\prime}(x_0)\\neq 0\\)",
+                "\\(f^{\\prime\\prime\\prime}(x_0)=0\\)",
+                "\\(f'(x_0)\\neq 0\\)",
+                "\\(f(x_0)=0\\)"
+            ],
+            "fehler": [
+                "Hinreichenden Test durch seinen unentscheidbaren Fall ersetzt",
+                "Nicht waagrechte Tangente fälschlich als Wendekriterium verwendet",
+                "Wendestelle fälschlich an eine Nullstelle von \\(f\\) gebunden"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f^{\\prime\\prime}(x)=6x-12\\). Welche Stelle erfüllt die notwendige Wendebedingung?",
+            "antworten": [
+                "\\(x=2\\)",
+                "\\(x=-2\\)",
+                "\\(x=6\\)",
+                "\\(x=12\\)"
+            ],
+            "fehler": [
+                "Vorzeichen beim Lösen von \\(6x-12=0\\) vertauscht",
+                "Koeffizienten \\(6\\) als Lösung übernommen",
+                "Konstanten Term \\(12\\) als Lösung übernommen"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(1)=0\\) und \\(f^{\\prime\\prime\\prime}(1)=-4\\). Welche Aussage ist richtig?",
+            "antworten": [
+                "Bei \\(x=1\\) liegt eine Wendestelle vor.",
+                "Bei \\(x=1\\) liegt keine Wendestelle vor.",
+                "Die Bedingungen erlauben keine Entscheidung.",
+                "Bei \\(x=-4\\) liegt eine Wendestelle vor."
+            ],
+            "fehler": [
+                "Von \\(f^{\\prime\\prime\\prime}(1)<0\\) fälschlich auf das Fehlen einer Wendestelle geschlossen",
+                "Den von null verschiedenen Wert der dritten Ableitung nicht als hinreichend erkannt",
+                "Ableitungswert \\(-4\\) mit der Wendestelle verwechselt"
+            ]
+        },
+        {
+            "frage": "Was bedeutet \\(f^{\\prime\\prime\\prime}(x_0)>0\\) an einer bestätigten Wendestelle?",
+            "antworten": [
+                "Die Steigung von \\(f\\) ist dort lokal minimal.",
+                "Die Steigung von \\(f\\) ist dort lokal maximal.",
+                "Der Funktionswert von \\(f\\) ist dort lokal minimal.",
+                "Der Funktionswert von \\(f\\) ist dort null."
+            ],
+            "fehler": [
+                "Positive dritte Ableitung mit maximaler statt minimaler Steigung verbunden",
+                "Extremum der Steigung mit einem Tiefpunkt von \\(f\\) verwechselt",
+                "Wendestelle fälschlich als Nullstelle von \\(f\\) gedeutet"
+            ]
+        },
+        {
+            "frage": "Was bedeutet \\(f^{\\prime\\prime\\prime}(x_0)<0\\) an einer bestätigten Wendestelle?",
+            "antworten": [
+                "Die Steigung von \\(f\\) ist dort lokal maximal.",
+                "Die Steigung von \\(f\\) ist dort lokal minimal.",
+                "Der Funktionswert von \\(f\\) ist dort lokal maximal.",
+                "Die Steigung von \\(f\\) ist dort null."
+            ],
+            "fehler": [
+                "Negative dritte Ableitung mit minimaler statt maximaler Steigung verbunden",
+                "Extremum der Steigung mit einem Hochpunkt von \\(f\\) verwechselt",
+                "Maximale Steigung fälschlich mit waagrechter Tangente gleichgesetzt"
+            ]
+        },
+        {
+            "frage": "Eine Wendestelle \\(x_0\\) ist bestätigt. Wie erhältst du die y-Koordinate des Wendepunkts?",
+            "antworten": [
+                "\\(x_0\\) in \\(f\\) einsetzen",
+                "\\(x_0\\) in \\(f'\\) einsetzen",
+                "\\(x_0\\) in \\(f^{\\prime\\prime}\\) einsetzen",
+                "\\(x_0\\) in \\(f^{\\prime\\prime\\prime}\\) einsetzen"
+            ],
+            "fehler": [
+                "Steigung statt y-Koordinate des Graphen berechnet",
+                "Notwendige Wendebedingung erneut ausgewertet statt den Funktionswert zu berechnen",
+                "Hinreichenden Test erneut ausgewertet statt den Funktionswert zu berechnen"
+            ]
+        },
+        {
+            "frage": "Welche Wendestelle hat \\(f(x)=x^3\\)?",
+            "antworten": [
+                "\\(x=0\\)",
+                "\\(x=1\\)",
+                "\\(x=-1\\)",
+                "keine"
+            ],
+            "fehler": [
+                "Stelle \\(1\\) ohne Lösen von \\(f^{\\prime\\prime}(x)=6x=0\\) gewählt",
+                "Stelle \\(-1\\) ohne Lösen von \\(f^{\\prime\\prime}(x)=6x=0\\) gewählt",
+                "Den Kandidaten \\(x=0\\) trotz \\(f^{\\prime\\prime\\prime}(0)=6\\neq0\\) verworfen"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(f^{\\prime\\prime}(0)=0\\) und \\(f^{\\prime\\prime\\prime}(0)=0\\). Was folgt aus diesem Test?",
+            "antworten": [
+                "Der Test erlaubt noch keine Entscheidung über eine Wendestelle.",
+                "Bei \\(x=0\\) liegt sicher eine Wendestelle vor.",
+                "Bei \\(x=0\\) liegt sicher keine Wendestelle vor.",
+                "Bei \\(x=0\\) liegt sicher ein Hochpunkt vor."
+            ],
+            "fehler": [
+                "Das Versagen des hinreichenden Tests fälschlich als Bestätigung gedeutet",
+                "Das Versagen des hinreichenden Tests fälschlich als Ausschluss gedeutet",
+                "Bedingungen an zweite und dritte Ableitung fälschlich als Hochpunktkriterium gedeutet"
+            ]
+        },
+        {
+            "frage": "Gegeben ist \\(f^{\\prime\\prime}(x)=12x+6\\). Welche Gleichung bestimmt den Wendestellenkandidaten?",
+            "antworten": [
+                "\\(12x+6=0\\)",
+                "\\(12x+6=1\\)",
+                "\\(12x=0\\)",
+                "\\(6=0\\)"
+            ],
+            "fehler": [
+                "Zweite Ableitung auf \\(1\\) statt auf \\(0\\) gesetzt",
+                "Konstanten Term der zweiten Ableitung weggelassen",
+                "Variablen Term der zweiten Ableitung weggelassen"
+            ]
+        }
+    ]
+}

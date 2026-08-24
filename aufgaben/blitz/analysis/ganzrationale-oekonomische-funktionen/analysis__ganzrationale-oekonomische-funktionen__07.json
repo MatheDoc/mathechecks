@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Preis-Absatz-Funktion passt zu einem Angebotsmonopol?",
+            "antworten": ["\\(p(x)=-2x+20\\)", "\\(p(x)=20\\)", "\\(p(x)=2x+20\\)", "\\(p(x)=20x\\)"],
+            "fehler": ["Konstanten Preis eines Angebotspolypols gewählt", "Steigende statt fallende Preis-Absatz-Funktion gewählt", "Proportional steigenden statt fallenden Preis gewählt"]
+        },
+        {
+            "frage": "Gegeben ist \\(p(x)=-3x+30\\). Wie hoch ist der Höchstpreis?",
+            "antworten": ["\\(30\\) GE", "\\(-3\\) GE", "\\(10\\) GE", "\\(0\\) GE"],
+            "fehler": ["Steigung statt y-Achsenabschnitt abgelesen", "Sättigungsmenge statt Höchstpreis angegeben", "Preis bei der Sättigungsmenge statt bei \\(x=0\\) verwendet"]
+        },
+        {
+            "frage": "Gegeben ist \\(p(x)=-4x+24\\). Wie groß ist die Sättigungsmenge?",
+            "antworten": ["\\(6\\) ME", "\\(-6\\) ME", "\\(4\\) ME", "\\(24\\) ME"],
+            "fehler": ["Vorzeichen beim Lösen von \\(-4x+24=0\\) vertauscht", "Betrag der Steigung statt Nullstelle angegeben", "y-Achsenabschnitt ohne Division durch \\(4\\) übernommen"]
+        },
+        {
+            "frage": "Für den Erlös gilt \\(E'(x)=-6x+24\\). Welche Menge maximiert den Erlös?",
+            "antworten": ["\\(4\\) ME", "\\(-4\\) ME", "\\(6\\) ME", "\\(24\\) ME"],
+            "fehler": ["Vorzeichen beim Lösen von \\(-6x+24=0\\) vertauscht", "Betrag des x-Koeffizienten als Lösung übernommen", "Konstanten Term ohne Division durch \\(6\\) übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(x_{Emax}=4\\) und \\(E(4)=64\\). Wie groß ist der maximale Erlös?",
+            "antworten": ["\\(64\\) GE", "\\(4\\) GE", "\\(16\\) GE", "\\(68\\) GE"],
+            "fehler": ["Erlösmaximale Menge statt zugehörigen Erlöswert übernommen", "Erlöswert durch die erlösmaximale Menge geteilt", "Erlöswert und erlösmaximale Menge addiert"]
+        },
+        {
+            "frage": "Gegeben ist \\(K(x)=2x^3-9x^2+12x+35\\). Wie hoch sind die Fixkosten?",
+            "antworten": ["\\(35\\) GE", "\\(12\\) GE", "\\(-9\\) GE", "\\(2\\) GE"],
+            "fehler": ["Linearen Koeffizienten statt konstanten Terms abgelesen", "Quadratischen Koeffizienten statt konstanten Terms abgelesen", "Kubischen Koeffizienten statt konstanten Terms abgelesen"]
+        },
+        {
+            "frage": "Für die Kostenfunktion gilt \\(K''(x)=6x-18\\). Bei welcher Menge liegt die Wendestelle?",
+            "antworten": ["\\(3\\) ME", "\\(-3\\) ME", "\\(6\\) ME", "\\(18\\) ME"],
+            "fehler": ["Vorzeichen beim Lösen von \\(6x-18=0\\) vertauscht", "Koeffizienten von \\(x\\) als Lösung übernommen", "Konstanten Term ohne Division durch \\(6\\) übernommen"]
+        },
+        {
+            "frage": "Die positiven Nullstellen von \\(G\\) sind \\(x=2\\) und \\(x=9\\). Wie groß ist die Gewinnschwelle?",
+            "antworten": ["\\(2\\) ME", "\\(9\\) ME", "\\(7\\) ME", "\\(11\\) ME"],
+            "fehler": ["Letzte statt erste positive Nullstelle gewählt", "Abstand der beiden Nullstellen gebildet", "Beide Nullstellen addiert"]
+        },
+        {
+            "frage": "Die positiven Nullstellen von \\(G\\) sind \\(x=2\\) und \\(x=9\\). Wie groß ist die Gewinngrenze?",
+            "antworten": ["\\(9\\) ME", "\\(2\\) ME", "\\(7\\) ME", "\\(11\\) ME"],
+            "fehler": ["Erste statt letzte positive Nullstelle gewählt", "Abstand der beiden Nullstellen gebildet", "Beide Nullstellen addiert"]
+        },
+        {
+            "frage": "Der Hochpunkt von \\(G\\) ist \\(H(5\\mid 42)\\), und es gilt \\(p(x)=-2x+30\\). Wie hoch ist der gewinnmaximale Preis?",
+            "antworten": ["\\(20\\) GE", "\\(42\\) GE", "\\(5\\) GE", "\\(25\\) GE"],
+            "fehler": ["Maximalen Gewinn statt Preis bei der gewinnmaximalen Menge übernommen", "Gewinnmaximale Menge statt zugehörigen Preis übernommen", "Nur \\(30-5\\) gerechnet und den Faktor \\(2\\) übersehen"]
+        }
+    ]
+}

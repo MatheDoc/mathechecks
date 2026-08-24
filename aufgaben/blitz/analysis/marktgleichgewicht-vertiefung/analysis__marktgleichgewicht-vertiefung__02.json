@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welcher Ansatz berechnet den Höchstpreis bei einer beliebigen Nachfragefunktion \\(p_N\\)?",
+            "antworten": ["\\(p_N(0)\\)", "\\(p_N(x)=0\\)", "\\(p_N(x)=p_A(x)\\)", "\\(p_A(0)\\)"],
+            "fehler": ["Ansatz für die Sättigungsmenge gewählt", "Ansatz für die Gleichgewichtsmenge gewählt", "Ansatz für den Mindestangebotspreis gewählt"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_N(x)=25-x^2\\). Wie groß ist der Höchstpreis?",
+            "antworten": ["\\(25\\) GE", "\\(5\\) GE", "\\(-25\\) GE", "\\(0\\) GE"],
+            "fehler": ["Positive Nullstelle statt Funktionswert bei \\(x=0\\) angegeben", "Vorzeichen des konstanten Terms vertauscht", "Bei \\(x=0\\) fälschlich den gesamten Term zu null gesetzt"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_A(x)=\\sqrt{x}+4\\). Wie groß ist der Mindestangebotspreis?",
+            "antworten": ["\\(4\\) GE", "\\(0\\) GE", "\\(2\\) GE", "\\(5\\) GE"],
+            "fehler": ["Wurzelterm ausgewertet, aber den konstanten Term weggelassen", "Wurzel aus dem konstanten Term statt \\(p_A(0)\\) berechnet", "Ohne Anlass \\(x=1\\) eingesetzt"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt die Sättigungsmenge bei einer beliebigen Nachfragefunktion \\(p_N\\)?",
+            "antworten": ["\\(p_N(x)=0\\)", "\\(p_N(0)\\)", "\\(p_A(x)=0\\)", "\\(p_N(x)=p_A(x)\\)"],
+            "fehler": ["Höchstpreis statt Sättigungsmenge angesetzt", "Nullstelle der Angebotsfunktion statt der Nachfragefunktion gesucht", "Gleichgewichtsmenge statt Sättigungsmenge angesetzt"]
+        },
+        {
+            "frage": "Es gilt \\(p_N(x)=20-x^2\\) und \\(p_A(x)=\\sqrt{x}+4\\). Welche Gleichung bestimmt \\(x_G\\)?",
+            "antworten": ["\\(20-x^2=\\sqrt{x}+4\\)", "\\(20-x^2=0\\)", "\\(\\sqrt{x}+4=0\\)", "\\(20=4\\)"],
+            "fehler": ["Nur die Nullstelle von \\(p_N\\) angesetzt", "Nur die Nullstelle von \\(p_A\\) angesetzt", "Nur die y-Achsenabschnitte statt die Funktionswerte gleichgesetzt"]
+        },
+        {
+            "frage": "Die Gleichgewichtsmenge ist \\(x_G=3\\) und \\(p_N(x)=18-x^2\\). Wie groß ist \\(p_G\\)?",
+            "antworten": ["\\(9\\) GE", "\\(15\\) GE", "\\(12\\) GE", "\\(21\\) GE"],
+            "fehler": ["\\(x_G\\) statt \\(x_G^2\\) abgezogen", "Quadrat von \\(3\\) falsch berechnet", "Vorzeichen des x-Terms vertauscht"]
+        },
+        {
+            "frage": "Die Gleichgewichtsmenge ist \\(x_G=4\\) und \\(p_A(x)=\\sqrt{x}+5\\). Wie groß ist \\(p_G\\)?",
+            "antworten": ["\\(7\\) GE", "\\(9\\) GE", "\\(2\\) GE", "\\(6\\) GE"],
+            "fehler": ["\\(x_G\\) ohne Wurzel zum konstanten Term addiert", "Konstanten Term beim Einsetzen weggelassen", "Wurzel aus \\(4\\) fälschlich als \\(1\\) berechnet"]
+        },
+        {
+            "frage": "Gegeben ist \\(p_N(x)=\\frac{30}{x+1}\\). Wie groß ist der Höchstpreis?",
+            "antworten": ["\\(30\\) GE", "\\(31\\) GE", "\\(0\\) GE", "\\(1\\) GE"],
+            "fehler": ["Zähler und Nenner bei \\(x=0\\) addiert", "Bruch bei \\(x=0\\) fälschlich zu null gesetzt", "Nur den Nennerwert angegeben"]
+        },
+        {
+            "frage": "Welche Formel beschreibt den Umsatz im Marktgleichgewicht?",
+            "antworten": ["\\(U_G=x_G\\cdot p_G\\)", "\\(U_G=x_G+p_G\\)", "\\(U_G=p_G-x_G\\)", "\\(U_G=\\frac{p_G}{x_G}\\)"],
+            "fehler": ["Gleichgewichtsmenge und Gleichgewichtspreis addiert", "Differenz statt Produkt gebildet", "Quotient statt Produkt gebildet"]
+        },
+        {
+            "frage": "Im Marktgleichgewicht gilt \\(x_G=4\\) ME und \\(p_G=7\\) GE. Wie groß ist der Umsatz \\(U_G\\)?",
+            "antworten": ["\\(28\\) GE", "\\(11\\) GE", "\\(3\\) GE", "\\(49\\) GE"],
+            "fehler": ["Gleichgewichtsmenge und Gleichgewichtspreis addiert", "Differenz statt Produkt berechnet", "Gleichgewichtspreis quadriert statt mit der Gleichgewichtsmenge multipliziert"]
+        }
+    ]
+}

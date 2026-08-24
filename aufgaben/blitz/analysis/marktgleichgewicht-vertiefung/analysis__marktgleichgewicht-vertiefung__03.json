@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel beschreibt die Konsumentenrente im Marktgleichgewicht?",
+            "antworten": ["\\(KR=\\int_0^{x_G}p_N(x)\\,dx-x_G\\cdot p_G\\)", "\\(KR=x_G\\cdot p_G-\\int_0^{x_G}p_N(x)\\,dx\\)", "\\(KR=\\int_0^{x_G}p_A(x)\\,dx-x_G\\cdot p_G\\)", "\\(KR=x_G\\cdot p_G+\\int_0^{x_G}p_N(x)\\,dx\\)"],
+            "fehler": ["Zahlungsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert", "Angebotsfunktion statt Nachfragefunktion verwendet", "Zahlungsbereitschaft und Umsatz addiert statt subtrahiert"]
+        },
+        {
+            "frage": "Welche Formel beschreibt die Produzentenrente im Marktgleichgewicht?",
+            "antworten": ["\\(PR=x_G\\cdot p_G-\\int_0^{x_G}p_A(x)\\,dx\\)", "\\(PR=\\int_0^{x_G}p_A(x)\\,dx-x_G\\cdot p_G\\)", "\\(PR=x_G\\cdot p_G-\\int_0^{x_G}p_N(x)\\,dx\\)", "\\(PR=x_G\\cdot p_G+\\int_0^{x_G}p_A(x)\\,dx\\)"],
+            "fehler": ["Umsatz und Angebotsbereitschaft in falscher Reihenfolge subtrahiert", "Nachfragefunktion statt Angebotsfunktion verwendet", "Umsatz und Angebotsbereitschaft addiert statt subtrahiert"]
+        },
+        {
+            "frage": "Was beschreibt der Term \\(x_G\\cdot p_G\\)?",
+            "antworten": ["den Umsatz im Marktgleichgewicht", "die gesamte Zahlungsbereitschaft", "die gesamte Angebotsbereitschaft", "die Gleichgewichtsmenge"],
+            "fehler": ["Rechteckfläche mit der Fläche unter der Nachfragefunktion verwechselt", "Rechteckfläche mit der Fläche unter der Angebotsfunktion verwechselt", "Produkt aus Menge und Preis auf die Menge allein reduziert"]
+        },
+        {
+            "frage": "Welcher Fläche entspricht die Konsumentenrente?",
+            "antworten": ["der Fläche zwischen Nachfragegraph und Marktpreis bis \\(x_G\\)", "der Fläche zwischen Marktpreis und Angebotsgraph bis \\(x_G\\)", "der Rechteckfläche \\(x_G\\cdot p_G\\)", "der Fläche unter dem Angebotsgraphen bis \\(x_G\\)"],
+            "fehler": ["Konsumentenrente mit Produzentenrente verwechselt", "Konsumentenrente mit dem Umsatzrechteck verwechselt", "Konsumentenrente der Angebotsseite zugeordnet"]
+        },
+        {
+            "frage": "Welcher Fläche entspricht die Produzentenrente?",
+            "antworten": ["der Fläche zwischen Marktpreis und Angebotsgraph bis \\(x_G\\)", "der Fläche zwischen Nachfragegraph und Marktpreis bis \\(x_G\\)", "der Rechteckfläche \\(x_G\\cdot p_G\\)", "der Fläche unter dem Nachfragegraphen bis \\(x_G\\)"],
+            "fehler": ["Produzentenrente mit Konsumentenrente verwechselt", "Produzentenrente mit dem Umsatzrechteck verwechselt", "Produzentenrente der Nachfrageseite zugeordnet"]
+        },
+        {
+            "frage": "Es gilt \\(x_G=3\\), \\(p_G=4\\) und \\(\\int_0^{x_G}p_N(x)\\,dx=18\\). Wie groß ist \\(KR\\)?",
+            "antworten": ["\\(6\\) GE", "\\(12\\) GE", "\\(30\\) GE", "\\(-6\\) GE"],
+            "fehler": ["Nur das Umsatzrechteck \\(3\\cdot4\\) berechnet", "Integralwert und Umsatz addiert", "Umsatz und Zahlungsbereitschaft in falscher Reihenfolge subtrahiert"]
+        },
+        {
+            "frage": "Es gilt \\(x_G=3\\), \\(p_G=4\\) und \\(\\int_0^{x_G}p_A(x)\\,dx=7\\). Wie groß ist \\(PR\\)?",
+            "antworten": ["\\(5\\) GE", "\\(7\\) GE", "\\(19\\) GE", "\\(-5\\) GE"],
+            "fehler": ["Nur die gegebene Angebotsbereitschaft angegeben", "Umsatz und Angebotsbereitschaft addiert", "Angebotsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert"]
+        },
+        {
+            "frage": "In welcher Reihenfolge werden die Größen für \\(KR\\) subtrahiert?",
+            "antworten": ["Zahlungsbereitschaft minus Umsatz", "Umsatz minus Zahlungsbereitschaft", "Angebotsbereitschaft minus Umsatz", "Umsatz minus Angebotsbereitschaft"],
+            "fehler": ["Subtraktionsreihenfolge der Konsumentenrente vertauscht", "Konsumentenrente fälschlich mit der Angebotsseite gebildet", "Reihenfolge der Produzentenrente statt der Konsumentenrente gewählt"]
+        },
+        {
+            "frage": "In welcher Reihenfolge werden die Größen für \\(PR\\) subtrahiert?",
+            "antworten": ["Umsatz minus Angebotsbereitschaft", "Angebotsbereitschaft minus Umsatz", "Zahlungsbereitschaft minus Umsatz", "Umsatz minus Zahlungsbereitschaft"],
+            "fehler": ["Subtraktionsreihenfolge der Produzentenrente vertauscht", "Reihenfolge der Konsumentenrente statt der Produzentenrente gewählt", "Produzentenrente fälschlich mit der Nachfrageseite gebildet"]
+        },
+        {
+            "frage": "Das Umsatzrechteck hat den Inhalt \\(20\\) GE, und \\(\\int_0^{x_G}p_N(x)\\,dx=27\\). Wie groß ist \\(KR\\)?",
+            "antworten": ["\\(7\\) GE", "\\(20\\) GE", "\\(47\\) GE", "\\(-7\\) GE"],
+            "fehler": ["Nur den Inhalt des Umsatzrechtecks angegeben", "Integralwert und Umsatz addiert", "Umsatz und Zahlungsbereitschaft in falscher Reihenfolge subtrahiert"]
+        }
+    ]
+}

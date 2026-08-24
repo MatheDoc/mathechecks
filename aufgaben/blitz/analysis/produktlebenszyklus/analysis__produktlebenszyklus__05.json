@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie wird die Gewinnfunktion aus Erlös- und Kostenfunktion gebildet?",
+            "antworten": ["\\(G(t)=E(t)-K(t)\\)", "\\(G(t)=K(t)-E(t)\\)", "\\(G(t)=E(t)+K(t)\\)", "\\(G(t)=E(t)\\cdot K(t)\\)"],
+            "fehler": ["Kosten und Erlös in falscher Reihenfolge subtrahiert", "Kosten zum Erlös addiert statt abgezogen", "Erlös und Kosten multipliziert statt ihre Differenz zu bilden"]
+        },
+        {
+            "frage": "Welche Größe beschreibt \\(E(4)\\)?",
+            "antworten": ["den jährlichen Erlös nach 4 Jahren", "den gesamten Erlös der ersten 4 Jahre", "die jährlichen Kosten nach 4 Jahren", "den Gesamtgewinn der ersten 4 Jahre"],
+            "fehler": ["Funktionswert mit dem Integral über vier Jahre verwechselt", "Erlösfunktion mit der Kostenfunktion verwechselt", "Jährlichen Erlös mit dem gesamten Gewinn verwechselt"]
+        },
+        {
+            "frage": "Welche Größe beschreibt \\(K(7)\\)?",
+            "antworten": ["die jährlichen Kosten nach 7 Jahren", "die gesamten Kosten der ersten 7 Jahre", "den jährlichen Gewinn nach 7 Jahren", "den gesamten Erlös der ersten 7 Jahre"],
+            "fehler": ["Funktionswert mit dem Integral über sieben Jahre verwechselt", "Kostenfunktion mit der Gewinnfunktion verwechselt", "Jährliche Kosten mit dem gesamten Erlös verwechselt"]
+        },
+        {
+            "frage": "Welche Größe beschreibt \\(G(5)\\)?",
+            "antworten": ["den jährlichen Gewinn oder Verlust nach 5 Jahren", "den Gesamtgewinn der ersten 5 Jahre", "den jährlichen Erlös nach 5 Jahren", "die gesamten Kosten der ersten 5 Jahre"],
+            "fehler": ["Funktionswert mit dem Integral über fünf Jahre verwechselt", "Gewinnfunktion mit der Erlösfunktion verwechselt", "Jährlichen Gewinn oder Verlust mit gesamten Kosten verwechselt"]
+        },
+        {
+            "frage": "Welche Formel gibt den gesamten Erlös im Zeitraum \\(\\lbrack a;b\\rbrack\\) an?",
+            "antworten": ["\\(\\int_a^b E(t)\\,dt\\)", "\\(E(b)\\)", "\\(\\int_a^b K(t)\\,dt\\)", "\\(E(b)-E(a)\\)"],
+            "fehler": ["Jährlichen Erlös am Intervallende statt Gesamterlös gewählt", "Gesamtkosten statt Gesamterlös gewählt", "Differenz der Randwerte statt Integral der Erlösfunktion gebildet"]
+        },
+        {
+            "frage": "Welche Formel gibt die gesamten Kosten im Zeitraum \\(\\lbrack a;b\\rbrack\\) an?",
+            "antworten": ["\\(\\int_a^b K(t)\\,dt\\)", "\\(K(b)\\)", "\\(\\int_a^b E(t)\\,dt\\)", "\\(K(b)-K(a)\\)"],
+            "fehler": ["Jährliche Kosten am Intervallende statt Gesamtkosten gewählt", "Gesamterlös statt Gesamtkosten gewählt", "Differenz der Randwerte statt Integral der Kostenfunktion gebildet"]
+        },
+        {
+            "frage": "Welche Formel gibt den gesamten Gewinn oder Verlust im Zeitraum \\(\\lbrack a;b\\rbrack\\) an?",
+            "antworten": ["\\(\\int_a^b G(t)\\,dt\\)", "\\(G(b)\\)", "\\(\\int_a^b E(t)\\,dt\\)", "\\(G(b)-G(a)\\)"],
+            "fehler": ["Jährlichen Gewinn am Intervallende statt Gesamtwert gewählt", "Gesamterlös statt gesamten Gewinn oder Verlust gewählt", "Differenz der Randwerte statt Integral der Gewinnfunktion gebildet"]
+        },
+        {
+            "frage": "Die Nullstellen von \\(G\\) sind \\(t_1=3\\) und \\(t_2=11\\). Zwischen ihnen gilt \\(G(t)>0\\), außerhalb \\(G(t)<0\\). Wann sind die Kosten gedeckt?",
+            "antworten": ["von \\(t=3\\) bis \\(t=11\\)", "vor \\(t=3\\)", "nach \\(t=11\\)", "nur bei \\(t=7\\)"],
+            "fehler": ["Negativen Bereich vor der ersten Nullstelle als Kostendeckung gewählt", "Negativen Bereich nach der zweiten Nullstelle als Kostendeckung gewählt", "Gesamten positiven Zeitraum auf einen einzelnen Zeitpunkt verkürzt"]
+        },
+        {
+            "frage": "Für den kumulierten Gewinn \\(H\\) sind nur \\(t_1\\) und \\(T\\) Minimumkandidaten: \\(H(t_1)=-54\\), \\(H(T)=18\\). Wo ist der Gesamtverlust maximal und wie hoch?",
+            "antworten": ["bei \\(t_1\\); Verlustbetrag \\(54\\)", "bei \\(t_1\\); Verlustbetrag \\(-54\\)", "bei \\(T\\); Verlustbetrag \\(18\\)", "bei \\(T\\); Verlustbetrag \\(54\\)"],
+            "fehler": ["Negativen kumulierten Wert statt positiven Verlustbetrag angegeben", "Positiven Endwert fälschlich als maximalen Verlust gewählt", "Zeitpunkt des kleinsten kumulierten Werts mit dem Lebenszyklusende verwechselt"]
+        },
+        {
+            "frage": "Für den kumulierten Gewinn \\(H\\) sind nur \\(t_1\\) und \\(T\\) Minimumkandidaten: \\(H(t_1)=-40\\), \\(H(T)=-65\\). Wo ist der Gesamtverlust maximal und wie hoch?",
+            "antworten": ["bei \\(T\\); Verlustbetrag \\(65\\)", "bei \\(t_1\\); Verlustbetrag \\(40\\)", "bei \\(T\\); Verlustbetrag \\(-65\\)", "bei \\(t_1\\); Verlustbetrag \\(65\\)"],
+            "fehler": ["Weniger negativen kumulierten Wert als maximalen Verlust gewählt", "Negativen kumulierten Wert statt positiven Verlustbetrag angegeben", "Richtigen Verlustbetrag dem falschen Zeitpunkt zugeordnet"]
+        }
+    ]
+}
