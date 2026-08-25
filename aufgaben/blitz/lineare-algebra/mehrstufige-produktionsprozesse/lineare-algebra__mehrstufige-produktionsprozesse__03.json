@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Beziehung berechnet die Rohstoff-Endprodukt-Matrix?",
+            "antworten": ["\\(RE=RZ\\cdot ZE\\)", "\\(RE=ZE\\cdot RZ\\)", "\\(RE=RZ+ZE\\)", "\\(RE=RZ^{-1}\\cdot ZE\\)"],
+            "fehler": ["Multiplikationsreihenfolge vertauscht", "Produkt durch Addition ersetzt", "RZ unnötig invertiert"]
+        },
+        {
+            "frage": "\\(RE\\) und eine invertierbare Matrix \\(ZE\\) sind gegeben. Wie berechnet man \\(RZ\\)?",
+            "antworten": ["\\(RZ=RE\\cdot ZE^{-1}\\)", "\\(RZ=ZE^{-1}\\cdot RE\\)", "\\(RZ=RE\\cdot ZE\\)", "\\(RZ=RE^{-1}\\cdot ZE\\)"],
+            "fehler": ["Inverse auf der falschen Seite multipliziert", "Ohne Inverse multipliziert", "Falsche Matrix invertiert"]
+        },
+        {
+            "frage": "\\(RE\\) und eine invertierbare Matrix \\(RZ\\) sind gegeben. Wie berechnet man \\(ZE\\)?",
+            "antworten": ["\\(ZE=RZ^{-1}\\cdot RE\\)", "\\(ZE=RE\\cdot RZ^{-1}\\)", "\\(ZE=RZ\\cdot RE\\)", "\\(ZE=RZ^{-1}\\cdot RE^{-1}\\)"],
+            "fehler": ["Inverse auf der falschen Seite multipliziert", "Ohne korrekte Umstellung multipliziert", "Beide gegebenen Matrizen invertiert"]
+        },
+        {
+            "frage": "\\(RZ\\) hat das Format \\(2\\times3\\), \\(ZE\\) das Format \\(3\\times4\\). Welches Format hat \\(RE\\)?",
+            "antworten": ["\\(2\\times4\\)", "\\(3\\times3\\)", "\\(4\\times2\\)", "\\(2\\times3\\)"],
+            "fehler": ["Innere Dimensionen als Ergebnisformat verwendet", "Zeilen und Spalten des Ergebnisses vertauscht", "Format der ersten Matrix übernommen"]
+        },
+        {
+            "frage": "\\(RZ\\) ist eine invertierbare \\(3\\times3\\)-Matrix und \\(RE\\) eine \\(3\\times2\\)-Matrix. Welches Format hat \\(ZE\\)?",
+            "antworten": ["\\(3\\times2\\)", "\\(2\\times3\\)", "\\(3\\times3\\)", "\\(2\\times2\\)"],
+            "fehler": ["Zeilen und Spalten vertauscht", "Format der invertierten Matrix übernommen", "Nur die Spaltenzahlen berücksichtigt"]
+        },
+        {
+            "frage": "\\(RE\\) hat das Format \\(3\\times2\\), \\(ZE\\) ist eine invertierbare \\(2\\times2\\)-Matrix. Welches Format hat \\(RZ=RE\\cdot ZE^{-1}\\)?",
+            "antworten": ["\\(3\\times2\\)", "\\(2\\times3\\)", "\\(3\\times3\\)", "\\(2\\times2\\)"],
+            "fehler": ["Ergebnisformat vertauscht", "Äußere Dimension fälschlich verdoppelt", "Format der rechten Matrix übernommen"]
+        },
+        {
+            "frage": "Die erste Zeile von \\(RZ\\) ist \\(\\begin{pmatrix}2&1\\end{pmatrix}\\), die zweite Spalte von \\(ZE\\) ist \\(\\begin{pmatrix}3\\\\4\\end{pmatrix}\\). Wie groß ist \\((RE)_{1,2}\\)?",
+            "antworten": ["\\(10\\)", "\\(7\\)", "\\(11\\)", "\\(24\\)"],
+            "fehler": ["Passende Komponenten nur addiert", "Zweites Produkt mit falschem Faktor berechnet", "Alle vier Zahlen miteinander multipliziert"]
+        },
+        {
+            "frage": "Für einen Eintrag von \\(RE\\) werden die Beiträge \\(1\\cdot4\\) und \\(2\\cdot1\\) addiert. Welchen Wert hat der Eintrag?",
+            "antworten": ["\\(6\\)", "\\(8\\)", "\\(7\\)", "\\(3\\)"],
+            "fehler": ["Beide Teilprodukte miteinander multipliziert", "Alle vier Faktoren addiert", "Nur die beiden Koeffizienten addiert"]
+        },
+        {
+            "frage": "Welche Reihenfolge bildet fachlich den Weg Endprodukte → Zwischenprodukte → Rohstoffe ab?",
+            "antworten": ["\\(RZ\\cdot ZE\\)", "\\(ZE\\cdot RZ\\)", "\\(RZ^{-1}\\cdot ZE\\)", "\\(ZE^{-1}\\cdot RZ\\)"],
+            "fehler": ["Produktionsstufen in umgekehrter Reihenfolge verknüpft", "Erste Stufe unnötig invertiert", "Zweite Stufe unnötig invertiert"]
+        },
+        {
+            "frage": "Welche Voraussetzung braucht die Formel \\(ZE=RZ^{-1}\\cdot RE\\)?",
+            "antworten": ["\\(RZ\\) ist quadratisch und hat eine von null verschiedene Determinante.", "\\(RZ\\) hat nur nichtnegative Einträge.", "\\(RE\\) ist quadratisch und invertierbar.", "\\(ZE\\) hat gleich viele Zeilen und Spalten."],
+            "fehler": ["Nichtnegativität mit Invertierbarkeit verwechselt", "Falsche Matrix auf Invertierbarkeit geprüft", "Gesuchte statt zu invertierende Matrix geprüft"]
+        }
+    ]
+}

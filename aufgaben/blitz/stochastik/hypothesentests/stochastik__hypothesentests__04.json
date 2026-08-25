@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Woran erkennt man einen rechtsseitigen Hypothesentest?",
+            "antworten": ["\\(H_1:p>p_0\\)", "\\(H_1:p<p_0\\)", "\\(H_0:p>p_0\\)", "\\(H_1:p=p_0\\)"],
+            "fehler": ["Linksseitige Testrichtung gewählt", "Ungleichung fälschlich der Nullhypothese zugeordnet", "Nullhypothese als Gegenhypothese verwendet"]
+        },
+        {
+            "frage": "Welche Form hat der Ablehnungsbereich eines rechtsseitigen Tests?",
+            "antworten": ["\\(\\overline{A}=\\{k,\\ldots,n\\}\\)", "\\(\\overline{A}=\\{0,\\ldots,k\\}\\)", "\\(\\overline{A}=\\{0,\\ldots,k-1\\}\\)", "\\(\\overline{A}=\\{k+1,\\ldots,n\\}\\)"],
+            "fehler": ["Unteren statt oberen Rand gewählt", "Annahmebereich des rechtsseitigen Tests gewählt", "Grenzwert \\(k\\) fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Welche Form hat der Annahmebereich eines rechtsseitigen Tests mit \\(\\overline{A}=\\{k,\\ldots,n\\}\\)?",
+            "antworten": ["\\(A=\\{0,\\ldots,k-1\\}\\)", "\\(A=\\{0,\\ldots,k\\}\\)", "\\(A=\\{k,\\ldots,n\\}\\)", "\\(A=\\{k+1,\\ldots,n\\}\\)"],
+            "fehler": ["Grenzwert \\(k\\) beiden Bereichen zugeordnet", "Ablehnungsbereich als Annahmebereich übernommen", "Annahmebereich eines linksseitigen Tests gewählt"]
+        },
+        {
+            "frage": "Welcher Ansatz bestimmt die Grenze \\(k\\) bei einem rechtsseitigen Test zum Niveau \\(\\alpha\\)?",
+            "antworten": ["\\(P_{p_0}(X\\geq k)<\\alpha\\)", "\\(P_{p_0}(X\\leq k)<\\alpha\\)", "\\(P_{p_1}(X\\geq k)<\\alpha\\)", "\\(P_{p_0}(X\\geq k)>\\alpha\\)"],
+            "fehler": ["Falschen Verteilungsschwanz gewählt", "Wahrscheinlichkeit unter der Gegenhypothese berechnet", "Ungleichung zum Signifikanzniveau umgedreht"]
+        },
+        {
+            "frage": "Unter welcher Hypothese wird das Signifikanzniveau geprüft?",
+            "antworten": ["Unter \\(H_0\\)", "Unter \\(H_1\\)", "Unter beiden Hypothesen gleichzeitig", "Ohne eine Hypothese"],
+            "fehler": ["Fehler 1. Art unter der Gegenhypothese berechnet", "Zwei verschiedene Verteilungen vermischt", "Parameter der Binomialverteilung offengelassen"]
+        },
+        {
+            "frage": "Welche Grenze \\(k\\) wird beim rechtsseitigen Test gewählt?",
+            "antworten": ["Das kleinste \\(k\\), für das die Fehlerwahrscheinlichkeit unter \\(\\alpha\\) bleibt", "Das größte \\(k\\), für das die Fehlerwahrscheinlichkeit unter \\(\\alpha\\) bleibt", "Ein beliebiges \\(k\\) mit Fehlerwahrscheinlichkeit über \\(\\alpha\\)", "Immer \\(k=np_0\\)"],
+            "fehler": ["Ablehnungsbereich unnötig verkleinert", "Signifikanzniveau überschritten", "Erwartungswert ohne Wahrscheinlichkeitsprüfung als Grenze verwendet"]
+        },
+        {
+            "frage": "Es gilt \\(P(X\\geq18)=0{,}067\\) und \\(P(X\\geq19)=0{,}043\\). Welche Grenze passt zu \\(\\alpha=0{,}05\\)?",
+            "antworten": ["\\(k=19\\)", "\\(k=18\\)", "\\(k=20\\)", "\\(k=17\\)"],
+            "fehler": ["Signifikanzniveau überschritten", "Zulässigen Ablehnungsbereich unnötig verkleinert", "Grenze trotz bereits zu großer Wahrscheinlichkeit weiter abgesenkt"]
+        },
+        {
+            "frage": "Für einen rechtsseitigen Test wurde \\(k=19\\) bestimmt. Wie lautet der Annahmebereich?",
+            "antworten": ["\\(A=\\{0,\\ldots,18\\}\\)", "\\(A=\\{0,\\ldots,19\\}\\)", "\\(A=\\{19,\\ldots,n\\}\\)", "\\(A=\\{20,\\ldots,n\\}\\)"],
+            "fehler": ["Grenzwert \\(k\\) fälschlich in den Annahmebereich aufgenommen", "Ablehnungsbereich angegeben", "Bereichsrichtung und Grenzwert vertauscht"]
+        },
+        {
+            "frage": "Warum wird nach einem zulässigen \\(k\\) auch \\(k-1\\) geprüft?",
+            "antworten": ["Um sicherzustellen, dass \\(k\\) die kleinste zulässige Grenze ist", "Um den Stichprobenumfang zu bestimmen", "Um den Fehler 2. Art exakt zu berechnen", "Um \\(H_1\\) durch \\(H_0\\) zu ersetzen"],
+            "fehler": ["Nachbarprüfung mit Parameterbestimmung verwechselt", "Nachbarprüfung mit Berechnung des Fehlers 2. Art verwechselt", "Zweck der Hypothesen bei der Grenzprüfung vertauscht"]
+        },
+        {
+            "frage": "Was gibt das Signifikanzniveau \\(\\alpha\\) vor?",
+            "antworten": ["Die maximal tolerierte Wahrscheinlichkeit für einen Fehler 1. Art", "Die maximal tolerierte Wahrscheinlichkeit für einen Fehler 2. Art", "Die Wahrscheinlichkeit, dass \\(H_0\\) wahr ist", "Den Anteil der Treffer in der Stichprobe"],
+            "fehler": ["Fehlerarten vertauscht", "Hypothesenwahrscheinlichkeit fälschlich aus dem Test abgeleitet", "Signifikanzniveau mit beobachtetem Anteil verwechselt"]
+        }
+    ]
+}

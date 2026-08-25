@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Ergebnismenge gehört zu einem zweistufigen Baum mit \\(A,\\overline{A}\\) und danach \\(B,\\overline{B}\\)?",
+            "antworten": ["\\(\\{AB,A\\overline{B},\\overline{A}B,\\overline{A}\\overline{B}\\}\\)", "\\(\\{A,\\overline{A},B,\\overline{B}\\}\\)", "\\(\\{AB,\\overline{A}\\overline{B}\\}\\)", "\\(\\{A\\cap\\overline{A},B\\cap\\overline{B}\\}\\)"],
+            "fehler": ["Einzelne Stufen statt vollständige Ergebnisse aufgelistet", "Nur zwei von vier Pfaden aufgenommen", "Unmögliche Schnitte von Ereignis und Gegenereignis gewählt"]
+        },
+        {
+            "frage": "Im Baum steht am ersten Ast zu \\(A\\) die Wahrscheinlichkeit \\(0{,}5\\). Wie groß ist \\(P(A)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}25\\)", "\\(1\\)", "Ohne zweite Stufe nicht bestimmbar"],
+            "fehler": ["Erste Astwahrscheinlichkeit unnötig quadriert", "Ereignis und Gegenereignis addiert", "Wahrscheinlichkeit der ersten Stufe übersehen"]
+        },
+        {
+            "frage": "Es gilt \\(P(A\\cap B)=0{,}2\\) und \\(P(\\overline{A}\\cap B)=0{,}05\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}2\\)", "\\(0{,}01\\)", "\\(0{,}15\\)"],
+            "fehler": ["Nur einen der beiden B-Pfade berücksichtigt", "Pfade multipliziert", "Differenz statt Summe gebildet"]
+        },
+        {
+            "frage": "Welcher Teil des Baumdiagramms entspricht \\(A\\cap B\\)?",
+            "antworten": ["Der vollständige Pfad AB", "Alle Pfade, auf denen A oder B vorkommt", "Nur der erste Ast A", "Die Pfade \\(A\\overline{B}\\) und \\(\\overline{A}B\\)"],
+            "fehler": ["Schnittmenge mit Vereinigung verwechselt", "Nur eine Stufe statt des gemeinsamen Ereignisses betrachtet", "Ereignis ‚genau eines‘ gewählt"]
+        },
+        {
+            "frage": "Die Pfadwahrscheinlichkeiten sind \\(P(AB)=0{,}2\\), \\(P(A\\overline{B})=0{,}3\\), \\(P(\\overline{A}B)=0{,}05\\), \\(P(\\overline{A}\\overline{B})=0{,}45\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}55\\)", "\\(0{,}2\\)", "\\(0{,}35\\)", "\\(0{,}45\\)"],
+            "fehler": ["Nur Schnittmenge berücksichtigt", "Nur Pfade mit genau einem Ereignis addiert", "Gegenereignis der Vereinigung gewählt"]
+        },
+        {
+            "frage": "Welche Pfade gehören zu \\(A\\cup B\\)?",
+            "antworten": ["\\(AB,A\\overline{B},\\overline{A}B\\)", "Nur \\(AB\\)", "\\(A\\overline{B},\\overline{A}B\\)", "Nur \\(\\overline{A}\\overline{B}\\)"],
+            "fehler": ["Vereinigung mit Schnittmenge verwechselt", "Fall, in dem beide Ereignisse eintreten, ausgelassen", "Gegenereignis der Vereinigung gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(P(A\\overline{B})=0{,}3\\) und \\(P(\\overline{A}B)=0{,}05\\). Wie groß ist die Wahrscheinlichkeit, dass genau eines von \\(A\\) und \\(B\\) eintritt?",
+            "antworten": ["\\(0{,}35\\)", "\\(0{,}015\\)", "\\(0{,}25\\)", "\\(0{,}5\\)"],
+            "fehler": ["Die beiden Pfade multipliziert", "Differenz statt Summe gebildet", "Erste Pfadwahrscheinlichkeit zum ersten Ast addiert"]
+        },
+        {
+            "frage": "Wie groß ist \\(P(A\\cup\\overline{A})\\)?",
+            "antworten": ["\\(1\\)", "\\(0\\)", "\\(P(A)\\)", "\\(0{,}5\\)"],
+            "fehler": ["Sicheres Ereignis mit unmöglichem Ereignis verwechselt", "Gegenereignis nicht berücksichtigt", "Gleichverteilung ohne Grundlage angenommen"]
+        },
+        {
+            "frage": "Wie groß ist \\(P(A\\cap\\overline{A})\\)?",
+            "antworten": ["\\(0\\)", "\\(1\\)", "\\(P(A)\\)", "\\(0{,}5\\)"],
+            "fehler": ["Unmögliches Ereignis mit sicherem Ereignis verwechselt", "Gegenereignis nicht berücksichtigt", "Gleichverteilung ohne Grundlage angenommen"]
+        },
+        {
+            "frage": "Am zweiten Ast von \\(A\\) zu \\(B\\) steht \\(0{,}4\\), insgesamt gilt aber \\(P(B)=0{,}25\\). Welche Aussage ist richtig?",
+            "antworten": ["Die Astwahrscheinlichkeit \\(0{,}4\\) ist nicht automatisch \\(P(B)\\)", "Es muss \\(P(B)=0{,}4\\) gelten", "Es muss \\(P(B)=0{,}1\\) gelten", "Die zweite Stufe darf keine Wahrscheinlichkeiten enthalten"],
+            "fehler": ["Zweite Astwahrscheinlichkeit mit Gesamtwahrscheinlichkeit von B verwechselt", "Ast- und Gesamtwahrscheinlichkeit ohne passende Regel multipliziert", "Baumstruktur fälschlich als unzulässig angesehen"]
+        }
+    ]
+}

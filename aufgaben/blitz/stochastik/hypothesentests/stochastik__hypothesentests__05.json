@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Anteil soll darauf geprüft werden, ob er kleiner als \\(0{,}3\\) geworden ist. Welche Gegenhypothese passt?",
+            "antworten": ["\\(H_1:p<0{,}3\\)", "\\(H_1:p>0{,}3\\)", "\\(H_1:p=0{,}3\\)", "\\(H_0:p<0{,}3\\)"],
+            "fehler": ["Testrichtung vertauscht", "Nullhypothese statt Gegenhypothese formuliert", "Ungleichung fälschlich der Nullhypothese zugeordnet"]
+        },
+        {
+            "frage": "Welche Nullhypothese gehört zur Gegenhypothese \\(H_1:p<0{,}3\\)?",
+            "antworten": ["\\(H_0:p=0{,}3\\)", "\\(H_0:p<0{,}3\\)", "\\(H_0:p>0{,}3\\)", "\\(H_0:p=0{,}7\\)"],
+            "fehler": ["Gegenhypothese als Nullhypothese wiederholt", "Testrichtung statt Ausgangswert notiert", "Gegenwahrscheinlichkeit statt Ausgangswert verwendet"]
+        },
+        {
+            "frage": "Wie lautet der Ablehnungsbereich bei einem linksseitigen Test mit Grenzwert \\(k\\)?",
+            "antworten": ["\\(\\overline{A}=\\{0,\\ldots,k\\}\\)", "\\(\\overline{A}=\\{k,\\ldots,n\\}\\)", "\\(\\overline{A}=\\{k+1,\\ldots,n\\}\\)", "\\(\\overline{A}=\\{0,\\ldots,k-1\\}\\)"],
+            "fehler": ["Rechtsseitigen Ablehnungsbereich gewählt", "Annahmebereich des linksseitigen Tests gewählt", "Grenzwert \\(k\\) fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Wie lautet der Annahmebereich bei einem linksseitigen Test mit Grenzwert \\(k\\)?",
+            "antworten": ["\\(A=\\{k+1,\\ldots,n\\}\\)", "\\(A=\\{k,\\ldots,n\\}\\)", "\\(A=\\{0,\\ldots,k\\}\\)", "\\(A=\\{0,\\ldots,k-1\\}\\)"],
+            "fehler": ["Grenzwert \\(k\\) beiden Bereichen zugeordnet", "Ablehnungsbereich angegeben", "Annahmebereich eines rechtsseitigen Tests gewählt"]
+        },
+        {
+            "frage": "Welche Binomialwahrscheinlichkeit wird beim linksseitigen Test mit \\(X\\sim B(n;p_0)\\) mit \\(\\alpha\\) verglichen?",
+            "antworten": ["\\(P(X\\leq k)\\)", "\\(P(X\\geq k)\\)", "\\(P(X=k+1)\\)", "\\(P(X>k)\\)"],
+            "fehler": ["Rechten statt linken Verteilungsschwanz gewählt", "Nur einen Einzelwert betrachtet", "Annahme- statt Ablehnungsbereich betrachtet"]
+        },
+        {
+            "frage": "Nach welchem Kriterium wird \\(k\\) beim linksseitigen Test gewählt?",
+            "antworten": ["\\(k\\) ist möglichst groß und \\(P_{p_0}(X\\leq k)<\\alpha\\)", "\\(k\\) ist möglichst klein und \\(P_{p_0}(X\\leq k)<\\alpha\\)", "\\(k\\) ist möglichst groß und \\(P_{p_0}(X\\leq k)>\\alpha\\)", "\\(k\\) ist immer gleich \\(np_0\\)"],
+            "fehler": ["Ablehnungsbereich unnötig verkleinert", "Signifikanzniveau überschritten", "Erwartungswert ohne Wahrscheinlichkeitsprüfung als Grenze verwendet"]
+        },
+        {
+            "frage": "Es gilt \\(P(X\\leq27)=0{,}041\\) und \\(P(X\\leq28)=0{,}056\\). Welches \\(k\\) passt zu \\(\\alpha=0{,}05\\)?",
+            "antworten": ["\\(k=27\\)", "\\(k=28\\)", "\\(k=26\\)", "\\(k=29\\)"],
+            "fehler": ["Signifikanzniveau überschritten", "Zulässigen Ablehnungsbereich unnötig verkleinert", "Grenze trotz bereits zu großer Wahrscheinlichkeit weiter erhöht"]
+        },
+        {
+            "frage": "Es wurde \\(k=27\\) bestimmt. Welche vollständige Entscheidungsregel ist richtig?",
+            "antworten": ["Für \\(X\\leq27\\) wird \\(H_0\\) verworfen", "Für \\(X\\geq27\\) wird \\(H_0\\) verworfen", "Nur für \\(X<27\\) wird \\(H_0\\) verworfen", "Für \\(X\\leq28\\) wird \\(H_0\\) verworfen"],
+            "fehler": ["Testrichtung vertauscht", "Grenzwert 27 fälschlich ausgeschlossen", "Ersten Wert des Annahmebereichs fälschlich abgelehnt"]
+        },
+        {
+            "frage": "In welcher Reihenfolge wird eine linksseitige Entscheidungsregel hergeleitet?",
+            "antworten": ["Hypothesen formulieren, Bereiche ansetzen, \\(k\\) über \\(\\alpha\\) bestimmen", "\\(k\\) raten, Daten erheben, danach Hypothesen wählen", "Fehler 2. Art bestimmen, dann \\(H_0\\) formulieren", "Stichprobenergebnis ansehen, dann den Ablehnungsbereich festlegen"],
+            "fehler": ["Verfahren und Hypothesen erst nachträglich festgelegt", "Mit dem nicht kontrollierten Fehler 2. Art begonnen", "Entscheidungsregel unzulässig an beobachtete Daten angepasst"]
+        },
+        {
+            "frage": "Warum wird beim linksseitigen Test das größtmögliche zulässige \\(k\\) gewählt?",
+            "antworten": ["Damit der Ablehnungsbereich unter Einhaltung von \\(\\alpha\\) möglichst groß ist", "Damit der Annahmebereich möglichst groß ist", "Damit der Fehler 1. Art größer als \\(\\alpha\\) wird", "Damit stets \\(H_0\\) beibehalten wird"],
+            "fehler": ["Zielrichtung des Bereichs vertauscht", "Kontrolle des Signifikanzniveaus umgekehrt", "Test durch einen leeren Ablehnungsbereich wirkungslos gemacht"]
+        }
+    ]
+}

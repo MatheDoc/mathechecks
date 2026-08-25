@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es ist \\(\\mu=10\\) und \\(\\sigma=2\\). Welche Grenzen hat die \\(1\\sigma\\)-Umgebung?",
+            "antworten": ["\\(8\\leq X\\leq12\\)","\\(9\\leq X\\leq11\\)","\\(6\\leq X\\leq14\\)","\\(2\\leq X\\leq10\\)"],
+            "fehler": ["Radius 1 statt \\(1\\sigma=2\\) verwendet","Doppelte Sigma-Umgebung gebildet","Standardabweichung als untere Grenze verwendet"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=10\\) und \\(\\sigma=2\\). Welche Grenzen hat die \\(2\\sigma\\)-Umgebung?",
+            "antworten": ["\\(6\\leq X\\leq14\\)","\\(8\\leq X\\leq12\\)","\\(4\\leq X\\leq16\\)","\\(2\\leq X\\leq20\\)"],
+            "fehler": ["Nur eine Standardabweichung verwendet","Drei statt zwei Standardabweichungen verwendet","Faktoren und Kennzahlen als Grenzen verwendet"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=7{,}5\\) und \\(\\sigma=2{,}29\\). Welche reellen Grenzen hat näherungsweise die \\(2\\sigma\\)-Umgebung?",
+            "antworten": ["\\(2{,}92\\) und \\(12{,}08\\)","\\(5{,}21\\) und \\(9{,}79\\)","\\(3{,}5\\) und \\(11{,}5\\)","\\(2{,}29\\) und \\(7{,}5\\)"],
+            "fehler": ["Nur eine Standardabweichung verwendet","Zwei als absoluten Radius statt Faktor von \\(\\sigma\\) verwendet","Standardabweichung und Erwartungswert als Grenzen verwendet"]
+        },
+        {
+            "frage": "Für ganzzahliges \\(X\\): Welche Grenzen folgen aus \\(2{,}92\\leq X\\leq12{,}08\\)?",
+            "antworten": ["\\(3\\leq X\\leq12\\)","\\(2\\leq X\\leq13\\)","\\(3\\leq X\\leq13\\)","\\(2\\leq X\\leq12\\)"],
+            "fehler": ["Beide Grenzen nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=12{,}5\\) und \\(\\sigma=1{,}5\\). Welche ganzzahligen Grenzen hat die \\(2\\sigma\\)-Umgebung?",
+            "antworten": ["\\(10\\leq X\\leq15\\)","\\(9\\leq X\\leq16\\)","\\(10\\leq X\\leq16\\)","\\(9\\leq X\\leq15\\)"],
+            "fehler": ["Reelle Grenzen 9,5 und 15,5 nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
+        },
+        {
+            "frage": "Welche Rechnung bildet eine \\(c\\sigma\\)-Umgebung?",
+            "antworten": ["\\(\\mu-c\\sigma\\) und \\(\\mu+c\\sigma\\)","\\(\\mu-c\\) und \\(\\mu+c\\)","\\((1-c)\\mu\\) und \\((1+c)\\mu\\)","\\(\\sigma-c\\mu\\) und \\(\\sigma+c\\mu\\)"],
+            "fehler": ["Absolute statt Sigma-Umgebung gebildet","Relative statt Sigma-Umgebung gebildet","Rollen von \\(\\mu\\) und \\(\\sigma\\) vertauscht"]
+        },
+        {
+            "frage": "Die \\(2\\sigma\\)-Umgebung hat Wahrscheinlichkeit \\(0{,}96\\). Wie groß ist die Wahrscheinlichkeit außerhalb?",
+            "antworten": ["\\(0{,}04\\)","\\(0{,}96\\)","\\(1{,}96\\)","\\(0{,}48\\)"],
+            "fehler": ["Innere Wahrscheinlichkeit statt Gegenereignis gewählt","Innere Wahrscheinlichkeit zu 1 addiert","Innere Wahrscheinlichkeit halbiert"]
+        },
+        {
+            "frage": "Welches Ereignis ist das Gegenereignis zu \\(|X-\\mu|\\leq2\\sigma\\)?",
+            "antworten": ["\\(|X-\\mu|>2\\sigma\\)","\\(|X-\\mu|\\geq2\\sigma\\)","\\(|X-\\mu|<2\\sigma\\)","\\(|X-\\mu|>2\\)"],
+            "fehler": ["Randwerte fälschlich beiden Ereignissen zugeordnet","Inneres Ereignis nur streng formuliert","Faktor \\(\\sigma\\) vergessen"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=8\\) und \\(\\sigma=\\sqrt{2}\\). Welche ganzzahligen Grenzen hat die \\(1\\sigma\\)-Umgebung?",
+            "antworten": ["\\(7\\leq X\\leq9\\)","\\(6\\leq X\\leq10\\)","\\(7\\leq X\\leq10\\)","\\(6\\leq X\\leq9\\)"],
+            "fehler": ["Reelle Grenzen etwa 6,59 und 9,41 nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
+        },
+        {
+            "frage": "Welche Angabe kennzeichnet eine Sigma-Umgebung?",
+            "antworten": ["„höchstens das Doppelte der Standardabweichung von \\(\\mu\\) abweichen“","„höchstens 2 Treffer von \\(\\mu\\) abweichen“","„höchstens \\(2\\%\\) von \\(\\mu\\) abweichen“","„mindestens \\(\\sigma\\) Treffer erzielen“"],
+            "fehler": ["Absolute Umgebung gewählt","Relative Umgebung gewählt","Standardabweichung als Treffergrenze statt als Radius verwendet"]
+        }
+    ]
+}

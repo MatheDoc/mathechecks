@@ -8,9 +8,10 @@ import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=202
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
+import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const FY_BEISPIEL_CACHE = new Map();
@@ -454,7 +455,7 @@ function buildTaskVisualContext(task) {
   }
 }
 
-function renderFeynmanTaskMarkup(entry, cardAnchorId) {
+function renderFeynmanTaskMarkup(entry, cardAnchorId, aiAccess = null) {
   const task = entry?.task || null;
   if (entry?.error) {
     return `<p class="module-status" style="color:var(--rose);">${escapeHtml(entry.error)}</p>`;
@@ -463,9 +464,18 @@ function renderFeynmanTaskMarkup(entry, cardAnchorId) {
     return `<p class="module-status">Keine Aufgabe in dieser Sammlung gefunden.</p>`;
   }
 
+  const evaluationBlocked = isAiEvaluationBlocked(aiAccess);
   const scorableItems = getFeynmanScorableItems(task);
   const questionItems = scorableItems.length > 0
     ? scorableItems.map(({ sourceIndex, questionHtml, questionText, targetText }) => {
+      if (evaluationBlocked) {
+        return `
+        <li class="qa-item fy-question-item">
+          <div class="frage">${questionHtml}</div>
+          <div class="fy-response-cell">${renderAiEvaluationGateMarkup(aiAccess)}</div>
+        </li>
+      `;
+      }
       const inputId = `fy-input-${cardAnchorId}-${sourceIndex}`;
       return `
         <li class="qa-item fy-question-item" data-fy-question-item data-fy-question-nr="${sourceIndex + 1}" data-question="${escapeHtml(questionText)}" data-answer="${escapeHtml(targetText)}">
@@ -892,13 +902,14 @@ async function copyToClipboard(text) {
   }
 }
 
-function renderCard(entry) {
+function renderCard(entry, aiAccess = null) {
   const check = entry?.check || entry;
   const titel = check.Schlagwort || `Check ${check.Nummer}`;
   const checkId = getCheckId(check);
   const cardAnchorId = getCheckCardAnchorId(checkId);
   const checkNummer = formatCheckNumber(check?.Nummer);
-  const feynmanTaskMarkup = renderFeynmanTaskMarkup(entry, cardAnchorId);
+  const evaluationBlocked = isAiEvaluationBlocked(aiAccess);
+  const feynmanTaskMarkup = renderFeynmanTaskMarkup(entry, cardAnchorId, aiAccess);
 
   const kiMenuItem = `<button type="button" class="check-card__actions-item" role="menuitem" data-fy-ki-menu><span class="check-card__actions-icon" aria-hidden="true">✨</span><span>KI-Lernpartner kopieren</span></button>`;
   const hasAlternativeTask = Array.isArray(entry?.scorableTasks) && entry.scorableTasks.length > 1;
@@ -928,7 +939,7 @@ function renderCard(entry) {
         <div data-fy-stage="evaluate">
           ${feynmanTaskMarkup}
           <div class="module-flow-action-row">
-            <button class="module-action-button" type="button" data-fy-run-evaluation>Jetzt auswerten</button>
+            <button class="module-action-button${evaluationBlocked ? " module-action-button--locked" : ""}" type="button" data-fy-run-evaluation${evaluationBlocked ? " disabled" : ""}>Antworten auswerten</button>
           </div>
           <div data-fy-eval-status class="recall-eval-status"></div>
         </div>
@@ -1045,7 +1056,7 @@ function bindJumpNavScrollSync(navNode, cardNodes) {
   });
 }
 
-function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityContext) {
+function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityContext, aiAccess = null) {
   const cards = root.querySelectorAll("[data-fy-card]");
   const cardEvalState = new WeakMap();
 
@@ -1134,7 +1145,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
 
       const taskNode = card.querySelector("[data-fy-task]");
       if (!taskNode) return;
-      taskNode.outerHTML = renderFeynmanTaskMarkup(entry, section?.id || checkId || "fy-card");
+      taskNode.outerHTML = renderFeynmanTaskMarkup(entry, section?.id || checkId || "fy-card", aiAccess);
 
       const introColumn = card.querySelector("[data-fy-task-intro-column]");
       if (introColumn && entry.task) {
@@ -1236,6 +1247,8 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
     runEvaluationButton?.addEventListener("click", async () => {
       if (runEvaluationButton.disabled || !task) return;
 
+      stopActiveSpeechInput();
+
       const itemEls = Array.from(card.querySelectorAll("[data-fy-question-item]"));
       const states = ensureItemStates(itemEls);
       if (!itemEls.length) {
@@ -1247,6 +1260,8 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       runEvaluationButton.disabled = true;
       const originalLabel = runEvaluationButton.textContent;
       runEvaluationButton.textContent = "MatheChecks prüft ...";
+      runEvaluationButton.classList.add("module-action-button--ai-busy");
+      card.classList.add("check-card--ai-busy");
       if (evalStatusEl) evalStatusEl.innerHTML = "";
 
       const evaluationTargets = itemEls
@@ -1263,6 +1278,8 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       if (evaluationTargets.length === 0) {
         runEvaluationButton.disabled = false;
         runEvaluationButton.textContent = originalLabel;
+        runEvaluationButton.classList.remove("module-action-button--ai-busy");
+        card.classList.remove("check-card--ai-busy");
         publishCompletionState();
         return;
       }
@@ -1279,6 +1296,8 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
 
       runEvaluationButton.disabled = false;
       runEvaluationButton.textContent = originalLabel;
+      runEvaluationButton.classList.remove("module-action-button--ai-busy");
+      card.classList.remove("check-card--ai-busy");
 
       if (!evalData?.results) {
         if (evalData?.error === "not-authenticated" || evalData?.error === "invalid-items") {
@@ -1444,9 +1463,10 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   saveFeynmanState(lernbereich, state);
 
   const cardEntries = await buildFeynmanCardEntries(checks);
+  const aiAccess = await resolveAiEvaluationAccess("feynman_evaluate");
 
   renderJumpNav(navNode, checks, selectedCheckId);
-  root.innerHTML = cardEntries.map((entry) => renderCard(entry)).join("");
+  root.innerHTML = cardEntries.map((entry) => renderCard(entry, aiAccess)).join("");
   hydrateFeynmanTaskVisuals(root, cardEntries);
   const selectedSection = Array.from(root.querySelectorAll("[data-fy-check-viewport][data-check-id]"))
     .find((section) => section.dataset.checkId === selectedCheckId) || null;
@@ -1461,7 +1481,7 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   initCardMenuDismiss(root);
   bindJumpNavScrollSync(navNode, root.querySelectorAll("[data-fy-check-viewport][data-check-id]"));
   applyInitialReveal(root);
-  initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityContext);
+  initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityContext, aiAccess);
   getUserFeynmanProficiency().then((proficiency) => {
     if (!proficiency.ok) return;
     root.querySelectorAll("[data-fy-check-viewport][data-check-id]").forEach((section) => {

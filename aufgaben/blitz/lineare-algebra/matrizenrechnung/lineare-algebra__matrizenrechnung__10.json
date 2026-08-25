@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Zeile oder Spalte eignet sich besonders für eine Laplace-Entwicklung?",
+            "antworten": ["Eine Zeile oder Spalte mit möglichst vielen Nullen", "Eine Zeile mit möglichst großen Zahlen", "Immer nur die erste Zeile", "Eine Spalte ohne Nullen"],
+            "fehler": ["Zahlengröße statt Anzahl verschwindender Beiträge optimiert", "Wahlmöglichkeit der Entwicklungszeile übersehen", "Spalte mit unnötig vielen Beiträgen gewählt"]
+        },
+        {
+            "frage": "Welches Vorzeichen hat der Laplace-Beitrag an Position \\((1,2)\\)?",
+            "antworten": ["\\(-\\)", "\\(+\\)", "\\(0\\)", "Das Vorzeichen hängt vom Eintrag ab."],
+            "fehler": ["Schachbrettmuster an Position (1,2) vertauscht", "Vorzeichen mit einem Nullbeitrag verwechselt", "Vorzeichen fälschlich vom Matrixeintrag abhängig gemacht"]
+        },
+        {
+            "frage": "Welches Vorzeichen hat der Laplace-Beitrag an Position \\((4,1)\\)?",
+            "antworten": ["\\(-\\)", "\\(+\\)", "\\(0\\)", "Das Vorzeichen hängt vom Minor ab."],
+            "fehler": ["\\((-1)^{4+1}\\) falsch ausgewertet", "Vorzeichen mit einem Nullbeitrag verwechselt", "Vorzeichen fälschlich vom Minor abhängig gemacht"]
+        },
+        {
+            "frage": "Wie entsteht der Minor \\(A_{23}\\) einer \\(4\\times4\\)-Matrix?",
+            "antworten": ["2. Zeile und 3. Spalte streichen", "3. Zeile und 2. Spalte streichen", "2. Spalte und 3. Spalte streichen", "2. Zeile und 3. Zeile streichen"],
+            "fehler": ["Zeilen- und Spaltenindex vertauscht", "Zwei Spalten statt Zeile und Spalte gestrichen", "Zwei Zeilen statt Zeile und Spalte gestrichen"]
+        },
+        {
+            "frage": "Welche Größe hat ein Minor, der bei der Laplace-Entwicklung einer \\(4\\times4\\)-Matrix entsteht?",
+            "antworten": ["\\(3\\times3\\)", "\\(4\\times4\\)", "\\(2\\times2\\)", "\\(3\\times4\\)"],
+            "fehler": ["Keine Zeile und Spalte entfernt", "Zwei Zeilen und Spalten entfernt", "Nur eine Zeile entfernt"]
+        },
+        {
+            "frage": "In der Entwicklungszeile ist nur \\(a_{43}=2\\) ungleich null und \\(\\det(A_{43})=5\\). Wie groß ist \\(\\det(A)\\)?",
+            "antworten": ["\\(-10\\)", "\\(10\\)", "\\(7\\)", "\\(-3\\)"],
+            "fehler": ["Vorzeichen \\((-1)^{4+3}\\) übersehen", "Eintrag und Minordeterminante addiert", "Eintrag von Minordeterminante subtrahiert"]
+        },
+        {
+            "frage": "In der Entwicklungszeile ist nur \\(a_{32}=-2\\) ungleich null und \\(\\det(A_{32})=3\\). Wie groß ist \\(\\det(A)\\)?",
+            "antworten": ["\\(6\\)", "\\(-6\\)", "\\(1\\)", "\\(-5\\)"],
+            "fehler": ["Laplace-Vorzeichen und negatives Matrixelement nicht gemeinsam berücksichtigt", "Eintrag und Minordeterminante addiert", "Minordeterminante vom Eintrag subtrahiert"]
+        },
+        {
+            "frage": "Die erste Zeile lautet \\((0\\;0\\;4\\;0)\\). Wie viele Laplace-Beiträge sind ungleich null?",
+            "antworten": ["\\(1\\)", "\\(0\\)", "\\(3\\)", "\\(4\\)"],
+            "fehler": ["Einzigen Nicht-Null-Eintrag übersehen", "Nullen statt Nicht-Null-Einträge gezählt", "Alle Positionen unabhängig vom Eintrag gezählt"]
+        },
+        {
+            "frage": "Die erste Zeile lautet \\((2\\;0\\;-1\\;0)\\). Es gilt \\(\\det(A_{11})=3\\) und \\(\\det(A_{13})=4\\). Wie groß ist \\(\\det(A)\\)?",
+            "antworten": ["\\(2\\)", "\\(10\\)", "\\(-2\\)", "\\(7\\)"],
+            "fehler": ["Negativen Matrixeintrag \\(-1\\) als \\(1\\) verwendet", "Vorzeichen des zweiten Beitrags vertauscht", "Matrixeinträge und Minordeterminanten addiert statt multipliziert"]
+        },
+        {
+            "frage": "Bei Entwicklung nach der 4. Zeile trägt nur \\(a_{41}=1\\) bei. Der zugehörige Minor hat Determinante \\(10\\). Wie groß ist \\(\\det(A)\\)?",
+            "antworten": ["\\(-10\\)", "\\(10\\)", "\\(11\\)", "\\(-9\\)"],
+            "fehler": ["Vorzeichen \\((-1)^{4+1}\\) übersehen", "Matrixeintrag und Minordeterminante addiert", "Matrixeintrag von der Minordeterminante subtrahiert"]
+        }
+    ]
+}

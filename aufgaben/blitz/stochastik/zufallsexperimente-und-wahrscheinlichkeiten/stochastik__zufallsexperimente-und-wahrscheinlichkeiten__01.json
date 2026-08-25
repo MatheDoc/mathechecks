@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(X=\\{1,2,3,4,5,6\\}\\) und \\(A=\\{2,4,6\\}\\). Wie lautet \\(\\overline{A}\\)?",
+            "antworten": ["\\(\\{1,3,5\\}\\)", "\\(\\{2,4,6\\}\\)", "\\(\\{1,2,3,4,5,6\\}\\)", "\\(\\emptyset\\)"],
+            "fehler": ["Ereignis statt Gegenereignis angegeben", "Gesamte Grundmenge angegeben", "Komplement fälschlich als leere Menge gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\(A=\\{2,4,6\\}\\) und \\(B=\\{3,6\\}\\). Wie lautet \\(A\\cap B\\)?",
+            "antworten": ["\\(\\{6\\}\\)", "\\(\\{2,3,4,6\\}\\)", "\\(\\{2,4\\}\\)", "\\(\\emptyset\\)"],
+            "fehler": ["Schnittmenge mit Vereinigung verwechselt", "Elemente aus A ohne gemeinsame Elemente gewählt", "Gemeinsames Element 6 übersehen"]
+        },
+        {
+            "frage": "Es gilt \\(A=\\{2,4,6\\}\\) und \\(B=\\{3,6\\}\\). Wie lautet \\(A\\cup B\\)?",
+            "antworten": ["\\(\\{2,3,4,6\\}\\)", "\\(\\{6\\}\\)", "\\(\\{2,4\\}\\)", "\\(\\{2,3,4,6,6\\}\\)"],
+            "fehler": ["Vereinigung mit Schnittmenge verwechselt", "Nur die nicht gemeinsamen Elemente aus A gewählt", "Gemeinsames Element in einer Menge unnötig doppelt aufgeführt"]
+        },
+        {
+            "frage": "Welche Mengenoperation bedeutet ‚A oder B, möglicherweise auch beides‘?",
+            "antworten": ["\\(A\\cup B\\)", "\\(A\\cap B\\)", "\\(\\overline{A}\\)", "\\(A\\cap\\overline{B}\\)"],
+            "fehler": ["‚Oder‘ als Schnittmenge gelesen", "Vereinigung mit Gegenereignis verwechselt", "Nur den Teil von A außerhalb B gewählt"]
+        },
+        {
+            "frage": "Welche Mengenoperation bedeutet ‚A und B‘?",
+            "antworten": ["\\(A\\cap B\\)", "\\(A\\cup B\\)", "\\(\\overline{A}\\cup B\\)", "\\(A\\cap\\overline{B}\\)"],
+            "fehler": ["‚Und‘ als Vereinigung gelesen", "Komplement ohne Grundlage ergänzt", "Eintreten von B fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Es gilt \\(X=\\{1,2,3,4,5,6\\}\\), \\(A=\\{2,4,6\\}\\) und \\(B=\\{3,6\\}\\). Wie lautet \\(A\\cap\\overline{B}\\)?",
+            "antworten": ["\\(\\{2,4\\}\\)", "\\(\\{6\\}\\)", "\\(\\{3\\}\\)", "\\(\\{1,5\\}\\)"],
+            "fehler": ["B statt Gegenereignis von B verwendet", "A und B vertauscht", "Elemente außerhalb beider Mengen gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(X=\\{1,2,3,4,5,6\\}\\), \\(A=\\{2,4,6\\}\\) und \\(B=\\{3,6\\}\\). Welche Menge beschreibt ‚weder A noch B‘?",
+            "antworten": ["\\(\\{1,5\\}\\)", "\\(\\{6\\}\\)", "\\(\\{2,3,4\\}\\)", "\\(\\{2,3,4,6\\}\\)"],
+            "fehler": ["Gemeinsamen Teil statt Außenbereich gewählt", "Genau eines der Ereignisse gewählt", "Vereinigung statt Komplement der Vereinigung gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(A=\\{2,4,6\\}\\) und \\(B=\\{3,6\\}\\). Welche Menge enthält die Elemente, die in genau einer der beiden Mengen liegen?",
+            "antworten": ["\\(\\{2,3,4\\}\\)", "\\(\\{6\\}\\)", "\\(\\{2,3,4,6\\}\\)", "\\(\\{1,5\\}\\)"],
+            "fehler": ["Schnittmenge gewählt", "Vereinigung einschließlich des gemeinsamen Elements gewählt", "Elemente außerhalb beider Mengen gewählt"]
+        },
+        {
+            "frage": "Welche Vereinfachung ist richtig?",
+            "antworten": ["\\(\\overline{\\overline{A}}=A\\)", "\\(\\overline{\\overline{A}}=\\overline{A}\\)", "\\(\\overline{\\overline{A}}=\\emptyset\\)", "\\(\\overline{\\overline{A}}=X\\)"],
+            "fehler": ["Doppelte Verneinung nicht aufgehoben", "Doppeltes Komplement als leere Menge gedeutet", "Doppeltes Komplement immer mit der Grundmenge gleichgesetzt"]
+        },
+        {
+            "frage": "Welche Aussage gilt für jedes Ereignis \\(A\\)?",
+            "antworten": ["\\(A\\cap\\overline{A}=\\emptyset\\)", "\\(A\\cap\\overline{A}=A\\)", "\\(A\\cup\\overline{A}=\\emptyset\\)", "\\(A\\cup\\overline{A}=A\\)"],
+            "fehler": ["Ereignis und Gegenereignis fälschlich als überlappend behandelt", "Vereinigung von Ereignis und Gegenereignis mit der leeren Menge gleichgesetzt", "Gegenereignis in der Vereinigung ignoriert"]
+        }
+    ]
+}

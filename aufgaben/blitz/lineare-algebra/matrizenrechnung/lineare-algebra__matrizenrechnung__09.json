@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Spalten werden bei der Regel von Sarrus rechts an die Matrix angefügt?",
+            "antworten": ["Die ersten beiden Spalten", "Die letzten beiden Spalten", "Nur die erste Spalte", "Die ersten beiden Zeilen"],
+            "fehler": ["Falsche Spalten wiederholt", "Eine Spalte zu wenig angefügt", "Zeilen statt Spalten angefügt"]
+        },
+        {
+            "frage": "Wie werden die drei Diagonalprodukte von links oben nach rechts unten verrechnet?",
+            "antworten": ["Sie werden addiert.", "Sie werden subtrahiert.", "Sie werden miteinander multipliziert.", "Nur das erste wird verwendet."],
+            "fehler": ["Vorzeichengruppe der Gegendiagonalen verwendet", "Produkte nochmals multipliziert", "Zwei Diagonalprodukte ausgelassen"]
+        },
+        {
+            "frage": "Wie werden die drei Diagonalprodukte von rechts oben nach links unten verrechnet?",
+            "antworten": ["Ihre Summe wird subtrahiert.", "Ihre Summe wird addiert.", "Ihr Produkt wird subtrahiert.", "Nur das mittlere Produkt wird subtrahiert."],
+            "fehler": ["Vorzeichen der Gegendiagonalen vertauscht", "Summe mit Produkt verwechselt", "Zwei Gegendiagonalprodukte ausgelassen"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&2&3\\\\4&5&6\\\\7&8&9\\end{pmatrix}\\): Welches ist ein positives Sarrus-Produkt?",
+            "antworten": ["\\(1\\cdot5\\cdot9\\)", "\\(3\\cdot5\\cdot7\\)", "\\(1\\cdot6\\cdot8\\)", "\\(2\\cdot4\\cdot9\\)"],
+            "fehler": ["Gegendiagonale als positives Produkt gewählt", "Gegendiagonale als positives Produkt gewählt", "Gegendiagonale als positives Produkt gewählt"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&2&3\\\\4&5&6\\\\7&8&9\\end{pmatrix}\\): Welches Produkt gehört zur abzuziehenden Gruppe?",
+            "antworten": ["\\(3\\cdot5\\cdot7\\)", "\\(1\\cdot5\\cdot9\\)", "\\(2\\cdot6\\cdot7\\)", "\\(3\\cdot4\\cdot8\\)"],
+            "fehler": ["Hauptdiagonale statt Gegendiagonale gewählt", "Positives Sarrus-Produkt gewählt", "Positives Sarrus-Produkt gewählt"]
+        },
+        {
+            "frage": "Berechne \\(\\det\\begin{pmatrix}1&2&0\\\\0&3&1\\\\2&0&1\\end{pmatrix}\\) mit Sarrus.",
+            "antworten": ["\\(7\\)", "\\(3\\)", "\\(4\\)", "\\(-7\\)"],
+            "fehler": ["Nur das Produkt \\(1\\cdot3\\cdot1\\) berücksichtigt", "Nur das Produkt \\(2\\cdot1\\cdot2\\) berücksichtigt", "Positive Sarrus-Produkte fälschlich subtrahiert"]
+        },
+        {
+            "frage": "In einem Sarrus-Produkt steht ein Faktor \\(0\\). Welchen Beitrag liefert dieses Produkt?",
+            "antworten": ["\\(0\\)", "\\(1\\)", "Der Beitrag entfällt nur bei positiver Diagonale.", "Der Beitrag ist nicht bestimmbar."],
+            "fehler": ["Null als neutrales Element der Multiplikation behandelt", "Wirkung des Faktors null vom Vorzeichen abhängig gemacht", "Produkt mit bekanntem Nullfaktor nicht ausgewertet"]
+        },
+        {
+            "frage": "Die Summe der positiven Sarrus-Produkte ist \\(8\\), die Summe der abzuziehenden Produkte \\(3\\). Wie groß ist die Determinante?",
+            "antworten": ["\\(5\\)", "\\(11\\)", "\\(-5\\)", "\\(24\\)"],
+            "fehler": ["Beide Gruppen addiert", "Subtraktionsreihenfolge vertauscht", "Beide Gruppensummen multipliziert"]
+        },
+        {
+            "frage": "Die abzuziehenden Sarrus-Produkte summieren sich zu \\(-4\\). Welcher Term wird in der Determinante verwendet?",
+            "antworten": ["\\(-(-4)=+4\\)", "\\(-4\\)", "\\(+(-4)=+4\\)", "\\((-4)^2=16\\)"],
+            "fehler": ["Äußeres Subtraktionszeichen übersehen", "Addition einer negativen Zahl falsch ausgewertet", "Summenwert unnötig quadriert"]
+        },
+        {
+            "frage": "Welche Matrixgröße darf direkt mit der Regel von Sarrus behandelt werden?",
+            "antworten": ["\\(3\\times3\\)", "\\(2\\times2\\)", "\\(4\\times4\\)", "Jede quadratische Matrix"],
+            "fehler": ["Größe für die Zweierformel gewählt", "Sarrus unzulässig auf eine 4x4-Matrix übertragen", "Sarrus unzulässig auf beliebige Größen verallgemeinert"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wann ist das Produkt \\(AB\\) definiert?",
+            "antworten": ["Spaltenzahl von \\(A\\) = Zeilenzahl von \\(B\\)", "Zeilenzahl von \\(A\\) = Spaltenzahl von \\(B\\)", "\\(A\\) und \\(B\\) haben dieselbe Dimension", "\\(A\\) und \\(B\\) sind quadratisch"],
+            "fehler": ["Äußere statt innere Dimensionen verglichen", "Unnötig gleiche Dimensionen verlangt", "Unnötig quadratische Matrizen verlangt"]
+        },
+        {
+            "frage": "\\(A\\) hat die Dimension \\(2\\times3\\), \\(B\\) die Dimension \\(3\\times4\\). Welche Dimension hat \\(AB\\)?",
+            "antworten": ["\\(2\\times4\\)", "\\(3\\times3\\)", "\\(4\\times2\\)", "\\(2\\times3\\)"],
+            "fehler": ["Innere Dimensionen als Ergebnis verwendet", "Äußere Dimensionen vertauscht", "Dimension des ersten Faktors übernommen"]
+        },
+        {
+            "frage": "\\(A\\) ist eine \\(2\\times3\\)-Matrix und \\(B\\) eine \\(2\\times2\\)-Matrix. Welche Aussage zu \\(AB\\) stimmt?",
+            "antworten": ["\\(AB\\) ist nicht definiert.", "\\(AB\\) hat die Dimension \\(2\\times2\\).", "\\(AB\\) hat die Dimension \\(3\\times2\\).", "\\(AB\\) hat die Dimension \\(2\\times3\\)."],
+            "fehler": ["Nicht übereinstimmende innere Dimensionen übersehen", "Äußere Dimensionen trotz undefiniertem Produkt verwendet", "Dimension von \\(A\\) trotz undefiniertem Produkt übernommen"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&2\\end{pmatrix}\\) und \\(B=\\begin{pmatrix}3\\\\4\\end{pmatrix}\\): Wie groß ist \\(AB\\)?",
+            "antworten": ["\\(11\\)", "\\(7\\)", "\\(10\\)", "\\(\\begin{pmatrix}3&8\\end{pmatrix}\\)"],
+            "fehler": ["Einträge nur addiert", "Nur zweites Produkt berücksichtigt", "Elementweise Produkte nicht zum Skalarprodukt addiert"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}2&-1\\\\0&3\\end{pmatrix}\\) und \\(B=\\begin{pmatrix}4&1\\\\2&5\\end{pmatrix}\\): Welchen Wert hat \\((AB)_{11}\\)?",
+            "antworten": ["\\(6\\)", "\\(8\\)", "\\(10\\)", "\\(3\\)"],
+            "fehler": ["Nur das erste Teilprodukt verwendet", "Vorzeichen von \\(-1\\) übersehen", "Erste Zeile von \\(B\\) statt erste Spalte verwendet"]
+        },
+        {
+            "frage": "Der Eintrag \\((AB)_{23}\\) entsteht aus welcher Kombination?",
+            "antworten": ["2. Zeile von \\(A\\) und 3. Spalte von \\(B\\)", "2. Spalte von \\(A\\) und 3. Zeile von \\(B\\)", "3. Zeile von \\(A\\) und 2. Spalte von \\(B\\)", "2. Zeile von \\(B\\) und 3. Spalte von \\(A\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Indizes \\(i\\) und \\(j\\) vertauscht", "Reihenfolge der Faktoren vertauscht"]
+        },
+        {
+            "frage": "Welche Aussage gilt im Allgemeinen für Matrizenprodukte?",
+            "antworten": ["\\(AB\\neq BA\\)", "\\(AB=BA\\)", "\\(AB=A+B\\)", "\\(AB\\) ist immer definiert"],
+            "fehler": ["Matrizenmultiplikation fälschlich als kommutativ angesehen", "Multiplikation mit Addition verwechselt", "Dimensionsbedingung übersehen"]
+        },
+        {
+            "frage": "Was gilt für eine passende Einheitsmatrix \\(E\\)?",
+            "antworten": ["\\(AE=A\\)", "\\(AE=E\\)", "\\(AE=O\\)", "\\(AE=A^T\\)"],
+            "fehler": ["Einheitsmatrix fälschlich als absorbierend angesehen", "Einheitsmatrix mit Nullmatrix verwechselt", "Multiplikation mit Transposition verwechselt"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&0\\\\2&1\\end{pmatrix}\\) und \\(B=\\begin{pmatrix}3&4\\\\0&5\\end{pmatrix}\\): Welchen Wert hat \\((AB)_{21}\\)?",
+            "antworten": ["\\(6\\)", "\\(2\\)", "\\(3\\)", "\\(10\\)"],
+            "fehler": ["Nur zweiten Faktor der Zeile verwendet", "Nur ersten Eintrag der Spalte verwendet", "Passende Einträge multipliziert, aber falsche Spalte gewählt"]
+        },
+        {
+            "frage": "Welche Rechenregel ist korrekt?",
+            "antworten": ["\\(A(B+C)=AB+AC\\)", "\\(A(B+C)=AB+C\\)", "\\(A(B+C)=BA+CA\\)", "\\(A(B+C)=AB+BC\\)"],
+            "fehler": ["Faktor \\(A\\) nicht auf beide Summanden verteilt", "Multiplikationsreihenfolge geändert", "Beim zweiten Summanden den falschen Faktor verwendet"]
+        }
+    ]
+}

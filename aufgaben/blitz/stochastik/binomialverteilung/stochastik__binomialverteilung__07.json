@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein kumulierter Balken bei \\(k=4\\) hat die Höhe \\(0{,}70\\). Was bedeutet sie?",
+            "antworten": ["\\(P(X\\leq4)=0{,}70\\)","\\(P(X=4)=0{,}70\\)","\\(P(X\\geq4)=0{,}70\\)","\\(P(X<4)=0{,}70\\)"],
+            "fehler": ["Kumulierte mit Einzelwahrscheinlichkeit verwechselt","Kumulierte Unterseite als Oberseite gedeutet","Wert 4 fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Kumulierte Höhen: bei \\(k=3\\) \\(0{,}55\\), bei \\(k=4\\) \\(0{,}75\\). Wie groß ist \\(P(X=4)\\)?",
+            "antworten": ["\\(0{,}20\\)","\\(0{,}75\\)","\\(0{,}55\\)","\\(1{,}30\\)"],
+            "fehler": ["Kumulierte Höhe bei 4 direkt als Einzelwert verwendet","Vorherige kumulierte Höhe als Einzelwert verwendet","Kumulierte Höhen addiert"]
+        },
+        {
+            "frage": "Die kumulierte Höhe bei \\(k=5\\) ist \\(0{,}82\\). Wie groß ist \\(P(X\\geq6)\\)?",
+            "antworten": ["\\(0{,}18\\)","\\(0{,}82\\)","\\(0{,}23\\)","\\(1\\)"],
+            "fehler": ["Kumulierte Wahrscheinlichkeit statt Gegenwahrscheinlichkeit gewählt","\\(1-0{,}82\\) falsch berechnet","Mindestens 6 als sicher angenommen"]
+        },
+        {
+            "frage": "Kumulierte Höhen: bei \\(k=1\\) \\(0{,}25\\), bei \\(k=4\\) \\(0{,}80\\). Wie groß ist \\(P(2\\leq X\\leq4)\\)?",
+            "antworten": ["\\(0{,}55\\)","\\(1{,}05\\)","\\(0{,}80\\)","\\(0{,}25\\)"],
+            "fehler": ["Kumulierte Höhen addiert","Nur obere kumulierte Höhe verwendet","Nur abzuziehende untere Höhe verwendet"]
+        },
+        {
+            "frage": "Welche Höhen braucht man für \\(P(X=7)\\) in einer kumulierten Darstellung?",
+            "antworten": ["Die Höhen bei \\(7\\) und \\(6\\)","Nur die Höhe bei \\(7\\)","Die Höhen bei \\(8\\) und \\(7\\)","Die Höhen bei \\(7\\) und \\(0\\)"],
+            "fehler": ["Kumulierten Wert direkt als Einzelwert verwendet","Einzelwahrscheinlichkeit für 8 vorbereitet","Falsche Ausgangshöhe 0 gewählt"]
+        },
+        {
+            "frage": "Die kumulierte Höhe bei \\(k=2\\) ist \\(0{,}40\\). Wie groß ist \\(P(X>2)\\)?",
+            "antworten": ["\\(0{,}60\\)","\\(0{,}40\\)","\\(0{,}20\\)","\\(1\\)"],
+            "fehler": ["Kumulierten Anteil unverändert übernommen","Gegenwahrscheinlichkeit falsch berechnet","Mehr als 2 als sicher angenommen"]
+        },
+        {
+            "frage": "Kumulierte Höhen: bei \\(k=0\\) \\(0{,}10\\), bei \\(k=1\\) \\(0{,}35\\). Wie groß ist \\(P(X=1)\\)?",
+            "antworten": ["\\(0{,}25\\)","\\(0{,}35\\)","\\(0{,}10\\)","\\(0{,}45\\)"],
+            "fehler": ["Höhe bei 1 direkt verwendet","Höhe bei 0 statt Differenz verwendet","Kumulierte Höhen addiert"]
+        },
+        {
+            "frage": "Kumulierte Höhen: bei \\(k=4\\) \\(0{,}60\\), bei \\(k=8\\) \\(0{,}95\\). Wie groß ist \\(P(5\\leq X\\leq8)\\)?",
+            "antworten": ["\\(0{,}35\\)","\\(1{,}55\\)","\\(0{,}95\\)","\\(0{,}60\\)"],
+            "fehler": ["Kumulierte Höhen addiert","Nur obere kumulierte Höhe verwendet","Nur untere kumulierte Höhe verwendet"]
+        },
+        {
+            "frage": "Warum steigen kumulierte Balkenhöhen mit wachsendem \\(k\\) nicht ab?",
+            "antworten": ["Zu \\(P(X\\leq k)\\) kommen nur weitere Einzelwahrscheinlichkeiten hinzu.","Jede Einzelwahrscheinlichkeit wird größer.","Alle Balken haben dieselbe Höhe.","Die Trefferwahrscheinlichkeit \\(p\\) wächst mit \\(k\\)."],
+            "fehler": ["Monotonie fälschlich jeder Einzelwahrscheinlichkeit zugeschrieben","Kumulierte Darstellung als konstant gedeutet","Parameter \\(p\\) fälschlich von \\(k\\) abhängig gemacht"]
+        },
+        {
+            "frage": "Die kumulierte Höhe bei \\(k=6\\) ist \\(0{,}92\\). Welcher Ausdruck liefert \\(P(X\\geq7)\\)?",
+            "antworten": ["\\(1-0{,}92\\)","\\(0{,}92\\)","\\(1+0{,}92\\)","\\(0{,}92-1\\)"],
+            "fehler": ["Kumulierten unteren Anteil direkt übernommen","Gegenwahrscheinlichkeit addiert statt subtrahiert","Subtraktionsreihenfolge vertauscht"]
+        }
+    ]
+}

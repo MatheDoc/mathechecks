@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet der Satz von der Gegenwahrscheinlichkeit?",
+            "antworten": ["\\(P(\\overline{A})=1-P(A)\\)", "\\(P(\\overline{A})=1+P(A)\\)", "\\(P(\\overline{A})=P(A)\\)", "\\(P(\\overline{A})=-P(A)\\)"],
+            "fehler": ["Gegenwahrscheinlichkeit zu 1 addiert", "Ereignis und Gegenereignis gleichgesetzt", "Nur das Vorzeichen geändert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}3\\). Wie groß ist \\(P(\\overline{A})\\)?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(1{,}3\\)", "\\(-0{,}3\\)"],
+            "fehler": ["Ereigniswahrscheinlichkeit unverändert übernommen", "Wahrscheinlichkeit zu 1 addiert", "Nur das Vorzeichen geändert"]
+        },
+        {
+            "frage": "Es gilt \\(P(\\overline{A})=0{,}15\\). Wie groß ist \\(P(A)\\)?",
+            "antworten": ["\\(0{,}85\\)", "\\(0{,}15\\)", "\\(1{,}15\\)", "\\(0{,}0225\\)"],
+            "fehler": ["Gegenwahrscheinlichkeit unverändert übernommen", "Gegenwahrscheinlichkeit zu 1 addiert", "Gegenwahrscheinlichkeit quadriert"]
+        },
+        {
+            "frage": "Wie lautet der Satz von Sylvester?",
+            "antworten": ["\\(P(A\\cup B)=P(A)+P(B)-P(A\\cap B)\\)", "\\(P(A\\cup B)=P(A)+P(B)\\)", "\\(P(A\\cup B)=P(A)\\cdot P(B)\\)", "\\(P(A\\cup B)=P(A\\cap B)-P(A)-P(B)\\)"],
+            "fehler": ["Doppelt gezählte Schnittmenge nicht abgezogen", "Vereinigung durch ein Produkt berechnet", "Vorzeichen und Reihenfolge vollständig vertauscht"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}3\\), \\(P(B)=0{,}4\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}7\\)", "\\(0{,}9\\)", "\\(0{,}24\\)"],
+            "fehler": ["Schnittmenge nicht abgezogen", "Schnittmenge addiert statt abgezogen", "Alle drei Werte multipliziert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}3\\), \\(P(A\\cap B)=0{,}2\\) und \\(P(A\\cup B)=0{,}5\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}6\\)", "\\(0{,}1\\)", "\\(1\\)"],
+            "fehler": ["Schnittmenge beim Umstellen subtrahiert statt addiert", "Schnittmenge von P(A) abgezogen", "Alle gegebenen Werte addiert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\), \\(P(B)=0{,}4\\) und \\(P(A\\cup B)=0{,}7\\). Wie groß ist \\(P(A\\cap B)\\)?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}9\\)", "\\(0{,}3\\)", "\\(0{,}14\\)"],
+            "fehler": ["Einzelwahrscheinlichkeiten nur addiert", "Vereinigung von P(B) abgezogen", "P(B) und Vereinigung multipliziert"]
+        },
+        {
+            "frage": "Für disjunkte Ereignisse gilt \\(P(A\\cap B)=0\\). Wie vereinfacht sich der Satz von Sylvester?",
+            "antworten": ["\\(P(A\\cup B)=P(A)+P(B)\\)", "\\(P(A\\cup B)=P(A)\\cdot P(B)\\)", "\\(P(A\\cup B)=0\\)", "\\(P(A\\cup B)=P(A)-P(B)\\)"],
+            "fehler": ["Addition durch Multiplikation ersetzt", "Leere Schnittmenge fälschlich auf die Vereinigung übertragen", "Ohne Grundlage eine Differenz gebildet"]
+        },
+        {
+            "frage": "Warum wird im Satz von Sylvester \\(P(A\\cap B)\\) abgezogen?",
+            "antworten": ["Die Schnittmenge wurde in \\(P(A)+P(B)\\) doppelt gezählt", "Die Schnittmenge ist immer unmöglich", "Die Schnittmenge ist stets größer als die Vereinigung", "Damit das Ergebnis immer \\(0\\) wird"],
+            "fehler": ["Schnittmenge fälschlich immer als leer angesehen", "Größenbeziehung von Schnitt und Vereinigung vertauscht", "Zweck der Korrektur falsch gedeutet"]
+        },
+        {
+            "frage": "Welcher Ausdruck beschreibt die Wahrscheinlichkeit, dass genau eines von \\(A\\) und \\(B\\) eintritt?",
+            "antworten": ["\\(P(A\\cup B)-P(A\\cap B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A)+P(B)\\)", "\\(1-P(A\\cup B)\\)"],
+            "fehler": ["Nur gemeinsames Eintreten gewählt", "Schnittmenge doppelt mitgezählt", "Wahrscheinlichkeit für keines der Ereignisse gewählt"]
+        }
+    ]
+}

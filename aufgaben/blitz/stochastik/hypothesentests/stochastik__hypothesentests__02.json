@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Bei einem rechtsseitigen Test gilt \\(A=\\{0,\\ldots,20\\}\\). Beobachtet wird \\(X=23\\). Wie wird entschieden?",
+            "antworten": ["\\(H_0\\) wird verworfen", "\\(H_0\\) wird beibehalten", "Der Test ist nicht auswertbar", "\\(H_1\\) wird verworfen, weil \\(23>20\\) gilt"],
+            "fehler": ["Zugehörigkeit zum Ablehnungsbereich übersehen", "Vorliegendes Ergebnis fälschlich als unzureichend angesehen", "Richtung der Entscheidungsregel vertauscht"]
+        },
+        {
+            "frage": "Bei einem rechtsseitigen Test gilt \\(\\overline{A}=\\{13,\\ldots,50\\}\\). Beobachtet wird \\(X=13\\). Wie wird entschieden?",
+            "antworten": ["\\(H_0\\) wird verworfen", "\\(H_0\\) wird beibehalten", "Nur bei \\(X>13\\) wird \\(H_0\\) verworfen", "Ohne \\(p_1\\) ist keine Entscheidung möglich"],
+            "fehler": ["Randwert 13 fälschlich dem Annahmebereich zugeordnet", "Inklusive Grenze als strenge Grenze gelesen", "Entscheidungsregel unnötig von einem konkreten Wert unter \\(H_1\\) abhängig gemacht"]
+        },
+        {
+            "frage": "Welches Ereignis beschreibt beim rechtsseitigen Test mit \\(\\overline{A}=\\{k,\\ldots,n\\}\\) den Fehler 1. Art?",
+            "antworten": ["\\(X\\geq k\\) unter \\(H_0\\)", "\\(X\\leq k-1\\) unter \\(H_0\\)", "\\(X\\geq k\\) unter \\(H_1\\)", "\\(X\\leq k-1\\) unter \\(H_1\\)"],
+            "fehler": ["Annahme- statt Ablehnungsbereich gewählt", "Fehlerereignis unter der Gegenhypothese berechnet", "Fehler 1. und 2. Art vertauscht"]
+        },
+        {
+            "frage": "Welches Ereignis beschreibt beim rechtsseitigen Test mit \\(A=\\{0,\\ldots,k-1\\}\\) den Fehler 2. Art?",
+            "antworten": ["\\(X\\leq k-1\\) unter \\(H_1\\)", "\\(X\\geq k\\) unter \\(H_1\\)", "\\(X\\leq k-1\\) unter \\(H_0\\)", "\\(X\\geq k\\) unter \\(H_0\\)"],
+            "fehler": ["Ablehnungs- statt Annahmebereich gewählt", "Fehlerwahrscheinlichkeit unter der Nullhypothese berechnet", "Fehler 2. und 1. Art vertauscht"]
+        },
+        {
+            "frage": "Was ist ein Fehler 1. Art?",
+            "antworten": ["\\(H_0\\) ist wahr und wird verworfen", "\\(H_1\\) ist wahr und \\(H_0\\) wird beibehalten", "\\(H_0\\) ist wahr und wird beibehalten", "\\(H_1\\) ist wahr und \\(H_0\\) wird verworfen"],
+            "fehler": ["Fehler 1. und 2. Art vertauscht", "Eine richtige Entscheidung als Fehler bezeichnet", "Eine richtige Entscheidung als Fehler bezeichnet"]
+        },
+        {
+            "frage": "Was ist ein Fehler 2. Art?",
+            "antworten": ["\\(H_1\\) ist wahr und \\(H_0\\) wird beibehalten", "\\(H_0\\) ist wahr und wird verworfen", "\\(H_0\\) ist wahr und wird beibehalten", "\\(H_1\\) ist wahr und \\(H_0\\) wird verworfen"],
+            "fehler": ["Fehler 2. und 1. Art vertauscht", "Eine richtige Entscheidung als Fehler bezeichnet", "Eine richtige Entscheidung als Fehler bezeichnet"]
+        },
+        {
+            "frage": "Es gilt \\(H_0:p=0{,}4\\) und \\(H_1:p>0{,}4\\). Um \\(P(\\text{Fehler 1. Art})\\) zu berechnen, welcher Wert für \\(p\\) wird verwendet?",
+            "antworten": ["\\(p=0{,}4\\)", "Ein beliebiger Wert \\(p>0{,}4\\)", "\\(p=0{,}6\\)", "Der beobachtete Anteil"],
+            "fehler": ["Fehler 1. Art unter der Gegenhypothese berechnet", "Gegenwahrscheinlichkeit verwendet", "Stichprobenergebnis als Populationsparameter eingesetzt"]
+        },
+        {
+            "frage": "Es gilt \\(H_0:p=0{,}4\\) und tatsächlich \\(p_1=0{,}5\\). Um \\(P(\\text{Fehler 2. Art})\\) zu berechnen, welcher Wert für \\(p\\) wird verwendet?",
+            "antworten": ["\\(p=0{,}5\\)", "\\(p=0{,}4\\)", "\\(p=0{,}6\\)", "\\(p=0{,}1\\)"],
+            "fehler": ["Fehler 2. Art unter der Nullhypothese berechnet", "Gegenwahrscheinlichkeit der Nullhypothese verwendet", "Differenz der beiden Parameterwerte verwendet"]
+        },
+        {
+            "frage": "Welche Gegenhypothese gehört zu einem rechtsseitigen Test?",
+            "antworten": ["\\(H_1:p>p_0\\)", "\\(H_1:p<p_0\\)", "\\(H_1:p=p_0\\)", "\\(H_1:p\\neq p_0\\)"],
+            "fehler": ["Linksseitige Gegenhypothese gewählt", "Nullhypothese statt Gegenhypothese gewählt", "Zweiseitige statt rechtsseitige Gegenhypothese gewählt"]
+        },
+        {
+            "frage": "Warum ist die Wahrscheinlichkeit für den Fehler 2. Art oft nicht eindeutig bestimmbar?",
+            "antworten": ["Unter \\(H_1\\) ist häufig kein konkreter Wert von \\(p\\) angegeben", "Der Stichprobenumfang ist grundsätzlich unbekannt", "Der Annahmebereich darf nicht verwendet werden", "Fehler 2. Art tritt nur bei linksseitigen Tests auf"],
+            "fehler": ["Fehlenden Parameter fälschlich beim Stichprobenumfang vermutet", "Fehlerereignis fälschlich vom Annahmebereich getrennt", "Fehler 2. Art fälschlich auf linksseitige Tests beschränkt"]
+        }
+    ]
+}

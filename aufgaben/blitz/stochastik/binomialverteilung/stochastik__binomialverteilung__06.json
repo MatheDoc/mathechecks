@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Einzelwahrscheinlichkeits-Histogramm hat bei \\(k=3\\) die Balkenhöhe \\(0{,}24\\). Was ist \\(P(X=3)\\)?",
+            "antworten": ["\\(0{,}24\\)","\\(0{,}76\\)","\\(0{,}48\\)","\\(0{,}08\\)"],
+            "fehler": ["Gegenwahrscheinlichkeit gebildet","Balkenhöhe verdoppelt","Balkenhöhe durch Trefferzahl geteilt"]
+        },
+        {
+            "frage": "Die Einzelbalken bei \\(k=2,3,4\\) haben die Höhen \\(0{,}15;0{,}25;0{,}20\\). Wie groß ist \\(P(2\\leq X\\leq4)\\)?",
+            "antworten": ["\\(0{,}60\\)","\\(0{,}25\\)","\\(0{,}40\\)","\\(0{,}10\\)"],
+            "fehler": ["Nur den mittleren Balken verwendet","Randbalken addiert und mittleren ausgelassen","Größten und kleinsten Balken subtrahiert"]
+        },
+        {
+            "frage": "Die Einzelbalken bei \\(k=5,6,7\\) sind \\(0{,}18;0{,}12;0{,}05\\). Wie groß ist \\(P(X\\geq6)\\), wenn für größere \\(k\\) keine Balkenhöhe mehr positiv ist?",
+            "antworten": ["\\(0{,}17\\)","\\(0{,}30\\)","\\(0{,}12\\)","\\(0{,}95\\)"],
+            "fehler": ["Den Balken bei 5 fälschlich einbezogen","Nur den Balken bei 6 verwendet","Gegenwahrscheinlichkeit zum Balken bei 7 gebildet"]
+        },
+        {
+            "frage": "Die Einzelbalken bei \\(k=0,1,2\\) sind \\(0{,}10;0{,}30;0{,}40\\). Wie groß ist \\(P(X<2)\\)?",
+            "antworten": ["\\(0{,}40\\)","\\(0{,}80\\)","\\(0{,}30\\)","\\(0{,}20\\)"],
+            "fehler": ["Balken bei 2 trotz strenger Grenze einbezogen","Nur den Balken bei 1 verwendet","Restwahrscheinlichkeit statt Balkensumme gebildet"]
+        },
+        {
+            "frage": "Was gibt die Höhe eines Balkens über \\(k\\) in einem Histogramm der Einzelwahrscheinlichkeiten an?",
+            "antworten": ["\\(P(X=k)\\)","\\(P(X\\leq k)\\)","\\(P(X\\geq k)\\)","\\(P(X<k)\\)"],
+            "fehler": ["Einzel- mit kumulierter Wahrscheinlichkeit verwechselt","Balken als obere Restwahrscheinlichkeit gedeutet","Wert \\(k\\) fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Einzelbalken: bei \\(k=1\\) Höhe \\(0{,}2\\), bei \\(k=2\\) Höhe \\(0{,}3\\). Wie groß ist \\(P(1\\leq X<3)\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(0{,}3\\)","\\(0{,}1\\)","\\(0{,}6\\)"],
+            "fehler": ["Nur den Balken bei 2 verwendet","Balkenhöhen subtrahiert","Balkenhöhen multipliziert"]
+        },
+        {
+            "frage": "Einzelbalken: \\(P(X=0)=0{,}1\\), \\(P(X=1)=0{,}4\\), \\(P(X=2)=0{,}3\\). Wie groß ist \\(P(X\\leq1)\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(0{,}4\\)","\\(0{,}8\\)","\\(0{,}3\\)"],
+            "fehler": ["Nur den Balken bei 1 verwendet","Balken bei 2 zusätzlich einbezogen","Nur den Balken bei 2 verwendet"]
+        },
+        {
+            "frage": "Einzelbalken bei \\(k=3\\) und \\(k=4\\) haben die Höhen \\(0{,}22\\) und \\(0{,}18\\). Welche Summe liefert \\(P(3\\leq X\\leq4)\\)?",
+            "antworten": ["\\(0{,}22+0{,}18\\)","\\(0{,}22-0{,}18\\)","\\(1-0{,}22\\)","\\(0{,}22\\cdot0{,}18\\)"],
+            "fehler": ["Einzelbalken subtrahiert","Gegenwahrscheinlichkeit eines Balkens gebildet","Einzelbalken multipliziert"]
+        },
+        {
+            "frage": "Die einzigen positiven Einzelbalken liegen bei \\(k=0,1,2\\) mit Höhen \\(0{,}25;0{,}50;0{,}25\\). Wie groß ist \\(P(X>0)\\)?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}25\\)","\\(0{,}50\\)","\\(1\\)"],
+            "fehler": ["Nur den ausgeschlossenen Balken bei 0 gewählt","Nur den Balken bei 1 gewählt","Balken bei 0 trotz strenger Grenze einbezogen"]
+        },
+        {
+            "frage": "Welche Balken werden für \\(P(2<X\\leq5)\\) in einer Einzeldarstellung addiert?",
+            "antworten": ["Die Balken bei \\(3,4,5\\)","Die Balken bei \\(2,3,4,5\\)","Die Balken bei \\(3,4\\)","Nur der Balken bei \\(5\\)"],
+            "fehler": ["Ausgeschlossene Untergrenze 2 einbezogen","Eingeschlossene Obergrenze 5 ausgelassen","Intervallwahrscheinlichkeit auf einen Einzelbalken reduziert"]
+        }
+    ]
+}

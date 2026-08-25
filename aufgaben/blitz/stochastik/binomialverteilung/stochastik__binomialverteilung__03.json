@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie wird \\(P(X=4)\\) durch kumulierte Wahrscheinlichkeiten ausgedrückt?",
+            "antworten": ["\\(P(X\\leq4)-P(X\\leq3)\\)","\\(P(X\\leq4)-P(X\\leq4)\\)","\\(P(X\\leq5)-P(X\\leq4)\\)","\\(1-P(X\\leq4)\\)"],
+            "fehler": ["Dieselbe kumulierte Wahrscheinlichkeit subtrahiert","Einzelwahrscheinlichkeit für 5 statt 4 gebildet","Gegenereignis zu höchstens 4 gebildet"]
+        },
+        {
+            "frage": "Wie wird \\(P(X\\geq5)\\) kumuliert angegeben?",
+            "antworten": ["\\(1-P(X\\leq4)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq5)\\)","\\(P(X\\leq5)-P(X\\leq4)\\)"],
+            "fehler": ["Grenze 5 fälschlich aus dem Ereignis ausgeschlossen","Mindestens mit höchstens verwechselt","Nur die Einzelwahrscheinlichkeit für 5 gebildet"]
+        },
+        {
+            "frage": "Wie wird \\(P(3\\leq X\\leq7)\\) kumuliert angegeben?",
+            "antworten": ["\\(P(X\\leq7)-P(X\\leq2)\\)","\\(P(X\\leq7)-P(X\\leq3)\\)","\\(P(X\\leq7)+P(X\\leq2)\\)","\\(P(X\\leq3)-P(X\\leq7)\\)"],
+            "fehler": ["Untere Grenze 3 fälschlich ausgeschlossen","Kumulierte Anteile addiert statt subtrahiert","Subtraktionsreihenfolge vertauscht"]
+        },
+        {
+            "frage": "Welche kumulierte Wahrscheinlichkeit ist gleich \\(P(X<6)\\)?",
+            "antworten": ["\\(P(X\\leq5)\\)","\\(P(X\\leq6)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq4)\\)"],
+            "fehler": ["Strenge Grenze 6 eingeschlossen","Gegenereignis gebildet","Grenze um zwei statt um eins verringert"]
+        },
+        {
+            "frage": "Wie wird \\(P(X>6)\\) kumuliert angegeben?",
+            "antworten": ["\\(1-P(X\\leq6)\\)","\\(1-P(X\\leq5)\\)","\\(P(X\\leq6)\\)","\\(P(X\\leq7)-P(X\\leq6)\\)"],
+            "fehler": ["Den Wert 6 fälschlich eingeschlossen","Mehr als mit höchstens verwechselt","Nur die Einzelwahrscheinlichkeit für 7 gebildet"]
+        },
+        {
+            "frage": "Wie wird \\(P(2<X\\leq8)\\) kumuliert angegeben?",
+            "antworten": ["\\(P(X\\leq8)-P(X\\leq2)\\)","\\(P(X\\leq8)-P(X\\leq1)\\)","\\(P(X\\leq8)-P(X\\leq3)\\)","\\(1-P(X\\leq8)\\)"],
+            "fehler": ["Den ausgeschlossenen Wert 2 wieder eingeschlossen","Den eingeschlossenen Wert 3 ausgeschlossen","Nur das Gegenereignis zur Obergrenze gebildet"]
+        },
+        {
+            "frage": "Wie wird \\(P(4\\leq X<9)\\) kumuliert angegeben?",
+            "antworten": ["\\(P(X\\leq8)-P(X\\leq3)\\)","\\(P(X\\leq9)-P(X\\leq3)\\)","\\(P(X\\leq8)-P(X\\leq4)\\)","\\(P(X\\leq9)-P(X\\leq4)\\)"],
+            "fehler": ["Ausgeschlossene Obergrenze 9 eingeschlossen","Eingeschlossene Untergrenze 4 ausgeschlossen","Beide Randwerte falsch behandelt"]
+        },
+        {
+            "frage": "Welche Differenz ergibt \\(P(X=1)\\)?",
+            "antworten": ["\\(P(X\\leq1)-P(X\\leq0)\\)","\\(P(X\\leq2)-P(X\\leq1)\\)","\\(P(X\\leq1)-P(X\\leq1)\\)","\\(1-P(X\\leq1)\\)"],
+            "fehler": ["Einzelwahrscheinlichkeit für 2 gebildet","Identische Werte subtrahiert","Gegenereignis zu höchstens 1 gebildet"]
+        },
+        {
+            "frage": "Wie wird \\(P(X\\geq1)\\) kumuliert angegeben?",
+            "antworten": ["\\(1-P(X\\leq0)\\)","\\(1-P(X\\leq1)\\)","\\(P(X\\leq1)\\)","\\(P(X\\leq1)-P(X\\leq0)\\)"],
+            "fehler": ["Trefferzahl 1 fälschlich ausgeschlossen","Mindestens 1 mit höchstens 1 verwechselt","Nur genau einen Treffer berechnet"]
+        },
+        {
+            "frage": "Für ganzzahliges \\(X\\): Wie wird \\(P(2{,}4\\leq X\\leq6{,}8)\\) kumuliert angegeben?",
+            "antworten": ["\\(P(X\\leq6)-P(X\\leq2)\\)","\\(P(X\\leq7)-P(X\\leq2)\\)","\\(P(X\\leq6)-P(X\\leq3)\\)","\\(P(X\\leq7)-P(X\\leq3)\\)"],
+            "fehler": ["Obere Grenze nach außen aufgerundet","Untere Grenze 3 fälschlich ausgeschlossen","Beide Grenzen nach außen gerundet"]
+        }
+    ]
+}

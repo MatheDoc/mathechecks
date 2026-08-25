@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Pfad beginnt mit Wahrscheinlichkeit \\(0{,}4\\) und hat Endwahrscheinlichkeit \\(0{,}36\\). Wie groß ist die zweite Astwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}9\\)", "\\(0{,}144\\)", "\\(0{,}76\\)", "\\(0{,}04\\)"],
+            "fehler": ["Gegebene Wahrscheinlichkeiten nochmals multipliziert", "Gegebene Wahrscheinlichkeiten addiert", "Endwahrscheinlichkeit von der ersten Astwahrscheinlichkeit abgezogen"]
+        },
+        {
+            "frage": "Welche Formel liefert eine unbekannte zweite Astwahrscheinlichkeit \\(q\\) aus \\(P(A)\\) und \\(P(A\\cap B)\\)?",
+            "antworten": ["\\(q=\\frac{P(A\\cap B)}{P(A)}\\)", "\\(q=P(A\\cap B)\\cdot P(A)\\)", "\\(q=P(A\\cap B)+P(A)\\)", "\\(q=P(A)-P(A\\cap B)\\)"],
+            "fehler": ["Pfadmultiplikation erneut angewendet statt umgeformt", "Wahrscheinlichkeiten addiert", "Differenz statt Quotient gebildet"]
+        },
+        {
+            "frage": "Ein Pfad beginnt mit \\(0{,}6\\) und endet mit \\(0{,}12\\). Welche Wahrscheinlichkeit steht am zweiten Ast?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}072\\)", "\\(0{,}48\\)", "\\(0{,}72\\)"],
+            "fehler": ["Ast- und Endwahrscheinlichkeit multipliziert", "Endwahrscheinlichkeit von der ersten Astwahrscheinlichkeit abgezogen", "Ast- und Endwahrscheinlichkeit addiert"]
+        },
+        {
+            "frage": "Es gilt \\(0{,}8\\cdot q=0{,}24\\). Welchen Wert hat \\(q\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}192\\)", "\\(0{,}56\\)", "\\(1{,}04\\)"],
+            "fehler": ["Beide bekannten Werte multipliziert", "Endwahrscheinlichkeit subtrahiert", "Beide bekannten Werte addiert"]
+        },
+        {
+            "frage": "An einem Knoten wurde eine Astwahrscheinlichkeit mit \\(0{,}9\\) berechnet. Wie groß ist die Wahrscheinlichkeit des Gegenastes?",
+            "antworten": ["\\(0{,}1\\)", "\\(0{,}9\\)", "\\(1{,}9\\)", "\\(0{,}81\\)"],
+            "fehler": ["Berechneten Wert für beide Äste verwendet", "Wert zu 1 addiert", "Wert quadriert"]
+        },
+        {
+            "frage": "Welche Gleichung beschreibt einen Pfad mit erster Astwahrscheinlichkeit \\(0{,}5\\), unbekanntem zweiten Ast \\(q\\) und Endwahrscheinlichkeit \\(0{,}2\\)?",
+            "antworten": ["\\(0{,}5\\cdot q=0{,}2\\)", "\\(0{,}5+q=0{,}2\\)", "\\(0{,}2\\cdot q=0{,}5\\)", "\\(0{,}5-q=0{,}2\\)"],
+            "fehler": ["Pfadwahrscheinlichkeiten addiert", "End- und Astwahrscheinlichkeit vertauscht", "Pfadmultiplikation als Differenz formuliert"]
+        },
+        {
+            "frage": "Ein erster Ast hat Wahrscheinlichkeit \\(0{,}3\\). Welche Endwahrscheinlichkeit ist auf einem anschließenden Pfad unmöglich?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}3\\)", "\\(0{,}15\\)", "\\(0{,}03\\)"],
+            "fehler": ["Endwahrscheinlichkeit darf bei zweitem Ast 1 gleich der ersten Astwahrscheinlichkeit sein", "Mögliche zweite Astwahrscheinlichkeit \\(0{,}5\\) übersehen", "Mögliche zweite Astwahrscheinlichkeit \\(0{,}1\\) übersehen"]
+        },
+        {
+            "frage": "Ein Pfad beginnt mit \\(0{,}4\\) und endet mit \\(0{,}04\\). Wie groß ist die zweite Astwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}1\\)", "\\(0{,}016\\)", "\\(0{,}36\\)", "\\(0{,}44\\)"],
+            "fehler": ["Gegebene Werte multipliziert", "Endwahrscheinlichkeit subtrahiert", "Gegebene Werte addiert"]
+        },
+        {
+            "frage": "Was ist nach der Berechnung einer Astwahrscheinlichkeit \\(q\\) oft der nächste Schritt?",
+            "antworten": ["Den Gegenast mit \\(1-q\\) ergänzen", "Alle übrigen Äste ebenfalls auf \\(q\\) setzen", "Die Endwahrscheinlichkeit von \\(q\\) abziehen", "\\(q\\) verdoppeln"],
+            "fehler": ["Gleichverteilung ohne Grundlage angenommen", "Unpassende Differenz gebildet", "Anzahl der ausgehenden Äste als Faktor verwendet"]
+        },
+        {
+            "frage": "Wann wird die Pfadmultiplikationsregel indirekt angewendet?",
+            "antworten": ["Wenn aus einer Endwahrscheinlichkeit eine Astwahrscheinlichkeit gesucht ist", "Wenn zwei Endwahrscheinlichkeiten zu einem Ereignis addiert werden", "Wenn nur ein Gegenereignis ergänzt wird", "Wenn alle Endwahrscheinlichkeiten bereits bekannt sind"],
+            "fehler": ["Indirekte Multiplikation mit Pfadaddition verwechselt", "Ergänzungsregel statt umgeformter Pfadmultiplikation gewählt", "Keine unbekannte Astwahrscheinlichkeit erkannt"]
+        }
+    ]
+}

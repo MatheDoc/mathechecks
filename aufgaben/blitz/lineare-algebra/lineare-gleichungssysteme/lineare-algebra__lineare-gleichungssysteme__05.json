@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Eine Koeffizientenmatrix in Zeilenstufenform hat zwei Nicht-Nullzeilen und eine Nullzeile. Wie groß ist \\(rg(A)\\)?",
+            "antworten": ["\\(2\\)", "\\(1\\)", "\\(3\\)", "\\(0\\)"],
+            "fehler": ["Nullzeilen statt Nicht-Nullzeilen gezählt", "Alle Zeilen gezählt", "Nicht-Nullzeilen übersehen"]
+        },
+        {
+            "frage": "In \\((A\\mid y)\\) tritt die Zeile \\((0\\;0\\mid1)\\) auf. Wie wirkt sie auf die Ränge?",
+            "antworten": ["Sie erhöht \\(rg(A\\mid y)\\), aber nicht \\(rg(A)\\).", "Sie erhöht beide Ränge.", "Sie erhöht nur \\(rg(A)\\).", "Sie verändert keinen Rang."],
+            "fehler": ["Rechte Seite der Widerspruchszeile in \\(A\\) mitgezählt", "Erweiterte Spalte nicht berücksichtigt", "Nicht-Nullzeile der erweiterten Matrix übersehen"]
+        },
+        {
+            "frage": "Die Koeffizientenmatrix \\(A\\) hat vier Spalten. Wie groß ist die Variablenanzahl \\(n\\)?",
+            "antworten": ["\\(4\\)", "\\(3\\)", "\\(5\\)", "Nicht bestimmbar"],
+            "fehler": ["Zeilenzahl angenommen", "Erweiterte Spalte mitgezählt", "Spaltenzahl von \\(A\\) nicht genutzt"]
+        },
+        {
+            "frage": "Welche Rangbedingung bedeutet: genau eine Lösung?",
+            "antworten": ["\\(rg(A)=rg(A\\mid y)=n\\)", "\\(rg(A)=rg(A\\mid y)<n\\)", "\\(rg(A)<rg(A\\mid y)\\)", "\\(rg(A)>rg(A\\mid y)\\)"],
+            "fehler": ["Bedingung für unendlich viele Lösungen", "Bedingung für keine Lösung", "Für eine Erweiterung unmögliche Rangrelation"]
+        },
+        {
+            "frage": "Welche Rangbedingung bedeutet: unendlich viele Lösungen?",
+            "antworten": ["\\(rg(A)=rg(A\\mid y)<n\\)", "\\(rg(A)=rg(A\\mid y)=n\\)", "\\(rg(A)<rg(A\\mid y)\\)", "\\(rg(A\\mid y)<rg(A)\\)"],
+            "fehler": ["Bedingung für genau eine Lösung", "Bedingung für keine Lösung", "Für eine Erweiterung unmögliche Rangrelation"]
+        },
+        {
+            "frage": "Welche Rangbedingung bedeutet: keine Lösung?",
+            "antworten": ["\\(rg(A)<rg(A\\mid y)\\)", "\\(rg(A)=rg(A\\mid y)=n\\)", "\\(rg(A)=rg(A\\mid y)<n\\)", "\\(rg(A)>n\\)"],
+            "fehler": ["Bedingung für genau eine Lösung", "Bedingung für unendlich viele Lösungen", "Rang einer Matrix kann ihre Spaltenzahl nicht übersteigen"]
+        },
+        {
+            "frage": "Es gilt \\(rg(A)=3\\), \\(rg(A\\mid y)=3\\) und \\(n=3\\). Wie viele Lösungen besitzt das LGS?",
+            "antworten": ["Genau eine", "Keine", "Unendlich viele", "Genau drei"],
+            "fehler": ["Gleiche Ränge übersehen", "Vergleich mit \\(n\\) übersehen", "Rang als Lösungsanzahl gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\(rg(A)=2\\), \\(rg(A\\mid y)=2\\) und \\(n=4\\). Wie viele Lösungen besitzt das LGS?",
+            "antworten": ["Unendlich viele", "Genau eine", "Keine", "Genau zwei"],
+            "fehler": ["Ranggleichheit mit Eindeutigkeit verwechselt", "Gleiche Ränge übersehen", "Rang als Lösungsanzahl gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\(rg(A)=2\\) und \\(rg(A\\mid y)=3\\). Welche Folgerung ist richtig?",
+            "antworten": ["Das LGS hat keine Lösung.", "Das LGS hat genau eine Lösung.", "Das LGS hat unendlich viele Lösungen.", "Die Variablenanzahl muss zuerst bekannt sein."],
+            "fehler": ["Ungleiche Ränge übersehen", "Konsistenz fälschlich angenommen", "Bei ungleichen Rängen ist \\(n\\) für die Folgerung nicht nötig"]
+        },
+        {
+            "frage": "Ein LGS hat drei Variablen und es gilt \\(rg(A)=rg(A\\mid y)=2\\). Welche Aussage ist richtig?",
+            "antworten": ["Das LGS hat unendlich viele Lösungen.", "Zwei Gleichungen bedeuten genau zwei Lösungen.", "Das LGS ist eindeutig lösbar.", "Ohne die Anzahl der Gleichungen ist keine Aussage möglich."],
+            "fehler": ["Gleichungszahl als Lösungszahl gedeutet", "Rang ist kleiner als \\(n\\)", "Rangkriterium liefert bereits eine eindeutige Folgerung"]
+        }
+    ]
+}

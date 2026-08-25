@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Bei einem linksseitigen Test ist \\(\\overline{A}=\\{0,\\ldots,k\\}\\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \\(p_0\\)?",
+            "antworten": ["\\(P_{p_0}(X\\leq k)=\\alpha\\)", "\\(P_{p_0}(X\\geq k+1)=\\alpha\\)", "\\(P_{p_0}(X\\leq k)=\\beta\\)", "\\(P_{p_0}(X\\geq k)=\\alpha\\)"],
+            "fehler": ["Annahme- statt Ablehnungsbereich verwendet", "Fehler 1. und 2. Art vertauscht", "Grenze und Verteilungsschwanz vertauscht"]
+        },
+        {
+            "frage": "Bei einem rechtsseitigen Test ist \\(\\overline{A}=\\{k,\\ldots,n\\}\\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \\(p_0\\)?",
+            "antworten": ["\\(P_{p_0}(X\\geq k)=\\alpha\\)", "\\(P_{p_0}(X\\leq k-1)=\\alpha\\)", "\\(P_{p_0}(X\\geq k)=\\beta\\)", "\\(P_{p_0}(X\\leq k)=\\alpha\\)"],
+            "fehler": ["Annahme- statt Ablehnungsbereich verwendet", "Fehler 1. und 2. Art vertauscht", "Grenze und Verteilungsschwanz vertauscht"]
+        },
+        {
+            "frage": "Bei einem linksseitigen Test ist \\(A=\\{k+1,\\ldots,n\\}\\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \\(p_1\\)?",
+            "antworten": ["\\(P_{p_1}(X\\geq k+1)=\\beta\\)", "\\(P_{p_1}(X\\leq k)=\\beta\\)", "\\(P_{p_0}(X\\geq k+1)=\\beta\\)", "\\(P_{p_1}(X\\geq k)=\\alpha\\)"],
+            "fehler": ["Ablehnungs- statt Annahmebereich verwendet", "Wahrscheinlichkeit unter der Nullhypothese berechnet", "Grenze und Fehlerart vertauscht"]
+        },
+        {
+            "frage": "Bei einem rechtsseitigen Test ist \\(A=\\{0,\\ldots,k-1\\}\\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \\(p_1\\)?",
+            "antworten": ["\\(P_{p_1}(X\\leq k-1)=\\beta\\)", "\\(P_{p_1}(X\\geq k)=\\beta\\)", "\\(P_{p_0}(X\\leq k-1)=\\beta\\)", "\\(P_{p_1}(X\\leq k)=\\alpha\\)"],
+            "fehler": ["Ablehnungs- statt Annahmebereich verwendet", "Wahrscheinlichkeit unter der Nullhypothese berechnet", "Grenze und Fehlerart vertauscht"]
+        },
+        {
+            "frage": "Welcher Parameterwert gehört in die Berechnung eines Fehlers 1. Art?",
+            "antworten": ["Der Wert \\(p_0\\) aus \\(H_0\\)", "Ein Wert \\(p_1\\) aus \\(H_1\\)", "Der beobachtete relative Anteil", "Immer \\(p=0{,}5\\)"],
+            "fehler": ["Fehler 1. Art unter der Gegenhypothese berechnet", "Stichprobenergebnis als Populationsparameter verwendet", "Parameter ohne Bezug zu den Hypothesen festgelegt"]
+        },
+        {
+            "frage": "Welcher Parameterwert gehört in die Berechnung eines Fehlers 2. Art?",
+            "antworten": ["Ein konkreter Wert \\(p_1\\) aus \\(H_1\\)", "Der Wert \\(p_0\\) aus \\(H_0\\)", "Der beobachtete relative Anteil", "Immer \\(p=0{,}5\\)"],
+            "fehler": ["Fehler 2. Art unter der Nullhypothese berechnet", "Stichprobenergebnis als Populationsparameter verwendet", "Parameter ohne Bezug zu den Hypothesen festgelegt"]
+        },
+        {
+            "frage": "Wie wird ein unbekanntes \\(p\\) aus einer gegebenen Binomialwahrscheinlichkeit typischerweise bestimmt?",
+            "antworten": ["Passende Werte für \\(p\\) systematisch probieren", "\\(p\\) stets durch \\(n\\) teilen", "Die Fehlerwahrscheinlichkeit von \\(1\\) abziehen", "Den Grenzwert \\(k\\) als \\(p\\) einsetzen"],
+            "fehler": ["Parameter und Stichprobenumfang ohne Grundlage verrechnet", "Gegenwahrscheinlichkeit mit gesuchtem Parameter verwechselt", "Ganzzahlige Grenze als Wahrscheinlichkeit verwendet"]
+        },
+        {
+            "frage": "Wie wird ein unbekannter Stichprobenumfang \\(n\\) aus einer gegebenen Fehlerwahrscheinlichkeit typischerweise bestimmt?",
+            "antworten": ["Ganzzahlige Werte für \\(n\\) systematisch probieren", "Die Fehlerwahrscheinlichkeit auf die nächste ganze Zahl runden", "\\(n=p\\cdot k\\) setzen", "Den Wert \\(p\\) als Stichprobenumfang verwenden"],
+            "fehler": ["Wahrscheinlichkeit fälschlich als Stichprobenumfang interpretiert", "Nicht vorhandene Produktformel verwendet", "Parameter und Stichprobenumfang vertauscht"]
+        },
+        {
+            "frage": "Es gilt \\(Bcd(0;22;80;p_0)=0{,}0324\\). Für \\(p=0{,}38\\) ergibt sich genau \\(0{,}0324\\). Welcher Wert ist gesucht?",
+            "antworten": ["\\(p_0=0{,}38\\)", "\\(p_0=0{,}0324\\)", "\\(p_0=22\\)", "\\(p_0=80\\)"],
+            "fehler": ["Fehlerwahrscheinlichkeit als Parameter übernommen", "Grenzwert als Parameter übernommen", "Stichprobenumfang als Parameter übernommen"]
+        },
+        {
+            "frage": "Gesucht ist \\(n\\) und es gilt \\(Bcd(33;n;n;0{,}28)=0{,}1580\\). Für \\(n=100\\) stimmt die Gleichung. Was folgt?",
+            "antworten": ["Der Stichprobenumfang ist \\(n=100\\)", "Der Stichprobenumfang ist \\(n=33\\)", "Der Stichprobenumfang ist \\(n=0{,}28\\)", "Der Stichprobenumfang ist \\(n=0{,}1580\\)"],
+            "fehler": ["Untere Summengrenze als Stichprobenumfang übernommen", "Parameter als Stichprobenumfang übernommen", "Fehlerwahrscheinlichkeit als Stichprobenumfang übernommen"]
+        }
+    ]
+}

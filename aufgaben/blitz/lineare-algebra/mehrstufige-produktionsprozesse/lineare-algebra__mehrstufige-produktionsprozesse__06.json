@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel beschreibt den Vektor der variablen Stückkosten?",
+            "antworten": ["\\(\\vec{k}_v=\\vec{k}_R\\cdot RE+\\vec{k}_Z\\cdot ZE+\\vec{k}_E\\)", "\\(K_v=\\vec{k}_R\\cdot RE+\\vec{k}_Z\\cdot ZE+\\vec{k}_E\\)", "\\(\\vec{k}_v=\\vec{k}_R+\\vec{k}_Z+\\vec{k}_E\\)", "\\(\\vec{k}_v=\\vec{k}_R\\cdot RZ+\\vec{k}_Z\\cdot RE+\\vec{k}_E\\)"],
+            "fehler": ["Vektor der Stückkosten mit gesamten variablen Kosten verwechselt", "Produktionsbedarf der Kostenanteile ignoriert", "RE und ZE den falschen Kostenstufen zugeordnet"]
+        },
+        {
+            "frage": "Gegeben sind \\(\\vec{k}_v=\\begin{pmatrix}3&5\\end{pmatrix}\\) und \\(\\vec{m}=\\begin{pmatrix}2\\\\4\\end{pmatrix}\\). Wie groß sind die gesamten variablen Kosten \\(K_v\\)?",
+            "antworten": ["\\(26\\)", "\\(14\\)", "\\(20\\)", "\\(10\\)"],
+            "fehler": ["Alle Komponenten nur addiert", "Nur zweite Produktkomponente berücksichtigt", "Nur Stückkosten miteinander addiert"]
+        },
+        {
+            "frage": "Gegeben sind \\(\\vec{p}=\\begin{pmatrix}8&6\\end{pmatrix}\\) und \\(\\vec{m}=\\begin{pmatrix}3\\\\2\\end{pmatrix}\\). Wie groß ist der Erlös \\(E\\)?",
+            "antworten": ["\\(36\\)", "\\(19\\)", "\\(48\\)", "\\(14\\)"],
+            "fehler": ["Preise und Mengen nur addiert", "Nur ersten Preis mit beiden Mengen multipliziert", "Nur die Preise addiert"]
+        },
+        {
+            "frage": "Gegeben sind \\(\\vec{p}=\\begin{pmatrix}10&9\\end{pmatrix}\\) und \\(\\vec{k}_v=\\begin{pmatrix}6&4\\end{pmatrix}\\). Wie lautet \\(\\vec{db}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}4&5\\end{pmatrix}\\)", "\\(\\begin{pmatrix}16&13\\end{pmatrix}\\)", "\\(\\begin{pmatrix}-4&-5\\end{pmatrix}\\)", "\\(\\begin{pmatrix}5&4\\end{pmatrix}\\)"],
+            "fehler": ["Preis und variable Stückkosten addiert", "Subtraktionsreihenfolge vertauscht", "Komponenten vertauscht"]
+        },
+        {
+            "frage": "Der Erlös beträgt \\(E=90\\), die gesamten variablen Kosten betragen \\(K_v=55\\). Wie groß ist \\(DB\\)?",
+            "antworten": ["\\(35\\)", "\\(145\\)", "\\(-35\\)", "\\(55\\)"],
+            "fehler": ["Erlös und variable Kosten addiert", "Subtraktionsreihenfolge vertauscht", "Variable Kosten unverändert als Deckungsbeitrag übernommen"]
+        },
+        {
+            "frage": "Es gelten \\(K_v=70\\) und \\(K_f=20\\). Wie groß sind die Gesamtkosten \\(K\\)?",
+            "antworten": ["\\(90\\)", "\\(50\\)", "\\(1400\\)", "\\(70\\)"],
+            "fehler": ["Fixkosten von variablen Kosten abgezogen", "Variable Kosten und Fixkosten multipliziert", "Fixkosten nicht berücksichtigt"]
+        },
+        {
+            "frage": "Der Erlös beträgt \\(E=120\\), die Gesamtkosten betragen \\(K=95\\). Wie groß ist der Gewinn \\(G\\)?",
+            "antworten": ["\\(25\\)", "\\(215\\)", "\\(-25\\)", "\\(95\\)"],
+            "fehler": ["Erlös und Kosten addiert", "Subtraktionsreihenfolge vertauscht", "Gesamtkosten als Gewinn übernommen"]
+        },
+        {
+            "frage": "Welche Zuordnung ist fachlich richtig?",
+            "antworten": ["\\(\\vec{k}_v\\): variable Stückkosten; \\(K_v\\): gesamte variable Kosten", "\\(\\vec{k}_v\\): gesamte variable Kosten; \\(K_v\\): variable Stückkosten", "\\(\\vec{k}_v\\): Fixkosten; \\(K_v\\): Gesamtkosten", "\\(\\vec{k}_v\\): Verkaufspreise; \\(K_v\\): Erlös"],
+            "fehler": ["Stückgröße und Gesamtgröße vertauscht", "Variable Kosten mit Fix- und Gesamtkosten verwechselt", "Kosten mit Preisen und Erlös verwechselt"]
+        },
+        {
+            "frage": "Es gelten \\(\\vec{k}_R\\cdot RE=\\begin{pmatrix}4&6\\end{pmatrix}\\), \\(\\vec{k}_Z\\cdot ZE=\\begin{pmatrix}3&2\\end{pmatrix}\\) und \\(\\vec{k}_E=\\begin{pmatrix}1&5\\end{pmatrix}\\). Wie lautet \\(\\vec{k}_v\\)?",
+            "antworten": ["\\(\\begin{pmatrix}8&13\\end{pmatrix}\\)", "\\(\\begin{pmatrix}7&8\\end{pmatrix}\\)", "\\(\\begin{pmatrix}12&60\\end{pmatrix}\\)", "\\(\\begin{pmatrix}13&8\\end{pmatrix}\\)"],
+            "fehler": ["Fertigungskosten der zweiten Stufe nicht addiert", "Alle Komponenten miteinander multipliziert", "Komponenten vertauscht"]
+        },
+        {
+            "frage": "Der Deckungsbeitrag beträgt \\(DB=50\\), die Fixkosten betragen \\(K_f=18\\). Wie groß ist der Gewinn?",
+            "antworten": ["\\(32\\)", "\\(68\\)", "\\(-32\\)", "\\(50\\)"],
+            "fehler": ["Fixkosten zum Deckungsbeitrag addiert", "Subtraktionsreihenfolge vertauscht", "Fixkosten nicht berücksichtigt"]
+        }
+    ]
+}

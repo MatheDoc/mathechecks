@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel liefert den Rohstoffbedarf aus einem gegebenen Endproduktvektor?",
+            "antworten": ["\\(\\vec{r}=RE\\cdot\\vec{m}\\)", "\\(\\vec{r}=\\vec{m}\\cdot RE\\)", "\\(\\vec{r}=RE^{-1}\\cdot\\vec{m}\\)", "\\(\\vec{m}=RE\\cdot\\vec{r}\\)"],
+            "fehler": ["Vektor und Matrix in falscher Reihenfolge multipliziert", "Inverse trotz Richtung Output → Input verwendet", "Input und Output in der Gleichung vertauscht"]
+        },
+        {
+            "frage": "Welche Formel liefert die Zwischenproduktmengen aus einem gegebenen Endproduktvektor?",
+            "antworten": ["\\(\\vec{z}=ZE\\cdot\\vec{m}\\)", "\\(\\vec{z}=RZ\\cdot\\vec{m}\\)", "\\(\\vec{z}=ZE^{-1}\\cdot\\vec{m}\\)", "\\(\\vec{m}=ZE\\cdot\\vec{z}\\)"],
+            "fehler": ["Falsche Produktionsmatrix gewählt", "Inverse trotz Richtung Output → Input verwendet", "Input und Output vertauscht"]
+        },
+        {
+            "frage": "Welche Formel liefert den Rohstoffbedarf aus einem gegebenen Zwischenproduktvektor?",
+            "antworten": ["\\(\\vec{r}=RZ\\cdot\\vec{z}\\)", "\\(\\vec{r}=ZE\\cdot\\vec{z}\\)", "\\(\\vec{r}=RZ^{-1}\\cdot\\vec{z}\\)", "\\(\\vec{z}=RZ\\cdot\\vec{r}\\)"],
+            "fehler": ["Falsche Produktionsstufe gewählt", "Inverse trotz Richtung Output → Input verwendet", "Input und Output vertauscht"]
+        },
+        {
+            "frage": "Gegeben sind \\(RE=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}\\) und \\(\\vec{m}=\\begin{pmatrix}2\\\\1\\end{pmatrix}\\). Wie groß ist \\(\\vec{r}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}5\\\\3\\end{pmatrix}\\)", "\\(\\begin{pmatrix}4\\\\4\\end{pmatrix}\\)", "\\(\\begin{pmatrix}3\\\\3\\end{pmatrix}\\)", "\\(\\begin{pmatrix}2\\\\3\\end{pmatrix}\\)"],
+            "fehler": ["Spaltenweise statt zeilenweise skalar multipliziert", "Nur die Zeilensummen gebildet", "Beitrag des zweiten Endprodukts zur ersten Rohstoffmenge übersehen"]
+        },
+        {
+            "frage": "Die erste Zeile von \\(RE\\) lautet \\(\\begin{pmatrix}3&2\\end{pmatrix}\\), \\(\\vec{m}=\\begin{pmatrix}4\\\\1\\end{pmatrix}\\). Wie groß ist \\(r_1\\)?",
+            "antworten": ["\\(14\\)", "\\(11\\)", "\\(18\\)", "\\(9\\)"],
+            "fehler": ["Komponenten nur addiert", "Beide Produktionsmengen mit beiden Bedarfswerten multipliziert", "Nur die Produkte \\(3\\cdot2\\) und \\(2\\cdot1\\) verwendet"]
+        },
+        {
+            "frage": "Gegeben sind \\(ZE=\\begin{pmatrix}1&2\\\\3&0\\end{pmatrix}\\) und \\(\\vec{m}=\\begin{pmatrix}2\\\\3\\end{pmatrix}\\). Wie groß ist \\(\\vec{z}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}8\\\\6\\end{pmatrix}\\)", "\\(\\begin{pmatrix}5\\\\6\\end{pmatrix}\\)", "\\(\\begin{pmatrix}11\\\\0\\end{pmatrix}\\)", "\\(\\begin{pmatrix}3\\\\3\\end{pmatrix}\\)"],
+            "fehler": ["Matrix und Vektor komponentenweise addiert", "Zeilensummen mit Produktionsmengen verwechselt", "Nur die Hauptdiagonale berücksichtigt"]
+        },
+        {
+            "frage": "Gegeben sind \\(RZ=\\begin{pmatrix}2&0\\\\0&4\\end{pmatrix}\\) und \\(\\vec{z}=\\begin{pmatrix}3\\\\2\\end{pmatrix}\\). Wie groß ist \\(\\vec{r}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}6\\\\8\\end{pmatrix}\\)", "\\(\\begin{pmatrix}5\\\\6\\end{pmatrix}\\)", "\\(\\begin{pmatrix}3\\\\2\\end{pmatrix}\\)", "\\(\\begin{pmatrix}8\\\\6\\end{pmatrix}\\)"],
+            "fehler": ["Bedarfswerte und Mengen addiert", "Produktionsmatrix nicht angewendet", "Ergebniskomponenten vertauscht"]
+        },
+        {
+            "frage": "\\(RE\\) hat das Format \\(3\\times2\\), \\(\\vec{m}\\) besitzt 2 Komponenten. Wie viele Komponenten hat \\(\\vec{r}=RE\\cdot\\vec{m}\\)?",
+            "antworten": ["3", "2", "5", "6"],
+            "fehler": ["Spaltenzahl statt Zeilenzahl des Ergebnisses verwendet", "Dimensionen addiert", "Dimensionen multipliziert"]
+        },
+        {
+            "frage": "Wo steht der Outputvektor bei einer Berechnung Output → Input?",
+            "antworten": ["Rechts von der Produktionsmatrix", "Links von der Produktionsmatrix", "Als Exponent der Produktionsmatrix", "Die Reihenfolge ist beliebig"],
+            "fehler": ["Multiplikationsreihenfolge vertauscht", "Vektor fälschlich als Potenz verwendet", "Nichtkommutativität der Matrizenmultiplikation übersehen"]
+        },
+        {
+            "frage": "Es werden nur 2 ME von E2 produziert. Wie berechnet man den Rohstoffbedarf aus \\(RE\\) besonders schnell?",
+            "antworten": ["Die 2. Spalte von \\(RE\\) mit 2 multiplizieren.", "Die 2. Zeile von \\(RE\\) mit 2 multiplizieren.", "Die 2. Spalte von \\(RE\\) durch 2 teilen.", "Die 2. Zeile von \\(RE\\) durch 2 teilen."],
+            "fehler": ["Zeile statt Outputspalte verwendet", "Bedarf trotz doppelter Menge halbiert", "Zeile und Division zugleich falsch verwendet"]
+        }
+    ]
+}

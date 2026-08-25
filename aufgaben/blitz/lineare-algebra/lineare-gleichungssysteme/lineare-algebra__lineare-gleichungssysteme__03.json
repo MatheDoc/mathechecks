@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie viele Spalten hat die erweiterte Koeffizientenmatrix eines 4×4-LGS?",
+            "antworten": ["\\(5\\)", "\\(4\\)", "\\(8\\)", "\\(16\\)"],
+            "fehler": ["Spalte der rechten Seiten vergessen", "Zeilen und Spalten addiert", "Anzahl der Koeffizienten gezählt"]
+        },
+        {
+            "frage": "Wie viele Einträge müssen in der ersten Eliminationsstufe unter dem ersten Pivot null werden?",
+            "antworten": ["\\(3\\)", "\\(1\\)", "\\(2\\)", "\\(4\\)"],
+            "fehler": ["Nur letzte Zeile berücksichtigt", "3×3-Struktur angenommen", "Pivot selbst mitgezählt"]
+        },
+        {
+            "frage": "Die erste Spalte unter dem Pivot ist eliminiert. Welches Teilsystem bleibt für die nächste Stufe?",
+            "antworten": ["Ein 3×3-System in \\(x_2,x_3,x_4\\)", "Ein 2×2-System in \\(x_3,x_4\\)", "Ein 3×3-System in \\(x_1,x_2,x_3\\)", "Ein 4×4-System ohne rechte Seiten"],
+            "fehler": ["Eine Eliminationsstufe übersprungen", "Bereits eliminierte Variable beibehalten", "Rechte Seiten fälschlich entfernt"]
+        },
+        {
+            "frage": "Wie viele Einträge werden unter dem zweiten Pivot in Spalte 2 eliminiert?",
+            "antworten": ["\\(2\\)", "\\(1\\)", "\\(3\\)", "\\(4\\)"],
+            "fehler": ["Nur die letzte Zeile berücksichtigt", "Erste Eliminationsstufe wiederholt", "Pivot und obere Zeile mitgezählt"]
+        },
+        {
+            "frage": "Nach den ersten beiden Eliminationsstufen steht unter dem dritten Pivot noch ein Eintrag. Wo liegt er?",
+            "antworten": ["In Zeile IV, Spalte 3", "In Zeile III, Spalte 4", "In Zeile II, Spalte 3", "In Zeile IV, Spalte 4"],
+            "fehler": ["Eintrag rechts statt unterhalb des Pivots gewählt", "Dritten Pivot selbst gewählt", "Diagonaleintrag statt zu eliminierendem Eintrag gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(III=(0\\;0\\;1\\;1\\mid3)\\) und \\(IV=(0\\;0\\;2\\;3\\mid8)\\). Was ergibt \\(IV-2III\\)?",
+            "antworten": ["\\((0\\;0\\;0\\;1\\mid2)\\)", "\\((0\\;0\\;0\\;2\\mid5)\\)", "\\((0\\;0\\;1\\;2\\mid5)\\)", "\\((0\\;0\\;0\\;1\\mid8)\\)"],
+            "fehler": ["Zeile III nur einmal subtrahiert", "Faktor 2 nicht auf alle Einträge angewendet", "Rechte Seite nicht umgeformt"]
+        },
+        {
+            "frage": "Welche Nullstruktur kennzeichnet die obere Dreiecksform eines 4×4-LGS?",
+            "antworten": ["Unter den vier Diagonaleinträgen stehen insgesamt sechs Nullen.", "Unter den Diagonaleinträgen stehen insgesamt drei Nullen.", "Nur in der ersten Spalte stehen Nullen.", "Auch oberhalb der Diagonalen müssen alle Einträge null sein."],
+            "fehler": ["Nur letzte Eliminationsstufe gezählt", "Nur erste Eliminationsstufe beschrieben", "Reduzierte Zeilenstufenform mit Dreiecksform verwechselt"]
+        },
+        {
+            "frage": "Die vierte Zeile lautet \\(2x_4=6\\). Welcher Wert wird beim Rückwärtseinsetzen zuerst bestimmt?",
+            "antworten": ["\\(x_4=3\\)", "\\(x_3=3\\)", "\\(x_4=4\\)", "\\(x_1=3\\)"],
+            "fehler": ["3×3-Rückwärtseinsetzen angenommen", "Falsch dividiert", "Mit der ersten Variable begonnen"]
+        },
+        {
+            "frage": "Es gilt \\(x_3+x_4=5\\) und \\(x_4=3\\). Wie groß ist \\(x_3\\)?",
+            "antworten": ["\\(2\\)", "\\(8\\)", "\\(-2\\)", "\\(5\\)"],
+            "fehler": ["3 addiert statt subtrahiert", "Vorzeichenfehler", "Bekannten Wert nicht eingesetzt"]
+        },
+        {
+            "frage": "In welcher Reihenfolge werden die Variablen aus einer 4-zeiligen oberen Dreiecksform bestimmt?",
+            "antworten": ["\\(x_4,x_3,x_2,x_1\\)", "\\(x_3,x_2,x_1,x_4\\)", "\\(x_1,x_2,x_3,x_4\\)", "\\(x_4,x_2,x_3,x_1\\)"],
+            "fehler": ["Mit der dritten statt der letzten Zeile begonnen", "Vorwärtseinsetzen statt Rückwärtseinsetzen", "Zeilenreihenfolge beim Rückwärtseinsetzen vertauscht"]
+        }
+    ]
+}

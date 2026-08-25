@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einer Vier-Felder-Tafel stehen in der A-Zeile innen \\(0{,}08\\) und \\(0{,}52\\). Welche Zeilensumme fehlt?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}44\\)", "\\(0{,}0416\\)", "\\(1\\)"],
+            "fehler": ["Innere Felder subtrahiert", "Innere Felder multipliziert", "Zeilensumme stets mit 1 gleichgesetzt"]
+        },
+        {
+            "frage": "Die Zeilensumme für \\(A\\) ist \\(0{,}6\\). Welche Zeilensumme gehört zu \\(\\overline{A}\\)?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}6\\)", "\\(1{,}6\\)", "\\(0{,}36\\)"],
+            "fehler": ["Zeilensumme unverändert übernommen", "Zu 1 addiert statt von 1 abgezogen", "Zeilensummen multipliziert"]
+        },
+        {
+            "frage": "In der B-Spalte beträgt die Spaltensumme \\(0{,}2\\), das innere Feld \\(A\\cap B\\) ist \\(0{,}08\\). Welcher Wert fehlt darunter?",
+            "antworten": ["\\(P(\\overline{A}\\cap B)=0{,}12\\)", "\\(P(\\overline{A}\\cap B)=0{,}28\\)", "\\(P(\\overline{A}\\cap B)=0{,}016\\)", "\\(P(\\overline{A}\\cap B)=0{,}08\\)"],
+            "fehler": ["Inneres Feld zur Spaltensumme addiert", "Inneres Feld mit Spaltensumme multipliziert", "Bekanntes inneres Feld übernommen"]
+        },
+        {
+            "frage": "Die Spaltensumme für \\(B\\) ist \\(0{,}2\\). Welche Spaltensumme gehört zu \\(\\overline{B}\\)?",
+            "antworten": ["\\(0{,}8\\)", "\\(0{,}2\\)", "\\(1{,}2\\)", "\\(0{,}04\\)"],
+            "fehler": ["Spaltensumme unverändert übernommen", "Zu 1 addiert statt von 1 abgezogen", "Spaltensummen multipliziert"]
+        },
+        {
+            "frage": "In der \\(\\overline{B}\\)-Spalte ist die Summe \\(0{,}8\\); das Feld \\(A\\cap\\overline{B}\\) enthält \\(0{,}52\\). Welcher Wert fehlt?",
+            "antworten": ["\\(P(\\overline{A}\\cap\\overline{B})=0{,}28\\)", "\\(P(\\overline{A}\\cap\\overline{B})=1{,}32\\)", "\\(P(\\overline{A}\\cap\\overline{B})=0{,}416\\)", "\\(P(\\overline{A}\\cap\\overline{B})=0{,}52\\)"],
+            "fehler": ["Inneres Feld zur Spaltensumme addiert", "Inneres Feld mit Spaltensumme multipliziert", "Bekanntes statt fehlendes Feld übernommen"]
+        },
+        {
+            "frage": "In der A-Zeile ist die Summe \\(0{,}7\\), und \\(P(A\\cap B)=0{,}3\\). Welches zweite innere Feld fehlt?",
+            "antworten": ["\\(P(A\\cap\\overline{B})=0{,}4\\)", "\\(P(A\\cap\\overline{B})=1\\)", "\\(P(A\\cap\\overline{B})=0{,}21\\)", "\\(P(A\\cap\\overline{B})=0{,}3\\)"],
+            "fehler": ["Inneres Feld zur Zeilensumme addiert", "Inneres Feld mit Zeilensumme multipliziert", "Bekanntes Feld unverändert übernommen"]
+        },
+        {
+            "frage": "In der \\(\\overline{A}\\)-Zeile stehen innen \\(0{,}15\\) und \\(0{,}25\\). Welche Zeilensumme fehlt?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}1\\)", "\\(0{,}0375\\)", "\\(0{,}6\\)"],
+            "fehler": ["Innere Felder subtrahiert", "Innere Felder multipliziert", "Gegenwahrscheinlichkeit der korrekten Zeilensumme angegeben"]
+        },
+        {
+            "frage": "In der B-Spalte stehen innen \\(0{,}18\\) und \\(0{,}12\\). Welche Spaltensumme fehlt?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}06\\)", "\\(0{,}0216\\)", "\\(0{,}7\\)"],
+            "fehler": ["Innere Felder subtrahiert", "Innere Felder multipliziert", "Gegenwahrscheinlichkeit der korrekten Spaltensumme angegeben"]
+        },
+        {
+            "frage": "Die A-Zeilensumme ist \\(0{,}45\\), die B-Spaltensumme \\(0{,}35\\) und das Feld \\(A\\cap B\\) ist \\(0{,}2\\). Welcher Wert steht im Feld \\(A\\cap\\overline{B}\\)?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}15\\)", "\\(1\\)", "\\(0{,}09\\)"],
+            "fehler": ["Schnittfeld von der falschen Randwahrscheinlichkeit abgezogen", "Randwahrscheinlichkeiten addiert und Schnittfeld ebenfalls addiert", "Schnittfeld mit A-Zeilensumme multipliziert"]
+        },
+        {
+            "frage": "Die \\(\\overline{A}\\)-Zeilensumme ist \\(0{,}55\\), und das Feld \\(\\overline{A}\\cap B\\) enthält \\(0{,}15\\). Welcher Wert ergänzt die Zeile?",
+            "antworten": ["\\(P(\\overline{A}\\cap\\overline{B})=0{,}4\\)", "\\(P(\\overline{A}\\cap\\overline{B})=0{,}7\\)", "\\(P(\\overline{A}\\cap\\overline{B})=0{,}0825\\)", "\\(P(\\overline{A}\\cap\\overline{B})=0{,}15\\)"],
+            "fehler": ["Inneres Feld zur Zeilensumme addiert", "Inneres Feld mit Zeilensumme multipliziert", "Bekanntes inneres Feld übernommen"]
+        }
+    ]
+}

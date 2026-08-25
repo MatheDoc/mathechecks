@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben sind \\(n\\), \\(p\\) und eine Intervallwahrscheinlichkeit. Welche Größe wird in diesem Check bestimmt?",
+            "antworten": ["Die Treffergrenze \\(k\\)","Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Der Erwartungswert \\(\\mu\\)"],
+            "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(p\\) als gesucht behandelt","Abgeleitete Kennzahl statt Grenze gewählt"]
+        },
+        {
+            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)\\geq0{,}80\\). Prüfwerte: \\(k=4:0{,}84\\), \\(k=5:0{,}76\\). Ergebnis?",
+            "antworten": ["\\(k=4\\)","\\(k=5\\)","\\(k=0{,}80\\)","\\(k=3\\)"],
+            "fehler": ["Prüfwert unter 0,80 akzeptiert","Wahrscheinlichkeitsschranke als Trefferzahl gewählt","Größten zulässigen Wert unterschritten"]
+        },
+        {
+            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\geq k)\\), wenn \\(k\\) wächst?",
+            "antworten": ["Sie sinkt oder bleibt gleich.","Sie wächst immer.","Sie bleibt stets gleich.","Sie wird gleich \\(k/n\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Intervallwahrscheinlichkeit als einfachen Anteil gedeutet"]
+        },
+        {
+            "frage": "Bei festem \\(n,p\\): Wie verändert sich \\(P(X\\leq k)\\), wenn \\(k\\) wächst?",
+            "antworten": ["Sie wächst oder bleibt gleich.","Sie sinkt immer.","Sie bleibt stets gleich.","Sie wird gleich \\(p\\)."],
+            "fehler": ["Monotonierichtung vertauscht","Einfluss der Grenze bestritten","Kumulierte Wahrscheinlichkeit mit \\(p\\) gleichgesetzt"]
+        },
+        {
+            "frage": "Gesucht ist das kleinste \\(k\\) mit \\(P(X\\leq k)\\geq0{,}90\\). Prüfwerte: \\(k=7:0{,}88\\), \\(k=8:0{,}93\\). Ergebnis?",
+            "antworten": ["\\(k=8\\)","\\(k=7\\)","\\(k=9\\)","\\(k=0{,}90\\)"],
+            "fehler": ["Prüfwert unter 0,90 akzeptiert","Kleinsten bestätigten Wert überschritten","Wahrscheinlichkeitsschranke als Trefferzahl gewählt"]
+        },
+        {
+            "frage": "Welcher Ansatz passt zu „höchstens wie viele Treffer mit Wahrscheinlichkeit mindestens \\(0{,}75\\)“?",
+            "antworten": ["Kleinstes \\(k\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(n\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Kleinstes \\(p\\) mit \\(P(X\\leq k)\\geq0{,}75\\)","Größtes \\(k\\) mit \\(P(X\\geq k)\\geq0{,}75\\)"],
+            "fehler": ["Gesuchte Grenze durch Versuchsanzahl ersetzt","Gesuchte Grenze durch Trefferwahrscheinlichkeit ersetzt","Höchstens-Ereignis mit Mindestens-Ereignis vertauscht"]
+        },
+        {
+            "frage": "Gesucht ist das größte \\(k\\) mit \\(P(X\\geq k)>0{,}50\\). Prüfwerte: \\(k=6:0{,}51\\), \\(k=7:0{,}50\\). Ergebnis?",
+            "antworten": ["\\(k=6\\)","\\(k=7\\)","\\(k=0{,}51\\)","\\(k=5\\)"],
+            "fehler": ["Strenge Schranke \\(>0{,}5\\) als inklusive gelesen","Prüfwahrscheinlichkeit als Treffergrenze gewählt","Größten zulässigen Wert unterschritten"]
+        },
+        {
+            "frage": "Welche Größe bleibt beim Probieren verschiedener \\(k\\)-Werte unverändert?",
+            "antworten": ["Die vorgegebenen Parameter \\(n\\) und \\(p\\)","Die Treffergrenze \\(k\\)","Alle kumulierten Wahrscheinlichkeiten","Die Ereignisse trotz verändertem \\(k\\)"],
+            "fehler": ["Gesuchte Grenze fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Veränderung des Ereignisses durch \\(k\\) bestritten"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(12;p)\\): Welcher Wert kann keine Treffergrenze \\(k\\) sein?",
+            "antworten": ["\\(13\\)","\\(0\\)","\\(6\\)","\\(12\\)"],
+            "fehler": ["Zulässige Untergrenze 0 ausgeschlossen","Zulässigen inneren Wert 6 ausgeschlossen","Maximal mögliche Trefferzahl 12 ausgeschlossen"]
+        },
+        {
+            "frage": "Prüfwerte: \\(k=9\\) erfüllt die Bedingung, \\(k=10\\) nicht. Gesucht ist das größte erfüllende \\(k\\). Ergebnis?",
+            "antworten": ["\\(k=9\\)","\\(k=10\\)","\\(k=19\\)","\\(k=1\\)"],
+            "fehler": ["Nicht erfüllenden Nachbarwert gewählt","Prüfgrenzen addiert","Differenz der Prüfgrenzen statt Grenzwert gewählt"]
+        }
+    ]
+}

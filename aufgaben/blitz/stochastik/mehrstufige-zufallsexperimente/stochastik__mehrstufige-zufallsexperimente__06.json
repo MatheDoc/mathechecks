@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Von 2.000 Befragten nutzen 224 eine Pro-Version zur Prüfungsvorbereitung. Welchem Anteil entspricht das?",
+            "antworten": ["\\(0{,}112\\)", "\\(0{,}224\\)", "\\(0{,}0112\\)", "\\(0{,}888\\)"],
+            "fehler": ["Absolute Anzahl ohne Division als Dezimalanteil gelesen", "Dezimalstelle beim Quotienten verschoben", "Gegenanteil berechnet"]
+        },
+        {
+            "frage": "Von 2.000 Befragten haben 480 noch keine Lern-App verwendet. Welchem Anteil entspricht das?",
+            "antworten": ["\\(0{,}24\\)", "\\(0{,}48\\)", "\\(0{,}024\\)", "\\(0{,}76\\)"],
+            "fehler": ["Absolute Anzahl ohne passende Gesamtzahl als Dezimalanteil gelesen", "Dezimalstelle beim Quotienten verschoben", "Gegenanteil berechnet"]
+        },
+        {
+            "frage": "Die Pfade Starter–Unterhaltung und Starter–Vorbereitung haben die Wahrscheinlichkeiten \\(0{,}357\\) und \\(0{,}243\\). Wie groß ist der Starter-Anteil?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}086751\\)", "\\(0{,}114\\)", "\\(0{,}4\\)"],
+            "fehler": ["Pfadwahrscheinlichkeiten multipliziert", "Differenz statt Summe gebildet", "Gegenanteil der richtigen Summe gebildet"]
+        },
+        {
+            "frage": "Der Anteil ohne App ist \\(0{,}24\\), der Starter-Anteil \\(0{,}6\\). Wie groß ist der verbleibende Pro-Anteil?",
+            "antworten": ["\\(0{,}16\\)", "\\(0{,}84\\)", "\\(0{,}36\\)", "\\(0{,}144\\)"],
+            "fehler": ["Nur Starter-Anteil von 1 abgezogen", "Starter- und Kein-App-Anteil subtrahiert", "Gegebene Hauptäste multipliziert"]
+        },
+        {
+            "frage": "Vier bekannte Pfade haben zusammen \\(0{,}952\\). Wie groß ist die fehlende Pfadwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}048\\)", "\\(0{,}952\\)", "\\(1{,}952\\)", "\\(0{,}0484\\)"],
+            "fehler": ["Bekannte Summe als fehlenden Pfad übernommen", "Bekannte Summe zu 1 addiert", "Subtraktion fehlerhaft ausgeführt"]
+        },
+        {
+            "frage": "Der Starter-Anteil ist \\(0{,}6\\), die Pfadwahrscheinlichkeit Starter–Unterhaltung ist \\(0{,}357\\). Welcher Anteil der Starter-Nutzenden verwendet die App zur Unterhaltung?",
+            "antworten": ["\\(0{,}595\\)", "\\(0{,}2142\\)", "\\(0{,}957\\)", "\\(0{,}243\\)"],
+            "fehler": ["Ast- und Endwahrscheinlichkeit multipliziert", "Ast- und Endwahrscheinlichkeit addiert", "Gegenpfadwahrscheinlichkeit statt gesuchtem Quotienten gewählt"]
+        },
+        {
+            "frage": "Der Pro-Anteil ist \\(0{,}16\\), die Pfadwahrscheinlichkeit Pro–Unterhaltung ist \\(0{,}048\\). Welcher Anteil der Pro-Nutzenden verwendet die App zur Unterhaltung?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}00768\\)", "\\(0{,}208\\)", "\\(0{,}112\\)"],
+            "fehler": ["Ast- und Endwahrscheinlichkeit multipliziert", "Ast- und Endwahrscheinlichkeit addiert", "Anderen Pro-Pfad statt gesuchtem Quotienten gewählt"]
+        },
+        {
+            "frage": "Die Unterhaltungspfade haben die Wahrscheinlichkeiten \\(0{,}357\\) und \\(0{,}048\\). Wie groß ist der Anteil der Nutzung zur Unterhaltung?",
+            "antworten": ["\\(0{,}405\\)", "\\(0{,}017136\\)", "\\(0{,}309\\)", "\\(0{,}595\\)"],
+            "fehler": ["Pfade multipliziert", "Differenz statt Summe gebildet", "Astwahrscheinlichkeit innerhalb der Starter-Gruppe gewählt"]
+        },
+        {
+            "frage": "Die Vorbereitungspfade haben die Wahrscheinlichkeiten \\(0{,}243\\) und \\(0{,}112\\). Wie groß ist der Anteil der Nutzung zur Prüfungsvorbereitung?",
+            "antworten": ["\\(0{,}355\\)", "\\(0{,}027216\\)", "\\(0{,}131\\)", "\\(0{,}645\\)"],
+            "fehler": ["Pfade multipliziert", "Differenz statt Summe gebildet", "Gegenanteil der richtigen Summe gebildet"]
+        },
+        {
+            "frage": "Die Pfadwahrscheinlichkeit Pro–Unterhaltung ist \\(0{,}048\\). Wie viele von 2.000 Befragten gehören zu diesem Pfad?",
+            "antworten": ["\\(96\\)", "\\(48\\)", "\\(416\\)", "\\(9{,}6\\)"],
+            "fehler": ["Prozentangabe ohne Bezug zur Gesamtzahl als Anzahl gelesen", "Pro-Anteil statt Pfadwahrscheinlichkeit verwendet", "Dezimalstelle beim Produkt verschoben"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Venn-Diagramm zeigt: Die Überlappung von \\(A\\) und \\(B\\) hat den Flächenanteil \\(0{,}2\\), der nur zu \\(A\\) gehörende Teil \\(0{,}3\\). Wie groß ist \\(P_A(B)\\)?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}2\\)", "\\(0{,}5\\)", "\\(0{,}6\\)"],
+            "fehler": ["Nur den Überlappungsanteil abgelesen, ohne auf A zu beziehen", "Gesamten A-Flächenanteil statt des Anteils der Überlappung innerhalb von A angegeben", "Nur-A-Fläche durch gesamte A-Fläche geteilt"]
+        },
+        {
+            "frage": "Ein Venn-Diagramm zeigt: Die Überlappung hat den Flächenanteil \\(0{,}15\\), der nur zu \\(B\\) gehörende Teil \\(0{,}35\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}15\\)", "\\(0{,}5\\)", "\\(0{,}7\\)"],
+            "fehler": ["Nur den Überlappungsanteil abgelesen", "Gesamte B-Fläche statt des Überlappungsanteils innerhalb von B angegeben", "Nur-B-Fläche durch gesamte B-Fläche geteilt"]
+        },
+        {
+            "frage": "Im Venn-Diagramm hat der nur zu \\(A\\) gehörende Teil den Anteil \\(0{,}24\\), die Überlappung den Anteil \\(0{,}16\\). Wie groß ist \\(P_A(\\overline{B})\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}24\\)", "\\(0{,}4\\)", "\\(0{,}16\\)"],
+            "fehler": ["Nur den absoluten Flächenanteil des Nur-A-Bereichs abgelesen", "Überlappungsanteil innerhalb von A statt Nur-A-Anteil gewählt", "Nur den absoluten Überlappungsanteil abgelesen"]
+        },
+        {
+            "frage": "Im Venn-Diagramm hat der nur zu \\(B\\) gehörende Teil den Anteil \\(0{,}3\\), die Überlappung den Anteil \\(0{,}2\\). Wie groß ist \\(P_B(\\overline{A})\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}3\\)", "\\(0{,}4\\)", "\\(0{,}2\\)"],
+            "fehler": ["Nur den absoluten Flächenanteil des Nur-B-Bereichs abgelesen", "Überlappungsanteil innerhalb von B statt Nur-B-Anteil gewählt", "Nur den absoluten Überlappungsanteil abgelesen"]
+        },
+        {
+            "frage": "Welche Teilflächen bilden im Venn-Diagramm die Bezugsfläche für \\(P_A(B)\\)?",
+            "antworten": ["Der nur zu \\(A\\) gehörende Teil und die Überlappung zusammen", "Nur die Überlappung", "Der nur zu \\(B\\) gehörende Teil und die Überlappung zusammen", "Die gesamte Fläche außerhalb von \\(A\\)"],
+            "fehler": ["Zählerfläche mit Bezugsfläche verwechselt", "Die B-Fläche statt der A-Fläche als Bedingung verwendet", "Das Komplement der Bedingungsfläche verwendet"]
+        },
+        {
+            "frage": "Welche Teilfläche ist im Venn-Diagramm der Zähler bei \\(P_A(B)\\)?",
+            "antworten": ["Die Überlappung von \\(A\\) und \\(B\\)", "Der nur zu \\(A\\) gehörende Teil", "Der nur zu \\(B\\) gehörende Teil", "Die Fläche außerhalb beider Ereignisse"],
+            "fehler": ["Nur-A-Bereich statt Schnittmenge gewählt", "Nur-B-Bereich statt Schnittmenge gewählt", "Außenbereich statt Schnittmenge gewählt"]
+        },
+        {
+            "frage": "Bei \\(P_A(\\overline{B})\\) wird im Venn-Diagramm nur innerhalb welcher Fläche verglichen?",
+            "antworten": ["Innerhalb der gesamten A-Fläche", "Innerhalb der gesamten B-Fläche", "Nur innerhalb der Überlappung", "Innerhalb der Fläche außerhalb von A"],
+            "fehler": ["Betrachtetes Ereignis B als Bedingungsfläche verwendet", "Zählerfläche als gesamte Bezugsfläche verwendet", "Komplement der Bedingungsfläche verwendet"]
+        },
+        {
+            "frage": "Ein Venn-Diagramm zerlegt die Grundfläche in: nur \\(A\\): \\(0{,}2\\), Überlappung: \\(0{,}1\\), nur \\(B\\): \\(0{,}3\\), außerhalb beider: \\(0{,}4\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}1\\)", "\\(0{,}4\\)", "\\(1\\)"],
+            "fehler": ["Nur die Überlappung berücksichtigt", "Nur den Außenbereich berücksichtigt", "Alle vier Teilflächen statt der Vereinigung addiert"]
+        },
+        {
+            "frage": "Ein Venn-Diagramm zeigt: nur \\(A\\): \\(0{,}2\\), Überlappung: \\(0{,}1\\), nur \\(B\\): \\(0{,}3\\), außerhalb beider: \\(0{,}4\\). Wie groß ist \\(P_{\\overline{A}}(B)\\)?",
+            "antworten": ["\\(\\frac{3}{7}\\)", "\\(0{,}3\\)", "\\(\\frac{1}{4}\\)", "\\(\\frac{3}{4}\\)"],
+            "fehler": ["Nur den absoluten Nur-B-Anteil abgelesen", "Überlappung durch gesamte B-Fläche geteilt", "Nur-B-Fläche durch gesamte B-Fläche geteilt"]
+        },
+        {
+            "frage": "Ein Venn-Diagramm zeigt: nur \\(A\\): \\(0{,}28\\), Überlappung: \\(0{,}12\\), nur \\(B\\): \\(0{,}08\\), außerhalb beider: \\(0{,}52\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}12\\)", "\\(0{,}3\\)", "\\(0{,}2\\)"],
+            "fehler": ["Nur den absoluten Überlappungsanteil abgelesen", "Überlappung durch gesamte A-Fläche geteilt", "Gesamte B-Fläche statt Überlappungsanteil innerhalb von B angegeben"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Bedingung einer Binomialverteilung liefert die Angabe „20 Würfe“?",
+            "antworten": ["Die Versuchsanzahl ist fest.","Die Trefferwahrscheinlichkeit ist \\(20\\).","Es gibt 20 mögliche Ausgänge.","Die Versuche enden nach dem ersten Treffer."],
+            "fehler": ["Versuchsanzahl als Wahrscheinlichkeit gedeutet","Versuchsanzahl mit Anzahl der Ausgänge verwechselt","Feste Anzahl durch eine Abbruchregel ersetzt"]
+        },
+        {
+            "frage": "Eine Münze wird zehnmal geworfen; Treffer bedeutet „Kopf“. Warum gibt es pro Versuch genau zwei relevante Ausgänge?",
+            "antworten": ["Jeder Wurf ist entweder Treffer oder Niete.","Die Münze wird zehnmal geworfen.","Kopf tritt mit Wahrscheinlichkeit \\(0{,}5\\) ein.","Die Würfe sind nummeriert."],
+            "fehler": ["Feste Versuchsanzahl statt Zweiteilung genannt","Konstante Trefferwahrscheinlichkeit statt Zweiteilung genannt","Nummerierung der Versuche mit Versuchsausgängen verwechselt"]
+        },
+        {
+            "frage": "Es werden Karten ohne Zurücklegen gezogen. Welche Binomialbedingung ist im Allgemeinen verletzt?",
+            "antworten": ["Die Trefferwahrscheinlichkeit bleibt nicht konstant.","Die Anzahl der Ziehungen ist nicht fest.","Es gibt nie Treffer und Nieten.","Die Zufallsgröße kann keine Treffer zählen."],
+            "fehler": ["Trotz vorgegebener Ziehungszahl eine variable Versuchsanzahl behauptet","Treffer und Niete beim Kartenziehen ausgeschlossen","Eine Zählvariable fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Ein Würfel wird zwölfmal geworfen; Treffer bedeutet „eine Sechs“. Ist die Treffer-Niete-Bedingung erfüllt?",
+            "antworten": ["Ja, jeder Wurf wird in Sechs und Nicht-Sechs eingeteilt.","Nein, ein Würfel hat sechs Seiten.","Nein, zwölf ist keine Wahrscheinlichkeit.","Ja, weil genau sechs Treffer auftreten."],
+            "fehler": ["Physische Würfelergebnisse statt der festgelegten Treffer-Einteilung gezählt","Versuchsanzahl mit Wahrscheinlichkeit verwechselt","Aus der Trefferdefinition eine feste Trefferzahl gefolgert"]
+        },
+        {
+            "frage": "Ein Passwort wird so oft eingegeben, bis es stimmt. Welche Binomialbedingung fehlt?",
+            "antworten": ["Eine feste Versuchsanzahl.","Zwei mögliche Ausgänge pro Eingabe.","Eine Trefferwahrscheinlichkeit.","Eine Definition für Treffer."],
+            "fehler": ["Richtig/falsch als zwei Ausgänge übersehen","Vorhandene Erfolgswahrscheinlichkeit bestritten","„Passwort stimmt“ als Trefferdefinition übersehen"]
+        },
+        {
+            "frage": "Bei 30 unabhängigen Schüssen ist die Trefferchance jedes Mal \\(0{,}4\\). Welche Aussage prüft die Konstanz?",
+            "antworten": ["Für jeden Schuss gilt dieselbe Trefferwahrscheinlichkeit \\(0{,}4\\).","Es fallen genau zwölf Treffer.","Es gibt 30 verschiedene Trefferwahrscheinlichkeiten.","Nach einem Treffer endet der Versuch."],
+            "fehler": ["Erwartete Trefferzahl als sichere Trefferzahl gedeutet","Konstanz in ihr Gegenteil verkehrt","Eine nicht gegebene Abbruchregel ergänzt"]
+        },
+        {
+            "frage": "Welche Zufallsgröße ist bei 15 Würfen binomialverteilt, wenn „gerade Augenzahl“ als Treffer gilt?",
+            "antworten": ["Die Anzahl der Würfe mit gerader Augenzahl.","Die Summe aller Augenzahlen.","Die größte geworfene Augenzahl.","Die Reihenfolge der Augenzahlen."],
+            "fehler": ["Summe statt Trefferanzahl gewählt","Maximum statt Trefferanzahl gewählt","Abfolge statt Trefferanzahl gewählt"]
+        },
+        {
+            "frage": "Aus einer großen Produktion werden 40 Teile unabhängig geprüft. Jedes Teil ist mit gleicher Wahrscheinlichkeit fehlerhaft. Welche Bedingung ist zusätzlich nötig?",
+            "antworten": ["Jedes Teil wird als fehlerhaft oder nicht fehlerhaft eingestuft.","Es müssen genau 20 Teile fehlerhaft sein.","Die Fehlerwahrscheinlichkeit muss \\(0{,}5\\) sein.","Die Prüfung muss nach einem Fehler enden."],
+            "fehler": ["Eine feste Trefferzahl statt zwei Ausgängen gefordert","Konstante Wahrscheinlichkeit unnötig auf 0,5 festgelegt","Eine Abbruchregel statt fester 40 Prüfungen verlangt"]
+        },
+        {
+            "frage": "Welche Änderung macht zehn Ziehungen aus einer Urne eher binomialgeeignet?",
+            "antworten": ["Nach jeder Ziehung wird die Kugel zurückgelegt.","Die Ziehung endet beim ersten Treffer.","Es werden gleichzeitig verschieden viele Kugeln gezogen.","Treffer werden nicht gezählt."],
+            "fehler": ["Feste Versuchsanzahl durch Abbruchregel zerstört","Gleichartige Einzelversuche aufgegeben","Die benötigte Trefferanzahl als Zufallsgröße entfernt"]
+        },
+        {
+            "frage": "Welche Aussage gehört nicht zu den Bedingungen einer Binomialverteilung?",
+            "antworten": ["Es muss mindestens ein Treffer auftreten.","Die Versuchsanzahl ist fest.","Pro Versuch gibt es Treffer oder Niete.","Die Trefferwahrscheinlichkeit ist konstant."],
+            "fehler": ["Die feste Versuchsanzahl fälschlich verworfen","Die Zweiteilung in Treffer und Niete fälschlich verworfen","Die konstante Trefferwahrscheinlichkeit fälschlich verworfen"]
+        }
+    ]
+}

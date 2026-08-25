@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}3\\) und \\(P(B)=0{,}4\\). Wie groß ist \\(P(A\\cap B)\\)?",
+            "antworten": ["\\(0{,}12\\)", "\\(0{,}7\\)", "\\(0{,}1\\)", "\\(0{,}4\\)"],
+            "fehler": ["Randwahrscheinlichkeiten addiert", "Randwahrscheinlichkeiten subtrahiert", "Nur die Wahrscheinlichkeit von B übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Es gilt \\(P(A)=0{,}4\\) und \\(P(A\\cap B)=0{,}28\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}112\\)", "\\(0{,}68\\)", "\\(0{,}28\\)"],
+            "fehler": ["A-Wahrscheinlichkeit und Schnittwahrscheinlichkeit multipliziert", "A-Wahrscheinlichkeit und Schnittwahrscheinlichkeit addiert", "Schnittwahrscheinlichkeit als B-Wahrscheinlichkeit übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)>0\\) und \\(P(B)=0{,}6\\). Wie groß ist \\(P_A(B)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}36\\)", "\\(1\\)", "\\(0{,}4\\)"],
+            "fehler": ["Wahrscheinlichkeit trotz Unabhängigkeit nochmals mit \\(0{,}6\\) multipliziert", "Unabhängigkeit mit sicherem Eintreten verwechselt", "Gegenwahrscheinlichkeit von B angegeben"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)>0\\) und \\(P(B)=0{,}7\\). Wie groß ist \\(P_A(\\overline{B})\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}7\\)", "\\(0{,}21\\)", "\\(1\\)"],
+            "fehler": ["Wahrscheinlichkeit von B statt ihres Gegenereignisses verwendet", "Bedingte Gegenwahrscheinlichkeit trotz Unabhängigkeit nochmals mit \\(0{,}7\\) multipliziert", "Unabhängigkeit mit sicherem Eintreten verwechselt"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}4\\) und \\(P(B)=0{,}5\\). Wie groß ist \\(P(\\overline{A}\\cap B)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}2\\)", "\\(0{,}1\\)", "\\(0{,}5\\)"],
+            "fehler": ["A statt Nicht-A mit B multipliziert", "Nicht-A und B subtrahiert", "Nur die Wahrscheinlichkeit von B übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}5\\) und \\(P(B)=0{,}2\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}7\\)", "\\(0{,}1\\)", "\\(0{,}3\\)"],
+            "fehler": ["Schnittwahrscheinlichkeit beim Addieren nicht abgezogen", "Nur die Schnittwahrscheinlichkeit berechnet", "B-Wahrscheinlichkeit von A subtrahiert"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}4\\) und \\(P(B)=0{,}5\\). Wie groß ist die Wahrscheinlichkeit, dass genau eines der Ereignisse eintritt?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}2\\)", "\\(0{,}7\\)", "\\(0{,}1\\)"],
+            "fehler": ["Nur die Schnittwahrscheinlichkeit berechnet", "Die Vereinigung einschließlich der Schnittmenge berechnet", "Nur die Differenz der Randwahrscheinlichkeiten gebildet"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(B)>0\\) und \\(P(A)=0{,}45\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}45\\)", "\\(0{,}2025\\)", "\\(0{,}55\\)", "\\(1\\)"],
+            "fehler": ["Wahrscheinlichkeit trotz Unabhängigkeit nochmals mit \\(0{,}45\\) multipliziert", "Gegenwahrscheinlichkeit von A angegeben", "Unabhängigkeit mit sicherem Eintreten verwechselt"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}4\\) und \\(P(B)=0{,}5\\). Wie groß ist \\(P(\\overline{A}\\cap\\overline{B})\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}2\\)", "\\(0{,}1\\)", "\\(0{,}6\\)"],
+            "fehler": ["Die ursprünglichen Wahrscheinlichkeiten statt der Gegenwahrscheinlichkeiten multipliziert", "Gegenwahrscheinlichkeiten subtrahiert", "Nur die Gegenwahrscheinlichkeit von A übernommen"]
+        },
+        {
+            "frage": "Welche Gleichung darf wegen der gegebenen Unabhängigkeit von \\(A\\) und \\(B\\) verwendet werden?",
+            "antworten": ["\\(P(A\\cap B)=P(A)\\cdot P(B)\\)", "\\(P(A\\cap B)=P(A)+P(B)\\)", "\\(P(A\\cap B)=P(A)-P(B)\\)", "\\(P(A\\cap B)=1-P(A)\\)"],
+            "fehler": ["Produktregel durch Addition ersetzt", "Produktregel durch Subtraktion ersetzt", "Schnittwahrscheinlichkeit mit Gegenwahrscheinlichkeit verwechselt"]
+        }
+    ]
+}

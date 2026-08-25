@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einer Wahrscheinlichkeitsverteilung fehlt eine Wahrscheinlichkeit. Was wird zuerst verwendet?",
+            "antworten": ["Die Summe aller Wahrscheinlichkeiten ist \\(1\\)", "Die Summe aller Werte ist \\(1\\)", "Der Erwartungswert ist immer \\(0\\)", "Die größte Wahrscheinlichkeit ist \\(1\\)"],
+            "fehler": ["Mögliche Werte mit Wahrscheinlichkeiten verwechselt", "Erwartungswert ohne Grundlage festgelegt", "Summenbedingung auf eine Einzelwahrscheinlichkeit übertragen"]
+        },
+        {
+            "frage": "Gegebene Wahrscheinlichkeiten summieren sich zu \\(0{,}91\\). Wie groß ist die fehlende Wahrscheinlichkeit \\(y\\)?",
+            "antworten": ["\\(0{,}09\\)", "\\(0{,}91\\)", "\\(1{,}91\\)", "\\(0{,}009\\)"],
+            "fehler": ["Bekannte Summe als fehlenden Wert übernommen", "Bekannte Summe zu 1 addiert", "Dezimalstelle bei der Ergänzung verschoben"]
+        },
+        {
+            "frage": "Ein unbekannter Wert \\(x\\) hat die Wahrscheinlichkeit \\(0{,}39\\). Welcher Term gehört in die Erwartungswertgleichung?",
+            "antworten": ["\\(0{,}39x\\)", "\\(x+0{,}39\\)", "\\(\\frac{x}{0{,}39}\\)", "\\(0{,}39-x\\)"],
+            "fehler": ["Wert und Wahrscheinlichkeit addiert", "Wert durch Wahrscheinlichkeit geteilt", "Differenz statt gewichteten Beitrag gebildet"]
+        },
+        {
+            "frage": "Wie groß ist \\((-5)\\cdot0{,}05+1\\cdot0{,}09+4\\cdot0{,}1\\)?",
+            "antworten": ["\\(0{,}24\\)", "\\(-0{,}24\\)", "\\(0{,}74\\)", "\\(5{,}24\\)"],
+            "fehler": ["Vorzeichen des ersten Beitrags auf die ganze Summe übertragen", "Ersten negativen Beitrag nicht berücksichtigt", "Mögliche Werte ungewichtet addiert"]
+        },
+        {
+            "frage": "Es gilt \\(E(X)=-0{,}93\\), der unbekannte Beitrag ist \\(0{,}39x\\), die bekannten Beiträge ergeben \\(0{,}24\\). Welche Gleichung passt?",
+            "antworten": ["\\(-0{,}93=0{,}39x+0{,}24\\)", "\\(-0{,}93=0{,}39+x+0{,}24\\)", "\\(0{,}24=0{,}39x-0{,}93\\)", "\\(-0{,}93=0{,}39x\\cdot0{,}24\\)"],
+            "fehler": ["Wert und Wahrscheinlichkeit getrennt addiert", "Erwartungswertgleichung falsch umgestellt", "Beiträge multipliziert statt addiert"]
+        },
+        {
+            "frage": "Aus \\(-0{,}93=0{,}39x+0{,}24\\) folgt welcher Zwischenschritt?",
+            "antworten": ["\\(-1{,}17=0{,}39x\\)", "\\(-0{,}69=0{,}39x\\)", "\\(-1{,}17=x\\)", "\\(0{,}24=0{,}39x\\)"],
+            "fehler": ["0,24 auf beiden Seiten addiert statt subtrahiert", "Noch nicht durch 0,39 geteilt", "Erwartungswert fälschlich entfernt"]
+        },
+        {
+            "frage": "Es gilt \\(-1{,}17=0{,}39x\\). Welchen Wert hat \\(x\\)?",
+            "antworten": ["\\(-3\\)", "\\(3\\)", "\\(-0{,}4563\\)", "\\(-0{,}78\\)"],
+            "fehler": ["Vorzeichen beim Dividieren verloren", "Beide Seiten multipliziert statt dividiert", "Koeffizient subtrahiert statt dividiert"]
+        },
+        {
+            "frage": "Warum wird die fehlende Wahrscheinlichkeit vor dem fehlenden Wert bestimmt?",
+            "antworten": ["Sie wird für den zugehörigen Term der Erwartungswertgleichung benötigt", "Der Erwartungswert darf vorher nicht bekannt sein", "Wahrscheinlichkeiten müssen ganzzahlig sein", "Der fehlende Wert ist immer gleich der Wahrscheinlichkeit"],
+            "fehler": ["Gegebenen Erwartungswert fälschlich als Hindernis angesehen", "Wahrscheinlichkeiten fälschlich auf ganze Zahlen beschränkt", "Wert und Wahrscheinlichkeit gleichgesetzt"]
+        },
+        {
+            "frage": "Welche Bedingung muss jede berechnete Wahrscheinlichkeit erfüllen?",
+            "antworten": ["\\(0\\leq p\\leq1\\)", "\\(p>1\\)", "\\(p<0\\)", "\\(p\\) muss ganzzahlig sein"],
+            "fehler": ["Wahrscheinlichkeitsbereich nach oben verletzt", "Wahrscheinlichkeitsbereich nach unten verletzt", "Wahrscheinlichkeiten fälschlich auf ganze Zahlen beschränkt"]
+        },
+        {
+            "frage": "Eine Verteilung hat die Wahrscheinlichkeiten \\(0{,}2\\), \\(0{,}3\\) und \\(y\\). Wie groß ist \\(y\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}1\\)", "\\(0{,}6\\)", "\\(1{,}5\\)"],
+            "fehler": ["Gegebene Wahrscheinlichkeiten multipliziert", "Nur 0,2 von 1 abgezogen", "Gegebene Summe zu 1 addiert"]
+        }
+    ]
+}

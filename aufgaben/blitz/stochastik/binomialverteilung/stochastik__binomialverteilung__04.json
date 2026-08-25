@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe passt zu \\(P(X=3)\\)?",
+            "antworten": ["\\(Bcd(3;3;20;0{,}1)\\)","\\(Bcd(0;3;20;0{,}1)\\)","\\(Bcd(3;20;20;0{,}1)\\)","\\(Bcd(3;3;0{,}1;20)\\)"],
+            "fehler": ["Untere Grenze 0 statt 3 eingesetzt","Obere Grenze \\(n\\) statt 3 eingesetzt","\\(n\\) und \\(p\\) vertauscht"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe passt zu \\(P(X\\leq4)\\)?",
+            "antworten": ["\\(Bcd(0;4;20;0{,}1)\\)","\\(Bcd(4;4;20;0{,}1)\\)","\\(Bcd(4;20;20;0{,}1)\\)","\\(Bcd(0;20;4;0{,}1)\\)"],
+            "fehler": ["Nur genau 4 eingegeben","Mindestens 4 statt höchstens 4 eingegeben","Obergrenze und Versuchsanzahl vertauscht"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Welche Eingabe passt zu \\(P(X\\geq6)\\)?",
+            "antworten": ["\\(Bcd(6;20;20;0{,}1)\\)","\\(Bcd(0;6;20;0{,}1)\\)","\\(Bcd(5;20;20;0{,}1)\\)","\\(Bcd(6;6;20;0{,}1)\\)"],
+            "fehler": ["Höchstens 6 statt mindestens 6 eingegeben","Untere Grenze um eins zu klein gewählt","Nur genau 6 eingegeben"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(12;0{,}25)\\): Welche Eingabe passt zu \\(P(2\\leq X\\leq5)\\)?",
+            "antworten": ["\\(Bcd(2;5;12;0{,}25)\\)","\\(Bcd(1;5;12;0{,}25)\\)","\\(Bcd(2;6;12;0{,}25)\\)","\\(Bcd(2;5;0{,}25;12)\\)"],
+            "fehler": ["Untere Grenze um eins zu klein gewählt","Obere Grenze um eins zu groß gewählt","\\(n\\) und \\(p\\) vertauscht"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(15;0{,}4)\\): Welche Eingabe passt zu \\(P(X<5)\\)?",
+            "antworten": ["\\(Bcd(0;4;15;0{,}4)\\)","\\(Bcd(0;5;15;0{,}4)\\)","\\(Bcd(5;15;15;0{,}4)\\)","\\(Bcd(4;4;15;0{,}4)\\)"],
+            "fehler": ["Strenge Grenze 5 eingeschlossen","Mindestens 5 statt weniger als 5 eingegeben","Nur genau 4 eingegeben"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(15;0{,}4)\\): Welche Eingabe passt zu \\(P(X>5)\\)?",
+            "antworten": ["\\(Bcd(6;15;15;0{,}4)\\)","\\(Bcd(5;15;15;0{,}4)\\)","\\(Bcd(0;5;15;0{,}4)\\)","\\(Bcd(6;6;15;0{,}4)\\)"],
+            "fehler": ["Ausgeschlossenen Wert 5 eingeschlossen","Höchstens 5 statt mehr als 5 eingegeben","Nur genau 6 eingegeben"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(10;0{,}3)\\): Welche Eingabe passt zu \\(P(1<X\\leq4)\\)?",
+            "antworten": ["\\(Bcd(2;4;10;0{,}3)\\)","\\(Bcd(1;4;10;0{,}3)\\)","\\(Bcd(2;5;10;0{,}3)\\)","\\(Bcd(0;4;10;0{,}3)\\)"],
+            "fehler": ["Ausgeschlossene Untergrenze 1 eingeschlossen","Obere Grenze um eins zu groß gewählt","Alle Werte ab 0 statt ab 2 eingegeben"]
+        },
+        {
+            "frage": "Bei \\(Bcd(a;b;n;p)\\): Wofür steht \\(a\\)?",
+            "antworten": ["Untere ganzzahlige Intervallgrenze","Obere ganzzahlige Intervallgrenze","Versuchsanzahl","Trefferwahrscheinlichkeit"],
+            "fehler": ["\\(a\\) mit \\(b\\) verwechselt","\\(a\\) mit \\(n\\) verwechselt","\\(a\\) mit \\(p\\) verwechselt"]
+        },
+        {
+            "frage": "Bei \\(Bcd(a;b;n;p)\\): Wofür steht \\(b\\)?",
+            "antworten": ["Obere ganzzahlige Intervallgrenze","Untere ganzzahlige Intervallgrenze","Versuchsanzahl","Nietenwahrscheinlichkeit"],
+            "fehler": ["\\(b\\) mit \\(a\\) verwechselt","\\(b\\) mit \\(n\\) verwechselt","\\(b\\) mit \\(1-p\\) verwechselt"]
+        },
+        {
+            "frage": "Für \\(X\\sim B(20;0{,}1)\\): Höchstens \\(33\\%\\) Treffer. Welche Eingabegrenzen passen, da \\(0{,}33\\cdot20=6{,}6\\)?",
+            "antworten": ["\\(a=0,\\ b=6\\)","\\(a=0,\\ b=7\\)","\\(a=6,\\ b=20\\)","\\(a=7,\\ b=20\\)"],
+            "fehler": ["Obere Grenze nach außen auf 7 gerundet","Höchstens als mindestens 6 gedeutet","Höchstens als mindestens 7 gedeutet"]
+        }
+    ]
+}

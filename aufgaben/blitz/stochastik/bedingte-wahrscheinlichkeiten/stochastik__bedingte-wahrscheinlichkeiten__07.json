@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Eine Vier-Felder-Tafel enthält \\(P(A\\cap B)=0{,}12\\) und den A-Randwert \\(P(A)=0{,}4\\). Wie groß ist \\(P_A(B)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}048\\)", "\\(0{,}52\\)", "\\(0{,}12\\)"],
+            "fehler": ["Schnitt- und Randwahrscheinlichkeit multipliziert", "Schnitt- und Randwahrscheinlichkeit addiert", "Inneres Feld direkt als bedingte Wahrscheinlichkeit abgelesen"]
+        },
+        {
+            "frage": "Eine Vier-Felder-Tafel enthält \\(P(A\\cap B)=0{,}15\\) und den B-Randwert \\(P(B)=0{,}3\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}045\\)", "\\(0{,}45\\)", "\\(0{,}15\\)"],
+            "fehler": ["Schnitt- und Randwahrscheinlichkeit multipliziert", "Schnitt- und Randwahrscheinlichkeit addiert", "Inneres Feld ohne Division übernommen"]
+        },
+        {
+            "frage": "In einer Vier-Felder-Tafel gilt \\(P(A)=0{,}6\\), \\(P(B)=0{,}2\\) und \\(P(A\\cap B)=0{,}12\\). Was folgt?",
+            "antworten": ["\\(A\\) und \\(B\\) sind unabhängig.", "\\(A\\) und \\(B\\) sind nicht unabhängig.", "\\(A\\) und \\(B\\) schließen sich aus.", "\\(A\\) und \\(B\\) sind Gegenereignisse."],
+            "fehler": ["Übereinstimmung von Produkt und Schnittwahrscheinlichkeit übersehen", "Positive Schnittwahrscheinlichkeit als gegenseitigen Ausschluss gedeutet", "Unabhängigkeit mit Gegenereignissen verwechselt"]
+        },
+        {
+            "frage": "In einer Vier-Felder-Tafel gilt \\(P(A)=0{,}6\\), \\(P(B)=0{,}2\\) und \\(P(A\\cap B)=0{,}08\\). Was folgt?",
+            "antworten": ["\\(A\\) und \\(B\\) sind nicht unabhängig.", "\\(A\\) und \\(B\\) sind unabhängig.", "\\(A\\) und \\(B\\) schließen sich aus.", "\\(P(A\\cap B)=P(A)+P(B)\\) gilt."],
+            "fehler": ["Ungleichheit von Produkt und Schnittwahrscheinlichkeit übersehen", "Nichtunabhängigkeit mit gegenseitigem Ausschluss verwechselt", "Schnitt- und Randwahrscheinlichkeiten fälschlich addiert"]
+        },
+        {
+            "frage": "Eine Vier-Felder-Tafel enthält \\(P(A\\cap\\overline{B})=0{,}3\\) und \\(P(A)=0{,}5\\). Welche bedingte Wahrscheinlichkeit folgt?",
+            "antworten": ["\\(P_A(\\overline{B})=0{,}6\\)", "\\(P_A(\\overline{B})=0{,}15\\)", "\\(P_A(\\overline{B})=0{,}8\\)", "\\(P_A(\\overline{B})=0{,}3\\)"],
+            "fehler": ["Inneres Feld und A-Randwert multipliziert", "Inneres Feld und A-Randwert addiert", "Inneres Feld direkt als bedingte Wahrscheinlichkeit übernommen"]
+        },
+        {
+            "frage": "Eine Vier-Felder-Tafel enthält \\(P(A\\cap B)=0{,}2\\) und \\(P(A)=0{,}5\\). Welcher Quotient liefert \\(P_A(B)\\)?",
+            "antworten": ["\\(\\frac{0{,}2}{0{,}5}\\)", "\\(\\frac{0{,}2}{0{,}4}\\)", "\\(\\frac{0{,}5}{0{,}2}\\)", "\\(\\frac{0{,}2}{0{,}7}\\)"],
+            "fehler": ["Durch die Gegenwahrscheinlichkeit von A geteilt", "Teil und bedingendes Ganzes vertauscht", "Durch die Vereinigungswahrscheinlichkeit geteilt"]
+        },
+        {
+            "frage": "In einer Vier-Felder-Tafel gilt \\(P(A)=0{,}4\\), \\(P(B)=0{,}5\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist \\(P_A(B)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}08\\)", "\\(0{,}6\\)", "\\(0{,}2\\)"],
+            "fehler": ["Schnittwahrscheinlichkeit mit dem A-Randwert multipliziert", "Schnittwahrscheinlichkeit zum A-Randwert addiert", "Inneres Feld direkt als bedingte Wahrscheinlichkeit übernommen"]
+        },
+        {
+            "frage": "In einer Vier-Felder-Tafel gilt \\(P(A)=0{,}4\\), \\(P(B)=0{,}5\\) und \\(P(A\\cap B)=0{,}2\\). Welche Beobachtung bestätigt die Unabhängigkeit?",
+            "antworten": ["\\(P_A(B)=P(B)=0{,}5\\)", "\\(P_A(B)=P(A)=0{,}4\\)", "\\(P_A(B)=P(A\\cap B)=0{,}2\\)", "\\(P(A)+P(B)=1\\)"],
+            "fehler": ["Bedingte Wahrscheinlichkeit mit der Wahrscheinlichkeit der Bedingung gleichgesetzt", "Bedingte Wahrscheinlichkeit mit dem Schnittfeld gleichgesetzt", "Eine irrelevante Summenbeziehung als Unabhängigkeitskriterium verwendet"]
+        },
+        {
+            "frage": "Die Tafelwerte liefern \\(P_A(B)=0{,}25\\) und \\(P_{\\overline{A}}(B)=0{,}25\\). Welche Aussage ist richtig?",
+            "antworten": ["Die Werte sprechen für Unabhängigkeit von \\(A\\) und \\(B\\).", "Die Werte beweisen, dass \\(A\\) und \\(B\\) disjunkt sind.", "Die Werte zeigen, dass \\(A=B\\) gilt.", "Die Werte zeigen, dass \\(P(B)=0{,}5\\) gilt."],
+            "fehler": ["Gleiche bedingte Wahrscheinlichkeiten als Disjunktheit gedeutet", "Unabhängigkeit mit Gleichheit der Ereignisse verwechselt", "Die beiden gleichen bedingten Wahrscheinlichkeiten addiert"]
+        },
+        {
+            "frage": "Eine Vier-Felder-Tafel enthält \\(P(\\overline{A}\\cap B)=0{,}18\\) und \\(P(\\overline{A})=0{,}6\\). Wie groß ist \\(P_{\\overline{A}}(B)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}108\\)", "\\(0{,}78\\)", "\\(0{,}18\\)"],
+            "fehler": ["Inneres Feld und Randwert multipliziert", "Inneres Feld und Randwert addiert", "Inneres Feld ohne Division übernommen"]
+        }
+    ]
+}
