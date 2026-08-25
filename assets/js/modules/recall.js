@@ -3,9 +3,10 @@ import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-
 import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate } from "../platform/progress-client.js?v=20260701-recall-quote-ui";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
+import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
@@ -206,6 +207,22 @@ function renderCueItemsMarkup(items, cardAnchorId) {
     .join("");
 }
 
+function renderBlockedCueItemsMarkup(items, aiAccess) {
+  const gateMarkup = renderAiEvaluationGateMarkup(aiAccess);
+  const entries = items.length ? items : [{ cue: "" }];
+  return entries
+    .map((item, index) => {
+      const label = item.cue ? escapeHtml(item.cue) : `Punkt ${index + 1}`;
+      return `
+        <div class="recall-cue-item recall-tipp">
+          <span class="recall-cue-item__label recall-tipp__cue">${label}</span>
+          <div class="recall-response-cell">${gateMarkup}</div>
+        </div>
+      `;
+    })
+    .join("");
+}
+
 function classifyRecallScore(score) {
   if (score >= RECALL_SCORE_THRESHOLDS.correct) return { label: "korrekt", cls: "correct" };
   if (score >= RECALL_SCORE_THRESHOLDS.partial) return { label: "teilweise", cls: "partial" };
@@ -286,7 +303,7 @@ const RECALL_MEMORIZE_DELAY_MS = 1000;
 const RECALL_TIPP_CUE_REVEAL_MS = 2000;
 const RECALL_TIPP_NEXT_REVEAL_MS = 4000;
 
-function renderCard(check) {
+function renderCard(check, aiAccess = null) {
   const begriff = check?.recall?.begriff || check.Schlagwort || `Check ${check.Nummer}`;
   const ichKann = check?.["Ich kann"] || "";
   const checkId = getCheckId(check);
@@ -296,9 +313,12 @@ function renderCard(check) {
   const queryTipps = getQueryTipps(check);
   const kernpunkteMarkup = fixedTipps.length ? renderTippListMarkup(fixedTipps) : "";
   const noRefsNote = `<p class="recall-no-refs">Keine Kernpunkte hinterlegt.</p>`;
-  const cueItemsMarkup = queryTipps.length
-    ? renderCueItemsMarkup(queryTipps, cardAnchorId)
-    : `
+  const evaluationBlocked = isAiEvaluationBlocked(aiAccess);
+  const cueItemsMarkup = evaluationBlocked
+    ? renderBlockedCueItemsMarkup(queryTipps, aiAccess)
+    : queryTipps.length
+      ? renderCueItemsMarkup(queryTipps, cardAnchorId)
+      : `
         <div class="recall-cue-item recall-tipp" data-recall-cue-item data-cue="" data-response="">
           <span class="recall-cue-item__label recall-tipp__cue">Punkt 1</span>
           <div class="recall-response-cell">
@@ -363,7 +383,7 @@ function renderCard(check) {
             ${cueItemsMarkup}
           </div>
           <div class="recall-action-row">
-            <button class="module-action-button" type="button" data-recall-to-compare>Antworten prüfen</button>
+            <button class="module-action-button${evaluationBlocked ? " module-action-button--locked" : ""}" type="button" data-recall-to-compare${evaluationBlocked ? " disabled" : ""}>Antworten auswerten</button>
           </div>
           <div data-recall-eval-status class="recall-eval-status"></div>
         </div>
@@ -1062,6 +1082,8 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
     toCompareBtn?.addEventListener("click", async () => {
       if (toCompareBtn.disabled) return;
 
+      stopActiveSpeechInput();
+
       const cueItemEls = Array.from(card.querySelectorAll("[data-recall-cue-item]"));
       const states = ensureItemStates(cueItemEls);
       const allItems = cueItemEls.map((el) => ({
@@ -1082,7 +1104,9 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       toCompareBtn.disabled = true;
       const originalLabel = toCompareBtn.textContent;
       toCompareBtn.textContent = "MatheChecks prüft ...";
-    
+      toCompareBtn.classList.add("module-action-button--ai-busy");
+      card.classList.add("check-card--ai-busy");
+
       let finalItems = allItems.map((item, index) => ({
         ...item,
         score: hasRecallEvaluationScore(states[index]?.rawScore) ? Number(states[index].rawScore) : 0,
@@ -1127,6 +1151,8 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
       if (evalStatusEl) evalStatusEl.innerHTML = "";
       toCompareBtn.disabled = false;
       toCompareBtn.textContent = originalLabel;
+      toCompareBtn.classList.remove("module-action-button--ai-busy");
+      card.classList.remove("check-card--ai-busy");
 
       if (evaluationOk) {
         if (userNotesEl) { userNotesEl.hidden = true; userNotesEl.innerHTML = ""; }
@@ -1235,8 +1261,10 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
   state.selectedCheckId = selectedCheckId;
   saveRecallState(lernbereich, state);
 
+  const aiAccess = await resolveAiEvaluationAccess("recall_evaluate");
+
   renderJumpNav(navNode, checks, selectedCheckId);
-  root.innerHTML = checks.map((check) => renderCard(check)).join("");
+  root.innerHTML = checks.map((check) => renderCard(check, aiAccess)).join("");
   const selectedSection = Array.from(root.querySelectorAll("[data-recall-check-viewport][data-check-id]"))
     .find((section) => section.dataset.checkId === selectedCheckId) || null;
   if (selectedSection) {

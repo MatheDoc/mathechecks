@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie entsteht die Transponierte \\(A^T\\)?",
+            "antworten": ["Zeilen und Spalten werden vertauscht.", "Alle Vorzeichen werden vertauscht.", "Alle Einträge werden invertiert.", "Die Zeilenreihenfolge wird umgekehrt."],
+            "fehler": ["Transposition mit Vorzeichenwechsel verwechselt", "Transposition mit Kehrwertbildung verwechselt", "Vertauschen von Zeilen und Spalten auf Zeilenumkehr reduziert"]
+        },
+        {
+            "frage": "\\(A\\) hat die Dimension \\(2\\times3\\). Welche Dimension hat \\(A^T\\)?",
+            "antworten": ["\\(3\\times2\\)", "\\(2\\times3\\)", "\\(3\\times3\\)", "\\(2\\times2\\)"],
+            "fehler": ["Dimension beim Transponieren unverändert gelassen", "Nur Spaltenzahl verwendet", "Nur Zeilenzahl verwendet"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&2&3\\\\4&5&6\\end{pmatrix}\\): Welchen Wert hat \\((A^T)_{31}\\)?",
+            "antworten": ["\\(3\\)", "\\(4\\)", "\\(6\\)", "\\(1\\)"],
+            "fehler": ["Eintrag \\(a_{21}\\) statt \\(a_{13}\\) verwendet", "Letzten Eintrag der Matrix gewählt", "Indizes nicht vertauscht"]
+        },
+        {
+            "frage": "Welche Spalte von \\(A^T\\) entsteht aus der ersten Zeile von \\(A\\)?",
+            "antworten": ["Die erste Spalte", "Die erste Zeile", "Die letzte Spalte", "Die Hauptdiagonale"],
+            "fehler": ["Zeile beim Transponieren als Zeile beibehalten", "Position unnötig umgekehrt", "Zeile mit Hauptdiagonale verwechselt"]
+        },
+        {
+            "frage": "Was gilt für zweimaliges Transponieren?",
+            "antworten": ["\\((A^T)^T=A\\)", "\\((A^T)^T=A^{-1}\\)", "\\((A^T)^T=E\\)", "\\((A^T)^T=-A\\)"],
+            "fehler": ["Transponierte mit Inverser verwechselt", "Zweimaliges Transponieren mit Einheitsmatrix verknüpft", "Zweimaliges Transponieren als Vorzeichenwechsel gedeutet"]
+        },
+        {
+            "frage": "Welche Regel gilt für ein Produkt?",
+            "antworten": ["\\((AB)^T=B^TA^T\\)", "\\((AB)^T=A^TB^T\\)", "\\((AB)^T=AB\\)", "\\((AB)^T=A^{-1}B^{-1}\\)"],
+            "fehler": ["Reihenfolge beim Transponieren des Produkts nicht umgekehrt", "Transposition der Faktoren ausgelassen", "Transponieren mit Invertieren verwechselt"]
+        },
+        {
+            "frage": "Wann heißt eine quadratische Matrix \\(A\\) symmetrisch?",
+            "antworten": ["Wenn \\(A^T=A\\) gilt", "Wenn \\(A^{-1}=A\\) gilt", "Wenn \\(\\det(A)=0\\) gilt", "Wenn alle Einträge gleich sind"],
+            "fehler": ["Symmetrie mit Selbstinversität verwechselt", "Symmetrie fälschlich an die Determinante gebunden", "Zu starke und unnötige Bedingung gewählt"]
+        },
+        {
+            "frage": "Welche Matrix ist die Transponierte von \\(\\begin{pmatrix}2&-1\\end{pmatrix}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}2\\\\-1\\end{pmatrix}\\)", "\\(\\begin{pmatrix}-1&2\\end{pmatrix}\\)", "\\(\\begin{pmatrix}-2\\\\1\\end{pmatrix}\\)", "\\(\\begin{pmatrix}2&-1\\end{pmatrix}\\)"],
+            "fehler": ["Einträge nur umgekehrt statt Zeile in Spalte umgewandelt", "Vorzeichen statt Anordnung verändert", "Zeilenvektor unverändert gelassen"]
+        },
+        {
+            "frage": "Es gilt \\(a_{24}=7\\). Welcher Eintrag von \\(A^T\\) ist ebenfalls \\(7\\)?",
+            "antworten": ["\\((A^T)_{42}\\)", "\\((A^T)_{24}\\)", "\\((A^T)_{44}\\)", "\\((A^T)_{22}\\)"],
+            "fehler": ["Indizes nicht vertauscht", "Nur Spaltenindex verwendet", "Nur Zeilenindex verwendet"]
+        },
+        {
+            "frage": "Welche Regel gilt für eine Summe?",
+            "antworten": ["\\((A+B)^T=A^T+B^T\\)", "\\((A+B)^T=B^T-A^T\\)", "\\((A+B)^T=A+B^T\\)", "\\((A+B)^T=B^TA^T\\)"],
+            "fehler": ["Addition und Reihenfolge unnötig verändert", "Nur einen Summanden transponiert", "Summenregel mit Produktregel verwechselt"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In \\(P(X=k)=\\binom{n}{k}p^k(1-p)^{n-k}\\): Was bedeutet \\(n\\)?",
+            "antworten": ["Anzahl der Versuche","Anzahl der Treffer","Trefferwahrscheinlichkeit pro Versuch","Wahrscheinlichkeit für genau \\(k\\) Treffer"],
+            "fehler": ["\\(n\\) mit \\(k\\) verwechselt","\\(n\\) mit \\(p\\) verwechselt","Versuchsanzahl mit dem Formelwert verwechselt"]
+        },
+        {
+            "frage": "In der Bernoulli-Formel: Was bedeutet \\(k\\)?",
+            "antworten": ["Anzahl der Treffer","Anzahl der Versuche","Anzahl der Nieten","Trefferwahrscheinlichkeit"],
+            "fehler": ["\\(k\\) mit \\(n\\) verwechselt","Trefferzahl durch \\(n-k\\) ersetzt","Trefferzahl mit \\(p\\) verwechselt"]
+        },
+        {
+            "frage": "Bei Paketen bedeutet Treffer „zu spät“. Was beschreibt \\(p=0{,}1\\)?",
+            "antworten": ["Ein einzelnes Paket kommt mit Wahrscheinlichkeit \\(0{,}1\\) zu spät.","Genau ein Paket kommt zu spät.","\\(10\\) Pakete werden untersucht.","Alle Pakete kommen zusammen mit Wahrscheinlichkeit \\(0{,}1\\) zu spät."],
+            "fehler": ["Einzelwahrscheinlichkeit als sichere Trefferzahl gedeutet","Dezimalzahl als Versuchsanzahl gelesen","Trefferwahrscheinlichkeit pro Versuch als Gesamtwahrscheinlichkeit gedeutet"]
+        },
+        {
+            "frage": "Bei Paketen bedeutet Treffer „zu spät“ und \\(p=0{,}1\\). Was bedeutet \\(1-p=0{,}9\\)?",
+            "antworten": ["Ein Paket kommt mit Wahrscheinlichkeit \\(0{,}9\\) pünktlich.","Genau neun Pakete kommen pünktlich.","Ein Paket kommt mit Wahrscheinlichkeit \\(0{,}9\\) zu spät.","Kein Paket kommt pünktlich."],
+            "fehler": ["Nietenwahrscheinlichkeit als Anzahl gedeutet","Gegenwahrscheinlichkeit erneut dem Treffer zugeordnet","Positive Nietenwahrscheinlichkeit als Unmöglichkeit gedeutet"]
+        },
+        {
+            "frage": "Was beschreibt \\(P(X=3)\\) im Sachzusammenhang?",
+            "antworten": ["Die Wahrscheinlichkeit für genau drei Treffer.","Die Wahrscheinlichkeit für höchstens drei Treffer.","Die Wahrscheinlichkeit für mindestens drei Treffer.","Die Anzahl aller Versuche ist drei."],
+            "fehler": ["Gleichheit als höchstens gelesen","Gleichheit als mindestens gelesen","Trefferzahl mit Versuchsanzahl verwechselt"]
+        },
+        {
+            "frage": "Welche Bedeutung hat \\(\\binom{n}{k}\\) in der Bernoulli-Formel?",
+            "antworten": ["Anzahl der Anordnungen mit genau \\(k\\) Treffern unter \\(n\\) Versuchen","Wahrscheinlichkeit eines einzelnen Treffers","Anzahl der Nieten","Wahrscheinlichkeit für genau \\(k\\) Treffer"],
+            "fehler": ["Kombinationsanzahl mit \\(p\\) verwechselt","Kombinationsanzahl mit \\(n-k\\) verwechselt","Anzahl von Anordnungen mit dem gesamten Formelwert verwechselt"]
+        },
+        {
+            "frage": "In \\(\\binom{8}{2}\\cdot0{,}1^2\\cdot0{,}9^6\\): Wie viele Versuche gibt es?",
+            "antworten": ["\\(8\\)","\\(2\\)","\\(6\\)","\\(0{,}1\\)"],
+            "fehler": ["Trefferzahl statt Versuchsanzahl gewählt","Nietenanzahl statt Versuchsanzahl gewählt","Trefferwahrscheinlichkeit statt Versuchsanzahl gewählt"]
+        },
+        {
+            "frage": "In \\(\\binom{8}{2}\\cdot0{,}1^2\\cdot0{,}9^6\\): Wie viele Treffer werden betrachtet?",
+            "antworten": ["\\(2\\)","\\(8\\)","\\(6\\)","\\(0{,}9\\)"],
+            "fehler": ["Versuchsanzahl statt Trefferzahl gewählt","Nietenanzahl statt Trefferzahl gewählt","Nietenwahrscheinlichkeit statt Trefferzahl gewählt"]
+        },
+        {
+            "frage": "In \\(\\binom{10}{4}p^4(1-p)^6\\): Was zählt der Exponent \\(6\\)?",
+            "antworten": ["Die sechs Nieten.","Die vier Treffer.","Die zehn Versuche.","Sechs mögliche Anordnungen."],
+            "fehler": ["Exponent von \\(p\\) statt von \\(1-p\\) gedeutet","\\(n\\) statt \\(n-k\\) gewählt","Nietenanzahl mit Kombinationsanzahl verwechselt"]
+        },
+        {
+            "frage": "Eine Maschine prüft \\(n=50\\) Teile; Treffer bedeutet „fehlerhaft“. Was ist \\(X\\)?",
+            "antworten": ["Die Anzahl fehlerhafter Teile unter den 50 Teilen.","Die Fehlerwahrscheinlichkeit eines Teils.","Die Anzahl aller geprüften Teile.","Die Anzahl nicht fehlerhafter Teile."],
+            "fehler": ["Zufallsgröße mit Parameter \\(p\\) verwechselt","Trefferanzahl mit festem \\(n\\) verwechselt","Trefferanzahl durch Nietenanzahl ersetzt"]
+        }
+    ]
+}

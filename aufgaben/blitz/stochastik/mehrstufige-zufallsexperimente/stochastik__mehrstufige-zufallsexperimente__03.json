@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Rechnung gehört zur Pfadadditionsregel?",
+            "antworten": ["Endwahrscheinlichkeiten eines Ereignisses addieren", "Astwahrscheinlichkeiten entlang eines Pfades addieren", "Alle Astwahrscheinlichkeiten multiplizieren", "Eine Endwahrscheinlichkeit durch eine andere teilen"],
+            "fehler": ["Addition fälschlich innerhalb eines Pfades ausgeführt", "Pfadmultiplikation statt Pfadaddition gewählt", "Ohne passende Pfadgleichung einen Quotienten gebildet"]
+        },
+        {
+            "frage": "Zwei vollständige Pfade eines Ereignisses haben die Wahrscheinlichkeiten \\(0{,}18\\) und \\(0{,}42\\). Wie groß ist die Ereigniswahrscheinlichkeit?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}0756\\)", "\\(0{,}24\\)", "\\(0{,}3\\)"],
+            "fehler": ["Endwahrscheinlichkeiten multipliziert", "Differenz der Endwahrscheinlichkeiten gebildet", "Mittelwert der Endwahrscheinlichkeiten gebildet"]
+        },
+        {
+            "frage": "Es gilt \\(P(A\\cap B)=0{,}2\\) und \\(P(\\overline{A}\\cap B)=0{,}05\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}01\\)", "\\(0{,}15\\)", "\\(0{,}4\\)"],
+            "fehler": ["Pfadendwahrscheinlichkeiten multipliziert", "Differenz statt Summe gebildet", "Erste Pfadwahrscheinlichkeit verdoppelt"]
+        },
+        {
+            "frage": "Bei zwei fairen Münzwürfen besteht das Ereignis ‚zweimal gleich‘ aus den Pfaden KK und ZZ. Wie groß ist seine Wahrscheinlichkeit?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}25\\)", "\\(1\\)", "\\(0{,}125\\)"],
+            "fehler": ["Nur einen der beiden Pfade berücksichtigt", "Astwahrscheinlichkeiten statt Endwahrscheinlichkeiten addiert", "Die beiden Endwahrscheinlichkeiten multipliziert"]
+        },
+        {
+            "frage": "Welche Gleichung beschreibt die Pfadadditionsregel für \\(A\\)?",
+            "antworten": ["\\(P(A)=P(A\\cap B)+P(A\\cap\\overline{B})\\)", "\\(P(A)=P(A\\cap B)\\cdot P(A\\cap\\overline{B})\\)", "\\(P(A)=P(B)+P(\\overline{B})\\)", "\\(P(A)=1-P(B)\\)"],
+            "fehler": ["Zugehörige Pfade multipliziert statt addiert", "Gesamtheit der zweiten Stufe statt Ereignis \\(A\\) gebildet", "Ereignisse \\(A\\) und \\(B\\) ohne Grundlage als Gegenereignisse behandelt"]
+        },
+        {
+            "frage": "Die vier Endwahrscheinlichkeiten sind \\(0{,}32\\), \\(0{,}08\\), \\(0{,}18\\) und \\(0{,}42\\). Welche Summe müssen sie ergeben?",
+            "antworten": ["\\(1\\)", "\\(0{,}5\\)", "\\(0{,}24\\)", "\\(1{,}2\\)"],
+            "fehler": ["Nur eine Hälfte des Baumes addiert", "Mittlere Endwahrscheinlichkeiten addiert", "Rechenfehler bei der Gesamtsumme"]
+        },
+        {
+            "frage": "Die Pfade \\(A\\cap B\\) und \\(A\\cap\\overline{B}\\) haben Wahrscheinlichkeiten \\(0{,}32\\) und \\(0{,}08\\). Wie groß ist \\(P(A)\\)?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}0256\\)", "\\(0{,}24\\)", "\\(0{,}32\\)"],
+            "fehler": ["Pfadendwahrscheinlichkeiten multipliziert", "Differenz statt Summe gebildet", "Nur ersten Pfad berücksichtigt"]
+        },
+        {
+            "frage": "Unter \\(\\overline{A}\\) enden zwei Pfade mit \\(0{,}18\\) und \\(0{,}42\\). Wie groß ist \\(P(\\overline{A})\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}0756\\)", "\\(0{,}24\\)", "\\(0{,}7\\)"],
+            "fehler": ["Pfade multipliziert", "Differenz statt Summe gebildet", "Summe falsch berechnet"]
+        },
+        {
+            "frage": "Welche Pfade werden für das Ereignis ‚mindestens einmal Kopf‘ bei zwei Münzwürfen addiert?",
+            "antworten": ["KK, KZ und ZK", "Nur KK", "KZ und ZK", "KK und ZZ"],
+            "fehler": ["‚Mindestens einmal‘ als ‚zweimal‘ gedeutet", "Fall mit zwei Köpfen ausgelassen", "Ereignis ‚zweimal gleich‘ gewählt"]
+        },
+        {
+            "frage": "Wann werden Wahrscheinlichkeiten im Baumdiagramm addiert?",
+            "antworten": ["Wenn mehrere vollständige Pfade zum gesuchten Ereignis gehören", "Wenn mehrere Äste nacheinander durchlaufen werden", "Bei jedem einzelnen Pfad", "Nur wenn alle Äste gleich wahrscheinlich sind"],
+            "fehler": ["Nacheinander durchlaufene Äste müssten multipliziert werden", "Pfadaddition auf einen einzelnen Pfad angewendet", "Pfadaddition unnötig von Gleichverteilung abhängig gemacht"]
+        }
+    ]
+}

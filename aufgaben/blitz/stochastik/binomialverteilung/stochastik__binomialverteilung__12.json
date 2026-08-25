@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben sind \\(n=4\\) und \\(\\mu=2\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(2\\)","\\(4\\)","\\(0{,}25\\)"],
+            "fehler": ["\\(\\mu\\) unverändert als Wahrscheinlichkeit verwendet","\\(n\\) statt \\(\\mu/n\\) verwendet","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=4\\) und \\(\\mu=2\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(1\\)","\\(2\\)","\\(0{,}5\\)","\\(\\sqrt{2}\\)"],
+            "fehler": ["Erwartungswert statt Standardabweichung gewählt","Zuvor berechnetes \\(p\\) übernommen","Faktor \\(1-p\\) vergessen"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=16\\) und \\(\\mu=8\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}5\\)","\\(2\\)","\\(8\\)","\\(0{,}125\\)"],
+            "fehler": ["\\(n/\\mu\\) statt \\(\\mu/n\\) berechnet","Erwartungswert als Wahrscheinlichkeit verwendet","Kehrwert des Erwartungswerts gebildet"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=16\\) und \\(\\mu=8\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(8\\)","\\(\\sqrt{8}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=25\\) und \\(\\mu=5\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(0{,}2\\)","\\(5\\)","\\(0{,}8\\)","\\(0{,}04\\)"],
+            "fehler": ["Erwartungswert als Wahrscheinlichkeit verwendet","Nietenwahrscheinlichkeit statt Trefferwahrscheinlichkeit gewählt","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=25\\) und \\(\\mu=5\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(2\\)","\\(4\\)","\\(5\\)","\\(\\sqrt{5}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=9\\) und \\(\\mu=3\\). Wie groß ist \\(p\\)?",
+            "antworten": ["\\(\\frac{1}{3}\\)","\\(3\\)","\\(\\frac{2}{3}\\)","\\(\\frac{1}{9}\\)"],
+            "fehler": ["Erwartungswert als Wahrscheinlichkeit verwendet","Nietenwahrscheinlichkeit gewählt","Kehrwert von \\(n\\) statt \\(\\mu/n\\) gebildet"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=9\\) und \\(\\mu=3\\). Wie groß ist \\(\\sigma\\)?",
+            "antworten": ["\\(\\sqrt{2}\\)","\\(2\\)","\\(3\\)","\\(\\sqrt{3}\\)"],
+            "fehler": ["Varianz statt Standardabweichung gewählt","Erwartungswert gewählt","Faktor \\(1-p\\) vergessen"]
+        },
+        {
+            "frage": "Welcher erste Rechenschritt bestimmt bei gegebenem \\(n\\) und \\(\\mu\\) die Trefferwahrscheinlichkeit?",
+            "antworten": ["\\(p=\\frac{\\mu}{n}\\)","\\(p=\\frac{n}{\\mu}\\)","\\(p=n\\mu\\)","\\(p=1-\\mu\\)"],
+            "fehler": ["Quotient umgekehrt","Multipliziert statt dividiert","Erwartungswert fälschlich direkt von 1 abgezogen"]
+        },
+        {
+            "frage": "Gegeben sind \\(n=10\\) und \\(\\mu=0\\). Welches Paar \\((p;\\sigma)\\) folgt?",
+            "antworten": ["\\((0;0)\\)","\\((1;0)\\)","\\((0;10)\\)","\\((1;10)\\)"],
+            "fehler": ["Trefferwahrscheinlichkeit 1 statt 0 gewählt","Standardabweichung mit Versuchsanzahl verwechselt","Sowohl \\(p\\) als auch \\(\\sigma\\) falsch übernommen"]
+        }
+    ]
+}

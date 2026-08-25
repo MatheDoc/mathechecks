@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel berechnet die Standardabweichung einer diskreten Zufallsgröße?",
+            "antworten": ["\\(\\sigma(X)=\\sqrt{\\sum (x_i-E(X))^2\\cdot P(X=x_i)}\\)", "\\(\\sigma(X)=\\sum x_i\\cdot P(X=x_i)\\)", "\\(\\sigma(X)=\\sum (x_i-E(X))\\)", "\\(\\sigma(X)=\\sqrt{\\sum P(X=x_i)}\\)"],
+            "fehler": ["Formel des Erwartungswerts gewählt", "Abweichungen weder quadriert noch gewichtet", "Nur die Wahrscheinlichkeitssumme unter die Wurzel gesetzt"]
+        },
+        {
+            "frage": "Welche Kennzahl wird vor der Standardabweichung benötigt?",
+            "antworten": ["Der Erwartungswert", "Der größte mögliche Wert", "Die Anzahl der Werte ohne ihre Wahrscheinlichkeiten", "Nur die kleinste Wahrscheinlichkeit"],
+            "fehler": ["Maximum statt Bezugspunkt der Abweichungen gewählt", "Wahrscheinlichkeitsverteilung ignoriert", "Einzelne Wahrscheinlichkeit statt Erwartungswert gewählt"]
+        },
+        {
+            "frage": "Es gilt \\(E(X)=2\\) und \\(x_i=3\\). Wie groß ist die Abweichung \\(x_i-E(X)\\)?",
+            "antworten": ["\\(1\\)", "\\(5\\)", "\\(-1\\)", "\\(6\\)"],
+            "fehler": ["Wert und Erwartungswert addiert", "Subtraktionsrichtung vertauscht", "Wert und Erwartungswert multipliziert"]
+        },
+        {
+            "frage": "Es gilt \\(x_i-E(X)=-2\\). Wie groß ist die quadrierte Abweichung?",
+            "antworten": ["\\(4\\)", "\\(-4\\)", "\\(-2\\)", "\\(2\\)"],
+            "fehler": ["Vorzeichen beim Quadrieren beibehalten", "Abweichung nicht quadriert", "Nur das Vorzeichen entfernt"]
+        },
+        {
+            "frage": "Die quadrierte Abweichung ist \\(4\\), die zugehörige Wahrscheinlichkeit \\(0{,}2\\). Welchen Beitrag liefert dieser Wert zur Varianz?",
+            "antworten": ["\\(0{,}8\\)", "\\(4{,}2\\)", "\\(20\\)", "\\(3{,}8\\)"],
+            "fehler": ["Quadrierte Abweichung und Wahrscheinlichkeit addiert", "Durch die Wahrscheinlichkeit geteilt", "Wahrscheinlichkeit subtrahiert"]
+        },
+        {
+            "frage": "Was ergibt die Summe \\(\\sum (x_i-E(X))^2P(X=x_i)\\)?",
+            "antworten": ["Die Varianz \\(\\sigma^2(X)\\)", "Den Erwartungswert \\(E(X)\\)", "Die Standardabweichung \\(\\sigma(X)\\)", "Die Wahrscheinlichkeit \\(1\\)"],
+            "fehler": ["Quadratische Abweichungssumme mit Erwartungswert verwechselt", "Erforderliches Wurzelziehen für die Standardabweichung ausgelassen", "Gewichtete Abweichungssumme mit Wahrscheinlichkeitssumme verwechselt"]
+        },
+        {
+            "frage": "Wie erhält man aus der Varianz die Standardabweichung?",
+            "antworten": ["Durch Wurzelziehen", "Durch Quadrieren", "Durch Verdoppeln", "Durch Subtraktion vom Erwartungswert"],
+            "fehler": ["Umkehrung von Varianz und Standardabweichung vertauscht", "Unbegründeten Faktor verwendet", "Varianz fälschlich mit Erwartungswert verrechnet"]
+        },
+        {
+            "frage": "Die Varianz beträgt \\(0{,}49\\). Wie groß ist die Standardabweichung?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}2401\\)", "\\(0{,}49\\)", "\\(1{,}49\\)"],
+            "fehler": ["Varianz quadriert", "Varianz unverändert als Standardabweichung übernommen", "Varianz zu 1 addiert"]
+        },
+        {
+            "frage": "Eine Zufallsgröße nimmt sicher den Wert \\(5\\) an. Wie groß ist ihre Standardabweichung?",
+            "antworten": ["\\(0\\)", "\\(5\\)", "\\(25\\)", "\\(1\\)"],
+            "fehler": ["Sicheren Wert mit Streuung verwechselt", "Wert quadriert", "Sichere Wahrscheinlichkeit als Standardabweichung übernommen"]
+        },
+        {
+            "frage": "Welche Aussage ist bei gleichem Erwartungswert richtig?",
+            "antworten": ["Eine größere Standardabweichung bedeutet stärkere Streuung", "Eine größere Standardabweichung bedeutet einen größeren Erwartungswert", "Eine größere Standardabweichung bedeutet gleiche Werte in jedem Versuch", "Die Standardabweichung kann negativ sein"],
+            "fehler": ["Streuung mit Lage verwechselt", "Große Streuung als Konstanz gedeutet", "Nichtnegativität der Standardabweichung verletzt"]
+        }
+    ]
+}

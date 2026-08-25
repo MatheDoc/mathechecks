@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(P(A)=0{,}35\\). Wie groß ist \\(P(\\overline{A})\\)?",
+            "antworten": ["\\(0{,}65\\)", "\\(0{,}35\\)", "\\(1{,}35\\)", "\\(0{,}1225\\)"],
+            "fehler": ["Wahrscheinlichkeit unverändert übernommen", "Wahrscheinlichkeit zu 1 addiert", "Wahrscheinlichkeit quadriert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A\\cap B)=0{,}12\\) und \\(P(\\overline{A}\\cap B)=0{,}18\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}06\\)", "\\(0{,}0216\\)", "\\(0{,}18\\)"],
+            "fehler": ["Die beiden B-Anteile subtrahiert", "Die beiden B-Anteile multipliziert", "Nur den Anteil mit Nicht-A berücksichtigt"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\), \\(P(B)=0{,}4\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}9\\)", "\\(0{,}2\\)", "\\(0{,}4\\)"],
+            "fehler": ["Schnittwahrscheinlichkeit beim Addieren doppelt gezählt", "Nur die Schnittwahrscheinlichkeit verwendet", "Nur \\(P(B)\\) übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\) und \\(P(A\\cap B)=0{,}15\\). Wie groß ist \\(P_A(B)\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}075\\)", "\\(0{,}65\\)", "\\(0{,}15\\)"],
+            "fehler": ["Schnitt- und Bedingungswahrscheinlichkeit multipliziert", "Schnitt- und Bedingungswahrscheinlichkeit addiert", "Schnittwahrscheinlichkeit ohne Division übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(P(B)=0{,}4\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}08\\)", "\\(0{,}6\\)", "\\(0{,}2\\)"],
+            "fehler": ["Schnitt- und Bedingungswahrscheinlichkeit multipliziert", "Schnitt- und Bedingungswahrscheinlichkeit addiert", "Schnittwahrscheinlichkeit ohne Division übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}6\\), \\(P(B)=0{,}3\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist \\(P(\\overline{A}\\cap\\overline{B})\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}7\\)", "\\(0{,}1\\)", "\\(0{,}36\\)"],
+            "fehler": ["Vereinigungswahrscheinlichkeit statt ihrer Gegenwahrscheinlichkeit angegeben", "Nur A- und B-Wahrscheinlichkeit subtrahiert", "\\(P(A)\\) quadriert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\), \\(P(B)=0{,}4\\) und \\(P(A\\cap B)=0{,}2\\). Wie groß ist die Wahrscheinlichkeit, dass genau eines der Ereignisse eintritt?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}7\\)", "\\(0{,}2\\)", "\\(0{,}9\\)"],
+            "fehler": ["Vereinigung einschließlich Schnittmenge angegeben", "Nur die Schnittwahrscheinlichkeit angegeben", "Einzelwahrscheinlichkeiten ohne Abzug der Schnittanteile addiert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\), \\(P(B)=0{,}4\\) und \\(P(A\\cup B)=0{,}7\\). Wie groß ist \\(P(A\\cap B)\\)?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}9\\)", "\\(0{,}35\\)", "\\(0{,}1\\)"],
+            "fehler": ["Einzelwahrscheinlichkeiten nur addiert", "Vereinigungswahrscheinlichkeit und A-Wahrscheinlichkeit multipliziert", "Vereinigungswahrscheinlichkeit von der falschen Zwischensumme abgezogen"]
+        },
+        {
+            "frage": "Es gilt \\(P(B)=0{,}35\\) und \\(P(A\\cap B)=0{,}15\\). Wie groß ist \\(P(\\overline{A}\\cap B)\\)?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}5\\)", "\\(0{,}0525\\)", "\\(0{,}15\\)"],
+            "fehler": ["Schnittwahrscheinlichkeit zur B-Wahrscheinlichkeit addiert", "Wahrscheinlichkeiten multipliziert", "Bekannten Schnittanteil unverändert übernommen"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}5\\), \\(P(B)=0{,}4\\) und \\(P(A\\cap B)=0{,}1\\). Welche Aussage ist richtig?",
+            "antworten": ["\\(A\\) und \\(B\\) sind nicht unabhängig.", "\\(A\\) und \\(B\\) sind unabhängig.", "\\(A\\) und \\(B\\) schließen sich aus.", "\\(A\\) und \\(B\\) sind Gegenereignisse."],
+            "fehler": ["Schnittwahrscheinlichkeit nicht mit dem Produkt \\(0{,}2\\) verglichen", "Positive Schnittwahrscheinlichkeit als gegenseitigen Ausschluss gedeutet", "Nichtunabhängigkeit mit Gegenereignissen verwechselt"]
+        }
+    ]
+}

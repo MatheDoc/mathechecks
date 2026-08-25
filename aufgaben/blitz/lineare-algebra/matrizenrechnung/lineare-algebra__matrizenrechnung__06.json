@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Aus \\(AX=B\\) folgt für invertierbares \\(A\\):",
+            "antworten": ["\\(X=A^{-1}B\\)", "\\(X=BA^{-1}\\)", "\\(X=AB^{-1}\\)", "\\(X=B^{-1}A\\)"],
+            "fehler": ["Inverse auf der falschen Seite multipliziert", "Falsche Matrix invertiert", "Falsche Matrix invertiert und Reihenfolge vertauscht"]
+        },
+        {
+            "frage": "Aus \\(XA=B\\) folgt für invertierbares \\(A\\):",
+            "antworten": ["\\(X=BA^{-1}\\)", "\\(X=A^{-1}B\\)", "\\(X=B^{-1}A\\)", "\\(X=AB^{-1}\\)"],
+            "fehler": ["Inverse auf der falschen Seite multipliziert", "Falsche Matrix invertiert", "Falsche Matrix invertiert und Reihenfolge vertauscht"]
+        },
+        {
+            "frage": "Wie wird \\(AX+C=B\\) zuerst nach dem Produkt mit \\(X\\) umgestellt?",
+            "antworten": ["\\(AX=B-C\\)", "\\(AX=B+C\\)", "\\(AX=C-B\\)", "\\(AX=BC\\)"],
+            "fehler": ["Vorzeichen beim Umstellen nicht geändert", "Subtraktionsreihenfolge vertauscht", "Addition durch Multiplikation ersetzt"]
+        },
+        {
+            "frage": "Welche Lösung gehört zu \\(AX+C=B\\), wenn \\(A\\) invertierbar ist?",
+            "antworten": ["\\(X=A^{-1}(B-C)\\)", "\\(X=(B-C)A^{-1}\\)", "\\(X=A(B-C)\\)", "\\(X=A^{-1}(B+C)\\)"],
+            "fehler": ["Inverse wegen der Faktorposition rechts multipliziert", "Mit \\(A\\) statt mit \\(A^{-1}\\) multipliziert", "Vorzeichen beim Umstellen nicht geändert"]
+        },
+        {
+            "frage": "Welche Lösung gehört zu \\(XA+C=B\\), wenn \\(A\\) invertierbar ist?",
+            "antworten": ["\\(X=(B-C)A^{-1}\\)", "\\(X=A^{-1}(B-C)\\)", "\\(X=(B+C)A^{-1}\\)", "\\(X=(B-C)A\\)"],
+            "fehler": ["Inverse auf der falschen Seite multipliziert", "Vorzeichen beim Umstellen nicht geändert", "Mit \\(A\\) statt mit \\(A^{-1}\\) multipliziert"]
+        },
+        {
+            "frage": "Warum darf man aus \\(AX=B\\) nicht allgemein \\(X=BA^{-1}\\) folgern?",
+            "antworten": ["Weil \\(A^{-1}\\) links von \\(AX\\) multipliziert werden muss.", "Weil Matrizen nie invertierbar sind.", "Weil \\(AX\\) immer gleich \\(XA\\) ist.", "Weil \\(B\\) zuerst transponiert werden muss."],
+            "fehler": ["Existenz invertierbarer Matrizen verneint", "Nichtkommutativität ins Gegenteil verkehrt", "Transposition ohne Anlass eingeführt"]
+        },
+        {
+            "frage": "Welche Probe passt zur Lösung von \\(XA=B\\)?",
+            "antworten": ["Den berechneten Wert für \\(X\\) in \\(XA\\) einsetzen und mit \\(B\\) vergleichen", "Nur \\(A^{-1}A\\) berechnen", "\\(AX\\) berechnen und mit \\(B\\) vergleichen", "\\(X+A\\) berechnen und mit \\(B\\) vergleichen"],
+            "fehler": ["Nur die Inverse, nicht die Gleichung kontrolliert", "Faktorreihenfolge der Ausgangsgleichung vertauscht", "Addition statt Multiplikation geprüft"]
+        },
+        {
+            "frage": "Es gilt \\(2X=A\\). Welche Matrix ist \\(X\\)?",
+            "antworten": ["\\(\\frac12 A\\)", "\\(2A\\)", "\\(A^{-1}\\)", "\\(A-2E\\)"],
+            "fehler": ["Mit zwei multipliziert statt durch zwei geteilt", "Skalargleichung unnötig mit Matrixinverser gelöst", "Skalar fälschlich als Matrixterm subtrahiert"]
+        },
+        {
+            "frage": "Aus \\(AX=B\\) und \\(A=E\\) folgt:",
+            "antworten": ["\\(X=B\\)", "\\(X=E\\)", "\\(X=B^{-1}\\)", "\\(X=O\\)"],
+            "fehler": ["Rechte Seite ignoriert", "B unnötig invertiert", "Einheitsmatrix mit Nullmatrix verwechselt"]
+        },
+        {
+            "frage": "Welche Voraussetzung braucht die Auflösung \\(X=A^{-1}B\\)?",
+            "antworten": ["\\(A\\) ist invertierbar.", "\\(B\\) ist invertierbar.", "\\(A=B\\).", "\\(A\\) ist eine Nullmatrix."],
+            "fehler": ["Inverse der falschen Matrix vorausgesetzt", "Gleichheit der Matrizen unnötig verlangt", "Nullmatrix fälschlich als invertierbar angesehen"]
+        }
+    ]
+}

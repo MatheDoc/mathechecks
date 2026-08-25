@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie wird eine relative Häufigkeit aus absoluten Häufigkeiten berechnet?",
+            "antworten": ["Absolute Häufigkeit des Ereignisses durch die Gesamtanzahl teilen", "Gesamtanzahl durch die absolute Häufigkeit teilen", "Absolute Häufigkeit von der Gesamtanzahl abziehen", "Absolute Häufigkeit und Gesamtanzahl addieren"],
+            "fehler": ["Zähler und Nenner vertauscht", "Gegenhäufigkeit statt relativer Häufigkeit gebildet", "Häufigkeiten addiert statt einen Anteil gebildet"]
+        },
+        {
+            "frage": "In einer Urne liegen 1 rote, 2 blaue, 3 gelbe und 4 grüne Kugeln. Wie viele Kugeln liegen insgesamt darin?",
+            "antworten": ["\\(10\\)", "\\(4\\)", "\\(9\\)", "\\(24\\)"],
+            "fehler": ["Anzahl der Farben statt Anzahl der Kugeln gewählt", "Eine rote Kugel beim Addieren ausgelassen", "Absolute Häufigkeiten multipliziert"]
+        },
+        {
+            "frage": "In einer Urne liegen insgesamt 10 Kugeln, davon 1 rote. Wie groß ist die Wahrscheinlichkeit für Rot?",
+            "antworten": ["\\(0{,}1\\)", "\\(1\\)", "\\(0{,}9\\)", "\\(10\\)"],
+            "fehler": ["Absolute Häufigkeit als Wahrscheinlichkeit übernommen", "Gegenwahrscheinlichkeit berechnet", "Gesamtzahl durch Trefferzahl geteilt"]
+        },
+        {
+            "frage": "In einer Urne liegen insgesamt 10 Kugeln, davon 2 blaue. Wie groß ist die Wahrscheinlichkeit für Blau?",
+            "antworten": ["\\(0{,}2\\)", "\\(2\\)", "\\(0{,}8\\)", "\\(5\\)"],
+            "fehler": ["Absolute Häufigkeit als Wahrscheinlichkeit übernommen", "Gegenwahrscheinlichkeit berechnet", "Zähler und Nenner vertauscht"]
+        },
+        {
+            "frage": "Von 10 Kugeln sind 2 blau und 3 gelb. Wie groß ist die Wahrscheinlichkeit für Blau oder Gelb?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}6\\)", "\\(0{,}06\\)", "\\(5\\)"],
+            "fehler": ["Absolute Häufigkeiten multipliziert und durch 10 geteilt", "Einzelwahrscheinlichkeiten multipliziert", "Günstige Anzahl ohne Division als Wahrscheinlichkeit verwendet"]
+        },
+        {
+            "frage": "Von 10 Kugeln sind 4 grün. Wie groß ist die Wahrscheinlichkeit für ‚nicht grün‘?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}4\\)", "\\(0{,}04\\)", "\\(6\\)"],
+            "fehler": ["Wahrscheinlichkeit für Grün statt Gegenereignis gewählt", "Absolute Häufigkeit und Gesamtzahl multipliziert", "Günstige Anzahl ohne Division als Wahrscheinlichkeit verwendet"]
+        },
+        {
+            "frage": "Von 10 Kugeln sind 1 rot und 2 blau. Wie groß ist die Wahrscheinlichkeit für ‚weder rot noch blau‘?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(0{,}2\\)", "\\(0{,}8\\)"],
+            "fehler": ["Wahrscheinlichkeit für Rot oder Blau gewählt", "Nur blaue Kugeln berücksichtigt", "Nur rote Kugeln ausgeschlossen"]
+        },
+        {
+            "frage": "Ein Ereignis tritt bei 8 von 40 Beobachtungen ein. Wie groß ist seine relative Häufigkeit?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}8\\)", "\\(5\\)", "\\(32\\)"],
+            "fehler": ["Absolute Häufigkeit als Dezimalzahl fehlinterpretiert", "Zähler und Nenner vertauscht", "Gegenhäufigkeit als absolute Anzahl angegeben"]
+        },
+        {
+            "frage": "Ein Ereignis tritt bei 15 von 60 Beobachtungen ein. Wie groß ist seine relative Häufigkeit?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}4\\)", "\\(4\\)", "\\(0{,}75\\)"],
+            "fehler": ["Quotient falsch berechnet", "Zähler und Nenner vertauscht", "Gegenhäufigkeit berechnet"]
+        },
+        {
+            "frage": "Für die Wahrscheinlichkeit eines Ereignisses aus absoluten Häufigkeiten: Was gehört in den Nenner?",
+            "antworten": ["Die Gesamtanzahl aller Beobachtungen", "Nur die absolute Häufigkeit des Ereignisses", "Die Anzahl der verschiedenen Kategorien", "Die absolute Häufigkeit des Gegenereignisses"],
+            "fehler": ["Zähler statt Nenner gewählt", "Kategorienzahl mit Beobachtungszahl verwechselt", "Nur Gegenereignis statt Gesamtanzahl verwendet"]
+        }
+    ]
+}

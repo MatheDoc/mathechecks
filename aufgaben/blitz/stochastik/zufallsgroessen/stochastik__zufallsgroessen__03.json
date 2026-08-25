@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was beschreibt der Erwartungswert \\(E(X)\\) im Sachzusammenhang?",
+            "antworten": ["Den langfristig erwarteten Durchschnittswert", "Den größten möglichen Wert", "Den Wert jedes einzelnen Versuchs", "Die Streuung der Werte"],
+            "fehler": ["Erwartungswert mit Maximum verwechselt", "Langfristigen Mittelwert als sicheres Einzelergebnis gedeutet", "Erwartungswert mit Standardabweichung verwechselt"]
+        },
+        {
+            "frage": "Muss der Erwartungswert selbst ein möglicher Wert der Zufallsgröße sein?",
+            "antworten": ["Nein", "Ja, immer", "Nur bei negativen Werten", "Nur wenn die Standardabweichung größer als 1 ist"],
+            "fehler": ["Gewichteten Mittelwert fälschlich als möglichen Einzelwert vorausgesetzt", "Möglichkeit ohne Grundlage vom Vorzeichen abhängig gemacht", "Möglichkeit ohne Grundlage von der Standardabweichung abhängig gemacht"]
+        },
+        {
+            "frage": "Was beschreibt die Standardabweichung \\(\\sigma(X)\\)?",
+            "antworten": ["Wie stark die Werte um den Erwartungswert streuen", "Welcher Wert am häufigsten auftritt", "Wie groß die Summe der Wahrscheinlichkeiten ist", "Welchen Maximalwert X annimmt"],
+            "fehler": ["Standardabweichung mit Modalwert verwechselt", "Standardabweichung mit Wahrscheinlichkeitssumme verwechselt", "Streuung mit Maximum verwechselt"]
+        },
+        {
+            "frage": "Zwei Zufallsgrößen haben denselben Erwartungswert. Welche ist konstanter?",
+            "antworten": ["Die mit der kleineren Standardabweichung", "Die mit der größeren Standardabweichung", "Immer die mit dem größeren Maximalwert", "Beide müssen gleich konstant sein"],
+            "fehler": ["Größere Streuung als höhere Konstanz gedeutet", "Konstanz nur vom Maximum abhängig gemacht", "Gleiche Lage mit gleicher Streuung verwechselt"]
+        },
+        {
+            "frage": "X zählt Fehlschüsse. Für A gilt \\(E(X_A)=1{,}5\\), für B \\(E(X_B)=2{,}5\\). Wer hat langfristig weniger Fehlschüsse?",
+            "antworten": ["A", "B", "Beide gleich viele", "Ohne Standardabweichung nicht entscheidbar"],
+            "fehler": ["Größeren Erwartungswert als weniger Fehlschüsse gedeutet", "Unterschiedliche Erwartungswerte ignoriert", "Standardabweichung unnötig für den Mittelwertvergleich verlangt"]
+        },
+        {
+            "frage": "Für A gilt \\(E(X_A)=1{,}5\\) und \\(\\sigma(X_A)=0{,}5\\). Welches Intervall ergibt die Faustregel \\(E(X)\\pm\\sigma(X)\\)?",
+            "antworten": ["\\([1;2]\\)", "\\([0{,}5;1{,}5]\\)", "\\([1{,}5;2{,}5]\\)", "\\([-0{,}5;0{,}5]\\)"],
+            "fehler": ["Standardabweichung nur von der unteren Grenze abgezogen", "Standardabweichung nur zur oberen Grenze addiert", "Erwartungswert und Standardabweichung vertauscht"]
+        },
+        {
+            "frage": "Für B gilt \\(E(X_B)=2{,}5\\) und \\(\\sigma(X_B)=2\\). Welches Intervall ergibt \\(E(X)\\pm\\sigma(X)\\)?",
+            "antworten": ["\\([0{,}5;4{,}5]\\)", "\\([2;3]\\)", "\\([0{,}5;2{,}5]\\)", "\\([2{,}5;4{,}5]\\)"],
+            "fehler": ["Halbe statt ganze Standardabweichung verwendet", "Nur untere Intervallhälfte angegeben", "Nur obere Intervallhälfte angegeben"]
+        },
+        {
+            "frage": "Für A gilt \\(E(X_A)=1{,}5\\) und \\(\\sigma(X_A)=0{,}5\\). Wie ist der Wert \\(X_A=3\\) nach der Faustregel einzuordnen?",
+            "antworten": ["Relativ ungewöhnlich, da er außerhalb von \\(E(X)\\pm\\sigma(X)\\) liegt", "Gewöhnlich, da er genau dem Erwartungswert entspricht", "Unmöglich, da er größer als der Erwartungswert ist", "Sicher, da er ganzzahlig ist"],
+            "fehler": ["Wert fälschlich mit Erwartungswert gleichgesetzt", "Werte oberhalb des Erwartungswerts pauschal ausgeschlossen", "Ganzzahligkeit mit Sicherheit verwechselt"]
+        },
+        {
+            "frage": "Für B gilt \\(E(X_B)=2{,}5\\) und \\(\\sigma(X_B)=2\\). Wie ist der Wert \\(X_B=2\\) nach der Faustregel einzuordnen?",
+            "antworten": ["Gewöhnlich, da er innerhalb von \\(E(X)\\pm\\sigma(X)\\) liegt", "Ungewöhnlich, da er kleiner als der Erwartungswert ist", "Unmöglich, da er nicht dem Erwartungswert entspricht", "Sicher, da er ganzzahlig ist"],
+            "fehler": ["Jede Abweichung nach unten als ungewöhnlich gedeutet", "Erwartungswert fälschlich als einzig möglichen Wert angesehen", "Ganzzahligkeit mit Sicherheit verwechselt"]
+        },
+        {
+            "frage": "Zwei Zufallsgrößen haben denselben Erwartungswert, aber unterschiedliche Standardabweichungen. Was folgt?",
+            "antworten": ["Sie haben denselben langfristigen Mittelwert, aber unterschiedlich starke Schwankungen", "Sie haben unterschiedliche Mittelwerte", "Sie besitzen dieselbe Verteilung", "Die mit größerer Standardabweichung hat sicher größere Einzelwerte"],
+            "fehler": ["Gleiche Erwartungswerte ignoriert", "Gleiche Lage und gleiche Verteilung verwechselt", "Stärkere Streuung als sichere Größenordnung jedes Einzelwerts gedeutet"]
+        }
+    ]
+}

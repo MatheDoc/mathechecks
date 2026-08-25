@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einer Vier-Felder-Tafel steht im inneren Feld der A-Zeile und B-Spalte der Wert \\(0{,}08\\). Welche Wahrscheinlichkeit beschreibt er?",
+            "antworten": ["\\(P(A\\cap B)=0{,}08\\)", "\\(P(A\\cup B)=0{,}08\\)", "\\(P(A)=0{,}08\\)", "\\(P(B)=0{,}08\\)"],
+            "fehler": ["Inneres Feld als Vereinigungswahrscheinlichkeit gedeutet", "Inneres Feld als A-Zeilensumme gedeutet", "Inneres Feld als B-Spaltensumme gedeutet"]
+        },
+        {
+            "frage": "Am Rand der A-Zeile steht \\(0{,}6\\). Was bedeutet dieser Wert?",
+            "antworten": ["\\(P(A)=0{,}6\\)", "\\(P(\\overline{A})=0{,}6\\)", "\\(P(A\\cap B)=0{,}6\\)", "\\(P(B)=0{,}6\\)"],
+            "fehler": ["A-Zeilensumme dem Gegenereignis zugeordnet", "Randwert als inneres Schnittfeld gedeutet", "A-Zeilensumme der B-Spalte zugeordnet"]
+        },
+        {
+            "frage": "Am Rand der B-Spalte steht \\(0{,}2\\). Welche Wahrscheinlichkeit ist das?",
+            "antworten": ["\\(P(B)=0{,}2\\)", "\\(P(\\overline{B})=0{,}2\\)", "\\(P(A\\cap B)=0{,}2\\)", "\\(P(A)=0{,}2\\)"],
+            "fehler": ["B-Spaltensumme dem Gegenereignis zugeordnet", "Randwert als inneres Schnittfeld gedeutet", "B-Spaltensumme der A-Zeile zugeordnet"]
+        },
+        {
+            "frage": "Die inneren Felder für \\(A\\cap B\\), \\(A\\cap\\overline{B}\\) und \\(\\overline{A}\\cap B\\) enthalten \\(0{,}08\\), \\(0{,}52\\) und \\(0{,}12\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}72\\)", "\\(0{,}08\\)", "\\(0{,}64\\)", "\\(0{,}28\\)"],
+            "fehler": ["Nur das gemeinsame Feld berücksichtigt", "Das gemeinsame Feld nicht berücksichtigt", "Nur das Feld außerhalb beider Ereignisse betrachtet"]
+        },
+        {
+            "frage": "Die Felder \\(A\\cap\\overline{B}\\) und \\(\\overline{A}\\cap B\\) enthalten \\(0{,}3\\) und \\(0{,}2\\). Wie groß ist die Wahrscheinlichkeit, dass genau eines von \\(A\\) und \\(B\\) eintritt?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}1\\)", "\\(0{,}06\\)", "\\(0{,}7\\)"],
+            "fehler": ["Die beiden Felder subtrahiert", "Die beiden Felder multipliziert", "Die beiden Felder von 1 abgezogen"]
+        },
+        {
+            "frage": "Das innere Feld \\(\\overline{A}\\cap\\overline{B}\\) enthält \\(0{,}25\\). Was beschreibt der Wert?",
+            "antworten": ["Weder \\(A\\) noch \\(B\\) tritt mit Wahrscheinlichkeit \\(0{,}25\\) ein.", "Mindestens eines von \\(A\\) und \\(B\\) tritt mit Wahrscheinlichkeit \\(0{,}25\\) ein.", "Beide Ereignisse treten mit Wahrscheinlichkeit \\(0{,}25\\) ein.", "Genau eines der Ereignisse tritt mit Wahrscheinlichkeit \\(0{,}25\\) ein."],
+            "fehler": ["Feld außerhalb beider Ereignisse als Vereinigung gedeutet", "Beide Gegenereignisse durch beide Ereignisse ersetzt", "Feld außerhalb beider Ereignisse als exklusives Oder gedeutet"]
+        },
+        {
+            "frage": "Welche Wahrscheinlichkeit beschreibt die Summe der Felder \\(A\\cap B\\) und \\(A\\cap\\overline{B}\\) in einer Vier-Felder-Tafel?",
+            "antworten": ["\\(P(A)\\)", "\\(P(B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["Die A-Zeile mit der B-Spalte verwechselt", "Nur eines der beiden Felder betrachtet", "Die gesamte Vereinigung statt der A-Zeile betrachtet"]
+        },
+        {
+            "frage": "Die vier inneren Felder sind \\(0{,}1\\), \\(0{,}3\\), \\(0{,}2\\) und \\(0{,}4\\), wobei \\(0{,}4\\) zu \\(\\overline{A}\\cap\\overline{B}\\) gehört. Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}4\\)", "\\(1\\)", "\\(0{,}1\\)"],
+            "fehler": ["Nur das Feld außerhalb der Vereinigung gewählt", "Alle vier Felder addiert", "Nur die Schnittmenge von A und B gewählt"]
+        },
+        {
+            "frage": "Welcher Bereich einer Vier-Felder-Tafel gehört zu \\(A\\cap\\overline{B}\\)?",
+            "antworten": ["Das innere Feld in der A-Zeile und der \\(\\overline{B}\\)-Spalte", "Die gesamte A-Zeile einschließlich Rand", "Das innere Feld in der \\(\\overline{A}\\)-Zeile und der B-Spalte", "Die gesamte \\(\\overline{B}\\)-Spalte einschließlich Rand"],
+            "fehler": ["Schnittfeld mit der gesamten A-Zeile verwechselt", "Beide Ereignisse komplementiert bzw. vertauscht", "Schnittfeld mit der gesamten Gegenereignis-Spalte verwechselt"]
+        },
+        {
+            "frage": "In einer Vier-Felder-Tafel steht im Feld \\(A\\cap B\\) der Wert \\(0{,}2\\), in \\(A\\cap\\overline{B}\\) der Wert \\(0{,}3\\) und in \\(\\overline{A}\\cap B\\) der Wert \\(0{,}1\\). Wie groß ist die Wahrscheinlichkeit für genau eines der Ereignisse?",
+            "antworten": ["\\(0{,}4\\)", "\\(0{,}6\\)", "\\(0{,}2\\)", "\\(0{,}3\\)"],
+            "fehler": ["Schnittmenge zusätzlich zum exklusiven Oder addiert", "Nur die Schnittmenge berücksichtigt", "Nur das Feld A ohne B berücksichtigt"]
+        }
+    ]
+}

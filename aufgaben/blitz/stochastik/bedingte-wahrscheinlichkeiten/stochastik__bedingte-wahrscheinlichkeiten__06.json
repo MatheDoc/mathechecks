@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Die Randwerte einer Vier-Felder-Tafel sind \\(P(A)=0{,}7\\) und \\(P(B)=0{,}2\\). Welcher Wert gehört in das Feld \\(A\\cap B\\)?",
+            "antworten": ["\\(0{,}14\\)", "\\(0{,}9\\)", "\\(0{,}5\\)", "\\(0{,}2\\)"],
+            "fehler": ["Randwahrscheinlichkeiten addiert", "Randwahrscheinlichkeiten subtrahiert", "Nur den kleineren Randwert übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}6\\) und \\(P(B)=0{,}5\\). Welcher Wert ergänzt das Feld \\(A\\cap B\\)?",
+            "antworten": ["\\(0{,}3\\)", "\\(1{,}1\\)", "\\(0{,}1\\)", "\\(0{,}5\\)"],
+            "fehler": ["Randwahrscheinlichkeiten addiert", "Randwahrscheinlichkeiten subtrahiert", "Nur den B-Randwert übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Es gilt \\(P(A)=0{,}4\\) und \\(P(\\overline{B})=0{,}3\\). Welcher Wert steht im Feld \\(A\\cap\\overline{B}\\)?",
+            "antworten": ["\\(0{,}12\\)", "\\(0{,}7\\)", "\\(0{,}1\\)", "\\(0{,}3\\)"],
+            "fehler": ["Randwahrscheinlichkeiten addiert", "Randwahrscheinlichkeiten subtrahiert", "Nur die Wahrscheinlichkeit von Nicht-B übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Es gilt \\(P(\\overline{A})=0{,}8\\) und \\(P(B)=0{,}25\\). Welcher Wert gehört in \\(\\overline{A}\\cap B\\)?",
+            "antworten": ["\\(0{,}2\\)", "\\(1{,}05\\)", "\\(0{,}55\\)", "\\(0{,}25\\)"],
+            "fehler": ["Randwahrscheinlichkeiten addiert", "Randwahrscheinlichkeiten subtrahiert", "Nur den B-Randwert übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. In der Tafel gilt \\(P(A)=0{,}5\\) und \\(P(A\\cap B)=0{,}2\\). Welcher B-Randwert fehlt?",
+            "antworten": ["\\(P(B)=0{,}4\\)", "\\(P(B)=0{,}1\\)", "\\(P(B)=0{,}7\\)", "\\(P(B)=0{,}2\\)"],
+            "fehler": ["Randwert und Schnittwahrscheinlichkeit multipliziert", "Randwert und Schnittwahrscheinlichkeit addiert", "Schnittwahrscheinlichkeit unverändert als Randwert übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. In der Tafel gilt \\(P(B)=0{,}6\\) und \\(P(A\\cap B)=0{,}18\\). Welcher A-Randwert fehlt?",
+            "antworten": ["\\(P(A)=0{,}3\\)", "\\(P(A)=0{,}108\\)", "\\(P(A)=0{,}78\\)", "\\(P(A)=0{,}18\\)"],
+            "fehler": ["Randwert und Schnittwahrscheinlichkeit multipliziert", "Randwert und Schnittwahrscheinlichkeit addiert", "Schnittwahrscheinlichkeit unverändert als Randwert übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}3\\) und \\(P(B)=0{,}4\\). Nach dem Feld \\(A\\cap B=0{,}12\\) soll die A-Zeile ergänzt werden. Welcher Wert gehört in \\(A\\cap\\overline{B}\\)?",
+            "antworten": ["\\(0{,}18\\)", "\\(0{,}28\\)", "\\(0{,}036\\)", "\\(0{,}7\\)"],
+            "fehler": ["Schnittfeld von der B- statt der A-Randwahrscheinlichkeit abgezogen", "Schnittfeld mit dem A-Randwert multipliziert", "Gegenwahrscheinlichkeit von A als inneres Feld eingesetzt"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}3\\) und \\(P(B)=0{,}4\\). Welcher Wert gehört in \\(\\overline{A}\\cap B\\)?",
+            "antworten": ["\\(0{,}28\\)", "\\(0{,}12\\)", "\\(0{,}1\\)", "\\(0{,}7\\)"],
+            "fehler": ["Das Feld A und B statt Nicht-A und B berechnet", "\\(P(B)-P(A)\\) gebildet", "Nur den Randwert von Nicht-A übernommen"]
+        },
+        {
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig mit \\(P(A)=0{,}3\\) und \\(P(B)=0{,}4\\). Welcher Wert vervollständigt \\(\\overline{A}\\cap\\overline{B}\\)?",
+            "antworten": ["\\(0{,}42\\)", "\\(0{,}12\\)", "\\(0{,}3\\)", "\\(0{,}7\\)"],
+            "fehler": ["Die ursprünglichen Randwahrscheinlichkeiten multipliziert", "\\(P(\\overline{A})-P(B)\\) gebildet", "Nur die Gegenwahrscheinlichkeit von A übernommen"]
+        },
+        {
+            "frage": "Welche Gleichung liefert bei unabhängigen Ereignissen direkt das erste innere Feld einer Vier-Felder-Tafel?",
+            "antworten": ["\\(P(A\\cap B)=P(A)\\cdot P(B)\\)", "\\(P(A\\cap B)=P(A)+P(B)\\)", "\\(P(A\\cap B)=P(A)-P(B)\\)", "\\(P(A\\cap B)=1-P(A)\\)"],
+            "fehler": ["Produktregel durch Addition ersetzt", "Produktregel durch Subtraktion ersetzt", "Schnittwahrscheinlichkeit mit Gegenwahrscheinlichkeit verwechselt"]
+        }
+    ]
+}

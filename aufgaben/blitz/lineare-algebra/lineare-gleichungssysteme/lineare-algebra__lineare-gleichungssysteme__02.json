@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Matrixzeile gehört zu \\(x_1+2x_2-x_3=4\\)?",
+            "antworten": ["\\((1\\;2\\;-1\\mid4)\\)", "\\((1\\;2\\;1\\mid4)\\)", "\\((1\\;-2\\;-1\\mid4)\\)", "\\((1\\;2\\;-1\\mid0)\\)"],
+            "fehler": ["Vorzeichen von \\(x_3\\) verloren", "Vorzeichen von \\(x_2\\) geändert", "Rechte Seite nicht übernommen"]
+        },
+        {
+            "frage": "Welche Operation ist eine zulässige elementare Zeilenumformung?",
+            "antworten": ["\\(II\\rightarrow II-2I\\)", "\\(II\\rightarrow II-I^2\\)", "\\(II\\rightarrow II\\cdot I\\)", "\\(II\\rightarrow II+2\\)"],
+            "fehler": ["Zeilen werden nicht potenziert", "Zeilen werden nicht miteinander multipliziert", "Eine Zahl muss auf die ganze Zeile wirken"]
+        },
+        {
+            "frage": "Es gilt \\(I=(1\\;1\\;0\\mid3)\\) und \\(II=(2\\;3\\;1\\mid8)\\). Was ergibt \\(II-2I\\)?",
+            "antworten": ["\\((0\\;1\\;1\\mid2)\\)", "\\((0\\;2\\;1\\mid5)\\)", "\\((1\\;2\\;1\\mid5)\\)", "\\((0\\;1\\;1\\mid5)\\)"],
+            "fehler": ["Erste Zeile nur einmal subtrahiert", "Ersten Eintrag falsch berechnet", "Rechte Seite nur einmal vermindert"]
+        },
+        {
+            "frage": "Die erste Spalte unter dem ersten Pivot ist bereits null. Welcher Eintrag wird als Nächstes eliminiert?",
+            "antworten": ["Der Eintrag in Zeile III, Spalte 2", "Der erste Pivot", "Der Eintrag in Zeile I, Spalte 3", "Die rechte Seite von Zeile III"],
+            "fehler": ["Pivot muss erhalten bleiben", "Eintrag liegt oberhalb statt unterhalb des Pivots", "Rechte Seiten werden nicht separat eliminiert"]
+        },
+        {
+            "frage": "Es gilt \\(II=(0\\;1\\;2\\mid5)\\) und \\(III=(0\\;3\\;7\\mid16)\\). Was ergibt \\(III-3II\\)?",
+            "antworten": ["\\((0\\;0\\;1\\mid1)\\)", "\\((0\\;0\\;5\\mid11)\\)", "\\((0\\;2\\;5\\mid11)\\)", "\\((0\\;0\\;1\\mid16)\\)"],
+            "fehler": ["Zeile II nur einmal subtrahiert", "Faktor 3 nicht auf alle Einträge angewendet", "Rechte Seite nicht mit umgeformt"]
+        },
+        {
+            "frage": "Woran erkennst du bei einem 3×3-LGS die obere Dreiecksform?",
+            "antworten": ["Unterhalb der Diagonalen stehen nur Nullen.", "Oberhalb der Diagonalen stehen nur Nullen.", "In jeder Zeile steht genau eine Null.", "Alle Diagonaleinträge sind 1."],
+            "fehler": ["Beschreibt eine untere Dreiecksform", "Nullenanzahl ist nicht entscheidend", "Normierung der Pivots ist nicht erforderlich"]
+        },
+        {
+            "frage": "Die letzte Zeile lautet \\(2x_3=6\\). Welcher Wert wird zuerst bestimmt?",
+            "antworten": ["\\(x_3=3\\)", "\\(x_2=3\\)", "\\(x_3=4\\)", "\\(x_1=3\\)"],
+            "fehler": ["Falsche Variable gewählt", "Falsch dividiert", "Mit der ersten Variable begonnen"]
+        },
+        {
+            "frage": "Es gilt \\(x_2+x_3=5\\) und \\(x_3=3\\). Wie groß ist \\(x_2\\)?",
+            "antworten": ["\\(2\\)", "\\(8\\)", "\\(-2\\)", "\\(5\\)"],
+            "fehler": ["3 addiert statt subtrahiert", "Vorzeichenfehler", "Bekannten Wert nicht eingesetzt"]
+        },
+        {
+            "frage": "Es gilt \\(x_1+x_2+x_3=9\\), \\(x_2=2\\) und \\(x_3=3\\). Wie groß ist \\(x_1\\)?",
+            "antworten": ["\\(4\\)", "\\(5\\)", "\\(10\\)", "\\(14\\)"],
+            "fehler": ["Nur einen bekannten Wert berücksichtigt", "Rechenfehler bei der Subtraktion", "Bekannte Werte addiert statt subtrahiert"]
+        },
+        {
+            "frage": "Der erste Eintrag der ersten Matrixzeile ist 0, darunter steht eine 1. Was ist ein sinnvoller erster Schritt?",
+            "antworten": ["Die beiden Zeilen vertauschen", "Die erste Zeile mit 0 multiplizieren", "Die erste Spalte streichen", "Zur letzten Zeile springen"],
+            "fehler": ["Erzeugt eine Nullzeile", "Verändert das LGS unzulässig", "Pivotproblem wird nicht behoben"]
+        }
+    ]
+}

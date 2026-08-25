@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einem Venn-Diagramm ist die gesamte Kreisfläche von \\(B\\) markiert, einschließlich der Überlappung mit \\(A\\). Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(B)\\)", "\\(P(A\\cap B)\\)", "\\(P(\\overline{A}\\cap B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["Nur die Überlappung betrachtet", "Nur den B-Teil außerhalb von A betrachtet", "Beide Kreisflächen statt nur B betrachtet"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm ist nur die Überlappung der Kreise \\(A\\) und \\(B\\) markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)", "\\(P(A)\\)", "\\(P(\\overline{A}\\cap B)\\)"],
+            "fehler": ["Schnittmenge mit Vereinigung verwechselt", "Gesamten Kreis A statt nur Überlappung gewählt", "B-Teil außerhalb von A gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm ist nur der Teil von \\(B\\) außerhalb von \\(A\\) markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(\\overline{A}\\cap B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(B)\\)"],
+            "fehler": ["Überlappung statt B-only-Bereich gewählt", "A- und B-only-Bereich vertauscht", "Gesamten Kreis B einschließlich Überlappung gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm sind beide Kreisflächen \\(A\\) und \\(B\\) vollständig markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(A\\cup B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A)+P(B)\\)", "\\(P(\\overline{A}\\cap\\overline{B})\\)"],
+            "fehler": ["Nur Überlappung gewählt", "Überlappung durch bloße Addition doppelt gezählt", "Außenbereich statt Vereinigung gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm sind die beiden Kreisbereiche außerhalb ihrer Überlappung markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(A\\cup B)-P(A\\cap B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)", "\\(P(\\overline{A}\\cap\\overline{B})\\)"],
+            "fehler": ["Nur Überlappung gewählt", "Überlappung nicht aus der Vereinigung entfernt", "Außenbereich beider Kreise gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm ist nur die Fläche außerhalb beider Kreise markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(\\overline{A}\\cap\\overline{B})\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)", "\\(P(\\overline{A}\\cup\\overline{B})\\)"],
+            "fehler": ["Überlappung der Kreise statt Außenbereich gewählt", "Beide Kreisflächen statt Außenbereich gewählt", "Alle Flächen außer der Überlappung gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm ist nur der Teil von \\(A\\) außerhalb von \\(B\\) markiert. Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(A\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cap B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A)\\)"],
+            "fehler": ["A- und B-only-Bereich vertauscht", "Überlappung statt A-only-Bereich gewählt", "Gesamten Kreis A einschließlich Überlappung gewählt"]
+        },
+        {
+            "frage": "In einem Venn-Diagramm ist die gesamte Kreisfläche von \\(A\\) markiert, einschließlich der Überlappung mit \\(B\\). Welche Wahrscheinlichkeit ist dargestellt?",
+            "antworten": ["\\(P(A)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["Nur Überlappung betrachtet", "Nur den A-Teil außerhalb von B betrachtet", "Beide Kreisflächen statt nur A betrachtet"]
+        },
+        {
+            "frage": "Was entspricht im Venn-Diagramm dem Flächeninhalt einer Ereignisfläche?",
+            "antworten": ["Der Wahrscheinlichkeit des Ereignisses", "Der Anzahl der Buchstaben im Ereignisnamen", "Der Anzahl aller gezeichneten Kreise", "Immer der Wahrscheinlichkeit \\(1\\)"],
+            "fehler": ["Beschriftung statt Flächeninhalt interpretiert", "Diagrammstruktur statt Wahrscheinlichkeit betrachtet", "Jede Teilfläche fälschlich als sicheres Ereignis gedeutet"]
+        },
+        {
+            "frage": "Welche Flächen bilden im Venn-Diagramm das Gegenereignis \\(\\overline{A}\\)?",
+            "antworten": ["Der B-only-Bereich und die Fläche außerhalb beider Kreise", "Der gesamte Kreis A", "Nur die Überlappung von A und B", "Der A-only-Bereich und die Überlappung"],
+            "fehler": ["Ereignis A statt seines Gegenereignisses gewählt", "Nur einen innerhalb A liegenden Bereich gewählt", "Die beiden Teilflächen von A zusammengestellt"]
+        }
+    ]
+}

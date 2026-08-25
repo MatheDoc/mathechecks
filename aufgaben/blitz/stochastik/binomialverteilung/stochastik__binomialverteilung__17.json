@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es ist \\(\\mu=10\\). Welche reelle Umgebung beschreibt eine relative Abweichung von höchstens \\(20\\%\\)?",
+            "antworten": ["\\(8\\leq X\\leq12\\)","\\(9{,}8\\leq X\\leq10{,}2\\)","\\(-10\\leq X\\leq30\\)","\\(2\\leq X\\leq10\\)"],
+            "fehler": ["20 Prozentpunkte als absolute 0,2 verwendet","20 als absoluten Radius verwendet","Relativen Anteil als untere Grenze verwendet"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=7{,}5\\). Wie groß ist der relative Radius bei \\(10\\%\\) Abweichung?",
+            "antworten": ["\\(0{,}75\\)","\\(0{,}10\\)","\\(7{,}5\\)","\\(75\\)"],
+            "fehler": ["Prozentsatz ohne Multiplikation mit \\(\\mu\\) übernommen","Erwartungswert statt Anteil gewählt","Prozentangabe ohne Division durch 100 multipliziert"]
+        },
+        {
+            "frage": "Für ganzzahliges \\(X\\): Welche Grenzen folgen bei \\(\\mu=7{,}5\\) und höchstens \\(10\\%\\) Abweichung?",
+            "antworten": ["\\(7\\leq X\\leq8\\)","\\(6\\leq X\\leq9\\)","\\(7\\leq X\\leq9\\)","\\(6\\leq X\\leq8\\)"],
+            "fehler": ["Reelle Grenzen 6,75 und 8,25 nach außen gerundet","Obere Grenze nach außen gerundet","Untere Grenze nach außen gerundet"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=20\\). Welche Grenzen gehören zur relativen Abweichung von höchstens \\(15\\%\\)?",
+            "antworten": ["\\(17\\leq X\\leq23\\)","\\(5\\leq X\\leq35\\)","\\(19{,}85\\leq X\\leq20{,}15\\)","\\(15\\leq X\\leq20\\)"],
+            "fehler": ["15 als absoluten Radius verwendet","15 Prozent als absolute 0,15 verwendet","Prozentzahl als untere Grenze verwendet"]
+        },
+        {
+            "frage": "Welche Faktoren begrenzen eine relative \\(r\\)-Umgebung von \\(\\mu\\)?",
+            "antworten": ["\\((1-r)\\mu\\) und \\((1+r)\\mu\\)","\\(\\mu-r\\) und \\(\\mu+r\\)","\\(\\mu-r\\sigma\\) und \\(\\mu+r\\sigma\\)","\\(r\\mu\\) und \\(\\mu\\)"],
+            "fehler": ["Absolute statt relative Umgebung gebildet","Sigma- statt relative Umgebung gebildet","Nur Radius und Erwartungswert statt beider Grenzen angegeben"]
+        },
+        {
+            "frage": "Die relative \\(25\\%\\)-Umgebung hat Wahrscheinlichkeit \\(0{,}80\\). Wie groß ist die Wahrscheinlichkeit für mehr als \\(25\\%\\) Abweichung?",
+            "antworten": ["\\(0{,}20\\)","\\(0{,}80\\)","\\(1{,}80\\)","\\(0{,}40\\)"],
+            "fehler": ["Innere Wahrscheinlichkeit statt Gegenereignis gewählt","Innere Wahrscheinlichkeit zu 1 addiert","Innere Wahrscheinlichkeit halbiert"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=12\\). Welche ganzzahlige Umgebung gehört zu höchstens \\(25\\%\\) Abweichung?",
+            "antworten": ["\\(9\\leq X\\leq15\\)","\\(11{,}75\\leq X\\leq12{,}25\\)","\\(3\\leq X\\leq12\\)","\\(8\\leq X\\leq16\\)"],
+            "fehler": ["25 Prozent als absolute 0,25 verwendet","Relativen Radius 3 als untere Grenze verwendet","Radius fälschlich auf 4 vergrößert"]
+        },
+        {
+            "frage": "Welches Ereignis ist das Gegenereignis zu \\(|X-\\mu|\\leq0{,}1\\mu\\)?",
+            "antworten": ["\\(|X-\\mu|>0{,}1\\mu\\)","\\(|X-\\mu|\\geq0{,}1\\mu\\)","\\(|X-\\mu|<0{,}1\\mu\\)","\\(|X-\\mu|>0{,}1\\)"],
+            "fehler": ["Randwerte fälschlich beiden Ereignissen zugeordnet","Inneres Ereignis nur streng formuliert","Faktor \\(\\mu\\) im relativen Radius vergessen"]
+        },
+        {
+            "frage": "Welche Angabe kennzeichnet eine relative statt absolute Umgebung?",
+            "antworten": ["„höchstens \\(10\\%\\) von \\(\\mu\\) abweichen“","„höchstens 10 Treffer abweichen“","„höchstens \\(2\\sigma\\) abweichen“","„mindestens 10 Treffer erzielen“"],
+            "fehler": ["Absolute Abweichung gewählt","Sigma-Abweichung gewählt","Treffergrenze statt Umgebung gewählt"]
+        },
+        {
+            "frage": "Es ist \\(\\mu=30\\). Wie groß ist der Radius einer relativen \\(20\\%\\)-Umgebung?",
+            "antworten": ["\\(6\\)","\\(20\\)","\\(0{,}2\\)","\\(24\\)"],
+            "fehler": ["Prozentzahl als absoluten Radius verwendet","Dezimalen Anteil ohne \\(\\mu\\) übernommen","Untere Grenze statt Radius angegeben"]
+        }
+    ]
+}

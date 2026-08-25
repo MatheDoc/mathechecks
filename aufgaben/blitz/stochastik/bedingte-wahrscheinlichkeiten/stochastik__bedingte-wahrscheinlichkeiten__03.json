@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Im Baum steht am B-Ast nach \\(A\\) der Wert \\(0{,}4\\). Welche Wahrscheinlichkeit ist das?",
+            "antworten": ["\\(P_A(B)=0{,}4\\)", "\\(P_B(A)=0{,}4\\)", "\\(P(A\\cap B)=0{,}4\\)", "\\(P(A\\cup B)=0{,}4\\)"],
+            "fehler": ["Bedingung und betrachtetes Ereignis vertauscht", "Astwert mit Endwahrscheinlichkeit verwechselt", "Astwert als Vereinigungswahrscheinlichkeit gedeutet"]
+        },
+        {
+            "frage": "Ein Baum zeigt \\(P(A)=0{,}5\\) und danach \\(P_A(B)=0{,}4\\). Wie groß ist die Endwahrscheinlichkeit des Pfades \\(A\\)–\\(B\\)?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}9\\)", "\\(0{,}1\\)", "\\(0{,}4\\)"],
+            "fehler": ["Astwahrscheinlichkeiten addiert", "Astwahrscheinlichkeiten subtrahiert", "Nur den zweiten Astwert abgelesen"]
+        },
+        {
+            "frage": "Die Endwahrscheinlichkeiten der beiden B-Pfade sind \\(0{,}2\\) und \\(0{,}05\\). Welche Wahrscheinlichkeit folgt daraus?",
+            "antworten": ["\\(P(B)=0{,}25\\)", "\\(P(B)=0{,}15\\)", "\\(P(B)=0{,}01\\)", "\\(P(B)=0{,}2\\)"],
+            "fehler": ["Endwahrscheinlichkeiten subtrahiert", "Endwahrscheinlichkeiten multipliziert", "Nur einen der beiden B-Pfade berücksichtigt"]
+        },
+        {
+            "frage": "Im Baum gilt \\(P(A\\cap B)=0{,}2\\) und \\(P(B)=0{,}25\\). Wie groß ist \\(P_B(A)\\)?",
+            "antworten": ["\\(0{,}8\\)", "\\(0{,}05\\)", "\\(0{,}45\\)", "\\(0{,}2\\)"],
+            "fehler": ["Schnitt- und Bedingungswahrscheinlichkeit multipliziert", "Wahrscheinlichkeiten addiert", "Nur die Schnittwahrscheinlichkeit übernommen"]
+        },
+        {
+            "frage": "Im Baum gilt \\(P_A(B)=0{,}4\\) und \\(P_{\\overline{A}}(B)=0{,}1\\). Was folgt?",
+            "antworten": ["\\(A\\) und \\(B\\) sind nicht unabhängig.", "\\(A\\) und \\(B\\) sind unabhängig.", "\\(A\\) und \\(B\\) schließen sich aus.", "\\(A\\) und \\(B\\) sind Gegenereignisse."],
+            "fehler": ["Ungleiche bedingte Wahrscheinlichkeiten als Unabhängigkeit gedeutet", "Unabhängigkeitstest mit gegenseitigem Ausschluss verwechselt", "Unabhängigkeitstest mit Gegenereignissen verwechselt"]
+        },
+        {
+            "frage": "Im Baum gilt \\(P_A(B)=P_{\\overline{A}}(B)=0{,}3\\). Welche Aussage ist richtig?",
+            "antworten": ["\\(A\\) und \\(B\\) sind unabhängig.", "\\(A\\) und \\(B\\) schließen sich aus.", "\\(A\\) und \\(B\\) sind Gegenereignisse.", "\\(P(B)=0{,}6\\) muss gelten."],
+            "fehler": ["Gleiche bedingte Wahrscheinlichkeiten als gegenseitigen Ausschluss gedeutet", "Unabhängigkeit mit Gegenereignissen verwechselt", "Die gleichen Astwerte fälschlich addiert"]
+        },
+        {
+            "frage": "Die vier Endpfade haben die Wahrscheinlichkeiten \\(P(A\\cap B)=0{,}2\\), \\(P(A\\cap\\overline{B})=0{,}3\\), \\(P(\\overline{A}\\cap B)=0{,}1\\) und \\(P(\\overline{A}\\cap\\overline{B})=0{,}4\\). Wie groß ist \\(P(A\\cup B)\\)?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}2\\)", "\\(0{,}4\\)", "\\(1\\)"],
+            "fehler": ["Nur den Schnitt von A und B berücksichtigt", "Nur den Pfad außerhalb beider Ereignisse berücksichtigt", "Alle vier Pfade statt der drei zur Vereinigung gehörenden addiert"]
+        },
+        {
+            "frage": "Im Baum steht am ersten A-Ast \\(0{,}6\\). Was lässt sich direkt ablesen?",
+            "antworten": ["\\(P(A)=0{,}6\\)", "\\(P_A(B)=0{,}6\\)", "\\(P(A\\cap B)=0{,}6\\)", "\\(P(B)=0{,}6\\)"],
+            "fehler": ["Erste Stufe als bedingte Wahrscheinlichkeit gedeutet", "Erste Astwahrscheinlichkeit als Endwahrscheinlichkeit gedeutet", "A-Ast dem Ereignis B zugeordnet"]
+        },
+        {
+            "frage": "Im Baum ist die Endwahrscheinlichkeit des Pfades \\(\\overline{A}\\)–\\(B\\) gleich \\(0{,}12\\). Welche Wahrscheinlichkeit ist das?",
+            "antworten": ["\\(P(\\overline{A}\\cap B)=0{,}12\\)", "\\(P_{\\overline{A}}(B)=0{,}12\\)", "\\(P_B(\\overline{A})=0{,}12\\)", "\\(P(\\overline{A}\\cup B)=0{,}12\\)"],
+            "fehler": ["Endwahrscheinlichkeit mit zweitem Astwert verwechselt", "Endwahrscheinlichkeit als umgekehrte bedingte Wahrscheinlichkeit gelesen", "Pfad als Vereinigung statt Schnitt gedeutet"]
+        },
+        {
+            "frage": "Im Baum gilt \\(P(A)=0{,}4\\), \\(P_A(B)=0{,}5\\) und \\(P_{\\overline{A}}(B)=0{,}5\\). Wie groß ist \\(P(B)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(0{,}2\\)", "\\(0{,}3\\)", "\\(1\\)"],
+            "fehler": ["Nur den B-Pfad nach A berechnet", "Nur den B-Pfad nach dem Gegenereignis berechnet", "Die beiden bedingten Wahrscheinlichkeiten addiert"]
+        }
+    ]
+}

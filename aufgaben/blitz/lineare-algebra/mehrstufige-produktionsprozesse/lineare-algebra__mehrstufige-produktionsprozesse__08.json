@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\(m_3=t\\). Welche Gleichung beschreibt die Bedingung „Von E3 werden 12 ME produziert“?",
+            "antworten": ["\\(t=12\\)", "\\(3t=12\\)", "\\(t+3=12\\)", "\\(m_3=3\\)"],
+            "fehler": ["Produktnummer als Faktor verwendet", "Produktnummer zum Parameter addiert", "Produktnummer als Mengenwert verwendet"]
+        },
+        {
+            "frage": "Es gilt \\(m_1=10+t\\) und \\(m_2=8-t\\). Welche Gleichung bedeutet „Von E1 doppelt so viel wie von E2“?",
+            "antworten": ["\\(10+t=2(8-t)\\)", "\\(2(10+t)=8-t\\)", "\\(10+t=8-t+2\\)", "\\(10+t=\\frac{1}{2}(8-t)\\)"],
+            "fehler": ["Doppelte Menge dem falschen Produkt zugeordnet", "Verhältnis als Differenz übersetzt", "Verhältnis umgekehrt"]
+        },
+        {
+            "frage": "Es gilt \\(\\vec{m}=\\begin{pmatrix}4+t\\\\7-2t\\\\t\\end{pmatrix}\\). Welche Gleichung beschreibt eine Gesamtproduktion von 15 ME?",
+            "antworten": ["\\((4+t)+(7-2t)+t=15\\)", "\\((4+t)(7-2t)t=15\\)", "\\(4+t=15\\)", "\\(4+7=15\\)"],
+            "fehler": ["Gesamtmenge als Produkt der Komponenten gebildet", "Nur erste Produktmenge berücksichtigt", "Parameteranteile vor dem Aufstellen weggelassen"]
+        },
+        {
+            "frage": "Es gilt \\(K_v(t)=50+4t\\). Für welchen Wert von \\(t\\) betragen die gesamten variablen Kosten 70 GE?",
+            "antworten": ["\\(t=5\\)", "\\(t=30\\)", "\\(t=17{,}5\\)", "\\(t=4\\)"],
+            "fehler": ["Zielwert und Konstantenanteil nur subtrahiert, aber nicht durch 4 geteilt", "Konstantenanteil vor dem Teilen nicht abgezogen", "Koeffizient direkt als Parameter übernommen"]
+        },
+        {
+            "frage": "Aus einer Bedingung folgt \\(t=7\\), zulässig ist aber nur \\(0\\le t\\le5\\). Was ist das Ergebnis?",
+            "antworten": ["Die Bedingung ist im zulässigen Bereich nicht erfüllbar.", "\\(t=7\\) ist die gesuchte zulässige Lösung.", "Man setzt stattdessen \\(t=5\\).", "Man setzt stattdessen \\(t=0\\)."],
+            "fehler": ["Definitionsbereich nicht geprüft", "Unzulässige Lösung eigenmächtig auf obere Grenze geändert", "Unzulässige Lösung eigenmächtig auf untere Grenze geändert"]
+        },
+        {
+            "frage": "Die Gleichung liefert \\(t=2{,}5\\), eine Produktionsmenge ist \\(m_3=t\\), und alle Produktionsmengen müssen ganzzahlig sein. Was folgt?",
+            "antworten": ["Die Bedingung ist nicht exakt mit ganzzahligen Produktionsmengen erfüllbar.", "\\(t=2{,}5\\) ist ohne weitere Prüfung zulässig.", "Man rundet immer auf \\(t=3\\).", "Man rundet immer auf \\(t=2\\)."],
+            "fehler": ["Ganzzahligkeitsbedingung nicht geprüft", "Nicht exakte Lösung durch Aufrunden erzwungen", "Nicht exakte Lösung durch Abrunden erzwungen"]
+        },
+        {
+            "frage": "Es gilt \\(m_1=10+t\\) und \\(m_2=8-t\\). Für welches \\(t\\) gilt \\(m_1=2m_2\\)?",
+            "antworten": ["\\(t=2\\)", "\\(t=-2\\)", "\\(t=6\\)", "\\(t=1\\)"],
+            "fehler": ["Vorzeichen beim Zusammenfassen vertauscht", "Nur die Differenz der Konstanten verwendet", "Durch den falschen Koeffizienten geteilt"]
+        },
+        {
+            "frage": "Es gilt \\(\\vec{m}=\\begin{pmatrix}5+t\\\\9-2t\\\\t\\end{pmatrix}\\). Für welche zulässigen \\(t\\) beträgt die Gesamtmenge 14 ME?",
+            "antworten": ["Für jedes zulässige \\(t\\)", "Nur für \\(t=0\\)", "Nur für \\(t=14\\)", "Für kein \\(t\\)"],
+            "fehler": ["Identisch erfüllte Gleichung auf einen Randwert beschränkt", "Zielwert direkt als Parameter eingesetzt", "Konstante Gesamtmenge nicht erkannt"]
+        },
+        {
+            "frage": "Es gilt \\(E(t)=100+5t\\) und \\(0\\le t\\le8\\). Für welchen zulässigen Wert beträgt der Erlös 130 GE?",
+            "antworten": ["\\(t=6\\)", "\\(t=30\\)", "\\(t=26\\)", "\\(t=8\\)"],
+            "fehler": ["Nach dem Subtrahieren nicht durch 5 geteilt", "Zielwert durch 5 geteilt, ohne 100 abzuziehen", "Obere Intervallgrenze statt Gleichungslösung gewählt"]
+        },
+        {
+            "frage": "Für \\(\\vec{m}=\\begin{pmatrix}2+t\\\\10-t\\end{pmatrix}\\) wurde \\(t=4\\) bestimmt. Welcher Produktionsvektor folgt?",
+            "antworten": ["\\(\\vec{m}=\\begin{pmatrix}6\\\\6\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}4\\\\4\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}6\\\\14\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}-2\\\\6\\end{pmatrix}\\)"],
+            "fehler": ["Parameter direkt als beide Komponenten übernommen", "Vorzeichen in der zweiten Komponente vertauscht", "Vorzeichen in der ersten Komponente vertauscht"]
+        }
+    ]
+}

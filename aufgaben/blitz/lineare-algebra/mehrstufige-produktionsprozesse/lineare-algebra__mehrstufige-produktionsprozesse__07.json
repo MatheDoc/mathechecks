@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Für \\(\\vec{m}=\\begin{pmatrix}t\\\\6-t\\end{pmatrix}\\) müssen alle Mengen nichtnegativ sein. Welcher Bereich ist zulässig?",
+            "antworten": ["\\(0\\le t\\le6\\)", "\\(t\\ge6\\)", "\\(t\\le0\\)", "\\(-6\\le t\\le0\\)"],
+            "fehler": ["Nur die zweite Nichtnegativitätsbedingung verwendet", "Nur die erste Bedingung mit falscher Richtung verwendet", "Vorzeichen beider Grenzen vertauscht"]
+        },
+        {
+            "frage": "Aus \\(2t-4\\ge0\\) und \\(10-t\\ge0\\) folgt welcher zulässige Bereich?",
+            "antworten": ["\\(2\\le t\\le10\\)", "\\(-2\\le t\\le10\\)", "\\(t\\ge10\\)", "\\(0\\le t\\le8\\)"],
+            "fehler": ["Untere Grenze mit falschem Vorzeichen berechnet", "Ungleichungsrichtung der zweiten Bedingung vertauscht", "Konstanten ohne Lösen der Ungleichungen kombiniert"]
+        },
+        {
+            "frage": "Die Zielgröße lautet \\(Z(t)=12+3t\\) für \\(0\\le t\\le4\\). Wo liegt das Maximum?",
+            "antworten": ["Bei \\(t=4\\)", "Bei \\(t=0\\)", "Bei \\(t=3\\)", "Bei jedem \\(t\\)"],
+            "fehler": ["Falschen Randpunkt für eine steigende Funktion gewählt", "Steigung mit optimalem Parameter verwechselt", "Positive Steigung als konstante Funktion gedeutet"]
+        },
+        {
+            "frage": "Die Zielgröße lautet \\(Z(t)=20-2t\\) für \\(1\\le t\\le5\\). Wo liegt das Minimum?",
+            "antworten": ["Bei \\(t=5\\)", "Bei \\(t=1\\)", "Bei \\(t=2\\)", "Bei \\(t=0\\)"],
+            "fehler": ["Falschen Randpunkt für eine fallende Funktion gewählt", "Betrag der Steigung als Parameter gewählt", "Randpunkt außerhalb des zulässigen Bereichs gewählt"]
+        },
+        {
+            "frage": "Wie groß ist das Maximum von \\(Z(t)=5+2t\\) auf \\([0;3]\\)?",
+            "antworten": ["\\(11\\)", "\\(5\\)", "\\(10\\)", "\\(8\\)"],
+            "fehler": ["Wert am unteren Randpunkt verwendet", "Konstantenanteil nicht addiert", "Parameter und Funktionswert addiert"]
+        },
+        {
+            "frage": "Die Zielgröße lautet \\(Z(t)=18\\) für \\(2\\le t\\le7\\). Wo wird das Maximum erreicht?",
+            "antworten": ["Bei jedem zulässigen \\(t\\)", "Nur bei \\(t=2\\)", "Nur bei \\(t=7\\)", "Bei keinem \\(t\\)"],
+            "fehler": ["Konstante Funktion unnötig am unteren Rand optimiert", "Konstante Funktion unnötig am oberen Rand optimiert", "Vorhandenen konstanten Zielwert als unerreichbar gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\(1{,}2\\le t\\le4{,}8\\), und \\(t\\) muss ganzzahlig sein. Welche Werte sind zulässig?",
+            "antworten": ["\\(t\\in\\{2,3,4\\}\\)", "\\(t\\in\\{1,2,3,4,5\\}\\)", "\\(t\\in\\{1,2,3,4\\}\\)", "\\(t\\in\\{2,3,4,5\\}\\)"],
+            "fehler": ["Beide Intervallgrenzen nach außen gerundet", "Untere Grenze nach außen gerundet", "Obere Grenze nach außen gerundet"]
+        },
+        {
+            "frage": "Für \\(\\vec{m}=\\begin{pmatrix}4+t\\\\8-2t\\\\t\\end{pmatrix}\\) müssen alle Mengen nichtnegativ sein. Welcher Bereich ist zulässig?",
+            "antworten": ["\\(0\\le t\\le4\\)", "\\(-4\\le t\\le4\\)", "\\(0\\le t\\le8\\)", "\\(t\\ge4\\)"],
+            "fehler": ["Bedingung \\(t\\ge0\\) nicht berücksichtigt", "Faktor 2 in der zweiten Komponente übersehen", "Ungleichungsrichtung der zweiten Komponente vertauscht"]
+        },
+        {
+            "frage": "Es gilt \\(\\vec{m}=\\begin{pmatrix}5+t\\\\7-t\\end{pmatrix}\\) und \\(\\vec{k}_v=\\begin{pmatrix}2&3\\end{pmatrix}\\). Wie lautet \\(K_v(t)\\)?",
+            "antworten": ["\\(31-t\\)", "\\(12\\)", "\\(31+t\\)", "\\(26-t\\)"],
+            "fehler": ["Parameteranteile fälschlich vollständig aufgehoben", "Vorzeichen des zweiten Parameteranteils vertauscht", "Konstantenanteil falsch addiert"]
+        },
+        {
+            "frage": "\\(G(t)=40-5t\\) gilt auf \\([2;6]\\). Bei welchem Randpunkt ist der Gewinn maximal?",
+            "antworten": ["Bei \\(t=2\\)", "Bei \\(t=6\\)", "Bei \\(t=5\\)", "Bei \\(t=0\\)"],
+            "fehler": ["Falschen Randpunkt für eine fallende Funktion gewählt", "Betrag der Steigung als Parameter gewählt", "Unzulässigen Randpunkt verwendet"]
+        }
+    ]
+}

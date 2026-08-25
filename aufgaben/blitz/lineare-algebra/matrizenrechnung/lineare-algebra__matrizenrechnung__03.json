@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Mit welchem Ansatz beginnt der Gauß-Jordan-Algorithmus für eine \\(2\\times2\\)-Matrix \\(A\\)?",
+            "antworten": ["\\((A\\mid E_2)\\)", "\\((E_2\\mid A)\\)", "\\((A\\mid O)\\)", "\\((A^T\\mid E_2)\\)"],
+            "fehler": ["Linke und rechte Hälfte vertauscht", "Einheitsmatrix durch Nullmatrix ersetzt", "Matrix unnötig transponiert"]
+        },
+        {
+            "frage": "Welche Dimension hat die erweiterte Matrix \\((A\\mid E_2)\\)?",
+            "antworten": ["\\(2\\times4\\)", "\\(4\\times2\\)", "\\(2\\times2\\)", "\\(4\\times4\\)"],
+            "fehler": ["Zeilen und Spalten vertauscht", "Rechte Hälfte nicht mitgezählt", "Zeilen- und Spaltenzahl verdoppelt"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&2\\\\2&3\\end{pmatrix}\\): Welcher linke Zeilenteil entsteht aus \\(Z_2\\leftarrow Z_2-2Z_1\\)?",
+            "antworten": ["\\((0\\;-1)\\)", "\\((0\\;1)\\)", "\\((1\\;1)\\)", "\\((2\\;-1)\\)"],
+            "fehler": ["Subtraktionsvorzeichen beim zweiten Eintrag verloren", "Erste Zeile nur einmal subtrahiert", "Ersten Eintrag nicht eliminiert"]
+        },
+        {
+            "frage": "Die zweite Zeile beginnt links mit \\((0\\;-1)\\). Welche Umformung erzeugt dort den Pivot \\(1\\)?",
+            "antworten": ["\\(Z_2\\leftarrow -Z_2\\)", "\\(Z_2\\leftarrow Z_2+Z_1\\)", "\\(Z_1\\leftrightarrow Z_2\\)", "\\(Z_2\\leftarrow 2Z_2\\)"],
+            "fehler": ["Addition beseitigt den Pivotwert nicht gezielt", "Zeilentausch ändert das Vorzeichen nicht", "Skalierung mit falschem Faktor"]
+        },
+        {
+            "frage": "Links steht \\(\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}\\). Welche Umformung macht den Eintrag über dem zweiten Pivot zu null?",
+            "antworten": ["\\(Z_1\\leftarrow Z_1-2Z_2\\)", "\\(Z_1\\leftarrow Z_1+2Z_2\\)", "\\(Z_2\\leftarrow Z_2-2Z_1\\)", "\\(Z_1\\leftarrow 2Z_1-Z_2\\)"],
+            "fehler": ["Vorzeichen bei der Elimination vertauscht", "Falsche Zielzeile verändert", "Falsche Linearkombination gewählt"]
+        },
+        {
+            "frage": "Die Reduktion endet bei \\((E_2\\mid B)\\). Was ist \\(B\\)?",
+            "antworten": ["\\(A^{-1}\\)", "\\(A^T\\)", "\\(A\\)", "\\(E_2\\)"],
+            "fehler": ["Inverse mit Transponierter verwechselt", "Ursprüngliche Matrix statt Ergebnis abgelesen", "Linke Hälfte statt rechter Hälfte abgelesen"]
+        },
+        {
+            "frage": "Welche Gleichung kontrolliert eine berechnete Inverse \\(B\\) von \\(A\\)?",
+            "antworten": ["\\(AB=E_2\\)", "\\(A+B=E_2\\)", "\\(AB=O\\)", "\\(A-B=E_2\\)"],
+            "fehler": ["Addition statt Multiplikation verwendet", "Einheitsmatrix mit Nullmatrix verwechselt", "Subtraktion statt Multiplikation verwendet"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\): Welche Matrix ist \\(A^{-1}\\)?",
+            "antworten": ["\\(\\begin{pmatrix}\\frac12&0\\\\0&1\\end{pmatrix}\\)", "\\(\\begin{pmatrix}2&0\\\\0&1\\end{pmatrix}\\)", "\\(\\begin{pmatrix}1&0\\\\0&2\\end{pmatrix}\\)", "\\(\\begin{pmatrix}-2&0\\\\0&-1\\end{pmatrix}\\)"],
+            "fehler": ["Diagonaleinträge nicht invertiert", "Diagonaleinträge nur vertauscht", "Vorzeichenwechsel mit Invertieren verwechselt"]
+        },
+        {
+            "frage": "Bei der vollständigen Reduktion enthält die linke Hälfte eine Nullzeile. Welche Folgerung ist richtig?",
+            "antworten": ["Die linke Hälfte kann nicht zu \\(E_2\\) werden; \\(A\\) ist nicht invertierbar.", "Die rechte Hälfte ist automatisch \\(E_2\\).", "Die Nullzeile wird als Pivotzeile verwendet.", "Die Inverse ist die Nullmatrix."],
+            "fehler": ["Rechte Hälfte ohne Begründung als Einheitsmatrix angesehen", "Nullzeile fälschlich als Pivotzeile angesehen", "Nichtinvertierbarkeit mit Nullmatrix als Inverse verwechselt"]
+        },
+        {
+            "frage": "Welche Operation ist eine elementare Zeilenumformung?",
+            "antworten": ["Ein Vielfaches einer Zeile zu einer anderen Zeile addieren", "Nur die linke Hälfte einer Zeile verändern", "Zwei Spalten der linken Hälfte vertauschen", "Einen einzelnen Eintrag ersetzen"],
+            "fehler": ["Umformung nicht auf die gesamte Zeile angewendet", "Spalten- statt Zeilenumformung gewählt", "Keinen zulässigen Zeilenschritt verwendet"]
+        }
+    ]
+}

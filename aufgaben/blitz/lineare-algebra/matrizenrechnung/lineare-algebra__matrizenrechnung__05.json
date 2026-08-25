@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Dimension hat der Ansatz \\((A\\mid E_4)\\) für eine \\(4\\times4\\)-Matrix?",
+            "antworten": ["\\(4\\times8\\)", "\\(8\\times4\\)", "\\(4\\times4\\)", "\\(8\\times8\\)"],
+            "fehler": ["Zeilen und Spalten vertauscht", "Rechte Hälfte nicht mitgezählt", "Beide Dimensionen verdoppelt"]
+        },
+        {
+            "frage": "Wie viele Pivotstufen sind links nötig, um \\(E_4\\) zu erzeugen?",
+            "antworten": ["\\(4\\)", "\\(3\\)", "\\(6\\)", "\\(8\\)"],
+            "fehler": ["Eine Pivotspalte ausgelassen", "Spalten bis zur Trennlinie gezählt", "Spalten beider Hälften gezählt"]
+        },
+        {
+            "frage": "In der aktuellen ersten Spalte steht oben \\(0\\), darunter steht \\(1\\). Was ist ein geeigneter nächster Schritt?",
+            "antworten": ["Die erste Zeile mit der Zeile tauschen, die dort \\(1\\) enthält.", "Die erste Spalte mit der zweiten Spalte tauschen.", "Die erste Zeile durch \\(0\\) teilen.", "Nur rechts eine Zeile tauschen."],
+            "fehler": ["Spaltenoperation statt Zeilentausch gewählt", "Division durch null vorgeschlagen", "Zeilentausch nicht auf die gesamte erweiterte Matrix angewendet"]
+        },
+        {
+            "frage": "Der erste Pivot einer \\(4\\times4\\)-Matrix ist gesetzt. Wie viele Einträge liegen direkt darunter in derselben Spalte?",
+            "antworten": ["\\(3\\)", "\\(2\\)", "\\(4\\)", "\\(7\\)"],
+            "fehler": ["Situation einer \\(3\\times3\\)-Matrix verwendet", "Pivot selbst mitgezählt", "Rechte Hälfte mitgezählt"]
+        },
+        {
+            "frage": "Welche Pivotwahl hält eine Umformung besonders einfach?",
+            "antworten": ["Eine verfügbare Zeile mit Pivotwert \\(1\\) nach oben tauschen", "Stets die Zeile mit dem größten Zeilenindex wählen", "Eine Null als Pivot verwenden", "Nur in der rechten Hälfte nach einer \\(1\\) suchen"],
+            "fehler": ["Zeilenindex statt günstigen Pivotwert verwendet", "Null fälschlich als Pivot gewählt", "Pivot in der falschen Hälfte gesucht"]
+        },
+        {
+            "frage": "Nach drei Pivotstufen hat die letzte Zeile links die Form \\((0\\;0\\;0\\;-1)\\). Was ist der nächste Schritt?",
+            "antworten": ["Die gesamte vierte Zeile mit \\(-1\\) multiplizieren", "Die vierte Zeile löschen", "Nur den letzten linken Eintrag auf \\(1\\) setzen", "Die vierte Spalte mit \\(-1\\) multiplizieren"],
+            "fehler": ["Benötigte Pivotzeile entfernt", "Rechte Hälfte der Zeile nicht mit umgeformt", "Spaltenoperation statt Zeilenoperation gewählt"]
+        },
+        {
+            "frage": "Was muss eine Zeilenumformung am \\(4\\times8\\)-Schema erfassen?",
+            "antworten": ["Alle acht Einträge der betroffenen Zeile", "Nur die ersten vier Einträge", "Nur die letzten vier Einträge", "Nur den Pivoteintrag"],
+            "fehler": ["Rechte Hälfte nicht mit umgeformt", "Linke Hälfte nicht mit umgeformt", "Zeilenoperation auf einen Eintrag beschränkt"]
+        },
+        {
+            "frage": "Am Ende steht \\((E_4\\mid B)\\). Welche Größe hat die abzulesende Inverse \\(B\\)?",
+            "antworten": ["\\(4\\times4\\)", "\\(4\\times8\\)", "\\(8\\times4\\)", "\\(3\\times3\\)"],
+            "fehler": ["Gesamtes erweitertes Schema als Inverse gelesen", "Dimension des Ansatzes vertauscht", "Größe einer \\(3\\times3\\)-Inversen verwendet"]
+        },
+        {
+            "frage": "Bei der Kontrolle \\(AB=E_4\\): Welchen Wert muss \\((AB)_{41}\\) haben?",
+            "antworten": ["\\(0\\)", "\\(1\\)", "\\(4\\)", "\\(-1\\)"],
+            "fehler": ["Eintrag außerhalb der Hauptdiagonale mit einem Diagonaleintrag verwechselt", "Zeilenindex als Wert verwendet", "Vorzeichen des letzten Pivots übernommen"]
+        },
+        {
+            "frage": "Bei vollständiger Reduktion bleibt links die Zeile \\((0\\;0\\;0\\;0)\\). Welche Aussage stimmt?",
+            "antworten": ["Es fehlt ein vierter Pivot; \\(A\\) ist nicht invertierbar.", "Die rechte Hälfte ist bereits \\(A^{-1}\\).", "Die Nullzeile wird zur vierten Zeile von \\(E_4\\).", "Ein Zeilentausch mit sich selbst erzeugt den Pivot."],
+            "fehler": ["Inverse trotz fehlendem Pivot abgelesen", "Nullzeile mit einer Zeile der Einheitsmatrix verwechselt", "Zeilentausch kann keinen fehlenden Pivot erzeugen"]
+        }
+    ]
+}

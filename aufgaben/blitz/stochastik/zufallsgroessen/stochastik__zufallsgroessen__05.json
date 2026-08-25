@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einer Verteilung fehlen zwei Wahrscheinlichkeiten \\(x\\) und \\(y\\). Wie viele unabhängige Gleichungen werden zur eindeutigen Bestimmung benötigt?",
+            "antworten": ["Zwei", "Eine", "Drei", "Keine"],
+            "fehler": ["Eine Gleichung für zwei Unbekannte als ausreichend angesehen", "Anzahl der benötigten Gleichungen überschätzt", "Gleichungssystem fälschlich für unnötig gehalten"]
+        },
+        {
+            "frage": "Die bekannten Wahrscheinlichkeiten summieren sich zu \\(0{,}5\\). Welche Gleichung folgt für die fehlenden Wahrscheinlichkeiten \\(x\\) und \\(y\\)?",
+            "antworten": ["\\(x+y=0{,}5\\)", "\\(x+y=1\\)", "\\(xy=0{,}5\\)", "\\(x-y=0{,}5\\)"],
+            "fehler": ["Bekannte Wahrscheinlichkeiten bei der Gesamtsumme ignoriert", "Fehlende Wahrscheinlichkeiten multipliziert", "Ohne Grundlage eine Differenz gebildet"]
+        },
+        {
+            "frage": "Die fehlende Wahrscheinlichkeit \\(x\\) gehört zum Wert \\(-1\\), die fehlende Wahrscheinlichkeit \\(y\\) zum Wert \\(4\\). Welche Terme stehen in der Erwartungswertgleichung?",
+            "antworten": ["\\(-x+4y\\)", "\\(x+y\\)", "\\(-4x+y\\)", "\\(4x-y\\)"],
+            "fehler": ["Werte der Zufallsgröße nicht als Gewichte verwendet", "Werte -1 und 4 den falschen Wahrscheinlichkeiten zugeordnet", "Vorzeichen und Zuordnung vertauscht"]
+        },
+        {
+            "frage": "Wie groß ist \\((-4)\\cdot0{,}15+(-2)\\cdot0{,}27+1\\cdot0{,}08\\)?",
+            "antworten": ["\\(-1{,}06\\)", "\\(-0{,}98\\)", "\\(1{,}22\\)", "\\(-0{,}46\\)"],
+            "fehler": ["Positiven Beitrag 0,08 ausgelassen", "Vorzeichen der negativen Beiträge verloren", "Nur ersten und positiven Beitrag addiert"]
+        },
+        {
+            "frage": "Es gilt \\(E(X)=0{,}29\\) und die bekannten Beiträge ergeben \\(-1{,}06\\). Welche vereinfachte Gleichung folgt?",
+            "antworten": ["\\(-x+4y=1{,}35\\)", "\\(-x+4y=-0{,}77\\)", "\\(x+y=1{,}35\\)", "\\(-x+4y=0{,}29\\)"],
+            "fehler": ["Bekannte Beiträge addiert statt auf die andere Seite gebracht", "Gewichte -1 und 4 ausgelassen", "Bekannte Beiträge in der Gleichung ignoriert"]
+        },
+        {
+            "frage": "Wie wird \\(x+y=0{,}5\\) nach \\(x\\) aufgelöst?",
+            "antworten": ["\\(x=0{,}5-y\\)", "\\(x=0{,}5+y\\)", "\\(x=y-0{,}5\\)", "\\(x=0{,}5y\\)"],
+            "fehler": ["y auf beiden Seiten addiert statt subtrahiert", "Subtraktionsreihenfolge vertauscht", "Summe fälschlich als Produkt behandelt"]
+        },
+        {
+            "frage": "Wie wird \\(-x+4y=1{,}35\\) nach \\(x\\) aufgelöst?",
+            "antworten": ["\\(x=4y-1{,}35\\)", "\\(x=1{,}35-4y\\)", "\\(x=4y+1{,}35\\)", "\\(x=\\frac{1{,}35}{4y}\\)"],
+            "fehler": ["Vorzeichen beim Multiplizieren mit -1 nicht vollständig geändert", "Konstante mit falschem Vorzeichen übernommen", "Lineare Gleichung fälschlich durch den Variablenterm dividiert"]
+        },
+        {
+            "frage": "Welche Gleichung entsteht durch Gleichsetzen von \\(x=0{,}5-y\\) und \\(x=4y-1{,}35\\)?",
+            "antworten": ["\\(0{,}5-y=4y-1{,}35\\)", "\\(0{,}5+y=4y+1{,}35\\)", "\\(0{,}5-y=4y+1{,}35\\)", "\\(0{,}5y=4y-1{,}35\\)"],
+            "fehler": ["Vorzeichen beider Terme verändert", "Vorzeichen der Konstanten verändert", "Differenz 0,5-y fälschlich als Produkt geschrieben"]
+        },
+        {
+            "frage": "Aus \\(0{,}5-y=4y-1{,}35\\) folgt \\(1{,}85=5y\\). Welchen Wert hat \\(y\\)?",
+            "antworten": ["\\(0{,}37\\)", "\\(0{,}27\\)", "\\(0{,}5\\)", "\\(9{,}25\\)"],
+            "fehler": ["Gegebene bekannte Wahrscheinlichkeit aus dem Beispiel gewählt", "Wahrscheinlichkeitssumme als y übernommen", "Beide Seiten multipliziert statt dividiert"]
+        },
+        {
+            "frage": "Es gilt \\(x+y=0{,}5\\) und \\(y=0{,}37\\). Welchen Wert hat \\(x\\)?",
+            "antworten": ["\\(0{,}13\\)", "\\(0{,}87\\)", "\\(0{,}185\\)", "\\(-0{,}13\\)"],
+            "fehler": ["Werte addiert statt subtrahiert", "Werte multipliziert", "Subtraktionsreihenfolge vertauscht"]
+        }
+    ]
+}

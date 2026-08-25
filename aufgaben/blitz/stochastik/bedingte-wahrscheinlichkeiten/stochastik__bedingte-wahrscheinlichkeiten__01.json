@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was bedeutet \\(P_A(B)\\)?",
+            "antworten": ["Wahrscheinlichkeit von \\(B\\) unter der Bedingung \\(A\\)", "Wahrscheinlichkeit von \\(A\\) unter der Bedingung \\(B\\)", "Wahrscheinlichkeit von \\(A\\) und \\(B\\)", "Wahrscheinlichkeit von \\(A\\) oder \\(B\\)"],
+            "fehler": ["Bedingung und betrachtetes Ereignis vertauscht", "Bedingte Wahrscheinlichkeit mit Schnittmenge verwechselt", "Bedingte Wahrscheinlichkeit mit Vereinigungsmenge verwechselt"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: Wahrscheinlichkeit von \\(A\\) unter der Bedingung \\(B\\)?",
+            "antworten": ["\\(P_B(A)\\)", "\\(P_A(B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["Bedingung und betrachtetes Ereignis vertauscht", "Das Wort ‚unter‘ fälschlich als Schnittmenge gedeutet", "Das gemeinsame Auftreten fälschlich als Oder-Ereignis gedeutet"]
+        },
+        {
+            "frage": "Was beschreibt \\(P_{\\overline{A}}(B)\\)?",
+            "antworten": ["Wahrscheinlichkeit von \\(B\\) unter der Bedingung, dass \\(A\\) nicht eintritt", "Wahrscheinlichkeit von \\(A\\) unter der Bedingung, dass \\(B\\) nicht eintritt", "Wahrscheinlichkeit, dass weder \\(A\\) noch \\(B\\) eintritt", "Wahrscheinlichkeit, dass \\(A\\) oder \\(B\\) eintritt"],
+            "fehler": ["Bedingung, Ereignis und Komplement vertauscht", "Komplement der Bedingung fälschlich auf beide Ereignisse übertragen", "Bedingte Wahrscheinlichkeit mit Vereinigungsmenge verwechselt"]
+        },
+        {
+            "frage": "Welche Schreibweise passt zu: \\(B\\) tritt ein, obwohl als Bedingung \\(A\\) nicht eingetreten ist?",
+            "antworten": ["\\(P_{\\overline{A}}(B)\\)", "\\(P_A(\\overline{B})\\)", "\\(P_B(\\overline{A})\\)", "\\(P(\\overline{A}\\cap\\overline{B})\\)"],
+            "fehler": ["Das Komplement dem betrachteten Ereignis statt der Bedingung zugeordnet", "Bedingung und betrachtetes Ereignis vertauscht", "Das Eintreten von B fälschlich durch sein Komplement ersetzt"]
+        },
+        {
+            "frage": "Was bedeutet \\(P(A\\cap\\overline{B})\\)?",
+            "antworten": ["\\(A\\) tritt ein und \\(B\\) tritt nicht ein", "\\(A\\) tritt nicht ein und \\(B\\) tritt ein", "\\(A\\) oder \\(B\\) tritt nicht ein", "\\(B\\) tritt unter der Bedingung \\(A\\) nicht ein"],
+            "fehler": ["Komplement dem falschen Ereignis zugeordnet", "Schnittmenge als Oder-Verknüpfung gelesen", "Gemeinsames Ereignis mit bedingter Wahrscheinlichkeit verwechselt"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: \\(A\\) oder \\(B\\) tritt ein, möglicherweise auch beides?",
+            "antworten": ["\\(P(A\\cup B)\\)", "\\(P(A\\cap B)\\)", "\\(P_A(B)\\)", "\\(P(A\\cup B)-P(A\\cap B)\\)"],
+            "fehler": ["Vereinigung mit Schnittmenge verwechselt", "Oder-Ereignis als bedingte Wahrscheinlichkeit gelesen", "Den Fall ‚beides‘ fälschlich ausgeschlossen"]
+        },
+        {
+            "frage": "Was beschreibt \\(P(A\\cup B)-P(A\\cap B)\\)?",
+            "antworten": ["Genau eines der Ereignisse \\(A\\) und \\(B\\) tritt ein", "Mindestens eines der Ereignisse \\(A\\) und \\(B\\) tritt ein", "Beide Ereignisse treten ein", "Keines der beiden Ereignisse tritt ein"],
+            "fehler": ["Die abgezogene Schnittmenge nicht berücksichtigt", "Differenz fälschlich als Schnittmenge gedeutet", "Differenz fälschlich als Gegenereignis der Vereinigung gedeutet"]
+        },
+        {
+            "frage": "Welche Schreibweise passt zu: Weder \\(A\\) noch \\(B\\) tritt ein?",
+            "antworten": ["\\(P(\\overline{A}\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup\\overline{B})\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["‚Weder noch‘ als Vereinigung der Gegenereignisse gelesen", "Beide Gegenereignisse durch die ursprünglichen Ereignisse ersetzt", "‚Weder noch‘ mit ‚mindestens eines‘ verwechselt"]
+        },
+        {
+            "frage": "Was bedeutet \\(P_B(\\overline{A})\\)?",
+            "antworten": ["Wahrscheinlichkeit, dass \\(A\\) nicht eintritt, unter der Bedingung \\(B\\)", "Wahrscheinlichkeit, dass \\(B\\) nicht eintritt, unter der Bedingung \\(A\\)", "Wahrscheinlichkeit, dass \\(A\\) und \\(B\\) nicht eintreten", "Wahrscheinlichkeit, dass \\(A\\) nicht eintritt oder \\(B\\) eintritt"],
+            "fehler": ["Bedingung und betrachtetes Gegenereignis vertauscht", "Bedingte Wahrscheinlichkeit mit dem gemeinsamen Gegenereignis verwechselt", "Bedingte Wahrscheinlichkeit als Oder-Ereignis gedeutet"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: \\(A\\) und \\(B\\) treten beide ein?",
+            "antworten": ["\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)", "\\(P_A(B)\\)", "\\(P(A)+P(B)\\)"],
+            "fehler": ["‚Und‘ als Vereinigung gelesen", "Gemeinsames Ereignis mit einer Bedingung verwechselt", "Einzelwahrscheinlichkeiten ohne Korrektur addiert"]
+        }
+    ]
+}

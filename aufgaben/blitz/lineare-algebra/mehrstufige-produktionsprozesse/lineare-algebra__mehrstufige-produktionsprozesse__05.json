@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "\\(RE\\) ist quadratisch und invertierbar. Welche Formel liefert bei vollständiger Lagerräumung \\(\\vec{m}\\) aus \\(\\vec{r}\\)?",
+            "antworten": ["\\(\\vec{m}=RE^{-1}\\cdot\\vec{r}\\)", "\\(\\vec{m}=RE\\cdot\\vec{r}\\)", "\\(\\vec{m}=\\vec{r}\\cdot RE^{-1}\\)", "\\(\\vec{r}=RE^{-1}\\cdot\\vec{m}\\)"],
+            "fehler": ["Ohne Inverse multipliziert", "Matrix und Vektor in falscher Reihenfolge multipliziert", "Input und Output vertauscht"]
+        },
+        {
+            "frage": "\\(RZ\\) ist quadratisch und invertierbar. Welche Formel liefert \\(\\vec{z}\\) aus \\(\\vec{r}\\)?",
+            "antworten": ["\\(\\vec{z}=RZ^{-1}\\cdot\\vec{r}\\)", "\\(\\vec{z}=RZ\\cdot\\vec{r}\\)", "\\(\\vec{r}=RZ^{-1}\\cdot\\vec{z}\\)", "\\(\\vec{z}=ZE^{-1}\\cdot\\vec{r}\\)"],
+            "fehler": ["Ohne Inverse multipliziert", "Input und Output vertauscht", "Falsche Produktionsmatrix gewählt"]
+        },
+        {
+            "frage": "\\(ZE\\) ist quadratisch und invertierbar. Welche Formel liefert \\(\\vec{m}\\) aus \\(\\vec{z}\\)?",
+            "antworten": ["\\(\\vec{m}=ZE^{-1}\\cdot\\vec{z}\\)", "\\(\\vec{m}=ZE\\cdot\\vec{z}\\)", "\\(\\vec{z}=ZE^{-1}\\cdot\\vec{m}\\)", "\\(\\vec{m}=RZ^{-1}\\cdot\\vec{z}\\)"],
+            "fehler": ["Ohne Inverse multipliziert", "Input und Output vertauscht", "Falsche Produktionsmatrix gewählt"]
+        },
+        {
+            "frage": "\\(ZE\\) hat das Format \\(3\\times2\\). Wie bestimmt man \\(\\vec{m}\\) aus \\(ZE\\cdot\\vec{m}=\\vec{z}\\)?",
+            "antworten": ["Durch Lösen des zugehörigen LGS", "Mit \\(\\vec{m}=ZE^{-1}\\cdot\\vec{z}\\)", "Mit \\(\\vec{m}=ZE\\cdot\\vec{z}\\)", "Durch Vertauschen der Zeilen und Spalten von \\(ZE\\)"],
+            "fehler": ["Inverse einer nicht quadratischen Matrix verwendet", "Ohne Auflösen erneut multipliziert", "Transponieren mit Lösen verwechselt"]
+        },
+        {
+            "frage": "Wann darf eine Produktionsmatrix zur Outputberechnung invertiert werden?",
+            "antworten": ["Wenn sie quadratisch ist und ihre Determinante nicht null ist", "Wenn alle Einträge positiv sind", "Wenn sie mehr Zeilen als Spalten hat", "Jede Produktionsmatrix darf invertiert werden"],
+            "fehler": ["Positive Einträge mit Invertierbarkeit verwechselt", "Nicht quadratische Matrix als invertierbar angenommen", "Invertierbarkeit ohne Prüfung vorausgesetzt"]
+        },
+        {
+            "frage": "Gegeben sind \\(RE=\\begin{pmatrix}2&0\\\\0&4\\end{pmatrix}\\) und \\(\\vec{r}=\\begin{pmatrix}6\\\\8\\end{pmatrix}\\). Welcher Produktionsvektor räumt das Lager vollständig?",
+            "antworten": ["\\(\\vec{m}=\\begin{pmatrix}3\\\\2\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}12\\\\32\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}4\\\\4\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}2\\\\3\\end{pmatrix}\\)"],
+            "fehler": ["Mit RE statt mit der Inversen multipliziert", "Rohstoffmengen durch falsche Werte geteilt", "Ergebniskomponenten vertauscht"]
+        },
+        {
+            "frage": "Das LGS lautet \\(m_1+m_2=5\\) und \\(m_1+2m_2=7\\). Welche Lösung räumt das Lager vollständig?",
+            "antworten": ["\\(\\vec{m}=\\begin{pmatrix}3\\\\2\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}2\\\\3\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}5\\\\7\\end{pmatrix}\\)", "\\(\\vec{m}=\\begin{pmatrix}1\\\\4\\end{pmatrix}\\)"],
+            "fehler": ["Komponenten vertauscht", "Rechte Seiten als Lösung übernommen", "Nur die erste Gleichung erfüllt"]
+        },
+        {
+            "frage": "Das LGS enthält gleichzeitig \\(m_1+m_2=4\\) und \\(m_1+m_2=5\\). Welche Lösungsart liegt vor?",
+            "antworten": ["Keine Lösung", "Genau eine Lösung", "Unendlich viele Lösungen", "Die Lösung ist \\(m_1=4, m_2=5\\)"],
+            "fehler": ["Widersprüchliche Gleichungen als eindeutig lösbar gedeutet", "Widersprüchliche Gleichungen als abhängig gedeutet", "Rechte Seiten als Komponenten verwendet"]
+        },
+        {
+            "frage": "Nach dem Umformen bleibt nur \\(m_1+m_2=6\\) für zwei Unbekannte. Welche Lösungsart liegt vor?",
+            "antworten": ["Unendlich viele Lösungen", "Keine Lösung", "Genau eine Lösung", "Nur \\(m_1=m_2=3\\)"],
+            "fehler": ["Eine erfüllbare Gleichung als Widerspruch gedeutet", "Eine Gleichung für zwei Unbekannte als eindeutig gedeutet", "Eine mögliche Lösung fälschlich als einzige Lösung gewählt"]
+        },
+        {
+            "frage": "Die eindeutige algebraische Lösung eines Lager-LGS ist \\(\\vec{m}=\\begin{pmatrix}4\\\\-1\\end{pmatrix}\\). Was folgt für die Produktion?",
+            "antworten": ["Eine vollständige Lagerräumung ist mit nichtnegativen Produktionsmengen nicht möglich.", "Das Lager wird mit 4 ME und 1 ME vollständig geräumt.", "Der negative Wert wird durch 0 ersetzt.", "Jede eindeutige LGS-Lösung ist als Produktionsvektor zulässig."],
+            "fehler": ["Negatives Vorzeichen ignoriert", "Algebraische Lösung ohne erneute Prüfung verändert", "Nichtnegativität von Produktionsmengen übersehen"]
+        }
+    ]
+}

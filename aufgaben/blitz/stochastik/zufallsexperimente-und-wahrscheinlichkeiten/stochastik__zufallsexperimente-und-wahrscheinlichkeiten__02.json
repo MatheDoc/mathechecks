@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es sei \\(A\\): ‚Eine Person putzt regelmäßig die Zähne.‘ Was bedeutet \\(P(A)\\)?",
+            "antworten": ["Wahrscheinlichkeit, dass eine Person regelmäßig die Zähne putzt", "Ereignis, dass eine Person regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass eine Person nicht regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass alle Personen regelmäßig die Zähne putzen"],
+            "fehler": ["Ereignis A und seine Wahrscheinlichkeit nicht unterschieden", "Ereignis durch sein Gegenereignis ersetzt", "Einzelauswahl fälschlich als Aussage über alle Personen gelesen"]
+        },
+        {
+            "frage": "Es sei \\(A\\): ‚Eine Person putzt regelmäßig die Zähne.‘ Was bedeutet \\(P(\\overline{A})\\)?",
+            "antworten": ["Wahrscheinlichkeit, dass eine Person nicht regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass eine Person regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass niemand Zähne hat", "Gegenwahrscheinlichkeit von \\(P(B)\\)"],
+            "fehler": ["Komplementzeichen ignoriert", "Gegenereignis sachlich falsch gedeutet", "Komplement dem falschen Ereignis zugeordnet"]
+        },
+        {
+            "frage": "Es sei \\(A\\): ‚regelmäßiges Zähneputzen‘ und \\(B\\): ‚gesunde Zähne‘. Was bedeutet \\(P(A\\cap B)\\)?",
+            "antworten": ["Wahrscheinlichkeit für regelmäßiges Zähneputzen und gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Zähneputzen oder gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Zähneputzen ohne gesunde Zähne", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
+            "fehler": ["Schnittmenge als Oder-Verknüpfung gelesen", "Gegenereignis von B ergänzt", "Schnittmenge der beiden Gegenereignisse gewählt"]
+        },
+        {
+            "frage": "Es sei \\(A\\): ‚regelmäßiges Zähneputzen‘ und \\(B\\): ‚gesunde Zähne‘. Was bedeutet \\(P(A\\cup B)\\)?",
+            "antworten": ["Wahrscheinlichkeit für regelmäßiges Zähneputzen oder gesunde Zähne, möglicherweise beides", "Wahrscheinlichkeit für regelmäßiges Zähneputzen und gesunde Zähne", "Wahrscheinlichkeit für genau eine der beiden Eigenschaften", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
+            "fehler": ["Vereinigung als Schnittmenge gelesen", "Gemeinsames Eintreten fälschlich ausgeschlossen", "Gegenereignis der Vereinigung gewählt"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: Eine Person putzt nicht regelmäßig die Zähne und hat gesunde Zähne?",
+            "antworten": ["\\(P(\\overline{A}\\cap B)\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup B)\\)", "\\(P(A\\cap B)\\)"],
+            "fehler": ["Komplement dem falschen Ereignis zugeordnet", "Und-Verknüpfung als Oder-Verknüpfung geschrieben", "Verneinung von A ausgelassen"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: Eine Person putzt regelmäßig die Zähne oder hat keine gesunden Zähne?",
+            "antworten": ["\\(P(A\\cup\\overline{B})\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["Oder-Verknüpfung als Und-Verknüpfung geschrieben", "Komplemente beiden Ereignissen falsch zugeordnet", "Verneinung von B ausgelassen"]
+        },
+        {
+            "frage": "Welcher Ausdruck beschreibt, dass genau eines der Ereignisse \\(A\\) und \\(B\\) eintritt?",
+            "antworten": ["\\(P(A\\cup B)-P(A\\cap B)\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)", "\\(P(\\overline{A}\\cap\\overline{B})\\)"],
+            "fehler": ["Nur gemeinsames Eintreten gewählt", "Fall ‚beide‘ nicht aus der Vereinigung entfernt", "Fall ‚keines‘ statt ‚genau eines‘ gewählt"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: Weder \\(A\\) noch \\(B\\) tritt ein?",
+            "antworten": ["\\(P(\\overline{A}\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup\\overline{B})\\)", "\\(P(A\\cap B)\\)", "\\(P(A\\cup B)\\)"],
+            "fehler": ["‚Weder noch‘ als Vereinigung der Gegenereignisse gelesen", "Gegenereignisse durch ursprüngliche Ereignisse ersetzt", "‚Weder noch‘ mit ‚mindestens eines‘ verwechselt"]
+        },
+        {
+            "frage": "Welche Schreibweise bedeutet: Mindestens eines der Ereignisse \\(A\\) und \\(B\\) tritt ein?",
+            "antworten": ["\\(P(A\\cup B)\\)", "\\(P(A\\cap B)\\)", "\\(P(\\overline{A}\\cap\\overline{B})\\)", "\\(P(A\\cup B)-P(A\\cap B)\\)"],
+            "fehler": ["‚Mindestens eines‘ als gemeinsames Eintreten gelesen", "Gegenereignis gewählt", "Fall, in dem beide eintreten, ausgeschlossen"]
+        },
+        {
+            "frage": "Was beschreibt \\(P(A\\cap\\overline{B})+P(\\overline{A}\\cap B)\\)?",
+            "antworten": ["Genau eines der Ereignisse \\(A\\) und \\(B\\) tritt ein", "Beide Ereignisse treten ein", "Mindestens eines der Ereignisse tritt ein", "Keines der Ereignisse tritt ein"],
+            "fehler": ["Beide Summanden falsch als gemeinsamen Schnitt gelesen", "Gemeinsames Eintreten zusätzlich eingeschlossen", "Beide Gegenereignisse statt der gemischten Fälle gewählt"]
+        }
+    ]
+}

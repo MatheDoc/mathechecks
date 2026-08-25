@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Gegeben sind \\(I:x+y=7\\) und \\(II:x-y=1\\). Welche Verknüpfung eliminiert \\(y\\) direkt?",
+            "antworten": ["\\(I+II\\)", "\\(I-II\\)", "\\(2I+II\\)", "\\(I+2II\\)"],
+            "fehler": ["Vorzeichen beim Subtrahieren nicht beachtet", "Unnötiges Vielfaches verwendet", "Dadurch fällt \\(y\\) nicht weg"]
+        },
+        {
+            "frage": "Was entsteht aus \\(x+y=7\\) und \\(x-y=1\\) durch Addition?",
+            "antworten": ["\\(2x=8\\)", "\\(2x=6\\)", "\\(2y=8\\)", "\\(x=8\\)"],
+            "fehler": ["Rechte Seiten subtrahiert", "Falsche Variable eliminiert", "Koeffizient von \\(x\\) vergessen"]
+        },
+        {
+            "frage": "Aus \\(2x=8\\) folgt …",
+            "antworten": ["\\(x=4\\)", "\\(x=6\\)", "\\(x=8\\)", "\\(x=16\\)"],
+            "fehler": ["Falsch dividiert", "Division nicht ausgeführt", "Mit 2 multipliziert"]
+        },
+        {
+            "frage": "Für \\(x=4\\) gilt in \\(x+y=7\\): Wie groß ist \\(y\\)?",
+            "antworten": ["\\(3\\)", "\\(11\\)", "\\(-3\\)", "\\(7\\)"],
+            "fehler": ["4 addiert statt subtrahiert", "Vorzeichenfehler", "Eingesetzten Wert ignoriert"]
+        },
+        {
+            "frage": "Welche Umformung von \\(x+y=7\\) nach \\(y\\) ist richtig?",
+            "antworten": ["\\(y=7-x\\)", "\\(y=7+x\\)", "\\(y=x-7\\)", "\\(y=\\frac{7}{x}\\)"],
+            "fehler": ["Vorzeichen beim Seitenwechsel nicht geändert", "Seiten vertauscht und Vorzeichen verloren", "Addition mit Division verwechselt"]
+        },
+        {
+            "frage": "Welche Umformung von \\(2x+y=9\\) nach \\(x\\) ist richtig?",
+            "antworten": ["\\(x=\\frac{9-y}{2}\\)", "\\(x=9-2y\\)", "\\(x=\\frac{9+y}{2}\\)", "\\(x=9-y\\)"],
+            "fehler": ["Nicht den gesamten Ausdruck durch 2 geteilt", "Vorzeichen von \\(y\\) falsch", "Division durch 2 vergessen"]
+        },
+        {
+            "frage": "Aus \\(x+y=7\\) folgt \\(y=7-x\\), aus \\(2x-y=5\\) folgt \\(y=2x-5\\). Welcher Ansatz passt zum Gleichsetzungsverfahren?",
+            "antworten": ["\\(7-x=2x-5\\)", "\\(7+x=2x-5\\)", "\\(7-x=5-2x\\)", "\\(x+y=2x-y\\)"],
+            "fehler": ["Erste Gleichung falsch umgeformt", "Zweite Gleichung falsch umgeformt", "Nicht die isolierten Ausdrücke gleichgesetzt"]
+        },
+        {
+            "frage": "Gegeben sind \\(I:2x+3y=8\\) und \\(II:x-y=1\\). Welche Verknüpfung eliminiert \\(x\\)?",
+            "antworten": ["\\(I-2II\\)", "\\(I-II\\)", "\\(I+2II\\)", "\\(2I-II\\)"],
+            "fehler": ["Koeffizienten von \\(x\\) noch verschieden", "Vorzeichen der zweiten Gleichung falsch", "Falsche Gleichung vervielfacht"]
+        },
+        {
+            "frage": "Welches Zahlenpaar löst \\(x+y=5\\) und \\(x-y=1\\)?",
+            "antworten": ["\\((3;2)\\)", "\\((2;3)\\)", "\\((3;-2)\\)", "\\((4;1)\\)"],
+            "fehler": ["Variablen vertauscht", "Vorzeichenfehler bei \\(y\\)", "Nur die erste Gleichung erfüllt"]
+        },
+        {
+            "frage": "Du hast \\(x\\) durch Elimination bestimmt. Was ist der nächste notwendige Schritt?",
+            "antworten": ["\\(x\\) in eine Ausgangsgleichung einsetzen", "Beide Gleichungen nochmals addieren", "Beide Gleichungen mit \\(x\\) multiplizieren", "Eine neue Unbekannte einführen"],
+            "fehler": ["Liefert keine zweite Variable", "Unnötiger Schritt", "Unnötige Erweiterung des Systems"]
+        }
+    ]
+}

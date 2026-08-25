@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Pfeil von R2 zu Z1 trägt den Wert 3. Welcher Eintrag in \\(RZ\\) gehört dazu?",
+            "antworten": ["\\((RZ)_{2,1}=3\\)", "\\((RZ)_{1,2}=3\\)", "\\((ZE)_{2,1}=3\\)", "\\((RZ)_{2,1}=0\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsstufe gewählt", "Vorhandenen Pfeil als Nullwert behandelt"]
+        },
+        {
+            "frage": "Ein Pfeil von Z3 zu E2 trägt den Wert 4. Welcher Eintrag in \\(ZE\\) gehört dazu?",
+            "antworten": ["\\((ZE)_{3,2}=4\\)", "\\((ZE)_{2,3}=4\\)", "\\((RZ)_{3,2}=4\\)", "\\((ZE)_{3,2}=0\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsmatrix gewählt", "Pfeilwert durch null ersetzt"]
+        },
+        {
+            "frage": "Zwischen R1 und Z2 gibt es keinen Pfeil. Welcher Matrixeintrag folgt daraus?",
+            "antworten": ["\\((RZ)_{1,2}=0\\)", "\\((RZ)_{2,1}=0\\)", "\\((ZE)_{1,2}=0\\)", "\\((RZ)_{1,2}=1\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsstufe gewählt", "Fehlenden Pfeil als Bedarf von einer ME gedeutet"]
+        },
+        {
+            "frage": "Es gilt \\((RZ)_{3,1}=5\\). Welcher Pfeil wird dadurch beschrieben?",
+            "antworten": ["R3 → Z1 mit Wert 5", "R1 → Z3 mit Wert 5", "Z3 → E1 mit Wert 5", "R3 → Z1 mit Wert 0"],
+            "fehler": ["Zeile und Spalte vertauscht", "Matrixstufen verwechselt", "Eintrag trotz Wert 5 als fehlenden Pfeil dargestellt"]
+        },
+        {
+            "frage": "Es gilt \\((ZE)_{2,3}=2\\). Welcher Pfeil wird dadurch beschrieben?",
+            "antworten": ["Z2 → E3 mit Wert 2", "Z3 → E2 mit Wert 2", "R2 → Z3 mit Wert 2", "E2 → Z3 mit Wert 2"],
+            "fehler": ["Zeile und Spalte vertauscht", "Rohstoffstufe statt Endproduktstufe gewählt", "Pfeilrichtung Output → Input verwendet"]
+        },
+        {
+            "frage": "Zwischen Z1 und E2 gibt es keinen Pfeil. Welcher Eintrag ist daher null?",
+            "antworten": ["\\((ZE)_{1,2}\\)", "\\((ZE)_{2,1}\\)", "\\((RZ)_{1,2}\\)", "\\((RE)_{1,2}\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsstufe gewählt", "Direkte Rohstoff-Endprodukt-Matrix gewählt"]
+        },
+        {
+            "frage": "Ein Pfeil von R1 zu Z3 trägt den Wert 2. In welcher Matrixzeile steht der Wert?",
+            "antworten": ["In der 1. Zeile von \\(RZ\\)", "In der 3. Zeile von \\(RZ\\)", "In der 1. Zeile von \\(ZE\\)", "In der 2. Zeile von \\(RZ\\)"],
+            "fehler": ["Outputnummer als Zeilennummer verwendet", "Falsche Produktionsmatrix gewählt", "Pfeilwert als Zeilennummer verwendet"]
+        },
+        {
+            "frage": "Welcher textuell beschriebene Pfeil gehört zum Eintrag \\((RZ)_{2,3}\\)?",
+            "antworten": ["R2 → Z3", "R3 → Z2", "Z2 → E3", "Z3 → R2"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsstufe gewählt", "Pfeilrichtung umgekehrt"]
+        },
+        {
+            "frage": "Der Eintrag \\((ZE)_{3,1}\\) hat den Wert 7. Welche Pfeilbeschriftung ist richtig?",
+            "antworten": ["Z3 → E1: 7", "Z1 → E3: 7", "R3 → Z1: 7", "E1 → Z3: 7"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsstufe gewählt", "Pfeilrichtung umgekehrt"]
+        },
+        {
+            "frage": "Ein Pfeil R3 → Z2 mit Wert 1 wird in welcher Position eingetragen?",
+            "antworten": ["3. Zeile, 2. Spalte von \\(RZ\\)", "2. Zeile, 3. Spalte von \\(RZ\\)", "3. Zeile, 2. Spalte von \\(ZE\\)", "2. Zeile, 1. Spalte von \\(RZ\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Falsche Produktionsmatrix gewählt", "Pfeilwert als Spaltennummer verwendet"]
+        }
+    ]
+}

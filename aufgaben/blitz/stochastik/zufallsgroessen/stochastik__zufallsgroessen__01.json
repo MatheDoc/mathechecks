@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formel berechnet den Erwartungswert einer diskreten Zufallsgröße?",
+            "antworten": ["\\(E(X)=\\sum x_i\\cdot P(X=x_i)\\)", "\\(E(X)=\\sum x_i+P(X=x_i)\\)", "\\(E(X)=\\sum P(X=x_i)\\)", "\\(E(X)=\\sqrt{\\sum x_i^2}\\)"],
+            "fehler": ["Werte und Wahrscheinlichkeiten addiert statt multipliziert", "Nur die stets 1 ergebende Wahrscheinlichkeitssumme gebildet", "Ungewichtete Quadratsumme verwendet"]
+        },
+        {
+            "frage": "Es gilt \\(P(X=0)=0{,}5\\) und \\(P(X=2)=0{,}5\\). Wie groß ist \\(E(X)\\)?",
+            "antworten": ["\\(1\\)", "\\(2\\)", "\\(0{,}5\\)", "\\(1{,}5\\)"],
+            "fehler": ["Nur den größeren Wert berücksichtigt", "Nur eine Wahrscheinlichkeit übernommen", "Werte und Wahrscheinlichkeiten ohne Gewichtung addiert"]
+        },
+        {
+            "frage": "Es gilt \\(P(X=-1)=0{,}25\\) und \\(P(X=1)=0{,}75\\). Wie groß ist \\(E(X)\\)?",
+            "antworten": ["\\(0{,}5\\)", "\\(1\\)", "\\(-0{,}5\\)", "\\(0\\)"],
+            "fehler": ["Nur den wahrscheinlicheren Wert übernommen", "Vorzeichen der negativen Ausprägung vertauscht", "Werte ungewichtet gemittelt"]
+        },
+        {
+            "frage": "Welchen Beitrag liefert \\(x_i=3\\) mit \\(P(X=3)=0{,}2\\) zum Erwartungswert?",
+            "antworten": ["\\(0{,}6\\)", "\\(3{,}2\\)", "\\(0{,}0667\\)", "\\(2{,}8\\)"],
+            "fehler": ["Wert und Wahrscheinlichkeit addiert", "Wahrscheinlichkeit durch den Wert geteilt", "Wahrscheinlichkeit vom Wert abgezogen"]
+        },
+        {
+            "frage": "Es gilt \\(P(X=1)=0{,}4\\) und \\(P(X=2)=0{,}6\\). Wie groß ist \\(E(X)\\)?",
+            "antworten": ["\\(1{,}6\\)", "\\(3\\)", "\\(1\\)", "\\(1{,}5\\)"],
+            "fehler": ["Mögliche Werte ungewichtet addiert", "Nur Wahrscheinlichkeiten addiert", "Mögliche Werte ungewichtet gemittelt"]
+        },
+        {
+            "frage": "Welche Aussage über die Wahrscheinlichkeiten einer vollständigen Verteilung ist richtig?",
+            "antworten": ["Ihre Summe ist \\(1\\)", "Ihr Produkt ist \\(1\\)", "Jede Wahrscheinlichkeit ist gleich groß", "Ihre Summe ist der Erwartungswert"],
+            "fehler": ["Summenbedingung als Produktbedingung formuliert", "Gleichverteilung ohne Grundlage angenommen", "Wahrscheinlichkeitssumme mit Erwartungswert verwechselt"]
+        },
+        {
+            "frage": "Wie wird der Erwartungswert anschaulich beschrieben?",
+            "antworten": ["Als gewichteter Mittelwert der möglichen Werte", "Als größter möglicher Wert", "Als wahrscheinlichster Wert", "Als Summe aller möglichen Werte"],
+            "fehler": ["Erwartungswert mit Maximum verwechselt", "Erwartungswert mit Modalwert verwechselt", "Wahrscheinlichkeitsgewichtung ausgelassen"]
+        },
+        {
+            "frage": "Wie groß ist der Erwartungswert eines fairen sechsseitigen Würfels?",
+            "antworten": ["\\(3{,}5\\)", "\\(3\\)", "\\(6\\)", "\\(21\\)"],
+            "fehler": ["Mittleren unteren Würfelwert gewählt", "Größten möglichen Wert gewählt", "Würfelwerte addiert, aber nicht durch 6 gewichtet"]
+        },
+        {
+            "frage": "Kann der Erwartungswert negativ sein?",
+            "antworten": ["Ja, wenn negative Werte ausreichend stark gewichtet sind", "Nein, Wahrscheinlichkeiten sind nicht negativ", "Nur wenn eine Wahrscheinlichkeit negativ ist", "Nur wenn alle Werte positiv sind"],
+            "fehler": ["Vorzeichen der Werte mit dem der Wahrscheinlichkeiten verwechselt", "Unzulässige negative Wahrscheinlichkeit vorausgesetzt", "Bedingung für einen negativen Erwartungswert umgekehrt"]
+        },
+        {
+            "frage": "Die Zufallsgröße \\(X\\) misst einen Gewinn in Euro. Welche Einheit hat \\(E(X)\\)?",
+            "antworten": ["Euro", "Prozent", "Keine Einheit", "Euro zum Quadrat"],
+            "fehler": ["Wahrscheinlichkeitsangabe mit der Einheit des Werts verwechselt", "Einheit der Zufallsgröße ignoriert", "Einheit der Varianz statt des Erwartungswerts gewählt"]
+        }
+    ]
+}

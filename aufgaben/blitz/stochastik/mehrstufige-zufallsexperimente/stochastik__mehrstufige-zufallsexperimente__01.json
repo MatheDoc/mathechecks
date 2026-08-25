@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Von einem Knoten gehen zwei Äste ab. Ein Ast hat die Wahrscheinlichkeit \\(0{,}3\\). Welche Wahrscheinlichkeit hat der andere?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(1{,}3\\)", "\\(0{,}09\\)"],
+            "fehler": ["Gegebenen Wert unverändert übernommen", "Gegebenen Wert zu 1 addiert", "Gegebenen Wert quadriert"]
+        },
+        {
+            "frage": "Welche Summe haben alle Wahrscheinlichkeiten, die von demselben Knoten ausgehen?",
+            "antworten": ["\\(1\\)", "\\(0\\)", "\\(0{,}5\\)", "\\(2\\)"],
+            "fehler": ["Wahrscheinlichkeiten fälschlich als Gegensätze mit Summe 0 behandelt", "Wert eines fairen Zweigs verallgemeinert", "Anzahl der Äste mit ihrer Wahrscheinlichkeit verwechselt"]
+        },
+        {
+            "frage": "Ein Pfad hat die Astwahrscheinlichkeiten \\(0{,}4\\) und \\(0{,}5\\). Wie groß ist seine Endwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}2\\)", "\\(0{,}9\\)", "\\(0{,}45\\)", "\\(0{,}1\\)"],
+            "fehler": ["Astwahrscheinlichkeiten addiert", "Ziffern ohne Multiplikation zusammengesetzt", "Astwahrscheinlichkeiten subtrahiert"]
+        },
+        {
+            "frage": "Welche Rechnung gehört zur Pfadmultiplikationsregel?",
+            "antworten": ["Wahrscheinlichkeiten entlang eines Pfades multiplizieren", "Wahrscheinlichkeiten entlang eines Pfades addieren", "Alle Endwahrscheinlichkeiten multiplizieren", "Die erste Wahrscheinlichkeit von der zweiten abziehen"],
+            "fehler": ["Pfadmultiplikation mit Pfadaddition verwechselt", "Verschiedene vollständige Pfade miteinander multipliziert", "Ohne sachlichen Grund eine Differenz gebildet"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}6\\) und am anschließenden Ast zu \\(B\\) steht \\(0{,}2\\). Wie groß ist \\(P(A\\cap B)\\)?",
+            "antworten": ["\\(0{,}12\\)", "\\(0{,}8\\)", "\\(0{,}4\\)", "\\(0{,}32\\)"],
+            "fehler": ["Astwahrscheinlichkeiten addiert", "Astwahrscheinlichkeiten subtrahiert", "Zweite Wahrscheinlichkeit fälschlich quadriert und addiert"]
+        },
+        {
+            "frage": "Es gilt \\(P(A)=0{,}3\\). Welche Wahrscheinlichkeit steht am ersten Ast zu \\(\\overline{A}\\)?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(-0{,}3\\)", "\\(1{,}3\\)"],
+            "fehler": ["Ereignis und Gegenereignis gleichgesetzt", "Nur das Vorzeichen geändert", "Statt \\(1-P(A)\\) die Summe gebildet"]
+        },
+        {
+            "frage": "Ein Pfad hat nacheinander die Wahrscheinlichkeiten \\(0{,}5\\), \\(0{,}4\\) und \\(0{,}2\\). Wie groß ist seine Endwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}04\\)", "\\(1{,}1\\)", "\\(0{,}1\\)", "\\(0{,}4\\)"],
+            "fehler": ["Alle Astwahrscheinlichkeiten addiert", "Nur ersten und letzten Ast multipliziert", "Mittleren und letzten Ast multipliziert, ersten Ast vergessen"]
+        },
+        {
+            "frage": "Bei zwei fairen Münzwürfen: Wie groß ist die Wahrscheinlichkeit des Pfades Kopf–Zahl?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}5\\)", "\\(1\\)", "\\(0{,}75\\)"],
+            "fehler": ["Nur einen Münzwurf berücksichtigt", "Astwahrscheinlichkeiten addiert", "Eine Pfadwahrscheinlichkeit zu einem Einzelast addiert"]
+        },
+        {
+            "frage": "Es gilt \\(P(\\overline{A})=0{,}7\\) und der folgende Ast zu \\(B\\) hat Wahrscheinlichkeit \\(0{,}8\\). Wie groß ist die Endwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}56\\)", "\\(1{,}5\\)", "\\(0{,}1\\)", "\\(0{,}64\\)"],
+            "fehler": ["Astwahrscheinlichkeiten addiert", "Astwahrscheinlichkeiten subtrahiert", "Nur die zweite Astwahrscheinlichkeit quadriert"]
+        },
+        {
+            "frage": "Welche Aussage über die Endwahrscheinlichkeiten eines vollständigen Baumdiagramms ist richtig?",
+            "antworten": ["Ihre Summe ist \\(1\\)", "Jede Endwahrscheinlichkeit ist \\(1\\)", "Ihr Produkt ist \\(1\\)", "Sie müssen alle gleich groß sein"],
+            "fehler": ["Gesamtsumme mit jedem Einzelwert verwechselt", "Summenregel fälschlich als Produktregel formuliert", "Gleichverteilung ohne Grundlage angenommen"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Dimension hat der Gauß-Jordan-Ansatz \\((A\\mid E_3)\\) für eine \\(3\\times3\\)-Matrix?",
+            "antworten": ["\\(3\\times6\\)", "\\(6\\times3\\)", "\\(3\\times3\\)", "\\(6\\times6\\)"],
+            "fehler": ["Zeilen und Spalten vertauscht", "Rechte Hälfte nicht mitgezählt", "Beide Dimensionen verdoppelt"]
+        },
+        {
+            "frage": "Welche Matrix steht zu Beginn rechts neben \\(A\\)?",
+            "antworten": ["\\(E_3\\)", "\\(O\\)", "\\(A^{-1}\\)", "\\(A^T\\)"],
+            "fehler": ["Einheitsmatrix durch Nullmatrix ersetzt", "Gesuchtes Ergebnis bereits eingesetzt", "Transponierte statt Einheitsmatrix verwendet"]
+        },
+        {
+            "frage": "Wie viele Pivotspalten müssen links nacheinander bearbeitet werden, damit \\(E_3\\) entsteht?",
+            "antworten": ["\\(3\\)", "\\(2\\)", "\\(4\\)", "\\(6\\)"],
+            "fehler": ["Eine Pivotspalte ausgelassen", "Trennspalte mitgezählt", "Spalten beider Hälften gezählt"]
+        },
+        {
+            "frage": "Links beginnen die ersten Einträge der Zeilen mit \\(1,1,3\\). Welche Umformung eliminiert den ersten Eintrag in \\(Z_3\\)?",
+            "antworten": ["\\(Z_3\\leftarrow Z_3-3Z_1\\)", "\\(Z_3\\leftarrow Z_3-Z_1\\)", "\\(Z_1\\leftarrow Z_1-3Z_3\\)", "\\(Z_3\\leftarrow 3Z_3-Z_1\\)"],
+            "fehler": ["Falsches Vielfaches der Pivotzeile verwendet", "Falsche Zielzeile verändert", "Linearkombination eliminiert den Eintrag nicht"]
+        },
+        {
+            "frage": "Nach zwei Pivotstufen: Welche Form soll die linke untere Ecke besitzen?",
+            "antworten": ["\\(\\begin{pmatrix}*&*&*\\\\0&*&*\\\\0&0&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}*&0&0\\\\*&*&0\\\\*&*&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}0&*&*\\\\0&*&*\\\\0&0&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}*&*&0\\\\0&*&0\\\\0&0&0\\end{pmatrix}\\)"],
+            "fehler": ["Obere statt untere Einträge eliminiert", "Ersten Pivot fälschlich zu null gemacht", "Dritten Pivot fälschlich als null vorausgesetzt"]
+        },
+        {
+            "frage": "Der dritte Pivot links ist \\(-1\\). Welcher Mikroschritt normiert ihn?",
+            "antworten": ["Die gesamte dritte Zeile mit \\(-1\\) multiplizieren", "Nur den linken Pivoteintrag durch \\(-1\\) teilen", "Die dritte Spalte mit \\(-1\\) multiplizieren", "Die dritte Zeile zur ersten addieren"],
+            "fehler": ["Zeilenumformung nicht auf die rechte Hälfte angewendet", "Spaltenoperation statt Zeilenoperation verwendet", "Pivot nicht normiert"]
+        },
+        {
+            "frage": "Am Ende steht \\((E_3\\mid B)\\). Wo wird \\(A^{-1}\\) abgelesen?",
+            "antworten": ["Als gesamte rechte \\(3\\times3\\)-Hälfte \\(B\\)", "Als letzte Spalte von \\(B\\)", "Als linke Hälfte \\(E_3\\)", "Als Hauptdiagonale von \\(B\\)"],
+            "fehler": ["Nur eine Spalte statt der ganzen Inversen abgelesen", "Einheitsmatrix statt Inverse abgelesen", "Nur Diagonaleinträge statt der Matrix abgelesen"]
+        },
+        {
+            "frage": "Bei der Kontrolle \\(AB=E_3\\): Welchen Wert muss der Eintrag \\((AB)_{23}\\) haben?",
+            "antworten": ["\\(0\\)", "\\(1\\)", "\\(2\\)", "\\(3\\)"],
+            "fehler": ["Nebendiagonale mit Hauptdiagonale verwechselt", "Zeilenindex als Wert verwendet", "Spaltenindex als Wert verwendet"]
+        },
+        {
+            "frage": "Welche Beobachtung bei vollständiger Reduktion zeigt, dass \\(A\\) nicht invertierbar ist?",
+            "antworten": ["In der linken Hälfte bleibt eine Nullzeile; \\(E_3\\) ist nicht erreichbar.", "In der rechten Hälfte tritt eine Null auf.", "Ein Pivot ist vor der Normierung nicht \\(1\\).", "Eine Zeile wird getauscht."],
+            "fehler": ["Einzelne Null rechts fälschlich als Ausschlusskriterium verwendet", "Nicht normierten Pivot fälschlich als endgültiges Hindernis angesehen", "Zulässigen Zeilentausch fälschlich als Nichtinvertierbarkeit gedeutet"]
+        },
+        {
+            "frage": "Welche Rechnung liefert den Eintrag \\((AB)_{31}\\) bei der Inversenkontrolle?",
+            "antworten": ["3. Zeile von \\(A\\) mal 1. Spalte von \\(B\\)", "3. Spalte von \\(A\\) mal 1. Zeile von \\(B\\)", "1. Zeile von \\(A\\) mal 3. Spalte von \\(B\\)", "3. Zeile von \\(B\\) mal 1. Spalte von \\(A\\)"],
+            "fehler": ["Zeile und Spalte vertauscht", "Indizes vertauscht", "Faktorreihenfolge vertauscht"]
+        }
+    ]
+}

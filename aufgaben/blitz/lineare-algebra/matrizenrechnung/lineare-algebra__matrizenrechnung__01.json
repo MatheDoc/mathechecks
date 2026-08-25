@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Voraussetzung gilt für die Addition \\(A+B\\)?",
+            "antworten": ["\\(A\\) und \\(B\\) haben dieselbe Dimension.", "\\(A\\) und \\(B\\) sind quadratisch.", "\\(A\\) und \\(B\\) haben gleich viele Spalten.", "\\(A\\) und \\(B\\) haben gleich viele Zeilen."],
+            "fehler": ["Quadratische Form unnötig vorausgesetzt", "Gleiche Zeilenzahl nicht geprüft", "Gleiche Spaltenzahl nicht geprüft"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}2&-1\\\\3&4\\end{pmatrix}\\) und \\(B=\\begin{pmatrix}1&5\\\\0&-2\\end{pmatrix}\\): Welchen Wert hat der Eintrag \\((A+B)_{12}\\)?",
+            "antworten": ["\\(4\\)", "\\(-6\\)", "\\(7\\)", "\\(-5\\)"],
+            "fehler": ["Einträge subtrahiert", "Erste Zeile addiert", "Vorzeichen von \\(-1\\) übersehen"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}3&1\\\\-2&4\\end{pmatrix}\\) und \\(B=\\begin{pmatrix}1&-2\\\\5&0\\end{pmatrix}\\): Welchen Wert hat \\((A-B)_{21}\\)?",
+            "antworten": ["\\(-7\\)", "\\(3\\)", "\\(7\\)", "\\(-3\\)"],
+            "fehler": ["Statt zu subtrahieren addiert", "Subtraktionsreihenfolge vertauscht", "Vorzeichen von \\(-2\\) übersehen"]
+        },
+        {
+            "frage": "Welchen Wert hat der Eintrag \\((3A)_{22}\\), wenn \\(a_{22}=-2\\) gilt?",
+            "antworten": ["\\(-6\\)", "\\(1\\)", "\\(6\\)", "\\(-2\\)"],
+            "fehler": ["Skalar addiert statt multipliziert", "Vorzeichen verloren", "Eintrag nicht mit dem Skalar multipliziert"]
+        },
+        {
+            "frage": "Was entsteht bei der Skalarmultiplikation \\(0\\cdot A\\)?",
+            "antworten": ["Die Nullmatrix mit derselben Dimension wie \\(A\\)", "Die Zahl \\(0\\)", "Die Einheitsmatrix derselben Größe", "Die Matrix \\(A\\)"],
+            "fehler": ["Matrixergebnis mit einem Skalar verwechselt", "Nullmatrix mit Einheitsmatrix verwechselt", "Wirkung des Skalars null übersehen"]
+        },
+        {
+            "frage": "Für \\(A=\\begin{pmatrix}1&-3\\\\2&0\\end{pmatrix}\\): Welchen Wert hat \\((-2A)_{12}\\)?",
+            "antworten": ["\\(6\\)", "\\(-6\\)", "\\(-5\\)", "\\(1\\)"],
+            "fehler": ["Vorzeichen beim Multiplizieren übersehen", "Skalar addiert statt multipliziert", "Falschen Eintrag verwendet"]
+        },
+        {
+            "frage": "Welche Matrix ist das neutrale Element der Matrizenaddition?",
+            "antworten": ["Die Nullmatrix", "Die Einheitsmatrix", "Die inverse Matrix", "Die transponierte Matrix"],
+            "fehler": ["Neutrales Element der Multiplikation gewählt", "Inverse mit neutralem Element verwechselt", "Transponieren mit Addieren verwechselt"]
+        },
+        {
+            "frage": "Es gilt \\(A-B=C\\). Wie lautet der Eintrag \\(c_{ij}\\)?",
+            "antworten": ["\\(a_{ij}-b_{ij}\\)", "\\(b_{ij}-a_{ij}\\)", "\\(a_{ij}+b_{ij}\\)", "\\(a_{ij}\\cdot b_{ij}\\)"],
+            "fehler": ["Subtraktionsreihenfolge vertauscht", "Addition statt Subtraktion verwendet", "Elementweise Multiplikation statt Subtraktion verwendet"]
+        },
+        {
+            "frage": "Welche Dimension hat \\(2A-B\\), wenn \\(A\\) und \\(B\\) beide \\(3\\times2\\)-Matrizen sind?",
+            "antworten": ["\\(3\\times2\\)", "\\(2\\times3\\)", "\\(3\\times3\\)", "\\(2\\times2\\)"],
+            "fehler": ["Zeilen- und Spaltenzahl vertauscht", "Zeilenzahl fälschlich quadriert", "Spaltenzahl fälschlich für beide Dimensionen verwendet"]
+        },
+        {
+            "frage": "Welches Gesetz beschreibt \\(2(A+B)=2A+2B\\)?",
+            "antworten": ["Distributivgesetz", "Kommutativgesetz", "Assoziativgesetz", "Transpositionsgesetz"],
+            "fehler": ["Vertauschung mit Verteilung verwechselt", "Umklammerung mit Verteilung verwechselt", "Transponieren mit Skalarmultiplikation verwechselt"]
+        }
+    ]
+}

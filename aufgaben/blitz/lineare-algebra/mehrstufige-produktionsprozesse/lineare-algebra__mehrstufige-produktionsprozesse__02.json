@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Es gilt \\((RZ)_{2,3}=4\\). Was bedeutet dieser Eintrag?",
+            "antworten": ["Für 1 ME Z3 werden 4 ME R2 benötigt.", "Für 1 ME Z2 werden 4 ME R3 benötigt.", "Aus 1 ME R2 entstehen 4 ME Z3.", "Für 4 ME Z3 wird 1 ME R2 benötigt."],
+            "fehler": ["Zeile und Spalte vertauscht", "Bedarfsrichtung umgekehrt", "Mengenverhältnis umgekehrt"]
+        },
+        {
+            "frage": "Es gilt \\((ZE)_{1,2}=3\\). Welche Aussage ist richtig?",
+            "antworten": ["Für 1 ME E2 werden 3 ME Z1 benötigt.", "Für 1 ME E1 werden 3 ME Z2 benötigt.", "Für 1 ME Z1 werden 3 ME E2 benötigt.", "Für 3 ME E2 wird 1 ME Z1 benötigt."],
+            "fehler": ["Zeile und Spalte vertauscht", "Input und Output vertauscht", "Mengenverhältnis umgekehrt"]
+        },
+        {
+            "frage": "Es gilt \\((RE)_{3,1}=5\\). Wie ist der Wert zu interpretieren?",
+            "antworten": ["Für 1 ME E1 werden insgesamt 5 ME R3 benötigt.", "Für 1 ME E3 werden 5 ME R1 benötigt.", "Für 1 ME R3 werden 5 ME E1 hergestellt.", "Für 5 ME E1 wird insgesamt 1 ME R3 benötigt."],
+            "fehler": ["Zeile und Spalte vertauscht", "Bedarfsrichtung umgekehrt", "Mengenverhältnis umgekehrt"]
+        },
+        {
+            "frage": "Was bedeutet \\((RZ)_{1,2}=0\\)?",
+            "antworten": ["Für Z2 wird kein R1 benötigt.", "Z2 kann nicht hergestellt werden.", "R1 wird für kein Zwischenprodukt benötigt.", "Für R1 wird kein Z2 benötigt."],
+            "fehler": ["Nullwert fälschlich auf das gesamte Outputprodukt bezogen", "Nullwert fälschlich auf die gesamte Matrixzeile bezogen", "Input und Output vertauscht"]
+        },
+        {
+            "frage": "Welche Information enthält die 2. Zeile von \\(RZ\\)?",
+            "antworten": ["Den Bedarf an R2 je ME der verschiedenen Zwischenprodukte", "Den Bedarf aller Rohstoffe für Z2", "Den Bedarf an Z2 je ME der verschiedenen Rohstoffe", "Die Mengen aller Endprodukte aus R2"],
+            "fehler": ["Spalte statt Zeile interpretiert", "Input und Output vertauscht", "Endproduktstufe statt Zwischenproduktstufe gewählt"]
+        },
+        {
+            "frage": "Welche Information enthält die 3. Spalte von \\(ZE\\)?",
+            "antworten": ["Den Bedarf aller Zwischenprodukte für 1 ME E3", "Den Bedarf an Z3 für alle Endprodukte", "Den Bedarf aller Rohstoffe für 1 ME E3", "Die erzeugten Endproduktmengen aus 1 ME Z3"],
+            "fehler": ["Zeile statt Spalte interpretiert", "Rohstoffe statt Zwischenprodukte als Input verwendet", "Bedarfsrichtung umgekehrt"]
+        },
+        {
+            "frage": "\\(RZ\\) hat das Format \\(3\\times2\\). Was folgt daraus?",
+            "antworten": ["Es gibt 3 Rohstoffarten und 2 Zwischenproduktarten.", "Es gibt 2 Rohstoffarten und 3 Zwischenproduktarten.", "Es gibt 3 Zwischenproduktarten und 2 Endproduktarten.", "Für jedes Zwischenprodukt werden genau 3 ME Rohstoff benötigt."],
+            "fehler": ["Zeilen und Spalten vertauscht", "Bedeutung von \\(ZE\\) statt \\(RZ\\) verwendet", "Matrixformat als Mengenangabe gedeutet"]
+        },
+        {
+            "frage": "Die erste Zeile von \\(RZ\\) lautet \\(\\begin{pmatrix}2&5\\end{pmatrix}\\). Welches Zwischenprodukt benötigt mehr R1?",
+            "antworten": ["Z2", "Z1", "Beide gleich viel", "Das ist aus einer Zeile nicht bestimmbar"],
+            "fehler": ["Ersten statt zweiten Eintrag als größeren Wert gewählt", "Unterschiedliche Einträge als gleich gedeutet", "Bedeutung einer Matrixzeile nicht genutzt"]
+        },
+        {
+            "frage": "Die zweite Spalte von \\(ZE\\) lautet \\(\\begin{pmatrix}1\\\\0\\\\3\\end{pmatrix}\\). Welche Aussage zu 1 ME E2 stimmt?",
+            "antworten": ["E2 benötigt 1 ME Z1, 0 ME Z2 und 3 ME Z3.", "E2 benötigt 1 ME Z1, 0 ME Z2 und insgesamt nur 3 ME Zwischenprodukte.", "Z2 benötigt 1 ME E1, 0 ME E2 und 3 ME E3.", "E2 benötigt 3 ME Z1, 0 ME Z2 und 1 ME Z3."],
+            "fehler": ["Letzten Eintrag fälschlich als Gesamtbedarf gedeutet", "Input und Output vertauscht", "Reihenfolge der Zeileneinträge vertauscht"]
+        },
+        {
+            "frage": "Warum können Einträge einer Produktionsmatrix nicht negativ sein?",
+            "antworten": ["Sie beschreiben benötigte Mengen von Gütern.", "Sie sind immer Ergebnisse einer Inversen.", "Jede Produktionsmatrix ist eine Einheitsmatrix.", "Negative Zahlen dürfen grundsätzlich nicht in Matrizen stehen."],
+            "fehler": ["Produktionsmatrix mit ihrer möglichen Inversen verwechselt", "Unbegründete Sonderform der Matrix angenommen", "Allgemeines falsches Verbot für Matrixeinträge angenommen"]
+        }
+    ]
+}
