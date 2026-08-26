@@ -15,7 +15,7 @@ const SUPPORTED = Boolean(SpeechRecognition);
 
 const ENHANCED_ATTR = "data-speech-enhanced";
 const AUTOGROW_ATTR = "data-speech-autogrow";
-const AUTO_STOP_DELAY_MS = 10000;
+const AUTO_STOP_DELAY_MS = 20000;
 const MOBILE_RESTART_DELAY_MS = 200;
 const TASK_CHECK_REQUEST_EVENT = "task:check-request";
 
