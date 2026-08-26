@@ -185,6 +185,10 @@ html.light .check-card {
     color: var(--mt-feynman, var(--teal));
 }
 
+.check-card__badge--test {
+    color: var(--mt-test, var(--accent));
+}
+
 .check-card__badge--kompetenzliste {
     color: var(--mt-kompetenzliste, var(--lavender));
 }
@@ -887,6 +891,12 @@ html.light [data-feed-readonly="true"] .check-card {
     --dcc-border: var(--mt-feynman-border, rgba(61, 214, 200, .3));
 }
 
+.check-card--test {
+    --dcc-accent: var(--mt-test, var(--accent));
+    --dcc-accent-soft: var(--mt-test-soft, var(--accent-soft));
+    --dcc-border: var(--mt-test-border, rgba(56, 189, 248, .3));
+}
+
 .check-card--kompetenzliste {
     --dcc-accent: var(--mt-kompetenzliste, var(--lavender));
     --dcc-accent-soft: var(--mt-kompetenzliste-soft, var(--lavender-soft));
@@ -927,6 +937,10 @@ html.light [data-feed-readonly="true"] .check-card {
 
 .check-card__title--feynman {
     color: var(--mt-feynman, var(--teal));
+}
+
+.check-card__title--test {
+    color: var(--mt-test, var(--accent));
 }
 
 .check-card__title--kompetenzliste {

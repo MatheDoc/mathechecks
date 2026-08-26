@@ -1,10 +1,10 @@
 ---
 layout: shell
 title: "Konzept"
-description: "Die Lernarchitektur von MatheChecks: Check-Ketten aus Training, Recall, Feynman und Kompetenzliste, Erfolgsquoten, KI-Rückmeldung mit vorbereitetem Kontext und Spaced Repetition."
+description: "Die Lernarchitektur von MatheChecks: Check-Ketten aus Training, Recall, Feynman und Test, Erfolgsquoten, KI-Rückmeldung mit vorbereitetem Kontext und Spaced Repetition."
 permalink: /konzept.html
 body_class: page-legal page-static-narrow page-konzept
-page_css: /assets/css/info-pages.css?v=20260817-h1-margin
+page_css: /assets/css/info-pages.css?v=20260827-test-ring
 show_footer: true
 ---
 
@@ -41,20 +41,24 @@ Die Inhalte gliedern sich in [Lernbereiche]({{ '/material.html' | relative_url }
         <h3>Feynman</h3>
         <p>Ein Konzept in eigenen Worten erklären, als würde man es jemandem beibringen. Eine KI prüft die Erklärung und benennt Lücken und Denkfehler.</p>
     </article>
-    <article class="konzept-card" style="--kc-color: var(--mt-kompetenzliste, #378ea3)">
-        <h3>Kompetenzliste</h3>
-        <p>Hier wird festgehalten, ob die Kompetenz sitzt. Check für Check entsteht so der Überblick über den Lernbereich.</p>
+    <article class="konzept-card" style="--kc-color: var(--mt-test, #38bdf8)">
+        <h3>Test</h3>
+        <p>Single-Choice-Fragen zeigen, ob die Kompetenz sitzt. Typische Fehler werden direkt aufgezeigt.</p>
     </article>
 </div>
 
 Im Training werden die Eingaben mit hinterlegten Lösungen unter Berücksichtigung einer geeigneten Fehlertoleranz verglichen. Bei Recall und Feynman bewertet eine KI die Antworten. Die Bewertung stützt sich dabei nicht auf allgemeines Modellwissen. Stattdessen erhält die KI zu jedem Check ein gezielt vorbereitetes Kontextpaket aus der Kompetenz, den zentralen Kernpunkten, einem durchgerechneten Beispiel und der konkreten Aufgabe samt Lösungen. So sind die Rückmeldungen fachlich und pädagogisch fundiert.
 
-Drei weitere Aktivitäten ergänzen die Checks in jedem Lernbereich:
+Vier weitere Aktivitäten ergänzen die Checks in jedem Lernbereich:
 
 <div class="konzept-cards">
     <article class="konzept-card" style="--kc-color: var(--mt-start, #245f43)">
         <h3>Start</h3>
         <p>Ziele, Voraussetzungen und ein Podcast geben Orientierung für den Einstieg in den Lernbereich.</p>
+    </article>
+    <article class="konzept-card" style="--kc-color: var(--mt-kompetenzliste, #378ea3)">
+        <h3>Kompetenzliste</h3>
+        <p>Alle Kompetenzen des Lernbereichs im Überblick, mit direkten Absprüngen zu den passenden Aktivitäten.</p>
     </article>
     <article class="konzept-card" style="--kc-color: var(--mt-skript, #4ade80)">
         <h3>Skript</h3>
@@ -74,13 +78,13 @@ Nach der Registrierung stellst du dir eine individuelle Lernsession zusammen, di
 
 ## Quantitativer Fortschritt
 
-Jeder Check durchläuft eine Kette aus vier Aktivitäten: Training, Recall, Feynman und Kompetenzliste. Der Feed gibt jederzeit eindeutig vor, welche dieser Aktivitäten als Nächstes ansteht. So wird die Session zeitlich strukturiert und kann bis zum gewünschten Zieldatum Schritt für Schritt absolviert werden.
+Jeder Check durchläuft eine Kette aus vier Aktivitäten: Training, Recall, Feynman und Test. Der Feed gibt jederzeit eindeutig vor, welche dieser Aktivitäten als Nächstes ansteht. So wird die Session zeitlich strukturiert und kann bis zum gewünschten Zieldatum Schritt für Schritt absolviert werden.
 
 Die Ketten mehrerer Checks laufen zeitlich leicht versetzt und überlappen sich. So wechseln sich verschiedene Kompetenzen immer wieder ab, statt in Blöcken trainiert zu werden. Zudem liegen die Glieder einer Kette mit zeitlichem Abstand auseinander. Zwischen den Aktivitäten kann somit ein Teil des Gelernten wieder verblassen, denn gerade das erneute Erinnern trägt dazu bei, Wissen nachhaltig zu verankern.
 
 ## Qualitativer Fortschritt
 
-Für Training, Recall und Feynman wird jeweils eine Erfolgsquote ermittelt. Sie wird übersichtlich im Dashboard dargestellt und lässt sich jederzeit und unabhängig vom quantitativen Fortschritt verbessern. Auch hier gibt MatheChecks Hinweise, wann sich eine Wiederholung lohnt.
+Für Training, Recall, Feynman und Test wird jeweils eine Erfolgsquote ermittelt. Sie wird übersichtlich im Dashboard dargestellt und lässt sich jederzeit und unabhängig vom quantitativen Fortschritt verbessern. Auch hier gibt MatheChecks Hinweise, wann sich eine Wiederholung lohnt.
 
 ## Übersicht
 
@@ -91,15 +95,15 @@ Für Training, Recall und Feynman wird jeweils eine Erfolgsquote ermittelt. Sie 
     </div>
     <div class="konzept-scroll">
         <svg class="konzept-svg" id="konzeptSvg" viewBox="0 0 726 597" role="img"
-            aria-label="Animierte Grafik: drei zeitlich versetzte Check-Ketten aus Training, Recall, Feynman und Kompetenzliste, darunter drei beispielhafte Erfolgsquoten-Ringe"></svg>
+            aria-label="Animierte Grafik: drei zeitlich versetzte Check-Ketten aus Training, Recall, Feynman und Test, darunter vier beispielhafte Erfolgsquoten-Ringe"></svg>
     </div>
     <div class="konzept-legend">
         <div class="konzept-legend__item"><span class="konzept-legend__dot konzept-legend__dot--training"></span> Training</div>
         <div class="konzept-legend__item"><span class="konzept-legend__dot konzept-legend__dot--recall"></span> Recall</div>
         <div class="konzept-legend__item"><span class="konzept-legend__dot konzept-legend__dot--feynman"></span> Feynman</div>
-        <div class="konzept-legend__item"><span class="konzept-legend__dot konzept-legend__dot--kompetenz"></span> Kompetenzliste</div>
+        <div class="konzept-legend__item"><span class="konzept-legend__dot konzept-legend__dot--test"></span> Test</div>
     </div>
-    <p class="konzept-note">Oben: drei Check-Ketten im zeitlichen Ablauf. Unten: drei beispielhafte Erfolgsquoten. Sie füllen sich, sobald der Ablauf ihren Knoten passiert, und steigen danach unabhängig weiter. Klick auf einen Ring: erneut üben.</p>
+    <p class="konzept-note">Oben: drei Check-Ketten im zeitlichen Ablauf. Unten: vier beispielhafte Erfolgsquoten. Sie füllen sich, sobald der Ablauf ihren Knoten passiert, und steigen danach unabhängig weiter. Klick auf einen Ring: erneut üben.</p>
 </div>
 
 
@@ -110,4 +114,4 @@ Der Feed führt dich strukturiert durch deine Session. Du kannst MatheChecks abe
 
 Außerdem kannst du vorbereitete KI-Lernpartner in einen KI-Chat deiner Wahl übernehmen. Bei den Trainingsaufgaben hilft dir die KI, die konkrete Aufgabe Schritt für Schritt bis zur Lösung durchzurechnen. Beim Feynman-Check ist sie dein Sparringspartner, dem du das Konzept möglichst genau und kleinschrittig erklärst. In beiden Rollen ist die KI mit dem pädagogischen und fachlichen Kontext des Checks ausgestattet.
 
-<script src="{{ '/assets/js/konzept-grafik.js?v=20260816-recall-check2' | relative_url }}" defer></script>
+<script src="{{ '/assets/js/konzept-grafik.js?v=20260827-test-ring' | relative_url }}" defer></script>

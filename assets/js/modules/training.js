@@ -19,10 +19,10 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
+import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
+import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
 
 const TR_BEISPIEL_CACHE = new Map();

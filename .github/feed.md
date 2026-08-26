@@ -11,7 +11,7 @@ Der singuläre Core-Feed mit serverseitigen Zeitfenstern, `planned_from`, Sticky
 
 ## Zielbild
 
-Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkartenliste. Ein Lernbereich beginnt immer mit `start`; danach wird das erste `training` dieses Lernbereichs freigeschaltet. Innerhalb einer Check-Kette werden `training`, `recall`, `feynman` und `kompetenzliste_gate` über echte Zeitfenster statt über Aktivitätszählung gesteuert. Gleichzeitig bleibt das aktuell angezeigte Element während aktiver Arbeit über einen Sticky-Lock stabil sichtbar, auch wenn andere Schritte im Hintergrund fällig werden. Die eigentliche Neuwahl des Feed-Elements passiert erst bei Abschluss, explizitem Verlassen, Ungültigkeit des aktuellen Elements oder nach Lock-Ablauf.
+Der Core-Feed zeigt genau ein aktuelles Element statt einer sortierten Mehrkartenliste. Ein Lernbereich beginnt immer mit `start`; danach wird das erste `training` dieses Lernbereichs freigeschaltet. Innerhalb einer Check-Kette werden `training`, `recall`, `feynman` und `test` über echte Zeitfenster statt über Aktivitätszählung gesteuert. Gleichzeitig bleibt das aktuell angezeigte Element während aktiver Arbeit über einen Sticky-Lock stabil sichtbar, auch wenn andere Schritte im Hintergrund fällig werden. Die eigentliche Neuwahl des Feed-Elements passiert erst bei Abschluss, explizitem Verlassen, Ungültigkeit des aktuellen Elements oder nach Lock-Ablauf.
 
 ## Scope und Abgrenzung
 
@@ -74,7 +74,7 @@ Pro Check ist zu jedem Zeitpunkt höchstens der nächste offene Schritt aktiv:
 1. `training`
 2. `recall`
 3. `feynman`
-4. `kompetenzliste_gate`
+4. `test`
 
 Für jeden offenen Schritt werden mindestens diese fachlichen Felder benötigt:
 
@@ -104,7 +104,7 @@ Der Feed trennt Gate-Übergänge und didaktische Übergänge:
 - `start -> training`: Gate-Übergang mit `G_gate = 0`
 - `training -> recall`: didaktischer Übergang mit `G_step = G`
 - `recall -> feynman`: didaktischer Übergang mit `G_step = G`
-- `feynman -> kompetenzliste_gate`: didaktischer Übergang mit `G_step = G`
+- `feynman -> test`: didaktischer Übergang mit `G_step = G`
 
 Die drei didaktischen Übergänge werden gleich behandelt. Sie teilen denselben Basisabstand `G`, auch wenn spätere Versionen diese Werte auseinanderziehen dürfen.
 
@@ -249,7 +249,7 @@ Die Rangbildung für `planned_from` muss deterministisch sein. Der Feed nutzt da
 1. vorhandenes `effective_planned_from`, falls gesetzt, sonst `available_from`
 2. fachlich tieferer Schritt einer bereits begonnenen Check-Kette
 3. globale Lernbereichs- und Check-Reihenfolge aus Repo-Metadaten
-4. Schritt-Reihenfolge `start`, `training`, `recall`, `feynman`, `kompetenzliste_gate`
+4. Schritt-Reihenfolge `start`, `training`, `recall`, `feynman`, `test`
 5. stabiler Tie-Breaker nach `check_id` und `activity_key`
 
 Für offene `start`-Aktivitäten ohne Check gilt die globale Lernbereichsreihenfolge als fachliche Reihenfolge.
@@ -320,14 +320,14 @@ In den Kandidatenpool kommen nur Schritte mit:
 2. geplante fällige Schritte (`now >= effective_planned_from`)
 3. nur verfügbare Schritte (`available_from <= now < effective_planned_from`)
 
-Diese Priorität gilt für alle offenen Schrittarten, also auch für offene `recall`, `feynman` und `kompetenzliste_gate`, nicht nur für `training`.
+Diese Priorität gilt für alle offenen Schrittarten, also auch für offene `recall`, `feynman` und `test`, nicht nur für `training`.
 
 Für die UI soll diese Server-Klasse direkt transportiert werden (`overdue`, `due`, `available`). Das Badge im Feed darf nicht nur aus Browser-Zeitstempeln rekonstruiert werden, weil sonst kleine Uhrabweichungen zwischen Client und Server frisch geplante Schritte fälschlich als nur `available` labeln können.
 
 Innerhalb derselben Prioritätsklasse entscheidet:
 
 1. zuerst die Aktivitätsklasse: `start` vor checkbezogenen Schritten vor session-scoped `flashcards`
-2. innerhalb der Check-Kette die tiefere Stufe: `kompetenzliste_gate` vor `feynman` vor `recall` vor `training`
+2. innerhalb der Check-Kette die tiefere Stufe: `test` vor `feynman` vor `recall` vor `training`
 3. Klasse 1 nach `overdue_from` aufsteigend, Klasse 2 nach `effective_planned_from` aufsteigend, Klasse 3 nach `available_from` aufsteigend
 4. globale Lernbereichs- und Check-Reihenfolge aus Repo-Metadaten
 5. stabiler Tie-Breaker nach `check_id` und `activity_key`

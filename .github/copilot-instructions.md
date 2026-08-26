@@ -37,6 +37,7 @@ Jeder Lernbereich enthält mindestens folgende Dateien:
 `training.md`  
 `recall.md`  
 `feynman.md`  
+`test.md`  
 `skript.md`  
 `flashcards.md`
 

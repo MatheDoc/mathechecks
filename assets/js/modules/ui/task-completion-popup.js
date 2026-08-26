@@ -140,7 +140,9 @@ export function showTaskCompletionPopup({
     ? "Aufgabe abgeschlossen"
     : mode === "recall"
       ? "Recall abgeschlossen"
-      : "Durchgang abgeschlossen";
+      : mode === "test"
+        ? "Test abgeschlossen"
+        : "Durchgang abgeschlossen";
   popup.appendChild(heading);
 
   if (showQuote && !quoteUnchanged) {
@@ -149,7 +151,9 @@ export function showTaskCompletionPopup({
         ? "Deine Recall-Quote für diesen Check"
         : mode === "feynman"
           ? "Deine Feynman-Quote für diesen Check"
-          : "Deine Quote für diesen Check",
+          : mode === "test"
+            ? "Deine Test-Quote für diesen Check"
+            : "Deine Quote für diesen Check",
     }));
   }
 

@@ -103,6 +103,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
+| Test | `test.md` | `aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json` | 10 Single-Choice-Fragen pro Check, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `_data/lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Karteninhalt aus Aufgaben; Feed-Spaced-Repetition serverseitig |
 
@@ -111,7 +112,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 Aktueller Stand mit v2-Grundlage:
 
 - `learning_sessions`: aktive Lernkonfiguration eines Benutzers plus Planungsparameter wie Zieltermin, Zeitzone, Freigabelimit und Parallelitätsgrenze.
-- `session_check_state`: checkbezogene Feed-Pipeline (`training_1`, `recall`, `training_2`, `feynman`, `training_3`, `kompetenzliste_gate`) inklusive materialisiertem letztem erfolgreichem Abschlusszeitpunkt.
+- `session_check_state`: checkbezogene Feed-Pipeline (`training`, `recall`, `feynman`, `test`) inklusive materialisiertem letztem erfolgreichem Abschlusszeitpunkt.
 - `session_activity_state`: lernbereichsweite Feed-Projektion für `start` und `flashcards` innerhalb einer Core-Session.
 - `user_retention_scopes`: nutzerweite Retention-Scope-Projektion für Flashcards nach Ende einer Core-Session.
 - `user_feed_activity_counters`: user-scoped Zähler abgeschlossener Feed-Aktivitäten; Referenzgröße für serverseitige Retention-Abstände.

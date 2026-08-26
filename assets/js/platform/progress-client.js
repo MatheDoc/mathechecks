@@ -111,7 +111,7 @@ export async function recordUserActivity({
   }
 }
 
-export async function completeKompetenzlisteGate({ checkId, activityKey }) {
+export async function completeTestStep({ checkId, activityKey }) {
   const normalizedCheckId = normalizeText(checkId);
   const normalizedActivityKey = normalizeText(activityKey);
 
@@ -123,19 +123,19 @@ export async function completeKompetenzlisteGate({ checkId, activityKey }) {
     const auth = await getAuthenticatedSupabaseClient();
     if (!auth.ok) return auth;
 
-    const { data, error } = await auth.supabase.rpc("complete_kompetenzliste_gate", {
+    const { data, error } = await auth.supabase.rpc("complete_test_step", {
       p_check_id: normalizedCheckId,
       p_activity_key: normalizedActivityKey,
     });
 
     if (error) {
-      console.warn("MatheChecks: Kompetenzlisten-Schritt konnte nicht abgeschlossen werden.", error);
+      console.warn("MatheChecks: Test-Schritt konnte nicht abgeschlossen werden.", error);
       return { ok: false, error };
     }
 
     return { ok: true, data };
   } catch (error) {
-    console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen des Kompetenzlisten-Schritts.", error);
+    console.warn("MatheChecks: Unerwarteter Fehler beim Abschließen des Test-Schritts.", error);
     return { ok: false, error };
   }
 }
@@ -555,6 +555,25 @@ export async function getUserFeynmanProficiency() {
   }
 }
 
+export async function getUserTestProficiency() {
+  try {
+    const auth = await getAuthenticatedSupabaseClient();
+    if (!auth.ok) return auth;
+
+    const { data, error } = await auth.supabase.rpc("get_user_test_proficiency");
+
+    if (error) {
+      console.warn("MatheChecks: Test-Quoten konnten nicht geladen werden.", error);
+      return { ok: false, error };
+    }
+
+    return { ok: true, data: data && typeof data === "object" ? data : null };
+  } catch (error) {
+    console.warn("MatheChecks: Unerwarteter Fehler beim Laden der Test-Quoten.", error);
+    return { ok: false, error };
+  }
+}
+
 function extractProficiencyRate(proficiency, checkId) {
   const normalizedCheckId = normalizeText(checkId);
   if (!proficiency || typeof proficiency !== "object" || !normalizedCheckId) return null;
@@ -574,5 +593,9 @@ export function extractRecallProficiencyRate(proficiency, checkId) {
 }
 
 export function extractFeynmanProficiencyRate(proficiency, checkId) {
+  return extractProficiencyRate(proficiency, checkId);
+}
+
+export function extractTestProficiencyRate(proficiency, checkId) {
   return extractProficiencyRate(proficiency, checkId);
 }

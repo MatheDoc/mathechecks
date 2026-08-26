@@ -1,7 +1,7 @@
 # Test-Aktivität
 
 Kurze Single-Choice-Fragen pro Check für den schnellen Kompetenz-Abruf.
-Primäres Ausgabeformat: Moodle-XML. Perspektivisch auch als Modul auf der Plattform denkbar.
+Ausgabeformate: Test-Modul der Plattform (letztes Glied der Check-Kette) und Moodle-XML.
 
 ## Ablage
 

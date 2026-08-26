@@ -96,7 +96,7 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 
 ### Abschluss-Controls
 
-- **Feed-Kontext:** Das pulsierende Feed-Icon mit Entscheidungsdialog (`jetzt wiederholen`, `später`, `abschließen`) bleibt unverändert für `training`, `recall`, `feynman`, `kompetenzliste_gate`, `start` und `flashcards`. Es ist das visuelle Signal „du bist in einer Feed-Aktivität" und steuert den Cursor.
+- **Feed-Kontext:** Das pulsierende Feed-Icon mit Entscheidungsdialog (`jetzt wiederholen`, `später`, `abschließen`) bleibt unverändert für `training`, `recall`, `feynman`, `test`, `start` und `flashcards`. Es ist das visuelle Signal „du bist in einer Feed-Aktivität" und steuert den Cursor.
 - **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen geprüft; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
 
 ### Abschluss-Popup

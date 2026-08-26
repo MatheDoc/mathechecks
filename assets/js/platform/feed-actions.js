@@ -1,7 +1,7 @@
 import {
   completeStartActivity,
   completeCurrentTrainingStep,
-  completeKompetenzlisteGate,
+  completeTestStep,
   getOrCreateFlashcardRound,
   getOrCreateRetentionFlashcardRound,
   keepCurrentFeedActivity,
@@ -11,7 +11,7 @@ import {
   recordRetentionFlashcardReview,
   resolveFlashcardRound,
   resolveRetentionFlashcardRound,
-} from "./progress-client.js?v=20260602-start-complete-fix";
+} from "./progress-client.js?v=20260826-test-module";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 
@@ -79,10 +79,10 @@ export async function recordCheckFeedDecision({
   );
 }
 
-export async function completeKompetenzlisteFeedStep({ checkId, activityKey }) {
+export async function completeTestFeedStep({ checkId, activityKey }) {
   return ensureFeedActionOk(
-    await completeKompetenzlisteGate({ checkId, activityKey }),
-    "kompetenzliste-gate-not-saved",
+    await completeTestStep({ checkId, activityKey }),
+    "test-step-not-saved",
     { emitsFeedUpdate: true },
   );
 }

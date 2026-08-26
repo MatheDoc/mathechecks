@@ -1,11 +1,11 @@
 import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
-import { getUserRecallProficiency, getUserFeynmanProficiency } from "../platform/progress-client.js?v=20260719-feynman-graph-fix";
+import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20260826-test-module";
 import {
   FEED_STEP_ORDER,
   buildFeedContentMetaFromLernbereiche as buildSharedFeedContentMeta,
   loadFeedProjection,
   rememberManualRetentionPriority,
-} from "../platform/feed-projection.js?v=20260606-retention-status";
+} from "../platform/feed-projection.js?v=20260826-test-module";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
@@ -1536,7 +1536,7 @@ function applyActivityOverview(context, overview = null) {
   const trainingNode = context.elements.activityTraining;
   const recallNode = context.elements.activityRecall;
   const feynmanNode = context.elements.activityFeynman;
-  const flashcardsNode = context.elements.activityFlashcards;
+  const testNode = context.elements.activityTest;
 
   const totalCount = Math.max(0, Number(overview?.totalCount) || 0);
   const activeDays = Math.max(0, Number(overview?.activeDays) || 0);
@@ -1545,7 +1545,7 @@ function applyActivityOverview(context, overview = null) {
 
   if (summaryNode) {
     summaryNode.textContent = totalCount > 0
-      ? "Gezählt werden abgeschlossene Trainingsaufgaben, Recall-, Feynman- und Flashcard-Durchgänge über Feed und freien Zugriff."
+      ? "Gezählt werden abgeschlossene Trainingsaufgaben, Recall-, Feynman-, Test- und Flashcard-Durchgänge über Feed und freien Zugriff."
       : ACTIVITY_SUMMARY_EMPTY;
   }
   if (totalNode) totalNode.textContent = formatActivityCount(totalCount);
@@ -1559,7 +1559,8 @@ function applyActivityOverview(context, overview = null) {
   if (trainingNode) trainingNode.textContent = formatActivityCount(getActivityTypeCount(overview, "training"));
   if (recallNode) recallNode.textContent = formatActivityCount(getActivityTypeCount(overview, "recall"));
   if (feynmanNode) feynmanNode.textContent = formatActivityCount(getActivityTypeCount(overview, "feynman"));
-  if (flashcardsNode) flashcardsNode.textContent = formatActivityCount(getActivityTypeCount(overview, "flashcards"));
+  if (feynmanNode) feynmanNode.textContent = formatActivityCount(getActivityTypeCount(overview, "feynman"));
+  if (testNode) testNode.textContent = formatActivityCount(getActivityTypeCount(overview, "test"));
 
   applyProficiencyWorklist(context, overview);
   setStatusNode(context.elements.activityStatusNode, "");
@@ -1586,7 +1587,8 @@ function updateWorklistQuotes(context) {
   const trainingSuccessNode = context.elements.worklistTrainingSuccess;
   const recallSuccessNode = context.elements.worklistRecallSuccess;
   const feynmanSuccessNode = context.elements.worklistFeynmanSuccess;
-  if (!trainingSuccessNode && !recallSuccessNode && !feynmanSuccessNode) return;
+  const testSuccessNode = context.elements.worklistTestSuccess;
+  if (!trainingSuccessNode && !recallSuccessNode && !feynmanSuccessNode && !testSuccessNode) return;
 
   const overview = context.activityOverview;
   const filter = context.worklistFilter;
@@ -1601,15 +1603,18 @@ function updateWorklistQuotes(context) {
   let trainingRate;
   let recallRate;
   let feynmanRate;
+  let testRate;
 
   if (isScoped) {
     trainingRate = computeScopedActivityRate(overview?.proficiency?.checks, selectedCheckIdSet);
     recallRate = computeScopedActivityRate(overview?.recallProficiency?.checks, selectedCheckIdSet);
     feynmanRate = computeScopedActivityRate(overview?.feynmanProficiency?.checks, selectedCheckIdSet);
+    testRate = computeScopedActivityRate(overview?.testProficiency?.checks, selectedCheckIdSet);
   } else {
     trainingRate = computeLifetimeActivityRate(overview?.trainingSuccess);
     recallRate = computeLifetimeActivityRate(overview?.recallProficiency?.overall);
     feynmanRate = computeLifetimeActivityRate(overview?.feynmanProficiency?.overall);
+    testRate = computeLifetimeActivityRate(overview?.testProficiency?.overall);
   }
 
   const scopeLabel = filter === "session"
@@ -1634,6 +1639,12 @@ function updateWorklistQuotes(context) {
     feynmanSuccessNode.title = Number.isFinite(feynmanRate)
       ? `Feynman-Quote ${scopeLabel}, zusammengesetzt aus den jüngsten Durchgängen je Check.`
       : "Die Quote erscheint, sobald Feynman-Durchgänge erfasst wurden.";
+  }
+  if (testSuccessNode) {
+    testSuccessNode.textContent = formatActivityPercent(Number.isFinite(testRate) ? Math.round(testRate) : NaN);
+    testSuccessNode.title = Number.isFinite(testRate)
+      ? `Test-Quote ${scopeLabel}, zusammengesetzt aus den jüngsten Durchgängen je Check.`
+      : "Die Quote erscheint, sobald Test-Durchgänge erfasst wurden.";
   }
 }
 
@@ -1660,15 +1671,22 @@ function buildCheckFeynmanHref(checkMeta) {
   return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/feynman.html#fy-check-${toDomIdFragment(checkMeta.checkId) || "item"}`;
 }
 
+function buildCheckTestHref(checkMeta) {
+  if (!checkMeta?.gebietKey || !checkMeta?.lernbereichId || !checkMeta?.checkId) return "";
+  return `/lernbereiche/${encodeURIComponent(checkMeta.gebietKey)}/${encodeURIComponent(checkMeta.lernbereichId)}/test.html#test-check-${toDomIdFragment(checkMeta.checkId) || "item"}`;
+}
+
 function buildProficiencyWorklistEntries(overview = null) {
   const trainingChecks = Array.isArray(overview?.proficiency?.checks) ? overview.proficiency.checks : [];
   const recallChecks = Array.isArray(overview?.recallProficiency?.checks) ? overview.recallProficiency.checks : [];
   const feynmanChecks = Array.isArray(overview?.feynmanProficiency?.checks) ? overview.feynmanProficiency.checks : [];
+  const testChecks = Array.isArray(overview?.testProficiency?.checks) ? overview.testProficiency.checks : [];
 
   return [
     ...trainingChecks.map((check) => ({ ...check, activityType: "training", activityLabel: "Training" })),
     ...recallChecks.map((check) => ({ ...check, activityType: "recall", activityLabel: "Recall" })),
     ...feynmanChecks.map((check) => ({ ...check, activityType: "feynman", activityLabel: "Feynman" })),
+    ...testChecks.map((check) => ({ ...check, activityType: "test", activityLabel: "Test" })),
   ].sort((left, right) => {
     const leftRate = Number(left?.rate);
     const rightRate = Number(right?.rate);
@@ -1745,7 +1763,7 @@ function applyProficiencyWorklist(context, overview = null) {
 
   if (!allChecks.length) {
     if (summaryNode) {
-      summaryNode.textContent = "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
+      summaryNode.textContent = "Sobald du Training, Recall, Feynman oder Test abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
     }
     return;
   }
@@ -1763,10 +1781,10 @@ function applyProficiencyWorklist(context, overview = null) {
   if (!checks.length) {
     if (summaryNode) {
       summaryNode.textContent = filter === "session"
-        ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deiner aktiven Session."
+        ? "Noch keine Training-, Recall-, Feynman- oder Test-Quoten aus deiner aktiven Session."
         : filter === "retention"
-          ? "Noch keine Training-, Recall- oder Feynman-Quoten aus deinen Auffrischungs-Checks."
-          : "Sobald du Training, Recall oder Feynman abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
+          ? "Noch keine Training-, Recall-, Feynman- oder Test-Quoten aus deinen Auffrischungs-Checks."
+          : "Sobald du Training, Recall, Feynman oder Test abschließt, erscheinen hier deine nach Quote sortierten Checks – schwächste zuerst.";
     }
     return;
   }
@@ -1825,7 +1843,9 @@ function applyProficiencyWorklist(context, overview = null) {
       ? buildCheckRecallHref(meta ? { ...meta, checkId } : null)
       : activityType === "feynman"
         ? buildCheckFeynmanHref(meta ? { ...meta, checkId } : null)
-        : buildCheckTrainingHref(meta ? { ...meta, checkId } : null);
+        : activityType === "test"
+          ? buildCheckTestHref(meta ? { ...meta, checkId } : null)
+          : buildCheckTrainingHref(meta ? { ...meta, checkId } : null);
 
     const label = meta?.shortTitle || meta?.label || `Check ${checkId}`;
 
@@ -2007,10 +2027,11 @@ async function refreshActivityOverview(context) {
   }
 
   try {
-    const [{ data, error }, recallProficiency, feynmanProficiency] = await Promise.all([
+    const [{ data, error }, recallProficiency, feynmanProficiency, testProficiency] = await Promise.all([
       context.supabase.rpc("get_user_activity_overview"),
       getUserRecallProficiency(),
       getUserFeynmanProficiency(),
+      getUserTestProficiency(),
     ]);
     if (error) throw error;
 
@@ -2020,6 +2041,9 @@ async function refreshActivityOverview(context) {
     }
     if (feynmanProficiency.ok && feynmanProficiency.data) {
       overview.feynmanProficiency = feynmanProficiency.data;
+    }
+    if (testProficiency.ok && testProficiency.data) {
+      overview.testProficiency = testProficiency.data;
     }
 
     context.activityOverview = overview;
@@ -2064,7 +2088,7 @@ function getRemainingDidacticGapCount(row) {
       return 2;
     case "feynman":
       return 1;
-    case "kompetenzliste_gate":
+    case "test":
       return 0;
     case "training":
     default:
@@ -4139,7 +4163,7 @@ function createContext(root, lernbereiche) {
     activityTraining: root.querySelector("[data-dashboard-activity-training]"),
     activityRecall: root.querySelector("[data-dashboard-activity-recall]"),
     activityFeynman: root.querySelector("[data-dashboard-activity-feynman]"),
-    activityFlashcards: root.querySelector("[data-dashboard-activity-flashcards]"),
+    activityTest: root.querySelector("[data-dashboard-activity-test]"),
     activityStatusNode: document.getElementById("activityStatsStatus"),
     worklistPanel: root.querySelector("[data-dashboard-worklist-panel]"),
     worklistSummary: root.querySelector("[data-dashboard-worklist-summary]"),
@@ -4148,6 +4172,7 @@ function createContext(root, lernbereiche) {
     worklistTrainingSuccess: root.querySelector("[data-dashboard-worklist-training-success]"),
     worklistRecallSuccess: root.querySelector("[data-dashboard-worklist-recall-success]"),
     worklistFeynmanSuccess: root.querySelector("[data-dashboard-worklist-feynman-success]"),
+    worklistTestSuccess: root.querySelector("[data-dashboard-worklist-test-success]"),
     worklistStatusNode: document.getElementById("worklistStatus"),
     activityMapSummary: root.querySelector("[data-dashboard-activity-map-summary]"),
     activityMapBoard: root.querySelector("[data-dashboard-activity-map-board]"),

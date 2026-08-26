@@ -15,9 +15,9 @@ import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-c
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260816-mobile-speech-restart";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260608-quote-perq";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 import {
     attachTrainingFeedShell,
