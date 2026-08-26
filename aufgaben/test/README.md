@@ -1,4 +1,4 @@
-# Blitz-Checks
+# Test-Aktivität
 
 Kurze Single-Choice-Fragen pro Check für den schnellen Kompetenz-Abruf.
 Primäres Ausgabeformat: Moodle-XML. Perspektivisch auch als Modul auf der Plattform denkbar.
@@ -6,7 +6,7 @@ Primäres Ausgabeformat: Moodle-XML. Perspektivisch auch als Modul auf der Platt
 ## Ablage
 
 ```
-aufgaben/blitz/<gebiet>/<lernbereich>/<check_id>.json
+aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json
 ```
 
 - Eine JSON-Datei pro Check, Dateiname = `check_id` (z. B. `stochastik__binomialverteilung__01.json`).
@@ -42,7 +42,7 @@ aufgaben/blitz/<gebiet>/<lernbereich>/<check_id>.json
 - Keine künstliche Komplexität: keine unnötigen Informationen, komplizierten Zahlen oder Zusatzschritte. Im Mittelpunkt steht der schnelle Abruf, nicht die Rechenlast.
 - **Distraktoren:** möglichst konkrete, plausible typische Fehler oder Fehlvorstellungen (z. B. Vorzeichenfehler, vertauschte Formelteile), idealerweise aus der korrekten Lösung durch genau diesen Fehler entstehend. Allgemeine Fehlerantworten sind zulässig.
 - Umfang: 10 verschiedene atomare Fragen pro Check; punktuell mehrere Varianten einer Frage, wo Auswendiglernen der Antwort droht.
-- **Keine Grafiken:** Blitz-Fragen kommen ohne Abbildungen aus. Didaktisch oft wünschenswert, aber im Moodle-XML-Export nur mit Workarounds (Base64/Dateianhänge) machbar und im 10–20-s-Format kaum sinnvoll erfassbar.
+- **Keine Grafiken:** Test-Fragen kommen ohne Abbildungen aus. Didaktisch oft wünschenswert, aber im Moodle-XML-Export nur mit Workarounds (Base64/Dateianhänge) machbar und im 10–20-s-Format kaum sinnvoll erfassbar.
 
 ## Fragenarten
 
@@ -61,4 +61,4 @@ Die Liste ist offen – zulässig ist jede Frageart, die die Regeln oben erfüll
 
 ## Moodle-Export
 
-Konverter (geplant): `aufgaben/tools/blitz_to_moodle.py` – liest die JSON-Dateien und schreibt pro Check eine Moodle-XML (Fragetyp `multichoice`, `single=true`, `shuffleanswers=true`, Fragenname `<check_id>-NN`). Vorlage für die XML-Parameter: `beispiel moodle xml.xml` im Repo-Root.
+Konverter (geplant): `aufgaben/tools/test_to_moodle.py` – liest die JSON-Dateien und schreibt pro Check eine Moodle-XML (Fragetyp `multichoice`, `single=true`, `shuffleanswers=true`, Fragenname `<check_id>-NN`). Vorlage für die XML-Parameter: `beispiel moodle xml.xml` im Repo-Root.
