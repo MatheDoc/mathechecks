@@ -215,7 +215,7 @@ function renderCard(check) {
             <p class="module-flow-competence">${escapeHtml(ichKann.replace(/\.$/, ""))}</p>
           </div>
           <div data-test-stage="idle">
-            <p class="test-intro">10 Fragen · eine richtige Antwort je Frage · ohne Hilfsmittel. Der Balken zeigt dir ${TEST_QUESTION_SECONDS} Sekunden zur Orientierung.</p>
+            <p class="test-intro">10 Fragen · eine richtige Antwort je Frage</p>
             <div class="module-flow-action-row">
               <button class="module-action-button" type="button" data-test-start>Start</button>
             </div>
