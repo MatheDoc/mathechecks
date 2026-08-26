@@ -43,11 +43,11 @@ Die Inhalte gliedern sich in [Lernbereiche]({{ '/material.html' | relative_url }
     </article>
     <article class="konzept-card" style="--kc-color: var(--mt-test, #38bdf8)">
         <h3>Test</h3>
-        <p>Single-Choice-Fragen zeigen, ob die Kompetenz sitzt. Typische Fehler werden direkt aufgezeigt.</p>
+        <p>Single-Choice-Fragen prüfen, ob die Kompetenz sitzt. Falsche Antworten spiegeln typische Fehlvorstellungen wider.</p>
     </article>
 </div>
 
-Im Training werden die Eingaben mit hinterlegten Lösungen unter Berücksichtigung einer geeigneten Fehlertoleranz verglichen. Bei Recall und Feynman bewertet eine KI die Antworten. Die Bewertung stützt sich dabei nicht auf allgemeines Modellwissen. Stattdessen erhält die KI zu jedem Check ein gezielt vorbereitetes Kontextpaket aus der Kompetenz, den zentralen Kernpunkten, einem durchgerechneten Beispiel und der konkreten Aufgabe samt Lösungen. So sind die Rückmeldungen fachlich und pädagogisch fundiert.
+Im Training und Test werden die Eingaben mit hinterlegten Lösungen verglichen. Bei Recall und Feynman bewertet eine KI die Antworten. Die Bewertung stützt sich dabei nicht auf allgemeines Modellwissen. Stattdessen erhält die KI zu jedem Check ein gezielt vorbereitetes Kontextpaket aus der Kompetenz, den zentralen Kernpunkten, einem durchgerechneten Beispiel und der konkreten Aufgabe samt Lösungen. So sind die Rückmeldungen fachlich und pädagogisch fundiert.
 
 Vier weitere Aktivitäten ergänzen die Checks in jedem Lernbereich:
 
