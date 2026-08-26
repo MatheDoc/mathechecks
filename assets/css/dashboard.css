@@ -295,6 +295,7 @@ body.page-dashboard .dashboard-module-badge--kompetenzliste,
 body.page-dashboard .dashboard-module-badge--training,
 body.page-dashboard .dashboard-module-badge--recall,
 body.page-dashboard .dashboard-module-badge--feynman,
+body.page-dashboard .dashboard-module-badge--test,
 body.page-dashboard .dashboard-module-badge--flashcards {
   --dashboard-module-color: var(--text-dim);
   --dashboard-module-border: var(--border);
@@ -326,6 +327,11 @@ body.page-dashboard .dashboard-module-badge--recall {
 body.page-dashboard .dashboard-module-badge--feynman {
   --dashboard-module-color: var(--mt-feynman, #31cda8);
   --dashboard-module-border: color-mix(in srgb, var(--mt-feynman, #31cda8) 32%, var(--border));
+}
+
+body.page-dashboard .dashboard-module-badge--test {
+  --dashboard-module-color: var(--mt-test, #38bdf8);
+  --dashboard-module-border: color-mix(in srgb, var(--mt-test, #38bdf8) 32%, var(--border));
 }
 
 body.page-dashboard .dashboard-module-badge--flashcards {

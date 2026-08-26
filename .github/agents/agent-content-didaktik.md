@@ -14,7 +14,7 @@ Du entwickelst und überarbeitest mathematische Lerninhalte für die Sekundarstu
 - Einstiege, Skripte, Lerntexte, Beispiele, Flashcards, Aufgabenformulierungen
 - Terminologie, Symbolik und didaktische Progression
 - Anschlussfähigkeit an vorhandene Übungen und interaktive Elemente
-- Konsistenz der Check-Kette: Kompetenzliste → Training → Recall → Feynman → Skript → Flashcards über alle Lernbereiche
+- Konsistenz der Check-Kette: Kompetenzliste → Training → Recall → Feynman → Test → Skript → Flashcards über alle Lernbereiche
 - Prüfung auf sprachliche Richtigkeit
 - LLM-freundliche Skriptfassungen, die von LLM-basierten Systemen als klarer Kontext genutzt werden können
 - Widget (interaktive Slider-Visualisierungen, siehe `.github/widgets.md`)-Empfehlungen, wenn Interaktivität den Lernprozess fördert (technische Umsetzung delegiert an Frontend-Agent)

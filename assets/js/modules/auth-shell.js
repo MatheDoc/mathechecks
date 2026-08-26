@@ -1,4 +1,4 @@
-import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260606-feed-badge-server-timing";
+import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } from "../platform/feed-projection.js?v=20260826-test-module";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";

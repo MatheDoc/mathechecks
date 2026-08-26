@@ -1,5 +1,5 @@
-import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { completeStartFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
+import { attachFeedCardControls, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 
 const START_FEED_STEP_KEY = "start";
 

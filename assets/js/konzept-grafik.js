@@ -22,7 +22,7 @@
         { type: 'training', short: 'T' },
         { type: 'recall', short: 'R' },
         { type: 'feynman', short: 'F' },
-        { type: 'kompetenz', short: 'K' },
+        { type: 'test', short: 'Te' },
     ];
     const LABEL_W = 96;
     const COL_W = 150;
@@ -60,6 +60,7 @@
         { check: 2, type: 'training', label: 'Training · Check 2', initial: 45 },
         { check: 2, type: 'recall', label: 'Recall · Check 2', initial: 68 },
         { check: 3, type: 'feynman', label: 'Feynman · Check 3', initial: 30 },
+        { check: 3, type: 'test', label: 'Test · Check 3', initial: 60 },
     ].map(ex => ({ ...ex, node: findNode(ex.check, ex.type), value: 0, filled: false }));
 
     // ── Achsenbeschriftungen ──

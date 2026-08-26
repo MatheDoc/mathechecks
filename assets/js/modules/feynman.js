@@ -1,7 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
-import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate } from "../platform/progress-client.js?v=20260719-feynman-graph-fix";
+import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
+import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
@@ -9,7 +9,7 @@ import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
-import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260712-feed-focus";
+import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";

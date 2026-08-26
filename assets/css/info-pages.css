@@ -147,9 +147,9 @@ body.page-legal.page-static-narrow .shell-main h2 {
   stroke: var(--mt-feynman, #31cda8);
 }
 
-.kg-node.active.type-kompetenz {
-  fill: var(--mt-kompetenzliste, #378ea3);
-  stroke: var(--mt-kompetenzliste, #378ea3);
+.kg-node.active.type-test {
+  fill: var(--mt-test, #38bdf8);
+  stroke: var(--mt-test, #38bdf8);
 }
 
 .kg-node-label {
@@ -199,6 +199,10 @@ body.page-legal.page-static-narrow .shell-main h2 {
 
 .kg-ring-fg.type-feynman {
   stroke: var(--mt-feynman, #31cda8);
+}
+
+.kg-ring-fg.type-test {
+  stroke: var(--mt-test, #38bdf8);
 }
 
 .kg-ring-pct {
@@ -256,8 +260,8 @@ body.page-legal.page-static-narrow .shell-main h2 {
   background: var(--mt-feynman, #31cda8);
 }
 
-.konzept-legend__dot--kompetenz {
-  background: var(--mt-kompetenzliste, #378ea3);
+.konzept-legend__dot--test {
+  background: var(--mt-test, #38bdf8);
 }
 
 body.page-legal .shell-main p.konzept-note {

@@ -71,7 +71,7 @@ Für Produktion sollte ein eigenes SMTP-Setup verwendet werden. Der eingebaute M
 - `user_activity_events` ergänzt einen separaten user-scoped Append-only Log für accountgebundene Aktivitätsstatistik außerhalb der Feed-Projektion.
 - `record_user_activity(...)` schreibt kumulative Ereignisse für `training`, `recall`, `feynman` und `flashcards`; `get_user_activity_overview()` liefert daraus das Dashboard-Read-Model für Gesamtzahlen und 7-Tage-Überblick.
 - `get_user_check_proficiency()` leitet die user-scoped Quote je Check als recency-gewichtetes Read-Model aus den `training`-Ereignissen ab (Parameter `proficiency.*` in `system_settings`); `get_user_activity_overview().trainingSuccess` und `.proficiency` beziehen ihre Erfolgsquote daraus, das Dashboard rendert die nach Quote sortierte Trainingsfokus-Liste.
-- `complete_kompetenzliste_gate(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
+- `complete_test_step(...)` schließt den letzten checkbezogenen Kompetenzlisten-Schritt ab und beendet die aktive Core-Session automatisch, sobald kein Check mehr offen ist.
 - E-Mail-/Passwort-Anmeldung, Registrierung, OAuth-Anmeldung, Logout, Passwortänderung und Kontolöschung laufen aktuell über Supabase Auth, RPCs und `konto.html`.
 - `delete_current_user_account(...)` löscht nach expliziter Bestätigung den aktuellen Auth-User; abhängige Plattformdaten werden über bestehende `on delete cascade`-Beziehungen entfernt.
 - Der Recovery-Link führt derzeit zurück auf `konto.html`, wo der Nutzer ein neues Passwort setzt.
@@ -356,7 +356,7 @@ Aktuelle Werte für `current_step_key`:
 - `training`
 - `recall`
 - `feynman`
-- `kompetenzliste_gate`
+- `test`
 - `check_completed`
 
 Aktuelle Werte für `current_step_status`:
@@ -409,7 +409,7 @@ Aktuelle Werte:
 Regeln:
 
 - `start` wird pro Lernbereich unmittelbar beim Speichern oder Erweitern einer aktiven Session fällig und genau einmal pro Session abgeschlossen.
-- Flashcards werden fällig, wenn alle ausgewählten Checks eines Lernbereichs mindestens `kompetenzliste_gate` erreicht haben.
+- Flashcards werden fällig, wenn alle ausgewählten Checks eines Lernbereichs mindestens `test` erreicht haben.
 - Ausgeschlossene Checks werden beim Fälligkeitscheck und beim Kartenpool ignoriert.
 - Das Frontend liest die Projektion, schreibt sie aber nicht direkt.
 
@@ -514,7 +514,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 
 ### Core-Session abschließen
 
-1. Heute markiert primär das System die aktive Core-Session als `completed`, sobald der letzte offene Check über `complete_kompetenzliste_gate(...)` nach `check_completed` übergeht.
+1. Heute markiert primär das System die aktive Core-Session als `completed`, sobald der letzte offene Check über `complete_test_step(...)` nach `check_completed` übergeht.
 2. Die Session endet fachlich; `ended_at` wird gesetzt.
 3. Aus vollständig abgeschlossenen Lernbereichen werden additive `user_retention_scopes` für Flashcards abgeleitet, sofort fällig gemacht und mit einem Queue-Anker für den sichtbaren Feed-Kopf versehen.
 4. Bestehende session-scoped Flashcard-Kartenstände werden in `retention_flashcard_card_state` user-scoped übernommen.
@@ -528,7 +528,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 - `complete_start_activity(p_lernbereich_slug text, p_activity_key text)`
 - `complete_current_training_step(p_check_id text, p_activity_key text)`
 - `record_check_module_attempt(p_lernbereich_slug text, p_check_id text, p_module_key text, p_outcome_key text, p_activity_key text)`
-- `complete_kompetenzliste_gate(p_check_id text, p_activity_key text)`
+- `complete_test_step(p_check_id text, p_activity_key text)`
 - `record_user_activity(p_activity_type text, p_lernbereich_slug text default null, p_check_id text default null, p_context_key text default null, p_details jsonb default '{}'::jsonb)`
 - `get_user_activity_overview()`
 - `get_user_check_proficiency()`
@@ -539,7 +539,7 @@ Diese Objekte können später ergänzt werden, ohne das Grundmodell zu brechen.
 ### Interne Hilfsfunktionen (kein direkter Nutzer-Grant)
 
 - `is_lernbereich_start_ready(p_session_id uuid, p_lernbereich_slug text)` — prüft, ob alle nicht ausgeschlossenen Checks kleinerer `sort_index`-Stufen desselben Gebiets bereits `check_completed` sind
-- `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — schaltet nach vollständigem Lernbereichsabschluss die nächste `start`-Stufe desselben Gebiets frei; wird intern von `complete_kompetenzliste_gate` aufgerufen
+- `unlock_successor_lernbereiche(p_session_id uuid, p_lernbereich_slug text)` — schaltet nach vollständigem Lernbereichsabschluss die nächste `start`-Stufe desselben Gebiets frei; wird intern von `complete_test_step` aufgerufen
 - `_compute_training_task_score(p_details jsonb, p_retry_penalty numeric)` — berechnet den Aufgaben-Score eines `training`-Ereignisses (Mittel der Frage-Scores `max(0, 1−(n−1)·p)`, eingeblendete Lösung = 0); Legacy-Ereignisse fallen auf das alte `correctCount/totalCount`-Schema zurück
 
 ## Minimale Leseflüsse

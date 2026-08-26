@@ -1,6 +1,7 @@
-import { initTrainingModule } from "./modules/training.js?v=20260819-stay-on-page";
-import { initRecallModule } from "./modules/recall.js?v=20260825-ai-gate-c";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260825-ai-gate-c";
+import { initTrainingModule } from "./modules/training.js?v=20260826-test-module";
+import { initRecallModule } from "./modules/recall.js?v=20260826-test-module";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260826-test-module";
+import { initTestModule } from "./modules/test.js?v=20260826-test-module";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260701-shared-client";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260816-mobile-speech-restart";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260721-recall-stepped-tips";
@@ -8,7 +9,7 @@ import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
 import { initWarmupModule } from "./modules/warmup.js";
-import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260712-feed-focus";
+import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 
@@ -607,6 +608,24 @@ async function bootstrap() {
     const root = document.getElementById("feynman-root");
     if (!root) return;
     await initFeynmanModule({
+      root,
+      lernbereich: context.lernbereich,
+      preferredCheckId: context.checkId,
+      activityContext: context.activityContext,
+    });
+    await typesetMath(root);
+    if (explicitTargetId) {
+      scrollToTargetId(explicitTargetId);
+    } else if (shouldRestoreRememberedScroll) {
+      restoreScrollPosition(pageKey);
+    }
+    return;
+  }
+
+  if (context.moduleKey === "test") {
+    const root = document.getElementById("test-root");
+    if (!root) return;
+    await initTestModule({
       root,
       lernbereich: context.lernbereich,
       preferredCheckId: context.checkId,

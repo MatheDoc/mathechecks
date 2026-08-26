@@ -1,9 +1,9 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
-import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260603-topbar-feed-badge";
-import { recordUserActivity } from "../platform/progress-client.js?v=20260604-activity-stats";
+import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260826-test-module";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260826-test-module";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
-import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260701-shared-client";
+import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
 
 const FLASHCARDS_FEED_STEP_KEY = "flashcards";

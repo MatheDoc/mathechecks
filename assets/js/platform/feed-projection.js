@@ -93,7 +93,7 @@ export const FEED_STEP_ORDER = {
   training: 1,
   recall: 2,
   feynman: 3,
-  kompetenzliste_gate: 4,
+  test: 4,
 };
 
 export const FEED_STEP_META = {
@@ -124,14 +124,14 @@ export const FEED_STEP_META = {
     badgeLabel: "Feynman",
     description: "Erkläre den Check jetzt in eigenen Worten.",
   },
-  kompetenzliste_gate: {
-    moduleKey: "kompetenzliste",
-    type: "kompetenzliste",
-    icon: "☑️",
-    iconStyle: "background:var(--mt-kompetenzliste-soft, var(--lavender-soft));color:var(--mt-kompetenzliste, var(--lavender));",
-    badgeType: "kompetenzliste",
-    badgeLabel: "Kompetenz",
-    description: "Öffne die Kompetenzliste, prüfe die markierte Kompetenz und bestätige sie erst dann als sicher.",
+  test: {
+    moduleKey: "test",
+    type: "test",
+    icon: "🎯",
+    iconStyle: "background:var(--mt-test-soft, var(--accent-soft));color:var(--mt-test, var(--accent));",
+    badgeType: "test",
+    badgeLabel: "Test",
+    description: "Beantworte die 10 Testfragen und schließe den Check damit ab.",
   },
 };
 
