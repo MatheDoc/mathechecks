@@ -16,6 +16,7 @@ CHECKS_PATH = REPO_ROOT / "_data" / "checks.json"
 TEST_ROOT = REPO_ROOT / "aufgaben" / "test"
 EXPECTED_QUESTION_COUNT = 10
 EXPECTED_ANSWER_COUNT = 4
+MAX_ANSWER_LENGTH = 90
 
 
 def validate_source(path: Path) -> list[str]:
@@ -44,6 +45,10 @@ def validate_source(path: Path) -> list[str]:
             problems.append(f"Frage {index}: 'antworten' hat nicht genau {EXPECTED_ANSWER_COUNT} Einträge")
         elif any(not isinstance(a, str) or not a.strip() for a in antworten):
             problems.append(f"Frage {index}: leere Antwort")
+        else:
+            for a in antworten:
+                if len(a) > MAX_ANSWER_LENGTH:
+                    problems.append(f"Frage {index}: Antwort mit {len(a)} Zeichen (max. {MAX_ANSWER_LENGTH})")
         fehler = frage.get("fehler")
         if fehler is not None:
             if not isinstance(fehler, list) or len(fehler) > EXPECTED_ANSWER_COUNT - 1:
