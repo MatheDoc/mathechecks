@@ -2753,10 +2753,9 @@ html.light .mod-start-content {
 .test-answer {
   display: flex;
   align-items: center;
-  gap: 10px;
   width: 100%;
-  min-height: 64px;
-  padding: 10px 12px;
+  height: 96px;
+  padding: 8px 12px;
   border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--mt-test, var(--accent))) 24%, var(--border));
   border-radius: 14px;
   background: rgba(255, 255, 255, .03);
@@ -2764,10 +2763,15 @@ html.light .mod-start-content {
   font-family: inherit;
   font-size: .88rem;
   line-height: 1.4;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   transition: background 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+
+.test-answer--long {
+  font-size: .76rem;
+  line-height: 1.35;
 }
 
 .test-answer:hover:not(:disabled) {
@@ -2786,23 +2790,23 @@ html.light .mod-start-content {
   cursor: default;
 }
 
-.test-answer__chip {
-  flex: 0 0 auto;
-  width: 26px;
-  height: 26px;
-  display: inline-flex;
+/* Innerer Scroll-Container: nicht umbrechbare Inhalte (Formeln, lange
+   Einzelwoerter) bleiben per horizontalem Scroll vollstaendig erreichbar. */
+.test-answer__scroll {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  font-size: .72rem;
-  font-weight: 700;
-  background: var(--dcc-accent-soft, var(--mt-test-soft, var(--accent-soft)));
-  color: var(--dcc-accent, var(--mt-test, var(--accent)));
+  justify-content: safe center;
+  width: 100%;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
 }
 
 .test-answer__text {
-  flex: 1 1 auto;
   min-width: 0;
+  text-align: center;
+  padding-inline: 2px;
 }
 
 .test-answer--correct {
@@ -2810,19 +2814,9 @@ html.light .mod-start-content {
   background: color-mix(in srgb, var(--green) 13%, transparent);
 }
 
-.test-answer--correct .test-answer__chip {
-  background: color-mix(in srgb, var(--green) 22%, transparent);
-  color: var(--green);
-}
-
 .test-answer--wrong {
   border-color: color-mix(in srgb, var(--rose) 55%, var(--border));
   background: color-mix(in srgb, var(--rose) 12%, transparent);
-}
-
-.test-answer--wrong .test-answer__chip {
-  background: color-mix(in srgb, var(--rose) 22%, transparent);
-  color: var(--rose);
 }
 
 .test-answer--muted {
@@ -2933,9 +2927,13 @@ html.light .mod-start-content {
 
 @media (max-width: 560px) {
   .test-answer {
-    min-height: 56px;
+    
     font-size: .84rem;
-    padding: 8px 10px;
+    padding: 6px 8px;
+  }
+
+  .test-answer--long {
+    font-size: .72rem;
   }
 
   .test-question {

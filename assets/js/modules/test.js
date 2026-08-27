@@ -185,7 +185,17 @@ function applyInitialReveal(root) {
   }, 85);
 }
 
-const ANSWER_CHIP_LABELS = ["A", "B", "C", "D"];
+const ANSWER_LONG_TEXT_THRESHOLD = 55;
+
+// Sichtbare Textlaenge ohne LaTeX-Markup (Befehle/Klammern zaehlen nicht als Anzeigebreite).
+function estimateVisibleLength(text) {
+  return String(text || "")
+    .replaceAll(/\\[()\[\]]/g, "")
+    .replaceAll(/\\[a-zA-Z]+/g, "")
+    .replaceAll(/[{}_^]/g, "")
+    .trim()
+    .length;
+}
 
 function renderCard(check) {
   const begriff = check.Schlagwort || `Check ${check.Nummer}`;
@@ -570,12 +580,15 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
 
       if (answersEl) {
         answersEl.innerHTML = entry.answerOrder
-          .map((originalIndex, position) => `
-            <button class="test-answer" type="button" data-test-answer data-original-index="${originalIndex}">
-              <span class="test-answer__chip">${ANSWER_CHIP_LABELS[position]}</span>
-              <span class="test-answer__text">${escapeHtml(entry.question.antworten[originalIndex])}</span>
+          .map((originalIndex) => {
+            const answerText = entry.question.antworten[originalIndex];
+            const longClass = estimateVisibleLength(answerText) > ANSWER_LONG_TEXT_THRESHOLD ? " test-answer--long" : "";
+            return `
+            <button class="test-answer${longClass}" type="button" data-test-answer data-original-index="${originalIndex}">
+              <span class="test-answer__scroll"><span class="test-answer__text">${escapeHtml(answerText)}</span></span>
             </button>
-          `)
+          `;
+          })
           .join("");
       }
 
