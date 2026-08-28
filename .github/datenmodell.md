@@ -103,7 +103,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
-| Test | `test.md` | `aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json` | 10 Single-Choice-Fragen pro Check, via JS |
+| Test | `test.md` | `test/<gebiet>/<lernbereich>/<check_id>.json` | 10 Single-Choice-Fragen pro Check, via JS |
 | Skript | `skript.md` | direkt in MD + Szenario aus `_data/lernbereiche.yml` | Fachinhalt, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Karteninhalt aus Aufgaben; Feed-Spaced-Repetition serverseitig |
 
