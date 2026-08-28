@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/zufallsgroessen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/zufallsgroessen/stochastik__zufallsgroessen__02</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel berechnet die Standardabweichung einer diskreten Zufallsgröße?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\sigma(X)=\sqrt{\sum (x_i-E(X))^2\cdot P(X=x_i)}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\sigma(X)=\sum x_i\cdot P(X=x_i)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Formel des Erwartungswerts gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\sigma(X)=\sum (x_i-E(X))\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Abweichungen weder quadriert noch gewichtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\sigma(X)=\sqrt{\sum P(X=x_i)}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Wahrscheinlichkeitssumme unter die Wurzel gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Kennzahl wird vor der Standardabweichung benötigt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Erwartungswert</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der größte mögliche Wert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Maximum statt Bezugspunkt der Abweichungen gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Anzahl der Werte ohne ihre Wahrscheinlichkeiten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeitsverteilung ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur die kleinste Wahrscheinlichkeit</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einzelne Wahrscheinlichkeit statt Erwartungswert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(E(X)=2\) und \(x_i=3\). Wie groß ist die Abweichung \(x_i-E(X)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wert und Erwartungswert addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsrichtung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wert und Erwartungswert multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_i-E(X)=-2\). Wie groß ist die quadrierte Abweichung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beim Quadrieren beibehalten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Abweichung nicht quadriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur das Vorzeichen entfernt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die quadrierte Abweichung ist \(4\), die zugehörige Wahrscheinlichkeit \(0{,}2\). Welchen Beitrag liefert dieser Wert zur Varianz?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}8\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadrierte Abweichung und Wahrscheinlichkeit addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Durch die Wahrscheinlichkeit geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3{,}8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was ergibt die Summe \(\sum (x_i-E(X))^2P(X=x_i)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Varianz \(\sigma^2(X)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Erwartungswert \(E(X)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratische Abweichungssumme mit Erwartungswert verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Standardabweichung \(\sigma(X)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erforderliches Wurzelziehen für die Standardabweichung ausgelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Wahrscheinlichkeit \(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gewichtete Abweichungssumme mit Wahrscheinlichkeitssumme verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie erhält man aus der Varianz die Standardabweichung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Durch Wurzelziehen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Durch Quadrieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umkehrung von Varianz und Standardabweichung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Durch Verdoppeln</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unbegründeten Faktor verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Durch Subtraktion vom Erwartungswert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Varianz fälschlich mit Erwartungswert verrechnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Varianz beträgt \(0{,}49\). Wie groß ist die Standardabweichung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}2401\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Varianz quadriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}49\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Varianz unverändert als Standardabweichung übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1{,}49\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Varianz zu 1 addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Zufallsgröße nimmt sicher den Wert \(5\) an. Wie groß ist ihre Standardabweichung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sicheren Wert mit Streuung verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(25\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wert quadriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sichere Wahrscheinlichkeit als Standardabweichung übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsgroessen__02-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Aussage ist bei gleichem Erwartungswert richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine größere Standardabweichung bedeutet stärkere Streuung</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine größere Standardabweichung bedeutet einen größeren Erwartungswert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Streuung mit Lage verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine größere Standardabweichung bedeutet gleiche Werte in jedem Versuch</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Große Streuung als Konstanz gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Standardabweichung kann negativ sein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nichtnegativität der Standardabweichung verletzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

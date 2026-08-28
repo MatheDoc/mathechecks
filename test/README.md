@@ -11,7 +11,7 @@ test/<gebiet>/<lernbereich>/<check_id>.json
 
 - Eine JSON-Datei pro Check, Dateiname = `check_id` (z. B. `stochastik__binomialverteilung__01.json`).
 - Handgepflegte **Quelldateien** – keine Generator-Pipeline, kein Eintrag in `project_config.json`.
-- Erzeugte Moodle-XMLs (eine pro Check, Kategorie = Check) landen unter `aufgaben/exports/moodle/`.
+- Erzeugte Moodle-XMLs (eine pro Check) landen unter `moodle/<gebiet>/<lernbereich>/<check_id>.xml`.
 
 ## JSON-Schema
 
@@ -62,4 +62,6 @@ Die Liste ist offen – zulässig ist jede Frageart, die die Regeln oben erfüll
 
 ## Moodle-Export
 
-Konverter (geplant): `aufgaben/tools/test_to_moodle.py` – liest die JSON-Dateien und schreibt pro Check eine Moodle-XML (Fragetyp `multichoice`, `single=true`, `shuffleanswers=true`, Fragenname `<check_id>-NN`). Vorlage für die XML-Parameter: `beispiel moodle xml.xml` im Repo-Root.
+Konverter: `moodle/test_to_moodle.py` – liest alle JSON-Dateien und schreibt pro Check eine Moodle-XML nach `moodle/<gebiet>/<lernbereich>/<check_id>.xml` (Fragetyp `multichoice`, `single=true`, `shuffleanswers=true`, Fragenname `<check_id>-NN`, Kategoriepfad `$course$/<gebiet>/<lernbereich>/<check_id>`). Die `fehler`-Einträge werden als falsch-spezifisches Antwort-Feedback übernommen. Vorlage für die XML-Parameter: `moodle/gebiet__lernbereich__01.xml`.
+
+Aufruf: `python moodle/test_to_moodle.py`

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/matrizenrechnung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/matrizenrechnung/lineare-algebra__matrizenrechnung__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Dimension hat der Ansatz \((A\mid E_4)\) für eine \(4\times4\)-Matrix?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\times8\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\times4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilen und Spalten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\times4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Hälfte nicht mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\times8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Dimensionen verdoppelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie viele Pivotstufen sind links nötig, um \(E_4\) zu erzeugen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Pivotspalte ausgelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spalten bis zur Trennlinie gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spalten beider Hälften gezählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In der aktuellen ersten Spalte steht oben \(0\), darunter steht \(1\). Was ist ein geeigneter nächster Schritt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die erste Zeile mit der Zeile tauschen, die dort \(1\) enthält.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die erste Spalte mit der zweiten Spalte tauschen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spaltenoperation statt Zeilentausch gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die erste Zeile durch \(0\) teilen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Division durch null vorgeschlagen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur rechts eine Zeile tauschen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilentausch nicht auf die gesamte erweiterte Matrix angewendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der erste Pivot einer \(4\times4\)-Matrix ist gesetzt. Wie viele Einträge liegen direkt darunter in derselben Spalte?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Situation einer \(3\times3\)-Matrix verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivot selbst mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Hälfte mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Pivotwahl hält eine Umformung besonders einfach?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine verfügbare Zeile mit Pivotwert \(1\) nach oben tauschen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Stets die Zeile mit dem größten Zeilenindex wählen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilenindex statt günstigen Pivotwert verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Null als Pivot verwenden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Null fälschlich als Pivot gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur in der rechten Hälfte nach einer \(1\) suchen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivot in der falschen Hälfte gesucht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach drei Pivotstufen hat die letzte Zeile links die Form \((0\;0\;0\;-1)\). Was ist der nächste Schritt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die gesamte vierte Zeile mit \(-1\) multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die vierte Zeile löschen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Benötigte Pivotzeile entfernt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur den letzten linken Eintrag auf \(1\) setzen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Hälfte der Zeile nicht mit umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die vierte Spalte mit \(-1\) multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spaltenoperation statt Zeilenoperation gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was muss eine Zeilenumformung am \(4\times8\)-Schema erfassen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Alle acht Einträge der betroffenen Zeile</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur die ersten vier Einträge</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Hälfte nicht mit umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur die letzten vier Einträge</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Linke Hälfte nicht mit umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur den Pivoteintrag</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilenoperation auf einen Eintrag beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Am Ende steht \((E_4\mid B)\). Welche Größe hat die abzulesende Inverse \(B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\times4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\times8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamtes erweitertes Schema als Inverse gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\times4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dimension des Ansatzes vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\times3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Größe einer \(3\times3\)-Inversen verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei der Kontrolle \(AB=E_4\): Welchen Wert muss \((AB)_{41}\) haben?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eintrag außerhalb der Hauptdiagonale mit einem Diagonaleintrag verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilenindex als Wert verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen des letzten Pivots übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__matrizenrechnung__05-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei vollständiger Reduktion bleibt links die Zeile \((0\;0\;0\;0)\). Welche Aussage stimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es fehlt ein vierter Pivot; \(A\) ist nicht invertierbar.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die rechte Hälfte ist bereits \(A^{-1}\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Inverse trotz fehlendem Pivot abgelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Nullzeile wird zur vierten Zeile von \(E_4\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullzeile mit einer Zeile der Einheitsmatrix verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein Zeilentausch mit sich selbst erzeugt den Pivot.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilentausch kann keinen fehlenden Pivot erzeugen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

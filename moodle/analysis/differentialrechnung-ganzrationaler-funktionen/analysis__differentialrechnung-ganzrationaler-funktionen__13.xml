@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen/analysis__differentialrechnung-ganzrationaler-funktionen__13</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Funktion wird untersucht, wenn die größte Steigung von \(f\) gesucht ist?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>die Ableitungsfunktion \(f'\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Funktion \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Funktionswerte statt Steigungswerte optimiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die zweite Ableitung \(f^{\prime\prime}\) als Vergleichsgröße</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zweite Ableitung mit der zu vergleichenden Steigung verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Stammfunktion von \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigungsextremum fälschlich über eine Stammfunktion gesucht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Gleichung liefert innere Kandidaten für globale Steigungsextrema?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremstellen von \(f\) statt von \(f'\) gesucht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstellen von \(f\) statt Extremstellen von \(f'\) gesucht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zweite Ableitung auf \(1\) statt auf \(0\) gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche zusätzlichen Kandidaten sind auf \([a;b]\) für globale Steigungsextrema zu prüfen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>die Randpunkte \(a\) und \(b\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur die Nullstellen von \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstellen der Funktion mit Randkandidaten verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur die Stelle \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randprüfung fälschlich auf \(x=0\) beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>alle Stellen mit \(f'(x)=0\) außerhalb des Intervalls</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stellen außerhalb des betrachteten Intervalls einbezogen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Werte werden am Ende für globale Steigungsextrema verglichen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>die Werte von \(f'\) an allen Kandidaten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Werte von \(f\) an allen Kandidaten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Funktionswerte statt Steigungswerte verglichen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Werte von \(f^{\prime\prime}\) an allen Kandidaten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zweite Ableitungswerte statt Steigungswerte verglichen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur die x-Koordinaten der Kandidaten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lage der Kandidaten statt ihrer Steigungswerte verglichen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x)=3x^2-6x\) auf \([0;3]\). Wo ist die Steigung global maximal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>bei \(x=3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Inneres Minimum von \(f'\) mit dem Maximum verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert \(0\) statt des größeren Randwerts \(9\) gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f'\) ohne Vergleich als Maximum gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x)=3x^2-6x\) auf \([0;3]\). Wo ist die Steigung global minimal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>bei \(x=1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Globales Maximum von \(f'\) mit dem Minimum verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert \(0\) statt des kleineren Werts \(-3\) gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f'\) ohne Vergleich als Minimum gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x)=2x+1\) auf \([0;2]\). Wo ist die Steigung global maximal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>bei \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kleineren linken Randwert statt des größeren rechten Randwerts gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Intervallmitte ohne Wertevergleich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=-1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stelle außerhalb des Intervalls gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x)=-x+4\) auf \([1;3]\). Wo ist die Steigung global minimal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>bei \(x=3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Größeren linken Randwert statt des kleineren rechten Randwerts gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Intervallmitte ohne Wertevergleich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>bei \(x=4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f'\) außerhalb des Intervalls gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Im Inneren von \([a;b]\) hat \(f^{\prime\prime}\) keine Nullstelle. Wo können globale Steigungsextrema dennoch liegen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>an den Randpunkten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nirgends</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randkandidaten wegen fehlender innerer Kandidaten übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur an Nullstellen von \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstellen von \(f\) fälschlich als einzige Kandidaten verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur außerhalb des Intervalls</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Betrachtung fälschlich auf Stellen außerhalb des Intervalls verlagert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__13-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x)=x^2\) auf \(\mathbb{R}\). Welche globalen Steigungsextrema besitzt \(f\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine minimale Steigung \(0\) bei \(x=0\), aber keine maximale Steigung</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine maximale Steigung \(0\) bei \(x=0\), aber keine minimale Steigung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Minimum und Maximum der Steigungsfunktion \(x^2\) vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>minimale und maximale Steigung \(0\) bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unbeschränktes Wachstum von \(f'\) fälschlich als Maximum bei \(0\) behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>weder minimale noch maximale Steigung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Angenommenes Minimum der Steigungsfunktion bei \(0\) übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

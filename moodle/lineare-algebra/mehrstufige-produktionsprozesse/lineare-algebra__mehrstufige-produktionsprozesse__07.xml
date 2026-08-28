@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse/lineare-algebra__mehrstufige-produktionsprozesse__07</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(\vec{m}=\begin{pmatrix}t\\6-t\end{pmatrix}\) müssen alle Mengen nichtnegativ sein. Welcher Bereich ist zulässig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0\le t\le6\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\ge6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die zweite Nichtnegativitätsbedingung verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\le0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die erste Bedingung mit falscher Richtung verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-6\le t\le0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beider Grenzen vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Aus \(2t-4\ge0\) und \(10-t\ge0\) folgt welcher zulässige Bereich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\le t\le10\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-2\le t\le10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Untere Grenze mit falschem Vorzeichen berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\ge10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungleichungsrichtung der zweiten Bedingung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\le t\le8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstanten ohne Lösen der Ungleichungen kombiniert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Zielgröße lautet \(Z(t)=12+3t\) für \(0\le t\le4\). Wo liegt das Maximum?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(t=4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falschen Randpunkt für eine steigende Funktion gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigung mit optimalem Parameter verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei jedem \(t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Positive Steigung als konstante Funktion gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Zielgröße lautet \(Z(t)=20-2t\) für \(1\le t\le5\). Wo liegt das Minimum?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(t=5\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falschen Randpunkt für eine fallende Funktion gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Betrag der Steigung als Parameter gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randpunkt außerhalb des zulässigen Bereichs gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie groß ist das Maximum von \(Z(t)=5+2t\) auf \([0;3]\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(11\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wert am unteren Randpunkt verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstantenanteil nicht addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter und Funktionswert addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Zielgröße lautet \(Z(t)=18\) für \(2\le t\le7\). Wo wird das Maximum erreicht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei jedem zulässigen \(t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur bei \(t=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Funktion unnötig am unteren Rand optimiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur bei \(t=7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Funktion unnötig am oberen Rand optimiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei keinem \(t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorhandenen konstanten Zielwert als unerreichbar gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(1{,}2\le t\le4{,}8\), und \(t\) muss ganzzahlig sein. Welche Werte sind zulässig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(t\in\{2,3,4\}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\in\{1,2,3,4,5\}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Intervallgrenzen nach außen gerundet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\in\{1,2,3,4\}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Untere Grenze nach außen gerundet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\in\{2,3,4,5\}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Obere Grenze nach außen gerundet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(\vec{m}=\begin{pmatrix}4+t\\8-2t\\t\end{pmatrix}\) müssen alle Mengen nichtnegativ sein. Welcher Bereich ist zulässig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0\le t\le4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-4\le t\le4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung \(t\ge0\) nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\le t\le8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Faktor 2 in der zweiten Komponente übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\ge4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungleichungsrichtung der zweiten Komponente vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(\vec{m}=\begin{pmatrix}5+t\\7-t\end{pmatrix}\) und \(\vec{k}_v=\begin{pmatrix}2&3\end{pmatrix}\). Wie lautet \(K_v(t)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(31-t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(12\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameteranteile fälschlich vollständig aufgehoben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(31+t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen des zweiten Parameteranteils vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(26-t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstantenanteil falsch addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__07-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(G(t)=40-5t\) gilt auf \([2;6]\). Bei welchem Randpunkt ist der Gewinn maximal?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(t=2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falschen Randpunkt für eine fallende Funktion gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Betrag der Steigung als Parameter gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unzulässigen Randpunkt verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

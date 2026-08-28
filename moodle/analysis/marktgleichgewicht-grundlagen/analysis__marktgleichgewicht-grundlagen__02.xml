@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/marktgleichgewicht-grundlagen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/marktgleichgewicht-grundlagen/analysis__marktgleichgewicht-grundlagen__02</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird der Höchstpreis aus der Nachfragefunktion \(p_N\) berechnet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p_N(0)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ansatz für die Sättigungsmenge gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(x)=p_A(x)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ansatz für die Gleichgewichtsmenge gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_A(0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ansatz für den Mindestangebotspreis gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(p_N(x)=-2x+20\). Wie groß ist der Höchstpreis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(20\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sättigungsmenge statt Höchstpreis berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-2\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigung statt y-Achsenabschnitt verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bei \(x=0\) fälschlich den gesamten Term zu null gesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Ansatz bestimmt die Sättigungsmenge?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p_N(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höchstpreis statt Sättigungsmenge angesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_A(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle der Angebotsfunktion statt der Nachfragefunktion gesucht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(x)=p_A(x)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichgewichtsmenge statt Sättigungsmenge angesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(p_N(x)=-3x+18\). Wie groß ist die Sättigungsmenge?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(6\) ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(18\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Achsenabschnitt statt Nullstelle angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den Betrag der Steigung verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-6\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beim Lösen der Gleichung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(p_A(x)=2x+5\). Wie groß ist der Mindestangebotspreis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(5\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigung statt y-Achsenabschnitt verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Anlass \(x=1\) eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Achsenabschnitt der Angebotsfunktion übergangen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Ansatz bestimmt die Gleichgewichtsmenge?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p_N(x)=p_A(x)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Sättigungsmenge statt Gleichgewichtsmenge angesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_A(x)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle der Angebotsfunktion statt Schnittpunkt gesucht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_N(0)=p_A(0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die y-Achsenabschnitte statt die Funktionswerte gleichgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(p_N(x)=-x+12\) und \(p_A(x)=x+4\). Wie groß ist \(x_G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\) ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Differenz der konstanten Terme berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(12\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höchstpreis statt Gleichgewichtsmenge angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(16\) ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Terme addiert statt die Gleichung zu lösen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Gleichgewichtsmenge ist \(x_G=3\) und \(p_N(x)=-2x+14\). Wie groß ist \(p_G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(8\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(11\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur \(14-3\) statt \(14-2\cdot3\) gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(14\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höchstpreis statt Gleichgewichtspreis angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen des x-Terms vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Gleichgewichtsmenge ist \(x_G=4\) und \(p_A(x)=2x+3\). Wie groß ist \(p_G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(11\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(9\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur \(2+4+3\) gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstanten Term beim Einsetzen weggelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produkt \(2\cdot4\) als \(2\) gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-grundlagen__02-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Im Marktgleichgewicht gilt \(x_G=5\) ME und \(p_G=6\) GE. Wie groß ist der Umsatz \(U_G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(30\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(11\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichgewichtsmenge und Gleichgewichtspreis addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz statt Produkt berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(60\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produkt ohne Anlass verdoppelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

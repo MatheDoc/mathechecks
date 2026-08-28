@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/mehrstufige-zufallsexperimente</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/mehrstufige-zufallsexperimente/stochastik__mehrstufige-zufallsexperimente__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Rechnung gehört zur Pfadadditionsregel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Endwahrscheinlichkeiten eines Ereignisses addieren</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Astwahrscheinlichkeiten entlang eines Pfades addieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Addition fälschlich innerhalb eines Pfades ausgeführt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle Astwahrscheinlichkeiten multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfadmultiplikation statt Pfadaddition gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Endwahrscheinlichkeit durch eine andere teilen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne passende Pfadgleichung einen Quotienten gebildet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Zwei vollständige Pfade eines Ereignisses haben die Wahrscheinlichkeiten \(0{,}18\) und \(0{,}42\). Wie groß ist die Ereigniswahrscheinlichkeit?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}6\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}0756\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Endwahrscheinlichkeiten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz der Endwahrscheinlichkeiten gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mittelwert der Endwahrscheinlichkeiten gebildet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(P(A\cap B)=0{,}2\) und \(P(\overline{A}\cap B)=0{,}05\). Wie groß ist \(P(B)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}01\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfadendwahrscheinlichkeiten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}15\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz statt Summe gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste Pfadwahrscheinlichkeit verdoppelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei zwei fairen Münzwürfen besteht das Ereignis ‚zweimal gleich‘ aus den Pfaden KK und ZZ. Wie groß ist seine Wahrscheinlichkeit?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur einen der beiden Pfade berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Astwahrscheinlichkeiten statt Endwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}125\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die beiden Endwahrscheinlichkeiten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Gleichung beschreibt die Pfadadditionsregel für \(A\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A)=P(A\cap B)+P(A\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=P(A\cap B)\cdot P(A\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zugehörige Pfade multipliziert statt addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=P(B)+P(\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamtheit der zweiten Stufe statt Ereignis \(A\) gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=1-P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ereignisse \(A\) und \(B\) ohne Grundlage als Gegenereignisse behandelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die vier Endwahrscheinlichkeiten sind \(0{,}32\), \(0{,}08\), \(0{,}18\) und \(0{,}42\). Welche Summe müssen sie ergeben?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur eine Hälfte des Baumes addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mittlere Endwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechenfehler bei der Gesamtsumme</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Pfade \(A\cap B\) und \(A\cap\overline{B}\) haben Wahrscheinlichkeiten \(0{,}32\) und \(0{,}08\). Wie groß ist \(P(A)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}0256\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfadendwahrscheinlichkeiten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz statt Summe gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}32\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur ersten Pfad berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Unter \(\overline{A}\) enden zwei Pfade mit \(0{,}18\) und \(0{,}42\). Wie groß ist \(P(\overline{A})\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}6\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}0756\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfade multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}24\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz statt Summe gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Summe falsch berechnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Pfade werden für das Ereignis ‚mindestens einmal Kopf‘ bei zwei Münzwürfen addiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>KK, KZ und ZK</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur KK</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>‚Mindestens einmal‘ als ‚zweimal‘ gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>KZ und ZK</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fall mit zwei Köpfen ausgelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>KK und ZZ</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ereignis ‚zweimal gleich‘ gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__mehrstufige-zufallsexperimente__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wann werden Wahrscheinlichkeiten im Baumdiagramm addiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wenn mehrere vollständige Pfade zum gesuchten Ereignis gehören</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn mehrere Äste nacheinander durchlaufen werden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nacheinander durchlaufene Äste müssten multipliziert werden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei jedem einzelnen Pfad</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfadaddition auf einen einzelnen Pfad angewendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur wenn alle Äste gleich wahrscheinlich sind</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pfadaddition unnötig von Gleichverteilung abhängig gemacht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

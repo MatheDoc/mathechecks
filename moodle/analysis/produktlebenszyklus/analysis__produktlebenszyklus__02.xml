@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/produktlebenszyklus</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/produktlebenszyklus/analysis__produktlebenszyklus__02</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Am Graphen der Ableitung liest man \(u'(4)=3\) GE/Jahr ab. Was bedeutet das?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Nach \(4\) Jahren steigt der Umsatz mit \(3\) GE pro Jahr</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nach \(3\) Jahren beträgt der Umsatz \(4\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeitpunkt und Änderungswert vertauscht sowie Ableitung als Umsatz gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nach \(4\) Jahren beträgt der Umsatz \(3\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitungswert als absoluten Umsatz gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz fällt nach \(4\) Jahren mit \(3\) GE pro Jahr</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>positiven Ableitungswert als Rückgang gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(u'(6)=-2\) GE/Jahr. Welche Aussage ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Nach \(6\) Jahren sinkt der Umsatz mit \(2\) GE pro Jahr</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nach \(6\) Jahren steigt der Umsatz mit \(2\) GE pro Jahr</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Minuszeichen des Änderungswerts ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz beträgt nach \(6\) Jahren \(-2\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitungswert als absoluten Umsatz gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nach \(2\) Jahren sinkt der Umsatz mit \(6\) GE pro Jahr</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeitpunkt und Betrag der Änderung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Graph von \(u'\) hat bei \(t=5\) eine Nullstelle und wechselt dort von positiv zu negativ. Was besitzt \(u\) bei \(t=5\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ein lokales Maximum</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein lokales Minimum</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel umgekehrt gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Wendestelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(u'\) mit einer Wendestelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Nullstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(u'\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Graph von \(u'\) hat bei \(t=8\) eine Nullstelle und wechselt dort von negativ zu positiv. Was besitzt \(u\) bei \(t=8\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ein lokales Minimum</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein lokales Maximum</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel umgekehrt gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Marktaustritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(u'\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den stärksten Umsatzrückgang</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremum von \(u\) mit Minimum von \(u'\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei \(t=3\) berührt der Graph von \(u'\) die t-Achse, bleibt aber auf beiden Seiten positiv. Welche Aussage über \(u\) ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(u\) hat dort kein Extremum</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(u\) hat dort sicher ein Maximum</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle ohne Vorzeichenwechsel als Maximum gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(u\) hat dort sicher ein Minimum</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle ohne Vorzeichenwechsel als Minimum gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(u\) hat dort eine Nullstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(u'\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Im gesamten Produktlebenszyklus nimmt \(u'\) seinen größten Wert \(5\) bei \(t=2\) an. Was geschieht bei \(t=2\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Umsatz steigt dort am stärksten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz ist dort am höchsten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Maximum von \(u'\) mit Maximum von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz fällt dort am stärksten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>größten positiven Ableitungswert als Rückgang gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Produkt verlässt dort den Markt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremwert von \(u'\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Im gesamten Produktlebenszyklus nimmt \(u'\) seinen kleinsten Wert \(-4\) bei \(t=9\) an. Was geschieht bei \(t=9\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Umsatz fällt dort am stärksten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz steigt dort am stärksten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>kleinsten negativen Ableitungswert als Anstieg gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz ist dort am kleinsten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Minimum von \(u'\) mit Minimum von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz ist dort null</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Minimum von \(u'\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(t\geq 0\) gilt: \(u'(0)=7\), und alle späteren Werte von \(u'\) sind kleiner. Wann steigt der Umsatz am stärksten?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Am Rand bei \(t=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>An der ersten Nullstelle von \(u'\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle statt globales Maximum von \(u'\) gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beim kleinsten Wert von \(u'\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>globales Minimum statt globales Maximum gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein stärkster Anstieg existiert nicht</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rand nicht als Ort des globalen Maximums beachtet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Graph von \(u'\) hat ein lokales Maximum bei \(t=4\), aber \(u'(0)\) ist größer. Wo steigt der Umsatz stärker?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(t=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(t=4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>lokales Maximum mit global größtem Wert verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>An einer Nullstelle von \(u'\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle statt größeren Ableitungswert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>An beiden Stellen gleich stark</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>verschiedene Ableitungswerte als gleich gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__02-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Graph von \(u'\) liegt von \(t=1\) bis \(t=6\) oberhalb der t-Achse. Wie verhält sich \(u\) in diesem Zeitraum?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Umsatz steigt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz fällt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>positive Ableitungswerte als Fallen gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz bleibt konstant</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>positive Ableitungswerte als konstante Entwicklung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Umsatz ist null</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lage von \(u'\) mit Werten von \(u\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

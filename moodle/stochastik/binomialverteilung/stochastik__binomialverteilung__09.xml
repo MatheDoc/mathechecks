@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/binomialverteilung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__09</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(n\), \(k\) und eine Intervallwahrscheinlichkeit. Welche Größe wird in diesem Check bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit \(p\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Versuchsanzahl \(n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gegebenes \(n\) als gesucht behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Treffergrenze \(k\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gegebenes \(k\) als gesucht behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Standardabweichung \(\sigma\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Abgeleitete Kennzahl statt Parameter gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gesucht ist das kleinste \(p\) mit \(P(X\leq10)\leq0{,}30\). Prüfwerte: \(p=0{,}40:0{,}34\), \(p=0{,}41:0{,}28\). Ergebnis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p=0{,}41\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}40\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prüfwert über 0,30 akzeptiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}30\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schranke als Trefferwahrscheinlichkeit übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}42\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kleinsten bestätigten Wert überschritten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei festem \(n,k\): Wie verändert sich \(P(X\leq k)\), wenn \(p\) wächst?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie sinkt oder bleibt gleich.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wächst immer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Monotonierichtung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleibt stets gleich.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einfluss von \(p\) bestritten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wird gleich \(k\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit mit Treffergrenze gleichgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei festem \(n,k\): Wie verändert sich \(P(X\geq k)\), wenn \(p\) wächst?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie wächst oder bleibt gleich.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie sinkt immer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Monotonierichtung vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie bleibt stets gleich.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einfluss von \(p\) bestritten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wird gleich \(n\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit mit Versuchsanzahl gleichgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gesucht ist das größte \(p\) mit \(P(X\geq7)\leq0{,}25\). Prüfwerte: \(p=0{,}30:0{,}22\), \(p=0{,}31:0{,}27\). Ergebnis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p=0{,}30\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}31\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prüfwert über 0,25 akzeptiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}25\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schranke als \(p\) übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}29\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Größten zulässigen Prüfwert unterschritten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Ansatz bestimmt den Mindestanteil \(p\), sodass höchstens 12 Treffer mit Wahrscheinlichkeit höchstens \(0{,}2\) auftreten?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Kleinstes \(p\) mit \(P(X\leq12)\leq0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Kleinstes \(n\) mit \(P(X\leq12)\leq0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesuchtes \(p\) durch \(n\) ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Größtes \(k\) mit \(P(X\leq k)\leq0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gegebene Grenze als gesucht behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Kleinstes \(p\) mit \(P(X\geq12)\leq0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höchstens mit mindestens verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gesucht ist das kleinste \(p\) mit \(P(X\geq5)>0{,}60\). Prüfwerte: \(p=0{,}2:0{,}60\), \(p=0{,}3:0{,}72\). Ergebnis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p=0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Strenge Schranke als inklusive Schranke gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zielwahrscheinlichkeit als \(p\) übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=0{,}4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kleinsten bestätigten Tabellenwert überschritten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Größe bleibt beim Tabellenvergleich verschiedener \(p\)-Werte unverändert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die vorgegebene Versuchsanzahl \(n\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit \(p\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesuchte Größe fälschlich festgehalten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle berechneten Wahrscheinlichkeiten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prüfwerte fälschlich als identisch angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Verteilung trotz verändertem \(p\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Abhängigkeit der Verteilung von \(p\) bestritten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Prüfwerte: \(p=0{,}54\) verfehlt die Bedingung, \(p=0{,}55\) erfüllt sie. Gesucht ist das kleinste \(p\) in Hundertstelschritten. Ergebnis?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}55\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}54\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht erfüllenden Prüfwert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}01\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schrittweite statt Trefferwahrscheinlichkeit gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1{,}09\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Benachbarte Prüfwerte addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__09-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Wertebereich ist für eine gesuchte Trefferwahrscheinlichkeit \(p\) zulässig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0\leq p\leq1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p>1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit größer als 1 zugelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p<0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Negative Wahrscheinlichkeit zugelassen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur ganzzahlige \(p\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeiten fälschlich auf ganze Zahlen beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

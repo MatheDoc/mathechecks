@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/regression</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/regression/analysis__regression__04</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was muss vor der Regression mit dem GTR geschehen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die x- und y-Daten werden in Listen eingegeben.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle y-Werte werden gleich null gesetzt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Messdaten fälschlich verändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Regressionsfunktion wird vorher erraten.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Berechnungsergebnis statt Datengrundlage vorausgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Bestimmtheitsmaß wird als Datenwert eingegeben.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ausgabewert des GTR fälschlich als Eingabedatum behandelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Funktionsform gehört zur linearen Regression?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=mx+b\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratische statt lineare Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+bx^2+cx+d\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kubische statt lineare Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=a\cdot e^{bx}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Exponentielle statt lineare Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Funktionsform gehört zur quadratischen Regression?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=mx+b\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lineare statt quadratische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+bx^2+cx+d\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kubische statt quadratische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=a\cdot e^{bx}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Exponentielle statt quadratische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Funktionsform gehört zur kubischen Regression?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+bx^2+cx+d\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratische statt kubische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=mx+b\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lineare statt kubische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=a\cdot e^{bx}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Exponentielle statt kubische Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Funktionsform gehört zur exponentiellen Regression?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=a\cdot e^{bx}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=mx+b\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lineare statt exponentielle Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratische statt exponentielle Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+bx^2+cx+d\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kubische statt exponentielle Form gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die y-Werte wachsen bei gleichen x-Schritten ungefähr immer um denselben Betrag. Welcher Regressionstyp ist naheliegend?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>lineare Regression</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>exponentielle Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante absolute Zuwächse mit konstanten Faktoren verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>kubische Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne weiteren Hinweis ein unnötig komplexes Modell gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Trotz erkennbarer Struktur jede Modellierung ausgeschlossen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die y-Werte werden bei gleichen x-Schritten ungefähr immer mit demselben Faktor multipliziert. Welcher Regressionstyp ist naheliegend?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>exponentielle Regression</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>lineare Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Faktoren mit konstanten absoluten Zuwächsen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>quadratische Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Hinweis auf eine Parabelform ein quadratisches Modell gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine Regression</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Trotz erkennbarer Struktur jede Modellierung ausgeschlossen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was zeigt ein Bestimmtheitsmaß \(R^2\) nahe \(1\) an?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das Regressionsmodell passt gut zu den Daten.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Regressionsmodell passt sicher schlecht.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedeutung eines hohen Bestimmtheitsmaßes umgekehrt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Regressionsfunktion ist immer linear.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gütewert fälschlich als Festlegung des Funktionstyps gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle Messwerte sind gleich \(1\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bestimmtheitsmaß fälschlich als Messwert interpretiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für denselben Datensatz hat Modell A \(R^2=0{,}96\), Modell B hat \(R^2=0{,}82\). Welches passt nach diesem Maß besser?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Modell A</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Modell B</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den weiter von \(1\) entfernten Wert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide gleich gut</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unterschiedliche Bestimmtheitsmaße fälschlich als gleich bewertet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das lässt sich trotz der Werte nicht vergleichen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die direkte Vergleichbarkeit der beiden Gütewerte übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__04-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Angabe sollte man nach einer Regression mit dem GTR neben der Funktionsgleichung notieren?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>das Bestimmtheitsmaß \(R^2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur den größten x-Wert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einzelnen Datenwert statt Gütemaß festgehalten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur den ersten Messpunkt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einzelnen Messpunkt statt Gütemaß festgehalten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Anzahl der Tastenanschläge</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedienaufwand statt mathematisches Ergebnis dokumentiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

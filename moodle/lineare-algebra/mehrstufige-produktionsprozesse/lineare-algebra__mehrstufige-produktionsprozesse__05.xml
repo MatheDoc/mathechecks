@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse/lineare-algebra__mehrstufige-produktionsprozesse__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(RE\) ist quadratisch und invertierbar. Welche Formel liefert bei vollständiger Lagerräumung \(\vec{m}\) aus \(\vec{r}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{m}=RE^{-1}\cdot\vec{r}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=RE\cdot\vec{r}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Inverse multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\vec{r}\cdot RE^{-1}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Matrix und Vektor in falscher Reihenfolge multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{r}=RE^{-1}\cdot\vec{m}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Input und Output vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(RZ\) ist quadratisch und invertierbar. Welche Formel liefert \(\vec{z}\) aus \(\vec{r}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{z}=RZ^{-1}\cdot\vec{r}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{z}=RZ\cdot\vec{r}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Inverse multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{r}=RZ^{-1}\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Input und Output vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{z}=ZE^{-1}\cdot\vec{r}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsche Produktionsmatrix gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(ZE\) ist quadratisch und invertierbar. Welche Formel liefert \(\vec{m}\) aus \(\vec{z}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{m}=ZE^{-1}\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=ZE\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Inverse multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{z}=ZE^{-1}\cdot\vec{m}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Input und Output vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=RZ^{-1}\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsche Produktionsmatrix gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(ZE\) hat das Format \(3\times2\). Wie bestimmt man \(\vec{m}\) aus \(ZE\cdot\vec{m}=\vec{z}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Durch Lösen des zugehörigen LGS</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mit \(\vec{m}=ZE^{-1}\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Inverse einer nicht quadratischen Matrix verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mit \(\vec{m}=ZE\cdot\vec{z}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Auflösen erneut multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Durch Vertauschen der Zeilen und Spalten von \(ZE\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Transponieren mit Lösen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wann darf eine Produktionsmatrix zur Outputberechnung invertiert werden?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wenn sie quadratisch ist und ihre Determinante nicht null ist</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn alle Einträge positiv sind</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Positive Einträge mit Invertierbarkeit verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn sie mehr Zeilen als Spalten hat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht quadratische Matrix als invertierbar angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Jede Produktionsmatrix darf invertiert werden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Invertierbarkeit ohne Prüfung vorausgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(RE=\begin{pmatrix}2&0\\0&4\end{pmatrix}\) und \(\vec{r}=\begin{pmatrix}6\\8\end{pmatrix}\). Welcher Produktionsvektor räumt das Lager vollständig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}3\\2\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}12\\32\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit RE statt mit der Inversen multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}4\\4\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rohstoffmengen durch falsche Werte geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}2\\3\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ergebniskomponenten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Das LGS lautet \(m_1+m_2=5\) und \(m_1+2m_2=7\). Welche Lösung räumt das Lager vollständig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}3\\2\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}2\\3\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Komponenten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}5\\7\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seiten als Lösung übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{m}=\begin{pmatrix}1\\4\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die erste Gleichung erfüllt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Das LGS enthält gleichzeitig \(m_1+m_2=4\) und \(m_1+m_2=5\). Welche Lösungsart liegt vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Keine Lösung</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau eine Lösung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Widersprüchliche Gleichungen als eindeutig lösbar gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Unendlich viele Lösungen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Widersprüchliche Gleichungen als abhängig gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Lösung ist \(m_1=4, m_2=5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seiten als Komponenten verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach dem Umformen bleibt nur \(m_1+m_2=6\) für zwei Unbekannte. Welche Lösungsart liegt vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Unendlich viele Lösungen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keine Lösung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine erfüllbare Gleichung als Widerspruch gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau eine Lösung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Gleichung für zwei Unbekannte als eindeutig gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur \(m_1=m_2=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine mögliche Lösung fälschlich als einzige Lösung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__05-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die eindeutige algebraische Lösung eines Lager-LGS ist \(\vec{m}=\begin{pmatrix}4\\-1\end{pmatrix}\). Was folgt für die Produktion?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine vollständige Lagerräumung ist mit nichtnegativen Produktionsmengen nicht möglich.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Lager wird mit 4 ME und 1 ME vollständig geräumt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Negatives Vorzeichen ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der negative Wert wird durch 0 ersetzt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Algebraische Lösung ohne erneute Prüfung verändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Jede eindeutige LGS-Lösung ist als Produktionsvektor zulässig.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nichtnegativität von Produktionsmengen übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

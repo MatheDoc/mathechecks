@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/bedingte-wahrscheinlichkeiten</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/bedingte-wahrscheinlichkeiten/stochastik__bedingte-wahrscheinlichkeiten__06</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig. Die Randwerte einer Vier-Felder-Tafel sind \(P(A)=0{,}7\) und \(P(B)=0{,}2\). Welcher Wert gehört in das Feld \(A\cap B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}14\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}9\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den kleineren Randwert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig mit \(P(A)=0{,}6\) und \(P(B)=0{,}5\). Welcher Wert ergänzt das Feld \(A\cap B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1{,}1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den B-Randwert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig. Es gilt \(P(A)=0{,}4\) und \(P(\overline{B})=0{,}3\). Welcher Wert steht im Feld \(A\cap\overline{B}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}12\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Wahrscheinlichkeit von Nicht-B übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig. Es gilt \(P(\overline{A})=0{,}8\) und \(P(B)=0{,}25\). Welcher Wert gehört in \(\overline{A}\cap B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1{,}05\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}55\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwahrscheinlichkeiten subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}25\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den B-Randwert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig. In der Tafel gilt \(P(A)=0{,}5\) und \(P(A\cap B)=0{,}2\). Welcher B-Randwert fehlt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(B)=0{,}4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(B)=0{,}1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert und Schnittwahrscheinlichkeit multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(B)=0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert und Schnittwahrscheinlichkeit addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(B)=0{,}2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittwahrscheinlichkeit unverändert als Randwert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig. In der Tafel gilt \(P(B)=0{,}6\) und \(P(A\cap B)=0{,}18\). Welcher A-Randwert fehlt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A)=0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=0{,}108\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert und Schnittwahrscheinlichkeit multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=0{,}78\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Randwert und Schnittwahrscheinlichkeit addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)=0{,}18\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittwahrscheinlichkeit unverändert als Randwert übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig mit \(P(A)=0{,}3\) und \(P(B)=0{,}4\). Nach dem Feld \(A\cap B=0{,}12\) soll die A-Zeile ergänzt werden. Welcher Wert gehört in \(A\cap\overline{B}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}18\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}28\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittfeld von der B- statt der A-Randwahrscheinlichkeit abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}036\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittfeld mit dem A-Randwert multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gegenwahrscheinlichkeit von A als inneres Feld eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig mit \(P(A)=0{,}3\) und \(P(B)=0{,}4\). Welcher Wert gehört in \(\overline{A}\cap B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}28\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}12\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Feld A und B statt Nicht-A und B berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>\(P(B)-P(A)\) gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den Randwert von Nicht-A übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(A\) und \(B\) sind unabhängig mit \(P(A)=0{,}3\) und \(P(B)=0{,}4\). Welcher Wert vervollständigt \(\overline{A}\cap\overline{B}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(0{,}42\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}12\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die ursprünglichen Randwahrscheinlichkeiten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>\(P(\overline{A})-P(B)\) gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0{,}7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Gegenwahrscheinlichkeit von A übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__06-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Gleichung liefert bei unabhängigen Ereignissen direkt das erste innere Feld einer Vier-Felder-Tafel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)=P(A)\cdot P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)=P(A)+P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produktregel durch Addition ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)=P(A)-P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produktregel durch Subtraktion ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)=1-P(A)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittwahrscheinlichkeit mit Gegenwahrscheinlichkeit verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

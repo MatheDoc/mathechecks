@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen/analysis__differentialrechnung-ganzrationaler-funktionen__11</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f^{\prime\prime}(x_0)=0\) und \(f^{\prime\prime\prime}(x_0)=0\). Was ist als Nächstes zu prüfen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>der Vorzeichenwechsel von \(f^{\prime\prime}\) bei \(x_0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Vorzeichenwechsel von \(f'\) bei \(x_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremstellenkriterium statt Wendestellenkriterium gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>ob \(f(x_0)=0\) gilt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wendestelle fälschlich an eine Nullstelle von \(f\) gebunden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>ob \(f'(x_0)=0\) gilt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wendestelle fälschlich an eine waagrechte Tangente gebunden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wann liegt im Spezialfall sicher eine Wendestelle bei \(x_0\) vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wenn \(f^{\prime\prime}\) bei \(x_0\) das Vorzeichen wechselt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn \(f^{\prime\prime}(x_0)=0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die notwendige Bedingung als hinreichend behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn \(f^{\prime\prime\prime}(x_0)=0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unentscheidbaren dritten Ableitungstest als Bestätigung behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wenn \(f'(x_0)\neq0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht waagrechte Tangente fälschlich als Wendekriterium verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links von \(x_0\) ist \(f^{\prime\prime}<0\), rechts davon \(f^{\prime\prime}>0\). Was folgt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt eine Wendestelle vor.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt keine Wendestelle vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel der zweiten Ableitung nicht als Krümmungswechsel erkannt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher ein Hochpunkt vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Krümmungswechsel mit Hochpunkt verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher eine Nullstelle vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Krümmungswechsel mit Nullstelle der Funktion verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Auf beiden Seiten von \(x_0\) gilt \(f^{\prime\prime}>0\). Was folgt trotz \(f^{\prime\prime}(x_0)=0\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt keine Wendestelle vor.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt eine Wendestelle vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Notwendige Bedingung ohne Krümmungswechsel als hinreichend behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher ein Tiefpunkt vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichbleibend positive zweite Ableitung fälschlich als Tiefpunktkriterium gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher eine Nullstelle vor.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f^{\prime\prime}\) mit Nullstelle von \(f\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f^{\prime\prime}(x)=(x-1)^2\). Ist \(x=1\) eine Wendestelle?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Nein, weil \(f^{\prime\prime}\) dort das Vorzeichen nicht wechselt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ja, weil \(f^{\prime\prime}(1)=0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Notwendige Bedingung allein als hinreichend behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ja, weil die Nullstelle doppelt ist.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gerade Vielfachheit fälschlich als Zeichen für einen Vorzeichenwechsel gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nein, weil \(f^{\prime\prime}\) links davon negativ ist.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadrat links von \(1\) fälschlich als negativ bewertet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f^{\prime\prime}(x)=x^3\). Ist \(x=0\) eine Wendestelle?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ja, weil \(f^{\prime\prime}\) bei \(0\) das Vorzeichen wechselt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nein, weil \(f^{\prime\prime\prime}(0)=0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unentscheidbaren dritten Ableitungstest fälschlich als Ausschluss verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nein, weil \(f^{\prime\prime}(0)=0\) gilt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Notwendige Wendebedingung fälschlich als Ausschluss verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ja, weil \(f'(0)=0\) gelten muss.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wendestelle ohne Grundlage an eine waagrechte Tangente gebunden</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Nullstelle eines Polynoms führt typischerweise zu keinem Vorzeichenwechsel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Nullstelle gerader Vielfachheit</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Nullstelle ungerader Vielfachheit</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungerade statt gerade Vielfachheit gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>jede einfache Nullstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einfache Nullstellen wechseln typischerweise das Vorzeichen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>jede Nullstelle bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel fälschlich von der Lage bei \(0\) abhängig gemacht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Nullstelle eines Polynoms führt typischerweise zu einem Vorzeichenwechsel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Nullstelle ungerader Vielfachheit</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Nullstelle gerader Vielfachheit</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gerade statt ungerade Vielfachheit gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>jede doppelte Nullstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Doppelte Nullstellen wechseln typischerweise nicht das Vorzeichen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur eine Nullstelle bei \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel fälschlich auf die Stelle \(0\) beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f^{\prime\prime}(x)=x^2(x-2)\). Welche Nullstelle ist eine Wendestelle?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>nur \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur \(x=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Doppelte Nullstelle \(0\) fälschlich als Vorzeichenwechsel gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=0\) und \(x=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bei beiden Nullstellen die Vielfachheit und den Vorzeichenwechsel nicht unterschieden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine von beiden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einfachen Vorzeichenwechsel bei \(x=2\) übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__11-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links von \(x_0\) gilt \(f^{\prime\prime}<0\), rechts davon ebenfalls. Wie ändert sich die Krümmung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie ändert sich nicht; der Graph bleibt rechtsgekrümmt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wechselt von rechts- zu linksgekrümmt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichbleibend negatives Vorzeichen fälschlich als Wechsel zu positiver Krümmung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie wechselt von links- zu rechtsgekrümmt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Negatives Vorzeichen links fälschlich als linkskrümmt gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie ändert sich zu keiner Krümmung.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle der zweiten Ableitung fälschlich als dauerhaft fehlende Krümmung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

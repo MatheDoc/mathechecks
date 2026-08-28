@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/quadratische-funktionen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/quadratische-funktionen/analysis__quadratische-funktionen__04</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Auf welche Form muss eine quadratische Gleichung vor der Anwendung der \(p\)-\(q\)-Formel gebracht werden?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x^2+px+q=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(ax^2+bx+c=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die allgemeine Form ist noch nicht auf den Leitkoeffizienten \(1\) normiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x^2+px=q\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der konstante Term wurde nicht auf die linke Seite gebracht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x+pq=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratischer und linearer Term wurden zu einem linearen Term verkürzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird \(2x^2+4x-6=0\) für die \(p\)-\(q\)-Formel normiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x^2+2x-3=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x^2+4x-6=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur der Leitkoeffizient wurde durch \(2\) geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x^2+2x-6=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Der konstante Term wurde nicht durch \(2\) geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2x^2+2x-3=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die letzten beiden Terme wurden durch \(2\) geteilt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In \(x^2-6x+5=0\): Welche Werte haben \(p\) und \(q\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p=-6\), \(q=5\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=6\), \(q=5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(p\) beim Ablesen verändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=-6\), \(q=-5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(q\) beim Ablesen verändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p=1\), \(q=-6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Leitkoeffizient und linearer Koeffizient als \(p\) und \(q\) verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche \(p\)-\(q\)-Formel ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=-\frac{p}{2}\pm\sqrt{\left(\frac{p}{2}\right)^2-q}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=\frac{p}{2}\pm\sqrt{\left(\frac{p}{2}\right)^2-q}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Minuszeichen vor \(\frac{p}{2}\) vergessen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=-\frac{p}{2}\pm\sqrt{\left(\frac{p}{2}\right)^2+q}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen vor \(q\) unter der Wurzel verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=-p\pm\sqrt{p^2-q}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Halbierung von \(p\) wurde an beiden Stellen vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die Diskriminante bei der \(p\)-\(q\)-Formel?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(D=\left(\frac{p}{2}\right)^2-q\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(D=\left(\frac{p}{2}\right)^2+q\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen vor \(q\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(D=p^2-q\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Halbierung von \(p\) vergessen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(D=-\frac{p}{2}-q\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Term außerhalb der Wurzel mit der Diskriminante vermischt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für eine quadratische Gleichung gilt \(D=9\). Wie viele verschiedene reelle Nullstellen hat sie?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>zwei</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine positive Diskriminante wurde mit dem Fall \(D=0\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine positive Diskriminante wurde als Fall ohne reelle Nullstellen gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>neun</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Wert der Diskriminante mit der Anzahl der Nullstellen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für eine quadratische Gleichung gilt \(D=0\). Wie viele verschiedene reelle Nullstellen hat sie?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>zwei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Fall \(D=0\) mit einer positiven Diskriminante verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Fall \(D=0\) als negative Diskriminante gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>unendlich viele</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine doppelte Nullstelle fälschlich als unendlich viele Lösungen gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für eine quadratische Gleichung gilt \(D=-4\). Wie viele reelle Nullstellen hat sie?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>keine</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine negative Diskriminante wurde mit dem Fall \(D=0\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>zwei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine negative Diskriminante wurde als positive Diskriminante gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>vier</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Betrag der Diskriminante mit der Anzahl der Nullstellen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(x^2-2x-3=0\) wurde \(D=4\) berechnet. Welcher nächste Ausdruck ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=1\pm\sqrt{4}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=-1\pm\sqrt{4}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen bei \(-\frac{p}{2}\) mit \(p=-2\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=1\pm4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Wurzel aus der Diskriminante nicht gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_{1{,}2}=2\pm\sqrt{4}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>\(p\) nicht halbiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__quadratische-funktionen__04-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt bereits \(x_{1{,}2}=2\pm3\). Welche Nullstellen folgen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_1=5\) und \(x_2=-1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=6\) und \(x_2=-1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beim Plusfall fälschlich multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=5\) und \(x_2=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beim Minusfall das negative Ergebnis als positiv notiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=2\) und \(x_2=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die beiden Zahlen ohne Plus- und Minusrechnung übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/bedingte-wahrscheinlichkeiten</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/bedingte-wahrscheinlichkeiten/stochastik__bedingte-wahrscheinlichkeiten__01</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bedeutet \(P_A(B)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(B\) unter der Bedingung \(A\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(A\) unter der Bedingung \(B\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung und betrachtetes Ereignis vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(A\) und \(B\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingte Wahrscheinlichkeit mit Schnittmenge verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(A\) oder \(B\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingte Wahrscheinlichkeit mit Vereinigungsmenge verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise bedeutet: Wahrscheinlichkeit von \(A\) unter der Bedingung \(B\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_B(A)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_A(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung und betrachtetes Ereignis vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Wort ‚unter‘ fälschlich als Schnittmenge gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das gemeinsame Auftreten fälschlich als Oder-Ereignis gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was beschreibt \(P_{\overline{A}}(B)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(B\) unter der Bedingung, dass \(A\) nicht eintritt</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit von \(A\) unter der Bedingung, dass \(B\) nicht eintritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung, Ereignis und Komplement vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass weder \(A\) noch \(B\) eintritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Komplement der Bedingung fälschlich auf beide Ereignisse übertragen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass \(A\) oder \(B\) eintritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingte Wahrscheinlichkeit mit Vereinigungsmenge verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise passt zu: \(B\) tritt ein, obwohl als Bedingung \(A\) nicht eingetreten ist?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_{\overline{A}}(B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_A(\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Komplement dem betrachteten Ereignis statt der Bedingung zugeordnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_B(\overline{A})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung und betrachtetes Ereignis vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Das Eintreten von B fälschlich durch sein Komplement ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bedeutet \(P(A\cap\overline{B})\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(A\) tritt ein und \(B\) tritt nicht ein</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\) tritt nicht ein und \(B\) tritt ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Komplement dem falschen Ereignis zugeordnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(A\) oder \(B\) tritt nicht ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittmenge als Oder-Verknüpfung gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(B\) tritt unter der Bedingung \(A\) nicht ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gemeinsames Ereignis mit bedingter Wahrscheinlichkeit verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise bedeutet: \(A\) oder \(B\) tritt ein, möglicherweise auch beides?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vereinigung mit Schnittmenge verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_A(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Oder-Ereignis als bedingte Wahrscheinlichkeit gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)-P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Den Fall ‚beides‘ fälschlich ausgeschlossen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was beschreibt \(P(A\cup B)-P(A\cap B)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Genau eines der Ereignisse \(A\) und \(B\) tritt ein</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Mindestens eines der Ereignisse \(A\) und \(B\) tritt ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die abgezogene Schnittmenge nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide Ereignisse treten ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz fälschlich als Schnittmenge gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keines der beiden Ereignisse tritt ein</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz fälschlich als Gegenereignis der Vereinigung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise passt zu: Weder \(A\) noch \(B\) tritt ein?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cup\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>‚Weder noch‘ als Vereinigung der Gegenereignisse gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Gegenereignisse durch die ursprünglichen Ereignisse ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>‚Weder noch‘ mit ‚mindestens eines‘ verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bedeutet \(P_B(\overline{A})\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass \(A\) nicht eintritt, unter der Bedingung \(B\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass \(B\) nicht eintritt, unter der Bedingung \(A\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung und betrachtetes Gegenereignis vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass \(A\) und \(B\) nicht eintreten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingte Wahrscheinlichkeit mit dem gemeinsamen Gegenereignis verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Wahrscheinlichkeit, dass \(A\) nicht eintritt oder \(B\) eintritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingte Wahrscheinlichkeit als Oder-Ereignis gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__bedingte-wahrscheinlichkeiten__01-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise bedeutet: \(A\) und \(B\) treten beide ein?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>‚Und‘ als Vereinigung gelesen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_A(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gemeinsames Ereignis mit einer Bedingung verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)+P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einzelwahrscheinlichkeiten ohne Korrektur addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

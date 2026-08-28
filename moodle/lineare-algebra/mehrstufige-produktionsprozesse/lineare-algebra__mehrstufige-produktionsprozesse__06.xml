@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/mehrstufige-produktionsprozesse/lineare-algebra__mehrstufige-produktionsprozesse__06</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel beschreibt den Vektor der variablen Stückkosten?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v=\vec{k}_R\cdot RE+\vec{k}_Z\cdot ZE+\vec{k}_E\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(K_v=\vec{k}_R\cdot RE+\vec{k}_Z\cdot ZE+\vec{k}_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vektor der Stückkosten mit gesamten variablen Kosten verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v=\vec{k}_R+\vec{k}_Z+\vec{k}_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produktionsbedarf der Kostenanteile ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v=\vec{k}_R\cdot RZ+\vec{k}_Z\cdot RE+\vec{k}_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>RE und ZE den falschen Kostenstufen zugeordnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(\vec{k}_v=\begin{pmatrix}3&5\end{pmatrix}\) und \(\vec{m}=\begin{pmatrix}2\\4\end{pmatrix}\). Wie groß sind die gesamten variablen Kosten \(K_v\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(26\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(14\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Komponenten nur addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur zweite Produktkomponente berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur Stückkosten miteinander addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(\vec{p}=\begin{pmatrix}8&6\end{pmatrix}\) und \(\vec{m}=\begin{pmatrix}3\\2\end{pmatrix}\). Wie groß ist der Erlös \(E\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(36\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(19\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Preise und Mengen nur addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(48\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur ersten Preis mit beiden Mengen multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(14\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Preise addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(\vec{p}=\begin{pmatrix}10&9\end{pmatrix}\) und \(\vec{k}_v=\begin{pmatrix}6&4\end{pmatrix}\). Wie lautet \(\vec{db}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}4&5\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}16&13\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Preis und variable Stückkosten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}-4&-5\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}5&4\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Komponenten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Erlös beträgt \(E=90\), die gesamten variablen Kosten betragen \(K_v=55\). Wie groß ist \(DB\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(35\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(145\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erlös und variable Kosten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-35\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(55\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Variable Kosten unverändert als Deckungsbeitrag übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gelten \(K_v=70\) und \(K_f=20\). Wie groß sind die Gesamtkosten \(K\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(90\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(50\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fixkosten von variablen Kosten abgezogen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1400\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Variable Kosten und Fixkosten multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(70\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fixkosten nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Erlös beträgt \(E=120\), die Gesamtkosten betragen \(K=95\). Wie groß ist der Gewinn \(G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(25\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(215\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erlös und Kosten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-25\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(95\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamtkosten als Gewinn übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Zuordnung ist fachlich richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v\): variable Stückkosten; \(K_v\): gesamte variable Kosten</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v\): gesamte variable Kosten; \(K_v\): variable Stückkosten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stückgröße und Gesamtgröße vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v\): Fixkosten; \(K_v\): Gesamtkosten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Variable Kosten mit Fix- und Gesamtkosten verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\vec{k}_v\): Verkaufspreise; \(K_v\): Erlös</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kosten mit Preisen und Erlös verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gelten \(\vec{k}_R\cdot RE=\begin{pmatrix}4&6\end{pmatrix}\), \(\vec{k}_Z\cdot ZE=\begin{pmatrix}3&2\end{pmatrix}\) und \(\vec{k}_E=\begin{pmatrix}1&5\end{pmatrix}\). Wie lautet \(\vec{k}_v\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}8&13\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}7&8\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fertigungskosten der zweiten Stufe nicht addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}12&60\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Komponenten miteinander multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\begin{pmatrix}13&8\end{pmatrix}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Komponenten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__mehrstufige-produktionsprozesse__06-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Deckungsbeitrag beträgt \(DB=50\), die Fixkosten betragen \(K_f=18\). Wie groß ist der Gewinn?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(32\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(68\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fixkosten zum Deckungsbeitrag addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-32\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(50\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fixkosten nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

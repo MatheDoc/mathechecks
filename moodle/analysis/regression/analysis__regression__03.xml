@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/regression</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/regression/analysis__regression__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was geschieht bei einer Regressionsaufgabe im Sachzusammenhang zuerst?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine passende Regressionsfunktion wird bestimmt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Jeder Prognosewert wird verdoppelt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Willkürliche Rechnung ohne Modellbezug begonnen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle Messwerte werden gleichgesetzt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Messwerte fälschlich miteinander gleichgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die gesuchte Sachgröße wird geschätzt, ohne das Modell zu nutzen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Modellbestimmung übersprungen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie erhält man mit einer Regressionsfunktion \(f\) eine Prognose für den x-Wert \(x=6\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(6)\) berechnen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=6\) lösen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorwärtsprognose mit einer Rückwärtsfrage verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(0)\) berechnen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Achsenabschnitt statt Prognosewert berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Koeffizienten \(6\) setzen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>x-Wert fälschlich als Koeffizienten gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gesucht ist der Zeitpunkt, zu dem das Modell den Wert \(20\) erreicht. Welcher Ansatz passt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=20\) lösen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(20)\) berechnen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zielwert als x-Wert eingesetzt statt als Funktionswert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=0\) lösen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle statt Erreichen des Zielwerts gesucht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20x=f(x)\) lösen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zielwert fälschlich mit der Variablen multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Modell lautet \(K(t)=2t+5\). Welchen Wert prognostiziert es für \(t=3\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(11\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Multiplikation \(2\cdot3\) fälschlich als Addition \(2+3\) ausgeführt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur \(t+5\) berechnet und den Faktor \(2\) vergessen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(21\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zuerst \(2+5\) addiert und danach mit \(3\) multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(K(t)\) beschreibt eine Konzentration in mg/l. Welche Einheit hat der Wert \(K(4)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>mg/l</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Stunden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einheit der Eingabegröße statt der Ausgabegröße gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>mg</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einheit der Konzentration unvollständig angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Liter pro Stunde</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Änderungsrate statt einer Konzentration angegeben</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Gleichung \(K(t)=25\) hat die Lösungen \(t=2\) und \(t=6\). Gesucht ist der Zeitpunkt, an dem die fallende Konzentration wieder \(25\) erreicht. Welche Lösung passt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(t=6\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t=2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Lösung aus der steigenden Phase gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide Zeitpunkte gleichzeitig</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die geforderte fallende Phase nicht zur Auswahl einer Lösung genutzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keine der beiden Lösungen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide mathematischen Lösungen trotz passender später Lösung verworfen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Prognose liegt innerhalb des Bereichs der gemessenen x-Werte. Wie heißt das?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Interpolation</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Extrapolation</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prognose außerhalb des Datenbereichs gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Regression ohne Daten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Modellbildung ohne Messwerte angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nullstellenbestimmung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Prognose mit einer Nullstellenfrage verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Prognose liegt weit außerhalb des Bereichs der gemessenen x-Werte. Welche Aussage ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Prognose ist meist weniger zuverlässig.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Prognose ist sicher exakt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extrapolation fälschlich als exakte Vorhersage angesehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das Modell wird dadurch automatisch linear.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Datenbereich mit der Funktionsart verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der prognostizierte Wert muss null sein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Begründung einen festen Prognosewert angenommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Modell für eine Konzentration liefert \(-3\) mg/l. Wie ist dieser Wert im Sachkontext zu beurteilen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Er ist für eine Konzentration unplausibel.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Er ist immer eine besonders genaue Prognose.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Negatives Ergebnis fälschlich als Gütezeichen gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Er bedeutet \(3\) Stunden.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ausgabegröße und Eingabegröße verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Er beweist, dass keine Regression durchgeführt wurde.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unplausibles Modellergebnis fälschlich als Beweis gegen jede Regression gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__regression__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Modell ist \(t\) die Zeit in Stunden nach Einnahme eines Medikaments. Was bedeutet \(t=0\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>den Zeitpunkt der Einnahme</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Stunde nach der Einnahme</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeitwert \(0\) fälschlich als eine Stunde gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>das Ende der Wirkung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ohne Modellinformation das Wirkungsende angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Konzentration von null mg/l</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eingabewert fälschlich als Konzentrationswert gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

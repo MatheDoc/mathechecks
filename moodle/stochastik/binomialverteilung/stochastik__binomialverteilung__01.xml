@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/binomialverteilung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/binomialverteilung/stochastik__binomialverteilung__01</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Bedingung einer Binomialverteilung liefert die Angabe „20 Würfe“?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Versuchsanzahl ist fest.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit ist \(20\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Versuchsanzahl als Wahrscheinlichkeit gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt 20 mögliche Ausgänge.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Versuchsanzahl mit Anzahl der Ausgänge verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Versuche enden nach dem ersten Treffer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Feste Anzahl durch eine Abbruchregel ersetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Münze wird zehnmal geworfen; Treffer bedeutet „Kopf“. Warum gibt es pro Versuch genau zwei relevante Ausgänge?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Jeder Wurf ist entweder Treffer oder Niete.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Münze wird zehnmal geworfen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Feste Versuchsanzahl statt Zweiteilung genannt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Kopf tritt mit Wahrscheinlichkeit \(0{,}5\) ein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Trefferwahrscheinlichkeit statt Zweiteilung genannt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Würfe sind nummeriert.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nummerierung der Versuche mit Versuchsausgängen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es werden Karten ohne Zurücklegen gezogen. Welche Binomialbedingung ist im Allgemeinen verletzt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit bleibt nicht konstant.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Anzahl der Ziehungen ist nicht fest.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Trotz vorgegebener Ziehungszahl eine variable Versuchsanzahl behauptet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt nie Treffer und Nieten.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Treffer und Niete beim Kartenziehen ausgeschlossen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zufallsgröße kann keine Treffer zählen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Zählvariable fälschlich ausgeschlossen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Würfel wird zwölfmal geworfen; Treffer bedeutet „eine Sechs“. Ist die Treffer-Niete-Bedingung erfüllt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ja, jeder Wurf wird in Sechs und Nicht-Sechs eingeteilt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nein, ein Würfel hat sechs Seiten.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Physische Würfelergebnisse statt der festgelegten Treffer-Einteilung gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nein, zwölf ist keine Wahrscheinlichkeit.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Versuchsanzahl mit Wahrscheinlichkeit verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ja, weil genau sechs Treffer auftreten.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Aus der Trefferdefinition eine feste Trefferzahl gefolgert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Passwort wird so oft eingegeben, bis es stimmt. Welche Binomialbedingung fehlt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine feste Versuchsanzahl.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zwei mögliche Ausgänge pro Eingabe.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig/falsch als zwei Ausgänge übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Trefferwahrscheinlichkeit.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorhandene Erfolgswahrscheinlichkeit bestritten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Definition für Treffer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>„Passwort stimmt“ als Trefferdefinition übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei 30 unabhängigen Schüssen ist die Trefferchance jedes Mal \(0{,}4\). Welche Aussage prüft die Konstanz?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Für jeden Schuss gilt dieselbe Trefferwahrscheinlichkeit \(0{,}4\).</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es fallen genau zwölf Treffer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erwartete Trefferzahl als sichere Trefferzahl gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt 30 verschiedene Trefferwahrscheinlichkeiten.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstanz in ihr Gegenteil verkehrt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nach einem Treffer endet der Versuch.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine nicht gegebene Abbruchregel ergänzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Zufallsgröße ist bei 15 Würfen binomialverteilt, wenn „gerade Augenzahl“ als Treffer gilt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Anzahl der Würfe mit gerader Augenzahl.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Summe aller Augenzahlen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Summe statt Trefferanzahl gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die größte geworfene Augenzahl.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Maximum statt Trefferanzahl gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Reihenfolge der Augenzahlen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Abfolge statt Trefferanzahl gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Aus einer großen Produktion werden 40 Teile unabhängig geprüft. Jedes Teil ist mit gleicher Wahrscheinlichkeit fehlerhaft. Welche Bedingung ist zusätzlich nötig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Jedes Teil wird als fehlerhaft oder nicht fehlerhaft eingestuft.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es müssen genau 20 Teile fehlerhaft sein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine feste Trefferzahl statt zwei Ausgängen gefordert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Fehlerwahrscheinlichkeit muss \(0{,}5\) sein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante Wahrscheinlichkeit unnötig auf 0,5 festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Prüfung muss nach einem Fehler enden.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Abbruchregel statt fester 40 Prüfungen verlangt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Änderung macht zehn Ziehungen aus einer Urne eher binomialgeeignet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Nach jeder Ziehung wird die Kugel zurückgelegt.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Ziehung endet beim ersten Treffer.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Feste Versuchsanzahl durch Abbruchregel zerstört</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es werden gleichzeitig verschieden viele Kugeln gezogen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichartige Einzelversuche aufgegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Treffer werden nicht gezählt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die benötigte Trefferanzahl als Zufallsgröße entfernt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__binomialverteilung__01-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Aussage gehört nicht zu den Bedingungen einer Binomialverteilung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es muss mindestens ein Treffer auftreten.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Versuchsanzahl ist fest.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die feste Versuchsanzahl fälschlich verworfen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Pro Versuch gibt es Treffer oder Niete.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die Zweiteilung in Treffer und Niete fälschlich verworfen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Trefferwahrscheinlichkeit ist konstant.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die konstante Trefferwahrscheinlichkeit fälschlich verworfen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
