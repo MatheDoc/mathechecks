@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen/analysis__differentialrechnung-ganzrationaler-funktionen__14</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet der allgemeine Ansatz für eine ganzrationale Funktion dritten Grades?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+bx^2+cx+d\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ansatz einer quadratischen statt einer kubischen Funktion gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^4+bx^3+cx^2+d\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ansatz vierten Grades statt dritten Grades gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x)=ax^3+b\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Allgemeinen kubischen Ansatz unzulässig auf zwei Terme verkürzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die erste Ableitung von \(f(x)=ax^3+bx^2+cx+d\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f'(x)=3ax^2+2bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x)=3ax^2+2bx+d\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitung von \(cx\) mit dem konstanten Term \(d\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x)=ax^2+bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Exponenten nicht als Faktoren übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x)=3ax^3+2bx^2+cx\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Exponenten beim Ableiten nicht verringert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie lautet die zweite Ableitung von \(f(x)=ax^3+bx^2+cx+d\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=6ax+2b\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=3ax^2+2bx+c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste statt zweite Ableitung angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=6ax+2c\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beim zweiten Ableiten \(b\) und \(c\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x)=6a+2b\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Faktor \(x\) im abgeleiteten kubischen Term weggelassen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Punkt \(E(x_E\mid y_E)\) liegt auf dem Graphen von \(f\). Welche Gleichung folgt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x_E)=y_E\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x_E)=y_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Koordinate fälschlich als Steigung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(y_E)=x_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>x- und y-Koordinate beim Einsetzen vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x_E)=y_E\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Koordinate fälschlich als Wert der zweiten Ableitung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Ableitungsbedingung gehört zum Extrempunkt \(E(x_E\mid y_E)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f'(x_E)=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x_E)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wendestellenbedingung statt Extremstellenbedingung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x_E)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extrempunkt fälschlich als Nullstelle der Funktion behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(y_E)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Koordinate statt x-Koordinate in die Ableitung eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Punkt \(W(x_W\mid y_W)\) liegt auf dem Graphen von \(f\). Welche Gleichung folgt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f(x_W)=y_W\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x_W)=y_W\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Koordinate fälschlich als Steigung gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(y_W)=x_W\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>x- und y-Koordinate beim Einsetzen vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(y_W)=x_W\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koordinaten vertauscht und zusätzlich die zweite Ableitung verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche notwendige Bedingung gehört zum Wendepunkt \(W(x_W\mid y_W)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(x_W)=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f'(x_W)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremstellenbedingung statt Wendestellenbedingung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f(x_W)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wendepunkt fälschlich als Nullstelle der Funktion behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f^{\prime\prime}(y_W)=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>y-Koordinate statt x-Koordinate in die zweite Ableitung eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(f(x)=ax^3+bx^2+cx+d\) gilt \(f(0)=3\). Was folgt direkt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(d=3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(c=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koeffizienten des linearen statt des konstanten Terms gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Leitkoeffizienten statt des konstanten Terms gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(b=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koeffizienten des quadratischen statt des konstanten Terms gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(f(x)=ax^3+bx^2+cx+d\) gilt \(f'(0)=0\). Was folgt direkt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(c=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(d=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstanten Term der Funktion statt konstanten Term der ersten Ableitung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kubischen Koeffizienten statt konstanten Term der ersten Ableitung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(b=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratischen Koeffizienten statt konstanten Term der ersten Ableitung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__14-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(f(x)=ax^3+bx^2+cx+d\) gilt \(f^{\prime\prime}(1)=0\). Welche Gleichung folgt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(6a+2b=0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3a+2b+c=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste statt zweite Ableitung bei \(x=1\) eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a+b+c+d=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Funktion statt zweite Ableitung bei \(x=1\) eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(6a+2c=0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>In der zweiten Ableitung den Koeffizienten \(b\) mit \(c\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

@@ -13,8 +13,7 @@ aufgaben/
 │   ├── models.py           # Datenmodell (Task, Frage, Antwort)
 │   ├── io.py               # JSON-Schreib-Funktionen
 │   ├── placeholders.py     # Platzhalter-Auflösung (Plotly etc.)
-│   ├── validation.py       # Batch-Plausibilitätsprüfung
-│   └── moodle_xml.py       # (pausiert – wird später neu aufgesetzt)
+│   └── validation.py       # Batch-Plausibilitätsprüfung
 ├── generators/
 │   ├── base.py             # Abstrakte Basisklasse TaskGenerator
 │   ├── registry.py         # Auto-Discovery aller Generatoren
@@ -187,7 +186,7 @@ python -m aufgaben.cli validate-binomial
 
 ## Moodle-XML-Export
 
-Aktuell pausiert. Der vorhandene Code in `core/moodle_xml.py` wird zu einem späteren Zeitpunkt von Grund auf neu aufgesetzt.
+Der Export läuft nicht mehr über den Generator: Die Test-Aktivität (`test/`) wird per `moodle/test_to_moodle.py` in Moodle-XMLs konvertiert (siehe `test/README.md`).
 
 ## Visuals (Hybrid)
 

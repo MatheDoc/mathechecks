@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/marktgleichgewicht-vertiefung</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/marktgleichgewicht-vertiefung/analysis__marktgleichgewicht-vertiefung__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel beschreibt die Konsumentenrente im Marktgleichgewicht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(KR=\int_0^{x_G}p_N(x)\,dx-x_G\cdot p_G\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(KR=x_G\cdot p_G-\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zahlungsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(KR=\int_0^{x_G}p_A(x)\,dx-x_G\cdot p_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Angebotsfunktion statt Nachfragefunktion verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(KR=x_G\cdot p_G+\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zahlungsbereitschaft und Umsatz addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Formel beschreibt die Produzentenrente im Marktgleichgewicht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G-\int_0^{x_G}p_A(x)\,dx\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(PR=\int_0^{x_G}p_A(x)\,dx-x_G\cdot p_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft in falscher Reihenfolge subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G-\int_0^{x_G}p_N(x)\,dx\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nachfragefunktion statt Angebotsfunktion verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(PR=x_G\cdot p_G+\int_0^{x_G}p_A(x)\,dx\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was beschreibt der Term \(x_G\cdot p_G\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>den Umsatz im Marktgleichgewicht</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die gesamte Zahlungsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechteckfläche mit der Fläche unter der Nachfragefunktion verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die gesamte Angebotsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechteckfläche mit der Fläche unter der Angebotsfunktion verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>die Gleichgewichtsmenge</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produkt aus Menge und Preis auf die Menge allein reduziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Fläche entspricht die Konsumentenrente?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>der Fläche zwischen Nachfragegraph und Marktpreis bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Fläche zwischen Marktpreis und Angebotsgraph bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konsumentenrente mit Produzentenrente verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Rechteckfläche \(x_G\cdot p_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konsumentenrente mit dem Umsatzrechteck verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Fläche unter dem Angebotsgraphen bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konsumentenrente der Angebotsseite zugeordnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Fläche entspricht die Produzentenrente?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>der Fläche zwischen Marktpreis und Angebotsgraph bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Fläche zwischen Nachfragegraph und Marktpreis bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produzentenrente mit Konsumentenrente verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Rechteckfläche \(x_G\cdot p_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produzentenrente mit dem Umsatzrechteck verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>der Fläche unter dem Nachfragegraphen bis \(x_G\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produzentenrente der Nachfrageseite zugeordnet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_G=3\), \(p_G=4\) und \(\int_0^{x_G}p_N(x)\,dx=18\). Wie groß ist \(KR\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(6\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(12\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur das Umsatzrechteck \(3\cdot4\) berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(30\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Integralwert und Umsatz addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-6\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umsatz und Zahlungsbereitschaft in falscher Reihenfolge subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_G=3\), \(p_G=4\) und \(\int_0^{x_G}p_A(x)\,dx=7\). Wie groß ist \(PR\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(5\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die gegebene Angebotsbereitschaft angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(19\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umsatz und Angebotsbereitschaft addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-5\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Angebotsbereitschaft und Umsatz in falscher Reihenfolge subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In welcher Reihenfolge werden die Größen für \(KR\) subtrahiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Zahlungsbereitschaft minus Umsatz</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Umsatz minus Zahlungsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge der Konsumentenrente vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Angebotsbereitschaft minus Umsatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konsumentenrente fälschlich mit der Angebotsseite gebildet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Umsatz minus Angebotsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Reihenfolge der Produzentenrente statt der Konsumentenrente gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In welcher Reihenfolge werden die Größen für \(PR\) subtrahiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Umsatz minus Angebotsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Angebotsbereitschaft minus Umsatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Subtraktionsreihenfolge der Produzentenrente vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zahlungsbereitschaft minus Umsatz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Reihenfolge der Konsumentenrente statt der Produzentenrente gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Umsatz minus Zahlungsbereitschaft</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Produzentenrente fälschlich mit der Nachfrageseite gebildet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__marktgleichgewicht-vertiefung__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Das Umsatzrechteck hat den Inhalt \(20\) GE, und \(\int_0^{x_G}p_N(x)\,dx=27\). Wie groß ist \(KR\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(7\) GE</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(20\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den Inhalt des Umsatzrechtecks angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(47\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Integralwert und Umsatz addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-7\) GE</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Umsatz und Zahlungsbereitschaft in falscher Reihenfolge subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/hypothesentests</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/hypothesentests/stochastik__hypothesentests__07</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem linksseitigen Test ist \(\overline{A}=\{0,\ldots,k\}\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \(p_0\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\leq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\geq k+1)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Annahme- statt Ablehnungsbereich verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\leq k)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehler 1. und 2. Art vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\geq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Grenze und Verteilungsschwanz vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem rechtsseitigen Test ist \(\overline{A}=\{k,\ldots,n\}\) und der Fehler 1. Art gegeben. Welcher Ansatz bestimmt \(p_0\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\geq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\leq k-1)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Annahme- statt Ablehnungsbereich verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\geq k)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehler 1. und 2. Art vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\leq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Grenze und Verteilungsschwanz vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem linksseitigen Test ist \(A=\{k+1,\ldots,n\}\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \(p_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\geq k+1)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\leq k)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ablehnungs- statt Annahmebereich verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\geq k+1)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit unter der Nullhypothese berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\geq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Grenze und Fehlerart vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei einem rechtsseitigen Test ist \(A=\{0,\ldots,k-1\}\) und der Fehler 2. Art gegeben. Welcher Ansatz bestimmt \(p_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\leq k-1)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\geq k)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ablehnungs- statt Annahmebereich verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_0}(X\leq k-1)=\beta\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit unter der Nullhypothese berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P_{p_1}(X\leq k)=\alpha\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Grenze und Fehlerart vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Parameterwert gehört in die Berechnung eines Fehlers 1. Art?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Wert \(p_0\) aus \(H_0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein Wert \(p_1\) aus \(H_1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehler 1. Art unter der Gegenhypothese berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der beobachtete relative Anteil</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stichprobenergebnis als Populationsparameter verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Immer \(p=0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter ohne Bezug zu den Hypothesen festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welcher Parameterwert gehört in die Berechnung eines Fehlers 2. Art?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ein konkreter Wert \(p_1\) aus \(H_1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Wert \(p_0\) aus \(H_0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehler 2. Art unter der Nullhypothese berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der beobachtete relative Anteil</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stichprobenergebnis als Populationsparameter verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Immer \(p=0{,}5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter ohne Bezug zu den Hypothesen festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird ein unbekanntes \(p\) aus einer gegebenen Binomialwahrscheinlichkeit typischerweise bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Passende Werte für \(p\) systematisch probieren</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p\) stets durch \(n\) teilen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter und Stichprobenumfang ohne Grundlage verrechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Fehlerwahrscheinlichkeit von \(1\) abziehen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gegenwahrscheinlichkeit mit gesuchtem Parameter verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Grenzwert \(k\) als \(p\) einsetzen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ganzzahlige Grenze als Wahrscheinlichkeit verwendet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie wird ein unbekannter Stichprobenumfang \(n\) aus einer gegebenen Fehlerwahrscheinlichkeit typischerweise bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ganzzahlige Werte für \(n\) systematisch probieren</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Fehlerwahrscheinlichkeit auf die nächste ganze Zahl runden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wahrscheinlichkeit fälschlich als Stichprobenumfang interpretiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(n=p\cdot k\) setzen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht vorhandene Produktformel verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Den Wert \(p\) als Stichprobenumfang verwenden</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter und Stichprobenumfang vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(Bcd(0;22;80;p_0)=0{,}0324\). Für \(p=0{,}38\) ergibt sich genau \(0{,}0324\). Welcher Wert ist gesucht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(p_0=0{,}38\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_0=0{,}0324\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehlerwahrscheinlichkeit als Parameter übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_0=22\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Grenzwert als Parameter übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_0=80\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Stichprobenumfang als Parameter übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__hypothesentests__07-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gesucht ist \(n\) und es gilt \(Bcd(33;n;n;0{,}28)=0{,}1580\). Für \(n=100\) stimmt die Gleichung. Was folgt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=100\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=33\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Untere Summengrenze als Stichprobenumfang übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=0{,}28\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter als Stichprobenumfang übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=0{,}1580\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fehlerwahrscheinlichkeit als Stichprobenumfang übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

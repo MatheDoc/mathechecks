@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/zufallsexperimente-und-wahrscheinlichkeiten</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/stochastik/zufallsexperimente-und-wahrscheinlichkeiten/stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist die gesamte Kreisfläche von \(B\) markiert, einschließlich der Überlappung mit \(A\). Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die Überlappung betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den B-Teil außerhalb von A betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Kreisflächen statt nur B betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist nur die Überlappung der Kreise \(A\) und \(B\) markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Schnittmenge mit Vereinigung verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamten Kreis A statt nur Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>B-Teil außerhalb von A gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist nur der Teil von \(B\) außerhalb von \(A\) markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Überlappung statt B-only-Bereich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>A- und B-only-Bereich vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamten Kreis B einschließlich Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm sind beide Kreisflächen \(A\) und \(B\) vollständig markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)+P(B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Überlappung durch bloße Addition doppelt gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Außenbereich statt Vereinigung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm sind die beiden Kreisbereiche außerhalb ihrer Überlappung markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)-P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Überlappung nicht aus der Vereinigung entfernt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Außenbereich beider Kreise gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist nur die Fläche außerhalb beider Kreise markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Überlappung der Kreise statt Außenbereich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Kreisflächen statt Außenbereich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cup\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Flächen außer der Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist nur der Teil von \(A\) außerhalb von \(B\) markiert. Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(\overline{A}\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>A- und B-only-Bereich vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Überlappung statt A-only-Bereich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamten Kreis A einschließlich Überlappung gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In einem Venn-Diagramm ist die gesamte Kreisfläche von \(A\) markiert, einschließlich der Überlappung mit \(B\). Welche Wahrscheinlichkeit ist dargestellt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(P(A)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur Überlappung betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cap\overline{B})\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur den A-Teil außerhalb von B betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(P(A\cup B)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beide Kreisflächen statt nur A betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was entspricht im Venn-Diagramm dem Flächeninhalt einer Ereignisfläche?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Wahrscheinlichkeit des Ereignisses</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Anzahl der Buchstaben im Ereignisnamen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beschriftung statt Flächeninhalt interpretiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Anzahl aller gezeichneten Kreise</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Diagrammstruktur statt Wahrscheinlichkeit betrachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Immer der Wahrscheinlichkeit \(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Jede Teilfläche fälschlich als sicheres Ereignis gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>stochastik__zufallsexperimente-und-wahrscheinlichkeiten__05-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Flächen bilden im Venn-Diagramm das Gegenereignis \(\overline{A}\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der B-only-Bereich und die Fläche außerhalb beider Kreise</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der gesamte Kreis A</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ereignis A statt seines Gegenereignisses gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur die Überlappung von A und B</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur einen innerhalb A liegenden Bereich gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der A-only-Bereich und die Überlappung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die beiden Teilflächen von A zusammengestellt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>

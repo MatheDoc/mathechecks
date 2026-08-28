@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/analysis</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/differentialrechnung-ganzrationaler-funktionen/analysis__differentialrechnung-ganzrationaler-funktionen__08</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(f'(x_0)=0\) und \(f''(x_0)=0\). Welche Aussage ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Test mit der zweiten Ableitung entscheidet nicht über eine Extremstelle.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher ein Hochpunkt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unentschiedenen Fall ohne weitere Prüfung als Hochpunkt gewertet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt sicher ein Tiefpunkt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unentschiedenen Fall ohne weitere Prüfung als Tiefpunkt gewertet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Bei \(x_0\) liegt keine waagrechte Tangente.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Aus \(f'(x_0)=0\) folgende waagrechte Tangente verneint</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was prüfst du bei \(f'(x_0)=0\) und \(f''(x_0)=0\) als Nächstes?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>den Vorzeichenwechsel von \(f'\) bei \(x_0\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>das Vorzeichen von \(f(x_0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen des Funktionswerts statt des Ableitungsverlaufs geprüft</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>ob \(f(x_0)=0\) gilt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Extremstellenentscheidung mit Nullstellenprüfung von \(f\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>nur den Wert \(f''(x_0)\) erneut</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bereits unentschiedenen Zweite-Ableitung-Test ohne neue Information wiederholt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links von \(x_0\) ist \(f'<0\), rechts von \(x_0\) ist \(f'>0\). Was liegt bei \(x_0\) vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Tiefstelle</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Hochstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wechsel von negativ nach positiv als Hochstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Sattelstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel von \(f'\) trotz Extremstelle als Sattelstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine stationäre Stelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die durch \(f'(x_0)=0\) gegebene stationäre Stelle verneint</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links von \(x_0\) ist \(f'>0\), rechts von \(x_0\) ist \(f'<0\). Was liegt bei \(x_0\) vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Hochstelle</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Tiefstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wechsel von positiv nach negativ als Tiefstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Sattelstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenwechsel von \(f'\) trotz Extremstelle als Sattelstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>keine stationäre Stelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Die durch \(f'(x_0)=0\) gegebene stationäre Stelle verneint</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links und rechts von \(x_0\) ist \(f'>0\), außerdem gilt \(f'(x_0)=0\). Was liegt im Spezialfall vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Sattelstelle, aber keine Extremstelle</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Hochstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigen auf beiden Seiten als Hochstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Tiefstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Steigen auf beiden Seiten als Tiefstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Nullstelle von \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f'\) mit Nullstelle von \(f\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Links und rechts von \(x_0\) ist \(f'<0\), außerdem gilt \(f'(x_0)=0\). Was liegt im Spezialfall vor?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>eine Sattelstelle, aber keine Extremstelle</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Hochstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fallen auf beiden Seiten als Hochstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Tiefstelle</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fallen auf beiden Seiten als Tiefstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>eine Nullstelle von \(f\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullstelle von \(f'\) mit Nullstelle von \(f\) verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(f'(x)=(x-1)^2\). Wie wechselt das Vorzeichen von \(f'\) bei \(x=1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es gibt keinen Vorzeichenwechsel.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>von negativ nach positiv</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadrat links der Nullstelle fälschlich als negativ gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>von positiv nach negativ</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadrat rechts der Nullstelle fälschlich als negativ gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>von null nach negativ</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Wert an der Nullstelle mit dem Vorzeichen im rechten Intervall verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist \(f'(x)=(x+2)^3\). Wie wechselt das Vorzeichen von \(f'\) bei \(x=-2\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>von negativ nach positiv</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>von positiv nach negativ</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen einer ungeraden Potenz auf beiden Seiten vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gibt keinen Vorzeichenwechsel.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungerade Vielfachheit fälschlich wie eine gerade Vielfachheit behandelt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>von null nach null</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitungswert an der Stelle auf beide Nachbarintervalle übertragen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(f'(x)=4(x+2)(x-1)^2\): Was geschieht mit dem Vorzeichen von \(f'\) bei \(x=1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Es bleibt positiv.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wechselt von positiv nach negativ.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratischen Faktor fälschlich als Vorzeichenwechsel von positiv nach negativ gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es wechselt von negativ nach positiv.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Quadratischen Faktor fälschlich als Vorzeichenwechsel von negativ nach positiv gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es bleibt negativ.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Positiven Faktor \(x+2\) in der Umgebung von \(1\) als negativ gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__differentialrechnung-ganzrationaler-funktionen__08-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Bei \(x=1\) gilt \(f'(1)=f''(1)=0\), und \(f'\) ist auf beiden Seiten positiv. Wie verläuft \(f\) dort?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(f\) bleibt wachsend und hat bei \(x=1\) eine waagrechte Tangente.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f\) wechselt vom Wachsen zum Fallen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichbleibend positives Vorzeichen von \(f'\) als Hochstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f\) wechselt vom Fallen zum Wachsen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichbleibend positives Vorzeichen von \(f'\) als Tiefstelle gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(f\) ist auf beiden Seiten konstant.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitung nur an einer Stelle gleich null als Konstanz auf Intervallen gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
