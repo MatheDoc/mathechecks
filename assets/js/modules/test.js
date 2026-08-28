@@ -138,7 +138,7 @@ function buildTestSourceUrl(check) {
   const gebiet = encodeURIComponent(String(check?.Gebiet || "").trim());
   const lernbereich = encodeURIComponent(String(check?.Lernbereich || "").trim());
   const checkId = encodeURIComponent(getCheckId(check));
-  return `/aufgaben/test/${gebiet}/${lernbereich}/${checkId}.json`;
+  return `/test/${gebiet}/${lernbereich}/${checkId}.json`;
 }
 
 function normalizeQuestion(raw, sourceIndex) {

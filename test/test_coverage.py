@@ -1,8 +1,8 @@
 """Prüft die Abdeckung der Test-Aktivität: je Check aus _data/checks.json muss unter
-aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json eine gültige Quelldatei liegen
+test/<gebiet>/<lernbereich>/<check_id>.json eine gültige Quelldatei liegen
 (10 Fragen, je genau 4 Antworten, erste Antwort = richtig, fehler optional mit max. 3 Einträgen).
 
-Aufruf: python -m aufgaben.tools.test_coverage
+Aufruf: python test/test_coverage.py
 """
 
 from __future__ import annotations
@@ -11,9 +11,9 @@ import json
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parents[2]
+REPO_ROOT = Path(__file__).resolve().parents[1]
 CHECKS_PATH = REPO_ROOT / "_data" / "checks.json"
-TEST_ROOT = REPO_ROOT / "aufgaben" / "test"
+TEST_ROOT = REPO_ROOT / "test"
 EXPECTED_QUESTION_COUNT = 10
 EXPECTED_ANSWER_COUNT = 4
 MAX_ANSWER_LENGTH = 90

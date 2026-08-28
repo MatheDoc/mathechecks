@@ -6,7 +6,7 @@ Ausgabeformate: Test-Modul der Plattform (letztes Glied der Check-Kette) und Moo
 ## Ablage
 
 ```
-aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json
+test/<gebiet>/<lernbereich>/<check_id>.json
 ```
 
 - Eine JSON-Datei pro Check, Dateiname = `check_id` (z. B. `stochastik__binomialverteilung__01.json`).
@@ -29,7 +29,7 @@ aufgaben/test/<gebiet>/<lernbereich>/<check_id>.json
 
 - `frage`: Fragetext, LaTeX inline als `\\( … \\)`.
 - `antworten`: genau 4 Einträge, **die erste ist die richtige** (Mischen übernimmt Moodle bzw. das Test-Modul). LaTeX ist auch in Antworten erlaubt.
-- **Antwortlänge:** möglichst ≤ 60 Zeichen (inkl. LaTeX-Markup), hartes Maximum 90 Zeichen – längere Antworten passen nicht in die fix dimensionierten Antwort-Buttons des Test-Moduls und werden von `aufgaben/tools/test_coverage.py` als ungültig gemeldet.
+- **Antwortlänge:** möglichst ≤ 60 Zeichen (inkl. LaTeX-Markup), hartes Maximum 90 Zeichen – längere Antworten passen nicht in die fix dimensionierten Antwort-Buttons des Test-Moduls und werden von `test/test_coverage.py` als ungültig gemeldet.
 - `fehler` (optional): beschreibt die Distraktoren, `fehler[i]` gehört zu `antworten[i+1]`. Dient der Dokumentation/Selbstkontrolle beim Schreiben und kann später falsch-spezifisches Feedback speisen. Allgemeine Beschreibungen sind zulässig.
 
 
