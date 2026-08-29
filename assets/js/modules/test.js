@@ -366,6 +366,7 @@ function buildTestCompletionDetails(results, source = "complete") {
     sourceIndex: result.sourceIndex,
     correct: Boolean(result.correct),
     answerIndex: result.answerIndex,
+    skipped: Boolean(result.skipped),
     timeMs: result.timeMs,
   }));
   const correctCount = questionResults.filter((entry) => entry.correct).length;
@@ -575,7 +576,10 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
         feedbackEl.innerHTML = "";
         feedbackEl.classList.remove("is-correct", "is-incorrect");
       }
-      if (nextBtn) nextBtn.hidden = true;
+      if (nextBtn) {
+        nextBtn.textContent = "Überspringen";
+        nextBtn.hidden = false;
+      }
       if (questionEl) questionEl.innerHTML = escapeHtml(entry.question.frage);
 
       if (answersEl) {
@@ -611,6 +615,7 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
         sourceIndex: entry.question.sourceIndex,
         correct,
         answerIndex: chosenOriginalIndex,
+        skipped: false,
         timeMs,
       });
 
@@ -654,6 +659,19 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
       }
     }
 
+    // Weiter ohne Antwort = Frage gilt als falsch beantwortet.
+    function recordSkippedQuestion() {
+      const entry = run[runIndex];
+      if (!entry) return;
+      results.push({
+        sourceIndex: entry.question.sourceIndex,
+        correct: false,
+        answerIndex: null,
+        skipped: true,
+        timeMs: Math.round(performance.now() - questionShownAt),
+      });
+    }
+
     function renderSummary() {
       const correctCount = results.filter((result) => result.correct).length;
       if (summaryHeadlineEl) {
@@ -669,9 +687,11 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
           .map((entry, index) => {
             const result = results[index];
             const correctAnswer = entry.question.antworten[0];
-            const chosenAnswer = Number.isFinite(result?.answerIndex)
-              ? entry.question.antworten[result.answerIndex]
-              : "";
+            const chosenAnswer = result?.skipped
+              ? "übersprungen"
+              : Number.isFinite(result?.answerIndex)
+                ? entry.question.antworten[result.answerIndex]
+                : "";
             const detail = result?.correct
               ? ""
               : `<p class="test-summary-item__detail"><span class="test-summary-item__label">Deine Antwort:</span> ${escapeHtml(chosenAnswer)}<br><span class="test-summary-item__label">Richtig:</span> ${escapeHtml(correctAnswer)}</p>`;
@@ -808,6 +828,10 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
     });
 
     nextBtn?.addEventListener("click", () => {
+      const answered = answersEl?.dataset.locked === "1";
+      if (!answered) {
+        recordSkippedQuestion();
+      }
       if (answersEl) delete answersEl.dataset.locked;
       runIndex += 1;
       if (runIndex >= run.length) {
