@@ -153,7 +153,7 @@ export function showTaskCompletionPopup({
           ? "Deine Feynman-Quote für diesen Check"
           : mode === "test"
             ? "Deine Test-Quote für diesen Check"
-            : "Deine Quote für diesen Check",
+            : "Deine Trainings-Quote für diesen Check",
     }));
   }
 
