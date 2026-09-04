@@ -282,7 +282,7 @@ function normalizeBatchResults(items: PromptItem[], results: Record<string, unkn
     return {
       nr: item.nr,
       score,
-      reason: emptyAnswer ? "Schreibe zuerst eine eigene Erklaerung." : entry ? truncate(entry?.reason, 180) : "keine Bewertung erhalten",
+      reason: emptyAnswer ? "Schreibe zuerst eine eigene Erklärung." : entry ? truncate(entry?.reason, 180) : "keine Bewertung erhalten",
       unchecked: !entry && !emptyAnswer,
     };
   });
@@ -363,7 +363,7 @@ Deno.serve(async (req: Request) => {
   const geminiItems = evaluationItems.filter((item) => item.schueler_antwort.trim());
 
   for (const item of emptyItems) {
-    normalized.push({ nr: item.nr, score: 0, reason: "Schreibe zuerst eine eigene Erklaerung.", unchecked: false });
+    normalized.push({ nr: item.nr, score: 0, reason: "Schreibe zuerst eine eigene Erklärung.", unchecked: false });
   }
 
   for (const items of chunkItems(geminiItems, GEMINI_BATCH_SIZE)) {
