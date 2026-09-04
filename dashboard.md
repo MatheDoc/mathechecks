@@ -5,11 +5,11 @@ description: Dashboard mit gemeinsamer Feed-Projektion fuer Session- und Wiederh
 page_context: Dashboard
 nav: dashboard
 body_class: page-dashboard
-page_css: /assets/css/dashboard.css?v=20260827-test-quotes
+page_css: /assets/css/dashboard.css?v=20260904-dashboard-filter-state
 published: true
 noindex: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260827-test-quotes
+module_script: /assets/js/modules/dashboard.js?v=20260904-dashboard-filter-state
 ---
 
 {% include dashboard/content.html %}

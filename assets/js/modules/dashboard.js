@@ -8,6 +8,7 @@ import {
 } from "../platform/feed-projection.js?v=20260826-test-module";
 import { getDefaultSystemSettings, loadSystemSettings } from "../platform/system-settings.js?v=20260603-activities-cleanup";
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
+import { loadDashboardWorklistFilter, saveDashboardWorklistFilter } from "../state/task-ui-state.js?v=20260904-dashboard-filter-state";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 const LERNBEREICH_ALIASES = {
@@ -1963,6 +1964,7 @@ function setupWorklistFilters(context) {
       const filter = String(filterButton.dataset.dashboardWorklistFilter || "").trim();
       if (!["session", "retention", "all"].includes(filter) || filter === context.worklistFilter) return;
       context.worklistFilter = filter;
+      saveDashboardWorklistFilter(filter);
       applyProficiencyWorklist(context, context.activityOverview);
     });
   });
@@ -4207,7 +4209,7 @@ function createContext(root, lernbereiche) {
     retentionPersistedDraft: {},
     retentionIsSaving: false,
     hasRetentionEntries: false,
-    worklistFilter: "session",
+    worklistFilter: loadDashboardWorklistFilter(),
     retentionCheckIds: new Set(),
     elements,
   };
