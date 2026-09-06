@@ -9,10 +9,7 @@ $$
 A = \begin{pmatrix}1 & 2 \\ 2 & 3\end{pmatrix}.
 $$
 
-Hinweis: Da $\det(A) = 1\cdot 3 - 2\cdot 2 = -1 \neq 0$, ist $A$ invertierbar.
-
 Wir starten mit der erweiterten Matrix $(A\mid E_2)$ und formen diese mit Hilfe der elementaren Zeilenumforumgen zu $(E_2\mid A^{-1})$ um:
-
 
 $$
 \begin{pmatrix}

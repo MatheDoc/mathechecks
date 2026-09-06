@@ -2,6 +2,7 @@
 
 Quelle:  test/<gebiet>/<lernbereich>/<check_id>.json
 Ziel:    moodle/<gebiet>/<lernbereich>/<check_id>.xml (eine Datei pro Check)
+         moodle/<gebiet>/<lernbereich>/alle_checks.xml (alle Checks eines Lernbereichs)
 Vorlage: moodle/gebiet__lernbereich__01.xml
 
 Aufruf: python moodle/test_to_moodle.py
@@ -118,24 +119,65 @@ def convert_check(source: Path, gebiet: str, lernbereich: str) -> tuple[Path, in
     return target, len(fragen)
 
 
+def convert_lernbereich(sources: list[Path], gebiet: str, lernbereich: str) -> tuple[Path, int]:
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>\n<quiz>\n']
+    parts.append(render_category(f"$course$/{gebiet}"))
+    parts.append(render_category(f"$course$/{gebiet}/{lernbereich}"))
+    question_count = 0
+
+    for source in sources:
+        check_id = source.stem
+        data = json.loads(source.read_text(encoding="utf-8"))
+        fragen = data.get("fragen")
+        if not isinstance(fragen, list) or not fragen:
+            raise ValueError(f"{source}: 'fragen' fehlt oder ist leer")
+
+        parts.append(render_category(f"$course$/{gebiet}/{lernbereich}/{check_id}"))
+        for index, frage in enumerate(fragen, start=1):
+            text = str(frage.get("frage", "")).strip()
+            antworten = frage.get("antworten")
+            if not text or not isinstance(antworten, list) or len(antworten) != 4:
+                raise ValueError(f"{source}: Frage {index} ist unvollständig")
+            fehler = frage.get("fehler") if isinstance(frage.get("fehler"), list) else []
+            parts.append(render_question(f"{check_id}-{index:02d}", text, antworten, fehler))
+            question_count += 1
+
+    parts.append("</quiz>\n")
+    target = OUT_ROOT / gebiet / lernbereich / "alle_checks.xml"
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.write_text("".join(parts), encoding="utf-8")
+    return target, question_count
+
+
 def main() -> int:
     written = 0
     question_count = 0
     errors: list[str] = []
 
+    sources_by_lernbereich: dict[tuple[str, str], list[Path]] = {}
     for source in sorted(TEST_ROOT.rglob("*.json")):
         relative = source.relative_to(TEST_ROOT)
-        if len(relative.parts) != 3:
-            continue
-        gebiet, lernbereich = relative.parts[0], relative.parts[1]
+        if len(relative.parts) == 3:
+            gebiet, lernbereich = relative.parts[0], relative.parts[1]
+            sources_by_lernbereich.setdefault((gebiet, lernbereich), []).append(source)
+
+    for (gebiet, lernbereich), sources in sources_by_lernbereich.items():
+        for source in sources:
+            try:
+                _, fragen_count = convert_check(source, gebiet, lernbereich)
+                written += 1
+                question_count += fragen_count
+            except (ValueError, OSError, json.JSONDecodeError) as error:
+                errors.append(str(error))
+
         try:
-            _, fragen_count = convert_check(source, gebiet, lernbereich)
+            _, fragen_count = convert_lernbereich(sources, gebiet, lernbereich)
             written += 1
             question_count += fragen_count
         except (ValueError, OSError, json.JSONDecodeError) as error:
             errors.append(str(error))
 
-    print(f"Moodle-XMLs geschrieben: {written} ({question_count} Fragen)")
+    print(f"Moodle-XMLs geschrieben: {written} ({question_count} Fragen, inkl. Sammeldateien)")
     if errors:
         print(f"\nFEHLER ({len(errors)}):")
         for error in errors:

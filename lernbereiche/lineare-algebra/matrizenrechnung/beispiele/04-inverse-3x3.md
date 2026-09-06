@@ -13,8 +13,6 @@ A = \begin{pmatrix}
 \end{pmatrix}.
 $$
 
-Hinweis: Da $\det(A)=1\neq 0$, ist $A$ invertierbar.
-
 Wir starten mit der erweiterten Matrix $(A\mid E_3)$ und formen diese mit Hilfe der elementaren Zeilenumformungen zu $(E_3\mid A^{-1})$ um:
 
 $$
