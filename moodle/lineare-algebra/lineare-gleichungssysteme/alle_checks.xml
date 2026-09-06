@@ -1,0 +1,2688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme</text>
+    </category>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme/lineare-algebra__lineare-gleichungssysteme__01</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(I:x+y=7\) und \(II:x-y=1\). Welche Verknüpfung eliminiert \(y\) direkt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(I+II\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(I-II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beim Subtrahieren nicht beachtet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2I+II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unnötiges Vielfaches verwendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(I+2II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dadurch fällt \(y\) nicht weg</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was entsteht aus \(x+y=7\) und \(x-y=1\) durch Addition?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2x=8\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2x=6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seiten subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2y=8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsche Variable eliminiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koeffizient von \(x\) vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Aus \(2x=8\) folgt …</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x=4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=6\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch dividiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Division nicht ausgeführt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=16\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit 2 multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \(x=4\) gilt in \(x+y=7\): Wie groß ist \(y\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(11\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>4 addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenfehler</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eingesetzten Wert ignoriert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Umformung von \(x+y=7\) nach \(y\) ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(y=7-x\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(y=7+x\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beim Seitenwechsel nicht geändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(y=x-7\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Seiten vertauscht und Vorzeichen verloren</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(y=\frac{7}{x}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Addition mit Division verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Umformung von \(2x+y=9\) nach \(x\) ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x=\frac{9-y}{2}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=9-2y\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht den gesamten Ausdruck durch 2 geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=\frac{9+y}{2}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(y\) falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x=9-y\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Division durch 2 vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Aus \(x+y=7\) folgt \(y=7-x\), aus \(2x-y=5\) folgt \(y=2x-5\). Welcher Ansatz passt zum Gleichsetzungsverfahren?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(7-x=2x-5\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7+x=2x-5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste Gleichung falsch umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(7-x=5-2x\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zweite Gleichung falsch umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x+y=2x-y\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht die isolierten Ausdrücke gleichgesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind \(I:2x+3y=8\) und \(II:x-y=1\). Welche Verknüpfung eliminiert \(x\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(I-2II\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(I-II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Koeffizienten von \(x\) noch verschieden</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(I+2II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen der zweiten Gleichung falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2I-II\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsche Gleichung vervielfacht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welches Zahlenpaar löst \(x+y=5\) und \(x-y=1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((3;2)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((2;3)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Variablen vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((3;-2)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenfehler bei \(y\)</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((4;1)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die erste Gleichung erfüllt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__01-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Du hast \(x\) durch Elimination bestimmt. Was ist der nächste notwendige Schritt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x\) in eine Ausgangsgleichung einsetzen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide Gleichungen nochmals addieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Liefert keine zweite Variable</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Beide Gleichungen mit \(x\) multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unnötiger Schritt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine neue Unbekannte einführen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Unnötige Erweiterung des Systems</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme/lineare-algebra__lineare-gleichungssysteme__02</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Matrixzeile gehört zu \(x_1+2x_2-x_3=4\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((1\;2\;-1\mid4)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((1\;2\;1\mid4)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(x_3\) verloren</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((1\;-2\;-1\mid4)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(x_2\) geändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((1\;2\;-1\mid0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite nicht übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Operation ist eine zulässige elementare Zeilenumformung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(II\rightarrow II-2I\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(II\rightarrow II-I^2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilen werden nicht potenziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(II\rightarrow II\cdot I\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilen werden nicht miteinander multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(II\rightarrow II+2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Zahl muss auf die ganze Zeile wirken</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(I=(1\;1\;0\mid3)\) und \(II=(2\;3\;1\mid8)\). Was ergibt \(II-2I\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((0\;1\;1\mid2)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;2\;1\mid5)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste Zeile nur einmal subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((1\;2\;1\mid5)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ersten Eintrag falsch berechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;1\;1\mid5)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite nur einmal vermindert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die erste Spalte unter dem ersten Pivot ist bereits null. Welcher Eintrag wird als Nächstes eliminiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Der Eintrag in Zeile III, Spalte 2</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der erste Pivot</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivot muss erhalten bleiben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Eintrag in Zeile I, Spalte 3</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eintrag liegt oberhalb statt unterhalb des Pivots</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die rechte Seite von Zeile III</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seiten werden nicht separat eliminiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(II=(0\;1\;2\mid5)\) und \(III=(0\;3\;7\mid16)\). Was ergibt \(III-3II\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((0\;0\;1\mid1)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;0\;5\mid11)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeile II nur einmal subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;2\;5\mid11)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Faktor 3 nicht auf alle Einträge angewendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;0\;1\mid16)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite nicht mit umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Woran erkennst du bei einem 3×3-LGS die obere Dreiecksform?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Unterhalb der Diagonalen stehen nur Nullen.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Oberhalb der Diagonalen stehen nur Nullen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Beschreibt eine untere Dreiecksform</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>In jeder Zeile steht genau eine Null.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullenanzahl ist nicht entscheidend</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle Diagonaleinträge sind 1.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Normierung der Pivots ist nicht erforderlich</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die letzte Zeile lautet \(2x_3=6\). Welcher Wert wird zuerst bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_3=3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_2=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsche Variable gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_3=4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch dividiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit der ersten Variable begonnen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_2+x_3=5\) und \(x_3=3\). Wie groß ist \(x_2\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>3 addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenfehler</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bekannten Wert nicht eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_1+x_2+x_3=9\), \(x_2=2\) und \(x_3=3\). Wie groß ist \(x_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur einen bekannten Wert berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechenfehler bei der Subtraktion</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(14\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bekannte Werte addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__02-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der erste Eintrag der ersten Matrixzeile ist 0, darunter steht eine 1. Was ist ein sinnvoller erster Schritt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die beiden Zeilen vertauschen</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die erste Zeile mit 0 multiplizieren</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erzeugt eine Nullzeile</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die erste Spalte streichen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Verändert das LGS unzulässig</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zur letzten Zeile springen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivotproblem wird nicht behoben</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme/lineare-algebra__lineare-gleichungssysteme__03</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie viele Spalten hat die erweiterte Koeffizientenmatrix eines 4×4-LGS?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spalte der rechten Seiten vergessen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilen und Spalten addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(16\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Anzahl der Koeffizienten gezählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie viele Einträge müssen in der ersten Eliminationsstufe unter dem ersten Pivot null werden?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur letzte Zeile berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>3×3-Struktur angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivot selbst mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die erste Spalte unter dem Pivot ist eliminiert. Welches Teilsystem bleibt für die nächste Stufe?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Ein 3×3-System in \(x_2,x_3,x_4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein 2×2-System in \(x_3,x_4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eine Eliminationsstufe übersprungen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein 3×3-System in \(x_1,x_2,x_3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bereits eliminierte Variable beibehalten</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein 4×4-System ohne rechte Seiten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seiten fälschlich entfernt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Wie viele Einträge werden unter dem zweiten Pivot in Spalte 2 eliminiert?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur die letzte Zeile berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erste Eliminationsstufe wiederholt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivot und obere Zeile mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Nach den ersten beiden Eliminationsstufen steht unter dem dritten Pivot noch ein Eintrag. Wo liegt er?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>In Zeile IV, Spalte 3</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>In Zeile III, Spalte 4</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eintrag rechts statt unterhalb des Pivots gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>In Zeile II, Spalte 3</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Dritten Pivot selbst gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>In Zeile IV, Spalte 4</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Diagonaleintrag statt zu eliminierendem Eintrag gewählt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(III=(0\;0\;1\;1\mid3)\) und \(IV=(0\;0\;2\;3\mid8)\). Was ergibt \(IV-2III\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((0\;0\;0\;1\mid2)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;0\;0\;2\mid5)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeile III nur einmal subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;0\;1\;2\mid5)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Faktor 2 nicht auf alle Einträge angewendet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((0\;0\;0\;1\mid8)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite nicht umgeformt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Nullstruktur kennzeichnet die obere Dreiecksform eines 4×4-LGS?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Unter den vier Diagonaleinträgen stehen insgesamt sechs Nullen.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Unter den Diagonaleinträgen stehen insgesamt drei Nullen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur letzte Eliminationsstufe gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nur in der ersten Spalte stehen Nullen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nur erste Eliminationsstufe beschrieben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Auch oberhalb der Diagonalen müssen alle Einträge null sein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Reduzierte Zeilenstufenform mit Dreiecksform verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die vierte Zeile lautet \(2x_4=6\). Welcher Wert wird beim Rückwärtseinsetzen zuerst bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_4=3\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_3=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>3×3-Rückwärtseinsetzen angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_4=4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch dividiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit der ersten Variable begonnen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_3+x_4=5\) und \(x_4=3\). Wie groß ist \(x_3\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(8\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>3 addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(-2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichenfehler</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bekannten Wert nicht eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__03-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In welcher Reihenfolge werden die Variablen aus einer 4-zeiligen oberen Dreiecksform bestimmt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_4,x_3,x_2,x_1\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_3,x_2,x_1,x_4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Mit der dritten statt der letzten Zeile begonnen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1,x_2,x_3,x_4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorwärtseinsetzen statt Rückwärtseinsetzen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_4,x_2,x_3,x_1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilenreihenfolge beim Rückwärtseinsetzen vertauscht</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme/lineare-algebra__lineare-gleichungssysteme__04</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Beim Gauß-Algorithmus entsteht die Zeile \(0=0\). Was bedeutet sie?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Zeile liefert keine zusätzliche Bedingung.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS hat keine Lösung.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Identität mit Widerspruch verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Alle Variablen sind 0.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullzeile als Variablenwert gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS ist eindeutig lösbar.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eindeutigkeit folgt nicht aus einer Nullzeile</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein lösbares LGS mit drei Variablen hat nur zwei Pivotzeilen. Welche Festlegung ist möglich?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_3=t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_3=0\) zwingend</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Freie Variable unnötig festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=x_2=x_3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichheit der Variablen folgt nicht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t=0\) zwingend</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter darf beliebige Werte annehmen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Wertemenge ist für einen freien Parameter \(t\) vorgesehen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(t\in\mathbb{R}\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t>0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter unnötig auf positive Werte beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t\in\{0,1\}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter unnötig auf zwei Werte beschränkt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(t=1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter unnötig festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(-x_2-t=-2\). Welche Darstellung von \(x_2\) ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_2=2-t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_2=-2-t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen der Konstanten falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_2=2+t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen von \(t\) falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_2=t-2\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichung nicht korrekt mit \(-1\) multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_1+x_2+2x_3=5\), \(x_2=2-t\) und \(x_3=t\). Wie lautet \(x_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_1=3-t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=3+t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen des Parameterterms falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=7-t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konstante addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=3-3t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameterterme falsch zusammengefasst</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Lösungsdarstellung gehört zu \(x_1=3-t\), \(x_2=2-t\), \(x_3=t\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((x_1,x_2,x_3)=(3-t,2-t,t)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((x_1,x_2,x_3)=(3+t,2-t,t)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen bei \(x_1\) geändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((x_1,x_2,x_3)=(3-t,2+t,t)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen bei \(x_2\) geändert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((x_1,x_2,x_3)=(3-t,2-t,0)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Freie Variable festgelegt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Für \((x_1,x_2,x_3)=(3-t,2-t,t)\) wird \(t=1\) gewählt. Welcher Lösungspunkt entsteht?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\((2,1,1)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((4,3,1)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter addiert statt subtrahiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((2,3,1)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen nur bei \(x_2\) falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\((3,2,1)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Parameter nicht in \(x_1\) und \(x_2\) eingesetzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein lösbares LGS mit drei Variablen besitzt zwei Pivotvariablen. Wie viele freie Parameter werden benötigt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Einer</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keiner</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Eindeutigkeit angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zwei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Pivotvariablen mit freien Variablen verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Drei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Variablen als frei behandelt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Beim Gauß-Algorithmus entsteht die Zeile \(0=3\). Welche Folgerung ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das LGS hat keine Lösung.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Eine Variable ist frei wählbar.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Widerspruch mit Identität verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Es gilt \(t=3\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite als Parameterwert gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS hat genau eine Lösung.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Widerspruch übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__04-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(x_1+x_3=4\) und \(x_3=t\). Wie lautet \(x_1\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(x_1=4-t\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=4+t\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vorzeichen beim Umstellen falsch</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=t-4\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Seitenwechsel falsch ausgeführt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(x_1=\frac{4}{t}\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Addition mit Division verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/lineare-algebra/lineare-gleichungssysteme/lineare-algebra__lineare-gleichungssysteme__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-01</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Koeffizientenmatrix in Zeilenstufenform hat zwei Nicht-Nullzeilen und eine Nullzeile. Wie groß ist \(rg(A)\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(2\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(1\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nullzeilen statt Nicht-Nullzeilen gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Alle Zeilen gezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(0\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht-Nullzeilen übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In \((A\mid y)\) tritt die Zeile \((0\;0\mid1)\) auf. Wie wirkt sie auf die Ränge?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Sie erhöht \(rg(A\mid y)\), aber nicht \(rg(A)\).</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie erhöht beide Ränge.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rechte Seite der Widerspruchszeile in \(A\) mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie erhöht nur \(rg(A)\).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erweiterte Spalte nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sie verändert keinen Rang.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Nicht-Nullzeile der erweiterten Matrix übersehen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Koeffizientenmatrix \(A\) hat vier Spalten. Wie groß ist die Variablenanzahl \(n\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(4\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(3\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Zeilenzahl angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Erweiterte Spalte mitgezählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Nicht bestimmbar</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Spaltenzahl von \(A\) nicht genutzt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Rangbedingung bedeutet: genau eine Lösung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)=n\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)<n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für unendlich viele Lösungen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)<rg(A\mid y)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für keine Lösung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)>rg(A\mid y)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Für eine Erweiterung unmögliche Rangrelation</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Rangbedingung bedeutet: unendlich viele Lösungen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)<n\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)=n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für genau eine Lösung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)<rg(A\mid y)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für keine Lösung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A\mid y)<rg(A)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Für eine Erweiterung unmögliche Rangrelation</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Rangbedingung bedeutet: keine Lösung?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(rg(A)<rg(A\mid y)\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)=n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für genau eine Lösung</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)=rg(A\mid y)<n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bedingung für unendlich viele Lösungen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(rg(A)>n\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rang einer Matrix kann ihre Spaltenzahl nicht übersteigen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(rg(A)=3\), \(rg(A\mid y)=3\) und \(n=3\). Wie viele Lösungen besitzt das LGS?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Genau eine</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleiche Ränge übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Unendlich viele</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Vergleich mit \(n\) übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau drei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rang als Lösungsanzahl gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(rg(A)=2\), \(rg(A\mid y)=2\) und \(n=4\). Wie viele Lösungen besitzt das LGS?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Unendlich viele</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau eine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ranggleichheit mit Eindeutigkeit verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Keine</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleiche Ränge übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Genau zwei</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rang als Lösungsanzahl gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(rg(A)=2\) und \(rg(A\mid y)=3\). Welche Folgerung ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das LGS hat keine Lösung.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS hat genau eine Lösung.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungleiche Ränge übersehen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS hat unendlich viele Lösungen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Konsistenz fälschlich angenommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Variablenanzahl muss zuerst bekannt sein.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Bei ungleichen Rängen ist \(n\) für die Folgerung nicht nötig</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>lineare-algebra__lineare-gleichungssysteme__05-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein LGS hat drei Variablen und es gilt \(rg(A)=rg(A\mid y)=2\). Welche Aussage ist richtig?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das LGS hat unendlich viele Lösungen.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zwei Gleichungen bedeuten genau zwei Lösungen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gleichungszahl als Lösungszahl gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Das LGS ist eindeutig lösbar.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rang ist kleiner als \(n\)</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ohne die Anzahl der Gleichungen ist keine Aussage möglich.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Rangkriterium liefert bereits eine eindeutige Folgerung</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+</quiz>
