@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260816-mobile-speech-restart";
+import { renderTask } from "../runtime/task-render.js?v=20260908-single-check-btn";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

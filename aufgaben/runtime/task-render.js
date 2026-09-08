@@ -1,4 +1,4 @@
-import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260711-speech-textarea-fix";
+import { answerToPreview, answerToSolution, evaluateAnswerFields } from "./answers.js?v=20260908-strict-user-number";
 import { renderVisual } from "./task-visuals.js?v=20260614-expression-curves-b";
 import { stopActiveSpeechInput } from "../../assets/js/modules/ui/speech-input.js?v=20260816-mobile-restart";
 
@@ -44,6 +44,17 @@ function saveTaskUiState(stateKey, state) {
     } catch {
         // Ignore quota/storage errors to keep task interaction usable.
     }
+}
+
+function createQuestionCheckButton(onCheck) {
+    const checkBtn = document.createElement("button");
+    checkBtn.type = "button";
+    checkBtn.className = "answer-check-btn";
+    checkBtn.setAttribute("aria-label", "Teilfrage prüfen");
+    checkBtn.title = "Teilfrage prüfen";
+    checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    checkBtn.addEventListener("click", onCheck);
+    return checkBtn;
 }
 
 function attachQuestionCheckShortcuts(answerPreview, onCheck) {
@@ -718,7 +729,11 @@ export function renderTask(task, options = {}) {
                 answerFieldQuestionIndexes.push(i);
             });
 
+            // Bewertungseinheit ist die Teilfrage: ein Check-Button pro Frage, am letzten Feld.
+            const lastField = fields[fields.length - 1];
             fields.forEach((field) => {
+                const isLastField = field === lastField;
+
                 // NUMERICAL_OPT groups are already wrapped; wire up checkbox toggle
                 if (field.classList.contains("answer-numopt-group")) {
                     const numoptInput = field.querySelector(".answer-numopt-input");
@@ -738,13 +753,9 @@ export function renderTask(task, options = {}) {
                     field.replaceWith(outerGroup);
                     outerGroup.appendChild(field);
 
-                    const checkBtn = document.createElement("button");
-                    checkBtn.type = "button";
-                    checkBtn.className = "answer-check-btn";
-                    checkBtn.setAttribute("aria-label", "Prüfen");
-                    checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-                    checkBtn.addEventListener("click", runQuestionCheck);
-                    outerGroup.appendChild(checkBtn);
+                    if (isLastField) {
+                        outerGroup.appendChild(createQuestionCheckButton(runQuestionCheck));
+                    }
                     return;
                 }
 
@@ -756,13 +767,9 @@ export function renderTask(task, options = {}) {
                 field.replaceWith(group);
                 group.appendChild(field);
 
-                const checkBtn = document.createElement("button");
-                checkBtn.type = "button";
-                checkBtn.className = "answer-check-btn";
-                checkBtn.setAttribute("aria-label", "Prüfen");
-                checkBtn.innerHTML = '<svg width="11" height="11" viewBox="0 0 11 11" fill="none"><polyline points="1,5.5 4,8.5 10,2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-                checkBtn.addEventListener("click", runQuestionCheck);
-                group.appendChild(checkBtn);
+                if (isLastField) {
+                    group.appendChild(createQuestionCheckButton(runQuestionCheck));
+                }
             });
         }
 

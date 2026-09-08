@@ -97,7 +97,7 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 ### Abschluss-Controls
 
 - **Feed-Kontext:** Das pulsierende Feed-Icon mit Entscheidungsdialog (`jetzt wiederholen`, `später`, `abschließen`) bleibt unverändert für `training`, `recall`, `feynman`, `test`, `start` und `flashcards`. Es ist das visuelle Signal „du bist in einer Feed-Aktivität" und steuert den Cursor.
-- **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen geprüft; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
+- **Freier Kontext:** `training`, `recall` und `feynman` teilen sich ein **einheitliches** Abschluss-Icon (Haken-Symbol) an **derselben Stelle** wie das Feed-Icon, also im Karten-Header. Es pulsiert grün, sobald die Aktivität abschließbar ist (Training: alle prüfbaren Fragen korrekt beantwortet oder aufgelöst; `recall`: alle Items korrekt oder aufgelöst; `feynman`: KI-Auswertung liegt vor) und öffnet das Abschluss-Popup. Der Haken unterscheidet es optisch vom Feed-Signal (Wellen-Icon); beide nutzen dieselbe Header-Position und Pulsoptik. `kompetenzliste` bekommt im freien Aufruf **kein** Abschluss-Control.
 
 ### Abschluss-Popup
 
@@ -111,14 +111,22 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 
 ### Per-Frage-Fluss im Training
 
+Eine **prüfbare Frage** ist eine Teilfrage mit mindestens einem Eingabefeld (`NUMERICAL`, `NUMERICAL_OPT`, `INTERVAL_BOUND`, `ANALYSIS_BOUND`, `MC`). Teilfragen ohne Eingabefeld (z. B. gegebene Werte) zählen nicht in `checkable_count`.
+
+Die **Bewertungseinheit ist die Teilfrage**, nicht das einzelne Eingabefeld. Deshalb gibt es pro Teilfrage genau **einen** Prüf-Button (am letzten Eingabefeld der Frage); Enter in einem beliebigen Feld prüft ebenfalls die ganze Teilfrage. Eine Prüfung markiert alle ausgefüllten Felder der Frage als richtig/falsch, leere Felder bleiben neutral.
+
 1. Frage ungeprüft.
 2. Geprüft und korrekt: Einzellösung wird automatisch eingeblendet (exakter Wert, vermeidet Folgefehler), Frage ist gewertet.
 3. Geprüft und falsch: Der Nutzer kann weiterprobieren (`n` erhöht sich) oder die Lösung einzeln anzeigen (Fragescore `0`).
 4. Globale Aktion „alle Lösungen einblenden": macht den gesamten Durchgang ungewertet (siehe Abschluss-Popup). Per-Frage-Lösungen aus Schritt 3 bleiben davon unberührt und zählen weiterhin als Fragescore `0`.
 
+**Versuchszählung bei mehreren Feldern:** Eine Prüfung erhöht `n` nur, wenn **alle** Felder der Teilfrage ausgefüllt sind. Prüfungen mit leeren Feldern geben zwar Feedback zu den ausgefüllten Feldern, zählen aber nicht als Versuch. Bekannte Folge: Bei Fragen mit vielen Feldern (z. B. Matrixelemente) kann ein Nutzer Feld für Feld ausfüllen, prüfen und korrigieren und die Frage trotzdem mit `n = 1` abschließen. Das ist derzeit **bewusst akzeptiert**, weil es die Hürde für schrittweises Arbeiten senkt und Weiterprobieren ohnehin überall erlaubt ist. Sollte sich das als zu mild erweisen, ist die vorgesehene Verschärfung: Prüfen nur bei vollständig ausgefüllter Teilfrage zulassen (sonst Hinweis, welche Felder fehlen); Teilprüfungen entfallen dann.
+
+**Numerische Eingaben:** Ein nicht-numerischer Anhang ohne weitere Ziffern oder Rechenzeichen (Einheiten wie `5 ME`, `12 %`, Sprach-Rauschen) wird toleriert, die Zahl davor gewertet. Folgen nach der Zahl weitere Ziffern oder Rechenzeichen (`2/3`, `3-4`, `5.3.2`), gilt die Eingabe als nicht interpretierbar und wird als falsch gewertet (zählt als Versuch).
+
 ### Dashboard-Worklist
 
-- Eine Box listet die Session-Checks als sortierte Fortschrittsbalken, die schwächsten oben.
+- Eine Box listet die Session-Checks (oder wahlweise alle Checks oder Auffrischen-Checks)als sortierte Fortschrittsbalken, die schwächsten oben.
 - Klick auf einen Check öffnet **freies Training** dieses Checks. Das verändert den Core-Feed nicht (kein Cursor, kein Lock) und hebt dennoch die Session-Quote, weil diese nur ein View-Filter auf die Check-Quote ist.
 
 ### Session-Hervorhebung

@@ -11,7 +11,7 @@ import {
   recordRetentionFlashcardReview,
   resolveFlashcardRound,
   resolveRetentionFlashcardRound,
-} from "./progress-client.js?v=20260826-test-module";
+} from "./progress-client.js?v=20260908-run-rate";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
 

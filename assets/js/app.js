@@ -1,9 +1,9 @@
-import { initTrainingModule } from "./modules/training.js?v=20260826-test-module";
-import { initRecallModule } from "./modules/recall.js?v=20260826-test-module";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260826-test-module";
-import { initTestModule } from "./modules/test.js?v=20260829-test-skip";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260701-shared-client";
-import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260816-mobile-speech-restart";
+import { initTrainingModule } from "./modules/training.js?v=20260908-run-rate";
+import { initRecallModule } from "./modules/recall.js?v=20260908-run-rate";
+import { initFeynmanModule } from "./modules/feynman.js?v=20260908-run-rate";
+import { initTestModule } from "./modules/test.js?v=20260908-run-rate";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260908-run-rate";
+import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260908-run-rate";
 import { initCheckAnker } from "./modules/check-anker.js?v=20260721-recall-stepped-tips";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";

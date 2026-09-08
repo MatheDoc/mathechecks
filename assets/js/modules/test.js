@@ -1,10 +1,10 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { completeTestFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserTestProficiency, extractTestProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
+import { recordUserActivity, getUserTestProficiency, extractTestProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260826-test-module";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const TEST_STATE_PREFIX = "test-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -728,8 +728,9 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
 
         const after = await getUserTestProficiency();
         const newRate = after.ok ? extractTestProficiencyRate(after.data, checkId) : null;
+        const runRate = after.ok ? extractCheckLastTaskScore(after.data, checkId) : null;
         updateTestRateBadge(section?.querySelector(".check-card__rate-badge"), newRate);
-        latestRates = { previousRate, newRate };
+        latestRates = { previousRate, newRate, runRate };
         return latestRates;
       })();
 
@@ -743,6 +744,7 @@ function initInteractiveTestCards(root, lernbereich, activityContext) {
         showQuote: true,
         previousRate: rates.previousRate,
         newRate: rates.newRate,
+        runRate: rates.runRate ?? null,
         onRepeat: resetTestCard,
         onDashboard: () => window.location.assign("/dashboard.html"),
         onStay: () => {
