@@ -584,6 +584,16 @@ function extractProficiencyRate(proficiency, checkId) {
   return Number.isFinite(rate) ? rate : null;
 }
 
+// Score des juengsten gewerteten Durchgangs (Prozent), fuer alle vier Quoten-RPCs gleich.
+export function extractCheckLastTaskScore(proficiency, checkId) {
+  const normalizedCheckId = normalizeText(checkId);
+  if (!proficiency || typeof proficiency !== "object" || !normalizedCheckId) return null;
+  const checks = Array.isArray(proficiency.checks) ? proficiency.checks : [];
+  const entry = checks.find((item) => normalizeText(item?.checkId) === normalizedCheckId);
+  const score = Number(entry?.lastTaskScore);
+  return Number.isFinite(score) ? score : null;
+}
+
 export function extractCheckProficiencyRate(proficiency, checkId) {
   return extractProficiencyRate(proficiency, checkId);
 }

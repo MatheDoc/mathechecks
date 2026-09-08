@@ -52,6 +52,35 @@ function parseNumber(raw) {
     return Number.parseFloat(normalized);
 }
 
+// Nutzereingabe: Einheiten-/Wortanhang ("5 ME", "12 %", Sprach-Rauschen) tolerieren,
+// aber weitere Ziffern oder Rechenzeichen nach der Zahl ("2/3", "3-4", "5.3.2") nicht als Zahl werten.
+const USER_NUMBER_PATTERN = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/i;
+const USER_NUMBER_INVALID_SUFFIX = /[\d/*+\-^:]/;
+
+function parseUserNumber(raw) {
+    const normalized = String(raw ?? "")
+        .trim()
+        .replace(/[−–—]/g, "-")
+        .replaceAll(" ", "")
+        .replaceAll(",", ".");
+
+    if (normalized.length === 0) {
+        return Number.NaN;
+    }
+
+    const match = normalized.match(USER_NUMBER_PATTERN);
+    if (!match) {
+        return Number.NaN;
+    }
+
+    const suffix = normalized.slice(match[0].length);
+    if (USER_NUMBER_INVALID_SUFFIX.test(suffix)) {
+        return Number.NaN;
+    }
+
+    return Number.parseFloat(match[0]);
+}
+
 function normalizeInfinityInput(raw) {
     const normalized = String(raw ?? "")
         .trim()
@@ -115,7 +144,7 @@ function evaluateNumerical(raw, userValue) {
 
     const expected = parseNumber(numericalMatch[1]);
     const tolerance = Math.abs(parseNumber(numericalMatch[2]));
-    const entered = parseNumber(userValue);
+    const entered = parseUserNumber(userValue);
 
     if (Number.isNaN(entered)) {
         return {

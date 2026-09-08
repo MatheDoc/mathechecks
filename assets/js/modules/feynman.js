@@ -1,7 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
+import { recordUserActivity, getUserFeynmanProficiency, extractFeynmanProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgaben/runtime/answers.js?v=20260711-speech-textarea-fix";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
@@ -12,7 +12,7 @@ import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluatio
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const FY_BEISPIEL_CACHE = new Map();
 const FY_STATE_PREFIX = "feynman-state-v1";
@@ -1219,8 +1219,9 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
 
         const after = await getUserFeynmanProficiency();
         const newRate = after.ok ? extractFeynmanProficiencyRate(after.data, checkId) : null;
+        const runRate = after.ok ? extractCheckLastTaskScore(after.data, checkId) : null;
         updateFeynmanRateBadge(section?.querySelector(".check-card__rate-badge"), newRate);
-        latestRates = { previousRate, newRate };
+        latestRates = { previousRate, newRate, runRate };
         return latestRates;
       })();
 
@@ -1234,6 +1235,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
         showQuote: true,
         previousRate: rates.previousRate,
         newRate: rates.newRate,
+        runRate: rates.runRate ?? null,
         onRepeat: resetFeynmanCard,
         onDashboard: () => window.location.assign("/dashboard.html"),
         onStay: () => {

@@ -1,13 +1,13 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
+import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const RECALL_STATE_PREFIX = "recall-state-v1";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -906,8 +906,9 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
 
         const after = await getUserRecallProficiency();
         const newRate = after.ok ? extractRecallProficiencyRate(after.data, checkId) : null;
+        const runRate = after.ok ? extractCheckLastTaskScore(after.data, checkId) : null;
         updateRecallRateBadge(section?.querySelector(".check-card__rate-badge"), newRate);
-        latestRates = { previousRate, newRate };
+        latestRates = { previousRate, newRate, runRate };
         return latestRates;
       })();
 
@@ -921,6 +922,7 @@ function initInteractiveRecallCards(root, lernbereich, activityContext) {
         showQuote: true,
         previousRate: rates.previousRate,
         newRate: rates.newRate,
+        runRate: rates.runRate ?? null,
         onRepeat: resetRecallCard,
         onDashboard: () => window.location.assign("/dashboard.html"),
         onStay: () => {

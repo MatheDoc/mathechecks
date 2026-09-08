@@ -13,12 +13,12 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260816-mobile-speech-restart";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260908-single-check-btn";
 import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 import {
     attachTrainingFeedShell,
     buildTrainingKiAgentPrompt,
@@ -113,7 +113,8 @@ async function recordTrainingTaskCompletion({
 
     const after = await getUserCheckProficiency();
     const newRate = after.ok ? extractCheckProficiencyRate(after.data, checkId) : null;
-    return { previousRate, newRate };
+    const runRate = after.ok ? extractCheckLastTaskScore(after.data, checkId) : null;
+    return { previousRate, newRate, runRate };
 }
 
 function pickRandomTaskIndex(currentIndex, totalCount) {
@@ -417,6 +418,7 @@ async function renderCheckTaskInHost(host, check, {
                 quoteUnchanged: Boolean(rates.quoteUnchanged),
                 previousRate: rates.previousRate,
                 newRate: rates.newRate,
+                runRate: rates.runRate ?? null,
                 onRepeat: () => {
                     void reloadTask();
                 },
@@ -534,6 +536,7 @@ async function renderCheckTaskInHost(host, check, {
                             latestRates = {
                                 previousRate: rates.previousRate ?? null,
                                 newRate: rates.newRate ?? null,
+                                runRate: rates.runRate ?? null,
                                 quoteUnchanged: Boolean(rates.quoteUnchanged),
                             };
                             // Badge sofort aktualisieren

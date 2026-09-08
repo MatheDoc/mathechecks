@@ -1,7 +1,7 @@
 import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
 import { getFlashcardsFeedApi } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity } from "../platform/progress-client.js?v=20260826-test-module";
+import { recordUserActivity } from "../platform/progress-client.js?v=20260908-run-rate";
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
 import { attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260609-void-revealed";

@@ -14,7 +14,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260816-mobile-speech-restart";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260908-single-check-btn";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -22,8 +22,8 @@ import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardM
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
-import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate } from "../platform/progress-client.js?v=20260826-test-module";
-import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260819-stay-on-page";
+import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
+import { showTaskCompletionPopup } from "./ui/task-completion-popup.js?v=20260908-run-rate";
 
 const TR_BEISPIEL_CACHE = new Map();
 const TRAINING_FEED_STEP_LABELS = {
@@ -1553,6 +1553,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       quoteUnchanged: Boolean(rates.quoteUnchanged),
       previousRate: rates.previousRate,
       newRate: rates.newRate,
+      runRate: rates.runRate ?? null,
       onRepeat: () => reloadCurrentTask(),
       onDashboard: () => window.location.assign("/dashboard.html"),
       onStay: () => {
@@ -1642,6 +1643,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
             latestRates = {
               previousRate: rates.previousRate ?? null,
               newRate: rates.newRate ?? null,
+              runRate: rates.runRate ?? null,
               quoteUnchanged: Boolean(rates.quoteUnchanged),
             };
             // Badge der eigenen Karte sofort aktualisieren
@@ -1904,7 +1906,8 @@ export async function initTrainingModule({
 
               const after = await getUserCheckProficiency();
               const newRate = after.ok ? extractCheckProficiencyRate(after.data, completedCheckId) : null;
-              return { previousRate, newRate };
+              const runRate = after.ok ? extractCheckLastTaskScore(after.data, completedCheckId) : null;
+              return { previousRate, newRate, runRate };
             },
           });
         } catch (error) {

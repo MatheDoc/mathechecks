@@ -14,7 +14,7 @@ function formatRate(rate) {
   return `${rounded}\u202f%`;
 }
 
-function buildQuoteDelta(previousRate, newRate, { labelText = "Deine Quote für diesen Check" } = {}) {
+function buildQuoteDelta(previousRate, newRate, { labelText = "Deine Quote für diesen Check", runRate = null } = {}) {
   const wrap = document.createElement("div");
   wrap.className = "task-completion-popup__quote";
 
@@ -65,6 +65,16 @@ function buildQuoteDelta(previousRate, newRate, { labelText = "Deine Quote für 
   valueRow.appendChild(current);
 
   wrap.appendChild(valueRow);
+
+  // Nur zeigen, wenn der Durchgang von der gemittelten Quote abweicht (sonst redundant).
+  const hasRun = Number.isFinite(Number(runRate));
+  if (hasRun && Math.round(Number(runRate)) !== Math.round(Number(newRate))) {
+    const run = document.createElement("p");
+    run.className = "task-completion-popup__quote-run";
+    run.textContent = `Dieser Durchgang: ${formatRate(runRate)}`;
+    wrap.appendChild(run);
+  }
+
   return wrap;
 }
 
@@ -105,6 +115,7 @@ function buildDialogButton({ variant = "primary", icon = "", label = "", detail 
  * @param {boolean} options.showQuote   Quotendelta anzeigen (nur Training).
  * @param {number|null} options.previousRate
  * @param {number|null} options.newRate
+ * @param {number|null} options.runRate    Score des aktuellen Durchgangs (Prozent).
  * @param {function} options.onRepeat   Callback fuer "Wiederholen".
  * @param {function} options.onDashboard Callback fuer "Zum Dashboard".
  * @param {function} options.onStay     Callback fuer "Auf Seite bleiben" (Popup schliessen, Zustand behalten).
@@ -115,6 +126,7 @@ export function showTaskCompletionPopup({
   quoteUnchanged = false,
   previousRate = null,
   newRate = null,
+  runRate = null,
   onRepeat = null,
   onDashboard = null,
   onStay = null,
@@ -147,6 +159,7 @@ export function showTaskCompletionPopup({
 
   if (showQuote && !quoteUnchanged) {
     popup.appendChild(buildQuoteDelta(previousRate, newRate, {
+      runRate,
       labelText: mode === "recall"
         ? "Deine Recall-Quote für diesen Check"
         : mode === "feynman"
