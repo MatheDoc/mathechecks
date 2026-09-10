@@ -1,4 +1,4 @@
-import { renderTask } from "../runtime/task-render.js?v=20260908-single-check-btn";
+import { renderTask } from "../runtime/task-render.js?v=20260910-field-scores";
 
 const gebietSelect = document.getElementById('gebietSelect');
 const lernbereichSelect = document.getElementById('lernbereichSelect');

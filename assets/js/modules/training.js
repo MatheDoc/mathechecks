@@ -14,7 +14,7 @@ import {
 } from "../state/check-state-store.js?v=20260516-feed-confirm";
 import { buildTaskUiStateKey, clearTaskUiStateForCheck } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
-import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260908-single-check-btn";
+import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260910-field-scores";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -1635,6 +1635,7 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
           revealedCount: Number(detail.revealedCount) || 0,
           checkableCount: Number(detail.checkableCount) || (Number(detail.totalCount) || 0),
           questionAttempts: Array.isArray(detail.questionAttempts) ? detail.questionAttempts : [],
+          questionFields: detail.questionFields,
           solutionsRevealedGlobally: Boolean(detail.solutionsRevealedGlobally),
         })
       )
@@ -1881,7 +1882,7 @@ export async function initTrainingModule({
               saveTaskIndexForCheck(lernbereich, checkId, taskIndex);
               persist();
             },
-            onTaskCompleted: async ({ checkId: completedCheckId, taskIndex: completedTaskIndex, checkableCount, revealedCount, questionAttempts, solutionsRevealedGlobally }) => {
+            onTaskCompleted: async ({ checkId: completedCheckId, taskIndex: completedTaskIndex, checkableCount, revealedCount, questionAttempts, questionFields, solutionsRevealedGlobally }) => {
               const before = await getUserCheckProficiency();
               const previousRate = before.ok ? extractCheckProficiencyRate(before.data, completedCheckId) : null;
 
@@ -1900,6 +1901,7 @@ export async function initTrainingModule({
                   taskIndex: completedTaskIndex,
                   checkable_count: checkableCount,
                   question_attempts: Array.isArray(questionAttempts) ? questionAttempts : [],
+                  question_fields: questionFields,
                   revealed_count: revealedCount,
                 },
               });
