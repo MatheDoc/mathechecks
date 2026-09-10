@@ -21,21 +21,25 @@ Die Quote ist ein didaktisches Instrument für Kompetenzerleben, keine Zeugnisno
 
 ## Score-Modell
 
-### Fragescore
+### Feldscore und Fragescore
 
-Jede prüfbare Frage einer Trainingsaufgabe endet in genau einem von zwei Zuständen:
+Jedes logische Antwortfeld einer Trainingsaufgabe endet in genau einem von zwei Zuständen. Zusammengesetzte Controls wie Zahl plus „existiert nicht“ (`NUMERICAL_OPT`) zählen als ein Feld:
 
-- **beantwortet:** Der Nutzer hat die Frage über `n >= 1` Versuche schließlich korrekt gelöst (alle Versuche vor dem letzten waren falsch).
-- **aufgelöst:** Der Nutzer hat sich für diese Frage aktiv die Lösung anzeigen lassen, bevor sie korrekt war.
+- **beantwortet:** Der Nutzer hat das Feld über `n >= 1` Versuche schließlich korrekt gelöst (alle Versuche vor dem letzten waren falsch).
+- **aufgelöst:** Der Nutzer hat die Lösung der Teilfrage angefordert, bevor dieses Feld korrekt geprüft war.
 
-Der Fragescore ist:
+Der Feldscore ist:
 
-- aufgelöste Frage: `s = 0`
-- beantwortete Frage: `s = max(0, 1 - (n - 1) * p)`
+- aufgelöstes Feld: `s = 0`
+- beantwortetes Feld: `s = max(0, 1 - (n - 1) * p)`
 
 `p` ist der Versuchsabzug (`proficiency.retry_penalty`, Default `0.5`). Es gibt **kein** typabhängiges Verhalten; Weiterprobieren ist überall erlaubt. Multiple-Choice-Raten bestraft sich selbst, weil jeder Fehlversuch `n` erhöht.
 
 `p = 0.5` ergibt: 1. Versuch `1.0`, 2. Versuch `0.5`, 3. Versuch `0.0`. Kleinere `p` machen das Weiterprobieren milder.
+
+Der Fragescore ist das Mittel der Feldscores dieser Teilfrage. Bereits korrekt geprüfte Felder behalten ihren erzielten Score, auch wenn anschließend die Einzellösung angezeigt wird; nur noch offene Felder werden aufgelöst. Bloß eingetragene, ungeprüfte Werte zählen nicht als korrekt beantwortet.
+
+Bei zwei Feldern ergibt „eines sofort richtig, eines aufgelöst“ den Fragescore `0.5`; „eines sofort richtig, eines im zweiten Versuch richtig“ ergibt `0.75`.
 
 ### Taskscore
 
@@ -43,14 +47,14 @@ Der Taskscore ist das Mittel der Fragescores über alle prüfbaren Fragen der Au
 
 `task_score = (Σ s_Frage) / checkable_count`
 
-Eine aufgelöste Frage zählt mit `0` in dieses Mittel (sie fällt **nicht** heraus). Damit lässt sich eine schwere Frage nicht durch „Lösung anzeigen" aus der Wertung drücken, während leichte Fragen 100 % behalten.
+Aufgelöste Felder zählen mit `0` in ihr Fragenmittel (sie fallen **nicht** heraus). Alle prüfbaren Teilfragen haben im Taskscore dasselbe Gewicht, unabhängig von ihrer Feldanzahl. Eine Frage mit neun Matrixelementen wiegt somit nicht mehr als eine Frage mit einem Feld.
 
 ### Gate-Regeln
 
 - Das automatische Einblenden der Einzellösung **nach** korrekter Beantwortung beeinflusst die Wertung nicht; die Frage ist bereits gewertet.
 - Das Falsch-/Richtig-Styling nach dem Prüfen beeinflusst die Wertung nicht.
-- Nur das aktive Anfordern der Lösung **für eine noch nicht korrekte Frage** setzt deren Fragescore auf `0`.
-- Das frühere globale `solutionsShown`-Gate (irgendeine sichtbare Lösung ⇒ ganze Aufgabe ungewertet) entfällt zugunsten dieses Per-Frage-Zustands.
+- Das aktive Anfordern der Einzellösung setzt nur die **noch nicht korrekt geprüften Felder** dieser Teilfrage auf `0`; bereits erzielte Feldscores bleiben erhalten.
+- Das frühere globale `solutionsShown`-Gate (irgendeine sichtbare Lösung ⇒ ganze Aufgabe ungewertet) entfällt zugunsten dieser Feldzustände. Die explizite globale Aktion „alle Lösungen einblenden“ bleibt dagegen ungewertet (siehe Abschluss-Popup).
 
 ### Wertungszeitpunkt
 
@@ -87,10 +91,11 @@ Da nur `check_id` zählt, hebt **jedes** Training eines Checks die Quote — fre
 `record_user_activity('training', ...)` schreibt pro abgeschlossener Task-Instanz ein Event mit user-scoped `check_id` und `lernbereich_slug`. Die Rohdaten für den serverseitigen Score liegen in `details`:
 
 - `checkable_count`: Anzahl prüfbarer Fragen
-- `question_attempts`: Array der Versuchszahlen `n` je beantworteter Frage
-- `revealed_count`: Anzahl aufgelöster Fragen (Score `0`)
+- `question_fields`: Array je prüfbarer Teilfrage mit einem Array ihrer logischen Antwortfelder, jeweils `{attempts, correct, revealed}`. Dies ist die maßgebliche Scorequelle für neue Events.
+- `question_attempts`: kompatibles Altschema mit Versuchszahlen je vollständig korrekt beantworteter Frage
+- `revealed_count`: Anzahl per Einzellösung abgeschlossener, nicht vollständig korrekt beantworteter Fragen; kein pauschaler Nullscore für diese Fragen im neuen Schema
 
-Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_penalty` berechnet, damit der Versuchsabzug zentral in `system_settings` bleibt. Das Read-Model fällt für Alt-Events ohne dieses Schema auf die frühere `correctCount`/`totalCount`/`solutionsShown`-Logik zurück.
+Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_penalty` berechnet, damit der Versuchsabzug zentral in `system_settings` bleibt. Alt-Events ohne `question_fields` behalten ihre bisherige Berechnung aus `question_attempts`/`revealed_count` beziehungsweise `correctCount`/`totalCount`/`solutionsShown`. Feldversuche werden nicht nachträglich aus Altdaten erfunden. Bei bereits lokal gespeicherten Durchgängen ohne Feldzustände werden vorhandene Fragenzustände konservativ auf die Felder übernommen; neue Durchgänge erfassen die Feldhistorie vollständig.
 
 ## UI und UX
 
@@ -113,14 +118,14 @@ Der Taskscore wird **serverseitig** aus diesen Rohdaten und `proficiency.retry_p
 
 Eine **prüfbare Frage** ist eine Teilfrage mit mindestens einem Eingabefeld (`NUMERICAL`, `NUMERICAL_OPT`, `INTERVAL_BOUND`, `ANALYSIS_BOUND`, `MC`). Teilfragen ohne Eingabefeld (z. B. gegebene Werte) zählen nicht in `checkable_count`.
 
-Die **Bewertungseinheit ist die Teilfrage**, nicht das einzelne Eingabefeld. Deshalb gibt es pro Teilfrage genau **einen** Prüf-Button (am letzten Eingabefeld der Frage); Enter in einem beliebigen Feld prüft ebenfalls die ganze Teilfrage. Eine Prüfung markiert alle ausgefüllten Felder der Frage als richtig/falsch, leere Felder bleiben neutral.
+Bedienung und Wertung sind getrennt: Pro Teilfrage gibt es weiterhin genau **einen** Prüf-Button (am letzten Eingabefeld); Enter in einem beliebigen Feld prüft ebenfalls die ganze Teilfrage. Eine Prüfung markiert alle ausgefüllten Felder als richtig/falsch, leere Felder bleiben neutral. Versuche und Scores werden jedoch **pro logischem Antwortfeld** erfasst und anschließend zum Fragescore gemittelt.
 
 1. Frage ungeprüft.
 2. Geprüft und korrekt: Einzellösung wird automatisch eingeblendet (exakter Wert, vermeidet Folgefehler), Frage ist gewertet.
-3. Geprüft und falsch: Der Nutzer kann weiterprobieren (`n` erhöht sich) oder die Lösung einzeln anzeigen (Fragescore `0`).
-4. Globale Aktion „alle Lösungen einblenden": macht den gesamten Durchgang ungewertet (siehe Abschluss-Popup). Per-Frage-Lösungen aus Schritt 3 bleiben davon unberührt und zählen weiterhin als Fragescore `0`.
+3. Geprüft und teilweise/falsch: Bereits korrekt geprüfte Felder behalten ihren Score. Der Nutzer kann offene Felder weiterprobieren oder die Einzellösung anzeigen (nur offene Felder erhalten Score `0`).
+4. Globale Aktion „alle Lösungen einblenden": macht den gesamten Durchgang ungewertet (siehe Abschluss-Popup). Einzellösungen aus Schritt 3 lösen dieses globale Gate nicht aus.
 
-**Versuchszählung bei mehreren Feldern:** Eine Prüfung erhöht `n` nur, wenn **alle** Felder der Teilfrage ausgefüllt sind. Prüfungen mit leeren Feldern geben zwar Feedback zu den ausgefüllten Feldern, zählen aber nicht als Versuch. Bekannte Folge: Bei Fragen mit vielen Feldern (z. B. Matrixelemente) kann ein Nutzer Feld für Feld ausfüllen, prüfen und korrigieren und die Frage trotzdem mit `n = 1` abschließen. Das ist derzeit **bewusst akzeptiert**, weil es die Hürde für schrittweises Arbeiten senkt und Weiterprobieren ohnehin überall erlaubt ist. Sollte sich das als zu mild erweisen, ist die vorgesehene Verschärfung: Prüfen nur bei vollständig ausgefüllter Teilfrage zulassen (sonst Hinweis, welche Felder fehlen); Teilprüfungen entfallen dann.
+**Versuchszählung bei mehreren Feldern:** Jede Prüfung erhöht `n` für jedes ausgefüllte, noch offene Feld. Leere, bereits korrekt beantwortete oder aufgelöste Felder erhalten keinen weiteren Versuch. Schrittweises Ausfüllen bleibt möglich; Fehlversuche eines Felds zählen dabei auch dann, wenn andere Felder noch leer sind. Nach korrekter Prüfung oder Auflösung ist dessen Score für diesen Durchgang festgeschrieben.
 
 **Numerische Eingaben:** Ein nicht-numerischer Anhang ohne weitere Ziffern oder Rechenzeichen (Einheiten wie `5 ME`, `12 %`, Sprach-Rauschen) wird toleriert, die Zahl davor gewertet. Folgen nach der Zahl weitere Ziffern oder Rechenzeichen (`2/3`, `3-4`, `5.3.2`), gilt die Eingabe als nicht interpretierbar und wird als falsch gewertet (zählt als Versuch).
 
@@ -151,8 +156,8 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 ## Goldszenarien
 
 1. Erste korrekte Beantwortung aller Fragen einer Aufgabe ergibt Taskscore `1.0`.
-2. Eine im zweiten Versuch gelöste Frage trägt bei `p = 0.5` den Fragescore `0.5`.
-3. „Lösung anzeigen" für eine Frage setzt deren Fragescore auf `0`, die übrigen Fragen bleiben gewertet.
+2. Ein im zweiten Versuch gelöstes Feld trägt bei `p = 0.5` den Feldscore `0.5`.
+3. „Lösung anzeigen" für eine Frage setzt nur deren noch offene Felder auf `0`; bereits korrekt geprüfte Felder und übrige Fragen behalten ihre Scores.
 4. Drei aufeinanderfolgende perfekte Varianten heben die Check-Quote auf `100 %`, auch nach schwachem Start.
 5. Ein alter schwacher Taskscore verliert mit jeder neuen Variante an Gewicht und fällt nach `N` Varianten aus dem Fenster.
 6. Freies Training eines Session-Checks hebt die Session-Quote, ohne den Feed-Cursor zu verändern.
@@ -160,6 +165,9 @@ Namen sind teils Platzhalter; maßgeblich ist die Trennung zwischen Rohversuch (
 8. Das Abschluss-Popup zeigt in allen drei Trainings-Modi ein Quotendelta; aufwärts motivierend, abwärts sachlich.
 9. `recall`/`feynman` erzeugen keine Quote und kein Delta **in diesem Training-Quote-Modell**. Beide haben eigene, separate Read-Models und ändern nichts am Training-Quote-Verhalten.
 10. Das automatische Einblenden der Einzellösung nach korrekter Antwort verändert die Wertung nicht.
+11. Eine Frage mit zwei Feldern, eines sofort richtig und eines aufgelöst, ergibt Fragescore `0.5`.
+12. Eine Frage mit zwei Feldern, eines sofort richtig und eines im zweiten Versuch richtig, ergibt Fragescore `0.75`.
+13. Teilfragen bleiben im Taskscore gleich gewichtet, unabhängig von ihrer Feldanzahl.
 
 ## Konkrete nächste Schritte
 

@@ -186,11 +186,6 @@ function markPartStates(parts) {
     });
 }
 
-function isQuestionResultCorrect(result) {
-    const parts = Array.isArray(result?.parts) ? result.parts : [];
-    return parts.length > 0 && parts.every((part) => part.isComplete && part.isCorrect);
-}
-
 function isQuestionResultComplete(result) {
     return Boolean(result?.isComplete);
 }
@@ -543,10 +538,6 @@ export function renderTask(task, options = {}) {
             ? persistedState.checkedQuestionIndexes.filter((index) => Number.isInteger(index) && index >= 0)
             : []
     );
-    // Per-Frage-Zustand fuer das Quotenmodell (siehe .github/quoten.md):
-    //   attempts = Anzahl vollstaendiger Pruefungen bis korrekt (n)
-    //   revealed = Loesung aktiv angefordert, bevor die Frage korrekt war (Fragescore 0)
-    //   correct  = Frage korrekt beantwortet
     const persistedQuestionStates =
         persistedState && typeof persistedState.questionStates === "object" && persistedState.questionStates
             ? persistedState.questionStates
@@ -560,6 +551,11 @@ export function renderTask(task, options = {}) {
                 attempts: Number.isInteger(restored?.attempts) && restored.attempts >= 0 ? restored.attempts : 0,
                 revealed: Boolean(restored?.revealed),
                 correct: Boolean(restored?.correct),
+                fields: Array.isArray(restored?.fields) ? restored.fields.map((field) => ({
+                    attempts: Number.isInteger(field?.attempts) && field.attempts >= 0 ? field.attempts : 0,
+                    revealed: Boolean(field?.revealed),
+                    correct: Boolean(field?.correct),
+                })) : null,
             };
             questionStates.set(index, state);
         }
@@ -572,8 +568,7 @@ export function renderTask(task, options = {}) {
     let showSolutionsNow =
         typeof persistedState?.showSolutions === "boolean" ? persistedState.showSolutions : showSolution;
     // Wurde die globale "alle Lösungen einblenden"-Aktion genutzt, gilt der ganze
-    // Versuch als ungewertet (Quote bleibt unverändert). Per-Frage-Lösungen zählen
-    // weiterhin als Fragescore 0.
+    // Versuch als ungewertet (Quote bleibt unverändert).
     let globalSolutionsRevealed = Boolean(persistedState?.globalSolutionsRevealed);
 
     const dispatchTaskProgress = () => {
@@ -598,6 +593,9 @@ export function renderTask(task, options = {}) {
                 revealedCount,
                 checkableCount: checkableQuestionCount,
                 questionAttempts,
+                questionFields: checkableList.map((questionIndex) =>
+                    getQuestionState(questionIndex).fields.map((field) => ({ ...field }))
+                ),
                 solutionsRevealedGlobally: globalSolutionsRevealed,
                 isComplete: checkableQuestionCount === 0 || resolvedCount >= checkableQuestionCount,
             },
@@ -620,6 +618,7 @@ export function renderTask(task, options = {}) {
                 attempts: state.attempts,
                 revealed: state.revealed,
                 correct: state.correct,
+                fields: state.fields,
             };
         });
         saveTaskUiState(persistenceKey, {
@@ -687,12 +686,18 @@ export function renderTask(task, options = {}) {
             syncQuestionCheckState(result);
 
             const state = getQuestionState(i);
-            if (!state.correct && !state.revealed && isQuestionResultComplete(result)) {
-                state.attempts += 1;
-                if (isQuestionResultCorrect(result)) {
-                    state.correct = true;
+            if (!state.correct && !state.revealed) {
+                if (isQuestionResultComplete(result)) state.attempts += 1;
+                result.parts.forEach((part, partIndex) => {
+                    const field = state.fields[partIndex];
+                    if (field.correct || field.revealed || !part.isComplete) return;
+                    field.attempts += 1;
+                    field.correct = part.isCorrect;
+                });
+                state.correct = state.fields.length > 0 && state.fields.every((field) => field.correct);
+                if (state.correct) {
                     showQuestionSolution();
-                } else {
+                } else if (result.parts.some((part) => part.isComplete)) {
                     const revealControl = questionRevealControls[i];
                     if (revealControl) revealControl.hidden = false;
                 }
@@ -708,6 +713,9 @@ export function renderTask(task, options = {}) {
             const state = getQuestionState(i);
             if (!state.correct && !state.revealed) {
                 state.revealed = true;
+                state.fields.forEach((field) => {
+                    if (!field.correct) field.revealed = true;
+                });
             }
             showQuestionSolution();
             if (persistenceKey) {
@@ -721,6 +729,15 @@ export function renderTask(task, options = {}) {
         const fields = Array.from(answerPreview.querySelectorAll(".answer-input, .answer-select, .answer-numopt-group"));
         if (fields.length > 0) {
             checkableQuestionIndexes.add(i);
+            const state = getQuestionState(i);
+            const parts = evaluateAnswerFields(antworten[i], answerPreview).parts;
+            if (!state.fields || state.fields.length !== parts.length) {
+                state.fields = parts.map(() => ({
+                    attempts: state.attempts,
+                    correct: state.correct,
+                    revealed: state.revealed && !state.correct,
+                }));
+            }
         }
 
         if (interactiveMode && interactionConfig.enablePerQuestionCheck) {
@@ -729,7 +746,6 @@ export function renderTask(task, options = {}) {
                 answerFieldQuestionIndexes.push(i);
             });
 
-            // Bewertungseinheit ist die Teilfrage: ein Check-Button pro Frage, am letzten Feld.
             const lastField = fields[fields.length - 1];
             fields.forEach((field) => {
                 const isLastField = field === lastField;
@@ -792,7 +808,8 @@ export function renderTask(task, options = {}) {
                 revealControl.className = "answer-reveal-request";
                 revealControl.textContent = "Lösung anzeigen";
                 const stateOnRender = getQuestionState(i);
-                revealControl.hidden = !(checkedQuestionIndexes.has(i) && !stateOnRender.correct && !stateOnRender.revealed);
+                revealControl.hidden = !(stateOnRender.fields.some((field) => field.attempts > 0)
+                    && !stateOnRender.correct && !stateOnRender.revealed);
                 revealControl.addEventListener("click", requestQuestionSolution);
                 questionRevealControls[i] = revealControl;
                 item.appendChild(revealControl);
@@ -844,6 +861,9 @@ export function renderTask(task, options = {}) {
                         const state = getQuestionState(questionIndex);
                         if (!state.correct && !state.revealed) {
                             state.revealed = true;
+                            state.fields.forEach((field) => {
+                                if (!field.correct) field.revealed = true;
+                            });
                         }
                         const revealControl = questionRevealControls[questionIndex];
                         if (revealControl) revealControl.hidden = true;
