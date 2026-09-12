@@ -13,40 +13,28 @@ _DIMENSIONS = [(2, 2), (2, 3), (3, 2), (3, 3)]
 def _build_operations():
     return [
         (
-            r"A + B",
-            lambda A, B, s: mat_add(A, B),
+            r"A + \lambda \cdot B",
+            lambda A, B, s: mat_add(A, scalar_mul(s, B)),
         ),
         (
-            r"A - B",
-            lambda A, B, s: mat_sub(A, B),
-        ),
-        (
-            r"\lambda \cdot A",
-            lambda A, B, s: scalar_mul(s, A),
-        ),
-        (
-            r"\lambda \cdot (A + B)",
-            lambda A, B, s: scalar_mul(s, mat_add(A, B)),
+            r"-A + \lambda \cdot B",
+            lambda A, B, s: mat_add(scalar_mul(-1, A), scalar_mul(s, B)),
         ),
         (
             r"\lambda \cdot A + B",
             lambda A, B, s: mat_add(scalar_mul(s, A), B),
         ),
         (
-            r"A - \lambda \cdot B",
-            lambda A, B, s: mat_sub(A, scalar_mul(s, B)),
-        ),
-        (
-            r"\lambda \cdot (A - B) + A",
-            lambda A, B, s: mat_add(scalar_mul(s, mat_sub(A, B)), A),
-        ),
-        (
             r"\lambda \cdot A - B",
             lambda A, B, s: mat_sub(scalar_mul(s, A), B),
         ),
         (
-            r"A + \lambda \cdot B",
-            lambda A, B, s: mat_add(A, scalar_mul(s, B)),
+            r"\lambda \cdot (A + B)",
+            lambda A, B, s: scalar_mul(s, mat_add(A, B)),
+        ),
+        (
+            r"\lambda \cdot (A - B)",
+            lambda A, B, s: scalar_mul(s, mat_sub(A, B)),
         ),
     ]
 

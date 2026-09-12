@@ -14,7 +14,7 @@ class MatrizenmultiplikationGenerator(TaskGenerator):
         rng = random.Random(seed)
         tasks: list[Task] = []
         seen: set[tuple] = set()
-        dims = [2, 3, 4]
+        dims = [1, 2, 3]
 
         for _ in range(count):
             for _ in range(300):
