@@ -36,7 +36,7 @@ Weitere Informationen zur Datenverarbeitung der Anbieter finden Sie unter:
 
 Angemeldete Nutzerinnen und Nutzer können in den Modulen Recall und Feynman ihre frei formulierten Antworten und Erklärungen automatisch bewerten lassen. Hierfür wird die Gemini API von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, verwendet.
 
-An Google übermittelt werden ausschließlich die für die Bewertung erforderlichen Inhalte: die jeweilige Aufgabenstellung bzw. der Hinweis, die hinterlegte Musterlösung und der von Ihnen eingegebene Antworttext. Kontodaten wie E-Mail-Adresse, Benutzername oder technische Benutzerkennungen werden nicht übermittelt. Die Übermittlung erfolgt über einen serverseitigen Dienst von MatheChecks; der Zugriffsschlüssel für die Gemini API ist im Browser nicht einsehbar.
+An Google wird die eingegebene Antworttext übermittelt. Kontodaten wie E-Mail-Adresse, Benutzername oder technische Benutzerkennungen werden nicht übermittelt.
 
 Die Verarbeitung findet auf Servern von Google statt, die sich auch außerhalb der Europäischen Union, insbesondere in den USA, befinden können. Die Übermittlung stützt sich auf die Standardvertragsklauseln der Europäischen Kommission bzw. das EU-US Data Privacy Framework.
 
