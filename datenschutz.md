@@ -23,6 +23,8 @@ Beim Aufruf dieser Website werden durch den Webbrowser automatisch Informationen
 
 Für Konto-Funktionen wird Supabase Auth verwendet. Dabei werden die zur Anmeldung und Kontoverwaltung erforderlichen Daten verarbeitet, insbesondere E-Mail-Adresse, technische Authentifizierungskennungen und Sitzungsdaten.
 
+Das Konto-Angebot richtet sich an Nutzerinnen und Nutzer ab 16 Jahren. Bei der Registrierung wird die Bestätigung des Mindestalters und der Kenntnisnahme dieser Datenschutzerklärung zusammen mit dem Zeitpunkt der Bestätigung im Konto gespeichert.
+
 Wenn Sie die Anmeldung über einen externen Anbieter wie Google oder Apple wählen, werden Sie zur Authentifizierung an den jeweiligen Anbieter weitergeleitet. Der Anbieter verarbeitet die dort für die Anmeldung erforderlichen Daten in eigener Verantwortung. MatheChecks erhält nach erfolgreicher Anmeldung über Supabase nur die für die Kontoanlage und Anmeldung erforderlichen Angaben, zum Beispiel E-Mail-Adresse, technische Benutzerkennung und je nach Anbieter einen Namen oder Anzeigenamen.
 
 Weitere Informationen zur Datenverarbeitung der Anbieter finden Sie unter:
@@ -30,7 +32,20 @@ Weitere Informationen zur Datenverarbeitung der Anbieter finden Sie unter:
 - Google: [https://policies.google.com/privacy](https://policies.google.com/privacy)
 - Apple: [https://www.apple.com/legal/privacy/](https://www.apple.com/legal/privacy/)
 
-### 4. Google Analytics
+### 4. KI-gestützte Auswertung von Antworten
+
+Angemeldete Nutzerinnen und Nutzer können in den Modulen Recall und Feynman ihre frei formulierten Antworten und Erklärungen automatisch bewerten lassen. Hierfür wird die Gemini API von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, verwendet.
+
+An Google übermittelt werden ausschließlich die für die Bewertung erforderlichen Inhalte: die jeweilige Aufgabenstellung bzw. der Hinweis, die hinterlegte Musterlösung und der von Ihnen eingegebene Antworttext. Kontodaten wie E-Mail-Adresse, Benutzername oder technische Benutzerkennungen werden nicht übermittelt. Die Übermittlung erfolgt über einen serverseitigen Dienst von MatheChecks; der Zugriffsschlüssel für die Gemini API ist im Browser nicht einsehbar.
+
+Die Verarbeitung findet auf Servern von Google statt, die sich auch außerhalb der Europäischen Union, insbesondere in den USA, befinden können. Die Übermittlung stützt sich auf die Standardvertragsklauseln der Europäischen Kommission bzw. das EU-US Data Privacy Framework.
+
+Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die Sie durch das aktive Auslösen der Bewertung erteilen. Sie können die KI-Auswertung jederzeit ungenutzt lassen; die übrigen Funktionen der Plattform bleiben davon unberührt. Das Bewertungsergebnis (Punktwerte je Teilantwort) wird zur Fortschrittsanzeige in Ihrem Konto gespeichert; der eingegebene Antworttext selbst wird nicht dauerhaft gespeichert.
+
+Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:
+[https://policies.google.com/privacy](https://policies.google.com/privacy)
+
+### 5. Google Analytics
 
 Diese Website nutzt Google Analytics 4, einen Webanalysedienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
 Google Analytics wird ausschließlich zur statistischen Auswertung der Nutzung dieser Website eingesetzt. Ziel ist es, einen Überblick über die Häufigkeit von Seitenaufrufen und die allgemeine Nutzung der Website zu erhalten.
@@ -40,14 +55,14 @@ Die durch Google Analytics erhobenen Informationen werden in der Regel an Server
 Weitere Informationen zur Datenverarbeitung durch Google finden Sie unter:
 [https://policies.google.com/privacy](https://policies.google.com/privacy)
 
-### 5. Einwilligung und Widerruf
+### 6. Einwilligung und Widerruf
 
 Ihre Auswahl wird im lokalen Speicher Ihres Browsers gespeichert, damit sie bei weiteren Besuchen berücksichtigt werden kann. Sie können Ihre Einwilligung zur Nutzung von Google Analytics jederzeit mit Wirkung für die Zukunft widerrufen oder ändern, indem Sie <a href="javascript:void(0);" onclick="return showCookieSettings();">die Tracking-Einstellungen erneut aufrufen</a>.
 
-### 6. Ihre Rechte
+### 7. Ihre Rechte
 
 Sie haben das Recht auf Auskunft über die zu Ihrer Person gespeicherten Daten sowie gegebenenfalls auf Berichtigung oder Löschung dieser Daten. Darüber hinaus haben Sie das Recht, eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft zu widerrufen.
 
-### 7. Änderung dieser Datenschutzerklärung
+### 8. Änderung dieser Datenschutzerklärung
 
 Diese Datenschutzerklärung kann bei Bedarf angepasst werden, um rechtliche Anforderungen oder Änderungen der Website zu berücksichtigen.
