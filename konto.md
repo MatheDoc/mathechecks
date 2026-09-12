@@ -9,8 +9,8 @@ body_class: page-dashboard
 published: true
 noindex: true
 permalink: /konto.html
-module_script: /assets/js/modules/konto.js?v=20260523-konto-auth-dashboard-redirect
-page_css: /assets/css/konto.css?v=20260522-konto-auth-ui
+module_script: /assets/js/modules/konto.js?v=20260912-konto-consent
+page_css: /assets/css/konto.css?v=20260912-konto-consent
 ---
 
 <div class="bento konto-grid">
@@ -18,6 +18,7 @@ page_css: /assets/css/konto.css?v=20260522-konto-auth-ui
         <div class="card-header">
             <span class="card-title" data-konto-auth-card-title></span>
         </div>
+        <p class="konto-card__hint konto-consent-note" data-konto-register-only hidden>Mit der Registrierung bestätigst du, dass du mindestens 16 Jahre alt bist und die <a href="/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> akzeptierst.</p>
         <p class="konto-card__hint" data-konto-auth-card-copy hidden></p>
         <p class="konto-card__notice" data-konto-notice data-tone="neutral" hidden></p>
 

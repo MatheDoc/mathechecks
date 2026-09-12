@@ -554,11 +554,13 @@ async function handleCredentialAuth(event, supabase) {
 
   const signUpOptions = {
     emailRedirectTo: getDashboardRedirectUrl(),
+    data: {
+      consent_min_age_16: true,
+      consent_privacy_accepted_at: new Date().toISOString(),
+    },
   };
   if (displayName) {
-    signUpOptions.data = {
-      display_name: displayName,
-    };
+    signUpOptions.data.display_name = displayName;
   }
 
   const { data, error } = await supabase.auth.signUp({
