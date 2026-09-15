@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Von 2.000 Befragten nutzen 224 eine Pro-Version zur Prüfungsvorbereitung. Welchem Anteil entspricht das?",
-            "antworten": ["\\(0{,}112\\)", "\\(0{,}224\\)", "\\(0{,}0112\\)", "\\(0{,}888\\)"],
-            "fehler": ["Absolute Anzahl ohne Division als Dezimalanteil gelesen", "Dezimalstelle beim Quotienten verschoben", "Gegenanteil berechnet"]
+            "frage": "Ein Baum beginnt mit zwei Ästen. Der erste endet sofort, der zweite verzweigt in drei Endäste. Wie viele Endpfade gibt es?",
+            "antworten": ["\\(4\\)", "\\(6\\)", "\\(3\\)", "\\(5\\)"],
+            "fehler": ["Auch den bereits beendeten Ast dreifach verzweigt", "Den kurzen Endpfad nicht gezählt", "Alle Äste statt der Endpfade gezählt"]
         },
         {
-            "frage": "Von 2.000 Befragten haben 480 noch keine Lern-App verwendet. Welchem Anteil entspricht das?",
-            "antworten": ["\\(0{,}24\\)", "\\(0{,}48\\)", "\\(0{,}024\\)", "\\(0{,}76\\)"],
-            "fehler": ["Absolute Anzahl ohne passende Gesamtzahl als Dezimalanteil gelesen", "Dezimalstelle beim Quotienten verschoben", "Gegenanteil berechnet"]
+            "frage": "Ein vollständiger Baum hat fünf Endpfade. Vier davon haben zusammen Wahrscheinlichkeit \\(0{,}9\\). Wie groß ist die fünfte?",
+            "antworten": ["\\(0{,}1\\)", "\\(0{,}9\\)", "\\(1{,}9\\)", "\\(0{,}2\\)"],
+            "fehler": ["Bekannte Summe übernommen", "Bekannte Summe zu 1 addiert", "Alle fünf Endpfade ohne Begründung gleich gewichtet"]
         },
         {
-            "frage": "Die Pfade Starter–Unterhaltung und Starter–Vorbereitung haben die Wahrscheinlichkeiten \\(0{,}357\\) und \\(0{,}243\\). Wie groß ist der Starter-Anteil?",
-            "antworten": ["\\(0{,}6\\)", "\\(0{,}086751\\)", "\\(0{,}114\\)", "\\(0{,}4\\)"],
-            "fehler": ["Pfadwahrscheinlichkeiten multipliziert", "Differenz statt Summe gebildet", "Gegenanteil der richtigen Summe gebildet"]
+            "frage": "Ein erster Ast mit Wahrscheinlichkeit \\(0{,}3\\) endet sofort. Welche Wahrscheinlichkeit hat dieser vollständige Pfad?",
+            "antworten": ["\\(0{,}3\\)", "\\(0{,}09\\)", "\\(0{,}7\\)", "Nicht bestimmbar ohne einen zweiten Ast"],
+            "fehler": ["Astwahrscheinlichkeit unnötig quadriert", "Gegenwahrscheinlichkeit gebildet", "Für jeden Endpfad mindestens zwei Stufen verlangt"]
         },
         {
-            "frage": "Der Anteil ohne App ist \\(0{,}24\\), der Starter-Anteil \\(0{,}6\\). Wie groß ist der verbleibende Pro-Anteil?",
-            "antworten": ["\\(0{,}16\\)", "\\(0{,}84\\)", "\\(0{,}36\\)", "\\(0{,}144\\)"],
-            "fehler": ["Nur Starter-Anteil von 1 abgezogen", "Starter- und Kein-App-Anteil subtrahiert", "Gegebene Hauptäste multipliziert"]
+            "frage": "Ein Ereignis besteht aus genau zwei Endpfaden: einem kurzen mit \\(0{,}2\\) und einem längeren mit \\(0{,}15\\). Wie groß ist seine Wahrscheinlichkeit?",
+            "antworten": ["\\(0{,}35\\)", "\\(0{,}03\\)", "\\(0{,}05\\)", "Nicht addierbar wegen verschiedener Pfadlängen"],
+            "fehler": ["Endpfadwahrscheinlichkeiten multipliziert", "Differenz statt Summe gebildet", "Pfadaddition fälschlich auf gleich lange Pfade beschränkt"]
         },
         {
-            "frage": "Vier bekannte Pfade haben zusammen \\(0{,}952\\). Wie groß ist die fehlende Pfadwahrscheinlichkeit?",
-            "antworten": ["\\(0{,}048\\)", "\\(0{,}952\\)", "\\(1{,}952\\)", "\\(0{,}0484\\)"],
-            "fehler": ["Bekannte Summe als fehlenden Pfad übernommen", "Bekannte Summe zu 1 addiert", "Subtraktion fehlerhaft ausgeführt"]
+            "frage": "Ein Endpfad hat Wahrscheinlichkeit \\(0{,}12\\). Alle Astwerte außer dem ersten sind bekannt: \\(0{,}5\\) und \\(0{,}4\\). Wie groß ist der erste?",
+            "antworten": ["\\(0{,}6\\)", "\\(0{,}024\\)", "\\(0{,}24\\)", "\\(0{,}3\\)"],
+            "fehler": ["Mit den bekannten Astwerten multipliziert", "Nur durch 0,5 dividiert", "Nur durch 0,4 dividiert"]
         },
         {
-            "frage": "Der Starter-Anteil ist \\(0{,}6\\), die Pfadwahrscheinlichkeit Starter–Unterhaltung ist \\(0{,}357\\). Welcher Anteil der Starter-Nutzenden verwendet die App zur Unterhaltung?",
-            "antworten": ["\\(0{,}595\\)", "\\(0{,}2142\\)", "\\(0{,}957\\)", "\\(0{,}243\\)"],
-            "fehler": ["Ast- und Endwahrscheinlichkeit multipliziert", "Ast- und Endwahrscheinlichkeit addiert", "Gegenpfadwahrscheinlichkeit statt gesuchtem Quotienten gewählt"]
+            "frage": "Unter dem Ast A mit \\(P(A)=0{,}5\\) enden drei Pfade. Zwei haben \\(0{,}1\\) und \\(0{,}15\\). Wie groß ist die dritte Pfadwahrscheinlichkeit?",
+            "antworten": ["\\(0{,}25\\)", "\\(0{,}75\\)", "\\(0{,}35\\)", "\\(0{,}015\\)"],
+            "fehler": ["Von 1 statt von P(A) abgezogen", "Nur einen bekannten Pfad abgezogen", "Bekannte Pfadwahrscheinlichkeiten multipliziert"]
         },
         {
-            "frage": "Der Pro-Anteil ist \\(0{,}16\\), die Pfadwahrscheinlichkeit Pro–Unterhaltung ist \\(0{,}048\\). Welcher Anteil der Pro-Nutzenden verwendet die App zur Unterhaltung?",
-            "antworten": ["\\(0{,}3\\)", "\\(0{,}00768\\)", "\\(0{,}208\\)", "\\(0{,}112\\)"],
-            "fehler": ["Ast- und Endwahrscheinlichkeit multipliziert", "Ast- und Endwahrscheinlichkeit addiert", "Anderen Pro-Pfad statt gesuchtem Quotienten gewählt"]
+            "frage": "Ein zweistufiger Pfad hat Wahrscheinlichkeit \\(0{,}2\\). Sein erster Ast ist unbekannt. Lässt sich der zweite Astwert eindeutig bestimmen?",
+            "antworten": ["Nein, dazu fehlt der erste Astwert.", "Ja, er ist 0,2.", "Ja, er ist 0,8.", "Ja, er ist 0,4."],
+            "fehler": ["Pfadwahrscheinlichkeit als Astwert übernommen", "Gegenwahrscheinlichkeit als Astwert verwendet", "Den ersten Ast ohne Angabe mit 0,5 angesetzt"]
         },
         {
-            "frage": "Die Unterhaltungspfade haben die Wahrscheinlichkeiten \\(0{,}357\\) und \\(0{,}048\\). Wie groß ist der Anteil der Nutzung zur Unterhaltung?",
-            "antworten": ["\\(0{,}405\\)", "\\(0{,}017136\\)", "\\(0{,}309\\)", "\\(0{,}595\\)"],
-            "fehler": ["Pfade multipliziert", "Differenz statt Summe gebildet", "Astwahrscheinlichkeit innerhalb der Starter-Gruppe gewählt"]
+            "frage": "Alle Misserfolgspfade eines vollständigen Baums haben zusammen Wahrscheinlichkeit \\(0{,}3\\). Wie groß ist die Erfolgswahrscheinlichkeit?",
+            "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(1{,}3\\)", "\\(0{,}09\\)"],
+            "fehler": ["Misserfolg mit Erfolg verwechselt", "Zu 1 addiert statt von 1 abgezogen", "Misserfolgswahrscheinlichkeit quadriert"]
         },
         {
-            "frage": "Die Vorbereitungspfade haben die Wahrscheinlichkeiten \\(0{,}243\\) und \\(0{,}112\\). Wie groß ist der Anteil der Nutzung zur Prüfungsvorbereitung?",
-            "antworten": ["\\(0{,}355\\)", "\\(0{,}027216\\)", "\\(0{,}131\\)", "\\(0{,}645\\)"],
-            "fehler": ["Pfade multipliziert", "Differenz statt Summe gebildet", "Gegenanteil der richtigen Summe gebildet"]
+            "frage": "Die beiden Äste nach A tragen \\(0{,}2\\) und \\(0{,}8\\); die beiden nach B tragen \\(0{,}6\\) und \\(0{,}4\\). Warum darf ihre Gesamtsumme 2 sein?",
+            "antworten": ["Die Summe 1 gilt für jeden Knoten einzeln.", "In zweistufigen Bäumen gilt überall die Summe 2.", "Astwahrscheinlichkeiten dürfen beliebig groß sein.", "Nur die beiden größten Astwerte müssen 1 ergeben."],
+            "fehler": ["Knotensumme mit der Anzahl der Stufen verwechselt", "Wertebereich von Wahrscheinlichkeiten missachtet", "Äste verschiedener Knoten zusammengefasst"]
         },
         {
-            "frage": "Die Pfadwahrscheinlichkeit Pro–Unterhaltung ist \\(0{,}048\\). Wie viele von 2.000 Befragten gehören zu diesem Pfad?",
-            "antworten": ["\\(96\\)", "\\(48\\)", "\\(416\\)", "\\(9{,}6\\)"],
-            "fehler": ["Prozentangabe ohne Bezug zur Gesamtzahl als Anzahl gelesen", "Pro-Anteil statt Pfadwahrscheinlichkeit verwendet", "Dezimalstelle beim Produkt verschoben"]
+            "frage": "Ein Ereignis besteht aus genau drei Endpfaden. Ihre Wahrscheinlichkeiten sind \\(0{,}1\\), \\(0{,}2\\) und \\(0{,}05\\). Welche Rechnung ist richtig?",
+            "antworten": ["\\(0{,}1+0{,}2+0{,}05\\)", "\\(0{,}1\\cdot0{,}2\\cdot0{,}05\\)", "\\(1-0{,}1-0{,}2-0{,}05\\)", "\\((0{,}1+0{,}2+0{,}05):3\\)"],
+            "fehler": ["Verschiedene Endpfade multipliziert", "Gegenereignis statt Ereignis berechnet", "Mittelwert statt Summe gebildet"]
         }
     ]
 }

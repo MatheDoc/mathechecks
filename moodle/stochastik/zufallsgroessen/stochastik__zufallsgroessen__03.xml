@@ -391,7 +391,7 @@
       <text>stochastik__zufallsgroessen__03-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für A gilt \(E(X_A)=1{,}5\) und \(\sigma(X_A)=0{,}5\). Wie ist der Wert \(X_A=3\) nach der Faustregel einzuordnen?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(E(X)=1{,}5\), \(\sigma(X)=0{,}5\). Wo liegt der Wert 3 relativ zur Ein-Sigma-Umgebung?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Relativ ungewöhnlich, da er außerhalb von \(E(X)\pm\sigma(X)\) liegt</p>]]></text>
+      <text><![CDATA[<p>Oberhalb der Umgebung</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Gewöhnlich, da er genau dem Erwartungswert entspricht</p>]]></text>
+      <text><![CDATA[<p>Innerhalb der Umgebung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wert fälschlich mit Erwartungswert gleichgesetzt</p>]]></text>
+        <text><![CDATA[<p>Abstand zum Erwartungswert unterschätzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Unmöglich, da er größer als der Erwartungswert ist</p>]]></text>
+      <text><![CDATA[<p>Genau auf der oberen Grenze</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Werte oberhalb des Erwartungswerts pauschal ausgeschlossen</p>]]></text>
+        <text><![CDATA[<p>Obere Grenze falsch berechnet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sicher, da er ganzzahlig ist</p>]]></text>
+      <text><![CDATA[<p>Unterhalb der Umgebung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Ganzzahligkeit mit Sicherheit verwechselt</p>]]></text>
+        <text><![CDATA[<p>Richtung der Abweichung verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>stochastik__zufallsgroessen__03-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für B gilt \(E(X_B)=2{,}5\) und \(\sigma(X_B)=2\). Wie ist der Wert \(X_B=2\) nach der Faustregel einzuordnen?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(E(X)=2{,}5\), \(\sigma(X)=2\). Wo liegt der Wert 2 relativ zur Ein-Sigma-Umgebung?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Gewöhnlich, da er innerhalb von \(E(X)\pm\sigma(X)\) liegt</p>]]></text>
+      <text><![CDATA[<p>Innerhalb der Umgebung</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Ungewöhnlich, da er kleiner als der Erwartungswert ist</p>]]></text>
+      <text><![CDATA[<p>Unterhalb der Umgebung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jede Abweichung nach unten als ungewöhnlich gedeutet</p>]]></text>
+        <text><![CDATA[<p>Jeden Wert unter dem Erwartungswert als außerhalb gedeutet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Unmöglich, da er nicht dem Erwartungswert entspricht</p>]]></text>
+      <text><![CDATA[<p>Genau auf der unteren Grenze</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erwartungswert fälschlich als einzig möglichen Wert angesehen</p>]]></text>
+        <text><![CDATA[<p>Standardabweichung mit der unteren Grenze verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Sicher, da er ganzzahlig ist</p>]]></text>
+      <text><![CDATA[<p>Oberhalb der Umgebung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Ganzzahligkeit mit Sicherheit verwechselt</p>]]></text>
+        <text><![CDATA[<p>Richtung der Abweichung verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>

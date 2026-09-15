@@ -36,14 +36,14 @@
             "fehler": ["Halbe statt ganze Standardabweichung verwendet", "Nur untere Intervallhälfte angegeben", "Nur obere Intervallhälfte angegeben"]
         },
         {
-            "frage": "Für A gilt \\(E(X_A)=1{,}5\\) und \\(\\sigma(X_A)=0{,}5\\). Wie ist der Wert \\(X_A=3\\) nach der Faustregel einzuordnen?",
-            "antworten": ["Relativ ungewöhnlich, da er außerhalb von \\(E(X)\\pm\\sigma(X)\\) liegt", "Gewöhnlich, da er genau dem Erwartungswert entspricht", "Unmöglich, da er größer als der Erwartungswert ist", "Sicher, da er ganzzahlig ist"],
-            "fehler": ["Wert fälschlich mit Erwartungswert gleichgesetzt", "Werte oberhalb des Erwartungswerts pauschal ausgeschlossen", "Ganzzahligkeit mit Sicherheit verwechselt"]
+            "frage": "Es gilt \\(E(X)=1{,}5\\), \\(\\sigma(X)=0{,}5\\). Wo liegt der Wert 3 relativ zur Ein-Sigma-Umgebung?",
+            "antworten": ["Oberhalb der Umgebung", "Innerhalb der Umgebung", "Genau auf der oberen Grenze", "Unterhalb der Umgebung"],
+            "fehler": ["Abstand zum Erwartungswert unterschätzt", "Obere Grenze falsch berechnet", "Richtung der Abweichung verwechselt"]
         },
         {
-            "frage": "Für B gilt \\(E(X_B)=2{,}5\\) und \\(\\sigma(X_B)=2\\). Wie ist der Wert \\(X_B=2\\) nach der Faustregel einzuordnen?",
-            "antworten": ["Gewöhnlich, da er innerhalb von \\(E(X)\\pm\\sigma(X)\\) liegt", "Ungewöhnlich, da er kleiner als der Erwartungswert ist", "Unmöglich, da er nicht dem Erwartungswert entspricht", "Sicher, da er ganzzahlig ist"],
-            "fehler": ["Jede Abweichung nach unten als ungewöhnlich gedeutet", "Erwartungswert fälschlich als einzig möglichen Wert angesehen", "Ganzzahligkeit mit Sicherheit verwechselt"]
+            "frage": "Es gilt \\(E(X)=2{,}5\\), \\(\\sigma(X)=2\\). Wo liegt der Wert 2 relativ zur Ein-Sigma-Umgebung?",
+            "antworten": ["Innerhalb der Umgebung", "Unterhalb der Umgebung", "Genau auf der unteren Grenze", "Oberhalb der Umgebung"],
+            "fehler": ["Jeden Wert unter dem Erwartungswert als außerhalb gedeutet", "Standardabweichung mit der unteren Grenze verwechselt", "Richtung der Abweichung verwechselt"]
         },
         {
             "frage": "Zwei Zufallsgrößen haben denselben Erwartungswert, aber unterschiedliche Standardabweichungen. Was folgt?",

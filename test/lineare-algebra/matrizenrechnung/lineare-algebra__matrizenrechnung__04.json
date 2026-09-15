@@ -6,7 +6,7 @@
             "fehler": ["Zeilen und Spalten vertauscht", "Rechte Hälfte nicht mitgezählt", "Beide Dimensionen verdoppelt"]
         },
         {
-            "frage": "Welche Matrix steht zu Beginn rechts neben \\(A\\)?",
+            "frage": "Welche Matrix steht beim Gauß-Jordan-Ansatz zur Inversenberechnung rechts neben der 3×3-Matrix \\(A\\)?",
             "antworten": ["\\(E_3\\)", "\\(O\\)", "\\(A^{-1}\\)", "\\(A^T\\)"],
             "fehler": ["Einheitsmatrix durch Nullmatrix ersetzt", "Gesuchtes Ergebnis bereits eingesetzt", "Transponierte statt Einheitsmatrix verwendet"]
         },
@@ -21,7 +21,7 @@
             "fehler": ["Falsches Vielfaches der Pivotzeile verwendet", "Falsche Zielzeile verändert", "Linearkombination eliminiert den Eintrag nicht"]
         },
         {
-            "frage": "Nach zwei Pivotstufen: Welche Form soll die linke untere Ecke besitzen?",
+            "frage": "Eine 3×3-Matrix wird durch Vorwärtselimination in obere Dreiecksform gebracht. Welches Nullmuster ist das Ziel?",
             "antworten": ["\\(\\begin{pmatrix}*&*&*\\\\0&*&*\\\\0&0&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}*&0&0\\\\*&*&0\\\\*&*&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}0&*&*\\\\0&*&*\\\\0&0&*\\end{pmatrix}\\)", "\\(\\begin{pmatrix}*&*&0\\\\0&*&0\\\\0&0&0\\end{pmatrix}\\)"],
             "fehler": ["Obere statt untere Einträge eliminiert", "Ersten Pivot fälschlich zu null gemacht", "Dritten Pivot fälschlich als null vorausgesetzt"]
         },

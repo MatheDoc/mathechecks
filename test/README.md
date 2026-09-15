@@ -37,6 +37,8 @@ test/<gebiet>/<lernbereich>/<check_id>.json
 
 - Single-Choice, genau 4 Optionen, genau 1 richtig.
 - Keine Hilfsmittel (kein Taschenrechner, keine Formelsammlung); ca. 10–20 Sekunden pro Frage.
+- **Eigenständig verständlich:** Jede Frage funktioniert ohne vorherige Fragen, Skript, Training oder Kenntnis ihrer Lernbereichszuordnung. Konkrete Angaben und Ereigniszuordnungen müssen in der Frage stehen; keine Verweise wie „in diesem Check“.
+- Typische Fachnotation (auch RZ, ZE, m), Fachbegriffe und naheliegende Standardannahmen dürfen vorausgesetzt werden. Nur nötige Angaben ergänzen, keine langen Definitionen. Kontext-Checks prüfen übertragbare Teilkompetenzen statt die Erinnerung an eine konkrete Trainingsaufgabe.
 - **Atomarität:** Jede Frage prüft möglichst eine kleine Teilkompetenz, kein mehrschrittiges Verfahren.
   - Zu groß: „Aus zwei Punkten die Funktionsgleichung bestimmen."
   - Geeignet: „Welche Formel brauchst du zuerst, um m zu berechnen?" – oder bei bewusst trivialen Zahlen nur die Berechnung von m.

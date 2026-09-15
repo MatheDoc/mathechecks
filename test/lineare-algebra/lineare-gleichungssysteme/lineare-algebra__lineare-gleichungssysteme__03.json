@@ -6,17 +6,17 @@
             "fehler": ["Spalte der rechten Seiten vergessen", "Zeilen und Spalten addiert", "Anzahl der Koeffizienten gezählt"]
         },
         {
-            "frage": "Wie viele Einträge müssen in der ersten Eliminationsstufe unter dem ersten Pivot null werden?",
+            "frage": "Bei einem 4×4-LGS: Wie viele Einträge müssen unter dem ersten Pivot null werden?",
             "antworten": ["\\(3\\)", "\\(1\\)", "\\(2\\)", "\\(4\\)"],
             "fehler": ["Nur letzte Zeile berücksichtigt", "3×3-Struktur angenommen", "Pivot selbst mitgezählt"]
         },
         {
-            "frage": "Die erste Spalte unter dem Pivot ist eliminiert. Welches Teilsystem bleibt für die nächste Stufe?",
+            "frage": "Bei einem 4×4-LGS ist die erste Spalte unter dem Pivot eliminiert. Welches Teilsystem bleibt für die nächste Stufe?",
             "antworten": ["Ein 3×3-System in \\(x_2,x_3,x_4\\)", "Ein 2×2-System in \\(x_3,x_4\\)", "Ein 3×3-System in \\(x_1,x_2,x_3\\)", "Ein 4×4-System ohne rechte Seiten"],
             "fehler": ["Eine Eliminationsstufe übersprungen", "Bereits eliminierte Variable beibehalten", "Rechte Seiten fälschlich entfernt"]
         },
         {
-            "frage": "Wie viele Einträge werden unter dem zweiten Pivot in Spalte 2 eliminiert?",
+            "frage": "Bei einem 4×4-LGS: Wie viele Einträge werden unter dem zweiten Pivot in Spalte 2 eliminiert?",
             "antworten": ["\\(2\\)", "\\(1\\)", "\\(3\\)", "\\(4\\)"],
             "fehler": ["Nur die letzte Zeile berücksichtigt", "Erste Eliminationsstufe wiederholt", "Pivot und obere Zeile mitgezählt"]
         },

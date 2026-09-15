@@ -1,7 +1,7 @@
 {
     "fragen": [
         {
-            "frage": "Gegeben sind \\(p\\), \\(k\\) und eine Bedingung an \\(P(X\\geq k)\\). Welche Größe wird in diesem Check bestimmt?",
+            "frage": "Bei fester Trefferchance soll eine Mindestwahrscheinlichkeit für mindestens \\(k\\) Treffer erreicht werden. Welcher Parameter beschreibt die nötige Versuchsanzahl?",
             "antworten": ["Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Die Treffergrenze \\(k\\)","Der Erwartungswert \\(\\mu\\)"],
             "fehler": ["Gegebenes \\(p\\) als gesucht behandelt","Gegebenes \\(k\\) als gesucht behandelt","Abgeleitete Kennzahl statt Modellparameter gewählt"]
         },
@@ -36,12 +36,12 @@
             "fehler": ["Strenge Schranke \\(>0{,}8\\) als \\(\\geq0{,}8\\) gelesen","Treffergrenze statt Versuchsanzahl gewählt","Kleinsten bestätigten Wert überschritten"]
         },
         {
-            "frage": "Welche Größe bleibt beim Probieren verschiedener \\(n\\)-Werte unverändert?",
+            "frage": "Bei einer Binomialverteilung wird nur \\(n\\) variiert. Welcher Verteilungsparameter bleibt unverändert?",
             "antworten": ["Die vorgegebene Trefferwahrscheinlichkeit \\(p\\)","Die Versuchsanzahl \\(n\\)","Jeder berechnete Wahrscheinlichkeitswert","Die Verteilung unabhängig von \\(n\\)"],
             "fehler": ["Gesuchte Größe fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Abhängigkeit der Binomialverteilung von \\(n\\) bestritten"]
         },
         {
-            "frage": "Prüfwerte für dieselbe Bedingung: \\(n=30\\) erfüllt sie nicht, \\(n=31\\) erfüllt sie. Was folgt bei gesuchtem kleinstem \\(n\\)?",
+            "frage": "Bei fester Trefferchance wird die Mindestwahrscheinlichkeit für mindestens \\(k\\) Treffer erst mit 31 statt 30 Versuchen erreicht. Welches \\(n\\) ist mindestens nötig?",
             "antworten": ["\\(n=31\\)","\\(n=30\\)","\\(n=61\\)","Die Trefferwahrscheinlichkeit ist 31."],
             "fehler": ["Nicht erfüllenden Grenzwert gewählt","Benachbarte Versuchsanzahlen addiert","Versuchsanzahl als Wahrscheinlichkeit gedeutet"]
         },
