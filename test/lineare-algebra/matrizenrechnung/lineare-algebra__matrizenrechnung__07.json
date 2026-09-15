@@ -26,7 +26,7 @@
             "fehler": ["Transponierte mit Inverser verwechselt", "Zweimaliges Transponieren mit Einheitsmatrix verknüpft", "Zweimaliges Transponieren als Vorzeichenwechsel gedeutet"]
         },
         {
-            "frage": "Welche Regel gilt für ein Produkt?",
+            "frage": "Welche Regel gilt beim Transponieren eines Matrizenprodukts?",
             "antworten": ["\\((AB)^T=B^TA^T\\)", "\\((AB)^T=A^TB^T\\)", "\\((AB)^T=AB\\)", "\\((AB)^T=A^{-1}B^{-1}\\)"],
             "fehler": ["Reihenfolge beim Transponieren des Produkts nicht umgekehrt", "Transposition der Faktoren ausgelassen", "Transponieren mit Invertieren verwechselt"]
         },
@@ -46,7 +46,7 @@
             "fehler": ["Indizes nicht vertauscht", "Nur Spaltenindex verwendet", "Nur Zeilenindex verwendet"]
         },
         {
-            "frage": "Welche Regel gilt für eine Summe?",
+            "frage": "Welche Regel gilt beim Transponieren einer Summe von Matrizen?",
             "antworten": ["\\((A+B)^T=A^T+B^T\\)", "\\((A+B)^T=B^T-A^T\\)", "\\((A+B)^T=A+B^T\\)", "\\((A+B)^T=B^TA^T\\)"],
             "fehler": ["Addition und Reihenfolge unnötig verändert", "Nur einen Summanden transponiert", "Summenregel mit Produktregel verwechselt"]
         }

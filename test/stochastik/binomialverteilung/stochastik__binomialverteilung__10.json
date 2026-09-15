@@ -1,7 +1,7 @@
 {
     "fragen": [
         {
-            "frage": "Gegeben sind \\(n\\), \\(p\\) und eine Intervallwahrscheinlichkeit. Welche Größe wird in diesem Check bestimmt?",
+            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\) und \\(p\\) bekannt. Gesucht ist, wie viele Treffer mindestens mit 80 % Wahrscheinlichkeit auftreten. Welche Größe ist gesucht?",
             "antworten": ["Die Treffergrenze \\(k\\)","Die Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Der Erwartungswert \\(\\mu\\)"],
             "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(p\\) als gesucht behandelt","Abgeleitete Kennzahl statt Grenze gewählt"]
         },
@@ -36,7 +36,7 @@
             "fehler": ["Strenge Schranke \\(>0{,}5\\) als inklusive gelesen","Prüfwahrscheinlichkeit als Treffergrenze gewählt","Größten zulässigen Wert unterschritten"]
         },
         {
-            "frage": "Welche Größe bleibt beim Probieren verschiedener \\(k\\)-Werte unverändert?",
+            "frage": "Für eine feste Binomialverteilung wird die Treffergrenze \\(k\\) variiert. Welche Größen bleiben unverändert?",
             "antworten": ["Die vorgegebenen Parameter \\(n\\) und \\(p\\)","Die Treffergrenze \\(k\\)","Alle kumulierten Wahrscheinlichkeiten","Die Ereignisse trotz verändertem \\(k\\)"],
             "fehler": ["Gesuchte Grenze fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Veränderung des Ereignisses durch \\(k\\) bestritten"]
         },
@@ -46,7 +46,7 @@
             "fehler": ["Zulässige Untergrenze 0 ausgeschlossen","Zulässigen inneren Wert 6 ausgeschlossen","Maximal mögliche Trefferzahl 12 ausgeschlossen"]
         },
         {
-            "frage": "Prüfwerte: \\(k=9\\) erfüllt die Bedingung, \\(k=10\\) nicht. Gesucht ist das größte erfüllende \\(k\\). Ergebnis?",
+            "frage": "Für dieselbe Trefferzahl \\(X\\) gilt \\(P(X\\geq9)=0{,}85\\), \\(P(X\\geq10)=0{,}75\\). Welches größte \\(k\\) erfüllt \\(P(X\\geq k)\\geq0{,}8\\)?",
             "antworten": ["\\(k=9\\)","\\(k=10\\)","\\(k=19\\)","\\(k=1\\)"],
             "fehler": ["Nicht erfüllenden Nachbarwert gewählt","Prüfgrenzen addiert","Differenz der Prüfgrenzen statt Grenzwert gewählt"]
         }

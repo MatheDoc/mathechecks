@@ -1,12 +1,12 @@
 {
     "fragen": [
         {
-            "frage": "Welche Zielfunktion beschreibt die Abschöpfung in Abhängigkeit von \\(x_2\\)?",
+            "frage": "Für \\(x_2\\) Einheiten wird statt \\(p_G\\) der Preis \\(p_N(x_2)\\) verlangt. Welche Zielfunktion beschreibt den zusätzlichen Erlös?",
             "antworten": ["\\(A(x_2)=x_2\\cdot(p_N(x_2)-p_G)\\)", "\\(A(x_2)=x_2\\cdot(p_G-p_N(x_2))\\)", "\\(A(x_2)=x_G\\cdot(p_N(x_2)-p_G)\\)", "\\(A(x_2)=x_2+p_N(x_2)-p_G\\)"],
             "fehler": ["Preisdifferenz in falscher Reihenfolge gebildet", "Gleichgewichtsmenge statt Teilmarktmenge als Breite verwendet", "Breite und Höhe addiert statt multipliziert"]
         },
         {
-            "frage": "Warum wird in der Zielfunktion \\(p_2\\) durch \\(p_N(x_2)\\) ersetzt?",
+            "frage": "Warum ersetzt man in \\(A=x_2(p_2-p_G)\\) bei festem \\(p_G\\) den Preis \\(p_2\\) durch \\(p_N(x_2)\\)?",
             "antworten": ["Damit \\(A\\) nur von \\(x_2\\) abhängt.", "Damit \\(A\\) nur von \\(x_G\\) abhängt.", "Damit die Angebotsfunktion entfällt.", "Damit \\(p_G=0\\) gesetzt werden kann."],
             "fehler": ["Abhängigkeit fälschlich auf die Gleichgewichtsmenge verlagert", "Ersetzung ohne Bezug zur Nachfragefunktion gedeutet", "Ersetzung fälschlich mit einem Gleichgewichtspreis von null begründet"]
         },
@@ -46,7 +46,7 @@
             "fehler": ["Ersten statt größten gegebenen Funktionswert gewählt", "Größtes Argument statt größten Funktionswert gewählt", "Unterschiedliche Funktionswerte als gleich groß gedeutet"]
         },
         {
-            "frage": "Es gilt \\(p_N(x_2)=10-x_2\\) und \\(p_G=4\\). Welche Zielfunktion entsteht durch Einsetzen?",
+            "frage": "Setze \\(p_N(x_2)=10-x_2\\) und \\(p_G=4\\) in \\(A(x_2)=x_2(p_N(x_2)-p_G)\\) ein. Welche Zielfunktion folgt?",
             "antworten": ["\\(A(x_2)=x_2\\cdot(6-x_2)\\)", "\\(A(x_2)=x_2\\cdot(14-x_2)\\)", "\\(A(x_2)=x_2\\cdot(x_2-6)\\)", "\\(A(x_2)=6-x_2\\)"],
             "fehler": ["Gleichgewichtspreis addiert statt subtrahiert", "Preisdifferenz in falscher Reihenfolge gebildet", "Faktor \\(x_2\\) aus der Flächenformel weggelassen"]
         }

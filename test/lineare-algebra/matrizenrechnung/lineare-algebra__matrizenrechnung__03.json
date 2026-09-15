@@ -26,7 +26,7 @@
             "fehler": ["Vorzeichen bei der Elimination vertauscht", "Falsche Zielzeile verändert", "Falsche Linearkombination gewählt"]
         },
         {
-            "frage": "Die Reduktion endet bei \\((E_2\\mid B)\\). Was ist \\(B\\)?",
+            "frage": "Der Gauß-Jordan-Ansatz \\((A\\mid E_2)\\) wird zu \\((E_2\\mid B)\\). Was ist \\(B\\)?",
             "antworten": ["\\(A^{-1}\\)", "\\(A^T\\)", "\\(A\\)", "\\(E_2\\)"],
             "fehler": ["Inverse mit Transponierter verwechselt", "Ursprüngliche Matrix statt Ergebnis abgelesen", "Linke Hälfte statt rechter Hälfte abgelesen"]
         },
@@ -41,7 +41,7 @@
             "fehler": ["Diagonaleinträge nicht invertiert", "Diagonaleinträge nur vertauscht", "Vorzeichenwechsel mit Invertieren verwechselt"]
         },
         {
-            "frage": "Bei der vollständigen Reduktion enthält die linke Hälfte eine Nullzeile. Welche Folgerung ist richtig?",
+            "frage": "Bei der Reduktion von \\((A\\mid E_2)\\) entsteht links eine Nullzeile. Welche Folgerung ist richtig?",
             "antworten": ["Die linke Hälfte kann nicht zu \\(E_2\\) werden; \\(A\\) ist nicht invertierbar.", "Die rechte Hälfte ist automatisch \\(E_2\\).", "Die Nullzeile wird als Pivotzeile verwendet.", "Die Inverse ist die Nullmatrix."],
             "fehler": ["Rechte Hälfte ohne Begründung als Einheitsmatrix angesehen", "Nullzeile fälschlich als Pivotzeile angesehen", "Nichtinvertierbarkeit mit Nullmatrix als Inverse verwechselt"]
         },

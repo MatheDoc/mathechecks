@@ -1,12 +1,12 @@
 {
     "fragen": [
         {
-            "frage": "Gegeben sind \\(n\\), \\(k\\) und eine Intervallwahrscheinlichkeit. Welche Größe wird in diesem Check bestimmt?",
+            "frage": "Für \\(X\\sim B(n;p)\\) sind \\(n\\), \\(k\\) und \\(P(X\\leq k)\\) gegeben. Welcher Verteilungsparameter ist noch gesucht?",
             "antworten": ["Die Trefferwahrscheinlichkeit \\(p\\)","Die Versuchsanzahl \\(n\\)","Die Treffergrenze \\(k\\)","Die Standardabweichung \\(\\sigma\\)"],
             "fehler": ["Gegebenes \\(n\\) als gesucht behandelt","Gegebenes \\(k\\) als gesucht behandelt","Abgeleitete Kennzahl statt Parameter gewählt"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(p\\) mit \\(P(X\\leq10)\\leq0{,}30\\). Prüfwerte: \\(p=0{,}40:0{,}34\\), \\(p=0{,}41:0{,}28\\). Ergebnis?",
+            "frage": "Gesucht ist das kleinste \\(p\\) in Hundertstelschritten mit \\(P(X\\leq10)\\leq0{,}30\\). Prüfwerte: \\(p=0{,}40:0{,}34\\), \\(p=0{,}41:0{,}28\\). Ergebnis?",
             "antworten": ["\\(p=0{,}41\\)","\\(p=0{,}40\\)","\\(p=0{,}30\\)","\\(p=0{,}42\\)"],
             "fehler": ["Prüfwert über 0,30 akzeptiert","Schranke als Trefferwahrscheinlichkeit übernommen","Kleinsten bestätigten Wert überschritten"]
         },
@@ -21,7 +21,7 @@
             "fehler": ["Monotonierichtung vertauscht","Einfluss von \\(p\\) bestritten","Wahrscheinlichkeit mit Versuchsanzahl gleichgesetzt"]
         },
         {
-            "frage": "Gesucht ist das größte \\(p\\) mit \\(P(X\\geq7)\\leq0{,}25\\). Prüfwerte: \\(p=0{,}30:0{,}22\\), \\(p=0{,}31:0{,}27\\). Ergebnis?",
+            "frage": "Gesucht ist das größte \\(p\\) in Hundertstelschritten mit \\(P(X\\geq7)\\leq0{,}25\\). Prüfwerte: \\(p=0{,}30:0{,}22\\), \\(p=0{,}31:0{,}27\\). Ergebnis?",
             "antworten": ["\\(p=0{,}30\\)","\\(p=0{,}31\\)","\\(p=0{,}25\\)","\\(p=0{,}29\\)"],
             "fehler": ["Prüfwert über 0,25 akzeptiert","Schranke als \\(p\\) übernommen","Größten zulässigen Prüfwert unterschritten"]
         },
@@ -31,12 +31,12 @@
             "fehler": ["Gesuchtes \\(p\\) durch \\(n\\) ersetzt","Gegebene Grenze als gesucht behandelt","Höchstens mit mindestens verwechselt"]
         },
         {
-            "frage": "Gesucht ist das kleinste \\(p\\) mit \\(P(X\\geq5)>0{,}60\\). Prüfwerte: \\(p=0{,}2:0{,}60\\), \\(p=0{,}3:0{,}72\\). Ergebnis?",
+            "frage": "Gesucht ist das kleinste \\(p\\) in Zehntelschritten mit \\(P(X\\geq5)>0{,}60\\). Prüfwerte: \\(p=0{,}2:0{,}60\\), \\(p=0{,}3:0{,}72\\). Ergebnis?",
             "antworten": ["\\(p=0{,}3\\)","\\(p=0{,}2\\)","\\(p=0{,}6\\)","\\(p=0{,}4\\)"],
             "fehler": ["Strenge Schranke als inklusive Schranke gelesen","Zielwahrscheinlichkeit als \\(p\\) übernommen","Kleinsten bestätigten Tabellenwert überschritten"]
         },
         {
-            "frage": "Welche Größe bleibt beim Tabellenvergleich verschiedener \\(p\\)-Werte unverändert?",
+            "frage": "Bei einer Binomialverteilung wird nur \\(p\\) variiert. Welcher Verteilungsparameter bleibt unverändert?",
             "antworten": ["Die vorgegebene Versuchsanzahl \\(n\\)","Die Trefferwahrscheinlichkeit \\(p\\)","Alle berechneten Wahrscheinlichkeiten","Die Verteilung trotz verändertem \\(p\\)"],
             "fehler": ["Gesuchte Größe fälschlich festgehalten","Prüfwerte fälschlich als identisch angenommen","Abhängigkeit der Verteilung von \\(p\\) bestritten"]
         },

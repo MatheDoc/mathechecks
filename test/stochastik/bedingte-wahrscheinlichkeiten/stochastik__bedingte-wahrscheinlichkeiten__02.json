@@ -26,12 +26,12 @@
             "fehler": ["Pfadwahrscheinlichkeiten addiert", "Astwahrscheinlichkeiten subtrahiert", "Nur den zweiten Astwert übernommen"]
         },
         {
-            "frage": "Im Baum sind \\(P(A)=0{,}4\\) und \\(P(A\\cap\\overline{B})=0{,}28\\) gegeben. Welcher Astwert fehlt nach \\(A\\)?",
+            "frage": "Im Baum gilt \\(P(A)=0{,}4\\) und \\(P(A\\cap\\overline{B})=0{,}28\\). Welcher Wert gehört an den Ast zu \\(\\overline{B}\\) nach \\(A\\)?",
             "antworten": ["\\(P_A(\\overline{B})=0{,}7\\)", "\\(P_A(\\overline{B})=0{,}112\\)", "\\(P_A(\\overline{B})=0{,}12\\)", "\\(P_A(\\overline{B})=0{,}3\\)"],
             "fehler": ["Pfadwerte multipliziert statt dividiert", "Schnittwahrscheinlichkeit vom ersten Ast abgezogen", "Den Gegenast zum gesuchten Ast angegeben"]
         },
         {
-            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Es gilt \\(P_A(B)=0{,}2\\) und \\(P(\\overline{A})=0{,}5\\). Welche Endwahrscheinlichkeit fehlt?",
+            "frage": "\\(A\\) und \\(B\\) sind unabhängig. Es gilt \\(P_A(B)=0{,}2\\), \\(P(\\overline{A})=0{,}5\\). Wie groß ist \\(P(\\overline{A}\\cap B)\\)?",
             "antworten": ["\\(P(\\overline{A}\\cap B)=0{,}1\\)", "\\(P(\\overline{A}\\cap B)=0{,}7\\)", "\\(P(\\overline{A}\\cap B)=0{,}3\\)", "\\(P(\\overline{A}\\cap B)=0{,}2\\)"],
             "fehler": ["Erste und zweite Pfadwahrscheinlichkeit addiert", "Zweite Pfadwahrscheinlichkeit von der ersten abgezogen", "Nur die bedingte Wahrscheinlichkeit übernommen"]
         },

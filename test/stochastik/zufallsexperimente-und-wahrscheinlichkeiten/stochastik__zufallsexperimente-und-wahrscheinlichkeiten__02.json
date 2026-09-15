@@ -21,12 +21,12 @@
             "fehler": ["Vereinigung als Schnittmenge gelesen", "Gemeinsames Eintreten fälschlich ausgeschlossen", "Gegenereignis der Vereinigung gewählt"]
         },
         {
-            "frage": "Welche Schreibweise bedeutet: Eine Person putzt nicht regelmäßig die Zähne und hat gesunde Zähne?",
+            "frage": "A: regelmäßiges Zähneputzen, B: gesunde Zähne. Welche Schreibweise passt zu „nicht regelmäßig putzen und gesunde Zähne haben“?",
             "antworten": ["\\(P(\\overline{A}\\cap B)\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup B)\\)", "\\(P(A\\cap B)\\)"],
             "fehler": ["Komplement dem falschen Ereignis zugeordnet", "Und-Verknüpfung als Oder-Verknüpfung geschrieben", "Verneinung von A ausgelassen"]
         },
         {
-            "frage": "Welche Schreibweise bedeutet: Eine Person putzt regelmäßig die Zähne oder hat keine gesunden Zähne?",
+            "frage": "A: regelmäßiges Zähneputzen, B: gesunde Zähne. Welche Schreibweise passt zu „regelmäßig putzen oder keine gesunden Zähne haben“?",
             "antworten": ["\\(P(A\\cup\\overline{B})\\)", "\\(P(A\\cap\\overline{B})\\)", "\\(P(\\overline{A}\\cup B)\\)", "\\(P(A\\cup B)\\)"],
             "fehler": ["Oder-Verknüpfung als Und-Verknüpfung geschrieben", "Komplemente beiden Ereignissen falsch zugeordnet", "Verneinung von B ausgelassen"]
         },
