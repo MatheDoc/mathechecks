@@ -50,15 +50,15 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Jeder Prognosewert wird verdoppelt.</p>]]></text>
+      <text><![CDATA[<p>Es wird nur der Mittelwert der y-Werte verwendet.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Willkürliche Rechnung ohne Modellbezug begonnen</p>]]></text>
+        <text><![CDATA[<p>Mittelwert der Daten statt eines Regressionsmodells als Grundlage verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Alle Messwerte werden gleichgesetzt.</p>]]></text>
+      <text><![CDATA[<p>Es wird zwischen zwei Messpunkten linear interpoliert.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Messwerte fälschlich miteinander gleichgesetzt</p>]]></text>
+        <text><![CDATA[<p>Lineare Interpolation zwischen Messpunkten mit einer Regression verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">

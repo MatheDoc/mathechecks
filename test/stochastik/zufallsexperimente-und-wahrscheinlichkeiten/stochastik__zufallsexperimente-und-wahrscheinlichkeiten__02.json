@@ -2,22 +2,22 @@
     "fragen": [
         {
             "frage": "Es sei \\(A\\): ‚Eine Person putzt regelmäßig die Zähne.‘ Was bedeutet \\(P(A)\\)?",
-            "antworten": ["Wahrscheinlichkeit, dass eine Person regelmäßig die Zähne putzt", "Ereignis, dass eine Person regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass eine Person nicht regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass alle Personen regelmäßig die Zähne putzen"],
+            "antworten": ["Wahrscheinlichkeit für regelmäßiges Zähneputzen", "Ereignis ‚regelmäßiges Zähneputzen‘", "Wahrscheinlichkeit für nicht regelmäßiges Zähneputzen", "Wahrscheinlichkeit, dass alle Personen regelmäßig putzen"],
             "fehler": ["Ereignis A und seine Wahrscheinlichkeit nicht unterschieden", "Ereignis durch sein Gegenereignis ersetzt", "Einzelauswahl fälschlich als Aussage über alle Personen gelesen"]
         },
         {
             "frage": "Es sei \\(A\\): ‚Eine Person putzt regelmäßig die Zähne.‘ Was bedeutet \\(P(\\overline{A})\\)?",
-            "antworten": ["Wahrscheinlichkeit, dass eine Person nicht regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass eine Person regelmäßig die Zähne putzt", "Wahrscheinlichkeit, dass niemand Zähne hat", "Gegenwahrscheinlichkeit von \\(P(B)\\)"],
-            "fehler": ["Komplementzeichen ignoriert", "Gegenereignis sachlich falsch gedeutet", "Komplement dem falschen Ereignis zugeordnet"]
+            "antworten": ["Wahrscheinlichkeit für nicht regelmäßiges Zähneputzen", "Wahrscheinlichkeit für regelmäßiges Zähneputzen", "Ereignis ‚nicht regelmäßiges Zähneputzen‘", "Wahrscheinlichkeit, dass keine Person regelmäßig putzt"],
+            "fehler": ["Komplementzeichen ignoriert", "Gegenereignis und seine Wahrscheinlichkeit nicht unterschieden", "Einzelauswahl fälschlich als Aussage über alle Personen gelesen"]
         },
         {
             "frage": "Es sei \\(A\\): ‚regelmäßiges Zähneputzen‘ und \\(B\\): ‚gesunde Zähne‘. Was bedeutet \\(P(A\\cap B)\\)?",
-            "antworten": ["Wahrscheinlichkeit für regelmäßiges Zähneputzen und gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Zähneputzen oder gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Zähneputzen ohne gesunde Zähne", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
+            "antworten": ["Wahrscheinlichkeit für regelmäßiges Putzen und gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Putzen oder gesunde Zähne", "Wahrscheinlichkeit für regelmäßiges Putzen ohne gesunde Zähne", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
             "fehler": ["Schnittmenge als Oder-Verknüpfung gelesen", "Gegenereignis von B ergänzt", "Schnittmenge der beiden Gegenereignisse gewählt"]
         },
         {
             "frage": "Es sei \\(A\\): ‚regelmäßiges Zähneputzen‘ und \\(B\\): ‚gesunde Zähne‘. Was bedeutet \\(P(A\\cup B)\\)?",
-            "antworten": ["Wahrscheinlichkeit für regelmäßiges Zähneputzen oder gesunde Zähne, möglicherweise beides", "Wahrscheinlichkeit für regelmäßiges Zähneputzen und gesunde Zähne", "Wahrscheinlichkeit für genau eine der beiden Eigenschaften", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
+            "antworten": ["Wahrscheinlichkeit für mindestens eine der Eigenschaften", "Wahrscheinlichkeit für regelmäßiges Putzen und gesunde Zähne", "Wahrscheinlichkeit für genau eine der beiden Eigenschaften", "Wahrscheinlichkeit für keine der beiden Eigenschaften"],
             "fehler": ["Vereinigung als Schnittmenge gelesen", "Gemeinsames Eintreten fälschlich ausgeschlossen", "Gegenereignis der Vereinigung gewählt"]
         },
         {

@@ -28,12 +28,12 @@
         {
             "frage": "Von 10 Kugeln sind 4 grün. Wie groß ist die Wahrscheinlichkeit für ‚nicht grün‘?",
             "antworten": ["\\(0{,}6\\)", "\\(0{,}4\\)", "\\(0{,}04\\)", "\\(6\\)"],
-            "fehler": ["Wahrscheinlichkeit für Grün statt Gegenereignis gewählt", "Absolute Häufigkeit und Gesamtzahl multipliziert", "Günstige Anzahl ohne Division als Wahrscheinlichkeit verwendet"]
+            "fehler": ["Wahrscheinlichkeit für Grün statt Gegenereignis gewählt", "Absolute Häufigkeit durch 100 statt durch 10 geteilt", "Günstige Anzahl ohne Division als Wahrscheinlichkeit verwendet"]
         },
         {
             "frage": "Von 10 Kugeln sind 1 rot und 2 blau. Wie groß ist die Wahrscheinlichkeit für ‚weder rot noch blau‘?",
             "antworten": ["\\(0{,}7\\)", "\\(0{,}3\\)", "\\(0{,}2\\)", "\\(0{,}8\\)"],
-            "fehler": ["Wahrscheinlichkeit für Rot oder Blau gewählt", "Nur blaue Kugeln berücksichtigt", "Nur rote Kugeln ausgeschlossen"]
+            "fehler": ["Wahrscheinlichkeit für Rot oder Blau gewählt", "Wahrscheinlichkeit für Blau statt für das Gegenereignis berechnet", "Nur blaue Kugeln ausgeschlossen"]
         },
         {
             "frage": "Ein Ereignis tritt bei 8 von 40 Beobachtungen ein. Wie groß ist seine relative Häufigkeit?",

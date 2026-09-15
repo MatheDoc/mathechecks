@@ -3,7 +3,7 @@
         {
             "frage": "Für \\(\\vec{m}=\\begin{pmatrix}t\\\\6-t\\end{pmatrix}\\) müssen alle Mengen nichtnegativ sein. Welcher Bereich ist zulässig?",
             "antworten": ["\\(0\\le t\\le6\\)", "\\(t\\ge6\\)", "\\(t\\le0\\)", "\\(-6\\le t\\le0\\)"],
-            "fehler": ["Nur die zweite Nichtnegativitätsbedingung verwendet", "Nur die erste Bedingung mit falscher Richtung verwendet", "Vorzeichen beider Grenzen vertauscht"]
+            "fehler": ["Nur die zweite Nichtnegativitätsbedingung mit falscher Ungleichungsrichtung verwendet", "Nur die erste Bedingung mit falscher Richtung verwendet", "Vorzeichen beider Grenzen vertauscht"]
         },
         {
             "frage": "Aus \\(2t-4\\ge0\\) und \\(10-t\\ge0\\) folgt welcher zulässige Bereich?",
@@ -43,7 +43,7 @@
         {
             "frage": "Es gilt \\(\\vec{m}=\\begin{pmatrix}5+t\\\\7-t\\end{pmatrix}\\) und \\(\\vec{k}_v=\\begin{pmatrix}2&3\\end{pmatrix}\\). Wie lautet \\(K_v(t)\\)?",
             "antworten": ["\\(31-t\\)", "\\(12\\)", "\\(31+t\\)", "\\(26-t\\)"],
-            "fehler": ["Parameteranteile fälschlich vollständig aufgehoben", "Vorzeichen des zweiten Parameteranteils vertauscht", "Konstantenanteil falsch addiert"]
+            "fehler": ["Stückkosten nicht angewendet, nur die Mengen addiert", "Vorzeichenfehler beim Zusammenfassen von \\(2t-3t\\)", "Konstantenanteil falsch addiert"]
         },
         {
             "frage": "\\(G(t)=40-5t\\) gilt auf \\([2;6]\\). Bei welchem Randpunkt ist der Gewinn maximal?",

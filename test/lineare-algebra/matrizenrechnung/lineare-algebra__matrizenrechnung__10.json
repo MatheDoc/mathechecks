@@ -42,8 +42,8 @@
         },
         {
             "frage": "Die erste Zeile lautet \\((2\\;0\\;-1\\;0)\\). Es gilt \\(\\det(A_{11})=3\\) und \\(\\det(A_{13})=4\\). Wie groß ist \\(\\det(A)\\)?",
-            "antworten": ["\\(2\\)", "\\(10\\)", "\\(-2\\)", "\\(7\\)"],
-            "fehler": ["Negativen Matrixeintrag \\(-1\\) als \\(1\\) verwendet", "Vorzeichen des zweiten Beitrags vertauscht", "Matrixeinträge und Minordeterminanten addiert statt multipliziert"]
+            "antworten": ["\\(2\\)", "\\(10\\)", "\\(-2\\)", "\\(8\\)"],
+            "fehler": ["Negativen Matrixeintrag \\(-1\\) als \\(1\\) verwendet", "Beiträge in umgekehrter Reihenfolge subtrahiert (\\(4-6\\))", "Matrixeinträge und Minordeterminanten addiert statt multipliziert"]
         },
         {
             "frage": "Bei Entwicklung nach der 4. Zeile trägt nur \\(a_{41}=1\\) bei. Der zugehörige Minor hat Determinante \\(10\\). Wie groß ist \\(\\det(A)\\)?",

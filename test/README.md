@@ -46,6 +46,8 @@ test/<gebiet>/<lernbereich>/<check_id>.json
 - **Distraktoren:** möglichst konkrete, plausible typische Fehler oder Fehlvorstellungen (z. B. Vorzeichenfehler, vertauschte Formelteile), idealerweise aus der korrekten Lösung durch genau diesen Fehler entstehend. Allgemeine Fehlerantworten sind zulässig.
 - Umfang: 10 verschiedene atomare Fragen pro Check; punktuell mehrere Varianten einer Frage, wo Auswendiglernen der Antwort droht.
 - **Keine Grafiken:** Test-Fragen kommen ohne Abbildungen aus. Didaktisch oft wünschenswert, aber im Moodle-XML-Export nur mit Workarounds (Base64/Dateianhänge) machbar und im 10–20-s-Format kaum sinnvoll erfassbar.
+- **Ohne Kontext verständlich:** Jede Frage muss ohne andere Fragen, Skript, Trainingsaufgaben oder Kenntnis des Lernbereichs verständlich sein.
+- **Erlaubtes Vorwissen:** Typische mathematische Notation und Fachbegriffe dürfen vorausgesetzt werden.
 
 ## Fragenarten
 

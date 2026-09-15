@@ -3654,7 +3654,7 @@
       <text>stochastik__hypothesentests__07-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(Bcd(0;22;80;p_0)=0{,}0324\). Für \(p=0{,}38\) ergibt sich genau \(0{,}0324\). Welcher Wert ist gesucht?</p>]]></text>
+      <text><![CDATA[<p>Bei \(n=80\) und \(\overline{A}=\{0,\ldots,22\}\) soll \(P_{p_0}(X\leq22)=0{,}0324\) gelten. Probieren ergibt \(P_{0{,}35}(X\leq22)\approx0{,}0971\) und \(P_{0{,}38}(X\leq22)\approx0{,}0324\). Welcher Wert \(p_0\) ist gesucht?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -3684,6 +3684,12 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(p_0=0{,}35\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kandidaten mit nicht passendem Prüfwert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
       <text><![CDATA[<p>\(p_0=0{,}0324\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Fehlerwahrscheinlichkeit als Parameter übernommen</p>]]></text>
@@ -3695,19 +3701,13 @@
         <text><![CDATA[<p>Grenzwert als Parameter übernommen</p>]]></text>
       </feedback>
     </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(p_0=80\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Stichprobenumfang als Parameter übernommen</p>]]></text>
-      </feedback>
-    </answer>
   </question>
   <question type="multichoice">
     <name>
       <text>stochastik__hypothesentests__07-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Gesucht ist \(n\) und es gilt \(Bcd(33;n;n;0{,}28)=0{,}1580\). Für \(n=100\) stimmt die Gleichung. Was folgt?</p>]]></text>
+      <text><![CDATA[<p>Bei \(p_0=0{,}28\) und \(\overline{A}=\{33,\ldots,n\}\) soll \(P_{0{,}28}(X\geq33)=0{,}1580\) gelten. Probieren ergibt für \(n=90\) den Wert \(0{,}0459\) und für \(n=100\) den Wert \(0{,}1580\). Welcher Stichprobenumfang ist gesucht?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -3737,21 +3737,21 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=90\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kandidaten mit nicht passendem Prüfwert gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
       <text><![CDATA[<p>Der Stichprobenumfang ist \(n=33\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Untere Summengrenze als Stichprobenumfang übernommen</p>]]></text>
+        <text><![CDATA[<p>Untere Grenze des Ablehnungsbereichs als Stichprobenumfang übernommen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
       <text><![CDATA[<p>Der Stichprobenumfang ist \(n=0{,}28\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Parameter als Stichprobenumfang übernommen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>Der Stichprobenumfang ist \(n=0{,}1580\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Fehlerwahrscheinlichkeit als Stichprobenumfang übernommen</p>]]></text>
       </feedback>
     </answer>
   </question>

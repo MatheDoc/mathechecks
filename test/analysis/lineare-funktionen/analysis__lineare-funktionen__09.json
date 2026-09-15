@@ -1,7 +1,7 @@
 {
     "fragen": [
         {
-            "frage": "Taxikosten werden durch \\(K(x)=2x+4\\) beschrieben, wobei \\(x\\) die gefahrenen Kilometer angibt. Was bedeutet \\(m=2\\)?",
+            "frage": "Taxikosten in Euro werden durch \\(K(x)=2x+4\\) beschrieben, wobei \\(x\\) die gefahrenen Kilometer angibt. Was bedeutet \\(m=2\\)?",
             "antworten": ["Jeder Kilometer kostet zusätzlich \\(2\\) €.", "Die Grundgebühr beträgt \\(2\\) €.", "Nach \\(2\\) km kostet die Fahrt \\(4\\) €.", "Die Fahrt kostet immer \\(2\\) €."],
             "fehler": ["Steigung mit der Grundgebühr verwechselt", "Steigung als konkrete Kilometerzahl gedeutet", "Änderungsrate als konstanten Gesamtpreis gedeutet"]
         },
@@ -41,14 +41,14 @@
             "fehler": ["Nur den Abfluss nach vier Stunden angegeben", "Vorzeichen der Abnahme vertauscht", "Anfangswert durch die Abnahmerate geteilt: \\(30:5=6\\)"]
         },
         {
-            "frage": "Die Kostenfunktion \\(K(x)=3x+6\\) verwendet \\(x\\) als Anzahl gekaufter Hefte. Wofür steht \\(x\\)?",
+            "frage": "Beim Kauf von Heften entstehen Kosten, die durch \\(K(x)=3x+6\\) beschrieben werden. Wofür steht \\(x\\) in diesem Modell?",
             "antworten": ["Für die Anzahl der Hefte", "Für die Gesamtkosten in Euro", "Für den Preis pro Heft", "Für die Grundkosten"],
             "fehler": ["Eingabegröße mit der Ausgabegröße verwechselt", "Eingabegröße mit der Steigung verwechselt", "Eingabegröße mit dem y-Achsenabschnitt verwechselt"]
         },
         {
             "frage": "Eine Füllmenge wird durch \\(F(t)=3t+10\\) beschrieben. Wie groß ist \\(F(2)\\)?",
             "antworten": ["\\(16\\)", "\\(13\\)", "\\(20\\)", "\\(8\\)"],
-            "fehler": ["Die Zeit nicht mit der Änderungsrate multipliziert", "Anfangswert mit der Zeit multipliziert und die Änderungsrate ignoriert: \\(10\\cdot2=20\\)", "Anfangswert von der Zunahme abgezogen"]
+            "fehler": ["Die Zeit nicht mit der Änderungsrate multipliziert", "Anfangswert mit der Zeit multipliziert und die Änderungsrate ignoriert: \\(10\\cdot2=20\\)", "Zeit vom Anfangswert abgezogen: \\(10-2=8\\)"]
         }
     ]
 }

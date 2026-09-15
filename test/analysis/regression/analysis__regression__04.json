@@ -2,8 +2,8 @@
     "fragen": [
         {
             "frage": "Was muss vor der Regression mit dem GTR geschehen?",
-            "antworten": ["Die x- und y-Daten werden in Listen eingegeben.", "Alle y-Werte werden gleich null gesetzt.", "Die Regressionsfunktion wird vorher erraten.", "Das Bestimmtheitsmaß wird als Datenwert eingegeben."],
-            "fehler": ["Messdaten fälschlich verändert", "Berechnungsergebnis statt Datengrundlage vorausgesetzt", "Ausgabewert des GTR fälschlich als Eingabedatum behandelt"]
+            "antworten": ["Die x- und y-Daten werden in Listen eingegeben.", "Die Daten werden zuerst nach den y-Werten sortiert.", "Die Regressionsfunktion wird vorher erraten.", "Das Bestimmtheitsmaß wird als Datenwert eingegeben."],
+            "fehler": ["Sortierung der Daten fälschlich als Voraussetzung angesehen", "Berechnungsergebnis statt Datengrundlage vorausgesetzt", "Ausgabewert des GTR fälschlich als Eingabedatum behandelt"]
         },
         {
             "frage": "Welche Funktionsform gehört zur linearen Regression?",
@@ -47,8 +47,8 @@
         },
         {
             "frage": "Welche Angabe sollte man nach einer Regression mit dem GTR neben der Funktionsgleichung notieren?",
-            "antworten": ["das Bestimmtheitsmaß \\(R^2\\)", "nur den größten x-Wert", "nur den ersten Messpunkt", "die Anzahl der Tastenanschläge"],
-            "fehler": ["Einzelnen Datenwert statt Gütemaß festgehalten", "Einzelnen Messpunkt statt Gütemaß festgehalten", "Bedienaufwand statt mathematisches Ergebnis dokumentiert"]
+            "antworten": ["das Bestimmtheitsmaß \\(R^2\\)", "nur den größten x-Wert", "nur den ersten Messpunkt", "den Mittelwert der y-Werte"],
+            "fehler": ["Einzelnen Datenwert statt Gütemaß festgehalten", "Einzelnen Messpunkt statt Gütemaß festgehalten", "Mittelwert der Daten statt Gütemaß festgehalten"]
         }
     ]
 }
