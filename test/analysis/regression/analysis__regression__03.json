@@ -2,8 +2,8 @@
     "fragen": [
         {
             "frage": "Was geschieht bei einer Regressionsaufgabe im Sachzusammenhang zuerst?",
-            "antworten": ["Eine passende Regressionsfunktion wird bestimmt.", "Jeder Prognosewert wird verdoppelt.", "Alle Messwerte werden gleichgesetzt.", "Die gesuchte Sachgröße wird geschätzt, ohne das Modell zu nutzen."],
-            "fehler": ["Willkürliche Rechnung ohne Modellbezug begonnen", "Messwerte fälschlich miteinander gleichgesetzt", "Modellbestimmung übersprungen"]
+            "antworten": ["Eine passende Regressionsfunktion wird bestimmt.", "Es wird nur der Mittelwert der y-Werte verwendet.", "Es wird zwischen zwei Messpunkten linear interpoliert.", "Die gesuchte Sachgröße wird geschätzt, ohne das Modell zu nutzen."],
+            "fehler": ["Mittelwert der Daten statt eines Regressionsmodells als Grundlage verwendet", "Lineare Interpolation zwischen Messpunkten mit einer Regression verwechselt", "Modellbestimmung übersprungen"]
         },
         {
             "frage": "Wie erhält man mit einer Regressionsfunktion \\(f\\) eine Prognose für den x-Wert \\(x=6\\)?",

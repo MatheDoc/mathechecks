@@ -41,14 +41,14 @@
             "fehler": ["Wahrscheinlichkeit fälschlich als Stichprobenumfang interpretiert", "Nicht vorhandene Produktformel verwendet", "Parameter und Stichprobenumfang vertauscht"]
         },
         {
-            "frage": "Es gilt \\(Bcd(0;22;80;p_0)=0{,}0324\\). Für \\(p=0{,}38\\) ergibt sich genau \\(0{,}0324\\). Welcher Wert ist gesucht?",
-            "antworten": ["\\(p_0=0{,}38\\)", "\\(p_0=0{,}0324\\)", "\\(p_0=22\\)", "\\(p_0=80\\)"],
-            "fehler": ["Fehlerwahrscheinlichkeit als Parameter übernommen", "Grenzwert als Parameter übernommen", "Stichprobenumfang als Parameter übernommen"]
+            "frage": "Bei \\(n=80\\) und \\(\\overline{A}=\\{0,\\ldots,22\\}\\) soll \\(P_{p_0}(X\\leq22)=0{,}0324\\) gelten. Probieren ergibt \\(P_{0{,}35}(X\\leq22)\\approx0{,}0971\\) und \\(P_{0{,}38}(X\\leq22)\\approx0{,}0324\\). Welcher Wert \\(p_0\\) ist gesucht?",
+            "antworten": ["\\(p_0=0{,}38\\)", "\\(p_0=0{,}35\\)", "\\(p_0=0{,}0324\\)", "\\(p_0=22\\)"],
+            "fehler": ["Kandidaten mit nicht passendem Prüfwert gewählt", "Fehlerwahrscheinlichkeit als Parameter übernommen", "Grenzwert als Parameter übernommen"]
         },
         {
-            "frage": "Gesucht ist \\(n\\) und es gilt \\(Bcd(33;n;n;0{,}28)=0{,}1580\\). Für \\(n=100\\) stimmt die Gleichung. Was folgt?",
-            "antworten": ["Der Stichprobenumfang ist \\(n=100\\)", "Der Stichprobenumfang ist \\(n=33\\)", "Der Stichprobenumfang ist \\(n=0{,}28\\)", "Der Stichprobenumfang ist \\(n=0{,}1580\\)"],
-            "fehler": ["Untere Summengrenze als Stichprobenumfang übernommen", "Parameter als Stichprobenumfang übernommen", "Fehlerwahrscheinlichkeit als Stichprobenumfang übernommen"]
+            "frage": "Bei \\(p_0=0{,}28\\) und \\(\\overline{A}=\\{33,\\ldots,n\\}\\) soll \\(P_{0{,}28}(X\\geq33)=0{,}1580\\) gelten. Probieren ergibt für \\(n=90\\) den Wert \\(0{,}0459\\) und für \\(n=100\\) den Wert \\(0{,}1580\\). Welcher Stichprobenumfang ist gesucht?",
+            "antworten": ["Der Stichprobenumfang ist \\(n=100\\)", "Der Stichprobenumfang ist \\(n=90\\)", "Der Stichprobenumfang ist \\(n=33\\)", "Der Stichprobenumfang ist \\(n=0{,}28\\)"],
+            "fehler": ["Kandidaten mit nicht passendem Prüfwert gewählt", "Untere Grenze des Ablehnungsbereichs als Stichprobenumfang übernommen", "Parameter als Stichprobenumfang übernommen"]
         }
     ]
 }

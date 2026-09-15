@@ -1499,7 +1499,7 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(7\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Alle vier Faktoren addiert</p>]]></text>
+        <text><![CDATA[<p>Beim zweiten Beitrag Faktoren addiert statt multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
@@ -1814,7 +1814,7 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\begin{pmatrix}4\\4\end{pmatrix}\)</p>]]></text>
+      <text><![CDATA[<p>\(\begin{pmatrix}4\\5\end{pmatrix}\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Spaltenweise statt zeilenweise skalar multipliziert</p>]]></text>
       </feedback>
@@ -1826,7 +1826,7 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\begin{pmatrix}2\\3\end{pmatrix}\)</p>]]></text>
+      <text><![CDATA[<p>\(\begin{pmatrix}4\\3\end{pmatrix}\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Beitrag des zweiten Endprodukts zur ersten Rohstoffmenge übersehen</p>]]></text>
       </feedback>
@@ -1869,19 +1869,19 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(11\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Komponenten nur addiert</p>]]></text>
+        <text><![CDATA[<p>Bedarfswerte über Kreuz den Produktionsmengen zugeordnet (\(3\cdot1+2\cdot4\))</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(18\)</p>]]></text>
+      <text><![CDATA[<p>\(25\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Beide Produktionsmengen mit beiden Bedarfswerten multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(9\)</p>]]></text>
+      <text><![CDATA[<p>\(10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die Produkte \(3\cdot2\) und \(2\cdot1\) verwendet</p>]]></text>
+        <text><![CDATA[<p>Komponenten nur addiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -1926,13 +1926,13 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\begin{pmatrix}11\\0\end{pmatrix}\)</p>]]></text>
+      <text><![CDATA[<p>\(\begin{pmatrix}3\\3\end{pmatrix}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Zeilensummen mit Produktionsmengen verwechselt</p>]]></text>
+        <text><![CDATA[<p>Nur die Zeilensummen von \(ZE\) gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\begin{pmatrix}3\\3\end{pmatrix}\)</p>]]></text>
+      <text><![CDATA[<p>\(\begin{pmatrix}2\\0\end{pmatrix}\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Nur die Hauptdiagonale berücksichtigt</p>]]></text>
       </feedback>
@@ -2790,7 +2790,7 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(10\)</p>]]></text>
+      <text><![CDATA[<p>\(8\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Nur Stückkosten miteinander addiert</p>]]></text>
       </feedback>
@@ -2837,7 +2837,7 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(48\)</p>]]></text>
+      <text><![CDATA[<p>\(40\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Nur ersten Preis mit beiden Mengen multipliziert</p>]]></text>
       </feedback>
@@ -3262,7 +3262,7 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(t\ge6\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nur die zweite Nichtnegativitätsbedingung verwendet</p>]]></text>
+        <text><![CDATA[<p>Nur die zweite Nichtnegativitätsbedingung mit falscher Ungleichungsrichtung verwendet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
@@ -3686,13 +3686,13 @@
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(12\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Parameteranteile fälschlich vollständig aufgehoben</p>]]></text>
+        <text><![CDATA[<p>Stückkosten nicht angewendet, nur die Mengen addiert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
       <text><![CDATA[<p>\(31+t\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Vorzeichen des zweiten Parameteranteils vertauscht</p>]]></text>
+        <text><![CDATA[<p>Vorzeichenfehler beim Zusammenfassen von \(2t-3t\)</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
@@ -3954,7 +3954,7 @@
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(t=30\)</p>]]></text>
+      <text><![CDATA[<p>\(t=20\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Zielwert und Konstantenanteil nur subtrahiert, aber nicht durch 4 geteilt</p>]]></text>
       </feedback>
