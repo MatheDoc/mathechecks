@@ -1,9 +1,9 @@
 """Check 1: Verflechtungsdiagramm ↔ Produktionsmatrizen.
 
 Ein Verflechtungsdiagramm (mit Lücken) und die beiden Produktionsmatrizen
-RZ und ZE (ebenfalls mit Lücken) sind gegeben.  Jeder Wert ist in genau
-einer Darstellung sichtbar und in der anderen als eingekreiste Nummer
-markiert.  Die Schüler bestimmen die fehlenden Werte.
+RZ und ZE (ebenfalls mit Lücken) sind gegeben. Jeder gesuchte Wert ist in
+genau einer Darstellung sichtbar und in der anderen als Unbekannte
+markiert. Die Schüler bestimmen die fehlenden Werte.
 """
 
 import random
@@ -11,10 +11,7 @@ import random
 from aufgaben.core.models import Task
 from aufgaben.generators.base import TaskGenerator
 
-CIRCLED = {
-    1: "\u2460", 2: "\u2461", 3: "\u2462", 4: "\u2463",
-    5: "\u2464", 6: "\u2465", 7: "\u2466", 8: "\u2467",
-}
+UNKNOWN_LABELS = {index: label for index, label in enumerate("abcdefgh", 1)}
 
 NUM_SLOTS = 5
 
@@ -80,7 +77,7 @@ def _latex_matrix(mat, matrix_name, slot_lookup):
             if key in slot_lookup:
                 idx, _val, location = slot_lookup[key]
                 if location == "matrix":
-                    cells.append(f"\\text{{{CIRCLED[idx]}}}")
+                    cells.append(UNKNOWN_LABELS[idx])
                 else:
                     cells.append(str(v))
             else:
@@ -99,7 +96,7 @@ def _build_edges(mat, matrix_name, n_rows, n_cols, slot_lookup):
             key = (matrix_name, i, j)
             if key in slot_lookup:
                 idx, val, location = slot_lookup[key]
-                label = CIRCLED[idx] if location == "diagram" else str(val)
+                label = UNKNOWN_LABELS[idx] if location == "diagram" else str(val)
             else:
                 label = str(mat[i][j])
             edges.append([i, j, label])
@@ -166,7 +163,8 @@ def _create_task(rng, nR, nZ, nE, rz, ze, nz_rz, nz_ze):
         f"zu den Zwischenprodukten {_join_labels(z_labels)} verarbeitet, "
         f"aus denen die Endprodukte {_join_labels(e_labels)} hergestellt werden.\n\n"
         f"Das Verflechtungsdiagramm und die Produktionsmatrizen "
-        f"enthalten Lücken. Bestimmen Sie die fehlenden Werte.\n\n"
+        f"enthalten die Unbekannten $a$, $b$, $c$, $d$ und $e$. "
+        f"Bestimmen Sie die fehlenden Werte.\n\n"
         f"$$\n"
         f"RZ = \\begin{{pmatrix}} {rz_tex} \\end{{pmatrix}}, \\quad "
         f"ZE = \\begin{{pmatrix}} {ze_tex} \\end{{pmatrix}}\n"
@@ -174,7 +172,7 @@ def _create_task(rng, nR, nZ, nE, rz, ze, nz_rz, nz_ze):
     )
 
     # --- Fragen / Antworten ---
-    fragen = [CIRCLED[idx] for idx, *_ in slots]
+    fragen = [UNKNOWN_LABELS[idx] for idx, *_ in slots]
     antworten = [f"{{1:NUMERICAL:={v}:0}}" for _, _, _, _, v, _ in slots]
 
     return Task(

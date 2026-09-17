@@ -8,28 +8,23 @@ In einem zweistufigen Produktionsprozess werden aus den Rohstoffen R1 (Silizium)
   data-rohstoffe='["R1","R2","R3"]'
   data-zwischenprodukte='["Z1","Z2","Z3"]'
   data-endprodukte='["E1","E2"]'
-  data-stufe1='[[0,0,"5"],[0,1,"①"],[0,2,"1"],[1,1,"4"],[2,0,"②"],[2,2,"6"]]'
-  data-stufe2='[[0,0,"2"],[0,1,"③"],[1,0,"1"],[1,1,"2"],[2,0,"1"],[2,1,"2"]]'>
+  data-stufe1='[[0,0,"5"],[0,1,"2"],[0,2,"1"],[1,1,"4"],[2,0,"1"],[2,2,"6"]]'
+  data-stufe2='[[0,0,"2"],[0,1,"c"],[1,0,"1"],[1,1,"2"],[2,0,"1"],[2,1,"2"]]'>
 </div>
 
-Im Verflechtungsdiagramm sind einige Pfeile mit Zahlenwerten beschriftet, andere mit eingekreisten Nummern markiert. In den Produktionsmatrizen sind die zugehörigen Stellen jeweils vertauscht:
+Die gesuchten Werte sind mit $a$, $b$ und $c$ bezeichnet. Jeder gesuchte Wert ist entweder im Verflechtungsdiagramm oder in einer Produktionsmatrix ablesbar:
 
 $$
-RZ = \begin{pmatrix} 5 & \text{①} & 1 \\ 0 & 4 & 0 \\ \text{②} & 0 & 6 \end{pmatrix}, \quad
-ZE = \begin{pmatrix} 2 & \text{③} \\ 1 & 2 \\ 1 & 2 \end{pmatrix}
+RZ = \begin{pmatrix} 5 & a & 1 \\ 0 & 4 & 0 \\ b & 0 & 6 \end{pmatrix}, \quad
+ZE = \begin{pmatrix} 2 & 3 \\ 1 & 2 \\ 1 & 2 \end{pmatrix}
 $$
 
-Im Verflechtungsdiagramm liest man auf den entsprechenden Pfeilen folgende Werte ab:
-- Pfeil R1 → Z2 zeigt den Wert 2 (für ①)
-- Pfeil R3 → Z1 zeigt den Wert 1 (für ②)
-- Pfeil Z1 → E2 zeigt den Wert 3 (für ③)
-
-**Frage:** Bestimmen Sie ①, ② und ③.
+**Frage:** Bestimmen Sie $a$, $b$ und $c$.
 
 **Lösung:**
 
-**①:** In der Matrix $RZ$ steht ① in der 1. Zeile (R1 = Silizium) und 2. Spalte (Z2 = Akku). Der zugehörige Pfeil im Verflechtungsdiagramm führt von R1 nach Z2 und zeigt den Wert 2. Also ist **① = 2**.
+**$a$:** In der Matrix $RZ$ steht $a$ in der 1. Zeile (R1 = Silizium) und 2. Spalte (Z2 = Akku). Der zugehörige Pfeil im Verflechtungsdiagramm führt von R1 nach Z2 und zeigt den Wert 2. Also ist $a = 2$.
 
-**②:** In $RZ$ steht ② in der 3. Zeile (R3 = Glas) und 1. Spalte (Z1 = Chip). Der Pfeil von R3 nach Z1 im Diagramm zeigt den Wert 1. Also ist **② = 1**.
+**$b$:** In $RZ$ steht $b$ in der 3. Zeile (R3 = Glas) und 1. Spalte (Z1 = Chip). Der Pfeil von R3 nach Z1 im Diagramm zeigt den Wert 1. Also ist $b = 1$.
 
-**③:** In $ZE$ steht ③ in der 1. Zeile (Z1 = Chip) und 2. Spalte (E2 = Beta). Der Pfeil von Z1 nach E2 im Diagramm zeigt den Wert 3. Also ist **③ = 3**.
+**$c$:** Der Pfeil mit $c$ führt im Diagramm von Z1 (Chip) nach E2 (Beta). In $ZE$ steht der zugehörige Wert in der 1. Zeile und 2. Spalte. Dort liest man 3 ab. Also ist $c = 3$.

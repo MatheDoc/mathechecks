@@ -1,7 +1,7 @@
 import { buildBaumdiagrammFigure } from "../../assets/js/visuals/baumdiagramm.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../../assets/js/visuals/histogramm.js";
 import { plotlyRender } from "../../assets/js/visuals/plotly-defaults.js?v=20260512-plotly-hover-name-theme";
-import { buildVerflechtungsdiagrammFigure } from "../../assets/js/visuals/verflechtungsdiagramm.js";
+import { buildVerflechtungsdiagrammFigure } from "../../assets/js/visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
 
 function toNumber(value, fallback) {
     const numeric = Number(value);
