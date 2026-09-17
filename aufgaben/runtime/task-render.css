@@ -301,13 +301,28 @@
     white-space: pre-line;
 }
 
-.task .answer-preview {
+.task .answer-preview,
+.check-card__runtime-task .answer-preview {
     margin-bottom: 4px;
     line-height: 1.55;
 }
 
-.task .answer-preview-line,
 .task .solution-line {
+    display: block;
+}
+
+.task .answer-preview,
+.check-card__runtime-task .answer-preview,
+.task .answer-preview-line,
+.check-card__runtime-task .answer-preview-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.task .answer-preview:has(> .answer-preview-line),
+.check-card__runtime-task .answer-preview:has(> .answer-preview-line) {
     display: block;
 }
 
@@ -852,14 +867,6 @@ html.light .check-card__runtime-task {
     margin-bottom: 6px;
     color: var(--text-body);
     white-space: pre-line;
-}
-
-.check-card__runtime-task .answer-preview {
-    margin-bottom: 4px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
 }
 
 .check-card__runtime-task .answer-input,
