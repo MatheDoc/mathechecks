@@ -4,7 +4,7 @@
  * Renders a 3-layer directed graph:
  *   Rohstoffe (top) → Zwischenprodukte (middle) → Endprodukte (bottom).
  *
- * Edge labels can be numeric values or circled slot markers (①②③…).
+ * Edge labels can be numeric values or unknowns (a, b, c, ...).
  *
  * Spec format:
  *   rohstoffe:        string[]   – node labels for top layer
@@ -79,32 +79,19 @@ export function buildVerflechtungsdiagrammFigure(spec = {}) {
             layer: "below",
         });
 
-        const mx = (from.x + to.x) / 2;
-        const my = (from.y + to.y) / 2;
-        const dx = to.x - from.x;
-        const dy = to.y - from.y;
-        const len = Math.sqrt(dx * dx + dy * dy) || 1;
-
-        // Perpendicular offset – always towards the upper side of the edge.
-        let nx = -dy / len;
-        let ny = dx / len;
-        if (ny < 0) {
-            nx = -nx;
-            ny = -ny;
-        }
-        // For vertical edges (ny ≈ 0), offset to the right.
-        if (Math.abs(ny) < 0.01) {
-            nx = 1;
-            ny = 0;
-        }
-
-        const offset = 0.05;
+        const labelPosition = 0.25;
         annotations.push({
-            x: mx + nx * offset,
-            y: my + ny * offset,
+            x: from.x + (to.x - from.x) * labelPosition,
+            y: from.y + (to.y - from.y) * labelPosition,
+            xanchor: "center",
+            yanchor: "middle",
             text: String(label),
             showarrow: false,
-            font: { size: 14 },
+            font: { size: 14, color: "#1a1a2e" },
+            bgcolor: "#ffffff",
+            bordercolor: "gray",
+            borderwidth: 1,
+            borderpad: 2,
         });
     }
 

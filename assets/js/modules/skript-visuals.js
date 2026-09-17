@@ -6,7 +6,7 @@ import { buildGraphFigure } from "../visuals/graph.js?v=20260701c-graph-hilfslin
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
 import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, REGRESSION_MINIMIERUNG_PUNKTE } from "../visuals/regression-minimierung.js";
-import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js";
+import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
