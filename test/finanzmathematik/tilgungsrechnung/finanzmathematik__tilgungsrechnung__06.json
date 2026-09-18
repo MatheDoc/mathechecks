@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was ist der erste Schritt bei einem Zinssatzwechsel im Annuitätendarlehen?",
+            "antworten": ["Die Restschuld zum Zeitpunkt des Wechsels bestimmen", "Die neue Annuität mit der ursprünglichen Darlehenssumme berechnen", "Die Laufzeit verlängern", "Die alte Annuität weiterzahlen"],
+            "fehler": ["Die neue Annuität bezieht sich auf die Restschuld, nicht auf K_0", "Die Gesamtlaufzeit bleibt in der Regel unverändert", "Mit der alten Annuität wäre das Darlehen nicht pünktlich getilgt"]
+        },
+        {
+            "frage": "Welche Größe übernimmt nach dem Wechsel die Rolle von \\(K_0\\) in der Annuitätenformel?",
+            "antworten": ["Die Restschuld zum Zeitpunkt des Wechsels", "Die ursprüngliche Darlehenssumme", "Die bisher gezahlten Annuitäten", "Die Zinsen des Wechseljahres"],
+            "fehler": ["Ein Teil ist bereits getilgt", "Gezahlte Beträge sind keine Schuld mehr", "Zinsen sind keine Schuld"]
+        },
+        {
+            "frage": "Welche Größe übernimmt nach dem Wechsel die Rolle von \\(n\\) in der Annuitätenformel?",
+            "antworten": ["Die Restlaufzeit \\(n - k\\)", "Die ursprüngliche Laufzeit \\(n\\)", "Die bisherige Laufzeit \\(k\\)", "\\(n + k\\)"],
+            "fehler": ["k Jahre sind bereits vergangen", "Das ist die vergangene Zeit", "Die Laufzeit verlängert sich nicht"]
+        },
+        {
+            "frage": "Der Zinssatz steigt nach 5 Jahren. Wie ändert sich die Annuität bei unveränderter Gesamtlaufzeit?",
+            "antworten": ["Sie steigt", "Sie sinkt", "Sie bleibt gleich", "Sie halbiert sich"],
+            "fehler": ["Höhere Zinsen bedeuten höhere Belastung", "Die Annuität muss angepasst werden", "Es gibt keinen festen Faktor"]
+        },
+        {
+            "frage": "Der Zinssatz sinkt nach 5 Jahren. Wie ändert sich die Annuität bei unveränderter Gesamtlaufzeit?",
+            "antworten": ["Sie sinkt", "Sie steigt", "Sie bleibt gleich", "Sie verdoppelt sich"],
+            "fehler": ["Niedrigere Zinsen bedeuten niedrigere Belastung", "Die Annuität muss angepasst werden", "Es gibt keinen festen Faktor"]
+        },
+        {
+            "frage": "Wie werden die Zinsen im ersten Jahr nach dem Wechsel berechnet?",
+            "antworten": ["Restschuld beim Wechsel mal neuem Zinssatz", "Restschuld beim Wechsel mal altem Zinssatz", "Darlehenssumme mal neuem Zinssatz", "Neue Annuität mal neuem Zinssatz"],
+            "fehler": ["Ab dem Wechsel gilt der neue Zinssatz", "Nur die Restschuld wird verzinst", "Zinsen beziehen sich auf die Schuld"]
+        },
+        {
+            "frage": "Restschuld beim Wechsel 200 000 €, neuer Zinssatz 4,5 %. Wie hoch sind die Zinsen im folgenden Jahr?",
+            "antworten": ["\\(9\\,000\\,€\\)", "\\(4\\,500\\,€\\)", "\\(90\\,000\\,€\\)", "\\(900\\,€\\)"],
+            "fehler": ["200 000 · 0,045 = 9 000", "Kommastelle falsch gesetzt", "Kommastelle falsch gesetzt"]
+        },
+        {
+            "frage": "Was bleibt beim Zinssatzwechsel typischerweise unverändert?",
+            "antworten": ["Die Gesamtlaufzeit", "Die Annuität", "Der Zinssatz", "Die Restschuld"],
+            "fehler": ["Die Annuität wird neu berechnet", "Der Zinssatz ändert sich per Definition", "Die Restschuld sinkt weiter"]
+        },
+        {
+            "frage": "Mit welcher Formel wird die Restschuld zum Zeitpunkt des Wechsels bestimmt?",
+            "antworten": ["Mit der Restschuldformel (oder dem Tilgungsplan) und dem alten Zinssatz", "Mit der Restschuldformel und dem neuen Zinssatz", "Mit der Zinseszinsformel", "Mit dem Rentenbarwert und dem neuen Zinssatz"],
+            "fehler": ["Bis zum Wechsel galt der alte Zinssatz", "Die Annuitäten müssen berücksichtigt werden", "Die Vergangenheit wird mit dem alten Zinssatz bewertet"]
+        },
+        {
+            "frage": "Wie geht es nach der Berechnung der neuen Annuität weiter?",
+            "antworten": ["Der Tilgungsplan wird mit der neuen Annuität und dem neuen Zinssatz fortgeführt", "Der Tilgungsplan beginnt von vorn mit \\(K_0\\)", "Die alte Annuität wird weitergezahlt", "Die Zinsen werden nicht mehr berechnet"],
+            "fehler": ["Die bisherigen Zahlungen bleiben bestehen", "Die Annuität wurde angepasst", "Zinsen fallen weiterhin an"]
+        }
+    ]
+}

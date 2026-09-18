@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Woran erkennt man im Text, dass Zinseszins- und Rentenformel kombiniert werden müssen?",
+            "antworten": ["Es gibt ein Startkapital und zusätzlich regelmäßige Zahlungen", "Es gibt nur eine Einmalzahlung", "Es gibt nur regelmäßige Zahlungen", "Der Zinssatz wechselt"],
+            "fehler": ["Das ist reine Zinseszinsrechnung", "Das ist reine Rentenrechnung", "Ein Zinssatzwechsel ist ein anderes Thema"]
+        },
+        {
+            "frage": "„Frau D hat 20 000 € gespart und zahlt weiter jährlich 2 000 € ein.“ Um welchen Fall handelt es sich?",
+            "antworten": ["Kapitalaufbau", "Kapitalabbau", "Reine Rentenrechnung", "Tilgungsrechnung"],
+            "fehler": ["Es wird eingezahlt, nicht entnommen", "Das Startkapital muss berücksichtigt werden", "Es liegt kein Darlehen vor"]
+        },
+        {
+            "frage": "„Herr E hat 50 000 € angelegt und entnimmt jährlich 6 000 €.“ Um welchen Fall handelt es sich?",
+            "antworten": ["Kapitalabbau", "Kapitalaufbau", "Reine Zinseszinsrechnung", "Tilgungsrechnung"],
+            "fehler": ["Es wird entnommen, nicht eingezahlt", "Die Entnahmen müssen berücksichtigt werden", "Es liegt kein Darlehen vor"]
+        },
+        {
+            "frage": "„Wie lange reicht das Kapital?“ Wie wird diese Frage mathematisch übersetzt?",
+            "antworten": ["Kapitalabbau mit \\(E_n = 0\\), nach \\(n\\) auflösen", "Kapitalaufbau mit \\(E_n = K_0\\)", "Rentenendwert berechnen", "Zinseszinsformel nach \\(K_0\\) auflösen"],
+            "fehler": ["Das Kapital soll aufgebraucht werden, nicht wachsen", "Das Startkapital wird ignoriert", "Es geht um regelmäßige Entnahmen"]
+        },
+        {
+            "frage": "Bei 1 000 € Startkapital, 10 % Zinsen und jährlicher Entnahme von 100 € am Jahresende: Wie entwickelt sich das Kapital?",
+            "antworten": ["Es bleibt bei 1 000 €, weil die Entnahme genau den Zinsen entspricht", "Es sinkt jedes Jahr um 100 €", "Es wächst jedes Jahr um 100 €", "Es ist nach 10 Jahren aufgebraucht"],
+            "fehler": ["Die Zinsen gleichen die Entnahme aus", "Entnahme und Zinsen heben sich auf", "Das Kapital bleibt konstant"]
+        },
+        {
+            "frage": "„Welcher Betrag muss heute zusätzlich angelegt werden, damit mit jährlichen Einzahlungen von 1 500 € nach 10 Jahren 30 000 € erreicht werden?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(K_0\\)", "\\(E_n\\)", "\\(r\\)", "\\(n\\)"],
+            "fehler": ["30 000 € ist das gegebene Endkapital", "1 500 € ist die gegebene Rate", "10 Jahre sind gegeben"]
+        },
+        {
+            "frage": "„Welchen Betrag kann sie jährlich entnehmen, damit nach 15 Jahren noch 5 000 € übrig sind?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(r\\)", "\\(E_n\\)", "\\(K_0\\)", "\\(n\\)"],
+            "fehler": ["5 000 € ist das gegebene Endkapital", "Das Startkapital steht im Text", "15 Jahre sind gegeben"]
+        },
+        {
+            "frage": "Beim Kapitalaufbau mit vorschüssigen Einzahlungen wird das Startkapital wie lange verzinst?",
+            "antworten": ["\\(n\\) Jahre", "\\(n + 1\\) Jahre", "\\(n - 1\\) Jahre", "gar nicht"],
+            "fehler": ["Die Zahlungsweise betrifft nur die Raten", "Das Startkapital liegt die gesamte Laufzeit an", "Das Startkapital wird stets verzinst"]
+        },
+        {
+            "frage": "Ein Kapitalabbau soll berechnet werden, das Ergebnis für \\(E_n\\) ist negativ. Was bedeutet das?",
+            "antworten": ["Das Kapital reicht nicht für alle geplanten Entnahmen", "Die Rechnung ist immer falsch", "Das Kapital ist gewachsen", "Es wurde zu wenig entnommen"],
+            "fehler": ["Ein negatives Ergebnis kann rechnerisch korrekt sein und zeigt eine Unterdeckung", "Gewachsenes Kapital wäre positiv und größer als K_0", "Zu wenig Entnahme ergibt ein positives Endkapital"]
+        },
+        {
+            "frage": "Welche Reihenfolge ist beim Lösen sinnvoll?",
+            "antworten": ["Aufbau oder Abbau erkennen → Zahlungsweise klären → Formel aufstellen → Werte einsetzen → nach der gesuchten Größe auflösen", "Sofort den Logarithmus anwenden", "Zuerst alle Zahlen addieren", "Erst die Formel nach jeder Größe allgemein umstellen"],
+            "fehler": ["Der Logarithmus wird nur bei gesuchtem n gebraucht", "Die Zahlen haben unterschiedliche Bedeutung", "Es wird nur nach der konkret gesuchten Größe aufgelöst"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die Formel für den nachschüssigen Rentenendwert?",
+            "antworten": ["\\(R_n = \\dfrac{r \\cdot (q^n - 1)}{q - 1}\\)", "\\(R_n = \\dfrac{r \\cdot q \\cdot (q^n - 1)}{q - 1}\\)", "\\(R_n = \\dfrac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}\\)", "\\(R_n = r \\cdot q^n\\)"],
+            "fehler": ["Das ist der vorschüssige Rentenendwert", "Das ist der nachschüssige Rentenbarwert", "Das ist die Zinseszinsformel für eine Einmalzahlung"]
+        },
+        {
+            "frage": "Wie lautet die Formel für den vorschüssigen Rentenendwert?",
+            "antworten": ["\\(\\overline{R}_n = \\dfrac{r \\cdot q \\cdot (q^n - 1)}{q - 1}\\)", "\\(\\overline{R}_n = \\dfrac{r \\cdot (q^n - 1)}{q - 1}\\)", "\\(\\overline{R}_n = \\dfrac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}\\)", "\\(\\overline{R}_n = r \\cdot n \\cdot q\\)"],
+            "fehler": ["Das ist der nachschüssige Rentenendwert", "Das ist der vorschüssige Rentenbarwert", "Das ist keine Rentenformel"]
+        },
+        {
+            "frage": "Was ist \\(q - 1\\) bei einem Zinssatz von 4 %?",
+            "antworten": ["\\(0{,}04\\)", "\\(1{,}04\\)", "\\(0{,}4\\)", "\\(4\\)"],
+            "fehler": ["Das ist q selbst", "Kommastelle falsch gesetzt", "Das ist p, nicht q − 1"]
+        },
+        {
+            "frage": "Bei \\(r = 1\\,000\\,€\\), \\(q = 1{,}1\\), \\(n = 2\\) nachschüssig: Wie groß ist \\(R_2\\)?",
+            "antworten": ["\\(2\\,100\\,€\\)", "\\(2\\,000\\,€\\)", "\\(2\\,310\\,€\\)", "\\(2\\,200\\,€\\)"],
+            "fehler": ["Die erste Rate wird ein Jahr verzinst: 1 100 + 1 000", "Das wäre der vorschüssige Endwert", "Beide Raten fälschlich mit q multipliziert"]
+        },
+        {
+            "frage": "Bei \\(r = 1\\,000\\,€\\), \\(q = 1{,}1\\), \\(n = 2\\) vorschüssig: Wie groß ist \\(\\overline{R}_2\\)?",
+            "antworten": ["\\(2\\,310\\,€\\)", "\\(2\\,100\\,€\\)", "\\(2\\,200\\,€\\)", "\\(2\\,000\\,€\\)"],
+            "fehler": ["Das wäre der nachschüssige Endwert", "Die erste Rate wird zwei Jahre verzinst: 1 210 + 1 100", "Zinsen wurden ganz vergessen"]
+        },
+        {
+            "frage": "Der Rentenendwert ist gegeben, gesucht ist die Rate \\(r\\). Wie geht man vor?",
+            "antworten": ["Bekannte Werte einsetzen, den Faktor vor \\(r\\) ausrechnen und \\(R_n\\) durch diesen Faktor teilen", "\\(R_n\\) durch \\(n\\) teilen", "\\(R_n\\) mit \\(q^n\\) multiplizieren", "Den Logarithmus von \\(R_n\\) bilden"],
+            "fehler": ["Das ignoriert die Zinsen", "Aufzinsen liefert keine Rate", "Der Logarithmus wird gebraucht, wenn n gesucht ist"]
+        },
+        {
+            "frage": "Der Rentenendwert ist gegeben, gesucht ist \\(n\\). Was ist der erste Umformungsschritt?",
+            "antworten": ["Nach \\(q^n\\) auflösen", "Die \\(n\\)-te Wurzel ziehen", "Durch \\(r\\) teilen und fertig", "Nach \\(q\\) auflösen"],
+            "fehler": ["n steht im Exponenten, dafür braucht man den Logarithmus", "Nach dem Teilen durch r bleibt noch q^n − 1 im Term", "Die Umformung nach q wird nicht behandelt"]
+        },
+        {
+            "frage": "Aus \\(q^n = 1{,}5\\) folgt für \\(n\\):",
+            "antworten": ["\\(n = \\dfrac{\\ln 1{,}5}{\\ln q}\\)", "\\(n = \\dfrac{1{,}5}{q}\\)", "\\(n = \\ln(1{,}5 \\cdot q)\\)", "\\(n = 1{,}5^q\\)"],
+            "fehler": ["Division löst keine Potenz auf", "Logarithmengesetze falsch angewendet", "Basis und Exponent vertauscht"]
+        },
+        {
+            "frage": "Welche Größe wird in der Rentenrechnung nicht durch Umformen bestimmt?",
+            "antworten": ["Der Zinsfaktor \\(q\\)", "Die Rate \\(r\\)", "Die Laufzeit \\(n\\)", "Der Rentenendwert \\(R_n\\)"],
+            "fehler": ["Nach r wird durch Division aufgelöst", "Nach n wird mit dem Logarithmus aufgelöst", "Der Endwert wird direkt berechnet"]
+        },
+        {
+            "frage": "Bei gleichem \\(r\\), \\(q\\) und \\(n\\): Welcher Wert ist am größten?",
+            "antworten": ["\\(\\overline{R}_n\\)", "\\(R_n\\)", "\\(R_0\\)", "Alle sind gleich groß"],
+            "fehler": ["Der vorschüssige Endwert ist um den Faktor q größer", "Der Barwert ist stets kleiner als der Endwert", "Die Werte unterscheiden sich durch Zeitpunkt und Zahlungsweise"]
+        }
+    ]
+}

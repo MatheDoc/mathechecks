@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#f472b6" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#f472b6" stroke-width="1" opacity=".3"/>
+  <!-- Annuity bars: interest part (light) shrinking, repayment part (dark) growing -->
+  <g>
+    <rect x="45" y="45" width="22" height="90" fill="#f472b6" opacity=".2"/>
+    <rect x="45" y="100" width="22" height="35" fill="#f472b6" opacity=".6"/>
+    <rect x="80" y="45" width="22" height="90" fill="#f472b6" opacity=".2"/>
+    <rect x="80" y="90" width="22" height="45" fill="#f472b6" opacity=".6"/>
+    <rect x="115" y="45" width="22" height="90" fill="#f472b6" opacity=".2"/>
+    <rect x="115" y="78" width="22" height="57" fill="#f472b6" opacity=".6"/>
+    <rect x="150" y="45" width="22" height="90" fill="#f472b6" opacity=".2"/>
+    <rect x="150" y="64" width="22" height="71" fill="#f472b6" opacity=".6"/>
+    <rect x="185" y="45" width="22" height="90" fill="#f472b6" opacity=".2"/>
+    <rect x="185" y="48" width="22" height="87" fill="#f472b6" opacity=".6"/>
+  </g>
+  <!-- Constant annuity line -->
+  <line x1="40" y1="45" x2="212" y2="45" stroke="#f472b6" stroke-width="1.5" stroke-dasharray="4 3" opacity=".7"/>
+  <!-- Labels -->
+  <text x="214" y="48" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">A</text>
+  <text x="48" y="60" font-family="system-ui" font-size="8" fill="#f472b6" opacity=".6">Zins</text>
+  <text x="46" y="120" font-family="system-ui" font-size="8" fill="#ffffff" opacity=".85">Tilg.</text>
+  <text x="200" y="148" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".5">Jahre</text>
+</svg>

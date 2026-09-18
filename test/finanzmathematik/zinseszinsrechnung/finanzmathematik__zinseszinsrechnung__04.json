@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Warum können Zahlungen zu verschiedenen Zeitpunkten nicht direkt verglichen werden?",
+            "antworten": ["Weil Geld über die Zeit verzinst wird und ein Betrag heute mehr wert ist als derselbe Betrag später", "Weil Zahlungen in verschiedenen Währungen erfolgen", "Weil größere Beträge immer besser sind", "Sie können immer direkt verglichen werden"],
+            "fehler": ["Die Währung spielt beim Kapitalvergleich keine Rolle", "Ein späterer großer Betrag kann weniger wert sein als ein kleinerer heute", "Der Zeitpunkt beeinflusst den Wert"]
+        },
+        {
+            "frage": "Was versteht man unter dem Barwert einer Zahlung?",
+            "antworten": ["Den auf heute abgezinsten Wert der Zahlung", "Den Wert der Zahlung am Ende der Laufzeit", "Die Summe aller Zinsen", "Den Nennbetrag der Zahlung"],
+            "fehler": ["Das ist der Endwert", "Zinsen sind nur ein Teil der Rechnung", "Der Nennbetrag berücksichtigt den Zeitpunkt nicht"]
+        },
+        {
+            "frage": "Wie wird eine Zahlung \\(K_n\\), die in \\(n\\) Jahren fällig ist, auf heute abgezinst?",
+            "antworten": ["\\(K_0 = \\dfrac{K_n}{q^n}\\)", "\\(K_0 = K_n \\cdot q^n\\)", "\\(K_0 = K_n - n \\cdot p\\)", "\\(K_0 = \\dfrac{K_n}{n}\\)"],
+            "fehler": ["Das wäre Aufzinsen", "Das ist keine korrekte Abzinsung", "Die Laufzeit allein bestimmt nicht den Wert"]
+        },
+        {
+            "frage": "Welchen Barwert hat eine sofort fällige Zahlung von 8 000 €?",
+            "antworten": ["\\(8\\,000\\,€\\)", "\\(8\\,000\\,€ \\cdot q\\)", "\\(\\dfrac{8\\,000\\,€}{q}\\)", "\\(0\\,€\\)"],
+            "fehler": ["Eine sofortige Zahlung wird nicht aufgezinst", "Eine sofortige Zahlung wird nicht abgezinst", "Sofortige Zahlungen haben ihren vollen Wert"]
+        },
+        {
+            "frage": "Ein Angebot besteht aus 5 000 € sofort und 5 000 € in 3 Jahren. Wie wird der Barwert bestimmt?",
+            "antworten": ["\\(5\\,000 + \\dfrac{5\\,000}{q^3}\\)", "\\(\\dfrac{10\\,000}{q^3}\\)", "\\(10\\,000\\)", "\\(\\dfrac{5\\,000}{q^3} + \\dfrac{5\\,000}{q^3}\\)"],
+            "fehler": ["Die sofortige Zahlung wird nicht abgezinst", "Die spätere Zahlung muss abgezinst werden", "Die sofortige Zahlung wird nicht abgezinst"]
+        },
+        {
+            "frage": "Der Verkäufer eines Grundstücks vergleicht drei Zahlungsangebote. Welches sollte er wählen?",
+            "antworten": ["Das Angebot mit dem höchsten Barwert", "Das Angebot mit dem niedrigsten Barwert", "Das Angebot mit der höchsten Zahlungssumme", "Das Angebot mit der frühesten Zahlung"],
+            "fehler": ["Als Empfänger möchte er möglichst viel erhalten", "Die reine Summe ignoriert die Zeitpunkte", "Der Zeitpunkt allein entscheidet nicht"]
+        },
+        {
+            "frage": "Der Käufer einer Maschine vergleicht drei Zahlungsvarianten. Welche sollte er wählen?",
+            "antworten": ["Die Variante mit dem niedrigsten Barwert", "Die Variante mit dem höchsten Barwert", "Die Variante mit den meisten Raten", "Die Variante mit der höchsten Zahlungssumme"],
+            "fehler": ["Als Zahler möchte er möglichst wenig zahlen", "Die Anzahl der Raten ist kein Kriterium", "Die höchste Summe ist für den Zahler ungünstig"]
+        },
+        {
+            "frage": "Zwei Angebote: A = 10 000 € sofort, B = 11 000 € in 2 Jahren. Bei welchem Zinssatz sind sie gleichwertig?",
+            "antworten": ["Wenn \\(q^2 = 1{,}1\\), also bei etwa 4,9 %", "Bei 10 %", "Bei 5 %", "Bei 1 %"],
+            "fehler": ["10 % würde nach 2 Jahren 12 100 € ergeben", "5 % ergibt nach 2 Jahren 11 025 €, also etwas mehr als 11 000 €", "1 % ergibt nur etwa 10 201 €"]
+        },
+        {
+            "frage": "Was passiert mit dem Barwert einer späteren Zahlung, wenn der Zinssatz steigt?",
+            "antworten": ["Er wird kleiner", "Er wird größer", "Er bleibt gleich", "Er wird negativ"],
+            "fehler": ["Höherer Zinssatz bedeutet stärkeres Abzinsen", "Der Zinssatz beeinflusst den Barwert", "Barwerte sind immer positiv"]
+        },
+        {
+            "frage": "Statt auf heute können alle Zahlungen auch auf einen anderen gemeinsamen Zeitpunkt bezogen werden. Ändert sich dadurch die Entscheidung?",
+            "antworten": ["Nein, die Reihenfolge der Angebote bleibt gleich", "Ja, dann gewinnt immer das Angebot mit der spätesten Zahlung", "Ja, die Reihenfolge kehrt sich um", "Das ist nicht erlaubt"],
+            "fehler": ["Alle Werte werden mit demselben Faktor umgerechnet", "Alle Werte werden mit demselben Faktor umgerechnet, die Reihenfolge bleibt", "Jeder gemeinsame Bezugszeitpunkt ist zulässig"]
+        }
+    ]
+}

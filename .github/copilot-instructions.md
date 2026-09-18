@@ -24,7 +24,8 @@ Gebiete der Plattform:
 
 Analysis  
 Lineare Algebra  
-Stochastik
+Stochastik  
+Finanzmathematik
 
 
 ## Module eines Lernbereichs

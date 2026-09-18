@@ -8,6 +8,21 @@ ANALYSIS_CALC_TOLERANCE = 0.01
 STOCHASTIK_CALC_DECIMALS = 4
 STOCHASTIK_CALC_TOLERANCE = 0.0001
 
+# Finanzmathematik: Geldbetraege relativ (Zwischenrundung von q^n), uebrige Groessen absolut.
+FINANZ_GELD_DECIMALS = 2
+FINANZ_GELD_REL_TOLERANCE = 0.001
+FINANZ_GELD_MIN_TOLERANCE = 0.50
+FINANZ_ZINSSATZ_DECIMALS = 2
+FINANZ_ZINSSATZ_TOLERANCE = 0.01
+FINANZ_LAUFZEIT_DECIMALS = 2
+FINANZ_LAUFZEIT_TOLERANCE = 0.05
+FINANZ_TILGUNGSPLAN_DECIMALS = 2
+FINANZ_TILGUNGSPLAN_TOLERANCE = 0.01
+
+
+def finanz_geld_tolerance(value: float) -> float:
+    return max(FINANZ_GELD_MIN_TOLERANCE, abs(value) * FINANZ_GELD_REL_TOLERANCE)
+
 # Standardregel fuer graphisches Ablesen: ein Zehntel der Achsen-Schrittweite.
 GRAPH_READ_FRACTION = 0.1
 

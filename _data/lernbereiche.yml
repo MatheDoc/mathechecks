@@ -2,7 +2,7 @@
 # Lernbereiche mit Kernszenarien
 # ──────────────────────────────────────────────────────────
 # Felder pro Lernbereich:
-#   gebiet            – Fachgebiet (analysis, lineare-algebra, stochastik)
+#   gebiet            – Fachgebiet (analysis, lineare-algebra, stochastik, finanzmathematik)
 #   slug              – URL-Slug / Schlüssel
 #   name              – Anzeigename
 #   szenario          – Durchgängiger Anwendungskontext (Kurzfassung)
@@ -183,3 +183,34 @@
   szenario_einstieg: "Das Glücksrad kostet 2 € pro Dreh. Die Gewinne: 0 €, 1 €, 5 € und 20 €. Lohnt sich das Spielen auf Dauer – oder verdient nur der Betreiber?"
   szenario_abschluss: "Berechne den Erwartungswert ($E(X)=1{,}50\\,€ < 2\\,€$ Einsatz) und die Varianz – auf Dauer verliert man, aber einzelne Drehs können sich lohnen."
   szenario_bild: "zufallsgroessen.svg"
+
+# ═══════════════════ FINANZMATHEMATIK ════════════════════
+# Nur jährliche Verzinsung; Formelblatt: Zinseszins, vier Rentenformeln,
+# Kapitalauf-/-abbau, Annuitätentilgung.
+
+- gebiet: finanzmathematik
+  slug: zinseszinsrechnung
+  didactic_order: 1
+  name: Zinseszinsrechnung
+  szenario: "Geldgeschenk fürs Auslandsjahr – ein einmal angelegter Betrag wächst mit Zinseszins; wie viel wird daraus, wie lange dauert es bis zum Sparziel und welcher Zinssatz wäre nötig?"
+  szenario_einstieg: "Zur Konfirmation bekommst du 3 000 € geschenkt und legst sie fest zu 3 % pro Jahr an. In sechs Jahren soll das Geld ein Auslandsjahr mitfinanzieren – reicht es dann für 4 000 €? Und wenn nicht: Wie lange müsstest du warten oder welchen Zinssatz bräuchtest du?"
+  szenario_abschluss: "Berechne mit $K_n = K_0 \\cdot q^n$ das Endkapital nach sechs Jahren, bestimme mit dem Logarithmus die nötige Laufzeit für 4 000 € und mit der Wurzel den Zinssatz, der das Ziel in sechs Jahren erreicht."
+  szenario_bild: "zinseszinsrechnung.svg"
+
+- gebiet: finanzmathematik
+  slug: rentenrechnung
+  didactic_order: 2
+  name: Rentenrechnung
+  szenario: "Sparplan fürs erste Auto – regelmäßige Jahresraten versus Einmalbetrag; vor- und nachschüssige Zahlungen, Rentenendwert und Rentenbarwert entscheiden, was am Ende mehr wert ist."
+  szenario_einstieg: "Für dein erstes Auto legst du fünf Jahre lang jedes Jahr 1 200 € zu 2,5 % zurück. Deine Tante bietet dir stattdessen an, dir heute einmalig 5 600 € zu geben. Welches Angebot ist mehr wert – und macht es einen Unterschied, ob du am Jahresanfang oder am Jahresende einzahlst?"
+  szenario_abschluss: "Berechne den Rentenendwert der fünf Raten (vor- und nachschüssig) und vergleiche ihn mit dem aufgezinsten Einmalbetrag – oder rechne beide Angebote auf den heutigen Barwert zurück."
+  szenario_bild: "rentenrechnung.svg"
+
+- gebiet: finanzmathematik
+  slug: tilgungsrechnung
+  didactic_order: 3
+  name: Tilgungsrechnung
+  szenario: "Gründungsdarlehen für ein eigenes Café – ein Annuitätendarlehen wird über einen Tilgungsplan zurückgezahlt; Annuität, Restschuld und Laufzeit bestimmen, was die Finanzierung wirklich kostet."
+  szenario_einstieg: "Für dein Café nimmst du 60 000 € zu 5 % auf und sollst jedes Jahr denselben Betrag zurückzahlen. Wie hoch ist diese jährliche Rate, wenn das Darlehen nach zehn Jahren getilgt sein soll – und wie viel Schulden hast du nach fünf Jahren noch?"
+  szenario_abschluss: "Berechne die Annuität mit der Annuitätenformel, stelle die ersten Zeilen des Tilgungsplans auf und bestimme die Restschuld nach fünf Jahren mit der Restschuldformel."
+  szenario_bild: "tilgungsrechnung.svg"

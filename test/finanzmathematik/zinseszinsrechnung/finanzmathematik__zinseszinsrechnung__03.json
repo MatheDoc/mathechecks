@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Ein Kapital wird 3 Jahre mit \\(q_1\\) und danach 4 Jahre mit \\(q_2\\) verzinst. Wie lautet das Endkapital?",
+            "antworten": ["\\(K_7 = K_0 \\cdot q_1^3 \\cdot q_2^4\\)", "\\(K_7 = K_0 \\cdot (q_1 + q_2)^7\\)", "\\(K_7 = K_0 \\cdot q_1^3 + K_0 \\cdot q_2^4\\)", "\\(K_7 = K_0 \\cdot (q_1 \\cdot q_2)^7\\)"],
+            "fehler": ["Zinsfaktoren werden nicht addiert", "Die Phasen bauen aufeinander auf und werden multipliziert, nicht addiert", "Jeder Faktor gilt nur für seine eigene Phasendauer"]
+        },
+        {
+            "frage": "Was ist das Anfangskapital der zweiten Zinsphase?",
+            "antworten": ["Das Endkapital der ersten Zinsphase", "Das ursprüngliche Anfangskapital \\(K_0\\)", "Die Zinsen der ersten Phase", "Der Durchschnitt aus \\(K_0\\) und \\(K_n\\)"],
+            "fehler": ["Das Kapital ist in der ersten Phase bereits gewachsen", "Es wird das gesamte Kapital weiterverzinst, nicht nur die Zinsen", "Ein Durchschnitt hat hier keine Bedeutung"]
+        },
+        {
+            "frage": "1 000 € werden 1 Jahr mit 10 % und dann 1 Jahr mit 20 % verzinst. Wie hoch ist das Endkapital?",
+            "antworten": ["\\(1\\,320\\,€\\)", "\\(1\\,300\\,€\\)", "\\(1\\,200\\,€\\)", "\\(1\\,230\\,€\\)"],
+            "fehler": ["Zinssätze addiert statt Faktoren multipliziert", "Nur den zweiten Zinssatz verwendet", "Rechenfehler beim zweiten Faktor"]
+        },
+        {
+            "frage": "Bei einem Zinssatzwechsel ist der Zinssatz der zweiten Phase gesucht. Welcher Rechenschritt ist nötig?",
+            "antworten": ["Alle bekannten Faktoren einsetzen, nach \\(q_2^{n_2}\\) auflösen und die \\(n_2\\)-te Wurzel ziehen", "Den Logarithmus der Laufzeit bilden", "Den Durchschnitt der beiden Laufzeiten bilden", "\\(K_n\\) durch \\(K_0\\) teilen und durch die Gesamtlaufzeit dividieren"],
+            "fehler": ["Der Logarithmus wird gebraucht, wenn eine Laufzeit gesucht ist", "Laufzeiten sagen nichts über den Zinssatz aus", "Das wäre lineare Verzinsung"]
+        },
+        {
+            "frage": "Bei einem Zinssatzwechsel ist die Dauer der zweiten Phase gesucht. Welches Werkzeug wird benötigt?",
+            "antworten": ["Der Logarithmus", "Die Wurzel", "Die Prozentrechnung mit Dreisatz", "Die Mittelwertbildung"],
+            "fehler": ["Wurzel löst nach der Basis auf, nicht nach dem Exponenten", "Dreisatz gilt nur bei linearen Zusammenhängen", "Mittelwerte helfen hier nicht"]
+        },
+        {
+            "frage": "Ein Kapital wird 2 Jahre mit 2 % und 4 Jahre mit 5 % verzinst. Zwischen welchen Werten liegt der einheitliche Ersatzzinssatz für 6 Jahre?",
+            "antworten": ["zwischen 2 % und 5 %, näher an 5 %", "genau bei 3,5 %", "über 5 %", "unter 2 %"],
+            "fehler": ["Die Phasen sind unterschiedlich lang, der Ersatzzinssatz liegt nicht in der Mitte", "Der Ersatzzinssatz kann den höchsten Zinssatz nicht übersteigen", "Der Ersatzzinssatz kann den niedrigsten Zinssatz nicht unterschreiten"]
+        },
+        {
+            "frage": "Wozu ist beim Zinssatzwechsel ein Zeitstrahl nützlich?",
+            "antworten": ["Um die Dauer und den Zinsfaktor jeder Phase zu ordnen", "Um den Zinssatz abzulesen", "Um Zinsen zu berechnen", "Er ist nicht nützlich"],
+            "fehler": ["Der Zinssatz steht im Text, nicht auf dem Zeitstrahl", "Berechnungen erfolgen mit der Formel", "Der Zeitstrahl verhindert das Vertauschen von Phasen"]
+        },
+        {
+            "frage": "Bei drei Zinsphasen ist \\(K_0\\) gesucht. Welche Umformung ist richtig?",
+            "antworten": ["\\(K_0 = \\dfrac{K_n}{q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}}\\)", "\\(K_0 = K_n \\cdot q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}\\)", "\\(K_0 = K_n - q_1^{n_1} - q_2^{n_2} - q_3^{n_3}\\)", "\\(K_0 = \\dfrac{K_n}{q_1 \\cdot q_2 \\cdot q_3}\\)"],
+            "fehler": ["Aufgezinst statt abgezinst", "Faktoren werden dividiert, nicht subtrahiert", "Die Laufzeiten der Phasen fehlen"]
+        },
+        {
+            "frage": "Was passiert mit dem Endkapital, wenn die Reihenfolge der Zinsphasen vertauscht wird (gleiche Dauern und Zinssätze)?",
+            "antworten": ["Es bleibt gleich, weil Faktoren vertauscht werden dürfen", "Es wird größer, wenn der hohe Zinssatz zuerst kommt", "Es wird kleiner, wenn der hohe Zinssatz zuerst kommt", "Es hängt vom Anfangskapital ab"],
+            "fehler": ["Multiplikation ist kommutativ", "Multiplikation ist kommutativ", "Das Anfangskapital ist in beiden Fällen ein gemeinsamer Faktor"]
+        },
+        {
+            "frage": "Nach der ersten Phase beträgt das Kapital 21 224,16 €. In der zweiten Phase gilt \\(q_2 = 1{,}035\\), \\(n_2 = 4\\). Welcher Ansatz liefert \\(K_7\\)?",
+            "antworten": ["\\(K_7 = 21\\,224{,}16 \\cdot 1{,}035^4\\)", "\\(K_7 = 21\\,224{,}16 \\cdot 1{,}035 \\cdot 4\\)", "\\(K_7 = 21\\,224{,}16 + 1{,}035^4\\)", "\\(K_7 = 21\\,224{,}16 \\cdot 1{,}035^7\\)"],
+            "fehler": ["Das wäre lineare Verzinsung", "Zinsfaktor wird multipliziert, nicht addiert", "Der zweite Zinsfaktor gilt nur für 4 Jahre"]
+        }
+    ]
+}

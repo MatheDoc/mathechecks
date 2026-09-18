@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet der Zinsfaktor \\(q\\) bei einem Zinssatz von \\(p = 3{,}5\\,\\%\\)?",
+            "antworten": ["\\(q = 1{,}035\\)", "\\(q = 1{,}35\\)", "\\(q = 0{,}035\\)", "\\(q = 3{,}5\\)"],
+            "fehler": ["Prozent nicht durch 100 geteilt", "Die 1 für das Grundkapital vergessen", "Zinssatz direkt als Zinsfaktor übernommen"]
+        },
+        {
+            "frage": "Welche Formel beschreibt die Zinseszinsrechnung?",
+            "antworten": ["\\(K_n = K_0 \\cdot q^n\\)", "\\(K_n = K_0 \\cdot q \\cdot n\\)", "\\(K_n = K_0 + q^n\\)", "\\(K_n = K_0 \\cdot n^q\\)"],
+            "fehler": ["Das wäre lineare Verzinsung ohne Zinseszins", "Zinsfaktor wird multipliziert, nicht addiert", "Basis und Exponent vertauscht"]
+        },
+        {
+            "frage": "Ein Kapital von \\(1\\,000\\,€\\) wird 2 Jahre lang mit \\(10\\,\\%\\) verzinst. Wie hoch ist \\(K_2\\)?",
+            "antworten": ["\\(1\\,210\\,€\\)", "\\(1\\,200\\,€\\)", "\\(1\\,100\\,€\\)", "\\(1\\,020\\,€\\)"],
+            "fehler": ["Zinseszins im zweiten Jahr nicht berücksichtigt", "Nur ein Jahr verzinst", "Zinssatz als Faktor 1,01 statt 1,1 verwendet"]
+        },
+        {
+            "frage": "Gesucht ist \\(K_0\\) bei bekanntem \\(K_n\\), \\(q\\) und \\(n\\). Welche Umformung ist richtig?",
+            "antworten": ["\\(K_0 = \\dfrac{K_n}{q^n}\\)", "\\(K_0 = K_n \\cdot q^n\\)", "\\(K_0 = K_n - q^n\\)", "\\(K_0 = \\dfrac{q^n}{K_n}\\)"],
+            "fehler": ["Aufgezinst statt abgezinst", "Zinsfaktor wird dividiert, nicht subtrahiert", "Zähler und Nenner vertauscht"]
+        },
+        {
+            "frage": "Aus \\(K_0 \\cdot q^n = K_n\\) soll der Zinsfaktor \\(q\\) bestimmt werden. Welcher Rechenschritt führt zum Ziel?",
+            "antworten": ["\\(q = \\sqrt[n]{\\dfrac{K_n}{K_0}}\\)", "\\(q = \\dfrac{K_n}{K_0 \\cdot n}\\)", "\\(q = \\dfrac{\\ln(K_n / K_0)}{\\ln n}\\)", "\\(q = \\left(\\dfrac{K_n}{K_0}\\right)^n\\)"],
+            "fehler": ["Division durch n löst keine Potenz auf", "Der Logarithmus wird gebraucht, wenn n gesucht ist", "Potenzieren statt Wurzelziehen"]
+        },
+        {
+            "frage": "Aus \\(q^n = 2\\) soll \\(n\\) bestimmt werden. Welcher Ausdruck ist richtig?",
+            "antworten": ["\\(n = \\dfrac{\\ln 2}{\\ln q}\\)", "\\(n = \\dfrac{\\ln q}{\\ln 2}\\)", "\\(n = \\ln 2 - \\ln q\\)", "\\(n = \\sqrt[q]{2}\\)"],
+            "fehler": ["Zähler und Nenner vertauscht", "Logarithmen werden dividiert, nicht subtrahiert", "Wurzelziehen löst nach der Basis auf, nicht nach dem Exponenten"]
+        },
+        {
+            "frage": "Ein Kapital verdoppelt sich in 10 Jahren. Was gilt für den Zinsfaktor \\(q\\)?",
+            "antworten": ["\\(q^{10} = 2\\)", "\\(10 \\cdot q = 2\\)", "\\(q = 2^{10}\\)", "\\(q^2 = 10\\)"],
+            "fehler": ["Lineare statt exponentielle Verzinsung angenommen", "Basis und Exponent vertauscht", "Laufzeit und Faktor vertauscht"]
+        },
+        {
+            "frage": "Aus \\(q = 1{,}0425\\) ergibt sich welcher Zinssatz \\(p\\)?",
+            "antworten": ["\\(4{,}25\\,\\%\\)", "\\(1{,}0425\\,\\%\\)", "\\(42{,}5\\,\\%\\)", "\\(0{,}0425\\,\\%\\)"],
+            "fehler": ["Zinsfaktor direkt als Zinssatz gelesen", "Um eine Stelle zu viel verschoben", "Nicht mit 100 multipliziert"]
+        },
+        {
+            "frage": "\\(K_0 = 5\\,000\\,€\\), \\(q = 1{,}04\\), \\(n = 8\\). Welche Größe ist gesucht, wenn gefragt wird: „Über welchen Betrag kann man nach 8 Jahren verfügen?“",
+            "antworten": ["\\(K_n\\)", "\\(K_0\\)", "\\(n\\)", "\\(p\\)"],
+            "fehler": ["Das Anfangskapital ist bereits gegeben", "Die Laufzeit ist bereits gegeben", "Der Zinssatz ist bereits gegeben"]
+        },
+        {
+            "frage": "Wie viele Nachkommastellen sollte \\(q^n\\) beim Weiterrechnen mindestens haben, damit das Ergebnis bei großen Beträgen genau bleibt?",
+            "antworten": ["mindestens 4", "1 reicht aus", "2 reichen immer aus", "Nachkommastellen sind unerheblich"],
+            "fehler": ["Eine Stelle führt zu Abweichungen im Prozentbereich", "Bei Beträgen über 100 000 € ergeben 2 Stellen Fehler von mehreren hundert Euro", "Rundungsfehler bei Zwischenwerten verfälschen das Ergebnis erheblich"]
+        }
+    ]
+}

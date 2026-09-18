@@ -1,0 +1,262 @@
+[
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 600$ €, $p = 2{,}75$ %, $n = 16$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: nachschüssige Rente mit $R_0 = 10\\,530$ €, $p = 3$ %, $n = 8$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 1\\,650$ €, $R_0 = 6\\,860$ €, $p = 6{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=7894,02:7,89}",
+      "{1:NUMERICAL:=1500,07:1,50}",
+      "{1:NUMERICAL:=5,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 4\\,500$ €, $p = 3{,}5$ %, $n = 14$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 14\\,300$ €, $p = 3{,}25$ %, $n = 8$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 9\\,500$ €, $\\overline{R}_0 = 36\\,400$ €, $p = 3$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=50862,32:50,86}",
+      "{1:NUMERICAL:=1993,87:1,99}",
+      "{1:NUMERICAL:=4,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 100\\,000$ €, $p = 3{,}5$ %, $n = 7$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 1\\,029\\,000$ €, $p = 4{,}25$ %, $n = 14$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 95\\,000$ €, $\\overline{R}_0 = 1\\,542\\,000$ €, $p = 3{,}75$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=632855,30:632,86}",
+      "{1:NUMERICAL:=94991,81:94,99}",
+      "{1:NUMERICAL:=24,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 1\\,950$ €, $p = 4{,}5$ %, $n = 5$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 27\\,340$ €, $p = 4{,}25$ %, $n = 15$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 2\\,050$ €, $\\overline{R}_0 = 43\\,110$ €, $p = 1{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=8945,68:8,95}",
+      "{1:NUMERICAL:=2400,16:2,40}",
+      "{1:NUMERICAL:=25,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 9\\,000$ €, $p = 7$ %, $n = 17$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 11\\,700$ €, $p = 1{,}75$ %, $n = 4$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 3\\,500$ €, $\\overline{R}_0 = 41\\,400$ €, $p = 6$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=87869,01:87,87}",
+      "{1:NUMERICAL:=3001,55:3,00}",
+      "{1:NUMERICAL:=19,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 85\\,000$ €, $p = 1{,}75$ %, $n = 14$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: nachschüssige Rente mit $R_0 = 457\\,000$ €, $p = 4$ %, $n = 24$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 45\\,000$ €, $R_0 = 195\\,000$ €, $p = 5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=1065699,48:1065,70}",
+      "{1:NUMERICAL:=29973,18:29,97}",
+      "{1:NUMERICAL:=5,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 1\\,750$ €, $p = 4{,}25$ %, $n = 18$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 6\\,520$ €, $p = 6{,}5$ %, $n = 12$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 850$ €, $\\overline{R}_0 = 10\\,500$ €, $p = 2$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=22633,01:22,63}",
+      "{1:NUMERICAL:=750,37:0,75}",
+      "{1:NUMERICAL:=14,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 6\\,000$ €, $p = 1{,}75$ %, $n = 10$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 134\\,300$ €, $p = 4$ %, $n = 20$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 7\\,000$ €, $R_0 = 49\\,800$ €, $p = 5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=55562,97:55,56}",
+      "{1:NUMERICAL:=9501,95:9,50}",
+      "{1:NUMERICAL:=9,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 15\\,000$ €, $p = 6$ %, $n = 17$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 156\\,000$ €, $p = 1{,}5$ %, $n = 4$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 70\\,000$ €, $\\overline{R}_0 = 886\\,000$ €, $p = 4$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=157158,90:157,16}",
+      "{1:NUMERICAL:=39875,26:39,88}",
+      "{1:NUMERICAL:=17,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 400$ €, $p = 4{,}25$ %, $n = 25$. Gesucht: $R_0$.",
+      "Gegeben: nachschüssige Rente mit $R_0 = 5\\,780$ €, $p = 2$ %, $n = 15$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 2\\,200$ €, $R_0 = 26\\,750$ €, $p = 4{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=6086,93:6,09}",
+      "{1:NUMERICAL:=449,83:0,50}",
+      "{1:NUMERICAL:=18,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 5\\,500$ €, $p = 7$ %, $n = 11$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 19\\,900$ €, $p = 3{,}25$ %, $n = 9$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 5\\,500$ €, $\\overline{R}_0 = 82\\,800$ €, $p = 2{,}75$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=44129,70:44,13}",
+      "{1:NUMERICAL:=2504,33:2,50}",
+      "{1:NUMERICAL:=19,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 40\\,000$ €, $p = 3{,}5$ %, $n = 9$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 134\\,000$ €, $p = 3{,}75$ %, $n = 18$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 30\\,000$ €, $\\overline{R}_0 = 500\\,000$ €, $p = 1{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=314958,22:314,96}",
+      "{1:NUMERICAL:=9996,29:10,00}",
+      "{1:NUMERICAL:=18,99:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 1\\,300$ €, $p = 6$ %, $n = 24$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 13\\,640$ €, $p = 1{,}75$ %, $n = 20$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 750$ €, $R_0 = 6\\,400$ €, $p = 4{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=16315,46:16,32}",
+      "{1:NUMERICAL:=800,19:0,80}",
+      "{1:NUMERICAL:=11,01:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 12\\,000$ €, $p = 7$ %, $n = 15$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 74\\,500$ €, $p = 2{,}25$ %, $n = 12$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 10\\,000$ €, $\\overline{R}_0 = 181\\,700$ €, $p = 1{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=116945,62:116,95}",
+      "{1:NUMERICAL:=6995,89:7,00}",
+      "{1:NUMERICAL:=21,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 100\\,000$ €, $p = 3{,}75$ %, $n = 13$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 161\\,000$ €, $p = 7$ %, $n = 18$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 5\\,000$ €, $\\overline{R}_0 = 23\\,000$ €, $p = 4{,}25$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=1014235,56:1014,24}",
+      "{1:NUMERICAL:=14958,34:14,96}",
+      "{1:NUMERICAL:=4,99:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 1\\,500$ €, $p = 6{,}5$ %, $n = 4$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: nachschüssige Rente mit $R_0 = 17\\,540$ €, $p = 4$ %, $n = 21$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 1\\,750$ €, $\\overline{R}_0 = 18\\,200$ €, $p = 6{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5472,71:5,47}",
+      "{1:NUMERICAL:=1250,25:1,25}",
+      "{1:NUMERICAL:=15,99:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: vorschüssige Rente mit $r = 1\\,000$ €, $p = 5$ %, $n = 19$. Gesucht: $\\overline{R}_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 175\\,100$ €, $p = 1{,}5$ %, $n = 19$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 10\\,000$ €, $R_0 = 46\\,100$ €, $p = 2{,}75$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=12689,59:12,69}",
+      "{1:NUMERICAL:=10502,29:10,50}",
+      "{1:NUMERICAL:=5,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 80\\,000$ €, $p = 3$ %, $n = 7$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 355\\,000$ €, $p = 3{,}5$ %, $n = 19$. Gesucht: $r$.",
+      "Gegeben: nachschüssige Rente mit $r = 10\\,000$ €, $R_0 = 184\\,000$ €, $p = 2{,}5$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=498422,64:498,42}",
+      "{1:NUMERICAL:=25018,18:25,02}",
+      "{1:NUMERICAL:=24,95:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 1\\,100$ €, $p = 5$ %, $n = 6$. Gesucht: $R_0$.",
+      "Gegeben: nachschüssige Rente mit $R_0 = 2\\,900$ €, $p = 4{,}5$ %, $n = 24$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 2\\,350$ €, $\\overline{R}_0 = 25\\,290$ €, $p = 7$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5583,26:5,58}",
+      "{1:NUMERICAL:=200,06:0,50}",
+      "{1:NUMERICAL:=18,00:0,05}"
+    ]
+  },
+  {
+    "einleitung": "Eine Rente besteht aus $n$ gleich hohen jährlichen Zahlungen $r$, die mit dem Zinssatz $p$ verzinst werden. Der Rentenbarwert ist nachschüssig $R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ und vorschüssig $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$. Bestimmen Sie jeweils die gesuchte Größe.",
+    "fragen": [
+      "Gegeben: nachschüssige Rente mit $r = 10\\,500$ €, $p = 5$ %, $n = 20$. Gesucht: $R_0$.",
+      "Gegeben: vorschüssige Rente mit $\\overline{R}_0 = 30\\,800$ €, $p = 2{,}75$ %, $n = 5$. Gesucht: $r$.",
+      "Gegeben: vorschüssige Rente mit $r = 9\\,000$ €, $\\overline{R}_0 = 110\\,400$ €, $p = 7$ %. Gesucht: $n$ (in Jahren)."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=130853,21:130,85}",
+      "{1:NUMERICAL:=6498,67:6,50}",
+      "{1:NUMERICAL:=23,97:0,05}"
+    ]
+  }
+]

@@ -493,7 +493,7 @@
                 "cue": "Intervallgrenzen",
                 "response": "\\(\\mu \\pm\\) relativer Wert, ggf. auf ganze Anzahlen runden"
             },
-             {
+            {
                 "cue": "gesuchte Wahrscheinlichkeit",
                 "response": "prüfen, ob innerhalb oder außerhalb der Intervallgrenzen"
             },
@@ -521,7 +521,7 @@
                 "cue": "Intervallgrenzen",
                 "response": "\\(\\mu \\pm\\) Vielfaches von \\(\\sigma\\), ggf. auf ganze Anzahlen runden"
             },
-             {
+            {
                 "cue": "gesuchte Wahrscheinlichkeit",
                 "response": "prüfen, ob innerhalb oder außerhalb der Intervallgrenzen"
             },
@@ -769,7 +769,7 @@
         "questionOrder": "fixed",
         "tippOrder": "shuffle",
         "Tipps": [
-          {
+            {
                 "cue": "an jedem Knoten",
                 "response": "ausgehende Wahrscheinlichkeiten summieren sich zu 1"
             },
@@ -1257,7 +1257,6 @@
                 "cue": "Erklärung der Formel",
                 "response": "Abweichung vom Erwartungswert quadrieren, mit Wahrscheinlichkeit multiplizieren, alles addieren und dann Wurzel ziehen"
             }
- 
         ]
     },
     {
@@ -1514,7 +1513,7 @@
                 "cue": "2. Annahme- und Ablehnungsbereich notieren",
                 "response": "\\( A=\\{k+1,\\ldots, n\\} \\) und \\( \\overline{A}=\\{0,\\ldots,k\\} \\) notieren"
             },
-           {
+            {
                 "cue": "3. Bestimmung von \\( k \\)",
                 "response": "wähle \\(k\\) so, dass \\( P(X\\leq k) \\) gerade noch kleiner als \\( \\alpha \\) ist"
             }
@@ -1697,8 +1696,7 @@
             {
                 "cue": "gewinnmaximale Menge $x_{Gmax}$",
                 "response": "$x$-Wert des Hochpunkts von $G$"
-            }
-            ,
+            },
             {
                 "cue": "maximaler Gewinn $G_{max}$",
                 "response": "$y$-Wert des Hochpunkts von $G$"
@@ -1730,8 +1728,7 @@
             {
                 "cue": "erlösmaximale Menge $x_{Emax}$",
                 "response": "$x$-Wert des Hochpunkts von $E$"
-            }
-            ,
+            },
             {
                 "cue": "maximaler Erlös $E_{max}$",
                 "response": "$y$-Wert des Hochpunkts von $E$"
@@ -1751,8 +1748,7 @@
             {
                 "cue": "gewinnmaximale Menge $x_{Gmax}$",
                 "response": "$x$-Wert des Hochpunkts von $G$"
-            }
-            ,
+            },
             {
                 "cue": "maximaler Gewinn $G_{max}$",
                 "response": "$y$-Wert des Hochpunkts von $G$"
@@ -1937,7 +1933,7 @@
                 "cue": "Betriebsminimum $BM$",
                 "response": "$x$-Wert des Tiefpunkts von $k_v$"
             },
-                        {
+            {
                 "cue": "kurzfristige Preisuntergrenze $KPU$",
                 "response": "$y$-Wert des Tiefpunkts von $k_v$"
             },
@@ -1949,7 +1945,7 @@
                 "cue": "Betriebsoptimum $BO$",
                 "response": "$x$-Wert des Tiefpunkts von $k$"
             },
-                        {
+            {
                 "cue": "langfristige Preisuntergrenze $LPU$",
                 "response": "$y$-Wert des Tiefpunkts von $k$"
             },
@@ -3001,11 +2997,11 @@
                 "cue": "Rang $rg(A)$",
                 "response": "Anzahl Nicht-Nullzeilen der Koeffizientenmatrix $A$"
             },
-                        {
+            {
                 "cue": "$rg(A|y)$",
                 "response": "Anzahl Nicht-Nullzeilen der erweiterten Koeffizientenmatrix $(A|y)$"
             },
-                        {
+            {
                 "cue": "Variablenanzahl $n$",
                 "response": "Anzahl der Spalten von $A$"
             },
@@ -4300,6 +4296,554 @@
             {
                 "cue": "Rechnung:",
                 "response": "gesuchten $x$- oder $y$-Wert berechnen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "zinseszinsrechnung",
+        "LernbereichAnzeigename": "Zinseszinsrechnung",
+        "Nummer": 1,
+        "check_id": "finanzmathematik__zinseszinsrechnung__01",
+        "Ich kann": "den Zinsfaktor $q$ aus dem Zinssatz $p$ bilden und in der Zinseszinsformel jede Größe durch Einsetzen und Umformen bestimmen.",
+        "Sammlung": "zinseszinsformel-umformen",
+        "Schlagwort": "Zinseszinsformel umformen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-01",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Zinsfaktor",
+                "response": "$q = 1 + \\frac{p}{100}$"
+            },
+            {
+                "cue": "Formel",
+                "response": "$K_n = K_0 \\cdot q^n$ – bekannte Werte einsetzen, dann nach der verbleibenden Größe auflösen"
+            },
+            {
+                "cue": "$K_0$ gesucht",
+                "response": "durch $q^n$ teilen"
+            },
+            {
+                "cue": "$p$ gesucht",
+                "response": "$q = \\sqrt[n]{\\frac{K_n}{K_0}}$, dann $p = (q-1)\\cdot 100$"
+            },
+            {
+                "cue": "$n$ gesucht",
+                "response": "$q^n = \\frac{K_n}{K_0}$, dann $n = \\frac{\\ln\\left(\\frac{K_n}{K_0}\\right)}{\\ln q}$"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "zinseszinsrechnung",
+        "LernbereichAnzeigename": "Zinseszinsrechnung",
+        "Nummer": 2,
+        "check_id": "finanzmathematik__zinseszinsrechnung__02",
+        "Ich kann": "in Textaufgaben zur Zinseszinsrechnung gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
+        "Sammlung": "zinseszins-sachaufgaben",
+        "Schlagwort": "Zinseszins im Sachkontext",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-02",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Gegeben notieren",
+                "response": "Werte den Größen $K_0$, $K_n$, $p$ bzw. $q$, $n$ zuordnen"
+            },
+            {
+                "cue": "Gesucht erkennen",
+                "response": "Endbetrag → $K_n$; Anlagebetrag/heutiger Wert → $K_0$; Dauer → $n$; Verzinsung → $p$"
+            },
+            {
+                "cue": "Rechnen",
+                "response": "Werte in $K_n = K_0 \\cdot q^n$ einsetzen und nach der offenen Größe auflösen"
+            },
+            {
+                "cue": "Antwortsatz",
+                "response": "Ergebnis mit Einheit (€, %, Jahre) im Sachzusammenhang formulieren"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "zinseszinsrechnung",
+        "LernbereichAnzeigename": "Zinseszinsrechnung",
+        "Nummer": 3,
+        "check_id": "finanzmathematik__zinseszinsrechnung__03",
+        "Ich kann": "Kapitalentwicklungen mit zwei oder drei Zinsphasen berechnen und darin eine fehlende Größe bestimmen.",
+        "Sammlung": "zinssatzwechsel",
+        "Schlagwort": "Zinssatzwechsel",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-03",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Zeitstrahl",
+                "response": "Phasen mit Dauer $n_1, n_2, \\dots$ und Zinsfaktor $q_1, q_2, \\dots$ skizzieren"
+            },
+            {
+                "cue": "Verkettung",
+                "response": "$K_n = K_0 \\cdot q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}$"
+            },
+            {
+                "cue": "Fehlende Größe",
+                "response": "alle bekannten Faktoren einsetzen, dann nach dem offenen Faktor auflösen (Wurzel für $q$, Logarithmus für $n$)"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "zinseszinsrechnung",
+        "LernbereichAnzeigename": "Zinseszinsrechnung",
+        "Nummer": 4,
+        "check_id": "finanzmathematik__zinseszinsrechnung__04",
+        "Ich kann": "Angebote mit Einmalzahlungen zu verschiedenen Zeitpunkten über Barwerte vergleichen und die Entscheidung begründen.",
+        "Sammlung": "kapitalvergleich-einmalzahlungen",
+        "Schlagwort": "Kapitalvergleich",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-04",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Grundidee",
+                "response": "Zahlungen sind nur zum gleichen Zeitpunkt vergleichbar – meist auf heute (Barwert) abzinsen"
+            },
+            {
+                "cue": "Abzinsen",
+                "response": "$K_0 = \\frac{K_n}{q^n}$ für jede Zahlung, dann pro Angebot addieren"
+            },
+            {
+                "cue": "Entscheidung",
+                "response": "Empfänger wählt den höchsten Barwert, Zahler den niedrigsten"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 1,
+        "check_id": "finanzmathematik__rentenrechnung__01",
+        "Ich kann": "in der vor- oder nachschüssigen Rentenendwertformel jede Größe außer $q$ durch Einsetzen und Umformen bestimmen.",
+        "Sammlung": "rentenendwert-umformen",
+        "Schlagwort": "Rentenendwertformel umformen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-01",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Formeln",
+                "response": "$R_n = \\frac{r \\cdot (q^n - 1)}{q - 1}$ bzw. $\\overline{R}_n = \\frac{r \\cdot q \\cdot (q^n - 1)}{q - 1}$"
+            },
+            {
+                "cue": "$r$ gesucht",
+                "response": "bekannte Werte einsetzen, Bruch ausrechnen, durch den Faktor vor $r$ teilen"
+            },
+            {
+                "cue": "$n$ gesucht",
+                "response": "nach $q^n$ auflösen, dann $n = \\frac{\\ln(q^n)}{\\ln q}$"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 2,
+        "check_id": "finanzmathematik__rentenrechnung__02",
+        "Ich kann": "in der vor- oder nachschüssigen Rentenbarwertformel jede Größe außer $q$ durch Einsetzen und Umformen bestimmen.",
+        "Sammlung": "rentenbarwert-umformen",
+        "Schlagwort": "Rentenbarwertformel umformen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-02",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Formeln",
+                "response": "$R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ bzw. $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$"
+            },
+            {
+                "cue": "$r$ gesucht",
+                "response": "bekannte Werte einsetzen, Bruch ausrechnen, durch den Faktor vor $r$ teilen"
+            },
+            {
+                "cue": "$n$ gesucht",
+                "response": "Gleichung mit $q^n$ multiplizieren, nach $q^n$ auflösen, dann Logarithmus"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 3,
+        "check_id": "finanzmathematik__rentenrechnung__03",
+        "Ich kann": "Zahlungszeitpunkte am Zeitstrahl einordnen, vorschüssige und nachschüssige Renten sowie Endwert und Barwert unterscheiden und die passende Rentenformel auswählen.",
+        "Sammlung": "rente-formelauswahl",
+        "Schlagwort": "Vor-/nachschüssig & Formelauswahl",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-03",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Nachschüssig",
+                "response": "Zahlung am Jahresende – letzte Rate wird nicht mehr verzinst"
+            },
+            {
+                "cue": "Vorschüssig",
+                "response": "Zahlung am Jahresanfang – jede Rate wird ein Jahr länger verzinst (Faktor $q$)"
+            },
+            {
+                "cue": "Endwert oder Barwert",
+                "response": "Wert am Ende der Laufzeit → $R_n$; Wert zu Beginn → $R_0$ (Endwert durch $q^n$ geteilt)"
+            },
+            {
+                "cue": "Vier Formeln",
+                "response": "$R_n$, $\\overline{R}_n$, $R_0$, $\\overline{R}_0$ – der Querstrich kennzeichnet vorschüssig"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 4,
+        "check_id": "finanzmathematik__rentenrechnung__04",
+        "Ich kann": "Zinseszins- und Rentenendwertformel zu $E_n = K_n \\pm R_n$ kombinieren und jede Größe außer $q$ bestimmen.",
+        "Sammlung": "kapitalaufbau-abbau-umformen",
+        "Schlagwort": "Kapitalauf- und -abbau",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Aufbau",
+                "response": "Startkapital plus Einzahlungen: $E_n = K_0 \\cdot q^n + R_n$"
+            },
+            {
+                "cue": "Abbau",
+                "response": "Startkapital minus Entnahmen: $E_n = K_0 \\cdot q^n - R_n$"
+            },
+            {
+                "cue": "$K_0$ oder $r$ gesucht",
+                "response": "Rentenanteil bzw. Zinseszinsanteil ausrechnen, dann lineare Gleichung lösen"
+            },
+            {
+                "cue": "$n$ gesucht",
+                "response": "$q^n$ ausklammern: $q^n \\cdot \\left(K_0 \\pm \\frac{r}{q-1}\\right) = E_n \\pm \\frac{r}{q-1}$, dann Logarithmus"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 5,
+        "check_id": "finanzmathematik__rentenrechnung__05",
+        "Ich kann": "in Textaufgaben zur Rentenrechnung Zahlungsweise, gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
+        "Sammlung": "rente-sachaufgaben",
+        "Schlagwort": "Rente im Sachkontext",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Zahlungsweise",
+                "response": "„zu Beginn / am Anfang des Jahres“ → vorschüssig; „am Ende des Jahres / nachschüssig“ → nachschüssig"
+            },
+            {
+                "cue": "Endwert oder Barwert",
+                "response": "Guthaben nach der letzten Rate → Endwert; heutiger Wert, Einmalzahlung statt Rente → Barwert"
+            },
+            {
+                "cue": "Gesucht erkennen",
+                "response": "Betrag am Ende → $R_n$; heute nötiges Kapital → $R_0$; Ratenhöhe → $r$; Dauer → $n$"
+            },
+            {
+                "cue": "Rechnen",
+                "response": "passende Formel wählen, Werte einsetzen, nach der offenen Größe auflösen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 6,
+        "check_id": "finanzmathematik__rentenrechnung__06",
+        "Ich kann": "Sparpläne mit Startkapital und Entnahmepläne im Sachzusammenhang als Kapitalauf- oder -abbau erkennen und berechnen.",
+        "Sammlung": "kapitalaufbau-abbau-sachaufgaben",
+        "Schlagwort": "Kapitalauf-/-abbau im Sachkontext",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-06",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Erkennen",
+                "response": "Startkapital und zusätzlich regelmäßige Zahlungen → Kombination zweier Formeln"
+            },
+            {
+                "cue": "Vorzeichen",
+                "response": "Einzahlungen erhöhen ($+R_n$), Entnahmen verringern ($-R_n$) das Kapital"
+            },
+            {
+                "cue": "Typische Frage",
+                "response": "„Wie lange reicht das Kapital?“ → Abbau mit $E_n = 0$, nach $n$ auflösen"
+            },
+            {
+                "cue": "Rechnen",
+                "response": "$E_n = K_0 \\cdot q^n \\pm R_n$ aufstellen, Werte einsetzen, nach der offenen Größe auflösen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 7,
+        "check_id": "finanzmathematik__rentenrechnung__07",
+        "Ich kann": "Angebote aus Einmalzahlungen und Renten über Barwerte vergleichen und die Entscheidung begründen.",
+        "Sammlung": "kapitalvergleich-renten",
+        "Schlagwort": "Kapitalvergleich mit Renten",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-07",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Grundidee",
+                "response": "alle Zahlungen eines Angebots auf denselben Zeitpunkt beziehen – meist heute (Barwert)"
+            },
+            {
+                "cue": "Einmalzahlung",
+                "response": "$K_0 = \\frac{K_n}{q^n}$"
+            },
+            {
+                "cue": "Rente",
+                "response": "Rentenbarwert $R_0$ bzw. $\\overline{R}_0$; beginnt die Rente später, zusätzlich mit $q^k$ abzinsen"
+            },
+            {
+                "cue": "Entscheidung",
+                "response": "Barwerte je Angebot addieren und vergleichen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 1,
+        "check_id": "finanzmathematik__tilgungsrechnung__01",
+        "Ich kann": "einen Tilgungsplan bei Annuitätentilgung zeilenweise aufstellen, einschließlich letzter Zeile und Rundungsdifferenz.",
+        "Sammlung": "tilgungsplan-aufstellen",
+        "Schlagwort": "Tilgungsplan aufstellen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-01",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Spalten",
+                "response": "Restschuld (Jahresanfang) · Zinsen · Tilgung · Annuität · Restschuld (Jahresende)"
+            },
+            {
+                "cue": "Zeile berechnen",
+                "response": "$Z_k = RK_{k-1} \\cdot \\frac{p}{100}$, $T_k = A - Z_k$, $RK_k = RK_{k-1} - T_k$"
+            },
+            {
+                "cue": "Rundung",
+                "response": "jede Zelle auf zwei Nachkommastellen, gerundete Werte weiterverwenden"
+            },
+            {
+                "cue": "Letzte Zeile",
+                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht meist geringfügig ab (Rundungsdifferenz)"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 2,
+        "check_id": "finanzmathematik__tilgungsrechnung__02",
+        "Ich kann": "mit der Annuitätenformel und $A = T_1 \\cdot q^n$ Annuität, Darlehenssumme oder Laufzeit eines Annuitätendarlehens bestimmen.",
+        "Sammlung": "annuitaetenformeln-umformen",
+        "Schlagwort": "Annuitätenformeln umformen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-02",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Annuität",
+                "response": "$A = \\frac{K_0 \\cdot q^n \\cdot (q-1)}{q^n - 1}$"
+            },
+            {
+                "cue": "$K_0$ gesucht",
+                "response": "Bruch ohne $K_0$ ausrechnen, dann $A$ durch diesen Faktor teilen"
+            },
+            {
+                "cue": "Laufzeit",
+                "response": "$T_1 = A - K_0 \\cdot \\frac{p}{100}$, dann $q^n = \\frac{A}{T_1}$ und $n = \\frac{\\ln(A/T_1)}{\\ln q}$"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 3,
+        "check_id": "finanzmathematik__tilgungsrechnung__03",
+        "Ich kann": "die Restschuld nach $k$ Jahren mit der Restschuldformel bestimmen und daraus Zins- und Tilgungsanteil des Folgejahres sowie die Gesamtzinsen berechnen.",
+        "Sammlung": "restschuldformel",
+        "Schlagwort": "Restschuldformel",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-03",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Restschuld",
+                "response": "$RK_k = K_0 \\cdot q^k - \\frac{A \\cdot (q^k - 1)}{q - 1}$ oder $RK_k = K_0 - \\frac{T_1 \\cdot (q^k - 1)}{q - 1}$"
+            },
+            {
+                "cue": "Folgejahr",
+                "response": "$Z_{k+1} = RK_k \\cdot \\frac{p}{100}$, $T_{k+1} = A - Z_{k+1}$"
+            },
+            {
+                "cue": "Gesamtzinsen",
+                "response": "Summe aller Annuitäten minus Darlehenssumme: $n \\cdot A - K_0$"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 4,
+        "check_id": "finanzmathematik__tilgungsrechnung__04",
+        "Ich kann": "in Textaufgaben zu Annuitätendarlehen gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
+        "Sammlung": "darlehen-sachaufgaben",
+        "Schlagwort": "Darlehen im Sachkontext",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-04",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Gegeben notieren",
+                "response": "Darlehenssumme $K_0$, Zinssatz $p$, Laufzeit $n$, Annuität $A$, Zeitpunkt $k$"
+            },
+            {
+                "cue": "Gesucht erkennen",
+                "response": "jährliche Belastung → $A$; möglicher Kredit bei fester Rate → $K_0$; Dauer → $n$; Schulden nach $k$ Jahren → $RK_k$"
+            },
+            {
+                "cue": "Rechnen",
+                "response": "passende Formel wählen, Werte einsetzen, nach der offenen Größe auflösen"
+            },
+            {
+                "cue": "Antwortsatz",
+                "response": "Ergebnis mit Einheit im Sachzusammenhang formulieren"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 5,
+        "check_id": "finanzmathematik__tilgungsrechnung__05",
+        "Ich kann": "einen lückenhaften Tilgungsplan aus einzelnen gegebenen Werten – auch rückwärts – vervollständigen.",
+        "Sammlung": "tilgungsplan-vervollstaendigen",
+        "Schlagwort": "Tilgungsplan vervollständigen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-05",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Zusammenhänge",
+                "response": "$A = Z_k + T_k$, $RK_k = RK_{k-1} - T_k$, $Z_k = RK_{k-1} \\cdot \\frac{p}{100}$"
+            },
+            {
+                "cue": "Zinssatz fehlt",
+                "response": "$p = \\frac{Z_k}{RK_{k-1}} \\cdot 100$ aus einer vollständigen Zeile"
+            },
+            {
+                "cue": "Rückwärts",
+                "response": "$RK_{k-1} = RK_k + T_k$ bzw. $RK_{k-1} = \\frac{Z_k}{p} \\cdot 100$"
+            },
+            {
+                "cue": "Vorgehen",
+                "response": "mit der Zeile beginnen, in der die meisten Werte bekannt sind"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 6,
+        "check_id": "finanzmathematik__tilgungsrechnung__06",
+        "Ich kann": "einen Tilgungsplan nach einem Zinssatzwechsel fortführen und die neue Annuität bei unveränderter Restlaufzeit berechnen.",
+        "Sammlung": "tilgung-zinssatzwechsel",
+        "Schlagwort": "Zinssatzwechsel im Darlehen",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-06",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Schritt 1",
+                "response": "Restschuld zum Zeitpunkt des Wechsels bestimmen (Restschuldformel oder Tilgungsplan)"
+            },
+            {
+                "cue": "Schritt 2",
+                "response": "Restschuld als neues $K_0$, Restlaufzeit als neues $n$, neuer Zinsfaktor $q$"
+            },
+            {
+                "cue": "Schritt 3",
+                "response": "neue Annuität mit der Annuitätenformel berechnen und den Plan weiterführen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "tilgungsrechnung",
+        "LernbereichAnzeigename": "Tilgungsrechnung",
+        "Nummer": 7,
+        "check_id": "finanzmathematik__tilgungsrechnung__07",
+        "Ich kann": "die Auswirkungen einer Sondertilgung oder einer Tilgungspause auf Restschuld, Annuität oder Laufzeit berechnen.",
+        "Sammlung": "sondertilgung-tilgungspause",
+        "Schlagwort": "Sondertilgung & Tilgungspause",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-tilgungsrechnung-07",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Sondertilgung",
+                "response": "Restschuld um den Sonderbetrag verringern, dann neue Annuität (feste Laufzeit) oder neue Laufzeit (feste Annuität) berechnen"
+            },
+            {
+                "cue": "Tilgungspause",
+                "response": "im Pausenjahr nur Zinsen zahlen: $Z_k = RK_{k-1} \\cdot \\frac{p}{100}$, Restschuld bleibt gleich"
+            },
+            {
+                "cue": "Danach",
+                "response": "verbleibende Restschuld und Restlaufzeit als neues $K_0$ und $n$ in die Annuitätenformel"
             }
         ]
     }

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Welche Formulierung im Text deutet auf eine vorschüssige Rente hin?",
+            "antworten": ["„jeweils zu Beginn eines Jahres“", "„jeweils am Ende eines Jahres“", "„einmalig heute“", "„nachschüssig“"],
+            "fehler": ["Das ist nachschüssig", "Eine Einmalzahlung ist keine Rente", "Das Wort selbst bedeutet Zahlung am Jahresende"]
+        },
+        {
+            "frage": "„Wie hoch ist das Guthaben nach der letzten Einzahlung?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenendwert", "Rentenbarwert", "Rate", "Laufzeit"],
+            "fehler": ["Der Barwert bezieht sich auf heute", "Die Rate ist gegeben", "Die Laufzeit ist gegeben"]
+        },
+        {
+            "frage": "„Welcher Betrag muss heute angelegt werden, um 10 Jahre lang 3 000 € entnehmen zu können?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenbarwert", "Rentenendwert", "Rate", "Laufzeit"],
+            "fehler": ["Gefragt ist der heutige Betrag", "Die Rate 3 000 € ist gegeben", "10 Jahre sind gegeben"]
+        },
+        {
+            "frage": "„Wie hoch muss die jährliche Einzahlung sein, um nach 8 Jahren 20 000 € zu haben?“ Welche Größe ist gesucht?",
+            "antworten": ["Rate \\(r\\)", "Rentenendwert \\(R_n\\)", "Laufzeit \\(n\\)", "Rentenbarwert \\(R_0\\)"],
+            "fehler": ["20 000 € ist der gegebene Endwert", "8 Jahre sind gegeben", "Es geht um einen Endwert, nicht um einen Barwert"]
+        },
+        {
+            "frage": "„Wie viele Jahre kann der Betrag in voller Höhe entnommen werden?“ Welche Größe ist gesucht?",
+            "antworten": ["Laufzeit \\(n\\)", "Rate \\(r\\)", "Rentenbarwert \\(R_0\\)", "Zinsfaktor \\(q\\)"],
+            "fehler": ["Die Rate ist gegeben", "Das angelegte Kapital ist gegeben", "Nach q wird nicht umgeformt"]
+        },
+        {
+            "frage": "Jemand zahlt 5 Jahre lang jeweils am Jahresende 1 000 € ein. Wie oft wird die erste Rate verzinst?",
+            "antworten": ["4 Jahre", "5 Jahre", "1 Jahr", "gar nicht"],
+            "fehler": ["Bei nachschüssiger Zahlung wird die erste Rate n − 1 Jahre verzinst", "Das gilt für die vorletzte Rate", "Das gilt für die letzte Rate"]
+        },
+        {
+            "frage": "Jemand zahlt 5 Jahre lang jeweils zu Jahresbeginn 1 000 € ein. Wie oft wird die letzte Rate bis zum Ende des 5. Jahres verzinst?",
+            "antworten": ["1 Jahr", "gar nicht", "5 Jahre", "4 Jahre"],
+            "fehler": ["Vorschüssig wird auch die letzte Rate noch ein Jahr verzinst", "Das gilt für die erste Rate", "Das gilt für die zweite Rate"]
+        },
+        {
+            "frage": "„Statt einer Rente von 10 Jahreszahlungen wird ein Einmalbetrag heute angeboten.“ Welcher Wert macht die beiden vergleichbar?",
+            "antworten": ["Der Rentenbarwert", "Der Rentenendwert", "Die Summe der Raten", "Die erste Rate"],
+            "fehler": ["Der Einmalbetrag wird heute gezahlt, also Barwert", "Die Summe ignoriert Zinsen", "Eine einzelne Rate ist nicht vergleichbar"]
+        },
+        {
+            "frage": "Welche drei Fragen sind bei einer Renten-Sachaufgabe zu klären?",
+            "antworten": ["Vor- oder nachschüssig? End- oder Barwert? Welche Größe ist gesucht?", "Wie hoch ist der Gewinn? Wer zahlt? Wann ist Feiertag?", "Ist die Rente ewig? Wie viele Personen? Welche Bank?", "Nur: Welche Größe ist gesucht?"],
+            "fehler": ["Diese Fragen sind für die Formelwahl irrelevant", "Ewige Renten werden nicht behandelt", "Zahlungsweise und Bewertungszeitpunkt bestimmen die Formel"]
+        },
+        {
+            "frage": "Ein Ergebnis lautet \\(n \\approx 12{,}4\\) Jahre Entnahmedauer. Was bedeutet das?",
+            "antworten": ["12 volle Raten sind möglich, die 13. Rate nur noch teilweise", "13 volle Raten sind möglich", "Genau 12 Raten, danach ist das Kapital exakt null", "Das Ergebnis ist ungültig"],
+            "fehler": ["Für 13 volle Raten reicht das Kapital nicht", "Nach 12 Raten ist noch ein Rest vorhanden", "Nicht-ganzzahlige Laufzeiten sind sinnvoll interpretierbar"]
+        }
+    ]
+}

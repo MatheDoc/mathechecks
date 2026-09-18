@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "„Herr A legt heute 4 000 € an. Über welchen Betrag verfügt er in 6 Jahren?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(K_n\\)", "\\(K_0\\)", "\\(n\\)", "\\(q\\)"],
+            "fehler": ["4 000 € ist das Anfangskapital, also gegeben", "6 Jahre sind die Laufzeit, also gegeben", "Der Zinssatz müsste im Text stehen; gesucht ist der Endbetrag"]
+        },
+        {
+            "frage": "„Welcher Betrag muss heute angelegt werden, um in 5 Jahren 10 000 € zu haben?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(K_0\\)", "\\(K_n\\)", "\\(n\\)", "\\(p\\)"],
+            "fehler": ["10 000 € ist der Endbetrag, also gegeben", "5 Jahre sind gegeben", "Der Zinssatz ist im vollständigen Text gegeben"]
+        },
+        {
+            "frage": "„Nach wie vielen Jahren ist das Kapital auf 12 000 € angewachsen?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(n\\)", "\\(K_n\\)", "\\(K_0\\)", "\\(q\\)"],
+            "fehler": ["12 000 € ist der Endbetrag, also gegeben", "Das Anfangskapital steht im Text", "Der Zinsfaktor ergibt sich aus dem gegebenen Zinssatz"]
+        },
+        {
+            "frage": "„Mit welchem Zinssatz wurde das Kapital verzinst?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(p\\)", "\\(n\\)", "\\(K_0\\)", "\\(K_n\\)"],
+            "fehler": ["Die Laufzeit ist gegeben", "Das Anfangskapital ist gegeben", "Der Endbetrag ist gegeben"]
+        },
+        {
+            "frage": "Im Text steht „ein Zinssatz von 2,5 %“. Mit welchem Zinsfaktor wird gerechnet?",
+            "antworten": ["\\(1{,}025\\)", "\\(1{,}25\\)", "\\(2{,}5\\)", "\\(0{,}025\\)"],
+            "fehler": ["Kommastelle falsch gesetzt", "Zinssatz ohne Umrechnung übernommen", "Die 1 für das Grundkapital fehlt"]
+        },
+        {
+            "frage": "Welche Formulierung im Text deutet auf ein gesuchtes Anfangskapital \\(K_0\\) hin?",
+            "antworten": ["„Welcher Betrag muss heute angelegt werden …“", "„Über welchen Betrag verfügt man nach … Jahren“", "„Nach wie vielen Jahren …“", "„Mit welchem Zinssatz …“"],
+            "fehler": ["Das fragt nach dem Endkapital", "Das fragt nach der Laufzeit", "Das fragt nach dem Zinssatz"]
+        },
+        {
+            "frage": "Ein Kapital von 2 000 € wird ein Jahr mit 5 % verzinst. Wie hoch ist es danach?",
+            "antworten": ["\\(2\\,100\\,€\\)", "\\(2\\,010\\,€\\)", "\\(2\\,500\\,€\\)", "\\(2\\,050\\,€\\)"],
+            "fehler": ["Zinsfaktor 1,005 statt 1,05 verwendet", "25 % statt 5 % gerechnet", "2,5 % statt 5 % gerechnet"]
+        },
+        {
+            "frage": "Was ist der erste sinnvolle Schritt beim Lösen einer Textaufgabe zur Zinseszinsrechnung?",
+            "antworten": ["Gegebene Werte den Größen \\(K_0, K_n, p, n\\) zuordnen und die gesuchte Größe bestimmen", "Sofort den Taschenrechner benutzen", "Die Formel allgemein nach jeder Größe umstellen", "Alle Zahlen des Textes addieren"],
+            "fehler": ["Ohne Zuordnung ist unklar, was berechnet werden soll", "Es wird nur nach der konkret gesuchten Größe aufgelöst", "Zahlen haben unterschiedliche Bedeutung und Einheit"]
+        },
+        {
+            "frage": "Das Ergebnis einer Laufzeitberechnung lautet \\(n \\approx 8{,}4\\). Wie ist das zu interpretieren?",
+            "antworten": ["Der Zielbetrag wird im Laufe des 9. Jahres erreicht", "Der Zielbetrag wird nie erreicht", "Man muss auf 8 abrunden, nach 8 Jahren ist das Ziel erreicht", "Das Ergebnis ist falsch, \\(n\\) muss ganzzahlig sein"],
+            "fehler": ["Das Ergebnis zeigt, dass das Ziel erreicht wird", "Nach 8 Jahren ist der Betrag noch nicht ganz erreicht", "Nicht-ganzzahlige Laufzeiten sind rechnerisch sinnvoll und werden so angegeben"]
+        },
+        {
+            "frage": "Ein Ergebnis für den Zinssatz lautet \\(q = 1{,}0333\\). Wie lautet der Antwortsatz?",
+            "antworten": ["Der Zinssatz beträgt etwa 3,33 %.", "Der Zinssatz beträgt etwa 1,03 %.", "Der Zinssatz beträgt etwa 103,33 %.", "Der Zinssatz beträgt etwa 0,33 %."],
+            "fehler": ["Zinsfaktor mit Zinssatz verwechselt", "Die 1 nicht abgezogen", "Kommastelle falsch gesetzt"]
+        }
+    ]
+}

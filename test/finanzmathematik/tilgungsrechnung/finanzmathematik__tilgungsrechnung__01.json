@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was kennzeichnet die Annuitätentilgung?",
+            "antworten": ["Die jährliche Zahlung (Annuität) ist konstant", "Die jährliche Tilgung ist konstant", "Die jährlichen Zinsen sind konstant", "Es wird nur am Ende getilgt"],
+            "fehler": ["Konstante Tilgung wäre Ratentilgung", "Die Zinsen sinken mit der Restschuld", "Bei Annuitätentilgung wird jedes Jahr getilgt"]
+        },
+        {
+            "frage": "Wie setzt sich die Annuität zusammen?",
+            "antworten": ["\\(A = Z_k + T_k\\)", "\\(A = Z_k - T_k\\)", "\\(A = Z_k \\cdot T_k\\)", "\\(A = RK_k + Z_k\\)"],
+            "fehler": ["Zinsen und Tilgung werden addiert", "Zinsen und Tilgung werden addiert, nicht multipliziert", "Die Restschuld gehört nicht zur Annuität"]
+        },
+        {
+            "frage": "Wie werden die Zinsen im Jahr \\(k\\) berechnet?",
+            "antworten": ["Aus der Restschuld zu Jahresbeginn: \\(Z_k = RK_{k-1} \\cdot \\frac{p}{100}\\)", "Aus der ursprünglichen Darlehenssumme: \\(Z_k = K_0 \\cdot \\frac{p}{100}\\)", "Aus der Annuität: \\(Z_k = A \\cdot \\frac{p}{100}\\)", "Aus der Restschuld zu Jahresende"],
+            "fehler": ["Das gilt nur im ersten Jahr", "Zinsen beziehen sich auf die Schuld, nicht auf die Zahlung", "Die Schuld am Jahresanfang wird verzinst"]
+        },
+        {
+            "frage": "Restschuld zu Jahresbeginn 10 000 €, Zinssatz 5 %, Annuität 2 500 €. Wie hoch ist die Tilgung?",
+            "antworten": ["\\(2\\,000\\,€\\)", "\\(500\\,€\\)", "\\(2\\,500\\,€\\)", "\\(3\\,000\\,€\\)"],
+            "fehler": ["Das sind die Zinsen", "Die Zinsen müssen abgezogen werden", "Zinsen wurden addiert statt subtrahiert"]
+        },
+        {
+            "frage": "Restschuld zu Jahresbeginn 10 000 €, Tilgung 2 000 €. Wie hoch ist die Restschuld am Jahresende?",
+            "antworten": ["\\(8\\,000\\,€\\)", "\\(12\\,000\\,€\\)", "\\(7\\,500\\,€\\)", "\\(10\\,000\\,€\\)"],
+            "fehler": ["Tilgung verringert die Schuld", "Nur die Tilgung wird abgezogen, nicht die Annuität", "Die Tilgung wurde nicht berücksichtigt"]
+        },
+        {
+            "frage": "Wie entwickeln sich Zinsen und Tilgung im Verlauf eines Tilgungsplans?",
+            "antworten": ["Zinsen sinken, Tilgung steigt", "Zinsen steigen, Tilgung sinkt", "Beide bleiben konstant", "Beide sinken"],
+            "fehler": ["Die Restschuld sinkt, also sinken die Zinsen", "Nur die Annuität bleibt konstant", "Die Tilgung steigt, weil A konstant bleibt"]
+        },
+        {
+            "frage": "Was steht in der letzten Zeile eines Tilgungsplans in der Spalte Tilgung?",
+            "antworten": ["Die gesamte verbliebene Restschuld", "Die Annuität", "Null", "Die Zinsen"],
+            "fehler": ["Die Annuität enthält auch Zinsen", "Am Ende wird die Restschuld vollständig getilgt", "Zinsen sind eine eigene Spalte"]
+        },
+        {
+            "frage": "Wie entsteht die Rundungsdifferenz in der letzten Zeile?",
+            "antworten": ["Durch das zeilenweise Runden auf Cent, das sich bis zur letzten Zeile aufsummiert", "Durch einen Rechenfehler", "Weil der Zinssatz falsch ist", "Sie entsteht nicht"],
+            "fehler": ["Sie ist kein Fehler, sondern eine Folge der Rundung", "Der Zinssatz ist korrekt", "Bei gerundeten Zwischenwerten tritt sie fast immer auf"]
+        },
+        {
+            "frage": "Wie groß ist die Rundungsdifferenz typischerweise?",
+            "antworten": ["Wenige Cent", "Mehrere hundert Euro", "Genau eine Annuität", "Genau die Zinsen des letzten Jahres"],
+            "fehler": ["Rundung auf Cent erzeugt nur kleine Abweichungen", "Die Differenz ist sehr klein im Vergleich zur Annuität", "Die Differenz hat nichts mit den Zinsen zu tun"]
+        },
+        {
+            "frage": "Woher stammt der Wert in der Spalte „Restschuld (Jahresanfang)“ der zweiten Zeile?",
+            "antworten": ["Aus der Spalte „Restschuld (Jahresende)“ der ersten Zeile", "Aus der Darlehenssumme", "Aus der Annuität", "Aus der Tilgung der zweiten Zeile"],
+            "fehler": ["Das gilt nur für die erste Zeile", "Die Annuität ist eine Zahlung, keine Schuld", "Die Tilgung wird erst in dieser Zeile berechnet"]
+        }
+    ]
+}

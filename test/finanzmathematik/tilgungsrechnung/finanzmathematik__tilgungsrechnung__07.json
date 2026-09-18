@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Was ist eine Sondertilgung?",
+            "antworten": ["Eine zusätzliche Tilgungszahlung, die die Restschuld über die planmäßige Tilgung hinaus verringert", "Eine erhöhte Zinszahlung", "Das Aussetzen der Tilgung", "Eine Verlängerung der Laufzeit"],
+            "fehler": ["Sondertilgung betrifft die Schuld, nicht die Zinsen", "Das ist eine Tilgungspause", "Sondertilgung verkürzt eher die Laufzeit"]
+        },
+        {
+            "frage": "Restschuld 72 950 €, Sondertilgung 20 000 €. Wie hoch ist die Restschuld danach?",
+            "antworten": ["\\(52\\,950\\,€\\)", "\\(92\\,950\\,€\\)", "\\(20\\,000\\,€\\)", "\\(72\\,950\\,€\\)"],
+            "fehler": ["Die Sondertilgung verringert die Schuld", "Das ist die Sondertilgung selbst", "Die Sondertilgung wurde nicht berücksichtigt"]
+        },
+        {
+            "frage": "Nach einer Sondertilgung bleibt die Gesamtlaufzeit unverändert. Was ändert sich?",
+            "antworten": ["Die Annuität wird kleiner", "Die Annuität wird größer", "Der Zinssatz sinkt", "Nichts"],
+            "fehler": ["Weniger Schuld bei gleicher Zeit bedeutet weniger Zahlung", "Der Zinssatz ist vertraglich festgelegt", "Die verringerte Schuld wirkt sich auf die Annuität aus"]
+        },
+        {
+            "frage": "Nach einer Sondertilgung bleibt die Annuität unverändert. Was ändert sich?",
+            "antworten": ["Die Restlaufzeit wird kürzer", "Die Restlaufzeit wird länger", "Der Zinssatz steigt", "Nichts"],
+            "fehler": ["Weniger Schuld bei gleicher Zahlung wird schneller getilgt", "Der Zinssatz ist vertraglich festgelegt", "Die verringerte Schuld wirkt sich auf die Laufzeit aus"]
+        },
+        {
+            "frage": "Wie wird die neue Annuität nach einer Sondertilgung bei fester Laufzeit berechnet?",
+            "antworten": ["Annuitätenformel mit der verringerten Restschuld und der Restlaufzeit", "Alte Annuität minus Sondertilgung", "Annuitätenformel mit der ursprünglichen Darlehenssumme", "Alte Annuität geteilt durch die Restlaufzeit"],
+            "fehler": ["Die Sondertilgung ist eine Einmalzahlung, keine Jahresrate", "Die Schuld hat sich geändert", "Das ist keine korrekte Umformung"]
+        },
+        {
+            "frage": "Wie wird die neue Restlaufzeit nach einer Sondertilgung bei fester Annuität berechnet?",
+            "antworten": ["\\(T_1' = A - RK' \\cdot \\frac{p}{100}\\), dann \\(n = \\frac{\\ln(A / T_1')}{\\ln q}\\)", "Alte Laufzeit minus Sondertilgung geteilt durch Annuität", "Restschuld geteilt durch Annuität", "Die Laufzeit ändert sich nicht"],
+            "fehler": ["Das ist keine korrekte Formel", "Das ignoriert die Zinsen", "Bei fester Annuität verkürzt sich die Laufzeit"]
+        },
+        {
+            "frage": "Was passiert in einem Jahr mit Tilgungspause?",
+            "antworten": ["Es werden nur die Zinsen gezahlt, die Restschuld bleibt gleich", "Es wird gar nichts gezahlt", "Es wird nur getilgt, keine Zinsen", "Die Schuld sinkt wie geplant"],
+            "fehler": ["Die Zinsen fallen trotzdem an und werden gezahlt", "Zinsen müssen gezahlt werden, die Tilgung ruht", "Ohne Tilgung bleibt die Schuld unverändert"]
+        },
+        {
+            "frage": "Restschuld 488 000 €, Zinssatz 4 %. Welche Zahlung ist im Pausenjahr zu leisten?",
+            "antworten": ["\\(19\\,520\\,€\\)", "\\(0\\,€\\)", "\\(48\\,800\\,€\\)", "\\(1\\,952\\,€\\)"],
+            "fehler": ["Die Zinsen werden weiterhin gezahlt", "Das wären 10 %", "Kommastelle falsch gesetzt"]
+        },
+        {
+            "frage": "Nach einer Tilgungspause soll die Gesamtlaufzeit erhalten bleiben. Was folgt daraus?",
+            "antworten": ["Die Annuität für die verbleibenden Jahre wird neu berechnet und ist höher", "Die alte Annuität wird weitergezahlt", "Die Laufzeit verlängert sich automatisch um ein Jahr", "Die Zinsen entfallen"],
+            "fehler": ["Mit der alten Annuität wäre das Darlehen ein Jahr später getilgt", "Die Laufzeit soll erhalten bleiben", "Zinsen fallen weiterhin an"]
+        },
+        {
+            "frage": "Was haben Sondertilgung, Tilgungspause und Zinssatzwechsel gemeinsam?",
+            "antworten": ["Die aktuelle Restschuld wird als neues \\(K_0\\) und die Restlaufzeit als neues \\(n\\) in die Annuitätenformel eingesetzt", "Die Darlehenssumme wird neu festgelegt", "Der Zinssatz wird halbiert", "Die Annuität bleibt immer gleich"],
+            "fehler": ["Die ursprüngliche Darlehenssumme spielt keine Rolle mehr", "Der Zinssatz ändert sich nur beim Zinssatzwechsel", "Die Annuität wird in der Regel angepasst"]
+        }
+    ]
+}
