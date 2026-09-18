@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Axes -->
+  <line x1="30" y1="135" x2="220" y2="135" stroke="#f472b6" stroke-width="1" opacity=".3"/>
+  <line x1="30" y1="135" x2="30" y2="15" stroke="#f472b6" stroke-width="1" opacity=".3"/>
+  <!-- Exponential growth of capital -->
+  <path d="M35 122 C90 118 140 100 175 70 Q195 50 210 28" stroke="#f472b6" stroke-width="2.5" opacity=".7"/>
+  <!-- Yearly capital bars -->
+  <rect x="50" y="118" width="10" height="17" fill="#f472b6" opacity=".25"/>
+  <rect x="80" y="113" width="10" height="22" fill="#f472b6" opacity=".3"/>
+  <rect x="110" y="105" width="10" height="30" fill="#f472b6" opacity=".35"/>
+  <rect x="140" y="92" width="10" height="43" fill="#f472b6" opacity=".4"/>
+  <rect x="170" y="72" width="10" height="63" fill="#f472b6" opacity=".45"/>
+  <rect x="200" y="40" width="10" height="95" fill="#f472b6" opacity=".5"/>
+  <!-- Labels -->
+  <text x="34" y="128" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">K₀</text>
+  <text x="196" y="24" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">Kₙ = K₀·qⁿ</text>
+  <text x="200" y="148" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".5">Jahre</text>
+</svg>

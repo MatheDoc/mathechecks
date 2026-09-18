@@ -19,7 +19,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
 | **Warm-Up** | `_data/warmup/<slug>.yml` | pro Lernbereich | meist 3 Karten, optional 4, plus Abschlusstext |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
-| **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik |
+| **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |
 
 
 ## Modul → Datenquelle (Konsumenten-Matrix)
@@ -127,7 +127,7 @@ Verantwortung: inhaltliche Felder → Content-Agent; `Sammlung` → Python-Agent
 
 | Feld | Verantwortung | Beschreibung |
 |---|---|---|
-| `Gebiet` | Content | `analysis`, `lineare-algebra` oder `stochastik` |
+| `Gebiet` | Content | `analysis`, `lineare-algebra`, `stochastik` oder `finanzmathematik` |
 | `Lernbereich` | Content | Slug des Lernbereichs (z. B. `quadratische-funktionen`) |
 | `LernbereichAnzeigename` | Content | Anzeigename (z. B. „Quadratische Funktionen") |
 | `Nummer` | Content | Fortlaufend innerhalb des Lernbereichs, bestimmt Reihenfolge |

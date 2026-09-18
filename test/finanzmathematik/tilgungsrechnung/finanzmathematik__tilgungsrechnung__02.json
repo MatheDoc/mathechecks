@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die Annuitätenformel?",
+            "antworten": ["\\(A = \\dfrac{K_0 \\cdot q^n \\cdot (q-1)}{q^n - 1}\\)", "\\(A = \\dfrac{K_0 \\cdot (q^n - 1)}{q^n \\cdot (q-1)}\\)", "\\(A = K_0 \\cdot q^n\\)", "\\(A = \\dfrac{K_0}{n}\\)"],
+            "fehler": ["Das ist die Barwertformel mit K_0 statt r", "Das ist die Zinseszinsformel", "Das wäre eine zinslose Ratenzahlung"]
+        },
+        {
+            "frage": "Welcher Zusammenhang besteht zwischen Annuität und erster Tilgung?",
+            "antworten": ["\\(A = T_1 \\cdot q^n\\)", "\\(A = T_1 + q^n\\)", "\\(A = T_1 \\cdot n\\)", "\\(A = \\dfrac{T_1}{q^n}\\)"],
+            "fehler": ["Der Zusammenhang ist multiplikativ", "Die Laufzeit steht im Exponenten", "T_1 wird aufgezinst, nicht abgezinst"]
+        },
+        {
+            "frage": "Wie wird die Tilgung des ersten Jahres berechnet?",
+            "antworten": ["\\(T_1 = A - K_0 \\cdot \\frac{p}{100}\\)", "\\(T_1 = A + K_0 \\cdot \\frac{p}{100}\\)", "\\(T_1 = K_0 \\cdot \\frac{p}{100}\\)", "\\(T_1 = \\dfrac{A}{n}\\)"],
+            "fehler": ["Zinsen werden von der Annuität abgezogen", "Das sind die Zinsen des ersten Jahres", "Die Tilgung ist nicht gleichmäßig verteilt"]
+        },
+        {
+            "frage": "Die Annuität ist gegeben, gesucht ist die Darlehenssumme \\(K_0\\). Wie geht man vor?",
+            "antworten": ["Den Bruch \\(\\frac{q^n \\cdot (q-1)}{q^n - 1}\\) ausrechnen und \\(A\\) dadurch teilen", "\\(A\\) mit \\(n\\) multiplizieren", "\\(A\\) durch \\(q^n\\) teilen", "Den Logarithmus bilden"],
+            "fehler": ["Das ignoriert die Zinsen", "Das ist nur die Abzinsung einer einzelnen Zahlung", "Der Logarithmus wird bei gesuchtem n gebraucht"]
+        },
+        {
+            "frage": "Die Laufzeit ist gesucht. Welche Schritte führen zum Ziel?",
+            "antworten": ["\\(T_1\\) berechnen, dann \\(q^n = \\frac{A}{T_1}\\) und \\(n = \\frac{\\ln(A/T_1)}{\\ln q}\\)", "\\(n = \\frac{K_0}{A}\\)", "\\(n = \\frac{A}{K_0}\\)", "Die \\(n\\)-te Wurzel ziehen"],
+            "fehler": ["Das ignoriert die Zinsen", "Das ergibt keine sinnvolle Zahl", "Wurzel löst nach der Basis auf"]
+        },
+        {
+            "frage": "\\(K_0 = 100\\,000\\,€\\), \\(p = 4\\,\\%\\), \\(A = 9\\,000\\,€\\). Wie groß ist \\(T_1\\)?",
+            "antworten": ["\\(5\\,000\\,€\\)", "\\(4\\,000\\,€\\)", "\\(9\\,000\\,€\\)", "\\(13\\,000\\,€\\)"],
+            "fehler": ["Das sind die Zinsen des ersten Jahres", "Zinsen wurden nicht abgezogen", "Zinsen wurden addiert"]
+        },
+        {
+            "frage": "Was gilt für die Annuität im Vergleich zu den Zinsen des ersten Jahres?",
+            "antworten": ["Sie muss größer sein, sonst sinkt die Schuld nie", "Sie muss kleiner sein", "Sie muss gleich groß sein", "Es gibt keinen Zusammenhang"],
+            "fehler": ["Dann würde die Schuld wachsen", "Dann bliebe die Schuld konstant", "Nur wenn A die Zinsen übersteigt, wird getilgt"]
+        },
+        {
+            "frage": "Was passiert mit der Annuität, wenn bei gleicher Darlehenssumme und gleichem Zinssatz die Laufzeit verlängert wird?",
+            "antworten": ["Sie wird kleiner", "Sie wird größer", "Sie bleibt gleich", "Sie wird null"],
+            "fehler": ["Die Rückzahlung verteilt sich auf mehr Jahre", "Die Laufzeit beeinflusst die Annuität", "Es muss weiterhin gezahlt werden"]
+        },
+        {
+            "frage": "Was gilt für die Gesamtzinsen bei längerer Laufzeit (gleiche Darlehenssumme, gleicher Zinssatz)?",
+            "antworten": ["Sie steigen", "Sie sinken", "Sie bleiben gleich", "Sie werden negativ"],
+            "fehler": ["Die Schuld besteht länger und wird länger verzinst", "Die Laufzeit beeinflusst die Gesamtzinsen", "Zinsen sind positiv"]
+        },
+        {
+            "frage": "Wie hängt die Annuitätenformel mit dem Rentenbarwert zusammen?",
+            "antworten": ["Das Darlehen ist der Barwert der Annuitäten: \\(K_0 = R_0\\) mit \\(r = A\\)", "Das Darlehen ist der Endwert der Annuitäten", "Es gibt keinen Zusammenhang", "Die Annuität ist der Barwert des Darlehens"],
+            "fehler": ["Das Darlehen wird heute ausgezahlt, also Barwert", "Beide Formeln sind eng verwandt", "Die Annuität ist die Rate, das Darlehen der Barwert"]
+        }
+    ]
+}

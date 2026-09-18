@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die Formel für das Endkapital beim Kapitalaufbau (nachschüssig)?",
+            "antworten": ["\\(E_n = K_0 \\cdot q^n + R_n\\)", "\\(E_n = K_0 \\cdot q^n - R_n\\)", "\\(E_n = K_0 + R_n\\)", "\\(E_n = (K_0 + r) \\cdot q^n\\)"],
+            "fehler": ["Minus gilt beim Kapitalabbau", "Das Startkapital muss aufgezinst werden", "Die Raten werden nicht alle n Jahre verzinst"]
+        },
+        {
+            "frage": "Welche beiden Formeln werden beim Kapitalauf- und -abbau kombiniert?",
+            "antworten": ["Zinseszinsformel und Rentenendwertformel", "Zinseszinsformel und Annuitätenformel", "Rentenbarwert- und Rentenendwertformel", "Annuitätenformel und Restschuldformel"],
+            "fehler": ["Die Annuitätenformel gehört zur Tilgungsrechnung", "Das Startkapital wird mit der Zinseszinsformel bewertet", "Beide gehören zur Tilgungsrechnung"]
+        },
+        {
+            "frage": "Beim Kapitalabbau werden Beträge …",
+            "antworten": ["entnommen, das Vorzeichen vor \\(R_n\\) ist minus", "eingezahlt, das Vorzeichen vor \\(R_n\\) ist plus", "entnommen, das Vorzeichen vor \\(K_0 \\cdot q^n\\) ist minus", "weder ein- noch ausgezahlt"],
+            "fehler": ["Einzahlungen sind Kapitalaufbau", "Das Startkapital bleibt positiv aufgezinst", "Ohne Zahlungen wäre es reine Zinseszinsrechnung"]
+        },
+        {
+            "frage": "\\(K_0 = 1\\,000\\,€\\), \\(r = 100\\,€\\) nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalaufbau. Wie groß ist \\(E_1\\)?",
+            "antworten": ["\\(1\\,200\\,€\\)", "\\(1\\,210\\,€\\)", "\\(1\\,100\\,€\\)", "\\(1\\,110\\,€\\)"],
+            "fehler": ["Die nachschüssige Rate wird im ersten Jahr nicht verzinst", "Die Rate wurde vergessen", "Rate und Zinsen falsch kombiniert"]
+        },
+        {
+            "frage": "\\(K_0 = 1\\,000\\,€\\), \\(r = 100\\,€\\) nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalabbau. Wie groß ist \\(E_1\\)?",
+            "antworten": ["\\(1\\,000\\,€\\)", "\\(900\\,€\\)", "\\(1\\,100\\,€\\)", "\\(990\\,€\\)"],
+            "fehler": ["Das Startkapital muss zuerst aufgezinst werden: 1 100 − 100", "Die Entnahme wurde vergessen", "Rechenfehler"]
+        },
+        {
+            "frage": "\\(E_n\\) und \\(r\\) sind gegeben, \\(K_0\\) ist gesucht (Kapitalaufbau). Welche Umformung ist richtig?",
+            "antworten": ["\\(K_0 = \\dfrac{E_n - R_n}{q^n}\\)", "\\(K_0 = \\dfrac{E_n + R_n}{q^n}\\)", "\\(K_0 = (E_n - R_n) \\cdot q^n\\)", "\\(K_0 = E_n - R_n\\)"],
+            "fehler": ["Plus gilt beim Kapitalabbau", "Es muss abgezinst werden, nicht aufgezinst", "Das Abzinsen fehlt"]
+        },
+        {
+            "frage": "Wie geht man vor, wenn beim Kapitalauf- oder -abbau \\(n\\) gesucht ist?",
+            "antworten": ["Den Bruch \\(\\frac{r \\cdot f}{q-1}\\) ausrechnen, \\(q^n\\) ausklammern, nach \\(q^n\\) auflösen und logarithmieren", "Die \\(n\\)-te Wurzel ziehen", "\\(E_n\\) durch \\(r\\) teilen", "Das ist nicht lösbar"],
+            "fehler": ["Wurzel löst nach der Basis auf", "Das ignoriert Startkapital und Zinsen", "Mit Ausklammern und Logarithmus ist es gut lösbar"]
+        },
+        {
+            "frage": "Beim Kapitalabbau ist das Kapital nach \\(n\\) Jahren aufgebraucht. Was gilt?",
+            "antworten": ["\\(E_n = 0\\)", "\\(E_n = K_0\\)", "\\(E_n = R_n\\)", "\\(E_n = r\\)"],
+            "fehler": ["Das Kapital ist nicht mehr vorhanden", "Aufgebraucht bedeutet Endkapital null", "Auch die letzte Rate ist bereits entnommen"]
+        },
+        {
+            "frage": "Vorschüssige Zahlungen beim Kapitalaufbau: Wie ändert sich die Formel?",
+            "antworten": ["Statt \\(R_n\\) wird \\(\\overline{R}_n\\) verwendet", "Statt \\(K_0 \\cdot q^n\\) wird \\(K_0 \\cdot q^{n+1}\\) verwendet", "Es ändert sich nichts", "Das Vorzeichen vor \\(R_n\\) wechselt"],
+            "fehler": ["Das Startkapital wird unabhängig von der Zahlungsweise n Jahre verzinst", "Vorschüssige Raten werden ein Jahr länger verzinst", "Das Vorzeichen hängt von Aufbau oder Abbau ab"]
+        },
+        {
+            "frage": "Beim Kapitalabbau soll \\(n\\) bestimmt werden. Unter welcher Bedingung wird das Kapital überhaupt aufgebraucht?",
+            "antworten": ["Die Entnahme muss größer sein als die jährlichen Zinsen des Startkapitals", "Die Entnahme muss kleiner sein als die Zinsen", "Das Kapital wird immer aufgebraucht", "Nur bei vorschüssiger Zahlung"],
+            "fehler": ["Dann wächst das Kapital trotz Entnahmen", "Bei kleiner Entnahme wächst das Kapital", "Die Zahlungsweise ändert die Bedingung nur geringfügig"]
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie wird eine Rente in den Kapitalvergleich einbezogen?",
+            "antworten": ["Über ihren Rentenbarwert", "Über die Summe der Raten", "Über die erste Rate", "Über ihren Rentenendwert, wenn alle anderen Werte Barwerte sind"],
+            "fehler": ["Die Summe ignoriert die Zeitpunkte", "Eine einzelne Rate ist nicht vergleichbar", "Alle Werte müssen sich auf denselben Zeitpunkt beziehen"]
+        },
+        {
+            "frage": "Ein Angebot lautet: „8 Jahreszahlungen von je 4 500 €, die erste in einem Jahr.“ Wie wird der Barwert berechnet?",
+            "antworten": ["Nachschüssiger Rentenbarwert mit \\(r = 4\\,500\\), \\(n = 8\\)", "Vorschüssiger Rentenbarwert mit \\(r = 4\\,500\\), \\(n = 8\\)", "Nachschüssiger Rentenendwert", "\\(8 \\cdot 4\\,500 = 36\\,000\\,€\\)"],
+            "fehler": ["Die erste Zahlung erfolgt am Ende des ersten Jahres, also nachschüssig", "Gesucht ist der Barwert", "Die Summe ignoriert die Zinsen"]
+        },
+        {
+            "frage": "Ein Angebot lautet: „6 Jahreszahlungen von je 3 000 €, die erste sofort.“ Welche Formel passt?",
+            "antworten": ["Vorschüssiger Rentenbarwert \\(\\overline{R}_0\\)", "Nachschüssiger Rentenbarwert \\(R_0\\)", "Vorschüssiger Rentenendwert \\(\\overline{R}_n\\)", "Zinseszinsformel"],
+            "fehler": ["Sofortige erste Zahlung ist vorschüssig", "Gesucht ist der Barwert", "Es sind mehrere Zahlungen, also eine Rente"]
+        },
+        {
+            "frage": "Eine nachschüssige Rente beginnt erst in 4 Jahren (erste Zahlung am Ende des 4. Jahres). Wie wird der Barwert bestimmt?",
+            "antworten": ["Rentenbarwert \\(R_0\\) berechnen und zusätzlich durch \\(q^3\\) teilen", "Rentenbarwert \\(R_0\\) berechnen und zusätzlich durch \\(q^4\\) teilen", "Rentenbarwert \\(R_0\\) berechnen, fertig", "Rentenendwert berechnen"],
+            "fehler": ["R_0 bewertet die Rente ein Jahr vor der ersten Zahlung, also zum Zeitpunkt 3", "Die Verschiebung gegenüber dem Normalfall beträgt 3 Jahre", "Die Verschiebung muss berücksichtigt werden"]
+        },
+        {
+            "frage": "Der Empfänger vergleicht: A = 30 000 € sofort, B = Rente mit Barwert 31 500 €, C = Einmalzahlung mit Barwert 29 800 €. Welches Angebot wählt er?",
+            "antworten": ["B", "A", "C", "Alle gleichwertig"],
+            "fehler": ["B hat einen höheren Barwert", "C hat den niedrigsten Barwert", "Die Barwerte unterscheiden sich"]
+        },
+        {
+            "frage": "Der Zahler vergleicht: A = 30 000 € sofort, B = Rente mit Barwert 31 500 €, C = Einmalzahlung mit Barwert 29 800 €. Welche Variante wählt er?",
+            "antworten": ["C", "B", "A", "Alle gleichwertig"],
+            "fehler": ["B ist für den Zahler am teuersten", "A ist teurer als C", "Die Barwerte unterscheiden sich"]
+        },
+        {
+            "frage": "Was ist beim Vergleich von Einmalzahlung und Rente auf jeden Fall gleich zu wählen?",
+            "antworten": ["Der Bezugszeitpunkt und der Zinssatz", "Die Anzahl der Zahlungen", "Die Höhe der Zahlungen", "Die Währung der Rate"],
+            "fehler": ["Die Anzahl darf sich unterscheiden", "Die Höhe darf sich unterscheiden", "Das ist keine finanzmathematische Bedingung"]
+        },
+        {
+            "frage": "Ein Angebot besteht aus 10 000 € sofort und einer nachschüssigen Rente von 5 Raten je 2 000 €. Wie wird der Barwert berechnet?",
+            "antworten": ["\\(10\\,000 + R_0\\) der Rente", "\\(\\dfrac{10\\,000 + R_0}{q^5}\\)", "\\(10\\,000 + 5 \\cdot 2\\,000\\)", "\\(R_0\\) der Rente allein"],
+            "fehler": ["Die sofortige Zahlung wird nicht abgezinst", "Die Rente muss abgezinst werden", "Die Einmalzahlung darf nicht fehlen"]
+        },
+        {
+            "frage": "Warum ist die Summe aller Raten kein geeignetes Vergleichskriterium?",
+            "antworten": ["Weil spätere Zahlungen weniger wert sind als frühere", "Weil Raten immer gleich hoch sind", "Weil die Summe zu groß wird", "Sie ist ein geeignetes Kriterium"],
+            "fehler": ["Gleich hohe Raten ändern nichts am Zeitwert", "Die Größe der Summe ist nicht das Problem", "Der Zeitwert des Geldes wird ignoriert"]
+        },
+        {
+            "frage": "Zwei Angebote haben denselben Barwert. Was gilt?",
+            "antworten": ["Sie sind aus finanzmathematischer Sicht gleichwertig", "Das frühere Angebot ist besser", "Das Angebot mit mehr Zahlungen ist besser", "Das Angebot mit der höheren Summe ist besser"],
+            "fehler": ["Der Zeitpunkt ist im Barwert schon berücksichtigt", "Die Anzahl der Zahlungen ist kein Kriterium", "Die Summe ist kein Kriterium"]
+        }
+    ]
+}

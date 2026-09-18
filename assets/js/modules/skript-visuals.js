@@ -9,6 +9,7 @@ import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, RE
 import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagramm.js?v=20260917-edge-labels";
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
+import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgungsplan.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
@@ -798,6 +799,69 @@ function initGaussSchritteWidgets(root) {
     });
 }
 
+function initTilgungsplanWidgets(root) {
+    const euro = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const ganz = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+
+    root.querySelectorAll(".tp-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const k0Slider = widget.querySelector(".tp-k0Slider");
+        const pSlider = widget.querySelector(".tp-pSlider");
+        const nSlider = widget.querySelector(".tp-nSlider");
+        if (!k0Slider || !pSlider || !nSlider) return;
+
+        const k0Wert = widget.querySelector(".tp-k0Wert");
+        const pWert = widget.querySelector(".tp-pWert");
+        const nWert = widget.querySelector(".tp-nWert");
+        const annuitaetNode = widget.querySelector(".tp-annuitaet");
+        const hinweisNode = widget.querySelector(".tp-hinweis");
+        const tableBody = widget.querySelector(".tp-tableBody");
+        const plotDiv = widget.querySelector(".tp-plot");
+
+        function update() {
+            const k0 = parseFloat(k0Slider.value);
+            const p = parseFloat(pSlider.value);
+            const n = parseInt(nSlider.value, 10);
+
+            k0Wert.textContent = ganz.format(k0);
+            pWert.textContent = String(p).replace(".", ",");
+            nWert.textContent = String(n);
+
+            const plan = berechneTilgungsplan({ k0, p, n });
+
+            const q = (1 + p / 100).toFixed(4).replace(/0+$/, "").replace(".", "{,}");
+            const k0Tex = ganz.format(k0).replace(/\./g, "\\,");
+            // erst Dezimalkomma, dann Tausenderpunkte ersetzen – sonst trifft replace(",") das Komma in "\,"
+            const aTex = euro.format(plan.annuitaet).replace(",", "{,}").replace(/\./g, "\\,");
+            annuitaetNode.innerHTML =
+                `$ A = \\dfrac{K_0 \\cdot q^n \\cdot (q-1)}{q^n - 1} = \\dfrac{${k0Tex} \\cdot ${q}^{${n}} \\cdot (${q} - 1)}{${q}^{${n}} - 1} \\approx ${aTex}\\,\\text{€} $`;
+            if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([annuitaetNode]).catch(() => { });
+
+            const diff = plan.rundungsdifferenz;
+            hinweisNode.textContent = diff === 0
+                ? "Die letzte Annuität stimmt hier exakt mit der vereinbarten Annuität überein."
+                : `Rundungsdifferenz in der letzten Zeile: die letzte Annuität weicht um ${euro.format(Math.abs(diff))} € ${diff > 0 ? "nach oben" : "nach unten"} ab.`;
+
+            tableBody.innerHTML = plan.zeilen.map((z, index) => {
+                const last = index === plan.zeilen.length - 1;
+                const cls = last ? ' class="tp-last"' : "";
+                return `<tr${cls}><td>${z.jahr}</td><td>${euro.format(z.rkAnfang)}</td><td>${euro.format(z.zinsen)}</td>`
+                    + `<td>${euro.format(z.tilgung)}</td><td>${euro.format(z.annuitaet)}</td><td>${euro.format(z.rkEnde)}</td></tr>`;
+            }).join("");
+
+            if (window.Plotly && plotDiv) {
+                const figure = buildTilgungsplanFigure(plan);
+                plotlyRender(plotDiv, figure.data, figure.layout);
+            }
+        }
+
+        [k0Slider, pSlider, nSlider].forEach((slider) => slider.addEventListener("input", update));
+        update();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -806,6 +870,7 @@ export function initSkriptVisuals(root) {
     initMonoalphabetischeSubstitutionWidgets(root);
     initRouletteWidgets(root);
     initGaussSchritteWidgets(root);
+    initTilgungsplanWidgets(root);
 
     if (!window.Plotly) return;
 

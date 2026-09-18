@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die Formel für den nachschüssigen Rentenbarwert?",
+            "antworten": ["\\(R_0 = \\dfrac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}\\)", "\\(R_0 = \\dfrac{r \\cdot (q^n - 1)}{q - 1}\\)", "\\(R_0 = \\dfrac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}\\)", "\\(R_0 = \\dfrac{r}{q^n}\\)"],
+            "fehler": ["Das ist der Rentenendwert", "Das ist der vorschüssige Rentenbarwert", "Das ist der Barwert einer einzelnen Zahlung"]
+        },
+        {
+            "frage": "Wodurch unterscheidet sich die Barwertformel von der Endwertformel?",
+            "antworten": ["Durch den zusätzlichen Faktor \\(q^n\\) im Nenner", "Durch den zusätzlichen Faktor \\(q\\) im Zähler", "Durch ein Minuszeichen", "Gar nicht"],
+            "fehler": ["Der Faktor q im Zähler kennzeichnet vorschüssig", "Es gibt kein zusätzliches Minuszeichen", "Barwert = Endwert abgezinst mit q^n"]
+        },
+        {
+            "frage": "Ein Rentenbarwert soll bestimmt werden. Was ist er anschaulich?",
+            "antworten": ["Der Betrag, der heute angelegt werden muss, damit alle Raten daraus gezahlt werden können", "Die Summe der Raten", "Die letzte Rate", "Die Zinsen aller Raten"],
+            "fehler": ["Die reine Summe berücksichtigt keine Zinsen", "Der Barwert umfasst alle Raten", "Zinsen sind nur ein Teil"]
+        },
+        {
+            "frage": "Ist der Rentenbarwert einer Rente kleiner oder größer als die Summe aller Raten?",
+            "antworten": ["Kleiner, weil das angelegte Kapital Zinsen erwirtschaftet", "Größer, weil Zinsen hinzukommen", "Genau gleich", "Das hängt von der Rate ab"],
+            "fehler": ["Die Zinsen ermöglichen, dass weniger Kapital nötig ist", "Zinsen machen den Barwert kleiner als die Summe", "Das gilt für jede Rate, sofern q > 1"]
+        },
+        {
+            "frage": "\\(r = 1\\,000\\,€\\), \\(q = 1{,}1\\), \\(n = 1\\), nachschüssig. Wie groß ist \\(R_0\\)?",
+            "antworten": ["etwa \\(909{,}09\\,€\\)", "\\(1\\,000\\,€\\)", "\\(1\\,100\\,€\\)", "\\(100\\,€\\)"],
+            "fehler": ["Die Rate muss um ein Jahr abgezinst werden", "Das wäre aufgezinst", "Das sind nur die Zinsen"]
+        },
+        {
+            "frage": "\\(r = 1\\,000\\,€\\), \\(q = 1{,}1\\), \\(n = 1\\), vorschüssig. Wie groß ist \\(\\overline{R}_0\\)?",
+            "antworten": ["\\(1\\,000\\,€\\)", "etwa \\(909{,}09\\,€\\)", "\\(1\\,100\\,€\\)", "\\(0\\,€\\)"],
+            "fehler": ["Die vorschüssige Rate wird sofort gezahlt und nicht abgezinst", "Aufzinsen ist hier falsch", "Die Rate hat ihren vollen Wert"]
+        },
+        {
+            "frage": "Der Rentenbarwert ist gegeben, gesucht ist \\(r\\). Welcher Schritt ist richtig?",
+            "antworten": ["Den Faktor \\(\\dfrac{q^n - 1}{q^n \\cdot (q - 1)}\\) ausrechnen und \\(R_0\\) dadurch teilen", "\\(R_0\\) durch \\(n\\) teilen", "\\(R_0\\) mit \\(q^n\\) multiplizieren und durch \\(n\\) teilen", "Den Logarithmus bilden"],
+            "fehler": ["Zinsen bleiben unberücksichtigt", "Das ist keine korrekte Umformung", "Der Logarithmus wird nur bei gesuchtem n gebraucht"]
+        },
+        {
+            "frage": "Der Rentenbarwert ist gegeben, gesucht ist \\(n\\). Warum ist die Umformung schwieriger als beim Endwert?",
+            "antworten": ["Weil \\(q^n\\) sowohl im Zähler als auch im Nenner steht", "Weil \\(r\\) unbekannt ist", "Weil der Logarithmus nicht anwendbar ist", "Sie ist nicht schwieriger"],
+            "fehler": ["r ist gegeben", "Der Logarithmus ist am Ende anwendbar", "Man muss zuerst mit q^n multiplizieren und q^n ausklammern"]
+        },
+        {
+            "frage": "Eine Rente mit \\(r = 5\\,000\\,€\\) soll aus \\(R_0 = 40\\,000\\,€\\) bei 2,5 % gezahlt werden. Was ist über \\(n\\) sicher?",
+            "antworten": ["\\(n\\) ist größer als 8", "\\(n\\) ist genau 8", "\\(n\\) ist kleiner als 8", "\\(n\\) ist unendlich"],
+            "fehler": ["Ohne Zinsen wären es genau 8 Raten; die Zinsen verlängern die Dauer", "Die Zinsen ermöglichen mehr als 8 Raten", "Die Rate übersteigt die Zinsen deutlich, das Kapital wird aufgebraucht"]
+        },
+        {
+            "frage": "Was passiert mit \\(R_0\\), wenn der Zinssatz steigt (bei gleichem \\(r\\) und \\(n\\))?",
+            "antworten": ["\\(R_0\\) wird kleiner", "\\(R_0\\) wird größer", "\\(R_0\\) bleibt gleich", "\\(R_0\\) wird null"],
+            "fehler": ["Höhere Zinsen bedeuten, dass weniger Kapital nötig ist", "Der Zinssatz beeinflusst den Barwert", "Der Barwert bleibt positiv"]
+        }
+    ]
+}

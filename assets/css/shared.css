@@ -4761,6 +4761,36 @@ html.light .roulette-widget__event {
   margin: 0 auto;
 }
 
+/* ── Widget-specific: Tilgungsplan ── */
+.tp-widget .widget-controls {
+  max-width: 560px;
+}
+
+.tp-widget .diagramm {
+  max-width: 720px;
+}
+
+.tp-tableWrap {
+  flex: 1 1 100%;
+  overflow-x: auto;
+}
+
+.tp-table {
+  --table-cell-padding: 4px 10px;
+  --table-margin: 0;
+  margin: 0 auto;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.tp-table td:not(:first-child) {
+  text-align: right;
+}
+
+.tp-table tr.tp-last td {
+  font-weight: 600;
+}
+
 /* ── Widget-specific: QF table ── */
 .qf-tableWrap {
   flex: 0 0 auto;

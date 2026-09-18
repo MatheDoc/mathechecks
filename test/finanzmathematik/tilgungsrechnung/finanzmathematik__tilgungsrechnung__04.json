@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "„Wie hoch ist die jährliche Rate für Zins und Tilgung?“ Welche Größe ist gesucht?",
+            "antworten": ["Annuität \\(A\\)", "Darlehenssumme \\(K_0\\)", "Laufzeit \\(n\\)", "Restschuld \\(RK_k\\)"],
+            "fehler": ["Die Darlehenssumme ist gegeben", "Die Laufzeit ist gegeben", "Es ist nicht nach einem Zeitpunkt gefragt"]
+        },
+        {
+            "frage": "„Welche Darlehenssumme ist bei einer jährlichen Belastung von 8 000 € möglich?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(K_0\\)", "\\(A\\)", "\\(n\\)", "\\(RK_k\\)"],
+            "fehler": ["8 000 € ist die gegebene Annuität", "Die Laufzeit steht im Text", "Es geht nicht um einen Zwischenstand"]
+        },
+        {
+            "frage": "„Nach wie vielen Jahren ist das Darlehen getilgt?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(n\\)", "\\(A\\)", "\\(K_0\\)", "\\(RK_k\\)"],
+            "fehler": ["Die Annuität ist gegeben", "Die Darlehenssumme ist gegeben", "Am Ende ist die Restschuld null, gefragt ist der Zeitpunkt"]
+        },
+        {
+            "frage": "„Wie hoch ist die Schuld nach 7 Jahren?“ Welche Größe ist gesucht?",
+            "antworten": ["\\(RK_7\\)", "\\(n\\)", "\\(A\\)", "\\(K_0\\)"],
+            "fehler": ["7 Jahre sind gegeben", "Die Annuität ist gegeben", "Die Darlehenssumme ist gegeben"]
+        },
+        {
+            "frage": "Welche Formel wird verwendet, wenn \\(A\\) gesucht ist?",
+            "antworten": ["Annuitätenformel", "Restschuldformel", "\\(A = T_1 \\cdot q^n\\) nach \\(n\\) aufgelöst", "Zinseszinsformel"],
+            "fehler": ["Die Restschuldformel liefert RK_k", "Das liefert die Laufzeit", "Ein Darlehen ist keine Einmalanlage"]
+        },
+        {
+            "frage": "Welche Formel wird verwendet, wenn \\(n\\) gesucht ist?",
+            "antworten": ["\\(A = T_1 \\cdot q^n\\), nach \\(q^n\\) auflösen und logarithmieren", "Restschuldformel", "Annuitätenformel direkt", "Rentenendwertformel"],
+            "fehler": ["Die Restschuldformel setzt k voraus", "Die Annuitätenformel ist nach n schwer aufzulösen", "Es geht um ein Darlehen"]
+        },
+        {
+            "frage": "Ein Darlehen von 50 000 € zu 4 % soll mit 2 000 € jährlich getilgt werden. Was ist das Problem?",
+            "antworten": ["Die Annuität deckt genau die Zinsen, die Schuld sinkt nie", "Die Annuität ist zu hoch", "Es gibt kein Problem", "Der Zinssatz ist zu niedrig"],
+            "fehler": ["Die Annuität ist zu niedrig", "Die Zinsen im ersten Jahr betragen 2 000 €, es bleibt nichts zur Tilgung", "Der Zinssatz ist nicht das Problem"]
+        },
+        {
+            "frage": "Was ist ein Signalwort für die Annuität im Aufgabentext?",
+            "antworten": ["„gleich hohe Jahresraten“", "„Restschuld“", "„Laufzeit“", "„Zinssatz“"],
+            "fehler": ["Das deutet auf RK_k hin", "Das deutet auf n hin", "Das deutet auf p hin"]
+        },
+        {
+            "frage": "Ein Ergebnis lautet \\(n \\approx 15{,}1\\) Jahre. Wie ist das zu deuten?",
+            "antworten": ["15 volle Annuitäten und eine kleine Restzahlung im 16. Jahr", "Genau 15 Annuitäten", "16 volle Annuitäten", "Das Ergebnis ist ungültig"],
+            "fehler": ["Nach 15 Annuitäten bleibt eine kleine Restschuld", "Die 16. Zahlung ist nur eine Restzahlung", "Nicht-ganzzahlige Laufzeiten sind sinnvoll interpretierbar"]
+        },
+        {
+            "frage": "Bei einer Darlehensaufgabe mit gesuchtem \\(K_0\\): Was passiert mit der möglichen Darlehenssumme, wenn der Zinssatz steigt (gleiche Annuität, gleiche Laufzeit)?",
+            "antworten": ["Sie wird kleiner", "Sie wird größer", "Sie bleibt gleich", "Sie verdoppelt sich"],
+            "fehler": ["Mehr Zinsen bedeuten weniger Spielraum für die Tilgung", "Der Zinssatz beeinflusst die Darlehenssumme", "Es gibt keinen festen Faktor"]
+        }
+    ]
+}

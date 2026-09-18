@@ -1,8 +1,16 @@
 from aufgaben.core.tolerances import (
     ANALYSIS_CALC_DECIMALS,
     ANALYSIS_CALC_TOLERANCE,
+    FINANZ_GELD_DECIMALS,
+    FINANZ_LAUFZEIT_DECIMALS,
+    FINANZ_LAUFZEIT_TOLERANCE,
+    FINANZ_TILGUNGSPLAN_DECIMALS,
+    FINANZ_TILGUNGSPLAN_TOLERANCE,
+    FINANZ_ZINSSATZ_DECIMALS,
+    FINANZ_ZINSSATZ_TOLERANCE,
     STOCHASTIK_CALC_DECIMALS,
     STOCHASTIK_CALC_TOLERANCE,
+    finanz_geld_tolerance,
 )
 
 
@@ -49,6 +57,46 @@ def numerical_stochastik_calc(
         tolerance=STOCHASTIK_CALC_TOLERANCE,
         points=points,
         decimals=STOCHASTIK_CALC_DECIMALS,
+        decimal_comma=decimal_comma,
+    )
+
+
+def numerical_finanz_geld(value: float, points: int = 1, decimal_comma: bool = True) -> str:
+    return numerical(
+        value=value,
+        tolerance=finanz_geld_tolerance(value),
+        points=points,
+        decimals=FINANZ_GELD_DECIMALS,
+        decimal_comma=decimal_comma,
+    )
+
+
+def numerical_finanz_zinssatz(value: float, points: int = 1, decimal_comma: bool = True) -> str:
+    return numerical(
+        value=value,
+        tolerance=FINANZ_ZINSSATZ_TOLERANCE,
+        points=points,
+        decimals=FINANZ_ZINSSATZ_DECIMALS,
+        decimal_comma=decimal_comma,
+    )
+
+
+def numerical_finanz_laufzeit(value: float, points: int = 1, decimal_comma: bool = True) -> str:
+    return numerical(
+        value=value,
+        tolerance=FINANZ_LAUFZEIT_TOLERANCE,
+        points=points,
+        decimals=FINANZ_LAUFZEIT_DECIMALS,
+        decimal_comma=decimal_comma,
+    )
+
+
+def numerical_finanz_tilgungsplan(value: float, points: int = 1, decimal_comma: bool = True) -> str:
+    return numerical(
+        value=value,
+        tolerance=FINANZ_TILGUNGSPLAN_TOLERANCE,
+        points=points,
+        decimals=FINANZ_TILGUNGSPLAN_DECIMALS,
         decimal_comma=decimal_comma,
     )
 

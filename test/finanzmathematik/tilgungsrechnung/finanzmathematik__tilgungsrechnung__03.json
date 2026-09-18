@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "Wie lautet die Restschuldformel mit der Annuität?",
+            "antworten": ["\\(RK_k = K_0 \\cdot q^k - \\dfrac{A \\cdot (q^k - 1)}{q - 1}\\)", "\\(RK_k = K_0 - k \\cdot A\\)", "\\(RK_k = K_0 \\cdot q^k - k \\cdot A\\)", "\\(RK_k = K_0 - \\dfrac{A \\cdot (q^k - 1)}{q - 1}\\)"],
+            "fehler": ["Das ignoriert alle Zinsen", "Die Annuitäten müssen aufgezinst werden", "Das Darlehen muss aufgezinst werden"]
+        },
+        {
+            "frage": "Wie lautet die Restschuldformel mit der ersten Tilgung?",
+            "antworten": ["\\(RK_k = K_0 - \\dfrac{T_1 \\cdot (q^k - 1)}{q - 1}\\)", "\\(RK_k = K_0 - k \\cdot T_1\\)", "\\(RK_k = K_0 \\cdot q^k - T_1\\)", "\\(RK_k = K_0 - T_1 \\cdot q^k\\)"],
+            "fehler": ["Die Tilgungen wachsen mit q, sind also nicht konstant", "Es werden alle bisherigen Tilgungen abgezogen", "Es werden alle Tilgungen summiert, nicht nur die letzte"]
+        },
+        {
+            "frage": "Was bedeutet der Ausdruck \\(K_0 \\cdot q^k\\) in der Restschuldformel anschaulich?",
+            "antworten": ["Die Schuld, wenn k Jahre lang gar nichts gezahlt worden wäre", "Die Summe der gezahlten Annuitäten", "Die Zinsen des Jahres k", "Die Restschuld nach k Jahren"],
+            "fehler": ["Das ist der zweite Term der Formel", "Zinsen eines Jahres sind viel kleiner", "Die Restschuld ist die Differenz beider Terme"]
+        },
+        {
+            "frage": "Was bedeutet der Ausdruck \\(\\dfrac{A \\cdot (q^k - 1)}{q - 1}\\) in der Restschuldformel?",
+            "antworten": ["Den Endwert der k bisher gezahlten Annuitäten", "Die Summe der Zinsen", "Die Restschuld", "Den Barwert aller Annuitäten"],
+            "fehler": ["Es sind Annuitäten, nicht nur Zinsen", "Die Restschuld ergibt sich erst durch Subtraktion", "Es ist ein Endwert (aufgezinst), kein Barwert"]
+        },
+        {
+            "frage": "Wie berechnet man die Zinsen im Jahr \\(k + 1\\), wenn \\(RK_k\\) bekannt ist?",
+            "antworten": ["\\(Z_{k+1} = RK_k \\cdot \\frac{p}{100}\\)", "\\(Z_{k+1} = A \\cdot \\frac{p}{100}\\)", "\\(Z_{k+1} = K_0 \\cdot \\frac{p}{100}\\)", "\\(Z_{k+1} = RK_k - A\\)"],
+            "fehler": ["Zinsen beziehen sich auf die Schuld", "Das wären die Zinsen des ersten Jahres", "Das ist keine Zinsberechnung"]
+        },
+        {
+            "frage": "Wie berechnet man die Tilgung im Jahr \\(k + 1\\)?",
+            "antworten": ["\\(T_{k+1} = A - Z_{k+1}\\)", "\\(T_{k+1} = A + Z_{k+1}\\)", "\\(T_{k+1} = RK_k - Z_{k+1}\\)", "\\(T_{k+1} = Z_{k+1}\\)"],
+            "fehler": ["Zinsen werden abgezogen", "Von der Annuität, nicht von der Restschuld", "Tilgung und Zinsen sind verschieden"]
+        },
+        {
+            "frage": "Wie berechnet man die Gesamtzinsen über die Laufzeit?",
+            "antworten": ["\\(n \\cdot A - K_0\\)", "\\(n \\cdot A\\)", "\\(K_0 \\cdot \\frac{p}{100} \\cdot n\\)", "\\(A - K_0\\)"],
+            "fehler": ["Das ist die Gesamtzahlung inklusive Tilgung", "Die Zinsen sinken jährlich, das wäre zu viel", "Es werden n Annuitäten gezahlt"]
+        },
+        {
+            "frage": "Ein Darlehen über 100 000 € wird mit 15 Annuitäten von je 9 000 € zurückgezahlt. Wie hoch sind die Gesamtzinsen?",
+            "antworten": ["\\(35\\,000\\,€\\)", "\\(135\\,000\\,€\\)", "\\(9\\,000\\,€\\)", "\\(60\\,000\\,€\\)"],
+            "fehler": ["Das ist die Gesamtzahlung, die Darlehenssumme muss abgezogen werden", "Das ist eine einzelne Annuität", "Rechenfehler"]
+        },
+        {
+            "frage": "Warum wird bei der Restschuld nach 10 Jahren die Formel und nicht der Tilgungsplan verwendet?",
+            "antworten": ["Weil die Formel den Wert in einem Schritt liefert, ohne zehn Zeilen zu rechnen", "Weil der Tilgungsplan falsch ist", "Weil die Formel genauer ist als der Plan", "Man darf den Plan nicht verwenden"],
+            "fehler": ["Der Plan ist korrekt, nur aufwendig", "Der Plan mit Rundung ist der eigentliche Vertrag; die Formel weicht um Cent ab", "Beides ist zulässig"]
+        },
+        {
+            "frage": "Was gilt für \\(RK_n\\), also die Restschuld nach der letzten Annuität?",
+            "antworten": ["\\(RK_n = 0\\)", "\\(RK_n = A\\)", "\\(RK_n = K_0\\)", "\\(RK_n = Z_n\\)"],
+            "fehler": ["Nach der letzten Zahlung ist die Schuld getilgt", "Die Schuld ist am Ende null", "Zinsen sind Teil der letzten Annuität, keine Restschuld"]
+        }
+    ]
+}

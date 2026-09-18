@@ -18,7 +18,9 @@ aufgaben/
 │   ├── base.py             # Abstrakte Basisklasse TaskGenerator
 │   ├── registry.py         # Auto-Discovery aller Generatoren
 │   ├── analysis/           # Generatoren für Analysis
-│   └── stochastik/         # Generatoren für Stochastik
+│   ├── stochastik/         # Generatoren für Stochastik
+│   ├── lineare_algebra/    # Generatoren für Lineare Algebra
+│   └── finanzmathematik/   # Generatoren für Finanzmathematik (shared.py: Formeln/Formatierung, szenarien.py: 20 Textszenarien)
 ├── exports/
 │   └── json/               # Ausgabeverzeichnis (gebiet/lernbereich/sammlung.json)
 ├── preview/                # Lokale HTML-Vorschau der erzeugten Aufgaben
@@ -254,6 +256,13 @@ Der `sammlung`-Name bestimmt direkt den Dateinamen der JSON-Ausgabe (z. B. `kenn
   Richtig: `0,3` · `450` · `0,056` · `40` · `8`
   Falsch: `723` · `23,4` · `0,928` · `3,54`
 - **Stochastik:** Gegebene Wahrscheinlichkeit mit höchstens 4 Nachkommastellen.
+- **Finanzmathematik** (`aufgaben/core/tolerances.py`, Helfer `numerical_finanz_*` in `placeholders.py`):
+  - Geldbeträge: relative Toleranz 0,1 % des Werts, mindestens 0,50 € (fängt Zwischenrundung von $q^n$ ab).
+  - Zinssatz $p$: absolut 0,01 Prozentpunkte. Laufzeit $n$: absolut 0,05; nicht-ganzzahlige Laufzeiten werden unverändert als Lösung akzeptiert.
+  - Tilgungsplan-Zellen und Rundungsdifferenz: absolut 0,01 (zeilenweise Rundung auf 2 Nachkommastellen, gerundete Werte werden weiterverwendet).
+  - Im Aufgabentext ist der Zinssatz $p$ gegeben (z. B. 3,25 %), gerechnet wird mit $q = 1 + \frac{p}{100}$. Nur jährliche Verzinsung.
+  - Innermathematische Checks: allgemeine Einleitung ohne Zahlen, pro gesuchter Größe eine Teilfrage mit eigenem Zahlensatz; vor-/nachschüssig zufällig. Vermischte Sachaufgaben ebenso, Reihenfolge der Teilfragen zufällig.
+  - Textszenarien: gemeinsamer Pool (privat und Unternehmen) mit Betragsstufe pro Szenario; Beträge als Vielfache von 100/1 000/10 000 je Stufe.
 - **Diagramme:**
   - Werte so wählen, dass Graphen ihr typisches Erscheinungsbild im Sachzusammenhang haben.
   - Gesuchte Werte müssen gut abgelesen werden können.

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 160" fill="none">
+  <!-- Timeline -->
+  <line x1="25" y1="100" x2="220" y2="100" stroke="#f472b6" stroke-width="1.5" opacity=".5"/>
+  <polygon points="220,96 228,100 220,104" fill="#f472b6" opacity=".5"/>
+  <!-- Year ticks -->
+  <line x1="40" y1="94" x2="40" y2="106" stroke="#f472b6" stroke-width="1" opacity=".5"/>
+  <line x1="75" y1="94" x2="75" y2="106" stroke="#f472b6" stroke-width="1" opacity=".5"/>
+  <line x1="110" y1="94" x2="110" y2="106" stroke="#f472b6" stroke-width="1" opacity=".5"/>
+  <line x1="145" y1="94" x2="145" y2="106" stroke="#f472b6" stroke-width="1" opacity=".5"/>
+  <line x1="180" y1="94" x2="180" y2="106" stroke="#f472b6" stroke-width="1" opacity=".5"/>
+  <!-- Equal payments r as arrows -->
+  <g stroke="#f472b6" stroke-width="2" opacity=".7">
+    <line x1="75" y1="60" x2="75" y2="92"/>
+    <line x1="110" y1="60" x2="110" y2="92"/>
+    <line x1="145" y1="60" x2="145" y2="92"/>
+    <line x1="180" y1="60" x2="180" y2="92"/>
+  </g>
+  <g fill="#f472b6" opacity=".7">
+    <polygon points="71,88 75,95 79,88"/>
+    <polygon points="106,88 110,95 114,88"/>
+    <polygon points="141,88 145,95 149,88"/>
+    <polygon points="176,88 180,95 184,88"/>
+  </g>
+  <!-- Labels -->
+  <text x="70" y="54" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">r</text>
+  <text x="105" y="54" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">r</text>
+  <text x="140" y="54" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">r</text>
+  <text x="175" y="54" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">r</text>
+  <text x="32" y="122" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">R₀</text>
+  <text x="172" y="122" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".7">Rₙ</text>
+  <text x="36" y="140" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".5">Barwert</text>
+  <text x="164" y="140" font-family="system-ui" font-size="9" fill="#f472b6" opacity=".5">Endwert</text>
+</svg>

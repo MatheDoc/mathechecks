@@ -1,0 +1,54 @@
+{
+    "fragen": [
+        {
+            "frage": "In einer Zeile des Tilgungsplans sind Restschuld zu Jahresbeginn und Zinsen bekannt. Wie erhält man den Zinssatz?",
+            "antworten": ["\\(p = \\dfrac{Z_k}{RK_{k-1}} \\cdot 100\\)", "\\(p = \\dfrac{RK_{k-1}}{Z_k} \\cdot 100\\)", "\\(p = Z_k - RK_{k-1}\\)", "\\(p = Z_k \\cdot RK_{k-1}\\)"],
+            "fehler": ["Zähler und Nenner vertauscht", "Der Zinssatz ist ein Verhältnis, keine Differenz", "Der Zinssatz ist ein Quotient"]
+        },
+        {
+            "frage": "Restschuld zu Jahresbeginn 20 000 €, Zinsen 900 €. Wie hoch ist der Zinssatz?",
+            "antworten": ["\\(4{,}5\\,\\%\\)", "\\(9\\,\\%\\)", "\\(0{,}45\\,\\%\\)", "\\(45\\,\\%\\)"],
+            "fehler": ["900 / 20 000 = 0,045", "Kommastelle falsch gesetzt", "Kommastelle falsch gesetzt"]
+        },
+        {
+            "frage": "Zinsen 750 € und Tilgung 4 250 € einer Zeile sind bekannt. Wie hoch ist die Annuität?",
+            "antworten": ["\\(5\\,000\\,€\\)", "\\(3\\,500\\,€\\)", "\\(4\\,250\\,€\\)", "\\(750\\,€\\)"],
+            "fehler": ["Zinsen und Tilgung werden addiert, nicht subtrahiert", "Das ist nur die Tilgung", "Das sind nur die Zinsen"]
+        },
+        {
+            "frage": "Restschuld am Jahresende 30 000 € und Tilgung 5 000 € sind bekannt. Wie hoch war die Restschuld zu Jahresbeginn?",
+            "antworten": ["\\(35\\,000\\,€\\)", "\\(25\\,000\\,€\\)", "\\(30\\,000\\,€\\)", "\\(5\\,000\\,€\\)"],
+            "fehler": ["Rückwärts wird die Tilgung addiert", "Die Tilgung hat die Schuld bereits verringert", "Das ist die Tilgung"]
+        },
+        {
+            "frage": "Bekannt sind Annuität \\(A\\), Zinssatz und die Restschuld am Jahresende \\(RK_k\\). Wie erhält man die Restschuld am Jahresanfang \\(RK_{k-1}\\)?",
+            "antworten": ["\\(RK_{k-1} = \\dfrac{RK_k + A}{q}\\)", "\\(RK_{k-1} = RK_k + A\\)", "\\(RK_{k-1} = (RK_k + A) \\cdot q\\)", "\\(RK_{k-1} = RK_k - A\\)"],
+            "fehler": ["Die Zinsen des Jahres müssen herausgerechnet werden", "Es muss durch q geteilt werden, nicht multipliziert", "Rückwärts wird addiert, nicht subtrahiert"]
+        },
+        {
+            "frage": "Woher stammt die Beziehung \\(RK_k = q \\cdot RK_{k-1} - A\\)?",
+            "antworten": ["Aus \\(RK_k = RK_{k-1} - T_k\\) mit \\(T_k = A - RK_{k-1} \\cdot \\frac{p}{100}\\)", "Aus der Zinseszinsformel allein", "Aus der Rentenendwertformel", "Sie ist falsch"],
+            "fehler": ["Die Annuität muss berücksichtigt werden", "Es geht um eine einzelne Zeile, nicht um eine Rente", "Sie ergibt sich direkt aus den Zeilenzusammenhängen"]
+        },
+        {
+            "frage": "Mit welcher Zeile sollte man beim Vervollständigen beginnen?",
+            "antworten": ["Mit der Zeile, in der die meisten Werte bekannt sind", "Immer mit der ersten Zeile", "Immer mit der letzten Zeile", "Das ist egal"],
+            "fehler": ["Die erste Zeile kann unvollständig sein", "Die letzte Zeile kann unvollständig sein", "Die Reihenfolge bestimmt, ob man weiterrechnen kann"]
+        },
+        {
+            "frage": "Der Zinssatz ist bekannt, die Restschuld am Jahresanfang nicht, aber die Zinsen der Zeile. Wie erhält man die Restschuld am Jahresanfang?",
+            "antworten": ["\\(RK_{k-1} = \\dfrac{Z_k}{p} \\cdot 100\\)", "\\(RK_{k-1} = Z_k \\cdot p\\)", "\\(RK_{k-1} = Z_k + p\\)", "\\(RK_{k-1} = \\dfrac{p}{Z_k}\\)"],
+            "fehler": ["Zinsen sind ein Anteil der Schuld, also wird geteilt", "Prozent und Betrag können nicht addiert werden", "Zähler und Nenner vertauscht"]
+        },
+        {
+            "frage": "Zinsen 600 €, Zinssatz 3 %. Wie hoch war die Restschuld zu Jahresbeginn?",
+            "antworten": ["\\(20\\,000\\,€\\)", "\\(18\\,000\\,€\\)", "\\(2\\,000\\,€\\)", "\\(200\\,000\\,€\\)"],
+            "fehler": ["600 / 0,03 = 20 000", "Kommastelle falsch gesetzt", "Kommastelle falsch gesetzt"]
+        },
+        {
+            "frage": "Beim Rückwärtsrechnen weicht das Ergebnis um einen Cent vom Originalplan ab. Woran liegt das?",
+            "antworten": ["Am zeilenweisen Runden im Originalplan", "An einem falschen Zinssatz", "An einer falschen Formel", "Das kann nicht passieren"],
+            "fehler": ["Der Zinssatz ist korrekt", "Die Formel ist korrekt, nur die Rundung wirkt sich aus", "Rundung erzeugt kleine Abweichungen"]
+        }
+    ]
+}
