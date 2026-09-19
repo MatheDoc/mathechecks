@@ -14,8 +14,8 @@
     {% endif %}
     {% endfor %}
     <a class="mat-card mat-card--compact" href="{{ start_url | relative_url }}" data-gebiet="{{ lb.gebiet }}">
-        {% if lb.szenario_bild %}
-        <img class="mat-card-img" src="{{ '/assets/img/start/' | append: lb.szenario_bild | relative_url }}" alt=""
+        {% if lb.bild %}
+        <img class="mat-card-img" src="{{ '/assets/img/start/' | append: lb.bild | relative_url }}" alt=""
             loading="lazy">
         {% endif %}
         <span class="mat-badge gebiet-badge" data-gebiet="{{ lb.gebiet }}">{{ gebiet_label }}</span>

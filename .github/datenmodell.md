@@ -13,7 +13,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 
 | Datenentität | Datei/Ordner | Granularität | Inhalt |
 |---|---|---|---|
-| **Lernbereich-Metadaten** | `_data/lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Szenario (Kontext, Einstiegsfrage, Abschluss, Bild) |
+| **Lernbereich-Metadaten** | `_data/lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Bild, didaktische Reihenfolge |
 | **Check-Metadaten** | `checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
@@ -31,43 +31,31 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 Start               Name, Gebiet
 Warm-Up                                                                          meist 3 Karten
 Kompetenzliste                        Kompetenztext
-Skript (Szenario)   szenario_einstieg
-Skript (Fachinhalt) (direkt in MD)
+Skript (Fachinhalt) (direkt in MD, inkl. Einführungs-/Leitbeispiel)
 Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
-Skript (Abschluss)  szenario_abschluss
 Training                                                          Aufgaben
 Recall                               Tipps, Ich kann
 Feynman                               Tipps        Beispiel
 Flashcards                                                        Aufgaben
 ```
 
-## Kernszenario pro Lernbereich
+## Anwendungsszenarien im Skript
 
-Jeder Lernbereich hat ein durchgängiges Anwendungsszenario, das in `_data/lernbereiche.yml` definiert ist.
+Szenarien werden direkt im `skript.md` erzählt, nicht in Metadaten gepflegt. Zwei zulässige Formen:
 
-### Felder
+| Form | Wann | Beispiel |
+|---|---|---|
+| **Einführungsbeispiel** (Standard) | Kontext trägt nur den Einstieg | Hypothesentests („Verspätete Schüler“), Zufallsgrößen |
+| **Leitbeispiel** | Ein fester Zahlensatz kann in jedem Abschnitt weitergerechnet werden | Finanzmathematik (Geldgeschenk, Sparplan, Café-Darlehen) |
 
-| Feld | Zweck |
-|---|---|
-| `szenario` | Kurzbeschreibung des Kontexts (1 Satz) |
-| `szenario_einstieg` | Offene Frage, die zu Beginn des Skripts aufgeworfen wird (noch nicht lösbar) |
-| `szenario_abschluss` | Auflösung am Ende des Skripts (Frage mit gelernten Methoden beantwortet) |
-| `szenario_bild` | Dateiname des charakteristischen Bilds (`assets/img/start/<dateiname>`) |
+Regeln:
 
-### Verankerung im Skript
-
-```
-## [Szenario-Titel]              ← Bild + Alltagstext + offene Frage (szenario_einstieg)
-## Einführung                     ← Fachlicher Einstieg (wie bisher)
-## ...                            ← Fachinhalt mit Check-Ankern
-## Zurück zum [Szenario]         ← Frage lösen mit gelernten Methoden (szenario_abschluss)
-```
-
-### Designentscheidung
-
+- Das Szenario wird in der Einführung mit konkreten Zahlen beschrieben und sofort für den ersten Begriff genutzt. Keine große Eingangsfrage, die erst am Ende beantwortet wird.
+- Ein Einführungsbeispiel darf im Verlauf des Skripts auslaufen, sobald es dem Verständnis nicht mehr dient. Kein Rückblick-Abschnitt („Zurück zu …“) am Ende.
+- Ein Leitbeispiel begegnet im Verlauf verschiedenen Fragestellungen; die Auflösung ergibt sich abschnittsweise, nicht als Schlusspointe.
 - **Übungsaufgaben** (Training, Flashcards) sind bewusst **nicht** an das Szenario gebunden, um kontextunabhängigen Transfer zu sichern.
-- **Warm-Up-Karten** dürfen sich am Szenario orientieren, funktionieren aber auch als eigenständiger, motivierender Auftakt ohne direkte Skript-Vorbereitung.
-- Das Szenario dient als **roter Faden**, nicht als Korsett.
+- **Warm-Up-Karten** dürfen sich am Szenario orientieren, müssen es aber nicht.
+- Das Feld `bild` in `_data/lernbereiche.yml` liefert das charakteristische Bild für die Materialkarte (`assets/img/start/<dateiname>`).
 
 
 ## Beispiele
@@ -104,7 +92,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |
 | Feynman | `feynman.md` | `checks.json` (Tipps) + `beispiele/*.md` | Tipps + Beispiel, via JS |
 | Test | `test.md` | `test/<gebiet>/<lernbereich>/<check_id>.json` | 10 Single-Choice-Fragen pro Check, via JS |
-| Skript | `skript.md` | direkt in MD + Szenario aus `_data/lernbereiche.yml` | Fachinhalt, Check-Anker |
+| Skript | `skript.md` | direkt in MD | Fachinhalt mit Einführungs-/Leitbeispiel, Check-Anker |
 | Flashcards | `flashcards.md` | `aufgaben/exports/json/` | Karteninhalt aus Aufgaben; Feed-Spaced-Repetition serverseitig |
 
 ## Persistente Plattformdaten

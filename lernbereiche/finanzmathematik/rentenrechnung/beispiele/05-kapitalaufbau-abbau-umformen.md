@@ -1,6 +1,6 @@
 ---
 layout: null
-permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/04-kapitalaufbau-abbau-umformen.html
+permalink: /lernbereiche/finanzmathematik/rentenrechnung/beispiele/05-kapitalaufbau-abbau-umformen.html
 ---
 Bestimmen Sie jeweils die gesuchte Größe.
 

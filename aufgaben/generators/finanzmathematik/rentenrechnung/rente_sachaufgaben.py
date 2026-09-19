@@ -1,4 +1,4 @@
-"""Check 05 – Rente im Sachkontext (vier Teilfragen mit eigenen Zahlen, zufällige Reihenfolge)."""
+"""Check 04 – Rente im Sachkontext (vier Teilfragen mit eigenen Zahlen, zufällige Reihenfolge)."""
 
 from __future__ import annotations
 

@@ -4517,43 +4517,11 @@
         "LernbereichAnzeigename": "Rentenrechnung",
         "Nummer": 4,
         "check_id": "finanzmathematik__rentenrechnung__04",
-        "Ich kann": "Zinseszins- und Rentenendwertformel zu $E_n = K_n \\pm R_n$ kombinieren und jede Größe außer $q$ bestimmen.",
-        "Sammlung": "kapitalaufbau-abbau-umformen",
-        "Schlagwort": "Kapitalauf- und -abbau",
-        "Flashtyp": "gruppiert",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
-        "Tipps": [
-            {
-                "cue": "Aufbau",
-                "response": "Startkapital plus Einzahlungen: $E_n = K_0 \\cdot q^n + R_n$"
-            },
-            {
-                "cue": "Abbau",
-                "response": "Startkapital minus Entnahmen: $E_n = K_0 \\cdot q^n - R_n$"
-            },
-            {
-                "cue": "$K_0$ oder $r$ gesucht",
-                "response": "Rentenanteil bzw. Zinseszinsanteil ausrechnen, dann lineare Gleichung lösen"
-            },
-            {
-                "cue": "$n$ gesucht",
-                "response": "$q^n$ ausklammern: $q^n \\cdot \\left(K_0 \\pm \\frac{r}{q-1}\\right) = E_n \\pm \\frac{r}{q-1}$, dann Logarithmus"
-            }
-        ]
-    },
-    {
-        "Gebiet": "finanzmathematik",
-        "Lernbereich": "rentenrechnung",
-        "LernbereichAnzeigename": "Rentenrechnung",
-        "Nummer": 5,
-        "check_id": "finanzmathematik__rentenrechnung__05",
         "Ich kann": "in Textaufgaben zur Rentenrechnung Zahlungsweise, gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
         "Sammlung": "rente-sachaufgaben",
         "Schlagwort": "Rente im Sachkontext",
         "Flashtyp": "gruppiert",
-        "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
         "questionOrder": "fixed",
         "tippOrder": "fixed",
         "Tipps": [
@@ -4572,6 +4540,38 @@
             {
                 "cue": "Rechnen",
                 "response": "passende Formel wählen, Werte einsetzen, nach der offenen Größe auflösen"
+            }
+        ]
+    },
+    {
+        "Gebiet": "finanzmathematik",
+        "Lernbereich": "rentenrechnung",
+        "LernbereichAnzeigename": "Rentenrechnung",
+        "Nummer": 5,
+        "check_id": "finanzmathematik__rentenrechnung__05",
+        "Ich kann": "Zinseszins- und Rentenendwertformel zu $E_n = K_n \\pm R_n$ kombinieren und jede Größe außer $q$ bestimmen.",
+        "Sammlung": "kapitalaufbau-abbau-umformen",
+        "Schlagwort": "Kapitalauf- und -abbau",
+        "Flashtyp": "gruppiert",
+        "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
+        "questionOrder": "fixed",
+        "tippOrder": "fixed",
+        "Tipps": [
+            {
+                "cue": "Aufbau",
+                "response": "Startkapital plus Einzahlungen: $E_n = K_0 \\cdot q^n + R_n$"
+            },
+            {
+                "cue": "Abbau",
+                "response": "Startkapital minus Entnahmen: $E_n = K_0 \\cdot q^n - R_n$"
+            },
+            {
+                "cue": "$K_0$ oder $r$ gesucht",
+                "response": "Rentenanteil bzw. Zinseszinsanteil ausrechnen, dann lineare Gleichung lösen"
+            },
+            {
+                "cue": "$n$ gesucht",
+                "response": "$q^n$ ausklammern: $q^n \\cdot \\left(K_0 \\pm \\frac{r}{q-1}\\right) = E_n \\pm \\frac{r}{q-1}$, dann Logarithmus"
             }
         ]
     },

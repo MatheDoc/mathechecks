@@ -14,18 +14,11 @@ permalink: /lernbereiche/analysis/differentialrechnung-ganzrationaler-funktionen
 
 # Differentialrechnung ganzrationaler Funktionen: Ableitung, Extrem- und Wendepunkte
 
-## E-Scooter-Fahrt durch die Stadt
+## Einführung
 
 Du fährst mit dem E-Scooter durch die Stadt. Mal beschleunigst du auf einer freien Strecke, mal bremst du vor einer Kurve, mal rollst du fast gleichmäßig aus. Mathematisch kann man so eine Fahrt mit einer **Weg-Funktion** beschreiben: Jedem Zeitpunkt wird eine zurückgelegte Strecke zugeordnet.
 
-Sobald wir die Weg-Funktion kennen, tauchen sofort neue Fragen auf:
-
-- Wie schnell warst du im Durchschnitt in einem bestimmten Abschnitt?
-- Wie groß war die Geschwindigkeit in genau einem bestimmten Moment?
-- Wann wurde die Geschwindigkeit größer, wann kleiner?
-- An welcher Stelle war die Geschwindigkeit maximal?
-
-Genau dafür braucht man die Differentialrechnung. Die erste Ableitung beschreibt die **Steigung** des Graphen und im Bewegungskontext die **Geschwindigkeit**. Die zweite Ableitung beschreibt, wie sich diese Steigung verändert, also im Bewegungskontext die **Beschleunigung**.
+Sobald wir die Weg-Funktion kennen, lassen sich daraus weitere Größen gewinnen: die durchschnittliche Geschwindigkeit in einem Abschnitt, die Geschwindigkeit in einem bestimmten Moment oder der Zeitpunkt, an dem sie am größten war. Genau dafür braucht man die Differentialrechnung. Die erste Ableitung beschreibt die **Steigung** des Graphen und im Bewegungskontext die **Geschwindigkeit**. Die zweite Ableitung beschreibt, wie sich diese Steigung verändert, also im Bewegungskontext die **Beschleunigung**. Der Bewegungskontext begleitet die ersten Abschnitte; später werden die Verfahren allgemein für ganzrationale Funktionen entwickelt.
 
 ## Von der Strecke zur Änderungsrate
 
@@ -349,19 +342,5 @@ So entsteht ein lineares Gleichungssystem für $a$, $b$, $c$ und $d$. Der Schwer
 Wenn zusätzlich „Hochpunkt“ oder „Tiefpunkt“ angegeben ist, dient das als Plausibilitätskontrolle für die gefundene Funktion.
 
 {% include check-anker.html nummer="14" %}
-
-## Zurück zur E-Scooter-Fahrt
-
-Jetzt lässt sich die Ausgangsfrage präzise beantworten: Aus der Weg-Funktion gewinnt man durch Ableiten die Geschwindigkeitsfunktion. Wer wissen will, wo die Fahrt am schnellsten war, sucht also nicht den Hochpunkt des Weggraphen, sondern das **globale Maximum der Geschwindigkeitsfunktion** auf dem betrachteten Zeitintervall.
-
-Damit greifen die Bausteine dieses Lernbereichs ineinander:
-
-- mittlere Änderungsrate für den Durchschnitt,
-- erste Ableitung für momentane Geschwindigkeit,
-- zweite Ableitung für die Veränderung der Steigung,
-- Extremstellen, Monotonie, Wendestellen und Krümmung für die qualitative Analyse,
-- globale Betrachtungen für die eigentliche Entscheidungsfrage.
-
-Genau deshalb ist die Differentialrechnung mehr als nur „ableiten können“: Sie übersetzt einen Funktionsterm in Aussagen über Verhalten, Bewegung und Struktur.
 
 

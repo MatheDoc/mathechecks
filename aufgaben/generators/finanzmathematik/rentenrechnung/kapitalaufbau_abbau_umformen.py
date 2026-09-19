@@ -1,4 +1,4 @@
-"""Check 04 – Kapitalauf- und -abbau umformen (innermathematisch, vier Teilfragen)."""
+"""Check 05 – Kapitalauf- und -abbau umformen (innermathematisch, vier Teilfragen)."""
 
 from __future__ import annotations
 

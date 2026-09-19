@@ -90,7 +90,7 @@ Hinweis: In den aktuellen `_data/warmup/<slug>.yml`-Dateien steht jeweils nur de
 2. **Karte 1 muss ziehen.** Sie beginnt nicht mit Definition oder Erklärung, sondern mit einer Frage, Irritation, Entscheidung oder emotionalen Relevanz.
 3. **Eine Thematik pro Warm-Up.** Die Karten gehören zusammen und eröffnen kein Sammelsurium aus losen Beispielen.
 4. **Gesprächstauglich schreiben.** Jede Karte soll sich als Ausgangspunkt für ein kurzes Unterrichtsgespräch eignen.
-5. **Szenarien sind optionales Material.** Warm-Ups dürfen sich an `szenario_*` orientieren, müssen das Skript-Szenario aber nicht vorbereiten.
+5. **Szenarien sind optionales Material.** Warm-Ups dürfen sich am Einführungs-/Leitbeispiel des Skripts orientieren, müssen es aber nicht vorbereiten.
 6. **Alltagsnah oder lebensnah.** Relevanz kann Alltag, Risiko, Geld, Fairness, Technik, Gesellschaft oder Entscheidungssituationen betreffen.
 7. **Fachlich korrekt.** Mathematische Aussagen müssen stimmen. Im Zweifel: `agent-content-didaktik` konsultieren.
 8. **Kurz und prägnant.** Max. 2 Sätze pro Text/Frage. Details und Auflösungen dürfen etwas länger sein.

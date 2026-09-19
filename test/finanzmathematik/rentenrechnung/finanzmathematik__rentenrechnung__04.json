@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Wie lautet die Formel für das Endkapital beim Kapitalaufbau (nachschüssig)?",
-            "antworten": ["\\(E_n = K_0 \\cdot q^n + R_n\\)", "\\(E_n = K_0 \\cdot q^n - R_n\\)", "\\(E_n = K_0 + R_n\\)", "\\(E_n = (K_0 + r) \\cdot q^n\\)"],
-            "fehler": ["Minus gilt beim Kapitalabbau", "Das Startkapital muss aufgezinst werden", "Die Raten werden nicht alle n Jahre verzinst"]
+            "frage": "Welche Formulierung im Text deutet auf eine vorschüssige Rente hin?",
+            "antworten": ["„jeweils zu Beginn eines Jahres“", "„jeweils am Ende eines Jahres“", "„einmalig heute“", "„nachschüssig“"],
+            "fehler": ["Das ist nachschüssig", "Eine Einmalzahlung ist keine Rente", "Das Wort selbst bedeutet Zahlung am Jahresende"]
         },
         {
-            "frage": "Welche beiden Formeln werden beim Kapitalauf- und -abbau kombiniert?",
-            "antworten": ["Zinseszinsformel und Rentenendwertformel", "Zinseszinsformel und Annuitätenformel", "Rentenbarwert- und Rentenendwertformel", "Annuitätenformel und Restschuldformel"],
-            "fehler": ["Die Annuitätenformel gehört zur Tilgungsrechnung", "Das Startkapital wird mit der Zinseszinsformel bewertet", "Beide gehören zur Tilgungsrechnung"]
+            "frage": "„Wie hoch ist das Guthaben nach der letzten Einzahlung?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenendwert", "Rentenbarwert", "Rate", "Laufzeit"],
+            "fehler": ["Der Barwert bezieht sich auf heute", "Die Rate ist gegeben", "Die Laufzeit ist gegeben"]
         },
         {
-            "frage": "Beim Kapitalabbau werden Beträge …",
-            "antworten": ["entnommen, das Vorzeichen vor \\(R_n\\) ist minus", "eingezahlt, das Vorzeichen vor \\(R_n\\) ist plus", "entnommen, das Vorzeichen vor \\(K_0 \\cdot q^n\\) ist minus", "weder ein- noch ausgezahlt"],
-            "fehler": ["Einzahlungen sind Kapitalaufbau", "Das Startkapital bleibt positiv aufgezinst", "Ohne Zahlungen wäre es reine Zinseszinsrechnung"]
+            "frage": "„Welcher Betrag muss heute angelegt werden, um 10 Jahre lang 3 000 € entnehmen zu können?“ Welche Größe ist gesucht?",
+            "antworten": ["Rentenbarwert", "Rentenendwert", "Rate", "Laufzeit"],
+            "fehler": ["Gefragt ist der heutige Betrag", "Die Rate 3 000 € ist gegeben", "10 Jahre sind gegeben"]
         },
         {
-            "frage": "\\(K_0 = 1\\,000\\) €, \\(r = 100\\) € nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalaufbau. Wie groß ist \\(E_1\\)?",
-            "antworten": ["\\(1\\,200\\) €", "\\(1\\,210\\) €", "\\(1\\,100\\) €", "\\(1\\,110\\) €"],
-            "fehler": ["Die nachschüssige Rate wird im ersten Jahr nicht verzinst", "Die Rate wurde vergessen", "Rate und Zinsen falsch kombiniert"]
+            "frage": "„Wie hoch muss die jährliche Einzahlung sein, um nach 8 Jahren 20 000 € zu haben?“ Welche Größe ist gesucht?",
+            "antworten": ["Rate \\(r\\)", "Rentenendwert \\(R_n\\)", "Laufzeit \\(n\\)", "Rentenbarwert \\(R_0\\)"],
+            "fehler": ["20 000 € ist der gegebene Endwert", "8 Jahre sind gegeben", "Es geht um einen Endwert, nicht um einen Barwert"]
         },
         {
-            "frage": "\\(K_0 = 1\\,000\\) €, \\(r = 100\\) € nachschüssig, \\(q = 1{,}1\\), \\(n = 1\\), Kapitalabbau. Wie groß ist \\(E_1\\)?",
-            "antworten": ["\\(1\\,000\\) €", "\\(900\\) €", "\\(1\\,100\\) €", "\\(990\\) €"],
-            "fehler": ["Das Startkapital muss zuerst aufgezinst werden: 1 100 − 100", "Die Entnahme wurde vergessen", "Rechenfehler"]
+            "frage": "„Wie viele Jahre kann der Betrag in voller Höhe entnommen werden?“ Welche Größe ist gesucht?",
+            "antworten": ["Laufzeit \\(n\\)", "Rate \\(r\\)", "Rentenbarwert \\(R_0\\)", "Zinsfaktor \\(q\\)"],
+            "fehler": ["Die Rate ist gegeben", "Das angelegte Kapital ist gegeben", "Nach q wird nicht umgeformt"]
         },
         {
-            "frage": "\\(E_n\\) und \\(r\\) sind gegeben, \\(K_0\\) ist gesucht (Kapitalaufbau). Welche Umformung ist richtig?",
-            "antworten": ["\\(K_0 = \\dfrac{E_n - R_n}{q^n}\\)", "\\(K_0 = \\dfrac{E_n + R_n}{q^n}\\)", "\\(K_0 = (E_n - R_n) \\cdot q^n\\)", "\\(K_0 = E_n - R_n\\)"],
-            "fehler": ["Plus gilt beim Kapitalabbau", "Es muss abgezinst werden, nicht aufgezinst", "Das Abzinsen fehlt"]
+            "frage": "Jemand zahlt 5 Jahre lang jeweils am Jahresende 1 000 € ein. Wie oft wird die erste Rate verzinst?",
+            "antworten": ["4 Jahre", "5 Jahre", "1 Jahr", "gar nicht"],
+            "fehler": ["Bei nachschüssiger Zahlung wird die erste Rate n − 1 Jahre verzinst", "Das gilt für die vorletzte Rate", "Das gilt für die letzte Rate"]
         },
         {
-            "frage": "Wie geht man vor, wenn beim Kapitalauf- oder -abbau \\(n\\) gesucht ist?",
-            "antworten": ["Den Bruch \\(\\frac{r \\cdot f}{q-1}\\) ausrechnen, \\(q^n\\) ausklammern, nach \\(q^n\\) auflösen und logarithmieren", "Die \\(n\\)-te Wurzel ziehen", "\\(E_n\\) durch \\(r\\) teilen", "Das ist nicht lösbar"],
-            "fehler": ["Wurzel löst nach der Basis auf", "Das ignoriert Startkapital und Zinsen", "Mit Ausklammern und Logarithmus ist es gut lösbar"]
+            "frage": "Jemand zahlt 5 Jahre lang jeweils zu Jahresbeginn 1 000 € ein. Wie oft wird die letzte Rate bis zum Ende des 5. Jahres verzinst?",
+            "antworten": ["1 Jahr", "gar nicht", "5 Jahre", "4 Jahre"],
+            "fehler": ["Vorschüssig wird auch die letzte Rate noch ein Jahr verzinst", "Das gilt für die erste Rate", "Das gilt für die zweite Rate"]
         },
         {
-            "frage": "Beim Kapitalabbau ist das Kapital nach \\(n\\) Jahren aufgebraucht. Was gilt?",
-            "antworten": ["\\(E_n = 0\\)", "\\(E_n = K_0\\)", "\\(E_n = R_n\\)", "\\(E_n = r\\)"],
-            "fehler": ["Das Kapital ist nicht mehr vorhanden", "Aufgebraucht bedeutet Endkapital null", "Auch die letzte Rate ist bereits entnommen"]
+            "frage": "„Statt einer Rente von 10 Jahreszahlungen wird ein Einmalbetrag heute angeboten.“ Welcher Wert macht die beiden vergleichbar?",
+            "antworten": ["Der Rentenbarwert", "Der Rentenendwert", "Die Summe der Raten", "Die erste Rate"],
+            "fehler": ["Der Einmalbetrag wird heute gezahlt, also Barwert", "Die Summe ignoriert Zinsen", "Eine einzelne Rate ist nicht vergleichbar"]
         },
         {
-            "frage": "Vorschüssige Zahlungen beim Kapitalaufbau: Wie ändert sich die Formel?",
-            "antworten": ["Statt \\(R_n\\) wird \\(\\overline{R}_n\\) verwendet", "Statt \\(K_0 \\cdot q^n\\) wird \\(K_0 \\cdot q^{n+1}\\) verwendet", "Es ändert sich nichts", "Das Vorzeichen vor \\(R_n\\) wechselt"],
-            "fehler": ["Das Startkapital wird unabhängig von der Zahlungsweise n Jahre verzinst", "Vorschüssige Raten werden ein Jahr länger verzinst", "Das Vorzeichen hängt von Aufbau oder Abbau ab"]
+            "frage": "Welche drei Fragen sind bei einer Renten-Sachaufgabe zu klären?",
+            "antworten": ["Vor- oder nachschüssig? End- oder Barwert? Welche Größe ist gesucht?", "Wie hoch ist der Gewinn? Wer zahlt? Wann ist Feiertag?", "Ist die Rente ewig? Wie viele Personen? Welche Bank?", "Nur: Welche Größe ist gesucht?"],
+            "fehler": ["Diese Fragen sind für die Formelwahl irrelevant", "Ewige Renten werden nicht behandelt", "Zahlungsweise und Bewertungszeitpunkt bestimmen die Formel"]
         },
         {
-            "frage": "Beim Kapitalabbau soll \\(n\\) bestimmt werden. Unter welcher Bedingung wird das Kapital überhaupt aufgebraucht?",
-            "antworten": ["Die Entnahme muss größer sein als die jährlichen Zinsen des Startkapitals", "Die Entnahme muss kleiner sein als die Zinsen", "Das Kapital wird immer aufgebraucht", "Nur bei vorschüssiger Zahlung"],
-            "fehler": ["Dann wächst das Kapital trotz Entnahmen", "Bei kleiner Entnahme wächst das Kapital", "Die Zahlungsweise ändert die Bedingung nur geringfügig"]
+            "frage": "Ein Ergebnis lautet \\(n \\approx 12{,}4\\) Jahre Entnahmedauer. Was bedeutet das?",
+            "antworten": ["12 volle Raten sind möglich, die 13. Rate nur noch teilweise", "13 volle Raten sind möglich", "Genau 12 Raten, danach ist das Kapital exakt null", "Das Ergebnis ist ungültig"],
+            "fehler": ["Für 13 volle Raten reicht das Kapital nicht", "Nach 12 Raten ist noch ein Rest vorhanden", "Nicht-ganzzahlige Laufzeiten sind sinnvoll interpretierbar"]
         }
     ]
 }
