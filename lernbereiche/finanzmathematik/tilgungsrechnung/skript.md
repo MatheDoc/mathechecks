@@ -14,31 +14,39 @@ permalink: /lernbereiche/finanzmathematik/tilgungsrechnung/skript.html
 
 # Tilgungsrechnung: ein Darlehen planmäßig zurückzahlen
 
-## Gründungsdarlehen für ein eigenes Café
-
-Für dein Café nimmst du 60 000 € zu 5 % auf und sollst jedes Jahr denselben Betrag zurückzahlen. Wie hoch ist diese jährliche Rate, wenn das Darlehen nach zehn Jahren getilgt sein soll – und wie viel Schulden hast du nach fünf Jahren noch?
-
 ## Einführung
 
-Bei der **Annuitätentilgung** zahlt der Kreditnehmer jedes Jahr denselben Betrag, die **Annuität** $A$. Sie setzt sich aus Zinsen $Z_k$ und Tilgung $T_k$ zusammen: $A = Z_k + T_k$. Da die Restschuld sinkt, werden die Zinsen von Jahr zu Jahr kleiner und der Tilgungsanteil entsprechend größer.
+Mara eröffnet ein kleines Café und nimmt dafür bei ihrer Bank ein Darlehen über 60 000 € zu 5 % auf. Die Bank schlägt eine **Annuitätentilgung** über zehn Jahre vor: Mara zahlt jedes Jahr denselben Betrag, die **Annuität** $A$. In diesem Betrag stecken zwei Dinge: die Zinsen für die noch offene Schuld und ein Tilgungsanteil, der die Schuld verringert. Es gilt also $A = Z_k + T_k$.
+
+Im ersten Jahr sind 5 % von 60 000 €, also 3 000 €, Zinsen. Weil die Restschuld danach kleiner ist, fallen im zweiten Jahr weniger Zinsen an – bei gleicher Annuität bleibt mehr für die Tilgung. So werden die Zinsen von Jahr zu Jahr kleiner und der Tilgungsanteil entsprechend größer.
 
 Bezeichnungen:
 
-- $K_0$: Darlehenssumme
+- $K_0$: Darlehenssumme, hier $60\,000$ €
 - $RK_k$: Restschuld nach $k$ Jahren
 - $Z_k$, $T_k$: Zinsen und Tilgung im Jahr $k$
 - $A$: Annuität
-- $q = 1 + \frac{p}{100}$: Zinsfaktor
+- $q = 1 + \frac{p}{100}$: Zinsfaktor, hier $1{,}05$
+- $n$: Laufzeit in Jahren, hier $10$
 
 ## Der Tilgungsplan
+
+Die Bank teilt Mara mit, dass die Annuität 7 770,27 € beträgt (wie sie berechnet wird, folgt im nächsten Abschnitt). Damit lässt sich die Rückzahlung Jahr für Jahr in einem **Tilgungsplan** verfolgen. Jede Zeile folgt demselben Schema:
 
 | Jahr | Restschuld (Anfang) | Zinsen | Tilgung | Annuität | Restschuld (Ende) |
 |---|---|---|---|---|---|
 | $k$ | $RK_{k-1}$ | $Z_k = RK_{k-1} \cdot \frac{p}{100}$ | $T_k = A - Z_k$ | $A$ | $RK_k = RK_{k-1} - T_k$ |
 
-Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. In der letzten Zeile ist die Tilgung gleich der verbliebenen Restschuld; die letzte Annuität weicht dadurch meist geringfügig von $A$ ab (Rundungsdifferenz).
+Für Maras Darlehen lauten die ersten beiden Zeilen (Beträge in €):
 
-Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern. Der Tilgungsplan wird zeilenweise berechnet; im Diagramm siehst du, wie der Zinsanteil der Annuität von Jahr zu Jahr sinkt und der Tilgungsanteil wächst.
+| Jahr | Restschuld (Anfang) | Zinsen | Tilgung | Annuität | Restschuld (Ende) |
+|---|---|---|---|---|---|
+| 1 | 60 000,00 | 3 000,00 | 4 770,27 | 7 770,27 | 55 229,73 |
+| 2 | 55 229,73 | 2 761,49 | 5 008,78 | 7 770,27 | 50 220,95 |
+
+Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. In der letzten Zeile ist die Tilgung gleich der verbliebenen Restschuld; die letzte Annuität weicht dadurch meist geringfügig von $A$ ab – bei Mara beträgt sie 7 770,34 €, also 7 Cent mehr (**Rundungsdifferenz**).
+
+Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern (voreingestellt ist Maras Darlehen). Der Tilgungsplan wird zeilenweise berechnet; im Diagramm siehst du, wie der Zinsanteil der Annuität von Jahr zu Jahr sinkt und der Tilgungsanteil wächst.
 
 {% include widgets/widget-tilgungsplan.html %}
 
@@ -46,17 +54,27 @@ Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern. 
 
 ## Annuität und Laufzeit
 
+Woher kommen die 7 770,27 €? Die Annuität muss so gewählt sein, dass die Schuld nach genau $n$ Jahren getilgt ist. Das leistet die **Annuitätenformel**:
+
 $$
 A = \frac{K_0 \cdot q^n \cdot (q - 1)}{q^n - 1}
-\qquad
+$$
+
+Für Mara: $A = \frac{60\,000 \cdot 1{,}05^{10} \cdot 0{,}05}{1{,}05^{10} - 1} \approx \frac{60\,000 \cdot 1{,}6289 \cdot 0{,}05}{0{,}6289} \approx 7\,770{,}27$ €. Umgekehrt lässt sich mit derselben Formel die Darlehenssumme bestimmen, die bei einer vorgegebenen Annuität möglich ist.
+
+Ein zweiter Zusammenhang verbindet die Annuität mit der Tilgung des ersten Jahres:
+
+$$
 A = T_1 \cdot q^n
 $$
 
-Mit der ersten Formel wird die Annuität aus Darlehenssumme, Zinssatz und Laufzeit berechnet – oder umgekehrt die Darlehenssumme aus einer vorgegebenen Annuität. Die zweite Formel liefert über $q^n = \frac{A}{T_1}$ und den Logarithmus die Laufzeit.
+Er liefert über $q^n = \frac{A}{T_1}$ und den Logarithmus die Laufzeit. Könnte Mara jährlich 9 000 € aufbringen, wäre $T_1 = 9\,000 - 3\,000 = 6\,000$ € und $n = \frac{\ln(9\,000 / 6\,000)}{\ln 1{,}05} \approx 8{,}31$ – das Darlehen wäre schon im neunten Jahr getilgt.
 
 {% include check-anker.html nummer="2" %}
 
 ## Restschuld
+
+Nach fünf Jahren möchte Mara wissen, wie viel sie noch schuldet. Statt fünf Zeilen des Tilgungsplans zu rechnen, nutzt sie die **Restschuldformel**: Die Darlehenssumme wird $k$ Jahre aufgezinst, davon wird der Endwert der $k$ bereits gezahlten Annuitäten abgezogen.
 
 $$
 RK_k = K_0 \cdot q^k - \frac{A \cdot (q^k - 1)}{q - 1}
@@ -64,34 +82,41 @@ RK_k = K_0 \cdot q^k - \frac{A \cdot (q^k - 1)}{q - 1}
 RK_k = K_0 - \frac{T_1 \cdot (q^k - 1)}{q - 1}
 $$
 
-Aus der Restschuld nach $k$ Jahren ergeben sich Zinsen und Tilgung des Folgejahres. Die Gesamtzinsen über die Laufzeit sind $n \cdot A - K_0$.
+Für Mara: $RK_5 = 60\,000 \cdot 1{,}05^5 - \frac{7\,770{,}27 \cdot (1{,}05^5 - 1)}{0{,}05} \approx 33\,641{,}25$ €. Aus der Restschuld ergeben sich Zinsen und Tilgung des Folgejahres: $Z_6 \approx 33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ € und $T_6 = A - Z_6 \approx 6\,088{,}21$ €. Die Gesamtzinsen über die Laufzeit sind $n \cdot A - K_0 = 10 \cdot 7\,770{,}27 - 60\,000 = 17\,702{,}70$ €.
 
 {% include check-anker.html nummer="3" %}
 
 ## Sachaufgaben zu Annuitätendarlehen
 
-In Textaufgaben ist zu klären, welche Größen gegeben sind und ob Annuität, Darlehenssumme, Laufzeit oder Restschuld gesucht ist.
+In Textaufgaben ist zu klären, welche Größen gegeben sind und ob Annuität, Darlehenssumme, Laufzeit oder Restschuld gesucht ist. „Gleich hohe Jahresraten“ deutet auf $A$, „welcher Kredit ist möglich“ auf $K_0$, „nach wie vielen Jahren getilgt“ auf $n$ und „Schulden nach $k$ Jahren“ auf $RK_k$.
 
 {% include check-anker.html nummer="4" %}
 
 ## Tilgungsplan vervollständigen
 
-Sind nur einzelne Werte eines Tilgungsplans bekannt, werden die Zusammenhänge $A = Z_k + T_k$, $Z_k = RK_{k-1} \cdot \frac{p}{100}$ und $RK_k = RK_{k-1} - T_k$ genutzt – auch rückwärts, etwa $RK_{k-1} = RK_k + T_k$.
+Sind nur einzelne Werte eines Tilgungsplans bekannt, werden die Zusammenhänge $A = Z_k + T_k$, $Z_k = RK_{k-1} \cdot \frac{p}{100}$ und $RK_k = RK_{k-1} - T_k$ genutzt – auch rückwärts, etwa $RK_{k-1} = RK_k + T_k$. Kennt man aus einer Zeile Restschuld und Zinsen, lässt sich sogar der Zinssatz rekonstruieren: In Maras zweiter Zeile ist $\frac{2\,761{,}49}{55\,229{,}73} \cdot 100 \approx 5\,\%$.
 
 {% include check-anker.html nummer="5" %}
 
 ## Zinssatzwechsel
 
-Ändert sich der Zinssatz, wird die Restschuld zum Zeitpunkt des Wechsels als neue Darlehenssumme und die Restlaufzeit als neue Laufzeit in die Annuitätenformel eingesetzt.
+Nach fünf Jahren läuft Maras Zinsbindung aus; die Bank bietet für die restlichen fünf Jahre 4 % an. Die Restschuld zum Zeitpunkt des Wechsels wird als neue Darlehenssumme und die Restlaufzeit als neue Laufzeit in die Annuitätenformel eingesetzt:
+
+$$
+A_{\text{neu}} = \frac{33\,641{,}25 \cdot 1{,}04^5 \cdot 0{,}04}{1{,}04^5 - 1} \approx 7\,556{,}74\,\text{€}
+$$
+
+Der Tilgungsplan wird ab dem sechsten Jahr mit der neuen Annuität und dem neuen Zinssatz fortgeführt; die Zinsen im sechsten Jahr sind dann $33\,641{,}25 \cdot 0{,}04 \approx 1\,345{,}65$ €.
 
 {% include check-anker.html nummer="6" %}
 
 ## Sondertilgung und Tilgungspause
 
-Eine **Sondertilgung** verringert die Restschuld zusätzlich; anschließend wird entweder die Annuität (bei fester Restlaufzeit) oder die Laufzeit (bei fester Annuität) neu bestimmt. Bei einer **Tilgungspause** werden nur die Zinsen gezahlt, die Restschuld bleibt unverändert.
+Das Café läuft gut: Zusammen mit der fünften Annuität leistet Mara eine **Sondertilgung** von 10 000 €. Die Restschuld sinkt damit auf $33\,641{,}25 - 10\,000 = 23\,641{,}25$ €. Anschließend gibt es zwei Möglichkeiten:
+
+- Die Laufzeit bleibt bei zehn Jahren, die Annuität wird neu berechnet: $A_{\text{neu}} = \frac{23\,641{,}25 \cdot 1{,}05^5 \cdot 0{,}05}{1{,}05^5 - 1} \approx 5\,460{,}53$ €.
+- Die Annuität bleibt bei 7 770,27 €, die Laufzeit verkürzt sich: $T_1' = 7\,770{,}27 - 23\,641{,}25 \cdot 0{,}05 \approx 6\,588{,}21$ € und $n = \frac{\ln(7\,770{,}27 / 6\,588{,}21)}{\ln 1{,}05} \approx 3{,}38$ – statt fünf nur noch gut drei Jahre.
+
+Wäre das Jahr dagegen schlecht gelaufen, könnte Mara eine **Tilgungspause** vereinbaren: Im sechsten Jahr zahlt sie nur die Zinsen ($33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ €), die Restschuld bleibt unverändert. Soll die Gesamtlaufzeit erhalten bleiben, wird die Annuität für die verbleibenden vier Jahre neu berechnet und fällt entsprechend höher aus ($\approx 9\,487{,}23$ €).
 
 {% include check-anker.html nummer="7" %}
-
-## Zurück zum Gründungsdarlehen
-
-Die Annuität ergibt sich aus $A = \frac{60\,000 \cdot 1{,}05^{10} \cdot 0{,}05}{1{,}05^{10} - 1}$. Mit ihr lassen sich die ersten Zeilen des Tilgungsplans aufstellen, und die Restschuldformel liefert $RK_5$ nach fünf Jahren.

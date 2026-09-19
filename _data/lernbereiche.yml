@@ -1,18 +1,16 @@
 # ──────────────────────────────────────────────────────────
-# Lernbereiche mit Kernszenarien
+# Lernbereiche
 # ──────────────────────────────────────────────────────────
 # Felder pro Lernbereich:
 #   gebiet            – Fachgebiet (analysis, lineare-algebra, stochastik, finanzmathematik)
 #   slug              – URL-Slug / Schlüssel
 #   name              – Anzeigename
-#   szenario          – Durchgängiger Anwendungskontext (Kurzfassung)
-#   szenario_einstieg – Offene Frage zu Beginn des Skripts (motivierend, noch nicht lösbar)
-#   szenario_abschluss– Auflösung am Ende des Skripts (Frage mit gelernten Methoden beantworten)
-#   szenario_bild     – Dateiname des charakteristischen Bilds (in assets/img/start/)
+#   bild              – Dateiname des charakteristischen Bilds (in assets/img/start/), z. B. für die Materialkarte
 #   didactic_order    – Didaktische Reihenfolge innerhalb des Gebiets (1, 2, 3 …);
 #                       gleiche Werte starten gleichzeitig; fehlt der Eintrag → 0 (kein Sequencing)
 #
-# Übungsaufgaben sind bewusst NICHT an das Szenario gebunden,
+# Anwendungsszenarien leben direkt im Skript (Einführungsbeispiel oder Leitbeispiel),
+# siehe .github/datenmodell.md. Übungsaufgaben sind bewusst NICHT an ein Szenario gebunden,
 # um kontextunabhängigen Transfer zu sichern.
 # ──────────────────────────────────────────────────────────
 
@@ -22,82 +20,55 @@
   slug: regression
   didactic_order: 9
   name: Regression
-  szenario: "Streaming-Dienst – aus den Nutzerzahlen der letzten Jahre wird eine Funktion bestimmt, die die Entwicklung beschreibt und Prognosen erlaubt (Regression)."
-  szenario_einstieg: "Die Nutzerzahlen eines Streaming-Dienstes liegen für die letzten Jahre als Datenpunkte vor. Welche Funktion beschreibt die Entwicklung am besten – und wie findet man ihre Gleichung nicht durch Probieren, sondern durch Rechnen?"
-  szenario_abschluss: "Bestimme die Regressionsfunktion zu den Nutzerzahlen rechnerisch, prüfe die Güte mit dem Bestimmtheitsmaß und prognostiziere die Nutzerzahl für das kommende Jahr."
-  szenario_bild: "regression.svg"
+  bild: "regression.svg"
 
 - gebiet: analysis
   slug: differentialrechnung-ganzrationaler-funktionen
   didactic_order: 4
   name: Differentialrechnung ganzrationaler Funktionen
-  szenario: "E-Scooter-Fahrt durch die Stadt – Weg, Geschwindigkeit (= Ableitung) und Beschleunigung (= zweite Ableitung) an einem Alltagsbeispiel."
-  szenario_einstieg: "Du fährst mit dem E-Scooter durch die Stadt. An welcher Stelle der Strecke warst du am schnellsten – und woran erkennst du das mathematisch?"
-  szenario_abschluss: "Bestimme aus der Weg-Funktion die Geschwindigkeit (erste Ableitung) und finde den Hochpunkt – dort warst du am schnellsten."
-  szenario_bild: "differentialrechnung-ganzrationaler-funktionen.svg"
+  bild: "differentialrechnung-ganzrationaler-funktionen.svg"
 
 - gebiet: analysis
   slug: lineare-funktionen
   didactic_order: 1
   name: Lineare Funktionen
-  szenario: "Handytarif-Vergleich – Grundgebühr (y-Achsenabschnitt) und Minutenpreis (Steigung); Schnittpunkt = ab wann lohnt sich welcher Tarif?"
-  szenario_einstieg: "Tarif A kostet 5 € im Monat plus 0,10 € pro Minute. Tarif B hat keine Grundgebühr, aber 0,20 € pro Minute. Ab wie vielen Minuten lohnt sich Tarif A?"
-  szenario_abschluss: "Stelle beide Tarife als lineare Funktionen auf und berechne den Schnittpunkt – er liefert die Antwort."
-  szenario_bild: "lineare-funktionen.svg"
+  bild: "lineare-funktionen.svg"
 
 - gebiet: analysis
   slug: quadratische-funktionen
   didactic_order: 2
   name: Quadratische Funktionen
-  szenario: "Brückenbau – die Fahrbahn eines Brückenbogens hat die Form einer Parabel. Wie hoch und wie breit ist der Bogen?"
-  szenario_einstieg: "Ein Architekt plant einen parabelförmigen Brückenbogen über einen 40 m breiten Fluss. Der Bogen soll in der Mitte 12 m hoch sein. Wie lautet die Gleichung des Bogens – und passt ein 10 m hohes Schiff noch durch, wenn es 8 m vom Ufer entfernt fährt?"
-  szenario_abschluss: "Stelle die Parabelgleichung des Brückenbogens auf, bestimme die Nullstellen (Auflagepunkte) und berechne die Durchfahrtshöhe – mit den gelernten Methoden kein Problem mehr."
-  szenario_bild: "quadratische-funktionen.svg"
+  bild: "quadratische-funktionen.svg"
 
 - gebiet: analysis
   slug: ganzrationale-oekonomische-funktionen
   didactic_order: 5
   name: Ganzrationale ökonomische Funktionen
-  szenario: "Online-Shop für Custom-Sneaker – Kosten-, Erlös- und Gewinnfunktion, Break-even-Point und Gewinnmaximierung eines kleinen Unternehmens."
-  szenario_einstieg: "Dein Custom-Sneaker-Shop läuft an. Ab welcher Stückzahl schreibst du schwarze Zahlen – und bei welcher Menge verdienst du am meisten?"
-  szenario_abschluss: "Berechne den Break-even-Point ($G(x)=0$) und das Gewinnmaximum ($G'(x)=0$) – zwei Antworten auf eine unternehmerische Kernfrage."
-  szenario_bild: "ganzrationale-oekonomische-funktionen.svg"
+  bild: "ganzrationale-oekonomische-funktionen.svg"
 
 - gebiet: analysis
   slug: ertragsgesetzliche-kostenfunktionen
   didactic_order: 6
   name: Ertragsgesetzliche Kostenfunktionen
-  szenario: "Café-Betrieb – erst effiziente Produktion, dann steigende Grenzkosten bei Überlastung; S-förmiger Kostenverlauf direkt erlebbar."
-  szenario_einstieg: "Das Café läuft gut und die Nachfrage steigt. Lohnt es sich, die Produktion immer weiter hochzufahren – oder gibt es eine Grenze?"
-  szenario_abschluss: "Berechne das Betriebsoptimum (Minimum der Stückkosten) und zeige, warum darüber hinaus die Grenzkosten explodieren."
-  szenario_bild: "ertragsgesetzliche-kostenfunktionen.svg"
+  bild: "ertragsgesetzliche-kostenfunktionen.svg"
 
 - gebiet: analysis
   slug: marktgleichgewicht-grundlagen
   didactic_order: 3
   name: Marktgleichgewicht - Grundlagen
-  szenario: "Sneaker-Reselling – limitierte Drops, Nachfrageüberschuss, Preisbildung auf dem Sekundärmarkt als Angebot-Nachfrage-Modell."
-  szenario_einstieg: "Limitierte Sneaker kosten im Laden 120 €, werden aber für 350 € weiterverkauft. Wie kommt dieser Preis zustande?"
-  szenario_abschluss: "Stelle Angebots- und Nachfragefunktion auf und berechne den Gleichgewichtspreis. Erkläre, warum bei limitiertem Angebot der Reselling-Preis deutlich darüber liegt."
-  szenario_bild: "marktgleichgewicht-grundlagen.svg"
+  bild: "marktgleichgewicht-grundlagen.svg"
 
 - gebiet: analysis
   slug: marktgleichgewicht-vertiefung
   didactic_order: 8
   name: Marktgleichgewicht - Vertiefung
-  szenario: "CO₂-Steuer auf Flugreisen – Steuerlastverteilung, Konsumenten-/Produzentenrente und Wohlfahrtseffekte an einem politisch aktuellen Beispiel."
-  szenario_einstieg: "Die CO₂-Steuer auf Flüge steigt um 2 € pro Ticket. Zahlt das am Ende der Fluggast, die Airline – oder beide?"
-  szenario_abschluss: "Berechne die Steuerverteilung über die Elastizitäten und vergleiche Konsumenten- und Produzentenrente vorher und nachher."
-  szenario_bild: "marktgleichgewicht-vertiefung.svg"
+  bild: "marktgleichgewicht-vertiefung.svg"
 
 - gebiet: analysis
   slug: produktlebenszyklus
   didactic_order: 7
   name: Produktlebenszyklus
-  szenario: "Smartphone-Launch (iPhone) – Einführung, Wachstum, Reife, Rückgang eines konkreten Produkts mit glockenförmiger Absatzkurve."
-  szenario_einstieg: "Das neue iPhone ist am Markt. Wann sollte Apple das Vorgängermodell vom Markt nehmen – und woran erkennt man den richtigen Zeitpunkt mathematisch?"
-  szenario_abschluss: "Berechne den Wendepunkt der Absatzfunktion – dort beginnt der stärkste Rückgang. Erkläre, warum das ein sinnvolles Entscheidungskriterium ist."
-  szenario_bild: "produktlebenszyklus.svg"
+  bild: "produktlebenszyklus.svg"
 
 # ══════════════════ LINEARE ALGEBRA ══════════════════════
 
@@ -105,28 +76,19 @@
   slug: lineare-gleichungssysteme
   didactic_order: 1
   name: Lineare Gleichungssysteme
-  szenario: "Festival-Catering (3 Food-Trucks) – verschiedene Bestellkombinationen ergeben 3 Gleichungen mit 3 Unbekannten; Lösbarkeit und Gauß-Verfahren."
-  szenario_einstieg: "Drei Food-Trucks bieten verschiedene Kombi-Pakete an. Ein Burger, eine Pommes, ein Getränk – was kostet jedes Produkt einzeln?"
-  szenario_abschluss: "Stelle das LGS aus den drei Bestellungen auf und löse es mit dem Gauß-Verfahren – die Einzelpreise sind dein Ergebnis."
-  szenario_bild: "lineare-gleichungssysteme.svg"
+  bild: "lineare-gleichungssysteme.svg"
 
 - gebiet: lineare-algebra
   slug: matrizenrechnung
   didactic_order: 2
   name: Matrizenrechnung
-  szenario: "Social-Media-Bildfilter – Bildmatrix mal Filtermatrix; Addition, Skalarmultiplikation und Multiplikation am selben visuellen Kontext."
-  szenario_einstieg: "Du legst einen Vintage-Filter über dein Selfie. Was passiert dabei mathematisch mit jedem einzelnen Pixel?"
-  szenario_abschluss: "Rechne einen kleinen Bildausschnitt (3×3-Matrix) mit einer Filtermatrix durch und vergleiche Original und Ergebnis."
-  szenario_bild: "matrizenrechnung.svg"
+  bild: "matrizenrechnung.svg"
 
 - gebiet: lineare-algebra
   slug: mehrstufige-produktionsprozesse
   didactic_order: 3
   name: Mehrstufige Produktionsprozesse
-  szenario: "Smartphone-Fertigung – Rohstoffe → Bauteile → Endprodukt; Bedarfsmatrizen über mehrere Produktionsstufen."
-  szenario_einstieg: "Für 1000 Smartphones: Wie viel Silizium, Lithium und Glas braucht man insgesamt – über alle Produktionsstufen hinweg?"
-  szenario_abschluss: "Berechne die Gesamtbedarfsmatrix durch Multiplikation der Stufenmatrizen und lies die konkreten Rohstoffmengen ab."
-  szenario_bild: "mehrstufige-produktionsprozesse.svg"
+  bild: "mehrstufige-produktionsprozesse.svg"
 
 # ══════════════════════ STOCHASTIK ═══════════════════════
 
@@ -134,83 +96,56 @@
   slug: zufallsexperimente-und-wahrscheinlichkeiten
   didactic_order: 1
   name: Zufallsexperimente und Wahrscheinlichkeiten
-  szenario: "Tombola auf dem Schulfest – Lose, Gewinnchancen, Laplace-Wahrscheinlichkeit und Gegenereignis an einer konkreten Losverteilung."
-  szenario_einstieg: "Bei der Schulfest-Tombola gibt es 200 Lose, davon 30 Gewinnlose. Wie stehen deine Chancen, wenn du 3 Lose kaufst?"
-  szenario_abschluss: "Berechne die Wahrscheinlichkeit über das Gegenereignis: $P(\\text{mind. 1 Gewinn}) = 1 - P(\\text{kein Gewinn})$."
-  szenario_bild: "zufallsexperimente-und-wahrscheinlichkeiten.svg"
+  bild: "zufallsexperimente-und-wahrscheinlichkeiten.svg"
 
 - gebiet: stochastik
   slug: mehrstufige-zufallsexperimente
   didactic_order: 2
   name: Mehrstufige Zufallsexperimente
-  szenario: "Qualitätskontrolle (Kopfhörer-Produktion) – mehrere Prüfschritte als Stufen, Baumdiagramm und Pfadregeln."
-  szenario_einstieg: "Ein Kopfhörer durchläuft drei Prüfstationen. Wie wahrscheinlich ist es, dass ein fehlerhaftes Exemplar alle drei Kontrollen passiert?"
-  szenario_abschluss: "Zeichne das Baumdiagramm mit 3 Stufen, wende die Pfadmultiplikation an und berechne die (erschreckend hohe oder niedrige) Wahrscheinlichkeit."
-  szenario_bild: "mehrstufige-zufallsexperimente.svg"
+  bild: "mehrstufige-zufallsexperimente.svg"
 
 - gebiet: stochastik
   slug: bedingte-wahrscheinlichkeiten
   didactic_order: 3
   name: Bedingte Wahrscheinlichkeiten
-  szenario: "Medizinischer Schnelltest – falsch-positive Ergebnisse, Bayes-Paradoxon und bedingte Wahrscheinlichkeiten an einem eindrücklichen Beispiel."
-  szenario_einstieg: "Dein Schnelltest ist positiv. Der Test erkennt Kranke zu 99 %, aber auch 1 % der Gesunden werden falsch-positiv getestet. Die Krankheit betrifft 0,5 % der Bevölkerung. Wie wahrscheinlich ist es, dass du wirklich krank bist?"
-  szenario_abschluss: "Berechne $P(\\text{krank} \\mid \\text{positiv})$ mit dem Satz von Bayes – das Ergebnis von etwa 33 % überrascht fast alle."
-  szenario_bild: "bedingte-wahrscheinlichkeiten.svg"
+  bild: "bedingte-wahrscheinlichkeiten.svg"
 
 - gebiet: stochastik
   slug: binomialverteilung
   didactic_order: 5
   name: Binomialverteilung
-  szenario: "Pünktlichkeit der Bahn – bei 10 Fahrten: Bernoulli-Kette, Erwartungswert und Sigma-Regeln aus Schülererfahrung."
-  szenario_einstieg: "Zehnmal Bahn diese Woche. Die Pünktlichkeitsquote liegt bei 80 %. Wie wahrscheinlich ist es, dass sie mindestens achtmal pünktlich kommt?"
-  szenario_abschluss: "Berechne $P(X \\geq 8)$ mit der Binomialformel bei $n=10$ und $p=0{,}8$ – und vergleiche mit deinem Bauchgefühl."
-  szenario_bild: "binomialverteilung.svg"
+  bild: "binomialverteilung.svg"
 
 - gebiet: stochastik
   slug: hypothesentests
   didactic_order: 6
   name: Hypothesentests
-  szenario: "A/B-Test einer App – welcher Button-Text bringt mehr Klicks? Nullhypothese, Signifikanzniveau und Ablehnungsbereich."
-  szenario_einstieg: "Version A oder B – welcher Button-Text bringt wirklich mehr Klicks? Oder ist der Unterschied nur Zufall?"
-  szenario_abschluss: "Formuliere die Nullhypothese, lege das Signifikanzniveau fest und triff eine begründete Entscheidung – der A/B-Test liefert die Daten."
-  szenario_bild: "hypothesentests.svg"
+  bild: "hypothesentests.svg"
 
 - gebiet: stochastik
   slug: zufallsgroessen
   didactic_order: 4
   name: Zufallsgrößen
-  szenario: "Glücksrad auf dem Jahrmarkt – Auszahlungsbeträge als Zufallsgröße; Erwartungswert = lohnt sich das Spielen? Varianz = wie riskant?"
-  szenario_einstieg: "Das Glücksrad kostet 2 € pro Dreh. Die Gewinne: 0 €, 1 €, 5 € und 20 €. Lohnt sich das Spielen auf Dauer – oder verdient nur der Betreiber?"
-  szenario_abschluss: "Berechne den Erwartungswert ($E(X)=1{,}50\\,€ < 2\\,€$ Einsatz) und die Varianz – auf Dauer verliert man, aber einzelne Drehs können sich lohnen."
-  szenario_bild: "zufallsgroessen.svg"
+  bild: "zufallsgroessen.svg"
 
 # ═══════════════════ FINANZMATHEMATIK ════════════════════
 # Nur jährliche Verzinsung; Formelblatt: Zinseszins, vier Rentenformeln,
-# Kapitalauf-/-abbau, Annuitätentilgung.
+# Kapitalauf-/-abbau, Annuitätentilgung. Skripte mit durchgängigem Leitbeispiel.
 
 - gebiet: finanzmathematik
   slug: zinseszinsrechnung
   didactic_order: 1
   name: Zinseszinsrechnung
-  szenario: "Geldgeschenk fürs Auslandsjahr – ein einmal angelegter Betrag wächst mit Zinseszins; wie viel wird daraus, wie lange dauert es bis zum Sparziel und welcher Zinssatz wäre nötig?"
-  szenario_einstieg: "Zur Konfirmation bekommst du 3 000 € geschenkt und legst sie fest zu 3 % pro Jahr an. In sechs Jahren soll das Geld ein Auslandsjahr mitfinanzieren – reicht es dann für 4 000 €? Und wenn nicht: Wie lange müsstest du warten oder welchen Zinssatz bräuchtest du?"
-  szenario_abschluss: "Berechne mit $K_n = K_0 \\cdot q^n$ das Endkapital nach sechs Jahren, bestimme mit dem Logarithmus die nötige Laufzeit für 4 000 € und mit der Wurzel den Zinssatz, der das Ziel in sechs Jahren erreicht."
-  szenario_bild: "zinseszinsrechnung.svg"
+  bild: "zinseszinsrechnung.svg"
 
 - gebiet: finanzmathematik
   slug: rentenrechnung
   didactic_order: 2
   name: Rentenrechnung
-  szenario: "Sparplan fürs erste Auto – regelmäßige Jahresraten versus Einmalbetrag; vor- und nachschüssige Zahlungen, Rentenendwert und Rentenbarwert entscheiden, was am Ende mehr wert ist."
-  szenario_einstieg: "Für dein erstes Auto legst du fünf Jahre lang jedes Jahr 1 200 € zu 2,5 % zurück. Deine Tante bietet dir stattdessen an, dir heute einmalig 5 600 € zu geben. Welches Angebot ist mehr wert – und macht es einen Unterschied, ob du am Jahresanfang oder am Jahresende einzahlst?"
-  szenario_abschluss: "Berechne den Rentenendwert der fünf Raten (vor- und nachschüssig) und vergleiche ihn mit dem aufgezinsten Einmalbetrag – oder rechne beide Angebote auf den heutigen Barwert zurück."
-  szenario_bild: "rentenrechnung.svg"
+  bild: "rentenrechnung.svg"
 
 - gebiet: finanzmathematik
   slug: tilgungsrechnung
   didactic_order: 3
   name: Tilgungsrechnung
-  szenario: "Gründungsdarlehen für ein eigenes Café – ein Annuitätendarlehen wird über einen Tilgungsplan zurückgezahlt; Annuität, Restschuld und Laufzeit bestimmen, was die Finanzierung wirklich kostet."
-  szenario_einstieg: "Für dein Café nimmst du 60 000 € zu 5 % auf und sollst jedes Jahr denselben Betrag zurückzahlen. Wie hoch ist diese jährliche Rate, wenn das Darlehen nach zehn Jahren getilgt sein soll – und wie viel Schulden hast du nach fünf Jahren noch?"
-  szenario_abschluss: "Berechne die Annuität mit der Annuitätenformel, stelle die ersten Zeilen des Tilgungsplans auf und bestimme die Restschuld nach fünf Jahren mit der Restschuldformel."
-  szenario_bild: "tilgungsrechnung.svg"
+  bild: "tilgungsrechnung.svg"

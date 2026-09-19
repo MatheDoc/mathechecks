@@ -46,7 +46,7 @@ Didaktische Prinzipien, die quer zu Modulen und Feed-Einträgen angewendet werde
 | **Kognitive Aktivierung** | Aufgaben/Prompts, die echtes Denken erzwingen | Training, Recall, Feynman |
 | **Diagnose & Feedback** | Fehler sichtbar machen und nächste Aktion ableiten | Training, Laufende Checks, Kompetenzliste |
 | **Metakognition** | Selbstbewertung und Plausibilitätschecks | Recall/Feynman (`kann`/`kann nicht`), Kompetenzliste |
-| **Engagement & Dramaturgie** | Szenario als roter Faden, Neugier wecken, Spannungsbogen halten | Warm-Up → Skript-Szenario → Auflösung |
+| **Engagement & Dramaturgie** | Einführungs- oder Leitbeispiel mit konkreten Zahlen, Neugier wecken, kein aufgeschobenes Rätsel | Warm-Up → Skript-Einführung → abschnittsweise Anwendung |
 
 ## Lernarchitektur
 
