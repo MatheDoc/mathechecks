@@ -1,4 +1,9 @@
-"""Check 03 – Zinssatzwechsel (zwei oder drei Zinsphasen, eine fehlende Größe)."""
+"""Check 03 – Zinssatzwechsel mit zwei Zinsphasen.
+
+Sechs Größen K_0, K_n (n = n_1 + n_2), p_1, p_2, n_1, n_2; fünf gegeben, eine gesucht.
+Teilfrage 1 fragt stets nach dem Zwischenwert K_{n_1} (vorwärts aus K_0 oder rückwärts aus K_n),
+Teilfrage 2 nach der gesuchten Größe.
+"""
 
 from __future__ import annotations
 
@@ -23,39 +28,8 @@ from aufgaben.generators.finanzmathematik.shared import (
 )
 from aufgaben.generators.finanzmathematik.szenarien import Szenario, szenario_folge
 
-_ORDINAL = ("ersten", "zweiten", "dritten")
-
-
-def _phasen_text(phasen: list[tuple[int, float | None]]) -> str:
-    """Beschreibt die Zinsphasen; ``None`` als Zinssatz markiert die unbekannte Phase."""
-    teile: list[str] = []
-    for index, (n, p) in enumerate(phasen):
-        satz = "einem zunächst unbekannten Zinssatz" if p is None else prozent(p)
-        if index == 0:
-            teile.append(f"In den ersten {n} Jahren wird das Kapital mit {satz} verzinst")
-        elif index == len(phasen) - 1 and len(phasen) == 3:
-            teile.append(f"in den letzten {n} Jahren mit {satz}")
-        else:
-            teile.append(f"in den folgenden {n} Jahren mit {satz}")
-    return ", ".join(teile) + "."
-
-
-def _sample_phasen(rng: random.Random) -> list[tuple[int, float]]:
-    anzahl = rng.choice((2, 2, 3))
-    phasen: list[tuple[int, float]] = []
-    letzter = None
-    for _ in range(anzahl):
-        p = sample_zinssatz(rng, ohne=letzter)
-        phasen.append((rng.randint(2, 8), p))
-        letzter = p
-    return phasen
-
-
-def _endkapital(k0: float, phasen: list[tuple[int, float]]) -> float:
-    wert = k0
-    for n, p in phasen:
-        wert *= q_of(p) ** n
-    return wert
+_TYPEN = ("kn", "k0", "p1", "p2", "n1", "n2")
+_Q_ZWISCHEN = "Wie hoch ist das Guthaben am Ende der ersten Zinsphase?"
 
 
 class ZinssatzwechselGenerator(TaskGenerator):
@@ -63,93 +37,113 @@ class ZinssatzwechselGenerator(TaskGenerator):
 
     def generate(self, count: int, seed: int | None = None) -> list[Task]:
         rng = random.Random(seed)
-        typen = ("kn", "k0", "p", "n")
         tasks: list[Task] = []
-
         for index, sz in enumerate(szenario_folge(rng, count)):
-            typ = typen[index % len(typen)]
-            tasks.append(self._build(rng, sz, typ))
-
+            typ = _TYPEN[index % len(_TYPEN)]
+            task = None
+            while task is None:
+                task = self._build(rng, sz, typ)
+            tasks.append(task)
         return tasks
 
-    def _build(self, rng: random.Random, sz: Szenario, typ: str) -> Task:
+    def _build(self, rng: random.Random, sz: Szenario, typ: str) -> Task | None:
         stufe = sz.stufe
         k0 = sample_kapital(rng, stufe)
-        phasen = _sample_phasen(rng)
-        gesamt = sum(n for n, _ in phasen)
-        n1, p1 = phasen[0]
-        kapital_phase1 = k0 * q_of(p1) ** n1
+        p1 = sample_zinssatz(rng)
+        p2 = sample_zinssatz(rng, ohne=p1)
+        n1 = rng.randint(2, 8)
+        n2 = rng.choice([n for n in range(2, 9) if n != n1])
+        q1, q2 = q_of(p1), q_of(p2)
+        gesamt = n1 + n2
+        S, pron, zweck = sz.subjekt, sz.pron, sz.zweck_anlage
 
         if typ == "kn":
-            intro = f"{sz.subjekt} legt {geld(k0)} {sz.zweck_anlage} an. {_phasen_text(phasen)}"
+            k1 = k0 * q1**n1
+            intro = (
+                f"{S} legt {geld(k0)} {zweck} an. In den ersten {n1} Jahren wird das Kapital mit {prozent(p1)} "
+                f"verzinst, anschließend {n2} Jahre lang mit {prozent(p2)}."
+            )
             return Task(
                 einleitung=intro,
-                fragen=[
-                    "Wie hoch ist das Guthaben am Ende der ersten Zinsphase?",
-                    f"Über welchen Betrag kann {sz.pron} nach insgesamt {gesamt} Jahren verfügen?",
-                ],
-                antworten=[
-                    numerical_finanz_geld(kapital_phase1),
-                    numerical_finanz_geld(_endkapital(k0, phasen)),
-                ],
+                fragen=[_Q_ZWISCHEN, f"Über welchen Betrag kann {pron} nach insgesamt {gesamt} Jahren verfügen?"],
+                antworten=[numerical_finanz_geld(k1), numerical_finanz_geld(k1 * q2**n2)],
             )
 
-        kn = schoen(_endkapital(k0, phasen), stufe)
+        kn = schoen(k0 * q1**n1 * q2**n2, stufe)
 
         if typ == "k0":
+            k1 = kn / q2**n2
             intro = (
-                f"{sz.subjekt} hat vor {gesamt} Jahren einen Betrag {sz.zweck_anlage} angelegt. "
-                f"{_phasen_text(phasen).replace('wird das Kapital', 'wurde das Kapital')} "
+                f"{S} hat vor {gesamt} Jahren einen Betrag {zweck} angelegt. In den ersten {n1} Jahren wurde das "
+                f"Kapital mit {prozent(p1)} verzinst, anschließend {n2} Jahre lang mit {prozent(p2)}. "
                 f"Heute beträgt das Guthaben {geld(kn)}."
             )
-            faktor = math.prod(q_of(p) ** n for n, p in phasen)
-            k0_antwort = kn / faktor
             return Task(
                 einleitung=intro,
-                fragen=[
-                    "Welcher Betrag wurde ursprünglich angelegt?",
-                    "Wie hoch war das Guthaben am Ende der ersten Zinsphase?",
-                ],
-                antworten=[
-                    numerical_finanz_geld(k0_antwort),
-                    numerical_finanz_geld(k0_antwort * q_of(p1) ** n1),
-                ],
+                fragen=["Wie hoch war das Guthaben am Ende der ersten Zinsphase?", "Welcher Betrag wurde ursprünglich angelegt?"],
+                antworten=[numerical_finanz_geld(k1), numerical_finanz_geld(k1 / q1**n1)],
             )
 
-        if typ == "p":
-            unbekannt = rng.randrange(len(phasen))
-            n_u = phasen[unbekannt][0]
-            beschreibung = [(n, None if i == unbekannt else p) for i, (n, p) in enumerate(phasen)]
+        if typ == "p1":
+            k1 = kn / q2**n2
+            if k1 <= k0:
+                return None
             intro = (
-                f"{sz.subjekt} legt {geld(k0)} {sz.zweck_anlage} an. {_phasen_text(beschreibung)} "
+                f"{S} legt {geld(k0)} {zweck} an. In den ersten {n1} Jahren wird das Kapital mit einem zunächst "
+                f"unbekannten Zinssatz verzinst, anschließend {n2} Jahre lang mit {prozent(p2)}. "
                 f"Nach insgesamt {gesamt} Jahren beträgt das Guthaben {geld(kn)}."
             )
-            bekannt = math.prod(q_of(p) ** n for i, (n, p) in enumerate(phasen) if i != unbekannt)
-            q_u = (kn / (k0 * bekannt)) ** (1.0 / n_u)
             return Task(
                 einleitung=intro,
-                fragen=[f"Mit welchem Zinssatz wurde das Kapital in der {_ORDINAL[unbekannt]} Zinsphase verzinst?"],
-                antworten=[numerical_finanz_zinssatz(p_of(q_u))],
+                fragen=[_Q_ZWISCHEN, "Mit welchem Zinssatz wurde das Kapital in der ersten Zinsphase verzinst?"],
+                antworten=[numerical_finanz_geld(k1), numerical_finanz_zinssatz(p_of((k1 / k0) ** (1.0 / n1)))],
             )
 
-        # typ == "n": Dauer der letzten Phase gesucht
-        n_letzte, p_letzte = phasen[-1]
-        vorher = phasen[:-1]
-        intro_phasen = _phasen_text(vorher).rstrip(".")
+        if typ == "p2":
+            k1 = k0 * q1**n1
+            if kn <= k1:
+                return None
+            intro = (
+                f"{S} legt {geld(k0)} {zweck} an. In den ersten {n1} Jahren wird das Kapital mit {prozent(p1)} "
+                f"verzinst, anschließend {n2} Jahre lang mit einem anderen Zinssatz. "
+                f"Nach insgesamt {gesamt} Jahren beträgt das Guthaben {geld(kn)}."
+            )
+            return Task(
+                einleitung=intro,
+                fragen=[_Q_ZWISCHEN, "Mit welchem Zinssatz wurde das Kapital in der zweiten Zinsphase verzinst?"],
+                antworten=[numerical_finanz_geld(k1), numerical_finanz_zinssatz(p_of((kn / k1) ** (1.0 / n2)))],
+            )
+
+        if typ == "n1":
+            k1 = kn / q2**n2
+            if k1 <= k0:
+                return None
+            n1_antwort = math.log(k1 / k0) / math.log(q1)
+            if n1_antwort < 1.0:
+                return None
+            intro = (
+                f"{S} legt {geld(k0)} {zweck} an. Zunächst wird das Kapital mit {prozent(p1)} verzinst, "
+                f"anschließend {n2} Jahre lang mit {prozent(p2)}. Am Ende beträgt das Guthaben {geld(kn)}."
+            )
+            return Task(
+                einleitung=intro,
+                fragen=[_Q_ZWISCHEN, "Wie viele Jahre dauerte die erste Zinsphase?"],
+                antworten=[numerical_finanz_geld(k1), numerical_finanz_laufzeit(n1_antwort)],
+            )
+
+        # typ == "n2"
+        k1 = k0 * q1**n1
+        if kn <= k1:
+            return None
+        n2_antwort = math.log(kn / k1) / math.log(q2)
+        if n2_antwort < 1.0:
+            return None
         intro = (
-            f"{sz.subjekt} legt {geld(k0)} {sz.zweck_anlage} an. {intro_phasen}, "
-            f"danach mit {prozent(p_letzte)}, bis das Guthaben {geld(kn)} erreicht hat."
+            f"{S} legt {geld(k0)} {zweck} an. In den ersten {n1} Jahren wird das Kapital mit {prozent(p1)} "
+            f"verzinst, danach mit {prozent(p2)}, bis das Guthaben {geld(kn)} erreicht hat."
         )
-        kapital_vorher = _endkapital(k0, vorher)
-        n_antwort = math.log(kn / kapital_vorher) / math.log(q_of(p_letzte))
         return Task(
             einleitung=intro,
-            fragen=[
-                f"Wie hoch ist das Guthaben zu Beginn der {_ORDINAL[len(phasen) - 1]} Zinsphase?",
-                f"Wie viele Jahre dauert die {_ORDINAL[len(phasen) - 1]} Zinsphase?",
-            ],
-            antworten=[
-                numerical_finanz_geld(kapital_vorher),
-                numerical_finanz_laufzeit(n_antwort),
-            ],
+            fragen=[_Q_ZWISCHEN, "Wie viele Jahre dauert die zweite Zinsphase?"],
+            antworten=[numerical_finanz_geld(k1), numerical_finanz_laufzeit(n2_antwort)],
         )

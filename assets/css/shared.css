@@ -4791,6 +4791,119 @@ html.light .roulette-widget__event {
   font-weight: 600;
 }
 
+/* ── Zeitstrahl (Finanzmathematik): Achse mit farbigen Phasen, MathJax-Labels ── */
+.zeitstrahl {
+  --zs-n: 6;
+  --zs-c1: #f472b6;
+  --zs-c2: #7c6aff;
+  --zs-axis: 84px;
+  margin: 1.5rem 0;
+  padding: 0 4.5rem 0 3.5rem;
+  overflow-x: auto;
+}
+
+.zeitstrahl__track {
+  position: relative;
+  height: 170px;
+  min-width: 460px;
+}
+
+.zeitstrahl__track::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: -6px;
+  top: var(--zs-axis);
+  border-top: 2px solid var(--text);
+  opacity: .5;
+}
+
+.zeitstrahl__track::after {
+  content: "";
+  position: absolute;
+  right: -16px;
+  top: calc(var(--zs-axis) - 5px);
+  border: 6px solid transparent;
+  border-left: 11px solid var(--text);
+  opacity: .5;
+}
+
+.zeitstrahl__phase {
+  position: absolute;
+  top: calc(var(--zs-axis) - 3px);
+  height: 8px;
+  left: calc(var(--zs-from) / var(--zs-n) * 100%);
+  width: calc((var(--zs-to) - var(--zs-from)) / var(--zs-n) * 100%);
+  border-radius: 4px;
+}
+
+.zeitstrahl__phase--1 { background: var(--zs-c1); }
+.zeitstrahl__phase--2 { background: var(--zs-c2); }
+
+.zeitstrahl__tick {
+  position: absolute;
+  top: calc(var(--zs-axis) - 7px);
+  left: calc(var(--zs-t) / var(--zs-n) * 100%);
+  width: 2px;
+  height: 16px;
+  background: var(--text);
+  opacity: .55;
+  transform: translateX(-50%);
+}
+
+.zeitstrahl__jahr {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: .85rem;
+  color: var(--text-dim);
+}
+
+.zeitstrahl__punkt {
+  position: absolute;
+  top: calc(var(--zs-axis) + 1px);
+  left: calc(var(--zs-t) / var(--zs-n) * 100%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--panel-solid);
+  border: 2.5px solid var(--text);
+  transform: translate(-50%, -50%);
+}
+
+.zeitstrahl__wert {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: .92rem;
+  color: var(--text);
+}
+
+.zeitstrahl__label {
+  position: absolute;
+  top: calc(var(--zs-axis) + 40px);
+  left: calc(var(--zs-from) / var(--zs-n) * 100%);
+  width: calc((var(--zs-to) - var(--zs-from)) / var(--zs-n) * 100%);
+  text-align: center;
+  font-size: .85rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.zeitstrahl__label--1 { color: var(--zs-c1); }
+.zeitstrahl__label--2 { color: var(--zs-c2); }
+
+.zeitstrahl__achse {
+  position: absolute;
+  right: -3.4rem;
+  top: calc(var(--zs-axis) - 9px);
+  font-size: .8rem;
+  color: var(--text-dim);
+}
+
 /* ── Widget-specific: QF table ── */
 .qf-tableWrap {
   flex: 0 0 auto;

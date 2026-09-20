@@ -61,19 +61,41 @@ In Textaufgaben steht die gesuchte Größe nicht dabei. Deshalb ist zunächst zu
 
 ## Zinssatzwechsel
 
-Lenas Bank bietet eine Alternative an: in den ersten drei Jahren 2 %, danach 3,5 %. Dann wird das Kapital phasenweise verzinst – das Endkapital der ersten Phase ist das Anfangskapital der zweiten:
+Lenas Bank bietet eine Alternative an: in den ersten zwei Jahren 2 %, danach vier Jahre lang 3,5 %. Die Laufzeit zerfällt damit in zwei Zinsphasen mit eigenem Zinsfaktor:
+
+<div class="zeitstrahl" style="--zs-n: 6;">
+<div class="zeitstrahl__track">
+<div class="zeitstrahl__phase zeitstrahl__phase--1" style="--zs-from: 0; --zs-to: 2;"></div>
+<div class="zeitstrahl__phase zeitstrahl__phase--2" style="--zs-from: 2; --zs-to: 6;"></div>
+<span class="zeitstrahl__tick" style="--zs-t: 0;"><span class="zeitstrahl__jahr">0</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 1;"><span class="zeitstrahl__jahr">1</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 2;"><span class="zeitstrahl__jahr">2</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 3;"><span class="zeitstrahl__jahr">3</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 4;"><span class="zeitstrahl__jahr">4</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 5;"><span class="zeitstrahl__jahr">5</span></span>
+<span class="zeitstrahl__tick" style="--zs-t: 6;"><span class="zeitstrahl__jahr">6</span></span>
+<span class="zeitstrahl__punkt" style="--zs-t: 0;"><span class="zeitstrahl__wert">$K_0 = 3\,000$ €</span></span>
+<span class="zeitstrahl__punkt" style="--zs-t: 2;"><span class="zeitstrahl__wert">$K_2 \approx 3\,121{,}20$ €</span></span>
+<span class="zeitstrahl__punkt" style="--zs-t: 6;"><span class="zeitstrahl__wert">$K_6 \approx 3\,581{,}65$ €</span></span>
+<span class="zeitstrahl__label zeitstrahl__label--1" style="--zs-from: 0; --zs-to: 2;">Phase 1<br>$n_1 = 2$, $p_1 = 2\,\%$, $q_1 = 1{,}02$</span>
+<span class="zeitstrahl__label zeitstrahl__label--2" style="--zs-from: 2; --zs-to: 6;">Phase 2<br>$n_2 = 4$, $p_2 = 3{,}5\,\%$, $q_2 = 1{,}035$</span>
+<span class="zeitstrahl__achse">Jahre</span>
+</div>
+</div>
+
+Die Zinseszinsformel wird einfach zweimal angewendet. Erst für die erste Phase:
 
 $$
-K_3 = 3\,000 \cdot 1{,}02^3 \approx 3\,183{,}62\,\text{€}, \qquad K_6 = K_3 \cdot 1{,}035^3 \approx 3\,529{,}74\,\text{€}.
+K_2 = 3\,000 \cdot 1{,}02^2 = 3\,121{,}20\,\text{€}
 $$
 
-Allgemein werden die Zinsfaktoren aller Phasen mit ihren Laufzeiten verkettet:
+Dieses Zwischenergebnis ist das Anfangskapital der zweiten Phase, die wieder mit der Zinseszinsformel berechnet wird:
 
 $$
-K_n = K_0 \cdot q_1^{n_1} \cdot q_2^{n_2} \cdot q_3^{n_3}
+K_6 = 3\,121{,}20 \cdot 1{,}035^4 \approx 3\,581{,}65\,\text{€}
 $$
 
-Das Alternativangebot bringt weniger als die durchgehenden 3 % (3 582,16 €). Ist eine Größe unbekannt, werden alle bekannten Faktoren eingesetzt und anschließend nach dem offenen Faktor aufgelöst – Wurzel für ein $q$, Logarithmus für ein $n$.
+Das Alternativangebot bringt also fast genau so viel wie die durchgehenden 3 % (3 582,16 €). Der Zwischenwert $K_{n_1}$ am Übergang ist der Schlüssel jeder Aufgabe zum Zinssatzwechsel: Er verbindet beide Phasen. Ist eine der sechs Größen $K_0$, $K_n$, $p_1$, $p_2$, $n_1$, $n_2$ gesucht, wird zuerst $K_{n_1}$ bestimmt – **vorwärts** aus $K_0$ mit $q_1^{n_1}$, wenn die Unbekannte in der zweiten Phase liegt, oder **rückwärts** aus $K_n$ durch Teilen durch $q_2^{n_2}$, wenn sie in der ersten Phase liegt. Danach bleibt in der anderen Phase eine gewöhnliche Zinseszinsaufgabe mit einer Unbekannten.
 
 {% include check-anker.html nummer="3" %}
 

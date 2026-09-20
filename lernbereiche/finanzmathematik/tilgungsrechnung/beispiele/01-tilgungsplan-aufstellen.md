@@ -2,11 +2,17 @@
 layout: null
 permalink: /lernbereiche/finanzmathematik/tilgungsrechnung/beispiele/01-tilgungsplan-aufstellen.html
 ---
-Ein Fotostudio nimmt ein Darlehen über $20\,000$ € auf. Der Zinssatz beträgt $5\,\%$, die Rückzahlung erfolgt durch Annuitätentilgung in 4 Jahren mit einer Annuität von $5\,640{,}24$ €. Stellen Sie den Tilgungsplan auf.
+Ein Fotostudio nimmt ein Darlehen über $18\,000$ € auf. Der Zinssatz beträgt $3{,}5\,\%$, die Rückzahlung erfolgt durch Annuitätentilgung in 3 Jahren mit einer Annuität von $6\,424{,}82$ €. Stellen Sie den Tilgungsplan auf.
+
+**Vorüberlegung: Woher kommt die Annuität?**
+
+$$
+A = \frac{18\,000 \cdot 1{,}035^3 \cdot 0{,}035}{1{,}035^3 - 1} = \frac{18\,000 \cdot 1{,}1087 \cdot 0{,}035}{0{,}1087} \approx 6\,424{,}82\,\text{€}
+$$
 
 **Vorgehen pro Zeile**
 
-1. Zinsen aus der Restschuld zu Jahresbeginn: $Z_k = RK_{k-1} \cdot 0{,}05$
+1. Zinsen aus der Restschuld zu Jahresbeginn: $Z_k = RK_{k-1} \cdot 0{,}035$
 2. Tilgung als Rest der Annuität: $T_k = A - Z_k$
 3. Neue Restschuld: $RK_k = RK_{k-1} - T_k$
 
@@ -15,43 +21,34 @@ Jede Zelle wird auf Cent gerundet; mit den gerundeten Werten wird weitergerechne
 **Zeile 1**
 
 $$\begin{aligned}
-Z_1 &= 20\,000 \cdot 0{,}05 = 1\,000{,}00 \\
-T_1 &= 5\,640{,}24 - 1\,000{,}00 = 4\,640{,}24 \\
-RK_1 &= 20\,000 - 4\,640{,}24 = 15\,359{,}76
+Z_1 &= 18\,000 \cdot 0{,}035 = 630{,}00 \\
+T_1 &= 6\,424{,}82 - 630{,}00 = 5\,794{,}82 \\
+RK_1 &= 18\,000 - 5\,794{,}82 = 12\,205{,}18
 \end{aligned}$$
 
 **Zeile 2**
 
 $$\begin{aligned}
-Z_2 &= 15\,359{,}76 \cdot 0{,}05 \approx 767{,}99 \\
-T_2 &= 5\,640{,}24 - 767{,}99 = 4\,872{,}25 \\
-RK_2 &= 15\,359{,}76 - 4\,872{,}25 = 10\,487{,}51
+Z_2 &= 12\,205{,}18 \cdot 0{,}035 \approx 427{,}18 \\
+T_2 &= 6\,424{,}82 - 427{,}18 = 5\,997{,}64 \\
+RK_2 &= 12\,205{,}18 - 5\,997{,}64 = 6\,207{,}54
 \end{aligned}$$
 
-**Zeile 3**
-
-$$\begin{aligned}
-Z_3 &= 10\,487{,}51 \cdot 0{,}05 \approx 524{,}38 \\
-T_3 &= 5\,640{,}24 - 524{,}38 = 5\,115{,}86 \\
-RK_3 &= 10\,487{,}51 - 5\,115{,}86 = 5\,371{,}65
-\end{aligned}$$
-
-**Zeile 4 (letzte Zeile)**
+**Zeile 3 (letzte Zeile)**
 
 Im letzten Jahr wird die gesamte verbliebene Restschuld getilgt. Die Annuität ergibt sich aus Zinsen plus Tilgung:
 
 $$\begin{aligned}
-Z_4 &= 5\,371{,}65 \cdot 0{,}05 \approx 268{,}58 \\
-T_4 &= RK_3 = 5\,371{,}65 \\
-A_4 &= 268{,}58 + 5\,371{,}65 = 5\,640{,}23
+Z_3 &= 6\,207{,}54 \cdot 0{,}035 \approx 217{,}26 \\
+T_3 &= RK_2 = 6\,207{,}54 \\
+A_3 &= 217{,}26 + 6\,207{,}54 = 6\,424{,}80
 \end{aligned}$$
 
 **Fertiger Tilgungsplan** (Beträge in €)
 
 | Jahr | Restschuld Anfang | Zinsen | Tilgung | Annuität | Restschuld Ende |
-| 1 | 20 000,00 | 1 000,00 | 4 640,24 | 5 640,24 | 15 359,76 |
-| 2 | 15 359,76 | 767,99 | 4 872,25 | 5 640,24 | 10 487,51 |
-| 3 | 10 487,51 | 524,38 | 5 115,86 | 5 640,24 | 5 371,65 |
-| 4 | 5 371,65 | 268,58 | 5 371,65 | 5 640,23 | 0,00 |
+| 1 | 18 000,00 | 630,00 | 5 794,82 | 6 424,82 | 12 205,18 |
+| 2 | 12 205,18 | 427,18 | 5 997,64 | 6 424,82 | 6 207,54 |
+| 3 | 6 207,54 | 217,26 | 6 207,54 | 6 424,80 | 0,00 |
 
-Die letzte Annuität weicht um $0{,}01$ € von der vereinbarten Annuität ab – das ist die **Rundungsdifferenz**, die durch das zeilenweise Runden entsteht.
+Die letzte Annuität liegt um $0{,}02$ € unter der vereinbarten Annuität – das ist die **Rundungsdifferenz**. Sie entsteht durch das zeilenweise Runden auf Cent und beträgt bei kurzen Laufzeiten meist nur ein oder zwei Cent.

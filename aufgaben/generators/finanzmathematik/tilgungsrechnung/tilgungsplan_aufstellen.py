@@ -1,11 +1,11 @@
-"""Check 01 – Tilgungsplan aufstellen (kurze Laufzeit, Annuität gegeben, Rundungsdifferenz)."""
+"""Check 01 – Tilgungsplan aufstellen (3 Jahre, Annuität auf Cent, kleine Rundungsdifferenz in der letzten Zeile)."""
 
 from __future__ import annotations
 
 import random
 
 from aufgaben.core.models import Task
-from aufgaben.core.placeholders import numerical_finanz_tilgungsplan
+from aufgaben.core.placeholders import numerical, numerical_finanz_tilgungsplan
 from aufgaben.generators.base import TaskGenerator
 from aufgaben.generators.finanzmathematik.shared import (
     TABELLEN_KOPF_TILGUNGSPLAN,
@@ -21,6 +21,8 @@ from aufgaben.generators.finanzmathematik.shared import (
 )
 from aufgaben.generators.finanzmathematik.szenarien import szenario_folge
 
+_N = 3
+
 
 class TilgungsplanAufstellenGenerator(TaskGenerator):
     generator_key = "finanzmathematik.tilgungsrechnung.tilgungsplan_aufstellen"
@@ -30,37 +32,44 @@ class TilgungsplanAufstellenGenerator(TaskGenerator):
         tasks: list[Task] = []
 
         for sz in szenario_folge(rng, count):
-            k0 = sample_darlehen(rng, sz.stufe)
-            p = sample_zinssatz(rng)
-            n = rng.randint(3, 5)
-            a = rund2(annuitaet(k0, q_of(p), n))
-            plan = tilgungsplan(k0, p, a, n)
-            leer = [[str(j)] + ["?"] * 5 for j in range(1, n + 1)]
+            # Bei 3 Zeilen liegt die Rundungsdifferenz bei 0–2 Cent; Kandidaten ohne Differenz werden verworfen,
+            # damit die letzte Teilfrage etwas zu entdecken hat.
+            while True:
+                k0 = sample_darlehen(rng, sz.stufe)
+                p = sample_zinssatz(rng)
+                a = rund2(annuitaet(k0, q_of(p), _N))
+                plan = tilgungsplan(k0, p, a, _N)
+                diff = rund2(plan[-1].annuitaet - a)
+                if diff != 0:
+                    break
+            leer = [[str(j)] + ["?"] * 5 for j in range(1, _N + 1)]
 
             intro = (
                 f"{sz.subjekt} nimmt {sz.zweck_darlehen} ein Darlehen über {geld(k0)} auf. "
-                f"Der Zinssatz beträgt {prozent(p)}, die Rückzahlung erfolgt durch Annuitätentilgung in {n} Jahren "
+                f"Der Zinssatz beträgt {prozent(p)}, die Rückzahlung erfolgt durch Annuitätentilgung in {_N} Jahren "
                 f"mit einer Annuität von {geld(a, cents=True)}. Stellen Sie den Tilgungsplan auf "
                 f"(Rundung auf Cent, gerundete Werte weiterverwenden)."
                 + tabelle_html(TABELLEN_KOPF_TILGUNGSPLAN, leer)
             )
 
-            mitte = rng.randint(2, n - 1)
             fragen = [
                 "Wie hoch sind die Zinsen im 1. Jahr?",
                 "Wie hoch ist die Tilgung im 1. Jahr?",
-                f"Wie hoch ist die Restschuld am Ende des {mitte}. Jahres?",
-                f"Wie hoch ist die Tilgung im {n}. Jahr?",
-                f"Wie hoch ist die Annuität im {n}. Jahr?",
+                "Wie hoch ist die Restschuld am Ende des 2. Jahres?",
+                "Wie hoch sind die Zinsen im 3. Jahr?",
+                "Wie hoch ist die Tilgung im 3. Jahr?",
+                "Wie hoch ist die Annuität im 3. Jahr?",
                 "Um welchen Betrag weicht die Annuität des letzten Jahres von der vereinbarten Annuität ab (Rundungsdifferenz, positiver Wert)?",
             ]
             antworten = [
                 numerical_finanz_tilgungsplan(plan[0].zinsen),
                 numerical_finanz_tilgungsplan(plan[0].tilgung),
-                numerical_finanz_tilgungsplan(plan[mitte - 1].rk_ende),
-                numerical_finanz_tilgungsplan(plan[-1].tilgung),
-                numerical_finanz_tilgungsplan(plan[-1].annuitaet),
-                numerical_finanz_tilgungsplan(abs(plan[-1].annuitaet - a)),
+                numerical_finanz_tilgungsplan(plan[1].rk_ende),
+                numerical_finanz_tilgungsplan(plan[2].zinsen),
+                numerical_finanz_tilgungsplan(plan[2].tilgung),
+                numerical_finanz_tilgungsplan(plan[2].annuitaet),
+                # Differenz ist 1–2 Cent; Standardtoleranz 0,01 würde auch 0 akzeptieren
+                numerical(abs(diff), tolerance=0.001, decimals=3),
             ]
             tasks.append(Task(einleitung=intro, fragen=fragen, antworten=antworten))
 
