@@ -4614,7 +4614,7 @@
                 "response": "Einzahlungen erhöhen ($+R_n$), Entnahmen verringern ($-R_n$) das Kapital"
             },
             {
-                "cue": "Gesucht Größe erkennen",
+                "cue": "Gesuchte Größe identifizieren",
                 "response": "Betrag am Ende: $E_n$ bzw. $\\overline{E}_n$; Startkapital: $K_0$; Ratenhöhe: $r$; Dauer: $n$"
             },
             {
@@ -4674,16 +4674,28 @@
                 "response": "Restschuld (Jahresanfang) · Zinsen · Tilgung · Annuität · Restschuld (Jahresende)"
             },
             {
-                "cue": "Zeile berechnen",
-                "response": "$Z_k = RK_{k-1} \\cdot \\frac{p}{100}$, $T_k = A - Z_k$, $RK_k = RK_{k-1} - T_k$"
+                "cue": "Restschuld am Jahresanfang",
+                "response": "Restschuld am Ende des vorherigen Jahres (bzw. Darlehenssumme in der ersten Zeile)"
             },
             {
-                "cue": "Rundung",
-                "response": "jede Zelle auf zwei Nachkommastellen, gerundete Werte weiterverwenden"
+                "cue": "Zinsen",
+                "response": "$p$ % der Restschuld"
+            },
+            {
+                "cue": "Tilgung",
+                "response": "Annuität - Zinsen"
+            },
+            {
+                "cue": "Annuität",
+                "response": "Annuitäteformel anwenden"
+            },
+            {
+                "cue": "Restschuld am Jahresende",
+                "response": "Restschuld am Jahresanfang - Tilgung"
             },
             {
                 "cue": "Letzte Zeile",
-                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht von der vereinbarten Annuität ab (Rundungsdifferenz)"
+                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht evtl. von vereinbarter Annuität ab (Rundungsdifferenz)"
             }
         ]
     },
@@ -4698,20 +4710,20 @@
         "Schlagwort": "Annuitätenformeln umformen",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-finanzmathematik-tilgungsrechnung-02",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
+        "questionOrder": "shuffle",
+        "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Annuität",
+                "cue": "Annuität $A$",
                 "response": "$A = \\frac{K_0 \\cdot q^n \\cdot (q-1)}{q^n - 1}$"
             },
             {
-                "cue": "$K_0$ gesucht",
-                "response": "Bruch ohne $K_0$ ausrechnen, dann $A$ durch diesen Faktor teilen"
+                "cue": "Darlehen $K_0$",
+                "response": "Bruch in Annuitätenformel ohne $K_0$ ausrechnen, dann $A$ durch diesen Faktor teilen"
             },
             {
-                "cue": "Laufzeit",
-                "response": "$T_1 = A - K_0 \\cdot \\frac{p}{100}$, dann $q^n = \\frac{A}{T_1}$ und $n = \\frac{\\ln(A/T_1)}{\\ln q}$"
+                "cue": "Laufzeit $n$",
+                "response": "zuerst $T_1$ berechnen, dann $A=T_1\\cdot q^n$ nach $n$ auflösen"
             }
         ]
     },
@@ -4723,7 +4735,7 @@
         "check_id": "finanzmathematik__tilgungsrechnung__03",
         "Ich kann": "die Restschuld nach $k$ Jahren mit der Restschuldformel bestimmen und daraus Zins- und Tilgungsanteil des Folgejahres sowie die Gesamtzinsen berechnen.",
         "Sammlung": "restschuldformel",
-        "Schlagwort": "Restschuldformel",
+        "Schlagwort": "Restschuldformel und Gesamtzinsen",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-finanzmathematik-tilgungsrechnung-03",
         "questionOrder": "fixed",
@@ -4731,15 +4743,15 @@
         "Tipps": [
             {
                 "cue": "Restschuld",
-                "response": "$RK_k = K_0 \\cdot q^k - \\frac{A \\cdot (q^k - 1)}{q - 1}$ oder $RK_k = K_0 - \\frac{T_1 \\cdot (q^k - 1)}{q - 1}$"
+                "response": "$RK_k$ ist die Restschuld am Ende des  $k$-ten Jahres bzw. zu Beginn des $k+1$-ten Jahres"
             },
             {
-                "cue": "Folgejahr",
+                "cue": "Zinsen und Tilgung",
                 "response": "$Z_{k+1} = RK_k \\cdot \\frac{p}{100}$, $T_{k+1} = A - Z_{k+1}$"
             },
             {
                 "cue": "Gesamtzinsen",
-                "response": "Summe aller Annuitäten minus Darlehenssumme: $n \\cdot A - K_0$"
+                "response": "Summe aller Annuitäten minus Darlehenssumme"
             }
         ]
     },
@@ -4758,20 +4770,16 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Gegeben notieren",
+                "cue": "Gegebene Werte notieren",
                 "response": "Darlehenssumme $K_0$, Zinssatz $p$, Laufzeit $n$, Annuität $A$, Zeitpunkt $k$"
             },
             {
-                "cue": "Gesucht erkennen",
-                "response": "jährliche Belastung → $A$; möglicher Kredit bei fester Rate → $K_0$; Dauer → $n$; Schulden nach $k$ Jahren → $RK_k$"
+                "cue": "Gesuchte Größe identifizieren",
+                "response": "jährliche Belastung → $A$; mögliche Darlehenssumme → $K_0$; Dauer → $n$; Schulden nach $k$ Jahren → $RK_k$"
             },
             {
                 "cue": "Rechnen",
-                "response": "passende Formel wählen, Werte einsetzen, nach der offenen Größe auflösen"
-            },
-            {
-                "cue": "Antwortsatz",
-                "response": "Ergebnis mit Einheit im Sachzusammenhang formulieren"
+                "response": "passende Formel wählen, Werte einsetzen, nach der gescuhten Größe auflösen"
             }
         ]
     },
@@ -4781,7 +4789,7 @@
         "LernbereichAnzeigename": "Tilgungsrechnung",
         "Nummer": 5,
         "check_id": "finanzmathematik__tilgungsrechnung__05",
-        "Ich kann": "einen lückenhaften Tilgungsplan aus einzelnen gegebenen Werten – auch rückwärts – vervollständigen.",
+        "Ich kann": "einen lückenhaften Tilgungsplan aus einzelnen gegebenen Werten vervollständigen.",
         "Sammlung": "tilgungsplan-vervollstaendigen",
         "Schlagwort": "Tilgungsplan vervollständigen",
         "Flashtyp": "gruppiert",
