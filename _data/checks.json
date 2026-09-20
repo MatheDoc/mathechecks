@@ -4310,28 +4310,28 @@
         "Schlagwort": "Zinseszinsformel umformen",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-01",
-        "questionOrder": "fixed",
-        "tippOrder": "fixed",
+        "questionOrder": "shuffle",
+        "tippOrder": "shuffle",
         "Tipps": [
             {
                 "cue": "Zinsfaktor",
                 "response": "$q = 1 + \\frac{p}{100}$"
             },
             {
-                "cue": "Formel",
-                "response": "$K_n = K_0 \\cdot q^n$ – bekannte Werte einsetzen, dann nach der verbleibenden Größe auflösen"
+                "cue": "$K_n$ gesucht",
+                "response": "$K_n = K_0 \\cdot q^n$ – Werte einsetzen und berechnen"
             },
             {
                 "cue": "$K_0$ gesucht",
-                "response": "durch $q^n$ teilen"
+                "response": "Zinseszinsformel durch $q^n$ teilen"
             },
             {
                 "cue": "$p$ gesucht",
-                "response": "$q = \\sqrt[n]{\\frac{K_n}{K_0}}$, dann $p = (q-1)\\cdot 100$"
+                "response": "Zinseszinsformel durch $K_0$ teilen, $n$-te Wurzel ziehen und $p$ berechnen"
             },
             {
                 "cue": "$n$ gesucht",
-                "response": "$q^n = \\frac{K_n}{K_0}$, dann $n = \\frac{\\ln\\left(\\frac{K_n}{K_0}\\right)}{\\ln q}$"
+                "response": "Zinseszinsformel durch $K_0$ teilen, dann Logarithmus verwenden"
             }
         ]
     },
@@ -4346,24 +4346,20 @@
         "Schlagwort": "Zinseszins im Sachkontext",
         "Flashtyp": "gruppiert",
         "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-02",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Gegeben notieren",
-                "response": "Werte den Größen $K_0$, $K_n$, $p$ bzw. $q$, $n$ zuordnen"
+                "cue": "1. Schritt",
+                "response": "Gegebene Werte notieren"
             },
             {
-                "cue": "Gesucht erkennen",
-                "response": "Endbetrag → $K_n$; Anlagebetrag/heutiger Wert → $K_0$; Dauer → $n$; Verzinsung → $p$"
+                "cue": "2. Schritt",
+                "response": "Gesuchten Wert identifizieren"
             },
             {
-                "cue": "Rechnen",
-                "response": "Werte in $K_n = K_0 \\cdot q^n$ einsetzen und nach der offenen Größe auflösen"
-            },
-            {
-                "cue": "Antwortsatz",
-                "response": "Ergebnis mit Einheit (€, %, Jahre) im Sachzusammenhang formulieren"
+                "cue": "3. Schritt",
+                "response": "Werte in $K_n = K_0 \\cdot q^n$ einsetzen und nach gesuchter Größe auflösen"
             }
         ]
     },
@@ -4373,7 +4369,7 @@
         "LernbereichAnzeigename": "Zinseszinsrechnung",
         "Nummer": 3,
         "check_id": "finanzmathematik__zinseszinsrechnung__03",
-        "Ich kann": "Kapitalentwicklungen mit zwei oder drei Zinsphasen berechnen und darin eine fehlende Größe bestimmen.",
+        "Ich kann": "Kapitalentwicklungen mit zwei Zinsphasen über den Zwischenwert $K_{n_1}$ berechnen und darin eine fehlende Größe bestimmen.",
         "Sammlung": "zinssatzwechsel",
         "Schlagwort": "Zinssatzwechsel",
         "Flashtyp": "gruppiert",
@@ -4383,15 +4379,19 @@
         "Tipps": [
             {
                 "cue": "Zeitstrahl",
-                "response": "Phasen mit Dauer $n_1, n_2, \\dots$ und Zinsfaktor $q_1, q_2, \\dots$ skizzieren"
+                "response": "beide Phasen mit Dauer $n_1$, $n_2$ und Zinssatz $p_1$, $p_2$ eintragen; am Übergang steht der Zwischenwert $K_{n_1}$"
             },
             {
-                "cue": "Verkettung",
-                "response": "$K_n = K_0 \\cdot q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}$"
+                "cue": "Zweimal Zinseszinsformel",
+                "response": "Phase 1: $K_{n_1} = K_0 \\cdot q_1^{n_1}$; Phase 2: $K_n = K_{n_1} \\cdot q_2^{n_2}$"
             },
             {
-                "cue": "Fehlende Größe",
-                "response": "alle bekannten Faktoren einsetzen, dann nach dem offenen Faktor auflösen (Wurzel für $q$, Logarithmus für $n$)"
+                "cue": "Zwischenwert zuerst",
+                "response": "Unbekannte in Phase 2 → $K_{n_1}$ vorwärts aus $K_0$; Unbekannte in Phase 1 → $K_{n_1} = \\frac{K_n}{q_2^{n_2}}$ rückwärts"
+            },
+            {
+                "cue": "Dann",
+                "response": "in der anderen Phase nach der Unbekannten auflösen (Wurzel für $p$, Logarithmus für $n$)"
             }
         ]
     },
@@ -4667,7 +4667,7 @@
             },
             {
                 "cue": "Letzte Zeile",
-                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht meist geringfügig ab (Rundungsdifferenz)"
+                "response": "Tilgung = verbliebene Restschuld; Annuität = Zinsen + Tilgung weicht von der vereinbarten Annuität ab (Rundungsdifferenz)"
             }
         ]
     },

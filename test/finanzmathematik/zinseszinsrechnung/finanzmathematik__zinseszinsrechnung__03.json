@@ -16,8 +16,8 @@
             "fehler": ["Zinssätze addiert statt Faktoren multipliziert", "Nur den zweiten Zinssatz verwendet", "Rechenfehler beim zweiten Faktor"]
         },
         {
-            "frage": "Bei einem Zinssatzwechsel ist der Zinssatz der zweiten Phase gesucht. Welcher Rechenschritt ist nötig?",
-            "antworten": ["Alle bekannten Faktoren einsetzen, nach \\(q_2^{n_2}\\) auflösen und die \\(n_2\\)-te Wurzel ziehen", "Den Logarithmus der Laufzeit bilden", "Den Durchschnitt der beiden Laufzeiten bilden", "\\(K_n\\) durch \\(K_0\\) teilen und durch die Gesamtlaufzeit dividieren"],
+            "frage": "Bei einem Zinssatzwechsel ist der Zinssatz der zweiten Phase gesucht. Welcher Rechenweg ist richtig?",
+            "antworten": ["Zuerst \\(K_{n_1}\\) vorwärts aus \\(K_0\\) berechnen, dann in Phase 2 nach \\(q_2^{n_2}\\) auflösen und die \\(n_2\\)-te Wurzel ziehen", "Den Logarithmus der Laufzeit bilden", "Den Durchschnitt der beiden Laufzeiten bilden", "\\(K_n\\) durch \\(K_0\\) teilen und durch die Gesamtlaufzeit dividieren"],
             "fehler": ["Der Logarithmus wird gebraucht, wenn eine Laufzeit gesucht ist", "Laufzeiten sagen nichts über den Zinssatz aus", "Das wäre lineare Verzinsung"]
         },
         {
@@ -36,9 +36,9 @@
             "fehler": ["Der Zinssatz steht im Text, nicht auf dem Zeitstrahl", "Berechnungen erfolgen mit der Formel", "Der Zeitstrahl verhindert das Vertauschen von Phasen"]
         },
         {
-            "frage": "Bei drei Zinsphasen ist \\(K_0\\) gesucht. Welche Umformung ist richtig?",
-            "antworten": ["\\(K_0 = \\dfrac{K_n}{q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}}\\)", "\\(K_0 = K_n \\cdot q_1^{n_1} \\cdot q_2^{n_2} \\cdot q_3^{n_3}\\)", "\\(K_0 = K_n - q_1^{n_1} - q_2^{n_2} - q_3^{n_3}\\)", "\\(K_0 = \\dfrac{K_n}{q_1 \\cdot q_2 \\cdot q_3}\\)"],
-            "fehler": ["Aufgezinst statt abgezinst", "Faktoren werden dividiert, nicht subtrahiert", "Die Laufzeiten der Phasen fehlen"]
+            "frage": "Bei einem Zinssatzwechsel liegt die gesuchte Größe in der ersten Phase (z. B. \\(p_1\\) oder \\(n_1\\)). Wie wird der Zwischenwert \\(K_{n_1}\\) bestimmt?",
+            "antworten": ["Rückwärts aus dem Endkapital: \\(K_{n_1} = \\dfrac{K_n}{q_2^{n_2}}\\)", "Vorwärts aus dem Anfangskapital: \\(K_{n_1} = K_0 \\cdot q_1^{n_1}\\)", "Als Mittelwert von \\(K_0\\) und \\(K_n\\)", "Er kann nicht bestimmt werden"],
+            "fehler": ["Dafür müsste die unbekannte Größe aus Phase 1 schon bekannt sein", "Zinseszins wächst exponentiell, nicht linear", "Phase 2 ist vollständig bekannt, also lässt sich rückwärts rechnen"]
         },
         {
             "frage": "Was passiert mit dem Endkapital, wenn die Reihenfolge der Zinsphasen vertauscht wird (gleiche Dauern und Zinssätze)?",

@@ -31,7 +31,21 @@ Bezeichnungen:
 
 ## Der Tilgungsplan
 
-Die Bank teilt Mara mit, dass die Annuität 7 770,27 € beträgt (wie sie berechnet wird, folgt im nächsten Abschnitt). Damit lässt sich die Rückzahlung Jahr für Jahr in einem **Tilgungsplan** verfolgen. Jede Zeile folgt demselben Schema:
+Wie hoch muss Maras jährliche Zahlung sein, damit die Schuld nach genau zehn Jahren getilgt ist? Die Antwort liefert ein Vergleich zweier Endwerte: Würde Mara zehn Jahre lang nichts zahlen, wäre die Schuld auf $K_0 \cdot q^{10}$ angewachsen. Ihre zehn Annuitäten bilden eine nachschüssige Rente mit Rate $A$, deren Endwert $\frac{A \cdot (q^{10} - 1)}{q - 1}$ ist. Am Ende soll beides gleich sein – die Zahlungen sollen die aufgezinste Schuld genau ausgleichen:
+
+$$
+K_0 \cdot q^n = \frac{A \cdot (q^n - 1)}{q - 1}
+$$
+
+Auflösen nach $A$ ergibt die **Annuitätenformel**:
+
+$$
+A = \frac{K_0 \cdot q^n \cdot (q - 1)}{q^n - 1}
+$$
+
+Für Mara: $A = \frac{60\,000 \cdot 1{,}05^{10} \cdot 0{,}05}{1{,}05^{10} - 1} \approx \frac{60\,000 \cdot 1{,}6289 \cdot 0{,}05}{0{,}6289} \approx 7\,770{,}27$ €. Umgekehrt lässt sich mit derselben Formel die Darlehenssumme bestimmen, die bei einer vorgegebenen Annuität möglich ist.
+
+Mit der Annuität lässt sich die Rückzahlung Jahr für Jahr in einem **Tilgungsplan** verfolgen. Jede Zeile folgt demselben Schema:
 
 | Jahr | Restschuld (Anfang) | Zinsen | Tilgung | Annuität | Restschuld (Ende) |
 |---|---|---|---|---|---|
@@ -44,7 +58,7 @@ Für Maras Darlehen lauten die ersten beiden Zeilen (Beträge in €):
 | 1 | 60 000,00 | 3 000,00 | 4 770,27 | 7 770,27 | 55 229,73 |
 | 2 | 55 229,73 | 2 761,49 | 5 008,78 | 7 770,27 | 50 220,95 |
 
-Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. In der letzten Zeile ist die Tilgung gleich der verbliebenen Restschuld; die letzte Annuität weicht dadurch meist geringfügig von $A$ ab – bei Mara beträgt sie 7 770,34 €, also 7 Cent mehr (**Rundungsdifferenz**).
+Jede Zelle wird auf zwei Nachkommastellen gerundet, mit den gerundeten Werten wird weitergerechnet. In der letzten Zeile ist die Tilgung gleich der verbliebenen Restschuld; die letzte Annuität weicht dadurch meist um wenige Cent von $A$ ab – bei Mara beträgt sie 7 770,34 €, also 7 Cent mehr (**Rundungsdifferenz**). Bei kurzen Laufzeiten ist die Differenz oft nur ein oder zwei Cent, gelegentlich auch null.
 
 Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern (voreingestellt ist Maras Darlehen). Der Tilgungsplan wird zeilenweise berechnet; im Diagramm siehst du, wie der Zinsanteil der Annuität von Jahr zu Jahr sinkt und der Tilgungsanteil wächst.
 
@@ -52,23 +66,17 @@ Im folgenden Widget kannst du Darlehenssumme, Zinssatz und Laufzeit verändern (
 
 {% include check-anker.html nummer="1" %}
 
-## Annuität und Laufzeit
+## Laufzeit
 
-Woher kommen die 7 770,27 €? Die Annuität muss so gewählt sein, dass die Schuld nach genau $n$ Jahren getilgt ist. Das leistet die **Annuitätenformel**:
-
-$$
-A = \frac{K_0 \cdot q^n \cdot (q - 1)}{q^n - 1}
-$$
-
-Für Mara: $A = \frac{60\,000 \cdot 1{,}05^{10} \cdot 0{,}05}{1{,}05^{10} - 1} \approx \frac{60\,000 \cdot 1{,}6289 \cdot 0{,}05}{0{,}6289} \approx 7\,770{,}27$ €. Umgekehrt lässt sich mit derselben Formel die Darlehenssumme bestimmen, die bei einer vorgegebenen Annuität möglich ist.
-
-Ein zweiter Zusammenhang verbindet die Annuität mit der Tilgung des ersten Jahres:
+Wie lange dauert die Rückzahlung, wenn Annuität und Darlehenssumme feststehen? Die Annuitätenformel lässt sich nur umständlich nach $n$ auflösen. Einfacher ist ein zweiter Zusammenhang, der die Annuität mit der Tilgung des ersten Jahres verbindet:
 
 $$
 A = T_1 \cdot q^n
 $$
 
-Er liefert über $q^n = \frac{A}{T_1}$ und den Logarithmus die Laufzeit. Könnte Mara jährlich 9 000 € aufbringen, wäre $T_1 = 9\,000 - 3\,000 = 6\,000$ € und $n = \frac{\ln(9\,000 / 6\,000)}{\ln 1{,}05} \approx 8{,}31$ – das Darlehen wäre schon im neunten Jahr getilgt.
+Er ergibt sich aus der Beobachtung, dass die Tilgung von Jahr zu Jahr um den Faktor $q$ wächst ($T_{k+1} = T_k \cdot q$, weil die eingesparten Zinsen der Tilgung zugutekommen). Im letzten Jahr ist $T_n = T_1 \cdot q^{n-1}$; diese Restschuld wird samt Zinsen durch die letzte Annuität abgelöst: $A = T_n \cdot q = T_1 \cdot q^n$. Aufgelöst nach $q^n = \frac{A}{T_1}$ liefert der Logarithmus die Laufzeit.
+
+Könnte Mara jährlich 9 000 € aufbringen, wäre $T_1 = 9\,000 - 3\,000 = 6\,000$ € und $n = \frac{\ln(9\,000 / 6\,000)}{\ln 1{,}05} \approx 8{,}31$ – das Darlehen wäre schon im neunten Jahr getilgt.
 
 {% include check-anker.html nummer="2" %}
 
