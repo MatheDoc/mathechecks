@@ -4308,18 +4308,22 @@
         "Ich kann": "den Zinsfaktor $q$ aus dem Zinssatz $p$ bilden und in der Zinseszinsformel jede Größe durch Einsetzen und Umformen bestimmen.",
         "Sammlung": "zinseszinsformel-umformen",
         "Schlagwort": "Zinseszinsformel umformen",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-01",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
+            {
+                "cue": "Zinseszinsformel",
+                "response": "$K_n = K_0 \\cdot q^n$"
+            },
             {
                 "cue": "Zinsfaktor",
                 "response": "$q = 1 + \\frac{p}{100}$"
             },
             {
                 "cue": "$K_n$ gesucht",
-                "response": "$K_n = K_0 \\cdot q^n$ – Werte einsetzen und berechnen"
+                "response": "Werte in Zinseszinsformel einsetzen und ausrechnen"
             },
             {
                 "cue": "$K_0$ gesucht",
@@ -4344,7 +4348,7 @@
         "Ich kann": "in Textaufgaben zur Zinseszinsrechnung gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
         "Sammlung": "zinseszins-sachaufgaben",
         "Schlagwort": "Zinseszins im Sachkontext",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-zinseszinsrechnung-02",
         "questionOrder": "shuffle",
         "tippOrder": "fixed",
@@ -4382,16 +4386,12 @@
                 "response": "beide Phasen mit Dauer $n_1$, $n_2$ und Zinssatz $p_1$, $p_2$ eintragen; am Übergang steht der Zwischenwert $K_{n_1}$"
             },
             {
-                "cue": "Zweimal Zinseszinsformel",
-                "response": "Phase 1: $K_{n_1} = K_0 \\cdot q_1^{n_1}$; Phase 2: $K_n = K_{n_1} \\cdot q_2^{n_2}$"
+                "cue": "Zwischenwert berechnen",
+                "response": "$K_{n_1}$ mit Zinseszinsformel und Werten aus Phase 1 oder 2 berechnen"
             },
             {
-                "cue": "Zwischenwert zuerst",
-                "response": "Unbekannte in Phase 2 → $K_{n_1}$ vorwärts aus $K_0$; Unbekannte in Phase 1 → $K_{n_1} = \\frac{K_n}{q_2^{n_2}}$ rückwärts"
-            },
-            {
-                "cue": "Dann",
-                "response": "in der anderen Phase nach der Unbekannten auflösen (Wurzel für $p$, Logarithmus für $n$)"
+                "cue": "Gesuchten Wert berechnen",
+                "response": "in der anderen Phase Zinseszinsformel nach der Unbekannten auflösen"
             }
         ]
     },
@@ -4411,15 +4411,15 @@
         "Tipps": [
             {
                 "cue": "Grundidee",
-                "response": "Zahlungen sind nur zum gleichen Zeitpunkt vergleichbar – meist auf heute (Barwert) abzinsen"
+                "response": "Zahlungen sind nur zum gleichen Zeitpunkt vergleichbar"
             },
             {
-                "cue": "Abzinsen",
-                "response": "$K_0 = \\frac{K_n}{q^n}$ für jede Zahlung, dann pro Angebot addieren"
+                "cue": "Berechnungen",
+                "response": "$K_0$ für jede Zahlung berechnen, pro Angebot addieren"
             },
             {
                 "cue": "Entscheidung",
-                "response": "Empfänger wählt den höchsten Barwert, Zahler den niedrigsten"
+                "response": "Verkäufer wählt den höchsten Barwert, Käufer den niedrigsten"
             }
         ]
     },
@@ -4432,14 +4432,22 @@
         "Ich kann": "in der vor- oder nachschüssigen Rentenendwertformel jede Größe außer $q$ durch Einsetzen und Umformen bestimmen.",
         "Sammlung": "rentenendwert-umformen",
         "Schlagwort": "Rentenendwertformel umformen",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-01",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Formeln",
-                "response": "$R_n = \\frac{r \\cdot (q^n - 1)}{q - 1}$ bzw. $\\overline{R}_n = \\frac{r \\cdot q \\cdot (q^n - 1)}{q - 1}$"
+                "cue": "Nachschüssiger Rentenendwert",
+                "response": "$R_n = \\frac{r \\cdot (q^n - 1)}{q - 1}$"
+            },
+            {
+                "cue": "Vorschüssiger Rentenendwert",
+                "response": "$\\overline{R}_n = \\frac{r \\cdot q \\cdot (q^n - 1)}{q - 1}$"
+            },
+            {
+                "cue": "$R_n$ oder $\\overline{R}_n$ gesucht",
+                "response": "bekannte Werte einsetzen und ausrechnen"
             },
             {
                 "cue": "$r$ gesucht",
@@ -4447,7 +4455,7 @@
             },
             {
                 "cue": "$n$ gesucht",
-                "response": "nach $q^n$ auflösen, dann $n = \\frac{\\ln(q^n)}{\\ln q}$"
+                "response": "bekannte Werte einsetzen, nach $q^n$ auflösen, dann Logarithmus anwenden"
             }
         ]
     },
@@ -4460,14 +4468,22 @@
         "Ich kann": "in der vor- oder nachschüssigen Rentenbarwertformel jede Größe außer $q$ durch Einsetzen und Umformen bestimmen.",
         "Sammlung": "rentenbarwert-umformen",
         "Schlagwort": "Rentenbarwertformel umformen",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-02",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Formeln",
-                "response": "$R_0 = \\frac{r \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$ bzw. $\\overline{R}_0 = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n \\cdot (q - 1)}$"
+                "cue": "Nachschüssiger Rentenbarwert",
+                "response": "$R_n = \\frac{r \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
+            },
+            {
+                "cue": "Vorschüssiger Rentenbarwert",
+                "response": "$\\overline{R}_n = \\frac{r \\cdot q \\cdot (q^n - 1)}{q^n\\cdot(q - 1)}$"
+            },
+            {
+                "cue": "$R_0$ oder $\\overline{R}_0$ gesucht",
+                "response": "bekannte Werte einsetzen und ausrechnen"
             },
             {
                 "cue": "$r$ gesucht",
@@ -4475,7 +4491,7 @@
             },
             {
                 "cue": "$n$ gesucht",
-                "response": "Gleichung mit $q^n$ multiplizieren, nach $q^n$ auflösen, dann Logarithmus"
+                "response": "bekannte Werte einsetzen, in mehreren Schritten nach $n$ auflösen"
             }
         ]
     },
@@ -4485,29 +4501,29 @@
         "LernbereichAnzeigename": "Rentenrechnung",
         "Nummer": 3,
         "check_id": "finanzmathematik__rentenrechnung__03",
-        "Ich kann": "Zahlungszeitpunkte am Zeitstrahl einordnen, vorschüssige und nachschüssige Renten sowie Endwert und Barwert unterscheiden und die passende Rentenformel auswählen.",
+        "Ich kann": "vorschüssige und nachschüssige Renten sowie Endwert und Barwert unterscheiden und die passende Rentenformel auswählen.",
         "Sammlung": "rente-formelauswahl",
         "Schlagwort": "Vor-/nachschüssig & Formelauswahl",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-03",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
                 "cue": "Nachschüssig",
-                "response": "Zahlung am Jahresende – letzte Rate wird nicht mehr verzinst"
+                "response": "Zahlung am Jahresende"
             },
             {
                 "cue": "Vorschüssig",
-                "response": "Zahlung am Jahresanfang – jede Rate wird ein Jahr länger verzinst (Faktor $q$)"
+                "response": "Zahlung am Jahresanfang"
             },
             {
                 "cue": "Endwert oder Barwert",
-                "response": "Wert am Ende der Laufzeit → $R_n$; Wert zu Beginn → $R_0$ (Endwert durch $q^n$ geteilt)"
+                "response": "Wert am Ende der Laufzeit → $R_n$; Wert zu Beginn → $R_0$"
             },
             {
                 "cue": "Vier Formeln",
-                "response": "$R_n$, $\\overline{R}_n$, $R_0$, $\\overline{R}_0$ – der Querstrich kennzeichnet vorschüssig"
+                "response": "$R_n$, $\\overline{R}_n$, $R_0$, $\\overline{R}_0$ – Querstrich kennzeichnet vorschüssig, Index kennzeichnet Zeitpunkt (n: Endwert, 0: Barwert)"
             }
         ]
     },
@@ -4520,26 +4536,26 @@
         "Ich kann": "in Textaufgaben zur Rentenrechnung Zahlungsweise, gegebene und gesuchte Größe erkennen und die gesuchte Größe berechnen.",
         "Sammlung": "rente-sachaufgaben",
         "Schlagwort": "Rente im Sachkontext",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-04",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
                 "cue": "Zahlungsweise",
-                "response": "„zu Beginn / am Anfang des Jahres“ → vorschüssig; „am Ende des Jahres / nachschüssig“ → nachschüssig"
+                "response": "am Anfang des Jahres → vorschüssig; am Ende des Jahres → nachschüssig"
             },
             {
                 "cue": "Endwert oder Barwert",
                 "response": "Guthaben nach der letzten Rate → Endwert; heutiger Wert, Einmalzahlung statt Rente → Barwert"
             },
             {
-                "cue": "Gesucht erkennen",
+                "cue": "Gesucht Größe erkennen",
                 "response": "Betrag am Ende → $R_n$; heute nötiges Kapital → $R_0$; Ratenhöhe → $r$; Dauer → $n$"
             },
             {
                 "cue": "Rechnen",
-                "response": "passende Formel wählen, Werte einsetzen, nach der offenen Größe auflösen"
+                "response": "passende Formel wählen, Werte einsetzen, nach der gesuchten Größe auflösen"
             }
         ]
     },
@@ -4552,26 +4568,26 @@
         "Ich kann": "Zinseszins- und Rentenendwertformel zu $E_n = K_n \\pm R_n$ kombinieren und jede Größe außer $q$ bestimmen.",
         "Sammlung": "kapitalaufbau-abbau-umformen",
         "Schlagwort": "Kapitalauf- und -abbau",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-05",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Aufbau",
-                "response": "Startkapital plus Einzahlungen: $E_n = K_0 \\cdot q^n + R_n$"
+                "cue": "Kapitalaufbau",
+                "response": "nachschüssig: $E_n = K_n + R_n$, vorschüssig: $\\overline{E}_n = K_n + \\overline{R}_n$"
             },
             {
-                "cue": "Abbau",
-                "response": "Startkapital minus Entnahmen: $E_n = K_0 \\cdot q^n - R_n$"
+                "cue": "Kapitalabbau",
+                "response": "nachschüssig: $E_n = K_n - R_n$, vorschüssig: $\\overline{E}_n = K_n - \\overline{R}_n$"
             },
             {
                 "cue": "$K_0$ oder $r$ gesucht",
-                "response": "Rentenanteil bzw. Zinseszinsanteil ausrechnen, dann lineare Gleichung lösen"
+                "response": "Rentenanteil bzw. Zinseszinsanteil ausrechnen, dann nach der gesuchten Größe auflösen"
             },
             {
                 "cue": "$n$ gesucht",
-                "response": "$q^n$ ausklammern: $q^n \\cdot \\left(K_0 \\pm \\frac{r}{q-1}\\right) = E_n \\pm \\frac{r}{q-1}$, dann Logarithmus"
+                "response": "Werte einsetzen, $q^n$ ausklammern, dann Logarithmus anwenden"
             }
         ]
     },
@@ -4584,26 +4600,26 @@
         "Ich kann": "Sparpläne mit Startkapital und Entnahmepläne im Sachzusammenhang als Kapitalauf- oder -abbau erkennen und berechnen.",
         "Sammlung": "kapitalaufbau-abbau-sachaufgaben",
         "Schlagwort": "Kapitalauf-/-abbau im Sachkontext",
-        "Flashtyp": "gruppiert",
+        "Flashtyp": "einzeln",
         "skript_anchor": "check-finanzmathematik-rentenrechnung-06",
-        "questionOrder": "fixed",
+        "questionOrder": "shuffle",
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Erkennen",
-                "response": "Startkapital und zusätzlich regelmäßige Zahlungen → Kombination zweier Formeln"
+                "cue": "Zahlungsweise",
+                "response": "am Anfang des Jahres → vorschüssig; am Ende des Jahres → nachschüssig"
             },
             {
-                "cue": "Vorzeichen",
+                "cue": "Aufbau oder Abbau",
                 "response": "Einzahlungen erhöhen ($+R_n$), Entnahmen verringern ($-R_n$) das Kapital"
             },
             {
-                "cue": "Typische Frage",
-                "response": "„Wie lange reicht das Kapital?“ → Abbau mit $E_n = 0$, nach $n$ auflösen"
+                "cue": "Gesucht Größe erkennen",
+                "response": "Betrag am Ende: $E_n$ bzw. $\\overline{E}_n$; Startkapital: $K_0$; Ratenhöhe: $r$; Dauer: $n$"
             },
             {
                 "cue": "Rechnen",
-                "response": "$E_n = K_0 \\cdot q^n \\pm R_n$ aufstellen, Werte einsetzen, nach der offenen Größe auflösen"
+                "response": "passende Formel wählen, Werte einsetzen, nach der gesuchten Größe auflösen"
             }
         ]
     },
@@ -4626,11 +4642,11 @@
                 "response": "alle Zahlungen eines Angebots auf denselben Zeitpunkt beziehen – meist heute (Barwert)"
             },
             {
-                "cue": "Einmalzahlung",
+                "cue": "Barwert einer Einmalzahlung",
                 "response": "$K_0 = \\frac{K_n}{q^n}$"
             },
             {
-                "cue": "Rente",
+                "cue": "Barwert einer Rente",
                 "response": "Rentenbarwert $R_0$ bzw. $\\overline{R}_0$; beginnt die Rente später, zusätzlich mit $q^k$ abzinsen"
             },
             {
