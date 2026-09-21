@@ -31,6 +31,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | Regression erkennen | `widget-punktwolke-regression.html` | `.pr-widget` | Zufällige Punktewolke + verzögert eingeblendete Regressionsfunktion |
 | Regression Minimierung | `widget-regression-minimierung.html` | `.rm-widget` | Feste Punktwolke + verstellbare Gerade + Residuen-Quadrate + Quadratsumme (SSE) |
 | Tilgungsplan | `widget-tilgungsplan.html` | `.tp-widget` | Annuitätenformel mit Werten + vollständiger Tilgungsplan (zeilenweise auf Cent gerundet, Rundungsdifferenz) + gestapeltes Balkendiagramm Zinsen/Tilgung; läuft auch ohne Plotly (nur Tabelle) |
+| Herleitung Zinseszinsformel | `widget-zinseszins-herleitung.html` | `.zzh-widget` | Inline-SVG-Zeitstrahl (Kapital je Jahr, Zinsen mit Rechenweg, Zinsfaktor-Bögen, Sammelbogen $q^n$) + MathJax-Herleitung $K_1 \to K_n$; kein Plotly |
 
 
 ## HTML-Struktur

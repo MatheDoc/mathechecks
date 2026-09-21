@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Herleitung der Zinseszinsformel – Zeitstrahl</title>
+<style>
+  :root{
+    --bg:#ffffff; --text:#1a1a1a; --text-2:#5a5a5a; --text-muted:#9a9a9a;
+    --border:#e2e2e2; --card:#f5f5f3; --accent:#185fa5; --accent-bg:#e6f1fb;
+    --accent-dark:#0c447c; --line:#1a1a1a;
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#161616; --text:#f0f0ee; --text-2:#b7b7b3; --text-muted:#7d7d78;
+      --border:#333331; --card:#1f1f1d; --accent:#85b7eb; --accent-bg:#0c447c;
+      --accent-dark:#e6f1fb; --line:#f0f0ee;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:2rem 1.25rem 3rem; background:var(--bg); color:var(--text);
+    font-family:var(--font); max-width:760px; margin-inline:auto;
+  }
+  h1{font-size:19px; font-weight:500; margin:0 0 0.25rem;}
+  p.sub{font-size:14px; color:var(--text-2); margin:0 0 1.75rem;}
+  .controls{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:16px; margin-bottom:1.5rem;
+  }
+  .ctrl-label{display:flex; justify-content:space-between; font-size:13px; color:var(--text-2); margin-bottom:4px;}
+  .ctrl-label span.val{color:var(--text); font-weight:500;}
+  input[type=range]{width:100%; accent-color:var(--accent);}
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; margin-bottom:1.75rem;}
+  .metric{background:var(--card); border-radius:10px; padding:1rem;}
+  .metric .lbl{font-size:13px; color:var(--text-2);}
+  .metric .val{font-size:22px; font-weight:500; margin-top:2px;}
+  #canvas svg{width:100%; height:auto; display:block;}
+  .steps{margin-top:1.5rem; font-family:var(--mono); font-size:13px; line-height:2; color:var(--text-2);}
+  .steps .final{color:var(--text); font-weight:500; font-size:15px;}
+  .toolbar{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:0.75rem;}
+  button{
+    font-family:var(--font); font-size:13px; padding:6px 12px; border-radius:8px;
+    border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer;
+  }
+  button:hover{background:var(--card);}
+  .hint{font-size:12px; color:var(--text-muted); align-self:center;}
+</style>
+</head>
+<body>
+
+<h1>Herleitung der Zinseszinsformel K<sub>n</sub> = K<sub>0</sub> · qⁿ</h1>
+<p class="sub">Zeitstrahl-Darstellung: Kapital, Zinsen mit Rechenweg, Zinsfaktor je Jahr und der zusammenfassende Bogen über alle n Jahre.</p>
+
+<div class="controls">
+  <div>
+    <div class="ctrl-label"><span>Startkapital K₀</span><span class="val" id="o-k">1.000 €</span></div>
+    <input type="range" id="s-k" min="100" max="5000" step="100" value="1000" aria-label="Startkapital" />
+  </div>
+  <div>
+    <div class="ctrl-label"><span>Zinssatz p</span><span class="val" id="o-p">5 %</span></div>
+    <input type="range" id="s-p" min="1" max="12" step="0.5" value="5" aria-label="Zinssatz" />
+  </div>
+  <div>
+    <div class="ctrl-label"><span>Laufzeit n</span><span class="val" id="o-n">4 Jahre</span></div>
+    <input type="range" id="s-n" min="2" max="6" step="1" value="4" aria-label="Laufzeit in Jahren" />
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="lbl">Wachstumsfaktor q = 1 + p/100</div><div class="val" id="m-q">1,05</div></div>
+  <div class="metric"><div class="lbl">Kapital nach n Jahren</div><div class="val" id="m-kn">1.215,51 €</div></div>
+</div>
+
+<div class="toolbar">
+  <button id="b-mode">Zinsen ausblenden</button>
+  <span class="hint">Zinsbeträge in €, Zinsfaktor dimensionslos</span>
+</div>
+
+<div id="canvas"></div>
+
+<div class="steps" id="steps"></div>
+
+<script>
+(function(){
+  var sk=document.getElementById('s-k'), sp=document.getElementById('s-p'), sn=document.getElementById('s-n'), bm=document.getElementById('b-mode');
+  var showZ=true;
+  var eur=function(v){return v.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2});};
+  var num=function(v,d){return v.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});};
+
+  // Bogen, der nach UNTEN durchhängt: Kontrollpunkt bei y+lift
+  function arcDown(x1,x2,y,lift){
+    var m=(x1+x2)/2;
+    return 'M '+x1+' '+y+' Q '+m+' '+(y+lift)+' '+(x2-6)+' '+y;
+  }
+
+  function render(){
+    var K0=+sk.value, p=+sp.value, n=+sn.value, q=1+p/100, dec=(p%1?1:0), qs=num(q,(p%1?3:2));
+
+    document.getElementById('o-k').textContent=K0.toLocaleString('de-DE')+' €';
+    document.getElementById('o-p').textContent=num(p,dec)+' %';
+    document.getElementById('o-n').textContent=n+' Jahre';
+    document.getElementById('m-q').textContent=qs;
+    document.getElementById('m-kn').textContent=eur(K0*Math.pow(q,n))+' €';
+
+    var x0=110, xn=630, step=(xn-x0)/n;
+    // Zeilenpositionen von oben nach unten: Achse -> Kapital -> Zinsen(+Rechnung) -> Zinsfaktor -> großer Bogen
+    var yAxis=40, yKapital=78, yKapFactor=94;
+    var yZinsArc=150, yZinsLabel=168, yZinsCalc=184; // Zinsen-Zeile inkl. Rechenweg
+    var yFacArc = showZ? 224 : 154, yFacLabel = yFacArc+18;
+    var yBigArc = showZ? 300 : 220, bigLift = showZ? 70 : 60;
+    var H = yBigArc + bigLift + 46;
+
+    var s='<svg viewBox="0 0 680 '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Zeitstrahl zur Herleitung der Zinseszinsformel">';
+    s+='<defs>';
+    s+='<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--text-2)"/></marker>';
+    s+='<marker id="ahA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="var(--accent)"/></marker>';
+    s+='</defs>';
+
+    // Achse
+    s+='<text x="6" y="'+(yAxis+6)+'" font-size="13" fill="var(--text-2)">Jahr</text>';
+    s+='<line x1="95" y1="'+yAxis+'" x2="660" y2="'+yAxis+'" stroke="var(--line)" stroke-width="1" marker-end="url(#ah)"/>';
+    s+='<text x="6" y="'+(yKapital+8)+'" font-size="13" fill="var(--text-2)">Kapital</text>';
+
+    var i,x;
+    for(i=0;i<=n;i++){
+      x=x0+i*step;
+      s+='<line x1="'+x+'" y1="'+(yAxis-8)+'" x2="'+x+'" y2="'+(yAxis+8)+'" stroke="var(--line)" stroke-width="1"/>';
+      s+='<text x="'+x+'" y="'+(yAxis-14)+'" font-size="12" text-anchor="middle" fill="var(--text-2)">'+i+'</text>';
+      s+='<text x="'+x+'" y="'+(yKapital+8)+'" font-size="11" text-anchor="middle" fill="var(--text)" font-weight="500">'+eur(K0*Math.pow(q,i))+'</text>';
+      s+='<text x="'+x+'" y="'+(yKapFactor+8)+'" font-size="10" text-anchor="middle" fill="var(--text-muted)" font-family="var(--mono)">K₀'+(i>0?('·'+qs+(i>1?('^'+i):'')):'')+'</text>';
+    }
+
+    // Zinsen-Zeile: Bogen nach unten je Jahr, plus Rechenweg
+    if(showZ){
+      s+='<text x="6" y="'+(yZinsLabel+4)+'" font-size="13" fill="var(--text-2)">Zinsen</text>';
+      for(i=0;i<n;i++){
+        var a=x0+i*step, b=x0+(i+1)*step, m=(a+b)/2;
+        var Ki=K0*Math.pow(q,i), Zi=Ki*p/100;
+        s+='<path d="'+arcDown(a,b,yZinsArc,26)+'" fill="none" stroke="var(--text-2)" stroke-width="1.1" marker-end="url(#ah)"/>';
+        s+='<text x="'+m+'" y="'+(yZinsLabel+18)+'" font-size="11" text-anchor="middle" fill="var(--text)" font-weight="500">+ '+eur(Zi)+' €</text>';
+        s+='<text x="'+m+'" y="'+(yZinsCalc+18)+'" font-size="10" text-anchor="middle" fill="var(--text-muted)" font-family="var(--mono)">'+eur(Ki)+' · '+num(p,dec)+'/100</text>';
+      }
+    }
+
+    // Zinsfaktor-Zeile: ein Bogen je Jahr mit · q
+    s+='<text x="6" y="'+(yFacLabel+4)+'" font-size="13" fill="var(--text-2)">Zinsfaktor</text>';
+    for(i=0;i<n;i++){
+      var a2=x0+i*step, b2=x0+(i+1)*step, m2=(a2+b2)/2;
+      s+='<path d="'+arcDown(a2,b2,yFacArc,22)+'" fill="none" stroke="var(--accent)" stroke-width="1.2" marker-end="url(#ahA)"/>';
+      s+='<text x="'+m2+'" y="'+(yFacLabel+18)+'" font-size="12" text-anchor="middle" fill="var(--accent-dark)" font-weight="500">· '+qs+'</text>';
+    }
+
+    // großer zusammenfassender Bogen
+    s+='<path d="'+arcDown(x0,xn,yBigArc,bigLift)+'" fill="none" stroke="var(--line)" stroke-width="1.3" marker-end="url(#ah)"/>';
+    var midX=(x0+xn)/2, badgeY=yBigArc+bigLift*0.62;
+    s+='<rect x="'+(midX-58)+'" y="'+(badgeY-16)+'" width="116" height="24" rx="6" fill="var(--accent-bg)"/>';
+    s+='<text x="'+midX+'" y="'+(badgeY+1)+'" font-size="14" text-anchor="middle" fill="var(--accent-dark)" font-weight="500">· '+qs+'^'+n+'</text>';
+    s+='<text x="'+midX+'" y="'+(yBigArc+bigLift+30)+'" font-size="14" text-anchor="middle" fill="var(--text)" font-weight="500">K'+n+' = K₀ · q^'+n+' = '+eur(K0*Math.pow(q,n))+' €</text>';
+
+    s+='</svg>';
+    document.getElementById('canvas').innerHTML=s;
+
+    var Q=qs;
+    document.getElementById('steps').innerHTML=
+      '<div>K₁ = K₀ + K₀ · '+num(p,dec)+'/100 = K₀ · (1 + '+num(p,dec)+'/100) = K₀ · '+Q+'</div>'+
+      '<div>K₂ = K₁ · '+Q+' = K₀ · '+Q+' · '+Q+' = K₀ · '+Q+'<sup>2</sup></div>'+
+      '<div>K₃ = K₂ · '+Q+' = K₀ · '+Q+'<sup>3</sup></div>'+
+      '<div style="color:var(--text-muted);">&nbsp;&nbsp;⋮</div>'+
+      '<div class="final">K<sub>n</sub> = K₀ · q<sup>n</sup> &nbsp;=&nbsp; '+K0.toLocaleString('de-DE')+' · '+Q+'<sup>'+n+'</sup> = '+eur(K0*Math.pow(q,n))+' €</div>';
+  }
+
+  [sk,sp,sn].forEach(function(el){ el.addEventListener('input', render); });
+  bm.addEventListener('click', function(){
+    showZ=!showZ;
+    bm.textContent = showZ ? 'Zinsen ausblenden' : 'Zinsen einblenden';
+    render();
+  });
+  render();
+})();
+</script>
+</body>
+</html>

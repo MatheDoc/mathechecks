@@ -18,7 +18,7 @@ permalink: /lernbereiche/finanzmathematik/zinseszinsrechnung/skript.html
 
 Lena bekommt von ihrem Opa 3 000 € geschenkt und legt das Geld fest zu 3 % pro Jahr an. Am Ende des ersten Jahres schreibt die Bank Zinsen gut: 3 % von 3 000 € sind 90 €, das Guthaben beträgt nun 3 090 €. Im zweiten Jahr werden nicht mehr nur die 3 000 €, sondern die vollen 3 090 € verzinst – die Zinsen des ersten Jahres bringen selbst Zinsen. Man spricht von **Zinseszins**.
 
-In diesem Lernbereich wird ausschließlich jährlich verzinst. Bezeichnungen:
+In diesem Lernbereich wird ausschließlich jährlich verzinst. Wir verwenden folgende Bezeichnungen:
 
 - $K_0$: Anfangskapital (Kapital zum Zeitpunkt $0$), hier $3\,000$ €
 - $K_n$: Kapital nach $n$ Jahren
@@ -30,32 +30,27 @@ Mit dem Zinsfaktor lässt sich ein Jahr Verzinsung als eine einzige Multiplikati
 
 ## Die Zinseszinsformel
 
-Nach $n$ Jahren wurde $n$-mal mit $q$ multipliziert:
+Im Zentrum dieses Lernbereichs steht die **Zinseszinsformel**:
 
 $$
 K_n = K_0 \cdot q^n
 $$
 
-Lenas Geld soll in sechs Jahren ein Auslandsjahr mitfinanzieren. Nach sechs Jahren sind es
+Das folgende Widget zeigt die Herleitung dieser Formelam Zeitstrahl (voreingestellt ist Lenas Anlage): Über jedem Jahr steht das Kapital, darunter die Zinsen und der Zinsfaktor, mit dem von einem Jahr zum nächsten multipliziert wird. Der große Bogen fasst alle $n$ Jahresschritte zu einer einzigen Multiplikation mit $q^n$ zusammen.
+
+{% include widgets/widget-zinseszins-herleitung.html %}
+
+Mit der Zinseszinsformel können wir beispielsweise berechnen, wie viel Lenas Geld in sechs Jahren wert sein wird:
 
 $$
-K_6 = 3\,000 \cdot 1{,}03^6 \approx 3\,000 \cdot 1{,}1941 \approx 3\,582{,}16\,\text{€}.
+K_6 = 3\,000 \cdot 1{,}03^6 \approx 3\,000 \cdot 1{,}1941 \approx 3\,582{,}16\,\text{€}
 $$
-
-Die Formel enthält vier Größen. Je nachdem, welche gesucht ist, wird sie nicht allgemein umgestellt; stattdessen werden alle bekannten Werte eingesetzt und die verbleibende Unbekannte wird durch Umformen bestimmt:
-
-- $K_n$ gesucht: einsetzen und ausrechnen (wie eben).
-- $K_0$ gesucht: durch $q^n$ teilen. Wollte Lena in sechs Jahren genau 4 000 € haben, müsste sie heute $K_0 = \frac{4\,000}{1{,}03^6} \approx 3\,349{,}94$ € anlegen.
-- $n$ gesucht: nach $q^n$ auflösen, logarithmieren. Wann erreichen die 3 000 € die Marke von 4 000 €? Aus $1{,}03^n = \frac{4\,000}{3\,000}$ folgt $n = \frac{\ln(4\,000/3\,000)}{\ln 1{,}03} \approx 9{,}73$ – erst im zehnten Jahr.
-- $p$ gesucht: nach $q^n$ auflösen, $n$-te Wurzel ziehen, $p = (q - 1) \cdot 100$. Welcher Zinssatz brächte die 3 000 € in sechs Jahren auf 4 000 €? $q = \sqrt[6]{4\,000/3\,000} \approx 1{,}0491$, also etwa $4{,}91\,\%$.
-
-Zwischenwerte wie $q^n$ werden mit mindestens vier Nachkommastellen weitergerechnet, sonst wird das Ergebnis bei großen Beträgen ungenau.
 
 {% include check-anker.html nummer="1" %}
 
 ## Sachaufgaben zur Zinseszinsrechnung
 
-In Textaufgaben steht die gesuchte Größe nicht dabei. Deshalb ist zunächst zu klären, welche Werte gegeben sind und welche Größe gesucht ist – erst danach wird die Formel eingesetzt. Signalwörter helfen: „über welchen Betrag verfügen“ → $K_n$, „heute anlegen“ → $K_0$, „nach wie vielen Jahren“ → $n$, „mit welchem Zinssatz“ → $p$.
+In Textaufgaben steht die gesuchte Größe nicht dabei. Deshalb ist zunächst zu klären, welche Werte gegeben sind und welche Größe gesucht ist. Hierbei helfen Signalwörter: „Kapital nach $n$ Jahren“ → $K_n$, „heute anlegen“ → $K_0$, „nach wie vielen Jahren“ → $n$, „mit welchem Zinssatz“ → $p$.
 
 {% include check-anker.html nummer="2" %}
 
