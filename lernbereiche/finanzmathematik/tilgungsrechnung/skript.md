@@ -125,6 +125,11 @@ Das Café läuft gut: Zusammen mit der fünften Annuität leistet Mara eine **So
 - Die Laufzeit bleibt bei zehn Jahren, die Annuität wird neu berechnet: $A_{\text{neu}} = \frac{23\,641{,}25 \cdot 1{,}05^5 \cdot 0{,}05}{1{,}05^5 - 1} \approx 5\,460{,}53$ €.
 - Die Annuität bleibt bei 7 770,27 €, die Laufzeit verkürzt sich: $T_1' = 7\,770{,}27 - 23\,641{,}25 \cdot 0{,}05 \approx 6\,588{,}21$ € und $n = \frac{\ln(7\,770{,}27 / 6\,588{,}21)}{\ln 1{,}05} \approx 3{,}38$ – statt fünf nur noch gut drei Jahre.
 
-Wäre das Jahr dagegen schlecht gelaufen, könnte Mara eine **Tilgungspause** vereinbaren: Im sechsten Jahr zahlt sie nur die Zinsen ($33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ €), die Restschuld bleibt unverändert. Soll die Gesamtlaufzeit erhalten bleiben, wird die Annuität für die verbleibenden vier Jahre neu berechnet und fällt entsprechend höher aus ($\approx 9\,487{,}23$ €).
+Wäre das Jahr dagegen schlecht gelaufen, könnte Mara eine **Tilgungspause** vereinbaren: Im sechsten Jahr zahlt sie nur die Zinsen ($33\,641{,}25 \cdot 0{,}05 \approx 1\,682{,}06$ €), die Restschuld bleibt unverändert. Auch hier gibt es dieselben zwei Möglichkeiten:
+
+- Die Gesamtlaufzeit bleibt bei zehn Jahren: Die Annuität für die verbleibenden vier Jahre wird neu berechnet und fällt höher aus ($\approx 9\,487{,}23$ €), weil ein Tilgungsjahr fehlt.
+- Die Annuität bleibt bei 7 770,27 €: Nach der Pause ist die Situation genau dieselbe wie vor der Pause, die Rückzahlung dauert also noch fünf Jahre – die Gesamtlaufzeit verlängert sich um das Pausenjahr auf elf Jahre.
+
+In allen Fällen ist das Vorgehen gleich: aktuelle Restschuld als neues $K_0$, dann entweder mit fester Restlaufzeit die Annuität oder mit fester Annuität die Laufzeit bestimmen.
 
 {% include check-anker.html nummer="7" %}
