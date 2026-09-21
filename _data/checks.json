@@ -4798,20 +4798,32 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Zusammenhänge",
-                "response": "$A = Z_k + T_k$, $RK_k = RK_{k-1} - T_k$, $Z_k = RK_{k-1} \\cdot \\frac{p}{100}$"
+                "cue": "Zinssatz aus Restschuld am Jahresanfang und Zinsen",
+                "response": "$p = \\frac{Z_k}{RK_{k-1}} \\cdot 100$"
             },
             {
-                "cue": "Zinssatz fehlt",
-                "response": "$p = \\frac{Z_k}{RK_{k-1}} \\cdot 100$ aus einer vollständigen Zeile"
+                "cue": "Zinsen aus Restschuld am Jahresanfang und Zinssatz",
+                "response": "$Z_k = RK_{k-1} \\cdot \\frac{p}{100}$"
             },
             {
-                "cue": "Rückwärts",
-                "response": "$RK_{k-1} = RK_k + T_k$ bzw. $RK_{k-1} = \\frac{Z_k}{p} \\cdot 100$"
+                "cue": "Restschuld am Jahresanfang aus Zinsen und Zinssatz",
+                "response": "$RK_{k-1} = Z_k \\cdot \\frac{100}{p}$"
             },
             {
-                "cue": "Vorgehen",
-                "response": "mit der Zeile beginnen, in der die meisten Werte bekannt sind"
+                "cue": "Zinsen aus Annuität und Tilgung",
+                "response": "$Z_k=A-T_k$"
+            },
+            {
+                "cue": "Tilgung aus Annuität und Zinsen",
+                "response": "$T_k=A-Z_k$"
+            },
+            {
+                "cue": "Annuität aus Zinsen und Tilgung",
+                "response": "$A=Z_k+T_k$"
+            },
+            {
+                "cue": "Restschuld am Jahresende $RK_k$ aus Tilgung und Restschuld am Jahresanfang $RK_{k-1}$",
+                "response": "$RK_k=RK_{k-1}-T_k$"
             }
         ]
     },
@@ -4830,16 +4842,16 @@
         "tippOrder": "fixed",
         "Tipps": [
             {
-                "cue": "Schritt 1",
-                "response": "Restschuld zum Zeitpunkt des Wechsels bestimmen (Restschuldformel oder Tilgungsplan)"
+                "cue": "Annuität der ersten Zinsphase",
+                "response": "erste Annuität mit Annuitätenformel bestimmen ($n=$ gesamter Tilgungszeitraum)"
             },
             {
-                "cue": "Schritt 2",
-                "response": "Restschuld als neues $K_0$, Restlaufzeit als neues $n$, neuer Zinsfaktor $q$"
+                "cue": "Zwischenrechnung",
+                "response": "Restschuld zum Zeitpunkt des Wechsels bestimmen → neues $K_0$"
             },
             {
-                "cue": "Schritt 3",
-                "response": "neue Annuität mit der Annuitätenformel berechnen und den Plan weiterführen"
+                "cue": "Annuität der zweiten Zinsphase",
+                "response": "neue Annuität mit der Annuitätenformel bestimmen (Restschuld als neues $K_0$ und $n=$ zweiter Tilgungszeitraum)"
             }
         ]
     },
@@ -4863,11 +4875,7 @@
             },
             {
                 "cue": "Tilgungspause",
-                "response": "im Pausenjahr nur Zinsen zahlen: $Z_k = RK_{k-1} \\cdot \\frac{p}{100}$, Restschuld bleibt gleich"
-            },
-            {
-                "cue": "Danach",
-                "response": "verbleibende Restschuld und Restlaufzeit als neues $K_0$ und $n$ in die Annuitätenformel"
+                "response": "im Pausenjahr bleibt Restschuld gleich, dann neue Annuität (feste Laufzeit) oder neue Laufzeit (feste Annuität) berechnen"
             }
         ]
     }
