@@ -10,6 +10,7 @@ import { buildVerflechtungsdiagrammFigure } from "../visuals/verflechtungsdiagra
 import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funktionen.js";
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
 import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgungsplan.js";
+import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinseszins-herleitung.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
@@ -862,6 +863,68 @@ function initTilgungsplanWidgets(root) {
     });
 }
 
+function initZinseszinsHerleitungWidgets(root) {
+    const euro = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const ganz = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 });
+    // erst Dezimalkomma, dann Tausenderpunkte ersetzen – sonst trifft replace(",") das Komma in "\,"
+    const tex = (formatted) => formatted.replace(",", "{,}").replace(/\./g, "\\,");
+
+    root.querySelectorAll(".zzh-widget").forEach((widget, index) => {
+        if (widget.dataset.bound === "true") return;
+        widget.dataset.bound = "true";
+
+        const k0Slider = widget.querySelector(".zzh-k0Slider");
+        const pSlider = widget.querySelector(".zzh-pSlider");
+        const nSlider = widget.querySelector(".zzh-nSlider");
+        const zinsenBox = widget.querySelector(".zzh-zinsen");
+        if (!k0Slider || !pSlider || !nSlider) return;
+
+        const k0Wert = widget.querySelector(".zzh-k0Wert");
+        const pWert = widget.querySelector(".zzh-pWert");
+        const nWert = widget.querySelector(".zzh-nWert");
+        const qNode = widget.querySelector(".zzh-q");
+        const zeitstrahlNode = widget.querySelector(".zzh-zeitstrahl");
+        const herleitungNode = widget.querySelector(".zzh-herleitung");
+
+        function update() {
+            const k0 = parseFloat(k0Slider.value);
+            const p = parseFloat(pSlider.value);
+            const n = parseInt(nSlider.value, 10);
+            const zeigeZinsen = zinsenBox ? zinsenBox.checked : true;
+            const q = 1 + p / 100;
+
+            k0Wert.textContent = ganz.format(k0);
+            pWert.textContent = formatP(p);
+            nWert.textContent = String(n);
+
+            zeitstrahlNode.innerHTML = buildZinseszinsZeitstrahlSvg({ k0, p, n, zeigeZinsen, idPrefix: `zzh${index}` });
+
+            const pTex = formatP(p).replace(",", "{,}");
+            const qTex = formatQ(p).replace(",", "{,}");
+            const k0Tex = tex(ganz.format(k0));
+            const knTex = tex(euro.format(k0 * Math.pow(q, n)));
+
+            qNode.innerHTML = `$ q = 1 + \\dfrac{${pTex}}{100} = ${qTex} $`;
+
+            // Zwischenzeilen nur bis K_3 und nur unterhalb von n, damit die Schlusszeile K_n nicht doppelt erscheint
+            const zeilen = [
+                `K_1 &= K_0 + K_0 \\cdot \\tfrac{${pTex}}{100} = K_0 \\cdot \\left(1 + \\tfrac{${pTex}}{100}\\right) = K_0 \\cdot ${qTex}`,
+            ];
+            if (n > 2) zeilen.push(`K_2 &= K_1 \\cdot ${qTex} = K_0 \\cdot ${qTex} \\cdot ${qTex} = K_0 \\cdot ${qTex}^2`);
+            if (n > 3) zeilen.push(`K_3 &= K_2 \\cdot ${qTex} = K_0 \\cdot ${qTex}^3`);
+            if (n > 4) zeilen.push(`&\\;\\;\\vdots`);
+            zeilen.push(`K_{${n}} &= K_{${n - 1}} \\cdot ${qTex} = K_0 \\cdot q^{${n}} = ${k0Tex} \\cdot ${qTex}^{${n}} \\approx ${knTex}\\,\\text{€}`);
+            herleitungNode.innerHTML = `$$ \\begin{aligned} ${zeilen.join(" \\\\ ")} \\end{aligned} $$`;
+
+            if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([qNode, herleitungNode]).catch(() => { });
+        }
+
+        [k0Slider, pSlider, nSlider].forEach((slider) => slider.addEventListener("input", update));
+        zinsenBox?.addEventListener("change", update);
+        update();
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -871,6 +934,7 @@ export function initSkriptVisuals(root) {
     initRouletteWidgets(root);
     initGaussSchritteWidgets(root);
     initTilgungsplanWidgets(root);
+    initZinseszinsHerleitungWidgets(root);
 
     if (!window.Plotly) return;
 

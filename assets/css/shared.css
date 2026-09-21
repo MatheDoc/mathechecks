@@ -4791,6 +4791,30 @@ html.light .roulette-widget__event {
   font-weight: 600;
 }
 
+/* ── Widget-specific: Herleitung Zinseszinsformel (Inline-SVG-Zeitstrahl) ── */
+.zzh-widget .widget-controls {
+  max-width: 480px;
+}
+
+.zzh-zeitstrahl {
+  flex: 1 1 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.zzh-zeitstrahl svg {
+  display: block;
+  width: 100%;
+  min-width: 560px;
+  height: auto;
+}
+
+.zzh-herleitung {
+  flex: 1 1 100%;
+  overflow-x: auto;
+}
+
 /* ── Zeitstrahl (Finanzmathematik): Achse mit farbigen Phasen, MathJax-Labels ── */
 .zeitstrahl {
   --zs-n: 6;
