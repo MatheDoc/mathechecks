@@ -45,6 +45,14 @@
             <span class="topbar-feed-launcher__badge" data-feed-launcher-badge hidden aria-hidden="true"></span>
             <span class="visually-hidden" data-feed-launcher-label>Aktuelles Feed-Element öffnen</span>
         </a>
+        {% if page.module_key %}
+        <button class="topbar-icon-button" id="fullscreenEnterBtn" data-fullscreen-enter="true" type="button"
+            aria-label="Vollbild: Leisten ausblenden" title="Vollbild">
+            <svg class="topbar-fullscreen-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"></path>
+            </svg>
+        </button>
+        {% endif %}
         <details class="topbar-actions-menu">
             <summary class="topbar-icon-button" aria-label="Weitere Aktionen öffnen" title="Weitere Aktionen">
                 <span class="topbar-dots-vertical" aria-hidden="true">
@@ -76,13 +84,6 @@
                     <span class="topbar-nav-glyph" aria-hidden="true">🌗</span>
                     <span>Light / Dark</span>
                 </button>
-                {% if page.module_key %}
-                <button class="topbar-actions-item" id="navToggleMenu" data-nav-toggle="true" type="button"
-                    role="menuitem" aria-label="Navigation ein-/ausblenden">
-                    <span class="topbar-nav-glyph" aria-hidden="true">☰</span>
-                    <span>Navigation</span>
-                </button>
-                {% endif %}
                 <a class="topbar-actions-item" id="avatarMenuBtn" href="{{ '/konto.html' | relative_url }}" role="menuitem"
                     aria-label="Benutzerkonto öffnen">
                     <span class="topbar-nav-glyph" aria-hidden="true">👤</span>
@@ -92,6 +93,15 @@
         </details>
     </div>
 </header>
+
+{% if page.module_key %}
+<button class="fullscreen-exit-button" id="fullscreenExitBtn" data-fullscreen-exit="true" type="button"
+    aria-label="Vollbild beenden: Leisten einblenden" title="Vollbild beenden">
+    <svg class="topbar-fullscreen-svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"></path>
+    </svg>
+</button>
+{% endif %}
 
 <span class="visually-hidden" data-auth-status>Auth nicht konfiguriert</span>
 
