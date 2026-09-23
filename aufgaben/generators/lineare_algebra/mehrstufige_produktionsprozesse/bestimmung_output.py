@@ -1,6 +1,7 @@
 """Check 5: Bestimmung des Outputs (Endprodukte / Zwischenprodukte).
 
-Zwei der drei Matrizen sind gegeben (dritte ggf. berechnen nötig).
+Zwei der drei Matrizen RZ, ZE, RE sind zufällig gegeben (dritte ggf. berechnen).
+Fehlt RZ, ist ZE Z-invertierbar; fehlt ZE, ist RZ Z-invertierbar.
 Außerdem ist ein Mengenvektor gegeben:
   - z gegeben  → berechne m  (ZE⁻¹ · z  oder direkt ZE gegeben → m = ZE⁻¹ z)
   - r gegeben  → berechne z = RZ⁻¹ · r  oder  m = RE⁻¹ · r
@@ -40,25 +41,38 @@ class BestimmungOutputGenerator(TaskGenerator):
         seen: set[tuple] = set()
 
         for _ in range(count):
-            for _ in range(300):
-                aufgabe = rng.choice([
-                    "z_gegeben_m_gesucht",   # m = ZE⁻¹ · z  (ZE invertierbar)
-                    "r_gegeben_z_gesucht",   # z = RZ⁻¹ · r  (RZ invertierbar)
-                    "r_gegeben_m_gesucht",   # m = RE⁻¹ · r  (RE invertierbar)
-                ])
+            # Aufgabentyp und Matrizenpaar vorab wählen, damit Wiederholungs-
+            # versuche die Gleichverteilung nicht verzerren
+            aufgabe = rng.choice([
+                "z_gegeben_m_gesucht",   # m = ZE⁻¹ · z  (ZE invertierbar)
+                "r_gegeben_z_gesucht",   # z = RZ⁻¹ · r  (RZ invertierbar)
+                "r_gegeben_m_gesucht",   # m = RE⁻¹ · r  (RE invertierbar)
+            ])
 
-                # Invertierbarkeit sicherstellen
-                if aufgabe == "z_gegeben_m_gesucht":
-                    brauche_inv = "ZE"
-                elif aufgabe == "r_gegeben_z_gesucht":
-                    brauche_inv = "RZ"
-                else:
-                    brauche_inv = "RE"
+            # Für die Rechnung nötige Invertierbarkeit (r → m: RZ und ZE
+            # invertierbar, damit RE = RZ · ZE Z-invertierbar ist)
+            if aufgabe == "z_gegeben_m_gesucht":
+                brauche_inv = {"ZE"}
+            elif aufgabe == "r_gegeben_z_gesucht":
+                brauche_inv = {"RZ"}
+            else:
+                brauche_inv = {"RZ", "ZE"}
 
+            # Zwei der drei Matrizen zufällig gegeben; fehlt RZ, muss ZE
+            # invertierbar sein, fehlt ZE, muss RZ invertierbar sein.
+            paar = rng.choice(["RZ_ZE", "RZ_RE", "ZE_RE"])
+            if paar == "ZE_RE":
+                brauche_inv.add("ZE")
+            elif paar == "RZ_RE":
+                brauche_inv.add("RZ")
+
+            for _ in range(5000):
                 result = erzeuge_mpp_triple(rng, brauche_inv=brauche_inv)
                 if result is None:
                     continue
                 nR, nZ, nE, rz, ze, re = result
+                alle = {"RZ": rz, "ZE": ze, "RE": re}
+                teile = {name: alle[name] for name in paar.split("_")}
 
                 # Output-Vektor: wir erzeugen den Output und berechnen daraus den
                 # Input, um sicherzustellen, dass der Output ganzzahlig positiv ist.
@@ -68,12 +82,6 @@ class BestimmungOutputGenerator(TaskGenerator):
                     z = mat_vec(ze, m)
                     if any(v > 500 or v < 0 for v in z):
                         continue
-                    # Gebe zwei Matrizen, die ZE enthalten oder aus denen ZE abgeleitet werden kann
-                    paar = rng.choice(["RZ_ZE", "ZE_RE"])
-                    if paar == "RZ_ZE":
-                        teile = {"RZ": rz, "ZE": ze}
-                    else:
-                        teile = {"ZE": ze, "RE": re}
 
                     frage_gegeben = spaltenvektor_latex("z", z)
                     frage_text = (
@@ -91,11 +99,6 @@ class BestimmungOutputGenerator(TaskGenerator):
                     r = mat_vec(rz, z)
                     if any(v > 500 or v < 0 for v in r):
                         continue
-                    paar = rng.choice(["RZ_ZE", "RZ_RE"])
-                    if paar == "RZ_ZE":
-                        teile = {"RZ": rz, "ZE": ze}
-                    else:
-                        teile = {"RZ": rz, "RE": re}
 
                     frage_gegeben = spaltenvektor_latex("r", r)
                     frage_text = (
@@ -113,13 +116,6 @@ class BestimmungOutputGenerator(TaskGenerator):
                     r = mat_vec(re, m)
                     if any(v > 500 or v < 0 for v in r):
                         continue
-                    paar = rng.choice(["RZ_ZE", "RZ_RE", "ZE_RE"])
-                    if paar == "RZ_ZE":
-                        teile = {"RZ": rz, "ZE": ze}
-                    elif paar == "RZ_RE":
-                        teile = {"RZ": rz, "RE": re}
-                    else:
-                        teile = {"ZE": ze, "RE": re}
 
                     frage_gegeben = spaltenvektor_latex("r", r)
                     frage_text = (
@@ -133,6 +129,7 @@ class BestimmungOutputGenerator(TaskGenerator):
 
                 sig_key = (
                     aufgabe,
+                    paar,
                     tuple(tuple(r) for r in rz),
                     tuple(tuple(r) for r in ze),
                     sig_vec,
