@@ -138,7 +138,7 @@ def antwort_zeilenvektor(vec: list[int], start: str = "a") -> str:
 def erzeuge_mpp_triple(
     rng: random.Random,
     *,
-    brauche_inv: str | None = None,
+    brauche_inv: str | tuple[str, ...] | set[str] | None = None,
     max_entry: int = 9,
     max_re_entry: int = 200,
 ) -> tuple[int, int, int, list[list[int]], list[list[int]], list[list[int]]] | None:
@@ -149,27 +149,37 @@ def erzeuge_mpp_triple(
         "RZ"  – RZ soll quadratisch und Z-invertierbar sein (det = ±1)
         "ZE"  – ZE soll quadratisch und Z-invertierbar sein (det = ±1)
         "RE"  – RE soll quadratisch und Z-invertierbar sein (det = ±1)
+        Mehrere Namen (Tupel/Menge) fordern die Bedingungen gleichzeitig.
 
     Gibt None zurück, wenn die Erzeugung in diesem Versuch scheitert.
     """
     sizes = [2, 3, 4]
-
-    if brauche_inv == "RZ":
-        n = rng.choice(sizes)
-        nR, nZ, nE = n, n, rng.choice(sizes)
-    elif brauche_inv == "ZE":
-        n = rng.choice(sizes)
-        nR, nZ, nE = rng.choice(sizes), n, n
-    elif brauche_inv == "RE":
-        n = rng.choice(sizes)
-        nR, nZ, nE = n, rng.choice(sizes), n
+    if brauche_inv is None:
+        inv: set[str] = set()
+    elif isinstance(brauche_inv, str):
+        inv = {brauche_inv}
     else:
+        inv = set(brauche_inv)
+
+    # Reihenfolge der Zufallszüge wie bisher, damit bestehende Seeds stabil bleiben
+    if not inv:
         nR = rng.choice(sizes)
         nZ = rng.choice(sizes)
         nE = rng.choice(sizes)
+    else:
+        n = rng.choice(sizes)
+        fest = set()
+        if "RZ" in inv:
+            fest |= {"R", "Z"}
+        if "ZE" in inv:
+            fest |= {"Z", "E"}
+        if "RE" in inv:
+            fest |= {"R", "E"}
+        dims = {k: (n if k in fest else rng.choice(sizes)) for k in ("R", "Z", "E")}
+        nR, nZ, nE = dims["R"], dims["Z"], dims["E"]
 
     # RZ erzeugen
-    if brauche_inv == "RZ":
+    if "RZ" in inv:
         rz = random_invertible(rng, nR, max_entry=max_entry, steps_range=(3, 6))
         # Einträge auf nicht-negativ prüfen
         if any(rz[i][j] < 0 for i in range(nR) for j in range(nZ)):
@@ -178,7 +188,7 @@ def erzeuge_mpp_triple(
         rz = random_nonneg_matrix(rng, nR, nZ, low=1, high=max_entry)
 
     # ZE erzeugen
-    if brauche_inv == "ZE":
+    if "ZE" in inv:
         ze = random_invertible(rng, nZ, max_entry=max_entry, steps_range=(3, 6))
         if any(ze[i][j] < 0 for i in range(nZ) for j in range(nE)):
             return None
@@ -195,7 +205,7 @@ def erzeuge_mpp_triple(
         return None
 
     # Falls RE invertierbar sein soll: prüfe det = ±1
-    if brauche_inv == "RE":
+    if "RE" in inv:
         if abs(det_nxn(re)) != 1:
             return None
 
