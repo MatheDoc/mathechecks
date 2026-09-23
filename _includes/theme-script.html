@@ -34,24 +34,25 @@
     })();
 
     (function () {
-        const NAV_KEY = 'mathechecks-module-nav';
-        const buttons = Array.from(document.querySelectorAll('[data-nav-toggle="true"]'));
-        if (!buttons.length) return;
+        const FULLSCREEN_KEY = 'mathechecks-module-fullscreen';
+        const enterButtons = Array.from(document.querySelectorAll('[data-fullscreen-enter="true"]'));
+        const exitButtons = Array.from(document.querySelectorAll('[data-fullscreen-exit="true"]'));
+        if (!enterButtons.length && !exitButtons.length) return;
 
-        function applyNavState(isVisible) {
-            document.body.classList.toggle('nav-hidden', !isVisible);
-            buttons.forEach((btn) => btn.classList.toggle('active', isVisible));
+        function applyFullscreenState(isFullscreen) {
+            document.body.classList.toggle('nav-hidden', isFullscreen);
+            document.body.classList.toggle('module-fullscreen', isFullscreen);
         }
 
-        applyNavState(localStorage.getItem(NAV_KEY) !== 'hidden');
+        function setFullscreen(isFullscreen) {
+            localStorage.setItem(FULLSCREEN_KEY, isFullscreen ? 'on' : 'off');
+            applyFullscreenState(isFullscreen);
+        }
 
-        buttons.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                const willBeVisible = document.body.classList.contains('nav-hidden');
-                localStorage.setItem(NAV_KEY, willBeVisible ? 'visible' : 'hidden');
-                applyNavState(willBeVisible);
-            });
-        });
+        applyFullscreenState(localStorage.getItem(FULLSCREEN_KEY) === 'on');
+
+        enterButtons.forEach((btn) => btn.addEventListener('click', () => setFullscreen(true)));
+        exitButtons.forEach((btn) => btn.addEventListener('click', () => setFullscreen(false)));
     })();
 
     (function () {

@@ -558,9 +558,60 @@ body.page-shell .shell {
 .topbar-right {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
   flex-shrink: 0;
   margin-left: auto;
+}
+
+.topbar-right .topbar-icon-button {
+  min-width: 34px;
+}
+
+.topbar-fullscreen-svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fullscreen-exit-button {
+  display: none;
+}
+
+body.module-fullscreen .fullscreen-exit-button {
+  position: fixed;
+  top: 8px;
+  right: 18px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--text-dim);
+  cursor: pointer;
+  opacity: 0.75;
+  transition: opacity 180ms ease, color 180ms ease, background 180ms ease;
+}
+
+body.module-fullscreen .fullscreen-exit-button:hover,
+body.module-fullscreen .fullscreen-exit-button:focus-visible {
+  opacity: 1;
+  color: var(--text);
+  background: color-mix(in srgb, var(--surface-hi) 82%, transparent);
+}
+
+body.module-fullscreen .topbar {
+  display: none;
 }
 
 .topbar-inline-actions {
@@ -1584,6 +1635,10 @@ body.page-module:not(:has(.check-jump-nav-wrap)) {
 body.nav-hidden.page-module {
   --module-tab-nav-h: 0px;
   --module-check-nav-h: 0px;
+}
+
+body.module-fullscreen.page-module {
+  --module-top-row-h: 0px;
 }
 
 body.nav-hidden .mod-tab-nav,
