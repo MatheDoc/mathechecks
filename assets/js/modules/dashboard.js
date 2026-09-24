@@ -3480,13 +3480,29 @@ function buildModal(context) {
   });
 }
 
+function isDateOnlyValueBeforeToday(value) {
+  const normalized = normalizeDateOnlyValue(value);
+  return Boolean(normalized) && normalized < toDateOnlyValue(new Date());
+}
+
 function openModal(context) {
-  if (!context.authState?.user || !context.lernbereiche.length) return;
+  if (!context.authState?.user || !context.lernbereiche.length || !context.persistedStateLoaded) return;
   context.draft = cloneState(context.state);
+  // Nur explizite Zieldaten vorbelegen; vorgeschlagene werden beim Speichern neu berechnet.
+  const persistedTargetDate = String(context.activeSession?.target_source || "").trim() === "explicit"
+    ? normalizeDateOnlyValue(context.activeSession?.target_date)
+    : "";
+  const targetDateExpired = isDateOnlyValueBeforeToday(persistedTargetDate);
   context.draftConfig = {
-    targetDate: normalizeDateOnlyValue(context.activeSession?.target_date),
+    targetDate: targetDateExpired ? "" : persistedTargetDate,
   };
-  setModalStatus(context, "");
+  setModalStatus(
+    context,
+    targetDateExpired
+      ? `Das bisherige Zieldatum (${formatDateOnlyLabel(persistedTargetDate)}) ist verstrichen. Setze ein neues oder lass es automatisch berechnen.`
+      : "",
+    targetDateExpired ? "warning" : "neutral",
+  );
   buildModal(context);
   syncPlanningInputs(context);
   context.elements.overlay.classList.add("open");
@@ -3596,6 +3612,17 @@ async function handleSave(context) {
   if (!context.supabase || !context.authState?.user) {
     setModalStatus(context, "Bitte melde dich zuerst an, um deine Session zu speichern.", "error");
     setBarStatus(context, "Bitte melde dich zuerst an, um deine Session zu speichern.", "error");
+    return;
+  }
+
+  if (context.elements.targetDateInput) {
+    context.draftConfig = {
+      ...(context.draftConfig || {}),
+      targetDate: normalizeDateOnlyValue(context.elements.targetDateInput.value),
+    };
+  }
+  if (isDateOnlyValueBeforeToday(context.draftConfig?.targetDate)) {
+    setModalStatus(context, "Das Zieldatum muss heute oder später liegen.", "error");
     return;
   }
 
@@ -4205,6 +4232,7 @@ function createContext(root, lernbereiche) {
     isGreetingHydrating: true,
     greetingRefreshTimerId: null,
     isSaving: false,
+    persistedStateLoaded: false,
     retentionDraft: {},
     retentionPersistedDraft: {},
     retentionIsSaving: false,
@@ -4338,7 +4366,6 @@ export async function initDashboardModule() {
   }
 
   updateGreetingHeading(context);
-  updateSessionActionButtons(context, false);
   updateRetentionActionButtons(context, false);
 
   try {
@@ -4347,6 +4374,8 @@ export async function initDashboardModule() {
     context.activeSession = persisted.session;
     context.sessionCheckStates = persisted.checkStates;
     context.sessionActivityStates = persisted.activityStates;
+    context.persistedStateLoaded = true;
+    updateSessionActionButtons(context, false);
     context.retentionCheckIds = await loadRetentionCheckIds(context);
     updatePlanSummary(context);
     updateSessionList(context);

@@ -9,7 +9,7 @@ page_css: /assets/css/dashboard.css?v=20260904-dashboard-filter-state
 published: true
 noindex: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260904-dashboard-filter-state
+module_script: /assets/js/modules/dashboard.js?v=20260924-session-save-fix
 ---
 
 {% include dashboard/content.html %}
