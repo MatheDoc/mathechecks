@@ -15,7 +15,7 @@
         <article class="check-card dashboard-panel dashboard-panel--plan" data-dashboard-panel>
             <div class="check-card__header">
                 <div class="check-card__header-left">
-                    <span class="check-card__title dashboard-panel__title">Session</span>
+                    <span class="check-card__title dashboard-panel__title" data-dashboard-plan-title>Session</span>
                 </div>
                 <div class="check-card__header-actions">
                     <details class="dashboard-panel__help">
@@ -23,7 +23,7 @@
                             <span class="dashboard-panel__help-icon" aria-hidden="true">i</span>
                         </summary>
                         <div class="dashboard-panel__help-popover" role="note">
-                            <p>Zeigt den Fortschritt deiner Session, die nächste Aktion und die ausgewählten Lernbereiche. Über Bearbeiten kannst du Checks hinzufügen und entfernen sowie das Zieldatum ändern.</p>
+                            <p>Zeigt den Fortschritt deiner Session, die nächste Aktion und die ausgewählten Lernbereiche. Über Bearbeiten kannst du Checks hinzufügen und entfernen sowie Name und Zieldatum ändern. Über Teilen kopierst du einen Link, mit dem andere deine Session-Auswahl übernehmen können.</p>
                         </div>
                     </details>
                     <details class="check-card__actions-menu dashboard-panel__menu" data-dashboard-session-menu>
@@ -38,6 +38,10 @@
                             <button class="check-card__actions-item" type="button" id="lbOpenBtn" role="menuitem">
                                 <span class="check-card__actions-icon" aria-hidden="true">✎</span>
                                 <span>Bearbeiten</span>
+                            </button>
+                            <button class="check-card__actions-item" type="button" id="lbShareBtn" role="menuitem">
+                                <span class="check-card__actions-icon" aria-hidden="true">🔗</span>
+                                <span>Teilen</span>
                             </button>
                             <button class="check-card__actions-item dashboard-panel__menu-item--danger" type="button" id="lbDeleteBtn" role="menuitem">
                                 <span class="check-card__actions-icon" aria-hidden="true">✕</span>
@@ -289,30 +293,33 @@
 </div>
 
 <div class="lb-overlay" id="lbOverlay">
-    <div class="lb-modal">
-        <div class="lb-modal-head">
+    <div class="lb-modal" role="dialog" aria-modal="true" aria-labelledby="lbModalTitle">
+        <div class="lb-modal-head lb-modal-head--actions">
             <div>
-                <h2>Session bearbeiten</h2>
-                <p>Aktiviere Lernbereiche und Kompetenzen und setze ein Zieldatum (optional).</p>
+                <h2 id="lbModalTitle">Session bearbeiten</h2>
+                <p id="lbModalDescription">Aktiviere Lernbereiche und Kompetenzen und setze ein Zieldatum (optional).</p>
             </div>
-            <button class="lb-close" id="lbCloseBtn" type="button">X</button>
+            <div class="lb-modal-actions">
+                <button class="btn-ghost" type="button" id="lbCloseBtn">Abbrechen</button>
+                <button class="btn-primary" type="button" id="lbSaveBtn">Übernehmen</button>
+            </div>
         </div>
 
-        <div class="lb-plan-fields">
+        <p class="lb-status-message lb-modal-status dashboard-panel__status" id="lbModalStatus" aria-live="polite" hidden></p>
+
+        <div class="lb-plan-fields lb-plan-fields--split">
+            <label class="lb-field" for="lbNameInput">
+                <span class="lb-field__label">Name</span>
+                <input class="lb-field__input" id="lbNameInput" type="text" maxlength="80" autocomplete="off" placeholder="Meine Session">
+            </label>
             <label class="lb-field" for="lbTargetDateInput">
                 <span class="lb-field__label">Zieldatum</span>
                 <input class="lb-field__input" id="lbTargetDateInput" type="date">
-                <span class="lb-field__hint">Falls nicht gesetzt, wird das Zieldatum automatisch anhand des aktivierten Lernumfangs berechnet.</span>
             </label>
+            <span class="lb-field__hint">Ohne Zieldatum wird es automatisch anhand des aktivierten Lernumfangs berechnet.</span>
         </div>
 
         <div id="lbAccordionContainer"></div>
-
-        <div class="lb-modal-footer">
-            <p class="lb-status-message lb-modal-status" id="lbModalStatus" aria-live="polite" hidden></p>
-            <button class="btn-ghost" type="button" id="lbResetBtn">Zurücksetzen</button>
-            <button class="btn-primary" type="button" id="lbSaveBtn">Übernehmen</button>
-        </div>
     </div>
 </div>
 

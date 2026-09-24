@@ -1,4 +1,4 @@
-import { initCardMenuDismiss } from "./ui/card-actions-menu.js";
+import { initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { getUserRecallProficiency, getUserFeynmanProficiency, getUserTestProficiency } from "../platform/progress-client.js?v=20260908-run-rate";
 import {
   FEED_STEP_ORDER,
@@ -18,6 +18,21 @@ const LERNBEREICH_ALIASES = {
 
 const CHECK_PIPELINE_STEP_COUNT = Object.keys(FEED_STEP_ORDER).length;
 const DATE_ONLY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/;
+const DEFAULT_SESSION_NAME = "Meine Session";
+const SESSION_NAME_MAX_LENGTH = 80;
+const SHARE_QUERY_PARAM = "share";
+const SHARE_CODE_PATTERN = /^[A-Za-z0-9]{8}$/;
+const SHARE_INVALID_MESSAGE = "Dieser Teilen-Link ist ungültig.";
+const SESSION_MODAL_COPY = {
+  edit: {
+    title: "Session bearbeiten",
+    description: "Vergib einen Namen, setze ein Zieldatum (optional) und wähle Lernbereiche und Checks aus.",
+  },
+  share: {
+    title: "Geteilte Session übernehmen",
+    description: "Diese Auswahl stammt aus einem Teilen-Link. Du kannst sie vor dem Übernehmen frei anpassen.",
+  },
+};
 const SESSION_EMPTY_SUMMARY = "Aktuell ist keine Session aktiv.";
 const SESSION_EMPTY_LIST_MESSAGE = "Wähle Lernbereiche über Bearbeiten aus.";
 const RETENTION_EMPTY_SUMMARY = "Aktuell ist keine Wiederholung aktiv.";
@@ -3205,8 +3220,15 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
 }
 
 function syncPlanningInputs(context) {
+  if (context.elements.nameInput) {
+    context.elements.nameInput.value = String(context.draftConfig?.name || "");
+  }
   if (!context.elements.targetDateInput) return;
   context.elements.targetDateInput.value = normalizeDateOnlyValue(context.draftConfig?.targetDate);
+}
+
+function normalizeSessionName(value) {
+  return String(value || "").trim().slice(0, SESSION_NAME_MAX_LENGTH);
 }
 
 function updatePlanSummary(context) {
@@ -3217,6 +3239,12 @@ function updatePlanSummary(context) {
   const targetLabelNode = context.elements.planTargetLabel;
   const assessmentNode = context.elements.planAssessment;
   const activeEntries = collectActiveSessionLernbereiche(context);
+
+  if (context.elements.planTitle) {
+    context.elements.planTitle.textContent = context.activeSession && activeEntries.length
+      ? normalizeSessionName(context.activeSession.name) || "Session"
+      : "Session";
+  }
 
   if (!context.activeSession || !activeEntries.length) {
     node.textContent = SESSION_EMPTY_SUMMARY;
@@ -3255,7 +3283,7 @@ function updatePlanSummary(context) {
 async function loadPersistedState(supabase, lernbereiche) {
   const { data: sessions, error: sessionError } = await supabase
     .from("learning_sessions")
-    .select("id, activities_per_day, started_at, target_date, target_source")
+    .select("id, name, activities_per_day, started_at, target_date, target_source")
     .eq("status", "active")
     .order("started_at", { ascending: false })
     .limit(1);
@@ -3324,6 +3352,7 @@ function setDashboardMenuItemDisabledState(button, disabled) {
 
 function updateSessionActionButtons(context, disabled) {
   setDashboardMenuItemDisabledState(context.elements.openButton, disabled);
+  setDashboardMenuItemDisabledState(context.elements.shareButton, disabled || !context.activeSession);
   setDashboardMenuItemDisabledState(context.elements.deleteButton, disabled || !context.activeSession);
 }
 
@@ -3348,6 +3377,16 @@ function closeModal(context) {
   context.elements.overlay.classList.remove("open");
   document.body.style.overflow = "";
   setModalStatus(context, "");
+  if (context.modalMode === "share") {
+    clearShareCodeFromUrl();
+  }
+  context.modalMode = "edit";
+}
+
+function applySessionModalCopy(context) {
+  const copy = SESSION_MODAL_COPY[context.modalMode] || SESSION_MODAL_COPY.edit;
+  if (context.elements.modalTitle) context.elements.modalTitle.textContent = copy.title;
+  if (context.elements.modalDescription) context.elements.modalDescription.textContent = copy.description;
 }
 
 function updateCount(item, lb, draft) {
@@ -3370,7 +3409,7 @@ function buildModal(context) {
     group.items.forEach((lb) => {
       const lbState = context.draft[lb.id] || { active: false, checks: {} };
       const item = document.createElement("div");
-      item.className = `lb-accord-item${lbState.active ? " active" : ""}`;
+      item.className = `lb-accord-item${lbState.active ? " active" : ""}${lbState.active && context.modalMode === "share" ? " open" : ""}`;
       item.dataset.id = lb.id;
 
       const total = lb.checks.length;
@@ -3485,8 +3524,33 @@ function isDateOnlyValueBeforeToday(value) {
   return Boolean(normalized) && normalized < toDateOnlyValue(new Date());
 }
 
-function openModal(context) {
+function openModal(context, { shared = null } = {}) {
   if (!context.authState?.user || !context.lernbereiche.length || !context.persistedStateLoaded) return;
+  context.modalMode = shared ? "share" : "edit";
+  applySessionModalCopy(context);
+
+  if (shared) {
+    context.draft = shared.draft;
+    context.draftConfig = { name: shared.name, targetDate: shared.targetDate };
+    const notes = [
+      context.activeSession
+        ? "Mit Übernehmen ersetzt diese Auswahl deine aktuelle Session. Fortschritt bei Checks, die in beiden enthalten sind, bleibt erhalten."
+        : "Prüfe die Auswahl und bestätige mit Übernehmen.",
+    ];
+    if (shared.targetDateExpired) {
+      notes.push("Das geteilte Zieldatum ist bereits verstrichen und wurde entfernt.");
+    }
+    if (shared.missingCount > 0) {
+      notes.push(`${shared.missingCount} geteilte ${shared.missingCount === 1 ? "Check ist" : "Checks sind"} hier nicht verfügbar und ${shared.missingCount === 1 ? "wurde" : "wurden"} ausgelassen.`);
+    }
+    setModalStatus(context, notes.join(" "), shared.targetDateExpired || shared.missingCount > 0 ? "warning" : "neutral");
+    buildModal(context);
+    syncPlanningInputs(context);
+    context.elements.overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    return;
+  }
+
   context.draft = cloneState(context.state);
   // Nur explizite Zieldaten vorbelegen; vorgeschlagene werden beim Speichern neu berechnet.
   const persistedTargetDate = String(context.activeSession?.target_source || "").trim() === "explicit"
@@ -3494,6 +3558,7 @@ function openModal(context) {
     : "";
   const targetDateExpired = isDateOnlyValueBeforeToday(persistedTargetDate);
   context.draftConfig = {
+    name: normalizeSessionName(context.activeSession?.name) || DEFAULT_SESSION_NAME,
     targetDate: targetDateExpired ? "" : persistedTargetDate,
   };
   setModalStatus(
@@ -3512,7 +3577,6 @@ function openModal(context) {
 function setMutationBusy(context, busy, mode = "save") {
   context.isSaving = busy;
   context.elements.saveButton.disabled = busy;
-  context.elements.resetButton.disabled = busy;
   context.elements.closeButton.disabled = busy;
   context.elements.saveButton.textContent = busy && mode === "save" ? "Speichern ..." : "Übernehmen";
   updateSessionActionButtons(context, busy);
@@ -3621,12 +3685,22 @@ async function handleSave(context) {
       targetDate: normalizeDateOnlyValue(context.elements.targetDateInput.value),
     };
   }
+  if (context.elements.nameInput) {
+    context.draftConfig = {
+      ...(context.draftConfig || {}),
+      name: normalizeSessionName(context.elements.nameInput.value),
+    };
+  }
   if (isDateOnlyValueBeforeToday(context.draftConfig?.targetDate)) {
     setModalStatus(context, "Das Zieldatum muss heute oder später liegen.", "error");
     return;
   }
 
-  const payload = buildPayloadFromState(context, context.draft, context.lernbereiche, context.draftConfig);
+  const payload = {
+    ...buildPayloadFromState(context, context.draft, context.lernbereiche, context.draftConfig),
+    p_name: normalizeSessionName(context.draftConfig?.name) || DEFAULT_SESSION_NAME,
+  };
+  const wasShareImport = context.modalMode === "share";
 
   setMutationBusy(context, true, "save");
   setModalStatus(context, "Speichere Session ...");
@@ -3649,7 +3723,7 @@ async function handleSave(context) {
     ]);
     notifyFeedBadgeRefresh();
     closeModal(context);
-    setBarStatus(context, "");
+    setBarStatus(context, wasShareImport ? "Geteilte Session übernommen." : "", "success");
   } catch (error) {
     console.error("Aktive Session konnte nicht gespeichert werden:", error);
     const mappedError = mapSessionError(error);
@@ -3684,7 +3758,7 @@ async function handleDelete(context) {
 
     context.state = {};
     context.draft = {};
-    context.draftConfig = { targetDate: "" };
+    context.draftConfig = { name: "", targetDate: "" };
     context.activeSession = null;
     context.sessionCheckStates = [];
     context.sessionActivityStates = [];
@@ -3743,9 +3817,219 @@ async function handleRetentionDelete(context) {
   }
 }
 
+// ─── Session teilen ────────────────────────────────────────────────────────
+
+function buildShareUrl(code) {
+  return `${window.location.origin}${window.location.pathname}?${SHARE_QUERY_PARAM}=${encodeURIComponent(code)}`;
+}
+
+function readShareCodeFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  if (!params.has(SHARE_QUERY_PARAM)) return null;
+  return String(params.get(SHARE_QUERY_PARAM) || "").trim();
+}
+
+function clearShareCodeFromUrl() {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has(SHARE_QUERY_PARAM)) return;
+  url.searchParams.delete(SHARE_QUERY_PARAM);
+  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+async function copyPromisedTextToClipboard(textPromise) {
+  // ClipboardItem mit Promise erhält die User-Geste über den RPC-Roundtrip hinweg (Safari).
+  if (typeof window.ClipboardItem === "function" && navigator.clipboard?.write) {
+    try {
+      const blobPromise = textPromise.then((text) => new Blob([text], { type: "text/plain" }));
+      await navigator.clipboard.write([new window.ClipboardItem({ "text/plain": blobPromise })]);
+      return true;
+    } catch {
+      // Fallback auf writeText unten.
+    }
+  }
+
+  const text = await textPromise;
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function mapShareError(error) {
+  const code = String(error?.code || error?.error_code || "").trim().toUpperCase();
+  const message = String(error?.message || "").trim();
+
+  if (code === "PGRST202") {
+    return "Die Teilen-Funktion ist noch nicht im API-Schema verfügbar. Seite neu laden und erneut versuchen.";
+  }
+  if (message.includes("share rate limit exceeded")) {
+    return "Du hast heute schon sehr viele Teilen-Links erstellt. Bitte versuche es morgen erneut.";
+  }
+  if (message.includes("check_ids must not be empty")) {
+    return "Die Session enthält keine Checks, die geteilt werden können.";
+  }
+  return "Der Teilen-Link konnte gerade nicht erstellt werden.";
+}
+
+async function handleShare(context) {
+  const button = context.elements.shareButton;
+  if (!button || context.isShareBusy || context.isSaving) return;
+  if (!context.supabase || !context.authState?.user || !context.activeSession) return;
+
+  const { selectedCheckIds } = summarizeActivePlan(context);
+  if (!selectedCheckIds.length) {
+    setBarStatus(context, "Die Session enthält keine Checks, die geteilt werden können.", "warning");
+    return;
+  }
+
+  const explicitTargetDate = String(context.activeSession.target_source || "").trim() === "explicit"
+    ? normalizeDateOnlyValue(context.activeSession.target_date)
+    : "";
+  const targetDate = explicitTargetDate && !isDateOnlyValueBeforeToday(explicitTargetDate) ? explicitTargetDate : null;
+
+  context.isShareBusy = true;
+  setBarStatus(context, "");
+  let shareUrl = "";
+  let shareError = null;
+
+  const urlPromise = (async () => {
+    const { data, error } = await context.supabase.rpc("create_shared_session", {
+      p_name: normalizeSessionName(context.activeSession.name) || DEFAULT_SESSION_NAME,
+      p_target_date: targetDate,
+      p_check_ids: selectedCheckIds,
+    });
+    if (error) throw error;
+    const code = String(data || "").trim();
+    if (!SHARE_CODE_PATTERN.test(code)) throw new Error("invalid share code");
+    shareUrl = buildShareUrl(code);
+    return shareUrl;
+  })();
+  urlPromise.catch((error) => {
+    shareError = error;
+  });
+
+  try {
+    await runCardMenuItemFeedbackAction(button, {
+      pendingLabel: "Link wird erstellt…",
+      successLabel: "Link kopiert!",
+      errorLabel: "Fehler",
+      pendingIcon: "🔗",
+      action: async () => {
+        let copied = false;
+        try {
+          copied = await copyPromisedTextToClipboard(urlPromise);
+        } catch {
+          copied = false;
+        }
+        if (!copied && shareUrl) {
+          window.prompt("Link zum Teilen kopieren:", shareUrl);
+        }
+        return copied;
+      },
+    });
+
+    if (shareError) {
+      console.error("Teilen-Link konnte nicht erstellt werden:", shareError);
+      setBarStatus(context, mapShareError(shareError), "error");
+    }
+  } finally {
+    context.isShareBusy = false;
+  }
+}
+
+function normalizeSharedConfig(raw) {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) return null;
+
+  const checkIds = Array.isArray(raw.check_ids)
+    ? Array.from(new Set(raw.check_ids.map((value) => String(value || "").trim()).filter(Boolean)))
+    : [];
+  if (!checkIds.length) return null;
+
+  return {
+    name: normalizeSessionName(raw.name) || DEFAULT_SESSION_NAME,
+    targetDate: normalizeDateOnlyValue(raw.zieldatum),
+    checkIds,
+  };
+}
+
+function buildDraftFromCheckIds(lernbereiche, checkIds) {
+  const wanted = new Set(checkIds);
+  const draft = {};
+  let matchedCount = 0;
+
+  lernbereiche.forEach((group) => {
+    group.items.forEach((lb) => {
+      const hits = lb.checks.filter((check) => wanted.has(check.id)).length;
+      if (!hits) return;
+
+      const lbState = { active: true, checks: {} };
+      lb.checks.forEach((check) => {
+        lbState.checks[check.id] = wanted.has(check.id);
+      });
+      draft[lb.id] = lbState;
+      matchedCount += hits;
+    });
+  });
+
+  return { draft, matchedCount };
+}
+
+async function openSharedSessionFromUrl(context) {
+  const code = readShareCodeFromUrl();
+  if (code === null) return;
+
+  if (!SHARE_CODE_PATTERN.test(code)) {
+    clearShareCodeFromUrl();
+    setBarStatus(context, SHARE_INVALID_MESSAGE, "error");
+    return;
+  }
+
+  try {
+    const { data, error } = await context.supabase.rpc("get_shared_session", { p_code: code });
+    if (error) throw error;
+
+    const config = normalizeSharedConfig(data);
+    if (!config) {
+      clearShareCodeFromUrl();
+      setBarStatus(context, SHARE_INVALID_MESSAGE, "error");
+      return;
+    }
+
+    const { draft, matchedCount } = buildDraftFromCheckIds(context.lernbereiche, config.checkIds);
+    if (!matchedCount) {
+      clearShareCodeFromUrl();
+      setBarStatus(context, "Die geteilte Session enthält keine Checks, die hier verfügbar sind.", "error");
+      return;
+    }
+
+    const targetDateExpired = isDateOnlyValueBeforeToday(config.targetDate);
+    openModal(context, {
+      shared: {
+        draft,
+        name: config.name,
+        targetDate: targetDateExpired ? "" : config.targetDate,
+        targetDateExpired,
+        missingCount: config.checkIds.length - matchedCount,
+      },
+    });
+  } catch (error) {
+    console.error("Geteilte Session konnte nicht geladen werden:", error);
+    clearShareCodeFromUrl();
+    setBarStatus(context, "Die geteilte Session konnte gerade nicht geladen werden.", "error");
+  }
+}
+
 function bindEvents(context) {
   context.elements.openButton.addEventListener("click", () => {
     openModal(context);
+  });
+
+  context.elements.shareButton?.addEventListener("click", (event) => {
+    // Menü offen halten, damit das Kopier-Feedback sichtbar bleibt.
+    event.stopPropagation();
+    void handleShare(context);
   });
 
   context.elements.deleteButton.addEventListener("click", () => {
@@ -3779,15 +4063,6 @@ function bindEvents(context) {
       context.draftConfig = { targetDate: "" };
     }
     context.draftConfig.targetDate = normalizeDateOnlyValue(context.elements.targetDateInput.value);
-  });
-
-  context.elements.resetButton.addEventListener("click", () => {
-    if (context.isSaving) return;
-    context.draft = {};
-    context.draftConfig = { targetDate: "" };
-    buildModal(context);
-    syncPlanningInputs(context);
-    setModalStatus(context, "Auswahl lokal zurückgesetzt. Mit Übernehmen speicherst du sie dauerhaft.");
   });
 
   context.elements.saveButton.addEventListener("click", () => {
@@ -4151,10 +4426,14 @@ function createContext(root, lernbereiche) {
     greetingHeading: root.querySelector("[data-dashboard-greeting-heading]"),
     openButton: document.getElementById("lbOpenBtn"),
     deleteButton: document.getElementById("lbDeleteBtn"),
+    shareButton: document.getElementById("lbShareBtn"),
     closeButton: document.getElementById("lbCloseBtn"),
     saveButton: document.getElementById("lbSaveBtn"),
-    resetButton: document.getElementById("lbResetBtn"),
     overlay: document.getElementById("lbOverlay"),
+    modalTitle: document.getElementById("lbModalTitle"),
+    modalDescription: document.getElementById("lbModalDescription"),
+    nameInput: document.getElementById("lbNameInput"),
+    planTitle: root.querySelector("[data-dashboard-plan-title]"),
     sessionList: root.querySelector("[data-dashboard-session-list]"),
     planSummary: root.querySelector("[data-dashboard-plan-summary]"),
     planProgress: root.querySelector("[data-dashboard-plan-progress]"),
@@ -4228,7 +4507,9 @@ function createContext(root, lernbereiche) {
     sessionActivityStates: [],
     state: {},
     draft: {},
-    draftConfig: { targetDate: "" },
+    draftConfig: { name: "", targetDate: "" },
+    modalMode: "edit",
+    isShareBusy: false,
     isGreetingHydrating: true,
     greetingRefreshTimerId: null,
     isSaving: false,
@@ -4387,6 +4668,7 @@ export async function initDashboardModule() {
     updateSessionActionButtons(context, false);
     updateRetentionActionButtons(context, false);
     setBarStatus(context, "");
+    await openSharedSessionFromUrl(context);
   } catch (error) {
     console.error("Aktive Session konnte nicht geladen werden:", error);
     applyPrimaryFeedErrorState(context);
