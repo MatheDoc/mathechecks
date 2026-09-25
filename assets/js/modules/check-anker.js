@@ -28,6 +28,7 @@ async function typesetNode(node, retries = 4) {
 function createAnkerCard(check, label, moduleTone) {
     const card = document.createElement("article");
     card.className = `check-card check-card--${moduleTone}`;
+    if (check?.check_id) card.dataset.checkId = String(check.check_id);
 
     const header = document.createElement("div");
     header.className = "check-card__header";

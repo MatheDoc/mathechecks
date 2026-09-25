@@ -2,9 +2,9 @@ import { initTrainingModule } from "./modules/training.js?v=20260910-field-score
 import { initRecallModule } from "./modules/recall.js?v=20260908-run-rate";
 import { initFeynmanModule } from "./modules/feynman.js?v=20260908-run-rate";
 import { initTestModule } from "./modules/test.js?v=20260908-run-rate";
-import { initFlashcardsModule } from "./modules/flashcards.js?v=20260908-run-rate";
+import { initFlashcardsModule } from "./modules/flashcards.js?v=20260925-session-scope";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260910-field-scores";
-import { initCheckAnker } from "./modules/check-anker.js?v=20260721-recall-stepped-tips";
+import { initCheckAnker } from "./modules/check-anker.js?v=20260925-session-scope";
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
@@ -12,6 +12,7 @@ import { initWarmupModule } from "./modules/warmup.js";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
+import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
 
 const SCROLL_STORAGE_PREFIX = "mathechecks.scrollPositions.v2";
 const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
@@ -509,6 +510,7 @@ async function bootstrap() {
 
   const context = getPageContext();
   initFeedActivityGuard(context.activityContext);
+  initSessionCardScope();
   const pageKey = getScrollPageKey();
   const explicitTargetId = resolveScrollTargetId(context);
   const isFeedContext = context.activityContext?.mode === "feed";
