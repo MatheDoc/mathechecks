@@ -4510,6 +4510,8 @@ function createContext(root, lernbereiche) {
     draftConfig: { name: "", targetDate: "" },
     modalMode: "edit",
     isShareBusy: false,
+    isRefreshing: false,
+    lastRefreshAt: 0,
     isGreetingHydrating: true,
     greetingRefreshTimerId: null,
     isSaving: false,
@@ -4522,6 +4524,46 @@ function createContext(root, lernbereiche) {
     retentionCheckIds: new Set(),
     elements,
   };
+}
+
+async function refreshDashboardFromServer(context) {
+  if (!context.supabase || !context.authState?.user || !context.persistedStateLoaded) return;
+  if (context.isSaving || context.retentionIsSaving || context.isRefreshing) return;
+  // Offene Modals nicht unter dem Nutzer neu aufbauen.
+  if (context.elements.overlay?.classList.contains("open") || context.elements.retentionOverlay?.classList.contains("open")) return;
+  if (Date.now() - (context.lastRefreshAt || 0) < 5000) return;
+
+  context.isRefreshing = true;
+  context.lastRefreshAt = Date.now();
+  try {
+    const persisted = await loadPersistedState(context.supabase, context.lernbereiche);
+    context.state = persisted.state;
+    context.activeSession = persisted.session;
+    context.sessionCheckStates = persisted.checkStates;
+    context.sessionActivityStates = persisted.activityStates;
+    context.retentionCheckIds = await loadRetentionCheckIds(context);
+    updatePlanSummary(context);
+    updateSessionList(context);
+    updateSessionActionButtons(context, false);
+    await Promise.all([
+      refreshPrimaryFeedCard(context),
+      refreshCompletedPanel(context),
+      refreshActivityOverview(context),
+    ]);
+  } catch (error) {
+    console.error("Dashboard konnte nicht aktualisiert werden:", error);
+  } finally {
+    context.isRefreshing = false;
+  }
+}
+
+function bindDashboardAutoRefresh(context) {
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") void refreshDashboardFromServer(context);
+  });
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) void refreshDashboardFromServer(context);
+  });
 }
 
 function initDashboardPanelHelp(root) {
@@ -4601,6 +4643,7 @@ export async function initDashboardModule() {
   setGreetingDate();
   updateGreetingHeading(context);
   bindEvents(context);
+  bindDashboardAutoRefresh(context);
   setupWorklistFilters(context);
   updatePlanSummary(context);
   updateSessionList(context);
@@ -4656,6 +4699,7 @@ export async function initDashboardModule() {
     context.sessionCheckStates = persisted.checkStates;
     context.sessionActivityStates = persisted.activityStates;
     context.persistedStateLoaded = true;
+    context.lastRefreshAt = Date.now();
     updateSessionActionButtons(context, false);
     context.retentionCheckIds = await loadRetentionCheckIds(context);
     updatePlanSummary(context);

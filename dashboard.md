@@ -9,7 +9,7 @@ page_css: /assets/css/dashboard.css?v=20260924-session-share
 published: true
 noindex: true
 permalink: /dashboard.html
-module_script: /assets/js/modules/dashboard.js?v=20260924-session-share
+module_script: /assets/js/modules/dashboard.js?v=20260925-dashboard-refresh
 ---
 
 {% include dashboard/content.html %}
