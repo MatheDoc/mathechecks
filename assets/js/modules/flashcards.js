@@ -437,6 +437,8 @@ async function renderCurrentCard(card, options = {}) {
 
     state.currentCard = card;
     state.currentTaskIndex = resolved.taskIndex;
+    const appNode = state.root.matches?.("[data-flashcards-app]") ? state.root : state.root.querySelector("[data-flashcards-app]");
+    if (appNode) appNode.dataset.checkId = String(card?.checkId || "");
 
     cardNode.classList.remove("is-flipped");
     cardNode.setAttribute("aria-pressed", "false");
