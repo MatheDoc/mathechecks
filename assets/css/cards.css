@@ -927,34 +927,69 @@ html.light [data-feed-readonly="true"] .check-card {
     --dcc-border: var(--mt-start-border, color-mix(in srgb, var(--mt-start, var(--accent)) 24%, var(--border)));
 }
 
-/* Check außerhalb der aktiven Session: Hintergrundverläufe wie gewohnt, aber ohne Farbton. */
+/* Check außerhalb der aktiven Session: komplette Karte im neutralen Grau-Schema.
+   Semantische Feedback-Farben (--green, --rose, --amber) bleiben bewusst erhalten. */
 .check-card[data-session-scope="outside"] {
-    --dcc-outside-grey: var(--text-dim);
-    background:
-        linear-gradient(135deg,
-            color-mix(in srgb, var(--dcc-accent) 82%, white),
-            color-mix(in srgb, var(--dcc-accent) 92%, var(--dcc-surface-tint))) top / 100% 3px no-repeat,
-        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-outside-grey) 16%, transparent), transparent 55%),
-        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-outside-grey) 11%, transparent), transparent 50%),
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 90%, var(--dcc-outside-grey)),
-            color-mix(in srgb, var(--card-surface-2) 93%, var(--dcc-outside-grey)));
+    --dcc-neutral: #a8a8b4;
+    --dcc-neutral-rgb: 168, 168, 180;
+    --dcc-neutral-soft: rgba(168, 168, 180, 0.12);
+    --dcc-neutral-border: rgba(168, 168, 180, 0.30);
+
+    --dcc-accent: var(--dcc-neutral);
+    --dcc-accent-soft: var(--dcc-neutral-soft);
+    --dcc-border: var(--dcc-neutral-border);
+    --accent: var(--dcc-neutral);
+    --accent-soft: var(--dcc-neutral-soft);
+    --teal: var(--dcc-neutral);
+    --teal-soft: var(--dcc-neutral-soft);
+    --lavender: var(--dcc-neutral);
+    --lavender-soft: var(--dcc-neutral-soft);
+    --blue: var(--dcc-neutral);
+    --blue-soft: var(--dcc-neutral-soft);
+
+    --mt-start: var(--dcc-neutral);
+    --mt-start-rgb: var(--dcc-neutral-rgb);
+    --mt-start-soft: var(--dcc-neutral-soft);
+    --mt-start-border: var(--dcc-neutral-border);
+    --mt-warmup: var(--dcc-neutral);
+    --mt-warmup-rgb: var(--dcc-neutral-rgb);
+    --mt-warmup-soft: var(--dcc-neutral-soft);
+    --mt-warmup-border: var(--dcc-neutral-border);
+    --mt-kompetenzliste: var(--dcc-neutral);
+    --mt-kompetenzliste-rgb: var(--dcc-neutral-rgb);
+    --mt-kompetenzliste-soft: var(--dcc-neutral-soft);
+    --mt-kompetenzliste-border: var(--dcc-neutral-border);
+    --mt-training: var(--dcc-neutral);
+    --mt-training-rgb: var(--dcc-neutral-rgb);
+    --mt-training-soft: var(--dcc-neutral-soft);
+    --mt-training-border: var(--dcc-neutral-border);
+    --mt-recall: var(--dcc-neutral);
+    --mt-recall-rgb: var(--dcc-neutral-rgb);
+    --mt-recall-soft: var(--dcc-neutral-soft);
+    --mt-recall-border: var(--dcc-neutral-border);
+    --mt-feynman: var(--dcc-neutral);
+    --mt-feynman-rgb: var(--dcc-neutral-rgb);
+    --mt-feynman-soft: var(--dcc-neutral-soft);
+    --mt-feynman-border: var(--dcc-neutral-border);
+    --mt-test: var(--dcc-neutral);
+    --mt-test-rgb: var(--dcc-neutral-rgb);
+    --mt-test-soft: var(--dcc-neutral-soft);
+    --mt-test-border: var(--dcc-neutral-border);
+    --mt-skript: var(--dcc-neutral);
+    --mt-skript-rgb: var(--dcc-neutral-rgb);
+    --mt-skript-soft: var(--dcc-neutral-soft);
+    --mt-skript-border: var(--dcc-neutral-border);
+    --mt-flashcards: var(--dcc-neutral);
+    --mt-flashcards-rgb: var(--dcc-neutral-rgb);
+    --mt-flashcards-soft: var(--dcc-neutral-soft);
+    --mt-flashcards-border: var(--dcc-neutral-border);
 }
 
 html.light .check-card[data-session-scope="outside"] {
-    --dcc-outside-grey: var(--text-muted);
-    --dcc-outside-soft: color-mix(in srgb, var(--dcc-outside-grey) 12%, white);
-    --dcc-outside-soft-strong: color-mix(in srgb, var(--dcc-outside-grey) 18%, white);
-    background:
-        linear-gradient(135deg,
-            color-mix(in srgb, var(--dcc-accent) 80%, white),
-            color-mix(in srgb, var(--dcc-accent) 74%, var(--dcc-surface-tint-strong))) top / 100% 3px no-repeat,
-        radial-gradient(ellipse 110% 70% at 15% 25%, color-mix(in srgb, var(--dcc-outside-grey) 20%, transparent), transparent 55%),
-        radial-gradient(ellipse 90% 50% at 85% 75%, color-mix(in srgb, var(--dcc-outside-grey) 14%, transparent), transparent 50%),
-        radial-gradient(ellipse 138% 96% at 8% 100%, var(--dcc-outside-soft-strong), transparent 68%),
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 80%, var(--dcc-outside-soft-strong)),
-            color-mix(in srgb, var(--card-surface-2) 84%, var(--dcc-outside-soft)));
+    --dcc-neutral: #6b6b7b;
+    --dcc-neutral-rgb: 107, 107, 123;
+    --dcc-neutral-soft: rgba(107, 107, 123, 0.10);
+    --dcc-neutral-border: rgba(107, 107, 123, 0.28);
 }
 
 .check-card__title--training {
