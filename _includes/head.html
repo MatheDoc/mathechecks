@@ -36,6 +36,18 @@
 <link rel="icon" href="{{ '/assets/img/icon-512.png' | relative_url }}" type="image/png" sizes="512x512" />
 <link rel="apple-touch-icon" href="{{ '/assets/img/apple-touch-icon.png' | relative_url }}" sizes="180x180" />
 <link rel="manifest" href="{{ '/manifest.json' | relative_url }}" />
+<script>
+	// Frueheren Service Worker samt Cache entfernen; er lieferte Supabase-GETs veraltet aus.
+	if ('serviceWorker' in navigator) {
+		navigator.serviceWorker.getRegistrations().then(function (registrations) {
+			if (!registrations.length) return;
+			Promise.all(registrations.map(function (registration) { return registration.unregister(); }))
+				.then(function () { return window.caches ? caches.keys() : []; })
+				.then(function (names) { return Promise.all(names.map(function (name) { return caches.delete(name); })); })
+				.then(function () { window.location.reload(); });
+		}).catch(function () {});
+	}
+</script>
 <meta name="theme-color" content="#f7f6f9">
 <meta name="apple-mobile-web-app-title" content="MatheChecks">
 <link rel="preconnect" href="https://fonts.googleapis.com">
