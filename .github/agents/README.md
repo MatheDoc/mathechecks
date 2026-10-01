@@ -18,6 +18,8 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
    - Datenbank, Benutzerverwaltung, Session-State, Aktionsfeed, Rollen und Migration
 6. `agent-warmup.md`
    - Warm-Up-Karten: motivierender Auftakt, Relevanz, Gesprächsimpulse, meist 3 Karten pro Lernbereich
+7. `agent-klausuren.md`
+   - Klausuren: automatisierte Erstellung aus Lernbereichen/Checks gemäß `klausuren/config.yml`
 
 ## 3-Schichten-Modell
 

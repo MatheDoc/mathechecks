@@ -1,0 +1,41 @@
+\definecolor{hblblue}{RGB}{0,52,120}
+
+\noindent
+\begin{minipage}[c]{0.28\textwidth}
+$if(logo)$
+  \includegraphics[width=\linewidth]{$logo$}
+$endif$
+\end{minipage}%
+\hfill%
+\begin{minipage}[c]{0.68\textwidth}
+  \raggedleft
+  {\large\textbf{$fach$}}\\[4pt]
+  Klasse~$klasse$\enspace·\enspace $datum$\\[2pt]
+  \mbox{\itshape $thema$}\\[2pt]
+  {\small Bearbeitungszeit:~$bearbeitungszeit$}
+\end{minipage}
+
+\vspace{5pt}
+{\color{hblblue}\rule{\linewidth}{0.8pt}}
+\vspace{8pt}
+
+\noindent\textbf{Name:}\enspace\hrulefill
+\vspace{8pt}
+
+%\vspace{8pt}
+%{\color{hblblue}\rule{\linewidth}{0.3pt}}
+%\vspace{5pt}
+
+\noindent\small
+\makebox[\linewidth]{
+  Punkte:\enspace\rule{1.5cm}{0.4pt}~/~$gesamtpunkte$%
+  \hfill
+  Prozent:\enspace\rule{1.5cm}{0.4pt}%
+  \hfill
+  Note:\enspace\rule{1.5cm}{0.4pt}%
+  \hfill \textbf{Unterschrift:}\enspace\rule{3.2cm}{0.4pt}%
+}\normalsize
+
+\vspace{5pt}
+{\color{hblblue}\rule{\linewidth}{0.8pt}}
+\vspace{14pt}
