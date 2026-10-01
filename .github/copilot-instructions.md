@@ -77,6 +77,9 @@ Aufgabengenerator
 Skript-Widgets  
 → `.github/widgets.md`
 
+Klausuren  
+→ `klausuren/README.md`
+
 Glossar  
 → `.github/glossary.md`
 
