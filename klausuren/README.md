@@ -76,6 +76,7 @@ Für Klausuren gilt deshalb eine andere Konvention:
 - Diagramme als **statische Bilddatei** (z. B. PNG) erzeugen, am einfachsten mit einem kurzen Python-Skript (`matplotlib`), das die relevanten Funktionen plottet.
 - Einbindung über normales Markdown-Bild gemäß `templates/template.md`: `![Alt-Text: ...](dateiname.png){width=NN%}`.
 - Das Diagramm zeigt **nur Kurven, Achsenbeschriftung und ein Gitter** in sinnvoller Schrittweite zum Ablesen — **keine eingezeichneten oder beschrifteten Lösungspunkte** (das wäre die gesuchte Antwort).
+- Der dargestellte Wertebereich muss **beide Nullachsen** ($x=0$ und $y=0$) eindeutig zeigen (z. B. durch hervorgehobene Achsenlinien), damit $y$-Achsenabschnitte und Nullstellen zuverlässig ablesbar sind.
 - Das Erzeugungsskript (z. B. `generate_diagramme.py`) im selben `<slug>`-Ordner wie `config.yml`/`klausur.md` ablegen, damit Diagramme bei Bedarf reproduzierbar und anpassbar bleiben.
 
 Beispielumsetzung: `klausuren/matgk_wg2x_2627_1/generate_diagramme.py` mit den zugehörigen `diagramm-aufgabe*.png`-Dateien.

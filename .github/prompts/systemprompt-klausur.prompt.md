@@ -14,6 +14,8 @@ description: Verbindliche Ausgaberegeln für automatisiert erstellte Klausuren (
 - Dezimalkomma in Fließtext (`0,2`), in LaTeX-Formeln `{,}` (`$0{,}2$`) gemäß `.github/glossary.md`.
 - Jede Aufgabe beginnt mit `## Aufgabe N` und einem kurzen einleitenden Kontext (Sachsituation), danach Teilaufgaben `a)`, `b)`, `c)` …
 - Punkte ausschließlich per `\punkte{n}` direkt hinter der Teilaufgabe. Keine Punktsumme je Aufgabe und keine Gesamtpunktzahl selbst in eine Überschrift oder den Klausurkopf schreiben — das übernimmt automatisch `klausuren/export-pdf.ps1` über `templates/punkte-summe.lua` beim PDF-Export.
+- Punktevergabe nach **mathematischem Aufwand**, nicht nach Anzahl gesuchter Größen: Wird in einer Teilaufgabe nach mehreren Größen gefragt, erhält nicht automatisch jede Größe einen eigenen Punkt. Eine direkt ablesbare oder durch einfaches Einsetzen bestimmbare Größe (z. B. Fixkosten als $y$-Achsenabschnitt) zählt mit maximal 1 Punkt; eine Größe, die notwendige und hinreichende Bedingung erfordert (z. B. gewinnmaximale Menge über Extremwertbestimmung), zählt deutlich höher (Richtwert ca. 4 Punkte).
+- Keine zwei Teilaufgaben im selben Sachkontext (gleiche Funktionen/Werte), die exakt dieselbe Größe erfragen. Unterschiedliche Kontexte (z. B. Angebotspolypol vs. Angebotsmonopol in unterschiedlichen Aufgaben) dürfen dieselbe Art von Größe erneut abfragen.
 - Zwischen den Aufgaben `\newpage` einfügen.
 - Bilder/Grafiken, falls fachlich nötig, im Format `![Alt-Text: ...](dateiname){width=NN%}`. Für grafische Ablese-Aufgaben (Checks „Kennzahlen graphisch") **kein** `{% include graph.html %}` verwenden (funktioniert nicht im Pandoc-PDF-Export) — stattdessen als statisches Bild erzeugen, siehe `klausuren/README.md` → „Diagramme (grafische Teilaufgaben)".
 - Falls eine Teilaufgabe eine Tabelle braucht: keine verschmolzenen Zellen (Row-/Colspan) verwenden, da `templates/table-style.lua` diese beim PDF-Export nicht unterstützt.
@@ -24,7 +26,8 @@ description: Verbindliche Ausgaberegeln für automatisiert erstellte Klausuren (
 
 - Aufgaben neu formulieren und mit neuen Zahlen/Kontexten versehen statt Beispiele oder Trainingsaufgaben wortgleich zu übernehmen.
 - Schwierigkeit und Teilaufgaben-Anzahl an `geplante_punkte` und `bearbeitungszeit` orientieren (grobe Richtgröße, keine exakte Rechnung).
-- Reihenfolge der Aufgaben folgt der Reihenfolge der Checks/Lernbereiche in `config.yml`.
+- Checks im Großen und Ganzen abdecken, aber nicht zwingend jede einzelne Teilfrage/jeden Tipp eines Checks separat abfragen — eine Auswahl der zentralen Teilfragen je Check genügt.
+- Aufgabenreihenfolge primär danach ausrichten, wie weit Taschenrechnereinsatz möglich ist: Aufgaben mit Ablesen aus Diagrammen oder einfachen Rechnungen (z. B. Fixkosten, lineare Preisfunktion) an den Anfang, rechenintensive Aufgaben mit komplexeren Werten (z. B. Nullstellen ganzrationaler Funktionen dritten Grades) ans Ende. Die Reihenfolge der Checks/Lernbereiche in `config.yml` gilt dabei als zweites Ordnungskriterium, wenn die GTR-Eignung mehrere Aufgaben gleich einstuft.
 - Konsistente Fachsprache und Notation mit dem zugehörigen `skript.md` des Lernbereichs.
 - Wenn die ausgewählten Lernbereiche ein durchgängiges Anwendungssetting teilen (z. B. immer Kosten, Erlös, Gewinn, Preis eines Betriebs), ein einheitliches Leitszenario (ein Unternehmen/eine Branche) für alle Anwendungsaufgaben der Klausur verwenden statt je Aufgabe einen neuen Kontext zu erfinden — analog zum Leitbeispiel-Prinzip aus `.github/datenmodell.md`. Einzelne rein innermathematische Teilaufgaben ohne Sachkontext bleiben davon unberührt.
 
@@ -41,6 +44,7 @@ description: Verbindliche Ausgaberegeln für automatisiert erstellte Klausuren (
 - Keine Methoden/Begriffe, die im Skript des Lernbereichs noch nicht eingeführt wurden.
 - Keine Aufgaben zu Checks außerhalb der `config.yml`-Auswahl.
 - Keine wortgleiche Übernahme aus `beispiele/*.md` oder der Aufgaben-JSON.
+- Keine zwei Teilaufgaben, die im identischen Sachkontext dieselbe Größe erfragen (z. B. zweimal „Berechnen Sie die gewinnmaximale Menge" bei gleicher Gewinnfunktion).
 
 ## 6) Prioritäten bei Konflikten
 
