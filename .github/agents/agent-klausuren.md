@@ -31,14 +31,17 @@ Vor jeder Arbeit diese Referenzdokumente lesen:
 
 1. Fachliche Korrektheit
 2. Format-Treue zu `templates/template.md` (insb. `\punkte{n}`-Regel, keine Summen in Überschriften/Kopf)
-3. Vollständige Abdeckung der ausgewählten Checks auf passendem Niveau
+3. Weitgehende Abdeckung der ausgewählten Checks auf passendem Niveau (nicht zwingend jede einzelne Teilfrage/jeder Tipp eines Checks)
 4. Eigenständigkeit der Aufgaben gegenüber Trainingsmaterial und Beispielen
 
 ## Arbeitsmodus
 
 - Pro Lernbereich in `config.yml` alle angegebenen `checks`-Nummern in `checks.json` auflösen und deren Material (Tipps, Beispiel, Aufgaben-JSON-Stichprobe) lesen, bevor eine Aufgabe entworfen wird.
 - Mehrere Checks dürfen in einer Aufgabe mit mehreren Teilaufgaben kombiniert werden, wenn das fachlich sinnvoll ist (z. B. aufeinander aufbauende Teilaufgaben a), b), c)).
-- Reihenfolge der Aufgaben orientiert sich an der Reihenfolge der Checks in `config.yml` (= didaktische Reihenfolge laut `Nummer`), mit steigender Komplexität.
+- Checks im Großen und Ganzen abdecken, aber nicht zwingend jede einzelne Teilfrage/jeden Tipp eines Checks separat abfragen — eine Auswahl der zentralen Teilfragen je Check genügt.
+- Aufgabenreihenfolge primär nach Taschenrechner-Eignung staffeln: Ablese-/einfache Rechenaufgaben zuerst, rechenintensive Aufgaben (z. B. Nullstellen ganzrationaler Funktionen dritten Grades) ans Ende. Die Reihenfolge der Checks in `config.yml` dient nur als zweites Ordnungskriterium, wenn die GTR-Eignung mehrere Aufgaben gleich einstuft.
+- Keine zwei Teilaufgaben im selben Sachkontext (gleiche Funktionen/Werte), die exakt dieselbe Größe erfragen; unterschiedliche Kontexte dürfen dieselbe Art von Größe erneut abfragen.
+- Punkte nach mathematischem Aufwand vergeben, nicht nach Anzahl gesuchter Größen: einfache/ablesbare Größen (z. B. Fixkosten) max. 1 Punkt, Größen mit notwendiger/hinreichender Bedingung (z. B. gewinnmaximale Menge) eher ca. 4 Punkte.
 - `geplante_punkte` ist eine grobe Zielgröße für den Umfang (Anzahl/Gewicht der Teilaufgaben), keine exakt einzuhaltende Summe.
 - Nur Methoden und Notation verwenden, die im referenzierten Lernbereich (laut `skript.md`/Checks) bereits eingeführt wurden.
 - Vor dem Aufgabenentwurf prüfen, ob die ausgewählten Lernbereiche ein gemeinsames Anwendungssetting haben (z. B. durchgängig Kosten/Erlös/Gewinn/Preis). Falls ja, ein durchgängiges Leitszenario für alle Anwendungsaufgaben der Klausur festlegen und konsistent verwenden, statt für jede Aufgabe einen neuen Kontext zu erfinden; einzelne rein innermathematische Aufgaben sind davon ausgenommen.
