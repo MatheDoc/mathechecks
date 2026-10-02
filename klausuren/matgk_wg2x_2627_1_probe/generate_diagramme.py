@@ -39,17 +39,17 @@ def plot(name, kurven, xlim, ylim, xmajor, xminor, ymajor, yminor, xlabel, ylabe
     plt.close(fig)
 
 
-# Aufgabe 1: Polypol, p = 18, Kapazitätsgrenze 18 ME
-K1 = lambda x: 0.1 * x**3 - x**2 + 5.5 * x + 75
+# Aufgabe 1: Polypol, p = 15, Kapazitätsgrenze 20 ME
+K1 = lambda x: 0.1 * x**3 - 2.4 * x**2 + 19.5 * x + 95
 plot(
     "diagramm-aufgabe1.png",
     [
-        ("E(x)", lambda x: 18 * x, "tab:blue", "-"),
+        ("E(x)", lambda x: 15 * x, "tab:blue", "-"),
         ("K(x)", K1, "tab:red", "--"),
-        ("G(x)", lambda x: 18 * x - K1(x), "tab:green", "-"),
+        ("G(x)", lambda x: 15 * x - K1(x), "tab:green", "-"),
     ],
-    xlim=(0, 18),
-    ylim=(-150, 450),
+    xlim=(0, 20),
+    ylim=(-100, 350),
     xmajor=2,
     xminor=1,
     ymajor=50,
@@ -58,9 +58,9 @@ plot(
     ylabel="Betrag in GE",
 )
 
-# Aufgabe 2: Monopol, p(x) = -2,5x + 50
-K2 = lambda x: 0.25 * x**3 - 4.5 * x**2 + 34 * x + 40
-p2 = lambda x: -2.5 * x + 50
+# Aufgabe 2: Monopol, p(x) = -4x + 64
+K2 = lambda x: 0.25 * x**3 - 3.75 * x**2 + 34 * x + 45
+p2 = lambda x: -4 * x + 64
 plot(
     "diagramm-aufgabe2.png",
     [
@@ -69,7 +69,7 @@ plot(
         ("K(x)", K2, "tab:red", "--"),
         ("G(x)", lambda x: p2(x) * x - K2(x), "tab:green", "-"),
     ],
-    xlim=(0, 20),
+    xlim=(0, 16),
     ylim=(-100, 300),
     xmajor=2,
     xminor=1,
@@ -79,15 +79,15 @@ plot(
     ylabel="Betrag in GE bzw. GE/ME",
 )
 
-# Aufgabe 3: K(x) = 0,25x^3 - 3x^2 + 18x + 200
+# Aufgabe 3: K(x) = 0,5x^3 - 6x^2 + 28x + 128
 plot(
     "diagramm-aufgabe3.png",
     [
-        ("$K'(x)$", lambda x: 0.75 * x**2 - 6 * x + 18, "tab:purple", "-"),
-        ("$k(x)$", lambda x: 0.25 * x**2 - 3 * x + 18 + 200 / x, "tab:red", "-"),
-        ("$k_v(x)$", lambda x: 0.25 * x**2 - 3 * x + 18, "tab:blue", "--"),
+        ("$K'(x)$", lambda x: 1.5 * x**2 - 12 * x + 28, "tab:purple", "-"),
+        ("$k(x)$", lambda x: 0.5 * x**2 - 6 * x + 28 + 128 / x, "tab:red", "-"),
+        ("$k_v(x)$", lambda x: 0.5 * x**2 - 6 * x + 28, "tab:blue", "--"),
     ],
-    xlim=(0, 14),
+    xlim=(0, 12),
     ylim=(0, 60),
     xmajor=2,
     xminor=1,

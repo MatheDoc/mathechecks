@@ -78,51 +78,81 @@ if ($logo -and (Test-Path $logo)) {
 # aus der YAML-Frontmatter; gesamtpunkte wird vom Lua-Filter aus den \punkte{n}
 # im Dokument berechnet und in die Metadaten geschrieben (keine manuelle Angabe noetig)
 $punkteFilter = "$root\templates\punkte-summe.lua"
-$beforeFile = [System.IO.Path]::GetTempFileName() + ".tex"
-& $pandocExe $InputFile `
-    -o $beforeFile `
-    --template="$root\templates\klausurkopf-before.tpl.tex" `
-    --lua-filter=$punkteFilter `
-    -M "logo=$logoOverride"
-
-if ($LASTEXITCODE -ne 0) {
-    Write-Host "Fehler beim Rendern des Klausurkopfs." -ForegroundColor Red
-    exit 1
-}
-
-# PDF-Pfad
-$outputFile = [System.IO.Path]::ChangeExtension($InputFile, ".pdf")
-
-# Gesperrte alte PDF vorab entfernen
-if (Test-Path $outputFile) {
-    Remove-Item $outputFile -ErrorAction SilentlyContinue
-    if (Test-Path $outputFile) {
-        Write-Host "Fehler: '$outputFile' ist noch geoeffnet (z.B. im PDF-Viewer). Bitte schliessen und erneut ausfuehren." -ForegroundColor Yellow
-        exit 1
-    }
-}
-
-# Pandoc aufrufen
 $headerFile = "$root\templates\klausurkopf-header.tex"
 $tableFilter = "$root\templates\table-style.lua"
 $inputDir = Split-Path $InputFile
 
-& $pandocExe $InputFile `
-    -o $outputFile `
-    --pdf-engine=xelatex `
-    --resource-path="$inputDir" `
-    -H $headerFile `
-    -B $beforeFile `
-    --lua-filter=$punkteFilter `
-    --lua-filter=$tableFilter `
-    -V "geometry:a4paper, top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm" `
-    -V lang=ngerman `
-    -V colorlinks=false
+function Export-Pdf {
+    param(
+        [string]$Source,
+        [string]$OutputFile
+    )
 
-Remove-Item $beforeFile -ErrorAction SilentlyContinue
+    $beforeFile = [System.IO.Path]::GetTempFileName() + ".tex"
+    & $pandocExe $Source `
+        -o $beforeFile `
+        --template="$root\templates\klausurkopf-before.tpl.tex" `
+        --lua-filter=$punkteFilter `
+        -M "logo=$logoOverride" | Out-Host
 
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "PDF erstellt: $outputFile"
-} else {
-    Write-Host "Fehler beim Erstellen der PDF." -ForegroundColor Red
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Fehler beim Rendern des Klausurkopfs." -ForegroundColor Red
+        return $false
+    }
+
+    # Gesperrte alte PDF vorab entfernen
+    if (Test-Path $OutputFile) {
+        Remove-Item $OutputFile -ErrorAction SilentlyContinue
+        if (Test-Path $OutputFile) {
+            Write-Host "Fehler: '$OutputFile' ist noch geoeffnet (z.B. im PDF-Viewer). Bitte schliessen und erneut ausfuehren." -ForegroundColor Yellow
+            Remove-Item $beforeFile -ErrorAction SilentlyContinue
+            return $false
+        }
+    }
+
+    & $pandocExe $Source `
+        -o $OutputFile `
+        --pdf-engine=xelatex `
+        --resource-path="$inputDir" `
+        -H $headerFile `
+        -B $beforeFile `
+        --lua-filter=$punkteFilter `
+        --lua-filter=$tableFilter `
+        -V "geometry:a4paper, top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm" `
+        -V lang=ngerman `
+        -V colorlinks=false | Out-Host
+
+    $ok = ($LASTEXITCODE -eq 0)
+    Remove-Item $beforeFile -ErrorAction SilentlyContinue
+
+    if ($ok) {
+        Write-Host "PDF erstellt: $OutputFile"
+    } else {
+        Write-Host "Fehler beim Erstellen der PDF." -ForegroundColor Red
+    }
+    return $ok
 }
+
+$basePath = [System.IO.Path]::ChangeExtension($InputFile, $null).TrimEnd('.')
+
+# _L: komplette Klausur inkl. Loesungen
+$okL = Export-Pdf -Source $InputFile -OutputFile "${basePath}_L.pdf"
+
+# _S: Klausur ohne Loesungen (alles ab der Ueberschrift "# Loesungen" entfaellt)
+$okS = $false
+$marker = [regex]::Match($content, '(?m)^# L(\u00f6|oe)sungen\s*$')
+if ($marker.Success) {
+    $aufgabenOnly = $content.Substring(0, $marker.Index)
+    $aufgabenOnly = ($aufgabenOnly -replace '(?s)(\s*\\newpage)?\s*$', '') + "`n"
+    $tmpSource = Join-Path $inputDir "~klausur_S_tmp.md"
+    [System.IO.File]::WriteAllText($tmpSource, $aufgabenOnly, (New-Object System.Text.UTF8Encoding($false)))
+    try {
+        $okS = Export-Pdf -Source $tmpSource -OutputFile "${basePath}_S.pdf"
+    } finally {
+        Remove-Item $tmpSource -ErrorAction SilentlyContinue
+    }
+} else {
+    Write-Host "Hinweis: Keine Ueberschrift '# Loesungen' gefunden - _S-Version wird nicht erstellt." -ForegroundColor Yellow
+}
+
+if (-not ($okL -and $okS)) { exit 1 }
