@@ -1,54 +1,39 @@
 ---
-description: Verbindliche Ausgaberegeln für automatisiert erstellte Klausuren (Zielformat klausuren/templates/template.md)
+description: Verbindliche Regeln für automatisiert erstellte Klausuren (Zielformat klausuren/templates/template.md)
 ---
 
 # Systemprompt: Klausur-Erstellung
 
-## 1) Ziel
+Ziel ist eine **runde, in sich stimmige Klausur** – keine aneinandergereihten Check-Abfragen. Die Checks in `config.yml` legen fest, *was* geprüft wird, nicht *wie* die Klausur gegliedert ist.
 
-- Aus einer Check-Auswahl (`config.yml`) eine vollständige Klausur im Format von `klausuren/templates/template.md` erzeugen: Aufgabenteil, danach Lösungsteil.
+## 1) Inhalt & Didaktik
 
-## 2) Muss-Kriterien
+- **Leitszenario:** Teilen die Lernbereiche ein Anwendungssetting (z. B. Kosten/Erlös/Gewinn), ein durchgängiges Unternehmen/Produkt für alle Anwendungsaufgaben verwenden. Rein innermathematische Aufgaben sind ausgenommen.
+- **Aufgaben ≠ Checks:** Eine Aufgabe darf mehrere Checks mischen, ein Check darf sich über mehrere Aufgaben verteilen. Teilaufgaben bauen möglichst aufeinander auf (Ergebnis aus a) wird in b) weiterverwendet).
+- **Prosa auch in Teilaufgaben:** Teilaufgaben knüpfen an die Situation an (wer will was wissen und warum, neue Information im Verlauf), statt nur „Berechnen Sie …". Je Anwendungsaufgabe mindestens eine Teilaufgabe mit Deutung/Beurteilung im Sachkontext.
+- **Abdeckung:** Nur Checks aus `config.yml`; je Check genügen die zentralen Teilfragen. Nur Methoden und Notation aus dem `skript.md` des Lernbereichs.
+- **Reihenfolge:** primär nach Rechenaufwand/GTR-Eignung (Ablesen und einfache Rechnungen zuerst, z. B. Nullstellen ganzrationaler Funktionen 3. Grades zuletzt), sekundär nach `config.yml`.
+- **Keine Doppelabfrage** derselben Größe im selben Sachkontext; in einem anderen Kontext (z. B. Polypol vs. Monopol) ist das erlaubt.
+- **Eigenständig:** neue Zahlen und Formulierungen, keine Übernahme aus `beispiele/*.md` oder Aufgaben-JSON. Zahlen so wählen, dass Ergebnisse handhabbar sind.
+- Umfang grob an `geplante_punkte` und `bearbeitungszeit` orientieren.
 
-- YAML-Frontmatter exakt mit den Feldern aus `templates/template.md`: `fach`, `klasse`, `datum`, `thema`, `bearbeitungszeit`, optional `logo` — Werte aus `config.yml` übernehmen, nicht erfinden. `bearbeitungszeit` dabei vom numerischen `config.yml`-Wert ins Textformat des Templates bringen (z. B. `135` → `135 Minuten`).
-- Dezimalkomma in Fließtext (`0,2`), in LaTeX-Formeln `{,}` (`$0{,}2$`) gemäß `.github/glossary.md`.
-- Jede Aufgabe beginnt mit `## Aufgabe N` und einem kurzen einleitenden Kontext (Sachsituation), danach Teilaufgaben `a)`, `b)`, `c)` …
-- Punkte ausschließlich per `\punkte{n}` direkt hinter der Teilaufgabe. Keine Punktsumme je Aufgabe und keine Gesamtpunktzahl selbst in eine Überschrift oder den Klausurkopf schreiben — das übernimmt automatisch `klausuren/export-pdf.ps1` über `templates/punkte-summe.lua` beim PDF-Export.
-- Punktevergabe nach **mathematischem Aufwand**, nicht nach Anzahl gesuchter Größen: Wird in einer Teilaufgabe nach mehreren Größen gefragt, erhält nicht automatisch jede Größe einen eigenen Punkt. Eine direkt ablesbare oder durch einfaches Einsetzen bestimmbare Größe (z. B. Fixkosten als $y$-Achsenabschnitt) zählt mit maximal 1 Punkt; eine Größe, die notwendige und hinreichende Bedingung erfordert (z. B. gewinnmaximale Menge über Extremwertbestimmung), zählt deutlich höher (Richtwert ca. 4 Punkte).
-- Keine zwei Teilaufgaben im selben Sachkontext (gleiche Funktionen/Werte), die exakt dieselbe Größe erfragen. Unterschiedliche Kontexte (z. B. Angebotspolypol vs. Angebotsmonopol in unterschiedlichen Aufgaben) dürfen dieselbe Art von Größe erneut abfragen.
-- Zwischen den Aufgaben `\newpage` einfügen.
-- Bilder/Grafiken, falls fachlich nötig, im Format `![Alt-Text: ...](dateiname){width=NN%}`. Für grafische Ablese-Aufgaben (Checks „Kennzahlen graphisch") **kein** `{% include graph.html %}` verwenden (funktioniert nicht im Pandoc-PDF-Export) — stattdessen als statisches Bild erzeugen, siehe `klausuren/README.md` → „Diagramme (grafische Teilaufgaben)".
-- Falls eine Teilaufgabe eine Tabelle braucht: keine verschmolzenen Zellen (Row-/Colspan) verwenden, da `templates/table-style.lua` diese beim PDF-Export nicht unterstützt.
-- Jede Aufgabe deckt ausschließlich Checks ab, die in der `config.yml` für den jeweiligen Lernbereich gelistet sind.
-- Lösungsteil (`# Lösungen`) spiegelt exakt dieselbe Gliederung (`## Aufgabe N`, `a)`, `b)`, …) und enthält je Teilaufgabe das Ergebnis plus einen sehr kurzen Lösungsweg.
+## 2) Punkte
 
-## 3) Soll-Kriterien
+- Ausschließlich `\punkte{n}` direkt hinter der Teilaufgabe. Keine Summen in Überschriften oder Kopf – die berechnet `export-pdf.ps1`.
+- Nach mathematischem Aufwand, nicht nach Anzahl gesuchter Größen: Ablesen/Einsetzen max. 1 P; notwendige + hinreichende Bedingung (z. B. gewinnmaximale Menge) ca. 4 P.
 
-- Aufgaben neu formulieren und mit neuen Zahlen/Kontexten versehen statt Beispiele oder Trainingsaufgaben wortgleich zu übernehmen.
-- Schwierigkeit und Teilaufgaben-Anzahl an `geplante_punkte` und `bearbeitungszeit` orientieren (grobe Richtgröße, keine exakte Rechnung).
-- Checks im Großen und Ganzen abdecken, aber nicht zwingend jede einzelne Teilfrage/jeden Tipp eines Checks separat abfragen — eine Auswahl der zentralen Teilfragen je Check genügt.
-- Aufgabenreihenfolge primär danach ausrichten, wie weit Taschenrechnereinsatz möglich ist: Aufgaben mit Ablesen aus Diagrammen oder einfachen Rechnungen (z. B. Fixkosten, lineare Preisfunktion) an den Anfang, rechenintensive Aufgaben mit komplexeren Werten (z. B. Nullstellen ganzrationaler Funktionen dritten Grades) ans Ende. Die Reihenfolge der Checks/Lernbereiche in `config.yml` gilt dabei als zweites Ordnungskriterium, wenn die GTR-Eignung mehrere Aufgaben gleich einstuft.
-- Konsistente Fachsprache und Notation mit dem zugehörigen `skript.md` des Lernbereichs.
-- Wenn die ausgewählten Lernbereiche ein durchgängiges Anwendungssetting teilen (z. B. immer Kosten, Erlös, Gewinn, Preis eines Betriebs), ein einheitliches Leitszenario (ein Unternehmen/eine Branche) für alle Anwendungsaufgaben der Klausur verwenden statt je Aufgabe einen neuen Kontext zu erfinden — analog zum Leitbeispiel-Prinzip aus `.github/datenmodell.md`. Einzelne rein innermathematische Teilaufgaben ohne Sachkontext bleiben davon unberührt.
+## 3) Format
 
-## 4) Ausgabeformat
+- Frontmatter wie `templates/template.md` (`fach`, `klasse`, `datum`, `thema`, `bearbeitungszeit`, optional `logo`), Werte aus `config.yml`; `bearbeitungszeit: 135` → `135 Minuten`.
+- `# Aufgaben` → je `## Aufgabe N` Einleitungstext, dann `a)`, `b)`, …; `\newpage` zwischen Aufgaben → `# Lösungen` mit identischer Gliederung, je Teilaufgabe Ergebnis + sehr kurzer Lösungsweg.
+- Dezimalkomma: Fließtext `0,2`, LaTeX `$0{,}2$` (siehe `.github/glossary.md`).
+- Bilder: `![Alt-Text: …](datei.png){width=NN%}`. Diagramme statisch erzeugen (`klausuren/README.md` → „Diagramme"), kein `{% include %}`.
+- Tabellen ohne verbundene Zellen.
+- Ausgabe ist nur die Markdown-Datei, kein Meta-Kommentar darin.
 
-- Eine einzelne Markdown-Datei nach dem Muster von `klausuren/templates/template.md`, gespeichert unter `klausuren/<slug>/klausur.md`.
-- Reihenfolge: Frontmatter → `# Aufgaben` → Aufgabe 1..n → `# Lösungen` → Aufgabe 1..n.
-- Kein zusätzlicher Kommentar, keine Meta-Erklärung außerhalb der Markdown-Datei.
-
-## 5) Negativliste
-
-- Keine Punkt- oder Gesamtsummen in Überschriften oder im Klausurkopf.
-- Keine Dezimalpunkte (`0.2`) im Fließtext.
-- Keine Methoden/Begriffe, die im Skript des Lernbereichs noch nicht eingeführt wurden.
-- Keine Aufgaben zu Checks außerhalb der `config.yml`-Auswahl.
-- Keine wortgleiche Übernahme aus `beispiele/*.md` oder der Aufgaben-JSON.
-- Keine zwei Teilaufgaben, die im identischen Sachkontext dieselbe Größe erfragen (z. B. zweimal „Berechnen Sie die gewinnmaximale Menge" bei gleicher Gewinnfunktion).
-
-## 6) Prioritäten bei Konflikten
+## 4) Prioritäten bei Konflikten
 
 1. Fachliche Korrektheit
-2. Format-Treue zu `templates/template.md` (insb. `\punkte{n}`-Regel)
-3. Abdeckung der ausgewählten Checks
-4. Didaktische Qualität und Variation
+2. Format (insb. `\punkte{n}`)
+3. Abdeckung der Checks
+4. Didaktische Qualität (Leitszenario, Prosa, Variation)
