@@ -24,6 +24,7 @@ Musterprüfungen liegen in `muster-pruefungen/abitur/pruefungen-md/` (gitignored
 4. **Planen:** Leitszenario festlegen (neu, kein Szenario aus Musterprüfungen); aus Themen, Checks und Hinweisen eine sinnvolle Auswahl treffen und zu Aufgaben mit Einleitungstext und aufeinander aufbauenden Teilaufgaben verweben; Granularität und Punkteverteilung an den Musterprüfungen orientieren; Reihenfolge festlegen.
 5. **Schreiben:** `klausuren/<slug>/klausur.md` (ggf. Diagramm-Skript + PNGs im selben Ordner).
 6. **Prüfen:** alle Lösungen nachrechnen (bei Bedarf per Python), Ergebnisse handhabbar? Kontextbezug in Teilaufgaben? Keine Doppelabfragen? Kein Szenario aus einer Musterprüfung übernommen?
+7. **Exportieren:** PDF-Export der fertigen Klausur über `klausuren/export-pdf.ps1 klausuren/<slug>/klausur.md`.
 
 ## Ausgabe an den Nutzer
 
