@@ -14,6 +14,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | Datenentität | Datei/Ordner | Granularität | Inhalt |
 |---|---|---|---|
 | **Lernbereich-Metadaten** | `_data/lernbereiche.yml` | pro Lernbereich | Slug, Name, Gebiet, Bild, didaktische Reihenfolge |
+| **Themen** | `_data/themen.yml` | pro Thema | Slug, Name, Gebiet; Obermenge der Lernbereiche (jeder Lernbereich = Thema mit gleichem Slug), auch nicht umgesetzte Themen aus Musterprüfungen |
 | **Check-Metadaten** | `checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |

@@ -1,0 +1,130 @@
+# ──────────────────────────────────────────────────────────
+# Themen
+# ──────────────────────────────────────────────────────────
+# Plattformunabhängige Themenliste (kontrolliertes Vokabular), v. a. für die
+# Verschlagwortung der Musterprüfungen und die Klausur-Config (`themen`).
+#
+# Ein Thema ist auf MatheChecks umgesetzt (= Lernbereich), wenn in
+# _data/lernbereiche.yml ein Lernbereich mit gleichem Slug existiert.
+# Jeder Lernbereich MUSS hier mit gleichem Slug und Gebiet stehen.
+#
+# Felder pro Thema:
+#   gebiet – Fachgebiet (wie in _data/gebiete.yml)
+#   slug   – eindeutiger Schlüssel (bei umgesetzten Themen = Lernbereich-Slug)
+#   name   – Anzeigename
+#
+# Neue Themen nur ergänzen, wenn ein Prüfungsinhalt keinem bestehenden Thema
+# sinnvoll zugeordnet werden kann. Zuschnitt etwa in Lernbereichsgröße.
+# ──────────────────────────────────────────────────────────
+
+# ══════ ANALYSIS ══════
+
+- gebiet: analysis
+  slug: regression
+  name: Regression
+
+- gebiet: analysis
+  slug: differentialrechnung-ganzrationaler-funktionen
+  name: Differentialrechnung ganzrationaler Funktionen
+
+- gebiet: analysis
+  slug: lineare-funktionen
+  name: Lineare Funktionen
+
+- gebiet: analysis
+  slug: quadratische-funktionen
+  name: Quadratische Funktionen
+
+- gebiet: analysis
+  slug: ganzrationale-oekonomische-funktionen
+  name: Ganzrationale ökonomische Funktionen
+
+- gebiet: analysis
+  slug: ertragsgesetzliche-kostenfunktionen
+  name: Ertragsgesetzliche Kostenfunktionen
+
+- gebiet: analysis
+  slug: marktgleichgewicht-grundlagen
+  name: Marktgleichgewicht - Grundlagen
+
+- gebiet: analysis
+  slug: marktgleichgewicht-vertiefung
+  name: Marktgleichgewicht - Vertiefung
+
+- gebiet: analysis
+  slug: produktlebenszyklus
+  name: Produktlebenszyklus
+
+- gebiet: analysis
+  slug: differentialrechnung-e-funktionen
+  name: Differentialrechnung von e-Funktionen
+
+- gebiet: analysis
+  slug: abschnittsweise-definierte-funktionen
+  name: Abschnittsweise definierte Funktionen
+
+# ══════ LINEARE ALGEBRA ══════
+
+- gebiet: lineare-algebra
+  slug: lineare-gleichungssysteme
+  name: Lineare Gleichungssysteme
+
+- gebiet: lineare-algebra
+  slug: matrizenrechnung
+  name: Matrizenrechnung
+
+- gebiet: lineare-algebra
+  slug: mehrstufige-produktionsprozesse
+  name: Mehrstufige Produktionsprozesse
+
+- gebiet: lineare-algebra
+  slug: leontief-modell
+  name: Leontief-Modell
+
+- gebiet: lineare-algebra
+  slug: lineare-optimierung
+  name: Lineare Optimierung
+
+- gebiet: lineare-algebra
+  slug: stochastische-matrizen
+  name: Stochastische Matrizen
+
+# ══════ STOCHASTIK ══════
+
+- gebiet: stochastik
+  slug: zufallsexperimente-und-wahrscheinlichkeiten
+  name: Zufallsexperimente und Wahrscheinlichkeiten
+
+- gebiet: stochastik
+  slug: mehrstufige-zufallsexperimente
+  name: Mehrstufige Zufallsexperimente
+
+- gebiet: stochastik
+  slug: bedingte-wahrscheinlichkeiten
+  name: Bedingte Wahrscheinlichkeiten
+
+- gebiet: stochastik
+  slug: binomialverteilung
+  name: Binomialverteilung
+
+- gebiet: stochastik
+  slug: hypothesentests
+  name: Hypothesentests
+
+- gebiet: stochastik
+  slug: zufallsgroessen
+  name: Zufallsgrößen
+
+# ══════ FINANZMATHEMATIK ══════
+
+- gebiet: finanzmathematik
+  slug: zinseszinsrechnung
+  name: Zinseszinsrechnung
+
+- gebiet: finanzmathematik
+  slug: rentenrechnung
+  name: Rentenrechnung
+
+- gebiet: finanzmathematik
+  slug: tilgungsrechnung
+  name: Tilgungsrechnung
