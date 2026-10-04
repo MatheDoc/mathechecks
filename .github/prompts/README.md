@@ -13,9 +13,10 @@ Konkrete, wiederverwendbare Arbeitsaufträge.
 
 - `prompt-aufgaben.md` – 20 JSON-Aufgaben erzeugen (verweist auf `aufgaben/README.md`)
 - `prompt-skript-ueberarbeiten.md` – Skripte fachlich, didaktisch und LLM-freundlich überarbeiten
-- `prompt-klausur-erstellen.md` – Klausur aus Lernbereichen/Checks gemäß `klausuren/config.yml` erzeugen (verweist auf `systemprompt-klausur.prompt.md`)
+- `prompt-klausur-erstellen.md` – Klausur aus Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml` erzeugen (verweist auf `systemprompt-klausur.prompt.md`)
 - `systemprompt-klausur.prompt.md` – verbindliche Ausgaberegeln für Klausuren (Zielformat `klausuren/templates/template.md`)
 - `systemprompt-template.prompt.md` – Vorlage für neue Systemprompts
+- `prompt-pruefung-pdf-zu-md.prompt.md` – Abitur-Musterprüfungen (PDF) aus `muster-pruefungen/` in Markdown mit validiertem Frontmatter konvertieren (Ordner ist gitignored)
 
 ## Verwandte Referenzdokumente
 
