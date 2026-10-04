@@ -1,0 +1,39 @@
+# Muster-Config für eine Klausur – nach klausuren/<slug>/config.yml kopieren und anpassen.
+# Schema und Erläuterungen: klausuren/README.md
+
+fach: 1. Klausur Mathematik           # Überschrift/Fach
+klasse: WG3X                          # Klasse/Kurs
+datum: 08.10.2026                     # Klausurdatum
+thema: Mehrstufige Produktionsprozesse   # erscheint im Klausurkopf
+bearbeitungszeit: 240                 # Minuten (numerisch)
+geplante_punkte: 90                   # grobe Zielgröße, keine exakte Summe
+
+# --- Inhaltliche Orientierung ---------------------------------------------------------
+# themen, checks, vorlagen und hinweise sind jeweils optional (mindestens eines angeben).
+# Sie dienen als Orientierung, nicht als Checkliste: Nicht alles muss in der Klausur
+# vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen.
+
+# Hauptsteuerung: Thema-Slugs aus _data/themen.yml (auch nicht auf MatheChecks umgesetzte).
+# Passende Musterprüfungs-Teilaufgaben findet der Agent über pruefungen-md/_themen.json.
+themen: [mehrstufige-produktionsprozesse]
+
+# Feinsteuerung für umgesetzte Themen: Lernbereich-Slug <gebiet>/<lernbereich>
+# (wie in _data/checks.json / _data/lernbereiche.yml) + behandelte Check-Nummern.
+  - lernbereich: lineare-algebra/lineare-gleichungssysteme
+    checks: [4, 5]
+  - lernbereich: lineare-algebra/matrizenrechnung
+    checks: [2, 3, 6]
+  - lernbereich: lineare-algebra/mehrstufige-produktionsprozesse
+    checks: [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Freitext der Lehrkraft (Vorrang vor den übrigen Angaben), z. B. Teilinhalte,
+# Schwerpunkte, Ausschlüsse, Hilfsmittel.
+hinweise: |
+  Es gibt eine Teil A (ohne Hilfsmittel) und einen Teil B (mit Hilfsmitteln), dazu einfach die Überschriften # Teil A (ohne Hilfsmittel) und # Teil B (mit Hilfsmittel) verwenden.
+  Ca. 20% der Punkte entfallen auf Teil A.
+  In Teil A soll einmal eine 2x2-Matrix invertiert werden müssen (inverse mit ganzzahligen Koefzienten)
+  **3.2.3**  aus nw-bgym-wuv-2025-haupt-erhoeht-a3 finde ich schön, eine Aufgabe in diese Richtung, hier kann ruhig wie in der musterpreufung etwas differentialrechnung auftreten
+  Eine Aufgabe, in der das Rangkriterium angewendet werden muss.
+  Bei mehrstufige-produktionsprozesse habe ich u.a. die checks 1-5 erwähnt, die müssen nicht explizit adressiert werden, aber sie werden vermutlich neben als Fragegestellung in den Aufgaben auftreten.
+  **1.3.2** aus nw-bgym-wuv-2023-haupt-erhoeht-a1-3 finde ich auch gut für den hilfmittel freien TEil.
+.

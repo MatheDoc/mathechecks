@@ -10,6 +10,8 @@ Lese vor Beginn `.github/datenmodell.md` und `.github/glossary.md`.
 
 ### 1. Checks definieren (`checks.json`)
 
+- Slug: Gibt es das Thema schon in `_data/themen.yml`, denselben Slug verwenden; sonst dort ein Thema mit gleichem Slug und Gebiet ergänzen (jeder Lernbereich muss als Thema existieren).
+- Prüfungsrelevanz: Lokal liefert `muster-pruefungen/abitur/pruefungen-md/_themen.json` die Musterprüfungs-Teilaufgaben zum Thema (gitignored, direkt per Pfad lesen).
 - Lernbereich in überprüfbare Einheiten gliedern
 - Pro Check: `Ich kann`, `Schlagwort`, `Tipps`, `skript_anchor`, `check_id`, `Nummer`
 - Reihenfolge = didaktische Progression (einfach → komplex)

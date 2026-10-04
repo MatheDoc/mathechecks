@@ -1,6 +1,6 @@
 # Klausuren
 
-Automatisierte Erstellung von Klausuren aus bestehendem Lernbereichs- und Check-Material, mit Abitur-Musterprüfungen als Qualitätsmaßstab.
+Automatisierte Erstellung von Klausuren aus Themen, Lernbereichs- und Check-Material, mit Abitur-Musterprüfungen als Kontext und Qualitätsmaßstab.
 
 ## Ordnerstruktur
 
@@ -33,11 +33,11 @@ klausuren/
 | `thema` | Kurzbeschreibung des Themas (erscheint im Klausurkopf) |
 | `bearbeitungszeit` | Bearbeitungszeit in Minuten (numerisch, z. B. `135`) |
 | `geplante_punkte` | grobe Zielgröße für den Umfang (keine exakt einzuhaltende Summe) |
-| `checks` | optional: Liste aus `lernbereich` (Slug `<gebiet>/<lernbereich>` wie in `_data/checks.json`/`_data/lernbereiche.yml`) + `checks` (Array der `Nummer`-Werte) – zeigt, was im Unterricht behandelt wurde |
-| `vorlagen` | optional: Liste aus `aufgabe` (`id` einer Aufgabe-Datei in `muster-pruefungen/abitur/pruefungen-md/`) + optional `teilaufgaben` (Labels wie `teilaufgaben[].bezeichnung`; ein übergeordnetes Label wie `"2.1"` umfasst alle darunterliegenden, z. B. 2.1.1 und 2.1.2; ohne Angabe: ganze Aufgabe). Szenarien werden nie 1:1 übernommen. |
-| `hinweise` | optional: Freitext der Lehrkraft, z. B. Inhalte ohne passenden Check, Schwerpunkte, Ausschlüsse, Hilfsmittel – hat Vorrang vor `checks`/`vorlagen` |
+| `themen` | optional: Liste von Thema-Slugs aus `_data/themen.yml` – Hauptsteuerung; auch Themen ohne MatheChecks-Lernbereich möglich. Passende Musterprüfungs-Teilaufgaben werden über `muster-pruefungen/abitur/pruefungen-md/_themen.json` gefunden. |
+| `checks` | optional: Liste aus `lernbereich` (Slug `<gebiet>/<lernbereich>` wie in `_data/checks.json`/`_data/lernbereiche.yml`) + `checks` (Array der `Nummer`-Werte) – Feinsteuerung, was im Unterricht behandelt wurde; die Lernbereiche zählen automatisch zu den Themen |
+| `hinweise` | optional: Freitext der Lehrkraft, z. B. Teilinhalte, Schwerpunkte, Ausschlüsse, Hilfsmittel oder eine bestimmte Musterprüfungs-Aufgabe als Vorbild (Aufgabe-`id` + ggf. Teilaufgaben-Label, z. B. „Aufbau wie `nw-bgym-wuv-2025-haupt-erhoeht-a3` 3.2“) – hat Vorrang vor den übrigen Angaben |
 
-`checks`, `vorlagen` und `hinweise` sind einzeln optional (mindestens eines angeben) und dienen als **Orientierung, nicht als Checkliste**: Nicht alles muss vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen. Daraus wird eine stimmige Klausur erstellt.
+`themen`, `checks` und `hinweise` sind einzeln optional (mindestens eines angeben) und dienen als **Orientierung, nicht als Checkliste**: Nicht alles muss vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen. Daraus wird eine stimmige Klausur erstellt.
 
 `logo` ist kein `config.yml`-Feld, sondern wird optional direkt in der `klausur.md`-Frontmatter gesetzt.
 
@@ -45,7 +45,7 @@ Vollständiges, kommentiertes Beispiel: [`templates/config.yml`](templates/confi
 
 ## Musterprüfungen
 
-`muster-pruefungen/` (gitignored, nur lokal) enthält Abitur-Musterprüfungen als PDF und teilweise als Markdown-Export (`abitur/pruefungen-md/`, Übersicht in `_inventar.json`, Konvertierung: `.github/prompts/prompt-pruefung-pdf-zu-md.prompt.md`). Sie dienen bei jeder Klausur als Qualitätsmaßstab für Stil, Operatoren, Granularität und Punkteverteilung; über `vorlagen` lassen sich einzelne (Teil-)Aufgaben gezielt als Inhalt referenzieren. Fehlt der Ordner, wird ohne Musterprüfungen gearbeitet.
+`muster-pruefungen/` (gitignored, nur lokal) enthält Abitur-Musterprüfungen als PDF und teilweise als Markdown-Export (`abitur/pruefungen-md/`, Übersicht in `_inventar.json`, Konvertierung: `.github/prompts/prompt-pruefung-pdf-zu-md.prompt.md`). Die Teilaufgaben der Exporte sind nach Themen aus `_data/themen.yml` (versioniert) verschlagwortet; der daraus generierte Index `pruefungen-md/_themen.json` liefert je Thema alle passenden Teilaufgaben. Musterprüfungen dienen bei jeder Klausur als Qualitätsmaßstab für Stil, Operatoren, Granularität und Punkteverteilung; über `themen` steuern sie zusätzlich den Inhalt. Fehlt der Ordner, wird ohne Musterprüfungen gearbeitet.
 
 ## Workflow
 

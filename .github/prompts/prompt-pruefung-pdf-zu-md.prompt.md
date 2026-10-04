@@ -13,13 +13,14 @@ haben deshalb exakte Aufgabentexte, Teilaufgaben-Labels, Punkte, Operatoren und
 Erwartungshorizont. Layouttreue ist zweitrangig. Arbeite die Schritte der Reihe nach ab.
 
 Pipeline: PDF sichten → Prüfungsinventar → Datei-/Aufgabenplan → Scaffold → Grafiken →
-Transkription → Validierung → Coverage-Check → visuelle Endkontrolle → Projekt-Inventar.
+Transkription → Themen taggen → Validierung + Themen-Index → Coverage-Check → visuelle
+Endkontrolle → Projekt-Inventar.
 
 ## Pfade
 
 Alle Befehle werden vom Repo-Root aus ausgeführt. `MP` steht für `muster-pruefungen/abitur`.
 Der Ordner `muster-pruefungen/` ist per gitignore ausgeschlossen (urheberrechtlich geschützte
-Inhalte). Nur dieser Prompt wird versioniert.
+Inhalte). Versioniert werden nur dieser Prompt und `_data/themen.yml`.
 
 | Inhalt | Pfad |
 |---|---|
@@ -27,9 +28,24 @@ Inhalte). Nur dieser Prompt wird versioniert.
 | Schemas + Validator | [aufgabe.schema.json](../../muster-pruefungen/abitur/pruefungen/schema/aufgabe.schema.json), [pruefung-index.schema.json](../../muster-pruefungen/abitur/pruefungen/schema/pruefung-index.schema.json), `MP/pruefungen/schema/validate_frontmatter.py` |
 | MD-Exporte | `MP/pruefungen-md/{land}/{schulform-slug}/{niveau}/{pruefung-id}/` |
 | Projekt-Inventar | [_inventar.json](../../muster-pruefungen/abitur/pruefungen-md/_inventar.json) |
+| Themen-Vokabular (versioniert) | [themen.yml](../../_data/themen.yml) |
+| Themen-Index (generiert) | `MP/pruefungen-md/_themen.json` |
 | Gemeinsame Tools | `MP/pruefungen-md/_tools/` (`scaffold.py`, `scaffold.example.yaml`, `figures.py`) |
 
-Python-Abhängigkeiten: `pip install pymupdf pyyaml jsonschema`.
+Python-Abhängigkeiten (im Projekt-venv `.venv`): `.venv\Scripts\python.exe -m pip install pymupdf pyyaml jsonschema`.
+
+**Schlank arbeiten:** Für die gesamte Konvertierung genügen diese vier Aufrufe:
+
+```
+.venv\Scripts\python.exe MP/pruefungen-md/_tools/figures.py render <pdf> [--seiten 3-5]   # Seiten lesen
+.venv\Scripts\python.exe MP/pruefungen-md/_tools/scaffold.py <spec.yaml>                   # Grundgerüst
+.venv\Scripts\python.exe MP/pruefungen-md/_tools/figures.py crop <pdf> <seite> <ziel.png> [--clip x0 y0 x1 y1]
+.venv\Scripts\python.exe MP/pruefungen/schema/validate_frontmatter.py                     # alle Checks
+```
+
+Schreibe **keine eigenen Hilfsskripte**, weder für die Transkription noch für Datei-Updates oder
+Prüfungen. Stubs, `_index.md` und `_inventar.json` bearbeitest du direkt mit dem Edit-Werkzeug.
+Fehlt eine wiederkehrende Funktion, erweitere das gemeinsame Tool und dokumentiere sie hier.
 
 ## 0. Kontext laden
 
@@ -70,50 +86,61 @@ Unleserliche Stellen markierst du mit `<!-- UNSICHER: ... -->` oder fragst nach.
 
 ## 4. Inhalt lesen: Formeln nur vom Bild
 
-`page.get_text()` zerlegt Formeln oft in unbrauchbare Fragmente. Ursache sind Font-Subsets und
-die absolute Positionierung der Glyphen.
+`page.get_text()` zerlegt Formeln oft in unbrauchbare Fragmente (z. B. `ൌ` statt `=`, `ଶ` statt
+`²`). Ursache sind Font-Subsets und die absolute Positionierung der Glyphen.
 
-- Für Formeln: Seiten mit PyMuPDF rendern (`page.get_pixmap(dpi=150-200)`) und das Bild lesen.
-- Für reinen Fließtext ohne Formeln reicht `get_text()`.
+- Für Formeln: Seiten mit `figures.py render <pdf>` als PNG rendern und das Bild lesen. Liegen
+  die Seiten bereits als Bilder im Chat vor (PDF-Anhang), entfällt das Rendern.
+- Für reinen Fließtext ohne Formeln reicht der extrahierte Text.
 - Gleiche Zahlen, Indizes, Exponenten, Operatoren, Ungleichheitszeichen und Einheiten gezielt mit
   dem Bild ab.
 
 ## 5. Grundgerüst erzeugen
 
-Schreibe eine YAML-Spec nach dem Muster von `MP/pruefungen-md/_tools/scaffold.example.yaml` und
-führe aus:
+Schreibe eine YAML-Spec nach dem Muster von `MP/pruefungen-md/_tools/scaffold.example.yaml`
+(temporär, z. B. im Temp-Ordner; sie wird nicht aufbewahrt) und führe aus:
 
 ```
-python muster-pruefungen/abitur/pruefungen-md/_tools/scaffold.py <spec.yaml>
+.venv\Scripts\python.exe muster-pruefungen/abitur/pruefungen-md/_tools/scaffold.py <spec.yaml>
 ```
 
 Das Skript erzeugt Ordnerstruktur, `_index.md` und je Aufgabe eine Stub-Datei mit validem
-Frontmatter.
+Frontmatter. Trage Teilaufgaben, Punkte und `themen` (Schritt 8) schon in der Spec ein. Dann
+musst du im Frontmatter später nur noch `erwartungshorizont` und `enthaelt_grafik` anpassen.
 
 > ⚠️ `scaffold.py` überschreibt vorhandene Dateien ohne Rückfrage. Führe es nur für neue
 > Prüfungen aus, niemals über bereits transkribierte Ordner.
 
 ## 6. Grafiken extrahieren
 
-- Lege je Prüfung ein Skript `<pruefung-id>/_tools/extract_figures.py` mit einer Job-Liste
-  `(pdf, seiten-index, name.png)` an. Es importiert `extract_figure()` aus `_tools/figures.py`.
-  Die Ergebnisse landen in `<pruefung-id>/_assets/`.
-- Verwende **keine absoluten Pfade**, alles relativ zu `__file__` (die Arbeit läuft auf mehreren
-  Rechnern). Vorlage: `MP/pruefungen-md/nw/bgym-wuv/erhoeht/nw-bgym-wuv-2025-haupt-erhoeht/_tools/extract_figures.py`.
-- Prüfe die Ausschnitte stichprobenhaft im Bild-Viewer.
-- Findet das Skript keine Bounding-Box, schneidest du die ganze Seite oder einen manuell
-  festgelegten Bereich zu. Grafiken werden nie nachgezeichnet.
+Je Abbildung genügt ein Aufruf. Ein prüfungsspezifisches Skript ist nicht nötig, die PNGs in
+`_assets/` sind das Ergebnis:
+
+```
+.venv\Scripts\python.exe muster-pruefungen/abitur/pruefungen-md/_tools/figures.py crop <pdf> <seite> <pruefung-ordner>/_assets/<name>.png
+```
+
+- `<pdf>` darf ein bloßer Dateiname sein, `<seite>` ist 1-basiert („Seite x von y“).
+- Ohne `--clip` wird die Bounding-Box automatisch bestimmt. Teilt sich die Grafik die Seite mit
+  Tabellen, Fließtext oder Fotos, setzt du `--clip x0 y0 x1 y1` (in pt, A4 = 595 × 842, Ursprung
+  oben links). Der verwendete Ausschnitt wird ausgegeben und lässt sich so nachjustieren.
+- Prüfe jeden Ausschnitt im Bild-Viewer. Grafiken werden nie nachgezeichnet.
 - Bildnamen sind deterministisch, z. B. `a2-4-abb1.png`.
+- Zierfotos ohne mathematischen Inhalt werden nicht übernommen.
 
 ## 7. Inhalt in die Stubs schreiben
+
+Ersetze den Stub-Inhalt jeder Datei direkt mit dem Edit-Werkzeug, inklusive des Markers
+`<!-- STUB … -->`. Ein Build-Skript für die Transkription schreibst du nicht.
 
 - Aufgabenstellung und Erwartungshorizont kommen in die jeweiligen Abschnitte.
   - Formeln als LaTeX (`$…$`/`$$…$$`)
   - Tabellen als GFM
   - Bilder als Link auf `_assets/*.png`
-- Teilaufgaben-Labels schreibst du als **Bold-Inline mit dem exakten Original-Label** (`**2.1.1**`,
-  `**f)**`, `**(1)**`), nicht als Markdown-Liste. Jedes Label muss 1:1 einem
-  `teilaufgaben[].bezeichnung` im Frontmatter entsprechen.
+- Teilaufgaben-Labels schreibst du als **Bold-Inline am Zeilenanfang** (`**2.1.1**`, `**f)**`,
+  `**(1)**`), nicht als Markdown-Liste. Jedes Label entspricht einem `teilaufgaben[].bezeichnung`
+  im Frontmatter. Ein `)` oder `.` am Ende lässt du in `bezeichnung` weg (`**f)**` → `"f"`).
+  Übergeordnete Kontext-Labels wie `**2.1**` vor `2.1.1` sind erlaubt.
 - Direkt nach der H1 folgt ein kursiver Satz `*…*` mit Strukturfakten, die nicht ins Frontmatter
   passen: Pflicht/Wahl, Auswahlregeln, Querverweis bei gesplitteten Aufgaben.
 - Deckt eine Aufgabe mehrere `themenbereich`-Werte ab, teilst du sie an der Themengrenze in
@@ -126,21 +153,52 @@ Frontmatter.
 - Im Abschnitt „Bekannte Lücken“ der `_index.md` dokumentierst du, was bewusst ausgelassen oder
   beschnitten wurde.
 
-## 8. Validieren
+## 8. Themen taggen
+
+Jede Teilaufgabe bekommt im Frontmatter `themen: [...]` mit Slugs aus
+[themen.yml](../../_data/themen.yml) (plattformunabhängiges Vokabular; ein Thema ist auf
+MatheChecks umgesetzt, wenn es in `_data/lernbereiche.yml` einen Lernbereich mit gleichem Slug
+gibt). Der Index `_themen.json` wird daraus beim Validieren automatisch erzeugt.
+
+```yaml
+teilaufgaben:
+  - bezeichnung: "3.2.4"
+    punkte: 4
+    themen: ["mehrstufige-produktionsprozesse", "quadratische-funktionen"]
+```
+
+- **Kern taggen, nicht Hilfsmittel:** nur Themen, deren Kompetenzen die Teilaufgabe im Kern
+  prüft (meist 1, selten 2–3). Reine Werkzeuge nicht zusätzlich taggen, z. B. Matrizenmultiplikation
+  in Produktionsprozessen, Ableiten bei Kennzahlberechnungen, Gleichungslösen.
+- Zur Abgrenzung die `Ich kann`-Texte der Checks in `_data/checks.json` heranziehen.
+- Aufgaben ohne `teilaufgaben`: `themen` auf Aufgabenebene setzen. Eine Datei wird immer
+  vollständig getaggt (alle Teilaufgaben) oder gar nicht.
+- **Neues Thema** nur, wenn kein bestehendes sinnvoll passt: in `_data/themen.yml` ergänzen
+  (Zuschnitt etwa in Lernbereichsgröße, Slug-Konvention wie bei Lernbereichen) und im Chat melden.
+
+## 9. Validieren
 
 Führe nach jedem Batch aus und behebe Fehler sofort:
 
 ```
-python muster-pruefungen/abitur/pruefungen/schema/validate_frontmatter.py
+.venv\Scripts\python.exe muster-pruefungen/abitur/pruefungen/schema/validate_frontmatter.py
 ```
 
-Prüfe zusätzlich:
+Der Validator prüft:
 
-- Alle referenzierten `_assets/*.png` existieren.
-- Kein Teilaufgaben-Label fehlt oder ist doppelt (Abgleich mit dem Inventar aus Schritt 2).
-- Labels im Fließtext und `teilaufgaben[].bezeichnung` stimmen exakt überein.
+- Schema, Themen-Slugs und den Abgleich `themen.yml` ↔ `lernbereiche.yml`.
+- Je Aufgabe-Datei: Jedes Teilaufgaben-Label steht genau einmal in der Aufgabenstellung und
+  (bei befülltem Erwartungshorizont) genau einmal im Erwartungshorizont. Es gibt keine
+  unbekannten Labels, die Punktesumme der Teilaufgaben stimmt, alle `_assets`-Bilder existieren,
+  `enthaelt_grafik` passt und es sind keine STUB-Reste übrig.
+- Je Prüfung: Die Aufgabe-Dateien aus `_index.md` existieren, es gibt keine ungenutzten Bilder
+  und einen Eintrag in `_inventar.json`.
 
-## 9. Coverage-Check
+Nur wenn alles fehlerfrei ist, schreibt er `_themen.json` neu. Eigene Prüfskripte sind nicht
+nötig; `[WARN]`-Zeilen (z. B. noch offene Stubs) prüfst du und behebst sie, soweit sie die
+aktuelle Prüfung betreffen.
+
+## 10. Coverage-Check
 
 Gleiche das Inventar aus Schritt 2 mit den erzeugten Dateien ab:
 
@@ -149,21 +207,22 @@ Gleiche das Inventar aus Schritt 2 mit den erzeugten Dateien ab:
 
 So fällt auch der Fall „Schema ok, aber zwei Seiten fehlen“ auf.
 
-## 10. Visuelle Endkontrolle
+## 11. Visuelle Endkontrolle
 
 Vergleiche ein bis zwei Dateien stichprobenhaft mit den Original-Seiten. Achte besonders auf
 Exponenten, Vorzeichen, Indizes und Ergebniswerte.
 
-## 11. Projekt-Inventar aktualisieren
+## 12. Projekt-Inventar aktualisieren
 
-Ergänze `_inventar.json` um folgende Felder: `id`, `land`, `schulform`, `jahr`, `termin`,
+Ergänze `_inventar.json` direkt mit dem Edit-Werkzeug um folgende Felder: `id`, `land`,
+`schulform`, `jahr`, `termin`,
 `niveau`, `status` (`vollstaendig`/`teilweise`), `fortschritt` und `pfad`. Bei `teilweise`
 beschreibst du in `fortschritt` kurz, was noch fehlt.
 
-> Aufgabe-`id`s und Teilaufgaben-Labels sind stabil: Sie werden in `klausuren/*/config.yml`
-> (`vorlagen`) referenziert. Ändere sie nachträglich nur in Absprache.
+> Aufgabe-`id`s und Teilaufgaben-Labels sind stabil: Sie werden in `_themen.json` und ggf. in
+> `hinweise` von `klausuren/*/config.yml` referenziert. Ändere sie nachträglich nur in Absprache.
 
-## 12. Erkenntnisse festhalten
+## 13. Erkenntnisse festhalten
 
 Neue Sonderfälle, widerlegte Annahmen und Konventionsentscheidungen trägst du knapp unten im
 Abschnitt [Bekannte Sonderfälle](#bekannte-sonderfälle) ein.
@@ -191,8 +250,23 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   Erwartungshorizont nutzt feinere Bewertungspositionen (z. B. `2.1.2.1`, `2.1.2.2`; bei Aufgabe 3.4
   das Label `3.4.1`). Diese werden je Teilaufgabe zusammengefasst, Einzelpunkte und AFB stehen in
   Klammern. Zierfotos ohne mathematischen Inhalt (Abbildungen 2–4) werden nicht übernommen.
-  Grafiken im Erwartungshorizont, die in Tabellenzeilen stecken, brauchen einen manuellen Ausschnitt
-  (4. Tupel-Element in `extract_figures.py`), da `figure_bbox` sonst die ganze Tabelle erfasst.
+- **Grafiken in Tabellenzeilen** (Erwartungshorizont) oder neben Tabellen/Fließtext/Fotos brauchen
+  `figures.py crop … --clip`, da die automatische Bounding-Box sonst die ganze Tabelle bzw. das
+  Foto mit erfasst.
+- **NW Berufliches Gymnasium WuV 2024 (WLK):** Aufbau wie 2025 (Teil A 1.1–1.8, 4 Pflicht + 2 aus 4 Wahl;
+  Teil B 3 Aufgaben je 30 Punkte), aber Reihenfolge Teil B: Aufgabe 2 Analysis, 3 Stochastik, 4 Lineare
+  Algebra. Die Aufgabenstellung zu 4.2.4 steht im Schüler-PDF erst auf der letzten Seite. Teil-A-Aufgaben mit nur
+  einer Teilaufgabe (1.3.1, 1.6.1, 1.7.1) bekommen trotzdem einen `teilaufgaben`-Eintrag. Das Label
+  `3.3.1.` (mit Punkt) in der Aufgabenstellung wird als `3.3.1` geführt. Der Erwartungshorizont zu 4.2.4
+  enthält vermutlich einen Tippfehler (0,3629 statt 0,3269 in $M^{24}$), der unverändert mit Kommentar
+  übernommen wird. Leontief-Aufgaben (4.1.x) sind mit dem neuen Thema `leontief-modell` getaggt.
+  Zierfotos (Schiff, Flasche, Rucksack, Brille) werden nicht übernommen.
+- **NW Berufliches Gymnasium WuV 2022 (WLK):** Dateiname mit `oHiMi` statt `ohimi`. Aufbau wie 2023, aber
+  Teil A mit gemischten Themenbereichen (1.1/1.2 Analysis, 1.3 Stochastik, 1.4 Lineare Algebra), Teil B
+  Aufgabe 3 komplett Lineare Algebra (3.1 mehrstufige Produktion, 3.2 stochastische Matrizen, keine
+  Aufteilung nötig). Der Erwartungshorizont fasst in 1.3.1 je zwei Behauptungen zu einer Bewertungsposition
+  zusammen. Das Baumdiagramm (4.1.1) und das Übergangsdiagramm (3.2.1) sind Rasterbilder in Tabellenzeilen
+  und brauchen manuelle Ausschnitte.
 - **GK-PDFs (`nw berufl gym wv gk`)** liegen teils nur als 1-Byte-Platzhalter vor (Google-Drive-Sync)
   und können nicht gelesen werden; vor der Konvertierung die Dateigröße prüfen.
 - **Einfache Baumdiagramme** im Erwartungshorizont (nur Zahlenlabels) dürfen als Text übertragen

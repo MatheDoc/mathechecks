@@ -8,26 +8,30 @@ Ziel ist eine **runde, in sich stimmige Klausur** auf dem Qualitätsniveau zentr
 
 ## 0) Quellen und ihre Rollen
 
-`checks`, `vorlagen` und `hinweise` sind **jeweils optional** (mindestens eine Angabe muss vorhanden sein). Sie stecken gemeinsam den **inhaltlichen Rahmen** ab, sind aber **Orientierung, keine Checkliste**: Nicht alles daraus muss in der Klausur vorkommen, und Fragestellungen dürfen in einem vernünftigen Rahmen davon abweichen (z. B. naheliegende Ergänzungen im selben Themenfeld). Ziel ist eine *vernünftige* Klausur, nicht die vollständige Abarbeitung der Angaben.
+`themen`, `checks` und `hinweise` sind **jeweils optional** (mindestens eine Angabe muss vorhanden sein). Sie stecken gemeinsam den **inhaltlichen Rahmen** ab, sind aber **Orientierung, keine Checkliste**: Nicht alles daraus muss in der Klausur vorkommen, und Fragestellungen dürfen in einem vernünftigen Rahmen davon abweichen (z. B. naheliegende Ergänzungen im selben Themenfeld). Ziel ist eine *vernünftige* Klausur, nicht die vollständige Abarbeitung der Angaben.
+
+**Themen der Klausur** = `themen` ∪ Lernbereiche aus `checks`. Ein Thema (`_data/themen.yml`) ist auf MatheChecks umgesetzt, wenn es einen Lernbereich mit gleichem Slug gibt (`_data/lernbereiche.yml`).
 
 | Quelle | Rolle |
 |---|---|
-| `checks` | Zeigt, was im Unterricht behandelt wurde (Themenfeld, Kompetenzen, Niveau). Notation/Methoden aus `skript.md`; Beispiele (`beispiele/*.md`) nur für Notation, Rechenweg und Zahlenniveau – **nicht** als Formulierungsvorlage (zu stringent). |
-| `vorlagen` | Gezielt referenzierte Musterprüfungs-(Teil-)Aufgaben als inhaltliche Orientierung (Aufgabenidee, Fragetypen) – auch für Inhalte ohne passenden Check. |
-| `hinweise` | Ausdrückliche Wünsche der Lehrkraft (z. B. Inhalte ohne Check, Schwerpunkte, Ausschlüsse) – haben Vorrang vor `checks` und `vorlagen`. |
+| `themen` | Hauptsteuerung: welche Themen die Klausur behandelt. Alle passenden Musterprüfungs-Teilaufgaben (`_themen.json`, alle Jahrgänge) dienen als Ideengeber für Fragetypen, Aufgabenideen und Punkte. |
+| `checks` | Feinsteuerung bei umgesetzten Themen: was innerhalb des Lernbereichs behandelt wurde. Notation/Methoden aus `skript.md`; Beispiele (`beispiele/*.md`) nur für Notation, Rechenweg und Zahlenniveau – **nicht** als Formulierungsvorlage (zu stringent). |
+| `hinweise` | Ausdrückliche Wünsche der Lehrkraft (z. B. Teilinhalte, Schwerpunkte, Ausschlüsse, gezielt eine bestimmte Musterprüfungs-Aufgabe als Vorbild) – haben Vorrang vor den übrigen Angaben. |
 | Musterprüfungen allgemein (`muster-pruefungen/abitur/pruefungen-md/`) | **Immer** Qualitätsmaßstab für das **Wie**: Stil, Operatoren, Einleitungstexte, Aufgabenideen, Granularität der Teilaufgaben, Punkteverteilung. |
 
-Fehlt `muster-pruefungen/` lokal (gitignored), entfallen Vorlagen und Stilreferenzen – dann gelten nur die übrigen Regeln.
+**Notation:** Bei umgesetzten Themen gilt das `skript.md` des Lernbereichs (auch bei Abweichung zur Musterprüfung). Bei nicht umgesetzten Themen gilt die Notation der Musterprüfungen.
+
+Fehlt `muster-pruefungen/` lokal (gitignored), entfallen Themen-Treffer und Stilreferenzen – dann gelten nur die übrigen Regeln.
 
 ## 1) Inhalt & Didaktik
 
-- **Kein Szenario 1:1 aus Musterprüfungen:** Unternehmen, Produkt, Kontext, Zahlen und Funktionsterme immer neu. Übernehmen dürfen nur Aufgabenideen, Aufbau der Teilaufgaben-Kette, Operatoren und Stil – auch bei referenzierten `vorlagen`.
+- **Kein Szenario 1:1 aus Musterprüfungen:** Unternehmen, Produkt, Kontext, Zahlen und Funktionsterme immer neu. Übernehmen dürfen nur Aufgabenideen, Aufbau der Teilaufgaben-Kette, Operatoren und Stil – auch bei in `hinweise` gezielt genannten Musteraufgaben.
 - **Leitszenario:** Teilen die Lernbereiche ein Anwendungssetting (z. B. Kosten/Erlös/Gewinn), ein durchgängiges Unternehmen/Produkt für alle Anwendungsaufgaben verwenden. Rein innermathematische Aufgaben sind ausgenommen.
 - **Einleitungstexte wie in Musterprüfungen:** Informationen (Daten, Funktionsterme, Tabellen, Grafiken) in der Aufgabeneinleitung vorgeben, auf die sich die Teilaufgaben beziehen; weitere Informationen dürfen im Verlauf hinzukommen („Im Folgenden gilt …").
-- **Aufgaben ≠ Checks:** Eine Aufgabe darf mehrere Checks mischen, ein Check darf sich über mehrere Aufgaben verteilen. Teilaufgaben bauen möglichst aufeinander auf (Ergebnis aus a) wird in b) weiterverwendet).
+- **Aufgaben ≠ Themen/Checks:** Eine Aufgabe darf mehrere Themen und Checks mischen, ein Thema darf sich über mehrere Aufgaben verteilen. Teilaufgaben bauen möglichst aufeinander auf (Ergebnis aus a) wird in b) weiterverwendet).
 - **Granularität:** Maßstab sind die Musterprüfungen. Eine Teilaufgabe darf mehrere Kompetenzen bündeln, solange sie nicht zu lang wird.
 - **Prosa auch in Teilaufgaben:** Teilaufgaben knüpfen an die Situation an (wer will was wissen und warum), statt nur „Berechnen Sie …". Operatoren wie in den Musterprüfungen. Je Anwendungsaufgabe mindestens eine Teilaufgabe mit Deutung/Beurteilung im Sachkontext.
-- **Inhaltlicher Rahmen:** Checks, `vorlagen` und `hinweise` geben die Richtung vor (siehe Abschnitt 0). Lieber eine stimmige Klausur mit einer sinnvollen Auswahl als eine überladene, die alles abdeckt. Keine Inhalte, die erkennbar außerhalb des Rahmens liegen (z. B. nicht behandelte Lernbereiche). Methoden und Notation aus dem `skript.md` der betroffenen Lernbereiche (bei Abweichung zur Musterprüfung gilt das Skript).
+- **Inhaltlicher Rahmen:** Themen, Checks und `hinweise` geben die Richtung vor (siehe Abschnitt 0). Lieber eine stimmige Klausur mit einer sinnvollen Auswahl als eine überladene, die alles abdeckt. Keine Inhalte, die erkennbar außerhalb des Rahmens liegen (z. B. nicht genannte Themen).
 - **Reihenfolge:** primär nach Rechenaufwand/GTR-Eignung (Ablesen und einfache Rechnungen zuerst, z. B. Nullstellen ganzrationaler Funktionen 3. Grades zuletzt), sekundär nach `config.yml`.
 - **Keine Doppelabfrage** derselben Größe im selben Sachkontext; in einem anderen Kontext (z. B. Polypol vs. Monopol) ist das erlaubt.
 - **Eigenständig:** neue Zahlen und Formulierungen, keine Übernahme aus `beispiele/*.md`. Zahlen so wählen, dass Ergebnisse handhabbar sind.
@@ -53,4 +57,4 @@ Fehlt `muster-pruefungen/` lokal (gitignored), entfallen Vorlagen und Stilrefere
 2. Format (insb. `\punkte{n}`)
 3. `hinweise` der Lehrkraft
 4. Stimmigkeit und Qualität im Stil der Musterprüfungen (Leitszenario, Einleitung, Prosa, Granularität)
-5. Nähe zu `checks` und `vorlagen`
+5. Nähe zu `themen` und `checks`
