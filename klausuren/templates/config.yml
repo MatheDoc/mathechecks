@@ -1,0 +1,35 @@
+# Muster-Config für eine Klausur – nach klausuren/<slug>/config.yml kopieren und anpassen.
+# Schema und Erläuterungen: klausuren/README.md
+
+fach: 1. Klausur Mathematik           # Überschrift/Fach
+klasse: WG2X                          # Klasse/Kurs
+datum: 01.10.2026                     # Klausurdatum
+thema: Ganzrationale ökonomische Funktionen   # erscheint im Klausurkopf
+bearbeitungszeit: 135                 # Minuten (numerisch)
+geplante_punkte: 50                   # grobe Zielgröße, keine exakte Summe
+
+# --- Inhaltliche Orientierung ---------------------------------------------------------
+# checks, vorlagen und hinweise sind jeweils optional (mindestens eines angeben).
+# Sie dienen als Orientierung, nicht als Checkliste: Nicht alles muss in der Klausur
+# vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen.
+
+# Was im Unterricht behandelt wurde: Lernbereich-Slug <gebiet>/<lernbereich>
+# (wie in _data/checks.json / _data/lernbereiche.yml) + Check-Nummern.
+checks:
+  - lernbereich: analysis/ganzrationale-oekonomische-funktionen
+    checks: [1, 2, 3, 4]
+
+# Bezüge auf Musterprüfungen (muster-pruefungen/abitur/pruefungen-md/, lokal, gitignored).
+# aufgabe = id im Frontmatter der Aufgabe-Datei; teilaufgaben = Labels wie
+# teilaufgaben[].bezeichnung, übergeordnetes Label ("2.1") umfasst 2.1.1, 2.1.2, …;
+# ohne teilaufgaben: ganze Aufgabe. Szenarien werden nie 1:1 übernommen.
+vorlagen:
+  - aufgabe: nw-bgym-wuv-2025-haupt-erhoeht-a2
+    teilaufgaben: ["2.1", "2.2.3"]
+  - aufgabe: nw-bgym-wuv-2025-haupt-erhoeht-a1-5
+
+# Freitext der Lehrkraft (Vorrang vor checks/vorlagen), z. B. Inhalte ohne passenden
+# Check, Schwerpunkte, Ausschlüsse, Hilfsmittel.
+hinweise: |
+  Zusätzlich: Parameterbestimmung aus Bedingungen (kein Check vorhanden).
+  Eine Aufgabe ohne Hilfsmittel.
