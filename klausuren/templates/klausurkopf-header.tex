@@ -6,6 +6,8 @@
 %% Pakete für einheitliches Tabellenlayout (siehe table-style.lua)
 \usepackage{array}
 \usepackage{longtable}
+\setlength{\tabcolsep}{8pt}
+\renewcommand{\arraystretch}{1.5}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -13,4 +15,4 @@
 \fancyfoot[C]{\small\thepage\,/\,\pageref{LastPage}}
 
 %% Weitere Befehle
-\newcommand{\punkte}[1]{\hfill\fbox{\makebox[2.2cm][r]{\phantom{00}\,/ #1 P}}}
+\newcommand{\punkte}[1]{\leavevmode\unskip\hspace*{\fill}\fbox{\makebox[2.2cm][r]{\phantom{00}\,/ #1 P}}}

@@ -9,7 +9,7 @@ bearbeitungszeit: 240                 # Minuten (numerisch)
 geplante_punkte: 90                   # grobe Zielgröße, keine exakte Summe
 
 # --- Inhaltliche Orientierung ---------------------------------------------------------
-# themen, checks, vorlagen und hinweise sind jeweils optional (mindestens eines angeben).
+# themen, checks und hinweise sind jeweils optional (mindestens eines angeben).
 # Sie dienen als Orientierung, nicht als Checkliste: Nicht alles muss in der Klausur
 # vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen.
 
@@ -19,6 +19,7 @@ themen: [mehrstufige-produktionsprozesse]
 
 # Feinsteuerung für umgesetzte Themen: Lernbereich-Slug <gebiet>/<lernbereich>
 # (wie in _data/checks.json / _data/lernbereiche.yml) + behandelte Check-Nummern.
+checks:
   - lernbereich: lineare-algebra/lineare-gleichungssysteme
     checks: [4, 5]
   - lernbereich: lineare-algebra/matrizenrechnung
@@ -36,4 +37,4 @@ hinweise: |
   Eine Aufgabe, in der das Rangkriterium angewendet werden muss.
   Bei mehrstufige-produktionsprozesse habe ich u.a. die checks 1-5 erwähnt, die müssen nicht explizit adressiert werden, aber sie werden vermutlich neben als Fragegestellung in den Aufgaben auftreten.
   **1.3.2** aus nw-bgym-wuv-2023-haupt-erhoeht-a1-3 finde ich auch gut für den hilfmittel freien TEil.
-.
+

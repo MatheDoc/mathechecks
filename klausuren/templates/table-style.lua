@@ -23,7 +23,7 @@ function Table(tbl)
   -- und Rahmenlinien (ncols+1 * \arrayrulewidth), gleichmäßig auf alle Spalten verteilt
   local width = "\\dimexpr(\\linewidth-" .. (2 * ncols) .. "\\tabcolsep-" ..
       (ncols + 1) .. "\\arrayrulewidth)/" .. ncols .. "\\relax"
-  local col = ">{\\centering\\arraybackslash}p{" .. width .. "}"
+  local col = ">{\\centering\\arraybackslash}m{" .. width .. "}"
   local colspec = "|" .. string.rep(col .. "|", ncols)
 
   local out = {}
