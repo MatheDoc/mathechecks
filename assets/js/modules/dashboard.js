@@ -3170,22 +3170,6 @@ function buildTargetDateAssessment(context, selectedCheckIds, selectedLernbereic
     };
   }
 
-  const targetEndMs = targetDate.getTime(); // deadline = start of target day (00:00)
-  const checkStateById = buildSessionCheckStateById(context);
-  const hasTimingConflict = (Array.isArray(selectedCheckIds) ? selectedCheckIds : []).some((checkId) => {
-    const row = checkStateById.get(checkId);
-    if (!row || String(row?.current_step_status || "").trim() !== "due") return false;
-    const af = row?.available_from ? new Date(row.available_from).getTime() : NaN;
-    return Number.isFinite(af) && af >= targetEndMs;
-  });
-  if (hasTimingConflict) {
-    return {
-      targetLabel,
-      assessmentLabel: "Unrealistisch",
-      assessmentTone: "error",
-    };
-  }
-
   if (realisticThreshold === null || warningThreshold === null) {
     return {
       targetLabel,

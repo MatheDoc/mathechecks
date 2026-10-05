@@ -11,6 +11,8 @@ logo: klausuren/templates/logo.png
 
 Die **Nordlicht Möbelwerk GmbH** stellt Möbel verschiedener Serien her. In allen Aufgaben bezeichnet ME die Mengeneinheit und GE die Geldeinheit.
 
+\newpage
+
 ## Aufgabe 1
 
 Der Stuhl „Lina“ wird auf einem Markt mit vielen Anbietern verkauft (Angebotspolypol). Die Kapazitätsgrenze der Produktion liegt bei 18 ME. Das Diagramm zeigt die Erlösfunktion $E$, die Kostenfunktion $K$ und die Gewinnfunktion $G$.
@@ -80,8 +82,8 @@ a) Untersuchen Sie rechnerisch, ob $K$ einen ertragsgesetzlichen Kostenverlauf b
 
 ## Aufgabe 6
 
-Der Schrank „Premium“ mit patentiertem Beschlagsystem wird von der Nordlicht Möbelwerk GmbH als Monopolist angeboten (Angebotsmonopol). Die Preis-Absatz-Funktion und die Gewinnfunktion lauten
-$$p(x)=-2x+48,\qquad G(x)=-0{,}2x^3+0{,}9x^2+16{,}8x-50$$
+Der Schrank „Premium“ mit patentiertem Beschlagsystem wird von der Nordlicht Möbelwerk GmbH als Monopolist angeboten (Angebotsmonopol). Die Erlös-Funktion und die Gewinnfunktion lauten
+$$E(x)=-2x^2+48x,\qquad G(x)=-0{,}2x^3+0{,}9x^2+16{,}8x-50$$
 
 a) Berechnen Sie die erlösmaximale Menge und den maximalen Erlös. \punkte{3}
 
@@ -182,7 +184,7 @@ Die Kostenfunktion besitzt also keinen ertragsgesetzlichen Verlauf.
 
 ### Aufgabe 6
 
-a) $E(x)=p(x)\cdot x=-2x^2+48x$, $E'(x)=-4x+48$, $E''(x)=-4$.
+a) $E'(x)=-4x+48$, $E''(x)=-4$.
 
 $-4x+48=0\Rightarrow x=12$, $E''(12)=-4<0$ (Maximum). Die erlösmaximale Menge beträgt 12 ME.
 
