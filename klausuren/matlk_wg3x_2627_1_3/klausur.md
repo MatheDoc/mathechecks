@@ -52,7 +52,7 @@ $$
 \left(\begin{array}{ccc|c}1 & 0 & 1 & 12\\0 & 1 & 1 & 8\end{array}\right)
 $$
 
-umformen lässt. Bestimmen Sie den Lösungsvektor, der alle Produktionsprogramme zur vollständigen Räumung des Lagers beschreibt, und geben Sie an, für welche Werte des Parameters die Mengen sinnvoll sind. \punkte{4}
+umformen lässt. Bestimmen Sie den Lösungsvektor, der alle Konstellationen zur vollständigen Räumung des Lagers beschreibt, und geben Sie an, für welche Werte des Parameters die Mengen sinnvoll sind. \punkte{4}
 
 \newpage
 
@@ -66,7 +66,7 @@ $$
 
 a) Untersuchen Sie mithilfe des Rangkriteriums, für welche Werte von $a$ und $b$ das Gleichungssystem genau eine Lösung, unendlich viele Lösungen bzw. keine Lösung besitzt. Beschreiben Sie jeweils kurz, was dies für die Räumung des Lagers bedeutet. \punkte{4}
 
-b) Bestimmen Sie für $a=5$ und $b=12$ die Lösung des Gleichungssystems. \punkte{2}
+b) Bestimmen Sie für $a=5$ und $b=12$ die Lösung des Gleichungssystems. \punkte{3}
 
 \newpage
 
@@ -104,13 +104,13 @@ Die Verkaufspreise schwanken mit einem Marktparameter $t>0$ (z. B. durch Wechsel
 
 a) Erläutern Sie die Bedeutung der Zahl in der zweiten Zeile und zweiten Spalte von $RZ$ und geben Sie an, welche Baugruppe keinen Rohstoff $R_2$ benötigt. \punkte{2}
 
-b) Die Einkaufsabteilung plant direkt mit den Rohstoffen. Berechnen Sie die Bedarfsmatrix $RE$. \punkte{3}
+b) Die Einkaufsabteilung plant direkt mit den Rohstoffen. Berechnen Sie die Bedarfsmatrix $RE$. \punkte{2}
 
 c) Für einen Auftrag sollen 15 ME $E_1$, 80 ME $E_2$ und 25 ME $E_3$ gefertigt werden. Bestimmen Sie die dafür benötigten Mengen der drei Baugruppen und der drei Rohstoffe. \punkte{4}
 
-d) Die Kalkulation benötigt die variablen Stückkosten je Endprodukt. Stellen Sie einen Matrixterm für den Vektor $\vec{k}_v$ der variablen Stückkosten auf und berechnen Sie $\vec{k}_v$. \punkte{4}
+d) Die Kalkulation benötigt die variablen Stückkosten je Endprodukt $\vec{k}_v$. Berechnen Sie $\vec{k}_v$. \punkte{4}
 
-e) Zeigen Sie, dass für die Stückdeckungsbeiträge der drei Leuchten gilt:
+e) Die variablen Stückkosten betragen $\vec{k}_v=\begin{pmatrix}100 & 82 & 133\end{pmatrix}$ GE je ME. Zeigen Sie, dass für die Stückdeckungsbeiträge der drei Leuchten gilt:
 
 | Endprodukt | $E_1$ | $E_2$ | $E_3$ |
 |---|---|---|---|
@@ -120,9 +120,9 @@ e) Zeigen Sie, dass für die Stückdeckungsbeiträge der drei Leuchten gilt:
 
 f) Der Vertrieb möchte wissen, für welche Werte von $t$ jedes der drei Modelle einen positiven Stückdeckungsbeitrag liefert. Bestimmen Sie den zugehörigen Bereich von $t$. \punkte{3}
 
-g) Ermitteln Sie den maximalen Deckungsbeitrag für den Auftrag aus c) und den zugehörigen Wert von $t$. Weisen Sie nach, dass es sich um ein Maximum handelt, und prüfen Sie, ob der Wert von $t$ im Bereich aus f) liegt. \punkte{5}
+g) Ermitteln Sie den maximalen Deckungsbeitrag für den Auftrag aus c) (15 ME $E_1$, 80 ME $E_2$, 25 ME $E_3$) und den zugehörigen Wert von $t$. Weisen Sie nach, dass es sich um ein Maximum handelt, und prüfen Sie, ob bei diesem Wert von $t$ jedes der drei Modelle einen positiven Stückdeckungsbeitrag liefert. \punkte{5}
 
-h) Ein Mitarbeiter sagt: „Solange der Gesamtdeckungsbeitrag des Auftrags positiv ist, lohnt sich jedes der drei Modelle.“ Beurteilen Sie diese Aussage am Beispiel $t=1$. \punkte{3}
+h) Ein Mitarbeiter sagt: „Solange der Gesamtdeckungsbeitrag des Auftrags aus c) (15 ME $E_1$, 80 ME $E_2$, 25 ME $E_3$) positiv ist, lohnt sich jedes der drei Modelle.“ Beurteilen Sie diese Aussage am Beispiel $t=1$. \punkte{3}
 
 \newpage
 
@@ -138,15 +138,15 @@ $$
 
 Die Matrix $ZE$ ist nicht dokumentiert. Die variablen Stückkosten betragen $\vec{k}_v=\begin{pmatrix}98 & 115 & 82\end{pmatrix}$ GE je ME, die Verkaufspreise $\vec{p}=\begin{pmatrix}150 & 170 & 140\end{pmatrix}$ GE je ME. Dem Gartensortiment werden Fixkosten von 4200 GE zugerechnet.
 
-a) Bestimmen Sie die Matrix $ZE$. \punkte{4}
+a) Bestimmen Sie die Matrix $ZE$. \punkte{3}
 
-b) Im Lager liegen 490 ME $R_1$, 720 ME $R_2$ und 510 ME $R_3$, die vollständig verbraucht werden sollen. Ermitteln Sie das zugehörige Produktionsprogramm. \punkte{4}
+b) Im Lager liegen 490 ME $R_1$, 720 ME $R_2$ und 510 ME $R_3$, die vollständig verbraucht werden sollen. Ermitteln Sie den zugehörigen Produktionsvektor. \punkte{3}
 
-c) Berechnen Sie für das Produktionsprogramm aus b) den Erlös, die gesamten variablen Kosten und den Gewinn. \punkte{3}
+c) Das Lager aus b) wird mit dem Produktionsvektor $\vec{m}=\begin{pmatrix}30 & 20 & 40\end{pmatrix}^T$ vollständig verbraucht. Berechnen Sie für diesen Produktionsvektor den Erlös, die gesamten variablen Kosten und den Gewinn. \punkte{6}
 
 d) Eine zweite Bestandsliste nennt 320 ME $R_1$, 435 ME $R_2$ und 230 ME $R_3$. Beurteilen Sie, ob sich dieses Lager vollständig räumen lässt. \punkte{3}
 
-e) Die Geschäftsführung möchte mit dem Programm aus b) einen Gewinn von 1500 GE erzielen. Bestimmen Sie den dafür erforderlichen Verkaufspreis der Laterne $E_3$, wenn die übrigen Preise unverändert bleiben. \punkte{3}
+e) Die Geschäftsführung möchte mit dem Produktionsvektor $\vec{m}=\begin{pmatrix}30 & 20 & 40\end{pmatrix}^T$ aus b) einen Gewinn von 1500 GE erzielen. Bestimmen Sie den dafür erforderlichen Verkaufspreis der Laterne $E_3$, wenn die übrigen Preise unverändert bleiben. \punkte{3}
 
 \newpage
 
@@ -162,15 +162,17 @@ Im Lager befinden sich 330 ME $R_1$, 310 ME $R_2$ und 320 ME $R_3$. Für die Rä
 
 a) Zeigen Sie mithilfe des Rangkriteriums, dass sich das Lager auf unendlich viele Arten vollständig räumen lässt, und bestimmen Sie alle zugehörigen Produktionsvektoren in Abhängigkeit von $m_3=t$. \punkte{5}
 
+Für die Teilaufgaben b) bis f) gilt: Alle Produktionsvektoren, die das Lager vollständig räumen, lassen sich darstellen als $\vec{m}=\begin{pmatrix}40-2t\\10+t\\t\end{pmatrix}$ mit $t=m_3$.
+
 b) Bestimmen Sie den Bereich der zulässigen Werte von $t$. \punkte{3}
 
-c) Ein Großkunde möchte doppelt so viele ME $E_2$ wie $E_3$ abnehmen. Ermitteln Sie das zugehörige Produktionsprogramm und prüfen Sie seine Zulässigkeit. \punkte{3}
+c) Ein Großkunde möchte doppelt so viele ME $E_2$ wie $E_3$ abnehmen. Ermitteln Sie den zugehörigen Produktionsvektor und prüfen Sie seine Zulässigkeit. \punkte{3}
 
-d) Bestimmen Sie den Gewinn in Abhängigkeit von $t$. Ermitteln Sie, ab welchem Wert von $t$ die Räumung einen Gewinn erzielt, sowie das gewinnmaximale Produktionsprogramm und den maximalen Gewinn. \punkte{5}
+d) Bestimmen Sie den Gewinn in Abhängigkeit von $t$. Ermitteln Sie, ab welchem Wert von $t$ die Räumung einen Gewinn erzielt, sowie den gewinnmaximalen Produktionsvektor und den maximalen Gewinn. \punkte{5}
 
-e) Aufgrund von Lieferverträgen müssen mindestens 14 ME $E_1$ geliefert werden; zugleich lassen sich höchstens 25 ME $E_2$ absetzen. Bestimmen Sie unter diesen Bedingungen das gewinnmaximale Produktionsprogramm und den zugehörigen Gewinn. \punkte{4}
+e) Aufgrund von Lieferverträgen müssen mindestens 14 ME $E_1$ geliefert werden; zugleich lassen sich höchstens 25 ME $E_2$ absetzen. Bestimmen Sie unter diesen Bedingungen den gewinnmaximalen Produktionsvektor und den zugehörigen Gewinn. \punkte{4}
 
-f) Eine Mitarbeiterin schlägt vor, $E_1$ nicht mehr zu fertigen, da $E_1$ den kleinsten Stückdeckungsbeitrag liefert. Beurteilen Sie diesen Vorschlag mithilfe Ihrer Ergebnisse aus d) und e). \punkte{3}
+f) Eine Mitarbeiterin schlägt vor, $E_1$ nicht mehr zu fertigen, da $E_1$ den kleinsten Stückdeckungsbeitrag liefert. Vergleichen Sie dazu den Produktionsvektor $\vec{m}_A=\begin{pmatrix}0 & 30 & 20\end{pmatrix}^T$ (ohne $E_1$) mit dem Produktionsvektor $\vec{m}_B=\begin{pmatrix}14 & 23 & 13\end{pmatrix}^T$ (mit der Mindestliefermenge von 14 ME $E_1$) und beurteilen Sie den Vorschlag. \punkte{3}
 
 \newpage
 
@@ -219,7 +221,7 @@ Sinnvoll sind nur nichtnegative Mengen: $t\geq0$, $12-t\geq0$ und $8-t\geq0$, al
 a) Die Koeffizientenmatrix hat für $a\neq3$ drei Zeilen mit Einträgen ungleich null, also $rg(A)=3$; die Anzahl der Unbekannten ist $n=3$.
 
 - $a\neq3$ (beliebiges $b$): $rg(A)=rg(A\mid y)=3=n$ → genau eine Lösung. Das Lager lässt sich auf genau eine Weise vollständig räumen.
-- $a=3$ und $b=12$: Die letzte Zeile ist eine Nullzeile, $rg(A)=rg(A\mid y)=2<3$ → unendlich viele Lösungen. Es gibt mehrere Produktionsprogramme, die das Lager räumen.
+- $a=3$ und $b=12$: Die letzte Zeile ist eine Nullzeile, $rg(A)=rg(A\mid y)=2<3$ → unendlich viele Lösungen. Es gibt mehrere Produktionsvektoren, die das Lager räumen.
 - $a=3$ und $b\neq12$: $rg(A)=2<rg(A\mid y)=3$ → keine Lösung. Das Lager lässt sich nicht vollständig räumen.
 
 b) Für $a=5$ und $b=12$ lautet die letzte Zeile $2m_3=0$, also $m_3=0$. Aus Zeile 2: $3m_2+0=12$, also $m_2=4$. Aus Zeile 1: $2m_1+4+0=20$, also $m_1=8$.
@@ -256,6 +258,8 @@ $$
 \vec{k}_v=\vec{k}_R\cdot RE+\vec{k}_Z\cdot ZE+\vec{k}_E=(61\;\;43\;\;79)+(19\;\;14\;\;24)+(20\;\;25\;\;30)=(100\;\;82\;\;133).
 $$
 
+(Ohne $RE$ aus b): $\vec{k}_v=(\vec{k}_R\cdot RZ+\vec{k}_Z)\cdot ZE+\vec{k}_E$ mit $\vec{k}_R\cdot RZ+\vec{k}_Z=(21\;\;15\;\;29)$.)
+
 e) Mit $\vec{p}=(t^2+140\;\;\;t+80\;\;\;-t^2+277)$ gilt $\vec{db}=\vec{p}-\vec{k}_v$:
 
 $$
@@ -270,9 +274,9 @@ $$
 DB(t)=\vec{db}\cdot\vec{m}=15(t^2+40)+80(t-2)+25(-t^2+144)=-10t^2+80t+4040.
 $$
 
-$DB'(t)=-20t+80=0\Rightarrow t=4$; $DB''(t)=-20<0$, also liegt ein Maximum vor. $DB(4)=-160+320+4040=4200$. Der maximale Deckungsbeitrag beträgt 4200 GE bei $t=4$; wegen $2<4<12$ liegt $t$ im Bereich aus f).
+$DB'(t)=-20t+80=0\Rightarrow t=4$; $DB''(t)=-20<0$, also liegt ein Maximum vor. $DB(4)=-160+320+4040=4200$. Der maximale Deckungsbeitrag beträgt 4200 GE bei $t=4$. Für $t=4$ gilt $\vec{db}=(56\;\;2\;\;128)$, alle Einträge sind positiv: Jedes der drei Modelle liefert einen positiven Stückdeckungsbeitrag.
 
-h) Für $t=1$: $\vec{db}=(41\;\;-1\;\;143)$ und $DB(1)=-10+80+4040=4110>0$. Dennoch ist $db_2=-1<0$: Jede ME $E_2$ verringert den Deckungsbeitrag. Ohne $E_2$ wäre $DB=15\cdot41+25\cdot143=4190>4110$. Die Aussage ist falsch: Ein positiver Gesamtdeckungsbeitrag sagt nichts darüber aus, ob jedes einzelne Modell einen positiven Beitrag liefert.
+h) Für $t=1$: $\vec{db}=(41\;\;-1\;\;143)$ und $DB(1)=15\cdot41-80+25\cdot143=4110>0$. Dennoch ist $db_2=-1<0$: Jede ME $E_2$ verringert den Deckungsbeitrag. Ohne $E_2$ wäre $DB=15\cdot41+25\cdot143=4190>4110$. Die Aussage ist falsch: Ein positiver Gesamtdeckungsbeitrag sagt nichts darüber aus, ob jedes einzelne Modell einen positiven Beitrag liefert.
 
 \newpage
 
@@ -330,7 +334,7 @@ $$
 
 b) $m_1\geq0\Rightarrow t\leq20$; $m_2\geq0\Rightarrow t\geq-10$; $m_3\geq0\Rightarrow t\geq0$. Zulässig sind die ganzen Zahlen $t$ mit $0\leq t\leq20$.
 
-c) $m_2=2m_3\Rightarrow10+t=2t\Rightarrow t=10$. Produktionsprogramm: $\vec{m}=(20\;\;20\;\;10)^T$. Alle Mengen sind nichtnegativ und ganzzahlig, $t=10$ liegt in $[0;20]$, das Programm ist zulässig.
+c) $m_2=2m_3\Rightarrow10+t=2t\Rightarrow t=10$. Produktionsvektor: $\vec{m}=(20\;\;20\;\;10)^T$. Alle Mengen sind nichtnegativ und ganzzahlig, $t=10$ liegt in $[0;20]$, der Produktionsvektor ist zulässig.
 
 d) 
 
@@ -344,6 +348,6 @@ $$
 
 $G(t)>0\Leftrightarrow t>5$: Ab $t=6$ erzielt die Räumung einen Gewinn. $G$ ist streng monoton steigend, das Maximum liegt am rechten Rand $t=20$: $\vec{m}=(0\;\;30\;\;20)^T$ mit $G(20)=240$ GE.
 
-e) $m_1\geq14\Rightarrow40-2t\geq14\Rightarrow t\leq13$; $m_2\leq25\Rightarrow10+t\leq25\Rightarrow t\leq15$. Damit gilt $0\leq t\leq13$. Da $G$ steigend ist, gilt $t=13$: $\vec{m}=(14\;\;23\;\;13)^T$ mit $G(13)=16\cdot13-80=128$ GE.
+e) $m_1\geq14\Rightarrow40-2t\geq14\Rightarrow t\leq13$; $m_2\leq25\Rightarrow10+t\leq25\Rightarrow t\leq15$. Damit gilt $0\leq t\leq13$. Mit $G(t)=16t-80$ (Herleitung wie in d)) wächst der Gewinn mit $t$, also gilt $t=13$: $\vec{m}=(14\;\;23\;\;13)^T$ mit $G(13)=16\cdot13-80=128$ GE.
 
-f) Mit $\vec{db}=\vec{p}-\vec{k}_v=(18\;\;30\;\;22)$ hat $E_1$ tatsächlich den kleinsten Stückdeckungsbeitrag. Bei der Räumung ohne weitere Bedingungen ist es gewinnmaximal, $E_1$ gar nicht zu fertigen ($t=20$, $G=240$ GE). Die Begründung liegt aber nicht allein im kleinen Stückdeckungsbeitrag, sondern darin, dass $E_1$ bei begrenztem Lager viel Rohstoff verbraucht (je 2 ME $E_1$ weniger ermöglichen je 1 ME $E_2$ und $E_3$ mehr). Mit den Lieferverträgen aus e) darf $E_1$ nicht entfallen (mindestens 14 ME); der Gewinn sinkt dann von 240 GE auf 128 GE, die Mindestliefermenge ist aber zu erfüllen. Der Vorschlag ist daher nur ohne Liefervertrag sinnvoll.
+f) Mit $\vec{db}=\vec{p}-\vec{k}_v=(18\;\;30\;\;22)$ hat $E_1$ tatsächlich den kleinsten Stückdeckungsbeitrag. Es gilt $G(\vec{m}_A)=18\cdot0+30\cdot30+22\cdot20-1100=240$ GE und $G(\vec{m}_B)=18\cdot14+30\cdot23+22\cdot13-1100=128$ GE. Ohne Mindestliefermenge ist es also gewinnmaximal, $E_1$ gar nicht zu fertigen. Die Begründung liegt aber nicht allein im kleinen Stückdeckungsbeitrag, sondern darin, dass $E_1$ bei begrenztem Lager viel Rohstoff verbraucht (je 2 ME $E_1$ weniger ermöglichen je 1 ME $E_2$ und $E_3$ mehr, Änderung des Deckungsbeitrags $30+22-2\cdot18=16$ GE). Mit der Mindestliefermenge von 14 ME $E_1$ darf $E_1$ nicht entfallen; der Gewinn sinkt dann von 240 GE auf 128 GE, die Lieferverpflichtung ist aber zu erfüllen. Der Vorschlag ist daher nur ohne Liefervertrag sinnvoll.

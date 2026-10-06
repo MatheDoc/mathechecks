@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import math
 import random
 from dataclasses import dataclass
+from fractions import Fraction
 
 
 # ---------------------------------------------------------------------------
@@ -29,69 +29,49 @@ class ProduktionsSzenario:
 def erzeuge_szenario(rng: random.Random) -> ProduktionsSzenario:
     """Erzeuge ein plausibles Produktionsszenario mit 4 Endprodukten.
 
+    Struktur: m(t) = (a1 + b1 t, a2 + b2 t, a3 + b3 t, t).
+
     Garantiert:
-    - mindestens ein b_i > 0, mindestens ein b_i < 0
-    - t_min >= 0, t_max - t_min >= 10
-    - alle Komponenten m_i(t) >= 0 im zulässigen Bereich
+    - letzte Komponente ist genau t (a4 = 0, b4 = 1) => t_min = 0
+    - unter den ersten drei Komponenten mindestens ein b_i < 0, alle b_i != 0
+    - alle a_i > 0 (für i = 1, 2, 3)
+    - t_max = min{ a_i / |b_i| : b_i < 0 } ist exakt ganzzahlig und >= 10,
+      d. h. [0; t_max] ist genau der Bereich mit m_i(t) >= 0 für alle i
     """
     n = 4
 
     for _ in range(500):
-        # Steigungen: Mischung aus positiv und negativ
-        b = [0] * n
-        # Mindestens eins positiv und eins negativ
-        pos_count = rng.randint(1, n - 1)
-        neg_count = n - pos_count
-        indices = list(range(n))
+        t_max = rng.randint(10, 25)
+
+        neg_count = rng.randint(1, n - 1)
+        indices = list(range(n - 1))
         rng.shuffle(indices)
-        for idx in indices[:pos_count]:
+        neg_indices = indices[:neg_count]
+        pos_indices = indices[neg_count:]
+
+        a = [0] * n
+        b = [0] * n
+        a[n - 1], b[n - 1] = 0, 1
+
+        for idx in pos_indices:
             b[idx] = rng.randint(1, 5)
-        for idx in indices[pos_count:]:
-            b[idx] = rng.randint(-5, -1)
+            a[idx] = rng.randint(10, 80)
 
-        # Absolutglieder
-        a = [rng.randint(10, 80) for _ in range(n)]
-
-        # Berechne zulässigen t-Bereich aus Nicht-Negativität: a_i + b_i * t >= 0
-        lower_bounds: list[float] = []
-        upper_bounds: list[float] = []
-        for i in range(n):
-            if b[i] > 0:
-                # a_i + b_i * t >= 0 immer erfüllt für t >= 0
-                lb = 0.0
-                upper_bounds.append(float('inf'))
-                lower_bounds.append(lb)
-            elif b[i] < 0:
-                # a_i + b_i * t >= 0  =>  t <= -a_i / b_i = a_i / |b_i|
-                ub = a[i] / abs(b[i])
-                upper_bounds.append(ub)
-                lower_bounds.append(0.0)
+        # Genau eine negative Komponente bestimmt die obere Grenze exakt,
+        # die übrigen negativen Komponenten erst später.
+        bindend = neg_indices[0]
+        for idx in neg_indices:
+            b[idx] = rng.randint(-4, -1)
+            if idx == bindend:
+                a[idx] = abs(b[idx]) * t_max
             else:
-                lower_bounds.append(0.0)
-                upper_bounds.append(float('inf'))
+                a[idx] = abs(b[idx]) * t_max + rng.randint(1, 40)
 
-        t_min_raw = max(lower_bounds)
-        t_max_raw = min(upper_bounds)
-
-        t_min = math.ceil(t_min_raw)
-        t_max = math.floor(t_max_raw)
-
-        if t_min < 0:
-            t_min = 0
-
-        if t_max - t_min < 10:
+        if any(a[i] <= 0 for i in range(n - 1)) or len(set(zip(a, b))) < n:
             continue
 
-        # Prüfe, dass alle Komponenten im gesamten Bereich >= 0
-        ok = True
-        for t in (t_min, t_max):
-            for i in range(n):
-                if a[i] + b[i] * t < 0:
-                    ok = False
-                    break
-            if not ok:
-                break
-        if not ok:
+        grenzen = [Fraction(a[i], -b[i]) for i in range(n) if b[i] < 0]
+        if min(grenzen) != t_max:
             continue
 
         # Variable Stückkosten
@@ -100,7 +80,7 @@ def erzeuge_szenario(rng: random.Random) -> ProduktionsSzenario:
         # Preisvektor: jeder Preis > zugehörige variable Stückkosten
         p = [kv[i] + rng.randint(5, 30) for i in range(n)]
 
-        return ProduktionsSzenario(a=a, b=b, t_min=t_min, t_max=t_max, kv=kv, p=p)
+        return ProduktionsSzenario(a=a, b=b, t_min=0, t_max=t_max, kv=kv, p=p)
 
     raise ValueError("Konnte kein gültiges Szenario erzeugen.")
 
@@ -218,6 +198,8 @@ def produktionsvektor_latex(sz: ProduktionsSzenario) -> str:
         a_i, b_i = sz.a[i], sz.b[i]
         if b_i == 0:
             zeilen.append(str(a_i))
+        elif a_i == 0:
+            zeilen.append("t" if b_i == 1 else f"{b_i}t")
         elif b_i == 1:
             zeilen.append(f"{a_i}+t")
         elif b_i == -1:

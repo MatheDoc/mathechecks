@@ -6,14 +6,15 @@
 
 local function punkte_in(block)
   local sum = 0
-  pandoc.walk_block(block, {
-    RawInline = function(el)
-      if el.format == "tex" then
-        local n = el.text:match("\\punkte{(%d+)}")
-        if n then sum = sum + tonumber(n) end
-      end
+  local function count(el)
+    if el.format == "tex" then
+      local n = el.text:match("\\punkte{(%d+)}")
+      if n then sum = sum + tonumber(n) end
     end
-  })
+  end
+  -- Allein stehendes \punkte{n} (z. B. nach einer Tabelle) wird als RawBlock geparst
+  if block.t == "RawBlock" then count(block) end
+  pandoc.walk_block(block, { RawInline = count, RawBlock = count })
   return sum
 end
 

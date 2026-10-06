@@ -2,6 +2,8 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
+%\usepackage[right=4.5cm,marginparwidth=2.5cm,marginparsep=0.4cm]{geometry}
+\usepackage{marginnote}
 
 %% Pakete für einheitliches Tabellenlayout (siehe table-style.lua)
 \usepackage{array}
@@ -16,3 +18,4 @@
 
 %% Weitere Befehle
 \newcommand{\punkte}[1]{\leavevmode\unskip\hspace*{\fill}\fbox{\makebox[2.2cm][r]{\phantom{00}\,/ #1 P}}}
+%\newcommand{\punkte}[1]{\marginnote{\makebox[2.5cm][r]{\rule[-2pt]{1cm}{0.4pt}\,/\,#1\,P}}}
