@@ -215,7 +215,9 @@ Bei der Berechnung des Outputs aus gegebenem Input kann es vorkommen, dass das l
 
 ### Zulässiger Bereich für den Parameter
 
-Da Produktionsmengen nicht negativ sein dürfen, muss jede Komponente des Lösungsvektors $\vec{m}$ größer oder gleich null sein. Aus jeder Komponente ergibt sich eine Ungleichung für $t$. Der **zulässige Bereich** ist das Intervall, in dem alle Ungleichungen gleichzeitig erfüllt sind.
+Da Produktionsmengen nicht negativ sein dürfen, muss jede Komponente des Lösungsvektors $\vec{m}$ größer oder gleich null sein. Aus jeder Komponente ergibt sich eine Ungleichung für $t$. Der **zulässige Bereich** (ökonomisch sinnvoller Bereich) ist das Intervall, in dem alle Ungleichungen gleichzeitig erfüllt sind.
+
+Häufig wird der Parameter so gewählt, dass die letzte Komponente von $\vec{m}$ gerade $t$ ist. Dann folgt aus $t \geq 0$, dass der zulässige Bereich bei $0$ beginnt; die obere Grenze ergibt sich aus den Komponenten mit negativem Vorfaktor vor $t$.
 
 Falls laut Aufgabenstellung ganzzahlige Mengen gefordert sind, müssen die Intervallgrenzen entsprechend nach innen gerundet werden.
 

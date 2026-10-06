@@ -2,6 +2,41 @@ import { loadFeedAttentionSummary, loadFeedContentMeta, loadFeedProjection } fro
 import { buildAccountUrl, formatAuthDisplayName, getCurrentAuthState, getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 
 const FEED_BADGE_UPDATE_EVENT = "mathechecks:feed-updated";
+const TAB_SCOPE_SESSION_KEY = "mathechecks.tabScope.v1";
+const TAB_USER_SESSION_KEY = "mathechecks.tabUser.v1";
+const MANUAL_RETENTION_PRIORITY_STORAGE_KEY = "mathechecks.manualRetentionPriority.v1";
+
+// Der lokale Aufgaben-/Lösungszustand ist an einen Tab-Scope gebunden. Wechselt der Nutzer
+// (Login, Logout, Kontowechsel), wird der alte Scope samt Daten verworfen und ein neuer erzeugt.
+function syncTabScopeWithUser(userId) {
+  try {
+    const currentUser = userId || "anonymous";
+    const previousUser = window.sessionStorage.getItem(TAB_USER_SESSION_KEY);
+    if (previousUser === currentUser) return;
+
+    window.sessionStorage.setItem(TAB_USER_SESSION_KEY, currentUser);
+    if (previousUser === null) return;
+
+    const oldScope = window.sessionStorage.getItem(TAB_SCOPE_SESSION_KEY);
+    window.sessionStorage.removeItem(TAB_SCOPE_SESSION_KEY);
+    window.sessionStorage.removeItem(MANUAL_RETENTION_PRIORITY_STORAGE_KEY);
+    if (!oldScope) return;
+
+    const scopeSegment = `::${oldScope}`;
+    for (let index = window.localStorage.length - 1; index >= 0; index -= 1) {
+      const key = window.localStorage.key(index);
+      if (!key) continue;
+      const position = key.indexOf(scopeSegment);
+      if (position < 0) continue;
+      const end = position + scopeSegment.length;
+      if (end === key.length || key.startsWith("::", end)) {
+        window.localStorage.removeItem(key);
+      }
+    }
+  } catch {
+    // Storage nicht verfügbar: nichts zu bereinigen.
+  }
+}
 
 let feedContentMetaPromise = null;
 let currentAuthState = {
@@ -414,6 +449,7 @@ async function bindAuthStateListener() {
     if (!supabase) return;
 
     supabase.auth.onAuthStateChange((event, session) => {
+      syncTabScopeWithUser(event === "SIGNED_OUT" ? null : session?.user?.id);
       const button = document.getElementById("avatarMenuBtn");
       if (!button) return;
 
@@ -448,6 +484,7 @@ async function initAuthShell() {
   bindFeedLauncherRefreshListener();
 
   const state = await getCurrentAuthState();
+  if (!state?.error) syncTabScopeWithUser(state?.user?.id);
   updateTopbarButton(button, state);
   await bindAuthStateListener();
 }

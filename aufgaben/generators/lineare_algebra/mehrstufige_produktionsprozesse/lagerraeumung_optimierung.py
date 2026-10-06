@@ -50,7 +50,8 @@ class LagerraeumungOptimierungGenerator(TaskGenerator):
 
                 # --- Frage 2: minimale Menge eines Endprodukts mit b_j < 0 ---
                 neg_indices = [i for i in range(4) if sz.b[i] < 0]
-                idx_min = rng.choice(neg_indices)
+                nicht_trivial = [i for i in neg_indices if komponente(sz, i, sz.t_max) > 0]
+                idx_min = rng.choice(nicht_trivial or neg_indices)
                 # Minimum bei t_max (da b_j < 0)
                 min_menge = komponente(sz, idx_min, sz.t_max)
 
