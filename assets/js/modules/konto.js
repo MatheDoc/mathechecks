@@ -217,9 +217,24 @@ function hasTransientAuthParams() {
     "provider_token",
     "provider_refresh_token",
     "code",
+    "token_hash",
   ];
 
   return transientKeys.some((key) => searchParams.has(key) || hashParams.has(key));
+}
+
+const EMAIL_LINK_OTP_TYPES = new Set(["email", "signup", "recovery", "invite", "magiclink", "email_change"]);
+
+// E-Mail-Links im Format {{ .RedirectTo }}#token_hash=...&type=... werden hier verifiziert,
+// damit der Browser nicht über *.supabase.co/auth/v1/verify laufen muss (DNS-Filter in Schulnetzen).
+function readEmailLinkToken() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
+  const tokenHash = searchParams.get("token_hash") || hashParams.get("token_hash") || "";
+  const type = searchParams.get("type") || hashParams.get("type") || "";
+
+  if (!tokenHash || !EMAIL_LINK_OTP_TYPES.has(type)) return null;
+  return { tokenHash, type };
 }
 
 function redirectToRequestedPath() {
@@ -379,6 +394,7 @@ function cleanupAuthUrl() {
     "provider_token",
     "provider_refresh_token",
     "code",
+    "token_hash",
   ];
 
   let changed = false;
@@ -399,6 +415,20 @@ function cleanupAuthUrl() {
   const nextHash = hashParams.toString();
   const nextUrl = `${url.pathname}${nextSearch ? `?${nextSearch}` : ""}${nextHash ? `#${nextHash}` : ""}`;
   window.history.replaceState({}, document.title, nextUrl);
+}
+
+function mapEmailLinkError(error) {
+  const code = String(error?.code || error?.error_code || "").trim().toLowerCase();
+
+  if (error?.name === "AuthRetryableFetchError" || error?.status === 0) {
+    return "Der Link konnte nicht geprüft werden, weil Supabase gerade nicht erreichbar ist. Versuche es später erneut.";
+  }
+
+  if (code === "otp_expired" || error?.status === 403) {
+    return "Dieser Link ist abgelaufen oder wurde bereits verwendet. Fordere bei Bedarf einen neuen Link an.";
+  }
+
+  return mapAuthError(error, "Der Link konnte nicht bestätigt werden. Fordere bei Bedarf einen neuen Link an.");
 }
 
 function mapAuthError(error, fallbackMessage) {
@@ -733,6 +763,7 @@ async function handleDeleteAccount(event, supabase, onDeleted) {
 async function initKontoPage() {
   const config = getSupabaseRuntimeConfig();
   setConfiguredState(config.configured);
+  const emailLinkToken = readEmailLinkToken();
   let recoveryMode = isPasswordRecoveryFlow();
   let currentUser = null;
   let arrivedFromAuthRedirect = hasTransientAuthParams();
@@ -813,6 +844,21 @@ async function initKontoPage() {
     }
   });
 
+  let emailLinkError = "";
+  if (emailLinkToken) {
+    cleanupAuthUrl();
+    setStatus("Link wird geprüft ...");
+    const { error } = await supabase.auth.verifyOtp({
+      token_hash: emailLinkToken.tokenHash,
+      type: emailLinkToken.type,
+    });
+    if (error) {
+      arrivedFromAuthRedirect = false;
+      recoveryMode = false;
+      emailLinkError = mapEmailLinkError(error);
+    }
+  }
+
   const state = await getCurrentAuthState();
   currentUser = state.user || null;
   applyUiState(currentUser, recoveryMode);
@@ -825,7 +871,9 @@ async function initKontoPage() {
     return;
   }
 
-  if (state.error) {
+  if (emailLinkError) {
+    setStatus(emailLinkError, "error");
+  } else if (state.error) {
     setStatus("Supabase ist konfiguriert, aber aktuell nicht erreichbar.", "error");
   } else if (state.user) {
     cleanupAuthUrl();

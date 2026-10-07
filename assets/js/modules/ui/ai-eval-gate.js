@@ -5,6 +5,8 @@
 // Antworten verfassen, die anschliessend nicht auswertbar waeren.
 import { buildAccountUrl, getCurrentAuthState, getSupabaseClient } from "../../platform/supabase-client.js?v=20260520-feed-loading";
 
+const ACCESS_CHECK_TIMEOUT_MS = 3000;
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -18,6 +20,12 @@ function escapeHtml(value) {
 // Fehler beim Statusabruf werden bewusst als "ok" behandelt (fail-open):
 // die bestehende Laufzeit-Fehlerbehandlung der Evaluate-Aufrufe greift dann.
 export async function resolveAiEvaluationAccess(scope) {
+  // Ist das Backend nicht erreichbar, darf die Seite nicht auf Netzwerk-Retries warten.
+  const timeout = new Promise((resolve) => setTimeout(() => resolve({ state: "ok" }), ACCESS_CHECK_TIMEOUT_MS));
+  return Promise.race([fetchAiEvaluationAccess(scope), timeout]);
+}
+
+async function fetchAiEvaluationAccess(scope) {
   try {
     const auth = await getCurrentAuthState();
     if (!auth.configured) return { state: "ok" };

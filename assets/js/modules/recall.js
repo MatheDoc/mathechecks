@@ -3,7 +3,7 @@ import { recordCheckFeedDecision } from "../platform/feed-actions.js?v=20260826-
 import { recordUserActivity, getUserRecallProficiency, extractRecallProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
 import { getSupabaseClient, getSupabaseRuntimeConfig } from "../platform/supabase-client.js?v=20260520-feed-loading";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
+import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
@@ -1263,9 +1263,9 @@ export async function initRecallModule({ root, lernbereich, preferredCheckId = "
   state.selectedCheckId = selectedCheckId;
   saveRecallState(lernbereich, state);
 
+  renderJumpNav(navNode, checks, selectedCheckId);
   const aiAccess = await resolveAiEvaluationAccess("recall_evaluate");
 
-  renderJumpNav(navNode, checks, selectedCheckId);
   root.innerHTML = checks.map((check) => renderCard(check, aiAccess)).join("");
   const selectedSection = Array.from(root.querySelectorAll("[data-recall-check-viewport][data-check-id]"))
     .find((section) => section.dataset.checkId === selectedCheckId) || null;
