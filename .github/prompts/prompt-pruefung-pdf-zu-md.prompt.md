@@ -267,6 +267,13 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   Aufteilung nötig). Der Erwartungshorizont fasst in 1.3.1 je zwei Behauptungen zu einer Bewertungsposition
   zusammen. Das Baumdiagramm (4.1.1) und das Übergangsdiagramm (3.2.1) sind Rasterbilder in Tabellenzeilen
   und brauchen manuelle Ausschnitte.
+- **NW Berufliches Gymnasium WuV 2021 (WLK):** Aufbau wie 2022 (Teil A 1.1–1.4 je 6 Punkte, Teil B Aufgaben 2–4
+  je 32 Punkte), aber Teil A in der Reihenfolge Analysis, Analysis, Lineare Algebra, Stochastik. Die Aussagen
+  in 1.4 sind in der Schülerfassung nur als „Aussage 1–3“ nummeriert, die Labels 1.4.1–1.4.3 stammen aus dem
+  Erwartungshorizont. Offensichtliche Fehler im Erwartungshorizont (1.1.1 „K(2) = 30“ statt 38, 1.2.1 „notw.
+  Bed.: G_a(x) = 0“ statt G_a'(x) = 0) werden unverändert mit Kommentar übernommen. Anlage 1 (3.3.2), Übergangs-
+  graph (3.1.1), Lösungsgrafik (3.3.2) und Baumdiagramm (4.3.1) sind Bilder in Tabellenzellen und brauchen
+  manuelle `--clip`-Ausschnitte. Die PDFs sind zusätzlich als Seitenbilder im Chat verfügbar, ein Rendern entfällt.
 - **GK-PDFs (`nw berufl gym wv gk`)** liegen teils nur als 1-Byte-Platzhalter vor (Google-Drive-Sync)
   und können nicht gelesen werden; vor der Konvertierung die Dateigröße prüfen.
 - **Einfache Baumdiagramme** im Erwartungshorizont (nur Zahlenlabels) dürfen als Text übertragen
