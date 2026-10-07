@@ -9,27 +9,16 @@ bearbeitungszeit: 135                 # Minuten (numerisch)
 geplante_punkte: 50                   # grobe Zielgröße, keine exakte Summe
 
 # --- Inhaltliche Orientierung ---------------------------------------------------------
-# themen, checks und hinweise sind jeweils optional (leer = nicht angegeben), mindestens
-# eines ausfüllen. Sie dienen als Orientierung, nicht als Checkliste: Nicht alles muss in
-# der Klausur vorkommen, Fragestellungen dürfen in vernünftigem Rahmen abweichen.
 
-# Hauptsteuerung: Thema-Slugs aus _data/themen.yml (auch nicht auf MatheChecks umgesetzte).
-# Passende Musterprüfungs-Teilaufgaben findet der Agent über pruefungen-md/_themen.json.
 # Beispiel: themen: [mehrstufige-produktionsprozesse, stochastische-matrizen]
 themen: []
 
-# Feinsteuerung für umgesetzte Themen: was im Lernbereich behandelt wurde.
-# Lernbereich-Slug <gebiet>/<lernbereich> (wie in _data/checks.json / _data/lernbereiche.yml)
-# + Check-Nummern. Die Lernbereiche zählen automatisch zu den Themen.
 # Beispiel:
 #   checks:
 #     - lernbereich: lineare-algebra/mehrstufige-produktionsprozesse
 #       checks: [1, 2, 3, 4]
 checks: []
 
-# Freitext der Lehrkraft (Vorrang vor den übrigen Angaben), z. B. Teilinhalte,
-# Schwerpunkte, Ausschlüsse, Hilfsmittel oder eine bestimmte Musterprüfungs-Aufgabe
-# als Vorbild (Aufgabe-id + ggf. Teilaufgaben-Label). Szenarien nie 1:1 übernehmen.
 # Beispiel:
 #   hinweise: |
 #     Eine Aufgabe ohne Hilfsmittel.

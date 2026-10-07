@@ -1,0 +1,78 @@
+# Muster-Config für eine Klausur – nach klausuren/<slug>/config.yml kopieren und anpassen.
+# Schema und Erläuterungen: klausuren/README.md
+
+fach: 3. Klausur Mathematik           # Überschrift/Fach
+klasse: WG3X                          # Klasse/Kurs
+datum: 01.02.2027                     # Klausurdatum
+thema: Abivorklausur              # erscheint im Klausurkopf
+bearbeitungszeit: 300                 # Minuten (numerisch)
+geplante_punkte: 120                  # grobe Zielgröße, keine exakte Summe
+
+# --- Inhaltliche Orientierung ---------------------------------------------------------
+
+# Beispiel: themen: [mehrstufige-produktionsprozesse, stochastische-matrizen]
+themen: [ganzrationale-oekonomische-funktionen, produktlebenszyklus, ertragsgesetzliche-kostenfunktionen, regression, marktgleichgewicht-vertiefung, bedingte-wahrscheinlichkeiten, binomialverteilung, mehrstufige-produktionsprozesse, stochastische-matrizen, lineare-optimierung]
+
+# Beispiel:
+#   checks:
+#     - lernbereich: lineare-algebra/mehrstufige-produktionsprozesse
+#       checks: [1, 2, 3, 4]
+checks: []
+
+# Beispiel:
+#   hinweise: |
+#     Eine Aufgabe ohne Hilfsmittel.
+#     Aufbau einer Aufgabe ähnlich wie nw-bgym-wuv-2025-haupt-erhoeht-a3, Teil 3.2.
+hinweise: |
+  Formales:
+  In Aufgabenteil A sind keine Hilfsmittel erlaubt.
+  In Teil A gibt 4 Pflichtaufgaben (2x Analysis, 1x Stochastik, 1x Lineare Algebra).
+  Weiter gibt es in Teil A 4 Wahlaufgaben (2x Analysis, 1x Stochastik, 1x Lineare Algebra), von denen 2 beliebige gewählt werden müssen.
+  Jede der 8 Teilaufgaben von Teil muss 5 Punkte haben.
+
+  In Aufgabenteil B sind Hilfsmittel erlaubt.
+  In Teil B gibt 3 Aufgaben (1x Analysis, 1x Stochastik, 1x Lineare Algebra), mit jeweils 30 Punkten.
+
+  Insgesamt ergibt sich damit zwingend eine Gesamtpunktzahl von 120 Punkten (30 aus Teil A (beachte, dass es hier Wahlaufgaben gibt), 90 aus Teil B)
+
+  Folgende Schwerpunkte
+
+  Analysis
+
+  ganzrationale Funktionen
+    Herleiten von Funktionsgleichungen aus vorgegebenen Bedingungen, auch durch Regression mit MMS
+    Untersuchungen von Funktionen mit Hilfe der Differenzialrechnung (u. a. ertragsgesetzliche Kosten- und Gewinnanalyse in Monopol und Polypol, kurzfristige und langfristige Preisuntergrenze, Marktgleichgewicht)
+    Integralrechnung mit MMS (Abschöpfung der Konsumentenrente)
+  Exponentialfunktionen
+    Herleiten von Funktionsgleichungen vom Typ f(x) = a · b^x, bzw. f(x) = a · e^(b·x) aus vorgegebenen Bedingungen, auch durch Regression mit MMS
+    Untersuchung von Funktionen des Typs f(x) = p(x) · e^(q(x)) mit ganzrationalen Funktionen p und q mit Hilfe der Differenzialrechnung mit MMS (u. a. Produktlebenszyklus)
+    Integralrechnung mit MMS (Gesamtabsatz und -umsatz)
+
+  Stochastik
+
+  bedingte Wahrscheinlichkeit und stochastische Unabhängigkeit (mehrstufige Baumdiagramme und Vierfeldertafeln, Pfadregeln, Unabhängigkeit von Ereignissen in Beschaffungs- und Produktionsabläufen)
+  Zufallsgrößen
+    Wahrscheinlichkeitsverteilungen und Erwartungswerte (u. a. Kostenabwägung, Gewinnanalyse, Preiskalkulation)
+  Binomialverteilung (u. a. Qualitätsanalyse in Produktionsverfahren)
+    Bernoulli-Versuch
+    Erwartungswert, Varianz und Standardabweichung
+    Summenfunktion der Binomialverteilung (u. a. P(a ≤ X ≤ b), P(μ − m·σ ≤ X ≤ μ + m·σ))
+    Diagramme, z. B. Histogramm und Darstellung der kumulierten Verteilung
+    Ermittlung von Stichprobenumfang n, Trefferanzahl k, Erfolgswahrscheinlichkeit p jeweils mit MMS
+
+  Lineare Algebra/Analytische Geometrie
+
+  Matrizenverknüpfung und Matrizengleichungen am Beispiel mehrstufiger Produktionsprozesse
+    Gozintographen
+    Addition/Subtraktion, skalare Multiplikation, Matrizenmultiplikation (Gewinn- u. Kostenberechnung, Preiskalkulation, Deckungsbeitrag, Erlös)
+    LGS und Rangkriterium (u. a. Lagerräumung, Nichtnegativitätsbedingung)
+    inverse Matrizen mit MMS
+  stochastische Matrizen (u. a. Kundenwanderung)
+    Übergangsmatrizen, Gozintographen
+    inverse Matrizen mit MMS
+    stationäre Verteilung, Grenzverteilung
+  zweidimensionale, lineare Standard-Maximumprobleme
+    einschränkende Bedingungen
+    Lösungspolygon
+    Zielfunktion (u. a. Deckungsbeitrag, Gewinn)
+    graphisches Lösungsverfahren
