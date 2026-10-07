@@ -11,9 +11,8 @@ google_analytics_measurement_id: "G-Y6GZ0876P9"
 # Der service role key wird hier bewusst nicht hinterlegt.
 supabase_url: "https://ysqpmtreljfdwtlvjzis.supabase.co"
 supabase_anon_key: "sb_publishable_BIs3hzfB55PaH9sydQ35bw_ipGzUGIX"
-# Optionaler Proxy gegen DNS-Filter in Schulnetzen: supabase_url auf
-# "https://api.mathechecks.de" umstellen, sobald supabase/proxy deployt ist.
-# Der Storage-Key bleibt fest, damit bestehende Logins beim Umstellen erhalten bleiben.
+# Fester Storage-Key: Bestehende Logins bleiben erhalten, falls supabase_url
+# einmal geaendert wird (siehe supabase/README.md, "Bekanntes Problem").
 supabase_auth_storage_key: "sb-ysqpmtreljfdwtlvjzis-auth-token"
 supabase_oauth_providers:
   - google
@@ -37,4 +36,5 @@ exclude:
   - html
   - moodle
   - muster-pruefungen
+  - supabase
 
