@@ -226,7 +226,7 @@ function hasTransientAuthParams() {
 const EMAIL_LINK_OTP_TYPES = new Set(["email", "signup", "recovery", "invite", "magiclink", "email_change"]);
 
 // E-Mail-Links im Format {{ .RedirectTo }}#token_hash=...&type=... werden hier verifiziert,
-// damit der Browser nicht über *.supabase.co/auth/v1/verify laufen muss (DNS-Filter in Schulnetzen).
+// statt über *.supabase.co/auth/v1/verify (siehe supabase/README.md, "E-Mail-Vorlagen ohne supabase.co-Links").
 function readEmailLinkToken() {
   const searchParams = new URLSearchParams(window.location.search);
   const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ""));
@@ -421,7 +421,7 @@ function mapEmailLinkError(error) {
   const code = String(error?.code || error?.error_code || "").trim().toLowerCase();
 
   if (error?.name === "AuthRetryableFetchError" || error?.status === 0) {
-    return "Der Link konnte nicht geprüft werden, weil Supabase gerade nicht erreichbar ist. Versuche es später erneut.";
+    return "Der Link konnte nicht geprüft werden, weil der Anmeldedienst gerade nicht erreichbar ist. Manche Schul- oder Firmennetzwerke blockieren ihn – öffne den Link über mobile Daten oder später in einem anderen Netzwerk.";
   }
 
   if (code === "otp_expired" || error?.status === 403) {
@@ -874,7 +874,10 @@ async function initKontoPage() {
   if (emailLinkError) {
     setStatus(emailLinkError, "error");
   } else if (state.error) {
-    setStatus("Supabase ist konfiguriert, aber aktuell nicht erreichbar.", "error");
+    setStatus(
+      "Der Anmeldedienst ist gerade nicht erreichbar. Manche Schul- oder Firmennetzwerke blockieren ihn – versuche es über mobile Daten oder später in einem anderen Netzwerk.",
+      "error"
+    );
   } else if (state.user) {
     cleanupAuthUrl();
     if (recoveryMode) {

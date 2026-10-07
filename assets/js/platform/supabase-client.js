@@ -57,7 +57,7 @@ export async function getSupabaseClient() {
           persistSession: true,
           autoRefreshToken: true,
           detectSessionInUrl: true,
-          // Fester Key, damit ein Wechsel von supabase_url (z. B. auf den Proxy) keine Sessions verwirft.
+          // Fester Key, damit ein Wechsel von supabase_url (z. B. auf eine eigene Domain) keine Sessions verwirft.
           ...(config.authStorageKey ? { storageKey: config.authStorageKey } : {}),
         },
       });

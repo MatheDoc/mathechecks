@@ -400,7 +400,7 @@ function updateTopbarButton(button, state) {
     button.disabled = false;
     button.dataset.authState = "error";
     button.setAttribute("aria-label", "Konto öffnen");
-    button.title = "Supabase ist konfiguriert, aber aktuell nicht erreichbar";
+    button.title = "Anmeldedienst nicht erreichbar – evtl. blockiert das Netzwerk ihn";
     if (labelNode) labelNode.textContent = "Konto";
     if (statusNode) statusNode.textContent = "Auth-Fehler";
     updateDashboardNavItem(state);

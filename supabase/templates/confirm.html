@@ -16,7 +16,7 @@
               <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#374151;">
                 Du hast ein Konto bei MatheChecks registriert. Klicke auf den folgenden Button, um deine E-Mail-Adresse zu bestätigen und die Registrierung abzuschließen.
               </p>
-              <a href="{{ .ConfirmationURL }}"
+              <a href="{{ .RedirectTo }}#token_hash={{ .TokenHash }}&type=email"
                  style="display:inline-block;padding:12px 28px;background:#0d9488;color:#ffffff;text-decoration:none;border-radius:6px;font-size:15px;font-weight:700;">
                 E-Mail-Adresse bestätigen
               </a>

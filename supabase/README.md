@@ -178,7 +178,6 @@ Hinweis:
 
 - `supabase_url` und `supabase_anon_key` werden im Jekyll-Configfile `_config.yml` hinterlegt und treiben die Frontend-Brücke.
 - `supabase_auth_storage_key` fixiert den Browser-Speicherschlüssel der Session, damit ein Wechsel von `supabase_url` keine Logins verwirft.
-- Für Schulnetze, die `*.supabase.co` per DNS-Filter blockieren, gibt es einen Reverse Proxy für `api.mathechecks.de`: siehe `supabase/proxy/README.md`.
 - Der `service_role`-Key wird weder im Repo noch im Frontend benötigt.
 - Das eigentliche CLI-Login zu Supabase sollte direkt im Terminal erfolgen, nicht über Chat.
 
@@ -209,9 +208,9 @@ Wichtig:
 
 ## E-Mail-Vorlagen ohne supabase.co-Links
 
-Die Standard-Vorlagen verlinken auf `{{ .ConfirmationURL }}`, also `https://<project-ref>.supabase.co/auth/v1/verify?...`. In Netzen, die `*.supabase.co` blockieren, funktionieren diese Links nicht. Stattdessen verlinken die Vorlagen direkt auf die Kontoseite; `assets/js/modules/konto.js` liest `token_hash` und `type` und bestätigt per `supabase.auth.verifyOtp(...)` (läuft über `supabase_url`, also ggf. über den Proxy).
+Die Standard-Vorlagen verlinken auf `{{ .ConfirmationURL }}`, also `https://<project-ref>.supabase.co/auth/v1/verify?...`. In Netzen, die `*.supabase.co` blockieren, funktionieren diese Links nicht. Stattdessen verlinken die Vorlagen direkt auf die Kontoseite; `assets/js/modules/konto.js` liest `token_hash` und `type` und bestätigt per `supabase.auth.verifyOtp(...)` (läuft über `supabase_url`).
 
-Supabase-Dashboard → `Authentication > Emails > Templates`:
+Supabase-Dashboard → `Authentication > Emails > Templates` (Vorlagen im Repo: `supabase/templates/confirm.html` und `reset.html`, dort ist der Link bereits umgestellt):
 
 **Confirm signup** – Link ersetzen durch:
 
@@ -231,6 +230,30 @@ Hinweise:
 - Die Rücksprung-URL muss unter `Authentication > URL Configuration > Redirect URLs` erlaubt sein (z. B. `https://www.mathechecks.de/konto.html**`), sonst setzt Supabase die Site URL ein.
 - Bereits versendete Mails im alten Format funktionieren weiterhin.
 - Nebeneffekt: Link-Scanner von Mailprogrammen verbrauchen den Token nicht mehr, weil die Bestätigung erst per JavaScript erfolgt.
+
+## Bekanntes Problem: Netzwerke blockieren `*.supabase.co`
+
+Beobachtet im Oktober 2026 im WLAN einer fremden Schule: Die Kontoseite meldet, dass der Anmeldedienst nicht erreichbar ist; über Handy-Hotspot funktioniert alles.
+
+Ursache: Der DNS-Filter des Netzes beantwortet alle Adressen unter `*.supabase.co` mit „Name existiert nicht“ (auch Anfragen an 8.8.8.8/1.1.1.1 werden abgefangen). Das Supabase-Projekt selbst läuft normal.
+
+Diagnose:
+
+```powershell
+Resolve-DnsName ysqpmtreljfdwtlvjzis.supabase.co        # schlägt im betroffenen Netz fehl
+curl.exe "https://dns.google/resolve?name=ysqpmtreljfdwtlvjzis.supabase.co&type=A"   # liefert IPs → Filter bestätigt
+```
+
+Aktueller Umgang (bewusst schlank):
+
+- Die Kontoseite zeigt eine verständliche Meldung mit Hinweis auf mobile Daten.
+- Abhilfe im Einzelfall: Freischaltung von `*.supabase.co` durch die Schul-IT.
+
+Falls das häufiger auftritt – möglicher Lösungsweg (nicht umgesetzt):
+
+- Reverse Proxy unter eigener Domain (z. B. `api.mathechecks.de`), der Anfragen 1:1 an die Supabase-Projekt-URL weiterreicht; danach nur `supabase_url` in `_config.yml` umstellen. `supabase_auth_storage_key` sorgt dafür, dass bestehende Logins dabei erhalten bleiben.
+- Eine getestete Variante (Deno Deploy, ca. 90 Zeilen Code plus Anleitung) liegt in Commit `23f4f94` unter `supabase/proxy/` und lässt sich mit `git show 23f4f94:supabase/proxy/main.ts` bzw. `git show 23f4f94:supabase/proxy/README.md` wiederherstellen.
+- Vor einer Aktivierung bedenken: zusätzlicher Dienstleister im Datenfluss (Datenschutzerklärung ergänzen), zusätzliche Ausfallquelle. Google-Login läuft auch mit Proxy weiter über `*.supabase.co` (Abhilfe wäre Google Identity Services mit `signInWithIdToken`).
 
 ## Wichtig: `config.toml` vs. gehostetes Projekt
 
