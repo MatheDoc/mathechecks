@@ -9,7 +9,7 @@ body_class: page-dashboard
 published: true
 noindex: true
 permalink: /konto.html
-module_script: /assets/js/modules/konto.js?v=20260912-konto-consent
+module_script: /assets/js/modules/konto.js?v=20261007-email-token-hash
 page_css: /assets/css/konto.css?v=20260912-konto-consent
 ---
 

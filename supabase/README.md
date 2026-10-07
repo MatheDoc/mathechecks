@@ -177,6 +177,8 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 Hinweis:
 
 - `supabase_url` und `supabase_anon_key` werden im Jekyll-Configfile `_config.yml` hinterlegt und treiben die Frontend-Brücke.
+- `supabase_auth_storage_key` fixiert den Browser-Speicherschlüssel der Session, damit ein Wechsel von `supabase_url` keine Logins verwirft.
+- Für Schulnetze, die `*.supabase.co` per DNS-Filter blockieren, gibt es einen Reverse Proxy für `api.mathechecks.de`: siehe `supabase/proxy/README.md`.
 - Der `service_role`-Key wird weder im Repo noch im Frontend benötigt.
 - Das eigentliche CLI-Login zu Supabase sollte direkt im Terminal erfolgen, nicht über Chat.
 
@@ -204,6 +206,31 @@ Wichtig:
 - OAuth-Secrets werden nicht ins Repo geschrieben.
 - `_config.yml` steuert nur, welche Buttons im Frontend angezeigt werden.
 - Die eigentliche Provider-Aktivierung bleibt eine gehostete Auth-Einstellung im Supabase-Dashboard.
+
+## E-Mail-Vorlagen ohne supabase.co-Links
+
+Die Standard-Vorlagen verlinken auf `{{ .ConfirmationURL }}`, also `https://<project-ref>.supabase.co/auth/v1/verify?...`. In Netzen, die `*.supabase.co` blockieren, funktionieren diese Links nicht. Stattdessen verlinken die Vorlagen direkt auf die Kontoseite; `assets/js/modules/konto.js` liest `token_hash` und `type` und bestätigt per `supabase.auth.verifyOtp(...)` (läuft über `supabase_url`, also ggf. über den Proxy).
+
+Supabase-Dashboard → `Authentication > Emails > Templates`:
+
+**Confirm signup** – Link ersetzen durch:
+
+```html
+<a href="{{ .RedirectTo }}#token_hash={{ .TokenHash }}&type=email">E-Mail-Adresse bestätigen</a>
+```
+
+**Reset password** – Link ersetzen durch:
+
+```html
+<a href="{{ .RedirectTo }}#token_hash={{ .TokenHash }}&type=recovery">Neues Passwort festlegen</a>
+```
+
+Hinweise:
+
+- `{{ .RedirectTo }}` ist die von `konto.js` übergebene Rücksprung-URL (`/konto.html?next=...`). Der Token steht bewusst im Hash, weil `RedirectTo` bereits Query-Parameter enthält.
+- Die Rücksprung-URL muss unter `Authentication > URL Configuration > Redirect URLs` erlaubt sein (z. B. `https://www.mathechecks.de/konto.html**`), sonst setzt Supabase die Site URL ein.
+- Bereits versendete Mails im alten Format funktionieren weiterhin.
+- Nebeneffekt: Link-Scanner von Mailprogrammen verbrauchen den Token nicht mehr, weil die Bestätigung erst per JavaScript erfolgt.
 
 ## Wichtig: `config.toml` vs. gehostetes Projekt
 

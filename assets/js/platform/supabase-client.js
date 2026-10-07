@@ -6,6 +6,7 @@ function readRuntimeConfig() {
   const runtimeConfig = window.MatheChecksSupabase || {};
   const url = String(runtimeConfig.url || "").trim();
   const anonKey = String(runtimeConfig.anonKey || "").trim();
+  const authStorageKey = String(runtimeConfig.authStorageKey || "").trim();
   const accountPath = String(runtimeConfig.accountPath || "/konto.html").trim() || "/konto.html";
   const oauthProviders = Array.isArray(runtimeConfig.oauthProviders)
     ? runtimeConfig.oauthProviders.map((provider) => String(provider || "").trim().toLowerCase()).filter(Boolean)
@@ -14,6 +15,7 @@ function readRuntimeConfig() {
   return {
     url,
     anonKey,
+    authStorageKey,
     accountPath,
     oauthProviders,
     configured: Boolean(url && anonKey),
@@ -55,6 +57,8 @@ export async function getSupabaseClient() {
           persistSession: true,
           autoRefreshToken: true,
           detectSessionInUrl: true,
+          // Fester Key, damit ein Wechsel von supabase_url (z. B. auf den Proxy) keine Sessions verwirft.
+          ...(config.authStorageKey ? { storageKey: config.authStorageKey } : {}),
         },
       });
     })();

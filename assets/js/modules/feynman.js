@@ -8,7 +8,7 @@ import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=202
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
-import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20260825-ai-gate-b";
+import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
 import { enhanceSpeechInputs, stopActiveSpeechInput } from "./ui/speech-input.js?v=20260816-mobile-restart";
@@ -1464,10 +1464,10 @@ export async function initFeynmanModule({ root, lernbereich, preferredCheckId = 
   state.selectedCheckId = selectedCheckId;
   saveFeynmanState(lernbereich, state);
 
+  renderJumpNav(navNode, checks, selectedCheckId);
   const cardEntries = await buildFeynmanCardEntries(checks);
   const aiAccess = await resolveAiEvaluationAccess("feynman_evaluate");
 
-  renderJumpNav(navNode, checks, selectedCheckId);
   root.innerHTML = cardEntries.map((entry) => renderCard(entry, aiAccess)).join("");
   hydrateFeynmanTaskVisuals(root, cardEntries);
   const selectedSection = Array.from(root.querySelectorAll("[data-fy-check-viewport][data-check-id]"))

@@ -1,6 +1,6 @@
 import { initTrainingModule } from "./modules/training.js?v=20260910-field-scores";
-import { initRecallModule } from "./modules/recall.js?v=20260908-run-rate";
-import { initFeynmanModule } from "./modules/feynman.js?v=20260908-run-rate";
+import { initRecallModule } from "./modules/recall.js?v=20261007-ai-gate-timeout";
+import { initFeynmanModule } from "./modules/feynman.js?v=20261007-ai-gate-timeout";
 import { initTestModule } from "./modules/test.js?v=20260908-run-rate";
 import { initFlashcardsModule } from "./modules/flashcards.js?v=20260925-session-scope";
 import { initScriptTaskDuplicatesModule } from "./modules/script-task-duplicates.js?v=20260910-field-scores";
