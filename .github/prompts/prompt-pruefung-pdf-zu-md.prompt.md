@@ -274,6 +274,12 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   Bed.: G_a(x) = 0“ statt G_a'(x) = 0) werden unverändert mit Kommentar übernommen. Anlage 1 (3.3.2), Übergangs-
   graph (3.1.1), Lösungsgrafik (3.3.2) und Baumdiagramm (4.3.1) sind Bilder in Tabellenzellen und brauchen
   manuelle `--clip`-Ausschnitte. Die PDFs sind zusätzlich als Seitenbilder im Chat verfügbar, ein Rendern entfällt.
+- **NW Berufliches Gymnasium WuV 2024 (GK):** Aufbau wie 2025 (Teil A 1.1–1.7, 3 Pflicht + 2 aus 4 Wahl, je 5 Punkte;
+  Teil B 3 Aufgaben je 25 Punkte), aber Reihenfolge Teil B: Aufgabe 2 Analysis, 3 Stochastik, 4 Lineare Algebra.
+  Gewertet werden 105 Punkte (`gesamtpunkte`), die Summe der 10 Dateien ist 110. Im Erwartungshorizont zu 4.1.2
+  steht „R₁–R₃“ statt „G₁–G₃“ (unverändert mit Kommentar übernommen). Das einfache Baumdiagramm in 1.2.1 ist
+  als verschachtelte Liste übertragen. Die Aufgabenstellung 2.1 enthält das Wort „Grenzkostenkostenfunktion“
+  (Originalwortlaut). Die Bewertungspositionen (z. B. `2.1.2.1`) sind je Teilaufgabe zusammengefasst.
 - **GK-PDFs (`nw berufl gym wv gk`)** liegen teils nur als 1-Byte-Platzhalter vor (Google-Drive-Sync)
   und können nicht gelesen werden; vor der Konvertierung die Dateigröße prüfen.
 - **Einfache Baumdiagramme** im Erwartungshorizont (nur Zahlenlabels) dürfen als Text übertragen
