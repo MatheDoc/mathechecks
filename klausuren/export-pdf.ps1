@@ -82,6 +82,99 @@ $headerFile = "$root\templates\klausurkopf-header.tex"
 $tableFilter = "$root\templates\table-style.lua"
 $inputDir = Split-Path $InputFile
 
+if (-not ('MatheChecks.RestartManager' -as [type])) {
+Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+
+namespace MatheChecks {
+    public static class RestartManager {
+        [StructLayout(LayoutKind.Sequential)]
+        private struct FILETIME {
+            public uint LowDateTime;
+            public uint HighDateTime;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private struct RM_UNIQUE_PROCESS {
+            public int ProcessId;
+            public FILETIME ProcessStartTime;
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+        private struct RM_PROCESS_INFO {
+            public RM_UNIQUE_PROCESS Process;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
+            public string ApplicationName;
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+            public string ServiceShortName;
+            public int ApplicationType;
+            public uint ApplicationStatus;
+            public uint TerminalSessionId;
+            [MarshalAs(UnmanagedType.Bool)]
+            public bool Restartable;
+        }
+
+        [DllImport("rstrtmgr.dll", CharSet = CharSet.Unicode)]
+        private static extern int RmStartSession(out uint sessionHandle, int flags, StringBuilder sessionKey);
+
+        [DllImport("rstrtmgr.dll", CharSet = CharSet.Unicode)]
+        private static extern int RmRegisterResources(
+            uint sessionHandle,
+            uint fileCount,
+            string[] fileNames,
+            uint applicationCount,
+            RM_UNIQUE_PROCESS[] applications,
+            uint serviceCount,
+            string[] serviceNames);
+
+        [DllImport("rstrtmgr.dll")]
+        private static extern int RmGetList(
+            uint sessionHandle,
+            out uint processInfoNeeded,
+            ref uint processInfoCount,
+            [In, Out] RM_PROCESS_INFO[] affectedApplications,
+            ref uint rebootReasons);
+
+        [DllImport("rstrtmgr.dll")]
+        private static extern int RmEndSession(uint sessionHandle);
+
+        public static int[] GetLockingProcessIds(string path) {
+            uint sessionHandle;
+            int result = RmStartSession(out sessionHandle, 0, new StringBuilder(Guid.NewGuid().ToString()));
+            if (result != 0) throw new Win32Exception(result, "RmStartSession");
+
+            try {
+                result = RmRegisterResources(sessionHandle, 1, new[] { Path.GetFullPath(path) }, 0, null, 0, null);
+                if (result != 0) throw new Win32Exception(result, "RmRegisterResources");
+
+                uint needed;
+                uint count = 0;
+                uint rebootReasons = 0;
+                result = RmGetList(sessionHandle, out needed, ref count, null, ref rebootReasons);
+                if (result == 0) return new int[0];
+                if (result != 234) throw new Win32Exception(result, "RmGetList");
+
+                RM_PROCESS_INFO[] processes = new RM_PROCESS_INFO[needed];
+                count = needed;
+                result = RmGetList(sessionHandle, out needed, ref count, processes, ref rebootReasons);
+                if (result != 0) throw new Win32Exception(result, "RmGetList");
+
+                return processes.Take((int)count).Select(process => process.Process.ProcessId).Distinct().ToArray();
+            }
+            finally {
+                RmEndSession(sessionHandle);
+            }
+        }
+    }
+}
+'@
+}
+
 function Export-Pdf {
     param(
         [string]$Source,
@@ -102,6 +195,29 @@ function Export-Pdf {
 
     # Gesperrte alte PDF vorab entfernen
     if (Test-Path $OutputFile) {
+        $lockingProcessIds = @()
+        try {
+            $lockingProcessIds = [MatheChecks.RestartManager]::GetLockingProcessIds($OutputFile)
+        } catch [System.Management.Automation.MethodInvocationException] {
+            Write-Host "Hinweis: Der PDF-Viewer konnte nicht automatisch ermittelt werden: $($_.Exception.Message)" -ForegroundColor Yellow
+        }
+
+        foreach ($processId in $lockingProcessIds) {
+            if ($processId -eq $PID) { continue }
+
+            $process = Get-Process -Id $processId -ErrorAction SilentlyContinue
+            if ($process) {
+                try {
+                    if ($process.CloseMainWindow()) {
+                        Write-Host "Schliesse PDF-Viewer '$($process.ProcessName)' fuer '$OutputFile'..."
+                        $process.WaitForExit(5000) | Out-Null
+                    }
+                } catch [System.Management.Automation.MethodInvocationException] {
+                    Write-Host "Hinweis: PDF-Viewer '$($process.ProcessName)' konnte nicht automatisch geschlossen werden: $($_.Exception.Message)" -ForegroundColor Yellow
+                }
+            }
+        }
+
         Remove-Item $OutputFile -ErrorAction SilentlyContinue
         if (Test-Path $OutputFile) {
             Write-Host "Fehler: '$OutputFile' ist noch geoeffnet (z.B. im PDF-Viewer). Bitte schliessen und erneut ausfuehren." -ForegroundColor Yellow

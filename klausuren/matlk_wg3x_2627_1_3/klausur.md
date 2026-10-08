@@ -69,6 +69,8 @@ a) Untersuchen Sie mithilfe des Rangkriteriums, für welche Werte von $a$ und $b
 b) Bestimmen Sie für $a=5$ und $b=12$ die Lösung des Gleichungssystems. \punkte{3}
 
 \newpage
+\null
+\newpage
 
 # Teil B (mit Hilfsmittel)
 
