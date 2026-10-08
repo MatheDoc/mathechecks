@@ -1,0 +1,38 @@
+# Beispiel-/Vorlagen-Spezifikation fuer scaffold.py
+# Aufruf: python scaffold.py <spec.yaml>   (Spec temporaer anlegen, wird nicht aufbewahrt)
+# (Werte hier sind fiktiv/Muster - vor echtem Gebrauch durch reale Angaben ersetzen.)
+# Teilaufgaben inkl. punkte und themen (Slugs aus _data/themen.yml) gleich hier eintragen.
+
+land: mu                     # ISO 3166-2:DE Kuerzel, siehe pruefungen/schema/aufgabe.schema.json
+schulform: gymnasium          # gymnasium | berufliches_gymnasium
+# fachrichtung: wirtschaft_und_verwaltung   # nur bei berufliches_gymnasium
+ordner_slug: gym               # Zwischenordner unter pruefungen-md/{land}/, z.B. "gym" oder "bgym-wuv"
+jahr: 2025
+termin: haupt                  # haupt | nach
+niveau: erhoeht                # erhoeht | grundlegend
+niveau_original: ea            # Rohbezeichnung aus der Quelle, z.B. ea/ga/lk/gk
+titel: "Muster-Abiturpruefung 2025 - Mathematik"
+bearbeitungszeit_minuten: 270
+quelle:
+  - {datei: "muster_2025_aufgaben.pdf", typ: aufgabe}
+  - {datei: "muster_2025_loesung.pdf", typ: loesung}
+aufbau_markdown: |
+  TODO: Beschreibung der Teile/Auswahlregeln dieser Pruefung.
+
+aufgaben:
+  - aufgabe: "1"
+    titel: "Aufgabe 1 - Analysis"
+    themenbereich: analysis
+    hilfsmittel: cas
+    punkte: 20
+    quelle_aufgabe: {datei: "muster_2025_aufgaben.pdf", typ: aufgabe}
+    quelle_loesung: {datei: "muster_2025_loesung.pdf", typ: loesung}
+    teilaufgaben:
+      - {bezeichnung: "1.1", punkte: 10, themen: ["regression"]}
+      - {bezeichnung: "1.2", punkte: 10, themen: ["differentialrechnung-e-funktionen"]}
+  - aufgabe: "2"
+    titel: "Aufgabe 2 - Stochastik"
+    themenbereich: stochastik
+    hilfsmittel: cas
+    punkte: 20
+    quelle_aufgabe: {datei: "muster_2025_aufgaben.pdf", typ: aufgabe}
