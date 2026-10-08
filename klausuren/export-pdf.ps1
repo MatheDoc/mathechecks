@@ -235,7 +235,7 @@ function Export-Pdf {
         --lua-filter=$punkteFilter `
         --lua-filter=$tableFilter `
         -V "geometry:a4paper, top=2cm, bottom=2.5cm, left=2.5cm, right=2.5cm" `
-        -V lang=ngerman `
+        -V lang=de-DE `
         -V colorlinks=false | Out-Host
 
     $ok = ($LASTEXITCODE -eq 0)

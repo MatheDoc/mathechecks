@@ -50,6 +50,6 @@ Fehlt `muster-pruefungen/` lokal (gitignored), entfallen Punkt 2 und Abschnitt 2
 - Frontmatter wie `templates/template.md` (`fach`, `klasse`, `datum`, `thema`, `bearbeitungszeit`, optional `logo`), Werte aus `config.yml`; `bearbeitungszeit: 135` → `135 Minuten`.
 - `# Aufgaben` → je `## Aufgabe N` Einleitungstext, dann `a)`, `b)`, …; `\newpage` zwischen Aufgaben → `# Lösungen` mit identischer Gliederung, je Teilaufgabe Ergebnis + sehr kurzer Lösungsweg.
 - Dezimalkomma: Fließtext `0,2`, LaTeX `$0{,}2$` (siehe `.github/glossary.md`).
-- Bilder: `![Alt-Text: …](datei.png){width=NN%}`. Diagramme statisch mit dem Paket `klausuren/diagramme` erzeugen (`klausuren/README.md` → „Diagramme“: schwarz-weiß, Graphen direkt beschriftet, keine Lösungspunkte), kein `{% include %}` und kein eigener matplotlib-Code.
+- Bilder: `![Beschreibung der Abbildung](datei.png){width=NN%}`. Diagramme statisch mit dem Paket `klausuren/diagramme` erzeugen (`klausuren/README.md` → „Diagramme“: schwarz-weiß, Graphen direkt beschriftet, keine Lösungspunkte), kein `{% include %}` und kein eigener matplotlib-Code.
 - Tabellen ohne verbundene Zellen.
 - Ausgabe ist nur die Markdown-Datei, kein Meta-Kommentar darin.

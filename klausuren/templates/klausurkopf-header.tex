@@ -4,6 +4,11 @@
 \usepackage{lastpage}
 %\usepackage[right=4.5cm,marginparwidth=2.5cm,marginparsep=0.4cm]{geometry}
 \usepackage{marginnote}
+\usepackage{enumitem}
+%Abstand bei Enum erhöhen, wegen Punkteangabe am Rand
+%\setlist[enumerate]{itemsep=\baselineskip}
+% Abstand Absätzen
+\setlength{\parskip}{\baselineskip}
 
 %% Pakete für einheitliches Tabellenlayout (siehe table-style.lua)
 \usepackage{array}
@@ -17,5 +22,12 @@
 \fancyfoot[C]{\small\thepage\,/\,\pageref{LastPage}}
 
 %% Weitere Befehle
-\newcommand{\punkte}[1]{\leavevmode\unskip\hspace*{\fill}\fbox{\makebox[2.2cm][r]{\phantom{00}\,/ #1 P}}}
+%\newcommand{\punkte}[1]{\leavevmode\unskip\hspace*{\fill}\fbox{\makebox[2.2cm][r]{\phantom{00}\,/ #1 P}}}
 %\newcommand{\punkte}[1]{\marginnote{\makebox[2.5cm][r]{\rule[-2pt]{1cm}{0.4pt}\,/\,#1\,P}}}
+%\newcommand{\punkte}[1]{\marginnote{%
+%  \begin{tabular}[t]{@{}c@{}}
+%    \rule{0pt}{1.6em}\\          % Leerraum für die erreichten Punkte
+%    \rule{1.2cm}{0.4pt}\\[3pt]   % kurzer Strich
+%    #1\,P                        % Maximalpunkte
+%  \end{tabular}}}
+\newcommand{\punkte}[1]{\marginnote{\hspace{0.75cm}\,/\,#1}}

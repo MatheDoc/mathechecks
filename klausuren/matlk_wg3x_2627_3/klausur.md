@@ -13,7 +13,7 @@ Die **Klangwerk GmbH** entwickelt und fertigt Audiotechnik: Bluetooth-Lautsprech
 
 # Teil A (ohne Hilfsmittel)
 
-Bearbeiten Sie die Pflichtaufgaben 1 bis 4 und zwei der vier Wahlaufgaben 5 bis 8.
+Bearbeiten Sie die Pflichtaufgaben 1.1 bis 1.4 und zwei der vier Wahlaufgaben 1.5 bis 1.8.
 
 ## Aufgabe 1.1
 
@@ -65,7 +65,7 @@ $$RZ=\begin{pmatrix}3&1\\2&2\end{pmatrix}.$$
 
 Das Diagramm zeigt, wie viele ME der Bauteile für je 1 ME der Endprodukte benötigt werden.
 
-![Alt-Text: Verflechtungsdiagramm der Bauteile Z1, Z2 und der Endprodukte E1, E2](diagramm-aufgabe4.png){width=50%}
+![Verflechtungsdiagramm der Bauteile Z1, Z2 und der Endprodukte E1, E2](diagramm-aufgabe4.png){width=50%}
 
 a) Geben Sie die Bauteil-Endprodukt-Matrix $ZE$ an und berechnen Sie die Rohstoff-Endprodukt-Matrix $RE$. \punkte{3}
 
@@ -121,7 +121,7 @@ b) Bestimmen Sie mithilfe der Tabelle die Wahrscheinlichkeit $P(\mu-\sigma\le X\
 
 Die Klangwerk GmbH fertigt täglich $x$ ME Soundbars und $y$ ME Subwoofer. Die Abbildung zeigt den Planungsbereich (grau) mit den Randgeraden $g_1$, $g_2$ und $g_3$.
 
-![Alt-Text: Planungsbereich der Soundbar- und Subwoofer-Produktion mit den Randgeraden g1, g2 und g3](diagramm-aufgabe8.png){width=60%}
+![Planungsbereich der Soundbar- und Subwoofer-Produktion mit den Randgeraden g1, g2 und g3](diagramm-aufgabe8.png){width=60%}
 
 a) Geben Sie die drei Ungleichungen an, die zusammen mit $x\ge 0$ und $y\ge 0$ den Planungsbereich beschreiben. \punkte{2}
 
@@ -210,7 +210,7 @@ g) Für eine Stichprobe von 50 Kopfhörern gilt: Berechnen Sie die Wahrscheinlic
 - $E_2$: Mindestens zwei, aber weniger als sechs Geräte sind undicht.
 - $E_3$: Die dunklen Balken in der Abbildung. Zeigen Sie dazu, dass $E_3$ beschrieben werden kann durch „Die Anzahl der undichten Geräte weicht höchstens um eine Standardabweichung vom Erwartungswert ab“.
 
-![Alt-Text: Histogramm der Wahrscheinlichkeitsverteilung von X; die Balken des Ereignisses E3 sind dunkel hervorgehoben](diagramm-aufgabe10.png){width=75%}
+![Histogramm der Wahrscheinlichkeitsverteilung von X; die Balken des Ereignisses E3 sind dunkel hervorgehoben](diagramm-aufgabe10.png){width=75%}
 
 \punkte{5}
 
@@ -226,7 +226,7 @@ Die Klangwerk GmbH betreibt den Streaming-Dienst „KlangCloud“ ($K$) und konk
 
 Der Übergangsgraph zeigt die Wechselwahrscheinlichkeiten von einem zum nächsten Jahr. Die Wahrscheinlichkeiten, beim Anbieter zu bleiben, sind nicht eingezeichnet.
 
-![Alt-Text: Übergangsgraph der Anbieter K, R und S](diagramm-aufgabe11-graph.png){width=55%}
+![Übergangsgraph der Anbieter K, R und S](diagramm-aufgabe11-graph.png){width=55%}
 
 a) Stellen Sie die Übergangsmatrix $M$ auf (Reihenfolge $K$, $R$, $S$; Spalten: von, Zeilen: nach). \punkte{3}
 
@@ -280,7 +280,7 @@ h) Geben Sie das System der Ungleichungen und die Zielfunktion für den Gesamtde
 
 i) Zeichnen Sie den Planungsbereich in das Koordinatensystem ein und ermitteln Sie grafisch das Produktionsprogramm mit dem größten Gesamtdeckungsbeitrag sowie diesen Deckungsbeitrag.
 
-![Alt-Text: Leeres Koordinatensystem für Kopfhörer x und Lautsprecher y](diagramm-aufgabe11-koordinatensystem.png){width=75%}
+![Leeres Koordinatensystem für Kopfhörer x und Lautsprecher y](diagramm-aufgabe11-koordinatensystem.png){width=75%}
 
 \punkte{4}
 
@@ -331,14 +331,14 @@ Rohstoffe: $RZ\cdot\begin{pmatrix}40\\70\end{pmatrix}=\begin{pmatrix}190\\220\en
 a) $27-x^2=2x^2\Leftrightarrow x^2=9\Leftrightarrow x=3$ (wegen $x\ge0$). Gleichgewichtspreis: $p_A(3)=18$. Gleichgewichtsmenge 3 ME, Gleichgewichtspreis 18 GE/ME.
 
 b) $PR=\displaystyle\int_0^3(18-2x^2)\,dx=\Big[18x-\tfrac23x^3\Big]_0^3=54-18=36$ GE. Die Produzentenrente ist der Gesamtvorteil der Anbieter, die bereit wären, schon zu einem niedrigeren Preis als 18 GE/ME zu liefern, aber den Gleichgewichtspreis erhalten.
-1.
+
 ## Aufgabe 1.6 – Wahlaufgabe
 
 a) $N(0)=a=40$. $N(3)=40\cdot b^3=320\Leftrightarrow b^3=8\Leftrightarrow b=2$. Also $N(t)=40\cdot2^t$.
 
 b) $40\cdot2^t=1280\Leftrightarrow2^t=32\Leftrightarrow t=5$. Nach 5 Jahren hat die App 1,28 Mio. Nutzer.
 
-## Aufgabe 7 – Wahlaufgabe
+## Aufgabe 1.7 – Wahlaufgabe
 
 a) $\mu=n\cdot p=25\cdot0{,}2=5$, $\sigma=\sqrt{n\cdot p\cdot(1-p)}=\sqrt{25\cdot0{,}2\cdot0{,}8}=\sqrt4=2$.
 
