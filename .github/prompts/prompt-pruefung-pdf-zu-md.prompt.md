@@ -250,6 +250,12 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   Erwartungshorizont nutzt feinere Bewertungspositionen (z. B. `2.1.2.1`, `2.1.2.2`; bei Aufgabe 3.4
   das Label `3.4.1`). Diese werden je Teilaufgabe zusammengefasst, Einzelpunkte und AFB stehen in
   Klammern. Zierfotos ohne mathematischen Inhalt (Abbildungen 2–4) werden nicht übernommen.
+- **NW Berufliches Gymnasium WuV 2023 (GK):** Dateiname `HT_cas_gtr`/`HT_ohimi` mit `_S`/`_L`. Teil A hat nur eine Pflichtaufgabe 1 (1.1
+  Analysis 9, 1.2 Stochastik 6, 1.3 Lineare Algebra 6 Punkte = 21, keine Wahl), Teil B 3 Aufgaben je 28 Punkte (2 Analysis,
+  3 Lineare Algebra, 4 Stochastik). `gesamtpunkte` = 110 (105 + 5 Darstellung), Arbeitszeit 225 Min. Aufgabe 1 ist in
+  `a1-1`/`a1-2`/`a1-3` gesplittet. Die Lösungsgrafiken zu 1.1.3 und 2.2.2 liegen in Tabellenzeilen und brauchen `--clip`.
+  Im Erwartungshorizont fehlt in 1.1.2 ein „= 0“ und in 4.3.1 steht „höchsten“ (unverändert mit Kommentar übernommen).
+  Im Projekt-venv fehlte `.venv`; die Tools liefen mit dem System-`python` (pymupdf, pyyaml, jsonschema installiert).
 - **Grafiken in Tabellenzeilen** (Erwartungshorizont) oder neben Tabellen/Fließtext/Fotos brauchen
   `figures.py crop … --clip`, da die automatische Bounding-Box sonst die ganze Tabelle bzw. das
   Foto mit erfasst.
