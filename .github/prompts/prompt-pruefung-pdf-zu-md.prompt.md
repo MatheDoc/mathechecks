@@ -51,7 +51,7 @@ Fehlt eine wiederkehrende Funktion, erweitere das gemeinsame Tool und dokumentie
 
 - Lies beide Schemas: Sie sind die verbindliche Quelle für erlaubte Felder und Enums.
 - Lies `_inventar.json`, um zu sehen, welche Prüfungen bereits ganz oder teilweise konvertiert sind.
-- Lies den Abschnitt [Bekannte Sonderfälle](#bekannte-sonderfälle) am Ende dieses Prompts.
+- Lies den Abschnitt [Bekannte Sonderfälle] am Ende dieses Prompts.
 - Nutze die vorhandenen Tools, statt eigene zu schreiben.
 
 ## 1. PDFs sichten, nicht nur Dateinamen interpretieren
@@ -224,8 +224,7 @@ beschreibst du in `fortschritt` kurz, was noch fehlt.
 
 ## 13. Erkenntnisse festhalten
 
-Neue Sonderfälle, widerlegte Annahmen und Konventionsentscheidungen trägst du knapp unten im
-Abschnitt [Bekannte Sonderfälle](#bekannte-sonderfälle) ein.
+Neue Sonderfälle, widerlegte Annahmen und Konventionsentscheidungen trägst du knapp unten im Abschnitt Bekannte Sonderfälle ein.
 
 ## Umfang und Rückfragen
 
@@ -261,6 +260,9 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   Die Vierfeldertafel (Anlage 1) ist als GFM-Tabelle übertragen, das Baumdiagramm in 3.1.1 als verschachtelte Liste (Dezimalpunkte der
   Abbildung als Komma). Nur Anlage 2 (2.1.3) und die Lösungsgrafik dazu sind Bilder (Lösung braucht `--clip`). Die Lösungstabelle zu 1.1.3 enthält
   „Gewinn Gewinn“ (Aufgabenstellung nach Schülerfassung), 2.2.2 schreibt „K‴(2)“ ohne Index $c$.
+- **NW Berufliches Gymnasium WuV 2021 (GK):** Dateiname `HT_cas_gtr`/`HT_ohimi` mit `_S`/`_L`. Aufbau wie 2022 (Teil A nur Aufgabe 1 mit 1.1–1.3 = 9/6/6 Punkte, Teil B 3 Aufgaben je 28 Punkte, `gesamtpunkte` 110),
+  Teil B aber Aufgabe 2 Analysis, 3 Lineare Algebra, 4 Stochastik. Bilder: Abbildung 1 (1.1), Anlage 1 (1.2.1), Anlage 2 (1.3) und das Lösungsverflechtungsdiagramm
+  zu 1.2.1 (braucht `--clip`, Tabellenzeile); das Baumdiagramm im EH zu 1.3.1 ist als verschachtelte Liste übertragen. Schülerfassung 2.1.4 „konstanten Preis“, EH nur „Preis“.
 - **Grafiken in Tabellenzeilen** (Erwartungshorizont) oder neben Tabellen/Fließtext/Fotos brauchen
   `figures.py crop … --clip`, da die automatische Bounding-Box sonst die ganze Tabelle bzw. das
   Foto mit erfasst.

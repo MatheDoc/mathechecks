@@ -15,4 +15,3 @@ Du erstellst aus `klausuren/<slug>/config.yml` eine eigenständige Klausur im St
 - `klausuren/templates/template.md` → Zielformat
 - `klausuren/README.md` → `config.yml`-Schema, Diagramm-Konvention
 - `.github/glossary.md` → LaTeX-Konventionen, Begriffe Thema/Lernbereich
-- `.github/datenmodell.md` → `checks.json`-Felder, Beispiele, Aufgabensammlungen
