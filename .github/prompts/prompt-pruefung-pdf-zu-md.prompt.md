@@ -256,6 +256,11 @@ Land- oder Kurszuordnung, widersprüchliche Seitenangaben, unleserliche Stellen.
   `a1-1`/`a1-2`/`a1-3` gesplittet. Die Lösungsgrafiken zu 1.1.3 und 2.2.2 liegen in Tabellenzeilen und brauchen `--clip`.
   Im Erwartungshorizont fehlt in 1.1.2 ein „= 0“ und in 4.3.1 steht „höchsten“ (unverändert mit Kommentar übernommen).
   Im Projekt-venv fehlte `.venv`; die Tools liefen mit dem System-`python` (pymupdf, pyyaml, jsonschema installiert).
+- **NW Berufliches Gymnasium WuV 2022 (GK):** Dateiname `HT_cas_gtr`/`HT_ohimi` mit `_S`/`_L`. Aufbau wie 2023 (Teil A nur Aufgabe 1 mit 1.1–1.3 = 9/6/6 Punkte, Teil B 3 Aufgaben je 28 Punkte, `gesamtpunkte` 110), aber
+  Reihenfolge anders: Teil A 1.1 Analysis, 1.2 Lineare Algebra, 1.3 Stochastik; Teil B Aufgabe 2 Analysis, 3 Stochastik, 4 Lineare Algebra.
+  Die Vierfeldertafel (Anlage 1) ist als GFM-Tabelle übertragen, das Baumdiagramm in 3.1.1 als verschachtelte Liste (Dezimalpunkte der
+  Abbildung als Komma). Nur Anlage 2 (2.1.3) und die Lösungsgrafik dazu sind Bilder (Lösung braucht `--clip`). Die Lösungstabelle zu 1.1.3 enthält
+  „Gewinn Gewinn“ (Aufgabenstellung nach Schülerfassung), 2.2.2 schreibt „K‴(2)“ ohne Index $c$.
 - **Grafiken in Tabellenzeilen** (Erwartungshorizont) oder neben Tabellen/Fließtext/Fotos brauchen
   `figures.py crop … --clip`, da die automatische Bounding-Box sonst die ganze Tabelle bzw. das
   Foto mit erfasst.
