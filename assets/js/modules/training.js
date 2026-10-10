@@ -18,7 +18,7 @@ import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/ta
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { createCheckMetaRowNode, formatCheckNumber } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
-import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { createCardActionsMenu, createCardMenuItem, createCardMenuLink, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { completeTrainingFeedStep } from "../platform/feed-actions.js?v=20260826-test-module";
@@ -1345,13 +1345,14 @@ function createTaskCardNode(
   readPersistedState = true,
   shuffleSeed = "",
   taskIndex = 0,
-  totalTasks = 0
+  totalTasks = 0,
+  onSelectTask = null
 ) {
   const titel = check.Schlagwort || check["Ich kann"] || `Check ${check.Nummer}`;
   const card = document.createElement("article");
   card.className = "check-card check-card--training";
 
-  const { header, actionsPopover } = createTrainingCardHeader(check, titel);
+  const { header, actionsPopover, rateBadge } = createTrainingCardHeader(check, titel);
   card.appendChild(header);
 
   const body = document.createElement("div");
@@ -1451,6 +1452,16 @@ function createTaskCardNode(
     });
     reloadItem.dataset.trainingFeedControlled = "true";
     actionsPopover.appendChild(reloadItem);
+  }
+
+  if (typeof onSelectTask === "function" && totalTasks > 1) {
+    const picker = createCardTaskPicker({
+      total: totalTasks,
+      current: taskIndex,
+      onSelect: onSelectTask,
+      chipAnchor: rateBadge,
+    });
+    actionsPopover.appendChild(picker.element);
   }
 
   if (runtimeToolbar) {
@@ -1563,12 +1574,12 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     });
   };
 
-  const reloadCurrentTask = () => {
+  const loadTaskAtIndex = (nextTaskIndex) => {
     const currentRateBadge = cardNode?.querySelector(".check-card__rate-badge");
     const displayedRate = currentRateBadge?.dataset.hasRate === "true"
       ? Number.parseFloat(currentRateBadge.textContent)
       : null;
-    taskIndex = pickRandomTaskIndex(taskIndex, sammlung.length);
+    taskIndex = nextTaskIndex;
     shuffleNonce = String(Date.now());
     taskCompletionTracked = false;
     initialProgressSeen = false;
@@ -1585,6 +1596,14 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
     finalizeTaskRender(viewportNode);
     attachFreeCompleteControl();
     viewportNode.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));
+  };
+
+  const reloadCurrentTask = () => loadTaskAtIndex(pickRandomTaskIndex(taskIndex, sammlung.length));
+
+  const selectTaskByIndex = (nextTaskIndex) => {
+    if (!Number.isInteger(nextTaskIndex) || nextTaskIndex < 0 || nextTaskIndex >= sammlung.length) return;
+    if (nextTaskIndex === taskIndex) return;
+    loadTaskAtIndex(nextTaskIndex);
   };
 
   const renderCurrentCard = (shouldReadPersistedState = readPersistedState) => {
@@ -1604,7 +1623,8 @@ function createBrowseTaskCardNode(check, sammlung, options = {}) {
       shouldReadPersistedState,
       `${stateKey}::${shuffleNonce}`,
       taskIndex,
-      sammlung.length
+      sammlung.length,
+      isFreeMode ? selectTaskByIndex : null
     );
   };
 

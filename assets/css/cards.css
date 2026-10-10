@@ -348,6 +348,77 @@ html.light .check-card {
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rose) 18%, transparent);
 }
 
+.check-card__task-picker {
+    display: grid;
+    gap: 4px;
+}
+
+.check-card__task-chip {
+    border: 1px solid color-mix(in srgb, var(--dcc-accent, var(--text-dim)) 35%, var(--border));
+    background: transparent;
+    color: var(--dcc-accent, var(--text-dim));
+    font-family: inherit;
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    border-radius: 999px;
+    padding: 5px 8px;
+    min-height: 24px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.check-card__task-chip:hover,
+.check-card__task-chip:focus-visible {
+    background: color-mix(in srgb, var(--dcc-accent, var(--text)) 12%, transparent);
+    border-color: var(--dcc-accent, var(--text));
+    outline: none;
+}
+
+.check-card__task-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 4px;
+    padding: 4px 4px 6px;
+}
+
+.check-card__task-picker-grid[hidden] {
+    display: none;
+}
+
+.check-card__task-picker-btn {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-body);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 8px;
+    min-height: 34px;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.check-card__task-picker-btn:hover:not(:disabled) {
+    background: var(--surface-hi);
+    color: var(--text);
+}
+
+.check-card__task-picker-btn[aria-pressed="true"] {
+    color: var(--dcc-accent, var(--text));
+    border-color: var(--dcc-accent, var(--text));
+    background: color-mix(in srgb, var(--dcc-accent, var(--text)) 12%, transparent);
+    cursor: default;
+}
+
+.check-card__task-picker-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
 .feed-card-menu__trigger {
     min-width: var(--dcc-header-action-size);
     width: var(--dcc-header-action-size);

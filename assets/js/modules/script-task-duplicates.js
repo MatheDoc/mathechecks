@@ -14,7 +14,7 @@ import {
 import { buildTaskUiStateKey } from "../state/task-ui-state.js?v=20260516-feed-confirm";
 import { shuffleQuestionsInTask } from "../utils/task-order.js";
 import { renderTask as renderRuntimeTask } from "../../../../aufgaben/runtime/task-render.js?v=20260910-field-scores";
-import { createCardMenuItem, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { createCardMenuItem, createCardTaskPicker, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
 import { attachFreeCompletionControl } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceSpeechInputs } from "./ui/speech-input.js?v=20260816-mobile-restart";
 import { recordUserActivity, getUserCheckProficiency, extractCheckProficiencyRate, extractCheckLastTaskScore } from "../platform/progress-client.js?v=20260908-run-rate";
@@ -204,7 +204,8 @@ function createTaskCard(
     readPersistedState = true,
     taskIndex = 0,
     totalTasks = 0,
-    shuffleSeed = ""
+    shuffleSeed = "",
+    onSelectTask = null
 ) {
     if (!aufgabe) return createEmptyTaskCard(check);
 
@@ -212,7 +213,7 @@ function createTaskCard(
     const card = document.createElement("article");
     card.className = "check-card check-card--training";
 
-    const { header, actionsPopover } = createTrainingCardHeader(check, titel);
+    const { header, actionsPopover, rateBadge } = createTrainingCardHeader(check, titel);
     card.appendChild(header);
 
     const body = document.createElement("div");
@@ -308,6 +309,16 @@ function createTaskCard(
         });
         reloadItem.dataset.trainingFeedControlled = "true";
         actionsPopover.appendChild(reloadItem);
+    }
+
+    if (typeof onSelectTask === "function" && totalTasks > 1) {
+        const picker = createCardTaskPicker({
+            total: totalTasks,
+            current: taskIndex,
+            onSelect: onSelectTask,
+            chipAnchor: rateBadge,
+        });
+        actionsPopover.appendChild(picker.element);
     }
 
     if (runtimeToolbar) {
@@ -470,7 +481,8 @@ async function renderCheckTaskInHost(host, check, {
                 usePersistedState,
                 normalizedTaskIndex,
                 totalTaskCount,
-                `${taskUiStateKey}::${shuffleNonce}`
+                `${taskUiStateKey}::${shuffleNonce}`,
+                isFreeMode ? selectTask : null
             );
             host.appendChild(card);
             updateCheckRateBadge(card.querySelector(".check-card__rate-badge"), displayedRate);
@@ -486,20 +498,24 @@ async function renderCheckTaskInHost(host, check, {
             attachFreeCompleteControl();
         };
 
-        const reloadTask = async () => {
-            const nextRandomIndex = pickRandomTaskIndex(
-                taskIndex,
-                totalTaskCount
-            );
+        const loadTaskAtIndex = async (nextTaskIndex) => {
             shuffleNonce = String(Date.now());
             taskCompletionTracked = false;
             initialProgressSeen = false;
             latestRates = null;
             freeCompleteReady = false;
-            saveCurrentTaskIndex(nextRandomIndex);
+            saveCurrentTaskIndex(nextTaskIndex);
             saveCurrentShuffleNonce(shuffleNonce);
-            await renderTaskCardForIndex(nextRandomIndex);
+            await renderTaskCardForIndex(nextTaskIndex);
             host.dispatchEvent(new CustomEvent("training:task-reloaded", { bubbles: true }));
+        };
+
+        const reloadTask = () => loadTaskAtIndex(pickRandomTaskIndex(taskIndex, totalTaskCount));
+
+        const selectTask = (nextTaskIndex) => {
+            if (!Number.isInteger(nextTaskIndex) || nextTaskIndex < 0 || nextTaskIndex >= totalTaskCount) return;
+            if (nextTaskIndex === taskIndex) return;
+            void loadTaskAtIndex(nextTaskIndex);
         };
 
         if (isFreeMode) {
