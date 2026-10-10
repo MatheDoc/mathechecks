@@ -7,7 +7,7 @@ import { answerToSolution, replaceAnswerPlaceholders } from "../../../../aufgabe
 import { renderVisual } from "../../../../aufgaben/runtime/task-visuals.js?v=20260614-expression-curves-b";
 import { fetchBeispielHtml as fetchSharedBeispielHtml } from "./beispiel-loader.js?v=20260514-beispiel-url-d";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
-import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction } from "./ui/card-actions-menu.js";
+import { renderCardActionsMenuMarkup, initCardMenuDismiss, runCardMenuItemFeedbackAction, createCardTaskPicker } from "./ui/card-actions-menu.js";
 import { isAiEvaluationBlocked, renderAiEvaluationGateMarkup, resolveAiEvaluationAccess } from "./ui/ai-eval-gate.js?v=20261007-ai-gate-timeout";
 import { applyFeedFocusScope, attachFeedCardControls, attachFreeCompletionControl, leaveFeedContext } from "./ui/feed-card-controls.js?v=20260826-test-module";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -1075,6 +1075,7 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
     let completionRecordPromise = null;
     let latestRates = null;
     let itemStates = [];
+    let taskPicker = null;
 
     function ensureItemStates(itemEls = Array.from(card.querySelectorAll("[data-fy-question-item]"))) {
       if (itemStates.length !== itemEls.length) {
@@ -1129,19 +1130,14 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       return evalState;
     }
 
-    function loadNewRandomTask() {
-      const pool = Array.isArray(entry?.scorableTasks) ? entry.scorableTasks : [];
-      if (pool.length <= 1) return;
-
-      const currentIndex = Number(entry?.taskIndex);
-      const candidates = pool.filter(({ index: poolIndex }) => poolIndex !== currentIndex);
-      const next = candidates[Math.floor(Math.random() * candidates.length)];
+    function applyTaskFromPool(next) {
       if (!next) return;
 
       entry.task = next.task;
       entry.taskIndex = next.index;
       task = next.task;
       if (section) section.dataset.taskIndex = String(next.index);
+      taskPicker?.setCurrent(next.index);
 
       const taskNode = card.querySelector("[data-fy-task]");
       if (!taskNode) return;
@@ -1157,13 +1153,33 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
       void renderMath(card);
     }
 
+    function loadNewRandomTask() {
+      const pool = Array.isArray(entry?.scorableTasks) ? entry.scorableTasks : [];
+      if (pool.length <= 1) return;
+
+      const currentIndex = Number(entry?.taskIndex);
+      const candidates = pool.filter(({ index: poolIndex }) => poolIndex !== currentIndex);
+      applyTaskFromPool(candidates[Math.floor(Math.random() * candidates.length)]);
+    }
+
     function resetFeynmanCard() {
+      resetFeynmanCardWith(loadNewRandomTask);
+    }
+
+    function selectFeynmanTask(taskIndex) {
+      const pool = Array.isArray(entry?.scorableTasks) ? entry.scorableTasks : [];
+      const next = pool.find(({ index: poolIndex }) => poolIndex === taskIndex);
+      if (!next || next.index === Number(entry?.taskIndex)) return;
+      resetFeynmanCardWith(() => applyTaskFromPool(next));
+    }
+
+    function resetFeynmanCardWith(loadTask) {
       if (freeCompletionControl) freeCompletionControl.setReady(false);
       completionRecordPromise = null;
       latestRates = null;
       itemStates = [];
       cardEvalState.delete(card);
-      loadNewRandomTask();
+      loadTask();
       card.querySelectorAll(".fy-explain-input").forEach((input) => { input.value = ""; });
       card.querySelectorAll("[data-fy-question-item]").forEach((itemEl) => {
         const input = itemEl.querySelector(".fy-explain-input");
@@ -1421,6 +1437,19 @@ function initInteractiveFeynmanCards(root, cardEntries, lernbereich, activityCon
     newTaskButton?.addEventListener("click", () => {
       resetFeynmanCard();
     });
+
+    const scorablePool = Array.isArray(entry?.scorableTasks) ? entry.scorableTasks : [];
+    const actionsPopover = card.querySelector(".check-card__actions-popover");
+    if (isFreeMode && actionsPopover && scorablePool.length > 1 && entry.totalTasks > 1) {
+      taskPicker = createCardTaskPicker({
+        total: entry.totalTasks,
+        current: Number(entry.taskIndex),
+        enabledIndices: scorablePool.map(({ index: poolIndex }) => poolIndex),
+        onSelect: selectFeynmanTask,
+        chipAnchor: card.querySelector(".check-card__rate-badge"),
+      });
+      actionsPopover.appendChild(taskPicker.element);
+    }
   });
 }
 

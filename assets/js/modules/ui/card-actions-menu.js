@@ -110,6 +110,101 @@ export function createCardMenuItem({ emoji, label, onClick, closeOnClick = true 
     return btn;
 }
 
+/**
+ * Menüeintrag "Aufgabe wählen" mit ausklappbarem Nummernraster (Reihenfolge wie in der Sammlung).
+ * enabledIndices (optional): nur diese 0-basierten Indizes sind wählbar.
+ */
+export function createCardTaskPicker({
+    total,
+    current = -1,
+    enabledIndices = null,
+    onSelect,
+    emoji = "🔢",
+    label = "Aufgabe wählen",
+    chipAnchor = null,
+}) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "check-card__task-picker";
+
+    const grid = document.createElement("div");
+    grid.className = "check-card__task-picker-grid";
+    grid.setAttribute("role", "group");
+    grid.setAttribute("aria-label", "Aufgabe auswählen");
+    grid.hidden = true;
+
+    const toggle = createCardMenuItem({
+        emoji,
+        label,
+        closeOnClick: false,
+        onClick: () => {
+            grid.hidden = !grid.hidden;
+            toggle.setAttribute("aria-expanded", String(!grid.hidden));
+        },
+    });
+    toggle.setAttribute("aria-expanded", "false");
+
+    const collapseGrid = () => {
+        grid.hidden = true;
+        toggle.setAttribute("aria-expanded", "false");
+    };
+
+    const enabledSet = Array.isArray(enabledIndices) ? new Set(enabledIndices) : null;
+    const buttons = [];
+    for (let index = 0; index < total; index += 1) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "check-card__task-picker-btn";
+        btn.textContent = String(index + 1);
+        btn.setAttribute("aria-label", `Aufgabe ${index + 1}`);
+        if (enabledSet && !enabledSet.has(index)) btn.disabled = true;
+        btn.addEventListener("click", () => {
+            wrapper.closest("details")?.removeAttribute("open");
+            collapseGrid();
+            if (btn.getAttribute("aria-pressed") === "true") return;
+            onSelect?.(index);
+        });
+        buttons.push(btn);
+        grid.appendChild(btn);
+    }
+
+    // Kleines Chip im Header: zeigt die aktuelle Aufgabennummer und öffnet direkt das Raster.
+    let chip = null;
+    if (chipAnchor) {
+        chip = document.createElement("button");
+        chip.type = "button";
+        chip.className = "check-card__task-chip";
+        chip.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const menu = wrapper.closest("details");
+            if (!menu) return;
+            if (menu.hasAttribute("open") && !grid.hidden) {
+                menu.removeAttribute("open");
+                return;
+            }
+            menu.setAttribute("open", "");
+            grid.hidden = false;
+            toggle.setAttribute("aria-expanded", "true");
+        });
+        chipAnchor.before(chip);
+    }
+
+    const setCurrent = (currentIndex) => {
+        buttons.forEach((btn, index) => {
+            btn.setAttribute("aria-pressed", String(index === currentIndex));
+        });
+        if (chip) {
+            const number = currentIndex + 1;
+            chip.textContent = `#${number}`;
+            chip.setAttribute("aria-label", `Aufgabe ${number} – andere Aufgabe wählen`);
+            chip.title = `Aufgabe ${number} – andere Aufgabe wählen`;
+        }
+    };
+    setCurrent(current);
+
+    wrapper.append(toggle, grid);
+    return { element: wrapper, setCurrent };
+}
+
 export async function runCardMenuItemFeedbackAction(
     item,
     {
