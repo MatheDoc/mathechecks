@@ -10,8 +10,8 @@ published: true
 lernbereich: bedingte-wahrscheinlichkeiten
 gebiet: stochastik
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-proto5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-proto5
+page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
 permalink: /prototypen/check-warmup/baumdiagramm-unabhaengigkeit.html
 
 warmup:
@@ -21,6 +21,7 @@ warmup:
   titel: 'Baumdiagramm vervollständigen bei Unabhängigkeit'
   kompetenz: 'Baumdiagramme unter Verwendung stochastischer Unabhängigkeit vervollständigen.'
   training_url: /lernbereiche/stochastik/bedingte-wahrscheinlichkeiten/training.html#check-2
+  abschluss: '<p>Im Training stehen die Bäume in einem Sachkontext. Achte im Text auf den Satz zur Unabhängigkeit, runde wie angegeben und trag die Werte in die Felder ① bis ⑩ ein.</p>'
   karten:
 
     # ── Phase A: Orientierung ──────────────────────────────────
@@ -175,15 +176,6 @@ warmup:
             - { label: '$⑩=$', loesung: 0.28, zeige: { slots: [10] } }
           hinweis: 'Erst die Gegenwahrscheinlichkeiten an den Knoten, dann die Pfadmultiplikationsregel.'
           danach: '<p>Geschafft – genau dieser Weg führt auch durch die Trainingsaufgaben.</p>'
-
-    # ── Übergabe ───────────────────────────────────────────────
-    - phase: uebergabe
-      titel: 'Jetzt du – eine echte Trainingsaufgabe'
-      text: '<p>Achte im Text auf den Satz zur Unabhängigkeit und runde wie angegeben. Die Felder sind wie im Baum von ① bis ⑩ nummeriert. Gegebene Werte stehen schon im Baum.</p>'
-      schritte:
-        - typ: aufgabe
-          sammlung: { gebiet: stochastik, lernbereich: bedingte-wahrscheinlichkeiten, name: baumdiagramm-erstellen-mit-unabh }
-          danach: '<p>Geschafft! Im Training warten weitere Bäume dieser Art.</p>'
 ---
 
 <div class="page-shell w-wide">

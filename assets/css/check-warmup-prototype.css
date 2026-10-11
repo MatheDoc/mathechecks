@@ -16,42 +16,58 @@
     color: var(--text-body);
 }
 
-/* ─── Kopf ───────────────────────────────────────────────── */
+/* ─── Player-Layout: feste Kartenhöhe, Navigation darunter ─ */
 
-.cw-head {
-    display: grid;
-    gap: 10px;
-    scroll-margin-top: calc(var(--module-sticky-top, 72px) + 12px);
-}
-
-.cw-head__top {
+.shell-main:has(.cw-player) {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    flex-direction: column;
+    overflow: hidden;
+    padding-bottom: 12px;
 }
 
-.cw-head__meta {
+.shell-main:has(.cw-player) > .page-shell {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+}
+
+.cw-root.cw-player {
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
+    flex-direction: column;
+    gap: 12px;
+    padding: 8px 0 0;
 }
 
-.cw-kicker {
-    font-size: 0.74rem;
-    font-weight: 750;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--cw-accent);
+.cw-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
 }
+
+.cw-card.check-card {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+}
+
+.cw-body.check-card__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    overscroll-behavior: contain;
+    display: block;
+}
+
+/* ─── Kartenkopf-Ergänzungen ─────────────────────────────── */
 
 .cw-proto {
     padding: 2px 8px;
     border-radius: 999px;
     border: 1px dashed color-mix(in srgb, var(--text-muted) 70%, transparent);
-    font-size: 0.68rem;
+    font-size: 0.66rem;
     font-weight: 700;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -59,13 +75,14 @@
 }
 
 .cw-skip {
-    font-size: 0.86rem;
-    font-weight: 600;
+    font-size: 0.82rem;
+    font-weight: 650;
     color: var(--text-dim);
     text-decoration: none;
-    padding: 6px 12px;
+    padding: 5px 11px;
     border-radius: 999px;
     border: 1px solid var(--border);
+    white-space: nowrap;
     transition: color 160ms ease, border-color 160ms ease;
 }
 
@@ -74,67 +91,41 @@
     border-color: color-mix(in srgb, var(--cw-accent) 40%, var(--border));
 }
 
-.cw-title {
-    margin: 0;
-    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--text);
-}
-
-.cw-goal {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-}
-
-.cw-goal__label {
-    flex: 0 0 auto;
-    padding: 2px 8px;
-    border-radius: 6px;
-    background: var(--cw-accent-soft);
-    color: var(--cw-accent);
-    font-size: 0.72rem;
-    font-weight: 750;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-/* ─── Phasenleiste ───────────────────────────────────────── */
+/* ─── Phasenleiste (fest, unter dem Kartenkopf) ──────────── */
 
 .cw-phases {
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
     gap: 6px;
-    margin: 6px 0 0;
+    flex: 0 0 auto;
+    margin: 12px var(--dcc-header-body-pad-x) 0;
     padding: 0;
     list-style: none;
 }
 
 .cw-phase {
-    display: grid;
-    gap: 6px;
-    padding: 8px 10px 9px;
-    border-radius: 12px;
-    border-top: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    border-bottom: 2px solid var(--border);
     background: var(--surface);
     color: var(--text-muted);
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     font-weight: 700;
     transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
 }
 
 .cw-phase.is-done {
-    border-top-color: color-mix(in srgb, var(--cw-accent) 55%, var(--border));
+    border-bottom-color: color-mix(in srgb, var(--cw-accent) 55%, var(--border));
     color: var(--text-dim);
 }
 
 .cw-phase.is-active {
-    border-top-color: var(--cw-accent);
+    border-bottom-color: var(--cw-accent);
     background: var(--cw-accent-soft);
     color: var(--text);
 }
@@ -163,25 +154,16 @@
     box-shadow: 0 0 0 3px var(--cw-accent-soft);
 }
 
-/* ─── Karte ──────────────────────────────────────────────── */
+/* ─── Seite (Inhalt einer Karte) ─────────────────────────── */
 
-.cw-card {
-    position: relative;
+.cw-page {
     display: grid;
     gap: 14px;
-    padding: clamp(16px, 2.6vw, 28px);
-    border-radius: 24px;
-    border: 1px solid color-mix(in srgb, var(--cw-accent) 22%, var(--border));
-    background:
-        linear-gradient(90deg, var(--cw-accent), color-mix(in srgb, var(--cw-accent) 40%, transparent)) top / 100% 3px no-repeat,
-        linear-gradient(160deg,
-            color-mix(in srgb, var(--card-surface-1) 94%, var(--cw-accent-soft)),
-            var(--card-surface-2, var(--card-surface-1)));
-    box-shadow: var(--shadow-card, none);
+    padding: 4px 0 8px;
     animation: cwFadeIn 260ms ease;
 }
 
-.cw-card[hidden] {
+.cw-page[hidden] {
     display: none;
 }
 
@@ -197,11 +179,35 @@
     }
 }
 
-.cw-card__head {
+.cw-goal {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: var(--surface);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+.cw-goal__label {
+    flex: 0 0 auto;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--cw-accent-soft);
+    color: var(--cw-accent);
+    font-size: 0.7rem;
+    font-weight: 750;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.cw-page__head {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px 12px;
+    gap: 8px 12px;
 }
 
 .cw-chip {
@@ -209,56 +215,58 @@
     border-radius: 999px;
     background: var(--cw-accent-soft);
     color: var(--cw-accent);
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 750;
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
 
-.cw-card__title {
+.cw-page__title {
     margin: 0;
-    font-size: 1.18rem;
+    font-size: 1.14rem;
     font-weight: 750;
     letter-spacing: -0.01em;
     color: var(--text);
 }
 
-.cw-card__intro {
+.cw-page__intro {
     font-size: 1rem;
     line-height: 1.65;
     color: var(--text-body);
 }
 
-.cw-card__intro p,
+.cw-page__intro p,
 .cw-step__text p,
-.cw-after p {
+.cw-after p,
+.cw-finish__text p {
     margin: 0 0 0.6em;
 }
 
-.cw-card__intro p:last-child,
+.cw-page__intro p:last-child,
 .cw-step__text p:last-child,
-.cw-after p:last-child {
+.cw-after p:last-child,
+.cw-finish__text p:last-child {
     margin-bottom: 0;
 }
 
-.cw-card__layout {
+.cw-page__layout {
     display: grid;
     gap: 18px;
 }
 
 @media (min-width: 960px) {
-    .cw-card__layout.has-visual {
+    .cw-page__layout.has-visual {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: start;
     }
 
-    .cw-card__layout.has-visual .cw-card__visual {
+    .cw-page__layout.has-visual .cw-page__visual {
         position: sticky;
-        top: calc(var(--module-sticky-top, 72px) + 16px);
+        top: 0;
     }
 }
 
-.cw-card__visual {
+.cw-page__visual {
     min-width: 0;
     border-radius: 18px;
     border: 1px solid var(--border);
@@ -273,6 +281,32 @@
 
 .cw-plot--tree {
     min-height: 300px;
+}
+
+/* ─── Abschluss ──────────────────────────────────────────── */
+
+.cw-finish {
+    display: grid;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    border: 1px solid color-mix(in srgb, var(--cw-accent) 40%, var(--border));
+    background: var(--cw-accent-soft);
+    animation: cwFadeIn 260ms ease;
+}
+
+.cw-finish__kicker {
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cw-accent);
+}
+
+.cw-finish__text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text);
 }
 
 /* ─── Schritte (Lösungsweg) ──────────────────────────────── */
@@ -582,6 +616,120 @@
     font-size: 0.85em;
 }
 
+.cw-fields--zeile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 6px;
+}
+
+.cw-fields--zeile .cw-field {
+    flex-wrap: nowrap;
+    gap: 6px;
+}
+
+.cw-fields--zeile .cw-input {
+    width: 4.2rem;
+    text-align: center;
+}
+
+.cw-fields--zeile .cw-field__unit {
+    color: var(--text);
+    font-size: 0.98rem;
+}
+
+.cw-fields--zeile .cw-field__label:empty,
+.cw-fields--zeile .cw-field__mark {
+    display: none;
+}
+
+/* ─── Steckbrief (Liste mit abhakbaren Informationen) ────── */
+
+.cw-brief {
+    display: grid;
+    gap: 10px;
+    padding: 8px 6px;
+}
+
+.cw-brief__title {
+    font-size: 0.72rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cw-accent);
+}
+
+.cw-brief__list {
+    display: grid;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.cw-brief__item {
+    display: grid;
+    grid-template-columns: 20px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--card-surface-1);
+    transition: border-color 200ms ease, background 200ms ease;
+}
+
+.cw-brief__check {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    border-radius: 6px;
+    border: 2px solid color-mix(in srgb, var(--cw-accent) 45%, var(--border));
+    box-sizing: border-box;
+}
+
+.cw-brief__item.is-done {
+    border-color: color-mix(in srgb, var(--cw-accent) 45%, var(--border));
+    background: color-mix(in srgb, var(--cw-accent-soft) 60%, var(--card-surface-1));
+}
+
+.cw-brief__item.is-done .cw-brief__check {
+    border-color: var(--cw-accent);
+    background: var(--cw-accent);
+}
+
+.cw-brief__item.is-done .cw-brief__check::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.cw-brief__content {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+    font-size: 0.93rem;
+    line-height: 1.5;
+}
+
+.cw-brief__eq {
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    color: var(--text);
+    animation: cwFadeIn 220ms ease;
+}
+
+.cw-brief__eq[hidden] {
+    display: none;
+}
+
 /* ─── Rückmeldung ────────────────────────────────────────── */
 
 .cw-feedback {
@@ -842,24 +990,10 @@
     color: var(--text-dim);
 }
 
-/* ─── Übergabe: echte Trainingsaufgabe ───────────────────── */
-
-.cw-step--wide {
-    grid-template-columns: minmax(0, 1fr);
-}
-
-.cw-step--wide .cw-step__marker,
-.cw-step--wide::before {
-    display: none;
-}
-
-.cw-task {
-    animation: none;
-}
-
-/* ─── Navigation ─────────────────────────────────────────── */
+/* ─── Navigation (fest unter der Karte) ──────────────────── */
 
 .cw-nav {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -870,6 +1004,24 @@
 }
 
 /* ─── Übersicht ──────────────────────────────────────────── */
+
+.cw-index-head {
+    display: grid;
+    gap: 10px;
+}
+
+.cw-index-head h1 {
+    margin: 0;
+    font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text);
+}
+
+.cw-index-head .cw-goal {
+    background: transparent;
+    padding: 0;
+}
 
 .cw-index {
     display: grid;
@@ -901,12 +1053,31 @@
 /* ─── Responsive ─────────────────────────────────────────── */
 
 @media (max-width: 640px) {
+    .cw-proto,
+    .cw-skip__long {
+        display: none;
+    }
+
+    .cw-skip {
+        padding: 4px 8px;
+        font-size: 0.78rem;
+    }
+
+    .cw-goal {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
     .cw-phases {
         gap: 4px;
     }
 
     .cw-phase {
-        padding: 6px 6px 7px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 6px 7px;
         font-size: 0.68rem;
     }
 
@@ -927,7 +1098,8 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-    .cw-card,
+    .cw-page,
+    .cw-finish,
     .cw-step,
     .cw-after,
     .cw-match__item.is-wrong {

@@ -4,8 +4,7 @@
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
-import { getAufgabenSammlung } from "../data/sammlungen-repo.js?v=20260614-expression-curves-b";
-import { renderTask } from "../../../../aufgaben/runtime/task-render.js?v=20260910-field-scores";
+import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 
 const ROOT_ID = "check-warmup-root";
 const DATA_ID = "check-warmup-data";
@@ -14,7 +13,6 @@ const PHASES = [
   { key: "orientierung", label: "Worum geht's?" },
   { key: "vormachen", label: "Zuschauen" },
   { key: "mitmachen", label: "Mitmachen" },
-  { key: "uebergabe", label: "Jetzt du" },
 ];
 
 /* ───────────────────────── Hilfsfunktionen ───────────────────────── */
@@ -50,7 +48,7 @@ function formatNumber(value) {
 }
 
 async function typeset(node, retries = 20) {
-  if (!node) return;
+  if (!node || !node.isConnected) return;
   const mathJax = window.MathJax;
   if (mathJax?.startup?.promise) {
     try { await mathJax.startup.promise; } catch { /* ignore */ }
@@ -225,11 +223,53 @@ function createMatrixVisual(spec) {
   };
 }
 
+function createListVisual(spec) {
+  const node = el("div", "cw-brief");
+  if (spec.titel) node.appendChild(el("div", "cw-brief__title", spec.titel));
+  const list = el("ol", "cw-brief__list");
+  const items = new Map();
+  (spec.eintraege || []).forEach((entry) => {
+    const li = el("li", "cw-brief__item");
+    li.appendChild(el("span", "cw-brief__check"));
+    const content = el("div", "cw-brief__content");
+    content.appendChild(el("div", "cw-brief__text", entry.text || ""));
+    const equation = el("div", "cw-brief__eq", entry.gleichung || "");
+    equation.hidden = true;
+    content.appendChild(equation);
+    li.appendChild(content);
+    list.appendChild(li);
+    items.set(entry.id, { li, equation });
+  });
+  node.appendChild(list);
+
+  function markDone(id, { renderMath = true } = {}) {
+    const item = items.get(id);
+    if (!item || item.li.classList.contains("is-done")) return;
+    item.li.classList.add("is-done");
+    if (item.equation.innerHTML) {
+      item.equation.hidden = false;
+      if (renderMath) typeset(item.equation);
+    }
+  }
+
+  // Vorab erledigte Einträge setzt MathJax erst mit der angezeigten Seite.
+  (spec.eintraege || []).filter((entry) => entry.erledigt).forEach((entry) => markDone(entry.id, { renderMath: false }));
+
+  return {
+    node,
+    render() {},
+    apply(zeige) {
+      (zeige?.eintraege || []).forEach(markDone);
+    },
+  };
+}
+
 function createVisual(spec) {
   if (!spec) return null;
   if (spec.typ === "graph") return createGraphVisual(spec);
   if (spec.typ === "baum") return createTreeVisual(spec);
   if (spec.typ === "matrix") return createMatrixVisual(spec);
+  if (spec.typ === "liste") return createListVisual(spec);
   return null;
 }
 
@@ -310,7 +350,7 @@ function buildChoiceStep(step, ctx) {
 
 function buildInputStep(step, ctx) {
   const { node, body } = stepShell(step);
-  const fieldsWrap = el("div", "cw-fields");
+  const fieldsWrap = el("div", step.layout === "zeile" ? "cw-fields cw-fields--zeile" : "cw-fields");
   const feedback = feedbackNode();
   const actions = el("div", "cw-step__actions");
   const checkButton = el("button", "cw-btn cw-btn--check", "Prüfen");
@@ -322,13 +362,15 @@ function buildInputStep(step, ctx) {
 
   let attempts = 0;
   let finished = false;
+  const hasNegative = (step.felder || []).some((field) => Number(field.loesung) < 0);
 
   const fields = (step.felder || []).map((field) => {
     const label = el("label", "cw-field");
     label.appendChild(el("span", "cw-field__label", field.label || ""));
     const input = el("input", "cw-input");
     input.type = "text";
-    input.inputMode = "decimal";
+    // iOS-Ziffernblöcke haben kein Minuszeichen.
+    input.inputMode = hasNegative ? "text" : "decimal";
     input.autocomplete = "off";
     input.spellcheck = false;
     input.setAttribute("aria-label", field.aria || "Antwort");
@@ -533,49 +575,6 @@ function buildMarkStep(step, ctx) {
   return node;
 }
 
-function buildTaskStep(step, ctx) {
-  const { node, body } = stepShell(step);
-  node.classList.add("cw-step--wide");
-  const host = el("div", "cw-task check-card check-card--training");
-  const inner = el("div", "check-card__body");
-  inner.appendChild(el("p", "module-status", "Aufgabe wird geladen …"));
-  host.appendChild(inner);
-  body.appendChild(host);
-
-  const quelle = step.sammlung || {};
-  getAufgabenSammlung(quelle.name, { gebiet: quelle.gebiet, lernbereich: quelle.lernbereich })
-    .then(async (aufgaben) => {
-      if (!aufgaben.length) throw new Error("Sammlung ist leer.");
-      const index = Number.isInteger(step.index)
-        ? Math.min(Math.max(step.index, 0), aufgaben.length - 1)
-        : Math.floor(Math.random() * aufgaben.length);
-      const taskNode = renderTask(aufgaben[index], {
-        index: 0,
-        showSolution: false,
-        showTaskHeading: false,
-        containerClass: "check-card__runtime-task",
-        interaction: {
-          enablePerQuestionCheck: true,
-          enableReload: false,
-          enableSolutionToggle: true,
-          enableScriptInfoLink: false,
-        },
-      });
-      inner.innerHTML = "";
-      inner.appendChild(taskNode);
-      taskNode.addEventListener("task:question-checked", (event) => {
-        if (event.detail?.isComplete) ctx.complete();
-      });
-      await typeset(inner);
-    })
-    .catch((error) => {
-      inner.innerHTML = "";
-      inner.appendChild(el("p", "module-status", `Die Aufgabe konnte nicht geladen werden (${error.message}).`));
-    });
-
-  return node;
-}
-
 const STEP_BUILDERS = {
   text: buildTextStep,
   aufdecken: buildRevealStep,
@@ -583,32 +582,39 @@ const STEP_BUILDERS = {
   eingabe: buildInputStep,
   zuordnen: buildMatchStep,
   markieren: buildMarkStep,
-  aufgabe: buildTaskStep,
 };
 
-/* ───────────────────────── Karten & Ablauf ───────────────────────── */
+/* ───────────────────────── Seiten & Ablauf ───────────────────────── */
 
-function buildCard(card, cardIndex, onCardComplete) {
+function buildGoal(kompetenz) {
+  const goal = el("p", "cw-goal");
+  goal.appendChild(el("span", "cw-goal__label", "Ziel"));
+  goal.appendChild(el("span", "cw-goal__text", `Ich kann ${kompetenz}`));
+  return goal;
+}
+
+function buildPage(card, pageIndex, { goal, onComplete }) {
   const phase = PHASES.find((entry) => entry.key === card.phase) || PHASES[0];
-  const article = el("article", `cw-card cw-card--${phase.key}`);
-  article.dataset.index = String(cardIndex);
+  const page = el("section", `cw-page cw-page--${phase.key}`);
+  page.dataset.index = String(pageIndex);
 
-  const head = el("header", "cw-card__head");
+  if (goal) page.appendChild(goal);
+  const head = el("header", "cw-page__head");
   head.appendChild(el("span", "cw-chip", phase.label));
-  if (card.titel) head.appendChild(el("h2", "cw-card__title", card.titel));
-  article.appendChild(head);
-  if (card.text) article.appendChild(el("div", "cw-card__intro", card.text));
+  if (card.titel) head.appendChild(el("h2", "cw-page__title", card.titel));
+  page.appendChild(head);
+  if (card.text) page.appendChild(el("div", "cw-page__intro", card.text));
 
   const visual = createVisual(card.visual);
-  const layout = el("div", `cw-card__layout${visual ? " has-visual" : ""}`);
+  const layout = el("div", `cw-page__layout${visual ? " has-visual" : ""}`);
   if (visual) {
-    const visualCol = el("div", "cw-card__visual");
+    const visualCol = el("div", "cw-page__visual");
     visualCol.appendChild(visual.node);
     layout.appendChild(visualCol);
   }
   const steps = el("ol", "cw-steps");
   layout.appendChild(steps);
-  article.appendChild(layout);
+  page.appendChild(layout);
 
   const stepSpecs = card.schritte || [];
   let current = 0;
@@ -619,7 +625,7 @@ function buildCard(card, cardIndex, onCardComplete) {
   function renderNextStep() {
     if (current >= stepSpecs.length) {
       complete = true;
-      onCardComplete();
+      onComplete(page);
       return;
     }
     const spec = stepSpecs[current];
@@ -660,14 +666,14 @@ function buildCard(card, cardIndex, onCardComplete) {
 
   let started = false;
   return {
-    node: article,
+    node: page,
     phase: phase.key,
     isComplete: () => complete,
     show() {
-      article.hidden = false;
+      page.hidden = false;
       if (!started) {
         started = true;
-        typeset(article).then(() => {
+        typeset(page).then(() => {
           visual?.render();
           renderNextStep();
         });
@@ -676,59 +682,63 @@ function buildCard(card, cardIndex, onCardComplete) {
       }
     },
     hide() {
-      article.hidden = true;
+      page.hidden = true;
     },
   };
 }
 
-function buildHeader(data) {
-  const header = el("header", "cw-head");
-  const top = el("div", "cw-head__top");
-  const meta = el("div", "cw-head__meta");
-  meta.appendChild(el("span", "cw-kicker", `Warm-Up · ${data.lernbereich_name || ""} · Check ${data.nummer ?? ""}`));
-  meta.appendChild(el("span", "cw-proto", "Prototyp"));
-  top.appendChild(meta);
+function buildCardHeader(data) {
+  const header = el("div", "check-card__header");
+  header.innerHTML = renderCheckMetaRowMarkup({
+    numberText: formatCheckNumber(data.nummer),
+    titleText: data.titel || "Warm-Up",
+    prefix: "Warm-Up",
+    rowClass: "check-card__header-left",
+    titleTag: "span",
+  });
+  const actions = el("div", "check-card__header-actions");
+  actions.appendChild(el("span", "cw-proto", "Prototyp"));
   if (data.training_url) {
-    const skip = el("a", "cw-skip", "Direkt zum Training <span aria-hidden=\"true\">→</span>");
+    const skip = el("a", "cw-skip", "<span class=\"cw-skip__long\">Zum </span>Training <span aria-hidden=\"true\">→</span>");
     skip.href = data.training_url;
-    top.appendChild(skip);
+    skip.title = "Warm-Up überspringen und direkt zum Training";
+    actions.appendChild(skip);
   }
-  header.appendChild(top);
-  header.appendChild(el("h1", "cw-title", data.titel || "Warm-Up"));
-  if (data.kompetenz) {
-    const goal = el("p", "cw-goal");
-    goal.appendChild(el("span", "cw-goal__label", "Ziel"));
-    goal.appendChild(el("span", "cw-goal__text", `Ich kann ${data.kompetenz}`));
-    header.appendChild(goal);
-  }
-  const phases = el("ol", "cw-phases");
-  phases.setAttribute("aria-label", "Ablauf");
-  header.appendChild(phases);
-  return { header, phases };
+  header.appendChild(actions);
+  return header;
 }
 
-function renderPhaseBar(phasesNode, cards, activeIndex) {
+function renderPhaseBar(phasesNode, pages, activeIndex) {
   phasesNode.innerHTML = "";
-  const activePhase = cards[activeIndex]?.phase;
+  const activePhase = pages[activeIndex]?.phase;
   const activePhaseIndex = PHASES.findIndex((p) => p.key === activePhase);
   PHASES.forEach((phase, phaseIndex) => {
-    const cardIndexes = cards.map((card, index) => (card.phase === phase.key ? index : -1)).filter((i) => i >= 0);
-    if (!cardIndexes.length) return;
+    const pageIndexes = pages.map((page, index) => (page.phase === phase.key ? index : -1)).filter((i) => i >= 0);
+    if (!pageIndexes.length) return;
     const item = el("li", "cw-phase");
     if (phaseIndex < activePhaseIndex) item.classList.add("is-done");
-    if (phaseIndex === activePhaseIndex) item.classList.add("is-active");
+    if (phaseIndex === activePhaseIndex) {
+      item.classList.add("is-active");
+      item.setAttribute("aria-current", "step");
+    }
     item.appendChild(el("span", "cw-phase__label", phase.label));
     const dots = el("span", "cw-phase__dots");
-    cardIndexes.forEach((index) => {
+    pageIndexes.forEach((index) => {
       const dot = el("span", "cw-phase__dot");
       if (index < activeIndex) dot.classList.add("is-done");
       if (index === activeIndex) dot.classList.add("is-active");
       dots.appendChild(dot);
     });
     item.appendChild(dots);
-    if (phaseIndex === activePhaseIndex) item.setAttribute("aria-current", "step");
     phasesNode.appendChild(item);
   });
+}
+
+function buildFinish(data) {
+  const finish = el("div", "cw-finish");
+  finish.appendChild(el("span", "cw-finish__kicker", "Bereit fürs Training"));
+  finish.appendChild(el("div", "cw-finish__text", data.abschluss || "<p>Weiter geht es mit echten Trainingsaufgaben.</p>"));
+  return finish;
 }
 
 function init() {
@@ -745,52 +755,75 @@ function init() {
   }
 
   root.innerHTML = "";
-  const { header, phases } = buildHeader(data);
+  root.classList.add("cw-player");
+
+  const card = el("article", "check-card check-card--warmup cw-card");
+  const phases = el("ol", "cw-phases");
+  phases.setAttribute("aria-label", "Ablauf");
+  const body = el("div", "check-card__body cw-body");
+  card.append(buildCardHeader(data), phases, body);
+
   const stage = el("div", "cw-stage");
+  stage.appendChild(card);
+
   const nav = el("nav", "cw-nav");
+  nav.setAttribute("aria-label", "Warm-Up-Navigation");
   const backButton = el("button", "cw-btn cw-btn--ghost", "<span aria-hidden=\"true\">←</span> Zurück");
   backButton.type = "button";
   const nextButton = el("button", "cw-btn cw-btn--primary", "Weiter <span aria-hidden=\"true\">→</span>");
   nextButton.type = "button";
-  const finalLink = el("a", "cw-btn cw-btn--primary", "Weiter zum Training <span aria-hidden=\"true\">→</span>");
-  finalLink.href = data.training_url || "#";
-  nav.append(backButton, el("span", "cw-nav__spacer"), nextButton, finalLink);
-  root.append(header, stage, nav);
+  const trainingButton = el("button", "cw-btn cw-btn--primary", "Weiter zum Training <span aria-hidden=\"true\">→</span>");
+  trainingButton.type = "button";
+  trainingButton.addEventListener("click", () => {
+    if (data.training_url) window.location.href = data.training_url;
+  });
+  nav.append(backButton, el("span", "cw-nav__spacer"), nextButton, trainingButton);
+  root.append(stage, nav);
 
   let active = 0;
-  const cards = (data.karten || []).map((card, index) =>
-    buildCard(card, index, () => {
-      if (index === active) syncNav();
+  const cards = data.karten || [];
+  const pages = cards.map((entry, index) =>
+    buildPage(entry, index, {
+      goal: index === 0 && data.kompetenz ? buildGoal(data.kompetenz) : null,
+      onComplete: (pageNode) => {
+        if (index === cards.length - 1) {
+          const finish = buildFinish(data);
+          pageNode.appendChild(finish);
+          typeset(finish).then(() => scrollIntoViewSoft(finish));
+        }
+        if (index === active) syncNav();
+      },
     })
   );
-  cards.forEach((card) => {
-    card.hide();
-    stage.appendChild(card.node);
+  pages.forEach((page) => {
+    page.hide();
+    body.appendChild(page.node);
   });
 
   function syncNav() {
-    const isLast = active === cards.length - 1;
+    const isLast = active === pages.length - 1;
     backButton.disabled = active === 0;
     nextButton.hidden = isLast;
-    finalLink.hidden = !isLast;
-    nextButton.disabled = !cards[active]?.isComplete();
-    renderPhaseBar(phases, cards, active);
+    trainingButton.hidden = !isLast;
+    const complete = Boolean(pages[active]?.isComplete());
+    nextButton.disabled = !complete;
+    trainingButton.disabled = !complete;
+    renderPhaseBar(phases, pages, active);
   }
 
   function goTo(index) {
-    if (index < 0 || index >= cards.length) return;
-    cards[active]?.hide();
+    if (index < 0 || index >= pages.length) return;
+    pages[active]?.hide();
     active = index;
-    cards[active].show();
+    body.scrollTop = 0;
+    pages[active].show();
     syncNav();
-    header.scrollIntoView({ block: "start", behavior: "auto" });
   }
 
   backButton.addEventListener("click", () => goTo(active - 1));
   nextButton.addEventListener("click", () => goTo(active + 1));
 
-  active = 0;
-  cards[0]?.show();
+  pages[0]?.show();
   syncNav();
 }
 

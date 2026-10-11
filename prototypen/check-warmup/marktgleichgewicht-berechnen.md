@@ -10,17 +10,18 @@ published: true
 lernbereich: marktgleichgewicht-grundlagen
 gebiet: analysis
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-proto5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-proto5
+page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
 permalink: /prototypen/check-warmup/marktgleichgewicht-berechnen.html
 
 warmup:
   check_id: analysis__marktgleichgewicht-grundlagen__02
   nummer: 2
   lernbereich_name: 'Marktgleichgewicht – Grundlagen'
-  titel: 'Marktgleichgewicht berechnen'
+  titel: 'MGG berechnen (linear)'
   kompetenz: 'Kennzahlen des Marktgleichgewichts mit linearer Preis-Absatz- und Preis-Nachfrage-Funktionen berechnen.'
   training_url: /lernbereiche/analysis/marktgleichgewicht-grundlagen/training.html#check-2
+  abschluss: '<p>Im Training sind die Zahlen krummer – die Rechenmuster bleiben dieselben. Nimm den Taschenrechner dazu und prüfe jede Teilaufgabe einzeln.</p>'
   karten:
 
     # ── Phase A: Orientierung ──────────────────────────────────
@@ -211,16 +212,7 @@ warmup:
           felder:
             - { label: '$p_G=$', loesung: 30, einheit: 'GE', zeige: { punkte: [mg] } }
           hinweis: 'Setze $x_G$ in $p_N$ oder $p_A$ ein.'
-          danach: '<p>Stark – das waren alle Kennzahlen. In der Trainingsaufgabe sind die Zahlen krummer, die Rechenmuster bleiben dieselben.</p>'
-
-    # ── Übergabe ───────────────────────────────────────────────
-    - phase: uebergabe
-      titel: 'Jetzt du – eine echte Trainingsaufgabe'
-      text: '<p>Genau so sieht eine Aufgabe im Training aus. Die Zahlen sind krummer, also nimm den Taschenrechner dazu. Jede Teilaufgabe kannst du einzeln prüfen.</p>'
-      schritte:
-        - typ: aufgabe
-          sammlung: { gebiet: analysis, lernbereich: marktgleichgewicht-grundlagen, name: kennzahlen-rechnerisch-linear }
-          danach: '<p>Geschafft! Im Training warten weitere Aufgaben dieser Art.</p>'
+          danach: '<p>Stark – das waren alle Kennzahlen.</p>'
 ---
 
 <div class="page-shell w-wide">

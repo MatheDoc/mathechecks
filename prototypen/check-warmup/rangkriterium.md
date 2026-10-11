@@ -10,8 +10,8 @@ published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-proto5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-proto5
+page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
 permalink: /prototypen/check-warmup/rangkriterium.html
 
 warmup:
@@ -21,6 +21,7 @@ warmup:
   titel: 'Rangkriterium'
   kompetenz: 'mit Hilfe des Rang-Kriteriums die Anzahl der Lösungen eines linearen Gleichungssystems bestimmen.'
   training_url: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/training.html#check-5
+  abschluss: '<p>Im Training bekommst du genau diese vier Fragen – zu immer neuen Matrizen in Stufenform.</p>'
   karten:
 
     # ── Phase A: Orientierung ──────────────────────────────────
@@ -153,15 +154,6 @@ warmup:
           korrekt: 2
           hinweis: 'Die Ränge sind gleich – vergleiche sie mit $n$.'
           danach: '<p>$rg(A)=rg(A|y)=2&lt;4=n$ – unendlich viele Lösungen. Zwei Unbekannte bleiben frei wählbar.</p>'
-
-    # ── Übergabe ───────────────────────────────────────────────
-    - phase: uebergabe
-      titel: 'Jetzt du – eine echte Trainingsaufgabe'
-      text: '<p>Eine echte Trainingsaufgabe: gleiche Fragen, gleiche Reihenfolge wie eben.</p>'
-      schritte:
-        - typ: aufgabe
-          sammlung: { gebiet: lineare-algebra, lernbereich: lineare-gleichungssysteme, name: lgs-rangkriterium }
-          danach: '<p>Geschafft! Im Training warten weitere Matrizen dieser Art.</p>'
 ---
 
 <div class="page-shell w-wide">
