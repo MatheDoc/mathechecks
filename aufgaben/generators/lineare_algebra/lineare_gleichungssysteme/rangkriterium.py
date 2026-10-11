@@ -30,34 +30,45 @@ def _build_case_sequence(count: int, rng: random.Random) -> list[str]:
     return sequence
 
 
-def _sample_dimensions(case: str, rng: random.Random) -> tuple[int, int]:
-    candidates: list[tuple[int, int]] = []
+def _shape_candidates(case: str) -> list[tuple[int, int, int]]:
+    """Moegliche (Zeilen, Spalten, Rang A); hoechstens eine Nullzeile, Rang A >= 1."""
+    candidates: list[tuple[int, int, int]] = []
     for rows in range(2, 5):
         for cols in range(2, 5):
-            if case == "eine_loesung" and cols > rows:
-                continue
-            candidates.append((rows, cols))
-    return rng.choice(candidates)
+            for rank_a in range(1, min(rows, cols) + 1):
+                zero_rows = rows - rank_a - (1 if case == "keine_loesung" else 0)
+                if zero_rows < 0 or zero_rows > 1 or (zero_rows == 1 and rows > 3):
+                    continue
+                if case == "eine_loesung":
+                    valid = rank_a == cols
+                elif case == "unendlich_viele_loesungen":
+                    valid = rank_a < cols
+                else:
+                    valid = True
+                if valid:
+                    candidates.append((rows, cols, rank_a))
+    return candidates
 
 
-def _sample_rank_a(case: str, rows: int, cols: int, rng: random.Random) -> int:
-    if case == "eine_loesung":
-        return cols
-
-    if case == "unendlich_viele_loesungen":
-        max_rank = min(rows, cols - 1)
-        return rng.randint(1, max_rank)
-
-    max_rank = min(cols, rows - 1)
-    return rng.randint(0, max_rank)
+def _sample_shape(case: str, rng: random.Random) -> tuple[int, int, int]:
+    candidates = _shape_candidates(case)
+    # Erst Dimension gleichverteilt waehlen, damit nicht eine Dimension dominiert.
+    dimensions = sorted({(rows, cols) for rows, cols, _ in candidates})
+    rows, cols = rng.choice(dimensions)
+    return rng.choice([shape for shape in candidates if shape[:2] == (rows, cols)])
 
 
 def _sample_pivot_columns(cols: int, rank_a: int, rng: random.Random) -> list[int]:
-    if rank_a == 0:
-        return []
     if rank_a == cols:
         return list(range(cols))
-    return sorted(rng.sample(range(cols), k=rank_a))
+    # Erste Spalte ist immer Pivotspalte, damit keine Nullspalte am Anfang entsteht.
+    return [0] + sorted(rng.sample(range(1, cols), k=rank_a - 1))
+
+
+def _random_entry(rng: random.Random, zero_probability: float) -> int:
+    if rng.random() < zero_probability:
+        return 0
+    return _random_non_zero_int(rng)
 
 
 def _build_echelon_augmented_matrix(
@@ -74,7 +85,7 @@ def _build_echelon_augmented_matrix(
         row = [0] * (cols + 1)
         row[pivot_col] = _random_non_zero_int(rng)
         for col in range(pivot_col + 1, cols + 1):
-            row[col] = rng.randint(-9, 9)
+            row[col] = _random_entry(rng, zero_probability=0.08)
         matrix.append(row)
 
     remaining_rows = rows - len(matrix)
@@ -124,8 +135,7 @@ class LgsRangkriteriumGenerator(TaskGenerator):
 
         for case in case_sequence:
             for _ in range(300):
-                rows, cols = _sample_dimensions(case=case, rng=rng)
-                rank_a = _sample_rank_a(case=case, rows=rows, cols=cols, rng=rng)
+                rows, cols, rank_a = _sample_shape(case=case, rng=rng)
                 matrix = _build_echelon_augmented_matrix(
                     rows=rows,
                     cols=cols,
