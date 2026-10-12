@@ -10,7 +10,7 @@ const ROOT_ID = "check-warmup-root";
 const DATA_ID = "check-warmup-data";
 
 const PHASES = [
-  { key: "orientierung", label: "Worum geht's?" },
+  { key: "orientierung", label: "Idee" },
   { key: "vormachen", label: "Zuschauen" },
   { key: "mitmachen", label: "Mitmachen" },
 ];
@@ -460,7 +460,7 @@ function buildMatchStep(step, ctx) {
   const leftCol = el("div", "cw-match__col");
   const rightCol = el("div", "cw-match__col");
   grid.append(leftCol, rightCol);
-  body.appendChild(el("p", "cw-step__help", step.hilfe || "Tippe links eine Karte an und dann rechts das passende Gegenstück."));
+  body.appendChild(el("p", "cw-step__help", step.hilfe || "Tippe eine Karte an und dann das passende Gegenstück."));
   body.appendChild(grid);
 
   let rightOrder = shuffle(pairs.map((_, index) => index));
@@ -599,10 +599,11 @@ function buildPage(card, pageIndex, { goal, onComplete }) {
   page.dataset.index = String(pageIndex);
 
   if (goal) page.appendChild(goal);
-  const head = el("header", "cw-page__head");
-  head.appendChild(el("span", "cw-chip", phase.label));
-  if (card.titel) head.appendChild(el("h2", "cw-page__title", card.titel));
-  page.appendChild(head);
+  if (card.titel) {
+    const head = el("header", "cw-page__head");
+    head.appendChild(el("h2", "cw-page__title", card.titel));
+    page.appendChild(head);
+  }
   if (card.text) page.appendChild(el("div", "cw-page__intro", card.text));
 
   const visual = createVisual(card.visual);

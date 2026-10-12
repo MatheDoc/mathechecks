@@ -10,8 +10,8 @@ published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
+page_css: /assets/css/check-warmup-prototype.css?v=20261012-mobile4
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261012-mobile4
 permalink: /prototypen/check-warmup/kostenkennzahlen-berechnen.html
 
 # Hinweis YAML: In einfachen Anführungszeichen wird ' verdoppelt: 'K''(x)' ergibt K'(x).
@@ -29,7 +29,7 @@ warmup:
     # ── Phase A: Orientierung ──────────────────────────────────
     - phase: orientierung
       titel: 'Drei Kurven, fünf Kennzahlen'
-      text: '<p>Aus der Kostenfunktion $K(x)=0{,}5x^3-6x^2+30x+48$ entstehen drei weitere Funktionen: die Grenzkosten $K''$, die variablen Stückkosten $k_v$ und die Stückkosten $k$. Fast alle Kennzahlen sind besondere Punkte dieser Kurven.</p>'
+      text: '<p>Aus der Kostenfunktion</p>$$K(x)=0{,}5x^3-6x^2+30x+48$$<p>entstehen drei weitere Funktionen: die Grenzkosten $K''$, die variablen Stückkosten $k_v$ und die Stückkosten $k$. Fast alle Kennzahlen sind besondere Punkte dieser Kurven.</p>'
       visual:
         typ: graph
         funktionen:
@@ -77,9 +77,9 @@ warmup:
       text: '<p>Für alle Kennzahlen brauchst du zuerst die passenden Funktionen.</p>'
       schritte:
         - typ: aufdecken
-          frage: 'Aus $K(x)=0{,}5x^3-6x^2+30x+48$ ergeben sich:'
+          frage: 'Aus $$K(x)=0{,}5x^3-6x^2+30x+48$$ ergeben sich:'
           knopf: 'Funktionen bilden'
-          text: '$$\begin{align*}K''(x)&=1{,}5x^2-12x+30 &&\text{Grenzkosten}\\ k_v(x)&=0{,}5x^2-6x+30 &&\text{variable Stückkosten}\\ k(x)&=0{,}5x^2-6x+30+\frac{48}{x} &&\text{Stückkosten}\end{align*}$$<p>$k_v$: Fixkosten weglassen und durch $x$ teilen. $k$: alles durch $x$ teilen.</p>'
+          text: '$$\begin{align*}K''(x)&=1{,}5x^2-12x+30\\ k_v(x)&=0{,}5x^2-6x+30\\ k(x)&=0{,}5x^2-6x+30+\frac{48}{x}\end{align*}$$<p>Grenzkosten $K''$: ableiten. Variable Stückkosten $k_v$: Fixkosten weglassen und durch $x$ teilen. Stückkosten $k$: alles durch $x$ teilen.</p>'
         - typ: auswahl
           frage: '<strong>Übergang degressiv → progressiv</strong> – das ist die Wendestelle von $K$. Welcher Ansatz passt?'
           optionen:
@@ -110,11 +110,11 @@ warmup:
         - typ: aufdecken
           frage: '<strong>Weg 1: Extremstelle von $k_v$</strong> – Ableitung null setzen.'
           knopf: 'Rechnung zeigen'
-          text: '$$\begin{align*}k_v''(x)=x-6&=0\;\Rightarrow\; x=6\\ k_v^{\prime\prime}(6)&=1>0\;(\text{Minimum})\end{align*}$$'
+          text: '$$\begin{align*}k_v''(x)=x-6&=0\\ x&=6\\ k_v^{\prime\prime}(6)=1&>0\;(\text{Minimum})\end{align*}$$'
         - typ: aufdecken
           frage: '<strong>Weg 2: Schnittstelle von $K''$ und $k_v$</strong> – gleichsetzen.'
           knopf: 'Rechnung zeigen'
-          text: '$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30 &&|-0{,}5x^2+6x-30\\ x^2-6x&=0\\ x(x-6)&=0\end{align*}$$<p>Also $x=0$ oder $x=6$.</p>'
+          text: '<p>$K''(x)=k_v(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30\\ x^2-6x&=0\\ x(x-6)&=0\end{align*}$$<p>Dafür auf beiden Seiten $0{,}5x^2$ abziehen, $6x$ addieren und $30$ abziehen. Also $x=0$ oder $x=6$.</p>'
           zeige: { punkte: [bm] }
         - typ: auswahl
           frage: 'Welche Lösung ist das Betriebsminimum?'
@@ -156,11 +156,11 @@ warmup:
             - '$48$'
           korrekt: 0
           hinweis: 'Schreibe $\frac{48}{x}=48x^{-1}$ und wende die Potenzregel an.'
-          danach: '$$\begin{align*}k''(x)=x-6-\frac{48}{x^2}&=0 &&|\cdot x^2\\ x^3-6x^2-48&=0\end{align*}$$'
+          danach: '$$\begin{align*}k''(x)=x-6-\frac{48}{x^2}&=0 \quad|\cdot x^2\\ x^3-6x^2-48&=0\end{align*}$$'
         - typ: aufdecken
           frage: '<strong>Weg 2: Schnittstelle von $K''$ und $k$</strong> – gleichsetzen.'
           knopf: 'Rechnung zeigen'
-          text: '$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30+\frac{48}{x} &&|-0{,}5x^2+6x-30\\ x^2-6x-\frac{48}{x}&=0 &&|\cdot x\\ x^3-6x^2-48&=0\end{align*}$$'
+          text: '<p>$K''(x)=k(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30+\tfrac{48}{x}\\ x^2-6x-\tfrac{48}{x}&=0 \quad|\cdot x\\ x^3-6x^2-48&=0\end{align*}$$<p>Im ersten Schritt wie beim Betriebsminimum: $0{,}5x^2$ abziehen, $6x$ addieren, $30$ abziehen.</p>'
         - typ: auswahl
           frage: 'Vergleiche die beiden Wege. Was fällt dir auf?'
           optionen:
@@ -194,7 +194,7 @@ warmup:
 
     - phase: mitmachen
       titel: 'Neue Funktion – Betriebsminimum'
-      text: '<p>Jetzt gilt $K(x)=0{,}5x^3-9x^2+60x+100$ mit</p>$$K''(x)=1{,}5x^2-18x+60,\quad k_v(x)=0{,}5x^2-9x+60,\quad k(x)=0{,}5x^2-9x+60+\frac{100}{x}$$'
+      text: '<p>Jetzt gilt</p>$$K(x)=0{,}5x^3-9x^2+60x+100$$<p>mit</p>$$\begin{align*}K''(x)&=1{,}5x^2-18x+60\\ k_v(x)&=0{,}5x^2-9x+60\end{align*}$$'
       visual:
         typ: graph
         funktionen:
@@ -237,7 +237,7 @@ warmup:
 
     - phase: mitmachen
       titel: 'Betriebsoptimum – mit weniger Hilfe'
-      text: '<p>Gleiche Funktion: $K''(x)=1{,}5x^2-18x+60$ und $k(x)=0{,}5x^2-9x+60+\frac{100}{x}$.</p>'
+      text: '<p>Gleiche Funktion, jetzt mit den Stückkosten:</p>$$\begin{align*}K''(x)&=1{,}5x^2-18x+60\\ k(x)&=0{,}5x^2-9x+60+\frac{100}{x}\end{align*}$$'
       visual:
         typ: graph
         funktionen:
@@ -271,7 +271,7 @@ warmup:
             - { einheit: '$x^2\;+$', loesung: -9 }
             - { einheit: '$=\;0$', loesung: -100 }
           hinweis: 'Nach dem Gleichsetzen bleibt $x^2-9x-\frac{100}{x}=0$. Multipliziere mit $x$.'
-          danach: '<p>Weg 1 führt auf dieselbe Gleichung: $k''(x)=x-9-\frac{100}{x^2}=0\;\big|\cdot x^2$.</p>'
+          danach: '<p>Weg 1 führt auf dieselbe Gleichung:</p>$$\begin{align*}k''(x)=x-9-\frac{100}{x^2}&=0 \quad|\cdot x^2\\ x^3-9x^2-100&=0\end{align*}$$'
         - typ: eingabe
           frage: 'Löse $x^3-9x^2-100=0$ mit dem Taschenrechner.'
           felder:
@@ -281,22 +281,8 @@ warmup:
           frage: '<strong>Langfristige Preisuntergrenze</strong> – jetzt ohne Vorgabe.'
           felder:
             - { label: '$k(10)=$', loesung: 30, einheit: 'GE/ME' }
-          hinweis: 'Rechne $k(10)=50-90+60+\frac{100}{10}$.'
+          hinweis: 'Rechne $50-90+60+10$.'
           danach: '<p>Probe über den Schnittpunkt: $K''(10)=150-180+60=30$ ✓</p>'
-
-    - phase: mitmachen
-      titel: 'Fast wie im Training'
-      text: '<p>Die Kostenfunktion lautet $K(x)=x^3-12x^2+50x+256$. Bestimme alle fünf Kennzahlen. Welchen Weg du nimmst, entscheidest du selbst.</p>'
-      schritte:
-        - typ: eingabe
-          felder:
-            - { label: 'Übergang degressiv → progressiv:', loesung: 4, einheit: 'ME' }
-            - { label: 'Betriebsminimum:', loesung: 6, einheit: 'ME' }
-            - { label: 'kurzfristige Preisuntergrenze:', loesung: 14, einheit: 'GE/ME' }
-            - { label: 'Betriebsoptimum:', loesung: 8, einheit: 'ME' }
-            - { label: 'langfristige Preisuntergrenze:', loesung: 50, einheit: 'GE/ME' }
-          hinweis: 'Stelle zuerst $K''(x)=3x^2-24x+50$, $k_v(x)=x^2-12x+50$ und $k(x)=x^2-12x+50+\frac{256}{x}$ auf. Für das Betriebsoptimum führen beide Wege auf $2x^3-12x^2-256=0$.'
-          danach: '<p>Stark – genau diese fünf Kennzahlen fragt das Training ab, nur mit krummeren Zahlen.</p>'
 ---
 
 <div class="page-shell w-wide">

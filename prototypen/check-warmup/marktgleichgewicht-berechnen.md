@@ -10,8 +10,8 @@ published: true
 lernbereich: marktgleichgewicht-grundlagen
 gebiet: analysis
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
+page_css: /assets/css/check-warmup-prototype.css?v=20261012-mobile4
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261012-mobile4
 permalink: /prototypen/check-warmup/marktgleichgewicht-berechnen.html
 
 warmup:
@@ -97,7 +97,7 @@ warmup:
         - typ: aufdecken
           frage: '<strong>Sättigungsmenge</strong> – dort trifft $p_N$ die $x$-Achse, also $p_N(x)=0$.'
           knopf: 'Rechnung zeigen'
-          text: '$$\begin{align*}-2x+42&=0 &&|-42\\ -2x&=-42 &&|:(-2)\\ x&=21\end{align*}$$<p>Die Sättigungsmenge beträgt $21$ ME.</p>'
+          text: '$$\begin{align*}-2x+42&=0 \quad|-42\\ -2x&=-42 \quad|:(-2)\\ x&=21\end{align*}$$<p>Die Sättigungsmenge beträgt $21$ ME.</p>'
           zeige: { punkte: [sm] }
 
     - phase: vormachen
@@ -127,7 +127,7 @@ warmup:
           hinweis: 'Gesucht ist der Schnittpunkt der beiden Geraden.'
         - typ: aufdecken
           knopf: 'Gleichung lösen'
-          text: '$$\begin{align*}-2x+42&=1{,}5x+14 &&|+2x-14\\ 28&=3{,}5x &&|:3{,}5\\ x_G&=8\end{align*}$$<p>Die Gleichgewichtsmenge beträgt $8$ ME.</p>'
+          text: '$$\begin{align*}-2x+42&=1{,}5x+14 \quad|+2x-14\\ 28&=3{,}5x \quad|:3{,}5\\ x_G&=8\end{align*}$$<p>Die Gleichgewichtsmenge beträgt $8$ ME.</p>'
         - typ: aufdecken
           frage: '<strong>Gleichgewichtspreis</strong> – $x_G=8$ in eine der beiden Funktionen einsetzen.'
           knopf: 'Einsetzen'
@@ -180,7 +180,7 @@ warmup:
             - { label: '$p_A(0)=$', loesung: 10, einheit: 'GE', zeige: { punkte: [map] } }
           hinweis: 'Wie beim Höchstpreis – nur mit $p_A$.'
         - typ: eingabe
-          frage: '<strong>Sättigungsmenge</strong> – die Umformung ist schon fast fertig: $$\begin{align*}-3x+60&=0 &&|-60\\ -3x&=-60 &&|:(-3)\end{align*}$$'
+          frage: '<strong>Sättigungsmenge</strong> – die Umformung ist schon fast fertig: $$\begin{align*}-3x+60&=0 \quad|-60\\ -3x&=-60 \quad|:(-3)\end{align*}$$'
           felder:
             - { label: '$x=$', loesung: 20, einheit: 'ME', zeige: { punkte: [sm] } }
           hinweis: 'Teile $-60$ durch $-3$.'

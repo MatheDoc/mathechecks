@@ -10,8 +10,8 @@ published: true
 lernbereich: bedingte-wahrscheinlichkeiten
 gebiet: stochastik
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
+page_css: /assets/css/check-warmup-prototype.css?v=20261012-mobile4
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261012-mobile4
 permalink: /prototypen/check-warmup/baumdiagramm-unabhaengigkeit.html
 
 warmup:

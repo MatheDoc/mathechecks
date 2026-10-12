@@ -10,8 +10,8 @@ published: true
 lernbereich: lineare-gleichungssysteme
 gebiet: lineare-algebra
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
+page_css: /assets/css/check-warmup-prototype.css?v=20261012-mobile4
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261012-mobile4
 permalink: /prototypen/check-warmup/rangkriterium.html
 
 warmup:
@@ -21,7 +21,7 @@ warmup:
   titel: 'Rangkriterium'
   kompetenz: 'mit Hilfe des Rang-Kriteriums die Anzahl der Lösungen eines linearen Gleichungssystems bestimmen.'
   training_url: /lernbereiche/lineare-algebra/lineare-gleichungssysteme/training.html#check-5
-  abschluss: '<p>Im Training bekommst du genau diese vier Fragen – zu immer neuen Matrizen in Stufenform.</p>'
+  abschluss: '<p>Im Training bekommst du genau diese vier Fragen – zu immer neuen Matrizen in Stufenform. Achtung: Manche Matrizen haben mehr Spalten als Zeilen. $n$ ist immer die Anzahl der Spalten von $A$.</p>'
   karten:
 
     # ── Phase A: Orientierung ──────────────────────────────────
@@ -128,32 +128,6 @@ warmup:
           hinweis: 'Vergleiche zuerst die beiden Ränge miteinander, dann mit $n$.'
           danach: '<p>$rg(A)=rg(A|y)=n=3$ – genau eine Lösung.</p>'
 
-    - phase: mitmachen
-      titel: 'Fast wie im Training'
-      text: '<p>Jetzt ohne Markierhilfe. Achtung: Diese Matrix hat mehr Spalten als Zeilen.</p>'
-      visual:
-        typ: matrix
-        name: '$(A|y)=$'
-        trenn: 4
-        zeilen:
-          - [1, 3, -2, 0, 5]
-          - [0, 0, 1, 4, 2]
-      schritte:
-        - typ: eingabe
-          felder:
-            - { label: '$rg(A)=$', loesung: 2 }
-            - { label: '$rg(A|y)=$', loesung: 2 }
-            - { label: '$n=$', loesung: 4 }
-          hinweis: '$n$ ist die Anzahl der Spalten von $A$ – nicht die Anzahl der Zeilen.'
-        - typ: auswahl
-          frage: 'Folgerung zur Lösungsmenge:'
-          optionen:
-            - 'keine Lösung'
-            - 'genau eine Lösung'
-            - 'unendlich viele Lösungen'
-          korrekt: 2
-          hinweis: 'Die Ränge sind gleich – vergleiche sie mit $n$.'
-          danach: '<p>$rg(A)=rg(A|y)=2&lt;4=n$ – unendlich viele Lösungen. Zwei Unbekannte bleiben frei wählbar.</p>'
 ---
 
 <div class="page-shell w-wide">

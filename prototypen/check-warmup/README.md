@@ -22,10 +22,10 @@ Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen e
 ## Didaktische Leitlinien
 
 1. **Leicht hinein, motivierender Einstieg.** Die erste Karte macht in wenigen Klicks klar, worum es geht. Sie ist kein Test.
-2. **Lernen am vorgerechneten Beispiel, dann Fading.** Zuerst wird vorgemacht, dann übernehmen die Lernenden schrittweise selbst. Die letzte Mitmachen-Karte sieht schon fast aus wie eine Trainingsaufgabe.
+2. **Lernen am vorgerechneten Beispiel, dann Fading.** Zuerst wird vorgemacht, dann übernehmen die Lernenden schrittweise selbst. Das Fading endet **kurz vor** der Trainingsaufgabe: Die letzte Mitmachen-Karte gibt noch eine kleine Hilfe oder übt einen Teilschritt.
 3. **Ausgeblendet werden Lösungsschritte, nicht Teilaufgaben.** Bei unabhängigen Teilaufgaben richtet sich das Fading nach dem **Rechenmuster**. Beispiel Marktgleichgewicht: Höchstpreis und Mindestangebotspreis haben dasselbe Muster ($p(0)$). Den einen rechnet man mit Vorgabe, den anderen allein.
 4. **Leichte Kontrollfragen statt bloßem Durchklicken.** Fast jeder Schritt verlangt eine kleine, aber echte Entscheidung: eine Auswahl, eine Zahl oder eine Zuordnung. Dass am Ende nicht alles verstanden ist, nehmen wir in Kauf.
-5. **Kein Doppel zum Training.** Das Warm-Up endet mit „Weiter zum Training“ und enthält keine echte Trainingsaufgabe.
+5. **Kein Doppel zum Training.** Das Warm-Up endet mit „Weiter zum Training“ und enthält keine echte Trainingsaufgabe. Es gibt auch **keine Karte, die einer Trainingsaufgabe entspricht** (gleiche Fragen, keine Hilfe, z. B. „Fast wie im Training“). Wichtige Hinweise für das Training, etwa auf Fallen, gehören in den Abschlusstext `abschluss`.
 6. **Übersprungen werden kann immer.** „Zum Training →“ steht im Kartenkopf.
 7. **Lücken zum Training schließen.** Kommen in der Aufgabensammlung Informationstypen vor, die im Musterbeispiel fehlen, bekommen sie eine eigene kurze Vormachen-Karte. Beispiel Kostenfunktion: Stückkosten und Betriebsoptimum.
 8. **Gleichwertige Lösungswege nebeneinander zeigen.** Gibt es zwei übliche Wege (z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle von $K'$ und $k_v$), werden beide vorgemacht und in einer Kontrollfrage verglichen („Beide führen auf dieselbe Gleichung“). Beim Mitmachen wird mindestens einmal jeder Weg geübt, auf der letzten Karte ist der Weg frei wählbar. Am besten macht man die Gleichwertigkeit schon in der Orientierung am Graphen sichtbar.
@@ -34,7 +34,7 @@ Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen e
 
 | Phase (`phase`) | Anzeige | Zweck | Typischer Umfang |
 |---|---|---|---|
-| `orientierung` | Worum geht's? | Thema, Nutzen, ein Aha-Moment | 1 Karte, 1–3 Schritte |
+| `orientierung` | Idee | Thema, Nutzen, ein Aha-Moment | 1 Karte, 1–3 Schritte |
 | `vormachen` | Zuschauen | Musterbeispiel Schritt für Schritt, mit leichten Kontrollfragen | 1–3 Karten |
 | `mitmachen` | Mitmachen | Neue Zahlen, Hilfe nimmt ab bis fast zur Trainingsaufgabe | 2–4 Karten |
 
@@ -52,6 +52,10 @@ Insgesamt 5–8 Karten. Die Zahl der Karten pro Phase ist frei.
 Layout: `layout: shell` mit `body_class: page-module page-check-warmup-prototype`. Die Karte ist eine echte `check-card check-card--warmup` mit dem Standard-Kartenkopf aus `renderCheckMetaRowMarkup`.
 
 **Feste Kartenhöhe:** Die Karte füllt die Höhe zwischen Kopfleiste und Navigation. Nur der Kartenkörper (`.cw-body`) scrollt. Kartenkopf, Phasenleiste und „Zurück/Weiter“ bleiben an ihrem Platz. Ab 960 px stehen Bild und Schritte nebeneinander, und das Bild bleibt beim Scrollen stehen.
+
+**Kartentitel ohne Phasen-Label:** Die aktuelle Phase zeigt allein die Phasenleiste. Vor dem Kartentitel steht kein eigenes Phasen-Label.
+
+**Breitenbegrenzung:** Alle Rasterspalten im Warm-Up sind `minmax(0, 1fr)`. Sonst würde eine breite Formel die ganze Spalte und damit die Karte verbreitern. Abgesetzte Formeln (`mjx-container[display="true"]`) scrollen bei Bedarf in ihrem eigenen Kasten.
 
 **Ablauf im Skript:**
 - Die Schritte einer Karte erscheinen nacheinander.
@@ -162,8 +166,8 @@ Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit 
 4. **Ablauf skizzieren:** Orientierung (Aha-Moment), Vormachen mit dem Musterbeispiel, Mitmachen mit **neuen Zahlen** und abnehmender Hilfe:
    1. Ansatz vorgegeben, nur das Ergebnis eintragen
    2. Ansatz auswählen, dann rechnen
-   3. ohne Vorgabe
-   Das Fading richtet sich nach dem Rechenmuster, nicht nach der Reihenfolge der Teilaufgaben.
+   3. einzelne Teilschritte ohne Vorgabe
+   Das Fading richtet sich nach dem Rechenmuster, nicht nach der Reihenfolge der Teilaufgaben. Es endet, bevor eine komplette Trainingsaufgabe ohne Hilfe entsteht.
 5. **Passendes Bild wählen:** Graph, Baum, Matrix, Steckbrief oder keins. Es soll sich mit den Antworten der Lernenden füllen (`zeige`).
 6. **Zahlen konstruieren und nachrechnen.** Glatte Werte wählen und alles per Skript prüfen. Fachliche Nebenbedingungen beachten, z. B. ob eine Kostenfunktion ertragsgesetzlich ist ($a>0$, $b<0$, $d>0$, $b^2\le 3ac$) oder ob Betriebsminimum < Betriebsoptimum gilt. Zuordnungsaufgaben müssen in sich stimmig sein.
 7. **Front Matter schreiben.** Am besten eine bestehende Seite kopieren. `titel` ist das `Schlagwort` aus `checks.json`. Einen Eintrag in [index.md](./index.md) ergänzen.
@@ -171,6 +175,11 @@ Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit 
 
 ### Fallstricke beim Schreiben
 
+- **Formeln auf dem Handy (Pflicht):** Jede Formel muss bei ~360 px Breite in die Karte passen.
+  - **Lange Formeln als abgesetzte Formel** (`$$…$$`), nie inline. Das gilt z. B. für Funktionen dritten Grades, Gleichungen mit Brüchen und Rechnungen mit mehreren Gliedern. Inline-Formeln können nicht umbrechen und nicht scrollen und drücken dann die Karte auseinander. Inline nur für kurze Ausdrücke wie $K'$, $k_v(6)$ oder $x=4$.
+  - **Abgesetzte Formeln schmal halten:** mehrere Funktionen untereinander in `align*` statt nebeneinander mit `\quad`. Rechnung und Ergebnis auf eigene Zeilen statt `…=48\;\Rightarrow\;d=48`. Keine `\text{…}`-Erklärungen hinter den Zeilen, die gehören in den Fließtext.
+  - **Umformungsangaben mit `\quad|`** schreiben, nicht mit `&&|`: `&&` erzeugt in `align*` eine sehr breite Lücke. Bei langen Umformungen (z. B. `|-0{,}5x^2+6x-30`) die Angabe ganz weglassen und im Text erklären.
+  - Ist eine abgesetzte Formel trotzdem zu breit, scrollt sie in ihrem eigenen Kasten (CSS-Absicherung). Das soll aber die Ausnahme bleiben.
 - **YAML in einfachen Anführungszeichen:** Ein Apostroph wird verdoppelt (`'K''(1)=19{,}5'`). Backslashes bleiben einfach (`'\frac{d}{x}'`). Das ist deutlich angenehmer als JSON. Für höhere Ableitungen daher `K^{\prime\prime}` statt `K''''` schreiben, das ist besser lesbar.
 - **Dezimalkomma in LaTeX:** `0{,}5`. In `loesung:` dagegen mit Punkt: `0.5`.
 - **`<` in HTML-Texten** als `&lt;` schreiben, z. B. `$2&lt;4$`.
@@ -184,7 +193,7 @@ Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit 
 - [ ] Jede Auswahl einmal falsch und dann richtig, jede Eingabe einmal falsch, mit Dezimalkomma und negativen Zahlen.
 - [ ] Bildänderungen (`zeige`) passieren an der richtigen Stelle.
 - [ ] Keine MathJax-Fehler (`mjx-merror`), keine Formel überläuft die Karte.
-- [ ] Desktop (≥ 960 px, Bild neben den Schritten) und Handy (~390 px): kein seitliches Scrollen, Navigation bleibt an ihrem Platz, Zuordnen steht untereinander.
+- [ ] Desktop (≥ 960 px, Bild neben den Schritten) und Handy (360–390 px): kein seitliches Scrollen, nichts ragt über den Kartenrand, Navigation bleibt an ihrem Platz, Zuordnen steht untereinander. Möglichst keine abgesetzte Formel scrollt im eigenen Kasten.
 - [ ] Hell- und Dunkelmodus.
 - [ ] Fachlich: alle Zahlen und Gleichungen nachgerechnet, Begriffe wie im Skript.
 
