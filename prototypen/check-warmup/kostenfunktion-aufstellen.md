@@ -10,8 +10,8 @@ published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
 prototype_key: check-warmup
-page_css: /assets/css/check-warmup-prototype.css?v=20261011-card5
-module_script: /assets/js/modules/check-warmup-prototype.js?v=20261011-card5
+page_css: /assets/css/check-warmup-prototype.css?v=20261012-mobile4
+module_script: /assets/js/modules/check-warmup-prototype.js?v=20261012-mobile4
 permalink: /prototypen/check-warmup/kostenfunktion-aufstellen.html
 
 warmup:
@@ -78,16 +78,16 @@ warmup:
         - typ: aufdecken
           frage: 'Zuerst die Werkzeuge: Neben $K$ brauchst du oft weitere Funktionen.'
           knopf: 'Werkzeuge zeigen'
-          text: '$$\begin{align*}K''(x)&=3ax^2+2bx+c &&\text{Grenzkosten}\\ k_v(x)&=ax^2+bx+c &&\text{variable Stückkosten}\\ k_v''(x)&=2ax+b\end{align*}$$'
+          text: '<p>Grenzkosten:</p>$$K''(x)=3ax^2+2bx+c$$<p>Variable Stückkosten und ihre Ableitung:</p>$$\begin{align*}k_v(x)&=ax^2+bx+c\\ k_v''(x)&=2ax+b\end{align*}$$'
         - typ: aufdecken
           frage: '<strong>Fixkosten</strong> – das sind die Kosten bei $0$ ME.'
           knopf: 'Gleichung zeigen'
-          text: '$$K(0)=a\cdot 0^3+b\cdot 0^2+c\cdot 0+d=48\;\Rightarrow\; d=48$$'
+          text: '$$\begin{align*}K(0)&=48\\ a\cdot 0^3+b\cdot 0^2+c\cdot 0+d&=48\\ d&=48\end{align*}$$'
           zeige: { eintraege: [fix] }
         - typ: aufdecken
           frage: '<strong>Kosten bei 2 ME</strong> – setze $x=2$ in $K$ ein.'
           knopf: 'Gleichung zeigen'
-          text: '$$K(2)=a\cdot 2^3+b\cdot 2^2+c\cdot 2+d=88\;\Rightarrow\; 8a+4b+2c+d=88$$'
+          text: '$$\begin{align*}K(2)&=88\\ a\cdot 2^3+b\cdot 2^2+c\cdot 2+d&=88\\ 8a+4b+2c+d&=88\end{align*}$$'
           zeige: { eintraege: [k2] }
         - typ: auswahl
           frage: '<strong>Grenzkosten bei 1 ME</strong> – welche Funktion brauchst du?'
@@ -97,7 +97,7 @@ warmup:
             - '$k_v(1)=19{,}5$'
           korrekt: 1
           hinweis: 'Grenzkosten sind die Ableitung der Kosten.'
-          danach: '$$K''(1)=3a\cdot 1^2+2b\cdot 1+c=19{,}5\;\Rightarrow\; 3a+2b+c=19{,}5$$'
+          danach: '$$\begin{align*}K''(1)&=19{,}5\\ 3a\cdot 1^2+2b\cdot 1+c&=19{,}5\\ 3a+2b+c&=19{,}5\end{align*}$$'
           zeige: { eintraege: [gk] }
         - typ: auswahl
           frage: '<strong>Betriebsminimum bei 6 ME</strong> – dort sind die variablen Stückkosten minimal. Welche Gleichung passt?'
@@ -107,7 +107,7 @@ warmup:
             - '$K(6)=0$'
           korrekt: 1
           hinweis: 'An einer Minimalstelle ist die Ableitung null.'
-          danach: '$$k_v''(6)=2a\cdot 6+b=0\;\Rightarrow\; 12a+b=0$$<p>Das ist der Trick dieser Aufgaben: Eine Stelle wie das Betriebsminimum wird zu „Ableitung $=0$“.</p>'
+          danach: '$$\begin{align*}k_v''(6)&=0\\ 2a\cdot 6+b&=0\\ 12a+b&=0\end{align*}$$<p>Das ist der Trick dieser Aufgaben: Eine Stelle wie das Betriebsminimum wird zu „Ableitung $=0$“.</p>'
           zeige: { eintraege: [bm] }
 
     - phase: vormachen
@@ -129,7 +129,7 @@ warmup:
       schritte:
         - typ: aufdecken
           knopf: 'Lösen'
-          text: '$$\begin{array}{rcrcrcrcl} 8a&+&4b&+&2c&+&d&=&88\\ 12a&+&b&&&&&=&0\\ &&&&&&d&=&48\\ 3a&+&2b&+&c&&&=&19{,}5\end{array}$$<p>Mit dem Taschenrechner oder dem Gauß-Algorithmus erhältst du $a=0{,}5$, $b=-6$, $c=30$, $d=48$, also</p>$$K(x)=0{,}5x^3-6x^2+30x+48$$'
+          text: '$$\begin{align*}8a+4b+2c+d&=88\\ 12a+b&=0\\ d&=48\\ 3a+2b+c&=19{,}5\end{align*}$$<p>Mit dem Taschenrechner oder dem Gauß-Algorithmus erhältst du $a=0{,}5$, $b=-6$, $c=30$, $d=48$, also</p>$$K(x)=0{,}5x^3-6x^2+30x+48$$'
         - typ: eingabe
           frage: '<strong>Probe</strong> – stimmen die Kosten bei 2 ME? $$K(2)=0{,}5\cdot 8-6\cdot 4+30\cdot 2+48$$'
           felder:
@@ -143,11 +143,11 @@ warmup:
       schritte:
         - typ: aufdecken
           knopf: 'Funktionen zeigen'
-          text: '$$k(x)=ax^2+bx+c+\frac{d}{x},\qquad k''(x)=2ax+b-\frac{d}{x^2}$$'
+          text: '$$\begin{align*}k(x)&=ax^2+bx+c+\frac{d}{x}\\ k''(x)&=2ax+b-\frac{d}{x^2}\end{align*}$$'
         - typ: aufdecken
           frage: '<strong>Die Stückkosten bei 2 ME betragen 30 GE/ME.</strong>'
           knopf: 'Gleichung zeigen'
-          text: '$$\begin{align*}k(2)=4a+2b+c+\frac{d}{2}&=30 &&|\cdot 2\\ 8a+4b+2c+d&=60\end{align*}$$<p>Mit $2$ multiplizieren, damit kein Bruch übrig bleibt. Das ist dasselbe wie $K(2)=2\cdot 30=60$.</p>'
+          text: '$$\begin{align*}k(2)&=30\\ 4a+2b+c+\frac{d}{2}&=30 \quad|\cdot 2\\ 8a+4b+2c+d&=60\end{align*}$$<p>Mit $2$ multiplizieren, damit kein Bruch übrig bleibt. Das ist dasselbe wie $K(2)=2\cdot 30=60$.</p>'
         - typ: auswahl
           frage: '<strong>Das Betriebsoptimum liegt bei 4 ME.</strong> Dort sind die Stückkosten minimal. Welche Gleichung passt?'
           optionen:
@@ -156,7 +156,7 @@ warmup:
             - '$k_v''(4)=0$'
           korrekt: 1
           hinweis: 'Betriebsoptimum gehört zu den Stückkosten $k$, Betriebsminimum zu $k_v$.'
-          danach: '$$\begin{align*}k''(4)=8a+b-\frac{d}{16}&=0 &&|\cdot 16\\ 128a+16b-d&=0\end{align*}$$'
+          danach: '$$\begin{align*}k''(4)&=0\\ 8a+b-\frac{d}{16}&=0 \quad|\cdot 16\\ 128a+16b-d&=0\end{align*}$$'
         - typ: auswahl
           frage: '<strong>Die langfristige Preisuntergrenze beträgt 25 GE/ME.</strong> Das ist der Wert der Stückkosten im Betriebsoptimum. Welche Gleichung passt?'
           optionen:
@@ -261,7 +261,7 @@ warmup:
           hinweis: 'Setze $x=8$ in $k_v(x)=ax^2+bx+c$ ein.'
 
     - phase: mitmachen
-      titel: 'Lösen – fast wie im Training'
+      titel: 'Jetzt lösen'
       text: '<p>Löse das Gleichungssystem aus dem Steckbrief, am besten mit dem Taschenrechner.</p>'
       visual:
         typ: liste
