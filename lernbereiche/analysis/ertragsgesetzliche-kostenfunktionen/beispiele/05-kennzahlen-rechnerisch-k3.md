@@ -44,7 +44,7 @@ Wir bestimmen zunächst:
     k_v(6) =  12
     $$
 
-    Die kurzristige Preisuntergrenze beträgt 12 GE / ME.
+    Die kurzfristige Preisuntergrenze beträgt 12 GE / ME.
 
 - Betriebsoptimum: Extremstelle von $k(x)=0{,}5x^2 - 6x + 30 + \frac{48}{x}$
 
@@ -53,8 +53,8 @@ Wir bestimmen zunächst:
     $$
     \begin{align*}
     x-6-\frac{48}{x^2} &= 0\quad |\cdot(x^2)\\
-    x^3-6x^2-48&0 \Rightarrow x = 6{,}98\\
-    k^{\prime\prime}(6{,}98)&=1{,}8 > 0 (\text{ Minimum})
+    x^3-6x^2-48&=0 \Rightarrow x = 6{,}98\\
+    k^{\prime\prime}(6{,}98)&=1{,}28 > 0 (\text{ Minimum})
     \end{align*}
     $$
 

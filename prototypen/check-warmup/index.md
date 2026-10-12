@@ -28,6 +28,12 @@ permalink: /prototypen/check-warmup/index.html
         </a>
       </li>
       <li>
+        <a href="{{ '/prototypen/check-warmup/kostenkennzahlen-berechnen.html' | relative_url }}">
+          <strong>Analysis · Kostenkennzahlen berechnen</strong>
+          <small>Zwei Wege zu Betriebsminimum und -optimum: Extremstelle von k<sub>v</sub>/k oder Schnittstelle mit K′.</small>
+        </a>
+      </li>
+      <li>
         <a href="{{ '/prototypen/check-warmup/kostenfunktion-aufstellen.html' | relative_url }}">
           <strong>Analysis · Kostenfunktion aufstellen (Steckbrief)</strong>
           <small>Informationen in Gleichungen übersetzen: Steckbrief wird abgehakt, Koeffizienten in der Gleichungszeile eintragen.</small>

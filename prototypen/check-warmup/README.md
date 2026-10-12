@@ -11,6 +11,7 @@ Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen e
 | Seite | Check | Erprobter Schwerpunkt |
 |---|---|---|
 | [marktgleichgewicht-berechnen.md](./marktgleichgewicht-berechnen.md) | `analysis__marktgleichgewicht-grundlagen__02` | Mehrere unabhängige Teilaufgaben; Fading nach Rechenmuster; Graph wächst mit |
+| [kostenkennzahlen-berechnen.md](./kostenkennzahlen-berechnen.md) | `analysis__ertragsgesetzliche-kostenfunktionen__05` | Zwei gleichwertige Lösungswege (Extremstelle oder Schnittstelle mit $K'$); Erkenntnis am Graphen, dann beide Wege vorgemacht und geübt |
 | [kostenfunktion-aufstellen.md](./kostenfunktion-aufstellen.md) | `analysis__ertragsgesetzliche-kostenfunktionen__06` | Informationen in Gleichungen übersetzen; Steckbrief wird abgehakt; Gleichungszeile |
 | [baumdiagramm-unabhaengigkeit.md](./baumdiagramm-unabhaengigkeit.md) | `stochastik__bedingte-wahrscheinlichkeiten__02` | Ein Lösungsweg mit Schlüsselschritt; Baum füllt sich |
 | [rangkriterium.md](./rangkriterium.md) | `lineare-algebra__lineare-gleichungssysteme__05` | Begriff und Verfahren; Zeilen in der Matrix antippen |
@@ -27,6 +28,7 @@ Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen e
 5. **Kein Doppel zum Training.** Das Warm-Up endet mit „Weiter zum Training“ und enthält keine echte Trainingsaufgabe.
 6. **Übersprungen werden kann immer.** „Zum Training →“ steht im Kartenkopf.
 7. **Lücken zum Training schließen.** Kommen in der Aufgabensammlung Informationstypen vor, die im Musterbeispiel fehlen, bekommen sie eine eigene kurze Vormachen-Karte. Beispiel Kostenfunktion: Stückkosten und Betriebsoptimum.
+8. **Gleichwertige Lösungswege nebeneinander zeigen.** Gibt es zwei übliche Wege (z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle von $K'$ und $k_v$), werden beide vorgemacht und in einer Kontrollfrage verglichen („Beide führen auf dieselbe Gleichung“). Beim Mitmachen wird mindestens einmal jeder Weg geübt, auf der letzten Karte ist der Weg frei wählbar. Am besten macht man die Gleichwertigkeit schon in der Orientierung am Graphen sichtbar.
 
 ### Phasen
 
@@ -169,7 +171,7 @@ Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit 
 
 ### Fallstricke beim Schreiben
 
-- **YAML in einfachen Anführungszeichen:** Ein Apostroph wird verdoppelt (`'K''(1)=19{,}5'`). Backslashes bleiben einfach (`'\frac{d}{x}'`). Das ist deutlich angenehmer als JSON.
+- **YAML in einfachen Anführungszeichen:** Ein Apostroph wird verdoppelt (`'K''(1)=19{,}5'`). Backslashes bleiben einfach (`'\frac{d}{x}'`). Das ist deutlich angenehmer als JSON. Für höhere Ableitungen daher `K^{\prime\prime}` statt `K''''` schreiben, das ist besser lesbar.
 - **Dezimalkomma in LaTeX:** `0{,}5`. In `loesung:` dagegen mit Punkt: `0.5`.
 - **`<` in HTML-Texten** als `&lt;` schreiben, z. B. `$2&lt;4$`.
 - **Lange Kartentitel** werden im Kartenkopf abgeschnitten (wie in den anderen Modulen). Das `Schlagwort` sollte daher kurz sein.
