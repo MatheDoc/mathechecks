@@ -33,7 +33,6 @@ Finanzmathematik
 Jeder Lernbereich enthält mindestens folgende Dateien:
 
 `start.md`  
-`warmup.md`  
 `kompetenzliste.md`  
 `training.md`  
 `recall.md`  
@@ -76,6 +75,9 @@ Aufgabengenerator
 
 Skript-Widgets  
 → `.github/widgets.md`
+
+Warm-Up (geführter Einstieg pro Check, derzeit Prototyp, nicht verlinkt)  
+→ `prototypen/check-warmup/README.md`
 
 Klausuren  
 → `klausuren/README.md`

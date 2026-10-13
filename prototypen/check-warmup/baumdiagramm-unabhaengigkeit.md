@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): Baumdiagramm bei Unabhängigkeit"
-description: Isolierter Prototyp eines Check-Warm-Ups zum Check „Baumdiagramm vervollständigen bei Unabhängigkeit“.
+title: "Warm-Up (Prototyp): Baumdiagramm bei Unabhängigkeit"
+description: Isolierter Prototyp eines Warm-Ups zum Check „Baumdiagramm vervollständigen bei Unabhängigkeit“.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype

@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): Kostenfunktion aufstellen"
-description: Isolierter Prototyp eines Check-Warm-Ups zum Check „Kostenfunktion aufstellen“.
+title: "Warm-Up (Prototyp): Kostenfunktion aufstellen"
+description: Isolierter Prototyp eines Warm-Ups zum Check „Kostenfunktion aufstellen“.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype

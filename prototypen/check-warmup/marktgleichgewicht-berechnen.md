@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): Marktgleichgewicht berechnen"
-description: Isolierter Prototyp eines Check-Warm-Ups zum Check „MGG berechnen (linear)“.
+title: "Warm-Up (Prototyp): Marktgleichgewicht berechnen"
+description: Isolierter Prototyp eines Warm-Ups zum Check „MGG berechnen (linear)“.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype

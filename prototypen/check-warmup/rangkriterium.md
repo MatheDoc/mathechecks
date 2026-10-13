@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): Rangkriterium"
-description: Isolierter Prototyp eines Check-Warm-Ups zum Check „Rangkriterium“.
+title: "Warm-Up (Prototyp): Rangkriterium"
+description: Isolierter Prototyp eines Warm-Ups zum Check „Rangkriterium“.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype

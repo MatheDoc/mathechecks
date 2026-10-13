@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up – Prototypen"
-description: Übersicht der isolierten Check-Warm-Up-Prototypen.
+title: "Warm-Up – Prototypen"
+description: Übersicht der isolierten Warm-Up-Prototypen.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype

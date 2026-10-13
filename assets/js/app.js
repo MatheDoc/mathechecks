@@ -8,7 +8,6 @@ import { initCheckAnker } from "./modules/check-anker.js?v=20260925-session-scop
 import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523-checks-url-fix";
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
-import { initWarmupModule } from "./modules/warmup.js";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
@@ -564,14 +563,6 @@ async function bootstrap() {
     await initStartModule({
       lernbereich: context.lernbereich,
       activityContext: context.activityContext,
-    });
-    return;
-  }
-
-  if (context.moduleKey === "warmup") {
-    await initWarmupModule({
-      lernbereich: context.lernbereich,
-      preferredCheckId: context.checkId,
     });
     return;
   }
