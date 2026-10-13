@@ -76,8 +76,8 @@ Aufgabengenerator
 Skript-Widgets  
 → `.github/widgets.md`
 
-Warm-Up (geführter Einstieg pro Check, derzeit Prototyp, nicht verlinkt)  
-→ `prototypen/check-warmup/README.md`
+Warm-Up (geführter Einstieg pro Check, nicht verlinkt)  
+→ `_data/warmup/README.md`
 
 Klausuren  
 → `klausuren/README.md`

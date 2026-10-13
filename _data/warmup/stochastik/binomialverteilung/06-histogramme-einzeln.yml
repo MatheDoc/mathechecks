@@ -1,0 +1,163 @@
+# Warm-Up zu Check 06 „Histogramm Einzel-Wkt“ (Binomialverteilung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Wie im Training: Werte auf 2 Nachkommastellen ablesen, Toleranz 0,01. Alle Ergebnisse so gewählt, dass die
+# Summe der abgelesenen (gerundeten) Balkenhöhen mit dem exakt gerundeten Wert übereinstimmt (per Skript geprüft).
+
+check_id: stochastik__binomialverteilung__06
+abschluss: '<p>Im Training gibt es zu jedem Histogramm vier Ereignisse: „genau“, „mehr als“, „höchstens“ und „mindestens … und weniger als …“. Bestimme zuerst die Balken, dann ablesen und addieren. Sind es viele Balken, nimm das Gegenereignis: $1$ minus die übrigen Balken. Ergebnisse auf 2 Nachkommastellen.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Was ein Balken zeigt'
+    text: '<p>Ein Bogenschütze schießt $10$-mal, jeder Schuss trifft mit $p=0{,}4$. Das Histogramm zeigt die Verteilung von $X$, der Anzahl der Treffer. Fährst du über einen Balken oder tippst ihn an, erscheint sein Wert.</p>'
+    visual:
+      typ: histogramm
+      n: 10
+      p: 0.4
+    schritte:
+      - typ: auswahl
+        frage: 'Was steht auf der waagerechten Achse?'
+        optionen:
+          - 'die Anzahl $k$ der Treffer'
+          - 'die Nummer des Schusses'
+          - 'die Wahrscheinlichkeit'
+        korrekt: 0
+        hinweis: 'Die Achse reicht von $0$ bis $10$, so viele Treffer sind möglich.'
+      - typ: auswahl
+        frage: 'Was gibt die Höhe des Balkens über $k=2$ an?'
+        optionen:
+          - '$P(X=2)$, die Wahrscheinlichkeit für genau $2$ Treffer'
+          - '$P(X\leq 2)$, die Wahrscheinlichkeit für höchstens $2$ Treffer'
+          - 'den Anteil $\frac{2}{10}=0{,}2$'
+        korrekt: 0
+        hinweis: 'Jeder Balken gehört zu genau einer Anzahl $k$.'
+        zeige: { bereiche: [[2, 2]] }
+      - typ: eingabe
+        frage: 'Lies den Wert ab, auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$P(X=2)\approx$', loesung: 0.12, toleranz: 0.01, aria: 'P(X gleich 2)', zeige: { werte: [2] } }
+        hinweis: 'Höhe des markierten Balkens an der senkrechten Achse ablesen, sie liegt etwas über $0{,}1$.'
+        danach: '<p>Für „genau $k$“ reicht also ein einziger Balken. Für Bereiche werden mehrere Balken addiert.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Balken addieren'
+    text: '<p>Gleicher Bogenschütze. Gesucht ist die Wahrscheinlichkeit für <strong>mindestens 7 Treffer</strong>, also die Balken über $7$, $8$, $9$ und $10$.</p>'
+    visual:
+      typ: histogramm
+      n: 10
+      p: 0.4
+      bereiche: [[7, 10]]
+    schritte:
+      - typ: aufdecken
+        frage: 'Die vier Balken ablesen und addieren.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}&P(X\geq 7)\\&\approx 0{,}04+0{,}01\\&\quad+0{,}00+0{,}00\\&=0{,}05\end{align*}$$'
+        zeige: { werte: [7, 8, 9, 10] }
+      - typ: auswahl
+        frage: '<strong>Mindestens 5 und weniger als 7</strong> Treffer: Welche Balken gehören dazu?'
+        optionen:
+          - '$5$ und $6$'
+          - '$5$, $6$ und $7$'
+          - '$6$ und $7$'
+        korrekt: 0
+        hinweis: '„Weniger als 7“: Die $7$ gehört nicht dazu.'
+        zeige: { bereiche: [[5, 6]], werte: [5, 6] }
+      - typ: eingabe
+        frage: 'Addiere die beiden Balken.'
+        felder:
+          - { label: '$P(5\leq X&lt;7)\approx$', loesung: 0.31, toleranz: 0.01, aria: 'P(5 kleiner gleich X kleiner 7)' }
+        hinweis: '$0{,}20+0{,}11$'
+
+  - phase: vormachen
+    titel: 'Gegenereignis spart Arbeit'
+    text: '<p>Gesucht ist die Wahrscheinlichkeit für <strong>höchstens 7 Treffer</strong>. Das sind acht Balken, von $0$ bis $7$.</p>'
+    visual:
+      typ: histogramm
+      n: 10
+      p: 0.4
+      bereiche: [[0, 7]]
+    schritte:
+      - typ: auswahl
+        frage: 'Alle Balken zusammen ergeben $1$. Wie geht es schneller als acht Balken zu addieren?'
+        optionen:
+          - '$1$ minus die Balken über $8$, $9$ und $10$'
+          - '$1$ minus den Balken über $7$'
+          - 'nur den Balken über $7$ ablesen'
+        korrekt: 0
+        hinweis: 'Welche Balken gehören <strong>nicht</strong> zu „höchstens 7“?'
+        zeige: { gegen: [[8, 10]], werte: [8, 9, 10] }
+      - typ: aufdecken
+        frage: 'Die orangen Balken von $1$ abziehen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}&P(X\leq 7)\\&=1-P(X\geq 8)\\&\approx 1-(0{,}01+0{,}00+0{,}00)\\&=0{,}99\end{align*}$$'
+        danach: '<p>Weniger Balken heißt auch weniger Rundungsfehler. Die acht gerundeten Balken direkt addiert ergeben nur $0{,}98$.</p>'
+      - typ: auswahl
+        frage: '<strong>Mehr als 1 Treffer</strong>: Welche Balken ziehst du von $1$ ab?'
+        optionen:
+          - 'die Balken über $0$ und $1$'
+          - 'nur den Balken über $1$'
+          - 'die Balken über $0$, $1$ und $2$'
+        korrekt: 0
+        hinweis: '„Mehr als 1“ heißt $2$ bis $10$. Was bleibt übrig?'
+        zeige: { bereiche: [[2, 10]], gegen: [[0, 1]], werte: [0, 1] }
+      - typ: eingabe
+        frage: 'Berechne den Wert.'
+        felder:
+          - { label: '$P(X&gt;1)\approx$', loesung: 0.95, toleranz: 0.01, aria: 'P(X größer 1)' }
+        hinweis: '$1-0{,}01-0{,}04$'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neues Histogramm: Busfahrten'
+    text: '<p>Ein Bus ist mit einer Wahrscheinlichkeit von $70\,\%$ pünktlich. Es werden $12$ Fahrten beobachtet, $X$ zählt die pünktlichen Fahrten.</p>'
+    visual:
+      typ: histogramm
+      n: 12
+      p: 0.7
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Genau 8</strong> pünktliche Fahrten.'
+        felder:
+          - { label: '$P(X=8)\approx$', loesung: 0.23, toleranz: 0.01, aria: 'P(X gleich 8)', zeige: { bereiche: [[8, 8]], werte: [8] } }
+        hinweis: 'Ein einziger Balken, der über $8$.'
+      - typ: auswahl
+        frage: '<strong>Mehr als 9</strong> pünktliche Fahrten: Welche Balken?'
+        optionen:
+          - '$10$, $11$ und $12$'
+          - '$9$ bis $12$'
+          - '$0$ bis $9$'
+        korrekt: 0
+        hinweis: '„Mehr als 9“: Die $9$ gehört nicht dazu.'
+        zeige: { bereiche: [[10, 12]], werte: [10, 11, 12] }
+      - typ: eingabe
+        frage: 'Addiere die Balken.'
+        felder:
+          - { label: '$P(X&gt;9)\approx$', loesung: 0.25, toleranz: 0.01, aria: 'P(X größer 9)' }
+        hinweis: '$0{,}17+0{,}07+0{,}01$'
+
+  - phase: mitmachen
+    titel: 'Fast allein'
+    text: '<p>Weiter mit den $12$ Busfahrten. Zu jeder Frage gibt es noch einen kleinen Tipp.</p>'
+    visual:
+      typ: histogramm
+      n: 12
+      p: 0.7
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Höchstens 9</strong> pünktliche Fahrten. Tipp: Gegenereignis.'
+        felder:
+          - { label: '$P\approx$', loesung: 0.75, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[0, 9]], gegen: [[10, 12]], werte: [10, 11, 12] } }
+        hinweis: 'Von $1$ die Balken über $10$, $11$ und $12$ abziehen.'
+      - typ: eingabe
+        frage: '<strong>Mindestens 6 und weniger als 9</strong> pünktliche Fahrten. Tipp: Gehört die $9$ dazu?'
+        felder:
+          - { label: '$P\approx$', loesung: 0.47, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[6, 8]], gegen: [], werte: [6, 7, 8] } }
+        hinweis: 'Die Balken über $6$, $7$ und $8$ addieren.'
+      - typ: eingabe
+        frage: '<strong>Mehr als 4</strong> pünktliche Fahrten. Tipp: Welche Balken sind es <em>nicht</em>?'
+        felder:
+          - { label: '$P\approx$', loesung: 0.99, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[5, 12]], gegen: [[0, 4]], werte: [4] } }
+        hinweis: 'Von $1$ die Balken über $0$ bis $4$ abziehen. Nur der über $4$ ist überhaupt zu sehen.'

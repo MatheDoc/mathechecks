@@ -1,0 +1,14 @@
+{% comment %}
+Warm-Up pro Check (nicht verlinkt, noindex). Daten: _data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml.
+Titel, Kompetenz, Nummer und Trainingslink ergänzt assets/js/modules/warmup.js aus checks.json.
+Auswahl des Checks über #check-<Nummer>. Format: _data/warmup/README.md
+{% endcomment %}
+<div class="check-jump-nav-wrap">
+    <nav id="warmup-jump-nav" class="check-jump-nav" aria-label="Check-Navigation"></nav>
+</div>
+<div class="page-shell w-wide">
+    <section id="warmup-root" class="cw-root" data-lernbereich="{{ page.lernbereich | default: '' | escape }}">
+        <p class="module-status">Das Warm-Up wird geladen …</p>
+    </section>
+</div>
+<script type="application/json" id="warmup-data">{{ site.data.warmup[page.gebiet][page.lernbereich] | jsonify }}</script>

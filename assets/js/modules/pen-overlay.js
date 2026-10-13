@@ -2,12 +2,17 @@
  * pen-overlay.js
  * Stift-Overlay für MatheChecks-Modulseiten.
  *
- * Werkzeuge: Stift · Textmarker · Lasso · Radierer
+ * Werkzeuge: Laserstift · Stift · Textmarker · Lasso · Radierer
  * Stift-Farben:  Blau, Grün, Rot, Orange
- * Marker-Farben: Gelb, Grün, Türkis, Hellrot
+ * Marker-Farben: Gelb, Grün, Türkis, Pink
  *
- * Shortcuts: P Stift · M Marker · L Lasso · E Radierer
+ * Laserstift (Standard): leuchtender orange-roter Strich mit weißem Kern zum
+ * Einkreisen/Zeigen. Nach einer kurzen Pause verblassen alle Laser-Striche
+ * gemeinsam. Sie sind flüchtig: kein Undo, kein Lasso, kein Radieren.
+ *
+ * Shortcuts: H Laserstift · P Stift · M Marker · L Lasso · E Radierer
  *            Ctrl+Z Rückgängig · Entf/Backspace Selektion löschen · Esc Abbrechen
+ *            (in Eingabefeldern inaktiv)
  *
  * Scratch-to-Erase: Zickzack-Kratzen mit dem Stift löscht gekreuzte Striche.
  */
@@ -23,14 +28,29 @@ const scrollEl = document.querySelector('.mod-main')
                || document.documentElement;
 
 // ─── Off-screen-Buffer für Marker-Rendering ───────────────────────────────────
-let markerBuf    = /** @type {OffscreenCanvas|null} */ (null);
-let markerBufCtx = /** @type {OffscreenCanvasRenderingContext2D|null} */ (null);
+let markerBuf    = /** @type {OffscreenCanvas|HTMLCanvasElement|null} */ (null);
+let markerBufCtx = /** @type {OffscreenCanvasRenderingContext2D|CanvasRenderingContext2D|null} */ (null);
+
+// Viewport-Größe in CSS-Pixeln und Geräte-Pixelverhältnis (scharfe Linien auf HiDPI).
+let viewW = 0;
+let viewH = 0;
+let dpr   = 1;
 
 // ─── Konstanten ───────────────────────────────────────────────────────────────
 const MARKER_WIDTH = 20;
 const MARKER_ALPHA = 0.46;
 const PEN_BASE_W   = 3;
 const ERASER_WIDTH = 28;
+
+// Laserstift: Farbe/Breiten und Ausblend-Timing
+const LASER_COLOR   = '#ff4a26';
+const LASER_GLOW    = 'rgba(255,74,38,0.85)';
+const LASER_WIDTH   = 6;
+const LASER_CORE_W  = 2.2;
+const LASER_HOLD_MS = 1400;  // Pause nach dem letzten Absetzen, bevor es verblasst
+const LASER_FADE_MS = 900;   // Dauer des Ausblendens
+
+const HISTORY_LIMIT = 60;
 
 // ─── Cursor-SVGs (dynamisch, farbabhängig) ────────────────────────────────────
 // _cur() kodiert das SVG genau einmal. Daher in den SVG-Strings literale Zeichen
@@ -66,6 +86,18 @@ function _cursorMarker(color) {
   );
 }
 
+function _cursorLaser() {
+  // Leuchtpunkt: orange-roter Hof mit weißem Kern, Hotspot in der Mitte.
+  return _cur(
+    `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'>`
+    + `<circle cx='10' cy='10' r='8' fill='${LASER_COLOR}' fill-opacity='0.28'/>`
+    + `<circle cx='10' cy='10' r='5' fill='${LASER_COLOR}' stroke='#ffffff' stroke-width='1'/>`
+    + `<circle cx='10' cy='10' r='2' fill='#ffffff'/>`
+    + `</svg>`,
+    10, 10
+  );
+}
+
 function _cursorEraser() {
   return _cur(
     `<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20'><rect x='1' y='5' width='18' height='11' rx='2' fill='#f8d7c4' stroke='#cc4455' stroke-width='1.5'/><line x1='1' y1='11' x2='19' y2='11' stroke='#cc4455' stroke-width='1'/></svg>`,
@@ -84,6 +116,7 @@ function applyToolCursor() {
   const body = document.body;
   if (!penMode) { body.style.removeProperty('--pen-cursor'); return; }
   const cursors = {
+    laser:  _cursorLaser(),
     pen:    _cursorPen(penColor),
     marker: _cursorMarker(markerColor),
     eraser: _cursorEraser(),
@@ -105,16 +138,18 @@ const ERASE_HIT_RADIUS      = 14;   // Trefferradius um den Kratzpfad (px)
 
 // ─── State ────────────────────────────────────────────────────────────────────
 let penMode     = false;
-let activeTool  = 'pen';   // 'pen' | 'marker' | 'lasso' | 'eraser'
+let activeTool  = 'laser'; // 'laser' | 'pen' | 'marker' | 'lasso' | 'eraser'
 let penColor    = '#3b82f6';
 let markerColor = '#ffe600';
 let drawing     = false;
 let _clipTop    = 0;       // Oberkante des Clip-Bereichs, pro redraw() berechnet
 let _capturedPid = /** @type {number|null} */ (null); // gefangener Pointer (Pen/Maus)
+let _activePid   = /** @type {number|null} */ (null); // Pointer des laufenden Strichs
 
 /**
  * @typedef {{ x: number, y: number, w: number }} Point
  * @typedef {{ tool: string, color: string, points: Point[], anchorEl: Element|null, clipEls: Element[] }} Stroke
+ * @typedef {Stroke & { fadeStart: number|null }} LaserStroke
  */
 
 /** @type {Stroke[]} */
@@ -123,24 +158,61 @@ let strokes = [];
 /** @type {Stroke|null} */
 let liveStroke = null;
 
+/** Flüchtige Laser-Striche (nicht in strokes, nicht im Undo). @type {LaserStroke[]} */
+let laserStrokes = [];
+/** Zeitpunkt, ab dem noch sichtbare Laser-Striche ausgeblendet werden. */
+let laserFadeAt = 0;
+
+/** Undo-Verlauf: Schnappschüsse von strokes vor jeder Änderung. @type {Stroke[][]} */
+let undoStack = [];
+
 // Lasso
 /** @type {{ x: number, y: number }[]} */
 let lassoPoints  = [];
 let lassoClosed  = false;
 /** @type {Set<number>} */
 let selectedIds  = new Set();
-/** @type {{ startX: number, startY: number, origStrokes: Map<number, Point[]>, origLasso: { x: number, y: number }[] }|null} */
+/** @type {{ startX: number, startY: number, moved: boolean, origStrokes: Map<number, Point[]>, origLasso: { x: number, y: number }[] }|null} */
 let dragState    = null;
 
+// ─── Redraw-Planung ───────────────────────────────────────────────────────────
+// Pointer- und Scroll-Events können deutlich häufiger als die Bildrate feuern.
+// requestRedraw() bündelt sie auf höchstens ein redraw() pro Frame. Solange
+// Laser-Striche sichtbar sind, läuft die Schleife für das Ausblenden weiter.
+let _rafId = 0;
+function requestRedraw() {
+  if (_rafId) return;
+  _rafId = requestAnimationFrame(() => {
+    _rafId = 0;
+    redraw();
+  });
+}
+
 // ─── Canvas-Größe ─────────────────────────────────────────────────────────────
+function createBuffer(w, h) {
+  if (typeof OffscreenCanvas !== 'undefined') return new OffscreenCanvas(w, h);
+  const c = document.createElement('canvas');
+  c.width = w;
+  c.height = h;
+  return c;
+}
+
 function syncSize() {
   const W = window.innerWidth;
   const H = window.innerHeight;
-  if (canvas.width === W && canvas.height === H) return;
-  canvas.width  = W;
-  canvas.height = H;
-  markerBuf     = new OffscreenCanvas(W, H);
+  const R = Math.max(1, window.devicePixelRatio || 1);
+  if (viewW === W && viewH === H && dpr === R) return;
+  viewW = W;
+  viewH = H;
+  dpr   = R;
+  canvas.width  = Math.round(W * R);
+  canvas.height = Math.round(H * R);
+  canvas.style.width  = `${W}px`;
+  canvas.style.height = `${H}px`;
+  ctx.setTransform(R, 0, 0, R, 0, 0);   // Zeichnen in CSS-Pixeln
+  markerBuf     = createBuffer(canvas.width, canvas.height);
   markerBufCtx  = markerBuf.getContext('2d');
+  markerBufCtx.setTransform(R, 0, 0, R, 0, 0);
   redraw();
 }
 
@@ -154,8 +226,10 @@ window.addEventListener('scroll', onAnyScroll, { passive: true, capture: true })
 function onAnyScroll() {
   // Selektion löst sich beim Scrollen vom Inhalt → aufheben.
   if (selectedIds.size || lassoPoints.length) clearSelection();
-  redraw();
+  requestRedraw();
 }
+
+
 
 // ─── Anker-System ─────────────────────────────────────────────────────────────
 // Jeder Strich wird an das tiefste Inhaltselement unter dem Zeiger gebunden.
@@ -238,7 +312,7 @@ function contentClipTop() {
 
 /** Sichtbares Clip-Rechteck eines Strichs (Schnitt aller Clip-Vorfahren). */
 function computeStrokeClip(s) {
-  let left = 0, top = 0, right = canvas.width, bottom = canvas.height;
+  let left = 0, top = 0, right = viewW, bottom = viewH;
   const els = s.clipEls || [];
   for (const el of els) {
     if (!el.isConnected) continue;
@@ -269,13 +343,18 @@ _contentObserver.observe(_contentRoot, { childList: true, subtree: true });
 function pruneOrphanStrokes() {
   const before = strokes.length;
   strokes = strokes.filter(s => !s.anchorEl || s.anchorEl.isConnected);
-  if (strokes.length !== before) clearSelection();
+  laserStrokes = laserStrokes.filter(s => !s.anchorEl || s.anchorEl.isConnected);
+  if (strokes.length !== before) {
+    clearSelection();
+    // Verwaiste Striche können nicht wiederkehren → Verlauf ebenfalls bereinigen.
+    undoStack = undoStack.map(snap => snap.filter(s => !s.anchorEl || s.anchorEl.isConnected));
+  }
   redraw();
 }
 
 // ─── Rendering ────────────────────────────────────────────────────────────────
 function redraw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.clearRect(0, 0, viewW, viewH);
   _clipTop = contentClipTop();
 
   for (let i = 0; i < strokes.length; i++) {
@@ -283,12 +362,40 @@ function redraw() {
     if (s.anchorEl && !s.anchorEl.isConnected) continue; // verwaist → nicht zeichnen
     renderStroke(ctx, s, selectedIds.has(i));
   }
-  if (liveStroke) renderStroke(ctx, liveStroke, false);
+  if (liveStroke && liveStroke.tool !== 'laser') renderStroke(ctx, liveStroke, false);
+  renderLaserLayer();
   if (lassoPoints.length > 1) renderLasso();
 }
 
+/**
+ * Laser-Striche liegen über allen Anmerkungen. Nach LASER_HOLD_MS ohne neuen
+ * Laser-Strich blenden alle sichtbaren gemeinsam über LASER_FADE_MS aus.
+ */
+function renderLaserLayer() {
+  const live = liveStroke && liveStroke.tool === 'laser' ? liveStroke : null;
+  if (!laserStrokes.length && !live) return;
+
+  const now = performance.now();
+  if (!live && now >= laserFadeAt) {
+    for (const s of laserStrokes) if (s.fadeStart === null) s.fadeStart = laserFadeAt;
+  }
+  laserStrokes = laserStrokes.filter(
+    s => s.fadeStart === null || now - s.fadeStart < LASER_FADE_MS
+  );
+
+  for (const s of laserStrokes) {
+    if (s.anchorEl && !s.anchorEl.isConnected) continue;
+    const t = s.fadeStart === null ? 0 : (now - s.fadeStart) / LASER_FADE_MS;
+    renderStroke(ctx, s, false, 1 - t * t * (3 - 2 * t)); // weiches Ausblenden
+  }
+  if (live) renderStroke(ctx, live, false, 1);
+
+  // Animation am Laufen halten, bis alles ausgeblendet ist.
+  if (laserStrokes.length || live) requestRedraw();
+}
+
 /** Rendert einen Strich in aktuellen Viewport-Koordinaten (anker-bezogen). */
-function renderStroke(c, s, selected) {
+function renderStroke(c, s, selected, alpha = 1) {
   const pts = strokeViewportPoints(s);
   if (pts.length < 2) return;
 
@@ -299,32 +406,84 @@ function renderStroke(c, s, selected) {
   c.rect(clip.left, clip.top, clip.right - clip.left, clip.bottom - clip.top);
   c.clip();
 
-  if (s.tool === 'marker')      renderMarker(c, pts, s.color, selected);
+  if (s.tool === 'laser')       renderLaser(c, pts, alpha);
+  else if (s.tool === 'marker') renderMarker(c, pts, s.color, selected, clip);
   else if (s.tool === 'eraser') renderEraser(c, pts);
   else                          renderPen(c, pts, s.color, selected);
 
   c.restore();
 }
 
-/** Stift-Strich. */
+/** Glatter Pfad durch die Punkte (Mittelpunkt-Quadratik). */
+function tracePath(c, pts) {
+  c.moveTo(pts[0].x, pts[0].y);
+  for (let i = 1; i < pts.length - 1; i++) {
+    const mx = (pts[i].x + pts[i + 1].x) / 2;
+    const my = (pts[i].y + pts[i + 1].y) / 2;
+    c.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
+  }
+  c.lineTo(pts[pts.length - 1].x, pts[pts.length - 1].y);
+}
+
+/**
+ * Stift-Strich mit druckabhängiger Breite. Ein Canvas-Pfad kennt nur eine
+ * lineWidth, daher werden aufeinanderfolgende Segmente gleicher (gerundeter)
+ * Breite zu Teilpfaden gebündelt. Da der Stift deckend ist, sind die
+ * Überlappungen an den runden Enden unsichtbar.
+ */
 function renderPen(c, pts, color, selected) {
   c.save();
   c.lineCap     = 'round';
   c.lineJoin    = 'round';
   c.strokeStyle = selected ? 'rgba(124,106,255,1)' : color;
   c.globalAlpha = 1;
-  c.beginPath();
-  c.moveTo(pts[0].x, pts[0].y);
+
+  let curW = -1;
+  let sx = pts[0].x, sy = pts[0].y;
   for (let i = 1; i < pts.length; i++) {
-    c.lineWidth = pts[i].w;
-    if (i < pts.length - 1) {
-      const mx = (pts[i].x + pts[i + 1].x) / 2;
-      const my = (pts[i].y + pts[i + 1].y) / 2;
-      c.quadraticCurveTo(pts[i].x, pts[i].y, mx, my);
-    } else {
-      c.lineTo(pts[i].x, pts[i].y);
+    const last = i === pts.length - 1;
+    const ex = last ? pts[i].x : (pts[i].x + pts[i + 1].x) / 2;
+    const ey = last ? pts[i].y : (pts[i].y + pts[i + 1].y) / 2;
+    const w  = Math.round(pts[i].w * 4) / 4;
+    if (w !== curW) {
+      if (curW >= 0) c.stroke();
+      c.beginPath();
+      c.moveTo(sx, sy);
+      c.lineWidth = w;
+      curW = w;
     }
+    if (last) c.lineTo(ex, ey);
+    else      c.quadraticCurveTo(pts[i].x, pts[i].y, ex, ey);
+    sx = ex; sy = ey;
   }
+  c.stroke();
+  c.restore();
+}
+
+/** Laserstift: leuchtender Farbhof + weißer Kern. */
+function renderLaser(c, pts, alpha) {
+  if (alpha <= 0) return;
+  c.save();
+  c.lineCap  = 'round';
+  c.lineJoin = 'round';
+  c.globalAlpha = alpha;
+
+  // Hof: farbiger Strich mit Leuchten (shadowBlur arbeitet in Gerätepixeln)
+  c.shadowColor = LASER_GLOW;
+  c.shadowBlur  = 14 * dpr;
+  c.strokeStyle = LASER_COLOR;
+  c.lineWidth   = LASER_WIDTH;
+  c.beginPath();
+  tracePath(c, pts);
+  c.stroke();
+
+  // Kern: heller, weißer Innenstrich
+  c.shadowBlur  = 3 * dpr;
+  c.shadowColor = 'rgba(255,255,255,0.9)';
+  c.strokeStyle = '#ffffff';
+  c.lineWidth   = LASER_CORE_W;
+  c.beginPath();
+  tracePath(c, pts);
   c.stroke();
   c.restore();
 }
@@ -332,11 +491,20 @@ function renderPen(c, pts, color, selected) {
 /**
  * Textmarker: Off-screen-Canvas verhindert Alpha-Akkumulation innerhalb
  * eines Strichs → gleichmäßige, flache Deckung wie ein echter Textmarker.
+ * Gepuffert wird nur der Bereich des Strichs (nicht der ganze Viewport).
  */
-function renderMarker(c, pts, color, selected) {
+function renderMarker(c, pts, color, selected, clip) {
   if (!markerBuf || !markerBufCtx) return;
+  const pad = MARKER_WIDTH;
+  const bb  = strokeBBox(pts);
+  const x0 = Math.max(Math.floor(bb.minX - pad), Math.floor(clip.left), 0);
+  const y0 = Math.max(Math.floor(bb.minY - pad), Math.floor(clip.top), 0);
+  const x1 = Math.min(Math.ceil(bb.maxX + pad), Math.ceil(clip.right), viewW);
+  const y1 = Math.min(Math.ceil(bb.maxY + pad), Math.ceil(clip.bottom), viewH);
+  if (x1 <= x0 || y1 <= y0) return;
+
   const mc = markerBufCtx;
-  mc.clearRect(0, 0, markerBuf.width, markerBuf.height);
+  mc.clearRect(x0, y0, x1 - x0, y1 - y0);
   mc.save();
   mc.lineCap     = 'square';
   mc.lineJoin    = 'bevel';
@@ -345,13 +513,17 @@ function renderMarker(c, pts, color, selected) {
   mc.globalAlpha = 1;
   mc.beginPath();
   mc.moveTo(pts[0].x, pts[0].y);
-  for (const pt of pts.slice(1)) mc.lineTo(pt.x, pt.y);
+  for (let i = 1; i < pts.length; i++) mc.lineTo(pts[i].x, pts[i].y);
   mc.stroke();
   mc.restore();
 
   c.save();
   c.globalAlpha = selected ? 0.64 : MARKER_ALPHA;
-  c.drawImage(markerBuf, 0, 0);
+  c.drawImage(
+    markerBuf,
+    x0 * dpr, y0 * dpr, (x1 - x0) * dpr, (y1 - y0) * dpr,
+    x0, y0, x1 - x0, y1 - y0
+  );
   c.restore();
 }
 
@@ -361,12 +533,9 @@ function renderEraser(c, pts) {
   c.lineCap     = 'round';
   c.lineJoin    = 'round';
   c.strokeStyle = 'rgba(0,0,0,1)';
+  c.lineWidth   = ERASER_WIDTH;
   c.beginPath();
-  c.moveTo(pts[0].x, pts[0].y);
-  for (const pt of pts.slice(1)) {
-    c.lineWidth = pt.w;
-    c.lineTo(pt.x, pt.y);
-  }
+  tracePath(c, pts);
   c.stroke();
   c.restore();
 }
@@ -463,12 +632,16 @@ function onClickGuard(e) {
 }
 
 function onDown(e) {
+  // Verlorenes pointerup (gleicher Pointer setzt erneut auf) → Strich abschließen
+  if ((drawing || dragState) && e.pointerId === _activePid) onUp(e);
   if (!penMode || drawing || dragState) return;
   if (!isDrawingPointer(e)) return;      // Finger → Seite scrollen lassen
+  if (e.button !== 0) return;            // nur Hauptknopf / Stiftspitze
   if (isPenUiTarget(e)) return;          // Toolbar bedienen, nicht zeichnen
   e.preventDefault();
   suppressNextClick = true;
   capturePointer(e);                     // Scroll-Geste für Pen/Maus unterdrücken
+  _activePid = e.pointerId;
 
   if (activeTool === 'lasso') {
     // Klick innerhalb bestehender Selektion → Drag starten
@@ -485,7 +658,9 @@ function onDown(e) {
   }
 
   drawing = true;
-  const color = activeTool === 'marker' ? markerColor : penColor;
+  const color = activeTool === 'marker' ? markerColor
+              : activeTool === 'laser'  ? LASER_COLOR
+              : penColor;
   const anchorEl = findAnchorEl(e.clientX, e.clientY);
   const clipEls = collectClipAncestors(anchorEl);
   liveStroke = { tool: activeTool, color, points: [], anchorEl, clipEls };
@@ -495,6 +670,7 @@ function onDown(e) {
 
 function onMove(e) {
   if (!penMode) return;
+  if (_activePid !== null && e.pointerId !== _activePid) return; // fremder Pointer (z. B. Handballen)
 
   if (dragState) {
     e.preventDefault();
@@ -507,7 +683,7 @@ function onMove(e) {
 
   if (activeTool === 'lasso') {
     lassoPoints.push({ x: e.clientX, y: e.clientY });
-    redraw();
+    requestRedraw();
     return;
   }
 
@@ -527,13 +703,15 @@ function onMove(e) {
   if (activeTool === 'pen' && liveStroke && liveStroke.points.length >= 3) {
     updateScratch(liveStroke);
   }
-  redraw();
+  requestRedraw();
 }
 
 function onUp(e) {
+  if (_activePid !== null && e.pointerId !== _activePid) return;
+  _activePid = null;
   releaseCapturedPointer();
   if (dragState) {
-    dragState = null;
+    finishDrag();
     return;
   }
   if (!drawing) return;
@@ -548,22 +726,42 @@ function onUp(e) {
     return;
   }
 
-  if (liveStroke && liveStroke.points.length >= 2) {
-    strokes.push(liveStroke);
-  }
+  const s = liveStroke;
   liveStroke = null;
+  if (s && s.points.length) {
+    // Einzelner Tipp → als Punkt darstellen (z. B. Malpunkt, Zeigepunkt)
+    if (s.points.length === 1) {
+      const p = s.points[0];
+      s.points.push({ x: p.x + 0.01, y: p.y, w: p.w });
+    }
+    if (s.tool === 'laser') {
+      laserStrokes.push({ ...s, fadeStart: null });
+      laserFadeAt = performance.now() + LASER_HOLD_MS;
+    } else {
+      pushHistory();
+      strokes.push(s);
+    }
+  }
   redraw();
 }
 
 function appendPoint(e) {
-  const pressure = e.pressure > 0 ? e.pressure : 0.5;
-  const w = activeTool === 'pen'
-    ? PEN_BASE_W * (0.5 + pressure)
-    : activeTool === 'eraser'
-      ? ERASER_WIDTH
-      : MARKER_WIDTH;
+  const pts = liveStroke.points;
+  let w;
+  if (activeTool === 'pen') {
+    // Druck glätten, damit die Strichbreite nicht flackert.
+    const pressure = e.pressure > 0 ? e.pressure : 0.5;
+    const target = PEN_BASE_W * (0.5 + pressure);
+    w = pts.length ? pts[pts.length - 1].w * 0.6 + target * 0.4 : target;
+  } else if (activeTool === 'eraser') {
+    w = ERASER_WIDTH;
+  } else if (activeTool === 'laser') {
+    w = LASER_WIDTH;
+  } else {
+    w = MARKER_WIDTH;
+  }
   const { ox, oy } = anchorOffset(liveStroke.anchorEl);
-  liveStroke.points.push({ x: e.clientX - ox, y: e.clientY - oy, w });
+  pts.push({ x: e.clientX - ox, y: e.clientY - oy, w });
 }
 
 // ─── Scratch-to-Erase ────────────────────────────────────────────────────────
@@ -678,6 +876,7 @@ function triggerScratchErase(scratchStroke) {
   });
 
   if (toDelete.size > 0) {
+    pushHistory();
     strokes = strokes.filter((_, i) => !toDelete.has(i));
   }
 
@@ -693,7 +892,7 @@ function triggerScratchErase(scratchStroke) {
 function flashErase() {
   ctx.save();
   ctx.fillStyle = 'rgba(239,68,68,0.08)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillRect(0, 0, viewW, viewH);
   ctx.restore();
   setTimeout(() => redraw(), 120);
 }
@@ -796,6 +995,7 @@ function clearSelection() {
 
 function deleteSelected() {
   if (!selectedIds.size) return;
+  pushHistory();
   strokes = strokes.filter((_, i) => !selectedIds.has(i));
   clearSelection();
   redraw();
@@ -803,13 +1003,15 @@ function deleteSelected() {
 
 // ─── Drag ─────────────────────────────────────────────────────────────────────
 function startDrag(clientX, clientY) {
+  pushHistory();
   const origStrokes = new Map();
   for (const i of selectedIds) {
-    origStrokes.set(i, strokes[i].points.map(p => ({ ...p })));
+    origStrokes.set(i, strokes[i].points);
   }
   dragState = {
     startX: clientX,
     startY: clientY,
+    moved: false,
     origStrokes,
     origLasso: lassoPoints.map(p => ({ ...p })),
   };
@@ -818,11 +1020,18 @@ function startDrag(clientX, clientY) {
 function applyDrag(clientX, clientY) {
   const dx = clientX - dragState.startX;
   const dy = clientY - dragState.startY;
+  if (dx || dy) dragState.moved = true;
+  // Neue Punkt-Arrays statt In-place-Änderung: Undo-Schnappschüsse bleiben intakt.
   for (const [i, origPts] of dragState.origStrokes) {
     strokes[i].points = origPts.map(p => ({ x: p.x + dx, y: p.y + dy, w: p.w }));
   }
   lassoPoints = dragState.origLasso.map(p => ({ x: p.x + dx, y: p.y + dy }));
-  redraw();
+  requestRedraw();
+}
+
+function finishDrag() {
+  if (dragState && !dragState.moved) undoStack.pop(); // reiner Klick → kein Undo-Schritt
+  dragState = null;
 }
 
 // ─── Hinweis-Bar ──────────────────────────────────────────────────────────────
@@ -842,27 +1051,52 @@ function updateLassoHint() {
 }
 
 // ─── Tastaturkürzel ───────────────────────────────────────────────────────────
+/** Tippt der Nutzer gerade in ein Eingabefeld? Dann keine Stift-Shortcuts. */
+function isEditableTarget(t) {
+  if (!t || !(t instanceof Element)) return false;
+  if (t.closest('input, textarea, select, [contenteditable=""], [contenteditable="true"]')) return true;
+  return /** @type {HTMLElement} */ (t).isContentEditable === true;
+}
+
+const TOOL_KEYS = { h: 'laser', p: 'pen', m: 'marker', e: 'eraser', l: 'lasso' };
+
 document.addEventListener('keydown', e => {
   if (!penMode) return;
+  if (isEditableTarget(e.target)) return;
   if ((e.key === 'Delete' || e.key === 'Backspace') && selectedIds.size) {
     e.preventDefault();
     deleteSelected();
     return;
   }
   if (e.key === 'Escape') { clearSelection(); redraw(); return; }
-  if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); undo(); return; }
-  if (!e.ctrlKey && !e.metaKey && !e.altKey) {
-    if (e.key === 'p') setTool('pen');
-    if (e.key === 'm') setTool('marker');
-    if (e.key === 'e') setTool('eraser');
-    if (e.key === 'l') setTool('lasso');
-  }
+  const key = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && !e.shiftKey && key === 'z') { e.preventDefault(); undo(); return; }
+  if (!e.ctrlKey && !e.metaKey && !e.altKey && TOOL_KEYS[key]) setTool(TOOL_KEYS[key]);
 });
 
 // ─── Undo ─────────────────────────────────────────────────────────────────────
+/**
+ * Merkt den aktuellen Zustand vor einer Änderung. Flache Kopien der Striche
+ * genügen, weil Punkt-Arrays nach dem Abschluss nie in-place verändert werden.
+ */
+function pushHistory() {
+  undoStack.push(strokes.map(s => ({ ...s })));
+  if (undoStack.length > HISTORY_LIMIT) undoStack.shift();
+}
+
 function undo() {
-  if (strokes.length === 0) return;
-  strokes.pop();
+  if (!undoStack.length) return;
+  strokes = /** @type {Stroke[]} */ (undoStack.pop());
+  clearSelection();
+  redraw();
+}
+
+function clearAll() {
+  if (!strokes.length && !laserStrokes.length) return;
+  if (strokes.length) pushHistory();
+  strokes = [];
+  laserStrokes = [];
+  liveStroke = null;
   clearSelection();
   redraw();
 }
@@ -877,6 +1111,7 @@ function setPenMode(on) {
   const toggle = document.getElementById('pen-btn-toggle');
   if (toggle) {
     toggle.classList.toggle('active', on);
+    toggle.setAttribute('aria-pressed', String(on));
     toggle.title = on ? 'Stiftmodus beenden' : 'Stiftmodus aktivieren';
   }
   document.querySelectorAll('.pen-tool').forEach(el => el.classList.toggle('visible', on));
@@ -885,11 +1120,13 @@ function setPenMode(on) {
     drawing = false;
     liveStroke = null;
     dragState  = null;
+    _activePid = null;
     releaseCapturedPointer();
     setPenInputActive(false);   // Scrollsperre aufheben
     clearSelection();
     redraw();
   }
+  updateLassoHint();            // Lösch-Button nur bei aktiver Selektion zeigen
   updateBodyClass();
 }
 
@@ -898,14 +1135,24 @@ function updateBodyClass() {
 }
 
 // ─── Werkzeug wählen ─────────────────────────────────────────────────────────
+const TOOL_BUTTONS = {
+  laser:  'pen-btn-laser',
+  pen:    'pen-btn-pen',
+  marker: 'pen-btn-marker',
+  lasso:  'pen-btn-lasso',
+  eraser: 'pen-btn-erase',
+};
+
 function setTool(name) {
   activeTool = name;
 
   // Button-Zustände
-  const toolIds = ['pen-btn-pen', 'pen-btn-marker', 'pen-btn-lasso', 'pen-btn-erase'];
-  toolIds.forEach(id => document.getElementById(id)?.classList.remove('pen-tool-active'));
-  const map = { pen: 'pen-btn-pen', marker: 'pen-btn-marker', lasso: 'pen-btn-lasso', eraser: 'pen-btn-erase' };
-  document.getElementById(map[name])?.classList.add('pen-tool-active');
+  for (const [tool, id] of Object.entries(TOOL_BUTTONS)) {
+    const btn = document.getElementById(id);
+    if (!btn) continue;
+    btn.classList.toggle('pen-tool-active', tool === name);
+    btn.setAttribute('aria-pressed', String(tool === name));
+  }
 
   // Farb-Paletten: Stift-Farben nur bei pen, Marker-Farben nur bei marker
   document.querySelectorAll('.pen-color-dot[data-mode="pen"]').forEach(el => {
@@ -926,21 +1173,15 @@ function setTool(name) {
 
 // ─── Toolbar-Verdrahtung ──────────────────────────────────────────────────────
 document.getElementById('pen-btn-toggle')?.addEventListener('click', () => setPenMode(!penMode));
-document.getElementById('pen-btn-pen')?.addEventListener('click',    () => setTool('pen'));
-document.getElementById('pen-btn-marker')?.addEventListener('click', () => setTool('marker'));
-document.getElementById('pen-btn-lasso')?.addEventListener('click',  () => setTool('lasso'));
-document.getElementById('pen-btn-erase')?.addEventListener('click',  () => setTool('eraser'));
+for (const [tool, id] of Object.entries(TOOL_BUTTONS)) {
+  document.getElementById(id)?.addEventListener('click', () => setTool(tool));
+}
 
 document.getElementById('pen-btn-undo')?.addEventListener('click', undo);
 
 document.getElementById('pen-btn-delete-sel')?.addEventListener('click', deleteSelected);
 
-document.getElementById('pen-btn-clear')?.addEventListener('click', () => {
-  strokes = [];
-  liveStroke = null;
-  clearSelection();
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-});
+document.getElementById('pen-btn-clear')?.addEventListener('click', clearAll);
 
 // Farb-Dots
 document.querySelectorAll('.pen-color-dot').forEach(btn => {
@@ -959,5 +1200,5 @@ document.querySelectorAll('.pen-color-dot').forEach(btn => {
   });
 });
 
-// Initialzustand: Marker-Farben verbergen (Stift ist Standard)
-setTool('pen');
+// Initialzustand: Laserstift ist Standard (Farb-Paletten verborgen)
+setTool('laser');

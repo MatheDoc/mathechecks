@@ -12,30 +12,31 @@ Du erstellst und überarbeitest **Warm-Ups pro Check**. Ein Warm-Up ist ein kurz
 
 ## Status
 
-- Aktuell als Prototyp unter `prototypen/check-warmup/` (eine MD-Seite pro Check, Daten im Front Matter).
-- Bewusst **nicht verlinkt** und nicht im Feed: nur über die URL aufrufbar, `noindex`, nicht in der Sitemap.
-- Geplante Verzahnung ins Projekt (eigene Datendateien, Modulseite `…/<lernbereich>/warmup.html`, Prüfskript): siehe README, Abschnitt „Bekannte Grenzen und offene Punkte“.
+- Ins Projekt verzahnt: eine Datendatei pro Check unter `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml`, eine Modulseite pro Lernbereich `lernbereiche/<gebiet>/<lb>/warmup.md` (`module_key: warmup`, Auswahl per `…/warmup.html#check-<Nummer>`), isolierte Übersicht `/warmup.html` (`warmup.md` im Wurzelverzeichnis).
+- Weiterhin bewusst **nicht verlinkt** und nicht im Feed: nur über die URL aufrufbar, `noindex`, nicht in der Sitemap, kein Reiter in der Modulnavigation, kein Fortschritt-Speichern.
+- Offene Punkte: siehe README, Abschnitt „Bekannte Grenzen und offene Punkte“.
 
 ## Pflichtlektüre
 
-- `prototypen/check-warmup/README.md` → Leitlinien, Entscheidungen, Datenformat, Arbeitsablauf, Fallstricke, Test-Checkliste
-- ein bestehender Prototyp als Vorlage, z. B. `prototypen/check-warmup/kostenkennzahlen-berechnen.md`
+- `_data/warmup/README.md` → Leitlinien, Entscheidungen, Datenformat, Arbeitsablauf, Fallstricke, Prüfskript, Test-Checkliste
+- eine bestehende Datendatei als Vorlage, z. B. `_data/warmup/analysis/ertragsgesetzliche-kostenfunktionen/05-kennzahlen-rechnerisch-k3.yml`
 - `.github/glossary.md` → LaTeX-Konventionen
 - `.github/datenmodell.md` → Quellen pro Check (`checks.json`, `beispiele/`, Aufgaben-JSON)
 
 ## Zuständigkeit
 
-- Warm-Up-Seiten bzw. -Daten pro Check
-- `assets/js/modules/check-warmup-prototype.js` – gemeinsames Abspielskript für alle Warm-Ups; neue Interaktionen nur als allgemeine Schritt- oder Bildtypen
-- `assets/css/check-warmup-prototype.css` – Styling (Präfix `cw-`)
+- Warm-Up-Daten pro Check (`_data/warmup/`) und die Modulseiten `lernbereiche/<gebiet>/<lb>/warmup.md`
+- `assets/js/modules/warmup.js` – gemeinsames Abspielskript für alle Warm-Ups (Einbindung über den Modulzweig in `assets/js/app.js`); neue Interaktionen nur als allgemeine Schritt- oder Bildtypen
+- `assets/css/warmup.css` – Styling (Präfix `cw-`)
+- `_includes/module/warmup-content.html` – Seitengerüst und eingebettete Daten
+- `_data/warmup/validate_warmup.py` – Prüfskript; nach jeder Änderung ausführen (`python _data/warmup/validate_warmup.py`)
 - Eintrag `warmup` in `_data/moduletypen.yml` (Kennfarbe)
 
 ## Prioritäten
 
 1. Fachliche Korrektheit: alle Zahlen und Umformungen per Skript nachrechnen
 2. Leichter, motivierender Einstieg; Fading nach Rechenmuster
-3. Kein Doppel zum Training: keine Karte, die einer Trainingsaufgabe entspricht
-4. Handy-tauglich: lange Formeln abgesetzt, nichts ragt über den Kartenrand
+3. Vorbereitung für die Trainingsaufgaben
 
 ## Delegation
 
