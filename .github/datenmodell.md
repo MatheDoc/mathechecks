@@ -18,7 +18,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Check-Metadaten** | `checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
-| **Warm-Up** *(Prototyp)* | `prototypen/check-warmup/<name>.md` (Front Matter `warmup:`) | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Format → `prototypen/check-warmup/README.md` |
+| **Warm-Up** *(nicht verlinkt)* | `_data/warmup/<gebiet>/<lernbereich>/<NN>-<sammlung>.yml` | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Titel, Kompetenz, Nummer, Trainingslink aus `checks.json`; Format → `_data/warmup/README.md` |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |
 
@@ -30,8 +30,9 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
                     (pro LB)          (pro Check)  (pro Check)    (pro Check)
                     ────────────────  ───────────  ─────────────  ─────────────
 Start               Name, Gebiet
-Warm-Up (Prototyp)                    Schlagwort,  Vorlage für
-                                      Ich kann     Vormachen
+Warm-Up                               Schlagwort,  Vorlage für
+                                      Ich kann,    Vormachen
+                                      Nummer
 Kompetenzliste                        Kompetenztext
 Skript (Fachinhalt) (direkt in MD, inkl. Einführungs-/Leitbeispiel)
 Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
@@ -87,7 +88,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | direkt in MD | Überblick, Lernpfad |
-| Warm-Up *(Prototyp)* | `prototypen/check-warmup/<name>.md` | Front Matter `warmup:` | eine Seite pro Check, nicht verlinkt; später `warmup.md` pro Lernbereich (siehe README) |
+| Warm-Up *(nicht verlinkt)* | `warmup.md` | `_data/warmup/<gebiet>/<lernbereich>/*.yml` + `checks.json` | nur in Lernbereichen mit Warm-Up; Auswahl per `#check-<Nummer>`, via JS; `noindex`, kein Reiter in der Navigation |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |

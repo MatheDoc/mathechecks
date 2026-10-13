@@ -1,13 +1,19 @@
-// Isolierter Prototyp: Warm-Up (geführter Einstieg in einen Check mit Fading).
-// Liest die Schrittstruktur aus <script type="application/json" id="check-warmup-data">.
+// Warm-Up: geführter Einstieg in einen Check mit Fading (nicht verlinkt, kein Fortschritt).
+// Daten: <script type="application/json" id="warmup-data"> mit allen Warm-Ups des Lernbereichs
+// (aus _data/warmup/<gebiet>/<lernbereich>/*.yml). Titel, Kompetenz, Nummer und Trainingslink
+// kommen aus checks.json. Auswahl des Checks über #check-<Nummer> oder ?check_id=.
+// Format und Leitlinien: _data/warmup/README.md
 
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
+import { buildHistogrammEinzelnFigure } from "../visuals/histogramm.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
+import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
+import { getChecksByLernbereich } from "../data/checks-repo.js?v=20260523-checks-url-fix";
 
-const ROOT_ID = "check-warmup-root";
-const DATA_ID = "check-warmup-data";
+const DATA_ID = "warmup-data";
+const JUMP_NAV_ID = "warmup-jump-nav";
 
 const PHASES = [
   { key: "orientierung", label: "Idee" },
@@ -147,6 +153,184 @@ function createTreeVisual(spec) {
   };
 }
 
+const HISTOGRAM_COLORS = {
+  neutral: "rgba(54, 162, 235, 0.45)",
+  dimmed: "rgba(54, 162, 235, 0.18)",
+  marked: "rgba(5, 56, 166, 0.75)",
+  gegen: "rgba(226, 112, 58, 0.8)",
+};
+
+function normalizeRanges(list) {
+  return (list || [])
+    .filter((range) => Array.isArray(range) && range.length === 2)
+    .map(([a, b]) => [Number(a), Number(b)]);
+}
+
+const inRanges = (ranges, k) => ranges.some(([a, b]) => k >= a && k <= b);
+
+function formatDecimalComma(value, digits) {
+  return Number(value).toFixed(digits).replace(".", ",");
+}
+
+// Binomialverteilung als Histogramm der Einzelwahrscheinlichkeiten.
+// zeige.bereiche / zeige.gegen ersetzen die Markierungen, zeige.werte blendet abgelesene Balkenwerte ein.
+function createHistogramVisual(spec) {
+  const node = el("div", "cw-plot cw-plot--histogramm");
+  let ranges = normalizeRanges(spec.bereiche);
+  let gegen = normalizeRanges(spec.gegen);
+  const werte = new Set((spec.werte || []).map(Number));
+
+  function render() {
+    if (!node.isConnected || !window.Plotly) return;
+    const n = Number(spec.n);
+    const figure = buildHistogrammEinzelnFigure({ n, p: Number(spec.p) });
+    const kMin = Math.max(0, Number(spec.kMin ?? 0));
+    const kMax = Math.min(n, Number(spec.kMax ?? n));
+    const trace = figure.data[0];
+    const visible = trace.x.map((k, i) => [k, trace.y[i]]).filter(([k]) => k >= kMin && k <= kMax);
+    trace.x = visible.map(([k]) => k);
+    trace.y = visible.map(([, y]) => y);
+    const anyMark = ranges.length > 0 || gegen.length > 0;
+    trace.marker.color = trace.x.map((k) => {
+      if (inRanges(gegen, k)) return HISTOGRAM_COLORS.gegen;
+      if (inRanges(ranges, k)) return HISTOGRAM_COLORS.marked;
+      return anyMark ? HISTOGRAM_COLORS.dimmed : HISTOGRAM_COLORS.neutral;
+    });
+    // Wie im Training: Antippen zeigt den Wert auf 2 Nachkommastellen.
+    trace.hovertemplate = "P(X = %{x}) ≈ %{y:.2f}<extra></extra>";
+    const ticks = trace.x;
+    const margin = { t: 16, r: 12, b: 48, l: 48 };
+    const plotWidth = (node.clientWidth || 600) - margin.l - margin.r;
+    const perBarPx = plotWidth / Math.max(ticks.length, 1);
+    if (werte.size) {
+      trace.text = trace.x.map((k, i) => (werte.has(k) ? formatDecimalComma(trace.y[i], 2) : ""));
+      trace.textposition = "outside";
+      trace.textangle = perBarPx < 30 ? -90 : 0;
+      trace.constraintext = "none";
+      trace.cliponaxis = false;
+      trace.textfont = { color: themeTextColor(), size: 11 };
+    }
+    const yMax = Math.max(...trace.y);
+    // Bei schmaler Darstellung kleinere Schrift und ggf. nur jede zweite Beschriftung, sonst überlappen zweistellige k.
+    const tickStep = perBarPx < 13 ? 2 : 1;
+    const labelled = ticks.filter((k) => (k - ticks[0]) % tickStep === 0);
+    figure.layout.xaxis = {
+      ...figure.layout.xaxis,
+      range: [kMin, kMax + 1],
+      tickvals: labelled.map((k) => k + 0.5),
+      ticktext: labelled.map(String),
+      tickangle: 0,
+      tickfont: { color: themeTextColor(), size: perBarPx < 18 ? 10 : 12 },
+    };
+    figure.layout.yaxis = { ...figure.layout.yaxis, range: [0, yMax * (werte.size ? 1.25 : 1.05)] };
+    figure.layout.margin = margin;
+    figure.layout.separators = ",.";
+    plotlyRender(node, figure.data, figure.layout);
+  }
+
+  return {
+    node,
+    render,
+    apply(zeige) {
+      if (!zeige) return;
+      if ("bereiche" in zeige) ranges = normalizeRanges(zeige.bereiche);
+      if ("gegen" in zeige) gegen = normalizeRanges(zeige.gegen);
+      (zeige.werte || []).forEach((k) => werte.add(Number(k)));
+      render();
+    },
+  };
+}
+
+// Zahlenstrahl der Trefferanzahlen 0 … n. zeige.bereiche ersetzt die markierten Bereiche,
+// zeige.marke setzt eine nicht ganzzahlige Grenze (null entfernt sie), zeige.p ändert p in der Bcd-Zeile.
+function createNumberLineVisual(spec) {
+  const node = el("div", "cw-zs");
+  const n = Number(spec.n);
+  const state = {
+    ranges: normalizeRanges(spec.bereiche),
+    marke: spec.marke ?? null,
+    p: spec.p ?? null,
+  };
+  const track = el("div", "cw-zs__track");
+  const caption = el("div", "cw-zs__caption");
+  caption.setAttribute("aria-live", "polite");
+  node.append(track, caption);
+
+  const pos = (value) => `${(Number(value) / n) * 100}%`;
+
+  function chooseLabels() {
+    const width = track.clientWidth || 300;
+    const unitPx = width / n;
+    const minGap = 24 / unitPx;
+    const ends = new Set();
+    state.ranges.forEach(([a, b]) => { ends.add(a); ends.add(b); });
+    const chosen = [...ends];
+    const candidates = [0, n];
+    for (let k = 5; k < n; k += 5) candidates.push(k);
+    if (unitPx >= 24) for (let k = 0; k <= n; k += 1) candidates.push(k);
+    candidates.forEach((k) => {
+      if (!chosen.some((c) => Math.abs(c - k) < minGap)) chosen.push(k);
+    });
+    return { labels: new Set(chosen), ends };
+  }
+
+  function render() {
+    if (!node.isConnected) return;
+    track.innerHTML = "";
+    track.appendChild(el("span", "cw-zs__line"));
+    state.ranges.forEach(([a, b]) => {
+      const bar = el("span", "cw-zs__range");
+      bar.style.left = pos(a);
+      bar.style.width = `${((b - a) / n) * 100}%`;
+      track.appendChild(bar);
+    });
+    const { labels, ends } = chooseLabels();
+    for (let k = 0; k <= n; k += 1) {
+      const isIn = inRanges(state.ranges, k);
+      const tick = el("span", `cw-zs__tick${isIn ? " is-in" : ""}`);
+      tick.style.left = pos(k);
+      track.appendChild(tick);
+      if (labels.has(k)) {
+        const label = el("span", `cw-zs__label${ends.has(k) ? " is-end" : ""}`, String(k));
+        label.style.left = pos(k);
+        track.appendChild(label);
+      }
+    }
+    if (state.marke !== null && state.marke !== undefined) {
+      const marke = el("span", "cw-zs__marke");
+      marke.style.left = pos(state.marke);
+      marke.appendChild(el("span", "cw-zs__marke-text", formatNumber(state.marke)));
+      track.appendChild(marke);
+    }
+    const summary = state.ranges.length
+      ? state.ranges.map(([a, b]) => `${a} bis ${b}`).join(" und ")
+      : "keine";
+    node.setAttribute("role", "img");
+    node.setAttribute("aria-label", `Zahlenstrahl der Anzahlen 0 bis ${n}, markiert: ${summary}`);
+
+    if (state.p !== null && state.ranges.length) {
+      const pTex = String(state.p).replace(".", "{,}");
+      const terms = state.ranges.map(([a, b]) => `Bcd(${a};${b};${n};${pTex})`).join("+");
+      caption.innerHTML = `<span class="cw-zs__caption-label">Eingabe</span> $${terms}$`;
+      typeset(caption);
+    } else {
+      caption.innerHTML = "";
+    }
+  }
+
+  return {
+    node,
+    render,
+    apply(zeige) {
+      if (!zeige) return;
+      if ("bereiche" in zeige) state.ranges = normalizeRanges(zeige.bereiche);
+      if ("marke" in zeige) state.marke = zeige.marke;
+      if ("p" in zeige) state.p = zeige.p;
+      render();
+    },
+  };
+}
+
 function createMatrixVisual(spec) {
   const node = el("div", "cw-matrix");
   const rows = spec.zeilen || [];
@@ -268,6 +452,8 @@ function createVisual(spec) {
   if (!spec) return null;
   if (spec.typ === "graph") return createGraphVisual(spec);
   if (spec.typ === "baum") return createTreeVisual(spec);
+  if (spec.typ === "histogramm") return createHistogramVisual(spec);
+  if (spec.typ === "zahlenstrahl") return createNumberLineVisual(spec);
   if (spec.typ === "matrix") return createMatrixVisual(spec);
   if (spec.typ === "liste") return createListVisual(spec);
   return null;
@@ -742,19 +928,7 @@ function buildFinish(data) {
   return finish;
 }
 
-function init() {
-  const root = document.getElementById(ROOT_ID);
-  const dataNode = document.getElementById(DATA_ID);
-  if (!root || !dataNode) return;
-
-  let data;
-  try {
-    data = JSON.parse(dataNode.textContent || "{}");
-  } catch (error) {
-    root.innerHTML = `<p class="module-status">Warm-Up-Daten fehlerhaft: ${error.message}</p>`;
-    return;
-  }
-
+function renderPlayer(root, data) {
   root.innerHTML = "";
   root.classList.add("cw-player");
 
@@ -828,8 +1002,102 @@ function init() {
   syncNav();
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init, { once: true });
-} else {
-  init();
+/* ───────────────────────── Modul: Auswahl pro Lernbereich ───────────────────────── */
+
+function anchorIdFor(entry) {
+  return `check-${entry.nummer}`;
+}
+
+// Ergänzt die Warm-Up-Daten um die Felder aus checks.json (nicht doppelt gepflegt).
+function mergeWithChecks(rawData, checks) {
+  const byId = new Map(checks.map((check) => [String(check?.check_id || ""), check]));
+  const entries = Object.values(rawData && typeof rawData === "object" ? rawData : {});
+  return entries
+    .map((entry) => {
+      const check = byId.get(String(entry?.check_id || ""));
+      if (!check) return null;
+      const nummer = Number(check.Nummer);
+      return {
+        ...entry,
+        nummer,
+        titel: String(check.Schlagwort || "").trim(),
+        kompetenz: String(check["Ich kann"] || "").trim(),
+        training_url: `training.html#check-${nummer}`,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.nummer - b.nummer);
+}
+
+function resolveEntryFromLocation(entries, preferredCheckId = "") {
+  const preferred = String(preferredCheckId || "").trim();
+  if (preferred) {
+    const byId = entries.find((entry) => entry.check_id === preferred);
+    if (byId) return byId;
+  }
+  const rawHash = window.location.hash || "";
+  const hash = decodeURIComponent(rawHash.startsWith("#") ? rawHash.slice(1) : rawHash);
+  const match = /^check-(\d+)$/.exec(hash);
+  if (match) {
+    const nummer = Number(match[1]);
+    const byNummer = entries.find((entry) => entry.nummer === nummer);
+    if (byNummer) return byNummer;
+  }
+  return entries[0] || null;
+}
+
+function renderJumpNav(navNode, entries, activeCheckId) {
+  if (!navNode) return;
+  navNode.innerHTML = "";
+  entries.forEach((entry) => {
+    const tab = el("a", `check-jump-tab${entry.check_id === activeCheckId ? " active" : ""}`);
+    tab.href = `#${anchorIdFor(entry)}`;
+    tab.dataset.checkId = entry.check_id;
+    tab.textContent = `${entry.nummer}. ${entry.titel || "Check"}`;
+    if (entry.check_id === activeCheckId) tab.setAttribute("aria-current", "true");
+    navNode.appendChild(tab);
+  });
+  enhanceCheckJumpNav(navNode);
+}
+
+export async function initWarmupModule({ root, lernbereich, preferredCheckId = "" } = {}) {
+  if (!root) return;
+  const dataNode = document.getElementById(DATA_ID);
+  const navNode = document.getElementById(JUMP_NAV_ID);
+
+  let rawData;
+  try {
+    rawData = JSON.parse(dataNode?.textContent || "null");
+  } catch (error) {
+    root.innerHTML = `<p class="module-status">Warm-Up-Daten fehlerhaft: ${error.message}</p>`;
+    return;
+  }
+
+  let checks = [];
+  try {
+    checks = await getChecksByLernbereich(lernbereich);
+  } catch (error) {
+    root.innerHTML = `<p class="module-status">${error.message}</p>`;
+    return;
+  }
+
+  const entries = mergeWithChecks(rawData, checks);
+  if (!entries.length) {
+    root.innerHTML = "<p class=\"module-status\">Für diesen Lernbereich gibt es noch kein Warm-Up.</p>";
+    return;
+  }
+
+  let activeCheckId = "";
+  const show = (entry) => {
+    if (!entry || entry.check_id === activeCheckId) return;
+    activeCheckId = entry.check_id;
+    renderJumpNav(navNode, entries, activeCheckId);
+    renderPlayer(root, entry);
+  };
+
+  show(resolveEntryFromLocation(entries, preferredCheckId));
+
+  window.addEventListener("hashchange", () => {
+    show(resolveEntryFromLocation(entries));
+  });
 }

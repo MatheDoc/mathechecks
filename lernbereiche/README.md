@@ -4,14 +4,14 @@ Jeder Lernbereich besteht aus einem definierten Set an Seiten.
 
 Verbindliche Modultypen pro Lernbereich: `start`, `training`, `recall`, `feynman`, `test`, `kompetenzliste`, `skript`, `flashcards`.
 
-Zusätzlich in Entwicklung: `warmup` – ein geführter Einstieg pro Check, derzeit nur als Prototyp und nicht verlinkt (→ `prototypen/check-warmup/README.md`).
+Zusätzlich in Entwicklung: `warmup` – ein geführter Einstieg pro Check, `warmup.md` nur in Lernbereichen mit Warm-Up, derzeit nicht verlinkt (→ `_data/warmup/README.md`).
 
 → Datenmodell & Architektur: `.github/datenmodell.md`
 
 | Modul | Zweck | Didaktischer Kern | Zusammenhang mit anderen Modulen |
 |---|---|---|---|
 | **Start** | Überblick, Vorwissen, optionaler Audio-Überblick | Orientierung, Motivation | Natürlicher Feed-Einstieg pro Lernbereich vor den ersten checkbezogenen Aktivitäten |
-| **Warm-Up** *(Prototyp)* | Geführter Einstieg in einen Check | Lernen am vorgerechneten Beispiel, Fading | Pro Check vor dem Training; derzeit nicht verlinkt und nicht im Feed |
+| **Warm-Up** *(nicht verlinkt)* | Geführter Einstieg in einen Check | Lernen am vorgerechneten Beispiel, Fading | Pro Check vor dem Training; derzeit nicht verlinkt und nicht im Feed |
 | **Kompetenzliste** | Übersicht aller Kompetenzen des Lernbereichs | Lernziel-Orientierung | Jede Kompetenz ist mit Training und Skript verknüpft |
 | **Training** | Interaktive Aufgaben | Üben mit formativem Feedback | Zu jeder Kompetenz in der Kompetenzliste gibt es genau eine Aufgabensammlung im Training |
 | **Recall** | Geführter Abruf der Kernideen eines Checks | Active Recall mit Selbstüberprüfung | Zweites Glied der Check-Kette nach dem Training |

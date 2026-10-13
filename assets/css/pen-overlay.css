@@ -125,6 +125,19 @@
 .pen-tool:nth-child(13) { transition-delay: 128ms; }
 .pen-tool:nth-child(14) { transition-delay: 131ms; }
 .pen-tool:nth-child(15) { transition-delay: 133ms; }
+.pen-tool:nth-child(16) { transition-delay: 135ms; }
+.pen-tool:nth-child(17) { transition-delay: 137ms; }
+.pen-tool:nth-child(18) { transition-delay: 139ms; }
+
+/* ── Laserstift: Icon in Leuchtfarbe ── */
+#pen-btn-laser { color: #ff4a26; }
+#pen-btn-laser:hover,
+#pen-btn-laser.pen-tool-active {
+  color: #ff4a26;
+}
+#pen-btn-laser.pen-tool-active svg {
+  filter: drop-shadow(0 0 3px rgba(255, 74, 38, 0.7));
+}
 
 /* ── Aktives Werkzeug (Ring) ── */
 .pen-fab.pen-tool-active {
@@ -170,7 +183,9 @@
   font-size: 14px;
 }
 
-/* Lasso-Löschen (erscheint nur mit Selektion) */
+/* Lasso-Löschen (erscheint nur mit Selektion, sonst kein Platz in der Leiste) */
+#pen-btn-delete-sel:not(.visible) { display: none; }
+
 #pen-btn-delete-sel {
   width: 34px;
   height: 34px;
@@ -240,6 +255,35 @@ html.light .pen-fab {
 
 html.light #pen-btn-toggle.active {
   box-shadow: 0 4px 18px rgba(108, 92, 231, 0.35);
+}
+
+/* ── Niedrige Fenster (z. B. Laptop mit 768 px): kompaktere Leiste ── */
+@media (max-height: 820px) and (min-width: 681px) {
+  #pen-toolbar { gap: 4px; }
+
+  .pen-fab {
+    width: 34px;
+    height: 34px;
+  }
+
+  .pen-fab svg { width: 18px; height: 18px; }
+
+  #pen-btn-toggle {
+    width: 40px;
+    height: 40px;
+  }
+
+  #pen-btn-undo,
+  #pen-btn-delete-sel,
+  #pen-btn-clear {
+    width: 30px;
+    height: 30px;
+  }
+
+  .pen-color-dot {
+    width: 21px;
+    height: 21px;
+  }
 }
 
 /* ── Mobile ── */

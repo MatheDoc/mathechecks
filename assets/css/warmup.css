@@ -1,6 +1,7 @@
 /* ════════════════════════════════════════════════════════════
-   PROTOTYP: Warm-Up – geführter Einstieg in einen Check
-   Isoliert, nur auf prototypen/check-warmup/*.md eingebunden.
+   Warm-Up – geführter Einstieg in einen Check (Präfix cw-)
+   Nur über page_css eingebunden: lernbereiche/<gebiet>/<lb>/warmup.md
+   und die Übersicht warmup.md. Format: _data/warmup/README.md
    ════════════════════════════════════════════════════════════ */
 
 .cw-root {
@@ -17,26 +18,23 @@
 }
 
 /* ─── Player-Layout: feste Kartenhöhe, Navigation darunter ─ */
+/* Höhe = Bühne zwischen Kopfleiste, Modul-Reitern und Check-Navigation
+   (--check-stage-height aus shared.css, berücksichtigt auch Vollbild). */
 
-.shell-main:has(.cw-player) {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding-bottom: 12px;
-}
-
-.shell-main:has(.cw-player) > .page-shell {
-    flex: 1 1 auto;
+/* Modul-Layout: .mod-content hat sonst min-height: 100 % plus Innenabstand unten
+   und wäre dadurch um die Höhe der Modul-Reiter zu hoch (Seite scrollt). */
+.mod-content:has(.cw-player) {
     min-height: 0;
-    width: 100%;
+    padding-bottom: 0;
 }
 
 .cw-root.cw-player {
-    height: 100%;
+    height: var(--check-stage-height, calc(100dvh - 184px));
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 8px 0 0;
+    padding: 12px 0;
 }
 
 .cw-stage {
@@ -1117,6 +1115,111 @@
     }
 }
 
+/* ─── Zahlenstrahl (Bereiche von Anzahlen, Bcd-Eingabe) ──── */
+
+.cw-zs {
+    --cw-zs-mark: #4a7bdc;
+    display: grid;
+    gap: 14px;
+    padding: 34px 18px 16px;
+}
+
+.cw-zs__track {
+    position: relative;
+    height: 44px;
+}
+
+.cw-zs__line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12px;
+    height: 2px;
+    background: var(--text-dim);
+    border-radius: 1px;
+}
+
+.cw-zs__range {
+    position: absolute;
+    top: 9px;
+    height: 8px;
+    min-width: 0;
+    background: var(--cw-zs-mark);
+    border-radius: 4px;
+    opacity: 0.55;
+}
+
+.cw-zs__tick {
+    position: absolute;
+    top: 7px;
+    width: 2px;
+    height: 12px;
+    margin-left: -1px;
+    background: var(--text-dim);
+}
+
+.cw-zs__tick.is-in {
+    top: 8px;
+    width: 10px;
+    height: 10px;
+    margin-left: -5px;
+    border-radius: 50%;
+    background: var(--cw-zs-mark);
+    box-shadow: 0 0 0 2px var(--surface, #fff);
+}
+
+.cw-zs__label {
+    position: absolute;
+    top: 24px;
+    transform: translateX(-50%);
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+.cw-zs__label.is-end {
+    font-weight: 750;
+    color: var(--text);
+}
+
+.cw-zs__marke {
+    position: absolute;
+    top: -2px;
+    width: 0;
+    height: 30px;
+    border-left: 2px dashed var(--cw-accent);
+}
+
+.cw-zs__marke-text {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    transform: translateX(-50%);
+    padding: 0 4px 2px;
+    font-size: 0.72rem;
+    font-weight: 750;
+    color: var(--cw-accent);
+    white-space: nowrap;
+}
+
+.cw-zs__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px 8px;
+    min-height: 1.6em;
+    color: var(--text);
+}
+
+.cw-zs__caption-label {
+    font-size: 0.68rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
 @media (prefers-reduced-motion: reduce) {
 
     .cw-page,

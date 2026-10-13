@@ -9,6 +9,7 @@ import { initSkriptHeadingNav } from "./modules/skript-heading-nav.js?v=20260523
 import { initSkriptVisuals, refreshSkriptTables } from "./modules/skript-visuals.js";
 import { initStartModule } from "./modules/start.js?v=20260701-shared-client";
 import { initKompetenzlisteModule } from "./modules/kompetenzliste.js?v=20260826-test-module";
+import { initWarmupModule } from "./modules/warmup.js?v=20261014-warmup-zahlenstrahl";
 import { getChecksByLernbereich } from "./data/checks-repo.js?v=20260523-checks-url-fix";
 import { confirmFeedActivityAbort, initFeedActivityGuard } from "./modules/ui/feed-activity-guard.js?v=20260516-feed-dialog-polish";
 import { initSessionCardScope } from "./modules/ui/session-card-scope.js?v=20260925-session-scope";
@@ -563,6 +564,18 @@ async function bootstrap() {
     await initStartModule({
       lernbereich: context.lernbereich,
       activityContext: context.activityContext,
+    });
+    return;
+  }
+
+  if (context.moduleKey === "warmup") {
+    const root = document.getElementById("warmup-root");
+    if (!root) return;
+    // Warm-Up rendert und setzt Formeln selbst; Auswahl per #check-<Nummer> oder ?check_id=.
+    await initWarmupModule({
+      root,
+      lernbereich: context.lernbereich,
+      preferredCheckId: context.checkId,
     });
     return;
   }
