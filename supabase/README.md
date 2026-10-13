@@ -161,7 +161,7 @@ Im aktuellen Projekt lief der MVP bewusst remote-first, weil Docker lokal noch f
 
 - Docker ist lokal noch nicht installiert; `supabase start` funktioniert erst danach.
 - Die primäre checkbezogene Dashboard-Feed-Karte ist angebunden; vollständige Feed-Liste, Sidebar-Projektion und Fortschrittskarten lesen noch nicht vollständig aus persistenten Plattformdaten.
-- Automatisierte Trainingsversuche auf Fragenebene und lernbereichsbezogene Aktivitäten wie `warmup` werden noch nicht persistiert.
+- Automatisierte Trainingsversuche auf Fragenebene und das Warm-Up pro Check (`warmup`, derzeit Prototyp) werden noch nicht persistiert.
 - `session_activity_state` ist in v1 nur für `flashcards` eingeführt; weitere Aktivitätstypen und eine vollständige Feed-Liste fehlen noch.
 - Gehostete Auth-Einstellungen wie SMTP, Redirect-URLs und Rate Limits liegen aktuell im Supabase-Dashboard und nicht versioniert im Repo.
 

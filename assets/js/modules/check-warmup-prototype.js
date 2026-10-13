@@ -1,4 +1,4 @@
-// Isolierter Prototyp: Check-Warm-Up (geführter Einstieg in einen Check mit Fading).
+// Isolierter Prototyp: Warm-Up (geführter Einstieg in einen Check mit Fading).
 // Liest die Schrittstruktur aus <script type="application/json" id="check-warmup-data">.
 
 import { buildGraphFigure } from "../visuals/graph.js";

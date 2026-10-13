@@ -1,10 +1,10 @@
-# Check-Warm-Up – Prototypen
+# Warm-Up – Prototypen
 
 Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen ein vorgerechnetes Beispiel, rechnen dann mit schrittweise weniger Hilfe mit und wechseln anschließend ins Training.
 
 > **Status:** isolierter Prototyp. Nicht im Feed, nicht in `checks.json`, nicht verlinkt, `noindex`, nicht in der Sitemap. Die Seiten sind lokal und nach einem Deploy unter `/prototypen/check-warmup/…` direkt aufrufbar.
 
-**Begriffe:** In der Oberfläche heißt die Aktivität **„Warm-Up“** (Kartenkopf „WARM-UP NN | Schlagwort“). Intern heißt sie **Check-Warm-Up**, zur Abgrenzung vom bestehenden Warm-Up pro Lernbereich (`_data/warmup/<slug>.yml`). Das Warm-Up pro Lernbereich bleibt vorerst unverändert und entfällt langfristig voraussichtlich.
+**Begriffe:** Die Aktivität heißt **„Warm-Up“**, technisch `module_key: warmup` (Kartenkopf „WARM-UP NN | Schlagwort“). Das frühere Warm-Up pro Lernbereich (Neugier-Karten aus `_data/warmup/<slug>.yml`) ist vollständig entfernt. Der Name ist damit frei. Das Präfix `check-warmup` in Ordner- und Dateinamen der Prototypen ist nur ein Überbleibsel aus der Prototyp-Phase und entfällt bei der Verzahnung.
 
 ## Vorhandene Prototypen
 
@@ -17,6 +17,28 @@ Geführter, interaktiver Einstieg in **einen einzelnen Check**. Lernende sehen e
 | [rangkriterium.md](./rangkriterium.md) | `lineare-algebra__lineare-gleichungssysteme__05` | Begriff und Verfahren; Zeilen in der Matrix antippen |
 
 Übersicht: [index.md](./index.md) → `/prototypen/check-warmup/index.html`
+
+
+## Entscheidungen (mit Begründung)
+
+Festgehalten, damit spätere Arbeit nicht hinter diese Punkte zurückfällt.
+
+| Entscheidung | Begründung |
+|---|---|
+| **Warm-Up pro Check, vor dem Training** | Wer neu in einem Thema ist, lernt mehr aus vorgerechneten Beispielen als aus selbst gelösten Aufgaben. Bisher startete die Check-Kette direkt mit dem Training, also mit dem selbstständigen Lösen. |
+| **Das alte Warm-Up pro Lernbereich ist entfernt** | Neugier-Karten pro Lernbereich wurden nicht mehr benötigt. Name, Modulfarbe (`--mt-warmup`, `check-card--warmup`) und `module_key: warmup` gehen an das neue Warm-Up. |
+| **Drei Phasen: Worum geht's? → Zuschauen → Mitmachen** | Eine vierte Phase „Jetzt du“ mit echter Trainingsaufgabe wurde gebaut und wieder entfernt. Sie war ein Doppel zum Training, das direkt danach kommt. |
+| **Keine Karte, die einer Trainingsaufgabe entspricht** | Aus demselben Grund. Das Fading endet kurz davor, Hinweise fürs Training stehen im `abschluss`. |
+| **Phasen statt fester Kartenzahl** | Checks sind unterschiedlich groß. Insgesamt 5–8 Karten. |
+| **Fading nach Rechenmuster, nicht nach Teilaufgaben** | Teilaufgaben sind oft unabhängig voneinander. Die letzte Teilaufgabe einfach wegzulassen, wäre kein Fading. |
+| **Scheinverständnis wird in Kauf genommen** | Der Einstieg soll leicht sein. Leichte Kontrollfragen (Auswahl, Zahl, Zuordnen) sorgen nur dafür, dass man nicht bloß durchklickt. |
+| **„Zum Training →“ immer sichtbar** | Wer den Stoff schon kann, überspringt das Warm-Up. |
+| **Gleichwertige Lösungswege beide zeigen** | z. B. Betriebsminimum als Extremstelle von $k_v$ oder als Schnittstelle von $K'$ und $k_v$. |
+| **Kartendesign wie bei den anderen Modulen** | `check-card` mit Standard-Kartenkopf, feste Kartenhöhe, Scrollen nur im Kartenkörper, „Zurück/Weiter“ an festem Platz unter der Karte. Farbe: Warm-Up-Farbe (Terrakotta). |
+| **Kein Phasen-Label vor dem Kartentitel** | Die Phasenleiste zeigt die Phase bereits an. Auf dem Handy war das Label zu viel. |
+| **Ein gemeinsames Skript, Inhalte als Daten** | Wie beim Training: Ein Abspieler für alle Checks. Neue Interaktionen nur als allgemeine Schritt- oder Bildtypen. |
+| **Daten im Front Matter nur für den Prototyp** | Bei der Verzahnung kommen sie in eigene Datendateien (siehe offene Punkte). |
+| **Nicht verlinkt, nur über URL erreichbar** | Gilt auch nach der Verzahnung, bis ausdrücklich anders entschieden wird: kein Link aus Navigation, Skript, Training oder Feed, `noindex`, nicht in der Sitemap. Der Reiter in `_includes/module/nav.html` bleibt ausgeblendet. |
 
 
 ## Didaktische Leitlinien
@@ -71,7 +93,7 @@ Die Seite selbst ist immer gleich, nur das Front Matter unterscheidet sich:
 ```markdown
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): <Schlagwort>"
+title: "Warm-Up (Prototyp): <Schlagwort>"
 description: …
 page_context: Prototyp
 nav: dashboard
@@ -155,7 +177,7 @@ Mit `layout: zeile` stehen die Felder nebeneinander, z. B. als Gleichung `[16] a
 Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit Dezimalpunkt.
 
 
-## Workflow: neues Check-Warm-Up erstellen
+## Workflow: neues Warm-Up erstellen
 
 1. **Quellen lesen**
    - `_data/checks.json`: `Ich kann`, `Schlagwort`, `Nummer`, `Sammlung`, `Tipps`
@@ -203,10 +225,13 @@ Graph-Terme werden mit math.js ausgewertet, also z. B. `0.5x^3-6x^2+30x+48` mit 
 ## Bekannte Grenzen und offene Punkte
 
 - **Handy:** Bei schmalem Bildschirm steht das Bild über den Schritten. Wer unten etwas einträgt, sieht die Änderung oben nicht sofort.
-- **Daten im Front Matter** sind nur für den Prototyp gedacht. Für die spätere Verdrahtung vorgesehen:
-  - eine YAML-Datei pro Check, z. B. `_data/check-warmups/<lb>/<NN>-<sammlung>.yml`
+- **Daten im Front Matter** sind nur für den Prototyp gedacht. Nächster Schritt ist die **Verzahnung ins Projekt, weiterhin ohne Verlinkung**:
+  - eine YAML-Datei pro Check, z. B. `_data/warmup/<lernbereich>/<NN>-<sammlung>.yml` (der Ordner `_data/warmup/` ist durch das Entfernen des alten Warm-Ups frei)
+  - `titel`, `kompetenz`, `nummer` und `training_url` aus `checks.json` ableiten statt doppelt pflegen
+  - eine Modulseite pro Lernbereich: `lernbereiche/<gebiet>/<lb>/warmup.md` mit `module_key: warmup`, URL `…/<lb>/warmup.html#check-<NN>`. Die URL ist frei, weil die alten `warmup.md`-Seiten entfernt sind. Seite mit `noindex`, nicht in der Navigation.
+  - Skript und CSS umbenennen: `assets/js/modules/warmup.js` und `assets/css/warmup.css`, Einbindung über den Modulzweig in `assets/js/app.js`. Der alte Zweig ist entfernt.
   - Auslieferung als JSON nach dem Muster von `checks.json` (`{{ site.data… | jsonify }}`)
-  - eine Modulseite pro Lernbereich mit Sprungmarken
-  - ein Prüfskript für alle Datendateien (unbekannter `typ`, `korrekt` außerhalb der Optionen, fehlende `loesung` …)
-- **Noch nicht verdrahtet:** Feed, Speicherung des Fortschritts, Verlinkung aus Skript, Kompetenzliste oder Training.
+  - ein Prüfskript für alle Datendateien: unbekannter `typ`, `korrekt` außerhalb der Optionen, fehlende `loesung`, `zeige` verweist auf eine nicht vorhandene `id`, `check_id` fehlt in `checks.json`
+  - die fünf Prototypen übernehmen, danach `prototypen/check-warmup/` und diese README an den neuen Ort verschieben bzw. entfernen
+- **Noch nicht verdrahtet (bewusst):** Feed, Speicherung des Fortschritts, Verlinkung aus Skript, Kompetenzliste, Training oder Navigation.
 - **Wachstum:** Neue Interaktionen als allgemeine Schritt- oder Bildtypen im gemeinsamen Skript ergänzen, nie Code für einen einzelnen Check. Wird das Skript zu groß, aufteilen in `steps/` und `visuals/`.

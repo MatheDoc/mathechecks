@@ -18,7 +18,7 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 | **Check-Metadaten** | `checks.json` | pro Check | Nummer, Name, Kompetenztext, Tipps, optionale Recall-Felder, Skript-Anker |
 | **Aufgaben** | `aufgaben/exports/json/*.json` | pro Check | Randomisierte Aufgaben mit Lösungen (Python-generiert) |
 | **Beispiele** | `lernbereiche/<gebiet>/<lb>/beispiele/<NN>-<sammlung>.md` | pro Check | Standardbeispiel: Aufgabe + Lösungsweg (Markdown mit LaTeX) |
-| **Warm-Up** | `_data/warmup/<slug>.yml` | pro Lernbereich | meist 3 Karten, optional 4, plus Abschlusstext |
+| **Warm-Up** *(Prototyp)* | `prototypen/check-warmup/<name>.md` (Front Matter `warmup:`) | pro Check | Geführter Einstieg: Karten mit Schritten (Vormachen, Fading); Format → `prototypen/check-warmup/README.md` |
 | **Modultypen** | `_data/moduletypen.yml` | pro Modultyp | Farben, Icons, Beschreibungen |
 | **Gebiete** | `_data/gebiete.yml` | pro Gebiet | Analysis, Lineare Algebra, Stochastik, Finanzmathematik |
 
@@ -26,11 +26,12 @@ Persistente Plattformdaten sind davon getrennt: Lern-Sessions, Check-Pipeline, F
 ## Modul → Datenquelle (Konsumenten-Matrix)
 
 ```
-                    lernbereiche.yml  checks.json  beispiele/*.md  Aufgaben-JSON  warmup/*.yml
-                    (pro LB)          (pro Check)  (pro Check)    (pro Check)    (pro LB)
-                    ────────────────  ───────────  ─────────────  ─────────────  ───────────
+                    lernbereiche.yml  checks.json  beispiele/*.md  Aufgaben-JSON
+                    (pro LB)          (pro Check)  (pro Check)    (pro Check)
+                    ────────────────  ───────────  ─────────────  ─────────────
 Start               Name, Gebiet
-Warm-Up                                                                          meist 3 Karten
+Warm-Up (Prototyp)                    Schlagwort,  Vorlage für
+                                      Ich kann     Vormachen
 Kompetenzliste                        Kompetenztext
 Skript (Fachinhalt) (direkt in MD, inkl. Einführungs-/Leitbeispiel)
 Skript (Check-Anker)                  Tipps        Beispiel       1 Aufgabe
@@ -55,7 +56,6 @@ Regeln:
 - Ein Einführungsbeispiel darf im Verlauf des Skripts auslaufen, sobald es dem Verständnis nicht mehr dient. Kein Rückblick-Abschnitt („Zurück zu …“) am Ende.
 - Ein Leitbeispiel begegnet im Verlauf verschiedenen Fragestellungen; die Auflösung ergibt sich abschnittsweise, nicht als Schlusspointe.
 - **Übungsaufgaben** (Training, Flashcards) sind bewusst **nicht** an das Szenario gebunden, um kontextunabhängigen Transfer zu sichern.
-- **Warm-Up-Karten** dürfen sich am Szenario orientieren, müssen es aber nicht.
 - Das Feld `bild` in `_data/lernbereiche.yml` liefert das charakteristische Bild für die Materialkarte (`assets/img/start/<dateiname>`).
 
 
@@ -87,7 +87,7 @@ lernbereiche/<gebiet>/<lernbereich>/beispiele/<NN>-<sammlung>.md
 | Modul | MD-Datei | Primäre Inhaltsquelle | Anmerkung |
 |---|---|---|---|
 | Start | `start.md` | direkt in MD | Überblick, Lernpfad |
-| Warm-Up | `warmup.md` | `_data/warmup/<slug>.yml` | meist 3 Karten + Abschluss, optional 4, via Liquid-Template |
+| Warm-Up *(Prototyp)* | `prototypen/check-warmup/<name>.md` | Front Matter `warmup:` | eine Seite pro Check, nicht verlinkt; später `warmup.md` pro Lernbereich (siehe README) |
 | Kompetenzliste | `kompetenzliste.md` | `checks.json` | Kompetenztexte, via JS |
 | Training | `training.md` | `aufgaben/exports/json/` | Randomisierte Aufgaben, via JS |
 | Recall | `recall.md` | `checks.json` (`Tipps`, `Ich kann`) | Geführter Active Recall, via JS |

@@ -1,7 +1,7 @@
 ---
 layout: shell
-title: "Check-Warm-Up (Prototyp): Kostenkennzahlen berechnen"
-description: Isolierter Prototyp eines Check-Warm-Ups zum Check „Kostenkennzahlen berechnen“.
+title: "Warm-Up (Prototyp): Kostenkennzahlen berechnen"
+description: Isolierter Prototyp eines Warm-Ups zum Check „Kostenkennzahlen berechnen“.
 page_context: Prototyp
 nav: dashboard
 body_class: page-module page-check-warmup-prototype
