@@ -1,10 +1,11 @@
 ---
+name: prompt-klausur-erstellen
 description: Klausur aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß config.yml erzeugen
+disable-model-invocation: true
 ---
-
 # Prompt: Klausur erstellen
 
-Eingabe: `klausuren/<slug>/config.yml` (ohne Pfadangabe die aktuell geöffnete; nicht `klausuren/templates/config.yml`). Regeln und Gewichtung der Quellen: `.github/prompts/systemprompt-klausur.prompt.md`. Nur nachfragen, wenn weder `themen` noch `checks` noch `hinweise` angegeben sind oder Angaben sich widersprechen.
+Eingabe: `klausuren/<slug>/config.yml` (ohne Pfadangabe die aktuell geöffnete; nicht `klausuren/templates/config.yml`). Regeln und Gewichtung der Quellen: `.github/skills/systemprompt-klausur/SKILL.md`. Nur nachfragen, wenn weder `themen` noch `checks` noch `hinweise` angegeben sind oder Angaben sich widersprechen.
 
 Musterprüfungen liegen in `muster-pruefungen/abitur/pruefungen-md/` (gitignored → Dateien direkt per Pfad lesen, Such-Tools überspringen den Ordner oft).
 

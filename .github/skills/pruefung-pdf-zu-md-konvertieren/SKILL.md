@@ -1,11 +1,10 @@
 ---
-description: "Konvertiert Abitur-Musterprüfungen (PDF) in strukturierte Markdown-Dateien mit validiertem YAML-Frontmatter (Inventar, Scaffold, Grafiken, Transkription, Validierung)."
-name: "Prüfung PDF zu MD konvertieren"
+name: pruefung-pdf-zu-md-konvertieren
+description: Konvertiert Abitur-Musterprüfungen (PDF) in strukturierte Markdown-Dateien mit validiertem YAML-Frontmatter (Inventar, Scaffold, Grafiken, Transkription, Validierung).
+disable-model-invocation: true
 argument-hint: "PDF-Datei(en) oder Ordner unter muster-pruefungen/abitur/pruefungen/"
-agent: "agent"
 ---
-
-# Prompt: Musterprüfung PDF → Markdown
+# Skill: Musterprüfung PDF → Markdown
 
 Du konvertierst eine oder mehrere Abitur-Prüfungen (PDF) in Markdown-Dateien mit YAML-Frontmatter.
 Die Exporte dienen als **KI-Kontext für Klausurerstellung und Content-Entwicklung**. Priorität
@@ -20,15 +19,15 @@ Endkontrolle → Projekt-Inventar.
 
 Alle Befehle werden vom Repo-Root aus ausgeführt. `MP` steht für `muster-pruefungen/abitur`.
 Der Ordner `muster-pruefungen/` ist per gitignore ausgeschlossen (urheberrechtlich geschützte
-Inhalte). Versioniert werden nur dieser Prompt und `_data/themen.yml`.
+Inhalte). Versioniert werden nur dieser Skill und `_data/themen.yml`.
 
 | Inhalt | Pfad |
 |---|---|
 | Original-PDFs (Quelle der Wahrheit) | `MP/pruefungen/<land schulform …>/` |
-| Schemas + Validator | [aufgabe.schema.json](../../muster-pruefungen/abitur/pruefungen/schema/aufgabe.schema.json), [pruefung-index.schema.json](../../muster-pruefungen/abitur/pruefungen/schema/pruefung-index.schema.json), `MP/pruefungen/schema/validate_frontmatter.py` |
+| Schemas + Validator | `muster-pruefungen/abitur/pruefungen/schema/aufgabe.schema.json`, `muster-pruefungen/abitur/pruefungen/schema/pruefung-index.schema.json`, `MP/pruefungen/schema/validate_frontmatter.py` |
 | MD-Exporte | `MP/pruefungen-md/{land}/{schulform-slug}/{niveau}/{pruefung-id}/` |
-| Projekt-Inventar | [_inventar.json](../../muster-pruefungen/abitur/pruefungen-md/_inventar.json) |
-| Themen-Vokabular (versioniert) | [themen.yml](../../_data/themen.yml) |
+| Projekt-Inventar | `muster-pruefungen/abitur/pruefungen-md/_inventar.json` |
+| Themen-Vokabular (versioniert) | `_data/themen.yml` |
 | Themen-Index (generiert) | `MP/pruefungen-md/_themen.json` |
 | Gemeinsame Tools | `MP/pruefungen-md/_tools/` (`scaffold.py`, `scaffold.example.yaml`, `figures.py`) |
 
@@ -51,7 +50,7 @@ Fehlt eine wiederkehrende Funktion, erweitere das gemeinsame Tool und dokumentie
 
 - Lies beide Schemas: Sie sind die verbindliche Quelle für erlaubte Felder und Enums.
 - Lies `_inventar.json`, um zu sehen, welche Prüfungen bereits ganz oder teilweise konvertiert sind.
-- Lies den Abschnitt [Bekannte Sonderfälle] am Ende dieses Prompts.
+- Lies den Abschnitt [Bekannte Sonderfälle] am Ende dieses Skills.
 - Nutze die vorhandenen Tools, statt eigene zu schreiben.
 
 ## 1. PDFs sichten, nicht nur Dateinamen interpretieren
@@ -155,8 +154,7 @@ Ersetze den Stub-Inhalt jeder Datei direkt mit dem Edit-Werkzeug, inklusive des 
 
 ## 8. Themen taggen
 
-Jede Teilaufgabe bekommt im Frontmatter `themen: [...]` mit Slugs aus
-[themen.yml](../../_data/themen.yml) (plattformunabhängiges Vokabular; ein Thema ist auf
+Jede Teilaufgabe bekommt im Frontmatter `themen: [...]` mit Slugs aus `_data/themen.yml` (plattformunabhängiges Vokabular; ein Thema ist auf
 MatheChecks umgesetzt, wenn es in `_data/lernbereiche.yml` einen Lernbereich mit gleichem Slug
 gibt). Der Index `_themen.json` wird daraus beim Validieren automatisch erzeugt.
 

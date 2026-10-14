@@ -12,21 +12,20 @@ Technische Specs und Konventionen liegen in den Referenzdokumenten, auf die Agen
    - Aufgabengeneratoren, Exportlogik, Python-Refactoring in `aufgaben/`
 3. `agent-frontend-ux.md`
    - Lernoberfläche, Includes, Layouts, Barrierearmut und Bedienbarkeit
-4. `agent-infra-architektur.md`
-   - Systemgrenzen, Backend-Services, Deploy-/Risikoaspekte
-5. `agent-plattform-architektur.md`
+4. `agent-plattform-architektur.md`
    - Datenbank, Benutzerverwaltung, Session-State, Aktionsfeed, Rollen und Migration
-6. `agent-warmup.md`
+5. `agent-warmup.md`
    - Warm-Up pro Check: geführter Einstieg mit vorgerechnetem Beispiel und Fading, Übergabe ans Training (derzeit nicht verlinkt)
-7. `agent-klausuren.md`
-   - Klausuren: automatisierte Erstellung aus Lernbereichen/Checks gemäß `klausuren/config.yml`
+6. `agent-klausuren.md`
+   - Klausuren: automatisierte Erstellung aus Themen, Lernbereichen/Checks und Musterprüfungen gemäß `klausuren/<slug>/config.yml`
 
-## 3-Schichten-Modell
+## 4-Schichten-Modell
 
 | Schicht | Dateien | Antwort auf |
 |---|---|---|
 | **Projektkontext** (immer geladen) | `copilot-instructions.md` | Was ist das Projekt? |
 | **Agenten** (bei Auswahl geladen) | `agent-*.md` | Wer arbeitet mit welchem Fokus? |
+| **Skills** (bei Aufruf geladen, `../skills/<name>/SKILL.md`) | siehe `../skills/README.md` | Welcher konkrete Arbeitsauftrag bzw. welches Regelwerk gilt? |
 | **Referenzdokumente** (per Pflichtlektüre) | `glossary.md`, `datenmodell.md`, `aufgaben/README.md` u. a. | Welche Konventionen und Specs gelten? |
 
 ## Konvention

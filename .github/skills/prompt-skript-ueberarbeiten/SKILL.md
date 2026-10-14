@@ -1,7 +1,8 @@
 ---
+name: prompt-skript-ueberarbeiten
 description: Skript fachlich-didaktisch und LLM-freundlich überarbeiten
+disable-model-invocation: true
 ---
-
 # Prompt: Skript überarbeiten
 
 ## Ziel

@@ -1,7 +1,8 @@
 ---
+name: prompt-neuer-lernbereich
 description: Schrittfolge zum Anlegen eines neuen Lernbereichs in MatheChecks.
+disable-model-invocation: true
 ---
-
 # Neuen Lernbereich anlegen
 
 Lese vor Beginn `.github/datenmodell.md` und `.github/glossary.md`.

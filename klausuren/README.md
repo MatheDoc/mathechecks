@@ -39,7 +39,7 @@ klausuren/
 | `checks` | optional: Liste aus `lernbereich` (Slug `<gebiet>/<lernbereich>`) + `checks` (`Nummer`-Werte) – grenzt ein, was im Unterricht behandelt wurde; die Lernbereiche zählen automatisch zu den Themen |
 | `hinweise` | optional: Freitext der Lehrkraft, z. B. Schwerpunkte, Ausschlüsse, Hilfsmittel oder eine Musteraufgabe als Vorbild (Aufgabe-`id` + ggf. Label, z. B. „Aufbau wie `nw-bgym-wuv-2025-haupt-erhoeht-a3` 3.2“) – höchste Priorität |
 
-Mindestens eines von `themen`, `checks`, `hinweise` angeben; alle drei sind Orientierung, keine Checkliste. Gewichtung der Quellen: `.github/prompts/systemprompt-klausur.prompt.md`, Abschnitt 1.
+Mindestens eines von `themen`, `checks`, `hinweise` angeben; alle drei sind Orientierung, keine Checkliste. Gewichtung der Quellen: `.github/skills/systemprompt-klausur/SKILL.md`, Abschnitt 1.
 
 `logo` ist kein `config.yml`-Feld, sondern wird optional direkt in der `klausur.md`-Frontmatter gesetzt.
 
@@ -47,12 +47,12 @@ Vollständiges, kommentiertes Beispiel: [`templates/config.yml`](templates/confi
 
 ## Musterprüfungen
 
-`muster-pruefungen/` (gitignored, nur lokal) enthält Abitur-Musterprüfungen als PDF und teilweise als Markdown-Export (`abitur/pruefungen-md/`, Übersicht in `_inventar.json`, Konvertierung: `.github/prompts/prompt-pruefung-pdf-zu-md.prompt.md`). Die Teilaufgaben sind nach Themen aus `_data/themen.yml` verschlagwortet; der Index `pruefungen-md/_themen.json` liefert je Thema alle passenden Teilaufgaben.
+`muster-pruefungen/` (gitignored, nur lokal) enthält Abitur-Musterprüfungen als PDF und teilweise als Markdown-Export (`abitur/pruefungen-md/`, Übersicht in `_inventar.json`, Konvertierung: `.github/skills/pruefung-pdf-zu-md-konvertieren/SKILL.md`). Die Teilaufgaben sind nach Themen aus `_data/themen.yml` verschlagwortet; der Index `pruefungen-md/_themen.json` liefert je Thema alle passenden Teilaufgaben.
 
 ## Workflow
 
 1. `<slug>`-Ordner anlegen und `templates/config.yml` als `config.yml` hineinkopieren und anpassen.
-2. Klausur erzeugen lassen mit `.github/prompts/prompt-klausur-erstellen.md` (Regeln: `.github/prompts/systemprompt-klausur.prompt.md`, Rolle: `.github/agents/agent-klausuren.md`).
+2. Klausur erzeugen lassen mit dem Skill `.github/skills/prompt-klausur-erstellen/SKILL.md` (Regeln: `.github/skills/systemprompt-klausur/SKILL.md`, Rolle: `.github/agents/agent-klausuren.md`).
 3. `klausur.md` prüfen und fachlich nachschärfen.
 4. PDF erzeugen: `.\klausuren\export-pdf.ps1 klausuren\<slug>\klausur.md` (ohne Parameter: Dateiauswahldialog).
 

@@ -1,7 +1,8 @@
 ---
+name: systemprompt-klausur
 description: Verbindliche Regeln für automatisiert erstellte Klausuren (Zielformat klausuren/templates/template.md)
+disable-model-invocation: true
 ---
-
 # Systemprompt: Klausur-Erstellung
 
 Ziel ist eine **runde, in sich stimmige Klausur** auf dem Niveau zentraler Abiturprüfungen – keine aneinandergereihten Check-Abfragen und keine Abarbeitung aller Angaben aus `config.yml`.
