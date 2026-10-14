@@ -1,0 +1,221 @@
+# Warm-Up zu Check 01 „Zinseszinsformel umformen“ (Zinseszinsrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__zinseszinsrechnung__01
+abschluss: '<p>Im Training bekommst du vier solche Aufgaben ohne Vorgaben: je einmal ist $K_n$, $K_0$, $p$ und $n$ gesucht. Frag dich immer zuerst, wo die Unbekannte in $K_n=K_0\cdot q^n$ steht: als Faktor, in der Basis oder im Exponenten.</p><p>Runde erst am Ende auf 2 Nachkommastellen. Den Zinssatz gibst du in Prozent an (also $3{,}81$, nicht $1{,}0381$). Beträge trägst du ohne Tausenderpunkt ein.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Ein Jahr Zinsen, eine Multiplikation'
+    text: '<p>Lena legt $3\,000$ € zu $3\,\%$ pro Jahr an. Nach einem Jahr kommen $90$ € Zinsen dazu, das Guthaben beträgt $3\,090$ €.</p>'
+    schritte:
+      - typ: eingabe
+        frage: 'Mit welcher Zahl musst du $3\,000$ multiplizieren, um direkt $3\,090$ zu erhalten?'
+        felder:
+          - { label: '$3\,000\;\cdot$', loesung: 1.03, einheit: '$=\;3\,090$', aria: 'Faktor' }
+        hinweis: 'Rechne $3\,090:3\,000$.'
+        danach: '<p>Das ist der <strong>Zinsfaktor</strong> $q=1+\frac{p}{100}=1{,}03$. Ein Jahr Verzinsung ist also einmal „mal $q$“.</p>'
+      - typ: auswahl
+        frage: 'Wie groß ist der Zinsfaktor bei $p=2{,}5\,\%$?'
+        optionen:
+          - '$q=1{,}025$'
+          - '$q=1{,}25$'
+          - '$q=0{,}025$'
+        korrekt: 0
+        hinweis: '$\frac{2{,}5}{100}=0{,}025$. Dazu kommt die $1$ für das Kapital selbst.'
+      - typ: auswahl
+        frage: 'Lena lässt das Geld $6$ Jahre liegen. Wie berechnest du ihr Kapital?'
+        optionen:
+          - '$3\,000\cdot 1{,}03^6$'
+          - '$3\,000\cdot 1{,}03\cdot 6$'
+          - '$3\,000+6\cdot 90$'
+        korrekt: 0
+        hinweis: 'Jedes Jahr wird wieder mit $1{,}03$ multipliziert. Auch die Zinsen bringen Zinsen.'
+        danach: '$$\begin{align*}K_6&=3\,000\cdot 1{,}03^6\\ &\approx 3\,582{,}16\,\text{€}\end{align*}$$<p>Allgemein gilt die <strong>Zinseszinsformel</strong></p>$$K_n=K_0\cdot q^n$$<p>Sie verbindet vier Größen: $K_0$, $K_n$, $q$ (bzw. $p$) und $n$. Kennst du drei davon, kannst du die vierte berechnen. Wie du umformst, hängt davon ab, wo die gesuchte Größe in der Formel steht.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Endkapital und Anfangskapital'
+    text: '<p>Ein Kapital wird jährlich mit Zinseszins verzinst. Rechts sammeln wir, wie man für jede gesuchte Größe vorgeht.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: kn, text: '$K_n$ gesucht', gleichung: 'einsetzen und ausrechnen' }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'durch $q^n$ teilen' }
+        - { id: p, text: '$p$ gesucht', gleichung: 'durch $K_0$ teilen, $n$-te Wurzel ziehen, $p=(q-1)\cdot 100$' }
+        - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>a)</strong> $K_0=8\,000$ €, $p=3\,\%$, $n=6$. Gesucht: $K_n$.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>$K_n$ steht in der Formel schon allein. Mit $q=1{,}03$ wird nur eingesetzt:</p>$$\begin{align*}K_6&=8\,000\cdot 1{,}03^6\\ &\approx 9\,552{,}42\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [kn] }
+      - typ: auswahl
+        frage: '<strong>b)</strong> $K_n=12\,000$ €, $p=2{,}5\,\%$, $n=10$. Gesucht: $K_0$. Nach dem Einsetzen steht da $$12\,000=K_0\cdot 1{,}025^{10}$$ Wie bekommst du $K_0$ allein?'
+        optionen:
+          - 'durch $1{,}025^{10}$ teilen'
+          - '$1{,}025^{10}$ abziehen'
+          - 'die 10. Wurzel ziehen'
+        korrekt: 0
+        hinweis: '$K_0$ wird mit $1{,}025^{10}$ <em>multipliziert</em>. Das machst du rückgängig.'
+        danach: '<p>Beide Seiten durch $1{,}025^{10}$ teilen:</p>$$\begin{align*}K_0&=\frac{12\,000}{1{,}025^{10}}\\ &\approx 9\,374{,}38\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [k0] }
+      - typ: auswahl
+        frage: 'Ist $K_0\approx 9\,374{,}38$ € plausibel?'
+        optionen:
+          - 'Ja, $K_0$ muss kleiner als $K_n$ sein, weil Zinsen dazukommen.'
+          - 'Nein, $K_0$ müsste größer als $12\,000$ € sein.'
+        korrekt: 0
+        hinweis: 'Das Kapital wächst von $K_0$ auf $K_n=12\,000$ €.'
+        danach: '<p>Diese Probe lohnt sich immer: Bei positivem Zinssatz ist das Anfangskapital kleiner als das Endkapital.</p>'
+
+  - phase: vormachen
+    titel: 'Zinssatz und Laufzeit'
+    text: '<p>Bei $p$ und $n$ beginnt die Rechnung gleich: einsetzen und durch $K_0$ teilen. Danach trennen sich die Wege.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: kn, text: '$K_n$ gesucht', gleichung: 'einsetzen und ausrechnen', erledigt: true }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'durch $q^n$ teilen', erledigt: true }
+        - { id: p, text: '$p$ gesucht', gleichung: 'durch $K_0$ teilen, $n$-te Wurzel ziehen, $p=(q-1)\cdot 100$' }
+        - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>c)</strong> $K_0=5\,000$ €, $K_n=6\,500$ €, $n=8$. Gesucht: $p$.'
+        knopf: 'Einsetzen und teilen'
+        text: '$$\begin{align*}6\,500&=5\,000\cdot q^8\quad|:5\,000\\ q^8&=1{,}3\end{align*}$$'
+      - typ: eingabe
+        frage: '<strong>d)</strong> $K_0=10\,000$ €, $K_n=15\,000$ €, $p=4\,\%$. Gesucht: $n$. Nach dem Einsetzen steht da $$15\,000=10\,000\cdot 1{,}04^n$$ Teile ebenfalls durch $K_0$.'
+        felder:
+          - { label: '$1{,}04^n=$', loesung: 1.5 }
+        hinweis: 'Rechne $15\,000:10\,000$.'
+      - typ: auswahl
+        frage: 'Vergleiche $q^8=1{,}3$ und $1{,}04^n=1{,}5$. Wo steht jeweils die Unbekannte?'
+        optionen:
+          - 'c) in der Basis, d) im Exponenten'
+          - 'c) im Exponenten, d) in der Basis'
+          - 'in beiden Fällen im Exponenten'
+        korrekt: 0
+        hinweis: 'In $q^8$ ist $q$ unbekannt, in $1{,}04^n$ ist $n$ unbekannt.'
+        danach: '<p>Davon hängt das Werkzeug ab: Unbekannte in der <strong>Basis</strong> → Wurzel ziehen. Unbekannte im <strong>Exponenten</strong> → Logarithmus.</p>'
+      - typ: aufdecken
+        frage: '<strong>c)</strong> zu Ende rechnen: 8. Wurzel ziehen, dann $p$ aus $q$ bestimmen.'
+        knopf: 'Rechnung zeigen'
+        text: '$$\begin{align*}q^8&=1{,}3\\ q&=\sqrt[8]{1{,}3}\approx 1{,}0333\\ p&=(q-1)\cdot 100\approx 3{,}33\end{align*}$$<p>Der Zinssatz beträgt etwa $3{,}33\,\%$.</p>'
+        zeige: { eintraege: [p] }
+      - typ: aufdecken
+        frage: '<strong>d)</strong> zu Ende rechnen: Logarithmus auf beide Seiten.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Auf beiden Seiten den Logarithmus bilden. Er holt den Exponenten als Faktor nach vorn: $\ln(1{,}04^n)=n\cdot\ln 1{,}04$. Dann durch $\ln 1{,}04$ teilen:</p>$$\begin{align*}1{,}04^n&=1{,}5\\ n\cdot\ln 1{,}04&=\ln 1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}04}\\ &\approx 10{,}34\end{align*}$$<p>Nach etwa $10{,}34$ Jahren ist das Kapital auf $15\,000$ € angewachsen.</p>'
+        zeige: { eintraege: [n] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welche Umformung passt?'
+    text: '<p>Ordne jeder Gleichung den nächsten Schritt zu. Achte darauf, wo die Unbekannte steht.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gleichung'
+        titel_rechts: 'Nächster Schritt'
+        paare:
+          - { links: '$K_9=2\,000\cdot 1{,}03^9$', rechts: 'nur ausrechnen' }
+          - { links: '$5\,000=K_0\cdot 1{,}04^6$', rechts: 'durch $1{,}04^6$ teilen' }
+          - { links: '$q^{12}=1{,}8$', rechts: '12. Wurzel ziehen' }
+          - { links: '$1{,}05^n=2$', rechts: 'Logarithmus anwenden' }
+        danach: '<p>Unbekannte als <strong>Faktor</strong> → teilen. In der <strong>Basis</strong> → Wurzel. Im <strong>Exponenten</strong> → Logarithmus.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: End- und Anfangskapital'
+    text: '<p>Jetzt rechnest du selbst. Rechts steht noch dein Spickzettel.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: kn, text: '$K_n$ gesucht', gleichung: 'einsetzen und ausrechnen', erledigt: true }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'durch $q^n$ teilen', erledigt: true }
+        - { id: p, text: '$p$ gesucht', gleichung: 'durch $K_0$ teilen, $n$-te Wurzel ziehen, $p=(q-1)\cdot 100$', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden', erledigt: true }
+    schritte:
+      - typ: eingabe
+        frage: '$K_0=4\,000$ €, $p=3{,}5\,\%$, $n=5$. Gesucht: $K_n$. Zuerst der Zinsfaktor:'
+        felder:
+          - { label: '$q=$', loesung: 1.035 }
+        hinweis: '$q=1+\frac{3{,}5}{100}$.'
+      - typ: eingabe
+        frage: 'Der Ansatz steht da: $$K_5=4\,000\cdot 1{,}035^5$$ (Betrag ohne Tausenderpunkt eintragen)'
+        felder:
+          - { label: '$K_5=$', loesung: 4750.75, toleranz: 1, einheit: '€' }
+        hinweis: 'Tippe $4000\cdot 1{,}035^5$ in den Taschenrechner. Ergebnis ohne Tausenderpunkt, z. B. 1234,56.'
+      - typ: auswahl
+        frage: '$K_n=6\,000$ €, $p=4\,\%$, $n=7$. Gesucht: $K_0$. Welcher Ansatz führt zum Ziel?'
+        optionen:
+          - '$K_0=\frac{6\,000}{1{,}04^7}$'
+          - '$K_0=6\,000\cdot 1{,}04^7$'
+          - '$K_0=\frac{6\,000}{1{,}04\cdot 7}$'
+        korrekt: 0
+        hinweis: 'Aus $6\,000=K_0\cdot 1{,}04^7$ wird durch $1{,}04^7$ geteilt, also durch die ganze Potenz.'
+      - typ: eingabe
+        frage: 'Jetzt ausrechnen.'
+        felder:
+          - { label: '$K_0=$', loesung: 4559.51, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $6000:1{,}04^7$. Probe: Das Ergebnis muss kleiner als $6\,000$ € sein.'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Zinssatz'
+    text: '<p>$K_0=2\,000$ €, $K_n=2\,800$ €, $n=9$. Gesucht: $p$.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: kn, text: '$K_n$ gesucht', gleichung: 'einsetzen und ausrechnen', erledigt: true }
+        - { id: k0, text: '$K_0$ gesucht', gleichung: 'durch $q^n$ teilen', erledigt: true }
+        - { id: p, text: '$p$ gesucht', gleichung: 'durch $K_0$ teilen, $n$-te Wurzel ziehen, $p=(q-1)\cdot 100$', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden', erledigt: true }
+    schritte:
+      - typ: eingabe
+        frage: 'Einsetzen: $$2\,800=2\,000\cdot q^9$$ Teile durch $2\,000$.'
+        felder:
+          - { label: '$q^9=$', loesung: 1.4 }
+        hinweis: 'Rechne $2\,800:2\,000$.'
+      - typ: auswahl
+        frage: 'Die Unbekannte $q$ steht in der Basis. Was ist der nächste Schritt?'
+        optionen:
+          - '9. Wurzel ziehen'
+          - 'Logarithmus anwenden'
+          - 'durch $9$ teilen'
+        korrekt: 0
+        hinweis: 'Die Wurzel macht das Potenzieren mit $9$ rückgängig. Durch $9$ teilen würde $9\cdot q$ rückgängig machen.'
+      - typ: eingabe
+        frage: '$q=\sqrt[9]{1{,}4}$, auf 4 Nachkommastellen.'
+        felder:
+          - { label: '$q\approx$', loesung: 1.0381, toleranz: 0.0001 }
+        hinweis: 'Taschenrechner: $1{,}4^{1/9}$ oder die Taste $\sqrt[x]{\phantom{x}}$.'
+      - typ: eingabe
+        frage: 'Jetzt der Zinssatz.'
+        felder:
+          - { label: '$p=$', loesung: 3.81, toleranz: 0.01, einheit: '%' }
+        hinweis: '$p=(q-1)\cdot 100$. Gefragt ist der Zinssatz in Prozent, nicht der Zinsfaktor.'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Laufzeit'
+    text: '<p>$K_0=5\,000$ €, $K_n=8\,000$ €, $p=6\,\%$. Gesucht: $n$. Diesmal ohne Spickzettel.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Was ist der erste Schritt?'
+        optionen:
+          - 'einsetzen und durch $5\,000$ teilen'
+          - 'die $n$-te Wurzel ziehen'
+          - 'durch $1{,}06$ teilen'
+        korrekt: 0
+        hinweis: 'Bei $p$ und bei $n$ beginnt es gleich.'
+        danach: '<p>Einsetzen und durch $5\,000$ teilen:</p>$$\begin{align*}8\,000&=5\,000\cdot 1{,}06^n\\ 1{,}06^n&=1{,}6\end{align*}$$'
+      - typ: eingabe
+        frage: 'Rechne $n$ aus, auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$n\approx$', loesung: 8.07, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$n$ steht im Exponenten, also Logarithmus: $n=\frac{\ln 1{,}6}{\ln 1{,}06}$.'
+        danach: '$$n=\frac{\ln 1{,}6}{\ln 1{,}06}\approx 8{,}07$$<p>Nach etwa $8{,}07$ Jahren ist das Kapital auf $8\,000$ € angewachsen.</p>'
