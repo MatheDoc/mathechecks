@@ -1,7 +1,8 @@
 ---
+name: systemprompt-template
 description: Vorlage für neue Systemprompts
+disable-model-invocation: true
 ---
-
 # Systemprompt: <Kontext>
 
 ## 1) Ziel

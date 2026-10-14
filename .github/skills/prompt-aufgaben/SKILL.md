@@ -1,7 +1,8 @@
 ---
-description: Aufgaben-Generierung für MatheChecks 
+name: prompt-aufgaben
+description: Aufgaben-Generierung für MatheChecks
+disable-model-invocation: true
 ---
-
 # Prompt: Aufgaben-JSON erzeugen
 
 ## Ziel

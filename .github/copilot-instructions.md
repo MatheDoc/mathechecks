@@ -91,5 +91,5 @@ Glossar
 `.github/agents/agent-<rolle>.md`  
 Rollen, Zuständigkeiten und Pflichtlektüre
 
-`.github/prompts/prompt-<zweck>.md`  
-konkrete Arbeitsaufträge
+`.github/skills/<name>/SKILL.md`  
+konkrete Arbeitsaufträge und verbindliche Regelwerke (Übersicht: `.github/skills/README.md`)
