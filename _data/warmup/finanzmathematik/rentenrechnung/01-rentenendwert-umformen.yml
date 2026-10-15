@@ -1,0 +1,187 @@
+# Warm-Up zu Check 01 „Rentenendwertformel umformen“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__01
+abschluss: '<p>Im Training bekommst du drei Teilaufgaben pro Karte: einmal ist der Rentenendwert ($R_n$ oder $\overline{R}_n$), einmal die Rate $r$ und einmal die Laufzeit $n$ gesucht. Achte zuerst auf <strong>nachschüssig</strong> vs. <strong>vorschüssig</strong> (zusätzlicher Faktor $q$ im Zähler) und rechne im Nenner $q-1$ sofort aus.</p><p>Runde erst am Ende auf 2 Nachkommastellen. Beträge trägst du ohne Tausenderpunkt ein.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Zwei Formeln, drei gesuchte Größen'
+    text: '<p>Bei einer Rente wird jedes Jahr derselbe Betrag $r$ eingezahlt. Die Rentenendwertformel fasst alle verzinsten Raten am Ende der Laufzeit zusammen – je nachdem, ob am Jahresende (<strong>nachschüssig</strong>) oder am Jahresanfang (<strong>vorschüssig</strong>) gezahlt wird:</p>$$\begin{align*}R_n&=\frac{r\cdot(q^n-1)}{q-1}\\ \overline{R}_n&=\frac{r\cdot q\cdot(q^n-1)}{q-1}\end{align*}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Worin unterscheiden sich die beiden Formeln?'
+        optionen:
+          - 'Vorschüssig ($\overline{R}_n$) steht im Zähler zusätzlich der Faktor $q$.'
+          - 'Vorschüssig steht im Nenner $q^n$ statt $q-1$.'
+          - 'Nachschüssig wird ohne Zinsfaktor $q$ gerechnet.'
+        korrekt: 0
+        hinweis: 'Vergleiche die beiden Zähler.'
+        danach: '<p>Bei vorschüssiger Zahlung liegt jede Rate ein Jahr länger auf dem Konto und wird einmal mehr mit $q$ verzinst.</p>'
+      - typ: eingabe
+        frage: 'Vor dem Einsetzen bestimmst du aus dem Zinssatz $p$ den Zinsfaktor $q=1+\frac{p}{100}$ und den Nenner $q-1$. Was gilt bei $p=3\,\%$?'
+        layout: zeile
+        felder:
+          - { label: '$q=$', loesung: 1.03, aria: 'q' }
+          - { label: '$q-1=$', loesung: 0.03, aria: 'q minus 1' }
+        hinweis: '$\frac{3}{100}=0{,}03$, also $q=1{,}03$ und $q-1=0{,}03$.'
+        danach: '<p>Wenn du im Nenner $q-1$ sofort als Dezimalzahl schreibst, wird jede spätere Umformung deutlich übersichtlicher.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Endwert und Rate bestimmen'
+    text: '<p>Je nachdem, welche Größe gesucht ist, gehst du beim Umformen unterschiedlich vor. Rechts sammeln wir die drei Wege.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: rn, text: '$R_n$ oder $\overline{R}_n$ gesucht', gleichung: 'einsetzen und Bruch ausrechnen' }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Bruch ohne $r$ ausrechnen, durch diesen Faktor teilen' }
+        - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>a) Endwert gesucht:</strong> nachschüssige Rente mit $r=2\,000$ €, $p=3\,\%$, $n=8$. Gesucht: $R_n$.'
+        knopf: 'Einsetzen und ausrechnen'
+        text: '<p>$R_8$ steht schon allein auf der linken Seite. Mit $q=1{,}03$ und $q-1=0{,}03$ wird direkt eingesetzt:</p>$$\begin{align*}R_8&=\frac{2\,000\cdot(1{,}03^8-1)}{0{,}03}\\ &\approx 17\,784{,}67\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [rn] }
+      - typ: aufdecken
+        frage: '<strong>b) Rate $r$ gesucht:</strong> vorschüssige Rente mit $\overline{R}_n=30\,000$ €, $p=2\,\%$, $n=10$.'
+        knopf: 'Werte einsetzen'
+        text: '<p>Vorschüssige Formel (mit $q=1{,}02$ im Zähler) und $q-1=0{,}02$:</p>$$30\,000=\frac{r\cdot 1{,}02\cdot(1{,}02^{10}-1)}{0{,}02}$$'
+      - typ: auswahl
+        frage: '$r$ steht als Faktor im Zähler. Wie löst du am einfachsten nach $r$ auf?'
+        optionen:
+          - 'Den Bruch ohne $r$ als Dezimalzahl ausrechnen und $30\,000$ durch diesen Faktor teilen'
+          - 'Die 10. Wurzel ziehen'
+          - 'Den Bruch von $30\,000$ abziehen'
+        korrekt: 0
+        hinweis: '$r$ ist mit dem restlichen Bruch multipliziert. Rechne diesen Faktor zuerst aus.'
+        danach: '$$\begin{align*}30\,000&=r\cdot\frac{1{,}02\cdot(1{,}02^{10}-1)}{0{,}02}\\ 30\,000&\approx r\cdot 11{,}1687\quad|:11{,}1687\\ r&\approx 2\,686{,}07\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [r] }
+
+  - phase: vormachen
+    titel: 'Nach der Laufzeit n umformen'
+    text: '<p><strong>c) Laufzeit $n$ gesucht:</strong> nachschüssige Rente mit $r=1\,500$ €, $R_n=20\,000$ €, $p=4\,\%$.</p><p>Nach dem Einsetzen steckt $n$ im Exponenten von $1{,}04^n$:</p>$$20\,000=\frac{1\,500\cdot(1{,}04^n-1)}{0{,}04}$$<p>Ziel: die Potenz $1{,}04^n$ von außen nach innen freistellen, dann den Logarithmus anwenden.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: rn, text: '$R_n$ oder $\overline{R}_n$ gesucht', gleichung: 'einsetzen und Bruch ausrechnen', erledigt: true }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Bruch ohne $r$ ausrechnen, durch diesen Faktor teilen', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus' }
+    schritte:
+      - typ: auswahl
+        frage: '<strong>Schritt 1:</strong> Was machst du zuerst, um den Bruch rechts aufzulösen?'
+        optionen:
+          - 'Beide Seiten mit dem Nenner $0{,}04$ multiplizieren'
+          - 'Sofort $+1$ rechnen'
+          - 'Sofort den Logarithmus anwenden'
+        korrekt: 0
+        hinweis: 'Die Klammer $(1{,}04^n-1)$ steht noch im Zähler eines Bruchs. Erst muss der Nenner weg.'
+        danach: '$$\begin{align*}20\,000&=\frac{1\,500\cdot(1{,}04^n-1)}{0{,}04}\quad|\cdot 0{,}04\\ 800&=1\,500\cdot(1{,}04^n-1)\end{align*}$$'
+      - typ: auswahl
+        frage: '<strong>Schritt 2:</strong> In welcher Reihenfolge stellst du jetzt $1{,}04^n$ allein?'
+        optionen:
+          - 'Erst durch $1\,500$ teilen, dann $+1$ rechnen'
+          - 'Erst $+1$ rechnen, dann durch $1\,500$ teilen'
+          - 'Durch $1\,500$ abziehen und mit $1{,}04$ teilen'
+        korrekt: 0
+        hinweis: 'Vor der Klammer steht der Faktor $1\,500$. Erst durch $1\,500$ teilen, danach fällt die Klammer weg.'
+        danach: '$$\begin{align*}800&=1\,500\cdot(1{,}04^n-1)\quad|:1\,500\\ 0{,}5333&\approx 1{,}04^n-1\quad|+1\\ 1{,}04^n&\approx 1{,}5333\end{align*}$$<p>(Bei einer <strong>vorschüssigen</strong> Rente teilst du an dieser Stelle durch $r\cdot q$ statt nur durch $r$.)</p>'
+      - typ: aufdecken
+        frage: '<strong>Schritt 3:</strong> $n$ steht im Exponenten – der Logarithmus holt $n$ nach unten.'
+        knopf: 'Mit Logarithmus auflösen'
+        text: '$$\begin{align*}1{,}04^n&\approx 1{,}5333\\ n&=\frac{\ln 1{,}5333}{\ln 1{,}04}\\ &\approx 10{,}90\end{align*}$$<p>Nach etwa $10{,}90$ Jahren ist der Endwert von $20\,000$ € erreicht.</p>'
+        zeige: { eintraege: [n] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Welcher Umformungsschritt folgt?'
+    text: '<p>Ordne jeder Gleichung den passenden nächsten Schritt zu.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Gleichung'
+        titel_rechts: 'Nächster Schritt'
+        paare:
+          - { links: '$25\,000=r\cdot 12{,}5779$', rechts: 'durch $12{,}5779$ teilen' }
+          - { links: '$15\,000=\dfrac{1\,200\cdot(1{,}03^n-1)}{0{,}03}$', rechts: 'mit $0{,}03$ multiplizieren' }
+          - { links: '$450=1\,200\cdot(1{,}03^n-1)$', rechts: 'durch $1\,200$ teilen, dann $+1$' }
+          - { links: '$1{,}03^n=1{,}375$', rechts: 'Logarithmus: $n=\dfrac{\ln 1{,}375}{\ln 1{,}03}$' }
+        danach: '<p>Merke dir für $n$ die feste Reihenfolge von außen nach innen: <strong>mal $(q-1)$ → geteilt durch $r$ (bzw. $r\cdot q$) → $+1$ → Logarithmus</strong>.</p>'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Endwert und Rate'
+    text: '<p>Jetzt rechnest du selbst. Rechts steht noch dein Spickzettel.</p>'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: rn, text: '$R_n$ oder $\overline{R}_n$ gesucht', gleichung: 'einsetzen und Bruch ausrechnen', erledigt: true }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Bruch ohne $r$ ausrechnen, durch diesen Faktor teilen', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus', erledigt: true }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>1.</strong> Vorschüssige Rente mit $r=1\,500$ €, $p=4\,\%$, $n=6$. Gesucht: $\overline{R}_n$. Der Ansatz steht da: $$\overline{R}_6=\frac{1\,500\cdot 1{,}04\cdot(1{,}04^6-1)}{0{,}04}$$ (Betrag ohne Tausenderpunkt eintragen)'
+        felder:
+          - { label: '$\overline{R}_6=$', loesung: 10347.44, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $1500\cdot 1{,}04\cdot(1{,}04^6-1):0{,}04$ und runde auf 2 Nachkommastellen.'
+      - typ: eingabe
+        frage: '<strong>2.</strong> Nachschüssige Rente mit $R_n=15\,000$ €, $p=4\,\%$, $n=10$. Gesucht: $r$. Eingesetzt: $$15\,000=r\cdot\frac{1{,}04^{10}-1}{0{,}04}$$ Rechne zuerst den Bruch ohne $r$ auf 4 Nachkommastellen aus.'
+        felder:
+          - { label: '$\text{Faktor}\approx$', loesung: 12.0061, toleranz: 0.0005 }
+        hinweis: 'Rechne $(1{,}04^{10}-1):0{,}04$.'
+      - typ: eingabe
+        frage: 'Teile jetzt $15\,000$ durch diesen Faktor.'
+        felder:
+          - { label: '$r=$', loesung: 1249.36, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $15\,000:12{,}0061$.'
+
+  - phase: mitmachen
+    titel: 'Neue Zahlen: nach n umformen (mit Hilfe)'
+    text: '<p>Nachschüssige Rente mit $r=2\,000$ €, $R_n=16\,000$ €, $p=5\,\%$. Gesucht: $n$.</p><p>Eingesetzt mit $q=1{,}05$ und $q-1=0{,}05$:</p>$$16\,000=\frac{2\,000\cdot(1{,}05^n-1)}{0{,}05}$$'
+    visual:
+      typ: liste
+      titel: 'Gesucht – so geht es'
+      eintraege:
+        - { id: rn, text: '$R_n$ oder $\overline{R}_n$ gesucht', gleichung: 'einsetzen und Bruch ausrechnen', erledigt: true }
+        - { id: r, text: '$r$ gesucht', gleichung: 'Bruch ohne $r$ ausrechnen, durch diesen Faktor teilen', erledigt: true }
+        - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus', erledigt: true }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Schritt 1:</strong> Multipliziere beide Seiten mit $0{,}05$. Was steht dann links?'
+        felder:
+          - { label: '$16\,000\cdot 0{,}05=$', loesung: 800 }
+        hinweis: 'Rechne $16\,000\cdot 0{,}05$.'
+        danach: '$$800=2\,000\cdot(1{,}05^n-1)$$'
+      - typ: eingabe
+        frage: '<strong>Schritt 2:</strong> Teile durch $2\,000$ und addiere anschließend $1$.'
+        felder:
+          - { label: '$1{,}05^n=$', loesung: 1.4 }
+        hinweis: '$800:2\,000=0{,}4$, und $0{,}4+1=1{,}4$.'
+      - typ: eingabe
+        frage: '<strong>Schritt 3:</strong> Wende den Logarithmus an und runde auf 2 Nachkommastellen.'
+        felder:
+          - { label: '$n\approx$', loesung: 6.90, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$n=\frac{\ln 1{,}4}{\ln 1{,}05}$.'
+
+  - phase: mitmachen
+    titel: 'Noch einmal n – vorschüssig und mit weniger Hilfe'
+    text: '<p>Vorschüssige Rente mit $r=1\,000$ €, $\overline{R}_n=13\,000$ €, $p=4\,\%$. Gesucht: $n$. Diesmal ohne Spickzettel.</p>$$13\,000=\frac{1\,000\cdot 1{,}04\cdot(1{,}04^n-1)}{0{,}04}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Vor der Klammer im Zähler steht $1\,000\cdot 1{,}04=1\,040$. Wie stellst du $1{,}04^n$ frei?'
+        optionen:
+          - 'Mit $0{,}04$ multiplizieren, durch $1\,040$ teilen und $1$ addieren'
+          - 'Mit $0{,}04$ multiplizieren, $1$ addieren und durch $1\,000$ teilen'
+          - 'Durch $0{,}04$ teilen und durch $1\,040$ teilen'
+        korrekt: 0
+        hinweis: 'Erst den Nenner $0{,}04$ weg, dann den gesamten Vorfaktor $1\,040$ vor der Klammer weg, zuletzt $+1$.'
+      - typ: eingabe
+        frage: 'Führe die Umformung durch und berechne $n$ (auf 2 Nachkommastellen).'
+        felder:
+          - { label: '$1{,}04^n=$', loesung: 1.5 }
+          - { label: '$n\approx$', loesung: 10.34, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$13\,000\cdot 0{,}04=520$, dann $520:1\,040=0{,}5$, also $1{,}04^n=1{,}5$ und $n=\frac{\ln 1{,}5}{\ln 1{,}04}$.'
+        danach: '$$\begin{align*}13\,000\cdot 0{,}04&=1\,040\cdot(1{,}04^n-1)\\ 520&=1\,040\cdot(1{,}04^n-1)\quad|:1\,040\\ 0{,}5&=1{,}04^n-1\quad|+1\\ 1{,}04^n&=1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}04}\approx 10{,}34\end{align*}$$'

@@ -1,0 +1,210 @@
+# Warm-Up zu Check 04 „Rente im Sachkontext“ (Rentenrechnung)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: finanzmathematik__rentenrechnung__04
+abschluss: '<p>Im Training bekommst du vier Teilaufgaben im Sachzusammenhang: je einmal ist der Endwert, der Barwert, die Rate $r$ und die Laufzeit $n$ gesucht. Kläre vor jeder Rechnung immer zuerst die drei Fragen: <strong>1. Vor- oder nachschüssig? 2. Endwert oder Barwert? 3. Welche Größe ist gesucht?</strong></p><p>Runde erst am Ende auf 2 Nachkommastellen und trage Beträge ohne Tausenderpunkt ein.</p>'
+karten:
+
+  # ── Phase A: Orientierung ──────────────────────────────────
+  - phase: orientierung
+    titel: 'Drei Fragen an jeden Aufgabentext'
+    text: '<p>In Sachaufgaben steht keine Formel dabei. Um den richtigen Ansatz aufzustellen, klärst du beim Lesen drei Fragen:</p><ol><li><strong>Wann wird gezahlt?</strong> Am Jahresanfang (<strong>vorschüssig</strong>, mit Querstrich $\overline{R}$ und Faktor $q$ im Zähler) oder am Jahresende (<strong>nachschüssig</strong>, ohne Querstrich)?</li><li><strong>Endwert oder Barwert?</strong> Geht es um das angesparte Guthaben <strong>am Ende</strong> der Laufzeit ($R_n$, $\overline{R}_n$) oder um einen großen Betrag <strong>heute zu Beginn</strong> ($R_0$, $\overline{R}_0$)?</li><li><strong>Was ist gesucht?</strong> Der End-/Barwert selbst, die jährliche Rate $r$ oder die Laufzeit $n$?</li></ol>'
+    schritte:
+      - typ: auswahl
+        frage: '<em>„Eine Bäckerei legt heute $80\,000$ € an und möchte daraus $10$ Jahre lang jährlich einen gleich hohen Betrag entnehmen, sodass das Kapital am Ende aufgebraucht ist. Wie hoch ist dieser Betrag?“</em><br>Welche Rolle spielen die $80\,000$ €?'
+        optionen:
+          - 'Barwert – das Geld liegt heute zu Beginn auf dem Konto und finanziert die Entnahmen.'
+          - 'Endwert – das Geld soll erst nach 10 Jahren erreicht sein.'
+          - 'Rate $r$ – der Betrag wird jedes Jahr gezahlt.'
+        korrekt: 0
+        hinweis: 'Wann sind die $80\,000$ € da: heute zu Beginn oder erst nach 10 Jahren?'
+      - typ: auswahl
+        frage: 'Und welche Größe ist im Fragesatz <em>„Wie hoch ist dieser Betrag?“</em> gesucht?'
+        optionen:
+          - 'Die jährliche Rate $r$'
+          - 'Der Rentenbarwert $R_0$'
+          - 'Der Rentenendwert $R_n$'
+        korrekt: 0
+        hinweis: 'Lies den Satz davor: „… möchte daraus 10 Jahre lang jährlich einen gleich hohen Betrag entnehmen.“'
+        danach: '<p>Genau: „dieser Betrag“ meint den regelmäßigen jährlichen Betrag – also die <strong>Rate $r$</strong>. Die $80\,000$ € von heute sind der gegebene Barwert.</p>'
+
+  # ── Phase B: Vormachen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Fall 1: Sparen auf ein Guthaben am Ende (Endwert)'
+    text: '<p><em>„Eine Physiotherapiepraxis zahlt $15$ Jahre lang jeweils zu Jahresbeginn $1\,800$ € auf ein mit $3\,\%$ verzinstes Konto ein. Über welchen Betrag verfügt sie am Ende des 15. Jahres?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: zw, text: '„jeweils zu Jahresbeginn“', gleichung: 'vorschüssig ($\overline{R}$)' }
+        - { id: art, text: '„am Ende des 15. Jahres“', gleichung: 'Endwert ($\overline{R}_n$)' }
+        - { id: geg, text: 'Gegebene Größen', gleichung: '$r=1\,800$ €, $q=1{,}03$, $n=15$' }
+        - { id: ges, text: 'Gesuchte Größe', gleichung: '$\overline{R}_{15}$' }
+    schritte:
+      - typ: auswahl
+        frage: '<strong>1. Zahlungsweise &amp; Zeitpunkt:</strong> Welche Formel passt zum Text?'
+        optionen:
+          - 'Vorschüssiger Rentenendwert: $\overline{R}_n=\dfrac{r\cdot q\cdot(q^n-1)}{q-1}$'
+          - 'Nachschüssiger Rentenendwert: $R_n=\dfrac{r\cdot(q^n-1)}{q-1}$'
+          - 'Vorschüssiger Rentenbarwert: $\overline{R}_0=\dfrac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}$'
+        korrekt: 0
+        hinweis: '„zu Jahresbeginn“ → vorschüssig. „am Ende des 15. Jahres“ → Endwert.'
+        zeige: { eintraege: [zw, art] }
+      - typ: aufdecken
+        frage: '<strong>2. Größen zuordnen, Ansatz aufstellen und ausrechnen:</strong>'
+        knopf: 'Ansatz und Rechnung zeigen'
+        text: '<p>Die jährliche Einzahlung ist $r=1\,800$ €, dazu $q=1{,}03$ und $n=15$:</p>$$\begin{align*}\overline{R}_{15}&=\frac{1\,800\cdot 1{,}03\cdot(1{,}03^{15}-1)}{0{,}03}\\ &\approx 34\,482{,}39\,\text{€}\end{align*}$$<p>Am Ende des 15. Jahres verfügt die Praxis über rund $34\,482{,}39$ €.</p>'
+        zeige: { eintraege: [geg, ges] }
+      - typ: auswahl
+        frage: '<strong>Vergleich:</strong> Was ändert sich, wenn es heißt: <em>„Die Praxis möchte nach $15$ Jahren über $35\,000$ € verfügen und zahlt dafür jeweils zu Jahresbeginn einen festen Betrag ein. Wie hoch muss dieser Betrag sein?“</em>'
+        optionen:
+          - 'Gleiche Formel ($\overline{R}_n$), aber jetzt ist der Endwert $\overline{R}_{15}=35\,000$ € gegeben und die Rate $r$ gesucht.'
+          - 'Jetzt braucht man die Barwertformel $\overline{R}_0$.'
+          - 'Jetzt ist $\overline{R}_{15}$ gesucht und $r=35\,000$ € gegeben.'
+        korrekt: 0
+        hinweis: 'Die $35\,000$ € sollen nach 15 Jahren erreicht sein – das ist weiter das Endguthaben.'
+        danach: '<p>Wichtig: Wird regelmäßig eingezahlt, um nach $n$ Jahren über einen Zielbetrag zu verfügen, ist dieser Zielbetrag immer der <strong>Endwert</strong>.</p>'
+
+  - phase: vormachen
+    titel: 'Fall 2: Betrag heute und jährliche Entnahme (Barwert)'
+    text: '<p><em>„Die Praxis legt heute $40\,000$ € zu $2{,}5\,\%$ an und möchte daraus $10$ Jahre lang jeweils am Jahresende einen gleich hohen Betrag entnehmen, sodass das Kapital danach aufgebraucht ist. Wie hoch ist dieser Betrag?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: zw, text: '„jeweils am Jahresende“', gleichung: 'nachschüssig ($R$)' }
+        - { id: art, text: '„legt heute $40\,000$ € an“', gleichung: 'Barwert $R_0=40\,000$ € gegeben' }
+        - { id: geg, text: 'Weitere Angaben', gleichung: '$q=1{,}025$, $n=10$' }
+        - { id: ges, text: '„gleich hohen Betrag entnehmen“', gleichung: 'Rate $r$ gesucht' }
+    schritte:
+      - typ: auswahl
+        frage: '<strong>1. Text entschlüsseln:</strong> Was ist hier gegeben und was ist gesucht?'
+        optionen:
+          - 'Nachschüssig; gegeben ist der Barwert $R_0=40\,000$ €, gesucht ist die Rate $r$.'
+          - 'Nachschüssig; gegeben ist der Endwert $R_{10}=40\,000$ €, gesucht ist die Rate $r$.'
+          - 'Nachschüssig; gegeben ist die Rate $r=40\,000$ €, gesucht ist der Barwert $R_0$.'
+        korrekt: 0
+        hinweis: 'Die $40\,000$ € werden heute zu Beginn angelegt und über 10 Jahre abgebaut.'
+        zeige: { eintraege: [zw, art, geg, ges] }
+      - typ: auswahl
+        frage: '<strong>2. Richtiger Ansatz:</strong> Welche Gleichung passt dazu?'
+        optionen:
+          - '$40\,000=\dfrac{r\cdot(1{,}025^{10}-1)}{1{,}025^{10}\cdot 0{,}025}$'
+          - '$R_0=\dfrac{40\,000\cdot(1{,}025^{10}-1)}{1{,}025^{10}\cdot 0{,}025}$'
+          - '$40\,000=\dfrac{r\cdot(1{,}025^{10}-1)}{0{,}025}$'
+        korrekt: 0
+        hinweis: 'Setze $R_0=40\,000$ links in die nachschüssige Barwertformel ein.'
+      - typ: aufdecken
+        frage: '<strong>3. Kurz ausrechnen:</strong>'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Bruch ohne $r$ ausrechnen und durch diesen Faktor teilen:</p>$$\begin{align*}40\,000&=r\cdot\frac{1{,}025^{10}-1}{1{,}025^{10}\cdot 0{,}025}\\ 40\,000&\approx r\cdot 8{,}7521\quad|:8{,}7521\\ r&\approx 4\,570{,}35\,\text{€}\end{align*}$$<p>Ebenso ein Barwert-Fall: <em>„Welcher Betrag muss heute angelegt werden, um $10$ Jahre lang $r$ € entnehmen zu können?“</em> oder <em>„Welcher einmalige Betrag heute ist gleichwertig?“</em> – dort ist $r$ gegeben und $R_0$ bzw. $\overline{R}_0$ gesucht.</p>'
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Textbausteine entschlüsseln'
+    text: '<p>Im Training begegnen dir immer wieder diese Formulierungen. Ordne jeder Beschreibung zu, was gegeben und was gesucht ist.</p>'
+    schritte:
+      - typ: zuordnen
+        titel_links: 'Formulierung im Text'
+        titel_rechts: 'Bedeutung'
+        paare:
+          - { links: '„zahlt 10 Jahre lang 2.000 € ein. Wie hoch ist das Guthaben am Ende?“', rechts: '$r$ gegeben, Endwert gesucht' }
+          - { links: '„möchte 10 Jahre lang 2.000 € entnehmen. Welcher Betrag muss heute angelegt werden?“', rechts: '$r$ gegeben, Barwert gesucht' }
+          - { links: '„möchte nach 10 Jahren über 30.000 € verfügen und zahlt jährlich einen festen Betrag ein.“', rechts: 'Endwert gegeben, Rate $r$ gesucht' }
+          - { links: '„legt heute 30.000 € an und entnimmt 10 Jahre lang einen gleich hohen Betrag, bis alles aufgebraucht ist.“', rechts: 'Barwert gegeben, Rate $r$ gesucht' }
+      - typ: auswahl
+        frage: 'Und woran erkennst du den Unterschied, wenn nach der <strong>Laufzeit $n$</strong> gefragt wird?<br><em>Fall A: „zahlt jährlich $1\,500$ € ein. Nach wie vielen Jahren ist ein Guthaben von $20\,000$ € erreicht?“</em><br><em>Fall B: „legt $20\,000$ € an und entnimmt jährlich $1\,500$ €. Wie viele Jahre lang kann dieser Betrag entnommen werden?“</em>'
+        optionen:
+          - 'Fall A: Endwert $R_n=20\,000$ € (Ansparen). Fall B: Barwert $R_0=20\,000$ € (Aufbrauchen).'
+          - 'Beide Fälle nutzen die Endwertformel.'
+          - 'Fall A nutzt den Barwert, Fall B nutzt den Endwert.'
+        korrekt: 0
+        hinweis: 'In Fall A entstehen die $20\,000$ € erst am Ende, in Fall B liegen sie schon zu Beginn da.'
+        danach: '<p>Faustregel: <strong>Ansparen auf ein Ziel am Ende → Endwert. Startbetrag heute aufbrauchen oder ablösen → Barwert.</strong></p>'
+
+  - phase: mitmachen
+    titel: 'Aufgabe 1 & 2: Endwert oder Barwert?'
+    text: '<p>Ein Sportverein plant seine Finanzen. Wähle jeweils zuerst den passenden Ansatz und rechne dann kurz aus.</p>'
+    schritte:
+      - typ: auswahl
+        frage: '<strong>1.</strong> <em>„Der Verein möchte $8$ Jahre lang jeweils am Ende eines Jahres $1\,500$ € für die Platzpflege entnehmen können. Welcher Betrag muss dafür heute zu $4\,\%$ angelegt werden?“</em><br>Welcher Ansatz passt?'
+        optionen:
+          - 'Nachschüssiger Barwert: $R_0=\dfrac{1\,500\cdot(1{,}04^8-1)}{1{,}04^8\cdot 0{,}04}$'
+          - 'Nachschüssiger Endwert: $R_8=\dfrac{1\,500\cdot(1{,}04^8-1)}{0{,}04}$'
+          - 'Vorschüssiger Barwert: $\overline{R}_0=\dfrac{1\,500\cdot 1{,}04\cdot(1{,}04^8-1)}{1{,}04^8\cdot 0{,}04}$'
+        korrekt: 0
+        hinweis: '„am Ende eines Jahres“ → nachschüssig. „heute angelegt werden“ → Barwert $R_0$.'
+      - typ: eingabe
+        frage: 'Berechne den heute nötigen Betrag (ohne Tausenderpunkt).'
+        felder:
+          - { label: '$R_0=$', loesung: 10099.12, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $1500\cdot(1{,}04^8-1):(1{,}04^8\cdot 0{,}04)$.'
+      - typ: auswahl
+        frage: '<strong>2.</strong> <em>„Für neue Flutlichter legt der Verein $10$ Jahre lang jeweils zu Beginn eines Jahres $2\,000$ € zu $3\,\%$ an. Wie hoch ist das Guthaben am Ende des letzten Jahres?“</em><br>Welcher Ansatz passt?'
+        optionen:
+          - 'Vorschüssiger Endwert: $\overline{R}_{10}=\dfrac{2\,000\cdot 1{,}03\cdot(1{,}03^{10}-1)}{0{,}03}$'
+          - 'Nachschüssiger Endwert: $R_{10}=\dfrac{2\,000\cdot(1{,}03^{10}-1)}{0{,}03}$'
+          - 'Vorschüssiger Barwert: $\overline{R}_0=\dfrac{2\,000\cdot 1{,}03\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
+        korrekt: 0
+        hinweis: '„zu Beginn eines Jahres“ → vorschüssig. „Guthaben am Ende“ → Endwert $\overline{R}_{10}$.'
+      - typ: eingabe
+        frage: 'Berechne das Guthaben am Ende der 10 Jahre.'
+        felder:
+          - { label: '$\overline{R}_{10}=$', loesung: 23615.59, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $2000\cdot 1{,}03\cdot(1{,}03^{10}-1):0{,}03$.'
+
+  - phase: mitmachen
+    titel: 'Aufgabe 3: Rate r im Sachkontext bestimmen'
+    text: '<p><em>„Eine Bäckerei legt heute $15\,000$ € zu $3\,\%$ an und möchte daraus $10$ Jahre lang jeweils am Jahresanfang einen gleich hohen Betrag entnehmen, sodass das Kapital am Ende aufgebraucht ist. Wie hoch ist dieser Betrag?“</em></p>'
+    visual:
+      typ: liste
+      titel: 'Steckbrief der Aufgabe'
+      eintraege:
+        - { id: zw, text: 'Zahlungsweise', gleichung: 'vorschüssig („am Jahresanfang“)' }
+        - { id: art, text: 'Gegebener Betrag', gleichung: 'Barwert $\overline{R}_0=15\,000$ €' }
+        - { id: geg, text: 'Weitere Angaben', gleichung: '$q=1{,}03$, $n=10$' }
+        - { id: ges, text: 'Gesucht', gleichung: 'Rate $r$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Ordne den Aufgabentext ein: Was ist gegeben, was ist gesucht?'
+        optionen:
+          - 'Vorschüssig; gegeben ist der Barwert $\overline{R}_0=15\,000$ €, gesucht ist die Rate $r$.'
+          - 'Vorschüssig; gegeben ist der Endwert $\overline{R}_{10}=15\,000$ €, gesucht ist die Rate $r$.'
+          - 'Nachschüssig; gegeben ist die Rate $r=15\,000$ €, gesucht ist der Barwert $R_0$.'
+        korrekt: 0
+        hinweis: '„am Jahresanfang“ → vorschüssig. „legt heute $15\,000$ € an“ → Barwert $\overline{R}_0$.'
+        zeige: { eintraege: [zw, art, geg, ges] }
+      - typ: auswahl
+        frage: 'Welche Gleichung ist der richtige Ansatz?'
+        optionen:
+          - '$15\,000=\dfrac{r\cdot 1{,}03\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
+          - '$15\,000=\dfrac{r\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
+          - '$15\,000=\dfrac{r\cdot 1{,}03\cdot(1{,}03^{10}-1)}{0{,}03}$'
+        korrekt: 0
+        hinweis: 'Vorschüssige Barwertformel: im Zähler mit Faktor $1{,}03$, im Nenner mit $1{,}03^{10}\cdot 0{,}03$.'
+      - typ: eingabe
+        frage: 'Der Bruch ohne $r$ ergibt rund $8{,}7861$. Wie hoch ist der jährliche Entnahmebetrag $r$?'
+        felder:
+          - { label: '$r=$', loesung: 1707.24, toleranz: 1, einheit: '€' }
+        hinweis: 'Teile $15\,000$ durch $8{,}7861$.'
+
+  - phase: mitmachen
+    titel: 'Aufgabe 4: Laufzeit n im Sachkontext bestimmen'
+    text: '<p><em>„Die Bäckerei zahlt jeweils zum Jahresende $2\,500$ € auf ein mit $4\,\%$ verzinstes Konto ein. Nach wie vielen Jahren ist ein Guthaben von $25\,000$ € erreicht?“</em></p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ansatz beschreibt diese Situation richtig?'
+        optionen:
+          - 'Nachschüssiger Endwert: $25\,000=\dfrac{2\,500\cdot(1{,}04^n-1)}{0{,}04}$'
+          - 'Nachschüssiger Barwert: $25\,000=\dfrac{2\,500\cdot(1{,}04^n-1)}{1{,}04^n\cdot 0{,}04}$'
+          - 'Vorschüssiger Endwert: $25\,000=\dfrac{2\,500\cdot 1{,}04\cdot(1{,}04^n-1)}{0{,}04}$'
+        korrekt: 0
+        hinweis: '„zum Jahresende“ → nachschüssig. „Guthaben von $25\,000$ € erreicht“ → Endwert $R_n$.'
+      - typ: eingabe
+        frage: 'Löse nach $1{,}04^n$ auf und berechne die Laufzeit $n$ (auf 2 Nachkommastellen).'
+        felder:
+          - { label: '$1{,}04^n=$', loesung: 1.4 }
+          - { label: '$n\approx$', loesung: 8.58, toleranz: 0.05, einheit: 'Jahre' }
+        hinweis: '$25\,000\cdot 0{,}04=1\,000$, dann $1\,000:2\,500=0{,}4$, also $1{,}04^n=1{,}4$ und $n=\frac{\ln 1{,}4}{\ln 1{,}04}$.'
+        danach: '$$\begin{align*}25\,000\cdot 0{,}04&=2\,500\cdot(1{,}04^n-1)\\ 1\,000&=2\,500\cdot(1{,}04^n-1)\quad|:2\,500\\ 0{,}4&=1{,}04^n-1\quad|+1\\ 1{,}04^n&=1{,}4\\ n&=\frac{\ln 1{,}4}{\ln 1{,}04}\approx 8{,}58\end{align*}$$<p>Nach etwa $8{,}58$ Jahren (also im 9. Jahr) ist das Zielguthaben erreicht.</p>'
