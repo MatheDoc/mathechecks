@@ -22,10 +22,10 @@ karten:
       - typ: auswahl
         frage: 'Warum ist die Umformung nach der Laufzeit $n$ hier ein Schritt mehr als beim Endwert?'
         optionen:
-          - 'Weil $q^n$ zweimal vorkommt – im Zähler und im Nenner.'
           - 'Weil man statt des Logarithmus die Wurzel braucht.'
+          - 'Weil $q^n$ zweimal vorkommt – im Zähler und im Nenner.'
           - 'Weil $r$ im Exponenten steht.'
-        korrekt: 0
+        korrekt: 1
         hinweis: 'Such in der Formel nach der Stelle, an der $n$ steht.'
         danach: '<p>Genau das ist der Kern dieses Checks: Für $R_0$ und $r$ rechnest du fast wie beim Endwert. Ist aber $n$ gesucht, musst du die beiden $q^n$-Terme erst auf einer Seite zusammenführen.</p>'
 
@@ -159,10 +159,10 @@ karten:
       - typ: auswahl
         frage: 'Welche Gleichung entsteht, wenn du mit $0{,}04\cdot 1{,}04^n$ multiplizierst und rechts die Klammer auflöst?'
         optionen:
-          - '$600\cdot 1{,}04^n=2\,600\cdot 1{,}04^n-2\,600$'
           - '$600=2\,600\cdot 1{,}04^n-2\,600$'
           - '$600\cdot 1{,}04^n=2\,600\cdot 1{,}04^n-1$'
-        korrekt: 0
+          - '$600\cdot 1{,}04^n=2\,600\cdot 1{,}04^n-2\,600$'
+        korrekt: 2
         hinweis: 'Links gibt $15\,000\cdot 0{,}04=600$ mal $1{,}04^n$. Rechts wird auch die $-1$ mit $2\,600$ multipliziert.'
       - typ: eingabe
         frage: 'Fasse die $1{,}04^n$-Terme zusammen, stelle $1{,}04^n$ frei und berechne $n$ (auf 2 Nachkommastellen).'

@@ -22,10 +22,10 @@ karten:
       - typ: auswahl
         frage: 'Und welche Größe ist im Fragesatz <em>„Wie hoch ist dieser Betrag?“</em> gesucht?'
         optionen:
-          - 'Die jährliche Rate $r$'
           - 'Der Rentenbarwert $R_0$'
+          - 'Die jährliche Rate $r$'
           - 'Der Rentenendwert $R_n$'
-        korrekt: 0
+        korrekt: 1
         hinweis: 'Lies den Satz davor: „… möchte daraus 10 Jahre lang jährlich einen gleich hohen Betrag entnehmen.“'
         danach: '<p>Genau: „dieser Betrag“ meint den regelmäßigen jährlichen Betrag – also die <strong>Rate $r$</strong>. Die $80\,000$ € von heute sind der gegebene Barwert.</p>'
 
@@ -45,10 +45,10 @@ karten:
       - typ: auswahl
         frage: '<strong>1. Zahlungsweise &amp; Zeitpunkt:</strong> Welche Formel passt zum Text?'
         optionen:
-          - 'Vorschüssiger Rentenendwert: $\overline{R}_n=\dfrac{r\cdot q\cdot(q^n-1)}{q-1}$'
           - 'Nachschüssiger Rentenendwert: $R_n=\dfrac{r\cdot(q^n-1)}{q-1}$'
+          - 'Vorschüssiger Rentenendwert: $\overline{R}_n=\dfrac{r\cdot q\cdot(q^n-1)}{q-1}$'
           - 'Vorschüssiger Rentenbarwert: $\overline{R}_0=\dfrac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}$'
-        korrekt: 0
+        korrekt: 1
         hinweis: '„zu Jahresbeginn“ → vorschüssig. „am Ende des 15. Jahres“ → Endwert.'
         zeige: { eintraege: [zw, art] }
       - typ: aufdecken
@@ -90,10 +90,10 @@ karten:
       - typ: auswahl
         frage: '<strong>2. Richtiger Ansatz:</strong> Welche Gleichung passt dazu?'
         optionen:
-          - '$40\,000=\dfrac{r\cdot(1{,}025^{10}-1)}{1{,}025^{10}\cdot 0{,}025}$'
           - '$R_0=\dfrac{40\,000\cdot(1{,}025^{10}-1)}{1{,}025^{10}\cdot 0{,}025}$'
           - '$40\,000=\dfrac{r\cdot(1{,}025^{10}-1)}{0{,}025}$'
-        korrekt: 0
+          - '$40\,000=\dfrac{r\cdot(1{,}025^{10}-1)}{1{,}025^{10}\cdot 0{,}025}$'
+        korrekt: 2
         hinweis: 'Setze $R_0=40\,000$ links in die nachschüssige Barwertformel ein.'
       - typ: aufdecken
         frage: '<strong>3. Kurz ausrechnen:</strong>'
@@ -143,10 +143,10 @@ karten:
       - typ: auswahl
         frage: '<strong>2.</strong> <em>„Für neue Flutlichter legt der Verein $10$ Jahre lang jeweils zu Beginn eines Jahres $2\,000$ € zu $3\,\%$ an. Wie hoch ist das Guthaben am Ende des letzten Jahres?“</em><br>Welcher Ansatz passt?'
         optionen:
-          - 'Vorschüssiger Endwert: $\overline{R}_{10}=\dfrac{2\,000\cdot 1{,}03\cdot(1{,}03^{10}-1)}{0{,}03}$'
           - 'Nachschüssiger Endwert: $R_{10}=\dfrac{2\,000\cdot(1{,}03^{10}-1)}{0{,}03}$'
+          - 'Vorschüssiger Endwert: $\overline{R}_{10}=\dfrac{2\,000\cdot 1{,}03\cdot(1{,}03^{10}-1)}{0{,}03}$'
           - 'Vorschüssiger Barwert: $\overline{R}_0=\dfrac{2\,000\cdot 1{,}03\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
-        korrekt: 0
+        korrekt: 1
         hinweis: '„zu Beginn eines Jahres“ → vorschüssig. „Guthaben am Ende“ → Endwert $\overline{R}_{10}$.'
       - typ: eingabe
         frage: 'Berechne das Guthaben am Ende der 10 Jahre.'
@@ -178,10 +178,10 @@ karten:
       - typ: auswahl
         frage: 'Welche Gleichung ist der richtige Ansatz?'
         optionen:
-          - '$15\,000=\dfrac{r\cdot 1{,}03\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
           - '$15\,000=\dfrac{r\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
           - '$15\,000=\dfrac{r\cdot 1{,}03\cdot(1{,}03^{10}-1)}{0{,}03}$'
-        korrekt: 0
+          - '$15\,000=\dfrac{r\cdot 1{,}03\cdot(1{,}03^{10}-1)}{1{,}03^{10}\cdot 0{,}03}$'
+        korrekt: 2
         hinweis: 'Vorschüssige Barwertformel: im Zähler mit Faktor $1{,}03$, im Nenner mit $1{,}03^{10}\cdot 0{,}03$.'
       - typ: eingabe
         frage: 'Der Bruch ohne $r$ ergibt rund $8{,}7861$. Wie hoch ist der jährliche Entnahmebetrag $r$?'

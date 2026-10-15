@@ -135,7 +135,7 @@ Gemeinsame Felder aller Schritte:
 |---|---|---|
 | `text` | `text` | Ist sofort erledigt. Für kurze Brücken. |
 | `aufdecken` | `knopf`, `text` | Ein Knopf deckt den Inhalt auf, z. B. einen vorgemachten Rechenschritt. |
-| `auswahl` | `optionen[]`, `korrekt` (Index ab 0) | Eine falsche Antwort wird gesperrt und `hinweis` erscheint. Erledigt, sobald die richtige Antwort gewählt ist. |
+| `auswahl` | `optionen[]`, `korrekt` (Index ab 0), `mischen` (optional, Standard `true`) | Die Optionen werden beim Anzeigen zufällig gemischt (`mischen: false` behält die Reihenfolge). Eine falsche Antwort wird gesperrt und `hinweis` erscheint. Erledigt, sobald die richtige Antwort gewählt ist. |
 | `eingabe` | `felder[]`, `layout: zeile` (optional) | Zahlen eingeben und prüfen. Nach dem ersten Fehlversuch erscheint `hinweis`, ab dem zweiten zusätzlich „Lösung zeigen“. Komma und Punkt werden akzeptiert. |
 | `zuordnen` | `paare[] {links, rechts}`, `titel_links`, `titel_rechts`, `hilfe` | Erst links, dann rechts tippen (kein Drag & Drop, damit es auf dem Handy funktioniert). Die rechte Spalte wird gemischt. Auf dem Handy stehen die Spalten untereinander. |
 | `markieren` | `korrekt[]` (Zeilenindizes), `bereich` (`A` oder `Ay`), `hilfe` | Zeilen in einer Matrix antippen. Braucht `visual.typ: matrix`. Nach zwei Fehlversuchen wird die Lösung markiert. |
