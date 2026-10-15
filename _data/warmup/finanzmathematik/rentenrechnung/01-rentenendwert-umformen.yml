@@ -53,10 +53,10 @@ karten:
       - typ: auswahl
         frage: '$r$ steht als Faktor im Zähler. Wie löst du am einfachsten nach $r$ auf?'
         optionen:
-          - 'Den Bruch ohne $r$ als Dezimalzahl ausrechnen und $30\,000$ durch diesen Faktor teilen'
           - 'Die 10. Wurzel ziehen'
+          - 'Den Bruch ohne $r$ als Dezimalzahl ausrechnen und $30\,000$ durch diesen Faktor teilen'
           - 'Den Bruch von $30\,000$ abziehen'
-        korrekt: 0
+        korrekt: 1
         hinweis: '$r$ ist mit dem restlichen Bruch multipliziert. Rechne diesen Faktor zuerst aus.'
         danach: '$$\begin{align*}30\,000&=r\cdot\frac{1{,}02\cdot(1{,}02^{10}-1)}{0{,}02}\\ 30\,000&\approx r\cdot 11{,}1687\quad|:11{,}1687\\ r&\approx 2\,686{,}07\,\text{€}\end{align*}$$'
         zeige: { eintraege: [r] }
@@ -84,10 +84,10 @@ karten:
       - typ: auswahl
         frage: '<strong>Schritt 2:</strong> In welcher Reihenfolge stellst du jetzt $1{,}04^n$ allein?'
         optionen:
-          - 'Erst durch $1\,500$ teilen, dann $+1$ rechnen'
           - 'Erst $+1$ rechnen, dann durch $1\,500$ teilen'
           - 'Durch $1\,500$ abziehen und mit $1{,}04$ teilen'
-        korrekt: 0
+          - 'Erst durch $1\,500$ teilen, dann $+1$ rechnen'
+        korrekt: 2
         hinweis: 'Vor der Klammer steht der Faktor $1\,500$. Erst durch $1\,500$ teilen, danach fällt die Klammer weg.'
         danach: '$$\begin{align*}800&=1\,500\cdot(1{,}04^n-1)\quad|:1\,500\\ 0{,}5333&\approx 1{,}04^n-1\quad|+1\\ 1{,}04^n&\approx 1{,}5333\end{align*}$$<p>(Bei einer <strong>vorschüssigen</strong> Rente teilst du an dieser Stelle durch $r\cdot q$ statt nur durch $r$.)</p>'
       - typ: aufdecken
@@ -173,10 +173,10 @@ karten:
       - typ: auswahl
         frage: 'Vor der Klammer im Zähler steht $1\,000\cdot 1{,}04=1\,040$. Wie stellst du $1{,}04^n$ frei?'
         optionen:
-          - 'Mit $0{,}04$ multiplizieren, durch $1\,040$ teilen und $1$ addieren'
           - 'Mit $0{,}04$ multiplizieren, $1$ addieren und durch $1\,000$ teilen'
+          - 'Mit $0{,}04$ multiplizieren, durch $1\,040$ teilen und $1$ addieren'
           - 'Durch $0{,}04$ teilen und durch $1\,040$ teilen'
-        korrekt: 0
+        korrekt: 1
         hinweis: 'Erst den Nenner $0{,}04$ weg, dann den gesamten Vorfaktor $1\,040$ vor der Klammer weg, zuletzt $+1$.'
       - typ: eingabe
         frage: 'Führe die Umformung durch und berechne $n$ (auf 2 Nachkommastellen).'

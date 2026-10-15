@@ -512,8 +512,12 @@ function buildChoiceStep(step, ctx) {
   const list = el("div", "cw-options");
   const feedback = feedbackNode();
   const correctIndex = Number(step.korrekt);
-  const buttons = (step.optionen || []).map((option, index) => {
-    const button = el("button", "cw-option", option);
+  const options = step.optionen || [];
+  const order = step.mischen === false
+    ? options.map((_, index) => index)
+    : shuffle(options.map((_, index) => index));
+  const buttons = order.map((index) => {
+    const button = el("button", "cw-option", options[index]);
     button.type = "button";
     button.addEventListener("click", () => {
       if (index === correctIndex) {
