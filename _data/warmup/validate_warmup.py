@@ -126,6 +126,8 @@ class Visual:
             if self.typ == "histogramm" or p is not None:
                 self.check_p(p, f"{where}: {self.typ}.p", problems)
             if self.typ == "histogramm":
+                if "kumuliert" in spec and not isinstance(spec["kumuliert"], bool):
+                    problems.append(f"{where}: histogramm.kumuliert muss true oder false sein")
                 k_min = spec.get("kMin", 0)
                 k_max = spec.get("kMax", n)
                 if not (is_index(k_min, n + 1) and is_index(k_max, n + 1) and k_min < k_max):

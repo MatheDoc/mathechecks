@@ -6,7 +6,7 @@
 
 import { buildGraphFigure } from "../visuals/graph.js";
 import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
-import { buildHistogrammEinzelnFigure } from "../visuals/histogramm.js";
+import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure } from "../visuals/histogramm.js";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 import { formatCheckNumber, renderCheckMetaRowMarkup } from "./ui/check-meta.js";
 import { enhanceCheckJumpNav } from "./ui/check-jump-nav.js";
@@ -160,6 +160,13 @@ const HISTOGRAM_COLORS = {
   gegen: "rgba(226, 112, 58, 0.8)",
 };
 
+const HISTOGRAM_COLORS_KUMULIERT = {
+  neutral: "rgba(235, 100, 120, 0.45)",
+  dimmed: "rgba(235, 100, 120, 0.18)",
+  marked: "rgba(166, 5, 40, 0.75)",
+  gegen: "rgba(226, 112, 58, 0.8)",
+};
+
 function normalizeRanges(list) {
   return (list || [])
     .filter((range) => Array.isArray(range) && range.length === 2)
@@ -172,10 +179,12 @@ function formatDecimalComma(value, digits) {
   return Number(value).toFixed(digits).replace(".", ",");
 }
 
-// Binomialverteilung als Histogramm der Einzelwahrscheinlichkeiten.
+// Binomialverteilung als Histogramm (Einzelwahrscheinlichkeiten oder kumuliert mit kumuliert: true).
 // zeige.bereiche / zeige.gegen ersetzen die Markierungen, zeige.werte blendet abgelesene Balkenwerte ein.
 function createHistogramVisual(spec) {
   const node = el("div", "cw-plot cw-plot--histogramm");
+  const kumuliert = Boolean(spec.kumuliert);
+  const colors = kumuliert ? HISTOGRAM_COLORS_KUMULIERT : HISTOGRAM_COLORS;
   let ranges = normalizeRanges(spec.bereiche);
   let gegen = normalizeRanges(spec.gegen);
   const werte = new Set((spec.werte || []).map(Number));
@@ -183,7 +192,8 @@ function createHistogramVisual(spec) {
   function render() {
     if (!node.isConnected || !window.Plotly) return;
     const n = Number(spec.n);
-    const figure = buildHistogrammEinzelnFigure({ n, p: Number(spec.p) });
+    const buildFigure = kumuliert ? buildHistogrammKumuliertFigure : buildHistogrammEinzelnFigure;
+    const figure = buildFigure({ n, p: Number(spec.p) });
     const kMin = Math.max(0, Number(spec.kMin ?? 0));
     const kMax = Math.min(n, Number(spec.kMax ?? n));
     const trace = figure.data[0];
@@ -192,12 +202,14 @@ function createHistogramVisual(spec) {
     trace.y = visible.map(([, y]) => y);
     const anyMark = ranges.length > 0 || gegen.length > 0;
     trace.marker.color = trace.x.map((k) => {
-      if (inRanges(gegen, k)) return HISTOGRAM_COLORS.gegen;
-      if (inRanges(ranges, k)) return HISTOGRAM_COLORS.marked;
-      return anyMark ? HISTOGRAM_COLORS.dimmed : HISTOGRAM_COLORS.neutral;
+      if (inRanges(gegen, k)) return colors.gegen;
+      if (inRanges(ranges, k)) return colors.marked;
+      return anyMark ? colors.dimmed : colors.neutral;
     });
     // Wie im Training: Antippen zeigt den Wert auf 2 Nachkommastellen.
-    trace.hovertemplate = "P(X = %{x}) ≈ %{y:.2f}<extra></extra>";
+    trace.hovertemplate = kumuliert
+      ? "P(X ≤ %{x}) ≈ %{y:.2f}<extra></extra>"
+      : "P(X = %{x}) ≈ %{y:.2f}<extra></extra>";
     const ticks = trace.x;
     const margin = { t: 16, r: 12, b: 48, l: 48 };
     const plotWidth = (node.clientWidth || 600) - margin.l - margin.r;
@@ -222,7 +234,11 @@ function createHistogramVisual(spec) {
       tickangle: 0,
       tickfont: { color: themeTextColor(), size: perBarPx < 18 ? 10 : 12 },
     };
-    figure.layout.yaxis = { ...figure.layout.yaxis, range: [0, yMax * (werte.size ? 1.25 : 1.05)] };
+    figure.layout.yaxis = {
+      ...figure.layout.yaxis,
+      range: [0, yMax * (werte.size ? 1.25 : 1.05)],
+      ...(kumuliert ? { tickvals: [0, 0.2, 0.4, 0.6, 0.8, 1] } : {}),
+    };
     figure.layout.margin = margin;
     figure.layout.separators = ",.";
     plotlyRender(node, figure.data, figure.layout);
@@ -776,19 +792,11 @@ const STEP_BUILDERS = {
 
 /* ───────────────────────── Seiten & Ablauf ───────────────────────── */
 
-function buildGoal(kompetenz) {
-  const goal = el("p", "cw-goal");
-  goal.appendChild(el("span", "cw-goal__label", "Ziel"));
-  goal.appendChild(el("span", "cw-goal__text", `Ich kann ${kompetenz}`));
-  return goal;
-}
-
-function buildPage(card, pageIndex, { goal, onComplete }) {
+function buildPage(card, pageIndex, { onComplete }) {
   const phase = PHASES.find((entry) => entry.key === card.phase) || PHASES[0];
   const page = el("section", `cw-page cw-page--${phase.key}`);
   page.dataset.index = String(pageIndex);
 
-  if (goal) page.appendChild(goal);
   if (card.titel) {
     const head = el("header", "cw-page__head");
     head.appendChild(el("h2", "cw-page__title", card.titel));
@@ -798,13 +806,13 @@ function buildPage(card, pageIndex, { goal, onComplete }) {
 
   const visual = createVisual(card.visual);
   const layout = el("div", `cw-page__layout${visual ? " has-visual" : ""}`);
+  const steps = el("ol", "cw-steps");
+  layout.appendChild(steps);
   if (visual) {
     const visualCol = el("div", "cw-page__visual");
     visualCol.appendChild(visual.node);
     layout.appendChild(visualCol);
   }
-  const steps = el("ol", "cw-steps");
-  layout.appendChild(steps);
   page.appendChild(layout);
 
   const stepSpecs = card.schritte || [];
@@ -963,7 +971,6 @@ function renderPlayer(root, data) {
   const cards = data.karten || [];
   const pages = cards.map((entry, index) =>
     buildPage(entry, index, {
-      goal: index === 0 && data.kompetenz ? buildGoal(data.kompetenz) : null,
       onComplete: (pageNode) => {
         if (index === cards.length - 1) {
           const finish = buildFinish(data);
