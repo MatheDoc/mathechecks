@@ -47,7 +47,7 @@ karten:
         - { id: p61, text: 'p = 0,61', gleichung: '$P(X\geq 12)\approx 0{,}6312$<br>$0{,}6312\geq 0{,}6$: reicht' }
     schritte:
       - typ: auswahl
-        frage: 'Höheres $p$: Was passiert mit $P(X\geq 12)$?'
+        frage: 'Wenn $p$ größer wird: Was passiert mit $P(X\geq 12)$?'
         optionen:
           - 'Sie wird größer.'
           - 'Sie wird kleiner.'
@@ -90,7 +90,7 @@ karten:
         - { id: p38, text: 'p = 0,38', gleichung: '$P(X\leq 7)\approx 0{,}4892$<br>$0{,}4892&lt;0{,}5$: reicht nicht' }
     schritte:
       - typ: auswahl
-        frage: 'Höheres $p$: Was passiert mit $P(X\leq 7)$?'
+        frage: 'Wenn $p$ größer wird: Was passiert mit $P(X\leq 7)$?'
         optionen:
           - 'Sie wird kleiner.'
           - 'Sie wird größer.'
@@ -135,7 +135,7 @@ karten:
         - { id: p39, text: 'p = 0,39', erledigt: true, gleichung: '$P(X\geq 10)\approx 0{,}5347$<br>$0{,}5347&gt;0{,}5$: gilt nicht' }
     schritte:
       - typ: auswahl
-        frage: 'Höheres $p$: Wird $P(X\geq 10)$ größer oder kleiner?'
+        frage: 'Wenn $p$ größer wird: Wird $P(X\geq 10)$ größer oder kleiner?'
         optionen:
           - 'größer'
           - 'kleiner'
