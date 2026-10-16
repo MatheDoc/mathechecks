@@ -57,7 +57,7 @@ karten:
       - typ: aufdecken
         frage: '<strong>Startwert:</strong> Erwartet man $3$ Gewinne, passt $n\cdot 0{,}3=3$, also $n=3/0{,}3=10$.'
         knopf: 'n = 10 testen'
-        text: '$$Bcd(3;10;10;0{,}3)\approx 0{,}6172$$<p>Das ist kleiner als $0{,}85$, also zu klein. Weiter mit größerem $n$.</p>'
+        text: '$$\begin{align*}&Bcd(3;10;10;0{,}3)\\&\approx 0{,}6172\end{align*}$$<p>Das ist kleiner als $0{,}85$, also zu klein. Weiter mit größerem $n$.</p>'
         zeige: { eintraege: [n10] }
       - typ: auswahl
         frage: 'Wie lautet die Eingabe für $n=14$? Die obere Grenze ist die größte mögliche Anzahl.'
@@ -68,11 +68,11 @@ karten:
         korrekt: 0
         hinweis: '„Mindestens 3“ reicht bis zur größten Anzahl, und die ist jetzt $n=14$.'
         zeige: { eintraege: [n14] }
-        danach: '<p>Mit jedem neuen $n$ ändert sich also auch die obere Grenze:</p>$$Bcd(3;14;14;0{,}3)\approx 0{,}8392$$<p>Das ist knapp zu klein ($0{,}8392&lt;0{,}85$).</p>'
+        danach: '<p>Mit jedem neuen $n$ ändert sich also auch die obere Grenze:</p>$$\begin{align*}&Bcd(3;14;14;0{,}3)\\&\approx 0{,}8392\end{align*}$$<p>Das ist knapp zu klein ($0{,}8392&lt;0{,}85$).</p>'
       - typ: aufdecken
         frage: 'Ein Los mehr:'
         knopf: 'n = 15 testen'
-        text: '$$Bcd(3;15;15;0{,}3)\approx 0{,}8732$$<p>Das ist größer als $0{,}85$: Es reicht.</p>'
+        text: '$$\begin{align*}&Bcd(3;15;15;0{,}3)\\&\approx 0{,}8732\end{align*}$$<p>Das ist größer als $0{,}85$: Es reicht.</p>'
         zeige: { eintraege: [n15] }
       - typ: auswahl
         frage: 'Welches $n$ ist die Antwort?'
@@ -105,7 +105,7 @@ karten:
       - typ: aufdecken
         frage: 'Bei „höchstens 2“ beginnt der Bereich bei $0$ und endet bei $2$, egal wie groß $n$ ist. Nur das $n$ in der Eingabe wechselt.'
         knopf: 'n = 8 und n = 9 testen'
-        text: '$$\begin{align*}&Bcd(0;2;8;0{,}3)\approx 0{,}5518\\&Bcd(0;2;9;0{,}3)\approx 0{,}4628\end{align*}$$<p>Bei $n=8$ ist die Bedingung $P(X\leq 2)\geq 0{,}5$ erfüllt, bei $n=9$ nicht mehr.</p>'
+        text: '$$\begin{align*}&Bcd(0;2;8;0{,}3)\\&\approx 0{,}5518\\&Bcd(0;2;9;0{,}3)\\&\approx 0{,}4628\end{align*}$$<p>Bei $n=8$ ist die Bedingung $P(X\leq 2)\geq 0{,}5$ erfüllt, bei $n=9$ nicht mehr.</p>'
         zeige: { eintraege: [n8, n9] }
       - typ: auswahl
         frage: 'Welches $n$ ist die Antwort?'
@@ -121,8 +121,8 @@ karten:
         titel_links: 'Situation'
         titel_rechts: 'Folge'
         paare:
-          - { links: '$P(X\geq k)$ bei mehr Versuchen', rechts: 'wird größer' }
-          - { links: '$P(X\leq k)$ bei mehr Versuchen', rechts: 'wird kleiner' }
+          - { links: 'wenn $n$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
+          - { links: 'wenn $n$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
           - { links: 'gesucht: <strong>mindestens</strong> $n$', rechts: 'kleinstes $n$, für das die Bedingung gilt' }
           - { links: 'gesucht: <strong>höchstens</strong> $n$', rechts: 'größtes $n$, für das die Bedingung gilt' }
         danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, also mit $\geq$ oder $\leq$ und dem angegebenen Wert.</p>'
