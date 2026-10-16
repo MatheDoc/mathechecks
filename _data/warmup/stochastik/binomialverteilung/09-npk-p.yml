@@ -57,7 +57,7 @@ karten:
       - typ: aufdecken
         frage: '<strong>Startwert:</strong> Erwartet man $12$ Treffer bei $20$ Würfen, passt $p=12/20=0{,}6$.'
         knopf: 'p = 0,6 testen'
-        text: '$$Bcd(12;20;20;0{,}6)\approx 0{,}5956$$<p>Das ist knapp kleiner als $0{,}6$, also zu klein. Weiter mit größerem $p$, Schritt $0{,}01$.</p>'
+        text: '$$\begin{align*}&Bcd(12;20;20;0{,}6)\\&\approx 0{,}5956\end{align*}$$<p>Das ist knapp kleiner als $0{,}6$, also zu klein. Weiter mit größerem $p$, Schritt $0{,}01$.</p>'
         zeige: { eintraege: [p60] }
       - typ: auswahl
         frage: 'Wie lautet die Eingabe für $p=0{,}61$? Nur $p$ ändert sich.'
@@ -68,7 +68,7 @@ karten:
         korrekt: 0
         hinweis: '$p$ gehört als Dezimalzahl an die vierte Stelle, und „mindestens 12“ reicht bis $20$.'
         zeige: { eintraege: [p61] }
-        danach: '$$Bcd(12;20;20;0{,}61)\approx 0{,}6312$$<p>Das ist größer als $0{,}6$: Es reicht.</p>'
+        danach: '$$\begin{align*}&Bcd(12;20;20;0{,}61)\\&\approx 0{,}6312\end{align*}$$<p>Das ist größer als $0{,}6$: Es reicht.</p>'
       - typ: auswahl
         frage: 'Welches $p$ ist die Antwort?'
         optionen:
@@ -100,7 +100,7 @@ karten:
       - typ: aufdecken
         frage: 'Bei „höchstens 7“ beginnt der Bereich bei $0$ und endet bei $7$, egal wie groß $p$ ist. Nur das $p$ in der Eingabe wechselt.'
         knopf: 'p = 0,37 und p = 0,38 testen'
-        text: '$$\begin{align*}&Bcd(0;7;20;0{,}37)\approx 0{,}5265\\&Bcd(0;7;20;0{,}38)\approx 0{,}4892\end{align*}$$<p>Bei $p=0{,}37$ ist die Bedingung $P(X\leq 7)\geq 0{,}5$ erfüllt, bei $p=0{,}38$ nicht mehr.</p>'
+        text: '$$\begin{align*}&Bcd(0;7;20;0{,}37)\\&\approx 0{,}5265\\&Bcd(0;7;20;0{,}38)\\&\approx 0{,}4892\end{align*}$$<p>Bei $p=0{,}37$ ist die Bedingung $P(X\leq 7)\geq 0{,}5$ erfüllt, bei $p=0{,}38$ nicht mehr.</p>'
         zeige: { eintraege: [p37, p38] }
       - typ: auswahl
         frage: 'Welches $p$ ist die Antwort?'
@@ -116,8 +116,8 @@ karten:
         titel_links: 'Situation'
         titel_rechts: 'Folge'
         paare:
-          - { links: '$P(X\geq k)$ bei größerem $p$', rechts: 'wird größer' }
-          - { links: '$P(X\leq k)$ bei größerem $p$', rechts: 'wird kleiner' }
+          - { links: 'wenn $p$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
+          - { links: 'wenn $p$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
           - { links: 'gesucht: <strong>kleinster</strong> Wert von $p$', rechts: 'kleinstes $p$, für das die Bedingung gilt' }
           - { links: 'gesucht: <strong>größter</strong> Wert von $p$', rechts: 'größtes $p$, für das die Bedingung gilt' }
         danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, also mit $\geq$ oder $\leq$ und dem angegebenen Wert.</p>'
