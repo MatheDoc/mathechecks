@@ -1,0 +1,236 @@
+# Warm-Up zu Check 05 „Aus f' folgern“ (Differentialrechnung ganzrationaler Funktionen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+
+check_id: analysis__differentialrechnung-ganzrationaler-funktionen__05
+abschluss: '<p>Im Training bekommst du den Graphen von $f''$ und gibst die $x$-Werte aller Hochpunkte, Tiefpunkte und beider Arten von Wendestellen von $f$ in aufsteigender Reihenfolge an. Gibt es keine, wählst du „keine Lösung“. Denk an die Fallen: Berührt $f''$ die $x$-Achse nur, ohne das Vorzeichen zu wechseln, hat $f$ dort <strong>keinen</strong> Extrempunkt. Hat $f''$ keine Extremstelle (z. B. bei einer Geraden), hat $f$ <strong>keine</strong> Wendestelle. Und nicht jede Stelle liegt genau auf einem Gitterpunkt: Lies dann so genau ab, wie es geht.</p>'
+karten:
+
+  # ── Phase A: Orientierung ─────────────────────────────────────
+  - phase: orientierung
+    titel: 'Aus f′ wird f'
+    text: '<p>Hier ist nicht der Graph von $f$ zu sehen, sondern der Graph der <strong>Ableitung</strong></p>$$f''(x)=-x^2+2x+3$$<p>Trotzdem verrät er viel über $f$: Die Ableitung ist die <strong>Steigung</strong> von $f$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-x^2+2*x+3', name: 'f′(x)' }
+      xMin: -3
+      xMax: 5
+      yMin: -3
+      yMax: 5
+      xAchse: 'x'
+      yAchse: 'f′(x)'
+      punkte:
+        - { id: n1, x: -1, y: 0, label: 'x = −1', ax: -40, ay: -30 }
+        - { id: n2, x: 3, y: 0, label: 'x = 3', ax: 40, ay: -30 }
+    schritte:
+      - typ: auswahl
+        frage: 'Zwischen $x=-1$ und $x=3$ liegt der Graph von $f''$ <strong>über</strong> der $x$-Achse. Was heißt das für $f$?'
+        optionen:
+          - '$f$ steigt dort.'
+          - '$f$ fällt dort.'
+          - '$f$ hat dort einen Hochpunkt.'
+        korrekt: 0
+        hinweis: '$f''(x)>0$ bedeutet: Die Steigung von $f$ ist positiv.'
+        danach: '<p>Genau: Ist $f''$ positiv, steigt $f$. Ist $f''$ negativ, fällt $f$.</p>'
+      - typ: auswahl
+        frage: 'Bei $x=-1$ und $x=3$ schneidet $f''$ die $x$-Achse, dort ist $f''(x)=0$. Was hat $f$ dort?'
+        optionen:
+          - 'Eine waagrechte Tangente (Steigung $0$).'
+          - 'Eine Nullstelle.'
+          - 'Eine Wendestelle.'
+        korrekt: 0
+        hinweis: 'Steigung $0$ bedeutet: Die Tangente an $f$ verläuft waagrecht.'
+        danach: '<p>Richtig. Das sind die Stellen, an denen $f$ einen Hoch- oder Tiefpunkt haben kann. Und das lässt sich allein aus dem Graphen von $f''$ ablesen.</p>'
+        zeige: { punkte: [n1, n2] }
+
+  # ── Phase B: Vormachen ────────────────────────────────────────
+  - phase: vormachen
+    titel: 'Hoch- und Tiefpunkte'
+    text: '<p>Wir bleiben bei $f''(x)=-x^2+2x+3$. Gesucht sind die Hoch- und Tiefpunkte von $f$.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-x^2+2*x+3', name: 'f′(x)' }
+      xMin: -3
+      xMax: 5
+      yMin: -3
+      yMax: 5
+      xAchse: 'x'
+      yAchse: 'f′(x)'
+      punkte:
+        - { id: n1, x: -1, y: 0, label: 'x = −1', ax: -40, ay: -30 }
+        - { id: n2, x: 3, y: 0, label: 'x = 3', ax: 40, ay: -30 }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Schritt 1:</strong> Nullstellen von $f''$ ablesen.'
+        knopf: 'Nullstellen zeigen'
+        text: '<p>$f''$ schneidet die $x$-Achse bei $x=-1$ und $x=3$. Nur dort kann $f$ einen Hoch- oder Tiefpunkt haben.</p>'
+        zeige: { punkte: [n1, n2] }
+      - typ: aufdecken
+        frage: '<strong>Schritt 2:</strong> Vorzeichen von $f''$ links und rechts davon prüfen.'
+        knopf: 'Vorzeichen zeigen'
+        text: '<p>Links von $x=-1$ liegt der Graph <strong>unter</strong> der Achse ($-$), zwischen $-1$ und $3$ <strong>darüber</strong> ($+$), rechts von $3$ wieder <strong>darunter</strong> ($-$).</p>'
+      - typ: auswahl
+        frage: 'Bei $x=-1$ wechselt $f''$ von $-$ nach $+$. Zuerst fällt $f$, dann steigt $f$. Was hat $f$ dort?'
+        optionen:
+          - 'Einen Tiefpunkt.'
+          - 'Einen Hochpunkt.'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Erst bergab, dann bergauf: Das ist ein Tal.'
+        danach: '<p>Also: <strong>Tiefpunkt</strong> bei $x=-1$.</p>'
+      - typ: auswahl
+        frage: 'Bei $x=3$ wechselt $f''$ von $+$ nach $-$. Was hat $f$ dort?'
+        optionen:
+          - 'Einen Tiefpunkt.'
+          - 'Einen Hochpunkt.'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Erst bergauf, dann bergab: Das ist ein Gipfel.'
+        danach: '<p>Also: <strong>Hochpunkt</strong> bei $x=3$.</p>'
+
+  - phase: vormachen
+    titel: 'Wendestellen'
+    text: '<p>Jetzt zu den Wendestellen von $f$, also den Stellen, an denen sich die Krümmung ändert.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '-x^2+2*x+3', name: 'f′(x)' }
+      xMin: -3
+      xMax: 5
+      yMin: -3
+      yMax: 5
+      xAchse: 'x'
+      yAchse: 'f′(x)'
+      punkte:
+        - { id: n1, x: -1, y: 0, sichtbar: true }
+        - { id: n2, x: 3, y: 0, sichtbar: true }
+        - { id: w, x: 1, y: 4, label: 'Hochpunkt von f′', ax: 70, ay: -10, hilfslinie: true }
+    schritte:
+      - typ: auswahl
+        frage: 'An einer Wendestelle von $f$ ist die Steigung von $f$ am größten oder am kleinsten. Woran erkennst du sie also am Graphen von $f''$?'
+        optionen:
+          - 'Dort hat $f''$ einen Hoch- oder Tiefpunkt.'
+          - 'Dort hat $f''$ eine Nullstelle.'
+          - 'Dort ist $f''$ positiv.'
+        korrekt: 0
+        hinweis: 'Die Steigung von $f$ ist der Funktionswert von $f''$. Wann ist er am größten oder kleinsten?'
+        danach: '<p>Genau: <strong>Wendestellen von $f$ sind Extremstellen von $f''$.</strong></p>'
+        zeige: { punkte: [w] }
+      - typ: eingabe
+        frage: 'Wo liegt der Hochpunkt von $f''$?'
+        felder:
+          - { label: '$x=$', loesung: 1 }
+        hinweis: 'Suche den höchsten Punkt der Kurve und lies seinen $x$-Wert ab.'
+      - typ: auswahl
+        frage: 'Bis $x=1$ steigt $f''$, danach fällt $f''$. Die Steigung von $f$ wächst also zuerst und nimmt dann ab. Wie ändert sich die Krümmung von $f$?'
+        optionen:
+          - 'Von linksgekrümmt nach rechtsgekrümmt.'
+          - 'Von rechtsgekrümmt nach linksgekrümmt.'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Wächst die Steigung, ist $f$ linksgekrümmt. Nimmt sie ab, ist $f$ rechtsgekrümmt.'
+        danach: '<p>Bei $x=1$ hat $f$ eine <strong>Wendestelle</strong> mit Wechsel von links- nach rechtsgekrümmt. Merke: Ein <strong>Hochpunkt</strong> von $f''$ gibt links → rechts, ein <strong>Tiefpunkt</strong> von $f''$ gibt rechts → links.</p>'
+
+  # ── Phase C: Mitmachen ────────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Ableitung – mit Hilfe'
+    text: '<p>Jetzt ist der Graph von</p>$$f''(x)=0{,}5x^2+x-1{,}5$$<p>gegeben. Du gehst dieselben Schritte durch.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '0.5*x^2+x-1.5', name: 'f′(x)' }
+      xMin: -5
+      xMax: 3
+      yMin: -3
+      yMax: 6
+      xAchse: 'x'
+      yAchse: 'f′(x)'
+      punkte:
+        - { id: n1, x: -3, y: 0, label: 'x = −3', ax: -40, ay: -30 }
+        - { id: n2, x: 1, y: 0, label: 'x = 1', ax: 40, ay: -30 }
+        - { id: w, x: -1, y: -2, label: 'Tiefpunkt von f′', ax: 70, ay: 25, hilfslinie: true }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Nullstellen von $f''$:</strong> Lies sie am Graphen ab.'
+        layout: zeile
+        felder:
+          - { label: '$x_1=$', loesung: -3, einheit: '$\quad x_2=$', zeige: { punkte: [n1] } }
+          - { loesung: 1, zeige: { punkte: [n2] } }
+        hinweis: 'Suche die Stellen, an denen die Kurve die $x$-Achse schneidet.'
+      - typ: zuordnen
+        frage: '<strong>Vorzeichenwechsel deuten:</strong> Was hat $f$ an diesen Stellen?'
+        titel_links: 'Vorzeichenwechsel von $f''$'
+        titel_rechts: 'Punkt von $f$'
+        paare:
+          - { links: 'Bei $x=-3$: von $+$ nach $-$', rechts: 'Hochpunkt' }
+          - { links: 'Bei $x=1$: von $-$ nach $+$', rechts: 'Tiefpunkt' }
+        hilfe: 'Tippe erst links, dann rechts.'
+        danach: '<p>Hochpunkt bei $x=-3$, Tiefpunkt bei $x=1$.</p>'
+      - typ: eingabe
+        frage: '<strong>Wendestelle:</strong> $f''$ hat einen Tiefpunkt. Wo liegt er?'
+        felder:
+          - { label: '$x=$', loesung: -1, zeige: { punkte: [w] } }
+        hinweis: 'Der Tiefpunkt der Parabel liegt genau in der Mitte zwischen den Nullstellen.'
+      - typ: auswahl
+        frage: 'Ein <strong>Tiefpunkt</strong> von $f''$ bei $x=-1$: Wie ändert sich die Krümmung von $f$?'
+        optionen:
+          - 'Von linksgekrümmt nach rechtsgekrümmt.'
+          - 'Von rechtsgekrümmt nach linksgekrümmt.'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Bis $x=-1$ fällt $f''$, danach steigt $f''$. Die Steigung von $f$ nimmt also erst ab und wächst dann.'
+        danach: '<p>Wendestelle bei $x=-1$ mit Wechsel von rechts- nach linksgekrümmt.</p>'
+
+  - phase: mitmachen
+    titel: 'Eine knifflige Ableitung'
+    text: '<p>Diesmal ist $f''$ eine Funktion dritten Grades. Eine ihrer Nullstellen hat es in sich.</p>'
+    visual:
+      typ: graph
+      funktionen:
+        - { term: '0.5*x^3-1.5*x+1', name: 'f′(x)' }
+      xMin: -3.2
+      xMax: 2.5
+      yMin: -9
+      yMax: 6
+      xAchse: 'x'
+      yAchse: 'f′(x)'
+      punkte:
+        - { id: n1, x: -2, y: 0, label: 'x = −2', ax: -40, ay: -30 }
+        - { id: n2, x: 1, y: 0, label: 'x = 1', ax: 40, ay: -40 }
+        - { id: w1, x: -1, y: 2, label: 'Hochpunkt von f′', ax: 80, ay: -20, hilfslinie: true }
+        - { id: w2, x: 1, y: 0, label: 'Tiefpunkt von f′', ax: 40, ay: 40, hilfslinie: true }
+    schritte:
+      - typ: eingabe
+        frage: '<strong>Nullstellen von $f''$:</strong> An welchen Stellen berührt oder schneidet der Graph die $x$-Achse?'
+        layout: zeile
+        felder:
+          - { label: '$x_1=$', loesung: -2, einheit: '$\quad x_2=$', zeige: { punkte: [n1] } }
+          - { loesung: 1, zeige: { punkte: [n2] } }
+        hinweis: 'Eine Stelle liegt links, eine rechts vom Ursprung.'
+      - typ: auswahl
+        frage: 'Bei welcher dieser Nullstellen hat $f$ einen Hoch- oder Tiefpunkt?'
+        optionen:
+          - 'Nur bei $x=-2$.'
+          - 'Nur bei $x=1$.'
+          - 'Bei beiden.'
+        korrekt: 0
+        hinweis: 'Ein Extrempunkt braucht einen Vorzeichenwechsel von $f''$. Schau dir den Graphen bei $x=1$ genau an.'
+        danach: '<p>Bei $x=-2$ wechselt $f''$ von $-$ nach $+$: <strong>Tiefpunkt</strong>. Bei $x=1$ <strong>berührt</strong> $f''$ die Achse nur und bleibt positiv. Es gibt keinen Vorzeichenwechsel, also <strong>keinen</strong> Extrempunkt.</p>'
+      - typ: eingabe
+        frage: '<strong>Wendestellen:</strong> Wo hat $f''$ einen Hochpunkt, wo einen Tiefpunkt?'
+        layout: zeile
+        felder:
+          - { label: 'Hochpunkt bei $x=$', loesung: -1, einheit: '$\quad$ Tiefpunkt bei $x=$', zeige: { punkte: [w1] } }
+          - { loesung: 1, zeige: { punkte: [w2] } }
+        hinweis: 'Der Hochpunkt liegt links, der Tiefpunkt genau auf der Nullstelle, die nur berührt wird.'
+      - typ: auswahl
+        frage: 'Was bedeutet das für die Wendestellen von $f$?'
+        optionen:
+          - 'Bei $x=-1$ von links nach rechts gekrümmt, bei $x=1$ von rechts nach links gekrümmt.'
+          - 'Bei $x=-1$ von rechts nach links gekrümmt, bei $x=1$ von links nach rechts gekrümmt.'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Hochpunkt von $f''$: links → rechts. Tiefpunkt von $f''$: rechts → links.'
+        danach: '<p>Damit ist alles beisammen: Tiefpunkt bei $x=-2$, Wendestellen bei $x=-1$ und $x=1$. Bei $x=1$ ist die Wendestelle zugleich ein Punkt mit waagrechter Tangente (Sattelpunkt).</p>'
