@@ -68,7 +68,7 @@ def _interval_slot_answer(intervals: tuple[tuple[float | None, float | None], ..
         label = index + 1
         interval_bounds = sorted_intervals[index] if index < len(sorted_intervals) else None
         entries.append(_single_interval_answer(label, interval_bounds))
-    return " $\\quad$ ".join(entries)
+    return " <br> ".join(entries)
 
 
 def _single_interval_answer(
