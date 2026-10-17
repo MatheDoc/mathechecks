@@ -790,6 +790,16 @@
     color: var(--text-dim);
 }
 
+/* Formeln in Überschriften nicht in Großbuchstaben setzen (f′ bliebe sonst nicht f′, sondern F′) */
+.cw-match__head mjx-container,
+.cw-brief__title mjx-container,
+.cw-finish__kicker mjx-container,
+.cw-table th mjx-container,
+.cw-zs__caption-label mjx-container {
+    text-transform: none;
+    letter-spacing: normal;
+}
+
 .cw-match__item {
     position: relative;
     min-width: 0;

@@ -10,7 +10,7 @@ noindex: true
 published: true
 lernbereich: ertragsgesetzliche-kostenfunktionen
 gebiet: analysis
-page_css: /assets/css/warmup.css?v=20261014-warmup-zahlenstrahl
+page_css: /assets/css/warmup.css?v=20261017-warmup-formel-titel
 permalink: /lernbereiche/analysis/ertragsgesetzliche-kostenfunktionen/warmup.html
 ---
 

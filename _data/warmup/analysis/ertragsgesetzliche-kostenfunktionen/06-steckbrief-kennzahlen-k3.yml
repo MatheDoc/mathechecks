@@ -121,7 +121,7 @@ karten:
 
   - phase: vormachen
     titel: 'Stückkosten und Betriebsoptimum'
-    text: '<p>In vielen Aufgaben kommen die Stückkosten $k(x)=\frac{K(x)}{x}$ vor. Bei ihnen steht $d$ im Nenner.</p>'
+    text: '<p>Außerdem kommen die Stückkosten $k(x)=\frac{K(x)}{x}$ vor.</p>'
     schritte:
       - typ: aufdecken
         knopf: 'Funktionen zeigen'
@@ -129,16 +129,16 @@ karten:
       - typ: aufdecken
         frage: '<strong>Die Stückkosten bei 2 ME betragen 30 GE/ME.</strong>'
         knopf: 'Gleichung zeigen'
-        text: '$$\begin{align*}k(2)&=30\\ 4a+2b+c+\frac{d}{2}&=30 \quad|\cdot 2\\ 8a+4b+2c+d&=60\end{align*}$$<p>Mit $2$ multiplizieren, damit kein Bruch übrig bleibt. Das ist dasselbe wie $K(2)=2\cdot 30=60$.</p>'
+        text: '$$\begin{align*}k(2)&=30\\ 4a+2b+c+\frac{d}{2}&=30 \quad|\cdot 2\\ 8a+4b+2c+d&=60\end{align*}$$<p>Man kann mit $2$ multiplizieren, damit kein Bruch übrig bleibt. Das ist dasselbe wie $K(2)=2\cdot 30=60$.</p>'
       - typ: auswahl
         frage: '<strong>Das Betriebsoptimum liegt bei 4 ME.</strong> Dort sind die Stückkosten minimal. Welche Gleichung passt?'
         optionen:
           - '$k(4)=0$'
-          - '$k''(4)=0$'
+          - '$k''(4)=0\quad$ oder $\quadk(4)=K''(4)$'
           - '$k_v''(4)=0$'
         korrekt: 1
         hinweis: 'Betriebsoptimum gehört zu den Stückkosten $k$, Betriebsminimum zu $k_v$.'
-        danach: '$$\begin{align*}k''(4)&=0\\ 8a+b-\frac{d}{16}&=0 \quad|\cdot 16\\ 128a+16b-d&=0\end{align*}$$'
+        danach: '$$\begin{align*}k''(4)&=0\\ 8a+b-\frac{d}{16}&=0 \quad|\cdot 16\\ 128a+16b-d&=0\end{align*}$$ oder $$\begin{align*}k(4)&=K''(4)\\ 16a+4b+c+\frac{d}{4}&=48a+8b+c\end{align*}$$ (Man kann zeigen, dass beide Gleichungen äquivalent sind.)'
       - typ: auswahl
         frage: '<strong>Die langfristige Preisuntergrenze beträgt 25 GE/ME.</strong> Das ist der Wert der Stückkosten im Betriebsoptimum. Welche Gleichung passt?'
         optionen:
@@ -147,7 +147,7 @@ karten:
           - '$k_v(4)=25$'
         korrekt: 0
         hinweis: 'Erst die Stelle (Betriebsoptimum bei 4 ME), dann der Funktionswert dort.'
-        danach: '<p>Genau. Genauso funktioniert die kurzfristige Preisuntergrenze: $k_v$ an der Stelle des Betriebsminimums.</p>'
+        danach: '<p>Analog funktioniert es mit dem Betriebsminimum und der kurzfristigen Preisuntergrenze: $k_v(x_{\text{BM}})=KPU$.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
