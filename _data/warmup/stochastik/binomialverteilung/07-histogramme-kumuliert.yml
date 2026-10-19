@@ -1,37 +1,28 @@
 # Warm-Up zu Check 07 „Histogramm Kumul-Wkt“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Wie im Training: Werte auf 2 Nachkommastellen ablesen, Toleranz 0,01. Alle Ergebnisse so gewählt, dass die
-# Differenz der abgelesenen (gerundeten) Balkenhöhen mit dem exakt gerundeten Wert übereinstimmt (per Skript geprüft).
+# Wie im Training: Werte auf 2 Nachkommastellen ablesen (Warm-Up mit Toleranz 0,01). Alle Ergebnisse so gewählt,
+# dass die Differenz der abgelesenen (gerundeten) Balkenhöhen mit dem exakt gerundeten Wert übereinstimmt (per Skript geprüft).
 
 check_id: stochastik__binomialverteilung__07
 abschluss: '<p>Im Training gibt es zu jedem kumulierten Histogramm vier Ereignisse: „genau $k$“ (Balken von $k$ minus Balken von $k-1$), „mindestens $k$“ ($1$ minus Balken von $k-1$), „weniger als $k$“ (Balken von $k-1$) und „mehr als $a$ und höchstens $b$“ (Balken von $b$ minus Balken von $a$). Du brauchst also nie mehr als zwei Balken. Ergebnisse auf 2 Nachkommastellen.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
     titel: 'Warum die Balken steigen'
-    text: '<p>Wieder der Bogenschütze mit $10$ Schüssen und $p=0{,}4$, diesmal als <strong>kumuliertes Histogramm</strong>. Die Balken werden nach rechts immer höher bis $1$. Fährst du über einen Balken oder tippst ihn an, erscheint sein Wert.</p>'
+    text: '<p>Wieder der Bogenschütze mit $10$ Schüssen und $p=0{,}4$, diesmal als <strong>kumuliertes Histogramm</strong>. Fährst du über einen Balken oder tippst ihn an, erscheint sein Wert.</p>'
     visual:
       typ: histogramm
       kumuliert: true
       n: 10
       p: 0.4
     schritte:
-      - typ: auswahl
-        frage: 'Was gibt die Höhe des Balkens von $k=2$ hier an?'
-        optionen:
-          - '$P(X\leq 2)$, die Wahrscheinlichkeit für höchstens $2$ Treffer'
-          - '$P(X=2)$, die Wahrscheinlichkeit für genau $2$ Treffer'
-          - '$P(X\geq 2)$, die Wahrscheinlichkeit für mindestens $2$ Treffer'
-        korrekt: 0
-        hinweis: '„Kumuliert“ heißt aufsummiert: Im Balken von $2$ stecken $0$, $1$ und $2$ Treffer zusammen.'
-        zeige: { bereiche: [[2, 2]] }
-      - typ: eingabe
-        frage: 'Lies den Wert für <strong>höchstens 2 Treffer</strong> ab, auf 2 Nachkommastellen.'
-        felder:
-          - { label: '$P(X\leq 2)\approx$', loesung: 0.17, toleranz: 0.01, aria: 'P(X kleiner gleich 2)', zeige: { werte: [2] } }
-        hinweis: 'Höhe des markierten Balkens von $2$ ablesen, sie liegt knapp unter $0{,}2$.'
+      - typ: aufdecken
+        frage: 'Was zeigt ein Balken hier?'
+        knopf: 'Erklären'
+        text: '<p>„Kumuliert“ heißt aufsummiert. Im Balken von $2$ stecken $0$, $1$ und $2$ Treffer zusammen. Seine Höhe ist die Wahrscheinlichkeit für <strong>höchstens</strong> $2$ Treffer:</p>$$P(X\leq 2)\approx 0{,}17$$<p>Nach rechts kommt immer etwas dazu. Deshalb steigen die Balken bis $1$.</p>'
+        zeige: { bereiche: [[2, 2]], werte: [2] }
       - typ: auswahl
         frage: 'Im Training steht oft <strong>weniger als 5 Treffer</strong>. Welcher einzelne Balken zeigt diesen Wert?'
         optionen:
@@ -39,71 +30,45 @@ karten:
           - 'der Balken von $5$'
           - 'der Balken von $6$'
         korrekt: 0
-        hinweis: '„Weniger als 5“ bedeutet höchstens $4$ Treffer, also $P(X\leq 4)$.'
+        hinweis: 'Gehören genau $5$ Treffer zu „weniger als 5“?'
         zeige: { bereiche: [[4, 4]], werte: [4] }
-        danach: '<p>„Weniger als $5$“ ist dasselbe wie „höchstens $4$“: $P(X&lt;5)=P(X\leq 4)\approx 0{,}63$. Ein einziger Balken reicht, ganz ohne Addieren.</p>'
+        danach: '<p>„Weniger als $5$“ ist dasselbe wie „höchstens $4$“:</p>$$P(X&lt;5)=P(X\leq 4)\approx 0{,}63$$'
+      - typ: aufdecken
+        frage: 'Und für <strong>genau 5</strong> Treffer?'
+        knopf: 'Zeigen'
+        text: '<p>Im Balken von $5$ stecken $0$ bis $5$ Treffer, im Balken von $4$ stecken $0$ bis $4$. Zieht man ab, bleibt genau die $5$ übrig:</p>$$\begin{align*}&P(X=5)\\&=P(X\leq 5)-P(X\leq 4)\\&\approx 0{,}83-0{,}63\\&=0{,}20\end{align*}$$<p><strong>Merke:</strong></p><ul><li>Die Höhe des Balkens von $k$ ist $P(X\leq k)$.</li><li>Jedes andere Ereignis ist ein Balken, die Differenz zweier Balken oder $1$ minus einen Balken.</li></ul>'
+        zeige: { bereiche: [[4, 5]], werte: [4, 5] }
 
-  # ── Phase B: Vormachen ─────────────────────────────────────
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
-    titel: 'Differenz zweier Balken'
-    text: '<p>Gleicher Bogenschütze. Gesucht ist die Wahrscheinlichkeit für <strong>genau 5 Treffer</strong>. Im Balken von $5$ stecken alle Anzahlen von $0$ bis $5$. Zieht man den Balken von $4$ ($0$ bis $4$) ab, bleibt genau die $5$ übrig.</p>'
+    titel: 'Differenz oder 1 minus'
+    text: '<p>Gleicher Bogenschütze. Für Bereiche brauchst du höchstens zwei Balken.</p>'
     visual:
       typ: histogramm
       kumuliert: true
       n: 10
       p: 0.4
-      bereiche: [[4, 5]]
     schritte:
-      - typ: aufdecken
-        frage: 'Den Balken von $5$ und den Balken von $4$ ablesen und voneinander abziehen.'
-        knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}&P(X=5)\\&=P(X\leq 5)-P(X\leq 4)\\&\approx 0{,}83-0{,}63\\&=0{,}20\end{align*}$$'
-        zeige: { werte: [4, 5] }
-        danach: '<p>Die Einzelwahrscheinlichkeit $P(X=5)$ ist also der Zuwachs (die Stufenhöhe) vom Balken von $4$ zum Balken von $5$.</p>'
       - typ: auswahl
-        frage: 'Genauso klappt es für Bereiche: <strong>Mehr als 3 und höchstens 7</strong> Treffer ($4$, $5$, $6$ oder $7$). Welche Rechnung passt?'
+        frage: '<strong>Mehr als 3 und höchstens 7</strong> Treffer, also $4$, $5$, $6$ oder $7$. Welche Rechnung passt?'
         optionen:
           - 'Balken von $7$ minus Balken von $3$'
           - 'Balken von $7$ minus Balken von $4$'
           - 'Balken von $4$ bis $7$ addieren'
         korrekt: 0
-        hinweis: 'Im Balken von $7$ stecken $0$ bis $7$. „Mehr als 3“ heißt: $0$ bis $3$ gehören nicht dazu, also den Balken von $3$ abziehen.'
+        hinweis: 'Im Balken von $7$ stecken $0$ bis $7$. Weg müssen $0$ bis $3$, und die stecken im Balken von $3$.'
         zeige: { bereiche: [[3, 3], [7, 7]], werte: [3, 7] }
-      - typ: eingabe
-        frage: 'Ziehe die beiden abgelesenen Werte voneinander ab.'
-        felder:
-          - { label: '$P(3&lt;X\leq 7)\approx$', loesung: 0.61, toleranz: 0.01, aria: 'P(3 kleiner X kleiner gleich 7)' }
-        hinweis: '$0{,}99-0{,}38$'
-
-  - phase: vormachen
-    titel: 'Mindestens: Von 1 abziehen'
-    text: '<p>Gesucht ist die Wahrscheinlichkeit für <strong>mindestens 7 Treffer</strong>, also $7$, $8$, $9$ oder $10$ Treffer. Nicht dazu gehören $0$ bis $6$ Treffer – und deren Summe steht schon fertig im Balken von $6$.</p>'
-    visual:
-      typ: histogramm
-      kumuliert: true
-      n: 10
-      p: 0.4
-      bereiche: [[6, 6]]
-    schritte:
-      - typ: aufdecken
-        frage: 'Den Balken von $6$ ablesen und von $1$ abziehen.'
-        knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}&P(X\geq 7)\\&=1-P(X\leq 6)\\&\approx 1-0{,}95\\&=0{,}05\end{align*}$$'
-        zeige: { werte: [6] }
+        danach: '$$\begin{align*}&P(3&lt;X\leq 7)\\&=P(X\leq 7)-P(X\leq 3)\\&\approx 0{,}99-0{,}38\\&=0{,}61\end{align*}$$'
       - typ: auswahl
-        frage: '<strong>Mindestens 4 Treffer</strong>: Welchen Balken ziehst du von $1$ ab?'
+        frage: '<strong>Mindestens 7</strong> Treffer, also $7$ bis $10$. Alle Balken zusammen ergeben $1$. Welche Rechnung passt?'
         optionen:
-          - 'den Balken von $3$'
-          - 'den Balken von $4$'
-          - 'den Balken von $5$'
+          - '$1$ minus Balken von $6$'
+          - '$1$ minus Balken von $7$'
+          - 'Balken von $10$ minus Balken von $7$'
         korrekt: 0
-        hinweis: 'Zu „mindestens 4“ gehören $0$, $1$, $2$ und $3$ nicht dazu – das ist $P(X\leq 3)$.'
-        zeige: { bereiche: [[3, 3]], werte: [3] }
-      - typ: eingabe
-        frage: 'Berechne den Wert.'
-        felder:
-          - { label: '$P(X\geq 4)\approx$', loesung: 0.62, toleranz: 0.01, aria: 'P(X größer gleich 4)' }
-        hinweis: '$1-0{,}38$'
+        hinweis: 'Nicht dazu gehören $0$ bis $6$ Treffer. Deren Summe steht im Balken von $6$.'
+        zeige: { bereiche: [[6, 6]], werte: [6] }
+        danach: '$$\begin{align*}&P(X\geq 7)\\&=1-P(X\leq 6)\\&\approx 1-0{,}95\\&=0{,}05\end{align*}$$'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -115,26 +80,24 @@ karten:
       n: 12
       p: 0.7
     schritte:
+      - typ: zuordnen
+        frage: 'Wie bestimmst du die Wahrscheinlichkeit für diese Anzahlen pünktlicher Fahrten?'
+        titel_links: 'Ereignis'
+        titel_rechts: 'Rechnung'
+        paare:
+          - { links: 'weniger als 9', rechts: 'Balken von $8$' }
+          - { links: 'genau 8', rechts: 'Balken von $8$ minus Balken von $7$' }
+          - { links: 'mindestens 10', rechts: '$1$ minus Balken von $9$' }
+          - { links: 'mehr als 6 und höchstens 9', rechts: 'Balken von $9$ minus Balken von $6$' }
+        hilfe: 'Tippe erst links, dann rechts.'
       - typ: eingabe
-        frage: '<strong>Weniger als 9</strong> pünktliche Fahrten.'
+        frage: 'Lies ab und berechne: <strong>weniger als 9</strong> und <strong>genau 8</strong> pünktliche Fahrten.'
+        layout: zeile
         felder:
           - { label: '$P(X&lt;9)\approx$', loesung: 0.51, toleranz: 0.01, aria: 'P(X kleiner 9)', zeige: { bereiche: [[8, 8]], werte: [8] } }
-        hinweis: '„Weniger als 9“ heißt höchstens $8$, also den Balken von $8$ ablesen.'
-      - typ: auswahl
-        frage: '<strong>Genau 8</strong> pünktliche Fahrten: Wie rechnest du?'
-        optionen:
-          - 'Balken von $8$ minus Balken von $7$'
-          - 'nur den Balken von $8$ ablesen'
-          - '$1$ minus den Balken von $7$'
-        korrekt: 0
-        hinweis: 'Im Balken von $8$ stecken $0$ bis $8$. Damit nur die $8$ übrig bleibt, muss $0$ bis $7$ weg.'
-        zeige: { bereiche: [[7, 8]], werte: [7, 8] }
-      - typ: eingabe
-        frage: 'Berechne den Wert.'
-        felder:
-          - { label: '$P(X=8)\approx$', loesung: 0.23, toleranz: 0.01, aria: 'P(X gleich 8)' }
-        hinweis: '$0{,}51-0{,}28$'
-        danach: '<p>Das ist derselbe Wert $0{,}23$, den man im Einzel-Histogramm direkt am Balken von $8$ abliest.</p>'
+          - { label: '$P(X=8)\approx$', loesung: 0.23, toleranz: 0.01, aria: 'P(X gleich 8)', zeige: { bereiche: [[7, 8]], werte: [7, 8] } }
+        hinweis: 'Weniger als 9: Balken von $8$. Genau 8: davon den Balken von $7$ abziehen, also $0{,}51-0{,}28$.'
+        danach: '<p>$P(X=8)\approx 0{,}23$ ist derselbe Wert, den man im Einzel-Histogramm direkt am Balken von $8$ abliest.</p>'
 
   - phase: mitmachen
     titel: 'Fast allein'
@@ -146,17 +109,12 @@ karten:
       p: 0.7
     schritte:
       - typ: eingabe
-        frage: '<strong>Mindestens 10</strong> pünktliche Fahrten. Tipp: Gegenereignis.'
+        frage: '<strong>Mindestens 8</strong> pünktliche Fahrten. Tipp: Was gehört nicht dazu?'
         felder:
-          - { label: '$P\approx$', loesung: 0.25, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[9, 9]], werte: [9] } }
-        hinweis: 'Bis $9$ gehört nicht dazu: $1$ minus den Balken von $9$, also $1-0{,}75$.'
+          - { label: '$P\approx$', loesung: 0.72, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[7, 7]], werte: [7] } }
+        hinweis: 'Bis $7$ gehört nicht dazu: $1$ minus den Balken von $7$, also $1-0{,}28$.'
       - typ: eingabe
-        frage: '<strong>Mehr als 6 und höchstens 9</strong> pünktliche Fahrten. Tipp: Zwei Balken voneinander abziehen.'
+        frage: '<strong>Mehr als 5 und höchstens 9</strong> pünktliche Fahrten. Tipp: zwei Balken.'
         felder:
-          - { label: '$P\approx$', loesung: 0.63, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[6, 6], [9, 9]], werte: [6, 9] } }
-        hinweis: 'Balken von $9$ minus Balken von $6$, also $0{,}75-0{,}12$.'
-      - typ: eingabe
-        frage: '<strong>Genau 9</strong> pünktliche Fahrten. Tipp: Stufenhöhe bei $9$.'
-        felder:
-          - { label: '$P\approx$', loesung: 0.24, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[8, 9]], werte: [8, 9] } }
-        hinweis: 'Balken von $9$ minus Balken von $8$, also $0{,}75-0{,}51$.'
+          - { label: '$P\approx$', loesung: 0.71, toleranz: 0.01, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[5, 5], [9, 9]], werte: [5, 9] } }
+        hinweis: 'Balken von $9$ minus Balken von $5$, also $0{,}75-0{,}04$.'

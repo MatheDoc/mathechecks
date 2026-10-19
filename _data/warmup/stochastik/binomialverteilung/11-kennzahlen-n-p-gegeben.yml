@@ -2,14 +2,14 @@
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
 # Kern: μ = n·p (Erwartungswert, auch bei Formulierungen „im Durchschnitt / im Mittel zu erwarten“,
-# exakt mit Nachkommastellen angeben) und σ = √(n·p·(1−p)) = √(μ·(1−p)) (Standardabweichung, auf 2 NKS).
+# exakt mit Nachkommastellen angeben) und σ = √(n·p·(1−p)) (Standardabweichung, auf 2 NKS).
 # Alle Zahlen per Python-Skript nachgerechnet.
 
 check_id: stochastik__binomialverteilung__11
-abschluss: '<p>Im Training bekommst du $n$ und eine Prozentangabe für $p$. Gefragt ist nach dem Erwartungswert $\mu$ (oft formuliert als „wie viele … im Durchschnitt / im Mittel zu erwarten sind“) und der Standardabweichung $\sigma$. Die Reihenfolge der beiden Fragen wechselt zufällig.</p><p><strong>Drei Dinge für die Eingabe:</strong> Schreibe $p$ als Dezimalzahl, gib $\mu=n\cdot p$ <strong>exakt mit Nachkommastellen</strong> an (nicht auf ganze Anzahlen runden) und runde $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ auf <strong>2 Nachkommastellen</strong>.</p>'
+abschluss: '<p>Im Training bekommst du $n$ und eine Prozentangabe für $p$. Gefragt ist nach dem Erwartungswert $\mu$ (oft formuliert als „wie viele … im Durchschnitt / im Mittel zu erwarten sind“) und der Standardabweichung $\sigma$. Die Reihenfolge der beiden Fragen wechselt zufällig.</p><p><strong>Drei Dinge für die Eingabe:</strong> Schreibe $p$ als Dezimalzahl, gib $\mu=n\cdot p$ <strong>exakt mit Nachkommastellen</strong> an (nicht auf ganze Anzahlen runden) und runde $\sigma=\sqrt{n\cdot p\cdot (1-p)}$ auf <strong>2 Nachkommastellen</strong>.</p><p>Abkürzung: Weil $\mu=n\cdot p$ ist, gilt auch $\sigma=\sqrt{\mu\cdot (1-p)}$.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
     titel: 'Erwartungswert und Streuung'
     text: '<p>Eine Basketballspielerin wirft $10$-mal auf den Korb ($n=10$). Jeder Wurf trifft mit der Wahrscheinlichkeit $p=0{,}4$. Das Histogramm zeigt die Verteilung der Anzahl $X$ der Treffer.</p>'
@@ -18,61 +18,28 @@ karten:
       n: 10
       p: 0.4
     schritte:
-      - typ: eingabe
-        frage: 'Wie viele Treffer sind bei $10$ Würfen mit $p=0{,}4$ <strong>im Durchschnitt</strong> zu erwarten?'
-        felder:
-          - { label: '$\mu=$', loesung: 4, aria: 'Erwartungswert', zeige: { bereiche: [[4, 4]] } }
-        hinweis: 'Bei $40\,\%$ der $10$ Würfe ist ein Treffer zu erwarten: $10\cdot 0{,}4$.'
-        danach: '<p>Das ist der <strong>Erwartungswert</strong> $\mu$:</p>$$\mu=n\cdot p=10\cdot 0{,}4=4$$<p>Er gibt an, wie viele Treffer <strong>im Mittel</strong> (oder <strong>im Durchschnitt</strong>) zu erwarten sind. Im Histogramm liegt dort der höchste Balken.</p>'
-      - typ: auswahl
-        frage: 'Natürlich gelingen nicht in jeder Serie genau $4$ Treffer, sondern mal $3$, mal $5$, mal $6$. Was beschreibt die <strong>Standardabweichung $\sigma$</strong>?'
-        optionen:
-          - 'Sie ist ein Maß dafür, wie stark die Trefferanzahl um den Erwartungswert $\mu$ schwankt.'
-          - 'Sie gibt die Wahrscheinlichkeit $P(X=4)$ für genau $4$ Treffer an.'
-          - 'Sie zählt, wie viele Fehlwürfe im Mittel auftreten.'
-        korrekt: 0
-        hinweis: 'Der Erwartungswert beschreibt die Mitte, die Standardabweichung die Streuung darum.'
-        zeige: { bereiche: [[3, 5]] }
-        danach: '<p>Bei der Binomialverteilung berechnet man die Standardabweichung mit der Formel</p>$$\sigma=\sqrt{n\cdot p\cdot (1-p)}$$'
-
-  # ── Phase B: Vormachen ─────────────────────────────────────
-  - phase: vormachen
-    titel: 'Schritt für Schritt berechnen'
-    text: '<p>Wir berechnen $\mu$ und $\sigma$ für die $10$ Würfe mit $p=0{,}4$.</p>'
-    visual:
-      typ: liste
-      titel: 'Korbwürfe (n = 10, p = 0,4)'
-      eintraege:
-        - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=10\cdot 0{,}4=4$' }
-        - { id: q, text: 'Gegenwahrscheinlichkeit 1 − p', gleichung: '$1-p=1-0{,}4=0{,}6$' }
-        - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma=\sqrt{10\cdot 0{,}4\cdot 0{,}6}$<br>$\sigma\approx 1{,}55$' }
-    schritte:
-      - typ: auswahl
-        frage: 'Den Erwartungswert $\mu=10\cdot 0{,}4=4$ haben wir schon. Welcher Wert steht in der Formel für $\sigma$ für die Gegenwahrscheinlichkeit $1-p$?'
-        optionen:
-          - '$1-0{,}4=0{,}6$'
-          - 'noch einmal $0{,}4$'
-          - '$10-4=6$'
-        korrekt: 0
-        hinweis: '$1-p$ ist die Wahrscheinlichkeit für einen Fehlwurf: $1-0{,}4$.'
-        zeige: { eintraege: [mu, q] }
       - typ: aufdecken
-        frage: '<strong>In die Formel für $\sigma$ einsetzen</strong> und auf 2 Nachkommastellen runden:'
-        knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}\sigma&=\sqrt{n\cdot p\cdot (1-p)}\\&=\sqrt{10\cdot 0{,}4\cdot 0{,}6}\\&=\sqrt{2{,}4}\\&\approx 1{,}55\end{align*}$$'
-        zeige: { eintraege: [sigma] }
+        frage: 'Wie viele Treffer sind <strong>im Mittel</strong> zu erwarten?'
+        knopf: 'Zeigen'
+        text: '<p>$40\,\%$ der $10$ Würfe treffen im Mittel, also $4$. Das ist der <strong>Erwartungswert</strong>:</p>$$\mu=n\cdot p=10\cdot 0{,}4=4$$'
+        zeige: { bereiche: [[4, 4]] }
       - typ: auswahl
-        frage: 'Schau dir das Produkt unter der Wurzel an: $10\cdot 0{,}4\cdot 0{,}6$. Welcher Teil davon ist schon aus $\mu$ bekannt?'
+        frage: 'Trifft sie deshalb in jeder Serie genau $4$-mal? Schau dir die Balken an.'
         optionen:
-          - '$n\cdot p=10\cdot 0{,}4=4$ ist gerade $\mu$, man kann unter der Wurzel also direkt $\mu\cdot (1-p)$ rechnen.'
-          - '$p\cdot (1-p)$ ist immer $1$, unter der Wurzel bleibt nur $\sqrt{n}$.'
-          - 'Keiner, $\mu$ und $\sigma$ haben keine gemeinsamen Faktoren.'
+          - 'Nein, auch $3$, $5$ oder $6$ Treffer sind recht wahrscheinlich.'
+          - 'Ja, andere Anzahlen kommen praktisch nicht vor.'
+          - 'Nein, alle Anzahlen von $0$ bis $10$ sind gleich wahrscheinlich.'
         korrekt: 0
-        hinweis: 'Vergleiche $\mu=n\cdot p$ mit den ersten beiden Faktoren unter $\sqrt{n\cdot p\cdot (1-p)}$.'
-        danach: '<p>Genau: Weil $\mu=n\cdot p$ gilt, ist</p>$$\sigma=\sqrt{\mu\cdot (1-p)}$$<p>Hier also kurz $\sigma=\sqrt{4\cdot 0{,}6}=\sqrt{2{,}4}\approx 1{,}55$.</p>'
+        hinweis: 'Vergleiche die Höhe des Balkens von $4$ mit seinen Nachbarn.'
+        zeige: { bereiche: [[3, 5]] }
+      - typ: aufdecken
+        frage: 'Wie stark streut die Trefferanzahl um $\mu$?'
+        knopf: 'Zeigen'
+        text: '<p>Das misst die <strong>Standardabweichung</strong> $\sigma$. Bei der Binomialverteilung gilt:</p>$$\begin{align*}\sigma&=\sqrt{n\cdot p\cdot (1-p)}\\&=\sqrt{10\cdot 0{,}4\cdot 0{,}6}\\&\approx 1{,}55\end{align*}$$<p><strong>Merke:</strong></p><ul><li>$\mu=n\cdot p$ gibt an, wie viele Treffer im Mittel (im Durchschnitt) zu erwarten sind.</li><li>$\sigma=\sqrt{n\cdot p\cdot (1-p)}$ ist ein Maß für die Streuung um $\mu$.</li></ul>'
 
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
-    titel: 'Im Sachkontext: Prozent und Kommazahlen'
+    titel: 'Im Sachkontext'
     text: '<p><em>Eine Gärtnerei überprüft Pflanzen auf Trockenstress. Es werden $120$ Pflanzen betrachtet. Die Wahrscheinlichkeit für eine zu trockene Pflanze beträgt $36\,\%$.</em></p><p>Im Training stehen statt der Symbole oft Formulierungen im Satz, und $p$ ist in Prozent angegeben.</p>'
     visual:
       typ: liste
@@ -90,12 +57,8 @@ karten:
           - 'die Standardabweichung $\sigma$, mit $p=0{,}36$'
         korrekt: 0
         hinweis: '„Im Durchschnitt“ (oder „im Mittel“) zu erwarten meint $\mu$. Prozent bedeutet Hundertstel: $36\,\%=0{,}36$.'
-        zeige: { eintraege: [np] }
-      - typ: aufdecken
-        frage: '<strong>Erwartungswert berechnen:</strong>'
-        knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}\mu&=n\cdot p\\&=120\cdot 0{,}36\\&=43{,}2\end{align*}$$'
-        zeige: { eintraege: [mu] }
+        zeige: { eintraege: [np, mu] }
+        danach: '$$\begin{align*}\mu&=n\cdot p\\&=120\cdot 0{,}36\\&=43{,}2\end{align*}$$'
       - typ: auswahl
         frage: 'Es gibt nur ganze Pflanzen. Muss man $\mu=43{,}2$ deshalb auf $43$ runden?'
         optionen:
@@ -107,7 +70,7 @@ karten:
       - typ: aufdecken
         frage: '<strong>Standardabweichung berechnen</strong> mit $1-p=1-0{,}36=0{,}64$:'
         knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}\sigma&=\sqrt{120\cdot 0{,}36\cdot 0{,}64}\\&=\sqrt{27{,}648}\\&\approx 5{,}26\end{align*}$$<p>Auf 2 Nachkommastellen gerundet ergibt sich $\sigma\approx 5{,}26$.</p>'
+        text: '$$\begin{align*}\sigma&=\sqrt{120\cdot 0{,}36\cdot 0{,}64}\\&=\sqrt{27{,}648}\\&\approx 5{,}26\end{align*}$$<p>Hier wird auf 2 Nachkommastellen gerundet.</p>'
         zeige: { eintraege: [sigma] }
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
@@ -116,29 +79,46 @@ karten:
     text: '<p><em>Ein Eisstand untersucht Bestellungen mit und ohne Streusel. Es werden $150$ Bestellungen betrachtet. Die Wahrscheinlichkeit für eine Bestellung mit Streuseln beträgt $75\,\%$.</em></p>'
     visual:
       typ: liste
-      titel: 'Gegeben und gesucht'
+      titel: 'Eisstand (n = 150, p = 0,75)'
       eintraege:
-        - { id: np, text: 'Parameter', gleichung: '$n=150$, $p=0{,}75$' }
-        - { id: q, text: 'Gegenwahrscheinlichkeit', gleichung: '$1-p=0{,}25$' }
         - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=112{,}5$' }
         - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma\approx 5{,}30$' }
     schritte:
-      - typ: eingabe
-        frage: 'Trage zuerst $n$, $p$ (als Dezimalzahl) und $1-p$ ein.'
-        layout: zeile
-        felder:
-          - { label: '$n=$', loesung: 150, aria: 'n' }
-          - { label: '$p=$', loesung: 0.75, aria: 'p', zeige: { eintraege: [np] } }
-          - { label: '$1-p=$', loesung: 0.25, aria: '1 minus p', zeige: { eintraege: [q] } }
-        hinweis: '$75\,\%=0{,}75$ und $1-0{,}75=0{,}25$.'
       - typ: eingabe
         frage: 'Wie viele Bestellungen mit Streuseln sind <strong>im Durchschnitt</strong> zu erwarten? $$\mu=150\cdot 0{,}75$$'
         felder:
           - { label: '$\mu=$', loesung: 112.5, aria: 'Erwartungswert', zeige: { eintraege: [mu] } }
         hinweis: 'Rechne $150\cdot 0{,}75$ und lass die Nachkommastelle stehen.'
       - typ: eingabe
-        frage: 'Berechne die Standardabweichung $\sigma$ auf 2 Nachkommastellen gerundet: $$\sigma=\sqrt{150\cdot 0{,}75\cdot 0{,}25}$$'
+        frage: 'Berechne die Standardabweichung auf 2 Nachkommastellen: $$\sigma=\sqrt{150\cdot 0{,}75\cdot 0{,}25}$$'
         felder:
           - { label: '$\sigma\approx$', loesung: 5.30, toleranz: 0.01, aria: 'Standardabweichung', zeige: { eintraege: [sigma] } }
         hinweis: 'Unter der Wurzel steht $28{,}125$. Ziehe daraus die Wurzel.'
-        danach: '<p>Im Durchschnitt sind $112{,}5$ Bestellungen mit Streuseln zu erwarten, mit $\sigma\approx 5{,}30$.</p>'
+
+  - phase: mitmachen
+    titel: 'Fast allein: Rücksendungen'
+    text: '<p><em>Ein Online-Shop betrachtet $130$ Bestellungen. Die Wahrscheinlichkeit, dass eine Bestellung zurückgeschickt wird, beträgt $15\,\%$.</em></p>'
+    visual:
+      typ: liste
+      titel: 'Online-Shop (n = 130)'
+      eintraege:
+        - { id: ansatz, text: 'Ansatz σ', gleichung: '$\sigma=\sqrt{130\cdot 0{,}15\cdot 0{,}85}$' }
+        - { id: mu, text: 'Erwartungswert μ', gleichung: '$\mu=19{,}5$' }
+        - { id: sigma, text: 'Standardabweichung σ', gleichung: '$\sigma\approx 4{,}07$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ansatz liefert die Standardabweichung?'
+        optionen:
+          - '$\sqrt{130\cdot 0{,}15\cdot 0{,}85}$'
+          - '$\sqrt{130\cdot 0{,}15}$'
+          - '$130\cdot 0{,}15\cdot 0{,}85$'
+        korrekt: 0
+        hinweis: 'In die Formel gehören $n$, $p$ und $1-p$, und am Ende kommt die Wurzel.'
+        zeige: { eintraege: [ansatz] }
+      - typ: eingabe
+        frage: 'Wie viele Rücksendungen sind <strong>im Mittel</strong> zu erwarten, und wie groß ist $\sigma$? Tipp: Wird $\mu$ gerundet?'
+        layout: zeile
+        felder:
+          - { label: '$\mu=$', loesung: 19.5, aria: 'Erwartungswert', zeige: { eintraege: [mu] } }
+          - { label: '$\sigma\approx$', loesung: 4.07, toleranz: 0.01, aria: 'Standardabweichung', zeige: { eintraege: [sigma] } }
+        hinweis: '$\mu=130\cdot 0{,}15$ exakt mit Nachkommastelle. Für $\sigma$ den Ansatz von oben eintippen und auf 2 Nachkommastellen runden.'

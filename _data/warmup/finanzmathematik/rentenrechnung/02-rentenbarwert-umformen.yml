@@ -8,26 +8,36 @@ karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
   - phase: orientierung
-    titel: 'Was ist in der Barwertformel neu?'
-    text: '<p>Der Rentenbarwert ist der heutige Wert aller Raten – also der Rentenendwert, abgezinst um $q^n$:</p>$$\begin{align*}R_0&=\frac{r\cdot(q^n-1)}{q^n\cdot(q-1)}\\ \overline{R}_0&=\frac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}\end{align*}$$'
+    titel: 'Vom Endwert zum Barwert'
+    text: '<p>Der <strong>Rentenbarwert</strong> ist der Wert aller Raten <strong>heute</strong>, zu Beginn der Laufzeit: der Betrag, den man heute einmal anlegen müsste, um am Ende dasselbe Guthaben zu haben.</p><p>Jonas zahlt $3$ Jahre lang jeweils am Jahresende $1\,200$ € zu $2{,}5\,\%$ ein. Sein Rentenendwert ist $R_3=3\,690{,}75$ €.</p>'
+    visual:
+      typ: liste
+      titel: 'Vom Endwert zum Barwert'
+      eintraege:
+        - { id: ab, text: 'Endwert abzinsen', gleichung: '$R_0=\dfrac{R_n}{q^n}$' }
+        - { id: bsp, text: 'Jonas', gleichung: '$R_0=\dfrac{3\,690{,}75}{1{,}025^3}\approx 3\,427{,}23$ €' }
+        - { id: fn, text: 'nachschüssig', gleichung: '$R_0=\dfrac{r\cdot(q^n-1)}{q^n\cdot(q-1)}$' }
+        - { id: fv, text: 'vorschüssig', gleichung: '$\overline{R}_0=\dfrac{r\cdot q\cdot(q^n-1)}{q^n\cdot(q-1)}$' }
     schritte:
+      - typ: aufdecken
+        frage: 'Wie kommt man vom Endwert zum Barwert?'
+        knopf: 'Abzinsen'
+        text: '<p>Wie bei einer Einmalzahlung in der Zinseszinsrechnung: Der Endwert wird durch $q^n$ geteilt, also $n$ Jahre <strong>abgezinst</strong>. Legt Jonas heute rund $3\,427{,}23$ € an, hat er nach $3$ Jahren ebenfalls $3\,690{,}75$ €.</p>'
+        zeige: { eintraege: [ab, bsp] }
+      - typ: aufdecken
+        frage: 'Jetzt die Endwertformel für $R_n$ einsetzen.'
+        knopf: 'Barwertformeln zeigen'
+        text: '<p>Dadurch kommt im Nenner der Faktor $q^n$ dazu. Das sind die beiden <strong>Rentenbarwertformeln</strong> (rechts). Vorschüssig steht wie beim Endwert zusätzlich $q$ im Zähler.</p>'
+        zeige: { eintraege: [fn, fv] }
       - typ: auswahl
-        frage: 'Vergleiche die Barwertformel mit der Endwertformel. Was kommt neu hinzu?'
+        frage: 'Schau dir die Barwertformel an. Wo steckt die Laufzeit $n$?'
         optionen:
-          - 'Im Nenner steht zusätzlich der Faktor $q^n$.'
-          - 'Im Zähler steht $q^n+1$ statt $q^n-1$.'
-          - 'Der Faktor $q-1$ fällt weg.'
+          - 'Zweimal: in $q^n$ im Zähler und in $q^n$ im Nenner'
+          - 'Nur einmal, im Exponenten im Zähler'
+          - 'Nur einmal, im Nenner'
         korrekt: 0
-        hinweis: 'Schau dir den Nenner beider Formeln an.'
-      - typ: auswahl
-        frage: 'Warum ist die Umformung nach der Laufzeit $n$ hier ein Schritt mehr als beim Endwert?'
-        optionen:
-          - 'Weil man statt des Logarithmus die Wurzel braucht.'
-          - 'Weil $q^n$ zweimal vorkommt – im Zähler und im Nenner.'
-          - 'Weil $r$ im Exponenten steht.'
-        korrekt: 1
-        hinweis: 'Such in der Formel nach der Stelle, an der $n$ steht.'
-        danach: '<p>Genau das ist der Kern dieses Checks: Für $R_0$ und $r$ rechnest du fast wie beim Endwert. Ist aber $n$ gesucht, musst du die beiden $q^n$-Terme erst auf einer Seite zusammenführen.</p>'
+        hinweis: 'Such im Zähler und im Nenner nach $q^n$.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>Barwert = Endwert abgezinst: Im Nenner steht zusätzlich $q^n$.</li><li>Für $R_0$ und $r$ rechnest du wie beim Endwert.</li><li>Ist $n$ gesucht, steht $q^n$ zweimal da. Dann erst die beiden $q^n$-Terme auf eine Seite bringen und zusammenfassen, danach Logarithmus.</li></ul>'
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
@@ -41,10 +51,15 @@ karten:
         - { id: r, text: '$r$ gesucht', gleichung: 'Bruch ohne $r$ ausrechnen, durch diesen Faktor teilen' }
         - { id: n, text: '$n$ gesucht', gleichung: 'mit Nenner malnehmen, Klammer auflösen, $q^n$ zusammenfassen, Logarithmus' }
     schritte:
-      - typ: aufdecken
-        frage: '<strong>a) Barwert gesucht:</strong> nachschüssige Rente mit $r=6\,000$ €, $p=4\,\%$, $n=12$. Gesucht: $R_0$.'
-        knopf: 'Einsetzen und ausrechnen'
-        text: '<p>Mit $q=1{,}04$ und $q-1=0{,}04$ einsetzen:</p>$$\begin{align*}R_0&=\frac{6\,000\cdot(1{,}04^{12}-1)}{1{,}04^{12}\cdot 0{,}04}\\ &\approx 56\,310{,}44\,\text{€}\end{align*}$$<p>Tipp für den Taschenrechner: Nutze die Bruchtaste oder setze das Produkt $1{,}04^{12}\cdot 0{,}04$ im Nenner in Klammern.</p>'
+      - typ: auswahl
+        frage: '<strong>a) Barwert gesucht:</strong> nachschüssige Rente mit $r=6\,000$ €, $p=4\,\%$, $n=12$. Eingesetzt: $$R_0=\frac{6\,000\cdot(1{,}04^{12}-1)}{1{,}04^{12}\cdot 0{,}04}$$ Nach $6000\cdot$ folgt der Rest. Wie tippst du ihn in den Taschenrechner?'
+        optionen:
+          - '$(1{,}04^{12}-1):(1{,}04^{12}\cdot 0{,}04)$'
+          - '$(1{,}04^{12}-1):1{,}04^{12}\cdot 0{,}04$'
+          - '$1{,}04^{12}-1:(1{,}04^{12}\cdot 0{,}04)$'
+        korrekt: 0
+        hinweis: 'Zähler und Nenner brauchen beide Klammern. Ohne Klammer um den Nenner wird mit $0{,}04$ <em>multipliziert</em> statt geteilt, das ergäbe nur etwa $90$ €.'
+        danach: '$$R_0\approx 56\,310{,}44\,\text{€}$$<p>Alternativ nutzt du die Bruchtaste und gibst Zähler und Nenner getrennt ein.</p>'
         zeige: { eintraege: [r0] }
       - typ: aufdecken
         frage: '<strong>b) Rate $r$ gesucht:</strong> vorschüssige Rente mit $\overline{R}_0=50\,000$ €, $p=3\,\%$, $n=10$.'
@@ -75,11 +90,7 @@ karten:
           - 'Auf beiden Seiten $+5\,000$ rechnen und durch $5\,000$ teilen'
         korrekt: 0
         hinweis: 'Denk dir $1{,}025^n$ wie ein $x$: Die Gleichung $1\,000x=5\,000x-5\,000$ löst du mit $-5\,000x$.'
-        danach: '$$\begin{align*}1\,000\cdot 1{,}025^n-5\,000\cdot 1{,}025^n&=-5\,000\\ -4\,000\cdot 1{,}025^n&=-5\,000\quad|:(-4\,000)\\ 1{,}025^n&=1{,}25\end{align*}$$<p>Jetzt steht $1{,}025^n$ nur noch an einer einzigen Stelle!</p>'
-      - typ: aufdecken
-        frage: '<strong>Schritt 3:</strong> Logarithmus anwenden.'
-        knopf: 'Nach n auflösen'
-        text: '$$\begin{align*}1{,}025^n&=1{,}25\\ n&=\frac{\ln 1{,}25}{\ln 1{,}025}\approx 9{,}04\end{align*}$$<p>(Bei einer <strong>vorschüssigen</strong> Rente rechnest du im Zähler vor der Klammer zuerst $r\cdot q$ zu einer Zahl zusammen – danach läuft alles genauso.)</p>'
+        danach: '$$\begin{align*}-4\,000\cdot 1{,}025^n&=-5\,000\quad|:(-4\,000)\\ 1{,}025^n&=1{,}25\\ n&=\frac{\ln 1{,}25}{\ln 1{,}025}\approx 9{,}04\end{align*}$$<p>Sobald $1{,}025^n$ nur noch an einer Stelle steht, geht es wie beim Endwert mit dem Logarithmus weiter.</p><p>Bei einer <strong>vorschüssigen</strong> Rente rechnest du im Zähler vor der Klammer zuerst $r\cdot q$ zu einer Zahl zusammen, danach läuft alles genauso.</p>'
         zeige: { eintraege: [n] }
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
@@ -91,7 +102,7 @@ karten:
         titel_links: 'Umformungsschritt'
         titel_rechts: 'Ergebnis'
         paare:
-          - { links: '1. Mit $0{,}04\cdot 1{,}04^n$ malnehmen &amp; Klammer auflösen', rechts: '$1\,000\cdot 1{,}04^n=3\,000\cdot 1{,}04^n-3\,000$' }
+          - { links: '1. Mit $0{,}04\cdot 1{,}04^n$ malnehmen &amp; Klammer auflösen', rechts: '$1\,000\cdot 1{,}04^n=$<br>$3\,000\cdot 1{,}04^n-3\,000$' }
           - { links: '2. Minus $3\,000\cdot 1{,}04^n$ rechnen', rechts: '$-2\,000\cdot 1{,}04^n=-3\,000$' }
           - { links: '3. Durch $-2\,000$ teilen', rechts: '$1{,}04^n=1{,}5$' }
           - { links: '4. Logarithmus anwenden', rechts: '$n=\dfrac{\ln 1{,}5}{\ln 1{,}04}\approx 10{,}34$' }
@@ -114,15 +125,10 @@ karten:
           - { label: '$\overline{R}_0=$', loesung: 13572.75, toleranz: 1, einheit: '€' }
         hinweis: 'Achte auf die Klammer um das Produkt $1{,}05^8\cdot 0{,}05$ im Nenner.'
       - typ: eingabe
-        frage: '<strong>2.</strong> Nachschüssige Rente mit $R_0=20\,000$ €, $p=3\,\%$, $n=10$. Gesucht: $r$. Eingesetzt: $$20\,000=r\cdot\frac{1{,}03^{10}-1}{1{,}03^{10}\cdot 0{,}03}$$ Rechne zuerst den Bruch ohne $r$ auf 4 Nachkommastellen aus.'
-        felder:
-          - { label: '$\text{Faktor}\approx$', loesung: 8.5302, toleranz: 0.0005 }
-        hinweis: 'Rechne $(1{,}03^{10}-1):(1{,}03^{10}\cdot 0{,}03)$.'
-      - typ: eingabe
-        frage: 'Teile jetzt $20\,000$ durch diesen Faktor.'
+        frage: '<strong>2.</strong> Nachschüssige Rente mit $R_0=20\,000$ €, $p=3\,\%$, $n=10$. Gesucht: $r$. Eingesetzt: $$20\,000=r\cdot\frac{1{,}03^{10}-1}{1{,}03^{10}\cdot 0{,}03}$$ Rechne den Bruch ohne $r$ aus und teile $20\,000$ durch diesen Faktor.'
         felder:
           - { label: '$r=$', loesung: 2344.61, toleranz: 1, einheit: '€' }
-        hinweis: 'Rechne $20\,000:8{,}5302$.'
+        hinweis: 'Der Bruch ergibt $\frac{1{,}03^{10}-1}{1{,}03^{10}\cdot 0{,}03}\approx 8{,}5302$ (Klammer um den Nenner!). Rechne $20\,000:8{,}5302$.'
 
   - phase: mitmachen
     titel: 'Neue Zahlen: nach n umformen (mit Hilfe)'
@@ -142,15 +148,12 @@ karten:
         hinweis: 'Rechne $20\,000\cdot 0{,}05$.'
         danach: '$$1\,000\cdot 1{,}05^n=3\,000\cdot 1{,}05^n-3\,000$$'
       - typ: eingabe
-        frage: '<strong>Schritt 2:</strong> Zieh $3\,000\cdot 1{,}05^n$ ab ($-2\,000\cdot 1{,}05^n=-3\,000$) und teile durch $-2\,000$.'
+        frage: '<strong>Schritt 2:</strong> Zieh $3\,000\cdot 1{,}05^n$ ab, teile durch den Vorfaktor und wende den Logarithmus an ($n$ auf 2 Nachkommastellen).'
         felder:
           - { label: '$1{,}05^n=$', loesung: 1.5 }
-        hinweis: 'Rechne $(-3\,000):(-2\,000)$.'
-      - typ: eingabe
-        frage: '<strong>Schritt 3:</strong> Wende den Logarithmus an und runde auf 2 Nachkommastellen.'
-        felder:
           - { label: '$n\approx$', loesung: 8.31, toleranz: 0.05, einheit: 'Jahre' }
-        hinweis: '$n=\frac{\ln 1{,}5}{\ln 1{,}05}$.'
+        hinweis: '$-2\,000\cdot 1{,}05^n=-3\,000$, also $1{,}05^n=(-3\,000):(-2\,000)=1{,}5$ und $n=\frac{\ln 1{,}5}{\ln 1{,}05}$.'
+        danach: '$$\begin{align*}-2\,000\cdot 1{,}05^n&=-3\,000\\ 1{,}05^n&=1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}05}\approx 8{,}31\end{align*}$$'
 
   - phase: mitmachen
     titel: 'Noch einmal n – vorschüssig und mit weniger Hilfe'
@@ -159,9 +162,9 @@ karten:
       - typ: auswahl
         frage: 'Welche Gleichung entsteht, wenn du mit $0{,}04\cdot 1{,}04^n$ multiplizierst und rechts die Klammer auflöst?'
         optionen:
-          - '$600=2\,600\cdot 1{,}04^n-2\,600$'
-          - '$600\cdot 1{,}04^n=2\,600\cdot 1{,}04^n-1$'
-          - '$600\cdot 1{,}04^n=2\,600\cdot 1{,}04^n-2\,600$'
+          - '$600=$<br>$2\,600\cdot 1{,}04^n-2\,600$'
+          - '$600\cdot 1{,}04^n=$<br>$2\,600\cdot 1{,}04^n-1$'
+          - '$600\cdot 1{,}04^n=$<br>$2\,600\cdot 1{,}04^n-2\,600$'
         korrekt: 2
         hinweis: 'Links gibt $15\,000\cdot 0{,}04=600$ mal $1{,}04^n$. Rechts wird auch die $-1$ mit $2\,600$ multipliziert.'
       - typ: eingabe

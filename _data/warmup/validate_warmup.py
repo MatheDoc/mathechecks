@@ -13,6 +13,9 @@ Geprüft wird u. a.:
 - Modulseite lernbereiche/<gebiet>/<lernbereich>/warmup.md existiert
 - kein "</script" in Texten (die Daten werden in <script type="application/json"> eingebettet)
 
+Warnungen (ändern den Exit-Code nicht): Idee-Karte beginnt mit einer Frage, mehr als zwei Fragen
+in der Idee-Phase, mehr als 15 Schritte insgesamt.
+
 Aufruf: python _data/warmup/validate_warmup.py
 Exit-Code 0 = alles in Ordnung, 1 = Probleme gefunden.
 """
@@ -35,6 +38,9 @@ TOP_LEVEL_KEYS = {"check_id", "abschluss", "karten"}
 DERIVED_KEYS = {"titel", "kompetenz", "nummer", "training_url", "lernbereich_name"}
 PHASES = {"orientierung", "vormachen", "mitmachen"}
 STEP_TYPES = {"text", "aufdecken", "auswahl", "eingabe", "zuordnen", "markieren"}
+QUESTION_TYPES = {"auswahl", "eingabe", "zuordnen", "markieren"}
+MAX_IDEE_QUESTIONS = 2
+MAX_STEPS = 15
 VISUAL_TYPES = {"graph", "baum", "matrix", "liste", "histogramm", "zahlenstrahl"}
 MATRIX_AREAS = {"A", "Ay"}
 TREE_SLOTS = range(1, 11)
@@ -65,6 +71,7 @@ class Visual:
     def __init__(self, spec, where: str, problems: list[str]):
         self.typ = None
         self.ids: set = set()
+        self.area_ids: set = set()
         self.rows = 0
         self.cols = 0
         self.n = 0
@@ -80,6 +87,9 @@ class Visual:
         if self.typ == "graph":
             if not spec.get("funktionen"):
                 problems.append(f"{where}: graph ohne funktionen")
+            for key in ("xSchritt", "ySchritt"):
+                if key in spec and not (is_number(spec[key]) and spec[key] > 0):
+                    problems.append(f"{where}: graph.{key} muss eine positive Zahl sein")
             for i, punkt in enumerate(spec.get("punkte") or []):
                 if not isinstance(punkt, dict) or "id" not in punkt:
                     problems.append(f"{where}: graph.punkte[{i}] ohne id")
@@ -89,6 +99,18 @@ class Visual:
                 self.ids.add(punkt["id"])
                 if not (is_number(punkt.get("x")) and is_number(punkt.get("y"))):
                     problems.append(f"{where}: graph.punkte[{i}] ({punkt['id']!r}) ohne numerische x/y")
+            for i, flaeche in enumerate(spec.get("flaechen") or []):
+                if not isinstance(flaeche, dict) or "id" not in flaeche:
+                    problems.append(f"{where}: graph.flaechen[{i}] ohne id")
+                    continue
+                if flaeche["id"] in self.area_ids:
+                    problems.append(f"{where}: graph.flaechen: id {flaeche['id']!r} doppelt")
+                self.area_ids.add(flaeche["id"])
+                if not flaeche.get("term"):
+                    problems.append(f"{where}: graph.flaechen[{i}] ({flaeche['id']!r}) ohne term")
+                von, bis = flaeche.get("von"), flaeche.get("bis")
+                if not (is_number(von) and is_number(bis) and von < bis):
+                    problems.append(f"{where}: graph.flaechen[{i}] ({flaeche['id']!r}) braucht von < bis")
         elif self.typ == "liste":
             for i, eintrag in enumerate(spec.get("eintraege") or []):
                 if not isinstance(eintrag, dict) or "id" not in eintrag:
@@ -172,7 +194,7 @@ class Visual:
             problems.append(f"{where}: zeige ohne visual auf der Karte")
             return
         allowed = {
-            "graph": {"punkte"},
+            "graph": {"punkte", "flaechen"},
             "liste": {"eintraege"},
             "matrix": {"zeilen", "spalten", "bereich"},
             "baum": {"slots"},
@@ -187,6 +209,13 @@ class Visual:
             for ref in zeige.get(key) or []:
                 if ref not in self.ids:
                     problems.append(f"{where}: zeige.{key} verweist auf unbekannte id {ref!r}")
+            if self.typ == "graph" and "flaechen" in zeige:
+                if not isinstance(zeige["flaechen"], list):
+                    problems.append(f"{where}: zeige.flaechen muss eine Liste sein, für „keine Fläche“ [] schreiben")
+                else:
+                    for ref in zeige["flaechen"]:
+                        if ref not in self.area_ids:
+                            problems.append(f"{where}: zeige.flaechen verweist auf unbekannte id {ref!r}")
         elif self.typ == "matrix":
             for ref in zeige.get("zeilen") or []:
                 if not is_index(ref, self.rows):
@@ -343,6 +372,31 @@ def validate_file(path: Path, checks_by_id: dict) -> list[str]:
     return problems
 
 
+def collect_warnings(data) -> list[str]:
+    """Didaktische Richtwerte aus dem README (Leitlinien 1 und 2); ändern den Exit-Code nicht."""
+    warnings: list[str] = []
+    karten = data.get("karten") if isinstance(data, dict) else None
+    if not isinstance(karten, list):
+        return warnings
+    total_steps = 0
+    idee_questions = 0
+    for k, karte in enumerate(karten, start=1):
+        if not isinstance(karte, dict) or not isinstance(karte.get("schritte"), list):
+            continue
+        schritte = [s for s in karte["schritte"] if isinstance(s, dict)]
+        total_steps += len(schritte)
+        if karte.get("phase") != "orientierung":
+            continue
+        if schritte and schritte[0].get("typ") in QUESTION_TYPES:
+            warnings.append(f"Karte {k} (Idee) beginnt mit einer Frage statt mit einer Erklärung")
+        idee_questions += sum(1 for s in schritte if s.get("typ") in QUESTION_TYPES)
+    if idee_questions > MAX_IDEE_QUESTIONS:
+        warnings.append(f"Idee-Phase enthält {idee_questions} Fragen (Richtwert höchstens {MAX_IDEE_QUESTIONS})")
+    if total_steps > MAX_STEPS:
+        warnings.append(f"{total_steps} Schritte (Richtwert höchstens {MAX_STEPS})")
+    return warnings
+
+
 def main() -> int:
     checks = json.loads(CHECKS_PATH.read_text(encoding="utf-8"))
     checks_by_id = {c.get("check_id"): c for c in checks if isinstance(c, dict)}
@@ -350,6 +404,7 @@ def main() -> int:
     files = sorted(WARMUP_ROOT.glob("*/*/*.yml")) + sorted(WARMUP_ROOT.glob("*/*/*.yaml"))
     stray = sorted(WARMUP_ROOT.glob("*.y*ml")) + sorted(WARMUP_ROOT.glob("*/*.y*ml"))
     total_problems = 0
+    total_warnings = 0
 
     for path in stray:
         print(f"FEHLER {path.relative_to(REPO_ROOT).as_posix()}: Datendatei gehört nach _data/warmup/<gebiet>/<lernbereich>/")
@@ -358,6 +413,10 @@ def main() -> int:
     for path in files:
         rel = path.relative_to(REPO_ROOT).as_posix()
         problems = validate_file(path, checks_by_id)
+        try:
+            warnings = collect_warnings(yaml.safe_load(path.read_text(encoding="utf-8")))
+        except (OSError, yaml.YAMLError):
+            warnings = []
         if problems:
             total_problems += len(problems)
             print(f"FEHLER {rel}")
@@ -365,8 +424,13 @@ def main() -> int:
                 print(f"  - {problem}")
         else:
             print(f"ok     {rel}")
+        total_warnings += len(warnings)
+        for warning in warnings:
+            print(f"  WARNUNG {warning}")
 
     print()
+    if total_warnings:
+        print(f"{total_warnings} Warnung(en) zu didaktischen Richtwerten (siehe README, Leitlinien 1 und 2).")
     if total_problems:
         print(f"{len(files)} Warm-Up-Dateien geprüft, {total_problems} Problem(e).")
         return 1

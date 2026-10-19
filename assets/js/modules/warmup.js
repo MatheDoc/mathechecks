@@ -77,17 +77,26 @@ function scrollIntoViewSoft(node) {
 
 /* ───────────────────────── Visualisierungen ───────────────────────── */
 
+const PLOTLY_COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
+
 function createGraphVisual(spec) {
   const node = el("div", "cw-plot");
   const shown = new Set((spec.punkte || []).filter((p) => p.sichtbar).map((p) => p.id));
+  let shownAreas = new Set((spec.flaechen || []).filter((f) => f.sichtbar).map((f) => f.id));
   const textColor = () => themeTextColor();
 
   function render() {
     if (!node.isConnected || !window.Plotly || !window.math) return;
     const punkte = (spec.punkte || []).filter((p) => shown.has(p.id));
+    const flaechen = (spec.flaechen || []).filter((f) => shownAreas.has(f.id));
     const figure = buildGraphFigure({
-      funktionen: spec.funktionen || [],
+      // Feste Farben je Funktion, damit eingeblendete Flächen die Plotly-Farbreihenfolge nicht verschieben.
+      funktionen: (spec.funktionen || []).map((f, i) => ({
+        ...f,
+        color: f.color || PLOTLY_COLORS[i % PLOTLY_COLORS.length],
+      })),
       punkte: punkte.map((p) => ({ x: p.x, y: p.y, text: p.label || "" })),
+      flaechen: flaechen.map((f) => ({ term: f.term, von: f.von, bis: f.bis, farbe: f.farbe })),
       hilfslinien: punkte.filter((p) => p.hilfslinie).map((p) => ({ x: p.x, y: p.y })),
       xAchse: spec.xAchse || "",
       yAchse: spec.yAchse || "",
@@ -110,6 +119,8 @@ function createGraphVisual(spec) {
         font: { color: textColor(), size: 12 },
       }));
     figure.layout.annotations = [...(figure.layout.annotations || []), ...labelAnnotations];
+    if (spec.xSchritt) figure.layout.xaxis = { ...figure.layout.xaxis, dtick: spec.xSchritt };
+    if (spec.ySchritt) figure.layout.yaxis = { ...figure.layout.yaxis, dtick: spec.ySchritt };
     figure.layout.margin = { t: 20, r: 20, b: 50, l: 50 };
     figure.layout.legend = { orientation: "h", x: 0.5, xanchor: "center", y: -0.2 };
     plotlyRender(node, figure.data, figure.layout);
@@ -120,6 +131,7 @@ function createGraphVisual(spec) {
     render,
     apply(zeige) {
       (zeige?.punkte || []).forEach((id) => shown.add(id));
+      if (zeige && "flaechen" in zeige) shownAreas = new Set(zeige.flaechen || []);
       render();
     },
   };

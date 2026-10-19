@@ -1,43 +1,53 @@
 # Warm-Up zu Check 08 „n mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Kern: Wie verändert sich P mit n (P(X≥k) steigt, P(X≤k) fällt)? Danach das n suchen, an dem die Schwelle überschritten wird:
+# Kern: n lässt sich nur ausprobieren. P(X≥k) steigt, P(X≤k) fällt mit n. Die Antwort liegt zwischen zwei Nachbarn:
 # „mindestens n“ = kleinstes n, für das die Bedingung gilt; „höchstens n“ = größtes n, für das sie gilt.
 # Das Probieren läuft über Bcd(a;b;n;p) wie in Check 05; die obere Grenze b ändert sich bei „mindestens k“ mit n.
+# Alle vier Kombinationen des Trainings kommen vor: Zuschauen (mind./≥/≥, höchst./≤/≥), Mitmachen (höchst./≥/≤, mind./≤/≤).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
 check_id: stochastik__binomialverteilung__08
 abschluss: '<p>Im Training steht eine Bedingung wie $P(X\geq 144)\geq 0{,}29$ oder $P(X\leq 173)\leq 0{,}84$, und du suchst $n$. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $n\approx k/p$, prüfe, ob $P$ zu groß oder zu klein ist, und taste dich mit dem Taschenrechner an die Schwelle heran. Bei „mindestens $k$“ ändert sich die obere Grenze mit: $Bcd(k;n;n;p)$. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Bei „mindestens $n$“ gibst du das kleinste $n$ an, bei dem sie gilt, bei „höchstens $n$“ das größte.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ─────────────────────────────────────────
   - phase: orientierung
     titel: 'n lässt sich nur ausprobieren'
-    text: '<p>Bei einem Gewinnspiel gewinnt jedes Los mit $30\,\%$. Wie viele Lose muss man <strong>mindestens</strong> kaufen, damit die Wahrscheinlichkeit für <strong>mindestens 3 Gewinne</strong> mindestens $85\,\%$ beträgt?</p><p>Bisher war $n$ immer gegeben. Jetzt ist $n$ gesucht. In der Bernoulli-Formel steckt $n$ aber im Binomialkoeffizienten, im Exponenten und in den Summengrenzen. Es gibt <strong>keine Formel</strong>, die man nach $n$ auflösen könnte.</p>'
+    text: '<p>Bei einem Gewinnspiel gewinnt jedes Los mit $30\,\%$. Wie viele Lose muss man <strong>mindestens</strong> kaufen, damit die Wahrscheinlichkeit für <strong>mindestens 3 Gewinne</strong> mindestens $85\,\%$ beträgt? Als Bedingung:</p>$$P(X\geq 3)\geq 0{,}85$$<p>Bisher war $n$ immer gegeben, jetzt ist $n$ gesucht. In der Bernoulli-Formel steckt $n$ aber im Binomialkoeffizienten, im Exponenten und in den Summengrenzen. Es gibt <strong>keine Formel</strong>, die man nach $n$ auflösen könnte.</p>'
+    visual:
+      typ: liste
+      titel: 'P(X ≥ 3) bei p = 0,3'
+      eintraege:
+        - { id: n4, text: 'n = 4', gleichung: '$P(X\geq 3)\approx 0{,}0837$' }
+        - { id: n8, text: 'n = 8', gleichung: '$P(X\geq 3)\approx 0{,}4482$' }
+        - { id: n12, text: 'n = 12', gleichung: '$P(X\geq 3)\approx 0{,}7472$' }
+        - { id: n16, text: 'n = 16', gleichung: '$P(X\geq 3)\approx 0{,}9006$' }
+        - { id: n20, text: 'n = 20', gleichung: '$P(X\geq 3)\approx 0{,}9645$' }
     schritte:
+      - typ: aufdecken
+        frage: 'Was bleibt, ist <strong>Ausprobieren</strong>.'
+        knopf: 'Werte zeigen'
+        text: '<p>Man setzt verschiedene $n$ ein und lässt den Taschenrechner $P(X\geq 3)$ berechnen. Rechts siehst du das für $n=4,8,\dots,20$.</p>'
+        zeige: { eintraege: [n4, n8, n12, n16, n20] }
       - typ: auswahl
-        frage: 'Wie findet man dann das gesuchte $n$?'
+        frage: 'Schau dir die Werte an. Was passiert mit $P(X\geq 3)$, wenn $n$ größer wird?'
         optionen:
-          - 'Man probiert $n$ systematisch aus und berechnet jeweils die Wahrscheinlichkeit.'
-          - 'Man stellt die Bernoulli-Formel nach $n$ um.'
-          - 'Man rechnet $n$ mit $\mu=n\cdot p$ direkt aus.'
+          - 'Sie wird größer.'
+          - 'Sie wird kleiner.'
+          - 'Sie steigt erst und fällt dann.'
         korrekt: 0
-        hinweis: '$\mu=n\cdot p$ nennt nur den erwarteten Wert, nicht die gesuchte Wahrscheinlichkeit.'
-        danach: '<p>Genau: Für jedes $n$ berechnest du mit dem Taschenrechner die Wahrscheinlichkeit und prüfst, ob die Bedingung aus dem Text gilt. Dafür musst du die Bedingung zuerst richtig aufschreiben.</p>'
-      - typ: auswahl
-        frage: 'Welche Bedingung steckt im Text?'
-        optionen:
-          - '$P(X\geq 3)\geq 0{,}85$'
-          - '$P(X\leq 3)\geq 0{,}85$'
-          - '$P(X\geq 3)\leq 0{,}85$'
-        korrekt: 0
-        hinweis: '„Mindestens 3 Gewinne“ und „mindestens $85\,\%$“: Beide Male steht „mindestens“, also zweimal $\geq$.'
-        danach: '<p>Richtig. Gegeben sind $p=0{,}3$ und $k=3$. Gesucht ist das passende $n$.</p>'
+        hinweis: 'Lies die Werte rechts von oben nach unten.'
+        danach: '<p>Genau: Mit mehr Losen hat man mehr Chancen auf $3$ Gewinne. Bei $P(X\leq 3)$ ist es umgekehrt: Mit mehr Losen erwartet man mehr Gewinne, „höchstens 3“ wird <strong>unwahrscheinlicher</strong>.</p>'
+      - typ: aufdecken
+        frage: 'Wo liegt die Antwort?'
+        knopf: 'Zeigen'
+        text: '<p>Bei $n=12$ ist $P(X\geq 3)$ noch kleiner als $0{,}85$, bei $n=16$ schon größer. Dazwischen <strong>kippt</strong> die Bedingung. Dort probiert man in Einerschritten weiter, bis man zwei Nachbarn findet: einen, bei dem die Bedingung gilt, und einen, bei dem sie nicht gilt.</p><p><strong>Merke:</strong></p><ul><li>$n$ lässt sich nicht ausrechnen, nur ausprobieren.</li><li>$P(X\geq k)$ wächst mit $n$, $P(X\leq k)$ fällt mit $n$.</li><li>Die Antwort liegt bei zwei Nachbarn, zwischen denen die Bedingung kippt.</li></ul>'
 
-  # ── Phase B: Vormachen ─────────────────────────────────────
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
     titel: 'Mindestens: ab wann reicht es?'
-    text: '<p>Weiter mit dem Gewinnspiel, $p=0{,}3$: Gesucht ist das kleinste $n$ mit $P(X\geq 3)\geq 0{,}85$. Wir probieren $n$ aus.</p>'
+    text: '<p>Weiter mit dem Gewinnspiel: Gesucht ist das kleinste $n$ mit $P(X\geq 3)\geq 0{,}85$.</p><p>Im Training sind die Zahlen groß, deshalb brauchst du einen guten <strong>Startwert</strong>: $3$ Gewinne erwartet man, wenn $n\cdot 0{,}3=3$ ist, also bei $n=k/p=10$.</p>'
     visual:
       typ: liste
       titel: 'Probieren (p = 0,3)'
@@ -46,18 +56,10 @@ karten:
         - { id: n14, text: 'n = 14', gleichung: '$P(X\geq 3)\approx 0{,}8392$<br>$0{,}8392&lt;0{,}85$: reicht nicht' }
         - { id: n15, text: 'n = 15', gleichung: '$P(X\geq 3)\approx 0{,}8732$<br>$0{,}8732\geq 0{,}85$: reicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Wenn $n$ größer wird: Was passiert mit $P(X\geq 3)$?'
-        optionen:
-          - 'Sie wird größer.'
-          - 'Sie wird kleiner.'
-        korrekt: 0
-        hinweis: 'Mit mehr Losen hat man mehr Chancen auf Gewinne.'
-        danach: '<p>Allgemein wächst $P(X\geq k)$ mit $n$. Reicht ein $n$, reichen alle größeren erst recht. Gesucht ist also das <strong>erste</strong> $n$, bei dem es reicht.</p>'
       - typ: aufdecken
-        frage: '<strong>Startwert:</strong> Erwartet man $3$ Gewinne, passt $n\cdot 0{,}3=3$, also $n=3/0{,}3=10$.'
+        frage: 'Zuerst den Startwert testen.'
         knopf: 'n = 10 testen'
-        text: '$$\begin{align*}&Bcd(3;10;10;0{,}3)\\&\approx 0{,}6172\end{align*}$$<p>Das ist kleiner als $0{,}85$, also zu klein. Weiter mit größerem $n$.</p>'
+        text: '$$\begin{align*}&Bcd(3;10;10;0{,}3)\\&\approx 0{,}6172\end{align*}$$<p>Das ist kleiner als $0{,}85$. Weil $P(X\geq 3)$ mit $n$ wächst, geht es mit größerem $n$ weiter.</p>'
         zeige: { eintraege: [n10] }
       - typ: auswahl
         frage: 'Wie lautet die Eingabe für $n=14$? Die obere Grenze ist die größte mögliche Anzahl.'
@@ -67,13 +69,8 @@ karten:
           - '$Bcd(3;3;14;0{,}3)$'
         korrekt: 0
         hinweis: '„Mindestens 3“ reicht bis zur größten Anzahl, und die ist jetzt $n=14$.'
-        zeige: { eintraege: [n14] }
-        danach: '<p>Mit jedem neuen $n$ ändert sich also auch die obere Grenze:</p>$$\begin{align*}&Bcd(3;14;14;0{,}3)\\&\approx 0{,}8392\end{align*}$$<p>Das ist knapp zu klein ($0{,}8392&lt;0{,}85$).</p>'
-      - typ: aufdecken
-        frage: 'Ein Los mehr:'
-        knopf: 'n = 15 testen'
-        text: '$$\begin{align*}&Bcd(3;15;15;0{,}3)\\&\approx 0{,}8732\end{align*}$$<p>Das ist größer als $0{,}85$: Es reicht.</p>'
-        zeige: { eintraege: [n15] }
+        zeige: { eintraege: [n14, n15] }
+        danach: '<p>Mit jedem neuen $n$ ändert sich also auch die obere Grenze:</p>$$\begin{align*}&Bcd(3;14;14;0{,}3)\\&\approx 0{,}8392\\&Bcd(3;15;15;0{,}3)\\&\approx 0{,}8732\end{align*}$$<p>Bei $n=14$ ist es knapp zu klein, bei $n=15$ reicht es.</p>'
       - typ: auswahl
         frage: 'Welches $n$ ist die Antwort?'
         optionen:
@@ -82,11 +79,11 @@ karten:
           - '$n=16$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>kleinste</strong> $n$, bei dem $P(X\geq 3)\geq 0{,}85$ gilt.'
-        danach: '<p>Es müssen mindestens $15$ Lose gekauft werden. Bei $14$ reicht es noch nicht, ab $15$ schon.</p>'
+        danach: '<p>Es müssen mindestens $15$ Lose gekauft werden. Bei „mindestens $n$“ zählt der <strong>rechte</strong> Nachbar: das kleinste $n$, für das die Bedingung gilt.</p>'
 
   - phase: vormachen
     titel: 'Höchstens: bis wann reicht es?'
-    text: '<p>Dasselbe Gewinnspiel, $p=0{,}3$. Jetzt die andere Richtung: Wie viele Lose dürfen <strong>höchstens</strong> gekauft werden, damit die Wahrscheinlichkeit für <strong>höchstens 2 Gewinne</strong> mindestens $50\,\%$ beträgt?</p><p>Gegeben: $p=0{,}3$ und $k=2$. Gesucht: das größte $n$ mit $P(X\leq 2)\geq 0{,}5$.</p>'
+    text: '<p>Dasselbe Gewinnspiel, $p=0{,}3$. Jetzt die andere Richtung: Wie viele Lose dürfen <strong>höchstens</strong> gekauft werden, damit die Wahrscheinlichkeit für <strong>höchstens 2 Gewinne</strong> mindestens $50\,\%$ beträgt?</p>'
     visual:
       typ: liste
       titel: 'Probieren (p = 0,3)'
@@ -95,18 +92,15 @@ karten:
         - { id: n9, text: 'n = 9', gleichung: '$P(X\leq 2)\approx 0{,}4628$<br>$0{,}4628&lt;0{,}5$: reicht nicht' }
     schritte:
       - typ: auswahl
-        frage: 'Wenn $n$ größer wird: Was passiert mit $P(X\leq 2)$?'
+        frage: 'Welche Bedingung steckt im Text?'
         optionen:
-          - 'Sie wird kleiner.'
-          - 'Sie wird größer.'
+          - '$P(X\leq 2)\geq 0{,}5$'
+          - '$P(X\geq 2)\leq 0{,}5$'
+          - '$P(X\leq 2)\leq 0{,}5$'
         korrekt: 0
-        hinweis: 'Mit mehr Losen sind mehr Gewinne zu erwarten, „höchstens 2“ wird also unwahrscheinlicher.'
-        danach: '<p>Allgemein sinkt $P(X\leq k)$ mit $n$. Reicht ein $n$, reichen alle kleineren erst recht. Gesucht ist also das <strong>letzte</strong> $n$, bei dem es noch reicht.</p>'
-      - typ: aufdecken
-        frage: 'Bei „höchstens 2“ beginnt der Bereich bei $0$ und endet bei $2$, egal wie groß $n$ ist. Nur das $n$ in der Eingabe wechselt.'
-        knopf: 'n = 8 und n = 9 testen'
-        text: '$$\begin{align*}&Bcd(0;2;8;0{,}3)\\&\approx 0{,}5518\\&Bcd(0;2;9;0{,}3)\\&\approx 0{,}4628\end{align*}$$<p>Bei $n=8$ ist die Bedingung $P(X\leq 2)\geq 0{,}5$ erfüllt, bei $n=9$ nicht mehr.</p>'
+        hinweis: '„Höchstens 2 Gewinne“ gehört zu $X$, „mindestens $50\,\%$“ zur Wahrscheinlichkeit. Das „höchstens“ vor den Losen betrifft nur $n$.'
         zeige: { eintraege: [n8, n9] }
+        danach: '<p>Richtig. Bei „höchstens 2“ bleiben die Grenzen fest, nur $n$ wechselt: $Bcd(0;2;n;0{,}3)$. Rechts stehen die Nachbarn, bei denen die Bedingung kippt.</p>'
       - typ: auswahl
         frage: 'Welches $n$ ist die Antwort?'
         optionen:
@@ -115,17 +109,7 @@ karten:
           - '$n=7$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>größte</strong> $n$, bei dem $P(X\leq 2)\geq 0{,}5$ noch gilt. Bei $n=9$ gilt es nicht mehr.'
-        danach: '<p>Es dürfen höchstens $8$ Lose gekauft werden. Auch hier sind die Antwort zwei Nachbarn, aber diesmal zählt der <strong>linke</strong>.</p>'
-      - typ: zuordnen
-        frage: 'Fasse zusammen: Was passt zusammen?'
-        titel_links: 'Situation'
-        titel_rechts: 'Folge'
-        paare:
-          - { links: 'wenn $n$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
-          - { links: 'wenn $n$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
-          - { links: 'gesucht: <strong>mindestens</strong> $n$', rechts: 'kleinstes $n$, für das die Bedingung gilt' }
-          - { links: 'gesucht: <strong>höchstens</strong> $n$', rechts: 'größtes $n$, für das die Bedingung gilt' }
-        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, also mit $\geq$ oder $\leq$ und dem angegebenen Wert.</p>'
+        danach: '<p>Es dürfen höchstens $8$ Lose gekauft werden. Bei „höchstens $n$“ zählt der <strong>linke</strong> Nachbar: das größte $n$, für das die Bedingung noch gilt.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -139,19 +123,21 @@ karten:
         - { id: n8, text: 'n = 8', erledigt: true, gleichung: '$P(X\geq 4)\approx 0{,}4059$<br>$0{,}4059\leq 0{,}5$: gilt' }
         - { id: n9, text: 'n = 9', erledigt: true, gleichung: '$P(X\geq 4)\approx 0{,}5174$<br>$0{,}5174&gt;0{,}5$: gilt nicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Mehr Fragen: Wird $P(X\geq 4)$ größer oder kleiner?'
-        optionen:
-          - 'größer'
-          - 'kleiner'
-        korrekt: 0
-        hinweis: '$P(X\geq k)$ wächst mit $n$.'
-        danach: '<p>Die Bedingung $P(X\geq 4)\leq 0{,}5$ gilt also nur für <strong>kleine</strong> $n$. Gesucht ist das größte $n$, für das sie noch gilt.</p>'
+      - typ: zuordnen
+        frage: 'Bevor du selbst rechnest: Was passt zusammen?'
+        titel_links: 'Situation'
+        titel_rechts: 'Folge'
+        paare:
+          - { links: 'wenn $n$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
+          - { links: 'wenn $n$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
+          - { links: 'gesucht: <strong>mindestens</strong> $n$', rechts: 'kleinstes $n$, für das die Bedingung gilt' }
+          - { links: 'gesucht: <strong>höchstens</strong> $n$', rechts: 'größtes $n$, für das die Bedingung gilt' }
+        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, auch wenn dort $\leq$ steht. Rechts ist das schon geschehen.</p>'
       - typ: eingabe
         frage: 'Lies aus der Tabelle das gesuchte $n$ ab.'
         felder:
           - { label: '$n=$', loesung: 8, aria: 'gesuchtes n' }
-        hinweis: 'Bei $n=9$ gilt die Bedingung nicht mehr. Welches $n$ ist der letzte Nachbar davor?'
+        hinweis: 'Gesucht ist „höchstens $n$“, also das größte $n$, für das die Bedingung gilt. Bei $n=9$ gilt sie nicht mehr.'
         danach: '<p>Das Quiz darf höchstens $8$ Fragen haben.</p>'
 
   - phase: mitmachen
@@ -164,22 +150,6 @@ karten:
         - { id: n22, text: 'n = 22', gleichung: '$P(X\leq 3)\approx 0{,}3320$<br>$0{,}3320&gt;0{,}3$: gilt nicht' }
         - { id: n23, text: 'n = 23', gleichung: '$P(X\leq 3)\approx 0{,}2965$<br>$0{,}2965\leq 0{,}3$: gilt' }
     schritte:
-      - typ: auswahl
-        frage: 'Wird $P(X\leq 3)$ mit mehr Bauteilen größer oder kleiner?'
-        optionen:
-          - 'kleiner'
-          - 'größer'
-        korrekt: 0
-        hinweis: '$P(X\leq k)$ sinkt mit $n$.'
-        danach: '<p>Die Bedingung $P(X\leq 3)\leq 0{,}3$ gilt also erst für <strong>große</strong> $n$.</p>'
-      - typ: auswahl
-        frage: 'Welches $n$ ist bei „mindestens“ gesucht?'
-        optionen:
-          - 'das kleinste $n$ mit $P(X\leq 3)\leq 0{,}3$'
-          - 'das größte $n$ mit $P(X\leq 3)\leq 0{,}3$'
-          - 'das kleinste $n$ mit $P(X\leq 3)\geq 0{,}3$'
-        korrekt: 0
-        hinweis: '„Mindestens“ heißt kleinstes $n$, und die Bedingung steht so in der Aufgabe: $\leq 0{,}3$.'
       - typ: eingabe
         frage: 'Die Nachbarn sind $n=22$ und $n=23$. Rechne mit $Bcd(0;3;n;0{,}2)$, auf 4 Nachkommastellen gerundet.'
         layout: zeile
@@ -191,7 +161,7 @@ karten:
         frage: 'Welches $n$ ist die Antwort?'
         felder:
           - { label: '$n=$', loesung: 23, aria: 'gesuchtes n' }
-        hinweis: 'Bei $n=22$ gilt die Bedingung noch nicht, bei $n=23$ gilt sie.'
+        hinweis: 'Die Bedingung lautet $P(X\leq 3)\leq 0{,}3$. Bei $n=22$ gilt sie noch nicht, bei $n=23$ gilt sie. Gesucht ist „mindestens $n$“.'
         danach: '<p>Es müssen mindestens $23$ Bauteile geprüft werden.</p>'
 
   - phase: mitmachen
@@ -207,15 +177,12 @@ karten:
         - { id: n35, text: 'n = 35', gleichung: '$P(X\leq 6)\approx 0{,}1920$<br>$0{,}1920\leq 0{,}2$: gilt' }
     schritte:
       - typ: eingabe
-        frage: '<strong>Startwert:</strong> Bei welchem $n$ erwartest du $k=6$ Rücksendungen? Rechne $k/p$.'
+        frage: '<strong>Startwert:</strong> Berechne $n=k/p$ und teste ihn.'
+        layout: zeile
         felder:
           - { label: '$n=$', loesung: 24, aria: 'Startwert n' }
-        hinweis: '$6/0{,}25$'
-      - typ: eingabe
-        frage: 'Teste den Startwert. Berechne $P(X\leq 6)$ für $n=24$ mit $Bcd(0;6;24;0{,}25)$.'
-        felder:
-          - { label: '$P(X\leq 6)\approx$', loesung: 0.6074, aria: 'P für n gleich 24', zeige: { eintraege: [n24] } }
-        hinweis: 'Die Grenzen sind $0$ und $6$, und $n=24$ steht an dritter Stelle.'
+          - { label: '$P(X\leq 6)\approx$', loesung: 0.6074, aria: 'P für den Startwert', zeige: { eintraege: [n24] } }
+        hinweis: '$n=6/0{,}25$. Dann $Bcd(0;6;n;0{,}25)$ mit diesem $n$ an dritter Stelle.'
       - typ: auswahl
         frage: 'Die Wahrscheinlichkeit ist viel zu groß ($0{,}6074&gt;0{,}2$). Wie geht es weiter?'
         optionen:
@@ -223,17 +190,11 @@ karten:
           - 'Mit kleinerem $n$ weiterprobieren.'
           - '$n=24$ als Antwort nehmen.'
         korrekt: 0
-        hinweis: '$P(X\leq k)$ sinkt mit $n$. Sie soll noch kleiner werden.'
+        hinweis: '$P(X\leq k)$ fällt mit $n$. Sie soll noch kleiner werden.'
       - typ: eingabe
-        frage: 'Probiere $n=30$.'
-        felder:
-          - { label: '$P(X\leq 6)\approx$', loesung: 0.3481, aria: 'P für n gleich 30', zeige: { eintraege: [n30] } }
-        hinweis: 'Gib $Bcd(0;6;30;0{,}25)$ ein.'
-        danach: '<p>Noch zu groß. Probiere weiter nach oben, bis die Bedingung $P(X\leq 6)\leq 0{,}2$ zum ersten Mal gilt.</p>'
-      - typ: eingabe
-        frage: 'Welches $n$ ist die Antwort?'
+        frage: 'Taste dich heran. Welches $n$ ist die Antwort?'
         felder:
           - { label: '$n=$', loesung: 35, aria: 'gesuchtes n' }
-        hinweis: 'Taste dich in kleinen Schritten über $n=30$ hinaus. Gesucht ist das kleinste $n$ mit $P(X\leq 6)\leq 0{,}2$.'
-        zeige: { eintraege: [n34, n35] }
-        danach: '<p>Bei $n=34$ ist $P\approx 0{,}2180$ noch zu groß, bei $n=35$ ist $P\approx 0{,}1920$. Es müssen mindestens $35$ Bestellungen betrachtet werden.</p>'
+        hinweis: 'Erst in größeren Sprüngen (z. B. $n=30$), dann in Einerschritten. Gesucht ist das kleinste $n$ mit $P(X\leq 6)\leq 0{,}2$.'
+        zeige: { eintraege: [n30, n34, n35] }
+        danach: '<p>Bei $n=30$ ist $P\approx 0{,}3481$ und bei $n=34$ ist $P\approx 0{,}2180$, beides noch zu groß. Bei $n=35$ ist $P\approx 0{,}1920$. Es müssen mindestens $35$ Bestellungen betrachtet werden.</p>'

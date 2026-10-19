@@ -8,31 +8,48 @@ karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
   - phase: orientierung
-    titel: 'Zwei Formeln, drei gesuchte Größen'
-    text: '<p>Bei einer Rente wird jedes Jahr derselbe Betrag $r$ eingezahlt. Die Rentenendwertformel fasst alle verzinsten Raten am Ende der Laufzeit zusammen – je nachdem, ob am Jahresende (<strong>nachschüssig</strong>) oder am Jahresanfang (<strong>vorschüssig</strong>) gezahlt wird:</p>$$\begin{align*}R_n&=\frac{r\cdot(q^n-1)}{q-1}\\ \overline{R}_n&=\frac{r\cdot q\cdot(q^n-1)}{q-1}\end{align*}$$'
+    titel: 'Viele Raten, ein Endwert'
+    text: '<p>Bei einer <strong>Rente</strong> wird mehrere Jahre lang jedes Jahr derselbe Betrag eingezahlt, die <strong>Rate</strong> $r$. Jede Rate wird mit Zinseszins verzinst, aber unterschiedlich lange.</p><p>Jonas zahlt $3$ Jahre lang jeweils am Jahresende $1\,200$ € auf ein Konto mit $2{,}5\,\%$ Zinsen, also $q=1{,}025$.</p>'
+    visual:
+      typ: liste
+      titel: 'Wert am Ende von Jahr 3'
+      eintraege:
+        - { id: r1, text: '1. Rate (Ende Jahr 1)', gleichung: '$1\,200\cdot 1{,}025^2=1\,260{,}75$ €' }
+        - { id: r2, text: '2. Rate (Ende Jahr 2)', gleichung: '$1\,200\cdot 1{,}025=1\,230$ €' }
+        - { id: r3, text: '3. Rate (Ende Jahr 3)', gleichung: '$1\,200$ €' }
+        - { id: sum, text: 'Summe: Rentenendwert $R_3$', gleichung: '$3\,690{,}75$ €' }
+        - { id: vor, text: 'am Jahresanfang gezahlt: $\overline{R}_3$', gleichung: '$3\,690{,}75\cdot 1{,}025\approx 3\,783{,}02$ €' }
     schritte:
+      - typ: aufdecken
+        frage: 'Was ist jede Rate am Ende von Jahr 3 wert?'
+        knopf: 'Erste Raten aufzinsen'
+        text: '<p>Die 1. Rate liegt noch $2$ Jahre auf dem Konto, die 2. Rate noch $1$ Jahr. Jede wird wie in der Zinseszinsrechnung pro Jahr einmal mit $q=1{,}025$ multipliziert.</p>'
+        zeige: { eintraege: [r1, r2] }
       - typ: auswahl
-        frage: 'Worin unterscheiden sich die beiden Formeln?'
+        frage: 'Und die 3. Rate? Sie wird am Ende von Jahr 3 eingezahlt.'
         optionen:
-          - 'Vorschüssig ($\overline{R}_n$) steht im Zähler zusätzlich der Faktor $q$.'
-          - 'Vorschüssig steht im Nenner $q^n$ statt $q-1$.'
-          - 'Nachschüssig wird ohne Zinsfaktor $q$ gerechnet.'
+          - '$1\,200$ €'
+          - '$1\,200\cdot 1{,}025=1\,230$ €'
+          - '$1\,200\cdot 1{,}025^3\approx 1\,292{,}27$ €'
         korrekt: 0
-        hinweis: 'Vergleiche die beiden Zähler.'
-        danach: '<p>Bei vorschüssiger Zahlung liegt jede Rate ein Jahr länger auf dem Konto und wird einmal mehr mit $q$ verzinst.</p>'
-      - typ: eingabe
-        frage: 'Vor dem Einsetzen bestimmst du aus dem Zinssatz $p$ den Zinsfaktor $q=1+\frac{p}{100}$ und den Nenner $q-1$. Was gilt bei $p=3\,\%$?'
-        layout: zeile
-        felder:
-          - { label: '$q=$', loesung: 1.03, aria: 'q' }
-          - { label: '$q-1=$', loesung: 0.03, aria: 'q minus 1' }
-        hinweis: '$\frac{3}{100}=0{,}03$, also $q=1{,}03$ und $q-1=0{,}03$.'
-        danach: '<p>Wenn du im Nenner $q-1$ sofort als Dezimalzahl schreibst, wird jede spätere Umformung deutlich übersichtlicher.</p>'
+        hinweis: 'Wie viele Jahre liegt sie bis zum Ende von Jahr 3 noch auf dem Konto?'
+        danach: '<p>Genau, sie liegt $0$ Jahre auf dem Konto und bringt keine Zinsen mehr.</p>'
+        zeige: { eintraege: [r3] }
+      - typ: aufdecken
+        frage: 'Alle Raten zusammen ergeben den <strong>Rentenendwert</strong> $R_3$.'
+        knopf: 'Summe und Formel zeigen'
+        text: '$$\begin{align*}R_3&=1\,260{,}75+1\,230+1\,200\\ &=3\,690{,}75\end{align*}$$<p>Bei $20$ Raten wäre das mühsam. Die <strong>Rentenendwertformel</strong> fasst die Summe in einem Schritt zusammen:</p>$$\begin{align*}R_n&=\frac{r\cdot(q^n-1)}{q-1}\\ R_3&=\frac{1\,200\cdot(1{,}025^3-1)}{0{,}025}\\ &=3\,690{,}75\,\text{€}\end{align*}$$'
+        zeige: { eintraege: [sum] }
+      - typ: aufdecken
+        frage: 'Und wenn Jonas jeweils am Jahres<strong>anfang</strong> zahlt?'
+        knopf: 'Vorschüssig zeigen'
+        text: '<p>Dann liegt jede Rate ein Jahr länger auf dem Konto und wird einmal mehr mit $q$ verzinst. Diese Rente heißt <strong>vorschüssig</strong> (mit Querstrich), die erste <strong>nachschüssig</strong>:</p>$$\overline{R}_n=\frac{r\cdot q\cdot(q^n-1)}{q-1}$$<p><strong>Merke:</strong></p><ul><li>Vorschüssig (Jahresanfang) steht im Zähler zusätzlich der Faktor $q$.</li><li>Die Formel verbindet $R_n$, $r$, $q$ und $n$. Kennst du drei davon, berechnest du die vierte. Wie du umformst, hängt davon ab, wo sie steht.</li></ul>'
+        zeige: { eintraege: [vor] }
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
     titel: 'Endwert und Rate bestimmen'
-    text: '<p>Je nachdem, welche Größe gesucht ist, gehst du beim Umformen unterschiedlich vor. Rechts sammeln wir die drei Wege.</p>'
+    text: '<p>Je nachdem, welche Größe gesucht ist, gehst du beim Umformen unterschiedlich vor. Rechts sammeln wir die drei Wege.</p><p>Tipp: Schreib den Nenner $q-1$ gleich als Dezimalzahl, bei $p=3\,\%$ also $0{,}03$.</p>'
     visual:
       typ: liste
       titel: 'Gesucht – so geht es'
@@ -46,12 +63,8 @@ karten:
         knopf: 'Einsetzen und ausrechnen'
         text: '<p>$R_8$ steht schon allein auf der linken Seite. Mit $q=1{,}03$ und $q-1=0{,}03$ wird direkt eingesetzt:</p>$$\begin{align*}R_8&=\frac{2\,000\cdot(1{,}03^8-1)}{0{,}03}\\ &\approx 17\,784{,}67\,\text{€}\end{align*}$$'
         zeige: { eintraege: [rn] }
-      - typ: aufdecken
-        frage: '<strong>b) Rate $r$ gesucht:</strong> vorschüssige Rente mit $\overline{R}_n=30\,000$ €, $p=2\,\%$, $n=10$.'
-        knopf: 'Werte einsetzen'
-        text: '<p>Vorschüssige Formel (mit $q=1{,}02$ im Zähler) und $q-1=0{,}02$:</p>$$30\,000=\frac{r\cdot 1{,}02\cdot(1{,}02^{10}-1)}{0{,}02}$$'
       - typ: auswahl
-        frage: '$r$ steht als Faktor im Zähler. Wie löst du am einfachsten nach $r$ auf?'
+        frage: '<strong>b) Rate $r$ gesucht:</strong> vorschüssige Rente mit $\overline{R}_n=30\,000$ €, $p=2\,\%$, $n=10$. Eingesetzt (vorschüssig mit $q=1{,}02$ im Zähler): $$30\,000=\frac{r\cdot 1{,}02\cdot(1{,}02^{10}-1)}{0{,}02}$$ $r$ steht als Faktor im Zähler. Wie löst du am einfachsten nach $r$ auf?'
         optionen:
           - 'Die 10. Wurzel ziehen'
           - 'Den Bruch ohne $r$ als Dezimalzahl ausrechnen und $30\,000$ durch diesen Faktor teilen'
@@ -73,25 +86,16 @@ karten:
         - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus' }
     schritte:
       - typ: auswahl
-        frage: '<strong>Schritt 1:</strong> Was machst du zuerst, um den Bruch rechts aufzulösen?'
+        frage: '<strong>Schritt 1:</strong> In welcher Reihenfolge stellst du $1{,}04^n$ frei?'
         optionen:
-          - 'Beide Seiten mit dem Nenner $0{,}04$ multiplizieren'
-          - 'Sofort $+1$ rechnen'
-          - 'Sofort den Logarithmus anwenden'
+          - 'mit $0{,}04$ malnehmen, durch $1\,500$ teilen, $+1$'
+          - 'mit $0{,}04$ malnehmen, $+1$, durch $1\,500$ teilen'
+          - 'durch $1\,500$ teilen, $+1$, mit $0{,}04$ malnehmen'
         korrekt: 0
-        hinweis: 'Die Klammer $(1{,}04^n-1)$ steht noch im Zähler eines Bruchs. Erst muss der Nenner weg.'
-        danach: '$$\begin{align*}20\,000&=\frac{1\,500\cdot(1{,}04^n-1)}{0{,}04}\quad|\cdot 0{,}04\\ 800&=1\,500\cdot(1{,}04^n-1)\end{align*}$$'
-      - typ: auswahl
-        frage: '<strong>Schritt 2:</strong> In welcher Reihenfolge stellst du jetzt $1{,}04^n$ allein?'
-        optionen:
-          - 'Erst $+1$ rechnen, dann durch $1\,500$ teilen'
-          - 'Durch $1\,500$ abziehen und mit $1{,}04$ teilen'
-          - 'Erst durch $1\,500$ teilen, dann $+1$ rechnen'
-        korrekt: 2
-        hinweis: 'Vor der Klammer steht der Faktor $1\,500$. Erst durch $1\,500$ teilen, danach fällt die Klammer weg.'
-        danach: '$$\begin{align*}800&=1\,500\cdot(1{,}04^n-1)\quad|:1\,500\\ 0{,}5333&\approx 1{,}04^n-1\quad|+1\\ 1{,}04^n&\approx 1{,}5333\end{align*}$$<p>(Bei einer <strong>vorschüssigen</strong> Rente teilst du an dieser Stelle durch $r\cdot q$ statt nur durch $r$.)</p>'
+        hinweis: 'Von außen nach innen: Zuerst muss der Nenner $0{,}04$ weg, dann der Faktor $1\,500$ vor der Klammer, zuletzt die $-1$ in der Klammer.'
+        danach: '$$\begin{align*}20\,000&=\frac{1\,500\cdot(1{,}04^n-1)}{0{,}04}\quad|\cdot 0{,}04\\ 800&=1\,500\cdot(1{,}04^n-1)\quad|:1\,500\\ 0{,}5333&\approx 1{,}04^n-1\quad|+1\\ 1{,}04^n&\approx 1{,}5333\end{align*}$$<p>Bei einer <strong>vorschüssigen</strong> Rente teilst du an dieser Stelle durch $r\cdot q$ statt nur durch $r$.</p>'
       - typ: aufdecken
-        frage: '<strong>Schritt 3:</strong> $n$ steht im Exponenten – der Logarithmus holt $n$ nach unten.'
+        frage: '<strong>Schritt 2:</strong> $n$ steht im Exponenten – der Logarithmus holt $n$ nach unten.'
         knopf: 'Mit Logarithmus auflösen'
         text: '$$\begin{align*}1{,}04^n&\approx 1{,}5333\\ n&=\frac{\ln 1{,}5333}{\ln 1{,}04}\\ &\approx 10{,}90\end{align*}$$<p>Nach etwa $10{,}90$ Jahren ist der Endwert von $20\,000$ € erreicht.</p>'
         zeige: { eintraege: [n] }
@@ -128,15 +132,10 @@ karten:
           - { label: '$\overline{R}_6=$', loesung: 10347.44, toleranz: 1, einheit: '€' }
         hinweis: 'Rechne $1500\cdot 1{,}04\cdot(1{,}04^6-1):0{,}04$ und runde auf 2 Nachkommastellen.'
       - typ: eingabe
-        frage: '<strong>2.</strong> Nachschüssige Rente mit $R_n=15\,000$ €, $p=4\,\%$, $n=10$. Gesucht: $r$. Eingesetzt: $$15\,000=r\cdot\frac{1{,}04^{10}-1}{0{,}04}$$ Rechne zuerst den Bruch ohne $r$ auf 4 Nachkommastellen aus.'
-        felder:
-          - { label: '$\text{Faktor}\approx$', loesung: 12.0061, toleranz: 0.0005 }
-        hinweis: 'Rechne $(1{,}04^{10}-1):0{,}04$.'
-      - typ: eingabe
-        frage: 'Teile jetzt $15\,000$ durch diesen Faktor.'
+        frage: '<strong>2.</strong> Nachschüssige Rente mit $R_n=15\,000$ €, $p=4\,\%$, $n=10$. Gesucht: $r$. Eingesetzt: $$15\,000=r\cdot\frac{1{,}04^{10}-1}{0{,}04}$$ Rechne den Bruch ohne $r$ aus und teile $15\,000$ durch diesen Faktor.'
         felder:
           - { label: '$r=$', loesung: 1249.36, toleranz: 1, einheit: '€' }
-        hinweis: 'Rechne $15\,000:12{,}0061$.'
+        hinweis: 'Der Bruch ergibt $\frac{1{,}04^{10}-1}{0{,}04}\approx 12{,}0061$. Rechne $15\,000:12{,}0061$.'
 
   - phase: mitmachen
     titel: 'Neue Zahlen: nach n umformen (mit Hilfe)'
@@ -150,18 +149,13 @@ karten:
         - { id: n, text: '$n$ gesucht', gleichung: 'mit $(q-1)$ malnehmen, durch $r$ (bzw. $r\cdot q$) teilen, $+1$, Logarithmus', erledigt: true }
     schritte:
       - typ: eingabe
-        frage: '<strong>Schritt 1:</strong> Multipliziere beide Seiten mit $0{,}05$. Was steht dann links?'
-        felder:
-          - { label: '$16\,000\cdot 0{,}05=$', loesung: 800 }
-        hinweis: 'Rechne $16\,000\cdot 0{,}05$.'
-        danach: '$$800=2\,000\cdot(1{,}05^n-1)$$'
-      - typ: eingabe
-        frage: '<strong>Schritt 2:</strong> Teile durch $2\,000$ und addiere anschließend $1$.'
+        frage: '<strong>Schritt 1:</strong> Stelle $1{,}05^n$ frei: mit $0{,}05$ malnehmen, durch $2\,000$ teilen, $+1$.'
         felder:
           - { label: '$1{,}05^n=$', loesung: 1.4 }
-        hinweis: '$800:2\,000=0{,}4$, und $0{,}4+1=1{,}4$.'
+        hinweis: '$16\,000\cdot 0{,}05=800$, dann $800:2\,000=0{,}4$ und $0{,}4+1=1{,}4$.'
+        danach: '$$\begin{align*}800&=2\,000\cdot(1{,}05^n-1)\\ 0{,}4&=1{,}05^n-1\\ 1{,}05^n&=1{,}4\end{align*}$$'
       - typ: eingabe
-        frage: '<strong>Schritt 3:</strong> Wende den Logarithmus an und runde auf 2 Nachkommastellen.'
+        frage: '<strong>Schritt 2:</strong> Wende den Logarithmus an und runde auf 2 Nachkommastellen.'
         felder:
           - { label: '$n\approx$', loesung: 6.90, toleranz: 0.05, einheit: 'Jahre' }
         hinweis: '$n=\frac{\ln 1{,}4}{\ln 1{,}05}$.'

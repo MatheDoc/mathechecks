@@ -3,42 +3,39 @@
 # Format und Leitlinien: _data/warmup/README.md
 # Lösungsweg nur mit Bcd(a;b;n;p). Kumulierte Wahrscheinlichkeiten und Histogramme gehören zu anderen Checks.
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
+# 14 Schritte: Der Check hat sieben Ereignistypen pro Aufgabe; jeder kommt einmal im Zuschauen
+# oder Mitmachen vor, die Falle „Was wird gezählt?“ zweimal.
 
 check_id: stochastik__binomialverteilung__05
-abschluss: '<p>Im Training stehen sieben Ereignisse in einem Sachzusammenhang. Prüfe bei jedem zuerst, ob es um eine <strong>Anzahl</strong> geht (dann $Bcd$) oder um <strong>bestimmte</strong> Versuche wie „die ersten 3“ (dann reicht die Pfadmultiplikationsregel). Achte darauf, was der Text zählt, und nimm das passende $p$. Rechne Prozentangaben in Anzahlen um und runde so, dass du im Bereich bleibst. Bei „oder“ beide $Bcd$-Werte addieren und erst am Ende auf 4 Nachkommastellen runden.</p>'
+abschluss: '<p>Im Training stehen sieben Ereignisse in einem Sachzusammenhang. Prüfe bei jedem zuerst, ob es um eine <strong>Anzahl</strong> geht (dann $Bcd$) oder um <strong>bestimmte</strong> Versuche wie „die ersten 3“ (dann reicht die Pfadmultiplikationsregel). Achte darauf, was der Text zählt, und nimm das passende $p$. Rechne Prozentangaben in Anzahlen um und runde so, dass du im Bereich bleibst. Bei „oder“ beide $Bcd$-Werte addieren und erst am Ende auf 4 Nachkommastellen runden.</p><p>Seltener: „genau $k$“ ist $Bcd(k;k;n;p)$. „Einschließlich 3 und ausschließlich 9“ heißt $3$ bis $8$. Steht bei bestimmten Versuchen auch fest, dass alle übrigen <strong>keine</strong> Treffer sind, kommt für jeden davon der Faktor $1-p$ dazu.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
     titel: 'Vom Text zur Eingabe'
-    text: '<p>Eine Basketballspielerin wirft $20$-mal, jeder Wurf ist mit $p=0{,}1$ ein Treffer. $X$ zählt die Treffer, mögliche Anzahlen sind $0$ bis $20$. Der Taschenrechner braucht für $Bcd(a;b;n;p)$ nur die kleinste und die größte Anzahl des Bereichs.</p>'
+    text: '<p>Eine Basketballspielerin wirft $20$-mal, jeder Wurf ist mit $p=0{,}1$ ein Treffer. $X$ zählt die Treffer. Möglich sind $0$ bis $20$ Treffer, das zeigt der Zahlenstrahl.</p>'
     visual:
       typ: zahlenstrahl
       n: 20
       p: 0.1
     schritte:
-      - typ: auswahl
-        frage: 'Welche Anzahlen gehören zu „<strong>höchstens 4</strong> Treffer“?'
-        optionen:
-          - '$0$ bis $4$'
-          - '$0$ bis $3$'
-          - '$4$ bis $20$'
-        korrekt: 0
-        hinweis: '„Höchstens 4“ heißt: $4$ Treffer sind erlaubt, mehr nicht.'
+      - typ: aufdecken
+        frage: 'Wie berechnet man die Wahrscheinlichkeit für <strong>höchstens 4</strong> Treffer?'
+        knopf: 'Zeigen'
+        text: '<p>„Höchstens 4“ umfasst die Anzahlen $0$ bis $4$. Der Taschenrechner addiert ihre Wahrscheinlichkeiten mit $Bcd(a;b;n;p)$. Er braucht dafür nur die <strong>kleinste</strong> Anzahl $a$ und die <strong>größte</strong> Anzahl $b$:</p>$$\begin{align*}&P(X\leq 4)\\&=Bcd(0;4;20;0{,}1)\\&\approx 0{,}9568\end{align*}$$'
         zeige: { bereiche: [[0, 4]] }
-        danach: '<p>Kleinste Anzahl $0$, größte $4$. Das ist schon die Eingabe:</p>$$\begin{align*}&P(X\leq 4)\\&=Bcd(0;4;20;0{,}1)\\&\approx 0{,}9568\end{align*}$$'
       - typ: auswahl
-        frage: 'Und welche Anzahlen gehören zu „<strong>mehr als 3</strong> Treffer“?'
+        frage: 'Und „<strong>mehr als 3</strong> Treffer“? Welche Anzahlen gehören dazu?'
         optionen:
           - '$3$ bis $20$'
           - '$4$ bis $20$'
           - '$0$ bis $3$'
         korrekt: 1
-        hinweis: '„Mehr als 3“: Die $3$ selbst zählt nicht mit.'
+        hinweis: 'Sind genau $3$ Treffer schon „mehr als 3“?'
         zeige: { bereiche: [[4, 20]] }
-        danach: '<p>Genau. Bei „mehr als“ und „weniger als“ gehört die genannte Zahl <strong>nicht</strong> dazu. Die obere Grenze ist hier $n=20$:</p>$$\begin{align*}&P(X&gt;3)\\&=Bcd(4;20;20;0{,}1)\\&\approx 0{,}1330\end{align*}$$'
+        danach: '<p>Die $3$ selbst zählt nicht mit. Die größte Anzahl ist $n=20$:</p>$$\begin{align*}&P(X&gt;3)\\&=Bcd(4;20;20;0{,}1)\\&\approx 0{,}1330\end{align*}$$<p><strong>Merke:</strong></p><ul><li>Bereich als Anzahlen von $a$ bis $b$ schreiben, dann $Bcd(a;b;n;p)$.</li><li>Bei „höchstens“ und „mindestens“ gehört die Zahl dazu, bei „mehr als“ und „weniger als“ nicht.</li></ul>'
 
-  # ── Phase B: Vormachen ─────────────────────────────────────
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
     titel: 'Grenzen bestimmen'
     text: '<p>Weiter mit $n=20$ und $p=0{,}1$. Oft stecken zwei Grenzen im Text, oder die Grenze muss erst berechnet werden.</p>'
@@ -57,25 +54,20 @@ karten:
         hinweis: '„Mehr als 1“ schließt die $1$ aus, „höchstens 5“ schließt die $5$ ein.'
         zeige: { bereiche: [[2, 5]] }
         danach: '$$\begin{align*}&P(1&lt;X\leq 5)\\&=Bcd(2;5;20;0{,}1)\\&\approx 0{,}5970\end{align*}$$'
-      - typ: aufdecken
-        frage: '<strong>In höchstens 13&nbsp;% der Würfe</strong> ein Treffer. Zuerst wird die Prozentangabe in eine Anzahl umgerechnet.'
-        knopf: 'Rechnung zeigen'
-        text: '$$0{,}13\cdot 20=2{,}6$$'
-        zeige: { bereiche: [], marke: 2.6 }
       - typ: auswahl
-        frage: 'Welche Anzahlen gehören zu „höchstens $2{,}6$“?'
+        frage: '<strong>In höchstens 13&nbsp;% der Würfe</strong> ein Treffer. Zuerst die Prozentangabe in eine Anzahl umrechnen: $$0{,}13\cdot 20=2{,}6$$ Welche Anzahlen gehören zu „höchstens $2{,}6$“?'
         optionen:
           - '$0$ bis $2$'
           - '$0$ bis $3$'
           - '$Bcd(0;2{,}6;20;0{,}1)$, das geht direkt'
         korrekt: 0
         hinweis: 'Mehr als $2{,}6$ Treffer sind nicht erlaubt, und Anzahlen sind ganzzahlig.'
-        zeige: { bereiche: [[0, 2]] }
+        zeige: { bereiche: [[0, 2]], marke: 2.6 }
         danach: '<p>Runde so, dass du <strong>im</strong> Bereich bleibst:</p>$$\begin{align*}&P(X\leq 2{,}6)\\&=Bcd(0;2;20;0{,}1)\\&\approx 0{,}6769\end{align*}$$'
 
   - phase: vormachen
     titel: 'Drei Fallen'
-    text: '<p>Weiter mit $n=20$ und $p=0{,}1$. Diese drei Fälle kommen im Training immer wieder vor.</p>'
+    text: '<p>Weiter mit $n=20$ und $p=0{,}1$. Diese drei Fälle kommen im Training in jeder Aufgabe vor.</p>'
     visual:
       typ: zahlenstrahl
       n: 20
@@ -115,83 +107,51 @@ karten:
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
     titel: 'Neue Zahlen: Saatgut'
-    text: '<p>Ein Gärtner sät $25$ Samen. Jeder Samen keimt mit einer Wahrscheinlichkeit von $80\,\%$. $X$ zählt die gekeimten Samen.</p>'
-    visual:
-      typ: zahlenstrahl
-      n: 25
-    schritte:
-      - typ: eingabe
-        frage: 'Zuerst die Parameter.'
-        layout: zeile
-        felder:
-          - { label: '$n=$', loesung: 25, aria: 'n' }
-          - { label: '$p=$', loesung: 0.8, aria: 'p', zeige: { p: 0.8 } }
-        hinweis: 'Anzahl der Samen und Keimwahrscheinlichkeit als Dezimalzahl.'
-      - typ: eingabe
-        frage: '<strong>Mindestens 22</strong> Samen keimen. Trage die Grenzen ein.'
-        layout: zeile
-        felder:
-          - { label: '$Bcd($', einheit: '$;$', loesung: 22, aria: 'untere Grenze a' }
-          - { einheit: '$;25;0{,}8)$', loesung: 25, aria: 'obere Grenze b', zeige: { bereiche: [[22, 25]] } }
-        hinweis: '„Mindestens 22“: von $22$ bis zur größtmöglichen Anzahl $n=25$.'
-      - typ: eingabe
-        frage: 'Jetzt mit dem Taschenrechner, auf 4 Nachkommastellen gerundet.'
-        felder:
-          - { label: '$P(X\geq 22)\approx$', loesung: 0.2340, aria: 'P(X größer gleich 22)' }
-        hinweis: 'Gib $Bcd(22;25;25;0{,}8)$ ein.'
-      - typ: eingabe
-        frage: '<strong>Weniger als 18</strong> Samen keimen. Trage die Grenzen ein.'
-        layout: zeile
-        felder:
-          - { label: '$Bcd($', einheit: '$;$', loesung: 0, aria: 'untere Grenze a' }
-          - { einheit: '$;25;0{,}8)$', loesung: 17, aria: 'obere Grenze b', zeige: { bereiche: [[0, 17]] } }
-        hinweis: '„Weniger als 18“: Die $18$ gehört nicht dazu. Die kleinste Anzahl ist $0$.'
-      - typ: eingabe
-        frage: 'Und der Wert?'
-        felder:
-          - { label: '$P(X&lt;18)\approx$', loesung: 0.1091, aria: 'P(X kleiner 18)' }
-        hinweis: 'Gib $Bcd(0;17;25;0{,}8)$ ein.'
-
-  - phase: mitmachen
-    titel: 'Fallen erkennen'
-    text: '<p>Weiter mit den $25$ Samen und $p=0{,}8$.</p>'
+    text: '<p>Ein Gärtner sät $25$ Samen. Jeder Samen keimt mit einer Wahrscheinlichkeit von $80\,\%$. $X$ zählt die gekeimten Samen, also $n=25$ und $p=0{,}8$.</p>'
     visual:
       typ: zahlenstrahl
       n: 25
       p: 0.8
     schritte:
       - typ: eingabe
-        frage: '<strong>Mindestens 90&nbsp;%</strong> der Samen keimen. Rechne zuerst die Grenze aus.'
+        frage: '<strong>Weniger als 18</strong> Samen keimen. Trage die Grenzen ein und berechne den Wert auf 4 Nachkommastellen.'
+        layout: zeile
         felder:
-          - { label: '$0{,}9\cdot 25=$', loesung: 22.5, aria: 'Grenze', zeige: { marke: 22.5 } }
-        hinweis: 'Prozentsatz als Dezimalzahl mal $n$.'
-      - typ: auswahl
-        frage: 'Welche Anzahlen gehören zu „mindestens $22{,}5$“?'
-        optionen:
-          - '$23$ bis $25$'
-          - '$22$ bis $25$'
-          - '$0$ bis $22$'
-        korrekt: 0
-        hinweis: '$22$ Samen sind weniger als $22{,}5$. Das reicht nicht.'
-        zeige: { bereiche: [[23, 25]] }
+          - { label: '$Bcd($', einheit: '$;$', loesung: 0, aria: 'untere Grenze a' }
+          - { einheit: '$;25;0{,}8)\approx$', loesung: 17, aria: 'obere Grenze b', zeige: { bereiche: [[0, 17]] } }
+          - { loesung: 0.1091, aria: 'Wahrscheinlichkeit' }
+        hinweis: '„Weniger als 18“: Die $18$ gehört nicht dazu. Die kleinste Anzahl ist $0$.'
       - typ: eingabe
-        frage: 'Berechne den Wert.'
+        frage: '<strong>Mindestens 90&nbsp;%</strong> der Samen keimen. Die Grenze ist $0{,}9\cdot 25=22{,}5$.'
+        layout: zeile
         felder:
-          - { label: '$P(X\geq 22{,}5)\approx$', loesung: 0.0982, aria: 'Wahrscheinlichkeit' }
-        hinweis: 'Gib $Bcd(23;25;25;0{,}8)$ ein.'
-      - typ: auswahl
-        frage: '<strong>Höchstens 4 Samen keimen nicht.</strong> Was zählst du, und mit welchem $p$?'
-        optionen:
-          - 'die nicht gekeimten Samen, $p=0{,}2$'
-          - 'die nicht gekeimten Samen, $p=0{,}8$'
-          - 'die gekeimten Samen, $p=0{,}2$'
-        korrekt: 0
-        hinweis: '$p$ gehört zu dem, was gezählt wird. Ein Samen keimt <strong>nicht</strong> mit $1-0{,}8=0{,}2$.'
-        zeige: { bereiche: [[0, 4]], marke: null, p: 0.2 }
+          - { label: '$Bcd($', einheit: '$;$', loesung: 23, aria: 'untere Grenze a', zeige: { bereiche: [[23, 25]], marke: 22.5 } }
+          - { einheit: '$;25;0{,}8)\approx$', loesung: 25, aria: 'obere Grenze b' }
+          - { loesung: 0.0982, aria: 'Wahrscheinlichkeit' }
+        hinweis: '$22$ Samen sind weniger als $22{,}5$, das reicht nicht. Die größte Anzahl ist $n=25$.'
+
+  - phase: mitmachen
+    titel: 'Was wird gezählt?'
+    text: '<p>Weiter mit den $25$ Samen. Ein Samen keimt mit $p=0{,}8$, er keimt <strong>nicht</strong> mit $1-0{,}8=0{,}2$.</p>'
+    visual:
+      typ: zahlenstrahl
+      n: 25
+      p: 0.8
+    schritte:
+      - typ: zuordnen
+        frage: 'Welche Rechnung gehört zu welchem Ereignis?'
+        titel_links: 'Ereignis'
+        titel_rechts: 'Rechnung'
+        paare:
+          - { links: 'Höchstens 4 Samen keimen nicht.', rechts: '$Bcd(0;4;25;0{,}2)$' }
+          - { links: 'Genau 3 Samen keimen nicht.', rechts: '$Bcd(3;3;25;0{,}2)$' }
+          - { links: 'Mehr als 15 und höchstens 20 Samen keimen.', rechts: '$Bcd(16;20;25;0{,}8)$' }
+          - { links: 'Die ersten 4 Samen keimen.', rechts: '$0{,}8^4$' }
+        hilfe: 'Tippe erst links, dann rechts.'
       - typ: eingabe
-        frage: 'Berechne den Wert.'
+        frage: 'Berechne die Wahrscheinlichkeit für <strong>höchstens 4 Samen keimen nicht</strong>.'
         felder:
-          - { label: '$P\approx$', loesung: 0.4207, aria: 'Wahrscheinlichkeit' }
+          - { label: '$P\approx$', loesung: 0.4207, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[0, 4]], p: 0.2 } }
         hinweis: 'Gib $Bcd(0;4;25;0{,}2)$ ein.'
         danach: '<p>Zur Kontrolle: Höchstens $4$ keimen nicht heißt mindestens $21$ keimen. $Bcd(21;25;25;0{,}8)$ liefert denselben Wert.</p>'
 
@@ -203,23 +163,18 @@ karten:
       n: 25
     schritte:
       - typ: eingabe
-        frage: '<strong>Mehr als 15 und höchstens 20</strong> Samen keimen. Tipp: Die $15$ gehört nicht dazu.'
-        felder:
-          - { label: '$P\approx$', loesung: 0.5620, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[16, 20]], p: 0.8 } }
-        hinweis: 'Gib $Bcd(16;20;25;0{,}8)$ ein.'
-      - typ: eingabe
-        frage: '<strong>Genau 3 Samen keimen nicht.</strong> Tipp: Was wird gezählt?'
-        felder:
-          - { label: '$P\approx$', loesung: 0.1358, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[3, 3]], p: 0.2 } }
-        hinweis: 'Die nicht gekeimten mit $p=0{,}2$ zählen: $Bcd(3;3;25;0{,}2)$.'
-      - typ: eingabe
-        frage: '<strong>Weniger als 17 oder mehr als 22</strong> Samen keimen. Tipp: zwei Bereiche.'
+        frage: '<strong>Höchstens 16 oder mindestens 23</strong> Samen keimen. Tipp: zwei Bereiche.'
         felder:
           - { label: '$P\approx$', loesung: 0.1450, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[0, 16], [23, 25]], p: 0.8 } }
         hinweis: '$Bcd(0;16;25;0{,}8)+Bcd(23;25;25;0{,}8)$, erst am Ende runden.'
       - typ: eingabe
-        frage: '<strong>Die ersten 4 Samen keimen.</strong> Tipp: Ist das überhaupt ein Bereich?'
+        frage: '<strong>Mehr als 2 und höchstens 6 Samen keimen nicht.</strong> Tipp: Was wird gezählt?'
         felder:
-          - { label: '$P=$', loesung: 0.4096, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [] } }
-        hinweis: 'Nur die ersten $4$ Samen sind festgelegt, die übrigen sind egal.'
-        danach: '<p>Richtig: kein Bereich, sondern vier bestimmte Samen, also $0{,}8^4=0{,}4096$.</p>'
+          - { label: '$P\approx$', loesung: 0.6818, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [[3, 6]], p: 0.2 } }
+        hinweis: 'Die nicht gekeimten mit $p=0{,}2$ zählen, von $3$ bis $6$: $Bcd(3;6;25;0{,}2)$.'
+      - typ: eingabe
+        frage: '<strong>Die letzten 5 Samen keimen.</strong> Tipp: Ist das überhaupt ein Bereich?'
+        felder:
+          - { label: '$P\approx$', loesung: 0.3277, aria: 'Wahrscheinlichkeit', zeige: { bereiche: [], p: 0.8 } }
+        hinweis: 'Nur die letzten $5$ Samen sind festgelegt, die übrigen sind egal.'
+        danach: '<p>Richtig: kein Bereich, sondern fünf bestimmte Samen, also $0{,}8^5\approx 0{,}3277$.</p>'

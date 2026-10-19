@@ -1,44 +1,53 @@
 # Warm-Up zu Check 09 „p mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Aufbau wie Check 08 (n bestimmen), nur mit p: Bedingung aus dem Text, Richtung erkennen
-# (P(X≥k) steigt, P(X≤k) fällt mit p), Nachbarn-Paar im Raster 0,01 (Ergebnis auf 2 Nachkommastellen).
-# „kleinster p“ = kleinstes p, für das die Bedingung gilt; „größter p“ = größtes p, für das sie gilt.
+# Aufbau wie Check 08 (n bestimmen), nur mit p: p lässt sich nur ausprobieren, P(X≥k) steigt, P(X≤k) fällt mit p,
+# Nachbarn-Paar im Raster 0,01 (Ergebnis auf 2 Nachkommastellen).
+# „kleinster Wert“ = kleinstes p, für das die Bedingung gilt; „größter Wert“ = größtes p, für das sie gilt.
 # Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 08 bleiben a, b und n gleich, nur p wechselt.
+# Alle vier Kombinationen des Trainings kommen vor: Zuschauen (kleinster/≥/≥, größter/≤/≥), Mitmachen (größter/≥/≤, kleinster/≤/≤).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
 check_id: stochastik__binomialverteilung__09
 abschluss: '<p>Im Training stehen $n$, $k$ und eine Bedingung wie $P(X\leq 142)\leq 0{,}31$, und du suchst $p$ auf 2 Nachkommastellen. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $p\approx k/n$, prüfe, ob $P$ zu groß oder zu klein ist, und taste dich mit dem Taschenrechner in Schritten von $0{,}01$ an die Schwelle heran. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Bei „kleinster Wert von $p$“ gibst du das kleinste $p$ an, bei dem sie gilt, bei „größter Wert“ das größte. Gib $p$ im Taschenrechner als Dezimalzahl ein, nicht in Prozent.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ─────────────────────────────────────────
   - phase: orientierung
     titel: 'p lässt sich nur ausprobieren'
-    text: '<p>Eine Basketballspielerin wirft $20$-mal. Wie hoch muss ihre Trefferwahrscheinlichkeit <strong>mindestens</strong> sein, damit die Wahrscheinlichkeit für <strong>mindestens 12 Treffer</strong> mindestens $60\,\%$ beträgt (auf 2 Nachkommastellen gerundet)?</p><p>Jetzt ist $p$ gesucht. In der Bernoulli-Formel steckt $p$ aber in den Potenzen $p^k$ und $(1-p)^{n-k}$, und die Wahrscheinlichkeit ist eine Summe vieler solcher Terme. Es gibt <strong>keine Formel</strong>, die man nach $p$ auflösen könnte.</p>'
+    text: '<p>Eine Basketballspielerin wirft $20$-mal. Wie hoch muss ihre Trefferwahrscheinlichkeit <strong>mindestens</strong> sein, damit die Wahrscheinlichkeit für <strong>mindestens 12 Treffer</strong> mindestens $60\,\%$ beträgt? Als Bedingung:</p>$$P(X\geq 12)\geq 0{,}6$$<p>Jetzt ist $p$ gesucht. In der Bernoulli-Formel steckt $p$ aber in den Potenzen $p^k$ und $(1-p)^{n-k}$, und die Wahrscheinlichkeit ist eine Summe vieler solcher Terme. Es gibt <strong>keine Formel</strong>, die man nach $p$ auflösen könnte.</p>'
+    visual:
+      typ: liste
+      titel: 'P(X ≥ 12) bei n = 20'
+      eintraege:
+        - { id: p45, text: 'p = 0,45', gleichung: '$P(X\geq 12)\approx 0{,}1308$' }
+        - { id: p55, text: 'p = 0,55', gleichung: '$P(X\geq 12)\approx 0{,}4143$' }
+        - { id: p65, text: 'p = 0,65', gleichung: '$P(X\geq 12)\approx 0{,}7624$' }
+        - { id: p75, text: 'p = 0,75', gleichung: '$P(X\geq 12)\approx 0{,}9591$' }
     schritte:
+      - typ: aufdecken
+        frage: 'Was bleibt, ist <strong>Ausprobieren</strong>.'
+        knopf: 'Werte zeigen'
+        text: '<p>Man setzt verschiedene $p$ ein und lässt den Taschenrechner $P(X\geq 12)$ berechnen. Rechts siehst du das für $p=0{,}45$ bis $p=0{,}75$.</p>'
+        zeige: { eintraege: [p45, p55, p65, p75] }
       - typ: auswahl
-        frage: 'Wie findet man dann das gesuchte $p$?'
+        frage: 'Schau dir die Werte an. Was passiert mit $P(X\geq 12)$, wenn $p$ größer wird?'
         optionen:
-          - 'Man probiert $p$ in Schritten von $0{,}01$ aus und berechnet jeweils die Wahrscheinlichkeit.'
-          - 'Man stellt die Bernoulli-Formel nach $p$ um.'
-          - 'Man rechnet $p=k/n$ und rundet.'
+          - 'Sie wird größer.'
+          - 'Sie wird kleiner.'
+          - 'Sie steigt erst und fällt dann.'
         korrekt: 0
-        hinweis: '$k/n$ ist nur der Anteil der Treffer. Die Wahrscheinlichkeit muss aber eine Schwelle erreichen.'
-        danach: '<p>Genau: Für jedes $p$ berechnest du mit dem Taschenrechner die Wahrscheinlichkeit und prüfst, ob die Bedingung aus dem Text gilt. Weil das Ergebnis auf 2 Nachkommastellen gerundet wird, reichen Schritte von $0{,}01$. Dafür musst du die Bedingung zuerst richtig aufschreiben.</p>'
-      - typ: auswahl
-        frage: 'Welche Bedingung steckt im Text?'
-        optionen:
-          - '$P(X\geq 12)\geq 0{,}6$'
-          - '$P(X\leq 12)\geq 0{,}6$'
-          - '$P(X\geq 12)\leq 0{,}6$'
-        korrekt: 0
-        hinweis: 'Die Wahrscheinlichkeit für „mindestens 12 Treffer“ soll „mindestens $60\,\%$“ betragen: zweimal $\geq$.'
-        danach: '<p>Richtig. Gegeben sind $n=20$ und $k=12$. Gesucht ist das passende $p$.</p>'
+        hinweis: 'Lies die Werte rechts von oben nach unten.'
+        danach: '<p>Genau: Mit besserer Trefferquote gibt es eher viele Treffer. Bei $P(X\leq 12)$ ist es umgekehrt: Je größer $p$, desto mehr Treffer erwartet man, „höchstens 12“ wird <strong>unwahrscheinlicher</strong>.</p>'
+      - typ: aufdecken
+        frage: 'Wo liegt die Antwort?'
+        knopf: 'Zeigen'
+        text: '<p>Bei $p=0{,}55$ ist $P(X\geq 12)$ noch kleiner als $0{,}6$, bei $p=0{,}65$ schon größer. Dazwischen <strong>kippt</strong> die Bedingung. Weil $p$ auf 2 Nachkommastellen gesucht ist, probiert man dort in Schritten von $0{,}01$ weiter, bis man zwei Nachbarn findet: einen, bei dem die Bedingung gilt, und einen, bei dem sie nicht gilt.</p><p><strong>Merke:</strong></p><ul><li>$p$ lässt sich nicht ausrechnen, nur in Schritten von $0{,}01$ ausprobieren.</li><li>$P(X\geq k)$ wächst mit $p$, $P(X\leq k)$ fällt mit $p$.</li><li>Die Antwort liegt bei zwei Nachbarn, zwischen denen die Bedingung kippt.</li></ul>'
 
-  # ── Phase B: Vormachen ─────────────────────────────────────
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
     titel: 'Kleinster Wert: ab wann reicht es?'
-    text: '<p>Weiter mit den $20$ Würfen: Gesucht ist das kleinste $p$ mit $P(X\geq 12)\geq 0{,}6$. Wir probieren $p$ aus.</p>'
+    text: '<p>Weiter mit den $20$ Würfen: Gesucht ist das kleinste $p$ mit $P(X\geq 12)\geq 0{,}6$.</p><p>Im Training brauchst du einen guten <strong>Startwert</strong>: $12$ Treffer bei $20$ Würfen erwartet man bei $p=k/n=12/20=0{,}6$.</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 20)'
@@ -46,18 +55,10 @@ karten:
         - { id: p60, text: 'p = 0,60', gleichung: '$P(X\geq 12)\approx 0{,}5956$<br>$0{,}5956&lt;0{,}6$: reicht nicht' }
         - { id: p61, text: 'p = 0,61', gleichung: '$P(X\geq 12)\approx 0{,}6312$<br>$0{,}6312\geq 0{,}6$: reicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Wenn $p$ größer wird: Was passiert mit $P(X\geq 12)$?'
-        optionen:
-          - 'Sie wird größer.'
-          - 'Sie wird kleiner.'
-        korrekt: 0
-        hinweis: 'Mit besserer Trefferquote gibt es eher viele Treffer.'
-        danach: '<p>Allgemein wächst $P(X\geq k)$ mit $p$. Reicht ein $p$, reichen alle größeren erst recht. Gesucht ist also das <strong>erste</strong> $p$, bei dem es reicht.</p>'
       - typ: aufdecken
-        frage: '<strong>Startwert:</strong> Erwartet man $12$ Treffer bei $20$ Würfen, passt $p=12/20=0{,}6$.'
+        frage: 'Zuerst den Startwert testen.'
         knopf: 'p = 0,6 testen'
-        text: '$$\begin{align*}&Bcd(12;20;20;0{,}6)\\&\approx 0{,}5956\end{align*}$$<p>Das ist knapp kleiner als $0{,}6$, also zu klein. Weiter mit größerem $p$, Schritt $0{,}01$.</p>'
+        text: '$$\begin{align*}&Bcd(12;20;20;0{,}6)\\&\approx 0{,}5956\end{align*}$$<p>Das ist knapp kleiner als $0{,}6$. Weil $P(X\geq 12)$ mit $p$ wächst, geht es mit größerem $p$ weiter, Schritt $0{,}01$.</p>'
         zeige: { eintraege: [p60] }
       - typ: auswahl
         frage: 'Wie lautet die Eingabe für $p=0{,}61$? Nur $p$ ändert sich.'
@@ -77,11 +78,11 @@ karten:
           - '$p=0{,}62$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>kleinste</strong> $p$, bei dem $P(X\geq 12)\geq 0{,}6$ gilt.'
-        danach: '<p>Die Trefferwahrscheinlichkeit muss mindestens $0{,}61$ sein. Bei $0{,}60$ reicht es noch nicht, ab $0{,}61$ schon.</p>'
+        danach: '<p>Die Trefferwahrscheinlichkeit muss mindestens $0{,}61$ sein. Beim „kleinsten Wert“ zählt der <strong>rechte</strong> Nachbar: das kleinste $p$, für das die Bedingung gilt.</p>'
 
   - phase: vormachen
     titel: 'Größter Wert: bis wann reicht es?'
-    text: '<p>Dieselben $20$ Würfe. Jetzt die andere Richtung: Wie hoch darf die Trefferwahrscheinlichkeit <strong>höchstens</strong> sein, damit die Wahrscheinlichkeit für <strong>höchstens 7 Treffer</strong> mindestens $50\,\%$ beträgt?</p><p>Gegeben: $n=20$ und $k=7$. Gesucht: das größte $p$ mit $P(X\leq 7)\geq 0{,}5$.</p>'
+    text: '<p>Dieselben $20$ Würfe. Jetzt die andere Richtung: Wie hoch darf die Trefferwahrscheinlichkeit <strong>höchstens</strong> sein, damit die Wahrscheinlichkeit für <strong>höchstens 7 Treffer</strong> mindestens $50\,\%$ beträgt?</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 20)'
@@ -90,18 +91,15 @@ karten:
         - { id: p38, text: 'p = 0,38', gleichung: '$P(X\leq 7)\approx 0{,}4892$<br>$0{,}4892&lt;0{,}5$: reicht nicht' }
     schritte:
       - typ: auswahl
-        frage: 'Wenn $p$ größer wird: Was passiert mit $P(X\leq 7)$?'
+        frage: 'Welche Bedingung steckt im Text?'
         optionen:
-          - 'Sie wird kleiner.'
-          - 'Sie wird größer.'
+          - '$P(X\leq 7)\geq 0{,}5$'
+          - '$P(X\geq 7)\leq 0{,}5$'
+          - '$P(X\leq 7)\leq 0{,}5$'
         korrekt: 0
-        hinweis: 'Mit besserer Trefferquote sind mehr Treffer zu erwarten, „höchstens 7“ wird also unwahrscheinlicher.'
-        danach: '<p>Allgemein sinkt $P(X\leq k)$ mit $p$. Reicht ein $p$, reichen alle kleineren erst recht. Gesucht ist also das <strong>letzte</strong> $p$, bei dem es noch reicht.</p>'
-      - typ: aufdecken
-        frage: 'Bei „höchstens 7“ beginnt der Bereich bei $0$ und endet bei $7$, egal wie groß $p$ ist. Nur das $p$ in der Eingabe wechselt.'
-        knopf: 'p = 0,37 und p = 0,38 testen'
-        text: '$$\begin{align*}&Bcd(0;7;20;0{,}37)\\&\approx 0{,}5265\\&Bcd(0;7;20;0{,}38)\\&\approx 0{,}4892\end{align*}$$<p>Bei $p=0{,}37$ ist die Bedingung $P(X\leq 7)\geq 0{,}5$ erfüllt, bei $p=0{,}38$ nicht mehr.</p>'
+        hinweis: '„Höchstens 7 Treffer“ gehört zu $X$, „mindestens $50\,\%$“ zur Wahrscheinlichkeit. Das „höchstens“ vor der Trefferwahrscheinlichkeit betrifft nur $p$.'
         zeige: { eintraege: [p37, p38] }
+        danach: '<p>Richtig. Bei „höchstens 7“ bleiben die Grenzen fest, nur $p$ wechselt: $Bcd(0;7;20;p)$. Rechts stehen die Nachbarn, bei denen die Bedingung kippt.</p>'
       - typ: auswahl
         frage: 'Welches $p$ ist die Antwort?'
         optionen:
@@ -110,17 +108,7 @@ karten:
           - '$p=0{,}36$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>größte</strong> $p$, bei dem $P(X\leq 7)\geq 0{,}5$ noch gilt. Bei $p=0{,}38$ gilt es nicht mehr.'
-        danach: '<p>Die Trefferwahrscheinlichkeit darf höchstens $0{,}37$ sein. Auch hier sind die Antwort zwei Nachbarn, aber diesmal zählt der <strong>linke</strong>.</p>'
-      - typ: zuordnen
-        frage: 'Fasse zusammen: Was passt zusammen?'
-        titel_links: 'Situation'
-        titel_rechts: 'Folge'
-        paare:
-          - { links: 'wenn $p$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
-          - { links: 'wenn $p$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
-          - { links: 'gesucht: <strong>kleinster</strong> Wert von $p$', rechts: 'kleinstes $p$, für das die Bedingung gilt' }
-          - { links: 'gesucht: <strong>größter</strong> Wert von $p$', rechts: 'größtes $p$, für das die Bedingung gilt' }
-        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, also mit $\geq$ oder $\leq$ und dem angegebenen Wert.</p>'
+        danach: '<p>Die Trefferwahrscheinlichkeit darf höchstens $0{,}37$ sein. Beim „größten Wert“ zählt der <strong>linke</strong> Nachbar: das größte $p$, für das die Bedingung noch gilt.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -134,19 +122,21 @@ karten:
         - { id: p38, text: 'p = 0,38', erledigt: true, gleichung: '$P(X\geq 10)\approx 0{,}4933$<br>$0{,}4933\leq 0{,}5$: gilt' }
         - { id: p39, text: 'p = 0,39', erledigt: true, gleichung: '$P(X\geq 10)\approx 0{,}5347$<br>$0{,}5347&gt;0{,}5$: gilt nicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Wenn $p$ größer wird: Wird $P(X\geq 10)$ größer oder kleiner?'
-        optionen:
-          - 'größer'
-          - 'kleiner'
-        korrekt: 0
-        hinweis: '$P(X\geq k)$ wächst mit $p$.'
-        danach: '<p>Die Bedingung $P(X\geq 10)\leq 0{,}5$ gilt also nur für <strong>kleine</strong> $p$. Gesucht ist das größte $p$, für das sie noch gilt.</p>'
+      - typ: zuordnen
+        frage: 'Bevor du selbst rechnest: Was passt zusammen?'
+        titel_links: 'Situation'
+        titel_rechts: 'Folge'
+        paare:
+          - { links: 'wenn $p$ größer wird, dann wird $P(X\geq k)$', rechts: 'größer' }
+          - { links: 'wenn $p$ größer wird, dann wird $P(X\leq k)$', rechts: 'kleiner' }
+          - { links: 'gesucht: <strong>kleinster</strong> Wert von $p$', rechts: 'kleinstes $p$, für das die Bedingung gilt' }
+          - { links: 'gesucht: <strong>größter</strong> Wert von $p$', rechts: 'größtes $p$, für das die Bedingung gilt' }
+        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, auch wenn dort $\leq$ steht. Rechts ist das schon geschehen.</p>'
       - typ: eingabe
         frage: 'Lies aus der Tabelle das gesuchte $p$ ab.'
         felder:
           - { label: '$p=$', loesung: 0.38, aria: 'gesuchtes p' }
-        hinweis: 'Bei $p=0{,}39$ gilt die Bedingung nicht mehr. Welches $p$ ist der letzte Nachbar davor?'
+        hinweis: 'Gesucht ist der größte Wert von $p$, für den die Bedingung gilt. Bei $p=0{,}39$ gilt sie nicht mehr.'
         danach: '<p>Die Wahrscheinlichkeit für eine richtige Antwort darf höchstens $0{,}38$ sein.</p>'
 
   - phase: mitmachen
@@ -159,22 +149,6 @@ karten:
         - { id: p42, text: 'p = 0,42', gleichung: '$P(X\leq 12)\approx 0{,}4893$<br>$0{,}4893&gt;0{,}45$: gilt nicht' }
         - { id: p43, text: 'p = 0,43', gleichung: '$P(X\leq 12)\approx 0{,}4449$<br>$0{,}4449\leq 0{,}45$: gilt' }
     schritte:
-      - typ: auswahl
-        frage: 'Wird $P(X\leq 12)$ mit größerem $p$ größer oder kleiner?'
-        optionen:
-          - 'kleiner'
-          - 'größer'
-        korrekt: 0
-        hinweis: '$P(X\leq k)$ sinkt mit $p$.'
-        danach: '<p>Die Bedingung $P(X\leq 12)\leq 0{,}45$ gilt also erst für <strong>große</strong> $p$.</p>'
-      - typ: auswahl
-        frage: 'Welches $p$ ist bei „mindestens“ gesucht?'
-        optionen:
-          - 'das kleinste $p$ mit $P(X\leq 12)\leq 0{,}45$'
-          - 'das größte $p$ mit $P(X\leq 12)\leq 0{,}45$'
-          - 'das kleinste $p$ mit $P(X\leq 12)\geq 0{,}45$'
-        korrekt: 0
-        hinweis: '„Mindestens“ heißt kleinstes $p$, und die Bedingung steht so in der Aufgabe: $\leq 0{,}45$.'
       - typ: eingabe
         frage: 'Die Nachbarn sind $p=0{,}42$ und $p=0{,}43$. Rechne mit $Bcd(0;12;30;p)$, auf 4 Nachkommastellen gerundet.'
         layout: zeile
@@ -186,7 +160,7 @@ karten:
         frage: 'Welches $p$ ist die Antwort?'
         felder:
           - { label: '$p=$', loesung: 0.43, aria: 'gesuchtes p' }
-        hinweis: 'Bei $p=0{,}42$ gilt die Bedingung noch nicht, bei $p=0{,}43$ gilt sie.'
+        hinweis: 'Die Bedingung lautet $P(X\leq 12)\leq 0{,}45$. Bei $p=0{,}42$ gilt sie noch nicht, bei $p=0{,}43$ gilt sie. Gesucht ist der kleinste Wert.'
         danach: '<p>Die Defektwahrscheinlichkeit muss mindestens $0{,}43$ sein.</p>'
 
   - phase: mitmachen
@@ -202,15 +176,12 @@ karten:
         - { id: p36, text: 'p = 0,36', gleichung: '$P(X\leq 15)\approx 0{,}2328$<br>$0{,}2328&lt;0{,}25$: gilt nicht' }
     schritte:
       - typ: eingabe
-        frage: '<strong>Startwert:</strong> Bei welchem $p$ erwartest du $k=15$ Rücksendungen? Rechne $k/n$.'
+        frage: '<strong>Startwert:</strong> Berechne $p=k/n$ und teste ihn.'
+        layout: zeile
         felder:
           - { label: '$p=$', loesung: 0.3, aria: 'Startwert p' }
-        hinweis: '$15/50$'
-      - typ: eingabe
-        frage: 'Teste den Startwert. Berechne $P(X\leq 15)$ für $p=0{,}3$ mit $Bcd(0;15;50;0{,}3)$.'
-        felder:
-          - { label: '$P(X\leq 15)\approx$', loesung: 0.5692, aria: 'P für p gleich 0,3', zeige: { eintraege: [p30] } }
-        hinweis: 'Die Grenzen sind $0$ und $15$, $n=50$ steht an dritter Stelle und $p$ an vierter.'
+          - { label: '$P(X\leq 15)\approx$', loesung: 0.5692, aria: 'P für den Startwert', zeige: { eintraege: [p30] } }
+        hinweis: '$p=15/50$. Dann $Bcd(0;15;50;p)$ mit diesem $p$ an vierter Stelle.'
       - typ: auswahl
         frage: 'Die Bedingung gilt noch ($0{,}5692\geq 0{,}25$). Wie geht es weiter?'
         optionen:
@@ -218,17 +189,11 @@ karten:
           - 'Mit kleinerem $p$ weiterprobieren.'
           - '$p=0{,}3$ als Antwort nehmen.'
         korrekt: 0
-        hinweis: 'Gesucht ist das <strong>größte</strong> $p$, für das $P(X\leq 15)\geq 0{,}25$ noch gilt. $P(X\leq k)$ sinkt mit $p$.'
+        hinweis: 'Gesucht ist das <strong>größte</strong> $p$, für das $P(X\leq 15)\geq 0{,}25$ noch gilt. $P(X\leq k)$ fällt mit $p$.'
       - typ: eingabe
-        frage: 'Probiere $p=0{,}33$.'
-        felder:
-          - { label: '$P(X\leq 15)\approx$', loesung: 0.3880, aria: 'P für p gleich 0,33', zeige: { eintraege: [p33] } }
-        hinweis: 'Gib $Bcd(0;15;50;0{,}33)$ ein.'
-        danach: '<p>Die Bedingung gilt noch. Probiere weiter nach oben, bis $P(X\leq 15)\geq 0{,}25$ zum ersten Mal nicht mehr gilt.</p>'
-      - typ: eingabe
-        frage: 'Welches $p$ ist die Antwort?'
+        frage: 'Taste dich heran. Welches $p$ ist die Antwort?'
         felder:
           - { label: '$p=$', loesung: 0.35, aria: 'gesuchtes p' }
-        hinweis: 'Taste dich in Schritten von $0{,}01$ über $p=0{,}33$ hinaus. Gesucht ist das größte $p$ mit $P(X\leq 15)\geq 0{,}25$.'
-        zeige: { eintraege: [p35, p36] }
-        danach: '<p>Bei $p=0{,}35$ ist $P\approx 0{,}2801$, bei $p=0{,}36$ nur noch $P\approx 0{,}2328$. Die Rücksendewahrscheinlichkeit darf höchstens $0{,}35$ sein.</p>'
+        hinweis: 'Probiere $p=0{,}31$, $0{,}32$, … (oder erst einen größeren Sprung, z. B. $p=0{,}33$). Gesucht ist das größte $p$ mit $P(X\leq 15)\geq 0{,}25$.'
+        zeige: { eintraege: [p33, p35, p36] }
+        danach: '<p>Bei $p=0{,}33$ ist $P\approx 0{,}3880$ und bei $p=0{,}35$ ist $P\approx 0{,}2801$, die Bedingung gilt noch. Bei $p=0{,}36$ ist $P\approx 0{,}2328$, jetzt nicht mehr. Die Rücksendewahrscheinlichkeit darf höchstens $0{,}35$ sein.</p>'
