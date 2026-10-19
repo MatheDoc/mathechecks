@@ -94,16 +94,8 @@ karten:
       - typ: aufdecken
         frage: '<strong>Weg 2: Schnittstelle von $K''$ und $k_v$</strong> – gleichsetzen.'
         knopf: 'Rechnung zeigen'
-        text: '<p>$K''(x)=k_v(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30\\ x^2-6x&=0\\ x(x-6)&=0\end{align*}$$<p>Dafür auf beiden Seiten $0{,}5x^2$ abziehen, $6x$ addieren und $30$ abziehen. Also $x=0$ oder $x=6$.</p>'
+        text: '<p>$K''(x)=k_v(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30\\ x^2-6x&=0\\ x(x-6)&=0\end{align*}$$<p>Dafür auf beiden Seiten $0{,}5x^2$ abziehen, $6x$ addieren und $30$ abziehen. Also $x=0$ oder $x=6$. Die Lösung $x=0$ entfällt: Bei $0$ ME ist $k_v(x)=\frac{K_v(x)}{x}$ nicht definiert.</p><p>Beide Wege liefern $x_{BM}=6$ ME. Beim Schnittstellen-Weg brauchst du weder die Ableitung von $k_v$ noch die Prüfung mit der zweiten Ableitung.</p>'
         zeige: { punkte: [bm] }
-      - typ: auswahl
-        frage: 'Welche Lösung ist das Betriebsminimum?'
-        optionen:
-          - '$x=0$'
-          - '$x=6$'
-        korrekt: 1
-        hinweis: 'Bei $0$ ME gibt es keine Stückkosten – $k_v(x)=\frac{K_v(x)}{x}$ ist dort nicht definiert.'
-        danach: '<p>Beide Wege liefern $x_{BM}=6$ ME. Beim Schnittstellen-Weg brauchst du weder die Ableitung von $k_v$ noch die Prüfung mit der zweiten Ableitung.</p>'
       - typ: eingabe
         frage: '<strong>Kurzfristige Preisuntergrenze</strong> – der Wert von $k_v$ im Betriebsminimum: $$k_v(6)=0{,}5\cdot 36-6\cdot 6+30$$'
         felder:
@@ -140,16 +132,7 @@ karten:
       - typ: aufdecken
         frage: '<strong>Weg 2: Schnittstelle von $K''$ und $k$</strong> – gleichsetzen.'
         knopf: 'Rechnung zeigen'
-        text: '<p>$K''(x)=k(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30+\tfrac{48}{x}\\ x^2-6x-\tfrac{48}{x}&=0 \quad|\cdot x\\ x^3-6x^2-48&=0\end{align*}$$<p>Im ersten Schritt wie beim Betriebsminimum: $0{,}5x^2$ abziehen, $6x$ addieren, $30$ abziehen.</p>'
-      - typ: auswahl
-        frage: 'Vergleiche die beiden Wege. Was fällt dir auf?'
-        optionen:
-          - 'Beide führen auf dieselbe Gleichung.'
-          - 'Weg 2 liefert ein anderes Ergebnis.'
-          - 'Weg 1 kommt ohne Ableitung aus.'
-        korrekt: 0
-        hinweis: 'Vergleiche jeweils die letzte Zeile.'
-        danach: '<p>Genau. Du kannst also den Weg wählen, der dir leichter fällt.</p>'
+        text: '<p>$K''(x)=k(x)$ setzen:</p>$$\begin{align*}1{,}5x^2-12x+30&=0{,}5x^2-6x+30+\tfrac{48}{x}\\ x^2-6x-\tfrac{48}{x}&=0 \quad|\cdot x\\ x^3-6x^2-48&=0\end{align*}$$<p>Im ersten Schritt wie beim Betriebsminimum: $0{,}5x^2$ abziehen, $6x$ addieren, $30$ abziehen.</p><p>Das ist <strong>dieselbe Gleichung</strong> wie bei Weg 1. Du kannst also den Weg wählen, der dir leichter fällt.</p>'
       - typ: aufdecken
         frage: 'Die Gleichung $x^3-6x^2-48=0$ löst du mit dem Taschenrechner.'
         knopf: 'Lösen'
@@ -197,18 +180,11 @@ karten:
           - { label: '$x=$', loesung: 6, einheit: 'ME', zeige: { punkte: [w] } }
         hinweis: 'Löse $3x=18$.'
       - typ: eingabe
-        frage: '<strong>Betriebsminimum, Weg 1:</strong> $k_v''(x)=x-9=0$'
+        frage: '<strong>Betriebsminimum, Weg 1:</strong> Leite $k_v$ ab und setze $k_v''(x)=0$.'
         felder:
           - { label: '$x_{BM}=$', loesung: 9, einheit: 'ME', zeige: { punkte: [bm] } }
-        hinweis: 'Bring die $9$ auf die andere Seite.'
-      - typ: eingabe
-        frage: '<strong>Betriebsminimum, Weg 2:</strong> Setze $K''(x)=k_v(x)$ und bring alles auf eine Seite.'
-        layout: zeile
-        felder:
-          - { einheit: '$x^2\;+$', loesung: 1 }
-          - { einheit: '$x\;=\;0$', loesung: -9 }
-        hinweis: '$1{,}5x^2-0{,}5x^2=x^2$ und $-18x+9x=-9x$. Die $60$ fällt weg.'
-        danach: '<p>$x(x-9)=0$ – also wieder $x_{BM}=9$, denn $x=0$ entfällt.</p>'
+        hinweis: '$k_v''(x)=x-9$. Bring die $9$ auf die andere Seite.'
+        danach: '<p>Weg 2 kommt zum selben Ergebnis: Aus $K''(x)=k_v(x)$ wird $x^2-9x=0$, also $x(x-9)=0$ und wieder $x_{BM}=9$, denn $x=0$ entfällt.</p>'
       - typ: eingabe
         frage: '<strong>Kurzfristige Preisuntergrenze</strong> – jetzt ohne Vorgabe.'
         felder:
@@ -235,16 +211,8 @@ karten:
         - { id: bm, x: 9, y: 19.5, label: 'Betriebsminimum', ax: 36, ay: 40, sichtbar: true }
         - { id: bo, x: 10, y: 30, label: 'Betriebsoptimum', hilfslinie: true, ax: 50, ay: -34 }
     schritte:
-      - typ: auswahl
-        frage: 'Welche Ansätze führen zum <strong>Betriebsoptimum</strong>?'
-        optionen:
-          - '$k''(x)=0$ oder $K''(x)=k(x)$'
-          - '$k_v''(x)=0$ oder $K''(x)=k_v(x)$'
-          - '$K^{\prime\prime}(x)=0$'
-        korrekt: 0
-        hinweis: 'Das Betriebsoptimum gehört zu den Stückkosten $k$.'
       - typ: eingabe
-        frage: 'Nimm Weg 2: $K''(x)=k(x)$ setzen, alles auf eine Seite bringen und mit $x$ multiplizieren. Trag die Vorfaktoren ein.'
+        frage: '<strong>Betriebsoptimum, Weg 2:</strong> $K''(x)=k(x)$ setzen, alles auf eine Seite bringen und mit $x$ multiplizieren. Trag die Vorfaktoren ein.'
         layout: zeile
         felder:
           - { einheit: '$x^3\;+$', loesung: 1 }
@@ -262,4 +230,4 @@ karten:
         felder:
           - { label: '$k(10)=$', loesung: 30, einheit: 'GE/ME' }
         hinweis: 'Rechne $50-90+60+10$.'
-        danach: '<p>Probe über den Schnittpunkt: $K''(10)=150-180+60=30$ ✓</p>'
+        danach: '<p>Probe über den Schnittpunkt:</p>$$K''(10)=150-180+60=30\ ✓$$'

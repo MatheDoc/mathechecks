@@ -32,14 +32,14 @@ karten:
         text: '<p>Vier Punkte sind besonders: wo die Geraden die Achsen treffen und wo sie sich schneiden. Jeder dieser Punkte liefert eine <strong>Kennzahl</strong>.</p>'
         zeige: { punkte: [hp, map, sm, mg] }
       - typ: auswahl
-        frage: 'Wo liegt das Marktgleichgewicht?'
+        frage: 'Schau dir den Schnittpunkt der beiden Geraden an. Was gilt dort für Angebot und Nachfrage?'
         optionen:
-          - 'Wo die Nachfragegerade die $x$-Achse trifft'
-          - 'Im Schnittpunkt von Angebots- und Nachfragegerade'
-          - 'Wo die Angebotsgerade die $y$-Achse trifft'
-        korrekt: 1
-        hinweis: 'Nicht ganz. Im Gleichgewicht passen Angebot und Nachfrage zusammen – beide Geraden haben dort denselben Punkt.'
-        danach: '<p>Genau. Dort ist der Preis für Anbieter und Nachfrager gleich – hier bei $8$ ME und $26$ GE.</p>'
+          - 'Beide haben dieselbe Menge $x$ und denselben Preis $p$.'
+          - 'Beide haben dieselbe Steigung.'
+          - 'Dort ist der Preis am höchsten.'
+        korrekt: 0
+        hinweis: 'Ein Schnittpunkt liegt auf beiden Geraden zugleich.'
+        danach: '<p>Genau. Dort liegt das <strong>Marktgleichgewicht</strong>, hier bei $8$ ME und $26$ GE.</p><p><strong>Merke:</strong></p><ul><li>An den Achsen: $x=0$ einsetzen (Höchst- und Mindestangebotspreis) oder $p_N(x)=0$ lösen (Sättigungsmenge).</li><li>Im Schnittpunkt: $p_N(x)=p_A(x)$ lösen (Marktgleichgewicht).</li></ul>'
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
@@ -107,9 +107,7 @@ karten:
           - '$p_A(0)$ berechnen'
         korrekt: 1
         hinweis: 'Gesucht ist der Schnittpunkt der beiden Geraden.'
-      - typ: aufdecken
-        knopf: 'Gleichung lösen'
-        text: '$$\begin{align*}-2x+42&=1{,}5x+14 \quad|+2x-14\\ 28&=3{,}5x \quad|:3{,}5\\ x_G&=8\end{align*}$$<p>Die Gleichgewichtsmenge beträgt $8$ ME.</p>'
+        danach: '$$\begin{align*}-2x+42&=1{,}5x+14 \quad|+2x-14\\ 28&=3{,}5x \quad|:3{,}5\\ x_G&=8\end{align*}$$<p>Die Gleichgewichtsmenge beträgt $8$ ME.</p>'
       - typ: aufdecken
         frage: '<strong>Gleichgewichtspreis</strong> – $x_G=8$ in eine der beiden Funktionen einsetzen.'
         knopf: 'Einsetzen'

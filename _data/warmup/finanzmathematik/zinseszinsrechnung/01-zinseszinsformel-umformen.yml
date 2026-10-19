@@ -9,14 +9,12 @@ karten:
   # ── Phase A: Orientierung ──────────────────────────────────
   - phase: orientierung
     titel: 'Ein Jahr Zinsen, eine Multiplikation'
-    text: '<p>Lena legt $3\,000$ € zu $3\,\%$ pro Jahr an. Nach einem Jahr kommen $90$ € Zinsen dazu, das Guthaben beträgt $3\,090$ €.</p>'
+    text: '<p>Bei der <strong>Zinseszinsrechnung</strong> werden die Zinsen am Ende jedes Jahres zum Kapital addiert und im nächsten Jahr mitverzinst. Auch die Zinsen bringen also Zinsen.</p><p>Lena legt $3\,000$ € zu $3\,\%$ pro Jahr an. Nach einem Jahr kommen $90$ € Zinsen dazu, das Guthaben beträgt $3\,090$ €.</p>'
     schritte:
-      - typ: eingabe
-        frage: 'Mit welcher Zahl musst du $3\,000$ multiplizieren, um direkt $3\,090$ zu erhalten?'
-        felder:
-          - { label: '$3\,000\;\cdot$', loesung: 1.03, einheit: '$=\;3\,090$', aria: 'Faktor' }
-        hinweis: 'Rechne $3\,090:3\,000$.'
-        danach: '<p>Das ist der <strong>Zinsfaktor</strong> $q=1+\frac{p}{100}=1{,}03$. Ein Jahr Verzinsung ist also einmal „mal $q$“.</p>'
+      - typ: aufdecken
+        frage: 'Das geht auch in einem Schritt.'
+        knopf: 'Zinsfaktor zeigen'
+        text: '$$3\,000\cdot 1{,}03=3\,090$$<p>Einmal „mal $1{,}03$“ ergibt Kapital plus Zinsen. Diese Zahl heißt <strong>Zinsfaktor</strong>:</p>$$q=1+\frac{p}{100}$$'
       - typ: auswahl
         frage: 'Wie groß ist der Zinsfaktor bei $p=2{,}5\,\%$?'
         optionen:
@@ -61,16 +59,8 @@ karten:
           - 'die 10. Wurzel ziehen'
         korrekt: 0
         hinweis: '$K_0$ wird mit $1{,}025^{10}$ <em>multipliziert</em>. Das machst du rückgängig.'
-        danach: '<p>Beide Seiten durch $1{,}025^{10}$ teilen:</p>$$\begin{align*}K_0&=\frac{12\,000}{1{,}025^{10}}\\ &\approx 9\,374{,}38\,\text{€}\end{align*}$$'
+        danach: '<p>Beide Seiten durch $1{,}025^{10}$ teilen:</p>$$\begin{align*}K_0&=\frac{12\,000}{1{,}025^{10}}\\ &\approx 9\,374{,}38\,\text{€}\end{align*}$$<p>Probe: Bei positivem Zinssatz ist das Anfangskapital kleiner als das Endkapital. Das passt.</p>'
         zeige: { eintraege: [k0] }
-      - typ: auswahl
-        frage: 'Ist $K_0\approx 9\,374{,}38$ € plausibel?'
-        optionen:
-          - 'Ja, $K_0$ muss kleiner als $K_n$ sein, weil Zinsen dazukommen.'
-          - 'Nein, $K_0$ müsste größer als $12\,000$ € sein.'
-        korrekt: 0
-        hinweis: 'Das Kapital wächst von $K_0$ auf $K_n=12\,000$ €.'
-        danach: '<p>Diese Probe lohnt sich immer: Bei positivem Zinssatz ist das Anfangskapital kleiner als das Endkapital.</p>'
 
   - phase: vormachen
     titel: 'Zinssatz und Laufzeit'
@@ -103,15 +93,10 @@ karten:
         hinweis: 'In $q^8$ ist $q$ unbekannt, in $1{,}04^n$ ist $n$ unbekannt.'
         danach: '<p>Davon hängt das Werkzeug ab: Unbekannte in der <strong>Basis</strong> → Wurzel ziehen. Unbekannte im <strong>Exponenten</strong> → Logarithmus.</p>'
       - typ: aufdecken
-        frage: '<strong>c)</strong> zu Ende rechnen: 8. Wurzel ziehen, dann $p$ aus $q$ bestimmen.'
+        frage: 'Beide zu Ende rechnen.'
         knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}q^8&=1{,}3\\ q&=\sqrt[8]{1{,}3}\approx 1{,}0333\\ p&=(q-1)\cdot 100\approx 3{,}33\end{align*}$$<p>Der Zinssatz beträgt etwa $3{,}33\,\%$.</p>'
-        zeige: { eintraege: [p] }
-      - typ: aufdecken
-        frage: '<strong>d)</strong> zu Ende rechnen: Logarithmus auf beide Seiten.'
-        knopf: 'Rechnung zeigen'
-        text: '<p>Auf beiden Seiten den Logarithmus bilden. Er holt den Exponenten als Faktor nach vorn: $\ln(1{,}04^n)=n\cdot\ln 1{,}04$. Dann durch $\ln 1{,}04$ teilen:</p>$$\begin{align*}1{,}04^n&=1{,}5\\ n\cdot\ln 1{,}04&=\ln 1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}04}\\ &\approx 10{,}34\end{align*}$$<p>Nach etwa $10{,}34$ Jahren ist das Kapital auf $15\,000$ € angewachsen.</p>'
-        zeige: { eintraege: [n] }
+        text: '<p><strong>c)</strong> 8. Wurzel ziehen, dann $p$ aus $q$ bestimmen:</p>$$\begin{align*}q^8&=1{,}3\\ q&=\sqrt[8]{1{,}3}\approx 1{,}0333\\ p&=(q-1)\cdot 100\approx 3{,}33\end{align*}$$<p>Der Zinssatz beträgt etwa $3{,}33\,\%$.</p><p><strong>d)</strong> Auf beiden Seiten den Logarithmus bilden. Er holt den Exponenten als Faktor nach vorn: $\ln(1{,}04^n)=n\cdot\ln 1{,}04$. Dann durch $\ln 1{,}04$ teilen:</p>$$\begin{align*}1{,}04^n&=1{,}5\\ n\cdot\ln 1{,}04&=\ln 1{,}5\\ n&=\frac{\ln 1{,}5}{\ln 1{,}04}\\ &\approx 10{,}34\end{align*}$$<p>Nach etwa $10{,}34$ Jahren ist das Kapital auf $15\,000$ € angewachsen.</p>'
+        zeige: { eintraege: [p, n] }
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -141,15 +126,10 @@ karten:
         - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden', erledigt: true }
     schritte:
       - typ: eingabe
-        frage: '$K_0=4\,000$ €, $p=3{,}5\,\%$, $n=5$. Gesucht: $K_n$. Zuerst der Zinsfaktor:'
-        felder:
-          - { label: '$q=$', loesung: 1.035 }
-        hinweis: '$q=1+\frac{3{,}5}{100}$.'
-      - typ: eingabe
-        frage: 'Der Ansatz steht da: $$K_5=4\,000\cdot 1{,}035^5$$ (Betrag ohne Tausenderpunkt eintragen)'
+        frage: '$K_0=4\,000$ €, $p=3{,}5\,\%$, $n=5$. Gesucht: $K_n$ (Betrag ohne Tausenderpunkt eintragen).'
         felder:
           - { label: '$K_5=$', loesung: 4750.75, toleranz: 1, einheit: '€' }
-        hinweis: 'Tippe $4000\cdot 1{,}035^5$ in den Taschenrechner. Ergebnis ohne Tausenderpunkt, z. B. 1234,56.'
+        hinweis: 'Einsetzen und ausrechnen: $K_5=4000\cdot 1{,}035^5$. Ergebnis ohne Tausenderpunkt, z. B. 1234,56.'
       - typ: auswahl
         frage: '$K_n=6\,000$ €, $p=4\,\%$, $n=7$. Gesucht: $K_0$. Welcher Ansatz führt zum Ziel?'
         optionen:
@@ -176,13 +156,8 @@ karten:
         - { id: p, text: '$p$ gesucht', gleichung: 'durch $K_0$ teilen, $n$-te Wurzel ziehen, $p=(q-1)\cdot 100$', erledigt: true }
         - { id: n, text: '$n$ gesucht', gleichung: 'durch $K_0$ teilen, Logarithmus anwenden', erledigt: true }
     schritte:
-      - typ: eingabe
-        frage: 'Einsetzen: $$2\,800=2\,000\cdot q^9$$ Teile durch $2\,000$.'
-        felder:
-          - { label: '$q^9=$', loesung: 1.4 }
-        hinweis: 'Rechne $2\,800:2\,000$.'
       - typ: auswahl
-        frage: 'Die Unbekannte $q$ steht in der Basis. Was ist der nächste Schritt?'
+        frage: 'Einsetzen und durch $2\,000$ teilen: $$\begin{align*}2\,800&=2\,000\cdot q^9\\ q^9&=1{,}4\end{align*}$$ Die Unbekannte $q$ steht in der Basis. Was ist der nächste Schritt?'
         optionen:
           - '9. Wurzel ziehen'
           - 'Logarithmus anwenden'
@@ -190,15 +165,11 @@ karten:
         korrekt: 0
         hinweis: 'Die Wurzel macht das Potenzieren mit $9$ rückgängig. Durch $9$ teilen würde $9\cdot q$ rückgängig machen.'
       - typ: eingabe
-        frage: '$q=\sqrt[9]{1{,}4}$, auf 4 Nachkommastellen.'
-        felder:
-          - { label: '$q\approx$', loesung: 1.0381, toleranz: 0.0001 }
-        hinweis: 'Taschenrechner: $1{,}4^{1/9}$ oder die Taste $\sqrt[x]{\phantom{x}}$.'
-      - typ: eingabe
-        frage: 'Jetzt der Zinssatz.'
+        frage: 'Ziehe die Wurzel und bestimme den Zinssatz, auf 2 Nachkommastellen.'
         felder:
           - { label: '$p=$', loesung: 3.81, toleranz: 0.01, einheit: '%' }
-        hinweis: '$p=(q-1)\cdot 100$. Gefragt ist der Zinssatz in Prozent, nicht der Zinsfaktor.'
+        hinweis: 'Taschenrechner: $q=1{,}4^{1/9}\approx 1{,}0381$. Dann $p=(q-1)\cdot 100$. Gefragt ist der Zinssatz in Prozent, nicht der Zinsfaktor.'
+        danach: '$$\begin{align*}q&=\sqrt[9]{1{,}4}\approx 1{,}0381\\ p&=(q-1)\cdot 100\approx 3{,}81\end{align*}$$<p>Der Zinssatz beträgt etwa $3{,}81\,\%$.</p>'
 
   - phase: mitmachen
     titel: 'Neue Zahlen: Laufzeit'

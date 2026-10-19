@@ -1,46 +1,54 @@
 # Warm-Up zu Check 10 „Intervallgrenzen mit Intervall-Wkt bestimmen“ (Binomialverteilung)
 # titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
 # Format und Leitlinien: _data/warmup/README.md
-# Aufbau wie Check 08/09, nur mit k: Bedingung aus dem Text, Richtung erkennen
-# (P(X≥k) fällt, P(X≤k) steigt mit k), Nachbarn-Paar bei ganzzahligem k, Startwert k≈n·p (Erwartungswert).
+# Aufbau wie Check 08/09, nur mit k: k lässt sich nur ausprobieren, P(X≥k) fällt, P(X≤k) steigt mit k,
+# Nachbarn-Paar bei ganzzahligem k, Startwert k≈n·p (Erwartungswert).
 # „größtes k“ = größtes k, für das die Bedingung gilt; „kleinstes k“ = kleinstes k, für das sie gilt.
 # Das Probieren läuft über Bcd(a;b;n;p); anders als bei Check 08/09 ändert sich je nach Ungleichung
 # die untere Grenze (Bcd(k;n;n;p) für „mindestens k“) oder die obere Grenze (Bcd(0;k;n;p) für „höchstens k“).
-# Alle vier Kombinationen (≥/≤ mit größtem/kleinstem k) kommen vor.
+# Kombinationen: Zuschauen (größtes/≥/≥, kleinstes/≤/≥), Mitmachen (kleinstes/≥/≤, größtes/≤/≤, kleinstes/≤/≥).
 # Zahlen nachgerechnet mit math.comb (exakte Bernoulli-Formel), gerundet auf 4 Nachkommastellen.
 
 check_id: stochastik__binomialverteilung__10
 abschluss: '<p>Im Training stehen $n$, $p$ und eine Bedingung wie $P(X\geq k)\geq 0{,}87$, und du suchst $k$. Die Zahlen sind größer, der Plan bleibt gleich: Starte bei $k\approx n\cdot p$, prüfe, ob die Bedingung gilt, und taste dich mit dem Taschenrechner Schritt für Schritt (bei großen Zahlen auch in größeren Sprüngen) an die Schwelle heran. Die Antwort sind <strong>zwei Nachbarn</strong>, bei denen die Bedingung kippt. Beim „größten $k$“ gibst du das größte $k$ an, bei dem sie gilt, beim „kleinsten $k$“ das kleinste. Achte bei $Bcd$ darauf, dass $k$ je nach Ungleichung an einer anderen Stelle steht: $Bcd(k;n;n;p)$ für „mindestens $k$“, $Bcd(0;k;n;p)$ für „höchstens $k$“.</p>'
 karten:
 
-  # ── Phase A: Orientierung ──────────────────────────────────
+  # ── Phase A: Idee ─────────────────────────────────────────
   - phase: orientierung
     titel: 'k lässt sich nur ausprobieren'
-    text: '<p>Ein Basketballspieler wirft $20$-mal, jeder Wurf ist mit $p=0{,}35$ ein Treffer. Wie viele Treffer $k$ kann man <strong>höchstens</strong> verlangen, damit die Wahrscheinlichkeit für <strong>mindestens $k$ Treffer</strong> mindestens $60\,\%$ beträgt?</p><p>Bisher war $k$ immer gegeben. Jetzt ist $k$ gesucht. Es steckt aber in den Grenzen einer Summe, und die Wahrscheinlichkeit wächst oder fällt in Sprüngen. Es gibt <strong>keine Formel</strong>, die man nach $k$ auflösen könnte.</p>'
+    text: '<p>Ein Basketballspieler wirft $20$-mal, jeder Wurf ist mit $p=0{,}35$ ein Treffer. Wie viele Treffer $k$ kann man <strong>höchstens</strong> verlangen, damit die Wahrscheinlichkeit für <strong>mindestens $k$ Treffer</strong> mindestens $60\,\%$ beträgt? Als Bedingung:</p>$$P(X\geq k)\geq 0{,}6$$<p>Bisher war $k$ immer gegeben, jetzt ist $k$ gesucht. Es steckt aber in den Grenzen einer Summe, und die Wahrscheinlichkeit ändert sich in Sprüngen. Es gibt <strong>keine Formel</strong>, die man nach $k$ auflösen könnte.</p>'
+    visual:
+      typ: liste
+      titel: 'P(X ≥ k) bei n = 20, p = 0,35'
+      eintraege:
+        - { id: k2, text: 'k = 2', gleichung: '$P(X\geq 2)\approx 0{,}9979$' }
+        - { id: k5, text: 'k = 5', gleichung: '$P(X\geq 5)\approx 0{,}8818$' }
+        - { id: k8, text: 'k = 8', gleichung: '$P(X\geq 8)\approx 0{,}3990$' }
+        - { id: k11, text: 'k = 11', gleichung: '$P(X\geq 11)\approx 0{,}0532$' }
     schritte:
+      - typ: aufdecken
+        frage: 'Was bleibt, ist <strong>Ausprobieren</strong>.'
+        knopf: 'Werte zeigen'
+        text: '<p>Man setzt verschiedene $k$ ein und lässt den Taschenrechner $P(X\geq k)$ berechnen. Rechts siehst du das für $k=2,5,8,11$.</p>'
+        zeige: { eintraege: [k2, k5, k8, k11] }
       - typ: auswahl
-        frage: 'Wie findet man dann das gesuchte $k$?'
+        frage: 'Schau dir die Werte an. Was passiert mit $P(X\geq k)$, wenn $k$ größer wird?'
         optionen:
-          - 'Man probiert ganze Zahlen $k$ aus, am besten ab dem Erwartungswert $n\cdot p$.'
-          - 'Man stellt die Bernoulli-Formel nach $k$ um.'
-          - 'Man rechnet $k=0{,}6\cdot n$.'
+          - 'Sie wird kleiner.'
+          - 'Sie wird größer.'
+          - 'Sie steigt erst und fällt dann.'
         korrekt: 0
-        hinweis: '$0{,}6$ ist eine Wahrscheinlichkeit, kein Anteil der Treffer. Die Wahrscheinlichkeit muss aber eine Schwelle erreichen.'
-        danach: '<p>Genau: Für jedes $k$ berechnest du mit dem Taschenrechner die Wahrscheinlichkeit und prüfst, ob die Bedingung aus dem Text gilt. Der Erwartungswert $\mu=n\cdot p$ ist ein guter Startwert. Dafür musst du die Bedingung zuerst richtig aufschreiben.</p>'
-      - typ: auswahl
-        frage: 'Welche Bedingung steckt im Text?'
-        optionen:
-          - '$P(X\geq k)\geq 0{,}6$'
-          - '$P(X\leq k)\geq 0{,}6$'
-          - '$P(X\geq k)\leq 0{,}6$'
-        korrekt: 0
-        hinweis: 'Die Wahrscheinlichkeit für „mindestens $k$ Treffer“ soll „mindestens $60\,\%$“ betragen: zweimal $\geq$.'
-        danach: '<p>Richtig. Gegeben sind $n=20$ und $p=0{,}35$. Gesucht ist das passende $k$.</p>'
+        hinweis: 'Lies die Werte rechts von oben nach unten.'
+        danach: '<p>Genau: Je größer $k$, desto weniger Ausgänge gehören zu „mindestens $k$“. Bei $P(X\leq k)$ ist es umgekehrt: Je größer $k$, desto mehr Ausgänge gehören dazu, die Wahrscheinlichkeit <strong>wächst</strong>.</p>'
+      - typ: aufdecken
+        frage: 'Wo liegt die Antwort?'
+        knopf: 'Zeigen'
+        text: '<p>Bei $k=5$ ist $P(X\geq k)$ noch größer als $0{,}6$, bei $k=8$ schon kleiner. Dazwischen <strong>kippt</strong> die Bedingung. Dort probiert man in Einerschritten weiter, bis man zwei Nachbarn findet: einen, bei dem die Bedingung gilt, und einen, bei dem sie nicht gilt.</p><p><strong>Merke:</strong></p><ul><li>$k$ lässt sich nicht ausrechnen, nur ausprobieren.</li><li>$P(X\geq k)$ fällt mit $k$, $P(X\leq k)$ wächst mit $k$.</li><li>Die Antwort liegt bei zwei Nachbarn, zwischen denen die Bedingung kippt.</li></ul>'
 
-  # ── Phase B: Vormachen ─────────────────────────────────────
+  # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
     titel: 'Größtes k: bis wann reicht es?'
-    text: '<p>Weiter mit den $20$ Würfen, $p=0{,}35$: Gesucht ist das größte $k$ mit $P(X\geq k)\geq 0{,}6$. Wir probieren $k$ aus.</p>'
+    text: '<p>Weiter mit den $20$ Würfen, $p=0{,}35$: Gesucht ist das größte $k$ mit $P(X\geq k)\geq 0{,}6$.</p><p>Im Training brauchst du einen guten <strong>Startwert</strong>: den Erwartungswert $\mu=n\cdot p=20\cdot 0{,}35=7$.</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 20, p = 0,35)'
@@ -48,18 +56,10 @@ karten:
         - { id: k7, text: 'k = 7', gleichung: '$P(X\geq 7)\approx 0{,}5834$<br>$0{,}5834&lt;0{,}6$: reicht nicht' }
         - { id: k6, text: 'k = 6', gleichung: '$P(X\geq 6)\approx 0{,}7546$<br>$0{,}7546\geq 0{,}6$: reicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Wenn $k$ größer wird: Was passiert mit $P(X\geq k)$?'
-        optionen:
-          - 'Sie wird kleiner.'
-          - 'Sie wird größer.'
-        korrekt: 0
-        hinweis: 'Je größer $k$, desto weniger Ausgänge gehören zu „mindestens $k$“.'
-        danach: '<p>Allgemein sinkt $P(X\geq k)$ mit $k$. Reicht ein $k$, reichen alle kleineren erst recht. Gesucht ist also das <strong>letzte</strong> $k$, bei dem es noch reicht.</p>'
       - typ: aufdecken
-        frage: '<strong>Startwert:</strong> Der Erwartungswert ist $\mu=n\cdot p=20\cdot 0{,}35=7$.'
+        frage: 'Zuerst den Startwert testen.'
         knopf: 'k = 7 testen'
-        text: '$$\begin{align*}&Bcd(7;20;20;0{,}35)\\&\approx 0{,}5834\end{align*}$$<p>Das ist kleiner als $0{,}6$, also reicht es nicht. Weiter mit kleinerem $k$.</p>'
+        text: '$$\begin{align*}&Bcd(7;20;20;0{,}35)\\&\approx 0{,}5834\end{align*}$$<p>Das ist kleiner als $0{,}6$. Weil $P(X\geq k)$ mit $k$ fällt, geht es mit kleinerem $k$ weiter.</p>'
         zeige: { eintraege: [k7] }
       - typ: auswahl
         frage: 'Wie lautet die Eingabe für $k=6$? Jetzt ändert sich die <strong>untere</strong> Grenze.'
@@ -79,11 +79,11 @@ karten:
           - '$k=5$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>größte</strong> $k$, bei dem $P(X\geq k)\geq 0{,}6$ gilt. Bei $k=7$ gilt es nicht mehr.'
-        danach: '<p>Man kann höchstens $6$ Treffer verlangen. Bei $k=7$ reicht es nicht mehr, bis $k=6$ schon.</p>'
+        danach: '<p>Man kann höchstens $6$ Treffer verlangen. Beim „größten $k$“ zählt der Nachbar, bei dem die Bedingung gerade noch gilt.</p>'
 
   - phase: vormachen
     titel: 'Kleinstes k: ab wann reicht es?'
-    text: '<p>Dieselben $20$ Würfe, $p=0{,}35$. Jetzt die andere Richtung: Wie viele Treffer $k$ muss man <strong>mindestens</strong> zulassen, damit die Wahrscheinlichkeit für <strong>höchstens $k$ Treffer</strong> mindestens $80\,\%$ beträgt?</p><p>Gesucht: das kleinste $k$ mit $P(X\leq k)\geq 0{,}8$.</p>'
+    text: '<p>Dieselben $20$ Würfe, $p=0{,}35$. Jetzt die andere Richtung: Wie viele Treffer $k$ muss man <strong>mindestens</strong> zulassen, damit die Wahrscheinlichkeit für <strong>höchstens $k$ Treffer</strong> mindestens $80\,\%$ beträgt?</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 20, p = 0,35)'
@@ -93,18 +93,15 @@ karten:
         - { id: k9, text: 'k = 9', gleichung: '$P(X\leq 9)\approx 0{,}8782$<br>$0{,}8782\geq 0{,}8$: reicht' }
     schritte:
       - typ: auswahl
-        frage: 'Wenn $k$ größer wird: Was passiert mit $P(X\leq k)$?'
+        frage: 'Welche Bedingung steckt im Text?'
         optionen:
-          - 'Sie wird größer.'
-          - 'Sie wird kleiner.'
+          - '$P(X\leq k)\geq 0{,}8$'
+          - '$P(X\geq k)\leq 0{,}8$'
+          - '$P(X\leq k)\leq 0{,}8$'
         korrekt: 0
-        hinweis: 'Je größer $k$, desto mehr Ausgänge gehören zu „höchstens $k$“.'
-        danach: '<p>Allgemein wächst $P(X\leq k)$ mit $k$. Reicht ein $k$, reichen alle größeren erst recht. Gesucht ist also das <strong>erste</strong> $k$, bei dem es reicht.</p>'
-      - typ: aufdecken
-        frage: 'Bei „höchstens $k$“ beginnt der Bereich bei $0$ und endet bei $k$. Jetzt ändert sich also die <strong>obere</strong> Grenze. Startwert ist wieder $\mu=7$.'
-        knopf: 'k = 7, 8 und 9 testen'
-        text: '$$\begin{align*}&Bcd(0;7;20;0{,}35)\\&\approx 0{,}6010\\&Bcd(0;8;20;0{,}35)\\&\approx 0{,}7624\\&Bcd(0;9;20;0{,}35)\\&\approx 0{,}8782\end{align*}$$<p>Erst bei $k=9$ ist die Bedingung $P(X\leq k)\geq 0{,}8$ erfüllt.</p>'
+        hinweis: '„Höchstens $k$ Treffer“ gehört zu $X$, „mindestens $80\,\%$“ zur Wahrscheinlichkeit. Das „mindestens“ vor dem Zulassen betrifft nur $k$.'
         zeige: { eintraege: [k7, k8, k9] }
+        danach: '<p>Richtig. Bei „höchstens $k$“ ändert sich die <strong>obere</strong> Grenze: $Bcd(0;k;20;0{,}35)$. Rechts ist ab dem Startwert $\mu=7$ probiert, bis die Bedingung kippt.</p>'
       - typ: auswahl
         frage: 'Welches $k$ ist die Antwort?'
         optionen:
@@ -113,22 +110,12 @@ karten:
           - '$k=10$'
         korrekt: 0
         hinweis: 'Gesucht ist das <strong>kleinste</strong> $k$, bei dem $P(X\leq k)\geq 0{,}8$ gilt. Bei $k=8$ gilt es noch nicht.'
-        danach: '<p>Man muss mindestens $9$ Treffer zulassen. Auch hier sind die Antwort zwei Nachbarn, aber diesmal zählt der <strong>rechte</strong>.</p>'
-      - typ: zuordnen
-        frage: 'Fasse zusammen: Was passt zusammen?'
-        titel_links: 'Situation'
-        titel_rechts: 'Folge'
-        paare:
-          - { links: '$P(X\geq k)$ bei größerem $k$', rechts: 'wird kleiner' }
-          - { links: '$P(X\leq k)$ bei größerem $k$', rechts: 'wird größer' }
-          - { links: 'gesucht: <strong>größtes</strong> $k$', rechts: 'größtes $k$, für das die Bedingung gilt' }
-          - { links: 'gesucht: <strong>kleinstes</strong> $k$', rechts: 'kleinstes $k$, für das die Bedingung gilt' }
-        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, also mit $\geq$ oder $\leq$ und dem angegebenen Wert.</p>'
+        danach: '<p>Man muss mindestens $9$ Treffer zulassen. Beim „kleinsten $k$“ zählt der Nachbar, bei dem die Bedingung zum ersten Mal gilt.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
     titel: 'Neue Zahlen: Quiz'
-    text: '<p>Ein Quiz hat $25$ Fragen, jede Antwort wird geraten, mit $p=0{,}2$ ist sie richtig. Wie viele richtige Antworten $k$ gibt es <strong>mindestens</strong>, wenn die Wahrscheinlichkeit für <strong>mindestens $k$</strong> richtige Antworten <strong>höchstens $25\,\%$</strong> beträgt? Gesucht ist das kleinste solche $k$.</p><p>Gegeben: $n=25$ und $p=0{,}2$. Die Tabelle ist schon fertig.</p>'
+    text: '<p>Ein Quiz hat $25$ Fragen, jede Antwort wird geraten, mit $p=0{,}2$ ist sie richtig. Gesucht ist der <strong>kleinste</strong> Wert von $k$, für den die Wahrscheinlichkeit für <strong>mindestens $k$</strong> richtige Antworten <strong>höchstens $25\,\%$</strong> beträgt.</p><p>Gegeben: $n=25$ und $p=0{,}2$. Die Tabelle ist schon fertig.</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 25, p = 0,2)'
@@ -137,24 +124,26 @@ karten:
         - { id: k6, text: 'k = 6', erledigt: true, gleichung: '$P(X\geq 6)\approx 0{,}3833$<br>$0{,}3833&gt;0{,}25$: gilt nicht' }
         - { id: k7, text: 'k = 7', erledigt: true, gleichung: '$P(X\geq 7)\approx 0{,}2200$<br>$0{,}2200\leq 0{,}25$: gilt' }
     schritte:
-      - typ: auswahl
-        frage: 'Größeres $k$: Wird $P(X\geq k)$ größer oder kleiner?'
-        optionen:
-          - 'kleiner'
-          - 'größer'
-        korrekt: 0
-        hinweis: '$P(X\geq k)$ sinkt mit $k$.'
-        danach: '<p>Die Bedingung $P(X\geq k)\leq 0{,}25$ gilt also erst für <strong>große</strong> $k$. Gesucht ist das kleinste $k$, für das sie gilt.</p>'
+      - typ: zuordnen
+        frage: 'Bevor du selbst rechnest: Was passt zusammen?'
+        titel_links: 'Situation'
+        titel_rechts: 'Folge'
+        paare:
+          - { links: '$P(X\geq k)$ bei größerem $k$', rechts: 'wird kleiner' }
+          - { links: '$P(X\leq k)$ bei größerem $k$', rechts: 'wird größer' }
+          - { links: 'gesucht: <strong>größtes</strong> $k$', rechts: 'größtes $k$, für das die Bedingung gilt' }
+          - { links: 'gesucht: <strong>kleinstes</strong> $k$', rechts: 'kleinstes $k$, für das die Bedingung gilt' }
+        danach: '<p>Die Bedingung prüfst du immer genau so, wie sie in der Aufgabe steht, auch wenn dort $\leq$ steht. Rechts ist das schon geschehen.</p>'
       - typ: eingabe
         frage: 'Lies aus der Tabelle das gesuchte $k$ ab.'
         felder:
           - { label: '$k=$', loesung: 7, aria: 'gesuchtes k' }
-        hinweis: 'Bei $k=6$ gilt die Bedingung noch nicht. Ab welchem $k$ gilt sie?'
-        danach: '<p>Es gibt mindestens $7$ richtige Antworten.</p>'
+        hinweis: 'Gesucht ist das kleinste $k$, für das die Bedingung gilt. Bei $k=6$ gilt sie noch nicht.'
+        danach: '<p>Der kleinste Wert ist $k=7$.</p>'
 
   - phase: mitmachen
     titel: 'Neue Zahlen: Umfrage'
-    text: '<p>$30$ Personen werden befragt, jede ist mit $p=0{,}5$ Vereinsmitglied. Wie viele Mitglieder $k$ kann man <strong>höchstens</strong> annehmen, damit die Wahrscheinlichkeit für <strong>höchstens $k$</strong> Mitglieder <strong>höchstens $30\,\%$</strong> beträgt?</p><p>Gegeben: $n=30$ und $p=0{,}5$. Gesucht: das größte $k$ mit $P(X\leq k)\leq 0{,}3$.</p>'
+    text: '<p>$30$ Personen werden befragt, jede ist mit $p=0{,}5$ Vereinsmitglied. Gesucht ist der <strong>größte</strong> Wert von $k$, für den die Wahrscheinlichkeit für <strong>höchstens $k$</strong> Mitglieder <strong>höchstens $30\,\%$</strong> beträgt.</p><p>Gegeben: $n=30$ und $p=0{,}5$.</p>'
     visual:
       typ: liste
       titel: 'Probieren (n = 30, p = 0,5)'
@@ -162,22 +151,6 @@ karten:
         - { id: k13, text: 'k = 13', gleichung: '$P(X\leq 13)\approx 0{,}2923$<br>$0{,}2923\leq 0{,}3$: gilt' }
         - { id: k14, text: 'k = 14', gleichung: '$P(X\leq 14)\approx 0{,}4278$<br>$0{,}4278&gt;0{,}3$: gilt nicht' }
     schritte:
-      - typ: auswahl
-        frage: 'Wird $P(X\leq k)$ mit größerem $k$ größer oder kleiner?'
-        optionen:
-          - 'größer'
-          - 'kleiner'
-        korrekt: 0
-        hinweis: '$P(X\leq k)$ wächst mit $k$.'
-        danach: '<p>Die Bedingung $P(X\leq k)\leq 0{,}3$ gilt also nur für <strong>kleine</strong> $k$.</p>'
-      - typ: auswahl
-        frage: 'Welches $k$ ist bei „höchstens“ gesucht?'
-        optionen:
-          - 'das größte $k$ mit $P(X\leq k)\leq 0{,}3$'
-          - 'das kleinste $k$ mit $P(X\leq k)\leq 0{,}3$'
-          - 'das größte $k$ mit $P(X\leq k)\geq 0{,}3$'
-        korrekt: 0
-        hinweis: '„Höchstens“ heißt größtes $k$, und die Bedingung steht so in der Aufgabe: $\leq 0{,}3$.'
       - typ: eingabe
         frage: 'Die Nachbarn sind $k=13$ und $k=14$. Rechne mit $Bcd(0;k;30;0{,}5)$, auf 4 Nachkommastellen gerundet.'
         layout: zeile
@@ -189,8 +162,8 @@ karten:
         frage: 'Welches $k$ ist die Antwort?'
         felder:
           - { label: '$k=$', loesung: 13, aria: 'gesuchtes k' }
-        hinweis: 'Bei $k=13$ gilt die Bedingung noch, bei $k=14$ nicht mehr. Gesucht ist das größte $k$, für das sie gilt.'
-        danach: '<p>Man kann höchstens $13$ Mitglieder annehmen.</p>'
+        hinweis: 'Die Bedingung lautet $P(X\leq k)\leq 0{,}3$. Bei $k=13$ gilt sie noch, bei $k=14$ nicht mehr. Gesucht ist das größte $k$.'
+        danach: '<p>Der größte Wert ist $k=13$.</p>'
 
   - phase: mitmachen
     titel: 'Selbst herantasten'
@@ -205,15 +178,12 @@ karten:
         - { id: k14, text: 'k = 14', gleichung: '$P(X\leq 14)\approx 0{,}9456$<br>$0{,}9456\geq 0{,}9$: reicht' }
     schritte:
       - typ: eingabe
-        frage: '<strong>Startwert:</strong> Bei welchem $k$ liegt der Erwartungswert? Rechne $n\cdot p$.'
+        frage: '<strong>Startwert:</strong> Berechne $k=n\cdot p$ und teste ihn.'
+        layout: zeile
         felder:
           - { label: '$k=$', loesung: 10, aria: 'Startwert k' }
-        hinweis: '$40\cdot 0{,}25$'
-      - typ: eingabe
-        frage: 'Teste den Startwert. Berechne $P(X\leq 10)$ mit $Bcd(0;10;40;0{,}25)$.'
-        felder:
-          - { label: '$P(X\leq 10)\approx$', loesung: 0.5839, aria: 'P für k gleich 10', zeige: { eintraege: [k10] } }
-        hinweis: 'Die untere Grenze ist $0$, die obere ist $k=10$.'
+          - { label: '$P(X\leq k)\approx$', loesung: 0.5839, aria: 'P für den Startwert', zeige: { eintraege: [k10] } }
+        hinweis: '$k=40\cdot 0{,}25$. Dann $Bcd(0;k;40;0{,}25)$: Bei „höchstens $k$“ steht $k$ an zweiter Stelle.'
       - typ: auswahl
         frage: 'Die Wahrscheinlichkeit ist noch zu klein ($0{,}5839&lt;0{,}9$). Wie geht es weiter?'
         optionen:
@@ -223,15 +193,9 @@ karten:
         korrekt: 0
         hinweis: '$P(X\leq k)$ wächst mit $k$. Sie soll noch größer werden.'
       - typ: eingabe
-        frage: 'Probiere $k=12$.'
-        felder:
-          - { label: '$P(X\leq 12)\approx$', loesung: 0.8209, aria: 'P für k gleich 12', zeige: { eintraege: [k12] } }
-        hinweis: 'Gib $Bcd(0;12;40;0{,}25)$ ein.'
-        danach: '<p>Noch zu klein. Probiere weiter nach oben, bis die Bedingung $P(X\leq k)\geq 0{,}9$ zum ersten Mal gilt.</p>'
-      - typ: eingabe
-        frage: 'Welches $k$ ist die Antwort?'
+        frage: 'Taste dich heran. Welches $k$ ist die Antwort?'
         felder:
           - { label: '$k=$', loesung: 14, aria: 'gesuchtes k' }
-        hinweis: 'Taste dich in Schritten von $1$ über $k=12$ hinaus. Gesucht ist das kleinste $k$ mit $P(X\leq k)\geq 0{,}9$.'
-        zeige: { eintraege: [k13, k14] }
-        danach: '<p>Bei $k=13$ ist $P\approx 0{,}8968$ noch zu klein, bei $k=14$ ist $P\approx 0{,}9456$. Man muss mindestens $14$ Gutscheine zulassen.</p>'
+        hinweis: 'Probiere $k=11$, $12$, … Gesucht ist das kleinste $k$ mit $P(X\leq k)\geq 0{,}9$.'
+        zeige: { eintraege: [k12, k13, k14] }
+        danach: '<p>Bei $k=12$ ist $P\approx 0{,}8209$ und bei $k=13$ ist $P\approx 0{,}8968$, beides noch zu klein. Bei $k=14$ ist $P\approx 0{,}9456$. Man muss mindestens $14$ Gutscheine zulassen.</p>'

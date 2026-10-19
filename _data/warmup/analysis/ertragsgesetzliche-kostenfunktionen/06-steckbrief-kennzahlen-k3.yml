@@ -3,7 +3,7 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: analysis__ertragsgesetzliche-kostenfunktionen__06
-abschluss: '<p>Im Training bekommst du vier Informationen und bestimmst $a$, $b$, $c$ und $d$. Der Plan bleibt immer gleich: Jede Information wird zu einer Gleichung, dann löst du das Gleichungssystem mit dem Taschenrechner.</p>'
+abschluss: '<p>Im Training bekommst du vier Informationen und bestimmst $a$, $b$, $c$ und $d$. Der Plan bleibt immer gleich: Jede Information wird zu einer Gleichung, dann löst du das Gleichungssystem mit dem Taschenrechner. Selten kommt die Wendestelle vor: „Die Wendestelle beträgt 4 ME“ wird zu $K^{\prime\prime}(4)=0$.</p>'
 karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
@@ -21,28 +21,23 @@ karten:
       xAchse: 'x in ME'
       yAchse: 'K in GE'
       punkte:
-        - { id: fix, x: 0, y: 48, label: 'Fixkosten: K(0) = 48', ax: 70, ay: 24 }
-        - { id: k2, x: 2, y: 88, label: 'K(2) = 88', ax: 30, ay: -40 }
+        - { id: fix, x: 0, y: 48, label: '(0 | 48)', ax: 50, ay: 24 }
+        - { id: k2, x: 2, y: 88, label: '(2 | 88)', ax: 30, ay: -40 }
     schritte:
-      - typ: auswahl
-        frage: 'Was ist bei einer solchen Steckbriefaufgabe gesucht?'
-        optionen:
-          - 'Die Kennzahlen einer gegebenen Kostenfunktion'
-          - 'Die Gleichung der Kostenfunktion'
-          - 'Die Menge mit den geringsten Kosten'
-        korrekt: 1
-        hinweis: 'Die Kennzahlen stehen schon im Aufgabentext.'
-        danach: '<p>Genau. Gesucht sind die vier Zahlen $a$, $b$, $c$ und $d$.</p>'
-      - typ: auswahl
-        frage: 'Wie viele Informationen brauchst du, um $a$, $b$, $c$ und $d$ festzulegen?'
-        optionen:
-          - 'Zwei'
-          - 'Drei'
-          - 'Vier'
-        korrekt: 2
-        hinweis: 'Zähle die Unbekannten.'
-        danach: '<p>Richtig: vier Unbekannte, also vier Gleichungen. Zwei Informationen kannst du sogar direkt im Graphen sehen.</p>'
+      - typ: aufdecken
+        frage: 'Wie kommt man an die Funktion?'
+        knopf: 'Plan zeigen'
+        text: '<p>Gesucht sind die vier Zahlen $a$, $b$, $c$ und $d$. Für vier Unbekannte braucht man <strong>vier Gleichungen</strong>. Deshalb stehen in jeder Aufgabe vier Informationen, und <strong>jede Information wird zu einer Gleichung</strong>. Das Gleichungssystem löst du dann mit dem Taschenrechner.</p>'
         zeige: { punkte: [fix, k2] }
+      - typ: auswahl
+        frage: 'Zwei Informationen siehst du im Graphen. Der Punkt $(2\mid 88)$ liegt auf dem Graphen von $K$. Welche Gleichung gehört dazu?'
+        optionen:
+          - '$K(2)=88$'
+          - '$K(88)=2$'
+          - '$K''(2)=88$'
+        korrekt: 0
+        hinweis: 'Der $x$-Wert steht in der Klammer, der $y$-Wert ist der Funktionswert.'
+        danach: '<p>Genau: Die Kosten bei $2$ ME betragen $88$ GE. Ebenso wird aus dem Punkt $(0\mid 48)$, also den Fixkosten, die Gleichung $K(0)=48$.</p>'
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
@@ -62,15 +57,10 @@ karten:
         knopf: 'Werkzeuge zeigen'
         text: '<p>Grenzkosten:</p>$$K''(x)=3ax^2+2bx+c$$<p>Variable Stückkosten und ihre Ableitung:</p>$$\begin{align*}k_v(x)&=ax^2+bx+c\\ k_v''(x)&=2ax+b\end{align*}$$'
       - typ: aufdecken
-        frage: '<strong>Fixkosten</strong> – das sind die Kosten bei $0$ ME.'
-        knopf: 'Gleichung zeigen'
-        text: '$$\begin{align*}K(0)&=48\\ a\cdot 0^3+b\cdot 0^2+c\cdot 0+d&=48\\ d&=48\end{align*}$$'
-        zeige: { eintraege: [fix] }
-      - typ: aufdecken
-        frage: '<strong>Kosten bei 2 ME</strong> – setze $x=2$ in $K$ ein.'
-        knopf: 'Gleichung zeigen'
-        text: '$$\begin{align*}K(2)&=88\\ a\cdot 2^3+b\cdot 2^2+c\cdot 2+d&=88\\ 8a+4b+2c+d&=88\end{align*}$$'
-        zeige: { eintraege: [k2] }
+        frage: '<strong>Fixkosten</strong> und <strong>Kosten bei 2 ME</strong>: wie eben $x$ in $K$ einsetzen.'
+        knopf: 'Gleichungen zeigen'
+        text: '$$\begin{align*}K(0)&=48\\ d&=48\end{align*}$$$$\begin{align*}K(2)&=88\\ a\cdot 2^3+b\cdot 2^2+c\cdot 2+d&=88\\ 8a+4b+2c+d&=88\end{align*}$$'
+        zeige: { eintraege: [fix, k2] }
       - typ: auswahl
         frage: '<strong>Grenzkosten bei 1 ME</strong> – welche Funktion brauchst du?'
         optionen:
@@ -111,21 +101,13 @@ karten:
     schritte:
       - typ: aufdecken
         knopf: 'Lösen'
-        text: '$$\begin{align*}8a+4b+2c+d&=88\\ 12a+b&=0\\ d&=48\\ 3a+2b+c&=19{,}5\end{align*}$$<p>Mit dem Taschenrechner oder dem Gauß-Algorithmus erhältst du $a=0{,}5$, $b=-6$, $c=30$, $d=48$, also</p>$$K(x)=0{,}5x^3-6x^2+30x+48$$'
-      - typ: eingabe
-        frage: '<strong>Probe</strong> – stimmen die Kosten bei 2 ME? $$K(2)=0{,}5\cdot 8-6\cdot 4+30\cdot 2+48$$'
-        felder:
-          - { label: '$K(2)=$', loesung: 88, einheit: 'GE', zeige: { punkte: [fix, k2] } }
-        hinweis: 'Rechne Summand für Summand: $4-24+60+48$.'
-        danach: '<p>Passt – der Graph geht durch die gegebenen Punkte.</p>'
+        text: '$$\begin{align*}8a+4b+2c+d&=88\\ 12a+b&=0\\ d&=48\\ 3a+2b+c&=19{,}5\end{align*}$$<p>Mit dem Taschenrechner oder dem Gauß-Algorithmus erhältst du $a=0{,}5$, $b=-6$, $c=30$, $d=48$, also</p>$$K(x)=0{,}5x^3-6x^2+30x+48$$<p>Der Graph geht wie verlangt durch die gegebenen Punkte.</p>'
+        zeige: { punkte: [fix, k2] }
 
   - phase: vormachen
     titel: 'Stückkosten und Betriebsoptimum'
-    text: '<p>Außerdem kommen die Stückkosten $k(x)=\frac{K(x)}{x}$ vor.</p>'
+    text: '<p>Außerdem kommen die Stückkosten $k(x)=\frac{K(x)}{x}$ vor:</p>$$\begin{align*}k(x)&=ax^2+bx+c+\frac{d}{x}\\ k''(x)&=2ax+b-\frac{d}{x^2}\end{align*}$$'
     schritte:
-      - typ: aufdecken
-        knopf: 'Funktionen zeigen'
-        text: '$$\begin{align*}k(x)&=ax^2+bx+c+\frac{d}{x}\\ k''(x)&=2ax+b-\frac{d}{x^2}\end{align*}$$'
       - typ: aufdecken
         frage: '<strong>Die Stückkosten bei 2 ME betragen 30 GE/ME.</strong>'
         knopf: 'Gleichung zeigen'
@@ -134,7 +116,7 @@ karten:
         frage: '<strong>Das Betriebsoptimum liegt bei 4 ME.</strong> Dort sind die Stückkosten minimal. Welche Gleichung passt?'
         optionen:
           - '$k(4)=0$'
-          - '$k''(4)=0\quad$ oder $\quadk(4)=K''(4)$'
+          - '$k''(4)=0$ oder $k(4)=K''(4)$'
           - '$k_v''(4)=0$'
         korrekt: 1
         hinweis: 'Betriebsoptimum gehört zu den Stückkosten $k$, Betriebsminimum zu $k_v$.'
@@ -168,21 +150,16 @@ karten:
 
   - phase: mitmachen
     titel: 'Neuer Steckbrief – du übersetzt'
-    text: '<p>Gesucht ist wieder $K(x)=ax^3+bx^2+cx+d$, mit $k_v(x)=ax^2+bx+c$ und $k_v''(x)=2ax+b$.</p>'
+    text: '<p>Gesucht ist wieder $K(x)=ax^3+bx^2+cx+d$, mit $k_v(x)=ax^2+bx+c$ und $k_v''(x)=2ax+b$. Die Fixkosten liefern wie immer sofort $d=100$.</p>'
     visual:
       typ: liste
       titel: 'Steckbrief'
       eintraege:
-        - { id: fix, text: 'Die Fixkosten betragen 100 GE.', gleichung: '$d=100$' }
+        - { id: fix, text: 'Die Fixkosten betragen 100 GE.', gleichung: '$d=100$', erledigt: true }
         - { id: kv, text: 'Die variablen Stückkosten bei 4 ME betragen 21 GE/ME.', gleichung: '$16a+4b+c=21$' }
         - { id: bm, text: 'Das Betriebsminimum liegt bei 8 ME.', gleichung: '$16a+b=0$' }
         - { id: kpu, text: 'Die kurzfristige Preisuntergrenze beträgt 13 GE/ME.', gleichung: '$64a+8b+c=13$' }
     schritte:
-      - typ: eingabe
-        frage: '<strong>Fixkosten</strong> – der Ansatz steht da: $K(0)=100$.'
-        felder:
-          - { label: '$d=$', loesung: 100, zeige: { eintraege: [fix] } }
-        hinweis: 'Bei $x=0$ fallen alle Summanden außer $d$ weg.'
       - typ: auswahl
         frage: '<strong>Variable Stückkosten bei 4 ME: 21 GE/ME</strong> – welche Bedingung?'
         optionen:
@@ -226,21 +203,14 @@ karten:
           - { einheit: '$a\;+$', loesung: 16 }
           - { einheit: '$b\;=\;0$', loesung: 1, zeige: { eintraege: [bm] } }
         hinweis: '$k_v''(8)=2a\cdot 8+b$.'
-      - typ: auswahl
-        frage: '<strong>Kurzfristige Preisuntergrenze 13 GE/ME</strong> – welche Bedingung?'
-        optionen:
-          - '$k_v(8)=13$'
-          - '$k_v(13)=8$'
-          - '$k_v''(13)=0$'
-        korrekt: 0
-        hinweis: 'Die KPU ist der Wert von $k_v$ an der Stelle des Betriebsminimums.'
       - typ: eingabe
+        frage: '<strong>Kurzfristige Preisuntergrenze 13 GE/ME</strong> – jetzt ohne Vorgabe: Stelle die Gleichung auf und trag die Vorfaktoren ein.'
         layout: zeile
         felder:
           - { einheit: '$a\;+$', loesung: 64 }
           - { einheit: '$b\;+$', loesung: 8 }
           - { einheit: '$c\;=\;13$', loesung: 1, zeige: { eintraege: [kpu] } }
-        hinweis: 'Setze $x=8$ in $k_v(x)=ax^2+bx+c$ ein.'
+        hinweis: 'Die KPU ist der Wert von $k_v$ an der Stelle des Betriebsminimums: $k_v(8)=13$. Setze $x=8$ in $k_v(x)=ax^2+bx+c$ ein.'
 
   - phase: mitmachen
     titel: 'Jetzt lösen'
@@ -263,4 +233,4 @@ karten:
           - { einheit: '$x\;+$', loesung: 45 }
           - { loesung: 100 }
         hinweis: '$d=100$ kennst du schon. Aus $16a+b=0$ folgt $b=-16a$ – oder du gibst die drei übrigen Gleichungen in den Taschenrechner ein.'
-        danach: '$$K(x)=0{,}5x^3-8x^2+45x+100$$<p>Probe: $k_v(8)=0{,}5\cdot 64-8\cdot 8+45=13$ ✓</p>'
+        danach: '$$K(x)=0{,}5x^3-8x^2+45x+100$$<p>Probe:</p>$$\begin{align*}k_v(8)&=0{,}5\cdot 64-8\cdot 8+45\\ &=13\ ✓\end{align*}$$'

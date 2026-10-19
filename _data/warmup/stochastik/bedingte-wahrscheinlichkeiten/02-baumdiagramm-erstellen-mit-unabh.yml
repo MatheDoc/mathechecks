@@ -3,7 +3,7 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: stochastik__bedingte-wahrscheinlichkeiten__02
-abschluss: '<p>Im Training stehen die Bäume in einem Sachkontext. Achte im Text auf den Satz zur Unabhängigkeit, runde wie angegeben und trag die Werte in die Felder ① bis ⑩ ein.</p>'
+abschluss: '<p>Im Training stehen die Bäume in einem Sachkontext. Achte im Text auf den Satz zur Unabhängigkeit, runde wie angegeben (auf 4 Nachkommastellen) und trag die Werte in die Felder ① bis ⑩ ein.</p>'
 karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
@@ -18,24 +18,17 @@ karten:
       pbna: 0.3
       dezimal: 2
     schritte:
+      - typ: text
+        text: '<p>Die erste Stufe teilt die Gäste nach der Zahlungsart: $A$ oder $\overline{A}$. Die zweite Stufe zeigt, wie viele davon Kaffee bestellen: oben unter den Kartenzahlern ($P_A(B)$), unten unter den übrigen Gästen ($P_{\overline{A}}(B)$).</p>'
       - typ: auswahl
-        frage: 'Vergleiche die zweite Stufe (rechts). Was fällt dir auf?'
+        frage: 'Vergleiche die zweite Stufe oben und unten. Was fällt dir auf?'
         optionen:
           - 'Oben und unten stehen dieselben Wahrscheinlichkeiten für $B$ und $\overline{B}$.'
           - 'Alle Wahrscheinlichkeiten im Baum sind gleich groß.'
           - 'Die vier Endwahrscheinlichkeiten ergeben zusammen $2$.'
         korrekt: 0
         hinweis: 'Schau nur auf die vier Äste der zweiten Stufe.'
-        danach: '<p>Genau: $P_A(B)=P_{\overline{A}}(B)=0{,}3$. Ob $A$ eintritt oder nicht, ändert nichts an der Wahrscheinlichkeit für $B$. $A$ und $B$ heißen dann <strong>stochastisch unabhängig</strong>.</p>'
-      - typ: auswahl
-        frage: 'Woran erkennst du Unabhängigkeit in einer Aufgabe?'
-        optionen:
-          - 'An einem Satz wie „… hat keinen Einfluss auf …“'
-          - 'Daran, dass $P(A)$ kleiner als $0{,}5$ ist'
-          - 'Daran, dass das Baumdiagramm zwei Stufen hat'
-        korrekt: 0
-        hinweis: 'Lies den Aufgabentext oben noch einmal.'
-        danach: '<p>Richtig. Steht so ein Satz im Text, darfst du die Wahrscheinlichkeiten der zweiten Stufe von einem Ast auf den anderen übertragen. Genau darum geht es in diesem Check.</p>'
+        danach: '<p>Genau: $P_A(B)=P_{\overline{A}}(B)=0{,}3$. Mit oder ohne Karte, der Anteil der Kaffeebestellungen bleibt gleich. $A$ und $B$ heißen dann <strong>stochastisch unabhängig</strong>.</p><p><strong>Merke:</strong></p><ul><li>Ein Satz wie „… hat keinen Einfluss auf …“ im Text bedeutet: $A$ und $B$ sind unabhängig.</li><li>Dann sieht die zweite Stufe oben und unten gleich aus. Du darfst ihre Werte von einem Ast auf den anderen übertragen.</li></ul>'
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
@@ -55,15 +48,10 @@ karten:
         text: '$$①=0{,}12+0{,}28=0{,}4$$'
         zeige: { slots: [1] }
       - typ: aufdecken
-        frage: '<strong>③</strong> – Pfadmultiplikationsregel rückwärts: $①\cdot ③=⑦$.'
+        frage: '<strong>③</strong> – Pfadmultiplikationsregel rückwärts: $①\cdot ③=⑦$. Danach <strong>④</strong>: An jedem Knoten ergeben die Äste zusammen $1$.'
         knopf: 'Rechnung zeigen'
-        text: '$$③=\frac{0{,}12}{0{,}4}=0{,}3$$'
-        zeige: { slots: [3] }
-      - typ: aufdecken
-        frage: '<strong>④</strong> – An jedem Knoten ergeben die Äste zusammen $1$.'
-        knopf: 'Rechnung zeigen'
-        text: '$$④=1-0{,}3=0{,}7$$'
-        zeige: { slots: [4] }
+        text: '$$\begin{align*}③&=\frac{0{,}12}{0{,}4}=0{,}3\\ ④&=1-0{,}3=0{,}7\end{align*}$$'
+        zeige: { slots: [3, 4] }
       - typ: auswahl
         frage: '<strong>⑤</strong> – Jetzt kommt die Unabhängigkeit ins Spiel. Was gilt?'
         optionen:
@@ -139,15 +127,11 @@ karten:
         hinweis: 'Nutze zuerst die Unabhängigkeit.'
         zeige: { slots: [3] }
       - typ: eingabe
-        frage: '<strong>④</strong> – Gegenwahrscheinlichkeit am Knoten $A$.'
+        frage: 'Jetzt rückwärts zur ersten Stufe: erst <strong>④</strong> als Gegenwahrscheinlichkeit, dann <strong>①</strong> mit $①\cdot ④=⑧$.'
         felder:
           - { label: '$④=$', loesung: 0.4, zeige: { slots: [4] } }
-        hinweis: '③ und ④ ergeben zusammen $1$.'
-      - typ: eingabe
-        frage: '<strong>①</strong> – Pfadmultiplikationsregel rückwärts: $①\cdot ④=⑧$.'
-        felder:
           - { label: '$①=$', loesung: 0.3, zeige: { slots: [1] } }
-        hinweis: 'Teile $⑧=0{,}12$ durch $④=0{,}4$.'
+        hinweis: '③ und ④ ergeben zusammen $1$. Teile dann $⑧=0{,}12$ durch $④$.'
       - typ: eingabe
         frage: 'Den Rest schaffst du allein.'
         felder:

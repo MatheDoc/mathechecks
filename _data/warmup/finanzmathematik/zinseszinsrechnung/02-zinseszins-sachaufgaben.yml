@@ -3,36 +3,26 @@
 # Format und Leitlinien: _data/warmup/README.md
 
 check_id: finanzmathematik__zinseszinsrechnung__02
-abschluss: '<p>Im Training bekommst du vier Fragen zu einer Situation. In gemischter Reihenfolge ist je einmal $K_n$, $K_0$, $p$ und $n$ gesucht. Geh immer gleich vor: gegebene Werte notieren, im Fragesatz die gesuchte Größe erkennen, dann in $K_n=K_0\cdot q^n$ einsetzen und auflösen.</p><p>Vorsicht bei „heute“ und „verfügen“: Diese Wörter allein verraten die Größe nicht. Entscheidend ist, welcher Betrag früher ($K_0$) und welcher später ($K_n$) liegt. Beträge trägst du ohne Tausenderpunkt ein.</p>'
+abschluss: '<p>Im Training bekommst du vier Fragen zu einer Situation. In gemischter Reihenfolge ist je einmal $K_n$, $K_0$, $p$ und $n$ gesucht. Geh immer gleich vor: gegebene Werte notieren, im Fragesatz die gesuchte Größe erkennen, dann in $K_n=K_0\cdot q^n$ einsetzen und auflösen.</p><p>Vorsicht bei „heute“, „verfügen“ und „benötigt“: Diese Wörter allein verraten die Größe nicht. Entscheidend ist, welcher Betrag früher ($K_0$) und welcher später ($K_n$) liegt. Eine Zahlung, die in einigen Jahren geleistet werden soll, ist $K_n$.</p><p>Runde erst am Ende auf 2 Nachkommastellen. Den Zinssatz gibst du in Prozent an, Beträge ohne Tausenderpunkt.</p>'
 karten:
 
   # ── Phase A: Orientierung ──────────────────────────────────
   - phase: orientierung
     titel: 'Was war früher, was kommt später?'
-    text: '<p>In Sachaufgaben stehen keine Formelzeichen. Du musst selbst herausfinden, welcher Betrag $K_0$ und welcher $K_n$ ist.</p><p><em>Herr Albers hat vor 9 Jahren $6\,000$ € angelegt. Heute beträgt sein Guthaben $7\,830$ €.</em></p>'
+    text: '<p>In Sachaufgaben stehen keine Formelzeichen. Bevor du in $K_n=K_0\cdot q^n$ einsetzt, musst du selbst herausfinden, welcher Betrag $K_0$ und welcher $K_n$ ist.</p><p><em>Herr Albers hat vor 9 Jahren $6\,000$ € angelegt. Heute beträgt sein Guthaben $7\,830$ €.</em></p>'
     visual:
       typ: liste
-      titel: 'Zeitlich geordnet'
+      titel: 'Früher oder später?'
       eintraege:
-        - { id: k0, text: 'vor 9 Jahren: $6\,000$ € angelegt', gleichung: '$K_0=6\,000$ €' }
+        - { id: k0, text: 'Albers, vor 9 Jahren: $6\,000$ € angelegt', gleichung: '$K_0=6\,000$ €' }
         - { id: n, text: '9 Jahre Verzinsung', gleichung: '$n=9$' }
-        - { id: kn, text: 'heute: Guthaben $7\,830$ €', gleichung: '$K_n=7\,830$ €' }
+        - { id: kn, text: 'Albers, heute: Guthaben $7\,830$ €', gleichung: '$K_n=7\,830$ €' }
+        - { id: celik, text: 'Celik, heute: $6\,000$ € angelegt', gleichung: '$K_0=6\,000$ €' }
     schritte:
-      - typ: auswahl
-        frage: 'Ist „heute“ hier der Anfang oder das Ende der Geldanlage?'
-        optionen:
-          - 'das Ende, angelegt wurde ja vor 9 Jahren'
-          - 'der Anfang, „heute“ ist immer $K_0$'
-        korrekt: 0
-        hinweis: 'Das Geld liegt schon seit 9 Jahren auf dem Konto.'
-      - typ: auswahl
-        frage: 'Welcher Betrag ist also das Anfangskapital $K_0$?'
-        optionen:
-          - '$6\,000$ €'
-          - '$7\,830$ €'
-        korrekt: 0
-        hinweis: '$K_0$ ist der Betrag am Anfang der Anlage, also der frühere Betrag.'
-        danach: '<p>Richtig. Die $7\,830$ € von heute sind das Endkapital $K_n$, dazwischen liegen $n=9$ Jahre.</p>'
+      - typ: aufdecken
+        frage: 'Ordne die Beträge zeitlich.'
+        knopf: 'Zeitlich ordnen'
+        text: '<p>Angelegt wurde <strong>vor 9 Jahren</strong>. Die $6\,000$ € sind der frühere Betrag, also das Anfangskapital $K_0$.</p><p><strong>Heute</strong> ist hier das Ende der Anlage. Die $7\,830$ € sind der spätere Betrag, also das Endkapital $K_n$. Dazwischen liegen $n=9$ Jahre.</p>'
         zeige: { eintraege: [k0, n, kn] }
       - typ: auswahl
         frage: 'Anders: <em>Frau Celik legt heute $6\,000$ € an.</em> Welche Größe sind diesmal die $6\,000$ €?'
@@ -40,8 +30,9 @@ karten:
           - '$K_0$'
           - '$K_n$'
         korrekt: 0
-        hinweis: 'Die Anlage beginnt heute.'
-        danach: '<p><strong>Merke:</strong> Nicht das Wort „heute“ entscheidet, sondern die Reihenfolge. Der <strong>frühere</strong> Betrag ist $K_0$, der <strong>spätere</strong> ist $K_n$, und $n$ ist die Zeit dazwischen.</p>'
+        hinweis: 'Bei Frau Celik beginnt die Anlage heute. Die Zinsen kommen erst später dazu.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>Nicht das Wort „heute“ entscheidet, sondern die Reihenfolge: Der <strong>frühere</strong> Betrag ist $K_0$, der <strong>spätere</strong> ist $K_n$, und $n$ ist die Zeit dazwischen.</li><li>Welche Größe gesucht ist, verrät der <strong>Fragesatz</strong> am Ende.</li></ul>'
+        zeige: { eintraege: [celik] }
 
   # ── Phase B: Vormachen ─────────────────────────────────────
   - phase: vormachen
@@ -69,11 +60,8 @@ karten:
           - '$p$, der Zinssatz'
         korrekt: 0
         hinweis: 'Gefragt ist ein Betrag nach 7 Jahren, also am Ende der Anlage.'
+        danach: '<p><strong>Schritt 3:</strong> einsetzen und ausrechnen.</p>$$\begin{align*}K_7&=12\,000\cdot 1{,}025^7\\ &\approx 14\,264{,}23\,\text{€}\end{align*}$$<p>Nach 7 Jahren kann der Verein über rund $14\,264{,}23$ € verfügen.</p>'
         zeige: { eintraege: [kn] }
-      - typ: aufdecken
-        frage: '<strong>Schritt 3:</strong> einsetzen und ausrechnen.'
-        knopf: 'Rechnung zeigen'
-        text: '$$\begin{align*}K_7&=12\,000\cdot 1{,}025^7\\ &\approx 14\,264{,}23\,\text{€}\end{align*}$$<p>Nach 7 Jahren kann der Verein über rund $14\,264{,}23$ € verfügen.</p>'
 
   - phase: vormachen
     titel: 'Wie lange dauert es?'
@@ -87,33 +75,21 @@ karten:
         - { id: kn, text: 'Endkapital', gleichung: '$K_n=4\,000$ €' }
         - { id: n, text: 'Laufzeit', gleichung: '$n$ gesucht' }
     schritte:
-      - typ: aufdecken
-        frage: '<strong>Schritt 1:</strong> gegebene Werte notieren.'
-        knopf: 'Erste Werte zuordnen'
-        text: '<p>„legt $3\,000$ € an“ → $K_0=3\,000$ €. „zu $3\,\%$“ → $q=1{,}03$.</p>'
-        zeige: { eintraege: [k0, p] }
       - typ: auswahl
-        frage: 'Welche Rolle spielen die $4\,000$ €?'
+        frage: '<strong>Schritt 1:</strong> „legt $3\,000$ € an“ → $K_0=3\,000$ €, „zu $3\,\%$“ → $q=1{,}03$. Welche Rolle spielen die $4\,000$ €?'
         optionen:
-          - '$K_n$, so viel ist am Ende auf dem Konto'
-          - '$K_0$, das wird angelegt'
+          - '$K_n$'
+          - '$K_0$'
           - 'Sie sind gesucht.'
         korrekt: 0
         hinweis: 'Auf $4\,000$ € ist das Guthaben <em>angewachsen</em>, das ist der spätere Betrag.'
-        zeige: { eintraege: [kn] }
-      - typ: auswahl
-        frage: '<strong>Schritt 2:</strong> „Nach wie vielen Jahren …?“ Was ist gesucht?'
-        optionen:
-          - '$n$'
-          - '$p$'
-          - '$K_n$'
-        korrekt: 0
-        hinweis: 'Gefragt ist eine Anzahl von Jahren.'
-        zeige: { eintraege: [n] }
+        danach: '<p>Richtig: So viel ist am Ende auf dem Konto, also $K_n=4\,000$ €.</p>'
+        zeige: { eintraege: [k0, p, kn] }
       - typ: aufdecken
-        frage: '<strong>Schritt 3:</strong> einsetzen und nach $n$ auflösen.'
+        frage: '<strong>Schritt 2:</strong> „Nach wie vielen Jahren …?“ → $n$ gesucht. <strong>Schritt 3:</strong> einsetzen und nach $n$ auflösen.'
         knopf: 'Rechnung zeigen'
         text: '<p>Durch $3\,000$ teilen, dann den Logarithmus anwenden:</p>$$\begin{align*}4\,000&=3\,000\cdot 1{,}03^n\\ 1{,}03^n&\approx 1{,}3333\\ n&=\frac{\ln 1{,}3333}{\ln 1{,}03}\\ &\approx 9{,}73\end{align*}$$<p>Das Guthaben erreicht nach etwa $9{,}73$ Jahren die Marke von $4\,000$ €.</p>'
+        zeige: { eintraege: [n] }
 
   - phase: vormachen
     titel: 'Gesucht: der Betrag von heute'
@@ -134,26 +110,12 @@ karten:
           - 'Ja, bei „verfügen“ ist immer $K_n$ gesucht.'
         korrekt: 0
         hinweis: 'Der Betrag steht schon im Text. Lies die Frage am Ende: „Welchen Betrag muss sie heute anlegen?“'
-        danach: '<p>Entscheidend ist der <strong>Fragesatz</strong>. Gesucht ist der Betrag, der heute angelegt wird, also $K_0$.</p>'
-        zeige: { eintraege: [kn, k0] }
-      - typ: aufdecken
-        frage: 'Die übrigen Werte notieren.'
-        knopf: 'Werte zuordnen'
-        text: '<p>„zu $3\,\%$“ → $q=1{,}03$. „in 6 Jahren“ → $n=6$.</p>'
-        zeige: { eintraege: [p, n] }
+        danach: '<p>Entscheidend ist der <strong>Fragesatz</strong>. Gesucht ist der Betrag, der heute angelegt wird, also $K_0$. Dazu „zu $3\,\%$“ → $q=1{,}03$ und „in 6 Jahren“ → $n=6$.</p>'
+        zeige: { eintraege: [kn, k0, p, n] }
       - typ: aufdecken
         frage: 'Einsetzen und nach $K_0$ auflösen.'
         knopf: 'Rechnung zeigen'
         text: '<p>Durch $1{,}03^6$ teilen:</p>$$\begin{align*}10\,000&=K_0\cdot 1{,}03^6\\ K_0&=\frac{10\,000}{1{,}03^6}\\ &\approx 8\,374{,}84\,\text{€}\end{align*}$$<p>Familie Hansen muss heute rund $8\,374{,}84$ € anlegen.</p>'
-      - typ: auswahl
-        frage: 'Andere Worte, gleiche Lage: <em>Herr Klein soll in 6 Jahren eine Zahlung von $10\,000$ € leisten. Welcher Betrag müsste heute dafür zurückgelegt werden?</em> Was ist gesucht?'
-        optionen:
-          - '$K_0$'
-          - '$K_n$'
-          - '$n$'
-        korrekt: 0
-        hinweis: 'Die Zahlung liegt in der Zukunft und steht im Text. Gefragt ist der Betrag von heute.'
-        danach: '<p>Genau. Die Zahlung in 6 Jahren ist $K_n$, der Betrag, der heute zurückgelegt wird, ist $K_0$.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
@@ -165,19 +127,10 @@ karten:
         titel_rechts: 'gesucht'
         paare:
           - { links: '„Wie hoch ist das Guthaben nach 15 Jahren?“', rechts: '$K_n$' }
-          - { links: '„Welchen Betrag muss sie heute anlegen?“', rechts: '$K_0$' }
+          - { links: '„Welcher Betrag müsste dafür heute zurückgelegt werden?“', rechts: '$K_0$' }
           - { links: '„Mit welchem Zinssatz wurde das Kapital verzinst?“', rechts: '$p$' }
           - { links: '„Wie lange muss das Geld angelegt bleiben?“', rechts: '$n$' }
-        danach: '<p>Weitere Formulierungen: „Über welchen Betrag kann er nach … Jahren verfügen?“ → $K_n$. „Welcher Betrag müsste heute zurückgelegt werden?“ → $K_0$. „Welcher jährliche Zinssatz liegt zugrunde?“ → $p$. „Nach wie vielen Jahren …?“ → $n$.</p>'
-      - typ: auswahl
-        frage: '<em>Eine Firma zahlt $50\,000$ € auf ein Konto ein und benötigt $60\,000$ € für eine neue Maschine. Wie lange muss das Geld angelegt bleiben?</em> Welche Rolle spielen die $60\,000$ €?'
-        optionen:
-          - '$K_n$'
-          - '$K_0$'
-          - 'Sie sind gesucht.'
-        korrekt: 0
-        hinweis: 'Benötigt wird das Geld am Ende der Anlage.'
-        danach: '<p>Richtig: Der benötigte Betrag ist das Ziel der Anlage, also $K_n$.</p>'
+        danach: '<p>Weitere Formulierungen: „Über welchen Betrag kann er nach … Jahren verfügen?“ → $K_n$. „Welchen Betrag muss sie heute anlegen?“ → $K_0$. „Welcher jährliche Zinssatz liegt zugrunde?“ → $p$. „Nach wie vielen Jahren …?“ → $n$.</p>'
 
   - phase: mitmachen
     titel: 'Mitmachen: Zinssatz gesucht'
@@ -192,33 +145,48 @@ karten:
         - { id: p, text: 'Zinssatz', gleichung: '$p$ gesucht' }
     schritte:
       - typ: auswahl
-        frage: 'Welcher Betrag ist $K_0$?'
+        frage: 'Gesucht ist der Zinssatz $p$. Welcher Betrag ist $K_0$?'
         optionen:
-          - '$8\,000$ €, das war vor 12 Jahren'
-          - '$11\,600$ €, das ist heute'
+          - '$8\,000$ €'
+          - '$11\,600$ €'
         korrekt: 0
-        hinweis: 'Welcher Betrag liegt früher?'
-        zeige: { eintraege: [k0, kn] }
-      - typ: auswahl
-        frage: 'Was ist gesucht?'
-        optionen:
-          - '$p$'
-          - '$n$'
-          - '$K_n$'
-        korrekt: 0
-        hinweis: 'Lies den Fragesatz: „Mit welchem Zinssatz …?“'
-        zeige: { eintraege: [n, p] }
+        hinweis: 'Welcher Betrag liegt früher? „Heute“ ist hier das Ende der Anlage.'
+        zeige: { eintraege: [k0, kn, n, p] }
       - typ: eingabe
-        frage: 'Einsetzen: $$11\,600=8\,000\cdot q^{12}$$ Teile durch $8\,000$.'
-        felder:
-          - { label: '$q^{12}=$', loesung: 1.45 }
-        hinweis: 'Rechne $11\,600:8\,000$.'
-      - typ: eingabe
-        frage: 'Jetzt die 12. Wurzel ziehen und den Zinssatz bestimmen.'
+        frage: 'Der Ansatz steht da: $$11\,600=8\,000\cdot q^{12}$$ Rechne den Zinssatz aus, auf 2 Nachkommastellen.'
         felder:
           - { label: '$p=$', loesung: 3.14, toleranz: 0.01, einheit: '%' }
-        hinweis: '$q=\sqrt[12]{1{,}45}\approx 1{,}0314$, dann $p=(q-1)\cdot 100$.'
-        danach: '<p>Das Kapital wurde mit etwa $3{,}14\,\%$ verzinst.</p>'
+        hinweis: 'Durch $8\,000$ teilen: $q^{12}=1{,}45$. Dann $q=\sqrt[12]{1{,}45}\approx 1{,}0314$ und $p=(q-1)\cdot 100$.'
+        danach: '$$\begin{align*}q^{12}&=1{,}45\\ q&=\sqrt[12]{1{,}45}\approx 1{,}0314\\ p&\approx 3{,}14\end{align*}$$<p>Das Kapital wurde mit etwa $3{,}14\,\%$ verzinst.</p>'
+
+  - phase: mitmachen
+    titel: 'Mitmachen: Betrag von heute gesucht'
+    text: '<p><em>Herr Klein soll in 5 Jahren eine Zahlung von $9\,000$ € leisten. Welcher Betrag müsste dafür heute bei einem Zinssatz von $2\,\%$ zurückgelegt werden?</em></p>'
+    visual:
+      typ: liste
+      titel: 'Gegeben und gesucht'
+      eintraege:
+        - { id: k0, text: 'Anfangskapital', gleichung: '$K_0$ gesucht' }
+        - { id: kn, text: 'Endkapital', gleichung: '$K_n=9\,000$ €' }
+        - { id: p, text: 'Zinssatz', gleichung: '$p=2\,\%$, also $q=1{,}02$' }
+        - { id: n, text: 'Laufzeit', gleichung: '$n=5$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ansatz führt zum Ziel?'
+        optionen:
+          - '$K_0=\frac{9\,000}{1{,}02^5}$'
+          - '$K_n=9\,000\cdot 1{,}02^5$'
+          - '$K_0=\frac{9\,000}{1{,}2^5}$'
+        korrekt: 0
+        hinweis: 'Die Zahlung in 5 Jahren ist der spätere Betrag, also $K_n$. Gesucht ist der Betrag von heute. Und bei $2\,\%$ ist $q=1{,}02$.'
+        danach: '<p>Die Zahlung in 5 Jahren ist $K_n=9\,000$ €, gesucht ist $K_0$:</p>$$9\,000=K_0\cdot 1{,}02^5$$'
+        zeige: { eintraege: [k0, kn, p, n] }
+      - typ: eingabe
+        frage: 'Jetzt ausrechnen (Betrag ohne Tausenderpunkt eintragen).'
+        felder:
+          - { label: '$K_0=$', loesung: 8151.58, toleranz: 1, einheit: '€' }
+        hinweis: 'Rechne $9000:1{,}02^5$. Probe: Das Ergebnis muss kleiner als $9\,000$ € sein.'
+        danach: '<p>Herr Klein müsste heute rund $8\,151{,}58$ € zurücklegen.</p>'
 
   - phase: mitmachen
     titel: 'Mitmachen: Laufzeit gesucht'
