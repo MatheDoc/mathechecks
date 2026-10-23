@@ -1,0 +1,121 @@
+# Warm-Up zu Check 1 „Erwartungswert einer allgemeinen Zufallsgröße berechnen“ (Zufallsgrößen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: E(X) = Σ x_i · P(X = x_i), also jeder Wert mal seine Wahrscheinlichkeit, alles addieren
+# (gewichteter Mittelwert, kein einfacher Mittelwert der Werte).
+# Alle Zahlen per Python-Skript nachgerechnet.
+
+check_id: stochastik__zufallsgroessen__01
+abschluss: '<p>Im Training bekommst du eine Wahrscheinlichkeitsverteilung mit fünf Werten $x_i$ (auch negative Werte und Wahrscheinlichkeiten wie $0$ kommen vor) und berechnest $E(X)$.</p><p>Setze negative Werte in Klammern, du kannst die ganze Summe in einem Zug in den Taschenrechner eintippen.</p><p>Kontrollmöglichkeit: $E(X)$ liegt immer zwischen dem kleinsten und dem größten Wert $x_i$.</p>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Der Erwartungswert als Durchschnitt auf lange Sicht'
+    text: '<p>Bei einem Spiel ist $X$ dein Gewinn in Euro (Einsatz schon abgezogen). Die Verteilung:</p>$$\begin{array}{c|ccc}x_i&-2&1&5\\\hline P(X=x_i)&0{,}5&0{,}3&0{,}2\end{array}$$<p>Du spielst $100$-mal. Was kommt dabei im Mittel pro Spiel heraus?</p>'
+    visual:
+      typ: liste
+      titel: 'Gewinn bei 100 Spielen'
+      eintraege:
+        - { id: m2, text: 'Gewinn $-2$ €: etwa 50-mal', gleichung: '$50\cdot(-2)=-100$' }
+        - { id: p1, text: 'Gewinn $1$ €: etwa 30-mal', gleichung: '$30\cdot 1=30$' }
+        - { id: p5, text: 'Gewinn $5$ €: etwa 20-mal', gleichung: '$20\cdot 5=100$' }
+        - { id: summe, text: 'Gesamtgewinn', gleichung: '$-100+30+100=30$' }
+        - { id: e, text: 'Gewinn pro Spiel', gleichung: '$30:100=0{,}3$' }
+    schritte:
+      - typ: aufdecken
+        frage: '<strong>Wie oft</strong> tritt welcher Gewinn bei $100$ Spielen auf?'
+        knopf: 'Zeigen'
+        text: '<p>$50\,\%$ von $100$ sind $50$: Den Gewinn $-2$ € erwartest du etwa $50$-mal. Den Gewinn $1$ € erwartest du etwa $30$-mal ($30\,\%$ von $100$).</p>'
+        zeige: { eintraege: [m2, p1] }
+      - typ: eingabe
+        frage: 'Wie oft erwartest du den Gewinn $5$ €?'
+        felder:
+          - { label: '$\approx$', einheit: 'mal', loesung: 20, aria: 'Anzahl für Gewinn 5 Euro', zeige: { eintraege: [p5] } }
+        hinweis: 'Die Wahrscheinlichkeit für den Gewinn $5$ € ist $0{,}2$, also $20\,\%$ von $100$.'
+      - typ: aufdecken
+        frage: 'Wie hoch ist der Gewinn <strong>pro Spiel</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>Alle Gewinne zusammen ergeben $-100+30+100=30$ €. Auf $100$ Spiele verteilt sind das $0{,}30$ € pro Spiel. Dieser Durchschnitt auf lange Sicht heißt <strong>Erwartungswert</strong> $E(X)$.</p><p>Dasselbe kannst du direkt aus der Tabelle rechnen:</p>$$\begin{align*}E(X)&=(-2)\cdot 0{,}5+1\cdot 0{,}3+5\cdot 0{,}2\\&=0{,}3\end{align*}$$'
+        zeige: { eintraege: [summe, e] }
+      - typ: auswahl
+        frage: 'Schau in die Tabelle: Kann in einem einzelnen Spiel genau $0{,}30$ € Gewinn herauskommen?'
+        optionen:
+          - 'Nein, $0{,}30$ € steht nicht unter den Werten. Der Erwartungswert ist ein Durchschnitt auf lange Sicht.'
+          - 'Ja, jedes Spiel bringt genau den Erwartungswert.'
+        korrekt: 0
+        hinweis: 'Welche Gewinne gibt es überhaupt? Schau in die Zeile $x_i$.'
+        danach: '<p><strong>Merke:</strong></p><ul><li>$E(X)=\sum x_i\cdot P(X=x_i)$: Jeden Wert mit seiner Wahrscheinlichkeit multiplizieren, dann alles addieren.</li><li>Das ist ein <strong>gewichteter</strong> Mittelwert: Wahrscheinlichere Werte zählen stärker.</li><li>$E(X)$ muss kein möglicher Wert von $X$ sein.</li></ul>'
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Aus einer Tabelle rechnen'
+    text: '<p>Die Verteilung einer Zufallsgröße $X$:</p>$$\begin{array}{c|cccc}x_i&-2&0&3&4\\\hline P(X=x_i)&0{,}3&0{,}1&0{,}4&0{,}2\end{array}$$'
+    visual:
+      typ: liste
+      titel: 'Summanden von E(X)'
+      eintraege:
+        - { id: s1, text: 'Wert $-2$', gleichung: '$(-2)\cdot 0{,}3=-0{,}6$' }
+        - { id: s2, text: 'Wert $0$', gleichung: '$0\cdot 0{,}1=0$' }
+        - { id: s3, text: 'Wert $3$', gleichung: '$3\cdot 0{,}4=1{,}2$' }
+        - { id: s4, text: 'Wert $4$', gleichung: '$4\cdot 0{,}2=0{,}8$' }
+        - { id: e, text: 'Erwartungswert', gleichung: '$E(X)=1{,}4$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Wie lautet der Summand zum Wert $-2$?'
+        optionen:
+          - '$(-2)\cdot 0{,}3$'
+          - '$(-2)+0{,}3$'
+          - '$2\cdot 0{,}3$'
+        korrekt: 0
+        hinweis: 'Jeder Wert wird mit seiner Wahrscheinlichkeit multipliziert, und das Vorzeichen bleibt erhalten.'
+        zeige: { eintraege: [s1] }
+        danach: '$$(-2)\cdot 0{,}3=-0{,}6$$'
+      - typ: aufdecken
+        frage: 'Die übrigen Summanden:'
+        knopf: 'Zeigen'
+        text: '$$\begin{align*}0\cdot 0{,}1&=0\\3\cdot 0{,}4&=1{,}2\\4\cdot 0{,}2&=0{,}8\end{align*}$$<p>Ein Wert $x_i=0$ trägt nichts zur Summe bei.</p>'
+        zeige: { eintraege: [s2, s3, s4] }
+      - typ: aufdecken
+        frage: '<strong>Addieren</strong> ergibt den Erwartungswert:'
+        knopf: 'Zeigen'
+        text: '$$\begin{align*}E(X)&=-0{,}6+0+1{,}2+0{,}8\\&=1{,}4\end{align*}$$<p>Im Taschenrechner gibst du die ganze Summe auf einmal ein, die negative Zahl in Klammern.</p>'
+        zeige: { eintraege: [e] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Ansatz vorgegeben'
+    text: '<p>Die Verteilung von $X$:</p>$$\begin{array}{c|ccc}x_i&-1&1&4\\\hline P(X=x_i)&0{,}2&0{,}5&0{,}3\end{array}$$<p>Der Ansatz:</p>$$E(X)=(-1)\cdot 0{,}2+1\cdot 0{,}5+4\cdot 0{,}3$$'
+    schritte:
+      - typ: eingabe
+        frage: 'Berechne die drei Summanden.'
+        layout: zeile
+        felder:
+          - { label: '$(-1)\cdot 0{,}2=$', loesung: -0.2, aria: 'erster Summand' }
+          - { label: '$1\cdot 0{,}5=$', loesung: 0.5, aria: 'zweiter Summand' }
+          - { label: '$4\cdot 0{,}3=$', loesung: 1.2, aria: 'dritter Summand' }
+        hinweis: 'Multipliziere jeden Wert mit seiner Wahrscheinlichkeit, das Vorzeichen bleibt.'
+      - typ: eingabe
+        frage: 'Addiere die Summanden.'
+        felder:
+          - { label: '$E(X)=$', loesung: 1.5, aria: 'Erwartungswert' }
+        hinweis: '$-0{,}2+0{,}5+1{,}2$'
+
+  - phase: mitmachen
+    titel: 'Fast allein: Ansatz wählen'
+    text: '<p>Die Verteilung von $X$:</p>$$\begin{array}{c|cccc}x_i&-6&-2&1&4\\\hline P(X=x_i)&0{,}25&0{,}35&0{,}3&0{,}1\end{array}$$'
+    schritte:
+      - typ: auswahl
+        frage: 'Welcher Ansatz liefert $E(X)$?'
+        optionen:
+          - '$(-6)\cdot 0{,}25+(-2)\cdot 0{,}35+$<br>$1\cdot 0{,}3+4\cdot 0{,}1$'
+          - '$\dfrac{-6-2+1+4}{4}$'
+          - '$0{,}25+0{,}35+0{,}3+0{,}1$'
+        korrekt: 0
+        hinweis: '$E(X)$ ist kein einfacher Mittelwert der Werte: Jeder Wert wird mit seiner Wahrscheinlichkeit gewichtet.'
+        danach: '<p>Beim einfachen Mittelwert zählt jeder Wert gleich viel. Hier zählt jeder Wert so stark, wie wahrscheinlich er ist.</p>'
+      - typ: eingabe
+        frage: 'Berechne $E(X)$.'
+        felder:
+          - { label: '$E(X)=$', loesung: -1.5, aria: 'Erwartungswert' }
+        hinweis: 'Die Summanden sind $-1{,}5$, $-0{,}7$, $0{,}3$ und $0{,}4$. Addiere sie mit Vorzeichen.'
