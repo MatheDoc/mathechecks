@@ -1,0 +1,140 @@
+# Warm-Up zu Check 3 „E(X) und σ im Sachzusammenhang interpretieren“ (Zufallsgrößen)
+# titel, kompetenz, nummer und training_url kommen aus _data/checks.json (über check_id).
+# Format und Leitlinien: _data/warmup/README.md
+# Kern: E(X) = Durchschnitt auf lange Sicht, σ(X) = Maß für die Streuung. Einordnen eines Werts über den
+# Abstand |x − E(X)|: höchstens σ gewöhnlich, zwischen σ und 2σ erhöht, aber noch üblich, mehr als 2σ ungewöhnlich.
+# Ob „größer“ oder „kleiner“ besser ist, hängt vom Sachzusammenhang ab.
+# Alle Zahlen per Python-Skript nachgerechnet.
+
+check_id: stochastik__zufallsgroessen__03
+abschluss: '<p>Im Training vergleichst du zwei Situationen A und B mit gegebenen $E(X)$ und $\sigma(X)$. Es gibt vier Fragen.</p><ul><li><strong>Mittelwert:</strong> Wer hat im Mittel mehr bzw. weniger? Achte auf die Formulierung („schneller“ heißt kleinere Zeit). Sind die Erwartungswerte gleich, wähle „beide gleich“.</li><li><strong>Schwankung:</strong> Die kleinere Standardabweichung bedeutet die geringere Schwankung.</li><li><strong>Einordnen:</strong> Bilde den Abstand $|x-E(X)|$ und vergleiche ihn mit $\sigma$ und $2\sigma$. Verwende dazu immer das $\sigma$ <strong>der genannten</strong> Situation.</li></ul>'
+karten:
+
+  # ── Phase A: Idee ──────────────────────────────────────────
+  - phase: orientierung
+    titel: 'Was sagen E(X) und σ?'
+    text: '<p>Zwei Biathleten schießen je fünfmal. $X$ ist die Anzahl der Fehlschüsse in einem Durchgang. Für Biathlet A ist $E(X_A)=1{,}5$ und $\sigma(X_A)=0{,}5$, für Biathlet B ist $E(X_B)=2{,}5$ und $\sigma(X_B)=2$.</p>'
+    visual:
+      typ: liste
+      titel: 'Biathlet A und B'
+      eintraege:
+        - { id: mittel, text: 'Fehlschüsse im Mittel', gleichung: '$E(X_A)=1{,}5\;&lt;\;E(X_B)=2{,}5$' }
+        - { id: streu, text: 'Schwankung', gleichung: '$\sigma(X_A)=0{,}5\;&lt;\;\sigma(X_B)=2$' }
+        - { id: normal, text: 'A: gewöhnlicher Bereich', gleichung: '$1{,}5\pm 0{,}5$, also $1$ bis $2$' }
+        - { id: erhoeht, text: 'A: erhöhte Abweichung', gleichung: '$1{,}5\pm 2\cdot 0{,}5$, also $0{,}5$ bis $2{,}5$' }
+        - { id: ungew, text: 'A: ungewöhnlich', gleichung: 'weniger als $0{,}5$ oder mehr als $2{,}5$ Fehlschüsse' }
+    schritte:
+      - typ: aufdecken
+        frage: 'Was sagt der <strong>Erwartungswert</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>$E(X)$ ist der <strong>durchschnittliche Wert auf lange Sicht</strong>. A hat im Mittel $1{,}5$ Fehlschüsse pro Durchgang, B hat $2{,}5$.</p>'
+        zeige: { eintraege: [mittel] }
+      - typ: aufdecken
+        frage: 'Was sagt die <strong>Standardabweichung</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>$\sigma(X)$ misst die <strong>Streuung</strong>: Ist $\sigma$ klein, liegen die Werte meist nahe bei $E(X)$ und A ist <strong>konstanter</strong>. Bei B ist $\sigma$ größer, seine Fehlschüsse schwanken stärker.</p>'
+        zeige: { eintraege: [streu] }
+      - typ: aufdecken
+        frage: 'Wann ist ein Wert <strong>ungewöhnlich</strong>?'
+        knopf: 'Zeigen'
+        text: '<p>Das hängt vom <strong>Abstand zum Erwartungswert</strong> ab, gemessen in Standardabweichungen:</p><ul><li>höchstens $\sigma$ entfernt: <strong>gewöhnlich</strong></li><li>zwischen $\sigma$ und $2\sigma$ entfernt: <strong>erhöhte</strong>, aber noch übliche Abweichung</li><li>mehr als $2\sigma$ entfernt: <strong>ungewöhnlich</strong></li></ul><p>Für A zeigt das die Liste.</p>'
+        zeige: { eintraege: [normal, erhoeht, ungew] }
+
+  # ── Phase B: Zuschauen ─────────────────────────────────────
+  - phase: vormachen
+    titel: 'Zwei Buslinien vergleichen'
+    text: '<p>$X$ ist die Wartezeit an der Haltestelle in Minuten. Für Linie A ist $E(X_A)=12$ und $\sigma(X_A)=2$, für Linie B ist $E(X_B)=10$ und $\sigma(X_B)=5$.</p>'
+    visual:
+      typ: liste
+      titel: 'Linie A und B'
+      eintraege:
+        - { id: mittel, text: 'Mittlere Wartezeit', gleichung: '$E(X_B)=10\;&lt;\;E(X_A)=12$' }
+        - { id: streu, text: 'Schwankung', gleichung: '$\sigma(X_A)=2\;&lt;\;\sigma(X_B)=5$' }
+        - { id: wert, text: 'Linie A: 17 Minuten', gleichung: '$|17-12|=5$<br>$2\sigma=4$, und $5&gt;4$' }
+    schritte:
+      - typ: auswahl
+        frage: 'Bei welcher Linie wartet man im Mittel <strong>kürzer</strong>?'
+        optionen:
+          - 'Linie A'
+          - 'Linie B'
+          - 'Beide gleich lang'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Vergleiche die Erwartungswerte. Kürzer bedeutet kleiner.'
+        zeige: { eintraege: [mittel] }
+      - typ: auswahl
+        frage: 'Bei welcher Linie schwankt die Wartezeit <strong>weniger</strong>?'
+        optionen:
+          - 'Linie A'
+          - 'Linie B'
+          - 'Beide gleich stark'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Vergleiche die Standardabweichungen. Weniger Schwankung bedeutet kleineres $\sigma$.'
+        zeige: { eintraege: [streu] }
+      - typ: aufdecken
+        frage: 'An einem Tag wartet man bei Linie A $17$ Minuten. Wie ist das einzuordnen?'
+        knopf: 'Zeigen'
+        text: '<p>Abstand zum Erwartungswert: $|17-12|=5$ Minuten. Für Linie A ist $\sigma=2$, also $2\sigma=4$. Der Abstand $5$ ist größer als $2\sigma$, die Wartezeit ist also <strong>ungewöhnlich</strong> lang.</p>'
+        zeige: { eintraege: [wert] }
+
+  # ── Phase C: Mitmachen ─────────────────────────────────────
+  - phase: mitmachen
+    titel: 'Neue Zahlen: Abstand in σ'
+    text: '<p>Zwei Maschinen füllen Flaschen ab. $X$ ist die Füllmenge in ml. Für Maschine A ist $E(X_A)=500$ und $\sigma(X_A)=4$, für Maschine B ist $E(X_B)=500$ und $\sigma(X_B)=10$. Eine Flasche von Maschine A enthält $505$ ml.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Welche Maschine füllt im Mittel mehr ab?'
+        optionen:
+          - 'Maschine A'
+          - 'Maschine B'
+          - 'Beide gleich viel'
+        korrekt: 2
+        mischen: false
+        hinweis: 'Vergleiche die Erwartungswerte.'
+      - typ: eingabe
+        frage: 'Wie weit liegt die Flasche von $E(X_A)$ entfernt, und wie viele $\sigma$ sind das?'
+        layout: zeile
+        felder:
+          - { label: '$|505-500|=$', einheit: 'ml', loesung: 5, aria: 'Abstand' }
+          - { label: 'Das sind', einheit: '$\sigma$', loesung: 1.25, aria: 'Abstand in Standardabweichungen' }
+        hinweis: 'Teile den Abstand durch $\sigma(X_A)=4$.'
+      - typ: auswahl
+        frage: 'Wie ist die Füllmenge $505$ ml einzuordnen?'
+        optionen:
+          - 'Gewöhnlich: Der Abstand beträgt höchstens $\sigma$.'
+          - 'Erhöhte, aber noch übliche Abweichung: Der Abstand liegt zwischen $\sigma$ und $2\sigma$.'
+          - 'Ungewöhnlich: Der Abstand beträgt mehr als $2\sigma$.'
+        korrekt: 1
+        hinweis: 'Der Abstand ist das $1{,}25$-fache von $\sigma$.'
+
+  - phase: mitmachen
+    titel: 'Fast allein: Handy-Akkus'
+    text: '<p>$X$ ist die Akkulaufzeit in Stunden (länger ist besser). Für Handy A ist $E(X_A)=10$ und $\sigma(X_A)=1$, für Handy B ist $E(X_B)=8$ und $\sigma(X_B)=2$.</p>'
+    schritte:
+      - typ: auswahl
+        frage: 'Welches Handy hält im Mittel <strong>länger</strong> durch?'
+        optionen:
+          - 'Handy A'
+          - 'Handy B'
+          - 'Beide gleich lang'
+        korrekt: 0
+        mischen: false
+        hinweis: 'Länger bedeutet hier größerer Erwartungswert.'
+      - typ: zuordnen
+        frage: 'Ordne drei Laufzeiten von Handy B ein.'
+        titel_links: 'Laufzeit von B'
+        titel_rechts: 'Einordnung'
+        paare:
+          - { links: '$9$ h', rechts: 'gewöhnlich' }
+          - { links: '$11$ h', rechts: 'erhöht, aber noch üblich' }
+          - { links: '$13$ h', rechts: 'ungewöhnlich' }
+        hilfe: 'Für B ist $E=8$ und $\sigma=2$. Bestimme den Abstand zu $8$ und vergleiche ihn mit $2$ und $4$.'
+      - typ: auswahl
+        frage: 'Handy A hält bei einem Test $9{,}2$ Stunden durch. Wie ist das einzuordnen?'
+        optionen:
+          - 'Gewöhnlich: Der Abstand beträgt höchstens $\sigma$.'
+          - 'Erhöhte, aber noch übliche Abweichung: Der Abstand liegt zwischen $\sigma$ und $2\sigma$.'
+          - 'Ungewöhnlich: Der Abstand beträgt mehr als $2\sigma$.'
+        korrekt: 0
+        hinweis: 'Für Handy A gilt $E=10$ und $\sigma=1$. Wie weit sind $9{,}2$ von $10$ entfernt?'
