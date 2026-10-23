@@ -12,7 +12,7 @@ karten:
   # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
     titel: 'Der Erwartungswert als Durchschnitt auf lange Sicht'
-    text: '<p>Bei einem Spiel ist $X$ dein Gewinn in Euro (Einsatz schon abgezogen). Die Verteilung:</p>$$\begin{array}{c|ccc}x_i&-2&1&5\\\hline P(X=x_i)&0{,}5&0{,}3&0{,}2\end{array}$$<p>Du spielst $100$-mal. Was kommt dabei im Mittel pro Spiel heraus?</p>'
+    text: '<p>Bei einem Glücksspiel ist $X$ dein Gewinn in Euro (Einsatz schon abgezogen). Die Tabelle zeigt, wie wahrscheinlich jeder Gewinn ist:</p>$$\begin{array}{c|ccc}x_i&-2&1&5\\\hline P(X=x_i)&0{,}5&0{,}3&0{,}2\end{array}$$<p>Ein einzelnes Spiel ist Glückssache. Spielst du aber sehr oft, pendelt sich der Gewinn pro Spiel im Durchschnitt auf einen festen Wert ein. Diesen Wert bestimmen wir zuerst für $100$ Spiele.</p>'
     visual:
       typ: liste
       titel: 'Gewinn bei 100 Spielen'
@@ -24,19 +24,14 @@ karten:
         - { id: e, text: 'Gewinn pro Spiel', gleichung: '$30:100=0{,}3$' }
     schritte:
       - typ: aufdecken
-        frage: '<strong>Wie oft</strong> tritt welcher Gewinn bei $100$ Spielen auf?'
-        knopf: 'Zeigen'
-        text: '<p>$50\,\%$ von $100$ sind $50$: Den Gewinn $-2$ € erwartest du etwa $50$-mal. Den Gewinn $1$ € erwartest du etwa $30$-mal ($30\,\%$ von $100$).</p>'
-        zeige: { eintraege: [m2, p1] }
-      - typ: eingabe
-        frage: 'Wie oft erwartest du den Gewinn $5$ €?'
-        felder:
-          - { label: '$\approx$', einheit: 'mal', loesung: 20, aria: 'Anzahl für Gewinn 5 Euro', zeige: { eintraege: [p5] } }
-        hinweis: 'Die Wahrscheinlichkeit für den Gewinn $5$ € ist $0{,}2$, also $20\,\%$ von $100$.'
+        frage: 'Bei $100$ Spielen tritt jeder Gewinn etwa so oft auf, wie es seine Wahrscheinlichkeit angibt.'
+        knopf: 'Häufigkeiten zeigen'
+        text: '<p>$0{,}5$ bedeutet $50\,\%$ von $100$ Spielen: Den Gewinn $-2$ € erwartest du etwa $50$-mal, den Gewinn $1$ € etwa $30$-mal und den Gewinn $5$ € etwa $20$-mal.</p>'
+        zeige: { eintraege: [m2, p1, p5] }
       - typ: aufdecken
-        frage: 'Wie hoch ist der Gewinn <strong>pro Spiel</strong>?'
-        knopf: 'Zeigen'
-        text: '<p>Alle Gewinne zusammen ergeben $-100+30+100=30$ €. Auf $100$ Spiele verteilt sind das $0{,}30$ € pro Spiel. Dieser Durchschnitt auf lange Sicht heißt <strong>Erwartungswert</strong> $E(X)$.</p><p>Dasselbe kannst du direkt aus der Tabelle rechnen:</p>$$\begin{align*}E(X)&=(-2)\cdot 0{,}5+1\cdot 0{,}3+5\cdot 0{,}2\\&=0{,}3\end{align*}$$'
+        frage: 'Alle Gewinne addieren und auf die $100$ Spiele verteilen.'
+        knopf: 'Rechnung zeigen'
+        text: '<p>Alle Gewinne zusammen ergeben $-100+30+100=30$ €. Auf $100$ Spiele verteilt sind das $0{,}30$ € pro Spiel. Dieser Durchschnitt auf lange Sicht heißt <strong>Erwartungswert</strong> $E(X)$.</p><p>Die $100$ kürzt sich dabei immer heraus. Deshalb rechnest du direkt mit der Tabelle: jeden Wert mal seine Wahrscheinlichkeit, dann alles addieren.</p>$$\begin{align*}E(X)&=(-2)\cdot 0{,}5+1\cdot 0{,}3+5\cdot 0{,}2\\&=0{,}3\end{align*}$$'
         zeige: { eintraege: [summe, e] }
       - typ: auswahl
         frage: 'Schau in die Tabelle: Kann in einem einzelnen Spiel genau $0{,}30$ € Gewinn herauskommen?'

@@ -12,62 +12,53 @@ karten:
   # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
     titel: 'Gleicher Erwartungswert, andere Streuung'
-    text: '<p>Zwei Münzspiele: Du wirfst eine Münze, bei Kopf gewinnst du, bei Zahl verlierst du. $X$ ist dein Gewinn in Euro.</p><ul><li>Spiel A: Gewinn $-1$ € oder $1$ €</li><li>Spiel B: Gewinn $-10$ € oder $10$ €</li></ul><p>Beide Ausgänge haben die Wahrscheinlichkeit $0{,}5$, und bei beiden Spielen ist $E(X)=0$.</p>'
+    text: '<p>Zwei Münzspiele: Du wirfst eine Münze, bei Kopf gewinnst du, bei Zahl verlierst du. $X$ ist dein Gewinn in Euro.</p><ul><li>Spiel A: Gewinn $-1$ € oder $1$ €</li><li>Spiel B: Gewinn $-10$ € oder $10$ €</li></ul><p>Beide Ausgänge haben die Wahrscheinlichkeit $0{,}5$, und bei beiden Spielen ist $E(X)=0$. Im Mittel gewinnst du also bei keinem Spiel etwas. Trotzdem sind die Spiele sehr verschieden: Bei Spiel B geht es um viel mehr Geld.</p>'
     visual:
       typ: liste
       titel: 'Spiel A und Spiel B'
       eintraege:
-        - { id: a, text: 'Spiel A: Gewinn $\pm 1$ €', gleichung: '$E(X)=0$' }
-        - { id: b, text: 'Spiel B: Gewinn $\pm 10$ €', gleichung: '$E(X)=0$' }
+        - { id: a, text: 'Spiel A: Gewinn $\pm 1$ €', gleichung: '$E(X)=0$', erledigt: true }
+        - { id: b, text: 'Spiel B: Gewinn $\pm 10$ €', gleichung: '$E(X)=0$', erledigt: true }
         - { id: sa, text: 'Streuung von A', gleichung: '$\sigma(X)=1$' }
         - { id: sb, text: 'Streuung von B', gleichung: '$\sigma(X)=10$' }
     schritte:
       - typ: aufdecken
-        frage: 'Wie stark schwanken die Gewinne um den Erwartungswert $0$?'
-        knopf: 'Zeigen'
-        text: '<p>Bei Spiel A liegen die Gewinne $1$ € von $E(X)=0$ entfernt, bei Spiel B sogar $10$ €. Spiel B schwankt also viel stärker, obwohl der Erwartungswert gleich ist.</p><p>Diese Streuung misst die <strong>Standardabweichung</strong> $\sigma(X)$: Sie gibt an, wie weit die Werte typischerweise vom Erwartungswert entfernt liegen. Hier ist $\sigma(X)=1$ bei A und $\sigma(X)=10$ bei B. Je größer $\sigma$, desto stärker streuen die Werte.</p>'
-        zeige: { eintraege: [a, b, sa, sb] }
-      - typ: auswahl
-        frage: 'Ein Spiel C zahlt $-3$ € oder $3$ € mit je der Wahrscheinlichkeit $0{,}5$. Auch hier ist $E(X)=0$. Wie groß ist $\sigma(X)$?'
-        optionen:
-          - '$\sigma(X)=0$, weil $E(X)=0$ ist'
-          - '$\sigma(X)=3$, weil die Werte $3$ von $E(X)$ entfernt liegen'
-          - '$\sigma(X)=6$, weil die Werte $6$ auseinanderliegen'
-        korrekt: 1
-        hinweis: 'Die Streuung misst den Abstand der Werte zum Erwartungswert, nicht den Erwartungswert selbst.'
-        danach: '<p>Der Erwartungswert sagt nichts über die Streuung: Spiele mit gleichem $E(X)$ können sehr verschieden schwanken.</p>'
+        frage: 'Der Erwartungswert verrät nicht, wie stark die Werte schwanken. Dafür gibt es eine zweite Kennzahl.'
+        knopf: 'Standardabweichung zeigen'
+        text: '<p>Bei Spiel A liegen die Gewinne $1$ € von $E(X)=0$ entfernt, bei Spiel B $10$ €. Diese Streuung misst die <strong>Standardabweichung</strong> $\sigma(X)$ (lies: Sigma von $X$): Sie gibt an, wie weit die Werte typischerweise vom Erwartungswert entfernt liegen.</p><p>Hier ist $\sigma(X)=1$ bei A und $\sigma(X)=10$ bei B. Je größer $\sigma$, desto stärker streuen die Werte.</p>'
+        zeige: { eintraege: [sa, sb] }
 
   - phase: orientierung
-    titel: 'Die Formel in drei Gedanken'
-    text: '<p>Eine Verteilung mit $E(X)=1$:</p>$$\begin{array}{c|cc}x_i&0&5\\\hline P(X=x_i)&0{,}8&0{,}2\end{array}$$<p>So entsteht die Standardabweichung.</p>'
+    titel: 'Die Formel in vier Schritten'
+    text: '<p>Meist liegen die Werte nicht so symmetrisch wie bei den Münzspielen. Dann berechnest du $\sigma$ mit einer Formel. Bei einem anderen Spiel ist $X$ wieder dein Gewinn in Euro, mit $E(X)=1$:</p>$$\begin{array}{c|cc}x_i&0&5\\\hline P(X=x_i)&0{,}8&0{,}2\end{array}$$'
     visual:
       typ: liste
       titel: 'Von der Abweichung zu σ'
       eintraege:
-        - { id: abw, text: 'Abweichung $x_i-E(X)$', gleichung: '$0-1=-1$<br>$5-1=4$' }
-        - { id: qua, text: 'Quadrieren', gleichung: '$(-1)^2=1$<br>$4^2=16$' }
-        - { id: gew, text: 'Gewichten und addieren (Varianz)', gleichung: '$1\cdot 0{,}8+16\cdot 0{,}2=4$' }
-        - { id: wur, text: 'Wurzel ziehen', gleichung: '$\sigma=\sqrt{4}=2$' }
+        - { id: abw, text: '1. Abweichung $x_i-E(X)$', gleichung: '$0-1=-1$<br>$5-1=4$' }
+        - { id: qua, text: '2. Quadrieren', gleichung: '$(-1)^2=1$<br>$4^2=16$' }
+        - { id: gew, text: '3. Gewichten und addieren (Varianz)', gleichung: '$1\cdot 0{,}8+16\cdot 0{,}2=4$' }
+        - { id: wur, text: '4. Wurzel ziehen', gleichung: '$\sigma=\sqrt{4}=2$' }
     schritte:
       - typ: aufdecken
-        frage: 'Wie weit liegt jeder Wert vom Erwartungswert entfernt?'
+        frage: 'Erst die Abweichung vom Erwartungswert bilden, dann quadrieren.'
         knopf: 'Zeigen'
-        text: '<p>Zuerst bildest du die <strong>Abweichung</strong> $x_i-E(X)$: für $0$ ist sie $-1$, für $5$ ist sie $4$. Dann <strong>quadrierst</strong> du: $1$ und $16$. So heben sich negative und positive Abweichungen nicht auf, und große Abweichungen zählen stärker.</p>'
+        text: '<p>Die <strong>Abweichungen</strong> $x_i-E(X)$ sind $0-1=-1$ und $5-1=4$.</p><p>Ohne Quadrat würden sie sich gegenseitig aufheben: $(-1)\cdot 0{,}8+4\cdot 0{,}2=0$. Das passiert bei jeder Verteilung, denn $E(X)$ ist genau der Ausgleichspunkt. Deshalb wird <strong>quadriert</strong>: $1$ und $16$. Alle Abweichungen zählen jetzt positiv, große sogar besonders stark.</p>'
         zeige: { eintraege: [abw, qua] }
       - typ: auswahl
-        frage: 'Der Wert $0$ tritt mit $80\,\%$ auf, der Wert $5$ nur mit $20\,\%$. Wie gehen die quadrierten Abweichungen $1$ und $16$ in die Summe ein?'
+        frage: 'Dann werden die Quadrate gewichtet und addiert, genau wie beim Erwartungswert. Welche Summe ist richtig?'
         optionen:
           - '$1+16$'
           - '$1\cdot 0{,}8+16\cdot 0{,}2$'
           - '$1\cdot 0+16\cdot 5$'
         korrekt: 1
-        hinweis: 'Wie beim Erwartungswert zählt jeder Wert so stark, wie wahrscheinlich er ist.'
+        hinweis: 'Wie beim Erwartungswert zählt jeder Wert so stark, wie wahrscheinlich er ist: Gewichtet wird mit $P(X=x_i)$.'
         zeige: { eintraege: [gew] }
         danach: '$$1\cdot 0{,}8+16\cdot 0{,}2=0{,}8+3{,}2=4$$<p>Diese Summe heißt <strong>Varianz</strong> $\sigma^2$.</p>'
       - typ: aufdecken
-        frage: 'Zum Schluss:'
+        frage: 'Zum Schluss die Wurzel ziehen.'
         knopf: 'Zeigen'
-        text: '$$\sigma(X)=\sqrt{4}=2$$<p>Die Wurzel macht das Quadrieren rückgängig: $X$ ist ein Gewinn in €, die Varianz hat die Einheit €². Erst $\sigma$ hat wieder die Einheit €.</p><p><strong>Merke:</strong></p><ul><li>$\sigma(X)=\sqrt{\sum (x_i-E(X))^2\cdot P(X=x_i)}$</li><li>Abweichung, quadrieren, mit $P$ gewichten, addieren, Wurzel.</li></ul>'
+        text: '$$\sigma(X)=\sqrt{4}=2$$<p>Die Wurzel macht das Quadrieren rückgängig: Die Varianz hat die Einheit €², erst $\sigma$ hat wieder die Einheit €.</p><p><strong>Merke:</strong></p><ul><li>$\sigma(X)=\sqrt{\sum (x_i-E(X))^2\cdot P(X=x_i)}$</li><li>Abweichung, quadrieren, mit $P$ gewichten, addieren, Wurzel.</li></ul>'
         zeige: { eintraege: [wur] }
 
   # ── Phase B: Zuschauen ─────────────────────────────────────

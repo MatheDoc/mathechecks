@@ -12,6 +12,7 @@ Priorität: fachliche Korrektheit vor Stil.
 - Kleine, gezielte Änderungen bevorzugen
 - Bestehende Struktur respektieren
 - Keine großen Umbauten ohne explizite Nachfrage
+- Klare, offensichtliche Rechenfehler ohne Rückfrage korrigieren, die Korrektur im Feedback kurz nennen
 
 
 ## Inhaltliche Grundstruktur
