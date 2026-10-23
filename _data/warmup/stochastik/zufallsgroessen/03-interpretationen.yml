@@ -7,38 +7,57 @@
 # Alle Zahlen per Python-Skript nachgerechnet.
 
 check_id: stochastik__zufallsgroessen__03
-abschluss: '<p>Im Training vergleichst du zwei Situationen A und B mit gegebenen $E(X)$ und $\sigma(X)$. Es gibt vier Fragen.</p><ul><li><strong>Mittelwert:</strong> Wer hat im Mittel mehr bzw. weniger? Achte auf die Formulierung („schneller“ heißt kleinere Zeit). Sind die Erwartungswerte gleich, wähle „beide gleich“.</li><li><strong>Schwankung:</strong> Die kleinere Standardabweichung bedeutet die geringere Schwankung.</li><li><strong>Einordnen:</strong> Bilde den Abstand $|x-E(X)|$ und vergleiche ihn mit $\sigma$ und $2\sigma$. Verwende dazu immer das $\sigma$ <strong>der genannten</strong> Situation.</li></ul>'
+abschluss: '<p>Im Training vergleichst du zwei Situationen A und B mit gegebenen $E(X)$ und $\sigma(X)$. Es gibt vier Fragen.</p><ul><li><strong>Mittelwert:</strong> Wer hat im Mittel mehr bzw. weniger? Achte auf die Formulierung („schneller“ heißt kleinere Zeit). Sind die Erwartungswerte gleich, wähle „beide gleich“.</li><li><strong>Schwankung:</strong> Die kleinere Standardabweichung bedeutet die geringere Schwankung, also die „stabilere“ oder „gleichmäßigere“ Situation.</li><li><strong>Einordnen:</strong> Bilde den Abstand $|x-E(X)|$ und vergleiche ihn mit $\sigma$ und $2\sigma$. Verwende dazu immer $E(X)$ und $\sigma$ <strong>der genannten</strong> Situation.</li></ul><p>Die drei Stufen sind im Training unterschiedlich formuliert, z. B. „normaler Bereich“ oder „keine deutliche Abweichung“, „leicht erhöhte“ oder „moderate Abweichung“, „ungewöhnlicher Wert“ oder „starke Abweichung“. Entscheidend ist immer, wie viele Standardabweichungen der Wert entfernt liegt.</p>'
 karten:
 
   # ── Phase A: Idee ──────────────────────────────────────────
   - phase: orientierung
-    titel: 'Was sagen E(X) und σ?'
-    text: '<p>Zwei Biathleten schießen je fünfmal. $X$ ist die Anzahl der Fehlschüsse in einem Durchgang. Für Biathlet A ist $E(X_A)=1{,}5$ und $\sigma(X_A)=0{,}5$, für Biathlet B ist $E(X_B)=2{,}5$ und $\sigma(X_B)=2$.</p>'
+    titel: 'Was E(X) und σ im Sachzusammenhang bedeuten'
+    text: '<p>Zwei Biathleten schießen je fünfmal. $X$ ist die Anzahl der Fehlschüsse in einem Durchgang.</p><ul><li>Biathlet A: $E(X_A)=1{,}5$ und $\sigma(X_A)=0{,}5$</li><li>Biathlet B: $E(X_B)=2{,}5$ und $\sigma(X_B)=2$</li></ul><p>Beide Kennzahlen lassen sich in Worte fassen.</p>'
     visual:
       typ: liste
       titel: 'Biathlet A und B'
       eintraege:
         - { id: mittel, text: 'Fehlschüsse im Mittel', gleichung: '$E(X_A)=1{,}5\;&lt;\;E(X_B)=2{,}5$' }
         - { id: streu, text: 'Schwankung', gleichung: '$\sigma(X_A)=0{,}5\;&lt;\;\sigma(X_B)=2$' }
-        - { id: normal, text: 'A: gewöhnlicher Bereich', gleichung: '$1{,}5\pm 0{,}5$, also $1$ bis $2$' }
-        - { id: erhoeht, text: 'A: erhöhte Abweichung', gleichung: '$1{,}5\pm 2\cdot 0{,}5$, also $0{,}5$ bis $2{,}5$' }
-        - { id: ungew, text: 'A: ungewöhnlich', gleichung: 'weniger als $0{,}5$ oder mehr als $2{,}5$ Fehlschüsse' }
     schritte:
       - typ: aufdecken
-        frage: 'Was sagt der <strong>Erwartungswert</strong>?'
-        knopf: 'Zeigen'
-        text: '<p>$E(X)$ ist der <strong>durchschnittliche Wert auf lange Sicht</strong>. A hat im Mittel $1{,}5$ Fehlschüsse pro Durchgang, B hat $2{,}5$.</p>'
+        frage: 'Der <strong>Erwartungswert</strong> ist der Durchschnitt auf lange Sicht.'
+        knopf: 'Deutung zeigen'
+        text: '<p>A verfehlt im Mittel $1{,}5$-mal pro Durchgang, B $2{,}5$-mal. A schießt also im Durchschnitt besser. Hier ist der kleinere Wert der bessere, weil Fehlschüsse gezählt werden. Ob „mehr“ oder „weniger“ besser ist, hängt immer vom Sachzusammenhang ab.</p>'
         zeige: { eintraege: [mittel] }
       - typ: aufdecken
-        frage: 'Was sagt die <strong>Standardabweichung</strong>?'
-        knopf: 'Zeigen'
-        text: '<p>$\sigma(X)$ misst die <strong>Streuung</strong>: Ist $\sigma$ klein, liegen die Werte meist nahe bei $E(X)$ und A ist <strong>konstanter</strong>. Bei B ist $\sigma$ größer, seine Fehlschüsse schwanken stärker.</p>'
+        frage: 'Die <strong>Standardabweichung</strong> misst, wie stark die Werte schwanken.'
+        knopf: 'Deutung zeigen'
+        text: '<p>Bei A ist $\sigma$ kleiner: Seine Fehlschüsse liegen meist nahe bei $1{,}5$, er ist <strong>konstanter</strong>. Bei B schwankt die Anzahl stärker, mal trifft er fast alles, mal verfehlt er oft.</p>'
         zeige: { eintraege: [streu] }
+
+  - phase: orientierung
+    titel: 'Abstand zum Erwartungswert in σ messen'
+    text: '<p>Ein Pizzadienst liefert im Mittel nach $E(X)=30$ Minuten, die Standardabweichung beträgt $\sigma(X)=5$ Minuten. Ob eine Lieferzeit auffällig ist, entscheidet ihr <strong>Abstand zum Erwartungswert</strong>, gemessen in Standardabweichungen.</p>'
+    visual:
+      typ: liste
+      titel: 'Lieferzeiten einordnen'
+      eintraege:
+        - { id: g, text: 'höchstens $\sigma$ entfernt: gewöhnlich', gleichung: '$25$ bis $35$ min' }
+        - { id: e, text: 'zwischen $\sigma$ und $2\sigma$ entfernt: erhöhte, aber noch übliche Abweichung', gleichung: '$20$ bis $25$ min<br>oder $35$ bis $40$ min' }
+        - { id: u, text: 'mehr als $2\sigma$ entfernt: ungewöhnlich', gleichung: 'unter $20$ min<br>oder über $40$ min' }
+    schritte:
       - typ: aufdecken
-        frage: 'Wann ist ein Wert <strong>ungewöhnlich</strong>?'
-        knopf: 'Zeigen'
-        text: '<p>Das hängt vom <strong>Abstand zum Erwartungswert</strong> ab, gemessen in Standardabweichungen:</p><ul><li>höchstens $\sigma$ entfernt: <strong>gewöhnlich</strong></li><li>zwischen $\sigma$ und $2\sigma$ entfernt: <strong>erhöhte</strong>, aber noch übliche Abweichung</li><li>mehr als $2\sigma$ entfernt: <strong>ungewöhnlich</strong></li></ul><p>Für A zeigt das die Liste.</p>'
-        zeige: { eintraege: [normal, erhoeht, ungew] }
+        frage: 'Die Faustregel hat drei Stufen.'
+        knopf: 'Bereiche zeigen'
+        text: '<p>Mit $\sigma=5$ ist $2\sigma=10$. Vom Erwartungswert $30$ aus geht man also $5$ und $10$ Minuten in beide Richtungen:</p><ul><li>höchstens $\sigma$ entfernt: <strong>gewöhnlich</strong></li><li>zwischen $\sigma$ und $2\sigma$ entfernt: <strong>erhöhte</strong>, aber noch übliche Abweichung</li><li>mehr als $2\sigma$ entfernt: <strong>ungewöhnlich</strong></li></ul>'
+        zeige: { eintraege: [g, e, u] }
+      - typ: auswahl
+        frage: 'Eine Lieferung dauert $38$ Minuten. Wie ist das einzuordnen?'
+        optionen:
+          - 'Gewöhnlich: Der Abstand beträgt höchstens $\sigma$.'
+          - 'Erhöhte, aber noch übliche Abweichung: Der Abstand liegt zwischen $\sigma$ und $2\sigma$.'
+          - 'Ungewöhnlich: Der Abstand beträgt mehr als $2\sigma$.'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Suche $38$ Minuten in den Bereichen der Liste.'
+        danach: '<p>$|38-30|=8$, und $8$ liegt zwischen $\sigma=5$ und $2\sigma=10$.</p><p><strong>Merke:</strong></p><ul><li>$E(X)$: Durchschnitt auf lange Sicht.</li><li>$\sigma(X)$: Maß für die Schwankung. Kleineres $\sigma$ heißt gleichmäßiger, stabiler.</li><li>Einordnen: Abstand $|x-E(X)|$ mit $\sigma$ und $2\sigma$ vergleichen.</li></ul>'
 
   # ── Phase B: Zuschauen ─────────────────────────────────────
   - phase: vormachen
@@ -50,7 +69,8 @@ karten:
       eintraege:
         - { id: mittel, text: 'Mittlere Wartezeit', gleichung: '$E(X_B)=10\;&lt;\;E(X_A)=12$' }
         - { id: streu, text: 'Schwankung', gleichung: '$\sigma(X_A)=2\;&lt;\;\sigma(X_B)=5$' }
-        - { id: wert, text: 'Linie A: 17 Minuten', gleichung: '$|17-12|=5$<br>$2\sigma=4$, und $5&gt;4$' }
+        - { id: wa, text: 'Linie A: 17 Minuten', gleichung: '$|17-12|=5\;&gt;\;2\sigma=4$<br>ungewöhnlich' }
+        - { id: wb, text: 'Linie B: 17 Minuten', gleichung: '$\sigma=5\;&lt;\;|17-10|=7\;&lt;\;2\sigma=10$<br>erhöht' }
     schritte:
       - typ: auswahl
         frage: 'Bei welcher Linie wartet man im Mittel <strong>kürzer</strong>?'
@@ -72,11 +92,23 @@ karten:
         mischen: false
         hinweis: 'Vergleiche die Standardabweichungen. Weniger Schwankung bedeutet kleineres $\sigma$.'
         zeige: { eintraege: [streu] }
+        danach: '<p>Linie B ist im Mittel schneller, Linie A ist dafür verlässlicher.</p>'
       - typ: aufdecken
-        frage: 'An einem Tag wartet man bei Linie A $17$ Minuten. Wie ist das einzuordnen?'
-        knopf: 'Zeigen'
+        frage: 'An einem Tag wartet man bei Linie A $17$ Minuten.'
+        knopf: 'Einordnung zeigen'
         text: '<p>Abstand zum Erwartungswert: $|17-12|=5$ Minuten. Für Linie A ist $\sigma=2$, also $2\sigma=4$. Der Abstand $5$ ist größer als $2\sigma$, die Wartezeit ist also <strong>ungewöhnlich</strong> lang.</p>'
-        zeige: { eintraege: [wert] }
+        zeige: { eintraege: [wa] }
+      - typ: auswahl
+        frage: 'Bei Linie B wartet man ebenfalls $17$ Minuten. Wie ist das einzuordnen?'
+        optionen:
+          - 'Gewöhnlich: Der Abstand beträgt höchstens $\sigma$.'
+          - 'Erhöhte, aber noch übliche Abweichung: Der Abstand liegt zwischen $\sigma$ und $2\sigma$.'
+          - 'Ungewöhnlich: Der Abstand beträgt mehr als $2\sigma$.'
+        korrekt: 1
+        mischen: false
+        hinweis: 'Rechne mit den Werten von Linie B: $E(X_B)=10$ und $\sigma(X_B)=5$.'
+        zeige: { eintraege: [wb] }
+        danach: '<p>$|17-10|=7$ liegt zwischen $\sigma=5$ und $2\sigma=10$. Gleiche Wartezeit, andere Einordnung: Es zählen immer $E(X)$ und $\sigma$ der genannten Linie.</p>'
 
   # ── Phase C: Mitmachen ─────────────────────────────────────
   - phase: mitmachen
