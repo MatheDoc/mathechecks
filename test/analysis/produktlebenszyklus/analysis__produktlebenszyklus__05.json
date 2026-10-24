@@ -1,54 +1,54 @@
 {
     "fragen": [
         {
-            "frage": "Wie wird die Gewinnfunktion aus Erlös- und Kostenfunktion gebildet?",
-            "antworten": ["\\(G(t)=E(t)-K(t)\\)", "\\(G(t)=K(t)-E(t)\\)", "\\(G(t)=E(t)+K(t)\\)", "\\(G(t)=E(t)\\cdot K(t)\\)"],
-            "fehler": ["Kosten und Erlös in falscher Reihenfolge subtrahiert", "Kosten zum Erlös addiert statt abgezogen", "Erlös und Kosten multipliziert statt ihre Differenz zu bilden"]
+            "frage": "Welche Größe beschreibt den jährlichen Umsatz nach 4 Jahren?",
+            "antworten": ["\\(u(4)\\)", "\\(\\int_0^4 u(t)\\,dt\\)", "\\(4\\cdot u(4)\\)", "\\(u'(4)\\)"],
+            "fehler": ["Gesamtumsatz der ersten vier Jahre statt jährlichen Umsatz gewählt", "Funktionswert ohne Grund mit der Zeit multipliziert", "Änderungsrate statt jährlichen Umsatz gewählt"]
         },
         {
-            "frage": "\\(E(t)\\) ist der jährliche Erlös nach \\(t\\) Jahren. Was beschreibt \\(E(4)\\)?",
-            "antworten": ["den jährlichen Erlös nach 4 Jahren", "den gesamten Erlös der ersten 4 Jahre", "die jährlichen Kosten nach 4 Jahren", "den Gesamtgewinn der ersten 4 Jahre"],
-            "fehler": ["Funktionswert mit dem Integral über vier Jahre verwechselt", "Erlösfunktion mit der Kostenfunktion verwechselt", "Jährlichen Erlös mit dem gesamten Gewinn verwechselt"]
+            "frage": "Welche Formel gibt den Gesamtumsatz vom Ende des 2. bis zum Ende des 5. Jahres an?",
+            "antworten": ["\\(\\int_2^5 u(t)\\,dt\\)", "\\(\\int_0^5 u(t)\\,dt\\)", "\\(u(5)-u(2)\\)", "\\(\\frac{1}{3}\\int_2^5 u(t)\\,dt\\)"],
+            "fehler": ["Umsatz ab Beginn statt ab Ende des zweiten Jahres erfasst", "Differenz zweier Jahresumsätze statt Gesamtumsatz gebildet", "Durchschnittlichen statt gesamten Umsatz gewählt"]
         },
         {
-            "frage": "\\(K(t)\\) sind die jährlichen Kosten nach \\(t\\) Jahren. Was beschreibt \\(K(7)\\)?",
-            "antworten": ["die jährlichen Kosten nach 7 Jahren", "die gesamten Kosten der ersten 7 Jahre", "den jährlichen Gewinn nach 7 Jahren", "den gesamten Erlös der ersten 7 Jahre"],
-            "fehler": ["Funktionswert mit dem Integral über sieben Jahre verwechselt", "Kostenfunktion mit der Gewinnfunktion verwechselt", "Jährliche Kosten mit dem gesamten Erlös verwechselt"]
+            "frage": "Welche Formel gibt den Gesamtumsatz in den ersten 7 Jahren an?",
+            "antworten": ["\\(\\int_0^7 u(t)\\,dt\\)", "\\(\\int_1^7 u(t)\\,dt\\)", "\\(\\int_0^6 u(t)\\,dt\\)", "\\(u(7)\\)"],
+            "fehler": ["Erstes Jahr durch die falsche Untergrenze ausgelassen", "Obergrenze um ein Jahr zu früh gewählt", "Jährlichen Umsatz nach sieben Jahren statt Gesamtumsatz gewählt"]
         },
         {
-            "frage": "\\(G(t)\\) ist der jährliche Gewinn nach \\(t\\) Jahren. Was beschreibt \\(G(5)\\)?",
-            "antworten": ["den jährlichen Gewinn oder Verlust nach 5 Jahren", "den Gesamtgewinn der ersten 5 Jahre", "den jährlichen Erlös nach 5 Jahren", "die gesamten Kosten der ersten 5 Jahre"],
-            "fehler": ["Funktionswert mit dem Integral über fünf Jahre verwechselt", "Gewinnfunktion mit der Erlösfunktion verwechselt", "Jährlichen Gewinn oder Verlust mit gesamten Kosten verwechselt"]
+            "frage": "Welche Formel gibt den durchschnittlichen jährlichen Umsatz im Zeitraum \\(\\lbrack a;b\\rbrack\\) an?",
+            "antworten": ["\\(\\frac{1}{b-a}\\int_a^b u(t)\\,dt\\)", "\\(\\int_a^b u(t)\\,dt\\)", "\\(\\frac{1}{a+b}\\int_a^b u(t)\\,dt\\)", "\\(\\frac{u(a)+u(b)}{b-a}\\)"],
+            "fehler": ["Gesamtumsatz nicht durch die Zeitspanne geteilt", "Durch die Summe der Grenzen statt durch die Intervalllänge geteilt", "Randwerte statt Gesamtumsatz zur Durchschnittsbildung verwendet"]
         },
         {
-            "frage": "\\(E(t)\\) ist der jährliche Erlös, \\(t\\) in Jahren. Welche Formel gibt den gesamten Erlös auf \\([a;b]\\) an?",
-            "antworten": ["\\(\\int_a^b E(t)\\,dt\\)", "\\(E(b)\\)", "\\(\\int_a^b K(t)\\,dt\\)", "\\(E(b)-E(a)\\)"],
-            "fehler": ["Jährlichen Erlös am Intervallende statt Gesamterlös gewählt", "Gesamtkosten statt Gesamterlös gewählt", "Differenz der Randwerte statt Integral der Erlösfunktion gebildet"]
+            "frage": "Es gilt \\(\\int_1^4 u(t)\\,dt=60\\). Wie groß ist der durchschnittliche jährliche Umsatz in diesem Zeitraum?",
+            "antworten": ["\\(20\\)", "\\(60\\)", "\\(15\\)", "\\(240\\)"],
+            "fehler": ["Gesamtumsatz statt Durchschnitt angegeben", "Durch die obere Grenze 4 statt durch die Zeitspanne 3 geteilt", "Integralwert mit der Zeitspanne multipliziert statt durch sie geteilt"]
         },
         {
-            "frage": "\\(K(t)\\) sind die jährlichen Kosten, \\(t\\) in Jahren. Welche Formel gibt die gesamten Kosten auf \\([a;b]\\) an?",
-            "antworten": ["\\(\\int_a^b K(t)\\,dt\\)", "\\(K(b)\\)", "\\(\\int_a^b E(t)\\,dt\\)", "\\(K(b)-K(a)\\)"],
-            "fehler": ["Jährliche Kosten am Intervallende statt Gesamtkosten gewählt", "Gesamterlös statt Gesamtkosten gewählt", "Differenz der Randwerte statt Integral der Kostenfunktion gebildet"]
+            "frage": "Es gilt \\(\\int_2^6 u(t)\\,dt=84\\). Wie groß ist der durchschnittliche jährliche Umsatz?",
+            "antworten": ["\\(21\\)", "\\(84\\)", "\\(14\\)", "\\(42\\)"],
+            "fehler": ["Gesamtumsatz statt Durchschnitt angegeben", "Durch die obere Grenze 6 statt durch die Zeitspanne 4 geteilt", "Durch die Untergrenze 2 statt durch die Zeitspanne 4 geteilt"]
         },
         {
-            "frage": "\\(G(t)\\) ist der jährliche Gewinn, \\(t\\) in Jahren. Welche Formel gibt den gesamten Gewinn oder Verlust auf \\([a;b]\\) an?",
-            "antworten": ["\\(\\int_a^b G(t)\\,dt\\)", "\\(G(b)\\)", "\\(\\int_a^b E(t)\\,dt\\)", "\\(G(b)-G(a)\\)"],
-            "fehler": ["Jährlichen Gewinn am Intervallende statt Gesamtwert gewählt", "Gesamterlös statt gesamten Gewinn oder Verlust gewählt", "Differenz der Randwerte statt Integral der Gewinnfunktion gebildet"]
+            "frage": "Der Produktlebenszyklus endet bei \\(t=T\\). Welche Formel gibt den Gesamtumsatz des gesamten Lebenszyklus an?",
+            "antworten": ["\\(\\int_0^T u(t)\\,dt\\)", "\\(u(T)\\)", "\\(\\int_1^T u(t)\\,dt\\)", "\\(\\frac{1}{T}u(T)\\)"],
+            "fehler": ["Jährlichen Umsatz am Lebenszyklusende statt Gesamtumsatz gewählt", "Beginn des Lebenszyklus durch die Untergrenze 1 ausgelassen", "Endwert geteilt statt Umsatz über den gesamten Zeitraum aufsummiert"]
         },
         {
-            "frage": "Die Nullstellen von \\(G\\) sind \\(t_1=3\\) und \\(t_2=11\\). Zwischen ihnen gilt \\(G(t)>0\\), außerhalb \\(G(t)<0\\). Wann sind die Kosten gedeckt?",
-            "antworten": ["von \\(t=3\\) bis \\(t=11\\)", "vor \\(t=3\\)", "nach \\(t=11\\)", "nur bei \\(t=7\\)"],
-            "fehler": ["Negativen Bereich vor der ersten Nullstelle als Kostendeckung gewählt", "Negativen Bereich nach der zweiten Nullstelle als Kostendeckung gewählt", "Gesamten positiven Zeitraum auf einen einzelnen Zeitpunkt verkürzt"]
+            "frage": "Es gilt \\(\\int_3^8 u(t)\\,dt=75\\). Wie groß ist der Gesamtumsatz in diesem Zeitraum?",
+            "antworten": ["\\(75\\)", "\\(15\\)", "\\(375\\)", "\\(11\\)"],
+            "fehler": ["Gesamtumsatz unnötig durch die Zeitspanne 5 geteilt", "Integralwert unnötig mit der Zeitspanne 5 multipliziert", "Intervallgrenzen addiert statt den gegebenen Integralwert zu verwenden"]
         },
         {
-            "frage": "Für den kumulierten Gewinn \\(H\\) sind nur \\(t_1\\) und \\(T\\) Minimumkandidaten: \\(H(t_1)=-54\\), \\(H(T)=18\\). Wo ist der Gesamtverlust maximal und wie hoch?",
-            "antworten": ["bei \\(t_1\\); Verlustbetrag \\(54\\)", "bei \\(t_1\\); Verlustbetrag \\(-54\\)", "bei \\(T\\); Verlustbetrag \\(18\\)", "bei \\(T\\); Verlustbetrag \\(54\\)"],
-            "fehler": ["Negativen kumulierten Wert statt positiven Verlustbetrag angegeben", "Positiven Endwert fälschlich als maximalen Verlust gewählt", "Zeitpunkt des kleinsten kumulierten Werts mit dem Lebenszyklusende verwechselt"]
+            "frage": "\\(u(t)\\) beschreibt den jährlichen Umsatz nach \\(t\\) Jahren. Was bedeutet \\(u(6)=14\\)?",
+            "antworten": ["Der jährliche Umsatz nach 6 Jahren beträgt 14.", "Der Gesamtumsatz der ersten 6 Jahre beträgt 14.", "Der durchschnittliche Umsatz der ersten 6 Jahre beträgt 14.", "Der Umsatz steigt nach 6 Jahren um 14 pro Jahr."],
+            "fehler": ["Funktionswert mit dem Gesamtumsatz eines Zeitraums verwechselt", "Funktionswert mit dem Durchschnitt eines Zeitraums verwechselt", "Funktionswert mit einer Änderungsrate verwechselt"]
         },
         {
-            "frage": "Für den kumulierten Gewinn \\(H\\) sind nur \\(t_1\\) und \\(T\\) Minimumkandidaten: \\(H(t_1)=-40\\), \\(H(T)=-65\\). Wo ist der Gesamtverlust maximal und wie hoch?",
-            "antworten": ["bei \\(T\\); Verlustbetrag \\(65\\)", "bei \\(t_1\\); Verlustbetrag \\(40\\)", "bei \\(T\\); Verlustbetrag \\(-65\\)", "bei \\(t_1\\); Verlustbetrag \\(65\\)"],
-            "fehler": ["Weniger negativen kumulierten Wert als maximalen Verlust gewählt", "Negativen kumulierten Wert statt positiven Verlustbetrag angegeben", "Richtigen Verlustbetrag dem falschen Zeitpunkt zugeordnet"]
+            "frage": "Welche Formel gehört zum Umsatz vom Ende des 4. bis zum Ende des 9. Jahres?",
+            "antworten": ["\\(\\int_4^9 u(t)\\,dt\\)", "\\(\\int_0^9 u(t)\\,dt\\)", "\\(\\int_4^5 u(t)\\,dt\\)", "\\(u(9)-u(4)\\)"],
+            "fehler": ["Untere Grenze 0 statt 4 gewählt", "Zeitspanne 5 fälschlich als obere Grenze eingesetzt", "Differenz der Randwerte statt Umsatz im Zeitraum gebildet"]
         }
     ]
 }
