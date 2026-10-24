@@ -272,22 +272,6 @@ def _integrate_case_u_exact(case: "_PLCCase", a: float, b: float) -> float:
     return _integrate_poly_times_exp(case.coeffs, case.exp_rate, a, b) + case.offset * (b - a)
 
 
-def _integrate_ekg_exact(case: "_EKGCase", kind: str, a: float, b: float) -> float:
-    if b <= a:
-        return 0.0
-
-    raw_integral = _integrate_poly_times_exp((case.a3, case.b2, 0.0, 0.0), case.exp_rate, a, b)
-    if kind == "raw":
-        return raw_integral
-    if kind == "e":
-        return (1.0 + case.scale_k) * raw_integral
-    if kind == "k":
-        return case.scale_k * raw_integral + case.fix_cost * (b - a)
-    if kind == "g":
-        return raw_integral - case.fix_cost * (b - a)
-    raise ValueError(f"Unbekannter Integraltyp: {kind}")
-
-
 def _roots_by_scan(fn, lo: float, hi: float, steps: int = 2800) -> list[float]:
     roots: list[float] = []
     prev_x = lo
@@ -499,26 +483,72 @@ def _align_equations(expressions: list[str]) -> str:
     return f"$$ \\begin{{align*}} {joined} \\end{{align*}} $$"
 
 
-def _u_latex(case: _PLCCase) -> str:
+def _u_latex(case: _PLCCase, fname: str = "u") -> str:
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
     poly = _poly_latex(case.coeffs, variable="t")
     if abs(case.offset) < 1e-12:
-        return f"u(t)=({poly}){exp_part}"
-    return f"u(t)=({poly}){exp_part}{_signed(case.offset, 2)}"
+        return f"{fname}(t)=({poly}){exp_part}"
+    return f"{fname}(t)=({poly}){exp_part}{_signed(case.offset, 2)}"
 
 
-def _du_latex(case: _PLCCase, order: int) -> str:
+def _du_latex(case: _PLCCase, order: int, fname: str = "u") -> str:
     coeff_map = {1: case.d1_coeffs, 2: case.d2_coeffs, 3: case.d3_coeffs}
     coeffs = coeff_map[order]
     poly = _poly_latex(coeffs, variable="t")
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
-    if order == 1:
-        name = "u'(t)"
-    elif order == 2:
-        name = "u''(t)"
-    else:
-        name = "u'''(t)"
+    name = f"{fname}{chr(39) * order}(t)"
     return f"{name}=({poly}){exp_part}"
+
+
+@dataclass(frozen=True)
+class _Kontext:
+    """Sachkontext: Absatz (ME/Monat) als Standard, Umsatz (GE/Jahr) als Variante."""
+
+    groesse: str
+    fname: str
+    einheit: str
+    zeit: str
+    zeit_pl: str
+    zeit_gen: str
+    adj: str
+
+    @property
+    def rate(self) -> str:
+        return f"{self.einheit}/{self.zeit}"
+
+    @property
+    def gesamt(self) -> str:
+        return f"Gesamt{self.groesse.lower()}"
+
+
+_ABSATZ = _Kontext("Absatz", "a", "ME", "Monat", "Monaten", "Monats", "monatlich")
+_UMSATZ = _Kontext("Umsatz", "u", "GE", "Jahr", "Jahren", "Jahres", "jährlich")
+
+
+def _kontext_for(task_index: int) -> _Kontext:
+    return _UMSATZ if task_index % 4 == 3 else _ABSATZ
+
+
+def _nice_in(rng: random.Random, lo: float, hi: float, steps=(1.0, 0.5, 0.25, 0.1)) -> float | None:
+    if hi < lo:
+        return None
+    for step in steps:
+        i_lo = math.ceil(lo / step - 1e-9)
+        i_hi = math.floor(hi / step + 1e-9)
+        if i_lo <= i_hi:
+            return rng.randint(i_lo, i_hi) * step
+    return None
+
+
+def _mc(options: list[str], correct: str) -> str:
+    parts = "".join(f"~={opt}" if opt == correct else f"~{opt}" for opt in options)
+    return f"{{1:MC:{parts}}}"
+
+
+def _zeitraum_text(k: _Kontext, p: int, q: int) -> str:
+    if p == 0:
+        return f"in den ersten {q} {k.zeit_pl}"
+    return f"vom Ende des {p}. bis zum Ende des {q}. {k.zeit_gen}"
 
 
 def _effective_u_plot_limit(case: _PLCCase, t_peak: float, y_peak: float) -> float:
@@ -686,237 +716,88 @@ def _plot_visual(
     return {"type": "plot", "spec": spec}
 
 
-class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
-    generator_key = "analysis.produktlebenszyklus.integrale_gemischt"
-
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
-
-        while len(tasks) < count:
-            requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            requested_start = _requested_start_mode(len(tasks), requested_form)
-            case = _sample_plc_case(
-                rng,
-                mode="integrals",
-                forced_form=requested_form,
-                start_mode=requested_start,
-            )
-
-            if case.has_market_exit:
-                t_lifecycle = case.t_end
-                lifecycle_text = "Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird."
-            else:
-                t_lifecycle = case.t_end
-                lifecycle_text = f"Der Produktlebenszyklus endet nach {_fmt(t_lifecycle, 2)} Jahren."
-
-            a = float(rng.randint(2, max(3, int(t_lifecycle * 0.4))))
-            b = float(rng.randint(max(int(a) + 1, int(t_lifecycle * 0.6)), max(int(a) + 1, int(t_lifecycle))))
-            n = float(rng.randint(2, max(3, int(t_lifecycle * 0.8))))
-            t_eval = float(rng.randint(1, max(1, int(t_lifecycle))))
-
-            total = _integrate_case_u_exact(case, 0.0, t_lifecycle)
-            interval_value = _integrate_case_u_exact(case, a, b)
-            avg_value = _integrate_case_u_exact(case, 0.0, n) / n
-            point_value = case.u(t_eval)
-
-            items = [
-                (
-                    "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-                    _num_tol(total, tolerance=0.1),
-                ),
-                (
-                    f"den Umsatz, der vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres erzielt wird.",
-                    _num_tol(interval_value, tolerance=0.1),
-                ),
-                (
-                    f"den jährlichen Umsatz, der durchschnittlich in den ersten {int(n)} Jahren erzielt wird.",
-                    _num_tol(avg_value, tolerance=0.1),
-                ),
-                (
-                    f"den jährlichen Umsatz nach {int(t_eval)} Jahren.",
-                    _num_tol(point_value, tolerance=0.1),
-                ),
-            ]
-            rng.shuffle(items)
-
-            tasks.append(
-                Task(
-                    einleitung=(
-                        "Die Funktion"
-                        f"{_display_equation(_u_latex(case))}"
-                        "gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an."
-                        f"{lifecycle_text}" "Bestimmen Sie (auf 2 NKS gerundet)"
-                    ),
-                    fragen=[q for q, _ in items],
-                    antworten=[a_ for _, a_ in items],
-                )
-            )
-
-        return tasks
 
 
-@dataclass
-class _EKGCase:
-    a3: float
-    b2: float
-    exp_rate: float
-    scale_k: float
-    fix_cost: float
-    t_end: float
-
-    def raw(self, t: float) -> float:
-        return (self.a3 * (t**3) + self.b2 * (t**2)) * math.exp(-self.exp_rate * t)
-
-    def e(self, t: float) -> float:
-        return (1.0 + self.scale_k) * self.raw(t)
-
-    def k(self, t: float) -> float:
-        return self.scale_k * self.raw(t) + self.fix_cost
-
-    def g(self, t: float) -> float:
-        return self.e(t) - self.k(t)
+def _plc_case_for_task(rng: random.Random, task_index: int, mode: str) -> _PLCCase:
+    requested_form = _PLC_POLY_FORMS[task_index % len(_PLC_POLY_FORMS)]
+    requested_start = _requested_start_mode(task_index, requested_form)
+    return _sample_plc_case(
+        rng,
+        mode=mode,
+        forced_form=requested_form,
+        start_mode=requested_start,
+    )
 
 
-def _sample_ekg_case(rng: random.Random) -> _EKGCase:
-    for _ in range(3000):
-        exp_rate = _rand_step(rng, 0.1, 0.9, 0.1)
-        t_end = _rand_step(rng, 8.0, 24.0, 1.0)
-        k_shape = _rand_step(rng, 0.5, 2.0, 0.1)
-        a3 = -k_shape
-        b2 = k_shape * t_end
-        scale_k = _rand_step(rng, 0.3, 0.8, 0.1)
-
-        tmp = _EKGCase(a3=a3, b2=b2, exp_rate=exp_rate, scale_k=scale_k, fix_cost=1.0, t_end=t_end)
-
-        peak_raw = max(tmp.raw(x * t_end / 500.0) for x in range(1, 500))
-        if peak_raw <= 1.0:
-            continue
-
-        fix_cost = _rand_step(rng, 0.2 * peak_raw, 0.6 * peak_raw, 0.1)
-        case = _EKGCase(
-            a3=a3,
-            b2=b2,
-            exp_rate=exp_rate,
-            scale_k=scale_k,
-            fix_cost=fix_cost,
-            t_end=t_end,
-        )
-
-        roots = [r for r in _roots_by_scan(case.g, 0.0, case.t_end) if 1e-3 < r < case.t_end - 1e-3]
-        if len(roots) < 2:
-            continue
-
-        t1, t2 = roots[0], roots[1]
-        if t2 - t1 < 0.8:
-            continue
-
-        return case
-
-    raise ValueError("Konnte keine geeigneten EKG-Parameter erzeugen.")
+def _cumulative_time(case: _PLCCase, target: float, t_hi: float) -> float | None:
+    """Zeitpunkt z mit int_0^z u(t) dt = target (kumulierte Funktion ist dort monoton)."""
+    if _integrate_case_u_exact(case, 0.0, t_hi) < target:
+        return None
+    lo, hi = 0.0, t_hi
+    for _ in range(80):
+        mid = 0.5 * (lo + hi)
+        if _integrate_case_u_exact(case, 0.0, mid) < target:
+            lo = mid
+        else:
+            hi = mid
+    return 0.5 * (lo + hi)
 
 
-def _ekg_latex(case: _EKGCase) -> tuple[str, str]:
-    e_factor = 1.0 + case.scale_k
-    e_poly = f"{_fmt(e_factor * case.a3, 3)}t^3{_signed(e_factor * case.b2, 3)}t^2"
-    k_poly = f"{_fmt(case.scale_k * case.a3, 3)}t^3{_signed(case.scale_k * case.b2, 3)}t^2"
-    exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
-    e_ltx = f"E(t)=({e_poly}){exp_part}"
-    k_ltx = f"K(t)=({k_poly}){exp_part}{_signed(case.fix_cost, 2)}"
-    return e_ltx, k_ltx
+def _threshold_question(rng: random.Random, case: _PLCCase, k: _Kontext, y_peak: float):
+    lower = max(case.u(0.0), case.offset, 0.0)
+    span = y_peak - lower
+    if span <= 0.5:
+        return None
+    step = 1.0 if y_peak >= 8.0 else 0.5
+    c = _nice_in(rng, lower + 0.25 * span, y_peak - 0.25 * span, steps=(step, 0.5, 0.25, 0.1))
+    if c is None:
+        return None
+
+    scan_end = case.t_end if case.has_market_exit else case.t_end + 15.0 / case.exp_rate
+    roots = _roots_by_scan(lambda t: case.u(t) - c, 0.0, scan_end, steps=6000)
+    if len(roots) != 2 or roots[1] - roots[0] < 0.5:
+        return None
+    if case.u(scan_end) >= c:
+        return None
+
+    text = (
+        f"den Zeitraum, in dem der {k.adj}e {k.groesse} über {_fmt(c, 2)} {k.rate} liegt."
+    )
+    return text, _interval_num(roots[0], roots[1], tolerance=0.05)
 
 
-class ProduktlebenszyklusEKGZyklusGemischtGenerator(TaskGenerator):
-    generator_key = "analysis.produktlebenszyklus.ekg_zyklus_gemischt"
+def _kruemmung_question(rng: random.Random, case: _PLCCase, k: _Kontext, t_inc: float, t_peak: float):
+    if case.du(0.0) < 0.0:
+        return None
 
-    def generate(self, count: int, seed: int | None = None) -> list[Task]:
-        rng = random.Random(seed)
-        tasks: list[Task] = []
+    options: list[tuple[float, float, str]] = []
+    if t_inc > 1.0:
+        x2 = _nice_in(rng, 0.4 * t_inc, 0.85 * t_inc)
+        if x2 is not None and x2 > 0:
+            options.append((0.0, x2, "progressiv"))
+    if t_peak - t_inc > 1.5:
+        lo = t_inc + 0.15 * (t_peak - t_inc)
+        hi = t_peak - 0.15 * (t_peak - t_inc)
+        x1 = _nice_in(rng, lo, lo + 0.4 * (hi - lo))
+        x2 = _nice_in(rng, lo + 0.6 * (hi - lo), hi)
+        if x1 is not None and x2 is not None and x2 > x1:
+            options.append((x1, x2, "degressiv"))
+    if not options:
+        return None
 
-        while len(tasks) < count:
-            case = _sample_ekg_case(rng)
-            roots = [r for r in _roots_by_scan(case.g, 0.0, case.t_end) if 1e-3 < r < case.t_end - 1e-3]
-            t1, t2 = roots[0], roots[1]
+    x1, x2, answer = rng.choice(options)
+    samples = [x1 + (x2 - x1) * i / 40 for i in range(1, 40)]
+    if any(case.du(t) <= 0 for t in samples):
+        return None
+    expected_sign = 1 if answer == "progressiv" else -1
+    if any(case.d2u(t) * expected_sign <= 0 for t in samples):
+        return None
 
-            total_profit = _integrate_ekg_exact(case, "g", 0.0, case.t_end)
-            v_t1 = -_integrate_ekg_exact(case, "g", 0.0, t1)
-            v_t = -_integrate_ekg_exact(case, "g", 0.0, case.t_end)
-            t_max_loss = t1 if v_t1 >= v_t else case.t_end
-
-            a = float(rng.randint(1, max(2, int(case.t_end * 0.4))))
-            b = float(rng.randint(max(int(a) + 1, int(case.t_end * 0.6)), max(int(a) + 1, int(case.t_end))))
-            t_eval = float(rng.randint(1, max(1, int(case.t_end * 0.95))))
-
-            integral_kind = rng.choice(["e", "k", "g"])
-            if integral_kind == "e":
-                mixed_q = (
-                    f"die Erlöse, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres erzielt werden.",
-                    _num_tol(_integrate_ekg_exact(case, "e", a, b), tolerance=0.1),
-                )
-            elif integral_kind == "k":
-                mixed_q = (
-                    f"die Kosten, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres anfallen.",
-                    _num_tol(_integrate_ekg_exact(case, "k", a, b), tolerance=0.1),
-                )
-            else:
-                mixed_q = (
-                    f"die Gewinne, die vom Ende des {int(a)}. bis zum Ende des {int(b)}. Jahres erzielt werden.",
-                    _num_tol(_integrate_ekg_exact(case, "g", a, b), tolerance=0.1),
-                )
-
-            point_kind = rng.choice(["e", "k", "g"])
-            if point_kind == "e":
-                point_q = (
-                    f"die jährlichen Erlöse nach {int(t_eval)} Jahren.",
-                    _num_tol(case.e(t_eval), tolerance=0.1),
-                )
-            elif point_kind == "k":
-                point_q = (
-                    f"die jährlichen Kosten nach {int(t_eval)} Jahren.",
-                    _num_tol(case.k(t_eval), tolerance=0.1),
-                )
-            else:
-                point_q = (
-                    f"die jährlichen Gewinne nach {int(t_eval)} Jahren.",
-                    _num_tol(case.g(t_eval), tolerance=0.1),
-                )
-
-            items = [
-                mixed_q,
-                (
-                    "den Gesamtgewinn, der während des Produktlebenszyklus erwirtschaftet wird.",
-                    _num_tol(total_profit, tolerance=0.01),
-                ),
-                (
-                    "den Zeitraum, in dem die Kosten von den Erlösen gedeckt werden.",
-                    _interval_num(t1, t2, tolerance=0.01),
-                ),
-                point_q,
-                (
-                    "den Zeitpunkt t, an dem der maximale Gesamtverlust auftritt. "
-                    "Der Gesamtverlust in Abhängigkeit vom Zeitpunkt t bezeichnet hierbei denjenigen Verlust, "
-                    "der seit der Produkteinführung bis zum Zeitpunkt t erzielt wird.",
-                    _num_tol(t_max_loss, tolerance=0.1),
-                ),
-            ]
-            rng.shuffle(items)
-            e_ltx, k_ltx = _ekg_latex(case)
-
-            tasks.append(
-                Task(
-                    einleitung=(
-                        "Die Funktionen"
-                        f"{_align_equations([e_ltx, k_ltx])}"
-                        "geben den jährlichen Erlös und die jährlichen Kosten seit der Einführung "
-                        "eines Produkts an. "
-                        f"Der Lebenszyklus des Produkts endet nach {_fmt(case.t_end, 2)} Jahren. Bestimmen Sie (auf 2 NKS gerundet)"
-                    ),
-                    fragen=[q for q, _ in items],
-                    antworten=[a_ for _, a_ in items],
-                )
-            )
-
-        return tasks
+    text = (
+        f"ob der {k.adj}e {k.groesse} im Zeitraum von $t={_fmt(x1, 2)}$ bis "
+        f"$t={_fmt(x2, 2)}$ progressiv oder degressiv steigt."
+    )
+    return text, _mc(["progressiv", "degressiv"], answer)
 
 
 class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
@@ -927,14 +808,8 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
         tasks: list[Task] = []
 
         while len(tasks) < count:
-            requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            requested_start = _requested_start_mode(len(tasks), requested_form)
-            case = _sample_plc_case(
-                rng,
-                mode="graph_u",
-                forced_form=requested_form,
-                start_mode=requested_start,
-            )
+            k = _kontext_for(len(tasks))
+            case = _plc_case_for_task(rng, len(tasks), "graph_u")
             t_peak, y_peak = _max_of_u(case)
             t_inc, t_dec = _max_min_of_du(case)
 
@@ -954,58 +829,48 @@ class ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator(TaskGenerator):
             tol_y = y_tick / 4.0
 
             questions = [
-                ("den jährlichen Umsatz bei der Produkteinführung.", _num_tol(case.u(0.0), tolerance=tol_y)),
+                (f"den {k.adj}en {k.groesse} bei der Markteinführung.", _num_tol(case.u(0.0), tolerance=tol_y)),
+                (f"den Zeitpunkt des höchsten {k.adj}en {k.groesse}es.", _num_tol(t_peak, tolerance=tol_x)),
+                (f"die Höhe des höchsten {k.adj}en {k.groesse}es.", _num_tol(y_peak, tolerance=tol_y)),
                 (
-                    "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-                    _num_tol(t_peak, tolerance=tol_x),
-                ),
-                (
-                    "die Höhe des höchsten jährlichen Umsatzes.",
-                    _num_tol(y_peak, tolerance=tol_y),
-                ),
-                (
-                    f"den jährlichen Umsatz nach {_fmt(t_eval, 2)} Jahren.",
+                    f"den {k.adj}en {k.groesse} nach {_fmt(t_eval, 2)} {k.zeit_pl}.",
                     _num_tol(case.u(t_eval), tolerance=tol_y),
                 ),
-                (
-                    "den Zeitpunkt des stärksten Umsatzanstiegs.",
-                    _num_tol(t_inc, tolerance=tol_x),
-                ),
-                (
-                    "den Zeitpunkt des stärksten Umsatzrückgangs.",
-                    _num_tol(t_dec, tolerance=tol_x),
-                ),
+                (f"den Zeitpunkt des stärksten {k.groesse}anstiegs.", _num_tol(t_inc, tolerance=tol_x)),
+                (f"den Zeitpunkt des stärksten {k.groesse}rückgangs.", _num_tol(t_dec, tolerance=tol_x)),
             ]
 
             if case.has_market_exit:
                 questions.append(
-                    ("den Zeitpunkt des Marktaustritts.", _num_tol(case.t_end, tolerance=tol_x))
+                    ("den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.", _num_tol(case.t_end, tolerance=tol_x))
                 )
             else:
                 questions.append(
-                    (
-                        "den langfristig zu erwartenden jährlichen Umsatz.",
-                        _num_tol(case.offset, tolerance=tol_y),
-                    )
+                    (f"den langfristig zu erwartenden {k.adj}en {k.groesse}.", _num_tol(case.offset, tolerance=tol_y))
                 )
+
+            kruemmung = _kruemmung_question(rng, case, k, t_inc, t_peak)
+            if kruemmung is not None:
+                questions.append(kruemmung)
 
             rng.shuffle(questions)
 
             tasks.append(
                 Task(
                     einleitung=(
-                        "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. "
-                        "Bestimmen Sie anhand des Graphen."
+                        f"Das Diagramm zeigt den Graphen der Funktion ${k.fname}$, die den {k.adj}en "
+                        f"{k.groesse} eines Produkts in {k.rate} beschreibt ($t$ in {k.zeit_pl} seit der "
+                        "Markteinführung). Bestimmen Sie anhand des Graphen"
                     ),
                     fragen=[q for q, _ in questions],
                     antworten=[a_ for _, a_ in questions],
                     visual=_plot_visual(
-                        title="Produktlebenszyklus - Umsatzfunktion u(t)",
-                        x_axis="Zeit t in Jahren",
-                        y_axis="jährlicher Umsatz u(t)",
-                        trace_name="u(t)",
+                        title=f"{k.groesse}funktion {k.fname}(t)",
+                        x_axis=f"Zeit t in {k.zeit_pl}",
+                        y_axis=f"{k.fname}(t) in {k.rate}",
+                        trace_name=f"{k.fname}(t)",
                         term=_u_term_plain(case),
-                        beschreibung="Umsatzfunktion",
+                        beschreibung=f"{k.adj}er {k.groesse}",
                         x_tick=x_tick,
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
@@ -1025,14 +890,8 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
         tasks: list[Task] = []
 
         while len(tasks) < count:
-            requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            requested_start = _requested_start_mode(len(tasks), requested_form)
-            case = _sample_plc_case(
-                rng,
-                mode="graph_du",
-                forced_form=requested_form,
-                start_mode=requested_start,
-            )
+            k = _kontext_for(len(tasks))
+            case = _plc_case_for_task(rng, len(tasks), "graph_du")
             t_peak = _max_u_time_by_sign_change(case)
             if t_peak is None:
                 continue
@@ -1049,41 +908,51 @@ class ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator(TaskGenerator):
             tol_x = x_tick / 4.0
             tol_y = y_tick / 4.0
 
+            fprime = f"{k.fname}'"
             questions = [
+                (f"den Zeitpunkt des höchsten {k.adj}en {k.groesse}es.", _num_tol(t_peak, tolerance=tol_x)),
+                (f"den Zeitpunkt des stärksten {k.groesse}anstiegs.", _num_tol(t_inc, tolerance=tol_x)),
+                (f"den Zeitpunkt des stärksten {k.groesse}rückgangs.", _num_tol(t_dec, tolerance=tol_x)),
                 (
-                    "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-                    _num_tol(t_peak, tolerance=tol_x),
-                ),
-                (
-                    "den Zeitpunkt des stärksten Umsatzanstiegs.",
-                    _num_tol(t_inc, tolerance=tol_x),
-                ),
-                (
-                    "den Zeitpunkt des stärksten Umsatzrückgangs.",
-                    _num_tol(t_dec, tolerance=tol_x),
-                ),
-                (
-                    f"die jährliche Veränderung des Umsatzes nach {_fmt(t_eval, 2)} Jahren.",
+                    f"die momentane Änderungsrate des {k.adj}en {k.groesse}es nach {_fmt(t_eval, 2)} {k.zeit_pl}.",
                     _num_tol(case.du(t_eval), tolerance=tol_y),
                 ),
             ]
+
+            amplitude = max(abs(v) for v in y_values)
+            candidates = [
+                i * 0.5
+                for i in range(1, int(t_limit * 0.9 / 0.5) + 1)
+                if abs(case.du(i * 0.5)) > 0.2 * amplitude
+            ]
+            if candidates:
+                x_sign = rng.choice(candidates)
+                answer = "zunimmt" if case.du(x_sign) > 0 else "abnimmt"
+                questions.append(
+                    (
+                        f"ob der {k.adj}e {k.groesse} zum Zeitpunkt $t={_fmt(x_sign, 2)}$ zunimmt oder abnimmt.",
+                        _mc(["zunimmt", "abnimmt"], answer),
+                    )
+                )
+
             rng.shuffle(questions)
 
             tasks.append(
                 Task(
                     einleitung=(
-                        "Das Diagramm zeigt den Graphen der Ableitungsfunktion eines Produktlebenszyklus. "
-                        "Bestimmen Sie anhand des Graphen."
+                        f"Die Funktion ${k.fname}$ beschreibt den {k.adj}en {k.groesse} eines Produkts in "
+                        f"{k.rate} ($t$ in {k.zeit_pl} seit der Markteinführung). Das Diagramm zeigt den "
+                        f"Graphen der Ableitungsfunktion ${fprime}$. Bestimmen Sie anhand des Graphen"
                     ),
                     fragen=[q for q, _ in questions],
                     antworten=[a_ for _, a_ in questions],
                     visual=_plot_visual(
-                        title="Produktlebenszyklus - Ableitungsfunktion u'(t)",
-                        x_axis="Zeit t in Jahren",
-                        y_axis="Änderung u'(t) in GE/Jahr",
-                        trace_name="u'(t)",
+                        title=f"Ableitungsfunktion {fprime}(t)",
+                        x_axis=f"Zeit t in {k.zeit_pl}",
+                        y_axis=f"{fprime}(t) in {k.rate} pro {k.zeit}",
+                        trace_name=f"{fprime}(t)",
                         term=_du_term_plain(case, order=1),
-                        beschreibung="Ableitungsfunktion (Umsatzänderung)",
+                        beschreibung=f"Änderungsrate des {k.adj}en {k.groesse}es",
                         x_tick=x_tick,
                         y_tick=y_tick,
                         x_range=(0.0, t_limit),
@@ -1103,72 +972,256 @@ class ProduktlebenszyklusKennzahlenRechnerischGesamtGenerator(TaskGenerator):
         tasks: list[Task] = []
 
         while len(tasks) < count:
-            requested_form = _PLC_POLY_FORMS[len(tasks) % len(_PLC_POLY_FORMS)]
-            requested_start = _requested_start_mode(len(tasks), requested_form)
-            case = _sample_plc_case(
-                rng,
-                mode="calc",
-                forced_form=requested_form,
-                start_mode=requested_start,
-            )
+            k = _kontext_for(len(tasks))
+            case = _plc_case_for_task(rng, len(tasks), "calc")
             t_peak = _max_u_time_by_sign_change(case)
             if t_peak is None:
                 continue
 
             t_inc, t_dec = _max_min_of_du(case)
             _, y_peak = _max_of_u(case)
+            threshold = _threshold_question(rng, case, k, y_peak)
+            if threshold is None:
+                continue
 
             t_eval_du = uniform_sig(rng, 1.0, case.t_end * 0.9)
-            t_eval_u = uniform_sig(rng, 1.0, case.t_end)
+
+            if case.has_market_exit:
+                end_answer = _num_tol(case.t_end, tolerance=0.1)
+            else:
+                end_answer = _num_tol(case.offset, tolerance=0.01)
 
             items = [
+                (f"den Zeitpunkt des stärksten {k.groesse}rückgangs.", _num_tol(t_dec, tolerance=0.1)),
                 (
-                    "den Zeitpunkt, an dem der Umsatz am stärksten zurückgeht.",
-                    _num_tol(t_dec, tolerance=0.1),
-                ),
-                (
-                    f"die jährliche Veränderung des Umsatzes nach {_fmt(t_eval_du, 2)} Jahren.",
+                    f"die momentane Änderungsrate des {k.adj}en {k.groesse}es nach {_fmt(t_eval_du, 2)} {k.zeit_pl}.",
                     _num_tol(case.du(t_eval_du), tolerance=0.1),
                 ),
+                (f"den Zeitpunkt des höchsten {k.adj}en {k.groesse}es.", _num_tol(t_peak, tolerance=0.1)),
+                (f"die Höhe des höchsten {k.adj}en {k.groesse}es.", _num_tol(y_peak, tolerance=0.1)),
+                (f"den Zeitpunkt des stärksten {k.groesse}anstiegs.", _num_tol(t_inc, tolerance=0.1)),
+                (f"den {k.adj}en {k.groesse} bei der Markteinführung.", _num_tol(case.u(0.0), tolerance=0.1)),
                 (
-                    "den Zeitpunkt, an dem der höchste jährliche Umsatz erzielt wird.",
-                    _num_tol(t_peak, tolerance=0.1),
+                    f"ob das Produkt vom Markt genommen wird oder ob sich der {k.adj}e {k.groesse} langfristig "
+                    f"einem festen Wert annähert, und geben Sie entsprechend den Zeitpunkt des Marktaustritts "
+                    f"bzw. den langfristig zu erwartenden {k.adj}en {k.groesse} an.",
+                    end_answer,
                 ),
-                (
-                    f"den jährlichen Umsatz nach {_fmt(t_eval_u, 2)} Jahren.",
-                    _num_tol(case.u(t_eval_u), tolerance=0.1),
-                ),
-                (
-                    "den Zeitpunkt, an dem der Umsatz am stärksten ansteigt.",
-                    _num_tol(t_inc, tolerance=0.1),
-                ),
-                (
-                    "den jährlichen Umsatz, der bei der Produkteinführung erzielt wird.",
-                    _num_tol(case.u(0.0), tolerance=0.1),
-                ),
-                (
-                    ", ob entweder das Produkt in Zukunft vom Markt genommen wird oder ob ein langfristig "
-                    "zu erwartender jährlicher Umsatz vorliegt. Bestimmen Sie dementsprechend entweder den "
-                    "Zeitpunkt, an dem das Produkt vom Markt genommen wird, oder den langfristig zu erwartenden "
-                    "jährlichen Umsatz.",
-                    _num_tol(
-                        case.t_end if case.has_market_exit else case.offset,
-                        tolerance=0.1 if case.has_market_exit else 0.01,
-                    ),
-                ),
-                (
-                    "die Höhe des höchsten jährlichen Umsatzes.",
-                    _num_tol(y_peak, tolerance=0.1),
-                ),
+                threshold,
             ]
             rng.shuffle(items)
+
+            f = k.fname
+            tasks.append(
+                Task(
+                    einleitung=(
+                        f"Die Funktion ${f}$ beschreibt den {k.adj}en {k.groesse} eines Produkts in {k.rate} "
+                        f"($t$ in {k.zeit_pl} seit der Markteinführung). Gegeben sind:"
+                        f"{_align_equations([_u_latex(case, f), _du_latex(case, 1, f), _du_latex(case, 2, f)])}"
+                        "Bestimmen Sie (auf 2 NKS gerundet)"
+                    ),
+                    fragen=[q for q, _ in items],
+                    antworten=[a_ for _, a_ in items],
+                )
+            )
+
+        return tasks
+
+
+class ProduktlebenszyklusGesamtabsatzGraphischGenerator(TaskGenerator):
+    generator_key = "analysis.produktlebenszyklus.gesamtabsatz_graphisch"
+
+    def generate(self, count: int, seed: int | None = None) -> list[Task]:
+        rng = random.Random(seed)
+        tasks: list[Task] = []
+
+        while len(tasks) < count:
+            k = _kontext_for(len(tasks))
+            case = _plc_case_for_task(rng, len(tasks), "graph_u")
+            t_peak, y_peak = _max_of_u(case)
+            t_limit = _effective_u_plot_limit(case, t_peak, y_peak)
+            if not case.has_market_exit:
+                t_limit = min(t_limit, 30.0)
+            if case.has_market_exit:
+                y_values = _sample_curve_values(t_limit, lambda t: max(0.0, case.u(t)))
+                t_domain = case.t_end
+            else:
+                y_values = _sample_curve_values(t_limit, case.u)
+                t_domain = t_limit * 0.9
+
+            y_min, y_max = _positive_y_axis_range(y_values, pad_ratio=0.04)
+            # Feines Raster, damit sich Flächen über Kästchen abschätzen lassen.
+            x_tick = next(step for step in (1.0, 2.0, 5.0) if t_limit / step <= 26)
+            y_tick = _nice_step(max(0.6, y_max - y_min))
+            cell = x_tick * y_tick
+
+            q_max = int(math.floor(t_domain))
+            if q_max < 4:
+                continue
+
+            def estimate_tol(value: float) -> float:
+                return round(max(0.1 * value, 0.5 * cell), 2)
+
+            # Schätzung Gesamtabsatz in einem Zeitraum
+            p = 0 if rng.random() < 0.5 else rng.randint(1, max(1, q_max // 3))
+            q = rng.randint(min(q_max, p + 2), min(q_max, p + max(3, q_max // 2)))
+            if q - p < 2:
+                continue
+            total_pq = _integrate_case_u_exact(case, float(p), float(q))
+            if total_pq < 2.0 * cell:
+                continue
+
+            # Schätzung Durchschnitt
+            n = rng.randint(2, max(2, min(q_max, int(t_peak * 1.5) + 1)))
+            avg_n = _integrate_case_u_exact(case, 0.0, float(n)) / n
+
+            # Aussage beurteilen
+            m = rng.randint(2, q_max)
+            true_m = _integrate_case_u_exact(case, 0.0, float(m))
+            factor = rng.choice([0.7, 0.75, 1.3, 1.35])
+            claim = round(true_m * factor) if true_m * factor >= 10 else round(true_m * factor, 1)
+            if claim <= 0:
+                continue
+            claim_true = true_m >= claim
+
+            # Bedeutung eines Integrals
+            r = rng.randint(0, max(0, q_max - 3))
+            s = rng.randint(r + 2, q_max)
+            f = k.fname
+            integral_rs = f"$\\int_{{{r}}}^{{{s}}} {f}(t)\\,dt$"
+            meaning_options = [
+                f"{k.gesamt} {_zeitraum_text(k, r, s)}",
+                f"{k.adj}er {k.groesse} nach {s} {k.zeit_pl}",
+                f"Zunahme des {k.adj}en {k.groesse}es von $t={r}$ bis $t={s}$",
+                f"durchschnittlicher {k.adj}er {k.groesse} von $t={r}$ bis $t={s}$",
+            ]
+
+            # Passenden Ausdruck wählen
+            v = rng.randint(1, max(1, q_max - 2))
+            w = rng.randint(v + 1, q_max)
+            expr_options = [
+                f"$\\int_{{{v}}}^{{{w}}} {f}(t)\\,dt$",
+                f"${f}({w})-{f}({v})$",
+                f"$\\int_{{0}}^{{{w}}} {f}(t)\\,dt$",
+                f"${f}({w})$",
+            ]
+
+            questions = [
+                (
+                    f"einen Schätzwert für den {k.gesamt} {_zeitraum_text(k, p, q)}.",
+                    _num_tol(total_pq, tolerance=estimate_tol(total_pq)),
+                ),
+                (
+                    f"einen Schätzwert für den durchschnittlichen {k.adj}en {k.groesse} in den ersten {n} {k.zeit_pl}.",
+                    _num_tol(avg_n, tolerance=round(max(0.1 * avg_n, 0.5 * y_tick), 2)),
+                ),
+                (
+                    f"ob die Aussage „Der {k.gesamt} in den ersten {m} {k.zeit_pl} beträgt mindestens "
+                    f"{_fmt(claim, 1)} {k.einheit}.“ wahr oder falsch ist.",
+                    _mc(["wahr", "falsch"], "wahr" if claim_true else "falsch"),
+                ),
+                (
+                    f"die Bedeutung von {integral_rs} im Sachzusammenhang.",
+                    _mc(meaning_options, meaning_options[0]),
+                ),
+                (
+                    f"den Ausdruck, der den {k.gesamt} vom Ende des {v}. bis zum Ende des {w}. {k.zeit_gen} angibt.",
+                    _mc(expr_options, expr_options[0]),
+                ),
+            ]
+            rng.shuffle(questions)
 
             tasks.append(
                 Task(
                     einleitung=(
-                        "Die Funktion $u(t)$ gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an. Gegeben sind:"
-                        f"{_align_equations([_u_latex(case), _du_latex(case, 1), _du_latex(case, 2), _du_latex(case, 3)])}"
-                        "Bestimmen Sie (auf 2 NKS gerundet)"
+                        f"Das Diagramm zeigt den Graphen der Funktion ${f}$, die den {k.adj}en {k.groesse} "
+                        f"eines Produkts in {k.rate} beschreibt ($t$ in {k.zeit_pl} seit der Markteinführung). "
+                        "Bestimmen Sie anhand des Graphen"
+                    ),
+                    fragen=[q_ for q_, _ in questions],
+                    antworten=[a_ for _, a_ in questions],
+                    visual=_plot_visual(
+                        title=f"{k.groesse}funktion {f}(t)",
+                        x_axis=f"Zeit t in {k.zeit_pl}",
+                        y_axis=f"{f}(t) in {k.rate}",
+                        trace_name=f"{f}(t)",
+                        term=_u_term_plain(case),
+                        beschreibung=f"{k.adj}er {k.groesse}",
+                        x_tick=x_tick,
+                        y_tick=y_tick,
+                        x_range=(0.0, t_limit),
+                        y_range=(y_min, y_max),
+                    ),
+                )
+            )
+
+        return tasks
+
+
+class ProduktlebenszyklusIntegraleGemischtGenerator(TaskGenerator):
+    generator_key = "analysis.produktlebenszyklus.integrale_gemischt"
+
+    def generate(self, count: int, seed: int | None = None) -> list[Task]:
+        rng = random.Random(seed)
+        tasks: list[Task] = []
+
+        while len(tasks) < count:
+            k = _kontext_for(len(tasks))
+            case = _plc_case_for_task(rng, len(tasks), "integrals")
+            t_lifecycle = case.t_end
+            if case.has_market_exit:
+                lifecycle_text = " Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird."
+            else:
+                lifecycle_text = f" Der Produktlebenszyklus endet nach {_fmt(t_lifecycle, 2)} {k.zeit_pl}."
+
+            a = float(rng.randint(2, max(3, int(t_lifecycle * 0.4))))
+            b = float(rng.randint(max(int(a) + 1, int(t_lifecycle * 0.6)), max(int(a) + 1, int(t_lifecycle))))
+            n = float(rng.randint(2, max(3, int(t_lifecycle * 0.8))))
+            t_eval = float(rng.randint(1, max(1, int(t_lifecycle))))
+
+            total = _integrate_case_u_exact(case, 0.0, t_lifecycle)
+            interval_value = _integrate_case_u_exact(case, a, b)
+            avg_value = _integrate_case_u_exact(case, 0.0, n) / n
+            point_value = case.u(t_eval)
+
+            target_raw = total * rng.uniform(0.3, 0.7)
+            target = float(round(target_raw)) if target_raw >= 10 else round(target_raw, 1)
+            t_target = _cumulative_time(case, target, t_lifecycle) if target > 0 else None
+            if t_target is None:
+                continue
+
+            items = [
+                (
+                    f"den {k.gesamt}, der während des gesamten Produktlebenszyklus erzielt wird.",
+                    _num_tol(total, tolerance=0.1),
+                ),
+                (
+                    f"den {k.gesamt} vom Ende des {int(a)}. bis zum Ende des {int(b)}. {k.zeit_gen}.",
+                    _num_tol(interval_value, tolerance=0.1),
+                ),
+                (
+                    f"den durchschnittlichen {k.adj}en {k.groesse} in den ersten {int(n)} {k.zeit_pl}.",
+                    _num_tol(avg_value, tolerance=0.1),
+                ),
+                (
+                    f"den {k.adj}en {k.groesse} nach {int(t_eval)} {k.zeit_pl}.",
+                    _num_tol(point_value, tolerance=0.1),
+                ),
+                (
+                    f"den Zeitpunkt, zu dem der {k.gesamt} seit der Markteinführung {_fmt(target, 1)} {k.einheit} erreicht.",
+                    _num_tol(t_target, tolerance=0.1),
+                ),
+            ]
+            rng.shuffle(items)
+
+            f = k.fname
+            tasks.append(
+                Task(
+                    einleitung=(
+                        "Die Funktion"
+                        f"{_display_equation(_u_latex(case, f))}"
+                        f"beschreibt den {k.adj}en {k.groesse} eines Produkts in {k.rate} ($t$ in {k.zeit_pl} "
+                        f"seit der Markteinführung).{lifecycle_text} Bestimmen Sie (auf 2 NKS gerundet)"
                     ),
                     fragen=[q for q, _ in items],
                     antworten=[a_ for _, a_ in items],

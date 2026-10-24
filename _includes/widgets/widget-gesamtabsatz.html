@@ -1,0 +1,39 @@
+{%- assign ga_tmax = include.tmax | default: 30 -%}
+{%- assign ga_t1 = include.t1 | default: 0 -%}
+{%- assign ga_t2 = include.t2 | default: 6 -%}
+{%- assign ga_zeit = include.zeiteinheit | default: 'Monat' -%}
+<div class="skript-widget ga-widget"
+    data-term="{{ include.term | default: '0.5*t^2*exp(-0.25*t)' | escape }}"
+    data-tmax="{{ ga_tmax }}" data-t1="{{ ga_t1 }}" data-t2="{{ ga_t2 }}"
+    data-fname="{{ include.fname | default: 'a' | escape }}"
+    data-einheit-y="{{ include.einheit_y | default: 'ME/Monat' | escape }}"
+    data-einheit-flaeche="{{ include.einheit_flaeche | default: 'ME' | escape }}"
+    data-zeiteinheit="{{ ga_zeit | escape }}"
+    data-xachse="{{ include.xachse | default: 'Zeit t in Monaten' | escape }}"
+    data-yachse="{{ include.yachse | default: 'Absatz a(t) in ME/Monat' | escape }}"
+    data-titel="{{ include.titel | default: 'Absatz pro Monat' | escape }}"
+    data-titel-kumuliert="{{ include.titel_kumuliert | default: 'Kumulierter Absatz seit Markteinführung' | escape }}"
+    data-yachse-kumuliert="{{ include.yachse_kumuliert | default: '' | escape }}">
+    <div class="widget-controls">
+        <div class="widget-row">
+            <label>Beginn $ t_1 $ = <span class="ga-t1Wert">{{ ga_t1 }}</span></label>
+            <input type="range" class="ga-t1Slider" min="0" max="{{ ga_tmax }}" step="1" value="{{ ga_t1 }}"
+                aria-label="Beginn t1">
+        </div>
+        <div class="widget-row">
+            <label>Ende $ t_2 $ = <span class="ga-t2Wert">{{ ga_t2 }}</span></label>
+            <input type="range" class="ga-t2Slider" min="0" max="{{ ga_tmax }}" step="1" value="{{ ga_t2 }}"
+                aria-label="Ende t2">
+        </div>
+        <div class="widget-row ga-toggles">
+            <label><input type="checkbox" class="ga-balken"> {{ include.balken_label | default: 'Monatsbalken' }}</label>
+            <label><input type="checkbox" class="ga-durchschnitt"> Durchschnitt</label>
+        </div>
+        <div class="widget-info ga-info" aria-live="polite"></div>
+    </div>
+
+    <div class="widget-outputs">
+        <div class="ga-plot diagramm"></div>
+        <div class="ga-plotKumuliert diagramm"></div>
+    </div>
+</div>

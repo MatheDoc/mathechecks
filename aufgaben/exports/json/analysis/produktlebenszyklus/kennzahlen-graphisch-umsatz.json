@@ -1,36 +1,38 @@
 [
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den jährlichen Umsatz nach 9,2 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz nach 9,2 Monaten.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "ob der monatliche Absatz im Zeitraum von $t=3$ bis $t=5$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzrückgangs."
     ],
     "antworten": [
-      "{1:NUMERICAL:=16:2,5}",
-      "{1:NUMERICAL:=7,0588:2,5}",
       "{1:NUMERICAL:=4:0,5}",
+      "{1:NUMERICAL:=12,3924:0,5}",
+      "{1:NUMERICAL:=7,0588:2,5}",
       "{1:NUMERICAL:=12,2254:0,5}",
       "{1:NUMERICAL:=0:2,5}",
       "{1:NUMERICAL:=9:0,5}",
-      "{1:NUMERICAL:=12,3924:0,5}"
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=16:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.7*t+5)*exp(-0.1*t)+4",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -39,9 +41,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               57.0588
@@ -51,7 +53,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               12.8881
@@ -63,46 +65,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.7*t+5)*exp(-0.1*t)+4",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den jährlichen Umsatz nach 2,8 Jahren.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs."
+      "ob der monatliche Absatz im Zeitraum von $t=0$ bis $t=2$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den monatlichen Absatz nach 2,8 Monaten.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzanstiegs."
     ],
     "antworten": [
-      "{1:NUMERICAL:=11,7174:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
+      "{1:NUMERICAL:=12:1,25}",
       "{1:NUMERICAL:=10:1,25}",
       "{1:NUMERICAL:=5:1,25}",
-      "{1:NUMERICAL:=25,3003:1,25}",
-      "{1:NUMERICAL:=12:1,25}",
       "{1:NUMERICAL:=5:1,25}",
+      "{1:NUMERICAL:=11,7174:1,25}",
+      "{1:NUMERICAL:=25,3003:1,25}",
       "{1:NUMERICAL:=2,9289:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.5*t^2)*exp(-0.2*t)+5",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -111,9 +115,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               35.0
@@ -123,7 +127,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               26.312
@@ -135,46 +139,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.5*t^2)*exp(-0.2*t)+5",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des Marktaustritts.",
-      "den jährlichen Umsatz nach 3 Jahren.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz nach 8,8 Monaten.",
+      "ob der monatliche Absatz im Zeitraum von $t=1$ bis $t=3$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "die Höhe des höchsten monatlichen Absatzes."
     ],
     "antworten": [
-      "{1:NUMERICAL:=12,8861:1,25}",
-      "{1:NUMERICAL:=6:1,25}",
-      "{1:NUMERICAL:=0:1,25}",
+      "{1:NUMERICAL:=3,8703:1,25}",
+      "{1:NUMERICAL:=27,7061:2,5}",
+      "{1:MC:~progressiv~=degressiv}",
       "{1:NUMERICAL:=21:1,25}",
-      "{1:NUMERICAL:=32,0033:2,5}",
+      "{1:NUMERICAL:=7,841:1,25}",
+      "{1:NUMERICAL:=0:1,25}",
       "{1:NUMERICAL:=0:2,5}",
-      "{1:NUMERICAL:=39,5144:2,5}"
+      "{1:NUMERICAL:=45,8581:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
-            "term": "(-0.8*t^2+16.8*t)*exp(-0.1*t)",
+            "term": "(-1.5*t^2+31.5*t)*exp(-0.2*t)",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -183,9 +189,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               22.05
@@ -195,10 +201,10 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
-              41.0947
+              47.6908
             ],
             "dtick": 10.0,
             "zeroline": true,
@@ -207,46 +213,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
-            "term": "(-0.8*t^2+16.8*t)*exp(-0.1*t)",
-            "beschreibung": "Umsatzfunktion"
+            "name": "a(t)",
+            "term": "(-1.5*t^2+31.5*t)*exp(-0.2*t)",
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
+      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
+      "die Höhe des höchsten jährlichen Umsatzes.",
       "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "den jährlichen Umsatz bei der Markteinführung.",
       "den langfristig zu erwartenden jährlichen Umsatz.",
       "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz nach 3,3 Jahren.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "den jährlichen Umsatz nach 2,7 Jahren.",
+      "ob der jährliche Umsatz im Zeitraum von $t=2$ bis $t=3$ progressiv oder degressiv steigt."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,7595:1,25}",
-      "{1:NUMERICAL:=2:0,25}",
-      "{1:NUMERICAL:=9,801:1,25}",
-      "{1:NUMERICAL:=3,8386:0,25}",
-      "{1:NUMERICAL:=5,7916:1,25}",
-      "{1:NUMERICAL:=2:0,25}",
-      "{1:NUMERICAL:=4,4199:0,25}"
+      "{1:NUMERICAL:=3,433:0,625}",
+      "{1:NUMERICAL:=11,3144:0,5}",
+      "{1:NUMERICAL:=1,0066:0,625}",
+      "{1:NUMERICAL:=7:0,5}",
+      "{1:NUMERICAL:=7:0,5}",
+      "{1:NUMERICAL:=5,8591:0,625}",
+      "{1:NUMERICAL:=11,09:0,5}",
+      "{1:MC:~progressiv~=degressiv}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Umsatzfunktion u(t)",
         "curves": [
           {
-            "term": "(0.04*t^3+0.5*t^2)*exp(-0.4*t)+2",
+            "term": "(0.05*t^3+2.7*t^2)*exp(-0.6*t)+7",
             "variable": "t",
             "mode": "lines",
             "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "description": "jährlicher Umsatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -255,24 +263,24 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Umsatzfunktion u(t)",
           "xaxis": {
             "title": "Zeit t in Jahren",
             "range": [
               0.0,
-              23.2916
+              14.683
             ],
-            "dtick": 5.0,
+            "dtick": 2.5,
             "zeroline": true,
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "u(t) in GE/Jahr",
             "range": [
               0.0,
-              4.5967
+              11.7669
             ],
-            "dtick": 1.0,
+            "dtick": 2.0,
             "zeroline": true,
             "showline": true
           }
@@ -280,45 +288,47 @@
         "funktionen": [
           {
             "name": "u(t)",
-            "term": "(0.04*t^3+0.5*t^2)*exp(-0.4*t)+2",
-            "beschreibung": "Umsatzfunktion"
+            "term": "(0.05*t^3+2.7*t^2)*exp(-0.6*t)+7",
+            "beschreibung": "jährlicher Umsatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den jährlichen Umsatz nach 1,6 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs."
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den monatlichen Absatz nach 1,6 Monaten.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "ob der monatliche Absatz im Zeitraum von $t=2$ bis $t=6$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes."
     ],
     "antworten": [
-      "{1:NUMERICAL:=8,6648:0,5}",
+      "{1:NUMERICAL:=0:2,5}",
       "{1:NUMERICAL:=3,5:0,5}",
       "{1:NUMERICAL:=6,1246:0,5}",
-      "{1:NUMERICAL:=19,2308:2,5}",
-      "{1:NUMERICAL:=9,2308:2,5}",
       "{1:NUMERICAL:=4,5:0,5}",
-      "{1:NUMERICAL:=0:2,5}"
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=19,2308:2,5}",
+      "{1:NUMERICAL:=8,6648:0,5}",
+      "{1:NUMERICAL:=9,2308:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.3*t+1)*exp(-0.1*t)+3.5",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -327,9 +337,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               59.2308
@@ -339,7 +349,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               9.0111
@@ -351,46 +361,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.3*t+1)*exp(-0.1*t)+3.5",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den jährlichen Umsatz nach 8,6 Jahren.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs."
+      "den monatlichen Absatz nach 8,6 Monaten.",
+      "ob der monatliche Absatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz bei der Markteinführung."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6:0,5}",
-      "{1:NUMERICAL:=11,3807:1,25}",
-      "{1:NUMERICAL:=6:0,5}",
       "{1:NUMERICAL:=11,0438:0,5}",
-      "{1:NUMERICAL:=6,6667:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
+      "{1:NUMERICAL:=6:0,5}",
+      "{1:NUMERICAL:=1,9526:1,25}",
       "{1:NUMERICAL:=11,4134:0,5}",
-      "{1:NUMERICAL:=1,9526:1,25}"
+      "{1:NUMERICAL:=11,3807:1,25}",
+      "{1:NUMERICAL:=6,6667:1,25}",
+      "{1:NUMERICAL:=6:0,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(0.9*t^2)*exp(-0.3*t)+6",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -399,9 +411,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               27.8333
@@ -411,7 +423,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               11.8698
@@ -423,46 +435,46 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(0.9*t^2)*exp(-0.3*t)+6",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des Marktaustritts.",
-      "den jährlichen Umsatz nach 9,3 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes."
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den monatlichen Absatz nach 2,5 Monaten.",
+      "den monatlichen Absatz bei der Markteinführung."
     ],
     "antworten": [
-      "{1:NUMERICAL:=10,3734:0,5}",
-      "{1:NUMERICAL:=16:0,625}",
-      "{1:NUMERICAL:=0,0245:0,5}",
-      "{1:NUMERICAL:=0:0,625}",
-      "{1:NUMERICAL:=0:0,5}",
-      "{1:NUMERICAL:=2,0694:0,625}",
-      "{1:NUMERICAL:=1,0343:0,625}"
+      "{1:NUMERICAL:=0:1,25}",
+      "{1:NUMERICAL:=1,3094:1,25}",
+      "{1:NUMERICAL:=17:1,25}",
+      "{1:NUMERICAL:=3,2863:0,125}",
+      "{1:NUMERICAL:=2,6203:1,25}",
+      "{1:NUMERICAL:=2,5197:0,125}",
+      "{1:NUMERICAL:=0:0,125}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
-            "term": "(-1.7*t^2+27.2*t)*exp(-0.9*t)",
+            "term": "(-0.4*t^2+6.8*t)*exp(-0.7*t)",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -471,70 +483,72 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
-              16.8
+              17.85
             ],
-            "dtick": 2.5,
+            "dtick": 5.0,
             "zeroline": true,
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
-              10.7883
+              3.4177
             ],
-            "dtick": 2.0,
+            "dtick": 0.5,
             "zeroline": true,
             "showline": true
           }
         },
         "funktionen": [
           {
-            "name": "u(t)",
-            "term": "(-1.7*t^2+27.2*t)*exp(-0.9*t)",
-            "beschreibung": "Umsatzfunktion"
+            "name": "a(t)",
+            "term": "(-0.4*t^2+6.8*t)*exp(-0.7*t)",
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den jährlichen Umsatz nach 8,6 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "den jährlichen Umsatz bei der Markteinführung.",
+      "ob der jährliche Umsatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
       "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "die Höhe des höchsten jährlichen Umsatzes.",
+      "den Zeitpunkt des stärksten Umsatzrückgangs.",
+      "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "den jährlichen Umsatz nach 8,6 Jahren.",
+      "den langfristig zu erwartenden jährlichen Umsatz."
     ],
     "antworten": [
-      "{1:NUMERICAL:=11:1,25}",
       "{1:NUMERICAL:=2:0,5}",
-      "{1:NUMERICAL:=12,2558:0,5}",
-      "{1:NUMERICAL:=2,188:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
       "{1:NUMERICAL:=7,3605:1,25}",
-      "{1:NUMERICAL:=2:0,5}",
-      "{1:NUMERICAL:=12,5273:0,5}"
+      "{1:NUMERICAL:=12,5273:0,5}",
+      "{1:NUMERICAL:=11:1,25}",
+      "{1:NUMERICAL:=2,188:1,25}",
+      "{1:NUMERICAL:=12,2558:0,5}",
+      "{1:NUMERICAL:=2:0,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Umsatzfunktion u(t)",
         "curves": [
           {
             "term": "(0.05*t^3+1.4*t^2)*exp(-0.3*t)+2",
             "variable": "t",
             "mode": "lines",
             "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "description": "jährlicher Umsatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -543,7 +557,7 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Umsatzfunktion u(t)",
           "xaxis": {
             "title": "Zeit t in Jahren",
             "range": [
@@ -555,7 +569,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "u(t) in GE/Jahr",
             "range": [
               0.0,
               13.0281
@@ -569,44 +583,46 @@
           {
             "name": "u(t)",
             "term": "(0.05*t^3+1.4*t^2)*exp(-0.3*t)+2",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "jährlicher Umsatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den jährlichen Umsatz nach 2,3 Jahren.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "ob der monatliche Absatz im Zeitraum von $t=3$ bis $t=6$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den monatlichen Absatz nach 2,3 Monaten.",
+      "den monatlichen Absatz bei der Markteinführung."
     ],
     "antworten": [
-      "{1:NUMERICAL:=10,8784:0,5}",
-      "{1:NUMERICAL:=6:0,5}",
-      "{1:NUMERICAL:=8,8889:2,5}",
-      "{1:NUMERICAL:=0:2,5}",
       "{1:NUMERICAL:=18,8889:2,5}",
-      "{1:NUMERICAL:=8:0,5}",
-      "{1:NUMERICAL:=13,4:0,5}"
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=0:2,5}",
+      "{1:NUMERICAL:=13,4:0,5}",
+      "{1:NUMERICAL:=8,8889:2,5}",
+      "{1:NUMERICAL:=6:0,5}",
+      "{1:NUMERICAL:=10,8784:0,5}",
+      "{1:NUMERICAL:=8:0,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.8*t+2)*exp(-0.1*t)+6",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -615,9 +631,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               58.8889
@@ -627,7 +643,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               13.9359
@@ -639,46 +655,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.8*t+2)*exp(-0.1*t)+6",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 13 Jahren.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes."
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den monatlichen Absatz nach 13 Monaten.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "ob der monatliche Absatz im Zeitraum von $t=0$ bis $t=3$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes."
     ],
     "antworten": [
+      "{1:NUMERICAL:=18,2402:1,25}",
+      "{1:NUMERICAL:=2:1,25}",
+      "{1:NUMERICAL:=15,8174:1,25}",
       "{1:NUMERICAL:=21:5}",
       "{1:NUMERICAL:=2:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
       "{1:NUMERICAL:=5,8579:5}",
-      "{1:NUMERICAL:=2:1,25}",
-      "{1:NUMERICAL:=18,2402:1,25}",
-      "{1:NUMERICAL:=15,8174:1,25}",
       "{1:NUMERICAL:=20:5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(0.3*t^2)*exp(-0.1*t)+2",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -687,9 +705,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               70.0
@@ -699,7 +717,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               18.9696
@@ -711,190 +729,196 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(0.3*t^2)*exp(-0.1*t)+2",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 2 Jahren.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des Marktaustritts."
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "ob der monatliche Absatz im Zeitraum von $t=1$ bis $t=3$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz nach 10 Monaten."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,3962:0,5}",
-      "{1:NUMERICAL:=3,8553:0,25}",
-      "{1:NUMERICAL:=4,1583:0,25}",
-      "{1:NUMERICAL:=2,8056:0,5}",
-      "{1:NUMERICAL:=0:0,25}",
-      "{1:NUMERICAL:=0:0,5}",
-      "{1:NUMERICAL:=10:0,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-        "curves": [
-          {
-            "term": "(-0.8*t^2+8*t)*exp(-0.6*t)",
-            "variable": "t",
-            "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
-            "line": {
-              "color": "#1f77b4",
-              "width": 2
-            }
-          }
-        ],
-        "points": 261,
-        "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-          "xaxis": {
-            "title": "Zeit t in Jahren",
-            "range": [
-              0.0,
-              10.6
-            ],
-            "dtick": 2.0,
-            "zeroline": true,
-            "showline": true
-          },
-          "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
-            "range": [
-              0.0,
-              4.3245
-            ],
-            "dtick": 1.0,
-            "zeroline": true,
-            "showline": true
-          }
-        },
-        "funktionen": [
-          {
-            "name": "u(t)",
-            "term": "(-0.8*t^2+8*t)*exp(-0.6*t)",
-            "beschreibung": "Umsatzfunktion"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
-    "fragen": [
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 4,9 Jahren.",
-      "den langfristig zu erwartenden jährlichen Umsatz."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=3,5:0,25}",
-      "{1:NUMERICAL:=4,3332:0,5}",
-      "{1:NUMERICAL:=0,7437:0,5}",
-      "{1:NUMERICAL:=2,5384:0,5}",
-      "{1:NUMERICAL:=5,594:0,25}",
-      "{1:NUMERICAL:=4,7134:0,25}",
-      "{1:NUMERICAL:=3,5:0,25}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-        "curves": [
-          {
-            "term": "(0.03*t^3+2.4*t^2)*exp(-0.8*t)+3.5",
-            "variable": "t",
-            "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
-            "line": {
-              "color": "#1f77b4",
-              "width": 2
-            }
-          }
-        ],
-        "points": 261,
-        "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-          "xaxis": {
-            "title": "Zeit t in Jahren",
-            "range": [
-              0.0,
-              11.2884
-            ],
-            "dtick": 2.0,
-            "zeroline": true,
-            "showline": true
-          },
-          "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
-            "range": [
-              0.0,
-              5.8176
-            ],
-            "dtick": 1.0,
-            "zeroline": true,
-            "showline": true
-          }
-        },
-        "funktionen": [
-          {
-            "name": "u(t)",
-            "term": "(0.03*t^3+2.4*t^2)*exp(-0.8*t)+3.5",
-            "beschreibung": "Umsatzfunktion"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
-    "fragen": [
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den jährlichen Umsatz nach 4,1 Jahren."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=7,8571:2,5}",
+      "{1:NUMERICAL:=0:1,25}",
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=20:1,25}",
+      "{1:NUMERICAL:=7,7526:1,25}",
+      "{1:NUMERICAL:=3,8197:1,25}",
       "{1:NUMERICAL:=0:2,5}",
-      "{1:NUMERICAL:=13:2,5}",
+      "{1:NUMERICAL:=57,5799:2,5}",
+      "{1:NUMERICAL:=27,0671:2,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-2*t^2+40*t)*exp(-0.2*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              21.0
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              59.8819
+            ],
+            "dtick": 10.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-2*t^2+40*t)*exp(-0.2*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "ob der jährliche Umsatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "den jährlichen Umsatz bei der Markteinführung.",
+      "den Zeitpunkt des stärksten Umsatzrückgangs.",
+      "die Höhe des höchsten jährlichen Umsatzes.",
+      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
+      "den langfristig zu erwartenden jährlichen Umsatz.",
+      "den jährlichen Umsatz nach 6,3 Jahren."
+    ],
+    "antworten": [
+      "{1:MC:~=progressiv~degressiv}",
+      "{1:NUMERICAL:=1,5191:1,25}",
+      "{1:NUMERICAL:=5,5:0,625}",
+      "{1:NUMERICAL:=8,8368:1,25}",
+      "{1:NUMERICAL:=15,3237:0,625}",
+      "{1:NUMERICAL:=5,1781:1,25}",
+      "{1:NUMERICAL:=5,5:0,625}",
+      "{1:NUMERICAL:=14,927:0,625}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.04*t^3+2.7*t^2)*exp(-0.4*t)+5.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              21.6781
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              15.9366
+            ],
+            "dtick": 2.5,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.04*t^3+2.7*t^2)*exp(-0.4*t)+5.5",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "ob der monatliche Absatz im Zeitraum von $t=3$ bis $t=6$ progressiv oder degressiv steigt.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz nach 4,1 Monaten.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt des stärksten Absatzanstiegs."
+    ],
+    "antworten": [
+      "{1:MC:~progressiv~=degressiv}",
       "{1:NUMERICAL:=12,3811:0,5}",
+      "{1:NUMERICAL:=7,8571:2,5}",
+      "{1:NUMERICAL:=11,8003:0,5}",
       "{1:NUMERICAL:=9:0,5}",
       "{1:NUMERICAL:=6:0,5}",
-      "{1:NUMERICAL:=11,8003:0,5}"
+      "{1:NUMERICAL:=13:2,5}",
+      "{1:NUMERICAL:=0:2,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.4*t+3)*exp(-0.1*t)+6",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -903,9 +927,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               57.8571
@@ -915,7 +939,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               12.8762
@@ -927,46 +951,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.4*t+3)*exp(-0.1*t)+6",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz nach 13 Jahren.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "die Höhe des höchsten jährlichen Umsatzes."
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "ob der monatliche Absatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den monatlichen Absatz nach 13 Monaten.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes."
     ],
     "antworten": [
-      "{1:NUMERICAL:=6,6667:1,25}",
+      "{1:NUMERICAL:=11,6164:0,5}",
+      "{1:NUMERICAL:=5:0,5}",
+      "{1:MC:~=progressiv~degressiv}",
       "{1:NUMERICAL:=11,3807:1,25}",
       "{1:NUMERICAL:=8,763:0,5}",
       "{1:NUMERICAL:=5:0,5}",
-      "{1:NUMERICAL:=5:0,5}",
       "{1:NUMERICAL:=1,9526:1,25}",
-      "{1:NUMERICAL:=11,6164:0,5}"
+      "{1:NUMERICAL:=6,6667:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(1.1*t^2)*exp(-0.3*t)+5",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -975,9 +1001,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               27.8333
@@ -987,7 +1013,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               12.0809
@@ -999,46 +1025,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(1.1*t^2)*exp(-0.3*t)+5",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den jährlichen Umsatz nach 11 Jahren.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des Marktaustritts."
+      "ob der monatliche Absatz im Zeitraum von $t=0{,}5$ bis $t=1$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz nach 11 Monaten.",
+      "den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzrückgangs."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,0719:0,25}",
-      "{1:NUMERICAL:=3,8665:0,25}",
+      "{1:MC:~progressiv~=degressiv}",
       "{1:NUMERICAL:=1,7379:0,625}",
-      "{1:NUMERICAL:=0:0,625}",
-      "{1:NUMERICAL:=3,4844:0,625}",
+      "{1:NUMERICAL:=0,0719:0,25}",
+      "{1:NUMERICAL:=15:0,625}",
       "{1:NUMERICAL:=0:0,25}",
-      "{1:NUMERICAL:=15:0,625}"
+      "{1:NUMERICAL:=0:0,625}",
+      "{1:NUMERICAL:=3,8665:0,25}",
+      "{1:NUMERICAL:=3,4844:0,625}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
             "term": "(-0.4*t^2+6*t)*exp(-0.5*t)",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -1047,9 +1075,9 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               15.75
@@ -1059,7 +1087,7 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
               4.0209
@@ -1071,46 +1099,48 @@
         },
         "funktionen": [
           {
-            "name": "u(t)",
+            "name": "a(t)",
             "term": "(-0.4*t^2+6*t)*exp(-0.5*t)",
-            "beschreibung": "Umsatzfunktion"
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den jährlichen Umsatz nach 9,8 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
       "die Höhe des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
+      "den langfristig zu erwartenden jährlichen Umsatz.",
+      "den jährlichen Umsatz nach 4 Jahren.",
+      "den jährlichen Umsatz bei der Markteinführung.",
       "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den langfristig zu erwartenden jährlichen Umsatz."
+      "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "den Zeitpunkt des stärksten Umsatzrückgangs.",
+      "ob der jährliche Umsatz im Zeitraum von $t=2$ bis $t=4$ progressiv oder degressiv steigt."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,2779:1,25}",
-      "{1:NUMERICAL:=9,9851:0,625}",
-      "{1:NUMERICAL:=7,3683:1,25}",
-      "{1:NUMERICAL:=14,4502:0,625}",
-      "{1:NUMERICAL:=7:0,625}",
-      "{1:NUMERICAL:=4,3248:1,25}",
-      "{1:NUMERICAL:=7:0,625}"
+      "{1:NUMERICAL:=8,0765:0,5}",
+      "{1:NUMERICAL:=5,5:0,5}",
+      "{1:NUMERICAL:=8,0118:0,5}",
+      "{1:NUMERICAL:=5,5:0,5}",
+      "{1:NUMERICAL:=4,6909:1,25}",
+      "{1:NUMERICAL:=1,4361:1,25}",
+      "{1:NUMERICAL:=7,924:1,25}",
+      "{1:MC:~progressiv~=degressiv}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Umsatzfunktion u(t)",
         "curves": [
           {
-            "term": "(0.13*t^3+2.9*t^2)*exp(-0.5*t)+7",
+            "term": "(0.09*t^3+0.8*t^2)*exp(-0.5*t)+5.5",
             "variable": "t",
             "mode": "lines",
             "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "description": "jährlicher Umsatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -1119,94 +1149,22 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Umsatzfunktion u(t)",
           "xaxis": {
             "title": "Zeit t in Jahren",
             "range": [
               0.0,
-              18.0748
+              18.6909
             ],
             "dtick": 5.0,
             "zeroline": true,
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "u(t) in GE/Jahr",
             "range": [
               0.0,
-              15.0281
-            ],
-            "dtick": 2.5,
-            "zeroline": true,
-            "showline": true
-          }
-        },
-        "funktionen": [
-          {
-            "name": "u(t)",
-            "term": "(0.13*t^3+2.9*t^2)*exp(-0.5*t)+7",
-            "beschreibung": "Umsatzfunktion"
-          }
-        ]
-      }
-    }
-  },
-  {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
-    "fragen": [
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 4,1 Jahren.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs."
-    ],
-    "antworten": [
-      "{1:NUMERICAL:=5,5:0,5}",
-      "{1:NUMERICAL:=8,8889:2,5}",
-      "{1:NUMERICAL:=7,6125:0,5}",
-      "{1:NUMERICAL:=4,5:0,5}",
-      "{1:NUMERICAL:=0:2,5}",
-      "{1:NUMERICAL:=8,2:0,5}",
-      "{1:NUMERICAL:=10:2,5}"
-    ],
-    "visual": {
-      "type": "plot",
-      "spec": {
-        "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-        "curves": [
-          {
-            "term": "(0.9*t+1)*exp(-0.1*t)+4.5",
-            "variable": "t",
-            "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
-            "line": {
-              "color": "#1f77b4",
-              "width": 2
-            }
-          }
-        ],
-        "points": 261,
-        "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
-          "xaxis": {
-            "title": "Zeit t in Jahren",
-            "range": [
-              0.0,
-              58.8889
-            ],
-            "dtick": 10.0,
-            "zeroline": true,
-            "showline": true
-          },
-          "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
-            "range": [
-              0.0,
-              8.528
+              8.3995
             ],
             "dtick": 2.0,
             "zeroline": true,
@@ -1216,45 +1174,47 @@
         "funktionen": [
           {
             "name": "u(t)",
-            "term": "(0.9*t+1)*exp(-0.1*t)+4.5",
-            "beschreibung": "Umsatzfunktion"
+            "term": "(0.09*t^3+0.8*t^2)*exp(-0.5*t)+5.5",
+            "beschreibung": "jährlicher Umsatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 7,9 Jahren.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
-      "den jährlichen Umsatz bei der Produkteinführung.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs."
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den monatlichen Absatz nach 1,4 Monaten.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "ob der monatliche Absatz im Zeitraum von $t=1$ bis $t=2$ progressiv oder degressiv steigt.",
+      "die Höhe des höchsten monatlichen Absatzes."
     ],
     "antworten": [
-      "{1:NUMERICAL:=1,9526:1,25}",
+      "{1:NUMERICAL:=3,3333:1,25}",
+      "{1:NUMERICAL:=5:0,5}",
+      "{1:NUMERICAL:=6,5638:0,5}",
+      "{1:NUMERICAL:=0:1,25}",
       "{1:NUMERICAL:=6,6667:1,25}",
-      "{1:NUMERICAL:=6,0005:0,25}",
-      "{1:NUMERICAL:=2,5:0,25}",
-      "{1:NUMERICAL:=2,5:0,25}",
-      "{1:NUMERICAL:=6,1089:0,25}",
-      "{1:NUMERICAL:=11,3807:1,25}"
+      "{1:NUMERICAL:=5:0,5}",
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=7,0847:0,5}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
-            "term": "(0.6*t^2)*exp(-0.3*t)+2.5",
+            "term": "(1.7*t)*exp(-0.3*t)+5",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -1263,9 +1223,83 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              21.5
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              7.368
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.7*t)*exp(-0.3*t)+5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den langfristig zu erwartenden monatlichen Absatz.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "ob der monatliche Absatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den monatlichen Absatz nach 8,8 Monaten."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=3,5:0,5}",
+      "{1:NUMERICAL:=6,6667:1,25}",
+      "{1:NUMERICAL:=3,5:0,5}",
+      "{1:NUMERICAL:=1,9526:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
+      "{1:NUMERICAL:=11,9209:0,5}",
+      "{1:NUMERICAL:=11,3807:1,25}",
+      "{1:NUMERICAL:=11,2367:0,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.4*t^2)*exp(-0.3*t)+3.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
               27.8333
@@ -1275,58 +1309,60 @@
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
-              6.3532
+              12.3975
             ],
-            "dtick": 1.0,
+            "dtick": 2.0,
             "zeroline": true,
             "showline": true
           }
         },
         "funktionen": [
           {
-            "name": "u(t)",
-            "term": "(0.6*t^2)*exp(-0.3*t)+2.5",
-            "beschreibung": "Umsatzfunktion"
+            "name": "a(t)",
+            "term": "(1.4*t^2)*exp(-0.3*t)+3.5",
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den Zeitpunkt des Marktaustritts.",
-      "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "die Höhe des höchsten jährlichen Umsatzes.",
-      "den jährlichen Umsatz nach 2 Jahren.",
-      "den Zeitpunkt des stärksten Umsatzanstiegs.",
-      "den jährlichen Umsatz bei der Produkteinführung."
+      "den monatlichen Absatz nach 3,4 Monaten.",
+      "die Höhe des höchsten monatlichen Absatzes.",
+      "den Zeitpunkt des stärksten Absatzrückgangs.",
+      "den Zeitpunkt, zu dem das Produkt vom Markt genommen wird.",
+      "den Zeitpunkt des stärksten Absatzanstiegs.",
+      "den monatlichen Absatz bei der Markteinführung.",
+      "ob der monatliche Absatz im Zeitraum von $t=1$ bis $t=4$ progressiv oder degressiv steigt.",
+      "den Zeitpunkt des höchsten monatlichen Absatzes."
     ],
     "antworten": [
-      "{1:NUMERICAL:=19:1,25}",
-      "{1:NUMERICAL:=1,7918:1,25}",
-      "{1:NUMERICAL:=3,5879:1,25}",
-      "{1:NUMERICAL:=12,5875:0,5}",
-      "{1:NUMERICAL:=12,5079:0,5}",
+      "{1:NUMERICAL:=26,3298:1,25}",
+      "{1:NUMERICAL:=29,203:1,25}",
+      "{1:NUMERICAL:=12:1,25}",
+      "{1:NUMERICAL:=17:1,25}",
       "{1:NUMERICAL:=0:1,25}",
-      "{1:NUMERICAL:=0:0,5}"
+      "{1:NUMERICAL:=0:1,25}",
+      "{1:MC:~progressiv~=degressiv}",
+      "{1:NUMERICAL:=5,3756:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Absatzfunktion a(t)",
         "curves": [
           {
-            "term": "(-t^2+19*t)*exp(-0.5*t)",
+            "term": "(-0.8*t^2+13.6*t)*exp(-0.1*t)",
             "variable": "t",
             "mode": "lines",
-            "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -1335,70 +1371,72 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Absatzfunktion a(t)",
           "xaxis": {
-            "title": "Zeit t in Jahren",
+            "title": "Zeit t in Monaten",
             "range": [
               0.0,
-              19.95
+              17.85
             ],
             "dtick": 5.0,
             "zeroline": true,
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "a(t) in ME/Monat",
             "range": [
               0.0,
-              13.0895
+              30.3709
             ],
-            "dtick": 2.0,
+            "dtick": 5.0,
             "zeroline": true,
             "showline": true
           }
         },
         "funktionen": [
           {
-            "name": "u(t)",
-            "term": "(-t^2+19*t)*exp(-0.5*t)",
-            "beschreibung": "Umsatzfunktion"
+            "name": "a(t)",
+            "term": "(-0.8*t^2+13.6*t)*exp(-0.1*t)",
+            "beschreibung": "monatlicher Absatz"
           }
         ]
       }
     }
   },
   {
-    "einleitung": "Das Diagramm zeigt den Graphen der Umsatzfunktion eines Produktlebenszyklus. Bestimmen Sie anhand des Graphen.",
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
     "fragen": [
-      "den jährlichen Umsatz nach 1 Jahren.",
-      "den langfristig zu erwartenden jährlichen Umsatz.",
       "den Zeitpunkt des stärksten Umsatzanstiegs.",
+      "ob der jährliche Umsatz im Zeitraum von $t=0$ bis $t=1$ progressiv oder degressiv steigt.",
+      "den jährlichen Umsatz nach 9,8 Jahren.",
+      "den langfristig zu erwartenden jährlichen Umsatz.",
       "die Höhe des höchsten jährlichen Umsatzes.",
       "den Zeitpunkt des höchsten jährlichen Umsatzes.",
-      "den Zeitpunkt des stärksten Umsatzrückgangs.",
-      "den jährlichen Umsatz bei der Produkteinführung."
+      "den jährlichen Umsatz bei der Markteinführung.",
+      "den Zeitpunkt des stärksten Umsatzrückgangs."
     ],
     "antworten": [
-      "{1:NUMERICAL:=3,7846:0,25}",
-      "{1:NUMERICAL:=3:0,25}",
-      "{1:NUMERICAL:=0,992:0,5}",
-      "{1:NUMERICAL:=5,1555:0,25}",
-      "{1:NUMERICAL:=3,281:0,5}",
-      "{1:NUMERICAL:=5,5588:0,5}",
-      "{1:NUMERICAL:=3:0,25}"
+      "{1:NUMERICAL:=1,5784:1,25}",
+      "{1:MC:~=progressiv~degressiv}",
+      "{1:NUMERICAL:=9,7242:0,5}",
+      "{1:NUMERICAL:=6,5:0,5}",
+      "{1:NUMERICAL:=11,5985:0,5}",
+      "{1:NUMERICAL:=5,3536:1,25}",
+      "{1:NUMERICAL:=6,5:0,5}",
+      "{1:NUMERICAL:=9,1259:1,25}"
     ],
     "visual": {
       "type": "plot",
       "spec": {
         "type": "expression-curves",
-        "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+        "title": "Umsatzfunktion u(t)",
         "curves": [
           {
-            "term": "(0.18*t^3+1.4*t^2)*exp(-0.7*t)+3",
+            "term": "(0.04*t^3+1.3*t^2)*exp(-0.4*t)+6.5",
             "variable": "t",
             "mode": "lines",
             "name": "u(t)",
-            "description": "Umsatzfunktion",
+            "description": "jährlicher Umsatz",
             "line": {
               "color": "#1f77b4",
               "width": 2
@@ -1407,24 +1445,24 @@
         ],
         "points": 261,
         "layout": {
-          "title": "Produktlebenszyklus - Umsatzfunktion u(t)",
+          "title": "Umsatzfunktion u(t)",
           "xaxis": {
             "title": "Zeit t in Jahren",
             "range": [
               0.0,
-              13.781
+              22.3536
             ],
-            "dtick": 2.0,
+            "dtick": 5.0,
             "zeroline": true,
             "showline": true
           },
           "yaxis": {
-            "title": "jährlicher Umsatz u(t)",
+            "title": "u(t) in GE/Jahr",
             "range": [
               0.0,
-              5.3617
+              12.0624
             ],
-            "dtick": 1.0,
+            "dtick": 2.0,
             "zeroline": true,
             "showline": true
           }
@@ -1432,8 +1470,8 @@
         "funktionen": [
           {
             "name": "u(t)",
-            "term": "(0.18*t^3+1.4*t^2)*exp(-0.7*t)+3",
-            "beschreibung": "Umsatzfunktion"
+            "term": "(0.04*t^3+1.3*t^2)*exp(-0.4*t)+6.5",
+            "beschreibung": "jährlicher Umsatz"
           }
         ]
       }

@@ -338,7 +338,7 @@
       <text>analysis__produktlebenszyklus__03-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(u'(6)=0\) und \(u''(6)=2\). Was besitzt \(u\) bei \(t=6\)?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist der Zeitraum, in dem der monatliche Absatz \(a(t)\) über \(10\) ME/Monat liegt. Welcher Ansatz liefert die Grenzen?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Ein lokales Minimum</p>]]></text>
+      <text><![CDATA[<p>\(a(t)=10\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Ein lokales Maximum</p>]]></text>
+      <text><![CDATA[<p>\(a'(t)=10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>positives Vorzeichen von \(u''(6)\) falsch gedeutet</p>]]></text>
+        <text><![CDATA[<p>Absatz mit Änderungsrate verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Eine Wendestelle</p>]]></text>
+      <text><![CDATA[<p>\(a(10)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Extremstellentest mit Wendestellentest verwechselt</p>]]></text>
+        <text><![CDATA[<p>Schwellenwert als Zeitpunkt eingesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Den Marktaustritt</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{10} a(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nullstelle von \(u'\) mit positiver Nullstelle von \(u\) verwechselt</p>]]></text>
+        <text><![CDATA[<p>Schwellenwert als Integralgrenze verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>analysis__produktlebenszyklus__03-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(u''(3)=0\) und \(u'''(3)=5\). Welche Aussage ist richtig?</p>]]></text>
+      <text><![CDATA[<p>Für den höchsten Absatz ist \((6-2t)\cdot e^{-0{,}5t}=0\) zu lösen. Welche Lösung ergibt sich?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) eine Wendestelle</p>]]></text>
+      <text><![CDATA[<p>\(t=3\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) sicher ein Maximum</p>]]></text>
+      <text><![CDATA[<p>\(t=3\) und \(t=0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wendestellentest als Extremstellentest gedeutet</p>]]></text>
+        <text><![CDATA[<p>Exponent statt Exponentialfaktor null gesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) eine Nullstelle</p>]]></text>
+      <text><![CDATA[<p>\(t=-3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nullstelle von \(u''\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+        <text><![CDATA[<p>Vorzeichenfehler beim Auflösen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) ist bei \(t=3\) konstant</p>]]></text>
+      <text><![CDATA[<p>keine Lösung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Krümmungsbedingung als konstante Funktion gedeutet</p>]]></text>
+        <text><![CDATA[<p>Klammerterm übersehen, nur \(e\)-Faktor betrachtet</p>]]></text>
       </feedback>
     </answer>
   </question>

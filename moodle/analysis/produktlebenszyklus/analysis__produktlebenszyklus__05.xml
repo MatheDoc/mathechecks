@@ -20,7 +20,7 @@
       <text>analysis__produktlebenszyklus__05-01</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Wie wird die Gewinnfunktion aus Erlös- und Kostenfunktion gebildet?</p>]]></text>
+      <text><![CDATA[<p>Welche Größe beschreibt den jährlichen Umsatz nach 4 Jahren?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -44,27 +44,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)-K(t)\)</p>]]></text>
+      <text><![CDATA[<p>\(u(4)\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=K(t)-E(t)\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^4 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kosten und Erlös in falscher Reihenfolge subtrahiert</p>]]></text>
+        <text><![CDATA[<p>Gesamtumsatz der ersten vier Jahre statt jährlichen Umsatz gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)+K(t)\)</p>]]></text>
+      <text><![CDATA[<p>\(4\cdot u(4)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kosten zum Erlös addiert statt abgezogen</p>]]></text>
+        <text><![CDATA[<p>Funktionswert ohne Grund mit der Zeit multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)\cdot K(t)\)</p>]]></text>
+      <text><![CDATA[<p>\(u'(4)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erlös und Kosten multipliziert statt ihre Differenz zu bilden</p>]]></text>
+        <text><![CDATA[<p>Änderungsrate statt jährlichen Umsatz gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -73,7 +73,7 @@
       <text>analysis__produktlebenszyklus__05-02</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(E(t)\) ist der jährliche Erlös nach \(t\) Jahren. Was beschreibt \(E(4)\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel gibt den Gesamtumsatz vom Ende des 2. bis zum Ende des 5. Jahres an?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -97,27 +97,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>den jährlichen Erlös nach 4 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(\int_2^5 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den gesamten Erlös der ersten 4 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^5 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über vier Jahre verwechselt</p>]]></text>
+        <text><![CDATA[<p>Umsatz ab Beginn statt ab Ende des zweiten Jahres erfasst</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die jährlichen Kosten nach 4 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(u(5)-u(2)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Erlösfunktion mit der Kostenfunktion verwechselt</p>]]></text>
+        <text><![CDATA[<p>Differenz zweier Jahresumsätze statt Gesamtumsatz gebildet</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den Gesamtgewinn der ersten 4 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{3}\int_2^5 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Erlös mit dem gesamten Gewinn verwechselt</p>]]></text>
+        <text><![CDATA[<p>Durchschnittlichen statt gesamten Umsatz gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -126,7 +126,7 @@
       <text>analysis__produktlebenszyklus__05-03</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(K(t)\) sind die jährlichen Kosten nach \(t\) Jahren. Was beschreibt \(K(7)\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel gibt den Gesamtumsatz in den ersten 7 Jahren an?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -150,27 +150,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>die jährlichen Kosten nach 7 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^7 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die gesamten Kosten der ersten 7 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(\int_1^7 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über sieben Jahre verwechselt</p>]]></text>
+        <text><![CDATA[<p>Erstes Jahr durch die falsche Untergrenze ausgelassen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den jährlichen Gewinn nach 7 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^6 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Kostenfunktion mit der Gewinnfunktion verwechselt</p>]]></text>
+        <text><![CDATA[<p>Obergrenze um ein Jahr zu früh gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den gesamten Erlös der ersten 7 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(u(7)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährliche Kosten mit dem gesamten Erlös verwechselt</p>]]></text>
+        <text><![CDATA[<p>Jährlichen Umsatz nach sieben Jahren statt Gesamtumsatz gewählt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -179,7 +179,7 @@
       <text>analysis__produktlebenszyklus__05-04</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(G(t)\) ist der jährliche Gewinn nach \(t\) Jahren. Was beschreibt \(G(5)\)?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel gibt den durchschnittlichen jährlichen Umsatz im Zeitraum \(\lbrack a;b\rbrack\) an?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -203,27 +203,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>den jährlichen Gewinn oder Verlust nach 5 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{b-a}\int_a^b u(t)\,dt\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den Gesamtgewinn der ersten 5 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(\int_a^b u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über fünf Jahre verwechselt</p>]]></text>
+        <text><![CDATA[<p>Gesamtumsatz nicht durch die Zeitspanne geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>den jährlichen Erlös nach 5 Jahren</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{a+b}\int_a^b u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gewinnfunktion mit der Erlösfunktion verwechselt</p>]]></text>
+        <text><![CDATA[<p>Durch die Summe der Grenzen statt durch die Intervalllänge geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>die gesamten Kosten der ersten 5 Jahre</p>]]></text>
+      <text><![CDATA[<p>\(\frac{u(a)+u(b)}{b-a}\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Gewinn oder Verlust mit gesamten Kosten verwechselt</p>]]></text>
+        <text><![CDATA[<p>Randwerte statt Gesamtumsatz zur Durchschnittsbildung verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -232,7 +232,7 @@
       <text>analysis__produktlebenszyklus__05-05</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(E(t)\) ist der jährliche Erlös, \(t\) in Jahren. Welche Formel gibt den gesamten Erlös auf \([a;b]\) an?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(\int_1^4 u(t)\,dt=60\). Wie groß ist der durchschnittliche jährliche Umsatz in diesem Zeitraum?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -256,27 +256,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(20\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(b)\)</p>]]></text>
+      <text><![CDATA[<p>\(60\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Erlös am Intervallende statt Gesamterlös gewählt</p>]]></text>
+        <text><![CDATA[<p>Gesamtumsatz statt Durchschnitt angegeben</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b K(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(15\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamtkosten statt Gesamterlös gewählt</p>]]></text>
+        <text><![CDATA[<p>Durch die obere Grenze 4 statt durch die Zeitspanne 3 geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(b)-E(a)\)</p>]]></text>
+      <text><![CDATA[<p>\(240\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Erlösfunktion gebildet</p>]]></text>
+        <text><![CDATA[<p>Integralwert mit der Zeitspanne multipliziert statt durch sie geteilt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -285,7 +285,7 @@
       <text>analysis__produktlebenszyklus__05-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(K(t)\) sind die jährlichen Kosten, \(t\) in Jahren. Welche Formel gibt die gesamten Kosten auf \([a;b]\) an?</p>]]></text>
+      <text><![CDATA[<p>\(a(t)\) ist der monatliche Absatz in ME/Monat. Zu welchem Zeitpunkt \(z\) sind seit Markteinführung insgesamt 50 ME abgesetzt? Welcher Ansatz passt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -309,27 +309,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b K(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^z a(t)\,dt=50\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(K(b)\)</p>]]></text>
+      <text><![CDATA[<p>\(a(z)=50\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährliche Kosten am Intervallende statt Gesamtkosten gewählt</p>]]></text>
+        <text><![CDATA[<p>monatlichen Absatz statt Gesamtabsatz gleichgesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{50} a(t)\,dt=z\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamterlös statt Gesamtkosten gewählt</p>]]></text>
+        <text><![CDATA[<p>Zielwert und obere Grenze vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(K(b)-K(a)\)</p>]]></text>
+      <text><![CDATA[<p>\(a'(z)=50\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Kostenfunktion gebildet</p>]]></text>
+        <text><![CDATA[<p>Änderungsrate statt Gesamtabsatz gleichgesetzt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -338,7 +338,7 @@
       <text>analysis__produktlebenszyklus__05-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>\(G(t)\) ist der jährliche Gewinn, \(t\) in Jahren. Welche Formel gibt den gesamten Gewinn oder Verlust auf \([a;b]\) an?</p>]]></text>
+      <text><![CDATA[<p>Der Produktlebenszyklus endet bei \(t=T\). Welche Formel gibt den Gesamtumsatz des gesamten Lebenszyklus an?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -362,27 +362,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b G(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^T u(t)\,dt\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(b)\)</p>]]></text>
+      <text><![CDATA[<p>\(u(T)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Gewinn am Intervallende statt Gesamtwert gewählt</p>]]></text>
+        <text><![CDATA[<p>Jährlichen Umsatz am Lebenszyklusende statt Gesamtumsatz gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_1^T u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamterlös statt gesamten Gewinn oder Verlust gewählt</p>]]></text>
+        <text><![CDATA[<p>Beginn des Lebenszyklus durch die Untergrenze 1 ausgelassen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(b)-G(a)\)</p>]]></text>
+      <text><![CDATA[<p>\(\frac{1}{T}u(T)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Gewinnfunktion gebildet</p>]]></text>
+        <text><![CDATA[<p>Endwert geteilt statt Umsatz über den gesamten Zeitraum aufsummiert</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -391,7 +391,7 @@
       <text>analysis__produktlebenszyklus__05-08</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Die Nullstellen von \(G\) sind \(t_1=3\) und \(t_2=11\). Zwischen ihnen gilt \(G(t)>0\), außerhalb \(G(t)<0\). Wann sind die Kosten gedeckt?</p>]]></text>
+      <text><![CDATA[<p>Es gilt \(\int_3^8 u(t)\,dt=75\). Wie groß ist der Gesamtumsatz in diesem Zeitraum?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -415,27 +415,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>von \(t=3\) bis \(t=11\)</p>]]></text>
+      <text><![CDATA[<p>\(75\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>vor \(t=3\)</p>]]></text>
+      <text><![CDATA[<p>\(15\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Negativen Bereich vor der ersten Nullstelle als Kostendeckung gewählt</p>]]></text>
+        <text><![CDATA[<p>Gesamtumsatz unnötig durch die Zeitspanne 5 geteilt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>nach \(t=11\)</p>]]></text>
+      <text><![CDATA[<p>\(375\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Negativen Bereich nach der zweiten Nullstelle als Kostendeckung gewählt</p>]]></text>
+        <text><![CDATA[<p>Integralwert unnötig mit der Zeitspanne 5 multipliziert</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>nur bei \(t=7\)</p>]]></text>
+      <text><![CDATA[<p>\(11\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamten positiven Zeitraum auf einen einzelnen Zeitpunkt verkürzt</p>]]></text>
+        <text><![CDATA[<p>Intervallgrenzen addiert statt den gegebenen Integralwert zu verwenden</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -444,7 +444,7 @@
       <text>analysis__produktlebenszyklus__05-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für den kumulierten Gewinn \(H\) sind nur \(t_1\) und \(T\) Minimumkandidaten: \(H(t_1)=-54\), \(H(T)=18\). Wo ist der Gesamtverlust maximal und wie hoch?</p>]]></text>
+      <text><![CDATA[<p>\(u(t)\) beschreibt den jährlichen Umsatz nach \(t\) Jahren. Was bedeutet \(u(6)=14\)?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -468,27 +468,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(54\)</p>]]></text>
+      <text><![CDATA[<p>Der jährliche Umsatz nach 6 Jahren beträgt 14.</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(-54\)</p>]]></text>
+      <text><![CDATA[<p>Der Gesamtumsatz der ersten 6 Jahre beträgt 14.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Negativen kumulierten Wert statt positiven Verlustbetrag angegeben</p>]]></text>
+        <text><![CDATA[<p>Funktionswert mit dem Gesamtumsatz eines Zeitraums verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(18\)</p>]]></text>
+      <text><![CDATA[<p>Der durchschnittliche Umsatz der ersten 6 Jahre beträgt 14.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Positiven Endwert fälschlich als maximalen Verlust gewählt</p>]]></text>
+        <text><![CDATA[<p>Funktionswert mit dem Durchschnitt eines Zeitraums verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(54\)</p>]]></text>
+      <text><![CDATA[<p>Der Umsatz steigt nach 6 Jahren um 14 pro Jahr.</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Zeitpunkt des kleinsten kumulierten Werts mit dem Lebenszyklusende verwechselt</p>]]></text>
+        <text><![CDATA[<p>Funktionswert mit einer Änderungsrate verwechselt</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -497,7 +497,7 @@
       <text>analysis__produktlebenszyklus__05-10</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Für den kumulierten Gewinn \(H\) sind nur \(t_1\) und \(T\) Minimumkandidaten: \(H(t_1)=-40\), \(H(T)=-65\). Wo ist der Gesamtverlust maximal und wie hoch?</p>]]></text>
+      <text><![CDATA[<p>Welche Formel gehört zum Umsatz vom Ende des 4. bis zum Ende des 9. Jahres?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -521,27 +521,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(65\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_4^9 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(40\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^9 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Weniger negativen kumulierten Wert als maximalen Verlust gewählt</p>]]></text>
+        <text><![CDATA[<p>Untere Grenze 0 statt 4 gewählt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(-65\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_4^5 u(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Negativen kumulierten Wert statt positiven Verlustbetrag angegeben</p>]]></text>
+        <text><![CDATA[<p>Zeitspanne 5 fälschlich als obere Grenze eingesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(65\)</p>]]></text>
+      <text><![CDATA[<p>\(u(9)-u(4)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Richtigen Verlustbetrag dem falschen Zeitpunkt zugeordnet</p>]]></text>
+        <text><![CDATA[<p>Differenz der Randwerte statt Umsatz im Zeitraum gebildet</p>]]></text>
       </feedback>
     </answer>
   </question>

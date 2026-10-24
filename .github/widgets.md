@@ -32,6 +32,7 @@ Widgets werden per `{% include widgets/widget-*.html %}` eingebunden und über S
 | Regression Minimierung | `widget-regression-minimierung.html` | `.rm-widget` | Feste Punktwolke + verstellbare Gerade + Residuen-Quadrate + Quadratsumme (SSE) |
 | Tilgungsplan | `widget-tilgungsplan.html` | `.tp-widget` | Annuitätenformel mit Werten + vollständiger Tilgungsplan (zeilenweise auf Cent gerundet, Rundungsdifferenz) + gestapeltes Balkendiagramm Zinsen/Tilgung; läuft auch ohne Plotly (nur Tabelle) |
 | Herleitung Zinseszinsformel | `widget-zinseszins-herleitung.html` | `.zzh-widget` | Inline-SVG-Zeitstrahl (Kapital je Jahr, Zinsen mit Rechenweg, Zinsfaktor-Bögen, Sammelbogen $q^n$) + MathJax-Herleitung $K_1 \to K_n$; kein Plotly |
+| Gesamtabsatz | `widget-gesamtabsatz.html` | `.ga-widget` | Absatzrate $a(t)$ mit Fläche auf $[t_1;t_2]$ (optional Monatsbalken, Durchschnittsrechteck) + kumulierte Absatzfunktion $A(t)$ mit Differenz $A(t_2)-A(t_1)$ + MathJax-Infoblock; Parameter `term` (math.js, Variable `t`), `tmax`, `t1`, `t2`, `fname`, `einheit_y`, `einheit_flaeche`, `zeiteinheit`, `xachse`, `yachse` (optional `titel`, `titel_kumuliert`, `yachse_kumuliert`, `balken_label`) |
 
 
 ## HTML-Struktur

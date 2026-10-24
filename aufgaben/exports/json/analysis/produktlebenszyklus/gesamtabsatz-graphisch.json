@@ -1,0 +1,1362 @@
+[
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 13. bis zum Ende des 16. Monats angibt.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 20 Monaten beträgt mindestens 165 ME.“ wahr oder falsch ist.",
+      "die Bedeutung von $\\int_{23}^{25} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 4. bis zum Ende des 7. Monats.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 13 Monaten."
+    ],
+    "antworten": [
+      "{1:MC:~=$\\int_{13}^{16} a(t)\\,dt$~$a(16)-a(13)$~$\\int_{0}^{16} a(t)\\,dt$~$a(16)$}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 23. bis zum Ende des 25. Monats~monatlicher Absatz nach 25 Monaten~Zunahme des monatlichen Absatzes von $t=23$ bis $t=25$~durchschnittlicher monatlicher Absatz von $t=23$ bis $t=25$}",
+      "{1:NUMERICAL:=36,0805:3,61}",
+      "{1:NUMERICAL:=11,5929:1,16}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.6*t)*exp(-0.1*t)+7",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              13.4015
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.6*t)*exp(-0.1*t)+7",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "ob die Aussage „Der Gesamtabsatz in den ersten 3 Monaten beträgt mindestens 28 ME.“ wahr oder falsch ist.",
+      "die Bedeutung von $\\int_{13}^{16} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 4. bis zum Ende des 12. Monats.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 3. bis zum Ende des 8. Monats angibt.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 7 Monaten."
+    ],
+    "antworten": [
+      "{1:MC:~wahr~=falsch}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 13. bis zum Ende des 16. Monats~monatlicher Absatz nach 16 Monaten~Zunahme des monatlichen Absatzes von $t=13$ bis $t=16$~durchschnittlicher monatlicher Absatz von $t=13$ bis $t=16$}",
+      "{1:NUMERICAL:=68,0307:6,8}",
+      "{1:MC:~=$\\int_{3}^{8} a(t)\\,dt$~$a(8)-a(3)$~$\\int_{0}^{8} a(t)\\,dt$~$a(8)$}",
+      "{1:NUMERICAL:=8,3422:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.2*t^2)*exp(-0.4*t)+5.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              21.0
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              9.9425
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.2*t^2)*exp(-0.4*t)+5.5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 2 Monaten.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 10. bis zum Ende des 11. Monats angibt.",
+      "einen Schätzwert für den Gesamtabsatz in den ersten 6 Monaten.",
+      "die Bedeutung von $\\int_{0}^{11} a(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 5 Monaten beträgt mindestens 39 ME.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=4,7687:1}",
+      "{1:MC:~=$\\int_{10}^{11} a(t)\\,dt$~$a(11)-a(10)$~$\\int_{0}^{11} a(t)\\,dt$~$a(11)$}",
+      "{1:NUMERICAL:=34,5817:3,46}",
+      "{1:MC:~=Gesamtabsatz in den ersten 11 Monaten~monatlicher Absatz nach 11 Monaten~Zunahme des monatlichen Absatzes von $t=0$ bis $t=11$~durchschnittlicher monatlicher Absatz von $t=0$ bis $t=11$}",
+      "{1:MC:~wahr~=falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-0.6*t^2+7.8*t)*exp(-0.3*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              13.65
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              7.7378
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-0.6*t^2+7.8*t)*exp(-0.3*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den Gesamtumsatz in den ersten 6 Jahren.",
+      "die Bedeutung von $\\int_{0}^{6} u(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtumsatz in den ersten 12 Jahren beträgt mindestens 146 GE.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtumsatz vom Ende des 13. bis zum Ende des 17. Jahres angibt.",
+      "einen Schätzwert für den durchschnittlichen jährlichen Umsatz in den ersten 4 Jahren."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=55,551:5,56}",
+      "{1:MC:~=Gesamtumsatz in den ersten 6 Jahren~jährlicher Umsatz nach 6 Jahren~Zunahme des jährlichen Umsatzes von $t=0$ bis $t=6$~durchschnittlicher jährlicher Umsatz von $t=0$ bis $t=6$}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:MC:~=$\\int_{13}^{17} u(t)\\,dt$~$u(17)-u(13)$~$\\int_{0}^{17} u(t)\\,dt$~$u(17)$}",
+      "{1:NUMERICAL:=7,5468:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.03*t^3+2.9*t^2)*exp(-0.4*t)+2.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              21.6259
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              13.3383
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.03*t^3+2.9*t^2)*exp(-0.4*t)+2.5",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "die Bedeutung von $\\int_{6}^{22} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 3 Monaten.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 20. bis zum Ende des 26. Monats angibt.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 11 Monaten beträgt mindestens 144 ME.“ wahr oder falsch ist.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 9. bis zum Ende des 13. Monats."
+    ],
+    "antworten": [
+      "{1:MC:~=Gesamtabsatz vom Ende des 6. bis zum Ende des 22. Monats~monatlicher Absatz nach 22 Monaten~Zunahme des monatlichen Absatzes von $t=6$ bis $t=22$~durchschnittlicher monatlicher Absatz von $t=6$ bis $t=22$}",
+      "{1:NUMERICAL:=7,9645:1}",
+      "{1:MC:~=$\\int_{20}^{26} a(t)\\,dt$~$a(26)-a(20)$~$\\int_{0}^{26} a(t)\\,dt$~$a(26)$}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:NUMERICAL:=42,2761:4,23}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.3*t+1)*exp(-0.1*t)+5.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              11.0914
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.3*t+1)*exp(-0.1*t)+5.5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 2 Monaten.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 4 Monaten beträgt mindestens 23 ME.“ wahr oder falsch ist.",
+      "die Bedeutung von $\\int_{16}^{19} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz in den ersten 6 Monaten.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 23. bis zum Ende des 26. Monats angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5,1889:2,5}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 16. bis zum Ende des 19. Monats~monatlicher Absatz nach 19 Monaten~Zunahme des monatlichen Absatzes von $t=16$ bis $t=19$~durchschnittlicher monatlicher Absatz von $t=16$ bis $t=19$}",
+      "{1:NUMERICAL:=60,1539:6,02}",
+      "{1:MC:~=$\\int_{23}^{26} a(t)\\,dt$~$a(26)-a(23)$~$\\int_{0}^{26} a(t)\\,dt$~$a(26)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.2*t^2)*exp(-0.2*t)+4",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              21.0496
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.2*t^2)*exp(-0.2*t)+4",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 1. bis zum Ende des 4. Monats.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 9. bis zum Ende des 11. Monats angibt.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 2 Monaten beträgt mindestens 9,2 ME.“ wahr oder falsch ist.",
+      "die Bedeutung von $\\int_{1}^{6} a(t)\\,dt$ im Sachzusammenhang."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=28,0598:2,81}",
+      "{1:MC:~=$\\int_{9}^{11} a(t)\\,dt$~$a(11)-a(9)$~$\\int_{0}^{11} a(t)\\,dt$~$a(11)$}",
+      "{1:NUMERICAL:=8,0769:1}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 1. bis zum Ende des 6. Monats~monatlicher Absatz nach 6 Monaten~Zunahme des monatlichen Absatzes von $t=1$ bis $t=6$~durchschnittlicher monatlicher Absatz von $t=1$ bis $t=6$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-t^2+11*t)*exp(-0.3*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              11.6
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              10.4484
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-t^2+11*t)*exp(-0.3*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen jährlichen Umsatz in den ersten 7 Jahren.",
+      "einen Schätzwert für den Gesamtumsatz in den ersten 3 Jahren.",
+      "ob die Aussage „Der Gesamtumsatz in den ersten 12 Jahren beträgt mindestens 84 GE.“ wahr oder falsch ist.",
+      "die Bedeutung von $\\int_{1}^{6} u(t)\\,dt$ im Sachzusammenhang.",
+      "den Ausdruck, der den Gesamtumsatz vom Ende des 6. bis zum Ende des 12. Jahres angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=9,6199:1}",
+      "{1:NUMERICAL:=18,7035:1,87}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=Gesamtumsatz vom Ende des 1. bis zum Ende des 6. Jahres~jährlicher Umsatz nach 6 Jahren~Zunahme des jährlichen Umsatzes von $t=1$ bis $t=6$~durchschnittlicher jährlicher Umsatz von $t=1$ bis $t=6$}",
+      "{1:MC:~=$\\int_{6}^{12} u(t)\\,dt$~$u(12)-u(6)$~$\\int_{0}^{12} u(t)\\,dt$~$u(12)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.18*t^3+1.8*t^2)*exp(-0.4*t)+3.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              23.4307
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              13.4232
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.18*t^3+1.8*t^2)*exp(-0.4*t)+3.5",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 3. bis zum Ende des 15. Monats.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 15 Monaten beträgt mindestens 90 ME.“ wahr oder falsch ist.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 6 Monaten.",
+      "die Bedeutung von $\\int_{21}^{25} a(t)\\,dt$ im Sachzusammenhang.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 13. bis zum Ende des 21. Monats angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=96,6711:9,67}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:NUMERICAL:=8,0463:1}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 21. bis zum Ende des 25. Monats~monatlicher Absatz nach 25 Monaten~Zunahme des monatlichen Absatzes von $t=21$ bis $t=25$~durchschnittlicher monatlicher Absatz von $t=21$ bis $t=25$}",
+      "{1:MC:~=$\\int_{13}^{21} a(t)\\,dt$~$a(21)-a(13)$~$\\int_{0}^{21} a(t)\\,dt$~$a(21)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.1*t)*exp(-0.2*t)+6.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              8.8642
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.1*t)*exp(-0.2*t)+6.5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "die Bedeutung von $\\int_{19}^{26} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 5. bis zum Ende des 8. Monats.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 14 Monaten beträgt mindestens 222 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 7. bis zum Ende des 16. Monats angibt.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 6 Monaten."
+    ],
+    "antworten": [
+      "{1:MC:~=Gesamtabsatz vom Ende des 19. bis zum Ende des 26. Monats~monatlicher Absatz nach 26 Monaten~Zunahme des monatlichen Absatzes von $t=19$ bis $t=26$~durchschnittlicher monatlicher Absatz von $t=19$ bis $t=26$}",
+      "{1:NUMERICAL:=38,0425:3,8}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:MC:~=$\\int_{7}^{16} a(t)\\,dt$~$a(16)-a(7)$~$\\int_{0}^{16} a(t)\\,dt$~$a(16)$}",
+      "{1:NUMERICAL:=9,5107:1,25}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(0.5*t^2)*exp(-0.2*t)+7",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              14.3173
+            ],
+            "dtick": 2.5,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(0.5*t^2)*exp(-0.2*t)+7",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 5 Monaten.",
+      "die Bedeutung von $\\int_{14}^{19} a(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 14 Monaten beträgt mindestens 303 ME.“ wahr oder falsch ist.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 4. bis zum Ende des 12. Monats.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 21. bis zum Ende des 23. Monats angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=36,9217:5}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 14. bis zum Ende des 19. Monats~monatlicher Absatz nach 19 Monaten~Zunahme des monatlichen Absatzes von $t=14$ bis $t=19$~durchschnittlicher monatlicher Absatz von $t=14$ bis $t=19$}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:NUMERICAL:=268,7786:26,88}",
+      "{1:MC:~=$\\int_{21}^{23} a(t)\\,dt$~$a(23)-a(21)$~$\\int_{0}^{23} a(t)\\,dt$~$a(23)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-1.4*t^2+32.2*t)*exp(-0.2*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              24.15
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              49.7217
+            ],
+            "dtick": 10.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-1.4*t^2+32.2*t)*exp(-0.2*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "ob die Aussage „Der Gesamtumsatz in den ersten 13 Jahren beträgt mindestens 132 GE.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtumsatz vom Ende des 17. bis zum Ende des 19. Jahres angibt.",
+      "die Bedeutung von $\\int_{2}^{10} u(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtumsatz in den ersten 2 Jahren.",
+      "einen Schätzwert für den durchschnittlichen jährlichen Umsatz in den ersten 7 Jahren."
+    ],
+    "antworten": [
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=$\\int_{17}^{19} u(t)\\,dt$~$u(19)-u(17)$~$\\int_{0}^{19} u(t)\\,dt$~$u(19)$}",
+      "{1:MC:~=Gesamtumsatz vom Ende des 2. bis zum Ende des 10. Jahres~jährlicher Umsatz nach 10 Jahren~Zunahme des jährlichen Umsatzes von $t=2$ bis $t=10$~durchschnittlicher jährlicher Umsatz von $t=2$ bis $t=10$}",
+      "{1:NUMERICAL:=18,0021:2,5}",
+      "{1:NUMERICAL:=13,8801:2,5}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.07*t^3+2.6*t^2)*exp(-0.4*t)+7",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              22.0628
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              17.6976
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.07*t^3+2.6*t^2)*exp(-0.4*t)+7",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "ob die Aussage „Der Gesamtabsatz in den ersten 20 Monaten beträgt mindestens 89 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 2. bis zum Ende des 21. Monats angibt.",
+      "die Bedeutung von $\\int_{10}^{20} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 1. bis zum Ende des 6. Monats.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten."
+    ],
+    "antworten": [
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=$\\int_{2}^{21} a(t)\\,dt$~$a(21)-a(2)$~$\\int_{0}^{21} a(t)\\,dt$~$a(21)$}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 10. bis zum Ende des 20. Monats~monatlicher Absatz nach 20 Monaten~Zunahme des monatlichen Absatzes von $t=10$ bis $t=20$~durchschnittlicher monatlicher Absatz von $t=10$ bis $t=20$}",
+      "{1:NUMERICAL:=34,5955:3,46}",
+      "{1:NUMERICAL:=6,4341:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.2*t)*exp(-0.2*t)+5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              7.4955
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.2*t)*exp(-0.2*t)+5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "die Bedeutung von $\\int_{2}^{12} a(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 11 Monaten beträgt mindestens 55 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 5. bis zum Ende des 12. Monats angibt.",
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 3. bis zum Ende des 6. Monats.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 3 Monaten."
+    ],
+    "antworten": [
+      "{1:MC:~=Gesamtabsatz vom Ende des 2. bis zum Ende des 12. Monats~monatlicher Absatz nach 12 Monaten~Zunahme des monatlichen Absatzes von $t=2$ bis $t=12$~durchschnittlicher monatlicher Absatz von $t=2$ bis $t=12$}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=$\\int_{5}^{12} a(t)\\,dt$~$a(12)-a(5)$~$\\int_{0}^{12} a(t)\\,dt$~$a(12)$}",
+      "{1:NUMERICAL:=22,0465:2,2}",
+      "{1:NUMERICAL:=6,664:1}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(1.4*t^2)*exp(-0.6*t)+5.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              14.3333
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              7.9093
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(1.4*t^2)*exp(-0.6*t)+5.5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 12 Monaten beträgt mindestens 158 ME.“ wahr oder falsch ist.",
+      "einen Schätzwert für den Gesamtabsatz in den ersten 3 Monaten.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 3. bis zum Ende des 13. Monats angibt.",
+      "die Bedeutung von $\\int_{9}^{13} a(t)\\,dt$ im Sachzusammenhang."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=22,6291:2,5}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:NUMERICAL:=60,9104:6,09}",
+      "{1:MC:~=$\\int_{3}^{13} a(t)\\,dt$~$a(13)-a(3)$~$\\int_{0}^{13} a(t)\\,dt$~$a(13)$}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 9. bis zum Ende des 13. Monats~monatlicher Absatz nach 13 Monaten~Zunahme des monatlichen Absatzes von $t=9$ bis $t=13$~durchschnittlicher monatlicher Absatz von $t=9$ bis $t=13$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-1.8*t^2+23.4*t)*exp(-0.2*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              13.65
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              30.971
+            ],
+            "dtick": 5.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-1.8*t^2+23.4*t)*exp(-0.2*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "die Bedeutung von $\\int_{6}^{11} u(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtumsatz in den ersten 3 Jahren.",
+      "einen Schätzwert für den durchschnittlichen jährlichen Umsatz in den ersten 5 Jahren.",
+      "den Ausdruck, der den Gesamtumsatz vom Ende des 9. bis zum Ende des 10. Jahres angibt.",
+      "ob die Aussage „Der Gesamtumsatz in den ersten 6 Jahren beträgt mindestens 17 GE.“ wahr oder falsch ist."
+    ],
+    "antworten": [
+      "{1:MC:~=Gesamtumsatz vom Ende des 6. bis zum Ende des 11. Jahres~jährlicher Umsatz nach 11 Jahren~Zunahme des jährlichen Umsatzes von $t=6$ bis $t=11$~durchschnittlicher jährlicher Umsatz von $t=6$ bis $t=11$}",
+      "{1:NUMERICAL:=10,6155:1,06}",
+      "{1:NUMERICAL:=3,8119:0,5}",
+      "{1:MC:~=$\\int_{9}^{10} u(t)\\,dt$~$u(10)-u(9)$~$\\int_{0}^{10} u(t)\\,dt$~$u(10)$}",
+      "{1:MC:~=wahr~falsch}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.03*t^3+2.2*t^2)*exp(-0.7*t)+2",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              12.9117
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              4.707
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.03*t^3+2.2*t^2)*exp(-0.7*t)+2",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 14 Monaten.",
+      "die Bedeutung von $\\int_{20}^{23} a(t)\\,dt$ im Sachzusammenhang.",
+      "einen Schätzwert für den Gesamtabsatz in den ersten 13 Monaten.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 3 Monaten beträgt mindestens 14 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 11. bis zum Ende des 23. Monats angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=4,6621:0,5}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 20. bis zum Ende des 23. Monats~monatlicher Absatz nach 23 Monaten~Zunahme des monatlichen Absatzes von $t=20$ bis $t=23$~durchschnittlicher monatlicher Absatz von $t=20$ bis $t=23$}",
+      "{1:NUMERICAL:=60,3606:6,04}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:MC:~=$\\int_{11}^{23} a(t)\\,dt$~$a(23)-a(11)$~$\\int_{0}^{23} a(t)\\,dt$~$a(23)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(0.9*t+1)*exp(-0.1*t)+1.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              30.0
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              5.408
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(0.9*t+1)*exp(-0.1*t)+1.5",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 8 Monaten.",
+      "einen Schätzwert für den Gesamtabsatz in den ersten 7 Monaten.",
+      "die Bedeutung von $\\int_{5}^{10} a(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 10 Monaten beträgt mindestens 48 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 2. bis zum Ende des 5. Monats angibt."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=3,6956:0,5}",
+      "{1:NUMERICAL:=25,6057:2,56}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 5. bis zum Ende des 10. Monats~monatlicher Absatz nach 10 Monaten~Zunahme des monatlichen Absatzes von $t=5$ bis $t=10$~durchschnittlicher monatlicher Absatz von $t=5$ bis $t=10$}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:MC:~=$\\int_{2}^{5} a(t)\\,dt$~$a(5)-a(2)$~$\\int_{0}^{5} a(t)\\,dt$~$a(5)$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(0.7*t^2)*exp(-0.4*t)+2",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              21.0
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              4.5431
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(0.7*t^2)*exp(-0.4*t)+2",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $a$, die den monatlichen Absatz eines Produkts in ME/Monat beschreibt ($t$ in Monaten seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "einen Schätzwert für den Gesamtabsatz vom Ende des 5. bis zum Ende des 9. Monats.",
+      "einen Schätzwert für den durchschnittlichen monatlichen Absatz in den ersten 2 Monaten.",
+      "ob die Aussage „Der Gesamtabsatz in den ersten 13 Monaten beträgt mindestens 33 ME.“ wahr oder falsch ist.",
+      "den Ausdruck, der den Gesamtabsatz vom Ende des 9. bis zum Ende des 15. Monats angibt.",
+      "die Bedeutung von $\\int_{16}^{18} a(t)\\,dt$ im Sachzusammenhang."
+    ],
+    "antworten": [
+      "{1:NUMERICAL:=5,944:1}",
+      "{1:NUMERICAL:=8,345:1}",
+      "{1:MC:~=wahr~falsch}",
+      "{1:MC:~=$\\int_{9}^{15} a(t)\\,dt$~$a(15)-a(9)$~$\\int_{0}^{15} a(t)\\,dt$~$a(15)$}",
+      "{1:MC:~=Gesamtabsatz vom Ende des 16. bis zum Ende des 18. Monats~monatlicher Absatz nach 18 Monaten~Zunahme des monatlichen Absatzes von $t=16$ bis $t=18$~durchschnittlicher monatlicher Absatz von $t=16$ bis $t=18$}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Absatzfunktion a(t)",
+        "curves": [
+          {
+            "term": "(-t^2+19*t)*exp(-0.6*t)",
+            "variable": "t",
+            "mode": "lines",
+            "name": "a(t)",
+            "description": "monatlicher Absatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Absatzfunktion a(t)",
+          "xaxis": {
+            "title": "Zeit t in Monaten",
+            "range": [
+              0.0,
+              19.95
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "a(t) in ME/Monat",
+            "range": [
+              0.0,
+              11.1001
+            ],
+            "dtick": 2.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "a(t)",
+            "term": "(-t^2+19*t)*exp(-0.6*t)",
+            "beschreibung": "monatlicher Absatz"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "einleitung": "Das Diagramm zeigt den Graphen der Funktion $u$, die den jährlichen Umsatz eines Produkts in GE/Jahr beschreibt ($t$ in Jahren seit der Markteinführung). Bestimmen Sie anhand des Graphen",
+    "fragen": [
+      "die Bedeutung von $\\int_{5}^{11} u(t)\\,dt$ im Sachzusammenhang.",
+      "ob die Aussage „Der Gesamtumsatz in den ersten 4 Jahren beträgt mindestens 17 GE.“ wahr oder falsch ist.",
+      "einen Schätzwert für den durchschnittlichen jährlichen Umsatz in den ersten 5 Jahren.",
+      "den Ausdruck, der den Gesamtumsatz vom Ende des 7. bis zum Ende des 9. Jahres angibt.",
+      "einen Schätzwert für den Gesamtumsatz vom Ende des 1. bis zum Ende des 5. Jahres."
+    ],
+    "antworten": [
+      "{1:MC:~=Gesamtumsatz vom Ende des 5. bis zum Ende des 11. Jahres~jährlicher Umsatz nach 11 Jahren~Zunahme des jährlichen Umsatzes von $t=5$ bis $t=11$~durchschnittlicher jährlicher Umsatz von $t=5$ bis $t=11$}",
+      "{1:MC:~wahr~=falsch}",
+      "{1:NUMERICAL:=3,5585:0,5}",
+      "{1:MC:~=$\\int_{7}^{9} u(t)\\,dt$~$u(9)-u(7)$~$\\int_{0}^{9} u(t)\\,dt$~$u(9)$}",
+      "{1:NUMERICAL:=16,0586:1,61}"
+    ],
+    "visual": {
+      "type": "plot",
+      "spec": {
+        "type": "expression-curves",
+        "title": "Umsatzfunktion u(t)",
+        "curves": [
+          {
+            "term": "(0.16*t^3+0.9*t^2)*exp(-0.5*t)+1.5",
+            "variable": "t",
+            "mode": "lines",
+            "name": "u(t)",
+            "description": "jährlicher Umsatz",
+            "line": {
+              "color": "#1f77b4",
+              "width": 2
+            }
+          }
+        ],
+        "points": 261,
+        "layout": {
+          "title": "Umsatzfunktion u(t)",
+          "xaxis": {
+            "title": "Zeit t in Jahren",
+            "range": [
+              0.0,
+              19.1846
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          },
+          "yaxis": {
+            "title": "u(t) in GE/Jahr",
+            "range": [
+              0.0,
+              5.1888
+            ],
+            "dtick": 1.0,
+            "zeroline": true,
+            "showline": true
+          }
+        },
+        "funktionen": [
+          {
+            "name": "u(t)",
+            "term": "(0.16*t^3+0.9*t^2)*exp(-0.5*t)+1.5",
+            "beschreibung": "jährlicher Umsatz"
+          }
+        ]
+      }
+    }
+  }
+]

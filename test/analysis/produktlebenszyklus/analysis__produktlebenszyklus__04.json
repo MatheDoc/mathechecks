@@ -1,0 +1,144 @@
+{
+    "fragen": [
+        {
+            "frage": "\\(a(t)\\) ist der monatliche Absatz in ME/Monat. Was gibt die Fläche unter dem Graphen von \\(a\\) über \\([2;5]\\) an?",
+            "antworten": [
+                "Gesamtabsatz vom Ende des 2. bis zum Ende des 5. Monats",
+                "monatlicher Absatz nach 5 Monaten",
+                "Zunahme des monatlichen Absatzes von \\(t=2\\) bis \\(t=5\\)",
+                "durchschnittlicher monatlicher Absatz auf \\([2;5]\\)"
+            ],
+            "fehler": [
+                "Fläche mit Funktionswert verwechselt",
+                "Fläche mit Differenz der Funktionswerte verwechselt",
+                "Fläche mit Rechteckhöhe gleicher Fläche verwechselt"
+            ]
+        },
+        {
+            "frage": "\\(a(t)\\) ist in ME/Monat angegeben, \\(t\\) in Monaten. Welche Einheit hat \\(\\int_0^6 a(t)\\,dt\\)?",
+            "antworten": [
+                "ME",
+                "ME/Monat",
+                "ME · Monat",
+                "Monate"
+            ],
+            "fehler": [
+                "Einheit der Funktionswerte übernommen",
+                "Breite in Monaten nicht gekürzt",
+                "Einheit der \\(t\\)-Achse übernommen"
+            ]
+        },
+        {
+            "frage": "Der monatliche Absatz beträgt von \\(t=0\\) bis \\(t=4\\) konstant 5 ME/Monat. Wie groß ist der Gesamtabsatz in diesem Zeitraum?",
+            "antworten": [
+                "20 ME",
+                "5 ME",
+                "9 ME",
+                "1,25 ME"
+            ],
+            "fehler": [
+                "nur die Rechteckhöhe angegeben",
+                "Breite und Höhe addiert",
+                "Höhe durch Breite geteilt"
+            ]
+        },
+        {
+            "frage": "Ein Kästchen im Diagramm ist 1 Monat breit und 2 ME/Monat hoch. Welchem Absatz entspricht ein Kästchen?",
+            "antworten": [
+                "2 ME",
+                "1 ME",
+                "0,5 ME",
+                "3 ME"
+            ],
+            "fehler": [
+                "nur die Breite berücksichtigt",
+                "Breite durch Höhe geteilt",
+                "Breite und Höhe addiert"
+            ]
+        },
+        {
+            "frage": "Eine Fläche umfasst etwa 12 Kästchen mit je 1 Monat Breite und 2 ME/Monat Höhe. Wie groß ist der Gesamtabsatz etwa?",
+            "antworten": [
+                "24 ME",
+                "12 ME",
+                "6 ME",
+                "14 ME"
+            ],
+            "fehler": [
+                "Kästcheninhalt nicht berücksichtigt",
+                "durch die Kästchenhöhe geteilt",
+                "Kästchenhöhe addiert statt multipliziert"
+            ]
+        },
+        {
+            "frage": "Auf \\([3;7]\\) liegt der Graph von \\(a\\) zwischen 8 und 10 ME/Monat. Welcher Wert kommt für \\(\\int_3^7 a(t)\\,dt\\) in Frage?",
+            "antworten": [
+                "36 ME",
+                "9 ME",
+                "20 ME",
+                "50 ME"
+            ],
+            "fehler": [
+                "nur die mittlere Höhe angegeben",
+                "mit falscher Breite 2 gerechnet",
+                "Obergrenze \\(4\\cdot 10=40\\) überschritten"
+            ]
+        },
+        {
+            "frage": "Es gilt \\(\\int_0^5 a(t)\\,dt=40\\) ME. Wie hoch ist ein Rechteck über \\([0;5]\\) mit derselben Fläche?",
+            "antworten": [
+                "8 ME/Monat",
+                "40 ME/Monat",
+                "200 ME/Monat",
+                "5 ME/Monat"
+            ],
+            "fehler": [
+                "Fläche als Höhe angegeben",
+                "Fläche mit Breite multipliziert",
+                "Breite als Höhe angegeben"
+            ]
+        },
+        {
+            "frage": "Auf \\([0;6]\\) gilt \\(a(t)\\le 7\\) ME/Monat. Was gilt sicher für den Gesamtabsatz im ersten Halbjahr?",
+            "antworten": [
+                "höchstens 42 ME",
+                "mindestens 42 ME",
+                "genau 7 ME",
+                "höchstens 7 ME"
+            ],
+            "fehler": [
+                "Ungleichung umgedreht",
+                "Höchstwert als Gesamtabsatz angegeben",
+                "Breite des Zeitraums vergessen"
+            ]
+        },
+        {
+            "frage": "Welche Schreibweise beschreibt die Fläche unter dem Graphen von \\(a\\) zwischen \\(t=4\\) und \\(t=9\\)?",
+            "antworten": [
+                "\\(\\int_4^9 a(t)\\,dt\\)",
+                "\\(a(9)-a(4)\\)",
+                "\\(\\int_0^9 a(t)\\,dt\\)",
+                "\\(\\int_4^9 a'(t)\\,dt\\)"
+            ],
+            "fehler": [
+                "Differenz der Funktionswerte statt Fläche",
+                "untere Grenze 0 statt 4 gewählt",
+                "Ableitung statt Absatzfunktion integriert"
+            ]
+        },
+        {
+            "frage": "Die Fläche unter dem Graphen von \\(a\\) ist über \\([3;6]\\) größer als über \\([0;3]\\). Was folgt daraus?",
+            "antworten": [
+                "Im 2. Quartal wird insgesamt mehr abgesetzt als im 1.",
+                "\\(a\\) ist auf \\([3;6]\\) überall größer als auf \\([0;3]\\)",
+                "\\(a\\) ist auf \\([3;6]\\) steigend",
+                "\\(a(6)\\) ist doppelt so groß wie \\(a(3)\\)"
+            ],
+            "fehler": [
+                "Gesamtwert mit punktweisem Vergleich verwechselt",
+                "Fläche mit Monotonie verwechselt",
+                "Flächenvergleich als Verhältnis der Funktionswerte gedeutet"
+            ]
+        }
+    ]
+}

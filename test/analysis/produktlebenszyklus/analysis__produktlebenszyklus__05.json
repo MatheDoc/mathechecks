@@ -26,9 +26,9 @@
             "fehler": ["Gesamtumsatz statt Durchschnitt angegeben", "Durch die obere Grenze 4 statt durch die Zeitspanne 3 geteilt", "Integralwert mit der Zeitspanne multipliziert statt durch sie geteilt"]
         },
         {
-            "frage": "Es gilt \\(\\int_2^6 u(t)\\,dt=84\\). Wie groß ist der durchschnittliche jährliche Umsatz?",
-            "antworten": ["\\(21\\)", "\\(84\\)", "\\(14\\)", "\\(42\\)"],
-            "fehler": ["Gesamtumsatz statt Durchschnitt angegeben", "Durch die obere Grenze 6 statt durch die Zeitspanne 4 geteilt", "Durch die Untergrenze 2 statt durch die Zeitspanne 4 geteilt"]
+            "frage": "\\(a(t)\\) ist der monatliche Absatz in ME/Monat. Zu welchem Zeitpunkt \\(z\\) sind seit Markteinführung insgesamt 50 ME abgesetzt? Welcher Ansatz passt?",
+            "antworten": ["\\(\\int_0^z a(t)\\,dt=50\\)", "\\(a(z)=50\\)", "\\(\\int_0^{50} a(t)\\,dt=z\\)", "\\(a'(z)=50\\)"],
+            "fehler": ["monatlichen Absatz statt Gesamtabsatz gleichgesetzt", "Zielwert und obere Grenze vertauscht", "Änderungsrate statt Gesamtabsatz gleichgesetzt"]
         },
         {
             "frage": "Der Produktlebenszyklus endet bei \\(t=T\\). Welche Formel gibt den Gesamtumsatz des gesamten Lebenszyklus an?",
