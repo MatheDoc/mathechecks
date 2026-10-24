@@ -539,6 +539,10 @@ body.page-shell .shell {
 .topbar-nav-glyph {
   font-size: 1rem;
   line-height: 1;
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  flex: 0 0 20px;
 }
 
 .nav-pills a:hover,
@@ -619,29 +623,19 @@ body.module-fullscreen .topbar {
   gap: 4px;
 }
 
-.topbar-feed-launcher {
-  position: relative;
-}
-
-.topbar-feed-launcher__icon {
-  position: relative;
-  display: inline-grid;
-  place-items: center;
-  width: 24px;
-  height: 24px;
+.topbar-feed-launcher__icon .feed-card-menu__svg {
+  width: 18px;
+  height: 18px;
 }
 
 .topbar-feed-launcher__badge {
-  position: absolute;
-  top: -5px;
-  right: -7px;
-  z-index: 1;
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
   border-radius: 999px;
   background: var(--rose);
   color: #fff;
@@ -649,8 +643,6 @@ body.module-fullscreen .topbar {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -.01em;
-  box-shadow: 0 0 0 2px var(--bg, #111), 0 8px 18px rgba(214, 40, 57, .28);
-  pointer-events: none;
 }
 
 .topbar-feed-launcher__badge[hidden] {
@@ -660,6 +652,27 @@ body.module-fullscreen .topbar {
 .topbar-actions-menu {
   display: block;
   position: relative;
+}
+
+.topbar-actions-menu>summary {
+  position: relative;
+}
+
+.topbar-actions-menu__dot {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--rose);
+  box-shadow: 0 0 0 2px var(--bg, #111);
+  pointer-events: none;
+}
+
+.topbar-actions-menu__dot[hidden] {
+  display: none;
 }
 
 .topbar-dots-vertical {
