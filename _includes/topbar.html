@@ -33,18 +33,6 @@
         {% endif %}
     </div>
     <div class="topbar-right">
-        <a class="topbar-icon-button topbar-feed-launcher" id="feedLaunchBtn"
-            href="{{ '/dashboard.html' | relative_url }}" hidden aria-label="Aktuelles Feed-Element öffnen"
-            title="Aktuelles Feed-Element öffnen">
-            <span class="topbar-feed-launcher__icon" aria-hidden="true">
-                <svg class="feed-card-menu__svg" viewBox="0 0 24 24" focusable="false">
-                    <path d="M4 12h3l2-5 4 10 2-5h5"></path>
-                    <circle cx="19" cy="5" r="2"></circle>
-                </svg>
-            </span>
-            <span class="topbar-feed-launcher__badge" data-feed-launcher-badge hidden aria-hidden="true"></span>
-            <span class="visually-hidden" data-feed-launcher-label>Aktuelles Feed-Element öffnen</span>
-        </a>
         {% if page.module_key %}
         <button class="topbar-icon-button" id="fullscreenEnterBtn" data-fullscreen-enter="true" type="button"
             aria-label="Vollbild: Leisten ausblenden" title="Vollbild">
@@ -61,8 +49,22 @@
                     <span class="dot"></span>
                 </span>
                 <span class="visually-hidden">Weitere Aktionen</span>
+                <span class="topbar-actions-menu__dot" data-feed-launcher-dot hidden aria-hidden="true"></span>
             </summary>
             <div class="topbar-actions-popover" role="menu" aria-label="Schnellaktionen">
+                <a class="topbar-actions-item topbar-feed-launcher" id="feedLaunchBtn"
+                    href="{{ '/dashboard.html' | relative_url }}" role="menuitem"
+                    aria-label="Aktuelles Feed-Element öffnen" title="Aktuelles Feed-Element öffnen">
+                    <span class="topbar-nav-glyph topbar-feed-launcher__icon" aria-hidden="true">
+                        <svg class="feed-card-menu__svg" viewBox="0 0 24 24" focusable="false">
+                            <path d="M4 12h3l2-5 4 10 2-5h5"></path>
+                            <circle cx="19" cy="5" r="2"></circle>
+                        </svg>
+                    </span>
+                    <span>Feed</span>
+                    <span class="topbar-feed-launcher__badge" data-feed-launcher-badge hidden aria-hidden="true"></span>
+                    <span class="visually-hidden" data-feed-launcher-label>Aktuelles Feed-Element öffnen</span>
+                </a>
                 <a class="topbar-actions-item {% if page.nav==" dashboard" and page.module_key==nil %}active{% endif %}"
                     role="menuitem" data-dashboard-nav-item
                     data-dashboard-href="{{ '/dashboard.html' | relative_url }}" aria-disabled="true" tabindex="-1">

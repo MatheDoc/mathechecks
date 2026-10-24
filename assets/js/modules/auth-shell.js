@@ -189,7 +189,18 @@ function applyFeedLauncherAttention(button, attentionSummary = null) {
   if (!button) return 0;
 
   const badgeNode = button.querySelector("[data-feed-launcher-badge]");
+  const dotNode = document.querySelector("[data-feed-launcher-dot]");
   const totalCount = Math.max(0, Number(attentionSummary?.totalCount) || 0);
+
+  if (dotNode) dotNode.hidden = totalCount <= 0;
+
+  const menuToggle = dotNode?.closest("summary");
+  if (menuToggle) {
+    const menuLabel = totalCount > 0
+      ? `Weitere Aktionen öffnen. ${buildFeedAttentionLabel(attentionSummary)}.`
+      : "Weitere Aktionen öffnen";
+    menuToggle.setAttribute("aria-label", menuLabel);
+  }
 
   if (badgeNode) {
     if (totalCount > 0) {
@@ -216,7 +227,6 @@ function applyFeedLauncherState(button, item = null, attentionSummary = null) {
     const fallbackLabel = attentionLabel
       ? `Feed öffnen. ${attentionLabel}.`
       : "Aktuelles Feed-Element öffnen";
-    button.hidden = totalCount <= 0;
     button.dataset.feedReady = totalCount > 0 ? "attention" : "false";
     button.setAttribute("href", buildAccountUrl("/dashboard.html"));
     button.setAttribute("aria-label", fallbackLabel);
@@ -226,7 +236,6 @@ function applyFeedLauncherState(button, item = null, attentionSummary = null) {
   }
 
   const label = buildFeedLauncherLabel(item, attentionSummary);
-  button.hidden = false;
   button.dataset.feedReady = "true";
   button.setAttribute("href", item.href);
   button.setAttribute("aria-label", label);
