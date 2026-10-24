@@ -47,7 +47,7 @@ export function buildGraphFigure({
             name: f.name,
             text: f.beschreibung || "",
             hoverinfo: "name+x+y",
-            ...(f.color ? { line: { color: f.color } } : {}),
+            ...(f.color || f.dash ? { line: { ...(f.color ? { color: f.color } : {}), ...(f.dash ? { dash: f.dash } : {}) } } : {}),
         };
     });
 

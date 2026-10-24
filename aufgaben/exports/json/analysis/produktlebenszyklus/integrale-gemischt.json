@@ -1,268 +1,304 @@
 [
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}5t+1)e^{-0{,}2t}+3{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 16 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}5t+1)e^{-0{,}2t}+3{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 16 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 2. bis zum Ende des 10. Jahres erzielt wird.",
-      "den jährlichen Umsatz nach 6 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 9 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den monatlichen Absatz nach 6 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 28 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 9 Monaten.",
+      "den Gesamtabsatz vom Ende des 2. bis zum Ende des 10. Monats."
     ],
     "antworten": [
-      "{1:NUMERICAL:=50,6415:0,1}",
       "{1:NUMERICAL:=6,5119:0,1}",
+      "{1:NUMERICAL:=4,6129:0,1}",
+      "{1:NUMERICAL:=91,8761:0,1}",
       "{1:NUMERICAL:=6,2019:0,1}",
-      "{1:NUMERICAL:=91,8761:0,1}"
+      "{1:NUMERICAL:=50,6415:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}4t^2)e^{-0{,}6t}+1{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 18 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}4t^2)e^{-0{,}6t}+1{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 18 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 17. Jahres erzielt wird.",
-      "den jährlichen Umsatz nach 6 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 11 Jahren erzielt wird."
+      "den monatlichen Absatz nach 6 Monaten.",
+      "den Gesamtabsatz vom Ende des 3. bis zum Ende des 17. Monats.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 17 ME erreicht.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 11 Monaten."
     ],
     "antworten": [
-      "{1:NUMERICAL:=39,9444:0,1}",
-      "{1:NUMERICAL:=30,4406:0,1}",
       "{1:NUMERICAL:=2,8771:0,1}",
+      "{1:NUMERICAL:=30,4406:0,1}",
+      "{1:NUMERICAL:=39,9444:0,1}",
+      "{1:NUMERICAL:=5,6471:0,1}",
       "{1:NUMERICAL:=2,6314:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(-1{,}8t^2+30{,}6t)e^{-0{,}8t} $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(-0{,}5t^2+9t)e^{-0{,}8t} $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz nach 6 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den Umsatz, der vom Ende des 4. bis zum Ende des 10. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 3 Jahren erzielt wird."
+      "den durchschnittlichen monatlichen Absatz in den ersten 6 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 8,4 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den monatlichen Absatz nach 16 Monaten.",
+      "den Gesamtabsatz vom Ende des 2. bis zum Ende des 12. Monats."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0,9777:0,1}",
-      "{1:NUMERICAL:=40,7813:0,1}",
-      "{1:NUMERICAL:=5,4667:0,1}",
-      "{1:NUMERICAL:=10,0132:0,1}"
+      "{1:NUMERICAL:=1,9528:0,1}",
+      "{1:NUMERICAL:=2,7762:0,1}",
+      "{1:NUMERICAL:=12,1094:0,1}",
+      "{1:NUMERICAL:=0:0,1}",
+      "{1:NUMERICAL:=5,8492:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}05t^3+3t^2)e^{-0{,}2t}+3{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 11 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ u(t)=(0{,}02t^3+1{,}6t^2)e^{-0{,}4t}+4 $$beschreibt den jährlichen Umsatz eines Produkts in GE/Jahr ($t$ in Jahren seit der Markteinführung). Der Produktlebenszyklus endet nach 12 Jahren. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 2. bis zum Ende des 6. Jahres erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 9 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 7 Jahren erzielt wird."
+      "den Gesamtumsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den durchschnittlichen jährlichen Umsatz in den ersten 8 Jahren.",
+      "den Gesamtumsatz vom Ende des 2. bis zum Ende des 11. Jahres.",
+      "den jährlichen Umsatz nach 12 Jahren.",
+      "den Zeitpunkt, zu dem der Gesamtumsatz seit der Markteinführung 36 GE erreicht."
     ],
     "antworten": [
-      "{1:NUMERICAL:=104,6261:0,1}",
-      "{1:NUMERICAL:=355,3361:0,1}",
-      "{1:NUMERICAL:=49,6928:0,1}",
-      "{1:NUMERICAL:=22,7786:0,1}"
+      "{1:NUMERICAL:=94,1813:0,1}",
+      "{1:NUMERICAL:=8,1085:0,1}",
+      "{1:NUMERICAL:=77,3318:0,1}",
+      "{1:NUMERICAL:=6,1806:0,1}",
+      "{1:NUMERICAL:=4,9143:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}5t+1)e^{-0{,}1t}+2 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 11 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}5t+1)e^{-0{,}1t}+2 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 11 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 8 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 5 Jahren.",
-      "den Umsatz, der vom Ende des 4. bis zum Ende des 11. Jahres erzielt wird."
+      "den durchschnittlichen monatlichen Absatz in den ersten 8 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 27 ME erreicht.",
+      "den Gesamtabsatz vom Ende des 4. bis zum Ende des 11. Monats.",
+      "den monatlichen Absatz nach 5 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird."
     ],
     "antworten": [
       "{1:NUMERICAL:=6,2735:0,1}",
-      "{1:NUMERICAL:=73,8169:0,1}",
+      "{1:NUMERICAL:=4,9349:0,1}",
+      "{1:NUMERICAL:=53,2873:0,1}",
       "{1:NUMERICAL:=7,1555:0,1}",
-      "{1:NUMERICAL:=53,2873:0,1}"
+      "{1:NUMERICAL:=73,8169:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}2t^2)e^{-0{,}4t}+5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 22 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}2t^2)e^{-0{,}4t}+5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 22 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 8. bis zum Ende des 14. Jahres erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 14 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 4 Jahren erzielt wird."
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 63 ME erreicht.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten.",
+      "den Gesamtabsatz vom Ende des 8. bis zum Ende des 14. Monats.",
+      "den monatlichen Absatz nach 14 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird."
     ],
     "antworten": [
+      "{1:NUMERICAL:=7,9688:0,1}",
+      "{1:NUMERICAL:=7,031:0,1}",
       "{1:NUMERICAL:=41,1568:0,1}",
-      "{1:NUMERICAL:=147,2257:0,1}",
       "{1:NUMERICAL:=5,8697:0,1}",
-      "{1:NUMERICAL:=7,031:0,1}"
+      "{1:NUMERICAL:=147,2257:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(-2{,}2t^2+52{,}8t)e^{-0{,}4t} $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(-1{,}8t^2+36t)e^{-0{,}4t} $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz nach 24 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den Umsatz, der vom Ende des 8. bis zum Ende des 19. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 19 Jahren erzielt wird."
+      "den monatlichen Absatz nach 9 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 2 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 104 ME erreicht.",
+      "den Gesamtabsatz vom Ende des 6. bis zum Ende des 15. Monats."
     ],
     "antworten": [
-      "{1:NUMERICAL:=0:0,1}",
-      "{1:NUMERICAL:=261,277:0,1}",
-      "{1:NUMERICAL:=30,2473:0,1}",
-      "{1:NUMERICAL:=13,7431:0,1}"
+      "{1:NUMERICAL:=4,8691:0,1}",
+      "{1:NUMERICAL:=168,8443:0,1}",
+      "{1:NUMERICAL:=20,1771:0,1}",
+      "{1:NUMERICAL:=4,4185:0,1}",
+      "{1:NUMERICAL:=36,9348:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}1t^3+2{,}9t^2)e^{-0{,}4t}+3 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 10 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ u(t)=(0{,}11t^3+1{,}3t^2)e^{-0{,}4t}+2 $$beschreibt den jährlichen Umsatz eines Produkts in GE/Jahr ($t$ in Jahren seit der Markteinführung). Der Produktlebenszyklus endet nach 10 Jahren. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 3 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 3 Jahren erzielt wird.",
-      "den Umsatz, der vom Ende des 2. bis zum Ende des 6. Jahres erzielt wird."
+      "den Gesamtumsatz vom Ende des 3. bis zum Ende des 9. Jahres.",
+      "den Gesamtumsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den durchschnittlichen jährlichen Umsatz in den ersten 2 Jahren.",
+      "den Zeitpunkt, zu dem der Gesamtumsatz seit der Markteinführung 33 GE erreicht.",
+      "den jährlichen Umsatz nach 3 Jahren."
     ],
     "antworten": [
-      "{1:NUMERICAL:=112,3249:0,1}",
-      "{1:NUMERICAL:=11,6744:0,1}",
-      "{1:NUMERICAL:=6,9043:0,1}",
-      "{1:NUMERICAL:=51,6708:0,1}"
+      "{1:NUMERICAL:=47,0578:0,1}",
+      "{1:NUMERICAL:=65,5579:0,1}",
+      "{1:NUMERICAL:=3,0803:0,1}",
+      "{1:NUMERICAL:=5,74:0,1}",
+      "{1:NUMERICAL:=6,4185:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}9t)e^{-0{,}1t}+3{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 21 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}5t)e^{-0{,}1t}+1{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 19 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 6 Jahren erzielt wird.",
-      "den Umsatz, der vom Ende des 4. bis zum Ende des 13. Jahres erzielt wird.",
-      "den jährlichen Umsatz nach 13 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den monatlichen Absatz nach 15 Monaten.",
+      "den Gesamtabsatz vom Ende des 6. bis zum Ende des 15. Monats.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 48 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 9 Monaten."
     ],
     "antworten": [
-      "{1:NUMERICAL:=5,3285:0,1}",
-      "{1:NUMERICAL:=59,5462:0,1}",
-      "{1:NUMERICAL:=6,6886:0,1}",
-      "{1:NUMERICAL:=129,3347:0,1}"
+      "{1:NUMERICAL:=6,5204:0,1}",
+      "{1:NUMERICAL:=61,541:0,1}",
+      "{1:NUMERICAL:=9,0533:0,1}",
+      "{1:NUMERICAL:=113,4377:0,1}",
+      "{1:NUMERICAL:=5,292:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}5t^2)e^{-0{,}1t}+4{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 21 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(0{,}5t^2)e^{-0{,}1t}+4{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 21 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 14. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 9 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 5 Jahren."
+      "den Gesamtabsatz vom Ende des 3. bis zum Ende des 14. Monats.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 9 Monaten.",
+      "den monatlichen Absatz nach 5 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 219 ME erreicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=212,4028:0,1}",
       "{1:NUMERICAL:=11,4841:0,1}",
+      "{1:NUMERICAL:=12,0816:0,1}",
       "{1:NUMERICAL:=444,8686:0,1}",
-      "{1:NUMERICAL:=12,0816:0,1}"
+      "{1:NUMERICAL:=13,6311:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(-2t^2+22t)e^{-0{,}2t} $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(-0{,}6t^2+12{,}6t)e^{-0{,}4t} $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 4. bis zum Ende des 9. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 6 Jahren erzielt wird.",
-      "den jährlichen Umsatz nach 7 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den Gesamtabsatz vom Ende des 2. bis zum Ende des 20. Monats.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 11 Monaten.",
+      "den monatlichen Absatz nach 14 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 31 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=79,2972:0,1}",
-      "{1:NUMERICAL:=20,8831:0,1}",
-      "{1:NUMERICAL:=13,8094:0,1}",
-      "{1:NUMERICAL:=166,3433:0,1}"
+      "{1:NUMERICAL:=45,8517:0,1}",
+      "{1:NUMERICAL:=5,2955:0,1}",
+      "{1:NUMERICAL:=0,2174:0,1}",
+      "{1:NUMERICAL:=3,7227:0,1}",
+      "{1:NUMERICAL:=60,0219:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}15t^3+1{,}4t^2)e^{-0{,}5t}+2{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 18 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ u(t)=(0{,}03t^3+2{,}4t^2)e^{-0{,}3t}+5{,}5 $$beschreibt den jährlichen Umsatz eines Produkts in GE/Jahr ($t$ in Jahren seit der Markteinführung). Der Produktlebenszyklus endet nach 19 Jahren. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 13 Jahren erzielt wird.",
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 11. Jahres erzielt wird.",
-      "den jährlichen Umsatz nach 17 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den Zeitpunkt, zu dem der Gesamtumsatz seit der Markteinführung 137 GE erreicht.",
+      "den durchschnittlichen jährlichen Umsatz in den ersten 10 Jahren.",
+      "den Gesamtumsatz vom Ende des 7. bis zum Ende des 16. Jahres.",
+      "den jährlichen Umsatz nach 2 Jahren.",
+      "den Gesamtumsatz, der während des gesamten Produktlebenszyklus erzielt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=5,1327:0,1}",
-      "{1:NUMERICAL:=46,6888:0,1}",
-      "{1:NUMERICAL:=2,7323:0,1}",
-      "{1:NUMERICAL:=81,3547:0,1}"
+      "{1:NUMERICAL:=8,5614:0,1}",
+      "{1:NUMERICAL:=16,5383:0,1}",
+      "{1:NUMERICAL:=151,7478:0,1}",
+      "{1:NUMERICAL:=10,9003:0,1}",
+      "{1:NUMERICAL:=286,8504:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}3t+1)e^{-0{,}1t}+5{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 13 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}3t+1)e^{-0{,}1t}+5{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 13 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 7 Jahren erzielt wird.",
-      "den Umsatz, der vom Ende des 2. bis zum Ende des 13. Jahres erzielt wird.",
-      "den jährlichen Umsatz nach 5 Jahren.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den durchschnittlichen monatlichen Absatz in den ersten 7 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 85 ME erreicht.",
+      "den monatlichen Absatz nach 5 Monaten.",
+      "den Gesamtabsatz vom Ende des 2. bis zum Ende des 13. Monats."
     ],
     "antworten": [
       "{1:NUMERICAL:=9,1127:0,1}",
-      "{1:NUMERICAL:=112,197:0,1}",
+      "{1:NUMERICAL:=127,2877:0,1}",
+      "{1:NUMERICAL:=8,9989:0,1}",
       "{1:NUMERICAL:=10,049:0,1}",
-      "{1:NUMERICAL:=127,2877:0,1}"
+      "{1:NUMERICAL:=112,197:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}5t^2)e^{-0{,}5t}+7 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 16 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}5t^2)e^{-0{,}5t}+7 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 16 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 12. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 4 Jahren erzielt wird.",
-      "den jährlichen Umsatz nach 7 Jahren."
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 66 ME erreicht.",
+      "den Gesamtabsatz vom Ende des 3. bis zum Ende des 12. Monats.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den monatlichen Absatz nach 7 Monaten.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten."
     ],
     "antworten": [
-      "{1:NUMERICAL:=135,6699:0,1}",
+      "{1:NUMERICAL:=7,0761:0,1}",
       "{1:NUMERICAL:=80,9251:0,1}",
-      "{1:NUMERICAL:=8,9399:0,1}",
-      "{1:NUMERICAL:=9,2195:0,1}"
+      "{1:NUMERICAL:=135,6699:0,1}",
+      "{1:NUMERICAL:=9,2195:0,1}",
+      "{1:NUMERICAL:=8,9399:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(-2t^2+20t)e^{-0{,}5t} $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(0{,}2t^2+2{,}5t)e^{-0{,}5t} $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 10 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 2 Jahren.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 8 Jahren erzielt wird.",
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 9. Jahres erzielt wird."
+      "den durchschnittlichen monatlichen Absatz in den ersten 4 Monaten.",
+      "den Gesamtabsatz vom Ende des 4. bis zum Ende des 7. Monats.",
+      "den monatlichen Absatz nach 3 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 4,5 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird."
     ],
     "antworten": [
-      "{1:NUMERICAL:=48,7547:0,1}",
-      "{1:NUMERICAL:=11,7721:0,1}",
-      "{1:NUMERICAL:=6,0366:0,1}",
-      "{1:NUMERICAL:=19,4095:0,1}"
+      "{1:NUMERICAL:=1,7436:0,1}",
+      "{1:NUMERICAL:=3,8398:0,1}",
+      "{1:NUMERICAL:=2,0751:0,1}",
+      "{1:NUMERICAL:=2,7459:0,1}",
+      "{1:NUMERICAL:=12,3968:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}11t^3+2{,}6t^2)e^{-0{,}3t}+1{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 17 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ u(t)=(0{,}15t^3+2{,}7t^2)e^{-0{,}7t}+7 $$beschreibt den jährlichen Umsatz eines Produkts in GE/Jahr ($t$ in Jahren seit der Markteinführung). Der Produktlebenszyklus endet nach 17 Jahren. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 17. Jahres erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 9 Jahren erzielt wird.",
-      "den jährlichen Umsatz nach 9 Jahren."
+      "den jährlichen Umsatz nach 8 Jahren.",
+      "den Zeitpunkt, zu dem der Gesamtumsatz seit der Markteinführung 42 GE erreicht.",
+      "den durchschnittlichen jährlichen Umsatz in den ersten 4 Jahren.",
+      "den Gesamtumsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Gesamtumsatz vom Ende des 2. bis zum Ende des 13. Jahres."
     ],
     "antworten": [
-      "{1:NUMERICAL:=238,9651:0,1}",
-      "{1:NUMERICAL:=256,6675:0,1}",
-      "{1:NUMERICAL:=14,9245:0,1}",
-      "{1:NUMERICAL:=21,0427:0,1}"
+      "{1:NUMERICAL:=7,923:0,1}",
+      "{1:NUMERICAL:=4,4452:0,1}",
+      "{1:NUMERICAL:=9,3768:0,1}",
+      "{1:NUMERICAL:=138,4737:0,1}",
+      "{1:NUMERICAL:=93,5045:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1{,}6t+2)e^{-0{,}1t}+2 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 21 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1{,}6t+2)e^{-0{,}1t}+2 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 21 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den Umsatz, der vom Ende des 8. bis zum Ende des 19. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 3 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 16 Jahren."
+      "den Gesamtabsatz vom Ende des 8. bis zum Ende des 19. Monats.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 3 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den monatlichen Absatz nach 16 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 85 ME erreicht."
     ],
     "antworten": [
       "{1:NUMERICAL:=88,0021:0,1}",
       "{1:NUMERICAL:=5,6978:0,1}",
       "{1:NUMERICAL:=158,8125:0,1}",
-      "{1:NUMERICAL:=7,5723:0,1}"
+      "{1:NUMERICAL:=7,5723:0,1}",
+      "{1:NUMERICAL:=11,1764:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(1t^2)e^{-0{,}2t}+6{,}5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 21 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(1t^2)e^{-0{,}2t}+6{,}5 $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet nach 21 Monaten. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 11 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird.",
-      "den jährlichen Umsatz nach 15 Jahren.",
-      "den Umsatz, der vom Ende des 2. bis zum Ende des 17. Jahres erzielt wird."
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 170 ME erreicht.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 11 Monaten.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den monatlichen Absatz nach 15 Monaten.",
+      "den Gesamtabsatz vom Ende des 2. bis zum Ende des 17. Monats."
     ],
     "antworten": [
+      "{1:NUMERICAL:=11,2102:0,1}",
       "{1:NUMERICAL:=15,0747:0,1}",
       "{1:NUMERICAL:=333,9405:0,1}",
       "{1:NUMERICAL:=17,7021:0,1}",
@@ -270,33 +306,37 @@
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(-1{,}2t^2+26{,}4t)e^{-0{,}7t} $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ a(t)=(-1{,}3t^2+26t)e^{-0{,}5t} $$beschreibt den monatlichen Absatz eines Produkts in ME/Monat ($t$ in Monaten seit der Markteinführung). Der Produktlebenszyklus endet, wenn das Produkt vom Markt genommen wird. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 11 Jahren erzielt wird.",
-      "den jährlichen Umsatz nach 22 Jahren.",
-      "den Umsatz, der vom Ende des 7. bis zum Ende des 19. Jahres erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den monatlichen Absatz nach 13 Monaten.",
+      "den durchschnittlichen monatlichen Absatz in den ersten 14 Monaten.",
+      "den Zeitpunkt, zu dem der Gesamtabsatz seit der Markteinführung 30 ME erreicht.",
+      "den Gesamtabsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Gesamtabsatz vom Ende des 8. bis zum Ende des 12. Monats."
     ],
     "antworten": [
-      "{1:NUMERICAL:=4,2536:0,1}",
-      "{1:NUMERICAL:=0:0,1}",
-      "{1:NUMERICAL:=1,4341:0,1}",
-      "{1:NUMERICAL:=46,8805:0,1}"
+      "{1:NUMERICAL:=0,1779:0,1}",
+      "{1:NUMERICAL:=5,9327:0,1}",
+      "{1:NUMERICAL:=2,2456:0,1}",
+      "{1:NUMERICAL:=83,2057:0,1}",
+      "{1:NUMERICAL:=4,056:0,1}"
     ]
   },
   {
-    "einleitung": "Die Funktion$$ u(t)=(0{,}14t^3+2{,}5t^2)e^{-0{,}6t}+5 $$gibt den jährlichen Umsatz eines Produkts seit seiner Einführung an.Der Produktlebenszyklus endet nach 22 Jahren.Bestimmen Sie (auf 2 NKS gerundet)",
+    "einleitung": "Die Funktion$$ u(t)=(0{,}02t^3+2{,}5t^2)e^{-0{,}3t}+6 $$beschreibt den jährlichen Umsatz eines Produkts in GE/Jahr ($t$ in Jahren seit der Markteinführung). Der Produktlebenszyklus endet nach 19 Jahren. Bestimmen Sie (auf 2 NKS gerundet)",
     "fragen": [
-      "den jährlichen Umsatz nach 5 Jahren.",
-      "den Umsatz, der vom Ende des 3. bis zum Ende des 21. Jahres erzielt wird.",
-      "den jährlichen Umsatz, der durchschnittlich in den ersten 5 Jahren erzielt wird.",
-      "den Umsatz, der während des gesamten Lebenszyklus des Produkts erzielt wird."
+      "den Gesamtumsatz, der während des gesamten Produktlebenszyklus erzielt wird.",
+      "den Zeitpunkt, zu dem der Gesamtumsatz seit der Markteinführung 177 GE erreicht.",
+      "den Gesamtumsatz vom Ende des 4. bis zum Ende des 17. Jahres.",
+      "den jährlichen Umsatz nach 6 Jahren.",
+      "den durchschnittlichen jährlichen Umsatz in den ersten 5 Jahren."
     ],
     "antworten": [
-      "{1:NUMERICAL:=8,983:0,1}",
-      "{1:NUMERICAL:=112,6728:0,1}",
-      "{1:NUMERICAL:=8,1277:0,1}",
-      "{1:NUMERICAL:=139,6195:0,1}"
+      "{1:NUMERICAL:=297,1154:0,1}",
+      "{1:NUMERICAL:=10,2571:0,1}",
+      "{1:NUMERICAL:=229,89:0,1}",
+      "{1:NUMERICAL:=21,591:0,1}",
+      "{1:NUMERICAL:=13,2742:0,1}"
     ]
   }
 ]

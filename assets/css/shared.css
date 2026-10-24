@@ -4693,6 +4693,33 @@ html.light .roulette-widget__event {
   font-weight: 600;
 }
 
+/* ── Widget-specific: Gesamtabsatz ── */
+.ga-widget .widget-controls {
+  width: 100%;
+  max-width: 560px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.ga-info {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ga-widget .ga-toggles {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.ga-widget .ga-toggles label {
+  min-width: 0;
+  cursor: pointer;
+}
+
+.ga-info > div + div {
+  margin-top: 8px;
+}
+
 /* ── Widget-specific: Herleitung Zinseszinsformel (Inline-SVG-Zeitstrahl) ── */
 .zzh-widget .widget-controls {
   max-width: 480px;

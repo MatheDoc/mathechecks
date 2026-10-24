@@ -2,7 +2,7 @@ import { buildBaumdiagrammFigure } from "../visuals/baumdiagramm.js";
 import { buildBaumdiagrammBinomialFigure } from "../visuals/baumdiagramm-binomial.js";
 import { buildHistogrammEinzelnFigure, buildHistogrammKumuliertFigure, binomialIntervalProbability } from "../visuals/histogramm.js";
 import { buildHistogrammAllgemeinFigure } from "../visuals/histogramm-allgemein.js";
-import { buildGraphFigure } from "../visuals/graph.js?v=20260701c-graph-hilfslinien";
+import { buildGraphFigure } from "../visuals/graph.js?v=20261024-graph-dash";
 import { buildHMethodeAbleitungFigure } from "../visuals/h-methode-ableitung.js";
 import { buildPunktwolkeRegressionFigure, createPunktwolkeRegressionScenario } from "../visuals/punktwolke-regression.js";
 import { buildRegressionMinimierungFigure, leastSquaresFit, sumSquaredErrors, REGRESSION_MINIMIERUNG_PUNKTE } from "../visuals/regression-minimierung.js";
@@ -11,6 +11,7 @@ import { buildQuadratischeFunktionenFigure } from "../visuals/quadratische-funkt
 import { buildQuadratischeParameterFigure } from "../visuals/quadratische-funktionen-parameter.js";
 import { berechneTilgungsplan, buildTilgungsplanFigure } from "../visuals/tilgungsplan.js";
 import { buildZinseszinsZeitstrahlSvg, formatQ, formatP } from "../visuals/zinseszins-herleitung.js";
+import { berechneGesamtabsatz, buildGesamtabsatzFigure, buildKumuliertFigure } from "../visuals/gesamtabsatz.js?v=20261024-gesamtabsatz";
 import { plotlyRender, themeTextColor } from "../visuals/plotly-defaults.js?v=20260507-plotly-hover-name-theme";
 
 function parseNum(raw) {
@@ -925,6 +926,153 @@ function initZinseszinsHerleitungWidgets(root) {
     });
 }
 
+/* ---- Gesamtabsatz (Fläche unter der Absatzrate = Gesamtabsatz) ---- */
+const GA_ZEITFORMEN = {
+    Monat: { plural: "Monaten", artikel: "des", genitiv: "Monats", adjektiv: "monatlicher" },
+    Jahr: { plural: "Jahren", artikel: "des", genitiv: "Jahres", adjektiv: "jährlicher" },
+    Quartal: { plural: "Quartalen", artikel: "des", genitiv: "Quartals", adjektiv: "vierteljährlicher" },
+    Woche: { plural: "Wochen", artikel: "der", genitiv: "Woche", adjektiv: "wöchentlicher" },
+    Tag: { plural: "Tagen", artikel: "des", genitiv: "Tages", adjektiv: "täglicher" },
+};
+
+function gaZeitraumText(t1, t2, zeiteinheit) {
+    const form = GA_ZEITFORMEN[zeiteinheit];
+    if (!form) return `im Zeitraum von $t = ${t1}$ bis $t = ${t2}$`;
+    if (t1 === 0) {
+        if (t2 === 1) return `${form.artikel === "der" ? "in der ersten" : "im ersten"} ${zeiteinheit}`;
+        return `in den ersten ${t2} ${form.plural}`;
+    }
+    return `vom Ende ${form.artikel} ${t1}. bis zum Ende ${form.artikel} ${t2}. ${form.genitiv}`;
+}
+
+function initGesamtabsatzWidgets(root) {
+    const zahl = new Intl.NumberFormat("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    // erst Dezimalkomma, dann Tausenderpunkte ersetzen – sonst trifft replace(",") das Komma in "\,"
+    const tex = (n) => zahl.format(n).replace(",", "{,}").replace(/\./g, "\\,");
+    const texText = (s) => String(s).replace(/([%&#_$])/g, "\\$1");
+
+    root.querySelectorAll(".ga-widget").forEach((widget) => {
+        if (widget.dataset.bound === "true" || !window.math) return;
+        widget.dataset.bound = "true";
+
+        const t1Slider = widget.querySelector(".ga-t1Slider");
+        const t2Slider = widget.querySelector(".ga-t2Slider");
+        if (!t1Slider || !t2Slider) return;
+
+        const t1Wert = widget.querySelector(".ga-t1Wert");
+        const t2Wert = widget.querySelector(".ga-t2Wert");
+        const balkenBox = widget.querySelector(".ga-balken");
+        const schnittBox = widget.querySelector(".ga-durchschnitt");
+        const info = widget.querySelector(".ga-info");
+        const plotDiv = widget.querySelector(".ga-plot");
+        const plotKumDiv = widget.querySelector(".ga-plotKumuliert");
+
+        const ds = widget.dataset;
+        const term = ds.term || "0.5*t^2*exp(-0.25*t)";
+        const tmaxRaw = parseInt(ds.tmax, 10);
+        const tmax = Number.isFinite(tmaxRaw) && tmaxRaw >= 1 ? tmaxRaw : 30;
+        const fname = ds.fname || "a";
+        const einheitY = ds.einheitY || "ME/Monat";
+        const einheitFlaeche = ds.einheitFlaeche || "ME";
+        const zeiteinheit = ds.zeiteinheit || "Monat";
+        const balkenName = balkenBox?.parentElement?.textContent.trim() || "Monatsbalken";
+        const form = GA_ZEITFORMEN[zeiteinheit];
+
+        [t1Slider, t2Slider].forEach((s) => { s.min = "0"; s.max = String(tmax); });
+        const startT1 = Math.min(Math.max(parseInt(ds.t1, 10) || 0, 0), tmax - 1);
+        const startT2 = Math.min(Math.max(parseInt(ds.t2, 10) || startT1 + 1, startT1 + 1), tmax);
+        t1Slider.value = String(startT1);
+        t2Slider.value = String(startT2);
+
+        try {
+            window.math.parse(term).compile().evaluate({ t: 1 });
+        } catch (error) {
+            console.warn("[ga-widget] Funktionsterm ungültig:", term, error);
+            if (info) info.textContent = "Der Funktionsterm konnte nicht ausgewertet werden.";
+            return;
+        }
+
+        // t1 < t2 erzwingen: der jeweils andere Slider wird nachgeführt
+        function clamp(changed) {
+            let t1 = parseInt(t1Slider.value, 10);
+            let t2 = parseInt(t2Slider.value, 10);
+            if (t1 >= t2) {
+                if (changed === t1Slider) {
+                    if (t1 >= tmax) t1 = tmax - 1;
+                    t2 = t1 + 1;
+                } else {
+                    if (t2 <= 0) t2 = 1;
+                    t1 = t2 - 1;
+                }
+                t1Slider.value = String(t1);
+                t2Slider.value = String(t2);
+            }
+            return { t1, t2 };
+        }
+
+        function update(changed) {
+            const { t1, t2 } = clamp(changed);
+            const zeigeBalken = !!balkenBox?.checked;
+            const zeigeDurchschnitt = !!schnittBox?.checked;
+
+            t1Wert.textContent = String(t1);
+            t2Wert.textContent = String(t2);
+
+            const werte = berechneGesamtabsatz({ term, t1, t2 });
+            const einheitTex = `\\,\\text{${texText(einheitFlaeche)}}`;
+
+            const zeilen = [
+                `Gesamtabsatz ${gaZeitraumText(t1, t2, zeiteinheit)}:<br>`
+                + `$ \\displaystyle\\int_{${t1}}^{${t2}} ${fname}(t)\\,dt \\approx ${tex(werte.gesamt)}${einheitTex} $`,
+            ];
+            if (zeigeBalken) {
+                zeilen.push(
+                    `Summe der ${werte.balken.length} ${balkenName} (Breite 1 ${zeiteinheit} · Höhe in ${einheitY}): `
+                    + `$ \\approx ${tex(werte.balkenSumme)}${einheitTex} $`
+                );
+            }
+            if (zeigeDurchschnitt) {
+                const label = form ? `Durchschnittlicher ${form.adjektiv} Absatz` : `Durchschnittlicher Absatz pro ${zeiteinheit}`;
+                zeilen.push(
+                    `${label}:<br>`
+                    + `$ \\bar{${fname}} = \\dfrac{1}{${t2} - ${t1}} \\displaystyle\\int_{${t1}}^{${t2}} ${fname}(t)\\,dt `
+                    + `\\approx ${tex(werte.durchschnitt)}\\,\\text{${texText(einheitY)}} $`
+                );
+            }
+            info.innerHTML = zeilen.map((z) => `<div>${z}</div>`).join("");
+            if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise([info]).catch(() => { });
+
+            const gemeinsam = { term, tmax, t1, t2, fname, einheitFlaeche, xAchse: ds.xachse || "" };
+            const fig = buildGesamtabsatzFigure({
+                ...gemeinsam,
+                zeigeBalken,
+                zeigeDurchschnitt,
+                einheitY,
+                zeiteinheit,
+                balkenName,
+                titel: ds.titel || "",
+                yAchse: ds.yachse || "",
+            });
+            plotlyRender(plotDiv, fig.data, fig.layout);
+
+            if (plotKumDiv) {
+                const figKum = buildKumuliertFigure({
+                    ...gemeinsam,
+                    titel: ds.titelKumuliert || "",
+                    yAchse: ds.yachseKumuliert || "",
+                });
+                plotlyRender(plotKumDiv, figKum.data, figKum.layout);
+            }
+        }
+
+        t1Slider.addEventListener("input", () => update(t1Slider));
+        t2Slider.addEventListener("input", () => update(t2Slider));
+        balkenBox?.addEventListener("change", () => update(null));
+        schnittBox?.addEventListener("change", () => update(null));
+        update(null);
+    });
+}
+
 export function initSkriptVisuals(root) {
     if (!root) return;
 
@@ -940,6 +1088,7 @@ export function initSkriptVisuals(root) {
 
     initPunktwolkeRegressionWidgets(root);
     initRegressionMinimierungWidgets(root);
+    initGesamtabsatzWidgets(root);
 
     /* ---- Baumdiagramme ---- */
     const divs = root.querySelectorAll(".baumdiagramm-auto");

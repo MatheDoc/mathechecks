@@ -1,7 +1,7 @@
 """Generatoren fuer den Lernbereich Produktlebenszyklus."""
 
 from .gemischt import (
-    ProduktlebenszyklusEKGZyklusGemischtGenerator,
+    ProduktlebenszyklusGesamtabsatzGraphischGenerator,
     ProduktlebenszyklusIntegraleGemischtGenerator,
     ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator,
     ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator,
@@ -9,8 +9,8 @@ from .gemischt import (
 )
 
 __all__ = [
+    "ProduktlebenszyklusGesamtabsatzGraphischGenerator",
     "ProduktlebenszyklusIntegraleGemischtGenerator",
-    "ProduktlebenszyklusEKGZyklusGemischtGenerator",
     "ProduktlebenszyklusKennzahlenGraphischUmsatzGenerator",
     "ProduktlebenszyklusKennzahlenGraphischAbleitungGenerator",
     "ProduktlebenszyklusKennzahlenRechnerischGesamtGenerator",

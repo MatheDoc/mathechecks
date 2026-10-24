@@ -1,28 +1,31 @@
-﻿---
+---
 layout: null
 permalink: /lernbereiche/analysis/produktlebenszyklus/beispiele/02-kennzahlen-graphisch-ableitung.html
 ---
+Der monatliche Absatz eines Produkts wird durch $a(t)=t^2\cdot e^{-0{,}25t}+3$ beschrieben ($t$ in Monaten, $a(t)$ in ME/Monat). Das Diagramm zeigt den Graphen der Ableitung $a'$:
+
 {% include graph.html
    funktionen='[
-    {"name":"u\u2032(t)", "term":"(0.4*x^2-8.8*x+24)*exp(-0.2*x)", "beschreibung":"Ableitung der Umsatzfunktion"}
+    {"name":"a\u2032(t)", "term":"(2*x-0.25*x^2)*exp(-0.25*x)", "beschreibung":"Änderungsrate des monatlichen Absatzes"}
    ]'
    punkte='[
-     {"x":3.19,"y":0,"text":"Nullstelle: max. Umsatz"},
-     {"x":0,"y":24,"text":"stärkster Anstieg"},
-     {"x":6.73,"y":-3.16,"text":"stärkster Rückgang"}
+     {"x":2.34,"y":1.84,"text":"Hochpunkt von a′: stärkster Anstieg"},
+     {"x":8,"y":0,"text":"Nullstelle mit VZW + → −: höchster Absatz"},
+     {"x":13.66,"y":-0.64,"text":"Tiefpunkt von a′: stärkster Rückgang"}
    ]'
-   titel="Ableitung der Produktlebenszyklusfunktion"
-   xachse="Zeit t in Jahren"
-   yachse="Veränderung u\u2032(t) in GE/Jahr"
+   titel="Graph der Ableitung a′"
+   xachse="Zeit t in Monaten"
+   yachse="a′(t) in ME/Monat pro Monat"
    xmin=0
-   xmax=16
-   ymin=-5
-   ymax=28
+   xmax=30
+   ymin=-1
+   ymax=2.2
 %}
 
-Aus dem Graphen der Ableitungsfunktion lassen sich folgende Kennzahlen ablesen:
+Aus dem Graphen von $a'$ lesen wir ab:
 
-- Zeitpunkt des höchsten jährlichen Umsatzes: Die Nullstelle von $u^{\prime}(t)$ mit Vorzeichenwechsel von $+$ nach $-$ (hier bei $t \approx 3{,}2$). An dieser Stelle hat $u$ ein Maximum.
-- Zeitpunkt des stärksten Umsatzanstiegs: Die Stelle, an der $u^{\prime}(t)$ den größten Wert annimmt (globales Maximum von $u^{\prime}$, hier bei $t=0$). Achtung: Das muss kein lokaler Hochpunkt von $u^{\prime}$ sein – oft liegt der stärkste Anstieg am Rand des Definitionsbereichs (z. B. bei der Produkteinführung).
-- Zeitpunkt des stärksten Umsatzrückgangs: Die Stelle, an der $u^{\prime}(t)$ den kleinsten Wert annimmt (globales Minimum von $u^{\prime}$, hier bei $t \approx 6{,}7$). Auch hier kann der Rand relevant sein.
-- Jährliche Veränderung des Umsatzes nach $t_0$ Jahren: Der Funktionswert $u^{\prime}(t_0)$.
+- **Absatz nimmt zu bzw. ab:** Für $0<t<8$ liegt der Graph oberhalb der $t$-Achse, der Absatz steigt. Für $t>8$ liegt er unterhalb, der Absatz sinkt.
+- **Zeitpunkt des höchsten Absatzes:** Nullstelle von $a'$ mit Vorzeichenwechsel von $+$ nach $-$, hier nach $8$ Monaten. Die *Höhe* des Absatzes lässt sich aus dem Graphen von $a'$ nicht ablesen.
+- **Stärkster Anstieg:** Hochpunkt von $a'$, hier nach ca. $2{,}3$ Monaten. Der Absatz wächst dort um ca. $1{,}8$ ME/Monat pro Monat.
+- **Stärkster Rückgang:** Tiefpunkt von $a'$, hier nach ca. $13{,}7$ Monaten. Der Absatz sinkt dort um ca. $0{,}6$ ME/Monat pro Monat.
+- **Randstellen:** Ist der Graph von $a'$ bei $t=0$ am höchsten (bzw. tiefsten), liegt der stärkste Anstieg (bzw. Rückgang) bei der Markteinführung, auch ohne Hochpunkt (bzw. Tiefpunkt) von $a'$.

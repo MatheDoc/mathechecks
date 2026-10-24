@@ -3513,7 +3513,7 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 1,
         "check_id": "analysis__produktlebenszyklus__01",
-        "Ich kann": "den Graphen der Produktlebenszyklusfunktion interpretieren.",
+        "Ich kann": "den Graphen einer Produktlebenszyklusfunktion im Sachzusammenhang interpretieren.",
         "Sammlung": "kennzahlen-graphisch-umsatz",
         "Schlagwort": "Graph interpretieren",
         "Flashtyp": "einzeln",
@@ -3522,28 +3522,28 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Umsatz zur Produkteinführung",
-                "response": "$y$-Abschnitt"
+                "cue": "Absatz bei Markteinführung",
+                "response": "$y$-Achsenabschnitt"
+            },
+            {
+                "cue": "Zeitpunkt und Höhe des höchsten Absatzes",
+                "response": "Hochpunkt"
+            },
+            {
+                "cue": "stärkster Anstieg bzw. Rückgang",
+                "response": "Wendepunkte, Randstellen beachten"
+            },
+            {
+                "cue": "progressiver bzw. degressiver Anstieg",
+                "response": "Links- bzw. Rechtskrümmung"
             },
             {
                 "cue": "Marktaustritt",
                 "response": "positive Nullstelle"
             },
             {
-                "cue": "Zeitpunkt des höchsten bzw. niedrigsten Umsatzes",
-                "response": "Extremstellen"
-            },
-            {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "Wendestellen"
-            },
-            {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
-            },
-            {
-                "cue": "langfristiger Umsatz",
-                "response": "Asymptote für $t\\to\\infty$"
+                "cue": "langfristiger Absatz",
+                "response": "waagrechte Asymptote"
             }
         ]
     },
@@ -3553,7 +3553,7 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 2,
         "check_id": "analysis__produktlebenszyklus__02",
-        "Ich kann": "den Graphen der Ableitung der Produktlebenszyklusfunktion interpretieren.",
+        "Ich kann": "den Graphen der Ableitung einer Produktlebenszyklusfunktion interpretieren.",
         "Sammlung": "kennzahlen-graphisch-ableitung",
         "Schlagwort": "Ableitungsgraph interpretieren",
         "Flashtyp": "einzeln",
@@ -3562,20 +3562,20 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Veränderung des Umsatzes",
-                "response": "$y$-Werte"
+                "cue": "Änderungsrate des Absatzes",
+                "response": "$y$-Werte von $a'$"
             },
             {
-                "cue": "Zeitpunkt des höchsten bzw. niedrigsten Umsatzes",
-                "response": "Nullstellen"
+                "cue": "Absatz nimmt zu bzw. ab",
+                "response": "$a'(t)>0$ bzw. $a'(t)<0$"
             },
             {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "Extremstellen"
+                "cue": "Zeitpunkt des höchsten Absatzes",
+                "response": "Nullstelle von $a'$ mit VZW von $+$ nach $-$"
             },
             {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
+                "cue": "stärkster Anstieg bzw. Rückgang",
+                "response": "Hoch- bzw. Tiefpunkt von $a'$, Randstellen beachten"
             }
         ]
     },
@@ -3594,24 +3594,28 @@
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Umsatz bei Produkteinführung",
-                "response": "berechne $u(0)$"
+                "cue": "Absatz bei Markteinführung",
+                "response": "$a(0)$ berechnen"
             },
             {
-                "cue": "Marktaustritt",
-                "response": "löse $u(t)=0$ nach $t$ auf"
+                "cue": "Gleichung $p(t)\\cdot e^{-ct}=0$",
+                "response": "$e^{-ct}\\neq 0$, also $p(t)=0$ lösen"
             },
             {
-                "cue": "höchster/niedrigster Umsatz",
-                "response": "$u'(t)=0$ und $u''(t)\\neq 0$"
+                "cue": "Zeitpunkt des höchsten Absatzes",
+                "response": "$a'(t)=0$ mit VZW oder $a''(t)<0$"
             },
             {
-                "cue": "Änderung des Umsatzverlaufs",
-                "response": "$u''(t)=0$ und $u'''(t)\\neq 0$"
+                "cue": "stärkster Anstieg bzw. Rückgang",
+                "response": "$a''(t)=0$ mit VZW, Randstellen beachten"
             },
             {
-                "cue": "mögliche Randextrema",
-                "response": "beachte Graph bei $t=0$"
+                "cue": "langfristiger Absatz",
+                "response": "$\\lim\\limits_{t\\to\\infty} a(t)$"
+            },
+            {
+                "cue": "Zeitraum mit Absatz über $c$",
+                "response": "$a(t)=c$ lösen, Bereich zwischen den Lösungen"
             }
         ]
     },
@@ -3621,25 +3625,29 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 4,
         "check_id": "analysis__produktlebenszyklus__04",
-        "Ich kann": "Kennzahlen des Produktlebenszyklus berechnen (mit Integration).",
-        "Sammlung": "integrale-gemischt",
-        "Schlagwort": "Kennzahlen (mit Integral)",
+        "Ich kann": "den Gesamtabsatz als Fläche unter dem Graphen deuten und abschätzen.",
+        "Sammlung": "gesamtabsatz-graphisch",
+        "Schlagwort": "Gesamtabsatz graphisch",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-04",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Jährlicher Umsatz",
-                "response": "Funktionswert $u(t)$"
+                "cue": "Gesamtabsatz von $t_1$ bis $t_2$",
+                "response": "Fläche unter dem Graphen von $a$ über $[t_1;t_2]$"
             },
             {
-                "cue": "Gesamtumsatz in einem Zeitraum",
-                "response": "$\\int_a^b u(t)\\,dt$"
+                "cue": "Fläche abschätzen",
+                "response": "Kästchen zählen, Kästchen $=$ Breite $\\cdot$ Höhe in ME"
             },
             {
-                "cue": "Durchschnittlicher Umsatz in einem Zeitraum",
-                "response": "$\\frac{1}{b-a}\\int_a^b u(t)\\,dt$"
+                "cue": "Schreibweise",
+                "response": "$\\int_{t_1}^{t_2} a(t)\\,dt$"
+            },
+            {
+                "cue": "durchschnittlicher Absatz",
+                "response": "Höhe des Rechtecks mit gleicher Fläche"
             }
         ]
     },
@@ -3649,25 +3657,29 @@
         "LernbereichAnzeigename": "Produktlebenszyklus",
         "Nummer": 5,
         "check_id": "analysis__produktlebenszyklus__05",
-        "Ich kann": "Kennzahlen des EKG-Zyklus berechnen",
-        "Sammlung": "ekg-zyklus-gemischt",
-        "Schlagwort": "EKG-Zyklus",
+        "Ich kann": "Kennzahlen des Produktlebenszyklus mit Integralen berechnen.",
+        "Sammlung": "integrale-gemischt",
+        "Schlagwort": "Kennzahlen (mit Integral)",
         "Flashtyp": "einzeln",
         "skript_anchor": "check-analysis-produktlebenszyklus-05",
         "questionOrder": "shuffle",
         "tippOrder": "shuffle",
         "Tipps": [
             {
-                "cue": "Jährlicher EKG-Wert",
-                "response": "Funktionswert der EKG-Funktion"
+                "cue": "monatlicher Absatz",
+                "response": "Funktionswert $a(t)$"
             },
             {
-                "cue": "Gesamter EKG-Wert in einem Zeitraum",
-                "response": "Integral"
+                "cue": "Gesamtabsatz in einem Zeitraum",
+                "response": "$\\int_{t_1}^{t_2} a(t)\\,dt$"
             },
             {
-                "cue": "Zeitpunkt maximaler Verlust",
-                "response": "Vergleich geeigneter Integrale"
+                "cue": "durchschnittlicher monatlicher Absatz",
+                "response": "$\\frac{1}{t_2-t_1}\\int_{t_1}^{t_2} a(t)\\,dt$"
+            },
+            {
+                "cue": "Zeitpunkt, zu dem der Gesamtabsatz $X$ erreicht",
+                "response": "$\\int_0^{z} a(t)\\,dt=X$ nach $z$ lösen"
             }
         ]
     },

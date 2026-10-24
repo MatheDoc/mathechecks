@@ -1408,7 +1408,7 @@
       <text>analysis__produktlebenszyklus__03-07</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(u'(6)=0\) und \(u''(6)=2\). Was besitzt \(u\) bei \(t=6\)?</p>]]></text>
+      <text><![CDATA[<p>Gesucht ist der Zeitraum, in dem der monatliche Absatz \(a(t)\) über \(10\) ME/Monat liegt. Welcher Ansatz liefert die Grenzen?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -1432,27 +1432,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>Ein lokales Minimum</p>]]></text>
+      <text><![CDATA[<p>\(a(t)=10\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Ein lokales Maximum</p>]]></text>
+      <text><![CDATA[<p>\(a'(t)=10\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>positives Vorzeichen von \(u''(6)\) falsch gedeutet</p>]]></text>
+        <text><![CDATA[<p>Absatz mit Änderungsrate verwechselt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Eine Wendestelle</p>]]></text>
+      <text><![CDATA[<p>\(a(10)\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Extremstellentest mit Wendestellentest verwechselt</p>]]></text>
+        <text><![CDATA[<p>Schwellenwert als Zeitpunkt eingesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>Den Marktaustritt</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{10} a(t)\,dt\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nullstelle von \(u'\) mit positiver Nullstelle von \(u\) verwechselt</p>]]></text>
+        <text><![CDATA[<p>Schwellenwert als Integralgrenze verwendet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -1514,7 +1514,7 @@
       <text>analysis__produktlebenszyklus__03-09</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(u''(3)=0\) und \(u'''(3)=5\). Welche Aussage ist richtig?</p>]]></text>
+      <text><![CDATA[<p>Für den höchsten Absatz ist \((6-2t)\cdot e^{-0{,}5t}=0\) zu lösen. Welche Lösung ergibt sich?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -1538,27 +1538,27 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) eine Wendestelle</p>]]></text>
+      <text><![CDATA[<p>\(t=3\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) sicher ein Maximum</p>]]></text>
+      <text><![CDATA[<p>\(t=3\) und \(t=0\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Wendestellentest als Extremstellentest gedeutet</p>]]></text>
+        <text><![CDATA[<p>Exponent statt Exponentialfaktor null gesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) hat bei \(t=3\) eine Nullstelle</p>]]></text>
+      <text><![CDATA[<p>\(t=-3\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Nullstelle von \(u''\) mit Nullstelle von \(u\) verwechselt</p>]]></text>
+        <text><![CDATA[<p>Vorzeichenfehler beim Auflösen</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(u\) ist bei \(t=3\) konstant</p>]]></text>
+      <text><![CDATA[<p>keine Lösung</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Krümmungsbedingung als konstante Funktion gedeutet</p>]]></text>
+        <text><![CDATA[<p>Klammerterm übersehen, nur \(e\)-Faktor betrachtet</p>]]></text>
       </feedback>
     </answer>
   </question>
@@ -1625,6 +1625,541 @@
       <text>analysis__produktlebenszyklus__04-01</text>
     </name>
     <questiontext format="html">
+      <text><![CDATA[<p>\(a(t)\) ist der monatliche Absatz in ME/Monat. Was gibt die Fläche unter dem Graphen von \(a\) über \([2;5]\) an?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Gesamtabsatz vom Ende des 2. bis zum Ende des 5. Monats</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>monatlicher Absatz nach 5 Monaten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche mit Funktionswert verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Zunahme des monatlichen Absatzes von \(t=2\) bis \(t=5\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche mit Differenz der Funktionswerte verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>durchschnittlicher monatlicher Absatz auf \([2;5]\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche mit Rechteckhöhe gleicher Fläche verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-02</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>\(a(t)\) ist in ME/Monat angegeben, \(t\) in Monaten. Welche Einheit hat \(\int_0^6 a(t)\,dt\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>ME/Monat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einheit der Funktionswerte übernommen</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>ME · Monat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite in Monaten nicht gekürzt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Monate</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Einheit der \(t\)-Achse übernommen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-03</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der monatliche Absatz beträgt von \(t=0\) bis \(t=4\) konstant 5 ME/Monat. Wie groß ist der Gesamtabsatz in diesem Zeitraum?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>20 ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>5 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>nur die Rechteckhöhe angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>9 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite und Höhe addiert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>1,25 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höhe durch Breite geteilt</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-04</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Kästchen im Diagramm ist 1 Monat breit und 2 ME/Monat hoch. Welchem Absatz entspricht ein Kästchen?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>2 ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>1 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>nur die Breite berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>0,5 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite durch Höhe geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>3 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite und Höhe addiert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-05</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Eine Fläche umfasst etwa 12 Kästchen mit je 1 Monat Breite und 2 ME/Monat Höhe. Wie groß ist der Gesamtabsatz etwa?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>24 ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>12 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kästcheninhalt nicht berücksichtigt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>6 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>durch die Kästchenhöhe geteilt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>14 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Kästchenhöhe addiert statt multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-06</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Auf \([3;7]\) liegt der Graph von \(a\) zwischen 8 und 10 ME/Monat. Welcher Wert kommt für \(\int_3^7 a(t)\,dt\) in Frage?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>36 ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>9 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>nur die mittlere Höhe angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>20 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>mit falscher Breite 2 gerechnet</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>50 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Obergrenze \(4\cdot 10=40\) überschritten</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-07</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Es gilt \(\int_0^5 a(t)\,dt=40\) ME. Wie hoch ist ein Rechteck über \([0;5]\) mit derselben Fläche?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>8 ME/Monat</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>40 ME/Monat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche als Höhe angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>200 ME/Monat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche mit Breite multipliziert</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>5 ME/Monat</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite als Höhe angegeben</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-08</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Auf \([0;6]\) gilt \(a(t)\le 7\) ME/Monat. Was gilt sicher für den Gesamtabsatz im ersten Halbjahr?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>höchstens 42 ME</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>mindestens 42 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ungleichung umgedreht</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>genau 7 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Höchstwert als Gesamtabsatz angegeben</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>höchstens 7 ME</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Breite des Zeitraums vergessen</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-09</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Schreibweise beschreibt die Fläche unter dem Graphen von \(a\) zwischen \(t=4\) und \(t=9\)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>\(\int_4^9 a(t)\,dt\)</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a(9)-a(4)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Differenz der Funktionswerte statt Fläche</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\int_0^9 a(t)\,dt\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>untere Grenze 0 statt 4 gewählt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(\int_4^9 a'(t)\,dt\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Ableitung statt Absatzfunktion integriert</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__04-10</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die Fläche unter dem Graphen von \(a\) ist über \([3;6]\) größer als über \([0;3]\). Was folgt daraus?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>0</showstandardinstruction>
+    <correctfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Im 2. Quartal wird insgesamt mehr abgesetzt als im 1.</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a\) ist auf \([3;6]\) überall größer als auf \([0;3]\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Gesamtwert mit punktweisem Vergleich verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a\) ist auf \([3;6]\) steigend</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Fläche mit Monotonie verwechselt</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>\(a(6)\) ist doppelt so groß wie \(a(3)\)</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Flächenvergleich als Verhältnis der Funktionswerte gedeutet</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+  <question type="category">
+    <category>
+      <text>$course$/analysis/produktlebenszyklus/analysis__produktlebenszyklus__05</text>
+    </category>
+  </question>
+  <question type="multichoice">
+    <name>
+      <text>analysis__produktlebenszyklus__05-01</text>
+    </name>
+    <questiontext format="html">
       <text><![CDATA[<p>Welche Größe beschreibt den jährlichen Umsatz nach 4 Jahren?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
@@ -1675,7 +2210,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-02</text>
+      <text>analysis__produktlebenszyklus__05-02</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel gibt den Gesamtumsatz vom Ende des 2. bis zum Ende des 5. Jahres an?</p>]]></text>
@@ -1728,7 +2263,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-03</text>
+      <text>analysis__produktlebenszyklus__05-03</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel gibt den Gesamtumsatz in den ersten 7 Jahren an?</p>]]></text>
@@ -1781,7 +2316,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-04</text>
+      <text>analysis__produktlebenszyklus__05-04</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel gibt den durchschnittlichen jährlichen Umsatz im Zeitraum \(\lbrack a;b\rbrack\) an?</p>]]></text>
@@ -1834,7 +2369,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-05</text>
+      <text>analysis__produktlebenszyklus__05-05</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es gilt \(\int_1^4 u(t)\,dt=60\). Wie groß ist der durchschnittliche jährliche Umsatz in diesem Zeitraum?</p>]]></text>
@@ -1887,10 +2422,10 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-06</text>
+      <text>analysis__produktlebenszyklus__05-06</text>
     </name>
     <questiontext format="html">
-      <text><![CDATA[<p>Es gilt \(\int_2^6 u(t)\,dt=84\). Wie groß ist der durchschnittliche jährliche Umsatz?</p>]]></text>
+      <text><![CDATA[<p>\(a(t)\) ist der monatliche Absatz in ME/Monat. Zu welchem Zeitpunkt \(z\) sind seit Markteinführung insgesamt 50 ME abgesetzt? Welcher Ansatz passt?</p>]]></text>
     </questiontext>
     <generalfeedback format="html">
       <text></text>
@@ -1914,33 +2449,33 @@
     </incorrectfeedback>
     <shownumcorrect/>
     <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(21\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^z a(t)\,dt=50\)</p>]]></text>
       <feedback format="html">
         <text></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(84\)</p>]]></text>
+      <text><![CDATA[<p>\(a(z)=50\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Gesamtumsatz statt Durchschnitt angegeben</p>]]></text>
+        <text><![CDATA[<p>monatlichen Absatz statt Gesamtabsatz gleichgesetzt</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(14\)</p>]]></text>
+      <text><![CDATA[<p>\(\int_0^{50} a(t)\,dt=z\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Durch die obere Grenze 6 statt durch die Zeitspanne 4 geteilt</p>]]></text>
+        <text><![CDATA[<p>Zielwert und obere Grenze vertauscht</p>]]></text>
       </feedback>
     </answer>
     <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(42\)</p>]]></text>
+      <text><![CDATA[<p>\(a'(z)=50\)</p>]]></text>
       <feedback format="html">
-        <text><![CDATA[<p>Durch die Untergrenze 2 statt durch die Zeitspanne 4 geteilt</p>]]></text>
+        <text><![CDATA[<p>Änderungsrate statt Gesamtabsatz gleichgesetzt</p>]]></text>
       </feedback>
     </answer>
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-07</text>
+      <text>analysis__produktlebenszyklus__05-07</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Der Produktlebenszyklus endet bei \(t=T\). Welche Formel gibt den Gesamtumsatz des gesamten Lebenszyklus an?</p>]]></text>
@@ -1993,7 +2528,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-08</text>
+      <text>analysis__produktlebenszyklus__05-08</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Es gilt \(\int_3^8 u(t)\,dt=75\). Wie groß ist der Gesamtumsatz in diesem Zeitraum?</p>]]></text>
@@ -2046,7 +2581,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-09</text>
+      <text>analysis__produktlebenszyklus__05-09</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>\(u(t)\) beschreibt den jährlichen Umsatz nach \(t\) Jahren. Was bedeutet \(u(6)=14\)?</p>]]></text>
@@ -2099,7 +2634,7 @@
   </question>
   <question type="multichoice">
     <name>
-      <text>analysis__produktlebenszyklus__04-10</text>
+      <text>analysis__produktlebenszyklus__05-10</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Welche Formel gehört zum Umsatz vom Ende des 4. bis zum Ende des 9. Jahres?</p>]]></text>
@@ -2147,541 +2682,6 @@
       <text><![CDATA[<p>\(u(9)-u(4)\)</p>]]></text>
       <feedback format="html">
         <text><![CDATA[<p>Differenz der Randwerte statt Umsatz im Zeitraum gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="category">
-    <category>
-      <text>$course$/analysis/produktlebenszyklus/analysis__produktlebenszyklus__05</text>
-    </category>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-01</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Wie wird die Gewinnfunktion aus Erlös- und Kostenfunktion gebildet?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)-K(t)\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=K(t)-E(t)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Kosten und Erlös in falscher Reihenfolge subtrahiert</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)+K(t)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Kosten zum Erlös addiert statt abgezogen</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(t)=E(t)\cdot K(t)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Erlös und Kosten multipliziert statt ihre Differenz zu bilden</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-02</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(E(t)\) ist der jährliche Erlös nach \(t\) Jahren. Was beschreibt \(E(4)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>den jährlichen Erlös nach 4 Jahren</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den gesamten Erlös der ersten 4 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über vier Jahre verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>die jährlichen Kosten nach 4 Jahren</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Erlösfunktion mit der Kostenfunktion verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den Gesamtgewinn der ersten 4 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Erlös mit dem gesamten Gewinn verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-03</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(K(t)\) sind die jährlichen Kosten nach \(t\) Jahren. Was beschreibt \(K(7)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>die jährlichen Kosten nach 7 Jahren</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>die gesamten Kosten der ersten 7 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über sieben Jahre verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den jährlichen Gewinn nach 7 Jahren</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Kostenfunktion mit der Gewinnfunktion verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den gesamten Erlös der ersten 7 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährliche Kosten mit dem gesamten Erlös verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-04</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(G(t)\) ist der jährliche Gewinn nach \(t\) Jahren. Was beschreibt \(G(5)\)?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>den jährlichen Gewinn oder Verlust nach 5 Jahren</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den Gesamtgewinn der ersten 5 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Funktionswert mit dem Integral über fünf Jahre verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>den jährlichen Erlös nach 5 Jahren</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gewinnfunktion mit der Erlösfunktion verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>die gesamten Kosten der ersten 5 Jahre</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Gewinn oder Verlust mit gesamten Kosten verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-05</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(E(t)\) ist der jährliche Erlös, \(t\) in Jahren. Welche Formel gibt den gesamten Erlös auf \([a;b]\) an?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(b)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Erlös am Intervallende statt Gesamterlös gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b K(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gesamtkosten statt Gesamterlös gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(E(b)-E(a)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Erlösfunktion gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-06</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(K(t)\) sind die jährlichen Kosten, \(t\) in Jahren. Welche Formel gibt die gesamten Kosten auf \([a;b]\) an?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b K(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(K(b)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährliche Kosten am Intervallende statt Gesamtkosten gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gesamterlös statt Gesamtkosten gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(K(b)-K(a)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Kostenfunktion gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-07</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>\(G(t)\) ist der jährliche Gewinn, \(t\) in Jahren. Welche Formel gibt den gesamten Gewinn oder Verlust auf \([a;b]\) an?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>\(\int_a^b G(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(b)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Jährlichen Gewinn am Intervallende statt Gesamtwert gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(\int_a^b E(t)\,dt\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gesamterlös statt gesamten Gewinn oder Verlust gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>\(G(b)-G(a)\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Differenz der Randwerte statt Integral der Gewinnfunktion gebildet</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-08</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Die Nullstellen von \(G\) sind \(t_1=3\) und \(t_2=11\). Zwischen ihnen gilt \(G(t)>0\), außerhalb \(G(t)<0\). Wann sind die Kosten gedeckt?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>von \(t=3\) bis \(t=11\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>vor \(t=3\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Negativen Bereich vor der ersten Nullstelle als Kostendeckung gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>nach \(t=11\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Negativen Bereich nach der zweiten Nullstelle als Kostendeckung gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>nur bei \(t=7\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Gesamten positiven Zeitraum auf einen einzelnen Zeitpunkt verkürzt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-09</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für den kumulierten Gewinn \(H\) sind nur \(t_1\) und \(T\) Minimumkandidaten: \(H(t_1)=-54\), \(H(T)=18\). Wo ist der Gesamtverlust maximal und wie hoch?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(54\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(-54\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Negativen kumulierten Wert statt positiven Verlustbetrag angegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(18\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Positiven Endwert fälschlich als maximalen Verlust gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(54\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Zeitpunkt des kleinsten kumulierten Werts mit dem Lebenszyklusende verwechselt</p>]]></text>
-      </feedback>
-    </answer>
-  </question>
-  <question type="multichoice">
-    <name>
-      <text>analysis__produktlebenszyklus__05-10</text>
-    </name>
-    <questiontext format="html">
-      <text><![CDATA[<p>Für den kumulierten Gewinn \(H\) sind nur \(t_1\) und \(T\) Minimumkandidaten: \(H(t_1)=-40\), \(H(T)=-65\). Wo ist der Gesamtverlust maximal und wie hoch?</p>]]></text>
-    </questiontext>
-    <generalfeedback format="html">
-      <text></text>
-    </generalfeedback>
-    <defaultgrade>1.0000000</defaultgrade>
-    <penalty>0.3333333</penalty>
-    <hidden>0</hidden>
-    <idnumber></idnumber>
-    <single>true</single>
-    <shuffleanswers>true</shuffleanswers>
-    <answernumbering>abc</answernumbering>
-    <showstandardinstruction>0</showstandardinstruction>
-    <correctfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist richtig.</p>]]></text>
-    </correctfeedback>
-    <partiallycorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist teilweise richtig.</p>]]></text>
-    </partiallycorrectfeedback>
-    <incorrectfeedback format="html">
-      <text><![CDATA[<p>Die Antwort ist falsch.</p>]]></text>
-    </incorrectfeedback>
-    <shownumcorrect/>
-    <answer fraction="100" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(65\)</p>]]></text>
-      <feedback format="html">
-        <text></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(40\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Weniger negativen kumulierten Wert als maximalen Verlust gewählt</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(T\); Verlustbetrag \(-65\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Negativen kumulierten Wert statt positiven Verlustbetrag angegeben</p>]]></text>
-      </feedback>
-    </answer>
-    <answer fraction="0" format="html">
-      <text><![CDATA[<p>bei \(t_1\); Verlustbetrag \(65\)</p>]]></text>
-      <feedback format="html">
-        <text><![CDATA[<p>Richtigen Verlustbetrag dem falschen Zeitpunkt zugeordnet</p>]]></text>
       </feedback>
     </answer>
   </question>
