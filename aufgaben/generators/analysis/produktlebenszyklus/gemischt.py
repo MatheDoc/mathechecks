@@ -114,31 +114,23 @@ def _poly_plain(coeffs: tuple[float, float, float, float]) -> str:
     return "".join(parts) if parts else "0"
 
 
+def _coef_var(abs_coeff: float, var_part: str) -> str:
+    text = _fmt(abs_coeff)
+    return var_part if text == "1" else f"{text}{var_part}"
+
+
 def _poly_latex(coeffs: tuple[float, float, float, float], variable: str = "t") -> str:
     a3, a2, a1, a0 = coeffs
     parts: list[str] = []
 
-    if abs(a3) > 1e-12:
-        if abs(a3 - 1.0) < 1e-12:
-            parts.append(f"{variable}^3")
-        elif abs(a3 + 1.0) < 1e-12:
-            parts.append(f"-{variable}^3")
-        else:
-            parts.append(f"{_fmt(a3)}{variable}^3")
-
-    if abs(a2) > 1e-12:
-        term = f"{_fmt(abs(a2))}{variable}^2"
+    for coeff, var_part in ((a3, f"{variable}^3"), (a2, f"{variable}^2"), (a1, variable)):
+        if abs(coeff) <= 1e-12:
+            continue
+        term = _coef_var(abs(coeff), var_part)
         if parts:
-            parts.append(("+" if a2 >= 0 else "-") + term)
+            parts.append(("+" if coeff >= 0 else "-") + term)
         else:
-            parts.append(term if a2 >= 0 else f"-{term}")
-
-    if abs(a1) > 1e-12:
-        term = f"{_fmt(abs(a1))}{variable}"
-        if parts:
-            parts.append(("+" if a1 >= 0 else "-") + term)
-        else:
-            parts.append(term if a1 >= 0 else f"-{term}")
+            parts.append(term if coeff >= 0 else f"-{term}")
 
     if abs(a0) > 1e-12 or not parts:
         term = _fmt(abs(a0))
@@ -148,6 +140,19 @@ def _poly_latex(coeffs: tuple[float, float, float, float], variable: str = "t") 
             parts.append(term if a0 >= 0 else f"-{term}")
 
     return "".join(parts)
+
+
+def _poly_times_exp_latex(coeffs: tuple[float, float, float, float], exp_part: str) -> str:
+    """Klammern nur bei mehrgliedrigem Polynom, z. B. 1,5te^{-0,1t} statt (1,5t)e^{-0,1t}."""
+    poly = _poly_latex(coeffs, variable="t")
+    n_terms = sum(1 for c in coeffs if abs(c) > 1e-12)
+    if n_terms == 1:
+        if poly == "1":
+            return exp_part
+        if poly == "-1":
+            return f"-{exp_part}"
+        return f"{poly}{exp_part}"
+    return f"({poly}){exp_part}"
 
 
 def _first_derivative_coeffs(
@@ -485,19 +490,17 @@ def _align_equations(expressions: list[str]) -> str:
 
 def _u_latex(case: _PLCCase, fname: str = "u") -> str:
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
-    poly = _poly_latex(case.coeffs, variable="t")
+    body = _poly_times_exp_latex(case.coeffs, exp_part)
     if abs(case.offset) < 1e-12:
-        return f"{fname}(t)=({poly}){exp_part}"
-    return f"{fname}(t)=({poly}){exp_part}{_signed(case.offset, 2)}"
+        return f"{fname}(t)={body}"
+    return f"{fname}(t)={body}{_signed(case.offset, 2)}"
 
 
 def _du_latex(case: _PLCCase, order: int, fname: str = "u") -> str:
     coeff_map = {1: case.d1_coeffs, 2: case.d2_coeffs, 3: case.d3_coeffs}
-    coeffs = coeff_map[order]
-    poly = _poly_latex(coeffs, variable="t")
     exp_part = f"e^{{-{_fmt(case.exp_rate, 2)}t}}"
     name = f"{fname}{chr(39) * order}(t)"
-    return f"{name}=({poly}){exp_part}"
+    return f"{name}={_poly_times_exp_latex(coeff_map[order], exp_part)}"
 
 
 @dataclass(frozen=True)
